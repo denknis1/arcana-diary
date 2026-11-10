@@ -1,67 +1,67 @@
-type_id,market,query,reason
-home,US,tarot reading,"max volume; vol=38000 (US, 2026-11-10); parent_topic=tarot reading"
-home,US,tarot ai,"other modifier/parent_topic; vol=5900 (US, 2026-11-10); parent_topic=ai tarot"
-home,US,free tarot reading,"other modifier/parent_topic; vol=20000 (US, 2026-11-10); parent_topic=tarot reading"
-one-card,US,one card tarot,"max volume; vol=7000 (US, 2026-11-10); parent_topic=one card tarot"
-one-card,US,daily tarot,"other modifier/parent_topic; vol=3100 (US, 2026-11-10); parent_topic=daily tarot"
-one-card,US,pull a tarot card,"other modifier/parent_topic; vol=800 (US, 2026-11-10); parent_topic=tarot generator"
-yes-no,US,yes or no tarot,"max volume; vol=42000 (US, 2026-11-10); parent_topic=yes no tarot"
-yes-no,US,yes or no tarot accurate 100 percent,"other modifier/parent_topic; vol=2600 (US, 2026-11-10); parent_topic=yes or no tarot accurate 100 percent"
-yes-no,US,online tarot reading yes or no,"other modifier/parent_topic; vol=2000 (US, 2026-11-10); parent_topic=yes or no tarot"
-love,US,love tarot,"max volume; vol=3600 (US, 2026-11-10); parent_topic=love tarot"
-love,US,love tarot spread,"other modifier/parent_topic; vol=2200 (US, 2026-11-10); parent_topic=tarot card spreads"
-love,US,free tarot card reading love,"other modifier/parent_topic; vol=1600 (US, 2026-11-10); parent_topic=love tarot reading"
-cards,US,tarot card meanings,"max volume; vol=29000 (US, 2026-11-10); parent_topic=tarot cards"
-cards,US,the moon tarot,"other modifier/parent_topic; vol=21000 (US, 2026-11-10); parent_topic=the moon tarot"
-cards,US,the tower tarot meaning,"other modifier/parent_topic; vol=3700 (US, 2026-11-10); parent_topic=the tower tarot"
-card-context,US,death tarot card meaning,"max volume; vol=6600 (US, 2026-11-10); parent_topic=death tarot"
-card-context,US,the star reversed,"other modifier/parent_topic; vol=4500 (US, 2026-11-10); parent_topic=the star tarot"
-card-context,US,the lovers tarot love,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=the lovers tarot"
-spreads,US,tarot spreads,"max volume; vol=9400 (US, 2026-11-10); parent_topic=tarot spreads"
-spreads,US,celtic cross tarot,"other modifier/parent_topic; vol=5700 (US, 2026-11-10); parent_topic=celtic cross tarot"
-spreads,US,tarot spreads for guidance,"other modifier/parent_topic; vol=2700 (US, 2026-11-10); parent_topic=tarot spreads for guidance"
-birth-card,US,tarot birth card,"max volume; vol=2500 (US, 2026-11-10); parent_topic=birth tarot card"
-birth-card,US,what is my tarot card,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=birth tarot card"
-birth-card,US,tarot birth card calculator,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=birth tarot card"
-horoscope,US,libra tarot,"max volume; vol=1300 (US, 2026-11-10); parent_topic=libra tarot"
-horoscope,US,tarot horoscope,"other modifier/parent_topic; vol=1100 (US, 2026-11-10); parent_topic=tarot"
-horoscope,US,zodiac signs tarot cards,"other modifier/parent_topic; vol=900 (US, 2026-11-10); parent_topic=zodiac tarot cards"
-quiz,US,what tarot card am i,"max volume; vol=900 (US, 2026-11-10); parent_topic=what tarot card am i"
-quiz,US,tarot card quiz,"other modifier/parent_topic; vol=300 (US, 2026-11-10); parent_topic=tarot card quiz"
-quiz,US,tarot card questions,"other modifier/parent_topic; vol=350 (US, 2026-11-10); parent_topic=tarot questions"
-pairs,US,tarot card combinations,"max volume; vol=350 (US, 2026-11-10); parent_topic=tarot card combinations"
-pairs,US,list of tarot card combinations meanings,"other modifier/parent_topic; vol=100 (US, 2026-11-10); parent_topic=tarot combinations"
-pairs,US,the sun and the moon tarot,"other modifier/parent_topic; vol=60 (US, 2026-11-10); parent_topic=sun and moon tarot card meaning"
-learn,US,how to read tarot cards,"max volume; vol=6000 (US, 2026-11-10); parent_topic=how to read tarot cards"
-learn,US,learn tarot,"other modifier/parent_topic; vol=1200 (US, 2026-11-10); parent_topic=tarot course"
-learn,US,tarot decks for beginners,"other modifier/parent_topic; vol=450 (US, 2026-11-10); parent_topic=best tarot decks for beginners"
-home,MX,tarot,"max volume; vol=27000 (MX, 2026-11-10); parent_topic=tarot"
-home,MX,tarot gratis,"other modifier/parent_topic; vol=12000 (MX, 2026-11-10); parent_topic=tarot gratis"
-home,MX,tarot arcanos,"other modifier/parent_topic; vol=4500 (MX, 2026-11-10); parent_topic=los arcanos"
-one-card,MX,tarot diario,"max volume; vol=100 (MX, 2026-11-10); parent_topic=нет данных"
-one-card,MX,tarot 1 carta gratis,"other modifier/parent_topic; vol=90 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан"
-one-card,MX,tarot una carta,"other modifier/parent_topic; vol=80 (MX, 2026-11-10); parent_topic=нет данных"
-yes-no,MX,tarot si o no,"max volume; vol=4000 (MX, 2026-11-10); parent_topic=tarot si o no"
-yes-no,MX,oraculo si o no,"other modifier/parent_topic; vol=800 (MX, 2026-11-10); parent_topic=oraculo si o no"
-yes-no,MX,tarot si o no amigo,"other modifier/parent_topic; vol=400 (MX, 2026-11-10); parent_topic=нет данных"
-love,MX,tarot del amor,"max volume; vol=500 (MX, 2026-11-10); parent_topic=tarot del amor"
-love,MX,tarot del amor gratis,"other modifier/parent_topic; vol=250 (MX, 2026-11-10); parent_topic=tarot del amor gratis"
-love,MX,tarot certero gratis futuro inmediato amor,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан"
-cards,MX,la estrella tarot,"max volume; vol=2600 (MX, 2026-11-10); parent_topic=la estrella tarot"
-cards,MX,la torre tarot,"other modifier/parent_topic; vol=2100 (MX, 2026-11-10); parent_topic=la torre tarot"
-cards,MX,arcanos mayores,"other modifier/parent_topic; vol=1800 (MX, 2026-11-10); parent_topic=arcanos mayores"
-card-context,MX,los enamorados,"max volume; vol=150 (MX, 2026-11-10); parent_topic=los enamorados tarot"
-card-context,MX,la muerte tarot invertida,"other modifier/parent_topic; vol=50 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан"
-spreads,MX,cruz celta tarot,"max volume; vol=700 (MX, 2026-11-10); parent_topic=tarot cruz celta"
-spreads,MX,tirada de 3 cartas gratis,"other modifier/parent_topic; vol=700 (MX, 2026-11-10); parent_topic=tarot gratis 3 cartas"
-spreads,MX,tiradas de tarot,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=esquemas tiradas de tarot"
-birth-card,MX,arcano de nacimiento,"max volume; vol=600 (MX, 2026-11-10); parent_topic=arcano personal"
-birth-card,MX,como saber mi arcano de nacimiento,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан"
-birth-card,MX,como saber cual es mi carta del tarot,"other modifier/parent_topic; vol=50 (MX, 2026-11-10); parent_topic=cual es mi carta del tarot"
-horoscope,MX,tarot libra hoy,"max volume; vol=60 (MX, 2026-11-10); parent_topic=horoscopo de hoy libra"
-quiz,MX,que arcano soy,"max volume; vol=150 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан"
-quiz,MX,que carta del tarot soy,"other modifier/parent_topic; vol=100 (MX, 2026-11-10); parent_topic=que carta del tarot soy"
-quiz,MX,como saber que arcano soy,"other modifier/parent_topic; vol=80 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан"
-learn,MX,como leer el tarot,"max volume; vol=700 (MX, 2026-11-10); parent_topic=como leer las cartas"
-learn,MX,curso de tarot,"other modifier/parent_topic; vol=200 (MX, 2026-11-10); parent_topic=curso de tarot"
-learn,MX,guía de tarot para principiantes pdf,"other modifier/parent_topic; vol=150 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан"
+type_id,market,query,reason,note
+home,US,tarot reading,"max volume; vol=38000 (US, 2026-11-10); parent_topic=tarot reading",has_sitelink_rows|has_traffic
+home,US,tarot ai,"other modifier/parent_topic; vol=5900 (US, 2026-11-10); parent_topic=ai tarot",has_sitelink_rows
+home,US,free tarot reading,"other modifier/parent_topic; vol=20000 (US, 2026-11-10); parent_topic=tarot reading",
+one-card,US,one card tarot,"max volume; vol=7000 (US, 2026-11-10); parent_topic=one card tarot",has_sitelink_rows
+one-card,US,daily tarot,"other modifier/parent_topic; vol=3100 (US, 2026-11-10); parent_topic=daily tarot",has_sitelink_rows
+one-card,US,pull a tarot card,"other modifier/parent_topic; vol=800 (US, 2026-11-10); parent_topic=tarot generator",
+yes-no,US,yes or no tarot,"max volume; vol=42000 (US, 2026-11-10); parent_topic=yes no tarot",has_sitelink_rows
+yes-no,US,yes or no tarot accurate 100 percent,"other modifier/parent_topic; vol=2600 (US, 2026-11-10); parent_topic=yes or no tarot accurate 100 percent",has_sitelink_rows
+yes-no,US,online tarot reading yes or no,"other modifier/parent_topic; vol=2000 (US, 2026-11-10); parent_topic=yes or no tarot",
+love,US,love tarot,"max volume; vol=3600 (US, 2026-11-10); parent_topic=love tarot",has_sitelink_rows
+love,US,love tarot spread,"other modifier/parent_topic; vol=2200 (US, 2026-11-10); parent_topic=tarot card spreads",has_sitelink_rows
+love,US,free tarot card reading love,"other modifier/parent_topic; vol=1600 (US, 2026-11-10); parent_topic=love tarot reading",
+cards,US,tarot card meanings,"max volume; vol=29000 (US, 2026-11-10); parent_topic=tarot cards",has_sitelink_rows
+cards,US,the moon tarot,"other modifier/parent_topic; vol=21000 (US, 2026-11-10); parent_topic=the moon tarot",has_sitelink_rows
+cards,US,the tower tarot meaning,"other modifier/parent_topic; vol=3700 (US, 2026-11-10); parent_topic=the tower tarot",has_sitelink_rows
+card-context,US,death tarot card meaning,"max volume; vol=6600 (US, 2026-11-10); parent_topic=death tarot",has_sitelink_rows
+card-context,US,the star reversed,"other modifier/parent_topic; vol=4500 (US, 2026-11-10); parent_topic=the star tarot",has_sitelink_rows
+card-context,US,the lovers tarot love,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=the lovers tarot",has_sitelink_rows
+spreads,US,tarot spreads,"max volume; vol=9400 (US, 2026-11-10); parent_topic=tarot spreads",
+spreads,US,celtic cross tarot,"other modifier/parent_topic; vol=5700 (US, 2026-11-10); parent_topic=celtic cross tarot",has_sitelink_rows
+spreads,US,tarot spreads for guidance,"other modifier/parent_topic; vol=2700 (US, 2026-11-10); parent_topic=tarot spreads for guidance",has_sitelink_rows
+birth-card,US,tarot birth card,"max volume; vol=2500 (US, 2026-11-10); parent_topic=birth tarot card",
+birth-card,US,what is my tarot card,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=birth tarot card",has_sitelink_rows
+birth-card,US,tarot birth card calculator,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=birth tarot card",
+horoscope,US,libra tarot,"max volume; vol=1300 (US, 2026-11-10); parent_topic=libra tarot",
+horoscope,US,tarot horoscope,"other modifier/parent_topic; vol=1100 (US, 2026-11-10); parent_topic=tarot",
+horoscope,US,zodiac signs tarot cards,"other modifier/parent_topic; vol=900 (US, 2026-11-10); parent_topic=zodiac tarot cards",has_sitelink_rows
+quiz,US,what tarot card am i,"max volume; vol=900 (US, 2026-11-10); parent_topic=what tarot card am i",
+quiz,US,tarot card quiz,"other modifier/parent_topic; vol=300 (US, 2026-11-10); parent_topic=tarot card quiz",
+quiz,US,tarot card questions,"other modifier/parent_topic; vol=350 (US, 2026-11-10); parent_topic=tarot questions",
+pairs,US,tarot card combinations,"max volume; vol=350 (US, 2026-11-10); parent_topic=tarot card combinations",
+pairs,US,list of tarot card combinations meanings,"other modifier/parent_topic; vol=100 (US, 2026-11-10); parent_topic=tarot combinations",has_sitelink_rows
+pairs,US,the sun and the moon tarot,"other modifier/parent_topic; vol=60 (US, 2026-11-10); parent_topic=sun and moon tarot card meaning",has_sitelink_rows
+learn,US,how to read tarot cards,"max volume; vol=6000 (US, 2026-11-10); parent_topic=how to read tarot cards",has_sitelink_rows
+learn,US,learn tarot,"other modifier/parent_topic; vol=1200 (US, 2026-11-10); parent_topic=tarot course",
+learn,US,tarot decks for beginners,"other modifier/parent_topic; vol=450 (US, 2026-11-10); parent_topic=best tarot decks for beginners",has_sitelink_rows
+home,MX,tarot,"max volume; vol=27000 (MX, 2026-11-10); parent_topic=tarot",has_sitelink_rows
+home,MX,tarot gratis,"other modifier/parent_topic; vol=12000 (MX, 2026-11-10); parent_topic=tarot gratis",
+home,MX,tarot arcanos,"other modifier/parent_topic; vol=4500 (MX, 2026-11-10); parent_topic=los arcanos",
+one-card,MX,tarot diario,"max volume; vol=100 (MX, 2026-11-10); parent_topic=нет данных",stale_serp:2024-01
+one-card,MX,tarot 1 carta gratis,"other modifier/parent_topic; vol=90 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+one-card,MX,tarot una carta,"other modifier/parent_topic; vol=80 (MX, 2026-11-10); parent_topic=нет данных",stale_serp:2022-01
+yes-no,MX,tarot si o no,"max volume; vol=4000 (MX, 2026-11-10); parent_topic=tarot si o no",
+yes-no,MX,oraculo si o no,"other modifier/parent_topic; vol=800 (MX, 2026-11-10); parent_topic=oraculo si o no",
+yes-no,MX,tarot si o no amigo,"other modifier/parent_topic; vol=400 (MX, 2026-11-10); parent_topic=нет данных",stale_serp:2024-03
+love,MX,tarot del amor,"max volume; vol=500 (MX, 2026-11-10); parent_topic=tarot del amor",
+love,MX,tarot del amor gratis,"other modifier/parent_topic; vol=250 (MX, 2026-11-10); parent_topic=tarot del amor gratis",has_sitelink_rows
+love,MX,tarot certero gratis futuro inmediato amor,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+cards,MX,la estrella tarot,"max volume; vol=2600 (MX, 2026-11-10); parent_topic=la estrella tarot",has_sitelink_rows
+cards,MX,la torre tarot,"other modifier/parent_topic; vol=2100 (MX, 2026-11-10); parent_topic=la torre tarot",has_sitelink_rows
+cards,MX,arcanos mayores,"other modifier/parent_topic; vol=1800 (MX, 2026-11-10); parent_topic=arcanos mayores",has_sitelink_rows
+card-context,MX,los enamorados,"max volume; vol=150 (MX, 2026-11-10); parent_topic=los enamorados tarot",has_sitelink_rows
+card-context,MX,la muerte tarot invertida,"other modifier/parent_topic; vol=50 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+spreads,MX,cruz celta tarot,"max volume; vol=700 (MX, 2026-11-10); parent_topic=tarot cruz celta",
+spreads,MX,tirada de 3 cartas gratis,"other modifier/parent_topic; vol=700 (MX, 2026-11-10); parent_topic=tarot gratis 3 cartas",
+spreads,MX,tiradas de tarot,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=esquemas tiradas de tarot",has_sitelink_rows
+birth-card,MX,arcano de nacimiento,"max volume; vol=600 (MX, 2026-11-10); parent_topic=arcano personal",has_sitelink_rows
+birth-card,MX,como saber mi arcano de nacimiento,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+birth-card,MX,como saber cual es mi carta del tarot,"other modifier/parent_topic; vol=50 (MX, 2026-11-10); parent_topic=cual es mi carta del tarot",has_sitelink_rows
+horoscope,MX,tarot libra hoy,"max volume; vol=60 (MX, 2026-11-10); parent_topic=horoscopo de hoy libra",has_sitelink_rows
+quiz,MX,que arcano soy,"max volume; vol=150 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+quiz,MX,que carta del tarot soy,"other modifier/parent_topic; vol=100 (MX, 2026-11-10); parent_topic=que carta del tarot soy",has_sitelink_rows
+quiz,MX,como saber que arcano soy,"other modifier/parent_topic; vol=80 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+learn,MX,como leer el tarot,"max volume; vol=700 (MX, 2026-11-10); parent_topic=como leer las cartas",has_sitelink_rows
+learn,MX,curso de tarot,"other modifier/parent_topic; vol=200 (MX, 2026-11-10); parent_topic=curso de tarot",
+learn,MX,guía de tarot para principiantes pdf,"other modifier/parent_topic; vol=150 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
