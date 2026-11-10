@@ -42,3 +42,32 @@ date,task,tool,country,params_short,rows,units
 2026-11-10,3,keywords-explorer-related-terms,US,learn keyword+volume+parent_topic order_by volume limit15,15,180
 2026-11-10,3,keywords-explorer-search-suggestions,US,learn keyword+volume+parent_topic order_by volume limit15,15,180
 2026-11-10,3,keywords-explorer-matching-terms,US,tarot terms=questions keyword+volume+parent_topic order_by volume limit100,100,1200
+2026-11-10,4,keywords-explorer-matching-terms,MX,home keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,home keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,one-card keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,one-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,yes-no keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,yes-no keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,love keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,love keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,cards keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,cards keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,card-context keyword+volume+parent_topic order_by volume limit60,59,708
+2026-11-10,4,keywords-explorer-search-suggestions,MX,card-context keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,spreads keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,spreads keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,birth-card keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,birth-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,horoscope keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,horoscope keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,quiz keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,quiz keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,pairs keyword+volume+parent_topic order_by volume limit60,38,456
+2026-11-10,4,keywords-explorer-search-suggestions,MX,pairs keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,learn keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,learn keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,tarot terms=questions keyword+volume+parent_topic order_by volume limit100,100,1200
+2026-11-10,4,keywords-explorer-overview,AR,top97 MX keywords keyword+volume,97,1067
+2026-11-10,4,keywords-explorer-overview,CO,top97 MX keywords keyword+volume,96,1056
+2026-11-10,4,keywords-explorer-overview,ES,top97 MX keywords keyword+volume,96,1056
+2026-11-10,4,keywords-explorer-overview,US,top97 MX keywords keyword+volume,97,1067
