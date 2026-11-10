@@ -608,3 +608,41 @@ Expected: `OK` дважды.
   - сумма юнитов в ledger ≤ 100 000.
 - [ ] **Step 2: Журнал** — `99-changelog.md`: версия 1.0, дата, ответственный, состав, изменения.
 - [ ] **Step 3: Commit, push, отчёт пользователю** — по формату ТЗ (раздел 8): сначала вывод, потом решения по типам с источниками, отдельным списком — не проверенное и вопросы. Пользователь просматривает `40-tga.md` и карты.
+
+---
+
+## Поправка 1 (10.11.2026): двухшаговый сбор Ahrefs
+
+**Причина.** Замер 10.11.2026: стоимость строки Ahrefs зависит от колонок — `keyword` ≈ 1 юнит, `volume` +10,
+`difficulty` +10, `parent_topic` +11. Полный набор колонок по плану давал 8 000 юнитов на тип × рынок (> 200 000
+на этап). Книга: частотность ≠ важность (7.2.1), смена формулировки без смены задачи — не новая задача (c07.07):
+для карты задач нужна широта формулировок, а не длинный хвост с цифрами.
+
+**Заменяет** в Task 3, 4, 5 параметры `select`, лимиты и формат файлов; остальное в задачах без изменений.
+
+**Шаг A — разведка формулировок (≈1 юнит/строка).** Для каждого типа × рынка: `matching-terms` по 5 сидам типа,
+`select=keyword`, `order_by=volume:desc`, `limit=300`; `related-terms` и `search-suggestions` — `select=keyword`,
+`limit=100` (параметры через `doc`). Один раз на рынок: `matching-terms`, `keywords=tarot` (MX: `tarot`),
+`terms=questions`, `select=keyword`, `order_by=volume:desc`, `limit=300`. Без `where`. Файл
+`corpus/ahrefs/<us|mx>/discovery/<type_id>.csv` и `…/discovery/questions.csv`: `rank,keyword,source_tool,country,data_date`
+(`rank` — порядковый номер в ответе, т. е. по убыванию спроса).
+
+**Шаг B — «верхушка» с объёмом (≈11 юнитов/строка).** Список на оценку: по каждому типу первые 60 из matching +
+первые 20 из related + первые 20 из suggestions; плюс первые 100 вопросов; без повторов по всему рынку.
+`keywords-explorer-overview`, `select=keyword,volume`, пачками по 100. Файл `corpus/ahrefs/<us|mx>/<type_id>.csv`:
+`keyword,volume,source_tool,country,data_date` (запрос встречается у нескольких типов — строка в каждом файле
+типа, объём один). Нет в ответе → `нет данных`.
+
+**KD** не собирается в Task 3–5; добирается в Task 12 через `overview` (`select=keyword,difficulty`) только для
+основных запросов строк карты со `wave=запуск`.
+
+**Матрица Task 5:** `select=keyword,volume` (без `difficulty`, `parent_topic`); колонки файла
+`card_id,context,keyword,volume,country,data_date`. ES-варианты дополнить: El Ahorcado, La Fortaleza,
+La Temperancia, La Parca, El Papa, El Eremita, El Carruaje (по 6 формулировок на вариант).
+
+**Task 4, спрос по странам:** 100 верхних ES-запросов вместо 200; `select=keyword,volume`.
+
+**Лимиты:** Task 3 ≤ 15 000; Task 4 ≤ 20 000; Task 5 ≤ 12 000; этап ≤ 100 000 без изменений.
+Уже оплаченная выгрузка yes-no (US) с полным набором колонок —
+`~/.claude/projects/-home-deploy/0ce1087d-69eb-43d4-8c76-3ce3133aa869/tool-results/toolu_01B45DE7kJLkzUKa7rmJjXeY.json`
+— используется для Шага A и B типа `yes-no` вместо повторного запроса matching.

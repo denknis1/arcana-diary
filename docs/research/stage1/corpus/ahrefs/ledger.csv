@@ -1,1 +1,6 @@
 date,task,tool,country,params_short,rows,units
+2026-11-10,3,keywords-explorer-matching-terms,US,yes-no seeds x5 vol>=20 limit150,150,4800
+2026-11-10,3,keywords-explorer-related-terms,US,yes-no seeds x5 vol>=20 limit50,50,1600
+2026-11-10,3,keywords-explorer-search-suggestions,US,yes-no seeds x5 vol>=20 limit50,50,1600
+2026-11-10,3-probe,matching-terms,US,tarot select=keyword+parent_topic limit10,10,120
+2026-11-10,3-probe,matching-terms,US,tarot select=keyword+volume limit10,10,110
