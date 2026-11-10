@@ -1,0 +1,32 @@
+name: arcana
+
+services:
+  caddy:
+    image: caddy:2.8.4
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN}
+      TLS_MODE: ${TLS_MODE}
+      LAUNCHED: ${LAUNCHED}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy:/etc/caddy/parts:ro
+      - ../site/dist:/srv/site:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
+  api:
+    build: ../api
+    restart: unless-stopped
+    expose:
+      - "8000"
+
+volumes:
+  caddy_data:
+  caddy_config:

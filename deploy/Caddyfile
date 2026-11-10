@@ -1,0 +1,24 @@
+{
+	import /etc/caddy/parts/global-{$TLS_MODE}.caddy
+}
+
+{$SITE_DOMAIN} {
+	import /etc/caddy/parts/noindex-{$LAUNCHED}.caddy
+	import /etc/caddy/parts/auth-{$LAUNCHED}.caddy
+	root * /srv/site
+	file_server
+	handle_errors {
+		import /etc/caddy/parts/noindex-{$LAUNCHED}.caddy
+		respond "{err.status_code} {err.status_text}"
+	}
+}
+
+www.{$SITE_DOMAIN} {
+	import /etc/caddy/parts/noindex-{$LAUNCHED}.caddy
+	redir https://{$SITE_DOMAIN}{uri} permanent
+}
+
+api.{$SITE_DOMAIN} {
+	header X-Robots-Tag "noindex, nofollow"
+	reverse_proxy api:8000
+}
