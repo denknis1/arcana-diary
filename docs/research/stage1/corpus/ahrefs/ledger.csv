@@ -84,3 +84,69 @@ date,task,tool,country,params_short,rows,units
 2026-11-10,5,keywords-explorer-overview,MX,card x context batch 6/6 keyword+volume,18,198
 2026-11-10,5-spotcheck,keywords-explorer-overview,US,20 random card-context-us,20,220
 2026-11-10,5-spotcheck,keywords-explorer-overview,MX,20 card-context-mx + 20 mx corpus,40,440
+2026-11-10,6,serp-overview,US,tarot reading top10 select+traffic,21,357
+2026-11-10,6,serp-overview,US,tarot ai top10 full,31,217
+2026-11-10,6,serp-overview,US,one card tarot top10 full,24,168
+2026-11-10,6,serp-overview,US,daily tarot top10 full,15,105
+2026-11-10,6,serp-overview,US,yes or no tarot top10 full,19,133
+2026-11-10,6,serp-overview,US,yes or no tarot accurate 100 percent top10 full,24,168
+2026-11-10,6,serp-overview,US,love tarot top10 full,35,245
+2026-11-10,6,serp-overview,US,love tarot spread top10 full,37,259
+2026-11-10,6,serp-overview,US,tarot card meanings top10 full,33,231
+2026-11-10,6,serp-overview,US,the moon tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,death tarot card meaning top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,the star reversed top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,tarot spreads top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,celtic cross tarot top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,US,free tarot reading top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,pull a tarot card top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,online tarot reading yes or no top10 no-sitelinks,13,91
+2026-11-10,6,serp-overview,US,free tarot card reading love top10 no-sitelinks,13,91
+2026-11-10,6,serp-overview,US,the tower tarot meaning top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,the lovers tarot love top10 no-sitelinks,21,147
+2026-11-10,6,serp-overview,US,tarot spreads for guidance top10 no-sitelinks,21,147
+2026-11-10,6,serp-overview,US,tarot birth card top10 no-sitelinks,12,84
+2026-11-10,6,serp-overview,US,what is my tarot card top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,tarot birth card calculator top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,libra tarot top10 no-sitelinks,25,175
+2026-11-10,6,serp-overview,US,tarot horoscope top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,zodiac signs tarot cards top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,what tarot card am i top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,tarot card quiz top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,tarot card questions top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,tarot card combinations top10 no-sitelinks,12,84
+2026-11-10,6,serp-overview,US,list of tarot card combinations meanings top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,the sun and the moon tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,how to read tarot cards top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,learn tarot top10 no-sitelinks,13,91
+2026-11-10,6,serp-overview,US,tarot decks for beginners top10 no-sitelinks,33,231
+2026-11-10,6,serp-overview,MX,tarot top10 no-sitelinks,17,119
+2026-11-10,6,serp-overview,MX,tarot gratis top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,tarot arcanos top10 no-sitelinks,7,50
+2026-11-10,6,serp-overview,MX,tarot diario top10 no-sitelinks (stale 2024-01),10,70
+2026-11-10,6,serp-overview,MX,tarot 1 carta gratis top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,tarot una carta top10 no-sitelinks (stale 2022-01),10,70
+2026-11-10,6,serp-overview,MX,tarot si o no top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,oraculo si o no top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,tarot si o no amigo top10 no-sitelinks (stale 2024-03),10,70
+2026-11-10,6,serp-overview,MX,tarot del amor top10 no-sitelinks,9,63
+2026-11-10,6,serp-overview,MX,tarot del amor gratis top10 no-sitelinks,14,98
+2026-11-10,6,serp-overview,MX,tarot certero gratis futuro inmediato amor top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,la estrella tarot top10 no-sitelinks,24,168
+2026-11-10,6,serp-overview,MX,la torre tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,MX,arcanos mayores top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,MX,los enamorados top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,MX,la muerte tarot invertida top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,cruz celta tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,MX,tirada de 3 cartas gratis top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,tiradas de tarot top10 no-sitelinks,24,168
+2026-11-10,6,serp-overview,MX,arcano de nacimiento top10 no-sitelinks,11,77
+2026-11-10,6,serp-overview,MX,como saber mi arcano de nacimiento top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,como saber cual es mi carta del tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,MX,tarot libra hoy top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,MX,que arcano soy top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,que carta del tarot soy top10 no-sitelinks,12,84
+2026-11-10,6,serp-overview,MX,como saber que arcano soy top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,como leer el tarot top10 no-sitelinks,19,133
+2026-11-10,6,serp-overview,MX,curso de tarot top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,MX,guía de tarot para principiantes pdf top10 no-sitelinks (empty SERP),0,50
