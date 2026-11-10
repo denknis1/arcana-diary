@@ -1,0 +1,8 @@
+deploy/.env
+deploy/caddy/stage_auth.caddy
+site/node_modules/
+site/dist/
+site/.astro/
+api/.venv/
+__pycache__/
+.pytest_cache/
