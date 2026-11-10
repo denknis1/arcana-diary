@@ -82,3 +82,5 @@ date,task,tool,country,params_short,rows,units
 2026-11-10,5,keywords-explorer-overview,MX,card x context batch 4/6 keyword+volume,78,858
 2026-11-10,5,keywords-explorer-overview,MX,card x context batch 5/6 keyword+volume,72,792
 2026-11-10,5,keywords-explorer-overview,MX,card x context batch 6/6 keyword+volume,18,198
+2026-11-10,5-spotcheck,keywords-explorer-overview,US,20 random card-context-us,20,220
+2026-11-10,5-spotcheck,keywords-explorer-overview,MX,20 card-context-mx + 20 mx corpus,40,440
