@@ -1,0 +1,469 @@
+card_id,context,keyword,volume,country,data_date
+major-00-fool,base,the fool tarot,15000,US,2026-11-10
+major-00-fool,love,the fool tarot love,600,US,2026-11-10
+major-00-fool,yes-no,the fool yes or no,2100,US,2026-11-10
+major-00-fool,reversed,the fool reversed,7400,US,2026-11-10
+major-00-fool,feelings,the fool as feelings,350,US,2026-11-10
+major-00-fool,advice,the fool advice,50,US,2026-11-10
+major-01-magician,base,the magician tarot,11000,US,2026-11-10
+major-01-magician,love,the magician tarot love,800,US,2026-11-10
+major-01-magician,yes-no,the magician yes or no,1000,US,2026-11-10
+major-01-magician,reversed,the magician reversed,3700,US,2026-11-10
+major-01-magician,feelings,the magician as feelings,250,US,2026-11-10
+major-01-magician,advice,the magician advice,20,US,2026-11-10
+major-02-high-priestess,base,the high priestess tarot,7200,US,2026-11-10
+major-02-high-priestess,love,the high priestess tarot love,60,US,2026-11-10
+major-02-high-priestess,yes-no,the high priestess yes or no,1000,US,2026-11-10
+major-02-high-priestess,reversed,the high priestess reversed,2800,US,2026-11-10
+major-02-high-priestess,feelings,the high priestess as feelings,200,US,2026-11-10
+major-02-high-priestess,advice,the high priestess advice,30,US,2026-11-10
+major-03-empress,base,the empress tarot,12000,US,2026-11-10
+major-03-empress,love,the empress tarot love,700,US,2026-11-10
+major-03-empress,yes-no,the empress yes or no,1000,US,2026-11-10
+major-03-empress,reversed,the empress reversed,5900,US,2026-11-10
+major-03-empress,feelings,the empress as feelings,200,US,2026-11-10
+major-03-empress,advice,the empress advice,50,US,2026-11-10
+major-04-emperor,base,the emperor tarot,13000,US,2026-11-10
+major-04-emperor,love,the emperor tarot love,1000,US,2026-11-10
+major-04-emperor,yes-no,the emperor yes or no,1100,US,2026-11-10
+major-04-emperor,reversed,the emperor reversed,4800,US,2026-11-10
+major-04-emperor,feelings,the emperor as feelings,200,US,2026-11-10
+major-04-emperor,advice,the emperor advice,30,US,2026-11-10
+major-05-hierophant,base,the hierophant tarot,3600,US,2026-11-10
+major-05-hierophant,love,the hierophant tarot love,90,US,2026-11-10
+major-05-hierophant,yes-no,the hierophant yes or no,2300,US,2026-11-10
+major-05-hierophant,reversed,the hierophant reversed,3700,US,2026-11-10
+major-05-hierophant,feelings,the hierophant as feelings,200,US,2026-11-10
+major-05-hierophant,advice,the hierophant advice,60,US,2026-11-10
+major-06-lovers,base,the lovers tarot,15000,US,2026-11-10
+major-06-lovers,love,the lovers tarot love,500,US,2026-11-10
+major-06-lovers,yes-no,the lovers yes or no,800,US,2026-11-10
+major-06-lovers,reversed,the lovers reversed,4600,US,2026-11-10
+major-06-lovers,feelings,the lovers as feelings,200,US,2026-11-10
+major-06-lovers,advice,the lovers advice,30,US,2026-11-10
+major-07-chariot,base,the chariot tarot,14000,US,2026-11-10
+major-07-chariot,love,the chariot tarot love,450,US,2026-11-10
+major-07-chariot,yes-no,the chariot yes or no,1900,US,2026-11-10
+major-07-chariot,reversed,the chariot reversed,4300,US,2026-11-10
+major-07-chariot,feelings,the chariot as feelings,200,US,2026-11-10
+major-07-chariot,advice,the chariot advice,50,US,2026-11-10
+major-08-strength,base,strength tarot,10000,US,2026-11-10
+major-08-strength,love,strength tarot love,450,US,2026-11-10
+major-08-strength,yes-no,strength yes or no,800,US,2026-11-10
+major-08-strength,reversed,strength reversed,3000,US,2026-11-10
+major-08-strength,feelings,strength as feelings,250,US,2026-11-10
+major-08-strength,advice,strength advice,10,US,2026-11-10
+major-09-hermit,base,the hermit tarot,8800,US,2026-11-10
+major-09-hermit,love,the hermit tarot love,400,US,2026-11-10
+major-09-hermit,yes-no,the hermit yes or no,1700,US,2026-11-10
+major-09-hermit,reversed,the hermit reversed,5000,US,2026-11-10
+major-09-hermit,feelings,the hermit as feelings,200,US,2026-11-10
+major-09-hermit,advice,the hermit advice,40,US,2026-11-10
+major-10-wheel-of-fortune,base,wheel of fortune tarot,20000,US,2026-11-10
+major-10-wheel-of-fortune,love,wheel of fortune tarot love,500,US,2026-11-10
+major-10-wheel-of-fortune,yes-no,wheel of fortune yes or no,1100,US,2026-11-10
+major-10-wheel-of-fortune,reversed,wheel of fortune reversed,3500,US,2026-11-10
+major-10-wheel-of-fortune,feelings,wheel of fortune as feelings,250,US,2026-11-10
+major-10-wheel-of-fortune,advice,wheel of fortune advice,60,US,2026-11-10
+major-11-justice,base,justice tarot,13000,US,2026-11-10
+major-11-justice,love,justice tarot love,900,US,2026-11-10
+major-11-justice,yes-no,justice yes or no,1000,US,2026-11-10
+major-11-justice,reversed,justice reversed,5200,US,2026-11-10
+major-11-justice,feelings,justice as feelings,250,US,2026-11-10
+major-11-justice,advice,justice advice,10,US,2026-11-10
+major-12-hanged-man,base,the hanged man tarot,6700,US,2026-11-10
+major-12-hanged-man,love,the hanged man tarot love,200,US,2026-11-10
+major-12-hanged-man,yes-no,the hanged man yes or no,1000,US,2026-11-10
+major-12-hanged-man,reversed,the hanged man reversed,5000,US,2026-11-10
+major-12-hanged-man,feelings,the hanged man as feelings,150,US,2026-11-10
+major-12-hanged-man,advice,the hanged man advice,30,US,2026-11-10
+major-13-death,base,death tarot,13000,US,2026-11-10
+major-13-death,love,death tarot love,150,US,2026-11-10
+major-13-death,yes-no,death yes or no,600,US,2026-11-10
+major-13-death,reversed,death reversed,3700,US,2026-11-10
+major-13-death,feelings,death as feelings,200,US,2026-11-10
+major-13-death,advice,death advice,20,US,2026-11-10
+major-14-temperance,base,temperance tarot,20000,US,2026-11-10
+major-14-temperance,love,temperance tarot love,1100,US,2026-11-10
+major-14-temperance,yes-no,temperance yes or no,1900,US,2026-11-10
+major-14-temperance,reversed,temperance reversed,6300,US,2026-11-10
+major-14-temperance,feelings,temperance as feelings,300,US,2026-11-10
+major-14-temperance,advice,temperance advice,30,US,2026-11-10
+major-15-devil,base,the devil tarot,13000,US,2026-11-10
+major-15-devil,love,the devil tarot love,150,US,2026-11-10
+major-15-devil,yes-no,the devil yes or no,800,US,2026-11-10
+major-15-devil,reversed,the devil reversed,5000,US,2026-11-10
+major-15-devil,feelings,the devil as feelings,нет данных,US,2026-11-10
+major-15-devil,advice,the devil advice,нет данных,US,2026-11-10
+major-16-tower,base,the tower tarot,нет данных,US,2026-11-10
+major-16-tower,love,the tower tarot love,нет данных,US,2026-11-10
+major-16-tower,yes-no,the tower yes or no,нет данных,US,2026-11-10
+major-16-tower,reversed,the tower reversed,нет данных,US,2026-11-10
+major-16-tower,feelings,the tower as feelings,300,US,2026-11-10
+major-16-tower,advice,the tower advice,20,US,2026-11-10
+major-17-star,base,the star tarot,25000,US,2026-11-10
+major-17-star,love,the star tarot love,500,US,2026-11-10
+major-17-star,yes-no,the star yes or no,700,US,2026-11-10
+major-17-star,reversed,the star reversed,4500,US,2026-11-10
+major-17-star,feelings,the star as feelings,250,US,2026-11-10
+major-17-star,advice,the star advice,20,US,2026-11-10
+major-18-moon,base,the moon tarot,21000,US,2026-11-10
+major-18-moon,love,the moon tarot love,700,US,2026-11-10
+major-18-moon,yes-no,the moon yes or no,2200,US,2026-11-10
+major-18-moon,reversed,the moon reversed,6600,US,2026-11-10
+major-18-moon,feelings,the moon as feelings,200,US,2026-11-10
+major-18-moon,advice,the moon advice,40,US,2026-11-10
+major-19-sun,base,the sun tarot,20000,US,2026-11-10
+major-19-sun,love,the sun tarot love,500,US,2026-11-10
+major-19-sun,yes-no,the sun yes or no,700,US,2026-11-10
+major-19-sun,reversed,the sun reversed,6500,US,2026-11-10
+major-19-sun,feelings,the sun as feelings,200,US,2026-11-10
+major-19-sun,advice,the sun advice,30,US,2026-11-10
+major-20-judgement,base,judgement tarot,17000,US,2026-11-10
+major-20-judgement,love,judgement tarot love,800,US,2026-11-10
+major-20-judgement,yes-no,judgement yes or no,1000,US,2026-11-10
+major-20-judgement,reversed,judgement reversed,4100,US,2026-11-10
+major-20-judgement,feelings,judgement as feelings,200,US,2026-11-10
+major-20-judgement,advice,judgement advice,10,US,2026-11-10
+major-21-world,base,the world tarot,22000,US,2026-11-10
+major-21-world,love,the world tarot love,1000,US,2026-11-10
+major-21-world,yes-no,the world yes or no,900,US,2026-11-10
+major-21-world,reversed,the world reversed,5900,US,2026-11-10
+major-21-world,feelings,the world as feelings,250,US,2026-11-10
+major-21-world,advice,the world advice,30,US,2026-11-10
+wands-01-ace,base,ace of wands tarot,1200,US,2026-11-10
+wands-01-ace,love,ace of wands tarot love,20,US,2026-11-10
+wands-01-ace,yes-no,ace of wands yes or no,2500,US,2026-11-10
+wands-01-ace,reversed,ace of wands reversed,5900,US,2026-11-10
+wands-01-ace,feelings,ace of wands as feelings,200,US,2026-11-10
+wands-01-ace,advice,ace of wands advice,100,US,2026-11-10
+wands-02-two,base,two of wands tarot,900,US,2026-11-10
+wands-02-two,love,two of wands tarot love,20,US,2026-11-10
+wands-02-two,yes-no,two of wands yes or no,1200,US,2026-11-10
+wands-02-two,reversed,two of wands reversed,3700,US,2026-11-10
+wands-02-two,feelings,two of wands as feelings,200,US,2026-11-10
+wands-02-two,advice,two of wands advice,50,US,2026-11-10
+wands-03-three,base,three of wands tarot,2100,US,2026-11-10
+wands-03-three,love,three of wands tarot love,10,US,2026-11-10
+wands-03-three,yes-no,three of wands yes or no,900,US,2026-11-10
+wands-03-three,reversed,three of wands reversed,2800,US,2026-11-10
+wands-03-three,feelings,three of wands as feelings,100,US,2026-11-10
+wands-03-three,advice,three of wands advice,50,US,2026-11-10
+wands-04-four,base,four of wands tarot,500,US,2026-11-10
+wands-04-four,love,four of wands tarot love,10,US,2026-11-10
+wands-04-four,yes-no,four of wands yes or no,800,US,2026-11-10
+wands-04-four,reversed,four of wands reversed,5000,US,2026-11-10
+wands-04-four,feelings,four of wands as feelings,150,US,2026-11-10
+wands-04-four,advice,four of wands advice,50,US,2026-11-10
+wands-05-five,base,five of wands tarot,700,US,2026-11-10
+wands-05-five,love,five of wands tarot love,10,US,2026-11-10
+wands-05-five,yes-no,five of wands yes or no,800,US,2026-11-10
+wands-05-five,reversed,five of wands reversed,3400,US,2026-11-10
+wands-05-five,feelings,five of wands as feelings,150,US,2026-11-10
+wands-05-five,advice,five of wands advice,50,US,2026-11-10
+wands-06-six,base,six of wands tarot,600,US,2026-11-10
+wands-06-six,love,six of wands tarot love,10,US,2026-11-10
+wands-06-six,yes-no,six of wands yes or no,700,US,2026-11-10
+wands-06-six,reversed,six of wands reversed,2800,US,2026-11-10
+wands-06-six,feelings,six of wands as feelings,150,US,2026-11-10
+wands-06-six,advice,six of wands advice,50,US,2026-11-10
+wands-07-seven,base,seven of wands tarot,400,US,2026-11-10
+wands-07-seven,love,seven of wands tarot love,10,US,2026-11-10
+wands-07-seven,yes-no,seven of wands yes or no,1000,US,2026-11-10
+wands-07-seven,reversed,seven of wands reversed,2800,US,2026-11-10
+wands-07-seven,feelings,seven of wands as feelings,150,US,2026-11-10
+wands-07-seven,advice,seven of wands advice,50,US,2026-11-10
+wands-08-eight,base,eight of wands tarot,500,US,2026-11-10
+wands-08-eight,love,eight of wands tarot love,10,US,2026-11-10
+wands-08-eight,yes-no,eight of wands yes or no,700,US,2026-11-10
+wands-08-eight,reversed,eight of wands reversed,2800,US,2026-11-10
+wands-08-eight,feelings,eight of wands as feelings,150,US,2026-11-10
+wands-08-eight,advice,eight of wands advice,30,US,2026-11-10
+wands-09-nine,base,nine of wands tarot,350,US,2026-11-10
+wands-09-nine,love,nine of wands tarot love,10,US,2026-11-10
+wands-09-nine,yes-no,nine of wands yes or no,1000,US,2026-11-10
+wands-09-nine,reversed,nine of wands reversed,3400,US,2026-11-10
+wands-09-nine,feelings,nine of wands as feelings,150,US,2026-11-10
+wands-09-nine,advice,nine of wands advice,50,US,2026-11-10
+wands-10-ten,base,ten of wands tarot,600,US,2026-11-10
+wands-10-ten,love,ten of wands tarot love,10,US,2026-11-10
+wands-10-ten,yes-no,ten of wands yes or no,900,US,2026-11-10
+wands-10-ten,reversed,ten of wands reversed,2800,US,2026-11-10
+wands-10-ten,feelings,ten of wands as feelings,100,US,2026-11-10
+wands-10-ten,advice,ten of wands advice,60,US,2026-11-10
+wands-11-page,base,page of wands tarot,1300,US,2026-11-10
+wands-11-page,love,page of wands tarot love,30,US,2026-11-10
+wands-11-page,yes-no,page of wands yes or no,3100,US,2026-11-10
+wands-11-page,reversed,page of wands reversed,6000,US,2026-11-10
+wands-11-page,feelings,page of wands as feelings,300,US,2026-11-10
+wands-11-page,advice,page of wands advice,100,US,2026-11-10
+wands-12-knight,base,knight of wands tarot,1000,US,2026-11-10
+wands-12-knight,love,knight of wands tarot love,10,US,2026-11-10
+wands-12-knight,yes-no,knight of wands yes or no,3000,US,2026-11-10
+wands-12-knight,reversed,knight of wands reversed,6500,US,2026-11-10
+wands-12-knight,feelings,knight of wands as feelings,350,US,2026-11-10
+wands-12-knight,advice,knight of wands advice,100,US,2026-11-10
+wands-13-queen,base,queen of wands tarot,2000,US,2026-11-10
+wands-13-queen,love,queen of wands tarot love,20,US,2026-11-10
+wands-13-queen,yes-no,queen of wands yes or no,3400,US,2026-11-10
+wands-13-queen,reversed,queen of wands reversed,6300,US,2026-11-10
+wands-13-queen,feelings,queen of wands as feelings,400,US,2026-11-10
+wands-13-queen,advice,queen of wands advice,100,US,2026-11-10
+wands-14-king,base,king of wands tarot,1400,US,2026-11-10
+wands-14-king,love,king of wands tarot love,20,US,2026-11-10
+wands-14-king,yes-no,king of wands yes or no,3400,US,2026-11-10
+wands-14-king,reversed,king of wands reversed,5800,US,2026-11-10
+wands-14-king,feelings,king of wands as feelings,350,US,2026-11-10
+wands-14-king,advice,king of wands advice,100,US,2026-11-10
+cups-01-ace,base,ace of cups tarot,2200,US,2026-11-10
+cups-01-ace,love,ace of cups tarot love,30,US,2026-11-10
+cups-01-ace,yes-no,ace of cups yes or no,2700,US,2026-11-10
+cups-01-ace,reversed,ace of cups reversed,6000,US,2026-11-10
+cups-01-ace,feelings,ace of cups as feelings,250,US,2026-11-10
+cups-01-ace,advice,ace of cups advice,150,US,2026-11-10
+cups-02-two,base,two of cups tarot,1800,US,2026-11-10
+cups-02-two,love,two of cups tarot love,20,US,2026-11-10
+cups-02-two,yes-no,two of cups yes or no,600,US,2026-11-10
+cups-02-two,reversed,two of cups reversed,3200,US,2026-11-10
+cups-02-two,feelings,two of cups as feelings,150,US,2026-11-10
+cups-02-two,advice,two of cups advice,50,US,2026-11-10
+cups-03-three,base,three of cups tarot,800,US,2026-11-10
+cups-03-three,love,three of cups tarot love,450,US,2026-11-10
+cups-03-three,yes-no,three of cups yes or no,700,US,2026-11-10
+cups-03-three,reversed,three of cups reversed,2900,US,2026-11-10
+cups-03-three,feelings,three of cups as feelings,100,US,2026-11-10
+cups-03-three,advice,three of cups advice,40,US,2026-11-10
+cups-04-four,base,four of cups tarot,900,US,2026-11-10
+cups-04-four,love,four of cups tarot love,10,US,2026-11-10
+cups-04-four,yes-no,four of cups yes or no,800,US,2026-11-10
+cups-04-four,reversed,four of cups reversed,3900,US,2026-11-10
+cups-04-four,feelings,four of cups as feelings,150,US,2026-11-10
+cups-04-four,advice,four of cups advice,60,US,2026-11-10
+cups-05-five,base,five of cups tarot,450,US,2026-11-10
+cups-05-five,love,five of cups tarot love,10,US,2026-11-10
+cups-05-five,yes-no,five of cups yes or no,600,US,2026-11-10
+cups-05-five,reversed,five of cups reversed,3300,US,2026-11-10
+cups-05-five,feelings,five of cups as feelings,100,US,2026-11-10
+cups-05-five,advice,five of cups advice,50,US,2026-11-10
+cups-06-six,base,six of cups tarot,1400,US,2026-11-10
+cups-06-six,love,six of cups tarot love,20,US,2026-11-10
+cups-06-six,yes-no,six of cups yes or no,800,US,2026-11-10
+cups-06-six,reversed,six of cups reversed,2300,US,2026-11-10
+cups-06-six,feelings,six of cups as feelings,200,US,2026-11-10
+cups-06-six,advice,six of cups advice,40,US,2026-11-10
+cups-07-seven,base,seven of cups tarot,900,US,2026-11-10
+cups-07-seven,love,seven of cups tarot love,10,US,2026-11-10
+cups-07-seven,yes-no,seven of cups yes or no,800,US,2026-11-10
+cups-07-seven,reversed,seven of cups reversed,3200,US,2026-11-10
+cups-07-seven,feelings,seven of cups as feelings,90,US,2026-11-10
+cups-07-seven,advice,seven of cups advice,40,US,2026-11-10
+cups-08-eight,base,eight of cups tarot,700,US,2026-11-10
+cups-08-eight,love,eight of cups tarot love,10,US,2026-11-10
+cups-08-eight,yes-no,eight of cups yes or no,800,US,2026-11-10
+cups-08-eight,reversed,eight of cups reversed,2900,US,2026-11-10
+cups-08-eight,feelings,eight of cups as feelings,90,US,2026-11-10
+cups-08-eight,advice,eight of cups advice,40,US,2026-11-10
+cups-09-nine,base,nine of cups tarot,600,US,2026-11-10
+cups-09-nine,love,nine of cups tarot love,10,US,2026-11-10
+cups-09-nine,yes-no,nine of cups yes or no,700,US,2026-11-10
+cups-09-nine,reversed,nine of cups reversed,2800,US,2026-11-10
+cups-09-nine,feelings,nine of cups as feelings,100,US,2026-11-10
+cups-09-nine,advice,nine of cups advice,50,US,2026-11-10
+cups-10-ten,base,ten of cups tarot,700,US,2026-11-10
+cups-10-ten,love,ten of cups tarot love,10,US,2026-11-10
+cups-10-ten,yes-no,ten of cups yes or no,450,US,2026-11-10
+cups-10-ten,reversed,ten of cups reversed,2400,US,2026-11-10
+cups-10-ten,feelings,ten of cups as feelings,100,US,2026-11-10
+cups-10-ten,advice,ten of cups advice,60,US,2026-11-10
+cups-11-page,base,page of cups tarot,1200,US,2026-11-10
+cups-11-page,love,page of cups tarot love,20,US,2026-11-10
+cups-11-page,yes-no,page of cups yes or no,2500,US,2026-11-10
+cups-11-page,reversed,page of cups reversed,5100,US,2026-11-10
+cups-11-page,feelings,page of cups as feelings,300,US,2026-11-10
+cups-11-page,advice,page of cups advice,100,US,2026-11-10
+cups-12-knight,base,knight of cups tarot,5200,US,2026-11-10
+cups-12-knight,love,knight of cups tarot love,40,US,2026-11-10
+cups-12-knight,yes-no,knight of cups yes or no,1800,US,2026-11-10
+cups-12-knight,reversed,knight of cups reversed,5800,US,2026-11-10
+cups-12-knight,feelings,knight of cups as feelings,300,US,2026-11-10
+cups-12-knight,advice,knight of cups advice,100,US,2026-11-10
+cups-13-queen,base,queen of cups tarot,2500,US,2026-11-10
+cups-13-queen,love,queen of cups tarot love,30,US,2026-11-10
+cups-13-queen,yes-no,queen of cups yes or no,3800,US,2026-11-10
+cups-13-queen,reversed,queen of cups reversed,5600,US,2026-11-10
+cups-13-queen,feelings,queen of cups as feelings,300,US,2026-11-10
+cups-13-queen,advice,queen of cups advice,150,US,2026-11-10
+cups-14-king,base,king of cups tarot,2500,US,2026-11-10
+cups-14-king,love,king of cups tarot love,30,US,2026-11-10
+cups-14-king,yes-no,king of cups yes or no,3100,US,2026-11-10
+cups-14-king,reversed,king of cups reversed,6000,US,2026-11-10
+cups-14-king,feelings,king of cups as feelings,300,US,2026-11-10
+cups-14-king,advice,king of cups advice,150,US,2026-11-10
+swords-01-ace,base,ace of swords tarot,1300,US,2026-11-10
+swords-01-ace,love,ace of swords tarot love,20,US,2026-11-10
+swords-01-ace,yes-no,ace of swords yes or no,3700,US,2026-11-10
+swords-01-ace,reversed,ace of swords reversed,6200,US,2026-11-10
+swords-01-ace,feelings,ace of swords as feelings,350,US,2026-11-10
+swords-01-ace,advice,ace of swords advice,100,US,2026-11-10
+swords-02-two,base,two of swords tarot,900,US,2026-11-10
+swords-02-two,love,two of swords tarot love,10,US,2026-11-10
+swords-02-two,yes-no,two of swords yes or no,1200,US,2026-11-10
+swords-02-two,reversed,two of swords reversed,6100,US,2026-11-10
+swords-02-two,feelings,two of swords as feelings,150,US,2026-11-10
+swords-02-two,advice,two of swords advice,60,US,2026-11-10
+swords-03-three,base,three of swords tarot,1000,US,2026-11-10
+swords-03-three,love,three of swords tarot love,10,US,2026-11-10
+swords-03-three,yes-no,three of swords yes or no,600,US,2026-11-10
+swords-03-three,reversed,three of swords reversed,3600,US,2026-11-10
+swords-03-three,feelings,three of swords as feelings,90,US,2026-11-10
+swords-03-three,advice,three of swords advice,50,US,2026-11-10
+swords-04-four,base,four of swords tarot,500,US,2026-11-10
+swords-04-four,love,four of swords tarot love,10,US,2026-11-10
+swords-04-four,yes-no,four of swords yes or no,900,US,2026-11-10
+swords-04-four,reversed,four of swords reversed,4800,US,2026-11-10
+swords-04-four,feelings,four of swords as feelings,100,US,2026-11-10
+swords-04-four,advice,four of swords advice,40,US,2026-11-10
+swords-05-five,base,five of swords tarot,500,US,2026-11-10
+swords-05-five,love,five of swords tarot love,10,US,2026-11-10
+swords-05-five,yes-no,five of swords yes or no,800,US,2026-11-10
+swords-05-five,reversed,five of swords reversed,3600,US,2026-11-10
+swords-05-five,feelings,five of swords as feelings,90,US,2026-11-10
+swords-05-five,advice,five of swords advice,40,US,2026-11-10
+swords-06-six,base,six of swords tarot,500,US,2026-11-10
+swords-06-six,love,six of swords tarot love,10,US,2026-11-10
+swords-06-six,yes-no,six of swords yes or no,900,US,2026-11-10
+swords-06-six,reversed,six of swords reversed,3000,US,2026-11-10
+swords-06-six,feelings,six of swords as feelings,100,US,2026-11-10
+swords-06-six,advice,six of swords advice,40,US,2026-11-10
+swords-07-seven,base,seven of swords tarot,500,US,2026-11-10
+swords-07-seven,love,seven of swords tarot love,10,US,2026-11-10
+swords-07-seven,yes-no,seven of swords yes or no,800,US,2026-11-10
+swords-07-seven,reversed,seven of swords reversed,5100,US,2026-11-10
+swords-07-seven,feelings,seven of swords as feelings,90,US,2026-11-10
+swords-07-seven,advice,seven of swords advice,60,US,2026-11-10
+swords-08-eight,base,eight of swords tarot,350,US,2026-11-10
+swords-08-eight,love,eight of swords tarot love,10,US,2026-11-10
+swords-08-eight,yes-no,eight of swords yes or no,600,US,2026-11-10
+swords-08-eight,reversed,eight of swords reversed,3000,US,2026-11-10
+swords-08-eight,feelings,eight of swords as feelings,90,US,2026-11-10
+swords-08-eight,advice,eight of swords advice,30,US,2026-11-10
+swords-09-nine,base,nine of swords tarot,600,US,2026-11-10
+swords-09-nine,love,nine of swords tarot love,10,US,2026-11-10
+swords-09-nine,yes-no,nine of swords yes or no,700,US,2026-11-10
+swords-09-nine,reversed,nine of swords reversed,3200,US,2026-11-10
+swords-09-nine,feelings,nine of swords as feelings,100,US,2026-11-10
+swords-09-nine,advice,nine of swords advice,40,US,2026-11-10
+swords-10-ten,base,ten of swords tarot,700,US,2026-11-10
+swords-10-ten,love,ten of swords tarot love,0,US,2026-11-10
+swords-10-ten,yes-no,ten of swords yes or no,700,US,2026-11-10
+swords-10-ten,reversed,ten of swords reversed,3300,US,2026-11-10
+swords-10-ten,feelings,ten of swords as feelings,100,US,2026-11-10
+swords-10-ten,advice,ten of swords advice,40,US,2026-11-10
+swords-11-page,base,page of swords tarot,1000,US,2026-11-10
+swords-11-page,love,page of swords tarot love,20,US,2026-11-10
+swords-11-page,yes-no,page of swords yes or no,3400,US,2026-11-10
+swords-11-page,reversed,page of swords reversed,6300,US,2026-11-10
+swords-11-page,feelings,page of swords as feelings,250,US,2026-11-10
+swords-11-page,advice,page of swords advice,100,US,2026-11-10
+swords-12-knight,base,knight of swords tarot,900,US,2026-11-10
+swords-12-knight,love,knight of swords tarot love,20,US,2026-11-10
+swords-12-knight,yes-no,knight of swords yes or no,3300,US,2026-11-10
+swords-12-knight,reversed,knight of swords reversed,7300,US,2026-11-10
+swords-12-knight,feelings,knight of swords as feelings,350,US,2026-11-10
+swords-12-knight,advice,knight of swords advice,100,US,2026-11-10
+swords-13-queen,base,queen of swords tarot,2200,US,2026-11-10
+swords-13-queen,love,queen of swords tarot love,20,US,2026-11-10
+swords-13-queen,yes-no,queen of swords yes or no,2800,US,2026-11-10
+swords-13-queen,reversed,queen of swords reversed,6200,US,2026-11-10
+swords-13-queen,feelings,queen of swords as feelings,250,US,2026-11-10
+swords-13-queen,advice,queen of swords advice,100,US,2026-11-10
+swords-14-king,base,king of swords tarot,1900,US,2026-11-10
+swords-14-king,love,king of swords tarot love,20,US,2026-11-10
+swords-14-king,yes-no,king of swords yes or no,2800,US,2026-11-10
+swords-14-king,reversed,king of swords reversed,6800,US,2026-11-10
+swords-14-king,feelings,king of swords as feelings,300,US,2026-11-10
+swords-14-king,advice,king of swords advice,100,US,2026-11-10
+pentacles-01-ace,base,ace of pentacles tarot,800,US,2026-11-10
+pentacles-01-ace,love,ace of pentacles tarot love,10,US,2026-11-10
+pentacles-01-ace,yes-no,ace of pentacles yes or no,1300,US,2026-11-10
+pentacles-01-ace,reversed,ace of pentacles reversed,5200,US,2026-11-10
+pentacles-01-ace,feelings,ace of pentacles as feelings,300,US,2026-11-10
+pentacles-01-ace,advice,ace of pentacles advice,100,US,2026-11-10
+pentacles-02-two,base,two of pentacles tarot,100,US,2026-11-10
+pentacles-02-two,love,two of pentacles tarot love,10,US,2026-11-10
+pentacles-02-two,yes-no,two of pentacles yes or no,1200,US,2026-11-10
+pentacles-02-two,reversed,two of pentacles reversed,2500,US,2026-11-10
+pentacles-02-two,feelings,two of pentacles as feelings,150,US,2026-11-10
+pentacles-02-two,advice,two of pentacles advice,40,US,2026-11-10
+pentacles-03-three,base,three of pentacles tarot,200,US,2026-11-10
+pentacles-03-three,love,three of pentacles tarot love,10,US,2026-11-10
+pentacles-03-three,yes-no,three of pentacles yes or no,1000,US,2026-11-10
+pentacles-03-three,reversed,three of pentacles reversed,2800,US,2026-11-10
+pentacles-03-three,feelings,three of pentacles as feelings,100,US,2026-11-10
+pentacles-03-three,advice,three of pentacles advice,40,US,2026-11-10
+pentacles-04-four,base,four of pentacles tarot,450,US,2026-11-10
+pentacles-04-four,love,four of pentacles tarot love,10,US,2026-11-10
+pentacles-04-four,yes-no,four of pentacles yes or no,1100,US,2026-11-10
+pentacles-04-four,reversed,four of pentacles reversed,2300,US,2026-11-10
+pentacles-04-four,feelings,four of pentacles as feelings,150,US,2026-11-10
+pentacles-04-four,advice,four of pentacles advice,50,US,2026-11-10
+pentacles-05-five,base,five of pentacles tarot,150,US,2026-11-10
+pentacles-05-five,love,five of pentacles tarot love,10,US,2026-11-10
+pentacles-05-five,yes-no,five of pentacles yes or no,800,US,2026-11-10
+pentacles-05-five,reversed,five of pentacles reversed,2100,US,2026-11-10
+pentacles-05-five,feelings,five of pentacles as feelings,70,US,2026-11-10
+pentacles-05-five,advice,five of pentacles advice,40,US,2026-11-10
+pentacles-06-six,base,six of pentacles tarot,250,US,2026-11-10
+pentacles-06-six,love,six of pentacles tarot love,10,US,2026-11-10
+pentacles-06-six,yes-no,six of pentacles yes or no,900,US,2026-11-10
+pentacles-06-six,reversed,six of pentacles reversed,2700,US,2026-11-10
+pentacles-06-six,feelings,six of pentacles as feelings,100,US,2026-11-10
+pentacles-06-six,advice,six of pentacles advice,70,US,2026-11-10
+pentacles-07-seven,base,seven of pentacles tarot,150,US,2026-11-10
+pentacles-07-seven,love,seven of pentacles tarot love,10,US,2026-11-10
+pentacles-07-seven,yes-no,seven of pentacles yes or no,900,US,2026-11-10
+pentacles-07-seven,reversed,seven of pentacles reversed,2800,US,2026-11-10
+pentacles-07-seven,feelings,seven of pentacles as feelings,100,US,2026-11-10
+pentacles-07-seven,advice,seven of pentacles advice,40,US,2026-11-10
+pentacles-08-eight,base,eight of pentacles tarot,350,US,2026-11-10
+pentacles-08-eight,love,eight of pentacles tarot love,10,US,2026-11-10
+pentacles-08-eight,yes-no,eight of pentacles yes or no,700,US,2026-11-10
+pentacles-08-eight,reversed,eight of pentacles reversed,2400,US,2026-11-10
+pentacles-08-eight,feelings,eight of pentacles as feelings,80,US,2026-11-10
+pentacles-08-eight,advice,eight of pentacles advice,30,US,2026-11-10
+pentacles-09-nine,base,nine of pentacles tarot,150,US,2026-11-10
+pentacles-09-nine,love,nine of pentacles tarot love,10,US,2026-11-10
+pentacles-09-nine,yes-no,nine of pentacles yes or no,800,US,2026-11-10
+pentacles-09-nine,reversed,nine of pentacles reversed,2600,US,2026-11-10
+pentacles-09-nine,feelings,nine of pentacles as feelings,150,US,2026-11-10
+pentacles-09-nine,advice,nine of pentacles advice,50,US,2026-11-10
+pentacles-10-ten,base,ten of pentacles tarot,150,US,2026-11-10
+pentacles-10-ten,love,ten of pentacles tarot love,10,US,2026-11-10
+pentacles-10-ten,yes-no,ten of pentacles yes or no,800,US,2026-11-10
+pentacles-10-ten,reversed,ten of pentacles reversed,2400,US,2026-11-10
+pentacles-10-ten,feelings,ten of pentacles as feelings,150,US,2026-11-10
+pentacles-10-ten,advice,ten of pentacles advice,40,US,2026-11-10
+pentacles-11-page,base,page of pentacles tarot,250,US,2026-11-10
+pentacles-11-page,love,page of pentacles tarot love,20,US,2026-11-10
+pentacles-11-page,yes-no,page of pentacles yes or no,2300,US,2026-11-10
+pentacles-11-page,reversed,page of pentacles reversed,4500,US,2026-11-10
+pentacles-11-page,feelings,page of pentacles as feelings,300,US,2026-11-10
+pentacles-11-page,advice,page of pentacles advice,100,US,2026-11-10
+pentacles-12-knight,base,knight of pentacles tarot,250,US,2026-11-10
+pentacles-12-knight,love,knight of pentacles tarot love,10,US,2026-11-10
+pentacles-12-knight,yes-no,knight of pentacles yes or no,2800,US,2026-11-10
+pentacles-12-knight,reversed,knight of pentacles reversed,4900,US,2026-11-10
+pentacles-12-knight,feelings,knight of pentacles as feelings,300,US,2026-11-10
+pentacles-12-knight,advice,knight of pentacles advice,100,US,2026-11-10
+pentacles-13-queen,base,queen of pentacles tarot,250,US,2026-11-10
+pentacles-13-queen,love,queen of pentacles tarot love,10,US,2026-11-10
+pentacles-13-queen,yes-no,queen of pentacles yes or no,2900,US,2026-11-10
+pentacles-13-queen,reversed,queen of pentacles reversed,6700,US,2026-11-10
+pentacles-13-queen,feelings,queen of pentacles as feelings,400,US,2026-11-10
+pentacles-13-queen,advice,queen of pentacles advice,100,US,2026-11-10
+pentacles-14-king,base,king of pentacles tarot,500,US,2026-11-10
+pentacles-14-king,love,king of pentacles tarot love,10,US,2026-11-10
+pentacles-14-king,yes-no,king of pentacles yes or no,3100,US,2026-11-10
+pentacles-14-king,reversed,king of pentacles reversed,4600,US,2026-11-10
+pentacles-14-king,feelings,king of pentacles as feelings,350,US,2026-11-10
+pentacles-14-king,advice,king of pentacles advice,100,US,2026-11-10
