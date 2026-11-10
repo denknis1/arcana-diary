@@ -669,3 +669,8 @@ KD (`keywords-explorer-overview`, `select=keyword,difficulty`) — для осн
 этапа ≈ 83 000 юнитов (вилка 75–95 тыс.), потолок 100 000 без изменений. Перед массовым запуском `serp-overview`
 (Task 6) и `site-explorer-*` (Task 7) — пробный вызов и замер стоимости; если проекция задачи > 12 000 — сократить
 выборку и записать сокращение в отчёт задачи.
+
+## Поправка 4 (10.11.2026): без related-terms для MX
+
+Ревью Task 3: `related-terms` давал общие одиночные слова (card, love, free) — шум за ~180 юнитов на тип.
+В Task 4 (MX) `related-terms` не вызывается; `matching` 60 + `suggestions` 15 на тип. Лимит Task 4 ≤ 16 000.
