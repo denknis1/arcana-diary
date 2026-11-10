@@ -646,3 +646,18 @@ La Temperancia, La Parca, El Papa, El Eremita, El Carruaje (по 6 формул�
 Уже оплаченная выгрузка yes-no (US) с полным набором колонок —
 `~/.claude/projects/-home-deploy/0ce1087d-69eb-43d4-8c76-3ce3133aa869/tool-results/toolu_01B45DE7kJLkzUKa7rmJjXeY.json`
 — используется для Шага A и B типа `yes-no` вместо повторного запроса matching.
+
+## Поправка 2 (10.11.2026): верхушка с объёмом за один проход
+
+**Причина.** Уточнённый замер: сортировка `order_by=volume` тарифицируется как колонка `volume` (+10/строка);
+`select=keyword` без сортировки — 1/строка, но без порядка по спросу (мусор). `parent_topic` ≈ +1/строка
+(в первом замере 12 = 1 + 10 за сортировку + 1). Шаги A и B поправки 1 объединяются.
+
+**Заменяет шаги A и B поправки 1.** На каждый тип × рынок: `matching-terms` `limit=60`, `related-terms` `limit=15`,
+`search-suggestions` `limit=15`; все — `select=keyword,volume,parent_topic`, `order_by=volume:desc`. Вопросы: один
+вызов на рынок, `terms=questions`, `limit=100`, те же `select` и сортировка. Файл `corpus/ahrefs/<us|mx>/<type_id>.csv`:
+`rank,keyword,volume,parent_topic,source_tool,country,data_date`; вопросы — `…/questions.csv`. Каталог `discovery/`
+не используется (уже собранный `us/discovery/home.csv` хранится как есть, для `home` matching перезапрашивать
+`limit=60` с объёмом).
+
+**Лимиты:** Task 3 ≤ 17 000 новых юнитов (сверх уже потраченных 8 230); Task 4 ≤ 18 000; Task 5 ≤ 12 000.
