@@ -150,3 +150,21 @@ date,task,tool,country,params_short,rows,units
 2026-11-10,6,serp-overview,MX,como leer el tarot top10 no-sitelinks,19,133
 2026-11-10,6,serp-overview,MX,curso de tarot top10 no-sitelinks,15,105
 2026-11-10,6,serp-overview,MX,guía de tarot para principiantes pdf top10 no-sitelinks (empty SERP),0,50
+2026-11-10,7,site-explorer-organic-keywords,US,evatarot.net probe limit5 sel=keyword;volume;best_position;best_position_url,5,65
+2026-11-10,7,site-explorer-organic-keywords,US,evatarot.net limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,US,tellmytarot.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,US,nostra-tarot.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,US,chatarot.ai limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,tarotamigo.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,mysticnova.app limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,tarotnova.app limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,juliantarot.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,nostra-tarot.com limit40 order volume desc,40,520
+2026-11-10,7,site-explorer-top-pages,US,evatarot.net limit20 sel=url;top_keyword;sum_traffic,19,228
+2026-11-10,7,site-explorer-top-pages,US,tellmytarot.com limit20 sel=url;top_keyword;sum_traffic,18,216
+2026-11-10,7,site-explorer-top-pages,US,nostra-tarot.com limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,US,chatarot.ai limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,tarotamigo.com limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,mysticnova.app limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,tarotnova.app limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,juliantarot.com limit20 sel=url;top_keyword;sum_traffic,20,240
