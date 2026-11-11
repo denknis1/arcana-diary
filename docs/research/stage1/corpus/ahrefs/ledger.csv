@@ -171,3 +171,5 @@ date,task,tool,country,params_short,rows,units
 2026-11-10,7-spotcheck,keywords-explorer-overview,US,10 random competitors.csv kw,10,110
 2026-11-10,7-spotcheck,keywords-explorer-overview,MX,10 random competitors.csv kw,10,110
 2026-11-10,7-spotcheck,site-explorer-organic-keywords,US,tellmytarot.com limit15 re-query,15,180
+2026-11-11,recheck,keywords-explorer-overview,US,19 random corpus kw,19,209
+2026-11-11,recheck,keywords-explorer-overview,MX,19 random corpus kw (20th absent = нет данных),19,209
