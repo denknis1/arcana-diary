@@ -1,5 +1,9 @@
 # Группы по выдаче: Arcana Diary, ES (Мексика)
 
+Версия 1.1, 11.11.2026. Изменения v1.1: второй прогон (смешение интентов) и ревью — статусы по легенде,
+ES-G05 объединена в ES-G04, переносы запросов, нормализация `?hl=` применена последовательно, старые снимки
+помечены, раздел «Спорные группы» заполнен.
+
 Версия 1.0, 11.11.2026. Метод — «SEO Монстр 2027», 7.5 (стр. 602–609), как в `20-groups-en.md`: предварительная
 группировка от карты задач (стр. 602–603), сравнение документов, а не доменов, органика отдельно от спецблоков
 (стр. 604–605), уточняющие запросы и смешанная выдача (стр. 605–607), четыре типа ошибок (стр. 608), поля записи
@@ -17,13 +21,23 @@
   11.11.2026 (`corpus/serp/queries.csv`); файл — `corpus/serp/mx/<slug>.json`. Снимки с пометкой
   `stale_serp` (`tarot diario` — 2024-01, `tarot una carta` — 2022-01, `tarot si o no amigo` — 2024-03) для
   проверки групп не используются; `empty_serp` — Ahrefs вернул пустую выдачу, файла нет.
+- **Старый снимок (v1.1):** `update_date` раньше даты съёмки больше чем на 21 день (правило как в EN) — выдача
+  могла измениться; помечается в записи каждой группы, которая на него опирается. MX: `tarot si o no 1 carta`
+  (`update_date` 2026-10-10, снят 11.11.2026), `la estrella tarot amor` (2026-10-15, снят 11.11.2026). Остальные
+  пригодные снимки MX — `update_date` не старше 21 дня.
 - **Органика и пересечение** — как в EN: `'organic' in type`, позиции 1–10, без `*_sitelink`; URL без схемы,
-  `www.`, хвостового `/`, якоря и параметра `?tl=`/`?hl=`. Совпадение доменов отмечено отдельно и совпадением не
-  считается.
+  `www.`, хвостового `/`, якоря и параметра `?tl=`/`?hl=` (параметр снимается при любом значении — v1.1: в том
+  числе у ссылок play.google.com с `hl=es_MX` и `hl=es`; исключений из правила нет). Совпадение доменов отмечено
+  отдельно и совпадением не считается.
 - **Просмотр документов:** по URL, заголовку и `page_type` Ahrefs (предположение модели). Страницы MX не
   открывались — решения, которые от этого зависят, помечены.
-- **Статус группы, типы ошибок (О1–О4), «отдельной страницы не оправдывает»** — как в `20-groups-en.md`.
-  Отличия ES от EN описаны там, где выдача их показала; группы ES не перевод EN.
+- **Статус группы, типы ошибок (О1–О4), «отдельной страницы не оправдывает»** — как в `20-groups-en.md`
+  (v1.1: «проверена выдачей» — снимки минимум двух запросов из состава группы, ядро и край; снимок соседнего
+  запроса вне состава краем не считается; шаблон «карта × контекст», снятый на одной карте, — «частично, одна
+  карта»). Отличия ES от EN описаны там, где выдача их показала; группы ES не перевод EN.
+- **Номера групп** стабильны: не перенумеровываются; поглощённая группа сохраняет заголовок с пометкой
+  «объединена в …». Карта × контекст: раздел страницы карты или отдельная страница — решение TGA (задача 11),
+  здесь — находка выдачи, её предел и риск.
 
 ---
 
@@ -36,14 +50,14 @@
 |---|---|---|
 | «Tarot gratis» (home) | участок | ES-G01 расклад, ES-G02 три карты, ES-G03 ChatGPT; бренды и колоды — исключены |
 | Названия карт в `mx/home.csv` (21 из 38 верхних) | спорное | отнесены к ES-G10 (значение карты): выдача — статьи о карте |
-| «Sí o no» | участок | ES-G04 инструмент, ES-G05 одна карта, ES-G06 oráculo |
+| «Sí o no» | участок | ES-G04 инструмент (v1.1: с форматом «1 carta» — ES-G05 объединена в ES-G04), ES-G06 oráculo |
 | «Tarot del amor» | группа | ES-G07 |
 | «Significado» / «arcanos mayores» | участок | ES-G08 хаб, ES-G09 старшие арканы |
 | Карта × контекст | 5 групп | ES-G10 база, ES-G11 invertida, ES-G12 amor, ES-G13 si o no, ES-G14 sentimientos / consejo |
 | «Tiradas» | участок | ES-G15 обзор, ES-G16 cruz celta; «tirada de 3 cartas gratis» — в ES-G02 |
-| «Arcano de nacimiento» | группа | ES-G17 |
+| «Arcano de nacimiento» | группа | ES-G17 (v1.1: с `cual es mi carta del tarot`) |
 | «Qué carta soy» | спорное | ES-G18 (смешанная выдача) |
-| «Tarot diario» | группа | ES-G19 (без пригодной выдачи) |
+| «Tarot diario» | группа | ES-G19 (без пригодной выдачи; v1.1 — гипотеза, `tarot diario` — в неопределённых) |
 | «Horóscopo» | группа | ES-G20 (не подтверждена) |
 | «Cómo leer» | группа | ES-G21; `curso de tarot` — исключён |
 | «Combinaciones» | — | группа не создана: спроса от 50 нет, снимков нет (`10-task-map.md`, тип 11) |
@@ -61,7 +75,7 @@
 | `tarot gratis 3 cartas` | `tirada de 3 cartas gratis` | 5 | 9 / 9 |
 | `arcano de nacimiento` | `como saber cual es mi carta del tarot` | 4 | 8 / 8 |
 | `arcanos mayores` | `tarot arcanos` | 4 | 7 / 6 |
-| `tarot del amor` | `tarot del amor gratis` | 4 | 8 / 9 |
+| `tarot del amor` | `tarot del amor gratis` | 5 | 8 / 9 |
 | `arcano de nacimiento` | `que carta del tarot soy` | 3 | 8 / 9 |
 | `cartas del tarot` | `tarot` | 3 | 8 / 8 |
 | `la estrella tarot` | `la estrella tarot amor` | 2 | 7 / 8 |
@@ -86,6 +100,7 @@
 | `chatgpt tarot` | `tarot` | 0 | 4 / 8 |
 | `chatgpt tarot` | `tarot gratis` | 0 | 4 / 9 |
 | `como leer el tarot` | `curso de tarot` | 0 | 7 / 8 |
+| `cruz celta tarot` | `tarot gratis 3 cartas` | 0 | 7 / 9 |
 | `cruz celta tarot` | `tirada de 3 cartas gratis` | 0 | 7 / 9 |
 | `cruz celta tarot` | `tiradas de tarot` | 0 | 7 / 8 |
 | `la estrella tarot` | `la torre tarot` | 0 | 7 / 8 |
@@ -96,11 +111,15 @@
 | `tarot del amor` | `tarot gratis` | 0 | 8 / 9 |
 | `tarot gratis` | `tarot gratis 3 cartas` | 0 | 9 / 9 |
 | `tarot gratis` | `tarot libra hoy` | 0 | 9 / 4 |
+| `tarot gratis 3 cartas` | `tiradas de tarot` | 0 | 9 / 8 |
 | `tarot si o no` | `tarot si o no 1 carta` | 0 | 9 / 9 |
 | `tirada de 3 cartas gratis` | `tiradas de tarot` | 0 | 9 / 8 |
 
 Все остальные пары снимков MX — 0 общих URL. У `chatgpt tarot` и `tarot libra hoy` часть органических позиций
-Ahrefs вернул без URL (3 и 3) — в подсчёт вошли только позиции с URL.
+Ahrefs вернул без URL (3 и 3) — в подсчёт вошли только позиции с URL. v1.1: `tarot del amor` ~ `tarot del amor
+gratis` — 5 по объявленной нормализации (в v1.0 стояло 4: приложение с `hl=es_MX` и `hl=es` считалось двумя
+URL); добавлены нулевые пары `tarot gratis 3 cartas` ~ `tiradas de tarot` и ~ `cruz celta tarot` (на них
+ссылается раздел 6).
 
 ---
 
@@ -133,7 +152,8 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G01 — расклад бесплатно онлайн
 
-- **type_id:** `home`. **Статус:** проверена выдачей (ядро); край `tarot` смешанный.
+- **type_id:** `home`. **Статус:** частично (v1.1: снимок ядра; `tarot` снят, но в состав не входит — он в
+  неопределённых; край состава не снят).
 - **Задача:** эти запросы объединены, потому что человек пытается бесплатно разложить карты онлайн и сразу
   получить ответ.
 - **Состав (`mx/home.csv`):** `tarot gratis` (12000), `tarot gratis tirada completa` (1800), `tirada de tarot
@@ -157,7 +177,9 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
   (1100), `tarot leonora carrington` (900) — колоды (З6, открытый вопрос о второй колоде); `tarot cards` (1100) —
   английская строка.
 - **Нерешённое:** `tarot gratis tirada completa`, `tarot online`, `lectura de tarot` — снимков нет, отнесены по
-  смыслу.
+  смыслу, без проверки выдачей. v1.1: у `tirada de tarot gratis`, `tarot online`, `lectura de tarot`
+  `parent_topic` Ahrefs — «tarot», то есть тот смешанный однословный запрос, который в группу не включён
+  (`mx/home.csv`); эти три запроса держатся в группе условно до снимка одного из них.
 - **Предложение:** сохранить.
 
 ### ES-G02 — расклад на три карты онлайн
@@ -190,76 +212,86 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G03 — таро через ChatGPT
 
-- **type_id:** `home` (связанный вопрос доверия) / `learn`. **Статус:** проверена выдачей (один снимок, 4 URL).
+- **type_id:** `home` (связанный вопрос доверия) / `learn`. **Статус:** частично (один снимок; из 7 органических
+  позиций у 4 есть URL).
 - **Задача:** человек пытается понять, как получить расклад от ChatGPT и можно ли ему доверять.
 - **Состав (`mx/home.csv`):** `chatgpt tarot` (1400).
 - **Справочно по странам:** AR 600, CO 700, ES 2300, US-ES 1700.
-- **Основание:** органика (снимок 11.11.2026, `update_date` 2026-11-01) — обсуждения и инструкции, не чтецы:
-  reddit r/mexico «Que opinan de que ChatGPT te lea el tarot», instagram-пост, chatgpt.com/plugins, glamour.mx
-  «Lectura de tarot con ChatGPT: cómo hacerla… qué tan precisa es»; три органические позиции без URL — каталог
-  плагинов ChatGPT, плагин «The Astro Scope Tarot Reading», пост в facebook. Блок вопросов: «¿Cómo pedirle el
-  tarot a Chatgpt?», «¿Qué tan real es el tarot de Chatgpt?», «¿Cuál es la mejor IA para tarot?», «¿Se puede
+- **Основание:** органика (снимок 11.11.2026, `update_date` 2026-11-01) — 7 органических позиций, у 4 из них есть
+  URL: reddit r/mexico «Que opinan de que ChatGPT te lea el tarot», instagram-пост, chatgpt.com/plugins/exa
+  (плагин поиска Exa, не таро), glamour.mx «Lectura de tarot con ChatGPT: cómo hacerla… qué tan precisa es».
+  Три позиции Ahrefs вернул без URL, только с заголовком: «ChatGPT Plugins | Browse and add plugins», «The Astro
+  Scope Tarot Reading», «¿ChatGPT puede leerte las cartas? … Así puedes pedirle …». По совпадению заголовков со
+  ссылками AI Overview того же снимка — вероятно, каталог плагинов, приложение для чтения таро внутри ChatGPT
+  (chatgpt.com/plugins/…) и пост facebook; это предположение, а не данные позиции. Блок вопросов: «¿Cómo pedirle
+  el tarot a Chatgpt?», «¿Qué tan real es el tarot de Chatgpt?», «¿Cuál es la mejor IA para tarot?», «¿Se puede
   obtener una lectura de tarot gratuita en ChatGPT?». С `tarot` и `tarot gratis` — 0 общих URL.
 - **Ответ на вопрос карты задач (промпт для ChatGPT или готовый ИИ-чтец):** по выдаче — прежде всего «как сделать в
-  ChatGPT и насколько это реально» (инструкции, мнения, вопрос доверия); готовых ИИ-чтецов в органике нет. Это
-  отличие от EN: `tarot ai` (US) обслуживают продукты-чтецы.
+  ChatGPT и насколько это реально» (инструкции, мнения, вопрос доверия). Среди 4 позиций с URL ИИ-чтецов нет;
+  одна позиция без URL по заголовку — приложение для чтения таро внутри ChatGPT, поэтому утверждать, что чтецов
+  в органике нет совсем, нельзя. Контраст с US — по другому запросу: в `corpus/serp/us/tarot-ai.json` (снимок
+  10.11.2026, `update_date` 2026-11-07) 8 из 9 органических URL — продукты-чтецы (chatarot.ai, приложение
+  play.google.com, tarotap.com, akashicstone.com, juliantarot.com, aitarot.pro, aikoo.me, lovelanguages.ai),
+  девятый — reddit r/SideProject; US-аналог `chatgpt tarot reading` не снимался.
 - **Снимки:** `mx/chatgpt-tarot.json`.
-- **Проверка ошибок:** О4 — 4 URL из 7 органических позиций; вывод по одному снимку. О1 — объединять с ES-G01
-  нельзя: другая задача (понять способ и надёжность, а не получить расклад).
+- **Проверка ошибок:** О4 — у 3 из 7 органических позиций нет URL; вывод по одному снимку. О1 — объединять с
+  ES-G01 нельзя: другая задача (понять способ и надёжность, а не получить расклад).
 - **Предложение:** сохранить; кандидат в раздел доверия рядом с инструментом (как `are tarot cards accurate` в
   EN), отдельной страницы выдача не требует — для TGA.
 
 ### ES-G04 — ответ sí o no (инструмент таро)
 
-- **type_id:** `yes-no`. **Статус:** проверена выдачей (ядро).
+- **type_id:** `yes-no`. **Статус:** частично (v1.1: снимок ядра; снимок края `tarot si o no 1 carta` — старый и
+  с ядром 0 общих URL, поэтому край выдачей не подтверждён).
 - **Задача:** человек пытается получить короткий ответ «да» или «нет» картами таро на один вопрос.
 - **Состав (`mx/yes-no.csv`):** `tarot si o no` (4000), `tarot si o no gratis` (1300), `si o no tarot` (800),
   `tarot del si o no` (500), `tarot del si o no gratis` (450), `tarot gratis si o no` (400), `tirada de tarot gratis
   si o no` (150), `tarot gratis sí o no` (150), `tarot si o no cartas` (100); с требованием гарантии —
   `tarot sí o no 100 efectivo péndulo` (200), `tarot del si o no gratis y muy certero` (80), `tarot si o no 100%
   efectivo` (80), `tarot si o no fiable` (60), `tarot si o no certero` (60); тема — `tarot si o no del amor` (80),
-  `tarot si o no trabajo` (50).
+  `tarot si o no trabajo` (50). v1.1, формат «одна карта» (из ES-G05): `tarot si o no 1 carta` (350), `tarot si
+  o no 1 carta gratis` (200), `tarot gratis si o no 1 carta` (150), `tarot sí o no 1 carta gratis` (150), `tarot
+  si o no gratis 1 carta` (50); `tarot si o no una carta` (20) (`mx/one-card.csv`); формат «5 cartas» — `tarot si
+  o no 5 cartas` (70).
 - **Справочно по странам:** `tarot si o no` — AR 7600, CO 1300, ES 16000, US-ES 1900; `tarot si o no gratis` — AR 900,
   CO 350, ES 800, US-ES 40; `si o no tarot` — AR 500, CO 70, ES 400, US-ES 100; `tarot del si o no` — AR 1300,
-  CO 300, ES 2100, US-ES 80.
+  CO 300, ES 2100, US-ES 80; `tarot si o no 1 carta` — AR 150, CO 1800, ES 200, US-ES 100.
 - **Значимые условия:** `certero`, `100% efectivo`, `fiable` — З1 (условие пользователя, не обещание);
-  `trabajo` — З3 по деньгам и работе (ответ — размышление, не указание); `péndulo` — другой инструмент.
+  `trabajo` — З3 по деньгам и работе (ответ — размышление, не указание); `péndulo` — другой инструмент;
+  `1 carta`, `5 cartas` — формат ответа внутри той же задачи (v1.1).
 - **Основание:** органика — инструменты да/нет: losarcanos.com/tarot-si-o-no.php (поз. 1), nostra-tarot.com
   yesno, tarotoo.com, jobcannon.io/es, tarotap.com, tarotamigo.com/tarot/si-o-no, tarotreadingapp.com/es,
-  aitarot.pro/es; одна статья-инструкция (uncomo.com «cómo hacer una tirada»).
-- **Снимки:** `mx/tarot-si-o-no.json`.
-- **Проверка ошибок:** О1 — oráculo и одна карта вынесены (ES-G06, ES-G05). О3 — гарантия и тема сохранены
-  условиями.
+  aitarot.pro/es; одна статья-инструкция (uncomo.com «cómo hacer una tirada»). v1.1: сама выдача ядра — это
+  инструменты на одну карту: jobcannon.io/es «Tirada de 1 Carta», tarotamigo.com «Consulta de 1 Carta»,
+  tarotap.com «con 1 o 3 Cartas»; `parent_topic` у `tarot si o no 1 carta gratis` и `tarot gratis si o no 1 carta`
+  — «tarot si o no» (`mx/yes-no.csv`). Поэтому «1 carta» — уточнение формата внутри этой задачи (ES-G05
+  объединена сюда).
+- **Край «1 carta» (из ES-G05):** `tarot si o no 1 carta` ~ `tarot si o no` — 0 общих URL из 9 / 9; ~ `oraculo si
+  o no` — 0. Органика края: две подборки pinterest, 7tarot.es (7 карт), tarotify.ai «Sí o No (una carta)», reddit,
+  tarotmarsellagratis.com, tarotbalance.com/es-ES «Respuestas Instantáneas de Una Carta», tarot.eu (6 карт),
+  blogspot «Lista de cartas que responden SI/NO»; часть — версии для Испании. Тип документа тот же (инструменты
+  да/нет), сайты другие; снимок старый (`update_date` 2026-10-10) — 0 общих URL не считается доказательством
+  отдельной задачи.
+- **Снимки:** `mx/tarot-si-o-no.json`; край — `mx/tarot-si-o-no-1-carta.json` (старый снимок).
+- **Проверка ошибок:** О1 — oráculo вынесен (ES-G06). О2 — v1.1: «1 carta» больше не отдельная группа (была
+  ES-G05). О3 — гарантия, тема и формат сохранены условиями.
 - **Исключено:** `tarot si o no amigo` (400), `tarot amigo si o no` (150) — бренд tarotamigo (снимок устаревший,
   `stale_serp:2024-03`); `oraculo si o no alicia galvan` (50) — персона; `tarot si o no marsella` (60),
   `tarot si o no 5 cartas marsella` (80) — колода (З6); `tarot si o no bola de cristal` (50) — другой инструмент.
 - **Предложение:** сохранить.
 
-### ES-G05 — sí o no одной картой
+### ES-G05 — sí o no одной картой — объединена в ES-G04 (см. «Спорные группы»)
 
-- **type_id:** `yes-no` (формат) с краем к `one-card`. **Статус:** частично (один снимок, слабый).
-- **Задача:** человек пытается получить ответ да/нет, вытянув ровно одну карту.
-- **Состав (`mx/yes-no.csv`):** `tarot si o no 1 carta` (350), `tarot si o no 1 carta gratis` (200), `tarot gratis si
-  o no 1 carta` (150), `tarot sí o no 1 carta gratis` (150), `tarot si o no gratis 1 carta` (50); `tarot si o no una
-  carta` (20) (`mx/one-card.csv`); формат «5 cartas» — `tarot si o no 5 cartas` (70).
-- **Справочно по странам:** `tarot si o no 1 carta` — AR 150, CO 1800, ES 200, US-ES 100.
-- **Основание:** `tarot si o no 1 carta` ~ `tarot si o no` — 0 общих URL из 9 / 9; ~ `oraculo si o no` — 0. Органика:
-  два pinterest-подборки, 7tarot.es (7 карт), tarotify.ai «Sí o No (una carta)», reddit, tarotmarsellagratis.com,
-  tarotbalance.com «Respuestas Instantáneas de Una Carta», tarot.eu (6 карт), blogspot «Lista de cartas que
-  responden SI/NO». Документы — тоже инструменты да/нет, но другие сайты; 3 из 9 — подборки и обсуждения.
+- v1.1: состав (`tarot si o no 1 carta` и пять родственных формулировок, `tarot si o no 5 cartas`), справочные
+  строки по странам, снимок `mx/tarot-si-o-no-1-carta.json` и разбор выдачи перенесены в ES-G04 как край
+  «формат одна карта». Номер ES-G05 больше не используется для новых запросов.
 - **Ответ на вопрос карты задач (вход в одну карту в MX через да/нет):** подтверждается тем, что выдача по
-  `tarot si o no 1 carta` — инструменты да/нет, а не «карта дня»; самостоятельность от ES-G04 не доказана
-  (нулевое пересечение при одном типе документа может быть следствием малого спроса и слабой выдачи;
-  `update_date` 2026-10-10).
-- **Снимки:** `mx/tarot-si-o-no-1-carta.json`.
-- **Проверка ошибок:** О2 — риск «разделено одно и то же»: задача та же, что ES-G04, меняется формат. О4 —
-  отдельная группа не означает отдельную страницу.
-- **Предложение:** оставить на дополнительную проверку; до неё — уточнение формата внутри ES-G04 (отдельной страницы
+  `tarot si o no 1 carta` — инструменты да/нет, а не «карта дня»; это формат внутри ES-G04 (отдельной страницы
   не оправдывает — для TGA).
 
 ### ES-G06 — oráculo sí o no
 
-- **type_id:** `yes-no`. **Статус:** проверена выдачей (ядро).
+- **type_id:** `yes-no`. **Статус:** частично (v1.1: один снимок ядра).
 - **Задача:** человек пытается получить мгновенный ответ «да / нет» от «оракула» — не обязательно картами таро.
 - **Состав (`mx/yes-no.csv`):** `oraculo si o no` (800), `el oraculo del si o no` (350), `oráculo si o no en línea`
   (350), `oraculo si o no gratis online fiable` (300), `oraculo del si o no` (250), `el oraculo si o no` (200),
@@ -294,10 +326,11 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
   CO 60, ES 600, US-ES 80.
 - **Значимые условия:** `certero`, `futuro inmediato`, `respuesta inmediata` — З1, З2; `que siente por mi` — З4;
   `3 cartas` — формат.
-- **Основание:** `tarot del amor` ~ `tarot del amor gratis` — 4 из 8 / 9 (nostra-tarot.com love,
-  tarotap.com/es/love-tarot, tarotoo.com, trustedtarot.com/es/tarot-del-amor). Одно и то же приложение
-  (com.tiradasgratis.tarotdelamor) стоит в обоих снимках с разным параметром языка (`hl=es_MX` и `hl=es`) — по
-  правилу нормализации это разные URL; как один документ пересечение было бы 5. Остальное: книга на amazon,
+- **Основание:** `tarot del amor` ~ `tarot del amor gratis` — 5 из 8 / 9 (nostra-tarot.com love,
+  tarotap.com/es/love-tarot, tarotoo.com, trustedtarot.com/es/tarot-del-amor и приложение
+  play.google.com/…`id=com.tiradasgratis.tarotdelamor`). v1.1: приложение стоит в обоих снимках с разным параметром
+  языка (`hl=es_MX` и `hl=es`); по объявленной нормализации `hl` снимается — это один документ (в v1.0 было 4 и
+  противоречащая правилу оговорка). Решение по группе от этого не меняется. Остальное: книга на amazon,
   pinterest, статья tarotnova.app о значениях карт в любви, tiradadetarot.com, losarcanos.com, youtube.
 - **Снимки:** `mx/tarot-del-amor.json`, `mx/tarot-del-amor-gratis.json`. `tarot certero gratis futuro inmediato amor`
   — `empty_serp`.
@@ -312,14 +345,17 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G08 — хаб значений карт
 
-- **type_id:** `cards`. **Статус:** проверена выдачей (один снимок ядра).
+- **type_id:** `cards`. **Статус:** частично (v1.1: один снимок ядра).
 - **Задача:** человек пытается найти значения карт таро — всей колоды или нужной карты в общем списке.
-- **Состав:** `cartas del tarot` (3300), `cartas de tarot` (1600), `cartas del tarot significado` (800),
-  `cartas tarot` (800) (`mx/home.csv`), `significado de las cartas del tarot` (700), `significado de las 78
-  cartas del tarot de marsella` (500), `cartas del tarot y su significado` (90), `significado de las cartas del
-  tarot pdf` (100) (`mx/cards.csv`), `que significa cada carta del tarot` (80) (`mx/questions.csv`).
-- **Справочно по странам:** `cartas del tarot` — AR 1600, CO 1000, ES 3300, US-ES 500; `cartas de tarot` — AR 6000,
-  CO 450, ES 900, US-ES 200; `significado de las cartas del tarot` — AR 600, CO 250, ES 400, US-ES 150.
+- **Состав:** `cartas del tarot` (3300), `cartas del tarot significado` (800) (`mx/home.csv`), `significado de las
+  cartas del tarot` (700), `significado de las 78 cartas del tarot de marsella` (500), `cartas del tarot y su
+  significado` (90), `significado de las cartas del tarot pdf` (100) (`mx/cards.csv`), `que significa cada carta del
+  tarot` (80) (`mx/questions.csv`). v1.1: короткие формы без «significado» — `cartas de tarot` и `cartas tarot` —
+  перенесены в неопределённые (снимков нет; у `cartas tarot` `parent_topic` — «tarot», смешанный запрос; даже в
+  выдаче `cartas del tarot` рядом с хабами стоят покупка, инструмент и wikipedia).
+- **Справочно по странам:** `cartas del tarot` — AR 1600, CO 1000, ES 3300, US-ES 500; `significado de las cartas
+  del tarot` — AR 600, CO 250, ES 400, US-ES 150. (`cartas de tarot` — AR 6000, CO 450, ES 900, US-ES 200 — запрос
+  в неопределённых, раздел 5.)
 - **Основание:** органика `cartas del tarot` — хабы значений 78 карт (lecturas.com «significado de las 78 cartas»,
   thetarotlady.com на испанском, darkforesttarotcards.com «Significado de las 78 cartas»), vogue.mx о старших
   арканах, es.wikipedia.org, инструмент tarotap draw-cards, магазин mercadolibre.com.mx, pinterest.
@@ -337,7 +373,8 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G09 — старшие арканы как группа
 
-- **type_id:** `cards`. **Статус:** проверена выдачей.
+- **type_id:** `cards`. **Статус:** частично (v1.1: снимок ядра `arcanos mayores`; `tarot arcanos` снят, но в
+  состав не входит — по легенде краем не считается; вывод о разделении с ES-G08 при этом в силе).
 - **Задача:** человек пытается понять, что такое старшие арканы, сколько их и что значит каждый.
 - **Состав (`mx/cards.csv`):** `arcanos mayores` (1800), `arcanos mayores tarot` (450), `cuantos arcanos mayores hay`
   (300), `22 arcanos mayores` (250), `22 arcanos mayores significado` (150), `cartas del tarot arcanos mayores`
@@ -382,7 +419,7 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G11 — карта invertida
 
-- **type_id:** `card-context` (reversed). **Статус:** частично (снимок на одной карте; второй пустой).
+- **type_id:** `card-context` (reversed). **Статус:** частично, одна карта (La Torre; снимок La Muerte пустой).
 - **Задача:** карта выпала перевёрнутой, человек пытается понять её значение.
 - **Состав:** `la torre invertida tarot` (100) (`mx/cards.csv`), `la estrella tarot invertida` (60), `la muerte
   tarot invertida` (50), `que significa la muerte invertida en el tarot` (30) (`mx/card-context.csv`); матрица
@@ -396,12 +433,20 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
   `empty_serp`.
 - **Проверка ошибок:** О2 — как в EN-G12: общая страница карты с разделом «invertida» ранжируется; отдельный
   адрес выдачей не требуется. О4 — спрос 100 и ниже, один снимок, четверть органики — шум.
-- **Предложение:** сохранить как контекст; при медиане 10 в месяц отдельной страницы группа не оправдывает — для
-  TGA (риск объёма ES уже записан в карте задач).
+- **Карта × контекст — находка выдачи и её предел (v1.1):** общая страница карты darkforesttarotcards.com/es-es
+  («Significado de La Torre: Invertida, Amor, Sí o No») и статья tarotdetiziana.com ранжируются и по базе `la
+  torre tarot`, и по `la torre invertida tarot` (2 общих URL из 8 / 8); отдельный документ о перевёрнутой карте —
+  deckaura.com, плюс marifranstarot.com, reddit; 2 из 8 — шум (выставка). Предел: одна карта на рынке MX (старший
+  аркан La Torre), младшие арканы не проверены, снимок `la muerte tarot invertida` пустой.
+- **Риск для TGA (задача 11):** выдача не требует отдельного адреса «carta × invertida» и не исключает его;
+  отдельная страница будет делить запросы с общей страницей карты, которую выдача уже ставит по ним. Раздел или
+  страница и объём страниц здесь не решаются (объём — решение владельца).
+- **Предложение:** сохранить группу (номер стабилен); при медиане 10 в месяц отдельной страницы группа не
+  оправдывает — для TGA (риск объёма ES уже записан в карте задач).
 
 ### ES-G12 — карта в любви (шаблон «<carta> tarot amor»)
 
-- **type_id:** `card-context` (love). **Статус:** частично (снимок на одной карте).
+- **type_id:** `card-context` (love). **Статус:** частично, одна карта (La Estrella; снимок старый).
 - **Задача:** человек спрашивал об отношениях и пытается понять, что значит выпавшая карта в любви.
 - **Состав:** `el emperador tarot amor` (100), `rey de espadas tarot amor` (100), `rey de copas tarot amor` (90),
   `la templanza tarot amor` (90), `la estrella tarot amor` (80) (`mx/love.csv`); `la luna tarot amor` (40)
@@ -411,12 +456,20 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
   страница «Invertida, Amor y Sí o No»; tarotdetiziana.com). Отдельный документ — deckaura.com «la-estrella-
   significado-amor»; общая страница tarotrossana.com «significado, amor, trabajo»; reddit и quora — о чувствах
   другого (переводы англоязычных обсуждений). С `tarot del amor` — 0.
-- **Снимки:** `mx/la-estrella-tarot-amor.json`, `mx/la-estrella-tarot.json`.
+- **Снимки:** `mx/la-estrella-tarot-amor.json` — старый снимок (`update_date` 2026-10-15, снят 11.11.2026),
+  `mx/la-estrella-tarot.json`.
 - **Проверка ошибок:** О3 — шаблон `<carta> tarot amor` — один из вариантов; встречаются `significado amor`,
   `en el amor` — спрос по шаблону может быть занижен (как в EN-G15), не проверено. О1 — reddit / quora о чувствах
   показывают, что «amor» по карте частично означает «что он чувствует» (З4).
-- **Предложение:** сохранить; отдельной страницы на карту выдача не требует (общая страница карты с разделом
-  amor ранжируется) — для TGA.
+- **Карта × контекст — находка выдачи и её предел (v1.1):** общая страница darkforesttarotcards.com/es-es («La
+  Estrella en el Tarot: Invertida, Amor y Sí o No») и tarotdetiziana.com ранжируются и по базе, и по `la estrella
+  tarot amor` (2 общих URL из 7 / 8); отдельный любовный документ — deckaura.com. Предел: одна карта на рынке MX
+  (старший аркан La Estrella), младшие арканы не проверены, снимок старый.
+- **Риск для TGA (задача 11):** как в ES-G11 — выдача не требует отдельного адреса «carta × amor» и не исключает
+  его; отдельная страница будет делить запросы с общей страницей карты. Раздел или страница и объём страниц здесь
+  не решаются (объём — решение владельца).
+- **Предложение:** сохранить группу (номер стабилен); отдельной страницы на карту выдача не требует (общая
+  страница карты с разделом amor ранжируется) — для TGA.
 
 ### ES-G13 — карта в вопросе sí o no
 
@@ -429,7 +482,10 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 - **Основание:** только смысловое; косвенно — darkforesttarotcards.com (общая страница карты) в заголовке
   обещает «Sí o No» (в снимках `la torre invertida tarot` и `la estrella tarot amor`), а в `tarot si o no 1 carta`
   — блог-список «cartas que responden SI/NO». Отдельных документов «<carta> si o no» в снятой выдаче нет.
-- **Проверка ошибок:** О4 — вывод EN-G13 (отдельные документы) на MX не переносится без снимка.
+- **Проверка ошибок:** О4 — вывод EN-G13 (отдельные документы) на MX не переносится без снимка. v1.1: данные MX
+  указывают скорее в обратную сторону — в `mx/los-enamorados.json` поз. 3 — общая страница карты
+  darkforesttarotcards.com «Los Enamorados en el tarot: ¿sí o no? Es un sí»; это наблюдение, не проверка шаблона
+  `<carta> si o no`.
 - **Предложение:** оставить на дополнительную проверку; при спросе до 50 отдельной страницы на карту группа не
   оправдывает — для TGA.
 
@@ -467,58 +523,77 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G16 — cruz celta
 
-- **type_id:** `spreads`. **Статус:** проверена выдачей (ядро).
+- **type_id:** `spreads`. **Статус:** частично (v1.1: один снимок ядра).
 - **Задача:** человек пытается разложить «кельтский крест» и понять его позиции.
-- **Состав (`mx/spreads.csv`):** `cruz celta tarot` (700), `tarot gratis cruz celta` (80) — край, `tarot cruz celta`
-  (60), `tirada cruz celta tarot` (50), `tarot cruz celta tirada completa` (30), `cruz celta tarot significado` (20).
+- **Состав (`mx/spreads.csv`):** `cruz celta tarot` (700), `tarot cruz celta` (60), `tirada cruz celta tarot` (50),
+  `tarot cruz celta tirada completa` (30), `cruz celta tarot significado` (20). v1.1: `tarot gratis cruz celta`
+  перенесён в неопределённые (`gratis` + схема — по правилу ES-G02 инструмент; снимка нет; так же решено для
+  EN-G18).
 - **Справочно по странам:** `cruz celta tarot` — MX 700, AR 200, CO 150, ES 150, US-ES 40 (`10-task-map.md`).
 - **Основание:** органика — документы о схеме: три scribd (PDF «Tirada de La Cruz Celta», «Guía Cruz Celta»),
   paulalustemberg.com «cómo se usa, significado de las posiciones», два pinterest, reddit. Инструментов в топ-10
   нет. С `tiradas de tarot` — 0, с `tirada de 3 cartas gratis` — 0.
 - **Снимки:** `mx/cruz-celta-tarot.json` (видео 4, блок вопросов).
-- **Проверка ошибок:** О4 — `tarot gratis cruz celta` (80) по смыслу — инструмент; снимка нет.
+- **Проверка ошибок:** О4 — `tarot gratis cruz celta` по смыслу — инструмент; снимка нет, поэтому в
+  неопределённых, а не в группе (v1.1).
 - **Предложение:** сохранить.
 
 ### ES-G17 — arcano de nacimiento
 
-- **type_id:** `birth-card`. **Статус:** проверена выдачей (ядро; `como saber mi arcano de nacimiento` — пустой).
+- **type_id:** `birth-card`. **Статус:** проверена выдачей (v1.1: ядро `arcano de nacimiento` и край `como saber
+  cual es mi carta del tarot`; снимок `como saber mi arcano de nacimiento` — пустой).
 - **Задача:** человек пытается вычислить свой аркан по дате рождения и узнать, что он значит.
 - **Состав (`mx/birth-card.csv`):** `arcano de nacimiento` (600), `como saber mi arcano de nacimiento` (300),
   `cual es mi arcano de nacimiento` (200), `arcano personal` (200), `mi arcano de nacimiento` (200), `calcular
   arcano de nacimiento` (100), `como sacar tu arcano de nacimiento` (90), `como sacar el arcano de nacimiento` (80),
   `calculadora de arcano personal` (60); страницы результата — `arcano de nacimiento 5` (60), `arcano de nacimiento
-  8` (60), `arcano de nacimiento 11` (60) и далее по числам.
+  8` (60), `arcano de nacimiento 11` (60) и далее по числам; v1.1 — из ES-G18: `cual es mi carta del tarot` (70),
+  `como saber cual es mi carta del tarot` (50).
 - **Справочно по странам:** `arcano de nacimiento` — AR 400, CO 200, ES 150, US-ES 60; `como saber mi arcano de
   nacimiento` — AR 200, CO 50, ES 40, US-ES 20.
 - **Значимые условия:** `como saber`, `como sacar` — метод (У1); `calcular` — инструмент; число — описание уже
   вычисленного аркана.
 - **Основание:** органика — калькуляторы (enbuscadelcentro.com, theastroscope.com/es, cursosdetarot.cl,
   tarotap.com/es birth card), mysticnova.app «carta de nacimiento», clarin.com «saber arcano… fecha de
-  nacimiento», плюс квиз prismatest.com «who-arcana» и tiktok.
-- **Снимки:** `mx/arcano-de-nacimiento.json`. Пустые: `como saber mi arcano de nacimiento`.
-- **Проверка ошибок:** О1 — 1 из 8 документов — квиз; см. ES-G18.
+  nacimiento», prismatest.com «Test de Carta del Tarot de Nacimiento (Matriz del Destino)» и tiktok. v1.1:
+  prismatest — по заголовку расчёт карты по дате рождения в системе «matriz del destino» (той, что исключена ниже
+  как другая система), Ahrefs пометил его как квиз; страница не открыта.
+- **Край `como saber cual es mi carta del tarot` (v1.1):** ~ `arcano de nacimiento` — 4 общих URL из 8 / 8
+  (enbuscadelcentro, mysticnova, clarin, prismatest). По типу документов 5 из 8 — карта по дате рождения
+  (mysticnova «Calcula tu Arcano por Fecha», калькулятор enbuscadelcentro, clarin «…fecha de nacimiento»,
+  deckaura «Encuentra tu carta de nacimiento», prismatest), 2 — личностные квизы (jobcannon, wikihow), 1 неясен
+  (antena3 «¿Qué arcano eres?»). `parent_topic` у `cual es mi carta del tarot` — «arcano personal», тот же, что у
+  `arcano de nacimiento`. С `que carta del tarot soy` (ES-G18) у края 5 общих URL из 8 / 9 — больше, чем с
+  ядром; отнесён к ES-G17 по типу документов и `parent_topic`, граница с ES-G18 тонкая.
+- **Снимки:** `mx/arcano-de-nacimiento.json`, `mx/como-saber-cual-es-mi-carta-del-tarot.json`. Пустые: `como saber
+  mi arcano de nacimiento`.
+- **Проверка ошибок:** О1 — v1.1: пометка v1.0 «1 из 8 документов — квиз» снята (prismatest — расчёт по дате); в
+  крае 2 из 8 — квизы; см. ES-G18.
 - **Исключено:** `arcano 5 matriz del destino` (80), `arcano 8 matriz del destino` (80) и т. п. — другая система;
   `arcano 8` (2900) — шум.
 - **Предложение:** сохранить.
 
 ### ES-G18 — «qué carta / qué arcano soy» (смешанная)
 
-- **type_id:** `birth-card` и `quiz` — не разделено. **Статус:** проверена выдачей; выдача смешанная.
+- **type_id:** `birth-card` и `quiz` — не разделено. **Статус:** частично (v1.1: один снимок из состава —
+  `que carta del tarot soy`; выдача смешанная; снимки `que arcano soy` и `como saber que arcano soy` пустые).
 - **Задача (две конкурирующие):** человек пытается узнать «свою» карту — по дате рождения или пройдя тест.
-- **Состав:** `que arcano soy` (150), `que carta del tarot soy` (100), `como saber que arcano soy` (80), `como saber
-  que carta del tarot soy` (50), `que carta de tarot soy` (20) (`mx/quiz.csv`); `cual es mi carta del tarot` (70),
-  `como saber cual es mi carta del tarot` (50) (`mx/birth-card.csv`).
+- **Состав (`mx/quiz.csv`):** `que arcano soy` (150), `que carta del tarot soy` (100), `como saber que arcano soy`
+  (80), `como saber que carta del tarot soy` (50), `que carta de tarot soy` (20). v1.1: `que arcano soy` и `como
+  saber que arcano soy` стоят только здесь (из неопределённых убраны); `cual es mi carta del tarot` и `como saber
+  cual es mi carta del tarot` перенесены в ES-G17.
 - **Основание:** `que carta del tarot soy` ~ `como saber cual es mi carta del tarot` — 5 из 9 / 8; ~ `arcano de
   nacimiento` — 3 из 9 / 8 (enbuscadelcentro.com калькулятор, mysticnova.app, clarin.com). Органика `que carta del
   tarot soy`: 5 квизов (vam.ac.uk, jobcannon.io/es test, es.wikihow.com test, deckaura.com/es test, buzzfeed.com/mx),
   3 документа по дате рождения (mysticnova, enbuscadelcentro, clarin), 1 — по знаку зодиака (horoscoponegro.com).
-  `como saber cual es mi carta del tarot` — 4 к 4.
+  `como saber cual es mi carta del tarot` — v1.1: по заголовкам 5 документов по дате рождения, 2 квиза, 1 неясный
+  (в v1.0 было «4 к 4»); запрос перенесён в ES-G17.
 - **Ответ на неизвестное «que arcano soy — карта рождения или квиз»:** выдача обслуживает оба объяснения
   примерно поровну; в MX пересечение с картой рождения сильнее, чем в EN (`what tarot card am i` ~ `tarot birth
   card` — 1 общий URL). Единственного объяснения нет. Снимки `que arcano soy` и `como saber que arcano soy` —
   пустые: по главной формулировке решение не проверено.
-- **Снимки:** `mx/que-carta-del-tarot-soy.json`, `mx/como-saber-cual-es-mi-carta-del-tarot.json`,
-  `mx/arcano-de-nacimiento.json`.
+- **Снимки:** `mx/que-carta-del-tarot-soy.json`; для сравнения — `mx/como-saber-cual-es-mi-carta-del-tarot.json`
+  и `mx/arcano-de-nacimiento.json` (ES-G17).
 - **Проверка ошибок:** О4 — не присваивать группе одно объяснение. О2 — объединение с ES-G17 вероятно, но тип
   страницы (калькулятор с квизом или квиз с калькулятором) — решение TGA.
 - **Исключено:** `uquiz test` (80), `test que osito cariñosito eres` (20), `test que elemento eres avatar` (20) —
@@ -528,11 +603,17 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G19 — карта дня / одна карта
 
-- **type_id:** `one-card`. **Статус:** не проверена (пригодных снимков нет).
-- **Задача (гипотеза):** человек пытается каждый день или разово вытянуть одну карту.
-- **Состав (`mx/one-card.csv`):** `tarot diario` (100), `tarot 1 carta gratis` (90), `tarot una carta` (80), `tarot
-  del dia de hoy` (70), `tarot una carta gratis` (60), `tarot diario gratis` (50), `tarot del dia` (50), `carta del
-  dia tarot` (40).
+- **type_id:** `one-card`. **Статус:** не проверена (пригодных снимков нет); v1.1 — спорная группа, оставлена
+  гипотезой до снимков (см. «Спорные группы»).
+- **Задача (гипотеза):** человек пытается каждый день или разово вытянуть одну карту. Группа объединяет две
+  задачи, которые в EN записаны раздельно (EN-G03 / EN-G04, граница там тоже открыта); выдачей это не проверено.
+- **Состав (`mx/one-card.csv`):** `tarot 1 carta gratis` (90), `tarot una carta` (80), `tarot del dia de hoy` (70),
+  `tarot una carta gratis` (60), `tarot diario gratis` (50), `tarot del dia` (50), `carta del dia tarot` (40). v1.1:
+  `tarot diario` перенесён в неопределённые («diario» — и «ежедневный», и «дневник»; стоял и в группе, и в
+  разделе 5).
+- **Сигнал к ES-G01 (v1.1):** `parent_topic` у `tarot del dia de hoy` и `carta del dia tarot` — «tarot gratis»;
+  поз. 1 в `mx/tarot-gratis.json` — nostra-tarot.com «Carta del Día Gratis | Tarot Diario con IA». Возможно, «карта
+  дня» в MX — часть ES-G01, а не отдельная задача.
 - **Снимки:** `tarot diario` — `stale_serp:2024-01`, `tarot una carta` — `stale_serp:2022-01` (для проверки не
   используются); `tarot 1 carta gratis` — `empty_serp`.
 - **Наблюдение без доказательной силы:** в устаревшем снимке `tarot diario` (2024-01) рядом с ежедневным таро
@@ -540,13 +621,14 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
   (amazon.com.mx, mercadolibre, etsy): «diario» значит и «ежедневный», и «дневник». Для продукта с дневником
   раскладов это возможная пересекающаяся задача; проверять свежим снимком.
 - **Ответ на неизвестное «есть ли в MX ритуал карты дня»:** не решено. Вход в одну карту в MX — через да/нет
-  (ES-G05, снимок подтверждает инструменты да/нет, а не ритуал).
-- **Предложение:** оставить на дополнительную проверку (снимок `tarot del dia de hoy`); при спросе до 100 отдельной
-  страницы группа не оправдывает — для TGA.
+  (ES-G04, край «1 carta»: снимок показывает инструменты да/нет, а не ритуал).
+- **Предложение:** оставить на дополнительную проверку: свежие снимки `tarot del dia de hoy`, `tarot una carta` и
+  `tarot diario` и сравнение с `tarot gratis` и `tarot si o no` решат, отдельная ли это задача, часть ES-G01 или
+  ES-G04; при спросе до 100 отдельной страницы группа не оправдывает — для TGA.
 
 ### ES-G20 — таро-гороскоп по знаку
 
-- **type_id:** `horoscope`. **Статус:** проверена выдачей (один снимок): задача таро-гороскопа выдачей не
+- **type_id:** `horoscope`. **Статус:** частично (v1.1: один снимок); задача таро-гороскопа выдачей не
   подтверждена.
 - **Задача (гипотеза):** человек пытается прочитать таро-прогноз для своего знака на сегодня.
 - **Состав (`mx/horoscope.csv`):** `tarot libra hoy` (60), `horoscopo tarot` (40), `escorpio tarot hoy` (30),
@@ -563,7 +645,8 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ### ES-G21 — научиться читать таро
 
-- **type_id:** `learn`. **Статус:** проверена выдачей (ядро).
+- **type_id:** `learn`. **Статус:** частично (v1.1: один снимок ядра; `curso de tarot` снят, но исключён из
+  группы).
 - **Задача:** человек пытается научиться читать карты сам.
 - **Состав (`mx/learn.csv`):** `como leer el tarot` (700), `como aprender a leer el tarot` (350), `tarot para
   principiantes` (250), `aprender a leer el tarot` (200), `cómo leer el tarot` (100), `como leer el tarot pdf` (100),
@@ -589,18 +672,22 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ## 5. Неопределённые запросы
 
+v1.1: каждый запрос стоит либо в группе, либо здесь (`que arcano soy`, `como saber que arcano soy` — только в
+ES-G18; `tarot diario` — только здесь).
+
 | Запрос (спрос, MX) | Источник | Возможные группы | Почему не решено | Что нужно |
 |---|---|---|---|---|
 | `tarot` (27000) | `mx/home.csv` | ES-G01 / ES-G08 | Смешанная выдача: wikipedia, инструменты, хаб значений, видео, приложение | Оставить связь с обеими; одно слово задачу не задаёт |
 | `que es el tarot` (1300), `tarot que es` (600), `que es el tarot y para que sirve` (500) | `mx/home.csv`, `mx/questions.csv` | ES-G01 (пояснение) / ES-G21 | Снимка нет | Снимок `que es el tarot` |
 | `cuantas cartas tiene el tarot` (1000) | `mx/home.csv` | ES-G08 / ES-G09 | Справка о колоде; снимка нет | Решение TGA |
 | `tarot de marsella` (1700), `tarot rider waite` (2000) | `mx/home.csv` | вне / ES-G08 | Колода (З6); ждёт решения владельца о второй колоде | Решение владельца |
-| `que arcano soy` (150), `como saber que arcano soy` (80) | `mx/quiz.csv` | ES-G17 / ES-G18 | Выдача пустая (`empty_serp`) | Повторный снимок |
 | `los enamorados` (150) | `mx/card-context.csv` | ES-G10 / не таро | Органика смешана с песней «Los enamorados» (spotify, youtube) | Использовать формы со словом «tarot» |
-| `tarot diario` (100) | `mx/one-card.csv` | ES-G19 / «дневник» | Снимок устаревший (2024-01); «diario» = ежедневный и дневник | Свежий снимок |
+| `tarot diario` (100) | `mx/one-card.csv` | ES-G19 / «дневник» | Снимок устаревший (2024-01); «diario» = ежедневный и дневник; v1.1: из состава ES-G19 убран, стоит только здесь | Свежий снимок |
 | `tarot del amor oraculo` (90) | `mx/love.csv` | ES-G07 / ES-G06 | Снимка нет | — |
 | `tarot arcanos` (4500), `tarot los arcanos` (1800) | `mx/home.csv` | бренд / ES-G09 | Выдача: бренд + справка о старших арканах | Не оптимизировать под бренд; связь с ES-G09 |
 | `100 preguntas para tarot amor` (90), `que preguntar al tarot` (80) | `mx/love.csv`, `mx/questions.csv` | ES-G07 / связанный вопрос | Снимка нет | — |
+| `cartas de tarot` (1600), `cartas tarot` (800) | `mx/home.csv` | ES-G08 / покупка колоды / ES-G01 | v1.1: из ES-G08; снимков нет; `parent_topic` — «cartas de tarot» и «tarot» (смешанный запрос); в выдаче `cartas del tarot` рядом с хабами — покупка (mercadolibre), инструмент, wikipedia | Снимок `cartas de tarot` |
+| `tarot gratis cruz celta` (80) | `mx/spreads.csv` | ES-G16 / ES-G01 / ES-G02 | v1.1: из ES-G16; `gratis` + схема — по правилу ES-G02 инструмент; снимка нет (так же, как EN `free tarot reading celtic cross`) | Снимок |
 
 ---
 
@@ -608,20 +695,24 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 | Неизвестное (`10-task-map.md`) | Решение | Основание |
 |---|---|---|
-| `que arcano soy` — карта рождения или квиз | Не решено: выдача смешанная, главная формулировка — пустой снимок | ES-G18: 5 квизов и 3 документа по дате рождения в `que carta del tarot soy`; 3 общих URL с `arcano de nacimiento` |
-| «Tirada» в MX — инструмент? | Да для `tirada de 3 cartas gratis` / `tarot gratis 3 cartas`; `tiradas de tarot`, `cruz celta` — схемы | ES-G02, ES-G15, ES-G16; 0 общих URL между инструментальными и схемными запросами |
+| `que arcano soy` — карта рождения или квиз | Не решено: выдача смешанная, главная формулировка — пустой снимок | ES-G18: 5 квизов и 3 документа по дате рождения в `que carta del tarot soy`; 3 общих URL с `arcano de nacimiento`. v1.1: соседняя формулировка `como saber cual es mi carta del tarot` по типу документов — карта рождения (5 из 8), перенесена в ES-G17 |
+| «Tirada» в MX — инструмент? | Да для `tirada de 3 cartas gratis` / `tarot gratis 3 cartas`; `tiradas de tarot`, `cruz celta` — схемы | ES-G02, ES-G15, ES-G16; 0 общих URL для перечисленных пар (раздел 2): `tirada de 3 cartas gratis` ~ `tiradas de tarot`, `tirada de 3 cartas gratis` ~ `cruz celta tarot`, `tarot gratis 3 cartas` ~ `tiradas de tarot`, `tarot gratis 3 cartas` ~ `cruz celta tarot` |
 | Считают ли в MX «oráculo» и «tarot» одним | Нет, по документам — разные инструменты | ES-G06: 1 общий URL из 9 / 9; tarotamigo.com держит два разных документа |
-| Есть ли в MX ритуал «карта дня» | Не решено: пригодных снимков нет | ES-G19 (устаревшие и пустые снимки) |
+| Есть ли в MX ритуал «карта дня» | Не решено: пригодных снимков нет | ES-G19 (устаревшие и пустые снимки); v1.1: `parent_topic` двух формулировок «карты дня» — «tarot gratis», в `tarot gratis` поз. 1 — «Carta del Día Gratis» (nostra-tarot.com): возможна часть ES-G01 |
 | Гипотеза «в MX по общим стартовым ключам заметнее спрос на значения карт» | Подтверждена для `cartas del tarot`; для `tarot` — частично | ES-G08, ES-G10 |
 | Отдельная задача «понять старшие арканы» | Подтверждена | ES-G09: 1 общий URL с хабом |
 | Верны ли шаблоны ES для `sentimientos`, `consejo` | Выдачей не решается | ES-G14: нужна проверка носителем |
-| `chatgpt tarot` — промпт или готовый чтец | Инструкции и обсуждения ChatGPT, вопрос доверия | ES-G03 |
+| `chatgpt tarot` — промпт или готовый чтец | В основном инструкции и обсуждения ChatGPT, вопрос доверия; чтец внутри ChatGPT не исключён | ES-G03: 4 органические позиции с URL — без чтецов; одна из 3 позиций без URL по заголовку — приложение для чтения таро в ChatGPT |
 
 ---
 
 ## 7. Сколько выдачи не хватило
 
 - One-card MX: три снимка непригодны (два устаревших, один пустой) — ES-G19 смысловая.
+- Старые снимки (раздел «Как читать»): `tarot si o no 1 carta` (край ES-G04), `la estrella tarot amor` (ES-G12) —
+  выводы по ним стоит перепроверить свежей выдачей.
+- v1.1, без снимков после второго прогона: `cartas de tarot`, `tarot gratis cruz celta`, `tirada de tarot gratis`
+  (или `tarot online`) для условного состава ES-G01.
 - Card × context MX: снимки только по La Torre (invertida) и La Estrella (amor); `si o no`, `sentimientos`,
   `consejo` — без выдачи; `la muerte tarot invertida` — пустой.
 - Пустые снимки (7 из Task 6) закрыли проверку `que arcano soy`, `como saber mi arcano de nacimiento`,
@@ -635,4 +726,29 @@ amor`; `los enamorados`. `la muerte tarot invertida` — пустой (`empty_se
 
 ## Спорные группы
 
-Заполняется после второго прогона.
+Источник споров — независимый второй прогон на смешение интентов (11.11.2026, четыре типа ошибок стр. 608).
+Каждый спор перепроверен по снимкам `corpus/serp/mx/*.json` (без `stale_serp`) и `parent_topic` из
+`corpus/ahrefs/mx/*.csv` (10.11.2026); Ahrefs и веб в этом проходе не вызывались. Совпадение URL — свидетельство,
+а не решение (стр. 605): решение принималось по типу документов. «Принято» — группа изменена; «отклонено» —
+оставлена, с причиной; «открыто» — названа проверка, которая решит спор.
+
+| Группа | Что оспорено | Доказательство | Решение | Что меняется |
+|---|---|---|---|---|
+| ES-G01 | О4 (малое): `tirada de tarot gratis` (1400), `tarot online` (1200), `lectura de tarot` (900) отнесены без выдачи | `parent_topic` всех трёх — «tarot» (`mx/home.csv`), а `tarot` сам в неопределённых (смешанная выдача); снимков этих запросов нет | Принято | Состав прежний; в записи явно: «по смыслу, без проверки выдачей, держатся условно до снимка»; статус — «частично» (ядро снято, край — нет) |
+| ES-G05 | О2 с ES-G04: «1 carta» — уточнение формата, а не задача | Выдача ядра `tarot si o no` сама из инструментов на одну карту (jobcannon «Tirada de 1 Carta», tarotamigo «Consulta de 1 Carta», tarotap «con 1 o 3 Cartas»); `parent_topic` двух формулировок «1 carta» — «tarot si o no»; 0 общих URL у `tarot si o no 1 carta` — при старом снимке (`update_date` 2026-10-10), 3 из 9 — подборки и обсуждения | Принято | ES-G05 объединена в ES-G04: шесть формулировок «1 carta» и `tarot si o no 5 cartas` → в ES-G04 (край «формат»); заголовок ES-G05 сохранён с пометкой. Для согласованности EN `one card tarot yes/no` и родственные → в EN-G05 |
+| ES-G08 | О1 / О4: `cartas de tarot` (1600), `cartas tarot` (800) — короткие формы без снимка | Снимков нет; в `mx/cartas-del-tarot.json` рядом с тремя хабами — покупка (mercadolibre), инструмент tarotap, wikipedia, pinterest; `parent_topic` `cartas tarot` — «tarot» | Принято | Оба → из ES-G08 в неопределённые до снимка `cartas de tarot`; формулировки со «significado» и `cartas del tarot` остаются; статус — «частично» |
+| ES-G11 | О2: invertida — раздел страницы карты ES-G10, а не группа | `la torre invertida tarot` ~ `la torre tarot` — 2 из 8 / 8 (darkforest «Invertida, Amor, Sí o No», tarotdetiziana); отдельные документы — deckaura, marifranstarot, reddit; 2 из 8 — шум (выставка) | Открыто (до TGA) | Группа и номер сохранены; статус — «частично, одна карта»; находка, предел (одна карта MX, младшие не проверены, снимок La Muerte пуст) и риск для TGA записаны. Решат: TGA (задача 11) и снимок младшего аркана с «invertida» |
+| ES-G12 | О2: amor — раздел страницы карты, а не группа | `la estrella tarot amor` ~ `la estrella tarot` — 2 из 7 / 8 (darkforest «Invertida, Amor y Sí o No», tarotdetiziana); отдельный документ — deckaura; общая tarotrossana «significado, amor, trabajo»; снимок старый (2026-10-15) | Открыто (до TGA) | Группа и номер сохранены; статус — «частично, одна карта»; находка, предел и риск для TGA записаны; снимок помечен старым. Решат: TGA и свежий снимок с младшим арканом |
+| ES-G16 | О1: `tarot gratis cruz celta` (80) — `gratis` + схема внутри группы о схеме | Правило ES-G02: `gratis` + схема — инструмент; снимка нет; в US `celtic cross tarot` 3 из 8 — инструменты | Принято | `tarot gratis cruz celta` → из ES-G16 в неопределённые; статус — «частично» |
+| ES-G17 | О2 с ES-G18: `cual es mi carta del tarot` (70), `como saber cual es mi carta del tarot` (50) — по дате рождения; prismatest записан квизом | `mx/como-saber-cual-es-mi-carta-del-tarot.json`: 5 из 8 — по дате рождения, 2 квиза, 1 неясен; ~ `arcano de nacimiento` — 4 из 8 / 8; `parent_topic` `cual es mi carta del tarot` — «arcano personal», как у ядра. Против: ~ `que carta del tarot soy` — 5 из 8 / 9 | Принято | Оба запроса → из ES-G18 в ES-G17 (по типу документов и `parent_topic`; граница тонкая — записано); статус ES-G17 — «проверена выдачей» (два снимка состава); пометка «1 из 8 — квиз» снята, prismatest — расчёт по дате |
+| ES-G18 | О1 / О4: «4 к 4» неверно; `que arcano soy`, `como saber que arcano soy` — в группе и в неопределённых | По заголовкам 5 / 2 / 1 (см. ES-G17); дубли найдены `undet.py` | Принято | Описание исправлено; два запроса `cual es mi carta…` ушли в ES-G17; `que arcano soy` и `como saber que arcano soy` — только в ES-G18 (из раздела 5 убраны); статус — «частично» |
+| ES-G19 | О1 / О2 с ES-G01: «карта дня» и «одна карта» объединены без выдачи; `tarot diario` — в группе и в неопределённых | Пригодных снимков нет (два `stale_serp`, один `empty_serp`); `parent_topic` `tarot del dia de hoy` и `carta del dia tarot` — «tarot gratis»; в `mx/tarot-gratis.json` поз. 1 — nostra «Carta del Día Gratis \| Tarot Diario con IA» | Открыто | Группа сохранена со статусом «не проверена» (как другие смысловые группы, стр. 608); `tarot diario` → из ES-G19 только в неопределённые. Решат свежие снимки `tarot del dia de hoy`, `tarot una carta`, `tarot diario` и сравнение с `tarot gratis` и `tarot si o no`; правило согласовать с EN-G03 / EN-G04 |
+
+**Сквозные исправления по ревью (не споры о составе):**
+- Статусы по легенде: «частично» — ES-G01, ES-G03, ES-G04, ES-G06, ES-G08, ES-G09, ES-G16, ES-G18, ES-G20, ES-G21;
+  «частично, одна карта» — ES-G11, ES-G12. «Проверена выдачей» остаются ES-G02, ES-G07, ES-G10 (две карты), ES-G17.
+- ES-G03: противоречие «4 URL из 7» и «без URL» снято, утверждение «чтецов нет» смягчено, контраст с US дан со
+  ссылкой на `corpus/serp/us/tarot-ai.json` и датой.
+- `tarot del amor` ~ `tarot del amor gratis` — 5 по объявленной нормализации (ES-G07, раздел 2).
+- Раздел 6: «0 общих URL» — для перечисленных пар; две недостающие нулевые пары добавлены в раздел 2.
+- Старые снимки помечены в ES-G04 и ES-G12 и в разделе 7.

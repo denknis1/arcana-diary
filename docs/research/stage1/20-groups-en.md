@@ -1,5 +1,8 @@
 # Группы по выдаче: Arcana Diary, EN (США)
 
+Версия 1.1, 11.11.2026. Изменения v1.1: второй прогон (смешение интентов) и ревью — статусы по легенде,
+переносы запросов, новая EN-G27, старые снимки помечены, раздел «Спорные группы» заполнен (решение по каждому спору).
+
 Версия 1.0, 11.11.2026. Метод — «SEO Монстр 2027», 7.5 (стр. 602–609): предварительная группировка от карты задач
 (стр. 602–603), сравнение выдачи в одинаковых условиях, документы, а не домены, органика отдельно от спецблоков
 (стр. 604–605), смешанная выдача и уточняющие запросы (стр. 605–607), проверка группировки и четыре типа ошибок
@@ -16,6 +19,10 @@
   10.11.2026, снимки Task 9 — 11.11.2026 (`corpus/serp/queries.csv`, причина съёмки — колонка `reason`). Файл —
   `corpus/serp/us/<slug>.json`; дата обновления выдачи в Ahrefs — поле `update_date` (все используемые снимки US —
   2026 года).
+- **Старый снимок (v1.1):** `update_date` раньше даты съёмки больше чем на 21 день — выдача могла измениться;
+  такой снимок помечается в записи каждой группы, которая на него опирается. US: `the lovers tarot love`
+  (`update_date` 2026-10-01, снят 10.11.2026), `the star as feelings` (2026-10-17, снят 11.11.2026), `list of tarot
+  card combinations meanings` (2026-10-19, снят 10.11.2026). Остальные снимки US — `update_date` не старше 21 дня.
 - **Органика:** позиции, где `'organic' in type`, в пределах позиций 1–10; строки `*_sitelink` не считаются;
   URL сравниваются после снятия `https://`, `www.`, хвостового `/`, якоря `#…` и параметра `?tl=`/`?hl=`.
   Число органических URL в топ-10 обычно 8–9: часть позиций занимают AI Overview, блоки вопросов, картинки.
@@ -28,13 +35,19 @@
   держится на непросмотренном документе, это сказано в записи.
 - **Статус группы:** «проверена выдачей» — есть снимки по ядру и по краю; «частично» — снимок только по ядру
   или край не снят; «не проверена» — группа смысловая, снимков нет (стр. 608: такую группу нельзя называть
-  проверенной по выдаче).
+  проверенной по выдаче). Уточнение v1.1: ядро и край — запросы из состава этой группы; снимок соседнего
+  запроса, который в состав не входит (или входит в другую группу), краем не считается. Шаблонная группа
+  «карта × контекст», где контекст снят на одной карте, — «частично, одна карта».
 - **Тип ошибки** — по стр. 608: О1 объединено лишнее; О2 разделено одно и то же; О3 пропало уточнение; О4 ложная
   определённость.
 - Страницы и адреса здесь не назначаются (стр. 609); «отдельной страницы не оправдывает» — наблюдение для TGA
   (задача 11), не решение об объёме страниц (объём — решение владельца, паспорт).
 - Шаблонные группы карта × контекст ведутся на уровне типа страницы (решение владельца): одна группа на
-  шаблон, доказательства — снимки по одной карте (The Star) плюс сводка матрицы.
+  шаблон, доказательства — снимки по одной карте (The Star) плюс сводка матрицы. Будут ли контексты разделами
+  страницы карты или отдельными страницами, здесь не решается: это TGA (задача 11); в записях групп — находка
+  выдачи, её предел и риск для TGA.
+- **Номера групп** стабильны (на них ссылаются следующие задачи): не перенумеровываются; поглощённая группа
+  сохраняет заголовок с пометкой «объединена в …»; новые группы получают следующий свободный номер.
 
 ---
 
@@ -48,13 +61,13 @@
 | Предварительно | Метка | Чем закончилось после выдачи |
 |---|---|---|
 | «Расклад онлайн» (home целиком) | участок | разделён: EN-G01 расклад, EN-G02 ИИ-расклад; `near me`, `psychic` — исключены |
-| «Одна карта и карта дня» (one-card целиком) | участок | разделён на EN-G03 и EN-G04 (документы расходятся) |
+| «Одна карта и карта дня» (one-card целиком) | участок | разделён на EN-G03 и EN-G04 (документы расходятся); v1.1: граница — рабочая гипотеза, открыта |
 | «Да / нет» (yes-no целиком) | участок | разделён: EN-G05 инструмент, EN-G06 список карт, EN-G07 схема для своей колоды |
 | «Любовный расклад» (love целиком) | участок | разделён: EN-G08 расклад-инструмент, EN-G09 любовные схемы |
-| «Значения карт» (cards целиком) | участок | EN-G10 хаб, EN-G11 шаблон «карта» |
+| «Значения карт» (cards целиком) | участок | EN-G10 хаб, EN-G11 шаблон «карта»; v1.1: «старшие арканы» — в неопределённые |
 | «Карта × контекст» (5 контекстов) | 5 групп | EN-G12…EN-G16, по одной на контекст |
-| «Расклады» (spreads целиком) | участок | EN-G17 обзор, EN-G18 кельтский крест, EN-G19 три карты |
-| «Карта рождения» | группа | EN-G20; `what is my tarot card` — в спорные |
+| «Расклады» (spreads целиком) | участок | EN-G17 обзор, EN-G18 кельтский крест, EN-G19 три карты; v1.1: EN-G27 схема для ясности |
+| «Карта рождения» | группа | EN-G20; `what is my tarot card` — v1.0 в спорные, v1.1 — в EN-G20 |
 | «Квиз» | группа | EN-G21; `tarot card questions` — отдельная EN-G26 |
 | «Таро-гороскоп» | участок | EN-G22 чтение по знаку, EN-G23 соответствие знак ↔ карта; `yes no tarot horoscope` — в EN-G05 |
 | «Сочетания» | группа | EN-G24, края не сошлись (0 общих URL) |
@@ -140,6 +153,7 @@
 | `tarot card combinations` | `the sun and the moon tarot` | 0 | 8 / 8 |
 | `tarot card meanings` | `the moon tarot` | 0 | 7 / 8 |
 | `tarot card questions` | `tarot card quiz` | 0 | 7 / 9 |
+| `tarot card questions` | `tarot spreads for guidance` | 0 | 7 / 8 |
 | `tarot horoscope` | `yes no tarot horoscope` | 0 | 9 / 9 |
 | `tarot horoscope` | `zodiac signs tarot cards` | 0 | 9 / 8 |
 | `the moon tarot` | `the tower tarot meaning` | 0 | 8 / 8 |
@@ -174,8 +188,9 @@
 арканов занижает спрос (цифра вместо слова и слово `meaning`) — см. EN-G15.
 
 Снимки по контекстам (одна карта, The Star, плюс снимки Task 6): `the star tarot` (база), `the star reversed`,
-`the star yes or no`, `the star as feelings`, `the star tarot love`; `the lovers tarot love`; `death tarot card
-meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs вернул пустым (`empty_serp`).
+`the star yes or no`, `the star as feelings` (старый снимок), `the star tarot love`; `the lovers tarot love`
+(старый снимок; v1.1 — запрос в EN-G11, для шаблона love не годится); `death tarot card meaning` (база Death).
+Снимок `9 of swords tarot love meaning` Ahrefs вернул пустым (`empty_serp`).
 
 ---
 
@@ -200,8 +215,10 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   формат результата внутри того же инструмента.
 - **Основание:** `tarot reading` ~ `free tarot reading` — 4 общих URL из 8 / 9 (free-tarot-reading.net/free,
   llewellyn.com/tarot_reading.php, evatarot.net, tarot.com); край `free 3 card tarot reading` — 3 общих с обоими
-  ядрами, документы — инструменты расклада (tarot.com/readings-reports/tarot-readings/free, astroyogi.com,
-  78tarot.cards, evatarot.net, tellmytarot.com). Число карт меняет формат, но не задачу и не тип документа.
+  ядрами (общие URL — evatarot.net, free-tarot-reading.net/free, llewellyn.com/tarot_reading.php; v1.1: в v1.0
+  примеры общих URL были названы неверно, число 3 верно). Остальные документы края — тоже инструменты расклада
+  (tarot.com/readings-reports/tarot-readings/free, astroyogi.com, 78tarot.cards, tellmytarot.com). Число карт
+  меняет формат, но не задачу и не тип документа.
 - **Снимки:** `us/tarot-reading.json`, `us/free-tarot-reading.json`, `us/free-3-card-tarot-reading.json`. Спецблоки:
   AI Overview во всех трёх, блок вопросов в `tarot reading`.
 - **Проверка ошибок:** О1 — у `tarot reading` в органике en.wikipedia.org/wiki/Tarot_card_reading и
@@ -220,8 +237,9 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **type_id:** `home`. **Статус:** частично (один снимок).
 - **Задача:** человек пытается получить расклад именно от ИИ — бесплатно и сразу, часто в формате чата.
 - **Состав (`us/home.csv`):** `tarot ai` (5900), `ai tarot reading` (3700), `ai tarot` (3400),
-  `ai tarot reading free` (900), `free ai tarot reading` (600), `ask tarot ai` (600), `ai tarot chat` (600),
-  `chatgpt tarot reading` (500); `yes no tarot ai` (600) (`us/yes-no.csv`) — край к EN-G05.
+  `ai tarot reading free` (900), `free ai tarot reading` (600), `ask tarot ai` (600), `ai tarot chat` (600).
+  v1.1: `chatgpt tarot reading` перенесён в неопределённые (раздел 5); `yes no tarot ai` стоит только в EN-G05
+  (задача — ответ да/нет, `ai` — способ), отсюда — ссылка на него как на край.
 - **Значимые условия:** `ai`, `chat`, `ask` — способ чтения (диалог), а не тема.
 - **Основание:** `tarot ai` ~ `free tarot reading` — 2 общих URL из 9 / 9 (chatarot.ai/en, tarotap.com/en);
   `tarot ai` ~ `tarot reading` — 0. Остальная органика `tarot ai` — ИИ-продукты: play.google.com (приложение),
@@ -229,8 +247,9 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   (r/SideProject). Документы — продукты-чтецы, не статьи «что такое ИИ-таро».
 - **Снимки:** `us/tarot-ai.json` (AI Overview, sitelinks).
 - **Проверка ошибок:** О2 — объединение с EN-G01 не подтверждено (2 из 9); разделение тоже не доказано: оба
-  набора — инструменты расклада. О4 — `chatgpt tarot reading` (500) снимка нет; в MX аналог `chatgpt tarot`
-  обслуживается обсуждениями и инструкциями (`20-groups-es.md`, ES-G03), для США это не проверено.
+  набора — инструменты расклада. О4 — `chatgpt tarot reading` снимка US нет; в MX аналог `chatgpt tarot`
+  обслуживается в основном обсуждениями и инструкциями (`20-groups-es.md`, ES-G03), для США это не проверено,
+  поэтому запрос из группы вынесен (v1.1).
 - **Исключено:** —.
 - **Нерешённое:** ищут ли «ИИ вместо человека» или конкретный продукт (вопрос карты задач) — выдача показывает
   продукты, поэтому ответ «инструмент», но доля брендового спроса неизвестна.
@@ -239,7 +258,8 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 ### EN-G03 — вытянуть одну карту сейчас
 
-- **type_id:** `one-card`. **Статус:** проверена выдачей (ядро и край).
+- **type_id:** `one-card`. **Статус:** проверена выдачей (ядро и край); граница с EN-G04 — открыта (v1.1, см.
+  «Спорные группы»).
 - **Задача:** человек пытается вытянуть одну случайную карту на текущий вопрос и прочитать её значение.
 - **Состав (`us/one-card.csv`):** `one card tarot` (7000), `tarot one card` (1500), `one card tarot reading`
   (1400), `pull a tarot card` (800), `free one card tarot` (500), `one tarot card reading` (500),
@@ -252,10 +272,15 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Снимки:** `us/one-card-tarot.json`, `us/pull-a-tarot-card.json`.
 - **Проверка ошибок:** О1 — у `pull a tarot card` есть randomtarotcard.com и serennu.com (генераторы) и статьи о
   схемах (learntarot.com/less5, suburbanwitchery.com) — край размыт, но задача «получить карту» сохраняется.
-  О2 — см. EN-G04.
+  О2 — см. EN-G04. v1.1: `pull a tarot card` ближе к ядру EN-G04, чем к своему: 3 общих URL с `daily tarot`
+  (labyrinthos.co/pages/one-card-tarot, dailyom.com/tarot/one-card-reading, evatarot.net) против 2 с `one card
+  tarot`; `parent_topic` Ahrefs перекрещиваются (`us/one-card.csv`: `one tarot card reading` → «daily tarot»,
+  `daily tarot pull` и `daily tarot card pull` → «one card tarot»).
 - **Исключено:** `how many tarot cards are there` (2500) — справка о колоде (в список неопределённых).
-- **Нерешённое:** `one card tarot yes/no` (600) и родственные — между EN-G03 и EN-G05, снимка нет.
-- **Предложение:** сохранить.
+- **Нерешённое:** v1.1 — `one card tarot yes/no` и три родственные формулировки перенесены в EN-G05 (по
+  `parent_topic` «yes or no tarot», без снимка). Одна ли задача у EN-G03 и EN-G04 — открыто.
+- **Предложение:** сохранить состав; разделение с EN-G04 — рабочая гипотеза до снимков `tarot card of the day` и
+  `one card tarot reading` и повторного снимка `daily tarot`.
 
 ### EN-G04 — карта дня (ежедневный ритуал)
 
@@ -279,11 +304,15 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Проверка ошибок:** О2 — риск «разделено одно и то же»: механика одинаковая (одна карта), различие — в
   повторе. Через `pull a tarot card` цепочка `daily tarot` ~ `pull a tarot card` — 3 общих URL, `pull a tarot card` ~ `one card tarot` — 2
   соединяет обе группы; по стр. 608 цепочку не считаем доказательством объединения.
-- **Исключено:** `tarot daily horoscope` (250), `daily tarot horoscope` (150) — тип horoscope (EN-G22).
+- **Передано в другую группу:** формы со словом horoscope (`tarot daily horoscope`, `daily tarot horoscope`) —
+  тип horoscope, стоят в составе EN-G22.
 - **Нерешённое:** снимок `tarot card of the day` (1800) для проверки края; повторить снимок `daily tarot` в
   сопоставимых условиях (стр. 606).
-- **Предложение:** сохранить отдельно от EN-G03 до TGA; самостоятельный адрес — вопрос TGA (задача и обещание
-  различаются повтором; ответ одной карты одинаков).
+- **Предложение:** v1.1 — не считать доказанной отдельной задачей: разделение с EN-G03 держится на двух парах
+  документов на двух доменах (tarot.com, dailytarotdraw.com), а `daily tarot` одинаково близок и к EN-G03, и к
+  EN-G01 (по 2 общих URL с `one card tarot`, `free tarot reading`, `tarot reading`, `free 3 card tarot
+  reading`). Номер группы сохраняется; рабочая гипотеза — одна задача «вытянуть карту» с уточнением «на день»;
+  решить после снимков `tarot card of the day` и `one card tarot reading` (см. «Спорные группы»). Адрес — TGA.
 
 ### EN-G05 — ответ да / нет (инструмент)
 
@@ -292,9 +321,12 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Состав (`us/yes-no.csv`):** `yes or no tarot` (42000), `yes no tarot` (33000), `tarot yes or no` (10000),
   `tarot yes no` (6500), `yes or no tarot accurate 100 percent` (2600), `online tarot reading yes or no` (2000),
   `yes no tarot horoscope` (1600), `tarot card yes or no` (1500), `yes and no tarot` (1400), `yes/no tarot`
-  (1300), `tarot reading yes or no` (1000), `yes or no tarot free` (900), `accurate yes or no oracle` (800),
-  `free yes or no tarot` (800), `yes no tarot ai` (600), `yes or no tarot horoscope` (600),
-  `yes or no tarot live` (500).
+  (1300), `tarot reading yes or no` (1000), `yes or no tarot free` (900),
+  `free yes or no tarot` (800), `yes no tarot ai` (600) (стоит только здесь), `yes or no tarot horoscope` (600),
+  `yes or no tarot live` (500); v1.1, край «одна карта для да/нет» — без снимка, по `parent_topic` «yes or no
+  tarot» (`us/one-card.csv`): `one card tarot yes/no` (600), `one card tarot yes no` (350), `one card tarot
+  reading yes or no` (200), `one card tarot yes or no` (150). v1.1: `accurate yes or no oracle` выведен в
+  неопределённые (его `parent_topic` — «facade yes no», оракул Facade, а не таро).
 - **Значимые условия:** `accurate`, `100 percent` — требование гарантии (З1: сохраняется как условие, не как
   обещание); `free`; `ai`; `live`.
 - **Основание:** `yes or no tarot` ~ `online tarot reading yes or no` — 7 из 8 / 9; ~ `yes no tarot horoscope` —
@@ -313,16 +345,18 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   `us/yes-or-no-tarot-accurate-100-percent.json`, `us/yes-no-tarot-horoscope.json`. Спецблоки: AI Overview у
   всех четырёх, блок вопросов у `online tarot reading yes or no`.
 - **Проверка ошибок:** О1 — список карт да/нет и схема «сделай сам» вынесены (EN-G06, EN-G07). О3 —
-  `accurate` и `free` сохранены условиями. О4 — `yes or no oracle` (1100) в группу не включён: не установлено,
-  таро ли это (в список неопределённых).
+  `accurate` и `free` сохранены условиями. О4 — `yes or no oracle` и `accurate yes or no oracle` в группу не
+  включены: не установлено, таро ли это (в список неопределённых).
 - **Исключено:** `eva tarot yes no` (350) — бренд evatarot.net, навигация.
-- **Нерешённое:** `one card tarot yes/no` (600) — граница с EN-G03 без снимка.
+- **Нерешённое:** край `one card tarot yes/no` и родственные — без снимка; отнесён по `parent_topic` и по
+  тому же решению, что в MX (`20-groups-es.md`, ES-G05 объединена в ES-G04). Проверка — снимок `one card tarot
+  yes/no`.
 - **Предложение:** сохранить.
 
 ### EN-G06 — какие карты значат «да», какие «нет» (список)
 
 - **type_id:** `yes-no` (справочный материал к инструменту); связь с `card-context` yes-no (EN-G13).
-- **Статус:** проверена выдачей (11.11.2026).
+- **Статус:** частично (v1.1: один снимок ядра, 11.11.2026; край не снят).
 - **Задача:** человек пытается узнать правило: какие из 78 карт считаются «да», «нет», «может быть», —
   чтобы самому прочитать ответ.
 - **Состав (`us/yes-no.csv`, `us/quiz.csv`, `us/cards.csv`):** `yes or no tarot list` (1200),
@@ -343,10 +377,10 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 - **type_id:** `yes-no` / `spreads`. **Статус:** не проверена (снимков нет).
 - **Задача:** человек пытается сам сделать расклад да/нет своей колодой — нужна процедура, а не ответ.
-- **Состав (`us/yes-no.csv`):** `yes or no tarot spread` (900), `3 card yes or no tarot spread free` (500),
-  `how to do yes or no tarot` (400).
-- **Значимые условия:** `free` у `3 card yes or no tarot spread free` противоречит «своей колоде» — запрос может
-  означать инструмент на три карты.
+- **Состав (`us/yes-no.csv`):** `yes or no tarot spread` (900) (v1.1: стоит только здесь, из неопределённых
+  убран), `how to do yes or no tarot` (400).
+- **Значимые условия:** v1.1 — `3 card yes or no tarot spread free` перенесён в неопределённые: `free` +
+  `spread` по правилу EN-G19 может означать инструмент на три карты, снимка нет.
 - **Снимки:** нет. Косвенно: reddit «how to perform a yes/no tarot reading» и psychicsource.com (руководство) в
   органике `yes or no tarot` — часть людей по главному запросу ищет процедуру.
 - **Проверка ошибок:** О4 — группа смысловая; называть её проверенной нельзя (стр. 608).
@@ -404,7 +438,8 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   list` (2600), `list of tarot cards` (1700), `tarot cards meaning list with pictures` (1100),
   `tarot card meanings pdf` (1100), `all tarot cards list` (700), `all tarot card meanings` (600),
   `list of all tarot cards` (600), `78 tarot cards list` (600), `tarot card meanings cheat sheet` (400),
-  `tarot card meanings major arcana` (250), `rider waite tarot card meanings` (250).
+  `rider waite tarot card meanings` (250). v1.1: `tarot card meanings major arcana` перенесён в неопределённые
+  (`parent_topic` «major arcana meanings», снимка нет).
 - **Значимые условия:** `pdf`, `cheat sheet`, `with pictures` — формат «всё сразу» (учёба); `rider waite` — колода
   (З6).
 - **Основание:** органика `tarot card meanings` — хабы-списки: labyrinthos.co/blogs/tarot-card-meanings-list,
@@ -416,6 +451,9 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Исключено:** `tarot card meanings in filipino` (300) — другой язык; `the ultimate guide to tarot card
   meanings` (350) — заголовок чужого документа.
 - **Нерешённое:** снимок `tarot cards list`; `how many tarot cards are there` (2500) — в неопределённые.
+  «Старшие арканы» (`tarot cards major arcana`, `tarot card meanings major arcana`) — в неопределённые как
+  кандидат в отдельную группу (зеркало ES-G09: в MX эта задача по выдаче отделена от хаба, 1 общий URL); в EN
+  снимка нет.
 - **Предложение:** сохранить, край «список» — на дополнительную проверку.
 
 ### EN-G11 — значение одной карты (шаблон «<card> tarot»)
@@ -426,7 +464,10 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   (`10-task-map.md`, раздел 5). Примеры: `the star tarot` (25000), `the moon tarot` (21000) (`us/cards.csv`),
   `death tarot card meaning` (6600) (`us/card-context.csv`), `the tower tarot meaning` (3700), `three of swords
   meaning` (2400), `the tower tarot card meaning upright and reversed` (2000), `what does the moon tarot card
-  mean` (1400), `ix tarot card meaning` (1000).
+  mean` (1400), `ix tarot card meaning` (1000); v1.1 — `the lovers tarot love` (500) (`us/love.csv`,
+  `us/card-context.csv`), перенесён из EN-G15: имя карты содержит «love», в органике 6 из 8 — общие страницы
+  карты The Lovers (labyrinthos, tarotcake, patchworksoul, biddytarot, writualplanner, teachmetarot), плюс reddit
+  и medium о карте; `parent_topic` — «the lovers tarot».
 - **Значимые условия:** `upright and reversed` — оба положения на одной странице; римская цифра — поиск по номеру;
   `rider waite` — колода (З6).
 - **Основание:** снимки `the moon tarot`, `the tower tarot meaning`, `death tarot card meaning`, `the star tarot`
@@ -435,7 +476,7 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   открыта: разделы прямого и перевёрнутого значения, любовь, карьера, финансы, «as Feelings», «as Actions» для
   обоих положений; раздела да/нет нет.
 - **Снимки:** `us/the-moon-tarot.json`, `us/the-tower-tarot-meaning.json`, `us/death-tarot-card-meaning.json`,
-  `us/the-star-tarot.json`.
+  `us/the-star-tarot.json`; `us/the-lovers-tarot-love.json` — старый снимок (`update_date` 2026-10-01).
 - **Проверка ошибок:** О3 — у The Star в органике elliotoracle.com/…/the-star-love (поз. 9) — любовный документ
   ранжируется и по базе; отмечено в EN-G15.
 - **Исключено:** —.
@@ -445,7 +486,7 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 ### EN-G12 — перевёрнутая карта (шаблон «<card> reversed»)
 
-- **type_id:** `card-context` (reversed). **Статус:** проверена выдачей на одной карте (The Star).
+- **type_id:** `card-context` (reversed). **Статус:** частично, одна карта (The Star; v1.1 — по легенде).
 - **Задача:** карта выпала перевёрнутой, человек пытается понять, чем это значение отличается от прямого.
 - **Состав (`us/card-context.csv`, матрица):** `the star reversed` (4500), `the star tarot card reversed card
   keywords` (700), `the star reversed meaning` (250), `the star reversed tarot` (150), `the star tarot reversed`
@@ -461,11 +502,20 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Снимки:** `us/the-star-reversed.json`, `us/the-star-tarot.json`.
 - **Проверка ошибок:** О2 — риск: отдельная группа при общей странице. Группа сохранена как контекст, потому что
   ответ меняется (другое значение) и спрос высокий; решение «раздел или адрес» — TGA. О4 — вывод по одной карте.
-- **Предложение:** сохранить; отдельной страницы выдача не оправдывает — это риск для TGA.
+- **Карта × контекст — находка выдачи и её предел (v1.1):** по The Star одни и те же общие страницы карты
+  (labyrinthos.co, biddytarot.com, thetarotguide.com) ранжируются и по базе, и по `the star reversed` (3 общих URL
+  из 8 / 8); рядом в топ-10 — отдельные документы о перевёрнутой карте (teachmetarot.com, elliotoracle.com, видео
+  youtube). Предел: проверена одна карта на рынке US (старший аркан The Star), младшие арканы не проверены,
+  повтор во времени не делался.
+- **Риск для TGA (задача 11):** выдача не требует отдельного адреса «карта × reversed» и не исключает его. Если
+  контекст станет отдельной страницей, она будет делить запросы со страницей карты, которую выдача уже
+  ставит по этим запросам; если разделом — часть топ-10 у отдельных документов. Раздел или страница и объём
+  страниц здесь не решаются (объём — решение владельца).
+- **Предложение:** сохранить группу (номер стабилен); как оформлять контекст — TGA.
 
 ### EN-G13 — карта в вопросе да/нет (шаблон «<card> yes or no»)
 
-- **type_id:** `card-context` (yes-no). **Статус:** проверена выдачей на одной карте.
+- **type_id:** `card-context` (yes-no). **Статус:** частично, одна карта (v1.1 — по легенде).
 - **Задача:** карта выпала в вопросе да/нет, человек пытается узнать вердикт именно этой карты.
 - **Состав:** `the star yes or no` (700) (матрица), `judgement tarot yes or no` (600), `wheel of fortune tarot yes
   or no` (500), `the emperor tarot yes or no` (450), `the moon tarot yes or no` (450) (`us/yes-no.csv`),
@@ -473,9 +523,11 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   (`us/card-context.csv`); матрица yes-no — 77 / 1000 / 77.
 - **Основание разделения:** `the star yes or no` ~ `the star tarot` — 0 общих URL из 8 / 8; ~ `the star reversed`
   — 0. Органика — документы «карта как да/нет»: sibyltarot.com «Star as Yes or No», selfgazer.com «The Star Yes
-  or No», darkforesttarotcards.com «The Star Tarot Meaning, Yes or No», limansa.com «The Star Yes or No»;
-  плюс quora, tarotforum.net, reddit; из общих страниц карты — только trustedtarot.com/cards/the-star. Страница
-  labyrinthos (лидер базы) раздела да/нет не имеет и в выдаче нет.
+  or No», limansa.com «The Star Yes or No»; плюс quora, tarotforum.net, reddit; общих страниц карты — две:
+  trustedtarot.com/cards/the-star и darkforesttarotcards.com/en-at/…/star-tarot-card-meaning «The Star Tarot
+  Meaning, Yes or No» (v1.1: в v1.0 записана как документ «карта как да/нет»; это общая страница карты с разделом
+  да/нет — тот же адрес в версии es-es ранжируется по базе `la estrella tarot` в MX). Страница labyrinthos (лидер
+  базы) раздела да/нет не имеет и в выдаче нет. Разделение с EN-G11 остаётся: 0 общих URL.
 - **Снимки:** `us/the-star-yes-or-no.json` (AI Overview, блок вопросов).
 - **Проверка ошибок:** О2 — разделение с EN-G11 подтверждено по документам (на одной карте). Связь с EN-G06
   (список): тот же вопрос на уровне колоды.
@@ -485,7 +537,7 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 ### EN-G14 — карта как чувства другого (шаблон «<card> as feelings»)
 
-- **type_id:** `card-context` (feelings). **Статус:** проверена выдачей на одной карте.
+- **type_id:** `card-context` (feelings). **Статус:** частично, одна карта (v1.1 — по легенде).
 - **Задача:** человек спрашивал о чувствах другого и пытается понять, что значит выпавшая карта в этой роли.
 - **Состав (`us/card-context.csv`, матрица):** `the star as feelings` (250), `the empress as feelings` (200),
   `the empress reversed as feelings` (50), `the star reversed as feelings` (50), `the empress as feelings for
@@ -496,16 +548,17 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   «the-star-as-feelings», starandstrength.com, selfgazer.com «What Someone Really Feels», sibyltarot.com; плюс
   reddit, tarotforum.net, quora. Раздел «as Feelings» есть и на общей странице labyrinthos, но она в топ-10 по
   этому запросу не попала.
-- **Снимки:** `us/the-star-as-feelings.json` (`update_date` 2026-10-17).
+- **Снимки:** `us/the-star-as-feelings.json` — старый снимок (`update_date` 2026-10-17, снят 11.11.2026):
+  выдача могла измениться, разделение с EN-G11 стоит перепроверить свежим снимком.
 - **Проверка ошибок:** О2 — разделение с EN-G11 подтверждено на одной карте. О3 — условие З4 записано.
 - **Предложение:** сохранить.
 
 ### EN-G15 — карта в любви (шаблон «<card> tarot love»)
 
-- **type_id:** `card-context` (love). **Статус:** частично (снимок на одной карте; снимок младшего аркана пуст).
+- **type_id:** `card-context` (love). **Статус:** частично, одна карта (снимок младшего аркана пуст).
 - **Задача:** человек спрашивал об отношениях и пытается понять значение выпавшей карты в любовном вопросе.
 - **Состав:** `temperance tarot love` (1100), `the world tarot love` (1000), `the emperor tarot love` (1000)
-  (`us/love.csv`, совпадают с матрицей), `the star tarot love` (500), `the lovers tarot love` (500),
+  (`us/love.csv`, совпадают с матрицей), `the star tarot love` (500),
   `the moon tarot card meaning love` (500) (`us/cards.csv`), `the hierophant tarot meaning love` (600),
   `the devil tarot card meaning in love` (350), `9 of swords tarot love meaning` (1400) (`us/love.csv`).
   Матрица love — 77 / 20 / 22.
@@ -513,18 +566,26 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   elliotoracle.com/…/the-star-love). Отдельные любовные документы: deckaura.com «The Star Tarot Love Meaning»,
   elliotoracle (ранжируется и по базе), youtube; плюс reddit, tarotforum, quora. Картина как у reversed:
   общая страница карты с разделом «love» (у labyrinthos раздел есть) и отдельные документы рядом.
-  `the lovers tarot love` — органика из общих страниц карты The Lovers (labyrinthos, biddytarot, tarotcake и др.):
-  имя карты само содержит «love», для проверки шаблона не годится.
+  v1.1: `the lovers tarot love` перенесён в EN-G11 — органика из общих страниц карты The Lovers, имя карты само
+  содержит «love», для проверки шаблона не годится.
 - **Неизвестное карты задач «формулировка love для младших арканов»:** по выдаче не решено — снимок
   `9 of swords tarot love meaning` пустой (`empty_serp`). По корпусу решено частично: `9 of swords tarot love
   meaning` (1400) против `nine of swords tarot love` (10) в матрице — для младших арканов шаблон матрицы не
-  тот (цифра и `meaning`). Матричное «22 карты ≥50» — нижняя граница. Следующее действие: перезапрос контекста
-  love по шаблону `<n> of <suit> tarot love meaning` для 56 младших арканов (Keywords Explorer, задача 10 или
-  отдельное решение по бюджету).
-- **Снимки:** `us/the-star-tarot-love.json`, `us/the-lovers-tarot-love.json`.
+  тот (цифра и `meaning`). Матричное «22 карты ≥50» — нижняя граница. v1.1: недоизмерение шаблона love
+  (`9 of swords tarot love meaning` (1400) против шаблона матрицы (10)) остаётся открытым вопросом для задач 11/12;
+  в этом проходе Ahrefs не вызывался.
+- **Снимки:** `us/the-star-tarot-love.json`.
 - **Проверка ошибок:** О3 — пропало уточнение в шаблоне матрицы (см. выше). О2 — как в EN-G12: отдельный адрес
   выдачей не требуется.
-- **Предложение:** сохранить; объём спроса контекста — пересчитать до TGA.
+- **Карта × контекст — находка выдачи и её предел (v1.1):** по The Star общие страницы карты (labyrinthos.co,
+  thetarotguide.com) и любовный документ elliotoracle.com/…/the-star-love ранжируются и по базе, и по `the star
+  tarot love` (3 общих URL из 8 / 8); отдельные любовные документы рядом — deckaura.com, youtube. Предел: одна
+  карта на рынке US (старший аркан The Star); младшие арканы не проверены (снимок `9 of swords tarot love
+  meaning` пустой).
+- **Риск для TGA (задача 11):** как в EN-G12 — выдача не требует отдельного адреса «карта × love» и не исключает
+  его; отдельная страница будет делить запросы со страницей карты. Раздел или страница и объём страниц здесь не
+  решаются (объём — решение владельца). Объём спроса контекста занижен шаблоном — задачи 11/12.
+- **Предложение:** сохранить группу (номер стабилен); как оформлять контекст — TGA.
 
 ### EN-G16 — карта как совет (шаблон «<card> advice»)
 
@@ -540,50 +601,54 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 ### EN-G17 — обзор схем раскладов
 
-- **type_id:** `spreads`. **Статус:** проверена выдачей (два снимка).
+- **type_id:** `spreads`. **Статус:** частично (v1.1: после выноса `tarot spreads for guidance` — один снимок
+  из состава).
 - **Задача:** человек со своей колодой пытается выбрать схему расклада из многих.
-- **Состав (`us/spreads.csv`):** `tarot spreads` (9400), `tarot card spreads` (3200), `tarot spreads for
-  guidance` (2700), `different tarot spreads` (700), `beginner tarot spreads` (600), `tarot spreads for
-  beginners` (500), `tarot cards spreads` (400), `easy tarot spreads` (350), `tarot reading spreads` (350),
-  `simple tarot spreads` (300), `types of tarot spreads` (300); `career tarot spread` (500) — тема, край.
-- **Основание:** `tarot spreads` ~ `tarot spreads for guidance` — 1 общий из 8 / 8 (labyrinthos.co/pages/
-  tarot-spreads-list). Органика `tarot spreads` — коллекции и списки схем (labyrinthos, emeraldlotusdivination.com,
-  suburbanwitchery.com, ethony.com, pinterest, youtube). У `tarot spreads for guidance` — отдельные авторские
-  схемы «когда нет ясности» (thetarotlady.com compass spread, incandescenttarot.com, spiritelement.co,
-  hermitsmirror.com).
-- **Снимки:** `us/tarot-spreads.json`, `us/tarot-spreads-for-guidance.json`.
-- **Проверка ошибок:** О1 — `tarot spreads for guidance` по документам ближе к «одна схема на ситуацию», чем к
-  обзору; держится в группе как край с пометкой. О3 — уровень (`beginner`, `easy`) сохранён.
-- **Исключено:** `tarot cards phasmophobia` (2000) — игра; `are tarot cards real` (1100) — вопрос доверия;
-  `tarot cards major arcana` (1800), `how many tarot cards are in a deck` (1100) — справка о колоде (EN-G10 /
-  неопределённые).
+- **Состав (`us/spreads.csv`):** `tarot spreads` (9400), `tarot card spreads` (3200), `different tarot spreads`
+  (700), `beginner tarot spreads` (600), `tarot spreads for beginners` (500), `tarot cards spreads` (400),
+  `easy tarot spreads` (350), `tarot reading spreads` (350), `simple tarot spreads` (300), `types of tarot spreads`
+  (300). v1.1: `tarot spreads for guidance` — в новую EN-G27; `career tarot spread` — в неопределённые (тема,
+  решается по тому же правилу, что любовные схемы EN-G09; снимка нет).
+- **Основание:** органика `tarot spreads` — коллекции и списки схем (labyrinthos, emeraldlotusdivination.com,
+  suburbanwitchery.com, ethony.com, pinterest, youtube). С `tarot spreads for guidance` — 1 общий URL из 8 / 8
+  (labyrinthos.co/pages/tarot-spreads-list): там другие документы (EN-G27).
+- **Снимки:** `us/tarot-spreads.json`.
+- **Проверка ошибок:** О1 — v1.1: `tarot spreads for guidance` вынесен (одна схема под ситуацию, а не обзор);
+  правило согласовано с EN-G09 (тема со своим набором документов — отдельная группа). О3 — уровень (`beginner`,
+  `easy`) сохранён.
+- **Исключено:** `tarot cards phasmophobia` (2000) — игра; `are tarot cards real` (1100) — вопрос доверия.
+  Справка о колоде (`tarot cards major arcana`, `how many tarot cards are in a deck`) — в неопределённых
+  (раздел 5; в v1.0 запросы были потеряны).
 - **Предложение:** сохранить.
 
 ### EN-G18 — кельтский крест
 
-- **type_id:** `spreads`. **Статус:** частично (снимок ядра; край `free tarot reading celtic cross` не снят).
+- **type_id:** `spreads`. **Статус:** частично (снимок ядра; край не снят).
 - **Задача:** человек пытается разложить или понять конкретную схему «кельтский крест» и смысл её позиций.
-- **Состав (`us/spreads.csv`):** `celtic cross tarot` (5700), `celtic cross tarot spread` (1800), `free tarot
-  reading celtic cross` (500), `celtic cross spread tarot` (400), `celtic cross tarot spread positions meaning`
-  (300), `tarot celtic cross` (250), `celtic cross tarot reading` (200), `celtic cross tarot spread positions
-  meanings` (200).
-- **Значимые условия:** `positions meaning` — У1 (необходимый вопрос); `free … reading` — расклад онлайн.
+- **Состав (`us/spreads.csv`):** `celtic cross tarot` (5700), `celtic cross tarot spread` (1800), `celtic cross
+  spread tarot` (400), `celtic cross tarot spread positions meaning` (300), `tarot celtic cross` (250), `celtic
+  cross tarot spread positions meanings` (200). v1.1: `free tarot reading celtic cross` и `celtic cross tarot
+  reading` перенесены в неопределённые (у обоих `parent_topic` — «free tarot reading celtic cross», отдельный от
+  «celtic cross tarot»; правило `free` + `reading` = инструмент, как в EN-G19).
+- **Значимые условия:** `positions meaning` — У1 (необходимый вопрос).
 - **Основание:** `celtic cross tarot` ~ `tarot spreads` — 0 из 8 / 8; ~ `3 card tarot spread` — 0. Органика —
   отдельные документы о схеме: biddytarot.com how-to, labyrinthos.co, theirishjewelrycompany.com (позиции),
   reddit, forum; 3 инструмента/расклада онлайн (micheleknight.com free reading, serennu.com, evatarot.net).
 - **Снимки:** `us/celtic-cross-tarot.json` (картинки 6, AI Overview).
-- **Проверка ошибок:** О1 — смешанная выдача: 5 статей и обсуждений к 3 инструментам; край «расклад онлайн» не проверен.
+- **Проверка ошибок:** О1 — смешанная выдача: 5 статей и обсуждений к 3 инструментам; край «расклад онлайн»
+  вынесен в неопределённые до снимка.
 - **Предложение:** сохранить; разделение «статья / инструмент» — дополнительная проверка (снимок `free tarot
   reading celtic cross`).
 
 ### EN-G19 — схема на три карты
 
-- **type_id:** `spreads`. **Статус:** проверена выдачей (ядро и край со стороны инструмента).
+- **type_id:** `spreads`. **Статус:** частично (v1.1: снимок ядра; `free 3 card tarot reading` — член EN-G01, по
+  легенде краем этой группы не считается).
 - **Задача:** человек со своей колодой пытается выбрать вариант расклада на три карты (прошлое–настоящее–будущее
   и другие).
 - **Состав (`us/spreads.csv`):** `3 card tarot spread` (2100), `3 card tarot spreads` (200), `tarot 3 card spread`
-  (200), `3 card spread tarot` (200), `three card tarot spreads` (200), `free 3 card tarot spread past, present
-  future` (300) — край.
+  (200), `3 card spread tarot` (200), `three card tarot spreads` (200). v1.1: `free 3 card tarot spread past,
+  present future` перенесён в неопределённые (`free` + `spread`, снимка нет).
 - **Основание разделения со стороны инструмента:** `3 card tarot spread` ~ `free 3 card tarot reading` — 2 из
   8 / 9 (tarot.com free reading, cbdtarot.com online 3-cards). Остальная органика `3 card tarot spread` — статьи и
   списки схем (labyrinthos «18 Simple Tarot Spreads», jesscarlson.com, lunafactory.com, ethony.com, reddit,
@@ -592,8 +657,8 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Ответ на неизвестное «spread в EN — статья?»:** да для `<N> card tarot spread`; `free <N> card tarot
   reading` — инструмент. Различие задаёт модификатор, а не язык (сравнение с MX — `20-groups-es.md`, ES-G02).
 - **Снимки:** `us/3-card-tarot-spread.json`, `us/free-3-card-tarot-reading.json`.
-- **Проверка ошибок:** О4 — `free 3 card tarot spread past, present future` (300) содержит и `free`, и `spread`;
-  снимка нет, отнесён к краю.
+- **Проверка ошибок:** О4 — `free 3 card tarot spread past, present future` содержит и `free`, и `spread`;
+  снимка нет — v1.1: в неопределённых, а не в группе.
 - **Предложение:** сохранить; отдельная страница при наличии EN-G17 — вопрос TGA.
 
 ### EN-G20 — карта рождения
@@ -604,16 +669,24 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   calculator` (500), `birth tarot card calculator` (300), `what's my tarot card` (200), `tarot birth card
   meaning` (150), `birth card tarot` (150), `my tarot birth card` (150), `what is my birth tarot card` (100),
   `what is my birthday tarot card` (100), `tarot card birthday calculator` (100), `how to find your birth tarot
-  card` (60).
+  card` (60); v1.1 — `what is my tarot card` (500) (`us/birth-card.csv`), край со смешанной выдачей.
 - **Значимые условия:** `calculator` — инструмент; `how to find` — метод расчёта (У1).
 - **Основание:** `tarot birth card` ~ `tarot birth card calculator` — 3 из 8 / 9 (tarot.com калькулятор,
   tarotschool.com, darkforesttarotcards.com). Органика — калькуляторы и объяснения метода (cassieuhl.com,
   substack «life card», tarotschool.com/BirthCards).
-- **Снимки:** `us/tarot-birth-card.json`, `us/tarot-birth-card-calculator.json`.
-- **Проверка ошибок:** О1 — с квизом (`tarot card quiz`) 0 общих URL у обоих снимков ядра — смешения нет.
+- **`what is my tarot card` (v1.1):** по типу документов в `us/what-is-my-tarot-card.json` 5 из 8 — карта рождения
+  (калькуляторы mysticmondays.com, tarot.com, flickerdeck.com; reddit «Tarot Birth Card»; substack «Do You Know
+  Your Tarot Birth Card?»), 3 из 8 — квизы (vam.ac.uk, tarotforthewildsoul.com, buzzfeed). Общих URL: 3 с
+  `tarot birth card calculator`, 2 с `tarot birth card` (вместе 4 уникальных), 3 с `tarot card quiz`.
+  `parent_topic` — «birth tarot card»; почти совпадающий `what's my tarot card` уже стоит в группе. Отнесён к
+  EN-G20 по большинству документов (так же, как `what tarot card am i` — к EN-G21); квиз — вторичный блок.
+- **Снимки:** `us/tarot-birth-card.json`, `us/tarot-birth-card-calculator.json`, `us/what-is-my-tarot-card.json`.
+- **Проверка ошибок:** О1 — с квизом (`tarot card quiz`) 0 общих URL у обоих снимков ядра — смешения нет; край
+  `what is my tarot card` смешан (3 из 8 — квизы).
 - **Исключено:** `soul card tarot calculator` (30) — соседний расчёт (кандидат в уточнение, не ядро);
   `what is my identifier card tarot` (50) — другой термин (неопределённые).
-- **Нерешённое:** `what is my tarot card` (500) — см. раздел 5.
+- **Нерешённое:** доля квизового спроса в `what is my tarot card` объёмом не отделяется; не оптимизировать две
+  страницы под одну фразу (стр. 606) — для TGA.
 - **Предложение:** сохранить.
 
 ### EN-G21 — квиз «какая я карта»
@@ -623,11 +696,12 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Состав (`us/quiz.csv`):** `what tarot card am i` (900), `which tarot card are you` (400), `tarot card quiz`
   (300), `tarot quiz` (200), `what tarot card are you` (200), `tarot card test` (200), `which tarot card represents
   me` (150), `what tarot card am i quiz` (80), `tarot card personality test` (60).
-- **Основание:** `tarot card quiz` ~ `what tarot card am i` — 1 из 9 / 9 (quotev.com). Пересечение слабое, но
-  тип документа общий: у `tarot card quiz` 8 из 9 — квизы (vam.ac.uk, tarotforthewildsoul.com, buzzfeed,
-  wikihow, jobcannon.io, uquiz, familiartarot.com); у `what tarot card am i` — квизы (proprofs, quotev, buzzfeed,
-  cocorrina.com) и обсуждения «как узнать свою карту» (straightdope, reddit, quora, forum) плюс одна статья о
-  карте рождения (substack). Число совпадений не решает, решает тип документа (стр. 605).
+- **Основание:** `tarot card quiz` ~ `what tarot card am i` — 1 из 9 / 9 (quotev.com). Пересечение слабое, но тип
+  документа общий: у `tarot card quiz` 7 из 9 — личностные квизы (vam.ac.uk, tarotforthewildsoul.com, buzzfeed,
+  wikihow, jobcannon.io, uquiz, familiartarot.com), ещё learntarot.site — квиз на знание значений (учёба) и quotev —
+  каталог квизов (v1.1: в v1.0 было «8 из 9»); у `what tarot card am i` — квизы (proprofs, quotev, buzzfeed,
+  cocorrina.com) и обсуждения «как узнать свою карту» (straightdope, reddit, quora, forum) плюс одна статья о карте
+  рождения (substack). Число совпадений не решает, решает тип документа (стр. 605).
 - **Снимки:** `us/tarot-card-quiz.json`, `us/what-tarot-card-am-i.json`.
 - **Проверка ошибок:** О4 — `what tarot card am i` частично про карту рождения (1 из 9) и про «как найти свою
   карту» (форумы); отнесён к квизу по большинству. `tarot card meaning quiz` (30) — проверка знаний (учёба),
@@ -651,6 +725,10 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Снимки:** `us/tarot-horoscope.json`, `us/libra-tarot.json` (новости 12, видео).
 - **Проверка ошибок:** О1 — у `libra tarot` 2 из 6 органических — статьи о соответствии знак ↔ карта
   (californiapsychics.com, chhavitarot.com); край смешанный, запрос `libra tarot` держится в группе условно.
+  v1.1 (спор второго прогона, отклонён): остальные 4 из 6 — прогноз для знака: yourtango.com «Libra Tarot Cards:
+  Today's Free Daily» (ежедневный таро-прогноз), tarot.com/daily-horoscope/libra (обычный гороскоп на день) и два
+  видео youtube с таро-чтением для Весов; большинство документов — задача этой группы. Решение по шаблону «знак»
+  целиком — после снимка второго знака.
   О4 — `yes no tarot horoscope` сюда не относится (EN-G05, 0 общих URL с `tarot horoscope`).
 - **Исключено:** `yourtango tarot horoscope` (200), `www tarot com horoscope` (150), `tango tarot horoscope` (150)
   — навигация на бренды; `taurus horoscope elle` (200) — бренд, без таро.
@@ -660,8 +738,9 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 - **type_id:** `horoscope` (справка) или `cards` — решает TGA. **Статус:** частично (один снимок).
 - **Задача:** человек пытается узнать, какая карта таро соответствует его знаку зодиака.
-- **Состав (`us/horoscope.csv`):** `zodiac signs tarot cards` (900), `libra tarot card` (600), `zodiac tarot
-  cards` (400), `tarot cards and zodiac signs` (300), `astrology tarot cards` (250).
+- **Состав (`us/horoscope.csv`):** `zodiac signs tarot cards` (900), `zodiac tarot cards` (400), `tarot cards and
+  zodiac signs` (300), `astrology tarot cards` (250). v1.1: `libra tarot card` перенесён в неопределённые (снимка
+  нет; `parent_topic` — «libra horoscope tarot», то есть сторона EN-G22).
 - **Основание разделения:** `zodiac signs tarot cards` ~ `tarot horoscope` — 0 из 8 / 9; ~ `libra tarot` — 0.
   Органика — справочные статьи о соответствиях (tarot.com/astrology/tarot-cards, labyrinthos «astrology and
   tarot correspondences», zodianz.com, stsoleil.com, darkforesttarotcards.com, everybodymind.com, reddit,
@@ -683,7 +762,8 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
   llewellyn.com, astratrainer.com); у второго — указатели сочетаний (solstarot.com, learn-tarot-cards.com,
   biddytarot.com guide, mjstarot.com), калькулятор deckaura.com и хаб значений labyrinthos (1 общий URL с
   `tarot card meanings`).
-- **Снимки:** `us/tarot-card-combinations.json`, `us/list-of-tarot-card-combinations-meanings.json`.
+- **Снимки:** `us/tarot-card-combinations.json`, `us/list-of-tarot-card-combinations-meanings.json` — второй
+  старый (`update_date` 2026-10-19, снят 10.11.2026).
 - **Проверка ошибок:** О1 — края группы не сошлись: «как читать сочетания» (метод) и «указатель значений
   сочетаний» (справка) могут быть разными задачами; при спросе 350 и 100 различие на решение о странице мало
   влияет. О4 — конкретные пары (`the sun and the moon tarot`) — в неопределённые.
@@ -724,26 +804,48 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - **Предложение:** сохранить; отдельной страницы при спросе 350 группа сама не оправдывает — кандидат в раздел
   инструмента (TGA).
 
+### EN-G27 — схема расклада, когда нет ясности (v1.1)
+
+- **type_id:** `spreads`. **Статус:** частично (один снимок).
+- **Задача:** человек со своей колодой пытается найти схему для ситуации «нет ясности / не знаю, что спросить».
+- **Состав (`us/spreads.csv`):** `tarot spreads for guidance` (2700) — перенесён из EN-G17 (v1.1).
+- **Основание:** `tarot spreads for guidance` ~ `tarot spreads` — 1 общий URL из 8 / 8 (labyrinthos.co/pages/
+  tarot-spreads-list). Органика — 5 отдельных авторских схем под ситуацию: thetarotlady.com compass spread «when
+  you feel lost», incandescenttarot.com «clarity and direction», spiritelement.co «when you don't know what to ask»,
+  hermitsmirror.com «Hermit's Guidance», pinterest «spread for guidance»; плюс обзор labyrinthos, reddit
+  «go-to spread», форум «best spread for a beginner». `parent_topic` — свой («tarot spreads for guidance»).
+- **Снимки:** `us/tarot-spreads-for-guidance.json`.
+- **Проверка ошибок:** О2 — с EN-G26 («что спросить у карт») смысл соседний (spiritelement.co — «когда не знаешь,
+  что спросить»), общих URL нет (`tarot card questions` ~ `tarot spreads for guidance` — 0). О1 — 3 из 8 —
+  обзоры и обсуждения.
+- **Исключено:** —.
+- **Нерешённое:** `career tarot spread` (500) — тематическая схема без снимка, в неопределённых.
+- **Предложение:** сохранить; отдельная страница или раздел обзора схем — TGA.
+
 ---
 
 ## 5. Неопределённые запросы
 
-Стр. 603: отдельный список полезнее случайного распределения.
+Стр. 603: отдельный список полезнее случайного распределения. v1.1: каждый запрос стоит либо в группе, либо здесь;
+строки, добавленные или изменённые во втором прогоне, помечены «v1.1».
 
 | Запрос (спрос, US) | Источник | Возможные группы | Почему не решено | Что нужно |
 |---|---|---|---|---|
-| `what is my tarot card` (500) | `us/birth-card.csv` | EN-G20 / EN-G21 | Выдача смешанная: 3 из 8 общих с калькулятором карты рождения (mysticmondays.com, tarot.com, flickerdeck.com), 3 из 8 — с квизом (vam.ac.uk, tarotforthewildsoul.com, buzzfeed) | Оставить связь с обеими группами; решение — TGA (не оптимизировать две страницы под одну фразу, стр. 606) |
-| `what is identifier card tarot` (1100) | `us/questions.csv` | EN-G20 / EN-G21 / новое | Термин «identifier/significator» — другая задача; снимка нет | Снимок выдачи |
-| `yes or no oracle` (1100), `accurate yes or no oracle` (800) | `us/yes-no.csv` | EN-G05 / вне таро | Не установлено, таро ли «oracle» | Снимок `yes or no oracle` |
-| `one card tarot yes/no` (600) | `us/one-card.csv` | EN-G03 / EN-G05 | Снимка нет | Снимок |
-| `how many tarot cards are there` (2500), `how many cards in a tarot deck` (4900) | `us/cards.csv`, `us/questions.csv` | EN-G10 / EN-G25 | Справка о колоде; снимок в Task 6 заменён как off-intent | Решение TGA: раздел хаба |
+| `what is identifier card tarot` (1100), `what is my identifier card tarot` (50) | `us/questions.csv`, `us/birth-card.csv` | EN-G20 / EN-G21 / новое | Термин «identifier/significator» — другая задача; снимка нет; v1.1: второй запрос был исключён из EN-G20 «в неопределённые», но в список не попал | Снимок выдачи |
+| `yes or no oracle` (1100), `accurate yes or no oracle` (800) | `us/yes-no.csv` | EN-G05 / вне таро | Не установлено, таро ли «oracle»; v1.1: `parent_topic` — «ask the oracle» и «facade yes no» (оракул Facade) | Снимок `yes or no oracle` |
+| `how many tarot cards are there` (2500), `how many cards in a tarot deck` (4900), `how many tarot cards are in a deck` (1100) | `us/cards.csv`, `us/questions.csv`, `us/spreads.csv` | EN-G10 / EN-G25 | Справка о колоде; снимок в Task 6 заменён как off-intent; v1.1: третий запрос был исключён из EN-G17 «в неопределённые», но в список не попал | Решение TGA: раздел хаба |
+| `tarot cards major arcana` (1800), `tarot card meanings major arcana` (250) | `us/spreads.csv`, `us/cards.csv` | EN-G10 / новая группа «старшие арканы» | v1.1: `parent_topic` — «major arcana» и «major arcana meanings»; в MX та же задача отделена от хаба (ES-G09); снимка US нет; первый запрос в v1.0 был потерян | Снимок `tarot cards major arcana` |
 | `x tarot card meaning` (200), `v tarot card meaning` (150), `3 tarot card meaning` (150) | `us/birth-card.csv` | EN-G11 / EN-G20 | Номер карты или результат калькулятора | Снимок одного из запросов |
 | `the sun and the moon tarot` (60), `the sun and moon tarot card together meaning` (60) | `us/pairs.csv` | EN-G24 / вне продукта | В органике колода «Sun and Moon Tarot» (tarot.com/tarot/decks/sun-moon, aeclectic.net, benebellwen.com, collective.world) и страницы сочетания (tarostarot.com, mjstarot.com, reddit, forum) — название колоды и пара | Учитывать как пример: имя пары может совпадать с названием колоды |
 | `tarot card meanings for each month` (600) | `us/cards.csv` | EN-G10 / EN-G22 | Смысл не установлен | Снимок |
 | `free tarot reading by date of birth` (600) | `us/home.csv` | EN-G01 / EN-G20 | Расклад или карта рождения | Снимок |
 | `are tarot cards accurate` (600), `how do tarot cards work` (1000) | `us/questions.csv` | вне 12 типов | Вопрос доверия (карта задач: раздел доверия, решает TGA) | — |
-| `the lovers tarot love` (500) | `us/card-context.csv` | EN-G15 / EN-G11 | Имя карты содержит «love»; выдача — общие страницы карты | Для шаблона love не использовать |
-| `yes or no tarot spread` (900) | `us/yes-no.csv` | EN-G07 / EN-G05 | Снимка нет | Снимок |
+| `chatgpt tarot reading` (500) | `us/home.csv` | EN-G02 / вопрос доверия | v1.1: снимка US нет; в MX `chatgpt tarot` — в основном инструкции и обсуждения (ES-G03), у `tarot ai` (US) — продукты-чтецы | Снимок US `chatgpt tarot reading` |
+| `3 card yes or no tarot spread free` (500) | `us/yes-no.csv`, `us/spreads.csv` | EN-G07 / EN-G05 | v1.1: `free` + `spread` — инструмент или схема; снимка нет | Снимок |
+| `free 3 card tarot spread past, present future` (300) | `us/spreads.csv` | EN-G19 / EN-G01 | v1.1: `free` + `spread`; снимка нет | Снимок |
+| `free tarot reading celtic cross` (500), `celtic cross tarot reading` (200) | `us/spreads.csv` | EN-G18 / EN-G01 | v1.1: `parent_topic` обоих — «free tarot reading celtic cross»; в выдаче `celtic cross tarot` 3 из 8 — инструменты (micheleknight.com, serennu.com, evatarot.net) | Снимок `free tarot reading celtic cross` |
+| `career tarot spread` (500) | `us/spreads.csv` | EN-G17 / EN-G27 / своя группа | v1.1: тематическая схема; любовные схемы отделены (EN-G09) — то же правило требует снимка | Снимок |
+| `libra tarot card` (600) | `us/horoscope.csv` | EN-G22 / EN-G23 | v1.1: снимка нет; `parent_topic` — «libra horoscope tarot» | Снимок |
 
 ---
 
@@ -751,10 +853,10 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 | Неизвестное (`10-task-map.md`) | Решение | Основание |
 |---|---|---|
-| Одна ли задача у `one card tarot` и `daily tarot` | Разделены: EN-G03 и EN-G04; адрес — TGA | 2 общих URL из 9 / 9; на tarot.com и dailytarotdraw.com — разные документы под «одна карта» и «карта дня» |
-| `what is my tarot card` — карта рождения или квиз | Не решено, честно смешанная выдача | 3 из 8 с калькулятором, 3 из 8 с квизом (раздел 5) |
-| Ждут ли перевёрнутое значение на странице карты | Да для The Star: лидеры по `the star reversed` — общие страницы карты с разделом reversed; отдельные документы тоже есть | 3 из 8 общих с `the star tarot`; страница labyrinthos открыта. Младшие арканы не проверены; отдельный адрес — TGA |
-| Формулировка love для младших арканов | По выдаче не решено (снимок пустой); по корпусу — шаблон матрицы занижает спрос | `9 of swords tarot love meaning` (1400) против `nine of swords tarot love` (10); нужен перезапрос шаблона |
+| Одна ли задача у `one card tarot` и `daily tarot` | v1.1: открыто. Группы EN-G03 и EN-G04 сохранены, разделение — рабочая гипотеза, не доказанная задача; адрес — TGA | 2 общих URL из 9 / 9; на tarot.com и dailytarotdraw.com — разные документы под «одна карта» и «карта дня»; но `pull a tarot card` (EN-G03) делит 3 URL с `daily tarot` и 2 — с `one card tarot`, `parent_topic` перекрещиваются. Решат снимки `tarot card of the day` и `one card tarot reading` |
+| `what is my tarot card` — карта рождения или квиз | v1.1: EN-G20 (карта рождения), квиз — вторичный блок | По типу документов 5 из 8 — карта рождения, 3 из 8 — квизы; общих URL 3 с калькулятором, 3 с квизом (в v1.0 по ним было «не решено»); `parent_topic` — «birth tarot card» |
+| Ждут ли перевёрнутое значение на странице карты | Для The Star: лидеры по `the star reversed` — общие страницы карты с разделом reversed; отдельные документы тоже есть | 3 из 8 общих с `the star tarot`; страница labyrinthos открыта. Предел: одна карта на рынке US, младшие арканы не проверены. Раздел или отдельный адрес — TGA (риск записан в EN-G12) |
+| Формулировка love для младших арканов | По выдаче не решено (снимок пустой); по корпусу — шаблон матрицы занижает спрос. Открытый вопрос для задач 11/12 | `9 of swords tarot love meaning` (1400) против `nine of swords tarot love` (10); в этом проходе Ahrefs не вызывался |
 | «Spread» в EN — статья? | Да для `<N> card tarot spread`; с `free` + `reading` — инструмент | 2 общих из 8 / 9 между `3 card tarot spread` и `free 3 card tarot reading`, остальные документы — разных типов |
 | `yes no tarot horoscope` (minor ревью Task 8) | EN-G05, инструмент да/нет | 4 общих URL с `yes or no tarot`, 0 — с `tarot horoscope`; страница horoscope.com открыта |
 
@@ -765,7 +867,10 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 - Снимки по одной карте (The Star) — для шаблонных групп EN-G12…EN-G15 вывод не переносится автоматически на
   младшие арканы.
 - Нет снимков: EN-G07, EN-G16 (группы смысловые); края `tarot card of the day`, `tarot cards list`,
-  `free tarot reading celtic cross`, `chatgpt tarot reading`.
+  `free tarot reading celtic cross`, `chatgpt tarot reading`; v1.1 — также `tarot cards major arcana`, `career tarot
+  spread`, `libra tarot card`, `one card tarot yes/no`, `one card tarot reading`.
+- Старые снимки (раздел «Как читать»): `the lovers tarot love`, `the star as feelings`, `list of tarot card
+  combinations meanings` — выводы по ним стоит перепроверить свежей выдачей.
 - Все снимки — один момент времени (10–11.11.2026); повтор в сопоставимых условиях для пограничных групп EN-G03 /
   EN-G04 и EN-G12 не делался (стр. 606).
 
@@ -773,4 +878,36 @@ meaning` (база Death). Снимок `9 of swords tarot love meaning` Ahrefs 
 
 ## Спорные группы
 
-Заполняется после второго прогона.
+Источник споров — независимый второй прогон на смешение интентов (11.11.2026, четыре типа ошибок стр. 608).
+Каждый спор перепроверен по снимкам `corpus/serp/us/*.json` и `parent_topic` из `corpus/ahrefs/us/*.csv`
+(10.11.2026); Ahrefs и веб в этом проходе не вызывались. Совпадение URL — свидетельство, а не решение (стр. 605):
+решение принималось по типу документов. «Принято» — группа изменена; «отклонено» — оставлена, с причиной;
+«открыто» — названа проверка, которая решит спор.
+
+| Группа | Что оспорено | Доказательство | Решение | Что меняется |
+|---|---|---|---|---|
+| EN-G02 | О1 / О4: `chatgpt tarot reading` (500) без снимка; `yes no tarot ai` (600) стоит в двух группах | Снимка US нет; MX `chatgpt tarot` — в основном инструкции и обсуждения (`mx/chatgpt-tarot.json`), US `tarot ai` — продукты-чтецы (`us/tarot-ai.json`); дубль найден скриптом `members.py` | Принято | `chatgpt tarot reading` → из EN-G02 в неопределённые; `yes no tarot ai` → только EN-G05, из EN-G02 — ссылка |
+| EN-G03 | О2 с EN-G04 (риск); место `one card tarot yes/no` и родственных | `pull a tarot card` ~ `daily tarot` — 3 общих URL, ~ `one card tarot` — 2; `one card tarot` ~ `daily tarot` — 2 из 9 / 9; `parent_topic` перекрещиваются; у четырёх «one card … yes/no» `parent_topic` — «yes or no tarot» | Открыто (граница); принято частично (yes/no) | Состав без изменений; статус дополнен «граница открыта». `one card tarot yes/no` (600), `one card tarot yes no` (350), `one card tarot reading yes or no` (200), `one card tarot yes or no` (150) → в EN-G05 (из неопределённых / без места). Решат снимки `tarot card of the day`, `one card tarot reading` и повтор `daily tarot` |
+| EN-G04 | О2: «карта дня» как отдельная задача не доказана | Разделение держится на двух парах документов (tarot.com `/daily-tarot-card` против `/one-card`, dailytarotdraw.com главная против `/card-deck`); `daily tarot` одинаково близок к EN-G03 и EN-G01 (по 2 общих URL); 7 из 9 органики `daily tarot` — инструменты вытягивания карты | Открыто | Номер и состав сохранены; в записи — «рабочая гипотеза, не доказанная задача». Та же проверка, что для EN-G03 |
+| EN-G05 | О1: `accurate yes or no oracle` (800) — в группе и в неопределённых | `parent_topic` — «facade yes no» (оракул Facade), не таро; дубль найден `undet.py` | Принято | `accurate yes or no oracle` → из EN-G05 в неопределённые (вместе с `yes or no oracle`); добавлен край «one card … yes/no» (см. EN-G03) |
+| EN-G07 | О4: `3 card yes or no tarot spread free` (500) — `free` + `spread`; `yes or no tarot spread` (900) — в группе и в неопределённых | Снимков нет; правило EN-G19: `free` переводит запрос к инструменту | Принято | `3 card yes or no tarot spread free` → из EN-G07 в неопределённые; `yes or no tarot spread` — только в EN-G07 |
+| EN-G10 | О1 / О3: `tarot cards major arcana` (1800) потерян; `tarot card meanings major arcana` (250) в хабе без проверки | Первого нет ни в группе, ни в разделе 5; `parent_topic` — «major arcana», «major arcana meanings»; в MX задача «старшие арканы» отделена от хаба (ES-G09, 1 общий URL) | Принято | Оба → в неопределённые как кандидат в группу «старшие арканы»; заодно найден ещё один потерянный запрос — `how many tarot cards are in a deck` (1100) → в неопределённые |
+| EN-G12 | О2: reversed — раздел страницы карты, а не группа | `the star reversed` ~ `the star tarot` — 3 из 8 / 8 (labyrinthos, biddytarot, thetarotguide); отдельные документы — teachmetarot, elliotoracle, youtube | Открыто (до TGA) | Группа и номер сохранены; статус — «частично, одна карта»; в запись внесены находка, предел (одна карта US, младшие не проверены) и риск для TGA. Решат: TGA (задача 11) и снимок пары «младший аркан / его reversed» |
+| EN-G15 | О2: love — раздел страницы карты; `the lovers tarot love` (500) — в группе и в неопределённых | `the star tarot love` ~ `the star tarot` — 3 из 8 / 8; `us/the-lovers-tarot-love.json` (старый, 2026-10-01): 6 из 8 — общие страницы карты The Lovers, `parent_topic` — «the lovers tarot» | Принято частично; оформление — открыто (до TGA) | `the lovers tarot love` → из EN-G15 (и из неопределённых) в EN-G11. Группа сохранена; находка, предел и риск для TGA записаны; недоизмерение шаблона love — открыто для задач 11/12 |
+| EN-G17 | О1: `tarot spreads for guidance` (2700), `career tarot spread` (500) — не обзор схем; правило непоследовательно с EN-G09 | `tarot spreads` ~ `tarot spreads for guidance` — 1 из 8 / 8; 5 из 8 документов второго — отдельные схемы под ситуацию; у обоих запросов свой `parent_topic` | Принято | `tarot spreads for guidance` → из EN-G17 в новую EN-G27; `career tarot spread` → в неопределённые (снимка нет); статус EN-G17 — «частично» |
+| EN-G18 | О1: «кельтский крест онлайн» (`free` + `reading`) внутри группы о схеме | `parent_topic` `free tarot reading celtic cross` (500) и `celtic cross tarot reading` (200) — «free tarot reading celtic cross»; в `us/celtic-cross-tarot.json` 3 из 8 — инструменты | Принято | Оба → из EN-G18 в неопределённые до снимка `free tarot reading celtic cross` |
+| EN-G19 | О4: `free 3 card tarot spread past, present future` (300) — `free` + `spread` | Снимка нет; правило самой группы | Принято | → из EN-G19 в неопределённые; статус — «частично» (снимок `free 3 card tarot reading` — член EN-G01, краем не считается) |
+| EN-G20 | О4: `what is my tarot card` (500) назван «честно смешанным» | `us/what-is-my-tarot-card.json`: 5 из 8 — карта рождения, 3 из 8 — квизы; 4 уникальных общих URL с двумя снимками EN-G20, 3 — с `tarot card quiz`; `parent_topic` — «birth tarot card»; `what's my tarot card` уже в EN-G20 | Принято | `what is my tarot card` → из неопределённых в EN-G20 (край, квиз — вторичный блок); EN-G21 и разделы 5–6 исправлены; в EN-G21 «8 из 9 квизов» исправлено на 7 из 9 |
+| EN-G22 | О1 / О4: `libra tarot` (1300) — смешанная выдача, перенести в неопределённые | `us/libra-tarot.json`: 4 из 6 — прогноз для знака (yourtango «Libra Tarot Cards: Today's Free Daily», tarot.com/daily-horoscope/libra, два видео-чтения для Весов), 2 из 6 — соответствие знак ↔ карта | Отклонено | `libra tarot` остаётся краем EN-G22 по большинству документов; в запись добавлен разбор. Шаблон «знак» целиком — после снимка второго знака |
+| EN-G23 | О4: `libra tarot card` (600) стоит без снимка, `parent_topic` указывает на EN-G22 | `parent_topic` — «libra horoscope tarot»; снимка нет | Принято | `libra tarot card` → из EN-G23 в неопределённые |
+
+**Сквозные исправления по ревью (не споры о составе):**
+- Статусы по легенде: «частично» — EN-G06, EN-G17, EN-G19; «частично, одна карта» — EN-G12, EN-G13, EN-G14,
+  EN-G15. Остальные «проверена выдачей» имеют снимки минимум двух запросов своего состава.
+- Каждый запрос — в одной группе или в неопределённых: устранены дубли `yes no tarot ai`, `accurate yes or no
+  oracle`, `the lovers tarot love`, `yes or no tarot spread`.
+- Описания выдачи исправлены: EN-G01 (какие URL общие), EN-G13 (общих страниц карты две), EN-G21 (7 из 9
+  квизов).
+- Старые снимки помечены в EN-G11, EN-G14, EN-G24 и в разделах 3 и 7.
+- Таблица пересечений: добавлена нулевая пара `tarot card questions` ~ `tarot spreads for guidance`, на которую
+  ссылается EN-G27; остальные числа совпали с пересчётом второго прогона.
