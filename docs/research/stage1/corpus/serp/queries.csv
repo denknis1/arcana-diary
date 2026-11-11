@@ -65,3 +65,18 @@ quiz,MX,como saber que arcano soy,"other modifier/parent_topic; vol=80 (MX, 2026
 learn,MX,como leer el tarot,"max volume; vol=700 (MX, 2026-11-10); parent_topic=como leer las cartas",has_sitelink_rows
 learn,MX,curso de tarot,"other modifier/parent_topic; vol=200 (MX, 2026-11-10); parent_topic=curso de tarot",
 learn,MX,guía de tarot para principiantes pdf,"other modifier/parent_topic; vol=150 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+cards,US,the star tarot,"task 9: ждут ли reversed на странице карты — база для сравнения с the star reversed (10-task-map, неизвестные); vol=25000 (US, 2026-11-10)",has_sitelink_rows
+yes-no,US,yes no tarot horoscope,"task 9: yes no tarot horoscope — да/нет или гороскоп (minor из ревью Task 8); vol=1600 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,the star yes or no,"task 9: контекст yes-no — отдельный документ или страница карты (сравнение с the star tarot); vol=700 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,the star as feelings,"task 9: контекст feelings — отдельный документ или страница карты (сравнение с the star tarot); vol=250 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,9 of swords tarot love meaning,"task 9: шаблон love для младших арканов (<card> love meaning), 10-task-map; vol=1400 (US, 2026-11-10); SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+yes-no,MX,tarot si o no 1 carta,"task 9: одна карта в MX — вход через да/нет; one-card против yes-no (стабильных снимков one-card MX нет); vol=350 (MX, 2026-11-10)",has_sitelink_rows
+home,MX,tarot gratis 3 cartas,"task 9: tirada в MX — инструмент; tarot gratis 3 cartas против tirada de 3 cartas gratis; vol=2400 (MX, 2026-11-10)",has_sitelink_rows
+home,MX,cartas del tarot,"task 9: гипотеза «в MX по общим ключам ищут значения карт» (10-task-map, home ES); home против cards; vol=3300 (MX, 2026-11-10)",has_sitelink_rows
+card-context,MX,la torre invertida tarot,"task 9: invertida в MX — отдельный документ или страница карты (сравнение с la torre tarot); vol=100 (MX, 2026-11-10)",has_sitelink_rows
+spreads,US,3 card tarot spread,"task 9: spread в EN — статья или инструмент; сравнение с free 3 card tarot reading; vol=2100 (US, 2026-11-10)",has_sitelink_rows
+home,US,free 3 card tarot reading,"task 9: free + схема — инструмент; сравнение с 3 card tarot spread; vol=1000 (US, 2026-11-10)",has_sitelink_rows
+yes-no,US,yes or no tarot list,"task 9: список карт да/нет — справка или инструмент; сравнение с yes or no tarot; vol=1200 (US, 2026-11-10)",has_sitelink_rows
+card-context,MX,la estrella tarot amor,"task 9: контекст amor в MX — отдельный документ или страница карты (сравнение с la estrella tarot); vol=80 (MX, 2026-11-10)",has_sitelink_rows
+home,MX,chatgpt tarot,"task 9: chatgpt tarot в MX — промпт для ChatGPT или готовый ИИ-чтец (10-task-map, home ES); vol=1400 (MX, 2026-11-10)",has_sitelink_rows
+card-context,US,the star tarot love,"task 9: контекст love — отдельный документ или страница карты (сравнение с the star tarot); vol=500 (US, 2026-11-10)",has_sitelink_rows

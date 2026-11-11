@@ -173,3 +173,18 @@ date,task,tool,country,params_short,rows,units
 2026-11-10,7-spotcheck,site-explorer-organic-keywords,US,tellmytarot.com limit15 re-query,15,180
 2026-11-11,recheck,keywords-explorer-overview,US,19 random corpus kw,19,209
 2026-11-11,recheck,keywords-explorer-overview,MX,19 random corpus kw (20th absent = нет данных),19,209
+2026-11-11,9,serp-overview,US,the star tarot top10 full,23,161
+2026-11-11,9,serp-overview,US,yes no tarot horoscope top10 full,28,196
+2026-11-11,9,serp-overview,US,the star yes or no top10 full,41,287
+2026-11-11,9,serp-overview,US,the star as feelings top10 full,27,189
+2026-11-11,9,serp-overview,US,9 of swords tarot love meaning top10 full,0,50
+2026-11-11,9,serp-overview,MX,tarot si o no 1 carta top10 full,16,112
+2026-11-11,9,serp-overview,MX,tarot gratis 3 cartas top10 full,18,126
+2026-11-11,9,serp-overview,MX,cartas del tarot top10 full,36,252
+2026-11-11,9,serp-overview,MX,la torre invertida tarot top10 full,31,217
+2026-11-11,9,serp-overview,US,3 card tarot spread top10 full,31,217
+2026-11-11,9,serp-overview,US,free 3 card tarot reading top10 full,18,126
+2026-11-11,9,serp-overview,US,yes or no tarot list top10 full,25,175
+2026-11-11,9,serp-overview,MX,la estrella tarot amor top10 full,19,133
+2026-11-11,9,serp-overview,MX,chatgpt tarot top10 full,32,224
+2026-11-11,9,serp-overview,US,the star tarot love top10 full,36,252
