@@ -39,11 +39,12 @@ def validate(path: str, lang: str) -> list[str]:
         if row["wave"] not in WAVES:
             errors.append(f"строка {n}: неизвестный wave {row['wave']}")
         has_volume = False
+        for c in volume_cols + ["kd"]:
+            if not row[c].strip():
+                errors.append(f"строка {n}: пустое {c} — для отсутствия данных писать «{NO_DATA}»")
         for c in volume_cols:
             v = row[c].strip()
-            if v == "0":
-                errors.append(f"строка {n}: {c}=0 — для отсутствия данных писать «{NO_DATA}»")
-            elif v and v != NO_DATA:
+            if v and v != NO_DATA:
                 if not v.isdigit():
                     errors.append(f"строка {n}: {c} не число: {v}")
                 has_volume = True

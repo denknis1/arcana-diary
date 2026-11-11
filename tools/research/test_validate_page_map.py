@@ -33,8 +33,12 @@ def test_good_map_passes(tmp_path):
     assert validate(write(tmp_path, "en", [good_row()]), "en") == []
 
 
-def test_zero_volume_rejected(tmp_path):
-    errs = validate(write(tmp_path, "en", [good_row(volume_us="0")]), "en")
+def test_measured_zero_volume_allowed(tmp_path):
+    assert validate(write(tmp_path, "en", [good_row(volume_us="0")]), "en") == []
+
+
+def test_empty_volume_rejected(tmp_path):
+    errs = validate(write(tmp_path, "en", [good_row(volume_us="")]), "en")
     assert any("нет данных" in e for e in errs)
 
 
