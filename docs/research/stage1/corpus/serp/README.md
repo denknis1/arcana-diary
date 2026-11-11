@@ -21,3 +21,6 @@
   US, `empty_serp`). Снимки сняты под конкретные вопросы группировки (`20-groups-en.md`, `20-groups-es.md`);
   2 717 юнитов, строки task `9` в `../ahrefs/ledger.csv`. JSON записан скриптом из ответа инструмента. У
   `chatgpt tarot` (MX) 3 органические позиции и часть строк AI Overview пришли без URL.
+- Задача 9, v1.2 (11.11.2026): 8 дополнительных снимков (task `9b` в ledger, 1 204 юнита) — one card против
+  карты дня (US), Three of Swords база / reversed / yes-no (US), `tarot del dia de hoy` и Reina de Copas база /
+  invertida (MX). Сохранены скриптом из ответов Ahrefs.

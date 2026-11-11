@@ -1,6 +1,8 @@
 # Группы по выдаче: Arcana Diary, EN (США)
 
-Версия 1.1, 11.11.2026. Изменения v1.1: второй прогон (смешение интентов) и ревью — статусы по легенде,
+Версия 1.2, 11.11.2026. Изменения v1.2: 5 дополнительных снимков (раздел 8) — разделение EN-G03 / EN-G04
+подтверждено, card × context проверен на младшем аркане (Three of Swords).
+Предыдущая — 1.1, 11.11.2026. Изменения v1.1: второй прогон (смешение интентов) и ревью — статусы по легенде,
 переносы запросов, новая EN-G27, старые снимки помечены, раздел «Спорные группы» заполнен (решение по каждому спору).
 
 Версия 1.0, 11.11.2026. Метод — «SEO Монстр 2027», 7.5 (стр. 602–609): предварительная группировка от карты задач
@@ -164,6 +166,17 @@
 | `the star tarot` | `the star yes or no` | 0 | 8 / 8 |
 | `the star tarot love` | `the star yes or no` | 0 | 8 / 8 |
 | `yes or no tarot` | `yes or no tarot list` | 0 | 9 / 8 |
+| — v1.2 — | | | |
+| `tarot card of the day` | `daily tarot` | 5 | 8 / 9 |
+| `one card tarot reading` | `daily tarot` | 2 | 9 / 9 |
+| `one card tarot reading` | `one card tarot` | 7 | 9 / 9 |
+| `one card tarot reading` | `pull a tarot card` | 2 | 9 / 9 |
+| `three of swords tarot` | `three of swords reversed` | 3 | 8 / 9 |
+| `three of swords tarot` | `three of swords yes or no` | 1 | 8 / 9 |
+| `three of swords reversed` | `three of swords yes or no` | 3 | 9 / 9 |
+| `tarot card of the day` | `one card tarot` | 0 | 8 / 9 |
+| `tarot card of the day` | `one card tarot reading` | 0 | 8 / 9 |
+| `tarot card of the day` | `pull a tarot card` | 0 | 8 / 9 |
 
 Все остальные пары снимков US — 0 общих URL.
 
@@ -258,8 +271,8 @@
 
 ### EN-G03 — вытянуть одну карту сейчас
 
-- **type_id:** `one-card`. **Статус:** проверена выдачей (ядро и край); граница с EN-G04 — открыта (v1.1, см.
-  «Спорные группы»).
+- **type_id:** `one-card`. **Статус:** проверена выдачей (ядро и край); v1.2 — граница с EN-G04 подтверждена снимками
+  (раздел 8).
 - **Задача:** человек пытается вытянуть одну случайную карту на текущий вопрос и прочитать её значение.
 - **Состав (`us/one-card.csv`):** `one card tarot` (7000), `tarot one card` (1500), `one card tarot reading`
   (1400), `pull a tarot card` (800), `free one card tarot` (500), `one tarot card reading` (500),
@@ -279,12 +292,14 @@
 - **Исключено:** `how many tarot cards are there` (2500) — справка о колоде (в список неопределённых).
 - **Нерешённое:** v1.1 — `one card tarot yes/no` и три родственные формулировки перенесены в EN-G05 (по
   `parent_topic` «yes or no tarot», без снимка). Одна ли задача у EN-G03 и EN-G04 — открыто.
-- **Предложение:** сохранить состав; разделение с EN-G04 — рабочая гипотеза до снимков `tarot card of the day` и
-  `one card tarot reading` и повторного снимка `daily tarot`.
+- **Предложение:** сохранить состав. v1.2: `one card tarot reading` ~ `one card tarot` — 7 общих URL из 9 / 9, с
+  `tarot card of the day` — 0 (раздел 8); разделение с EN-G04 подтверждено. `pull a tarot card` остаётся краем
+  (3 общих URL с `daily tarot`, 2 — с `one card tarot` и `one card tarot reading`, 0 — с `tarot card of the
+  day`).
 
 ### EN-G04 — карта дня (ежедневный ритуал)
 
-- **type_id:** `one-card`. **Статус:** частично (снимок ядра, край `tarot card of the day` не снят).
+- **type_id:** `one-card`. **Статус:** проверена выдачей (ядро и край, v1.2: снимок `tarot card of the day`).
 - **Задача:** человек пытается каждый день получать «свою карту на сегодня» — повторяющийся ритуал, а не
   разовый ответ.
 - **Состав (`us/one-card.csv`):** `daily tarot` (3100), `daily tarot draw` (2600), `tarot card of the day`
@@ -308,7 +323,12 @@
   тип horoscope, стоят в составе EN-G22.
 - **Нерешённое:** снимок `tarot card of the day` (1800) для проверки края; повторить снимок `daily tarot` в
   сопоставимых условиях (стр. 606).
-- **Предложение:** v1.1 — не считать доказанной отдельной задачей: разделение с EN-G03 держится на двух парах
+- **Решение v1.2:** `tarot card of the day` ~ `daily tarot` — 5 общих URL из 8 / 9 (dailytarotdraw.com,
+  mytarottoday.com, nostra-tarot.com, tarot.com/daily-tarot-card, tellmytarot.com); с `one card tarot`,
+  `one card tarot reading` и `pull a tarot card` — 0. «Карта дня» — отдельная от EN-G03 задача по выдаче.
+  Повторный снимок `daily tarot` не делался: его `update_date` 2026-11-09 свежий. Текст v1.1 ниже сохранён как
+  история рассуждения.
+- **Предложение (v1.1, заменено решением v1.2):** v1.1 — не считать доказанной отдельной задачей: разделение с EN-G03 держится на двух парах
   документов на двух доменах (tarot.com, dailytarotdraw.com), а `daily tarot` одинаково близок и к EN-G03, и к
   EN-G01 (по 2 общих URL с `one card tarot`, `free tarot reading`, `tarot reading`, `free 3 card tarot
   reading`). Номер группы сохраняется; рабочая гипотеза — одна задача «вытянуть карту» с уточнением «на день»;
@@ -511,6 +531,10 @@
   контекст станет отдельной страницей, она будет делить запросы со страницей карты, которую выдача уже
   ставит по этим запросам; если разделом — часть топ-10 у отдельных документов. Раздел или страница и объём
   страниц здесь не решаются (объём — решение владельца).
+- **v1.2, младший аркан:** `three of swords reversed` ~ `three of swords tarot` — 3 общих URL из 9 / 8
+  (labyrinthos.co, biddytarot.com, thetarotguide.com), рядом отдельный документ elliotoracle.com/…/three-of-swords-reversed
+  (поз. 7). Картина та же, что у The Star: общие страницы карты ранжируются по reversed, отдельные документы тоже
+  есть. Статус остаётся «частично»: проверено по одной карте каждого вида (старший и младший аркан).
 - **Предложение:** сохранить группу (номер стабилен); как оформлять контекст — TGA.
 
 ### EN-G13 — карта в вопросе да/нет (шаблон «<card> yes or no»)
@@ -533,6 +557,9 @@
   (список): тот же вопрос на уровне колоды.
 - **Нерешённое:** проверка на младшем аркане; ограничение — `limansa.com` в заголовке обещает «Pregnancy» (З3:
   у нас такой ответ запрещён).
+- **v1.2, младший аркан:** `three of swords yes or no` ~ `three of swords tarot` — 1 общий URL из 9 / 8
+  (labyrinthos.co); в топ-10 отдельные документы «yes or no» (deckaura.com, selfgazer.com, sibyltarot.com) — та же
+  картина, что у The Star (0 общих). Раздел 8.
 - **Предложение:** сохранить.
 
 ### EN-G14 — карта как чувства другого (шаблон «<card> as feelings»)
@@ -876,6 +903,34 @@
 
 ---
 
+## 8. Дополнительные снимки v1.2 (11.11.2026)
+
+Пять снимков US, `taken_at` 2026-11-11, те же параметры (`top_positions=10`), 805 юнитов (`corpus/ahrefs/ledger.csv`,
+task `9b`). Все ненулевые пересечения с имеющимися пригодными снимками (нормализация — как в «Как читать»):
+
+| Запрос A | Запрос B | Общих URL | Органика A / B | Общие домены |
+|---|---|---|---|---|
+| `tarot card of the day` | `daily tarot` | 5 | 8 / 9 | dailytarotdraw.com, mytarottoday.com, nostra-tarot.com, tarot.com, tellmytarot.com |
+| `one card tarot reading` | `daily tarot` | 2 | 9 / 9 | dailyom.com, labyrinthos.co |
+| `one card tarot reading` | `one card tarot` | 7 | 9 / 9 | dailyom.com, forum.thetarot.guru, labyrinthos.co, micheleknight.com, tarot.com, thatoracleguy.com, wanderlust.com |
+| `one card tarot reading` | `pull a tarot card` | 2 | 9 / 9 | dailyom.com, labyrinthos.co |
+| `three of swords tarot` | `three of swords reversed` | 3 | 8 / 9 | biddytarot.com, labyrinthos.co, thetarotguide.com |
+| `three of swords tarot` | `three of swords yes or no` | 1 | 8 / 9 | labyrinthos.co |
+| `three of swords reversed` | `three of swords yes or no` | 3 | 9 / 9 | labyrinthos.co, theembroideredforest.com, thepsychicline.com |
+
+Нулевые пары, важные для выводов: `tarot card of the day` ~ `one card tarot`, ~ `one card tarot reading`,
+~ `pull a tarot card` — 0; `the star tarot` ~ `the star yes or no` — 0 (раздел 2).
+
+Выводы:
+- **EN-G03 / EN-G04** — разделение подтверждено: ядро «карты дня» и ядро «одной карты» не делят ни одного документа;
+  `pull a tarot card` — край между ними, остаётся в EN-G03.
+- **Карта × контекст на младшем аркане (Three of Swords)** повторяет картину The Star: reversed делит с базой 3 URL
+  из 8–9 (EN-G12); yes-no делит с базой 1 URL (labyrinthos.co), остальная органика — отдельные документы «yes or
+  no» (deckaura.com, selfgazer.com, sibyltarot.com, reddit, форум spiritualteacup.com) и общие страницы карты с
+  разделом yes/no (moonchildworld.com, theembroideredforest.com, thepsychicline.com) — EN-G13 остаётся отдельной
+  группой. Feelings и love на младшем аркане не сняты.
+- Ни один из пяти снимков не старый (`update_date` от 2026-10-30 до 2026-11-11).
+
 ## Спорные группы
 
 Источник споров — независимый второй прогон на смешение интентов (11.11.2026, четыре типа ошибок стр. 608).
@@ -911,3 +966,12 @@
 - Старые снимки помечены в EN-G11, EN-G14, EN-G24 и в разделах 3 и 7.
 - Таблица пересечений: добавлена нулевая пара `tarot card questions` ~ `tarot spreads for guidance`, на которую
   ссылается EN-G27; остальные числа совпали с пересчётом второго прогона.
+
+### Решения v1.2 по открытым спорам
+
+| Группа | Было | Доказательство v1.2 | Решение |
+|---|---|---|---|
+| EN-G03 | Открыто (граница с EN-G04) | `one card tarot reading` ~ `one card tarot` 7 / 9; ~ `tarot card of the day` 0 | Закрыто: группы разные |
+| EN-G04 | Открыто | `tarot card of the day` ~ `daily tarot` 5 / 8–9; ~ ядро EN-G03 0 | Закрыто: отдельная задача «карта дня» |
+| EN-G12 | Открыто (до TGA) | Three of Swords: reversed ~ база 3 URL — как у The Star | Находка подтверждена на младшем аркане; раздел или адрес — по-прежнему TGA |
+

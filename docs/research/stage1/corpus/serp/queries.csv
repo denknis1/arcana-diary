@@ -80,3 +80,11 @@ yes-no,US,yes or no tarot list,"task 9: список карт да/нет — с
 card-context,MX,la estrella tarot amor,"task 9: контекст amor в MX — отдельный документ или страница карты (сравнение с la estrella tarot); vol=80 (MX, 2026-11-10)",has_sitelink_rows
 home,MX,chatgpt tarot,"task 9: chatgpt tarot в MX — промпт для ChatGPT или готовый ИИ-чтец (10-task-map, home ES); vol=1400 (MX, 2026-11-10)",has_sitelink_rows
 card-context,US,the star tarot love,"task 9: контекст love — отдельный документ или страница карты (сравнение с the star tarot); vol=500 (US, 2026-11-10)",has_sitelink_rows
+one-card,US,tarot card of the day,"task 9 v1.2: one card против daily (EN-G03/EN-G04, «Спорные группы»); vol=1800 (US, 2026-11-10)",has_sitelink_rows
+one-card,US,one card tarot reading,"task 9 v1.2: one card против daily (EN-G03/EN-G04, «Спорные группы»); vol=1400 (US, 2026-11-10)",has_sitelink_rows
+cards,US,three of swords tarot,"task 9 v1.2: младший аркан — база для card × context (EN-G12/EN-G15); vol=1000 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,three of swords reversed,"task 9 v1.2: reversed на младшем аркане — сравнение с three of swords tarot (EN-G12); vol=3600 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,three of swords yes or no,"task 9 v1.2: yes-no на младшем аркане — сравнение с three of swords tarot; vol=600 (US, 2026-11-10)",has_sitelink_rows
+one-card,MX,tarot del dia de hoy,"task 9 v1.2: карта дня в MX (ES-G19; tarot diario и tarot una carta — stale); vol=70 (MX, 2026-11-10)",
+cards,MX,reina de copas tarot,"task 9 v1.2: младший аркан MX — база для card × context (ES-G11/ES-G12); vol=1700 (MX, 2026-11-10)",has_sitelink_rows
+card-context,MX,reina de copas invertida,"task 9 v1.2: invertida на младшем аркане MX — сравнение с reina de copas tarot (ES-G11); vol=300 (MX, 2026-11-10)",has_sitelink_rows
