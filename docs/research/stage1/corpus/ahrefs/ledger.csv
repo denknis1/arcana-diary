@@ -212,3 +212,6 @@ date,task,tool,country,params_short,rows,units
 2026-11-11,11b,serp-overview,MX,arcano de nacimiento 8 top10 full,0,50
 2026-11-11,11b,serp-overview,MX,escorpio tarot hoy top10 full,0,50
 2026-11-11,11b,serp-overview,MX,horoscopo tarot top10 full,13,91
+2026-11-11,12,keywords-explorer-overview,US,kd probe x5 select=keyword+difficulty,5,55
+2026-11-11,12,keywords-explorer-overview,US,kd main queries x118 select=keyword+difficulty,118,1298
+2026-11-11,12,keywords-explorer-overview,MX,kd main queries x103 select=keyword+difficulty,103,1133
