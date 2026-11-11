@@ -215,3 +215,4 @@ date,task,tool,country,params_short,rows,units
 2026-11-11,12,keywords-explorer-overview,US,kd probe x5 select=keyword+difficulty,5,55
 2026-11-11,12,keywords-explorer-overview,US,kd main queries x118 select=keyword+difficulty,118,1298
 2026-11-11,12,keywords-explorer-overview,MX,kd main queries x103 select=keyword+difficulty,103,1133
+2026-11-11,12-fix,keywords-explorer-overview,US,the tower 4 matrix kw (gap from task 5),4,50
