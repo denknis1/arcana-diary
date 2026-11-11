@@ -24,3 +24,7 @@
 - Задача 9, v1.2 (11.11.2026): 8 дополнительных снимков (task `9b` в ledger, 1 204 юнита) — one card против
   карты дня (US), Three of Swords база / reversed / yes-no (US), `tarot del dia de hoy` и Reina de Copas база /
   invertida (MX). Сохранены скриптом из ответов Ahrefs.
+- Задача 11b (11.11.2026): 16 запросов Ahrefs `serp-overview` под решения TGA (`40-tga.md` v1.2; `reason`
+  начинается с `task 11b:`), 2 362 юнита, строки task `11b` в `../ahrefs/ledger.csv`. Новых файлов — 11; 3 пустые
+  выдачи (`empty_serp`); 2 повтора вернули ту же выдачу, что уже лежит в корпусе (`same_serp_as:<файл>`, дубликат
+  не создан); `horoscopo tarot` (MX) — `stale_serp:2024-01`. Сохранены скриптом из ответов Ahrefs.
