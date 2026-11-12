@@ -1,0 +1,539 @@
+card_id,context,keyword,volume,country,data_date,name_variant
+major-00-fool,base,el loco tarot,1800,MX,2026-11-10,main
+major-00-fool,love,el loco tarot amor,10,MX,2026-11-10,main
+major-00-fool,yes-no,el loco si o no,30,MX,2026-11-10,main
+major-00-fool,reversed,el loco invertida,0,MX,2026-11-10,main
+major-00-fool,feelings,el loco sentimientos,нет данных,MX,2026-11-10,main
+major-00-fool,advice,el loco consejo,нет данных,MX,2026-11-10,main
+major-01-magician,base,el mago tarot,2500,MX,2026-11-10,main
+major-01-magician,love,el mago tarot amor,10,MX,2026-11-10,main
+major-01-magician,yes-no,el mago si o no,30,MX,2026-11-10,main
+major-01-magician,reversed,el mago invertida,0,MX,2026-11-10,main
+major-01-magician,feelings,el mago sentimientos,нет данных,MX,2026-11-10,main
+major-01-magician,advice,el mago consejo,нет данных,MX,2026-11-10,main
+major-02-high-priestess,base,la sacerdotisa tarot,1000,MX,2026-11-10,main
+major-02-high-priestess,love,la sacerdotisa tarot amor,40,MX,2026-11-10,main
+major-02-high-priestess,yes-no,la sacerdotisa si o no,10,MX,2026-11-10,main
+major-02-high-priestess,reversed,la sacerdotisa invertida,70,MX,2026-11-10,main
+major-02-high-priestess,feelings,la sacerdotisa sentimientos,0,MX,2026-11-10,main
+major-02-high-priestess,advice,la sacerdotisa consejo,нет данных,MX,2026-11-10,main
+major-03-empress,base,la emperatriz tarot,1300,MX,2026-11-10,main
+major-03-empress,love,la emperatriz tarot amor,30,MX,2026-11-10,main
+major-03-empress,yes-no,la emperatriz si o no,20,MX,2026-11-10,main
+major-03-empress,reversed,la emperatriz invertida,40,MX,2026-11-10,main
+major-03-empress,feelings,la emperatriz sentimientos,нет данных,MX,2026-11-10,main
+major-03-empress,advice,la emperatriz consejo,нет данных,MX,2026-11-10,main
+major-04-emperor,base,el emperador tarot,2500,MX,2026-11-10,main
+major-04-emperor,love,el emperador tarot amor,100,MX,2026-11-10,main
+major-04-emperor,yes-no,el emperador si o no,30,MX,2026-11-10,main
+major-04-emperor,reversed,el emperador invertida,0,MX,2026-11-10,main
+major-04-emperor,feelings,el emperador sentimientos,нет данных,MX,2026-11-10,main
+major-04-emperor,advice,el emperador consejo,нет данных,MX,2026-11-10,main
+major-05-hierophant,base,el hierofante tarot,150,MX,2026-11-10,main
+major-05-hierophant,love,el hierofante tarot amor,10,MX,2026-11-10,main
+major-05-hierophant,yes-no,el hierofante si o no,10,MX,2026-11-10,main
+major-05-hierophant,reversed,el hierofante invertida,0,MX,2026-11-10,main
+major-05-hierophant,feelings,el hierofante sentimientos,нет данных,MX,2026-11-10,main
+major-05-hierophant,advice,el hierofante consejo,нет данных,MX,2026-11-10,main
+major-06-lovers,base,los enamorados tarot,2100,MX,2026-11-10,main
+major-06-lovers,love,los enamorados tarot amor,30,MX,2026-11-10,main
+major-06-lovers,yes-no,los enamorados si o no,20,MX,2026-11-10,main
+major-06-lovers,reversed,los enamorados invertida,150,MX,2026-11-10,main
+major-06-lovers,feelings,los enamorados sentimientos,нет данных,MX,2026-11-10,main
+major-06-lovers,advice,los enamorados consejo,нет данных,MX,2026-11-10,main
+major-07-chariot,base,el carro tarot,1200,MX,2026-11-10,main
+major-07-chariot,love,el carro tarot amor,20,MX,2026-11-10,main
+major-07-chariot,yes-no,el carro si o no,10,MX,2026-11-10,main
+major-07-chariot,reversed,el carro invertida,0,MX,2026-11-10,main
+major-07-chariot,feelings,el carro sentimientos,нет данных,MX,2026-11-10,main
+major-07-chariot,advice,el carro consejo,нет данных,MX,2026-11-10,main
+major-08-strength,base,la fuerza tarot,1000,MX,2026-11-10,main
+major-08-strength,love,la fuerza tarot amor,70,MX,2026-11-10,main
+major-08-strength,yes-no,la fuerza si o no,20,MX,2026-11-10,main
+major-08-strength,reversed,la fuerza invertida,50,MX,2026-11-10,main
+major-08-strength,feelings,la fuerza sentimientos,нет данных,MX,2026-11-10,main
+major-08-strength,advice,la fuerza consejo,нет данных,MX,2026-11-10,main
+major-09-hermit,base,el ermitaño tarot,1200,MX,2026-11-10,main
+major-09-hermit,love,el ermitaño tarot amor,20,MX,2026-11-10,main
+major-09-hermit,yes-no,el ermitaño si o no,30,MX,2026-11-10,main
+major-09-hermit,reversed,el ermitaño invertida,10,MX,2026-11-10,main
+major-09-hermit,feelings,el ermitaño sentimientos,0,MX,2026-11-10,main
+major-09-hermit,advice,el ermitaño consejo,нет данных,MX,2026-11-10,main
+major-10-wheel-of-fortune,base,la rueda de la fortuna tarot,1200,MX,2026-11-10,main
+major-10-wheel-of-fortune,love,la rueda de la fortuna tarot amor,80,MX,2026-11-10,main
+major-10-wheel-of-fortune,yes-no,la rueda de la fortuna si o no,10,MX,2026-11-10,main
+major-10-wheel-of-fortune,reversed,la rueda de la fortuna invertida,100,MX,2026-11-10,main
+major-10-wheel-of-fortune,feelings,la rueda de la fortuna sentimientos,нет данных,MX,2026-11-10,main
+major-10-wheel-of-fortune,advice,la rueda de la fortuna consejo,нет данных,MX,2026-11-10,main
+major-11-justice,base,la justicia tarot,1100,MX,2026-11-10,main
+major-11-justice,love,la justicia tarot amor,40,MX,2026-11-10,main
+major-11-justice,yes-no,la justicia si o no,20,MX,2026-11-10,main
+major-11-justice,reversed,la justicia invertida,60,MX,2026-11-10,main
+major-11-justice,feelings,la justicia sentimientos,нет данных,MX,2026-11-10,main
+major-11-justice,advice,la justicia consejo,нет данных,MX,2026-11-10,main
+major-12-hanged-man,base,el colgado tarot,1400,MX,2026-11-10,main
+major-12-hanged-man,love,el colgado tarot amor,30,MX,2026-11-10,main
+major-12-hanged-man,yes-no,el colgado si o no,50,MX,2026-11-10,main
+major-12-hanged-man,reversed,el colgado invertida,20,MX,2026-11-10,main
+major-12-hanged-man,feelings,el colgado sentimientos,0,MX,2026-11-10,main
+major-12-hanged-man,advice,el colgado consejo,нет данных,MX,2026-11-10,main
+major-13-death,base,la muerte tarot,2400,MX,2026-11-10,main
+major-13-death,love,la muerte tarot amor,60,MX,2026-11-10,main
+major-13-death,yes-no,la muerte si o no,20,MX,2026-11-10,main
+major-13-death,reversed,la muerte invertida,60,MX,2026-11-10,main
+major-13-death,feelings,la muerte sentimientos,нет данных,MX,2026-11-10,main
+major-13-death,advice,la muerte consejo,нет данных,MX,2026-11-10,main
+major-14-temperance,base,la templanza tarot,1300,MX,2026-11-10,main
+major-14-temperance,love,la templanza tarot amor,90,MX,2026-11-10,main
+major-14-temperance,yes-no,la templanza si o no,20,MX,2026-11-10,main
+major-14-temperance,reversed,la templanza invertida,80,MX,2026-11-10,main
+major-14-temperance,feelings,la templanza sentimientos,0,MX,2026-11-10,main
+major-14-temperance,advice,la templanza consejo,нет данных,MX,2026-11-10,main
+major-15-devil,base,el diablo tarot,1900,MX,2026-11-10,main
+major-15-devil,love,el diablo tarot amor,30,MX,2026-11-10,main
+major-15-devil,yes-no,el diablo si o no,20,MX,2026-11-10,main
+major-15-devil,reversed,el diablo invertida,0,MX,2026-11-10,main
+major-15-devil,feelings,el diablo sentimientos,нет данных,MX,2026-11-10,main
+major-15-devil,advice,el diablo consejo,нет данных,MX,2026-11-10,main
+major-16-tower,base,la torre tarot,2100,MX,2026-11-10,main
+major-16-tower,love,la torre tarot amor,20,MX,2026-11-10,main
+major-16-tower,yes-no,la torre si o no,20,MX,2026-11-10,main
+major-16-tower,reversed,la torre invertida,50,MX,2026-11-10,main
+major-16-tower,feelings,la torre sentimientos,нет данных,MX,2026-11-10,main
+major-16-tower,advice,la torre consejo,нет данных,MX,2026-11-10,main
+major-17-star,base,la estrella tarot,2600,MX,2026-11-10,main
+major-17-star,love,la estrella tarot amor,80,MX,2026-11-10,main
+major-17-star,yes-no,la estrella si o no,30,MX,2026-11-10,main
+major-17-star,reversed,la estrella invertida,30,MX,2026-11-10,main
+major-17-star,feelings,la estrella sentimientos,нет данных,MX,2026-11-10,main
+major-17-star,advice,la estrella consejo,нет данных,MX,2026-11-10,main
+major-18-moon,base,la luna tarot,1300,MX,2026-11-10,main
+major-18-moon,love,la luna tarot amor,40,MX,2026-11-10,main
+major-18-moon,yes-no,la luna si o no,20,MX,2026-11-10,main
+major-18-moon,reversed,la luna invertida,10,MX,2026-11-10,main
+major-18-moon,feelings,la luna sentimientos,нет данных,MX,2026-11-10,main
+major-18-moon,advice,la luna consejo,нет данных,MX,2026-11-10,main
+major-19-sun,base,el sol tarot,1200,MX,2026-11-10,main
+major-19-sun,love,el sol tarot amor,10,MX,2026-11-10,main
+major-19-sun,yes-no,el sol si o no,10,MX,2026-11-10,main
+major-19-sun,reversed,el sol invertida,0,MX,2026-11-10,main
+major-19-sun,feelings,el sol sentimientos,нет данных,MX,2026-11-10,main
+major-19-sun,advice,el sol consejo,нет данных,MX,2026-11-10,main
+major-20-judgement,base,el juicio tarot,1800,MX,2026-11-10,main
+major-20-judgement,love,el juicio tarot amor,80,MX,2026-11-10,main
+major-20-judgement,yes-no,el juicio si o no,20,MX,2026-11-10,main
+major-20-judgement,reversed,el juicio invertida,0,MX,2026-11-10,main
+major-20-judgement,feelings,el juicio sentimientos,нет данных,MX,2026-11-10,main
+major-20-judgement,advice,el juicio consejo,нет данных,MX,2026-11-10,main
+major-21-world,base,el mundo tarot,1000,MX,2026-11-10,main
+major-21-world,love,el mundo tarot amor,60,MX,2026-11-10,main
+major-21-world,yes-no,el mundo si o no,30,MX,2026-11-10,main
+major-21-world,reversed,el mundo invertida,0,MX,2026-11-10,main
+major-21-world,feelings,el mundo sentimientos,нет данных,MX,2026-11-10,main
+major-21-world,advice,el mundo consejo,нет данных,MX,2026-11-10,main
+wands-01-ace,base,as de bastos tarot,800,MX,2026-11-10,main
+wands-01-ace,love,as de bastos tarot amor,20,MX,2026-11-10,main
+wands-01-ace,yes-no,as de bastos si o no,50,MX,2026-11-10,main
+wands-01-ace,reversed,as de bastos invertida,20,MX,2026-11-10,main
+wands-01-ace,feelings,as de bastos sentimientos,0,MX,2026-11-10,main
+wands-01-ace,advice,as de bastos consejo,0,MX,2026-11-10,main
+wands-02-two,base,dos de bastos tarot,200,MX,2026-11-10,main
+wands-02-two,love,dos de bastos tarot amor,20,MX,2026-11-10,main
+wands-02-two,yes-no,dos de bastos si o no,30,MX,2026-11-10,main
+wands-02-two,reversed,dos de bastos invertida,10,MX,2026-11-10,main
+wands-02-two,feelings,dos de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-02-two,advice,dos de bastos consejo,нет данных,MX,2026-11-10,main
+wands-03-three,base,tres de bastos tarot,700,MX,2026-11-10,main
+wands-03-three,love,tres de bastos tarot amor,20,MX,2026-11-10,main
+wands-03-three,yes-no,tres de bastos si o no,20,MX,2026-11-10,main
+wands-03-three,reversed,tres de bastos invertida,30,MX,2026-11-10,main
+wands-03-three,feelings,tres de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-03-three,advice,tres de bastos consejo,нет данных,MX,2026-11-10,main
+wands-04-four,base,cuatro de bastos tarot,100,MX,2026-11-10,main
+wands-04-four,love,cuatro de bastos tarot amor,10,MX,2026-11-10,main
+wands-04-four,yes-no,cuatro de bastos si o no,20,MX,2026-11-10,main
+wands-04-four,reversed,cuatro de bastos invertida,10,MX,2026-11-10,main
+wands-04-four,feelings,cuatro de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-04-four,advice,cuatro de bastos consejo,нет данных,MX,2026-11-10,main
+wands-05-five,base,cinco de bastos tarot,90,MX,2026-11-10,main
+wands-05-five,love,cinco de bastos tarot amor,10,MX,2026-11-10,main
+wands-05-five,yes-no,cinco de bastos si o no,20,MX,2026-11-10,main
+wands-05-five,reversed,cinco de bastos invertida,20,MX,2026-11-10,main
+wands-05-five,feelings,cinco de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-05-five,advice,cinco de bastos consejo,нет данных,MX,2026-11-10,main
+wands-06-six,base,seis de bastos tarot,150,MX,2026-11-10,main
+wands-06-six,love,seis de bastos tarot amor,20,MX,2026-11-10,main
+wands-06-six,yes-no,seis de bastos si o no,20,MX,2026-11-10,main
+wands-06-six,reversed,seis de bastos invertida,10,MX,2026-11-10,main
+wands-06-six,feelings,seis de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-06-six,advice,seis de bastos consejo,нет данных,MX,2026-11-10,main
+wands-07-seven,base,siete de bastos tarot,600,MX,2026-11-10,main
+wands-07-seven,love,siete de bastos tarot amor,10,MX,2026-11-10,main
+wands-07-seven,yes-no,siete de bastos si o no,30,MX,2026-11-10,main
+wands-07-seven,reversed,siete de bastos invertida,10,MX,2026-11-10,main
+wands-07-seven,feelings,siete de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-07-seven,advice,siete de bastos consejo,нет данных,MX,2026-11-10,main
+wands-08-eight,base,ocho de bastos tarot,100,MX,2026-11-10,main
+wands-08-eight,love,ocho de bastos tarot amor,10,MX,2026-11-10,main
+wands-08-eight,yes-no,ocho de bastos si o no,20,MX,2026-11-10,main
+wands-08-eight,reversed,ocho de bastos invertida,10,MX,2026-11-10,main
+wands-08-eight,feelings,ocho de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-08-eight,advice,ocho de bastos consejo,нет данных,MX,2026-11-10,main
+wands-09-nine,base,nueve de bastos tarot,150,MX,2026-11-10,main
+wands-09-nine,love,nueve de bastos tarot amor,10,MX,2026-11-10,main
+wands-09-nine,yes-no,nueve de bastos si o no,20,MX,2026-11-10,main
+wands-09-nine,reversed,nueve de bastos invertida,10,MX,2026-11-10,main
+wands-09-nine,feelings,nueve de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-09-nine,advice,nueve de bastos consejo,нет данных,MX,2026-11-10,main
+wands-10-ten,base,diez de bastos tarot,60,MX,2026-11-10,main
+wands-10-ten,love,diez de bastos tarot amor,10,MX,2026-11-10,main
+wands-10-ten,yes-no,diez de bastos si o no,20,MX,2026-11-10,main
+wands-10-ten,reversed,diez de bastos invertida,60,MX,2026-11-10,main
+wands-10-ten,feelings,diez de bastos sentimientos,нет данных,MX,2026-11-10,main
+wands-10-ten,advice,diez de bastos consejo,нет данных,MX,2026-11-10,main
+wands-11-page,base,sota de bastos tarot,900,MX,2026-11-10,main
+wands-11-page,love,sota de bastos tarot amor,0,MX,2026-11-10,main
+wands-11-page,yes-no,sota de bastos si o no,20,MX,2026-11-10,main
+wands-11-page,reversed,sota de bastos invertida,100,MX,2026-11-10,main
+wands-11-page,feelings,sota de bastos sentimientos,0,MX,2026-11-10,main
+wands-11-page,advice,sota de bastos consejo,0,MX,2026-11-10,main
+wands-12-knight,base,caballo de bastos tarot,400,MX,2026-11-10,main
+wands-12-knight,love,caballo de bastos tarot amor,10,MX,2026-11-10,main
+wands-12-knight,yes-no,caballo de bastos si o no,20,MX,2026-11-10,main
+wands-12-knight,reversed,caballo de bastos invertida,10,MX,2026-11-10,main
+wands-12-knight,feelings,caballo de bastos sentimientos,0,MX,2026-11-10,main
+wands-12-knight,advice,caballo de bastos consejo,нет данных,MX,2026-11-10,main
+wands-13-queen,base,reina de bastos tarot,450,MX,2026-11-10,main
+wands-13-queen,love,reina de bastos tarot amor,70,MX,2026-11-10,main
+wands-13-queen,yes-no,reina de bastos si o no,50,MX,2026-11-10,main
+wands-13-queen,reversed,reina de bastos invertida,200,MX,2026-11-10,main
+wands-13-queen,feelings,reina de bastos sentimientos,0,MX,2026-11-10,main
+wands-13-queen,advice,reina de bastos consejo,0,MX,2026-11-10,main
+wands-14-king,base,rey de bastos tarot,1600,MX,2026-11-10,main
+wands-14-king,love,rey de bastos tarot amor,50,MX,2026-11-10,main
+wands-14-king,yes-no,rey de bastos si o no,60,MX,2026-11-10,main
+wands-14-king,reversed,rey de bastos invertida,20,MX,2026-11-10,main
+wands-14-king,feelings,rey de bastos sentimientos,0,MX,2026-11-10,main
+wands-14-king,advice,rey de bastos consejo,0,MX,2026-11-10,main
+cups-01-ace,base,as de copas tarot,500,MX,2026-11-10,main
+cups-01-ace,love,as de copas tarot amor,60,MX,2026-11-10,main
+cups-01-ace,yes-no,as de copas si o no,50,MX,2026-11-10,main
+cups-01-ace,reversed,as de copas invertida,90,MX,2026-11-10,main
+cups-01-ace,feelings,as de copas sentimientos,0,MX,2026-11-10,main
+cups-01-ace,advice,as de copas consejo,0,MX,2026-11-10,main
+cups-02-two,base,dos de copas tarot,300,MX,2026-11-10,main
+cups-02-two,love,dos de copas tarot amor,30,MX,2026-11-10,main
+cups-02-two,yes-no,dos de copas si o no,20,MX,2026-11-10,main
+cups-02-two,reversed,dos de copas invertida,30,MX,2026-11-10,main
+cups-02-two,feelings,dos de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-02-two,advice,dos de copas consejo,нет данных,MX,2026-11-10,main
+cups-03-three,base,tres de copas tarot,250,MX,2026-11-10,main
+cups-03-three,love,tres de copas tarot amor,20,MX,2026-11-10,main
+cups-03-three,yes-no,tres de copas si o no,20,MX,2026-11-10,main
+cups-03-three,reversed,tres de copas invertida,10,MX,2026-11-10,main
+cups-03-three,feelings,tres de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-03-three,advice,tres de copas consejo,нет данных,MX,2026-11-10,main
+cups-04-four,base,cuatro de copas tarot,100,MX,2026-11-10,main
+cups-04-four,love,cuatro de copas tarot amor,20,MX,2026-11-10,main
+cups-04-four,yes-no,cuatro de copas si o no,20,MX,2026-11-10,main
+cups-04-four,reversed,cuatro de copas invertida,10,MX,2026-11-10,main
+cups-04-four,feelings,cuatro de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-04-four,advice,cuatro de copas consejo,нет данных,MX,2026-11-10,main
+cups-05-five,base,cinco de copas tarot,700,MX,2026-11-10,main
+cups-05-five,love,cinco de copas tarot amor,20,MX,2026-11-10,main
+cups-05-five,yes-no,cinco de copas si o no,20,MX,2026-11-10,main
+cups-05-five,reversed,cinco de copas invertida,10,MX,2026-11-10,main
+cups-05-five,feelings,cinco de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-05-five,advice,cinco de copas consejo,нет данных,MX,2026-11-10,main
+cups-06-six,base,seis de copas tarot,150,MX,2026-11-10,main
+cups-06-six,love,seis de copas tarot amor,30,MX,2026-11-10,main
+cups-06-six,yes-no,seis de copas si o no,20,MX,2026-11-10,main
+cups-06-six,reversed,seis de copas invertida,20,MX,2026-11-10,main
+cups-06-six,feelings,seis de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-06-six,advice,seis de copas consejo,нет данных,MX,2026-11-10,main
+cups-07-seven,base,siete de copas tarot,150,MX,2026-11-10,main
+cups-07-seven,love,siete de copas tarot amor,10,MX,2026-11-10,main
+cups-07-seven,yes-no,siete de copas si o no,30,MX,2026-11-10,main
+cups-07-seven,reversed,siete de copas invertida,10,MX,2026-11-10,main
+cups-07-seven,feelings,siete de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-07-seven,advice,siete de copas consejo,нет данных,MX,2026-11-10,main
+cups-08-eight,base,ocho de copas tarot,150,MX,2026-11-10,main
+cups-08-eight,love,ocho de copas tarot amor,10,MX,2026-11-10,main
+cups-08-eight,yes-no,ocho de copas si o no,20,MX,2026-11-10,main
+cups-08-eight,reversed,ocho de copas invertida,10,MX,2026-11-10,main
+cups-08-eight,feelings,ocho de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-08-eight,advice,ocho de copas consejo,0,MX,2026-11-10,main
+cups-09-nine,base,nueve de copas tarot,80,MX,2026-11-10,main
+cups-09-nine,love,nueve de copas tarot amor,10,MX,2026-11-10,main
+cups-09-nine,yes-no,nueve de copas si o no,20,MX,2026-11-10,main
+cups-09-nine,reversed,nueve de copas invertida,20,MX,2026-11-10,main
+cups-09-nine,feelings,nueve de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-09-nine,advice,nueve de copas consejo,нет данных,MX,2026-11-10,main
+cups-10-ten,base,diez de copas tarot,90,MX,2026-11-10,main
+cups-10-ten,love,diez de copas tarot amor,10,MX,2026-11-10,main
+cups-10-ten,yes-no,diez de copas si o no,10,MX,2026-11-10,main
+cups-10-ten,reversed,diez de copas invertida,10,MX,2026-11-10,main
+cups-10-ten,feelings,diez de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-10-ten,advice,diez de copas consejo,нет данных,MX,2026-11-10,main
+cups-11-page,base,sota de copas tarot,250,MX,2026-11-10,main
+cups-11-page,love,sota de copas tarot amor,20,MX,2026-11-10,main
+cups-11-page,yes-no,sota de copas si o no,40,MX,2026-11-10,main
+cups-11-page,reversed,sota de copas invertida,150,MX,2026-11-10,main
+cups-11-page,feelings,sota de copas sentimientos,0,MX,2026-11-10,main
+cups-11-page,advice,sota de copas consejo,0,MX,2026-11-10,main
+cups-12-knight,base,caballo de copas tarot,80,MX,2026-11-10,main
+cups-12-knight,love,caballo de copas tarot amor,10,MX,2026-11-10,main
+cups-12-knight,yes-no,caballo de copas si o no,10,MX,2026-11-10,main
+cups-12-knight,reversed,caballo de copas invertida,10,MX,2026-11-10,main
+cups-12-knight,feelings,caballo de copas sentimientos,нет данных,MX,2026-11-10,main
+cups-12-knight,advice,caballo de copas consejo,нет данных,MX,2026-11-10,main
+cups-13-queen,base,reina de copas tarot,1700,MX,2026-11-10,main
+cups-13-queen,love,reina de copas tarot amor,70,MX,2026-11-10,main
+cups-13-queen,yes-no,reina de copas si o no,50,MX,2026-11-10,main
+cups-13-queen,reversed,reina de copas invertida,300,MX,2026-11-10,main
+cups-13-queen,feelings,reina de copas sentimientos,0,MX,2026-11-10,main
+cups-13-queen,advice,reina de copas consejo,0,MX,2026-11-10,main
+cups-14-king,base,rey de copas tarot,900,MX,2026-11-10,main
+cups-14-king,love,rey de copas tarot amor,90,MX,2026-11-10,main
+cups-14-king,yes-no,rey de copas si o no,60,MX,2026-11-10,main
+cups-14-king,reversed,rey de copas invertida,100,MX,2026-11-10,main
+cups-14-king,feelings,rey de copas sentimientos,0,MX,2026-11-10,main
+cups-14-king,advice,rey de copas consejo,0,MX,2026-11-10,main
+swords-01-ace,base,as de espadas tarot,500,MX,2026-11-10,main
+swords-01-ace,love,as de espadas tarot amor,40,MX,2026-11-10,main
+swords-01-ace,yes-no,as de espadas si o no,60,MX,2026-11-10,main
+swords-01-ace,reversed,as de espadas invertida,50,MX,2026-11-10,main
+swords-01-ace,feelings,as de espadas sentimientos,0,MX,2026-11-10,main
+swords-01-ace,advice,as de espadas consejo,0,MX,2026-11-10,main
+swords-02-two,base,dos de espadas tarot,250,MX,2026-11-10,main
+swords-02-two,love,dos de espadas tarot amor,20,MX,2026-11-10,main
+swords-02-two,yes-no,dos de espadas si o no,30,MX,2026-11-10,main
+swords-02-two,reversed,dos de espadas invertida,20,MX,2026-11-10,main
+swords-02-two,feelings,dos de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-02-two,advice,dos de espadas consejo,нет данных,MX,2026-11-10,main
+swords-03-three,base,tres de espadas tarot,1000,MX,2026-11-10,main
+swords-03-three,love,tres de espadas tarot amor,20,MX,2026-11-10,main
+swords-03-three,yes-no,tres de espadas si o no,20,MX,2026-11-10,main
+swords-03-three,reversed,tres de espadas invertida,90,MX,2026-11-10,main
+swords-03-three,feelings,tres de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-03-three,advice,tres de espadas consejo,нет данных,MX,2026-11-10,main
+swords-04-four,base,cuatro de espadas tarot,100,MX,2026-11-10,main
+swords-04-four,love,cuatro de espadas tarot amor,10,MX,2026-11-10,main
+swords-04-four,yes-no,cuatro de espadas si o no,20,MX,2026-11-10,main
+swords-04-four,reversed,cuatro de espadas invertida,10,MX,2026-11-10,main
+swords-04-four,feelings,cuatro de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-04-four,advice,cuatro de espadas consejo,нет данных,MX,2026-11-10,main
+swords-05-five,base,cinco de espadas tarot,700,MX,2026-11-10,main
+swords-05-five,love,cinco de espadas tarot amor,20,MX,2026-11-10,main
+swords-05-five,yes-no,cinco de espadas si o no,20,MX,2026-11-10,main
+swords-05-five,reversed,cinco de espadas invertida,20,MX,2026-11-10,main
+swords-05-five,feelings,cinco de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-05-five,advice,cinco de espadas consejo,нет данных,MX,2026-11-10,main
+swords-06-six,base,seis de espadas tarot,100,MX,2026-11-10,main
+swords-06-six,love,seis de espadas tarot amor,20,MX,2026-11-10,main
+swords-06-six,yes-no,seis de espadas si o no,30,MX,2026-11-10,main
+swords-06-six,reversed,seis de espadas invertida,10,MX,2026-11-10,main
+swords-06-six,feelings,seis de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-06-six,advice,seis de espadas consejo,нет данных,MX,2026-11-10,main
+swords-07-seven,base,siete de espadas tarot,90,MX,2026-11-10,main
+swords-07-seven,love,siete de espadas tarot amor,20,MX,2026-11-10,main
+swords-07-seven,yes-no,siete de espadas si o no,20,MX,2026-11-10,main
+swords-07-seven,reversed,siete de espadas invertida,20,MX,2026-11-10,main
+swords-07-seven,feelings,siete de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-07-seven,advice,siete de espadas consejo,нет данных,MX,2026-11-10,main
+swords-08-eight,base,ocho de espadas tarot,100,MX,2026-11-10,main
+swords-08-eight,love,ocho de espadas tarot amor,10,MX,2026-11-10,main
+swords-08-eight,yes-no,ocho de espadas si o no,20,MX,2026-11-10,main
+swords-08-eight,reversed,ocho de espadas invertida,10,MX,2026-11-10,main
+swords-08-eight,feelings,ocho de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-08-eight,advice,ocho de espadas consejo,нет данных,MX,2026-11-10,main
+swords-09-nine,base,nueve de espadas tarot,100,MX,2026-11-10,main
+swords-09-nine,love,nueve de espadas tarot amor,10,MX,2026-11-10,main
+swords-09-nine,yes-no,nueve de espadas si o no,20,MX,2026-11-10,main
+swords-09-nine,reversed,nueve de espadas invertida,20,MX,2026-11-10,main
+swords-09-nine,feelings,nueve de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-09-nine,advice,nueve de espadas consejo,нет данных,MX,2026-11-10,main
+swords-10-ten,base,diez de espadas tarot,50,MX,2026-11-10,main
+swords-10-ten,love,diez de espadas tarot amor,10,MX,2026-11-10,main
+swords-10-ten,yes-no,diez de espadas si o no,20,MX,2026-11-10,main
+swords-10-ten,reversed,diez de espadas invertida,10,MX,2026-11-10,main
+swords-10-ten,feelings,diez de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-10-ten,advice,diez de espadas consejo,нет данных,MX,2026-11-10,main
+swords-11-page,base,sota de espadas tarot,250,MX,2026-11-10,main
+swords-11-page,love,sota de espadas tarot amor,20,MX,2026-11-10,main
+swords-11-page,yes-no,sota de espadas si o no,40,MX,2026-11-10,main
+swords-11-page,reversed,sota de espadas invertida,150,MX,2026-11-10,main
+swords-11-page,feelings,sota de espadas sentimientos,10,MX,2026-11-10,main
+swords-11-page,advice,sota de espadas consejo,0,MX,2026-11-10,main
+swords-12-knight,base,caballo de espadas tarot,150,MX,2026-11-10,main
+swords-12-knight,love,caballo de espadas tarot amor,10,MX,2026-11-10,main
+swords-12-knight,yes-no,caballo de espadas si o no,10,MX,2026-11-10,main
+swords-12-knight,reversed,caballo de espadas invertida,10,MX,2026-11-10,main
+swords-12-knight,feelings,caballo de espadas sentimientos,0,MX,2026-11-10,main
+swords-12-knight,advice,caballo de espadas consejo,нет данных,MX,2026-11-10,main
+swords-13-queen,base,reina de espadas tarot,1000,MX,2026-11-10,main
+swords-13-queen,love,reina de espadas tarot amor,80,MX,2026-11-10,main
+swords-13-queen,yes-no,reina de espadas si o no,70,MX,2026-11-10,main
+swords-13-queen,reversed,reina de espadas invertida,250,MX,2026-11-10,main
+swords-13-queen,feelings,reina de espadas sentimientos,нет данных,MX,2026-11-10,main
+swords-13-queen,advice,reina de espadas consejo,0,MX,2026-11-10,main
+swords-14-king,base,rey de espadas tarot,1600,MX,2026-11-10,main
+swords-14-king,love,rey de espadas tarot amor,100,MX,2026-11-10,main
+swords-14-king,yes-no,rey de espadas si o no,60,MX,2026-11-10,main
+swords-14-king,reversed,rey de espadas invertida,10,MX,2026-11-10,main
+swords-14-king,feelings,rey de espadas sentimientos,0,MX,2026-11-10,main
+swords-14-king,advice,rey de espadas consejo,0,MX,2026-11-10,main
+pentacles-01-ace,base,as de oros tarot,300,MX,2026-11-10,main
+pentacles-01-ace,love,as de oros tarot amor,20,MX,2026-11-10,main
+pentacles-01-ace,yes-no,as de oros si o no,40,MX,2026-11-10,main
+pentacles-01-ace,reversed,as de oros invertida,10,MX,2026-11-10,main
+pentacles-01-ace,feelings,as de oros sentimientos,0,MX,2026-11-10,main
+pentacles-01-ace,advice,as de oros consejo,0,MX,2026-11-10,main
+pentacles-02-two,base,dos de oros tarot,800,MX,2026-11-10,main
+pentacles-02-two,love,dos de oros tarot amor,20,MX,2026-11-10,main
+pentacles-02-two,yes-no,dos de oros si o no,30,MX,2026-11-10,main
+pentacles-02-two,reversed,dos de oros invertida,10,MX,2026-11-10,main
+pentacles-02-two,feelings,dos de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-02-two,advice,dos de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-03-three,base,tres de oros tarot,200,MX,2026-11-10,main
+pentacles-03-three,love,tres de oros tarot amor,20,MX,2026-11-10,main
+pentacles-03-three,yes-no,tres de oros si o no,20,MX,2026-11-10,main
+pentacles-03-three,reversed,tres de oros invertida,30,MX,2026-11-10,main
+pentacles-03-three,feelings,tres de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-03-three,advice,tres de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-04-four,base,cuatro de oros tarot,80,MX,2026-11-10,main
+pentacles-04-four,love,cuatro de oros tarot amor,10,MX,2026-11-10,main
+pentacles-04-four,yes-no,cuatro de oros si o no,20,MX,2026-11-10,main
+pentacles-04-four,reversed,cuatro de oros invertida,0,MX,2026-11-10,main
+pentacles-04-four,feelings,cuatro de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-04-four,advice,cuatro de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-05-five,base,cinco de oros tarot,80,MX,2026-11-10,main
+pentacles-05-five,love,cinco de oros tarot amor,10,MX,2026-11-10,main
+pentacles-05-five,yes-no,cinco de oros si o no,10,MX,2026-11-10,main
+pentacles-05-five,reversed,cinco de oros invertida,10,MX,2026-11-10,main
+pentacles-05-five,feelings,cinco de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-05-five,advice,cinco de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-06-six,base,seis de oros tarot,150,MX,2026-11-10,main
+pentacles-06-six,love,seis de oros tarot amor,10,MX,2026-11-10,main
+pentacles-06-six,yes-no,seis de oros si o no,20,MX,2026-11-10,main
+pentacles-06-six,reversed,seis de oros invertida,10,MX,2026-11-10,main
+pentacles-06-six,feelings,seis de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-06-six,advice,seis de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-07-seven,base,siete de oros tarot,150,MX,2026-11-10,main
+pentacles-07-seven,love,siete de oros tarot amor,10,MX,2026-11-10,main
+pentacles-07-seven,yes-no,siete de oros si o no,20,MX,2026-11-10,main
+pentacles-07-seven,reversed,siete de oros invertida,20,MX,2026-11-10,main
+pentacles-07-seven,feelings,siete de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-07-seven,advice,siete de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-08-eight,base,ocho de oros tarot,80,MX,2026-11-10,main
+pentacles-08-eight,love,ocho de oros tarot amor,10,MX,2026-11-10,main
+pentacles-08-eight,yes-no,ocho de oros si o no,20,MX,2026-11-10,main
+pentacles-08-eight,reversed,ocho de oros invertida,20,MX,2026-11-10,main
+pentacles-08-eight,feelings,ocho de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-08-eight,advice,ocho de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-09-nine,base,nueve de oros tarot,600,MX,2026-11-10,main
+pentacles-09-nine,love,nueve de oros tarot amor,20,MX,2026-11-10,main
+pentacles-09-nine,yes-no,nueve de oros si o no,20,MX,2026-11-10,main
+pentacles-09-nine,reversed,nueve de oros invertida,10,MX,2026-11-10,main
+pentacles-09-nine,feelings,nueve de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-09-nine,advice,nueve de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-10-ten,base,diez de oros tarot,150,MX,2026-11-10,main
+pentacles-10-ten,love,diez de oros tarot amor,10,MX,2026-11-10,main
+pentacles-10-ten,yes-no,diez de oros si o no,20,MX,2026-11-10,main
+pentacles-10-ten,reversed,diez de oros invertida,0,MX,2026-11-10,main
+pentacles-10-ten,feelings,diez de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-10-ten,advice,diez de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-11-page,base,sota de oros tarot,150,MX,2026-11-10,main
+pentacles-11-page,love,sota de oros tarot amor,20,MX,2026-11-10,main
+pentacles-11-page,yes-no,sota de oros si o no,40,MX,2026-11-10,main
+pentacles-11-page,reversed,sota de oros invertida,250,MX,2026-11-10,main
+pentacles-11-page,feelings,sota de oros sentimientos,0,MX,2026-11-10,main
+pentacles-11-page,advice,sota de oros consejo,0,MX,2026-11-10,main
+pentacles-12-knight,base,caballo de oros tarot,150,MX,2026-11-10,main
+pentacles-12-knight,love,caballo de oros tarot amor,10,MX,2026-11-10,main
+pentacles-12-knight,yes-no,caballo de oros si o no,10,MX,2026-11-10,main
+pentacles-12-knight,reversed,caballo de oros invertida,0,MX,2026-11-10,main
+pentacles-12-knight,feelings,caballo de oros sentimientos,нет данных,MX,2026-11-10,main
+pentacles-12-knight,advice,caballo de oros consejo,нет данных,MX,2026-11-10,main
+pentacles-13-queen,base,reina de oros tarot,600,MX,2026-11-10,main
+pentacles-13-queen,love,reina de oros tarot amor,30,MX,2026-11-10,main
+pentacles-13-queen,yes-no,reina de oros si o no,50,MX,2026-11-10,main
+pentacles-13-queen,reversed,reina de oros invertida,250,MX,2026-11-10,main
+pentacles-13-queen,feelings,reina de oros sentimientos,0,MX,2026-11-10,main
+pentacles-13-queen,advice,reina de oros consejo,0,MX,2026-11-10,main
+pentacles-14-king,base,rey de oros tarot,800,MX,2026-11-10,main
+pentacles-14-king,love,rey de oros tarot amor,60,MX,2026-11-10,main
+pentacles-14-king,yes-no,rey de oros si o no,40,MX,2026-11-10,main
+pentacles-14-king,reversed,rey de oros invertida,10,MX,2026-11-10,main
+pentacles-14-king,feelings,rey de oros sentimientos,0,MX,2026-11-10,main
+pentacles-14-king,advice,rey de oros consejo,0,MX,2026-11-10,main
+major-02-high-priestess,base,la papisa tarot,90,MX,2026-11-10,La Papisa
+major-02-high-priestess,love,la papisa tarot amor,0,MX,2026-11-10,La Papisa
+major-05-hierophant,base,el sumo sacerdote tarot,350,MX,2026-11-10,El Sumo Sacerdote
+major-05-hierophant,love,el sumo sacerdote tarot amor,20,MX,2026-11-10,El Sumo Sacerdote
+major-10-wheel-of-fortune,base,la rueda tarot,60,MX,2026-11-10,La Rueda
+major-10-wheel-of-fortune,love,la rueda tarot amor,нет данных,MX,2026-11-10,La Rueda
+major-20-judgement,base,el juicio final tarot,10,MX,2026-11-10,El Juicio Final
+major-20-judgement,love,el juicio final tarot amor,нет данных,MX,2026-11-10,El Juicio Final
+wands-11-page,base,paje de bastos tarot,40,MX,2026-11-10,Paje de Bastos
+wands-11-page,love,paje de bastos tarot amor,0,MX,2026-11-10,Paje de Bastos
+wands-12-knight,base,caballero de bastos tarot,150,MX,2026-11-10,Caballero de Bastos
+wands-12-knight,love,caballero de bastos tarot amor,30,MX,2026-11-10,Caballero de Bastos
+cups-11-page,base,paje de copas tarot,90,MX,2026-11-10,Paje de Copas
+cups-11-page,love,paje de copas tarot amor,0,MX,2026-11-10,Paje de Copas
+cups-12-knight,base,caballero de copas tarot,1200,MX,2026-11-10,Caballero de Copas
+cups-12-knight,love,caballero de copas tarot amor,30,MX,2026-11-10,Caballero de Copas
+swords-11-page,base,paje de espadas tarot,60,MX,2026-11-10,Paje de Espadas
+swords-11-page,love,paje de espadas tarot amor,10,MX,2026-11-10,Paje de Espadas
+swords-12-knight,base,caballero de espadas tarot,200,MX,2026-11-10,Caballero de Espadas
+swords-12-knight,love,caballero de espadas tarot amor,20,MX,2026-11-10,Caballero de Espadas
+pentacles-01-ace,base,as de pentáculos tarot,10,MX,2026-11-10,As de Pentáculos
+pentacles-01-ace,love,as de pentáculos tarot amor,нет данных,MX,2026-11-10,As de Pentáculos
+pentacles-02-two,base,dos de pentáculos tarot,нет данных,MX,2026-11-10,Dos de Pentáculos
+pentacles-02-two,love,dos de pentáculos tarot amor,нет данных,MX,2026-11-10,Dos de Pentáculos
+pentacles-03-three,base,tres de pentáculos tarot,0,MX,2026-11-10,Tres de Pentáculos
+pentacles-03-three,love,tres de pentáculos tarot amor,нет данных,MX,2026-11-10,Tres de Pentáculos
+pentacles-04-four,base,cuatro de pentáculos tarot,нет данных,MX,2026-11-10,Cuatro de Pentáculos
+pentacles-04-four,love,cuatro de pentáculos tarot amor,нет данных,MX,2026-11-10,Cuatro de Pentáculos
+pentacles-05-five,base,cinco de pentáculos tarot,0,MX,2026-11-10,Cinco de Pentáculos
+pentacles-05-five,love,cinco de pentáculos tarot amor,нет данных,MX,2026-11-10,Cinco de Pentáculos
+pentacles-06-six,base,seis de pentáculos tarot,10,MX,2026-11-10,Seis de Pentáculos
+pentacles-06-six,love,seis de pentáculos tarot amor,нет данных,MX,2026-11-10,Seis de Pentáculos
+pentacles-07-seven,base,siete de pentáculos tarot,0,MX,2026-11-10,Siete de Pentáculos
+pentacles-07-seven,love,siete de pentáculos tarot amor,нет данных,MX,2026-11-10,Siete de Pentáculos
+pentacles-08-eight,base,ocho de pentáculos tarot,0,MX,2026-11-10,Ocho de Pentáculos
+pentacles-08-eight,love,ocho de pentáculos tarot amor,нет данных,MX,2026-11-10,Ocho de Pentáculos
+pentacles-09-nine,base,nueve de pentáculos tarot,0,MX,2026-11-10,Nueve de Pentáculos
+pentacles-09-nine,love,nueve de pentáculos tarot amor,нет данных,MX,2026-11-10,Nueve de Pentáculos
+pentacles-10-ten,base,diez de pentáculos tarot,нет данных,MX,2026-11-10,Diez de Pentáculos
+pentacles-10-ten,love,diez de pentáculos tarot amor,нет данных,MX,2026-11-10,Diez de Pentáculos
+pentacles-11-page,base,sota de pentáculos tarot,нет данных,MX,2026-11-10,Sota de Pentáculos
+pentacles-11-page,love,sota de pentáculos tarot amor,нет данных,MX,2026-11-10,Sota de Pentáculos
+pentacles-11-page,base,paje de oros tarot,40,MX,2026-11-10,Paje de Oros
+pentacles-11-page,love,paje de oros tarot amor,10,MX,2026-11-10,Paje de Oros
+pentacles-11-page,base,paje de pentáculos tarot,30,MX,2026-11-10,Paje de Pentáculos
+pentacles-11-page,love,paje de pentáculos tarot amor,нет данных,MX,2026-11-10,Paje de Pentáculos
+pentacles-12-knight,base,caballo de pentáculos tarot,нет данных,MX,2026-11-10,Caballo de Pentáculos
+pentacles-12-knight,love,caballo de pentáculos tarot amor,нет данных,MX,2026-11-10,Caballo de Pentáculos
+pentacles-12-knight,base,caballero de oros tarot,150,MX,2026-11-10,Caballero de Oros
+pentacles-12-knight,love,caballero de oros tarot amor,20,MX,2026-11-10,Caballero de Oros
+pentacles-12-knight,base,caballero de pentáculos tarot,нет данных,MX,2026-11-10,Caballero de Pentáculos
+pentacles-12-knight,love,caballero de pentáculos tarot amor,нет данных,MX,2026-11-10,Caballero de Pentáculos
+pentacles-13-queen,base,reina de pentáculos tarot,10,MX,2026-11-10,Reina de Pentáculos
+pentacles-13-queen,love,reina de pentáculos tarot amor,нет данных,MX,2026-11-10,Reina de Pentáculos
+pentacles-14-king,base,rey de pentáculos tarot,20,MX,2026-11-10,Rey de Pentáculos
+pentacles-14-king,love,rey de pentáculos tarot amor,нет данных,MX,2026-11-10,Rey de Pentáculos
+major-12-hanged-man,base,el ahorcado tarot,150,MX,2026-11-10,El Ahorcado
+major-12-hanged-man,love,el ahorcado tarot amor,0,MX,2026-11-10,El Ahorcado
+major-08-strength,base,la fortaleza tarot,10,MX,2026-11-10,La Fortaleza
+major-08-strength,love,la fortaleza tarot amor,нет данных,MX,2026-11-10,La Fortaleza
+major-14-temperance,base,la temperancia tarot,0,MX,2026-11-10,La Temperancia
+major-14-temperance,love,la temperancia tarot amor,нет данных,MX,2026-11-10,La Temperancia
+major-13-death,base,la parca tarot,нет данных,MX,2026-11-10,La Parca
+major-13-death,love,la parca tarot amor,нет данных,MX,2026-11-10,La Parca
+major-05-hierophant,base,el papa tarot,600,MX,2026-11-10,El Papa
+major-05-hierophant,love,el papa tarot amor,10,MX,2026-11-10,El Papa
+major-09-hermit,base,el eremita tarot,10,MX,2026-11-10,El Eremita
+major-09-hermit,love,el eremita tarot amor,нет данных,MX,2026-11-10,El Eremita
+major-07-chariot,base,el carruaje tarot,100,MX,2026-11-10,El Carruaje
+major-07-chariot,love,el carruaje tarot amor,нет данных,MX,2026-11-10,El Carruaje

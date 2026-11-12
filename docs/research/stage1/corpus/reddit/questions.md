@@ -1,0 +1,222 @@
+# Вопросы аудитории (Task 7)
+
+**Источник — НЕ Reddit.** Reddit отказал: единственная попытка на каждый из четырёх URL из плана
+(`r/tarot/top.json`, `r/TarotReadings/top.json`, `r/tarot/search.json?q=yes or no`, `...q=what does he feel`,
+User-Agent `arcana-research/0.1`, 10.11.2026) вернула HTTP 403. Повторов, обходов и других хостов не было.
+
+Вместо этого — уже купленные списки вопросов Ahrefs (`corpus/ahrefs/us/questions.csv`, `corpus/ahrefs/mx/questions.csv`,
+`keywords-explorer-matching-terms`, топ-100 по объёму, 10.11.2026). Это **поисковые формулировки, а не посты**: ссылки на
+пост и даты поста нет; вместо них — страна и объём в месяц на дату выгрузки. Формулировки здесь — оригинал запроса;
+пересказ («ситуация») отдельно, это наша интерпретация. Тип — предположение по правилам-ключевым словам, не факт.
+
+Формат: `- «<исходная фраза>» — Ahrefs <страна>, объём <N>/мес, 2026-11-10; ситуация: <...>; тип: <type_id или «вне»>`
+
+Всего записей: 200 (EN/US: 100, ES/MX: 100).
+Распределение по type_id: EN birth-card=4; EN cards=27; EN home=1; EN learn=25; EN love=2; EN spreads=3; EN yes-no=25; EN вне=13; ES birth-card=1; ES cards=54; ES home=2; ES learn=24; ES love=2; ES yes-no=16; ES вне=1
+
+## EN, US
+
+- «tarot yes or no» — Ahrefs US, объём 10000/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «tarot yes no» — Ahrefs US, объём 6500/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «how to read tarot cards» — Ahrefs US, объём 6000/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «how many cards in a tarot deck» — Ahrefs US, объём 4900/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what are tarot cards» — Ahrefs US, объём 3400/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what is a tarot reading» — Ahrefs US, объём 3200/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «how many tarot cards are there» — Ahrefs US, объём 2500/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «are tarot cards evil» — Ahrefs US, объём 2300/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «how to shuffle tarot cards» — Ahrefs US, объём 2200/мес, 2026-11-10; ситуация: хочет сделать расклад / понять процедуру; тип: spreads
+- «online tarot reading yes or no» — Ahrefs US, объём 2000/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «tarot si o no» — Ahrefs US, объём 1900/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «how to use tarot cards» — Ahrefs US, объём 1800/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «yes no tarot horoscope» — Ahrefs US, объём 1600/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «tarot card yes or no» — Ahrefs US, объём 1500/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what does the moon tarot card mean» — Ahrefs US, объём 1400/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «how many cards are in a tarot deck» — Ahrefs US, объём 1300/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what is tarot» — Ahrefs US, объём 1200/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what does the emperor tarot card mean» — Ahrefs US, объём 1200/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «how many tarot cards are in a deck» — Ahrefs US, объём 1100/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what is identifier card tarot» — Ahrefs US, объём 1100/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «are tarot cards real» — Ahrefs US, объём 1100/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what does the chariot tarot card mean» — Ahrefs US, объём 1000/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «moonlight app tarot how to use» — Ahrefs US, объём 1000/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «how do tarot cards work» — Ahrefs US, объём 1000/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «how to read tarot» — Ahrefs US, объём 1000/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot reading yes or no» — Ahrefs US, объём 1000/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what does the strength tarot card mean» — Ahrefs US, объём 900/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what does the tower tarot card mean» — Ahrefs US, объём 900/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «how to do tarot cards» — Ahrefs US, объём 900/мес, 2026-11-10; ситуация: хочет сделать расклад / понять процедуру; тип: spreads
+- «what does the lovers tarot card mean» — Ahrefs US, объём 900/мес, 2026-11-10; ситуация: вопрос про чувства/отношения; тип: love
+- «what does the death tarot card mean» — Ahrefs US, объём 900/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what tarot card am i» — Ahrefs US, объём 900/мес, 2026-11-10; ситуация: хочет узнать «свою» карту; тип: birth-card
+- «are tarot cards witchcraft» — Ahrefs US, объём 900/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «what does the hanged man tarot card mean» — Ahrefs US, объём 800/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «7 tarot yes or no» — Ahrefs US, объём 800/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «how to do a tarot reading» — Ahrefs US, объём 800/мес, 2026-11-10; ситуация: хочет сделать расклад / понять процедуру; тип: spreads
+- «what does the hermit tarot card mean» — Ahrefs US, объём 800/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot cards yes or no» — Ahrefs US, объём 800/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «how many cards in tarot deck» — Ahrefs US, объём 800/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what does the justice tarot card mean» — Ahrefs US, объём 700/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «online tarot yes or no» — Ahrefs US, объём 700/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what does the fool tarot card mean» — Ahrefs US, объём 700/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «strength tarot card artinya apa» — Ahrefs US, объём 700/мес, 2026-11-10; ситуация: общий запрос про онлайн-таро; тип: home
+- «what does the devil card mean in tarot» — Ahrefs US, объём 700/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «free love tarot what is he thinking» — Ahrefs US, объём 700/мес, 2026-11-10; ситуация: вопрос про чувства/отношения; тип: love
+- «what does the star tarot card mean» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «are tarot cards accurate» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «judgement tarot yes or no» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «free tarot reading yes or no» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what is tarot reading» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what does the devil tarot card mean» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what does the wheel of fortune tarot card mean» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what do wands represent in tarot» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «where to buy tarot cards» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «how to read tarot cards for beginners» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «is tarot cards witchcraft» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «free tarot yes no» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what does the sun tarot card mean» — Ahrefs US, объём 600/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what are tarot cards used for» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what is my tarot card» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: хочет узнать «свою» карту; тип: birth-card
+- «where did tarot originate» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «tarot card reading yes or no» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what does the empress tarot card mean» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «wheel of fortune tarot yes or no» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «how many tarot cards in a deck» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what does the magician tarot card mean» — Ahrefs US, объём 500/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what does the high priestess tarot card mean» — Ahrefs US, объём 450/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «which tarot card am i» — Ahrefs US, объём 450/мес, 2026-11-10; ситуация: хочет узнать «свою» карту; тип: birth-card
+- «what do swords represent in tarot» — Ahrefs US, объём 450/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what does the moon mean in tarot» — Ahrefs US, объём 450/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «the emperor tarot yes or no» — Ahrefs US, объём 450/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «the moon tarot yes or no» — Ahrefs US, объём 450/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «how to do yes or no tarot» — Ahrefs US, объём 400/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «strength tarot yes or no» — Ahrefs US, объём 400/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «which tarot card are you» — Ahrefs US, объём 400/мес, 2026-11-10; ситуация: хочет узнать «свою» карту; тип: birth-card
+- «the star tarot yes or no» — Ahrefs US, объём 400/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «the world tarot yes or no» — Ahrefs US, объём 400/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «is tarot witchcraft» — Ahrefs US, объём 400/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «what does the star mean in tarot» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «eva tarot yes no» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what does the temperance tarot card mean» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «how to cleanse tarot cards» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «what does the tower mean in tarot» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «temperance tarot yes or no» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «how accurate are tarot readings» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «one card tarot yes no» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «where did tarot cards originate» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «what does the world tarot card mean» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «how does tarot work» — Ahrefs US, объём 350/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «free love tarot reading yes or no» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «what is tarot cards» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «who invented tarot cards» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «what does the bible say about tarot cards» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «when were tarot cards invented» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «do tarot cards work» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «what do the tarot cards mean» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «what does the judgement tarot card mean» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «are tarot cards true» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «how to interpret tarot cards» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «are tarot cards demonic» — Ahrefs US, объём 300/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+
+## ES, MX
+
+- «tarot si o no» — Ahrefs MX, объём 4000/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que es el tarot» — Ahrefs MX, объём 1300/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot si o no gratis» — Ahrefs MX, объём 1300/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «cuantas cartas tiene el tarot» — Ahrefs MX, объём 1000/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «como leer el tarot» — Ahrefs MX, объём 700/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot que es» — Ahrefs MX, объём 600/мес, 2026-11-10; ситуация: общий запрос про онлайн-таро; тип: home
+- «que es tarot» — Ahrefs MX, объём 600/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que es el tarot y para que sirve» — Ahrefs MX, объём 500/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot del si o no» — Ahrefs MX, объём 500/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «tarot gratis si o no» — Ahrefs MX, объём 400/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «como aprender a leer el tarot» — Ahrefs MX, объём 350/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot si o no 1 carta» — Ahrefs MX, объём 350/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «tarot si o no 1 carta gratis» — Ahrefs MX, объём 200/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa el 7 de espadas en el tarot» — Ahrefs MX, объём 200/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el sol en el tarot» — Ahrefs MX, объём 200/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «cuántas cartas tiene el tarot» — Ahrefs MX, объём 200/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «cuantas cartas del tarot son» — Ahrefs MX, объём 200/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significan los bastos en el tarot» — Ahrefs MX, объём 200/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot gratis si o no 1 carta» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa el rey de espadas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la luna en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «qué es el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significan las copas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 4 de espadas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la estrella en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la rueda de la fortuna en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tirada de tarot gratis si o no» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa la muerte en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el mundo en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot amor gratis que siente por mi» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: вопрос про чувства/отношения; тип: love
+- «que significa el 5 de espadas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot amigo si o no» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significan las espadas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot sí o no 1 carta gratis» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa el rey de copas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que es un tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa la torre en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «como leer las cartas del tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot gratis sí o no» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa el 3 de espadas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 10 de espadas en el tarot» — Ahrefs MX, объём 150/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el rey de bastos en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 4 de bastos en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la reina de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 6 de bastos en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «para que sirve el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa el 10 de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot si o no cartas» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa el 7 de bastos en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 6 de espadas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el as de espadas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 6 de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que carta del tarot soy» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: хочет узнать «свою» карту; тип: birth-card
+- «que significa el 3 de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que es un arcano en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa el as de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot sí o no» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa el mago en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 5 de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el colgado en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la sacerdotisa en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 4 de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la carta de la muerte en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 2 de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la emperatriz en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 7 de copas en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «cómo leer el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa el 3 de bastos en el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «como leer el tarot pdf» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: вне набора из 12 типов; тип: вне
+- «como se lee el tarot» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tirada del tarot si o no gratis» — Ahrefs MX, объём 100/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa la reina de bastos en el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la carta del sol en el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «el tarot es confiable» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa el 2 de espadas en el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «como leer cartas de tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa el 5 de bastos en el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el as de bastos en el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la reina de espadas en el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «como funciona el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa el 2 de bastos en el tarot» — Ahrefs MX, объём 90/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tipos de tarot que existen» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa el 9 de espadas en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el as de oros en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 10 de oros en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 10 de bastos en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «cuantas cartas de tarot son» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «que significa cada carta del tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 4 de oros en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa el 8 de espadas en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «que significa la carta de los enamorados en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: вопрос про чувства/отношения; тип: love
+- «que significa tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «tarot si o'no» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: общий запрос про онлайн-таро; тип: home
+- «como se leen las cartas del tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot yes no» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que significa el 8 de bastos en el tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет значение конкретной карты или масти; тип: cards
+- «cuales son los arcanos mayores del tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «tarot si o no 5 cartas marsella» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: ищет быстрый ответ да/нет на личный вопрос; тип: yes-no
+- «que preguntar al tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+- «cómo leer las cartas del tarot» — Ahrefs MX, объём 80/мес, 2026-11-10; ситуация: учится или проверяет, что такое таро и работает ли оно; тип: learn
+

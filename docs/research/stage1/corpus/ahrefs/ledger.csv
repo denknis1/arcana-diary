@@ -1,0 +1,218 @@
+date,task,tool,country,params_short,rows,units
+2026-11-10,3,keywords-explorer-matching-terms,US,yes-no seeds x5 vol>=20 limit150,150,4800
+2026-11-10,3,keywords-explorer-related-terms,US,yes-no seeds x5 vol>=20 limit50,50,1600
+2026-11-10,3,keywords-explorer-search-suggestions,US,yes-no seeds x5 vol>=20 limit50,50,1600
+2026-11-10,3-probe,matching-terms,US,tarot select=keyword+parent_topic limit10,10,120
+2026-11-10,3-probe,matching-terms,US,tarot select=keyword+volume limit10,10,110
+2026-11-10,3,keywords-explorer-matching-terms,US,home seeds x5 select=keyword order_by=volume:desc limit300 (returned 250; 11 units/row: order_by volume bills volume),250,2750
+2026-11-10,3-probe,keywords-explorer-matching-terms,US,home seeds x5 select=keyword no order_by limit5 (1 unit/row; min 50 per request),5,50
+2026-11-10,3,keywords-explorer-matching-terms,US,home keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,home keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,home keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,one-card keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,one-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,one-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-related-terms,US,yes-no keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,yes-no keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,love keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,love keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,love keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,cards keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,cards keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,cards keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,card-context keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,card-context keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,card-context keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,spreads keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,spreads keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,spreads keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,birth-card keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,birth-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,birth-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,horoscope keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,horoscope keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,horoscope keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,quiz keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,quiz keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,quiz keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,pairs keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,pairs keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,pairs keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,learn keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,3,keywords-explorer-related-terms,US,learn keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-search-suggestions,US,learn keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,3,keywords-explorer-matching-terms,US,tarot terms=questions keyword+volume+parent_topic order_by volume limit100,100,1200
+2026-11-10,4,keywords-explorer-matching-terms,MX,home keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,home keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,one-card keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,one-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,yes-no keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,yes-no keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,love keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,love keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,cards keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,cards keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,card-context keyword+volume+parent_topic order_by volume limit60,59,708
+2026-11-10,4,keywords-explorer-search-suggestions,MX,card-context keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,spreads keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,spreads keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,birth-card keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,birth-card keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,horoscope keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,horoscope keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,quiz keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,quiz keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,pairs keyword+volume+parent_topic order_by volume limit60,38,456
+2026-11-10,4,keywords-explorer-search-suggestions,MX,pairs keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,learn keyword+volume+parent_topic order_by volume limit60,60,720
+2026-11-10,4,keywords-explorer-search-suggestions,MX,learn keyword+volume+parent_topic order_by volume limit15,15,180
+2026-11-10,4,keywords-explorer-matching-terms,MX,tarot terms=questions keyword+volume+parent_topic order_by volume limit100,100,1200
+2026-11-10,4,keywords-explorer-overview,AR,top97 MX keywords keyword+volume,97,1067
+2026-11-10,4,keywords-explorer-overview,CO,top97 MX keywords keyword+volume,96,1056
+2026-11-10,4,keywords-explorer-overview,ES,top97 MX keywords keyword+volume,96,1056
+2026-11-10,4,keywords-explorer-overview,US,top97 MX keywords keyword+volume,97,1067
+2026-11-10,5,keywords-explorer-overview,US,card x context batch 1/5 keyword+volume,94,1034
+2026-11-10,5,keywords-explorer-overview,US,card x context batch 2/5 keyword+volume,100,1100
+2026-11-10,5,keywords-explorer-overview,US,card x context batch 3/5 keyword+volume,100,1100
+2026-11-10,5,keywords-explorer-overview,US,card x context batch 4/5 keyword+volume,100,1100
+2026-11-10,5,keywords-explorer-overview,US,card x context batch 5/5 keyword+volume,68,748
+2026-11-10,5,keywords-explorer-overview,MX,card x context batch 1/6 keyword+volume,72,792
+2026-11-10,5,keywords-explorer-overview,MX,card x context batch 2/6 keyword+volume,70,770
+2026-11-10,5,keywords-explorer-overview,MX,card x context batch 3/6 keyword+volume,80,880
+2026-11-10,5,keywords-explorer-overview,MX,card x context batch 4/6 keyword+volume,78,858
+2026-11-10,5,keywords-explorer-overview,MX,card x context batch 5/6 keyword+volume,72,792
+2026-11-10,5,keywords-explorer-overview,MX,card x context batch 6/6 keyword+volume,18,198
+2026-11-10,5-spotcheck,keywords-explorer-overview,US,20 random card-context-us,20,220
+2026-11-10,5-spotcheck,keywords-explorer-overview,MX,20 card-context-mx + 20 mx corpus,40,440
+2026-11-10,6,serp-overview,US,tarot reading top10 select+traffic,21,357
+2026-11-10,6,serp-overview,US,tarot ai top10 full,31,217
+2026-11-10,6,serp-overview,US,one card tarot top10 full,24,168
+2026-11-10,6,serp-overview,US,daily tarot top10 full,15,105
+2026-11-10,6,serp-overview,US,yes or no tarot top10 full,19,133
+2026-11-10,6,serp-overview,US,yes or no tarot accurate 100 percent top10 full,24,168
+2026-11-10,6,serp-overview,US,love tarot top10 full,35,245
+2026-11-10,6,serp-overview,US,love tarot spread top10 full,37,259
+2026-11-10,6,serp-overview,US,tarot card meanings top10 full,33,231
+2026-11-10,6,serp-overview,US,the moon tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,death tarot card meaning top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,the star reversed top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,tarot spreads top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,celtic cross tarot top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,US,free tarot reading top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,pull a tarot card top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,online tarot reading yes or no top10 no-sitelinks,13,91
+2026-11-10,6,serp-overview,US,free tarot card reading love top10 no-sitelinks,13,91
+2026-11-10,6,serp-overview,US,the tower tarot meaning top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,the lovers tarot love top10 no-sitelinks,21,147
+2026-11-10,6,serp-overview,US,tarot spreads for guidance top10 no-sitelinks,21,147
+2026-11-10,6,serp-overview,US,tarot birth card top10 no-sitelinks,12,84
+2026-11-10,6,serp-overview,US,what is my tarot card top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,tarot birth card calculator top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,libra tarot top10 no-sitelinks,25,175
+2026-11-10,6,serp-overview,US,tarot horoscope top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,zodiac signs tarot cards top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,what tarot card am i top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,tarot card quiz top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,US,tarot card questions top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,US,tarot card combinations top10 no-sitelinks,12,84
+2026-11-10,6,serp-overview,US,list of tarot card combinations meanings top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,the sun and the moon tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,how to read tarot cards top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,US,learn tarot top10 no-sitelinks,13,91
+2026-11-10,6,serp-overview,US,tarot decks for beginners top10 no-sitelinks,33,231
+2026-11-10,6,serp-overview,MX,tarot top10 no-sitelinks,17,119
+2026-11-10,6,serp-overview,MX,tarot gratis top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,tarot arcanos top10 no-sitelinks,7,50
+2026-11-10,6,serp-overview,MX,tarot diario top10 no-sitelinks (stale 2024-01),10,70
+2026-11-10,6,serp-overview,MX,tarot 1 carta gratis top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,tarot una carta top10 no-sitelinks (stale 2022-01),10,70
+2026-11-10,6,serp-overview,MX,tarot si o no top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,oraculo si o no top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,tarot si o no amigo top10 no-sitelinks (stale 2024-03),10,70
+2026-11-10,6,serp-overview,MX,tarot del amor top10 no-sitelinks,9,63
+2026-11-10,6,serp-overview,MX,tarot del amor gratis top10 no-sitelinks,14,98
+2026-11-10,6,serp-overview,MX,tarot certero gratis futuro inmediato amor top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,la estrella tarot top10 no-sitelinks,24,168
+2026-11-10,6,serp-overview,MX,la torre tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,MX,arcanos mayores top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,MX,los enamorados top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,MX,la muerte tarot invertida top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,cruz celta tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,MX,tirada de 3 cartas gratis top10 no-sitelinks,10,70
+2026-11-10,6,serp-overview,MX,tiradas de tarot top10 no-sitelinks,24,168
+2026-11-10,6,serp-overview,MX,arcano de nacimiento top10 no-sitelinks,11,77
+2026-11-10,6,serp-overview,MX,como saber mi arcano de nacimiento top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,como saber cual es mi carta del tarot top10 no-sitelinks,16,112
+2026-11-10,6,serp-overview,MX,tarot libra hoy top10 no-sitelinks,18,126
+2026-11-10,6,serp-overview,MX,que arcano soy top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,que carta del tarot soy top10 no-sitelinks,12,84
+2026-11-10,6,serp-overview,MX,como saber que arcano soy top10 no-sitelinks (empty SERP),0,50
+2026-11-10,6,serp-overview,MX,como leer el tarot top10 no-sitelinks,19,133
+2026-11-10,6,serp-overview,MX,curso de tarot top10 no-sitelinks,15,105
+2026-11-10,6,serp-overview,MX,guía de tarot para principiantes pdf top10 no-sitelinks (empty SERP),0,50
+2026-11-10,7,site-explorer-organic-keywords,US,evatarot.net probe limit5 sel=keyword;volume;best_position;best_position_url,5,65
+2026-11-10,7,site-explorer-organic-keywords,US,evatarot.net limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,US,tellmytarot.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,US,nostra-tarot.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,US,chatarot.ai limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,tarotamigo.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,mysticnova.app limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,tarotnova.app limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,juliantarot.com limit70 order volume desc,70,910
+2026-11-10,7,site-explorer-organic-keywords,MX,nostra-tarot.com limit40 order volume desc,40,520
+2026-11-10,7,site-explorer-top-pages,US,evatarot.net limit20 sel=url;top_keyword;sum_traffic,19,228
+2026-11-10,7,site-explorer-top-pages,US,tellmytarot.com limit20 sel=url;top_keyword;sum_traffic,18,216
+2026-11-10,7,site-explorer-top-pages,US,nostra-tarot.com limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,US,chatarot.ai limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,tarotamigo.com limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,mysticnova.app limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,tarotnova.app limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7,site-explorer-top-pages,MX,juliantarot.com limit20 sel=url;top_keyword;sum_traffic,20,240
+2026-11-10,7-spotcheck,keywords-explorer-overview,US,10 random competitors.csv kw,10,110
+2026-11-10,7-spotcheck,keywords-explorer-overview,MX,10 random competitors.csv kw,10,110
+2026-11-10,7-spotcheck,site-explorer-organic-keywords,US,tellmytarot.com limit15 re-query,15,180
+2026-11-11,recheck,keywords-explorer-overview,US,19 random corpus kw,19,209
+2026-11-11,recheck,keywords-explorer-overview,MX,19 random corpus kw (20th absent = нет данных),19,209
+2026-11-11,9,serp-overview,US,the star tarot top10 full,23,161
+2026-11-11,9,serp-overview,US,yes no tarot horoscope top10 full,28,196
+2026-11-11,9,serp-overview,US,the star yes or no top10 full,41,287
+2026-11-11,9,serp-overview,US,the star as feelings top10 full,27,189
+2026-11-11,9,serp-overview,US,9 of swords tarot love meaning top10 full,0,50
+2026-11-11,9,serp-overview,MX,tarot si o no 1 carta top10 full,16,112
+2026-11-11,9,serp-overview,MX,tarot gratis 3 cartas top10 full,18,126
+2026-11-11,9,serp-overview,MX,cartas del tarot top10 full,36,252
+2026-11-11,9,serp-overview,MX,la torre invertida tarot top10 full,31,217
+2026-11-11,9,serp-overview,US,3 card tarot spread top10 full,31,217
+2026-11-11,9,serp-overview,US,free 3 card tarot reading top10 full,18,126
+2026-11-11,9,serp-overview,US,yes or no tarot list top10 full,25,175
+2026-11-11,9,serp-overview,MX,la estrella tarot amor top10 full,19,133
+2026-11-11,9,serp-overview,MX,chatgpt tarot top10 full,32,224
+2026-11-11,9,serp-overview,US,the star tarot love top10 full,36,252
+2026-11-11,9b,serp-overview,US,tarot card of the day top10 full,15,105
+2026-11-11,9b,serp-overview,US,one card tarot reading top10 full,26,182
+2026-11-11,9b,serp-overview,US,three of swords tarot top10 full,22,154
+2026-11-11,9b,serp-overview,US,three of swords reversed top10 full,28,196
+2026-11-11,9b,serp-overview,US,three of swords yes or no top10 full,24,168
+2026-11-11,9b,serp-overview,MX,tarot del dia de hoy top10 full,13,91
+2026-11-11,9b,serp-overview,MX,reina de copas tarot top10 full,25,175
+2026-11-11,9b,serp-overview,MX,reina de copas invertida top10 full,19,133
+2026-11-11,11b,serp-overview,US,the star as feelings top10 full,27,189
+2026-11-11,11b,serp-overview,US,three of swords as feelings top10 full,24,168
+2026-11-11,11b,serp-overview,US,the star advice top10 full,39,273
+2026-11-11,11b,serp-overview,US,three of swords advice top10 full,20,140
+2026-11-11,11b,serp-overview,MX,la torre si o no top10 full,23,161
+2026-11-11,11b,serp-overview,MX,reina de copas si o no top10 full,17,119
+2026-11-11,11b,serp-overview,US,list of tarot card combinations meanings top10 full,16,112
+2026-11-11,11b,serp-overview,US,tarot card combinations calculator top10 full,0,50
+2026-11-11,11b,serp-overview,US,yes or no tarot spread top10 full,31,217
+2026-11-11,11b,serp-overview,US,tarot cards major arcana top10 full,36,252
+2026-11-11,11b,serp-overview,US,tarot card meanings pdf top10 full,23,161
+2026-11-11,11b,serp-overview,US,x tarot card meaning top10 full,23,161
+2026-11-11,11b,serp-overview,US,tarot birth card meaning top10 full,24,168
+2026-11-11,11b,serp-overview,MX,arcano de nacimiento 8 top10 full,0,50
+2026-11-11,11b,serp-overview,MX,escorpio tarot hoy top10 full,0,50
+2026-11-11,11b,serp-overview,MX,horoscopo tarot top10 full,13,91
+2026-11-11,12,keywords-explorer-overview,US,kd probe x5 select=keyword+difficulty,5,55
+2026-11-11,12,keywords-explorer-overview,US,kd main queries x118 select=keyword+difficulty,118,1298
+2026-11-11,12,keywords-explorer-overview,MX,kd main queries x103 select=keyword+difficulty,103,1133
+2026-11-11,12-fix,keywords-explorer-overview,US,the tower 4 matrix kw (gap from task 5),4,50

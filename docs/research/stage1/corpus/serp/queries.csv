@@ -1,0 +1,106 @@
+type_id,market,query,reason,note
+home,US,tarot reading,"max volume; vol=38000 (US, 2026-11-10); parent_topic=tarot reading",has_sitelink_rows|has_traffic
+home,US,tarot ai,"other modifier/parent_topic; vol=5900 (US, 2026-11-10); parent_topic=ai tarot",has_sitelink_rows
+home,US,free tarot reading,"other modifier/parent_topic; vol=20000 (US, 2026-11-10); parent_topic=tarot reading",
+one-card,US,one card tarot,"max volume; vol=7000 (US, 2026-11-10); parent_topic=one card tarot",has_sitelink_rows
+one-card,US,daily tarot,"other modifier/parent_topic; vol=3100 (US, 2026-11-10); parent_topic=daily tarot",has_sitelink_rows
+one-card,US,pull a tarot card,"other modifier/parent_topic; vol=800 (US, 2026-11-10); parent_topic=tarot generator",
+yes-no,US,yes or no tarot,"max volume; vol=42000 (US, 2026-11-10); parent_topic=yes no tarot",has_sitelink_rows
+yes-no,US,yes or no tarot accurate 100 percent,"other modifier/parent_topic; vol=2600 (US, 2026-11-10); parent_topic=yes or no tarot accurate 100 percent",has_sitelink_rows
+yes-no,US,online tarot reading yes or no,"other modifier/parent_topic; vol=2000 (US, 2026-11-10); parent_topic=yes or no tarot",
+love,US,love tarot,"max volume; vol=3600 (US, 2026-11-10); parent_topic=love tarot",has_sitelink_rows
+love,US,love tarot spread,"other modifier/parent_topic; vol=2200 (US, 2026-11-10); parent_topic=tarot card spreads",has_sitelink_rows
+love,US,free tarot card reading love,"other modifier/parent_topic; vol=1600 (US, 2026-11-10); parent_topic=love tarot reading",
+cards,US,tarot card meanings,"max volume; vol=29000 (US, 2026-11-10); parent_topic=tarot cards",has_sitelink_rows
+cards,US,the moon tarot,"other modifier/parent_topic; vol=21000 (US, 2026-11-10); parent_topic=the moon tarot",has_sitelink_rows
+cards,US,the tower tarot meaning,"other modifier/parent_topic; vol=3700 (US, 2026-11-10); parent_topic=the tower tarot",has_sitelink_rows
+card-context,US,death tarot card meaning,"max volume; vol=6600 (US, 2026-11-10); parent_topic=death tarot",has_sitelink_rows
+card-context,US,the star reversed,"other modifier/parent_topic; vol=4500 (US, 2026-11-10); parent_topic=the star tarot",has_sitelink_rows
+card-context,US,the lovers tarot love,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=the lovers tarot",has_sitelink_rows
+spreads,US,tarot spreads,"max volume; vol=9400 (US, 2026-11-10); parent_topic=tarot spreads",
+spreads,US,celtic cross tarot,"other modifier/parent_topic; vol=5700 (US, 2026-11-10); parent_topic=celtic cross tarot",has_sitelink_rows
+spreads,US,tarot spreads for guidance,"other modifier/parent_topic; vol=2700 (US, 2026-11-10); parent_topic=tarot spreads for guidance",has_sitelink_rows
+birth-card,US,tarot birth card,"max volume; vol=2500 (US, 2026-11-10); parent_topic=birth tarot card",
+birth-card,US,what is my tarot card,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=birth tarot card",has_sitelink_rows
+birth-card,US,tarot birth card calculator,"other modifier/parent_topic; vol=500 (US, 2026-11-10); parent_topic=birth tarot card",
+horoscope,US,libra tarot,"max volume; vol=1300 (US, 2026-11-10); parent_topic=libra tarot",
+horoscope,US,tarot horoscope,"other modifier/parent_topic; vol=1100 (US, 2026-11-10); parent_topic=tarot",
+horoscope,US,zodiac signs tarot cards,"other modifier/parent_topic; vol=900 (US, 2026-11-10); parent_topic=zodiac tarot cards",has_sitelink_rows
+quiz,US,what tarot card am i,"max volume; vol=900 (US, 2026-11-10); parent_topic=what tarot card am i",
+quiz,US,tarot card quiz,"other modifier/parent_topic; vol=300 (US, 2026-11-10); parent_topic=tarot card quiz",
+quiz,US,tarot card questions,"other modifier/parent_topic; vol=350 (US, 2026-11-10); parent_topic=tarot questions",
+pairs,US,tarot card combinations,"max volume; vol=350 (US, 2026-11-10); parent_topic=tarot card combinations",
+pairs,US,list of tarot card combinations meanings,"other modifier/parent_topic; vol=100 (US, 2026-11-10); parent_topic=tarot combinations",has_sitelink_rows
+pairs,US,the sun and the moon tarot,"other modifier/parent_topic; vol=60 (US, 2026-11-10); parent_topic=sun and moon tarot card meaning",has_sitelink_rows
+learn,US,how to read tarot cards,"max volume; vol=6000 (US, 2026-11-10); parent_topic=how to read tarot cards",has_sitelink_rows
+learn,US,learn tarot,"other modifier/parent_topic; vol=1200 (US, 2026-11-10); parent_topic=tarot course",
+learn,US,tarot decks for beginners,"other modifier/parent_topic; vol=450 (US, 2026-11-10); parent_topic=best tarot decks for beginners",has_sitelink_rows
+home,MX,tarot,"max volume; vol=27000 (MX, 2026-11-10); parent_topic=tarot",has_sitelink_rows
+home,MX,tarot gratis,"other modifier/parent_topic; vol=12000 (MX, 2026-11-10); parent_topic=tarot gratis",
+home,MX,tarot arcanos,"other modifier/parent_topic; vol=4500 (MX, 2026-11-10); parent_topic=los arcanos",
+one-card,MX,tarot diario,"max volume; vol=100 (MX, 2026-11-10); parent_topic=нет данных",stale_serp:2024-01
+one-card,MX,tarot 1 carta gratis,"other modifier/parent_topic; vol=90 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+one-card,MX,tarot una carta,"other modifier/parent_topic; vol=80 (MX, 2026-11-10); parent_topic=нет данных",stale_serp:2022-01
+yes-no,MX,tarot si o no,"max volume; vol=4000 (MX, 2026-11-10); parent_topic=tarot si o no",
+yes-no,MX,oraculo si o no,"other modifier/parent_topic; vol=800 (MX, 2026-11-10); parent_topic=oraculo si o no",
+yes-no,MX,tarot si o no amigo,"other modifier/parent_topic; vol=400 (MX, 2026-11-10); parent_topic=нет данных",stale_serp:2024-03
+love,MX,tarot del amor,"max volume; vol=500 (MX, 2026-11-10); parent_topic=tarot del amor",
+love,MX,tarot del amor gratis,"other modifier/parent_topic; vol=250 (MX, 2026-11-10); parent_topic=tarot del amor gratis",has_sitelink_rows
+love,MX,tarot certero gratis futuro inmediato amor,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+cards,MX,la estrella tarot,"max volume; vol=2600 (MX, 2026-11-10); parent_topic=la estrella tarot",has_sitelink_rows
+cards,MX,la torre tarot,"other modifier/parent_topic; vol=2100 (MX, 2026-11-10); parent_topic=la torre tarot",has_sitelink_rows
+cards,MX,arcanos mayores,"other modifier/parent_topic; vol=1800 (MX, 2026-11-10); parent_topic=arcanos mayores",has_sitelink_rows
+card-context,MX,los enamorados,"max volume; vol=150 (MX, 2026-11-10); parent_topic=los enamorados tarot",has_sitelink_rows
+card-context,MX,la muerte tarot invertida,"other modifier/parent_topic; vol=50 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+spreads,MX,cruz celta tarot,"max volume; vol=700 (MX, 2026-11-10); parent_topic=tarot cruz celta",
+spreads,MX,tirada de 3 cartas gratis,"other modifier/parent_topic; vol=700 (MX, 2026-11-10); parent_topic=tarot gratis 3 cartas",
+spreads,MX,tiradas de tarot,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=esquemas tiradas de tarot",has_sitelink_rows
+birth-card,MX,arcano de nacimiento,"max volume; vol=600 (MX, 2026-11-10); parent_topic=arcano personal",has_sitelink_rows
+birth-card,MX,como saber mi arcano de nacimiento,"other modifier/parent_topic; vol=300 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+birth-card,MX,como saber cual es mi carta del tarot,"other modifier/parent_topic; vol=50 (MX, 2026-11-10); parent_topic=cual es mi carta del tarot",has_sitelink_rows
+horoscope,MX,tarot libra hoy,"max volume; vol=60 (MX, 2026-11-10); parent_topic=horoscopo de hoy libra",has_sitelink_rows
+quiz,MX,que arcano soy,"max volume; vol=150 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+quiz,MX,que carta del tarot soy,"other modifier/parent_topic; vol=100 (MX, 2026-11-10); parent_topic=que carta del tarot soy",has_sitelink_rows
+quiz,MX,como saber que arcano soy,"other modifier/parent_topic; vol=80 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+learn,MX,como leer el tarot,"max volume; vol=700 (MX, 2026-11-10); parent_topic=como leer las cartas",has_sitelink_rows
+learn,MX,curso de tarot,"other modifier/parent_topic; vol=200 (MX, 2026-11-10); parent_topic=curso de tarot",
+learn,MX,guía de tarot para principiantes pdf,"other modifier/parent_topic; vol=150 (MX, 2026-11-10); parent_topic=нет данных; SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+cards,US,the star tarot,"task 9: ждут ли reversed на странице карты — база для сравнения с the star reversed (10-task-map, неизвестные); vol=25000 (US, 2026-11-10)",has_sitelink_rows
+yes-no,US,yes no tarot horoscope,"task 9: yes no tarot horoscope — да/нет или гороскоп (minor из ревью Task 8); vol=1600 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,the star yes or no,"task 9: контекст yes-no — отдельный документ или страница карты (сравнение с the star tarot); vol=700 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,the star as feelings,"task 9: контекст feelings — отдельный документ или страница карты (сравнение с the star tarot); vol=250 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,9 of swords tarot love meaning,"task 9: шаблон love для младших арканов (<card> love meaning), 10-task-map; vol=1400 (US, 2026-11-10); SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+yes-no,MX,tarot si o no 1 carta,"task 9: одна карта в MX — вход через да/нет; one-card против yes-no (стабильных снимков one-card MX нет); vol=350 (MX, 2026-11-10)",has_sitelink_rows
+home,MX,tarot gratis 3 cartas,"task 9: tirada в MX — инструмент; tarot gratis 3 cartas против tirada de 3 cartas gratis; vol=2400 (MX, 2026-11-10)",has_sitelink_rows
+home,MX,cartas del tarot,"task 9: гипотеза «в MX по общим ключам ищут значения карт» (10-task-map, home ES); home против cards; vol=3300 (MX, 2026-11-10)",has_sitelink_rows
+card-context,MX,la torre invertida tarot,"task 9: invertida в MX — отдельный документ или страница карты (сравнение с la torre tarot); vol=100 (MX, 2026-11-10)",has_sitelink_rows
+spreads,US,3 card tarot spread,"task 9: spread в EN — статья или инструмент; сравнение с free 3 card tarot reading; vol=2100 (US, 2026-11-10)",has_sitelink_rows
+home,US,free 3 card tarot reading,"task 9: free + схема — инструмент; сравнение с 3 card tarot spread; vol=1000 (US, 2026-11-10)",has_sitelink_rows
+yes-no,US,yes or no tarot list,"task 9: список карт да/нет — справка или инструмент; сравнение с yes or no tarot; vol=1200 (US, 2026-11-10)",has_sitelink_rows
+card-context,MX,la estrella tarot amor,"task 9: контекст amor в MX — отдельный документ или страница карты (сравнение с la estrella tarot); vol=80 (MX, 2026-11-10)",has_sitelink_rows
+home,MX,chatgpt tarot,"task 9: chatgpt tarot в MX — промпт для ChatGPT или готовый ИИ-чтец (10-task-map, home ES); vol=1400 (MX, 2026-11-10)",has_sitelink_rows
+card-context,US,the star tarot love,"task 9: контекст love — отдельный документ или страница карты (сравнение с the star tarot); vol=500 (US, 2026-11-10)",has_sitelink_rows
+one-card,US,tarot card of the day,"task 9 v1.2: one card против daily (EN-G03/EN-G04, «Спорные группы»); vol=1800 (US, 2026-11-10)",has_sitelink_rows
+one-card,US,one card tarot reading,"task 9 v1.2: one card против daily (EN-G03/EN-G04, «Спорные группы»); vol=1400 (US, 2026-11-10)",has_sitelink_rows
+cards,US,three of swords tarot,"task 9 v1.2: младший аркан — база для card × context (EN-G12/EN-G15); vol=1000 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,three of swords reversed,"task 9 v1.2: reversed на младшем аркане — сравнение с three of swords tarot (EN-G12); vol=3600 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,three of swords yes or no,"task 9 v1.2: yes-no на младшем аркане — сравнение с three of swords tarot; vol=600 (US, 2026-11-10)",has_sitelink_rows
+one-card,MX,tarot del dia de hoy,"task 9 v1.2: карта дня в MX (ES-G19; tarot diario и tarot una carta — stale); vol=70 (MX, 2026-11-10)",
+cards,MX,reina de copas tarot,"task 9 v1.2: младший аркан MX — база для card × context (ES-G11/ES-G12); vol=1700 (MX, 2026-11-10)",has_sitelink_rows
+card-context,MX,reina de copas invertida,"task 9 v1.2: invertida на младшем аркане MX — сравнение с reina de copas tarot (ES-G11); vol=300 (MX, 2026-11-10)",has_sitelink_rows
+card-context,US,the star as feelings,"task 11b: TGA-EN-card-context-feelings — повтор старого снимка; vol=250 (US, 2026-11-10); Ahrefs вернул ту же выдачу (update_date не изменилась), дубликат не создан",has_sitelink_rows|same_serp_as:us/the-star-as-feelings.json
+card-context,US,three of swords as feelings,"task 11b: TGA-EN-card-context-feelings — младший аркан против three of swords tarot; vol=90 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,the star advice,"task 11b: TGA-EN-card-context-advice — против the star tarot; vol=20 (US, 2026-11-10)",has_sitelink_rows
+card-context,US,three of swords advice,"task 11b: TGA-EN-card-context-advice — против three of swords tarot; vol=50 (US, 2026-11-10)",has_sitelink_rows
+card-context,MX,la torre si o no,"task 11b: TGA-ES-card-context-yes-no — против la torre tarot; vol=20 (MX, 2026-11-10)",has_sitelink_rows
+card-context,MX,reina de copas si o no,"task 11b: TGA-ES-card-context-yes-no — против reina de copas tarot; vol=50 (MX, 2026-11-10)",has_sitelink_rows
+pairs,US,list of tarot card combinations meanings,"task 11b: TGA-EN-pairs-guide — повтор старого снимка; vol=100 (US, 2026-11-10); Ahrefs вернул ту же выдачу (update_date не изменилась), дубликат не создан",has_sitelink_rows|same_serp_as:us/list-of-tarot-card-combinations-meanings.json
+pairs,US,tarot card combinations calculator,"task 11b: TGA-EN-pairs-guide — задача калькулятора; vol=30 (US, 2026-11-10); SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+yes-no,US,yes or no tarot spread,"task 11b: TGA-EN-yes-no-spread — против yes or no tarot и yes or no tarot list; vol=900 (US, 2026-11-10)",has_sitelink_rows
+cards,US,tarot cards major arcana,"task 11b: TGA-EN-cards-major — против tarot card meanings; vol=1800 (US, 2026-11-10)",has_sitelink_rows
+cards,US,tarot card meanings pdf,"task 11b: TGA-EN-cards-cheatsheet — против tarot card meanings; vol=1100 (US, 2026-11-10)",has_sitelink_rows
+birth-card,US,x tarot card meaning,"task 11b: TGA-EN-birth-card-results — номер карты или карта рождения; vol=200 (US, 2026-11-10)",has_sitelink_rows
+birth-card,US,tarot birth card meaning,"task 11b: TGA-EN-birth-card-results — против tarot birth card; vol=150 (US, 2026-11-10)",has_sitelink_rows
+birth-card,MX,arcano de nacimiento 8,"task 11b: TGA-ES-birth-card-results — против arcano de nacimiento; vol=60 (MX, 2026-11-10); SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+horoscope,MX,escorpio tarot hoy,"task 11b: TGA-ES-horoscope — таро или обычный гороскоп; vol=30 (MX, 2026-11-10); SERP пуст в Ahrefs (нет данных), файл не создан",empty_serp
+horoscope,MX,horoscopo tarot,"task 11b: TGA-ES-horoscope — таро или обычный гороскоп; vol=40 (MX, 2026-11-10)",stale_serp:2024-01

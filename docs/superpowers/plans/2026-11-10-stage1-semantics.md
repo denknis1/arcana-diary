@@ -608,3 +608,75 @@ Expected: `OK` дважды.
   - сумма юнитов в ledger ≤ 100 000.
 - [ ] **Step 2: Журнал** — `99-changelog.md`: версия 1.0, дата, ответственный, состав, изменения.
 - [ ] **Step 3: Commit, push, отчёт пользователю** — по формату ТЗ (раздел 8): сначала вывод, потом решения по типам с источниками, отдельным списком — не проверенное и вопросы. Пользователь просматривает `40-tga.md` и карты.
+
+---
+
+## Поправка 1 (10.11.2026): двухшаговый сбор Ahrefs
+
+**Причина.** Замер 10.11.2026: стоимость строки Ahrefs зависит от колонок — `keyword` ≈ 1 юнит, `volume` +10,
+`difficulty` +10, `parent_topic` +11. Полный набор колонок по плану давал 8 000 юнитов на тип × рынок (> 200 000
+на этап). Книга: частотность ≠ важность (7.2.1), смена формулировки без смены задачи — не новая задача (c07.07):
+для карты задач нужна широта формулировок, а не длинный хвост с цифрами.
+
+**Заменяет** в Task 3, 4, 5 параметры `select`, лимиты и формат файлов; остальное в задачах без изменений.
+
+**Шаг A — разведка формулировок (≈1 юнит/строка).** Для каждого типа × рынка: `matching-terms` по 5 сидам типа,
+`select=keyword`, `order_by=volume:desc`, `limit=300`; `related-terms` и `search-suggestions` — `select=keyword`,
+`limit=100` (параметры через `doc`). Один раз на рынок: `matching-terms`, `keywords=tarot` (MX: `tarot`),
+`terms=questions`, `select=keyword`, `order_by=volume:desc`, `limit=300`. Без `where`. Файл
+`corpus/ahrefs/<us|mx>/discovery/<type_id>.csv` и `…/discovery/questions.csv`: `rank,keyword,source_tool,country,data_date`
+(`rank` — порядковый номер в ответе, т. е. по убыванию спроса).
+
+**Шаг B — «верхушка» с объёмом (≈11 юнитов/строка).** Список на оценку: по каждому типу первые 60 из matching +
+первые 20 из related + первые 20 из suggestions; плюс первые 100 вопросов; без повторов по всему рынку.
+`keywords-explorer-overview`, `select=keyword,volume`, пачками по 100. Файл `corpus/ahrefs/<us|mx>/<type_id>.csv`:
+`keyword,volume,source_tool,country,data_date` (запрос встречается у нескольких типов — строка в каждом файле
+типа, объём один). Нет в ответе → `нет данных`.
+
+**KD** не собирается в Task 3–5; добирается в Task 12 через `overview` (`select=keyword,difficulty`) только для
+основных запросов строк карты со `wave=запуск`.
+
+**Матрица Task 5:** `select=keyword,volume` (без `difficulty`, `parent_topic`); колонки файла
+`card_id,context,keyword,volume,country,data_date`. ES-варианты дополнить: El Ahorcado, La Fortaleza,
+La Temperancia, La Parca, El Papa, El Eremita, El Carruaje (по 6 формулировок на вариант).
+
+**Task 4, спрос по странам:** 100 верхних ES-запросов вместо 200; `select=keyword,volume`.
+
+**Лимиты:** Task 3 ≤ 15 000; Task 4 ≤ 20 000; Task 5 ≤ 12 000; этап ≤ 100 000 без изменений.
+Уже оплаченная выгрузка yes-no (US) с полным набором колонок —
+`~/.claude/projects/-home-deploy/0ce1087d-69eb-43d4-8c76-3ce3133aa869/tool-results/toolu_01B45DE7kJLkzUKa7rmJjXeY.json`
+— используется для Шага A и B типа `yes-no` вместо повторного запроса matching.
+
+## Поправка 2 (10.11.2026): верхушка с объёмом за один проход
+
+**Причина.** Уточнённый замер: сортировка `order_by=volume` тарифицируется как колонка `volume` (+10/строка);
+`select=keyword` без сортировки — 1/строка, но без порядка по спросу (мусор). `parent_topic` ≈ +1/строка
+(в первом замере 12 = 1 + 10 за сортировку + 1). Шаги A и B поправки 1 объединяются.
+
+**Заменяет шаги A и B поправки 1.** На каждый тип × рынок: `matching-terms` `limit=60`, `related-terms` `limit=15`,
+`search-suggestions` `limit=15`; все — `select=keyword,volume,parent_topic`, `order_by=volume:desc`. Вопросы: один
+вызов на рынок, `terms=questions`, `limit=100`, те же `select` и сортировка. Файл `corpus/ahrefs/<us|mx>/<type_id>.csv`:
+`rank,keyword,volume,parent_topic,source_tool,country,data_date`; вопросы — `…/questions.csv`. Каталог `discovery/`
+не используется (уже собранный `us/discovery/home.csv` хранится как есть, для `home` matching перезапрашивать
+`limit=60` с объёмом).
+
+**Лимиты:** Task 3 ≤ 17 000 новых юнитов (сверх уже потраченных 8 230); Task 4 ≤ 18 000; Task 5 ≤ 12 000.
+
+## Поправка 3 (10.11.2026): KD для всех строк карты; бюджет
+
+KD (`keywords-explorer-overview`, `select=keyword,difficulty`) — для основного запроса **каждой** строки итоговой
+карты на всех волнах (не только `wave=запуск`), ~250 запросов на язык, в Task 12 Step 5. Оптимизированный бюджет
+этапа ≈ 83 000 юнитов (вилка 75–95 тыс.), потолок 100 000 без изменений. Перед массовым запуском `serp-overview`
+(Task 6) и `site-explorer-*` (Task 7) — пробный вызов и замер стоимости; если проекция задачи > 12 000 — сократить
+выборку и записать сокращение в отчёт задачи.
+
+## Поправка 4 (10.11.2026): без related-terms для MX
+
+Ревью Task 3: `related-terms` давал общие одиночные слова (card, love, free) — шум за ~180 юнитов на тип.
+В Task 4 (MX) `related-terms` не вызывается; `matching` 60 + `suggestions` 15 на тип. Лимит Task 4 ≤ 16 000.
+
+## Поправка 5 (10.11.2026): варианты ES-названий в матрице — 2 контекста
+
+В Task 5 для вариантов ES-названий (`es_variants` + 7 вариантов из поправки 1) — только контексты `base` и `love`
+(`<вариант> tarot`, `<вариант> tarot amor`): цель — понять, какое название побеждает, а не полная матрица.
+Основные названия — все 6 контекстов. EN — 78 × 6. Ожидаемо ≈1 000 строк × 11 ≈ 11 000 юнитов; лимит Task 5 ≤ 12 000.

@@ -1,0 +1,79 @@
+card_id,arcana,suit,rank,name_en,slug_en,name_es,slug_es,es_variants
+major-00-fool,major,,0,The Fool,the-fool,El Loco,el-loco,
+major-01-magician,major,,1,The Magician,the-magician,El Mago,el-mago,
+major-02-high-priestess,major,,2,The High Priestess,the-high-priestess,La Sacerdotisa,la-sacerdotisa,La Papisa
+major-03-empress,major,,3,The Empress,the-empress,La Emperatriz,la-emperatriz,
+major-04-emperor,major,,4,The Emperor,the-emperor,El Emperador,el-emperador,
+major-05-hierophant,major,,5,The Hierophant,the-hierophant,El Hierofante,el-hierofante,El Sumo Sacerdote
+major-06-lovers,major,,6,The Lovers,the-lovers,Los Enamorados,los-enamorados,
+major-07-chariot,major,,7,The Chariot,the-chariot,El Carro,el-carro,
+major-08-strength,major,,8,Strength,strength,La Fuerza,la-fuerza,
+major-09-hermit,major,,9,The Hermit,the-hermit,El Ermitaño,el-ermitano,
+major-10-wheel-of-fortune,major,,10,Wheel of Fortune,wheel-of-fortune,La Rueda de la Fortuna,la-rueda-de-la-fortuna,La Rueda
+major-11-justice,major,,11,Justice,justice,La Justicia,la-justicia,
+major-12-hanged-man,major,,12,The Hanged Man,the-hanged-man,El Colgado,el-colgado,
+major-13-death,major,,13,Death,death,La Muerte,la-muerte,
+major-14-temperance,major,,14,Temperance,temperance,La Templanza,la-templanza,
+major-15-devil,major,,15,The Devil,the-devil,El Diablo,el-diablo,
+major-16-tower,major,,16,The Tower,the-tower,La Torre,la-torre,
+major-17-star,major,,17,The Star,the-star,La Estrella,la-estrella,
+major-18-moon,major,,18,The Moon,the-moon,La Luna,la-luna,
+major-19-sun,major,,19,The Sun,the-sun,El Sol,el-sol,
+major-20-judgement,major,,20,Judgement,judgement,El Juicio,el-juicio,El Juicio Final
+major-21-world,major,,21,The World,the-world,El Mundo,el-mundo,
+wands-01-ace,minor,wands,1,Ace of Wands,ace-of-wands,As de Bastos,as-de-bastos,
+wands-02-two,minor,wands,2,Two of Wands,two-of-wands,Dos de Bastos,dos-de-bastos,
+wands-03-three,minor,wands,3,Three of Wands,three-of-wands,Tres de Bastos,tres-de-bastos,
+wands-04-four,minor,wands,4,Four of Wands,four-of-wands,Cuatro de Bastos,cuatro-de-bastos,
+wands-05-five,minor,wands,5,Five of Wands,five-of-wands,Cinco de Bastos,cinco-de-bastos,
+wands-06-six,minor,wands,6,Six of Wands,six-of-wands,Seis de Bastos,seis-de-bastos,
+wands-07-seven,minor,wands,7,Seven of Wands,seven-of-wands,Siete de Bastos,siete-de-bastos,
+wands-08-eight,minor,wands,8,Eight of Wands,eight-of-wands,Ocho de Bastos,ocho-de-bastos,
+wands-09-nine,minor,wands,9,Nine of Wands,nine-of-wands,Nueve de Bastos,nueve-de-bastos,
+wands-10-ten,minor,wands,10,Ten of Wands,ten-of-wands,Diez de Bastos,diez-de-bastos,
+wands-11-page,minor,wands,11,Page of Wands,page-of-wands,Sota de Bastos,sota-de-bastos,Paje de Bastos
+wands-12-knight,minor,wands,12,Knight of Wands,knight-of-wands,Caballo de Bastos,caballo-de-bastos,Caballero de Bastos
+wands-13-queen,minor,wands,13,Queen of Wands,queen-of-wands,Reina de Bastos,reina-de-bastos,
+wands-14-king,minor,wands,14,King of Wands,king-of-wands,Rey de Bastos,rey-de-bastos,
+cups-01-ace,minor,cups,1,Ace of Cups,ace-of-cups,As de Copas,as-de-copas,
+cups-02-two,minor,cups,2,Two of Cups,two-of-cups,Dos de Copas,dos-de-copas,
+cups-03-three,minor,cups,3,Three of Cups,three-of-cups,Tres de Copas,tres-de-copas,
+cups-04-four,minor,cups,4,Four of Cups,four-of-cups,Cuatro de Copas,cuatro-de-copas,
+cups-05-five,minor,cups,5,Five of Cups,five-of-cups,Cinco de Copas,cinco-de-copas,
+cups-06-six,minor,cups,6,Six of Cups,six-of-cups,Seis de Copas,seis-de-copas,
+cups-07-seven,minor,cups,7,Seven of Cups,seven-of-cups,Siete de Copas,siete-de-copas,
+cups-08-eight,minor,cups,8,Eight of Cups,eight-of-cups,Ocho de Copas,ocho-de-copas,
+cups-09-nine,minor,cups,9,Nine of Cups,nine-of-cups,Nueve de Copas,nueve-de-copas,
+cups-10-ten,minor,cups,10,Ten of Cups,ten-of-cups,Diez de Copas,diez-de-copas,
+cups-11-page,minor,cups,11,Page of Cups,page-of-cups,Sota de Copas,sota-de-copas,Paje de Copas
+cups-12-knight,minor,cups,12,Knight of Cups,knight-of-cups,Caballo de Copas,caballo-de-copas,Caballero de Copas
+cups-13-queen,minor,cups,13,Queen of Cups,queen-of-cups,Reina de Copas,reina-de-copas,
+cups-14-king,minor,cups,14,King of Cups,king-of-cups,Rey de Copas,rey-de-copas,
+swords-01-ace,minor,swords,1,Ace of Swords,ace-of-swords,As de Espadas,as-de-espadas,
+swords-02-two,minor,swords,2,Two of Swords,two-of-swords,Dos de Espadas,dos-de-espadas,
+swords-03-three,minor,swords,3,Three of Swords,three-of-swords,Tres de Espadas,tres-de-espadas,
+swords-04-four,minor,swords,4,Four of Swords,four-of-swords,Cuatro de Espadas,cuatro-de-espadas,
+swords-05-five,minor,swords,5,Five of Swords,five-of-swords,Cinco de Espadas,cinco-de-espadas,
+swords-06-six,minor,swords,6,Six of Swords,six-of-swords,Seis de Espadas,seis-de-espadas,
+swords-07-seven,minor,swords,7,Seven of Swords,seven-of-swords,Siete de Espadas,siete-de-espadas,
+swords-08-eight,minor,swords,8,Eight of Swords,eight-of-swords,Ocho de Espadas,ocho-de-espadas,
+swords-09-nine,minor,swords,9,Nine of Swords,nine-of-swords,Nueve de Espadas,nueve-de-espadas,
+swords-10-ten,minor,swords,10,Ten of Swords,ten-of-swords,Diez de Espadas,diez-de-espadas,
+swords-11-page,minor,swords,11,Page of Swords,page-of-swords,Sota de Espadas,sota-de-espadas,Paje de Espadas
+swords-12-knight,minor,swords,12,Knight of Swords,knight-of-swords,Caballo de Espadas,caballo-de-espadas,Caballero de Espadas
+swords-13-queen,minor,swords,13,Queen of Swords,queen-of-swords,Reina de Espadas,reina-de-espadas,
+swords-14-king,minor,swords,14,King of Swords,king-of-swords,Rey de Espadas,rey-de-espadas,
+pentacles-01-ace,minor,pentacles,1,Ace of Pentacles,ace-of-pentacles,As de Oros,as-de-oros,As de Pentáculos
+pentacles-02-two,minor,pentacles,2,Two of Pentacles,two-of-pentacles,Dos de Oros,dos-de-oros,Dos de Pentáculos
+pentacles-03-three,minor,pentacles,3,Three of Pentacles,three-of-pentacles,Tres de Oros,tres-de-oros,Tres de Pentáculos
+pentacles-04-four,minor,pentacles,4,Four of Pentacles,four-of-pentacles,Cuatro de Oros,cuatro-de-oros,Cuatro de Pentáculos
+pentacles-05-five,minor,pentacles,5,Five of Pentacles,five-of-pentacles,Cinco de Oros,cinco-de-oros,Cinco de Pentáculos
+pentacles-06-six,minor,pentacles,6,Six of Pentacles,six-of-pentacles,Seis de Oros,seis-de-oros,Seis de Pentáculos
+pentacles-07-seven,minor,pentacles,7,Seven of Pentacles,seven-of-pentacles,Siete de Oros,siete-de-oros,Siete de Pentáculos
+pentacles-08-eight,minor,pentacles,8,Eight of Pentacles,eight-of-pentacles,Ocho de Oros,ocho-de-oros,Ocho de Pentáculos
+pentacles-09-nine,minor,pentacles,9,Nine of Pentacles,nine-of-pentacles,Nueve de Oros,nueve-de-oros,Nueve de Pentáculos
+pentacles-10-ten,minor,pentacles,10,Ten of Pentacles,ten-of-pentacles,Diez de Oros,diez-de-oros,Diez de Pentáculos
+pentacles-11-page,minor,pentacles,11,Page of Pentacles,page-of-pentacles,Sota de Oros,sota-de-oros,Sota de Pentáculos|Paje de Oros|Paje de Pentáculos
+pentacles-12-knight,minor,pentacles,12,Knight of Pentacles,knight-of-pentacles,Caballo de Oros,caballo-de-oros,Caballo de Pentáculos|Caballero de Oros|Caballero de Pentáculos
+pentacles-13-queen,minor,pentacles,13,Queen of Pentacles,queen-of-pentacles,Reina de Oros,reina-de-oros,Reina de Pentáculos
+pentacles-14-king,minor,pentacles,14,King of Pentacles,king-of-pentacles,Rey de Oros,rey-de-oros,Rey de Pentáculos
