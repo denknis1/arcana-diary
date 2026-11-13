@@ -5,6 +5,7 @@
 """
 import sys
 
+from structure_hreflang import check_hreflang
 from structure_links import check_links
 from structure_map import ROOT, STAGE1, STAGE2, check_map, read_csv
 
@@ -23,7 +24,12 @@ def main() -> int:
             errs += check_links(header, links, maps[lang], lang)
         else:
             skipped.append(str(links_path.relative_to(ROOT)))
-    skipped.append(str((STAGE2 / "hreflang.csv").relative_to(ROOT)))
+    hl_path = STAGE2 / "hreflang.csv"
+    if hl_path.exists():
+        header, hl = read_csv(hl_path)
+        errs += check_hreflang(header, hl, maps, cards)
+    else:
+        skipped.append(str(hl_path.relative_to(ROOT)))
     for s in skipped:
         print(f"пропущено, файла нет: {s}")
     for e in errs:
