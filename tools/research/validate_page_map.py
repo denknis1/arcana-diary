@@ -1,28 +1,40 @@
-"""Проверка итоговой карты страниц этапа 1 (колонки — спецификация этапа 1)."""
+"""Проверка итоговой карты страниц (колонки — спецификации этапов 1 и 2)."""
 import csv
+import re
 import sys
 
 COMMON_HEAD = ["id", "page_type", "working_title", "task", "intent_label", "top_entities", "queries"]
 COMMON_TAIL = ["kd", "data_date", "decision", "rationale", "priority_value", "priority_readiness",
                "priority_constraints", "maintenance_cost", "dependencies", "open_questions", "wave"]
-COLUMNS_EN = COMMON_HEAD + ["volume_us"] + COMMON_TAIL
-COLUMNS_ES = COMMON_HEAD + ["volume_mx", "volume_ar", "volume_co", "volume_es", "volume_us_es"] + COMMON_TAIL
+STRUCTURE_COLUMNS = ["url", "entity_id", "parent_id", "breadcrumb", "menu_item", "host_id", "pages"]
+COLUMNS_EN_V12 = COMMON_HEAD + ["volume_us"] + COMMON_TAIL
+COLUMNS_ES_V12 = COMMON_HEAD + ["volume_mx", "volume_ar", "volume_co", "volume_es", "volume_us_es"] + COMMON_TAIL
+COLUMNS_EN = COLUMNS_EN_V12 + STRUCTURE_COLUMNS
+COLUMNS_ES = COLUMNS_ES_V12 + STRUCTURE_COLUMNS
 
 PAGE_TYPES = {"home", "one-card", "yes-no", "love", "cards", "card-context", "spreads",
               "birth-card", "horoscope", "quiz", "pairs", "learn"}
 DECISIONS = {"доработать", "раздел", "имеющийся ответ", "самостоятельная страница", "отклонить", "получить данные"}
 WAVES = {"запуск", "V1.1", "V2", "V3"}
+LANGS = {"en", "es"}
 NO_DATA = "нет данных"
+ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+USAGE = "использование: python3 tools/research/validate_page_map.py <путь к карте.csv> <en|es>"
 
 
 def validate(path: str, lang: str) -> list[str]:
+    if lang not in LANGS:
+        raise ValueError(f"язык должен быть en или es, получено: {lang}")
     expected = COLUMNS_EN if lang == "en" else COLUMNS_ES
+    legacy = COLUMNS_EN_V12 if lang == "en" else COLUMNS_ES_V12
     with open(path, newline="") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames or []
-        if header != expected:
+        if header not in (expected, legacy):
             return [f"колонки не совпадают: ожидалось {expected}, получено {header}"]
         rows = list(reader)
+    if header == legacy:
+        expected = legacy
 
     errors: list[str] = []
     volume_cols = [c for c in expected if c.startswith("volume_")]
@@ -48,7 +60,13 @@ def validate(path: str, lang: str) -> list[str]:
                 if not v.isdigit():
                     errors.append(f"строка {n}: {c} не число: {v}")
                 has_volume = True
-        if has_volume and not row["data_date"].strip():
+        kd = row["kd"].strip()
+        if kd and kd != NO_DATA and not kd.isdigit():
+            errors.append(f"строка {n}: kd не число: {kd}")
+        date = row["data_date"].strip()
+        if date and date != NO_DATA and not ISO_DATE.match(date):
+            errors.append(f"строка {n}: data_date не дата ISO (ГГГГ-ММ-ДД): {date}")
+        if has_volume and (not date or date == NO_DATA):
             errors.append(f"строка {n}: есть объём, но пустой data_date")
         for c in ("task", "rationale"):
             if not row[c].strip() or row[c] == NO_DATA:
@@ -56,9 +74,21 @@ def validate(path: str, lang: str) -> list[str]:
     return errors
 
 
-if __name__ == "__main__":
-    errs = validate(sys.argv[1], sys.argv[2])
+def main(argv: list[str]) -> int:
+    if len(argv) != 3:
+        print(USAGE)
+        return 2
+    try:
+        errs = validate(argv[1], argv[2])
+    except ValueError as e:
+        print(e)
+        print(USAGE)
+        return 2
     for e in errs:
         print(e)
     print("OK" if not errs else f"ошибок: {len(errs)}")
-    sys.exit(1 if errs else 0)
+    return 1 if errs else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))
