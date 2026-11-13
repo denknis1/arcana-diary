@@ -7,6 +7,7 @@
   --color-day-accent: #8E4A62;
   --color-day-line: #E6DDD2;
   --color-day-on-accent: #FFFFFF;
+  --color-day-control-border: #857C93;
   --color-night-bg: #10163A;
   --color-night-surface: #161E48;
   --color-night-text: #F1ECE2;
@@ -14,6 +15,7 @@
   --color-night-accent: #C9A45C;
   --color-night-line: #5A5233;
   --color-night-on-accent: #10163A;
+  --color-night-control-border: #C9A45C;
   --color-suit-day-wands: #9A5B12;
   --color-suit-day-cups: #1E6E6A;
   --color-suit-day-swords: #3B5D85;
@@ -29,6 +31,8 @@
   --color-brand-ink-button: #241E36;
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-text: Manrope, system-ui, sans-serif;
+  --font-size-display-xl: 88px;
+  --font-size-display-l: 72px;
   --font-size-display-1: 56px;
   --font-size-display-2: 44px;
   --font-size-h-1: 32px;
