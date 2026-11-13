@@ -1,5 +1,5 @@
 """Этап 2: проверка таблицы языковых пар hreflang.csv (спецификация, раздел 3)."""
-from structure_map import WAVE_ORDER, is_page, url_errors
+from structure_map import WAVE_ORDER, card_url, is_page, url_errors
 
 HREFLANG_COLUMNS = ["entity_id", "template", "lang", "page_id", "url", "wave", "status", "in_hreflang",
                     "switch_to"]
@@ -24,6 +24,17 @@ def check_hreflang(header: list[str], hl: list[dict], maps: dict[str, list[dict]
         if not row or not is_page(row):
             errs.append(f"{ent}: page_id {pid} не страница карты {lang}")
             continue
+        if "{" in row["url"]:
+            expected = {row["entity_id"].replace("{card_id}", c["card_id"]): card_url(row["url"], c) for c in cards}
+            if ent not in expected:
+                errs.append(f"{ent}: entity_id не из шаблона {row['entity_id']} строки {pid} или карты нет в cards.csv")
+            elif h["url"] != expected[ent]:
+                errs.append(f"{ent}: url {h['url']} не как шаблон {pid}, развёрнутый по карте: {expected[ent]}")
+        else:
+            if ent != row["entity_id"]:
+                errs.append(f"{ent}: entity_id не как в карте у {pid} ({row['entity_id'] or '—'})")
+            if h["url"] != row["url"]:
+                errs.append(f"{ent}: url {h['url']} не как в карте у {pid} ({row['url'] or '—'})")
         if (ent, lang) in by_entity:
             errs.append(f"{ent}: две строки на язык {lang}")
         by_entity[(ent, lang)] = h

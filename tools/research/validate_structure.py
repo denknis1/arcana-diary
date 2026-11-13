@@ -12,7 +12,6 @@ from structure_map import ROOT, STAGE1, STAGE2, check_map, read_csv
 
 def main() -> int:
     errs: list[str] = []
-    skipped: list[str] = []
     _, cards = read_csv(STAGE1 / "cards.csv")
     maps = {}
     for lang in ("en", "es"):
@@ -23,15 +22,13 @@ def main() -> int:
             header, links = read_csv(links_path)
             errs += check_links(header, links, maps[lang], lang)
         else:
-            skipped.append(str(links_path.relative_to(ROOT)))
+            errs.append(f"нет файла: {links_path.relative_to(ROOT)}")
     hl_path = STAGE2 / "hreflang.csv"
     if hl_path.exists():
         header, hl = read_csv(hl_path)
         errs += check_hreflang(header, hl, maps, cards)
     else:
-        skipped.append(str(hl_path.relative_to(ROOT)))
-    for s in skipped:
-        print(f"пропущено, файла нет: {s}")
+        errs.append(f"нет файла: {hl_path.relative_to(ROOT)}")
     for e in errs:
         print(e)
     print("OK" if not errs else f"ошибок: {len(errs)}")

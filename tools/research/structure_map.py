@@ -23,6 +23,7 @@ SEGMENT = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 TEMPLATE_VAR = re.compile(r"\{(slug_en|slug_es|slug|card_id)\}")
 SAME_CARD = "@same-card"
 ALL_CARDS = "@cards"
+CARD_ENTITY = "card:"
 
 
 def read_csv(path: Path) -> tuple[list[str], list[dict]]:
@@ -59,6 +60,13 @@ def url_errors(url: str, lang: str) -> list[str]:
     return errs
 
 
+def card_url(template: str, card: dict) -> str:
+    """Шаблон адреса ×78, развёрнутый по строке cards.csv."""
+    for var in ("slug_en", "slug_es", "card_id"):
+        template = template.replace("{" + var + "}", card[var])
+    return template
+
+
 def ancestors_chain(rid: str, by_id: dict, home: str) -> list[str]:
     chain = [rid]
     seen = {rid}
@@ -77,6 +85,8 @@ def check_map(rows: list[dict], lang: str, cards: list[dict]) -> list[str]:
     by_id = {r["id"]: r for r in rows}
     home = HOME[lang]
     page_urls: dict[str, str] = {}
+    cards_by_id = {c["card_id"]: c for c in cards}
+    card_rows: dict[str, list[str]] = {}
     for r in rows:
         rid, url, wave = r["id"], r["url"], r["wave"]
         w = WAVE_ORDER[wave]
@@ -92,6 +102,15 @@ def check_map(rows: list[dict], lang: str, cards: list[dict]) -> list[str]:
             if url in page_urls:
                 errs.append(f"{rid}: url {url} уже у {page_urls[url]}")
             page_urls[url] = rid
+            if r["entity_id"].startswith(CARD_ENTITY):
+                cid = r["entity_id"][len(CARD_ENTITY):]
+                card_rows.setdefault(cid, []).append(rid)
+                if cid not in cards_by_id:
+                    errs.append(f"{rid}: {r['entity_id']} — карты {cid} нет в cards.csv")
+                else:
+                    expected_url = CARDS_PREFIX[lang] + cards_by_id[cid][SLUG_COL[lang]]
+                    if url != expected_url:
+                        errs.append(f"{rid}: url {url} не адрес карты {cid}, нужно {expected_url}")
             if r["host_id"]:
                 errs.append(f"{rid}: у страницы заполнен host_id")
             if r["menu_item"] and r["menu_item"] not in MENU_ITEMS:
@@ -157,6 +176,11 @@ def check_map(rows: list[dict], lang: str, cards: list[dict]) -> list[str]:
                 errs.append(f"{rid}: у строки «{r['decision']}» поля структуры должны быть пустыми")
             if r["pages"] != "0":
                 errs.append(f"{rid}: у строки «{r['decision']}» pages должно быть 0")
+    for cid in cards_by_id:
+        if cid not in card_rows:
+            errs.append(f"{CARD_ENTITY}{cid}: нет строки-страницы с этой картой")
+        elif len(card_rows[cid]) > 1:
+            errs.append(f"{CARD_ENTITY}{cid}: карта у нескольких строк {', '.join(card_rows[cid])}")
     card_urls = {CARDS_PREFIX[lang] + c[SLUG_COL[lang]] for c in cards}
     missing = card_urls - set(page_urls)
     if missing:

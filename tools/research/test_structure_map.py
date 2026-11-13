@@ -152,3 +152,30 @@ def test_es_address_needs_es_prefix():
 def test_es_breadcrumb_must_follow_home_chain():
     rows = replace(es_map(), "ES-031", breadcrumb="ES-012>ES-031")
     assert any("не совпадают с цепочкой дома ES-012>ES-091>ES-031" in e for e in errors(rows, "es"))
+
+
+# --- страница карты сверяется с cards.csv (финальное ревью, Important 1) ---
+
+def test_swapped_card_entity_ids_rejected():
+    rows = replace(replace(es_map(), "ES-031", entity_id="card:cups-10-ten"), "ES-085",
+                   entity_id="card:major-18-moon")
+    errs = errors(rows, "es")
+    assert any("ES-031" in e and "/es/cartas/diez-de-copas" in e for e in errs)
+    assert any("ES-085" in e and "/es/cartas/la-luna" in e for e in errs)
+
+
+def test_swapped_card_urls_rejected():
+    rows = replace(replace(en_map(), "EN-033", url="/cards/ten-of-cups"), "EN-087", url="/cards/the-moon")
+    errs = errors(rows)
+    assert any("EN-033" in e and "/cards/the-moon" in e for e in errs)
+    assert any("EN-087" in e and "/cards/ten-of-cups" in e for e in errs)
+
+
+def test_card_entity_must_be_known_and_unique():
+    rows = replace(en_map(), "EN-087", entity_id="card:no-such-card")
+    errs = errors(rows)
+    assert any("card:no-such-card" in e and "cards.csv" in e for e in errs)
+    assert any("cups-10-ten" in e and "нет строки" in e for e in errs)
+    rows = en_map() + [row("EN-201", "/cards/the-moon-2", entity="card:major-18-moon", parent="EN-014",
+                           crumbs="EN-014>EN-201")]
+    assert any("major-18-moon" in e and "EN-033" in e and "EN-201" in e for e in errors(rows))
