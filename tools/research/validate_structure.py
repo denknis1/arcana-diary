@@ -5,6 +5,7 @@
 """
 import sys
 
+from structure_links import check_links
 from structure_map import ROOT, STAGE1, STAGE2, check_map, read_csv
 
 
@@ -16,7 +17,12 @@ def main() -> int:
     for lang in ("en", "es"):
         _, maps[lang] = read_csv(STAGE1 / f"page-map-{lang}.csv")
         errs += [f"page-map-{lang}: {e}" for e in check_map(maps[lang], lang, cards)]
-        skipped.append(str((STAGE2 / f"links-{lang}.csv").relative_to(ROOT)))
+        links_path = STAGE2 / f"links-{lang}.csv"
+        if links_path.exists():
+            header, links = read_csv(links_path)
+            errs += check_links(header, links, maps[lang], lang)
+        else:
+            skipped.append(str(links_path.relative_to(ROOT)))
     skipped.append(str((STAGE2 / "hreflang.csv").relative_to(ROOT)))
     for s in skipped:
         print(f"пропущено, файла нет: {s}")
