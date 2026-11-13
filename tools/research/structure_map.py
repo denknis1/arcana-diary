@@ -97,8 +97,10 @@ def check_map(rows: list[dict], lang: str, cards: list[dict]) -> list[str]:
             if r["menu_item"] and r["menu_item"] not in MENU_ITEMS:
                 errs.append(f"{rid}: неизвестный menu_item {r['menu_item']}")
             templated = bool(TEMPLATE_VAR.search(url))
-            if templated and r["entity_id"] and r["pages"] != "78" and "{slug}" not in url:
+            if templated and r["entity_id"] and r["pages"] != "78":
                 errs.append(f"{rid}: шаблон ×78, но pages={r['pages']}")
+            if templated and not r["entity_id"] and r["pages"] != "1":
+                errs.append(f"{rid}: у шаблона без сущности (V2) pages должно быть 1, а не {r['pages']}")
             if not templated and r["pages"] != "1":
                 errs.append(f"{rid}: у страницы pages должно быть 1, а не {r['pages']}")
             if w <= 1:
