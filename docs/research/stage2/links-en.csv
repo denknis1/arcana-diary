@@ -27,3 +27,5 @@ L-EN-25,@cards,EN-098,подробность,Что карта говорит о
 L-EN-26,EN-096,EN-011,действие,Хочу любовный расклад,Do a love reading,love|reading|{card_name},V1.1,
 L-EN-27,EN-001,EN-100,навигация,Какие бывают расклады?,Tarot spreads,tarot spreads|layout,V1.1,
 L-EN-28,EN-099,EN-001,действие,Хочу совет на свою ситуацию,Ask for advice on your question,advice|{card_name}|reading,V1.1,раздел «As advice» на странице карты
+L-EN-29,EN-014,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,tarot cards|reading|question,запуск,кнопка под списком карт
+L-EN-30,EN-093,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,major arcana|reading|question,запуск,кнопка под списком старших арканов

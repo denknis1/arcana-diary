@@ -22,3 +22,5 @@ L-ES-20,ES-001,ES-099,навигация,Хочу расклад на три к�
 L-ES-21,ES-001,ES-012,навигация,Хочу узнать значения карт,Significados de las cartas,cartas del tarot|significados,запуск,
 L-ES-22,ES-001,ES-097,навигация,Какие бывают расклады?,Tiradas de tarot,tiradas|tarot,V1.1,
 L-ES-23,ES-009,@drawn,подробность,Что эта карта значит вообще?,{card_name} — significado completo,{card_name}|significado|amor,запуск,под каждой выпавшей картой рядом со ссылкой L-ES-03 на раздел #amor
+L-ES-24,ES-012,ES-001,действие,Хочу вытянуть сам,Saca una carta para tu pregunta,cartas del tarot|tirada|pregunta,запуск,кнопка под списком карт
+L-ES-25,ES-091,ES-001,действие,Хочу вытянуть сам,Saca una carta para tu pregunta,arcanos mayores|tirada|pregunta,запуск,кнопка под списком старших арканов
