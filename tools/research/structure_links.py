@@ -4,8 +4,10 @@ from structure_map import ALL_CARDS, SAME_CARD, WAVE_ORDER
 LINK_COLUMNS = ["link_id", "from_id", "to_id", "link_type", "moment", "anchor_pattern", "context_terms",
                 "wave", "note"]
 LINK_TYPES = {"подробность", "метод", "действие", "навигация", "сохранение"}
-FROM_TOKENS = {ALL_CARDS}
-TO_TOKENS = {ALL_CARDS, "@drawn", SAME_CARD, "@neighbors", "@diary"}
+MAJOR_CARDS = "@major"  # 22 страницы старших арканов
+MINOR_CARDS = "@minor"  # 56 страниц младших арканов
+FROM_TOKENS = {ALL_CARDS, MAJOR_CARDS, MINOR_CARDS}
+TO_TOKENS = {ALL_CARDS, MAJOR_CARDS, MINOR_CARDS, "@drawn", SAME_CARD, "@neighbors", "@diary"}
 
 
 def check_links(header: list[str], links: list[dict], rows: list[dict], lang: str) -> list[str]:

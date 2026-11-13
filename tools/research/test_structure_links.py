@@ -46,3 +46,57 @@ def test_launch_must_cover_all_link_types():
 
 def test_link_header_checked():
     assert check_links(LINK_COLUMNS[:-1], good_links(), en_map(), "en")
+
+
+# --- дополнительные проверки матрицы ---
+
+def errs_for(extra):
+    return check_links(LINK_COLUMNS, good_links() + extra, en_map(), "en")
+
+
+def test_duplicate_link_id_rejected():
+    assert any("повтор id" in e for e in errs_for([link("L-EN-01", "EN-001", "EN-007", "навигация")]))
+
+
+def test_wrong_link_id_prefix_rejected():
+    assert any("должен начинаться с L-EN-" in e for e in errs_for([link("L-ES-07", "EN-001", "EN-007", "навигация")]))
+
+
+def test_self_link_rejected():
+    assert any("ссылка на себя" in e for e in errs_for([link("L-EN-07", "EN-001", "EN-001", "навигация")]))
+
+
+def test_unknown_link_type_rejected():
+    assert any("неизвестный link_type" in e for e in errs_for([link("L-EN-07", "EN-001", "EN-007", "реклама")]))
+
+
+def test_empty_moment_rejected():
+    bad = link("L-EN-07", "EN-001", "EN-007", "навигация")
+    bad["moment"] = " "
+    assert any("пустое moment" in e for e in errs_for([bad]))
+
+
+def test_empty_anchor_pattern_rejected():
+    bad = link("L-EN-07", "EN-001", "EN-007", "навигация")
+    bad["anchor_pattern"] = ""
+    assert any("пустое anchor_pattern" in e for e in errs_for([bad]))
+
+
+def test_target_tokens_accepted():
+    extra = [link(f"L-EN-{i}", "EN-001", tok, "навигация")
+             for i, tok in zip(range(10, 14), ["@neighbors", "@diary", "@major", "@minor"])]
+    assert errs_for(extra) == []
+
+
+def test_source_tokens_accepted():
+    extra = [link("L-EN-10", "@major", "EN-001", "навигация"),
+             link("L-EN-11", "@minor", "EN-001", "навигация")]
+    assert errs_for(extra) == []
+
+
+def test_unknown_target_token_rejected():
+    assert any("to_id @everything" in e for e in errs_for([link("L-EN-07", "EN-001", "@everything", "навигация")]))
+
+
+def test_unknown_source_token_rejected():
+    assert any("from_id @everything" in e for e in errs_for([link("L-EN-07", "@everything", "EN-001", "навигация")]))
