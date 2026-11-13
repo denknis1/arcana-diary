@@ -6,12 +6,14 @@
   --color-day-text-muted: #5B5470;
   --color-day-accent: #8E4A62;
   --color-day-line: #E6DDD2;
+  --color-day-on-accent: #FFFFFF;
   --color-night-bg: #10163A;
   --color-night-surface: #161E48;
   --color-night-text: #F1ECE2;
   --color-night-text-muted: #B9B4CC;
   --color-night-accent: #C9A45C;
   --color-night-line: #5A5233;
+  --color-night-on-accent: #10163A;
   --color-suit-day-wands: #9A5B12;
   --color-suit-day-cups: #1E6E6A;
   --color-suit-day-swords: #3B5D85;
@@ -22,6 +24,9 @@
   --color-suit-night-swords: #9DB8DA;
   --color-suit-night-pentacles: #A9C27E;
   --color-suit-night-majors: #C9A45C;
+  --color-brand-gold: #C9A45C;
+  --color-brand-night-panel: #10163A;
+  --color-brand-ink-button: #241E36;
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-text: Manrope, system-ui, sans-serif;
   --font-size-display-1: 56px;
