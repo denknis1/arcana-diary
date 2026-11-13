@@ -102,5 +102,6 @@ def test_main_unknown_lang_exit_2(tmp_path, capsys):
     assert "en или es" in capsys.readouterr().out
 
 
-def test_v12_header_accepted_until_maps_get_structure(tmp_path):
-    assert validate(write(tmp_path, "en", [good_row()], cols=COLUMNS_EN_V12), "en") == []
+def test_v12_header_rejected(tmp_path):
+    errs = validate(write(tmp_path, "en", [good_row()], cols=COLUMNS_EN_V12), "en")
+    assert any("колонки" in e for e in errs)

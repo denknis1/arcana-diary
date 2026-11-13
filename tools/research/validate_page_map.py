@@ -26,15 +26,12 @@ def validate(path: str, lang: str) -> list[str]:
     if lang not in LANGS:
         raise ValueError(f"язык должен быть en или es, получено: {lang}")
     expected = COLUMNS_EN if lang == "en" else COLUMNS_ES
-    legacy = COLUMNS_EN_V12 if lang == "en" else COLUMNS_ES_V12
     with open(path, newline="") as f:
         reader = csv.DictReader(f)
         header = reader.fieldnames or []
-        if header not in (expected, legacy):
+        if header != expected:
             return [f"колонки не совпадают: ожидалось {expected}, получено {header}"]
         rows = list(reader)
-    if header == legacy:
-        expected = legacy
 
     errors: list[str] = []
     volume_cols = [c for c in expected if c.startswith("volume_")]
