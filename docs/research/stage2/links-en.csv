@@ -29,3 +29,4 @@ L-EN-27,EN-001,EN-100,навигация,Какие бывают расклад�
 L-EN-28,EN-099,EN-001,действие,Хочу совет на свою ситуацию,Ask for advice on your question,advice|{card_name}|reading,V1.1,раздел «As advice» на странице карты
 L-EN-29,EN-014,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,tarot cards|reading|question,запуск,кнопка под списком карт
 L-EN-30,EN-093,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,major arcana|reading|question,запуск,кнопка под списком старших арканов
+L-EN-31,EN-007,@drawn,подробность,Что эта карта значит вообще?,{card_name} — full meaning,{card_name}|yes or no|meaning,запуск,под картой в ответе да/нет; с V1.1 рядом — L-EN-23 на страницу yes-or-no
