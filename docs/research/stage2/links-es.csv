@@ -1,0 +1,26 @@
+link_id,from_id,to_id,link_type,moment,anchor_pattern,context_terms,wave,note
+L-ES-01,ES-001,@drawn,подробность,Что эта карта значит вообще?,{card_name} — significado completo,{card_name}|significado|tarot,запуск,после ответа чтения под каждой выпавшей картой
+L-ES-02,ES-099,@drawn,подробность,Что эта карта значит вообще?,{card_name} — significado completo,{card_name}|significado|tarot,запуск,
+L-ES-03,ES-009,ES-093,подробность,А в любви подробнее?,{card_name} en el amor,{card_name}|amor|significado,запуск,якорь #amor на странице выпавшей карты
+L-ES-04,ES-005,ES-094,метод,Почему ответ такой?,Por qué {card_name} dice {verdict},{card_name}|sí o no|respuesta,запуск,метод — строка-вердикт ES-094 на странице выпавшей карты; в инструменте — строка «por qué» (ES-007)
+L-ES-05,@cards,ES-001,действие,Хочу вытянуть сам,Saca una carta para tu pregunta,{card_name}|tirada|pregunta,запуск,кнопка после значения
+L-ES-06,ES-093,ES-009,действие,Хочу любовный расклад,Haz una tirada de amor,amor|tirada|{card_name},запуск,
+L-ES-07,ES-094,ES-005,действие,Хочу спросить своё,Pregunta sí o no,sí o no|pregunta|tarot,запуск,
+L-ES-08,@cards,@neighbors,навигация,Листать колоду,{card_name},{card_name}|carta del tarot,запуск,предыдущая и следующая по порядку колоды
+L-ES-09,@major,ES-091,навигация,Какие ещё старшие арканы?,Arcanos mayores,arcanos mayores|{card_name},запуск,
+L-ES-10,@minor,ES-012,навигация,Какие ещё карты этой масти?,{suit_name},{suit_name}|arcanos menores,запуск,блок масти на хабе
+L-ES-11,ES-012,@cards,навигация,Найти карту,{card_name},{card_name}|significado,запуск,
+L-ES-12,ES-012,ES-091,навигация,Что такое старшие арканы?,Arcanos mayores,arcanos mayores|22 cartas,запуск,
+L-ES-13,ES-091,@major,навигация,Найти старший аркан,{card_name},{card_name}|arcanos mayores,запуск,
+L-ES-14,ES-091,ES-012,навигация,А все 78 карт?,Las 78 cartas,cartas del tarot|significados,запуск,
+L-ES-15,ES-004,@drawn,подробность,Что значит карта дня подробнее?,Carta de hoy: {card_name},{card_name}|carta del día|significado,запуск,
+L-ES-16,ES-004,@diary,сохранение,Сохранить карту дня,Guardar en el diario,diario|carta del día,запуск,служебная страница за входом
+L-ES-17,ES-001,ES-005,навигация,Хочу ответ да или нет,Sí o no,sí o no|tarot,запуск,
+L-ES-18,ES-001,ES-009,навигация,Вопрос о любви,Tarot del amor,amor|tirada,запуск,
+L-ES-19,ES-001,ES-004,навигация,Что на сегодня?,Carta del día,carta del día,запуск,
+L-ES-20,ES-001,ES-099,навигация,Хочу расклад на три карты,Tirada de 3 cartas,3 cartas|tirada,запуск,
+L-ES-21,ES-001,ES-012,навигация,Хочу узнать значения карт,Significados de las cartas,cartas del tarot|significados,запуск,
+L-ES-22,ES-001,ES-097,навигация,Какие бывают расклады?,Tiradas de tarot,tiradas|tarot,V1.1,
+L-ES-23,ES-009,@drawn,подробность,Что эта карта значит вообще?,{card_name} — significado completo,{card_name}|significado|amor,запуск,под каждой выпавшей картой рядом со ссылкой L-ES-03 на раздел #amor
+L-ES-24,ES-012,ES-001,действие,Хочу вытянуть сам,Saca una carta para tu pregunta,cartas del tarot|tirada|pregunta,запуск,кнопка под списком карт
+L-ES-25,ES-091,ES-001,действие,Хочу вытянуть сам,Saca una carta para tu pregunta,arcanos mayores|tirada|pregunta,запуск,кнопка под списком старших арканов

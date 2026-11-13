@@ -1,0 +1,32 @@
+link_id,from_id,to_id,link_type,moment,anchor_pattern,context_terms,wave,note
+L-EN-01,EN-001,@drawn,подробность,Что эта карта значит вообще?,{card_name} — full meaning,{card_name}|meaning|upright,запуск,после ответа чтения под каждой выпавшей картой
+L-EN-02,EN-005,@drawn,подробность,Что эта карта значит вообще?,{card_name} — full meaning,{card_name}|meaning|upright,запуск,после ответа
+L-EN-03,EN-011,@drawn,подробность,А в любви подробнее?,{card_name} — full meaning,{card_name}|love|meaning,запуск,с V1.1 заменяется связью L-EN-22
+L-EN-04,EN-007,EN-009,метод,Почему ответ такой?,How we read yes and no,yes or no|card|answer,запуск,инструмент ссылается на свой метод (8.6)
+L-EN-05,EN-009,@cards,подробность,Что эта карта значит целиком?,{card_name},{card_name}|yes or no|meaning,запуск,строка справочника — имя карты
+L-EN-06,EN-009,EN-007,действие,Хочу спросить своё,Ask your question,yes or no|question|tarot,запуск,
+L-EN-07,@cards,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,{card_name}|reading|question,запуск,кнопка после значения
+L-EN-08,@cards,@neighbors,навигация,Листать колоду,{card_name},{card_name}|tarot card,запуск,предыдущая и следующая по порядку колоды
+L-EN-09,@major,EN-093,навигация,Какие ещё старшие арканы?,Major Arcana,major arcana|{card_name},запуск,
+L-EN-10,@minor,EN-014,навигация,Какие ещё карты этой масти?,{suit_name},{suit_name}|minor arcana,запуск,блок масти на хабе (#wands и т. д.)
+L-EN-11,EN-014,@cards,навигация,Найти карту,{card_name},{card_name}|meaning,запуск,
+L-EN-12,EN-014,EN-093,навигация,Что такое старшие арканы?,Major Arcana,major arcana|22 cards,запуск,
+L-EN-13,EN-093,@major,навигация,Найти старший аркан,{card_name},{card_name}|major arcana,запуск,
+L-EN-14,EN-093,EN-014,навигация,А все 78 карт?,All 78 cards,tarot cards|meanings,запуск,
+L-EN-15,EN-006,@drawn,подробность,Что значит карта дня подробнее?,Today's card: {card_name},{card_name}|card of the day|meaning,запуск,
+L-EN-16,EN-006,@diary,сохранение,Сохранить карту дня,Save to diary,diary|card of the day,запуск,служебная страница за входом
+L-EN-17,EN-001,EN-005,навигация,Хочу одну карту,One card,one card|reading,запуск,переключатель формата
+L-EN-18,EN-001,EN-007,навигация,Хочу ответ да или нет,Yes or No,yes or no|tarot,запуск,
+L-EN-19,EN-001,EN-011,навигация,Вопрос о любви,Love reading,love|reading,запуск,
+L-EN-20,EN-001,EN-006,навигация,Что на сегодня?,Card of the Day,card of the day,запуск,
+L-EN-21,EN-001,EN-014,навигация,Хочу узнать значения карт,Card meanings,tarot cards|meanings,запуск,
+L-EN-22,EN-011,EN-096,подробность,А в любви подробнее?,{card_name} in love,{card_name}|love|meaning,V1.1,якорь #love на странице выпавшей карты
+L-EN-23,EN-007,EN-097,подробность,Почему эта карта — да или нет?,{card_name}: yes or no,{card_name}|yes or no|answer,V1.1,страница yes-or-no выпавшей карты
+L-EN-24,@cards,EN-097,подробность,А в вопросе да/нет?,{card_name} yes or no,{card_name}|yes or no,V1.1,на странице той же карты
+L-EN-25,@cards,EN-098,подробность,Что карта говорит о чувствах?,{card_name} as feelings,{card_name}|feelings,V1.1,только если EN-098 прошла проверку подачи OPP-18
+L-EN-26,EN-096,EN-011,действие,Хочу любовный расклад,Do a love reading,love|reading|{card_name},V1.1,
+L-EN-27,EN-001,EN-100,навигация,Какие бывают расклады?,Tarot spreads,tarot spreads|layout,V1.1,
+L-EN-28,EN-099,EN-001,действие,Хочу совет на свою ситуацию,Ask for advice on your question,advice|{card_name}|reading,V1.1,раздел «As advice» на странице карты
+L-EN-29,EN-014,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,tarot cards|reading|question,запуск,кнопка под списком карт
+L-EN-30,EN-093,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,major arcana|reading|question,запуск,кнопка под списком старших арканов
+L-EN-31,EN-007,@drawn,подробность,Что эта карта значит вообще?,{card_name} — full meaning,{card_name}|yes or no|meaning,запуск,под картой в ответе да/нет; с V1.1 рядом — L-EN-23 на страницу yes-or-no

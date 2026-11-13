@@ -4,7 +4,7 @@ major-01-magician,major,,1,The Magician,the-magician,El Mago,el-mago,
 major-02-high-priestess,major,,2,The High Priestess,the-high-priestess,La Sacerdotisa,la-sacerdotisa,La Papisa
 major-03-empress,major,,3,The Empress,the-empress,La Emperatriz,la-emperatriz,
 major-04-emperor,major,,4,The Emperor,the-emperor,El Emperador,el-emperador,
-major-05-hierophant,major,,5,The Hierophant,the-hierophant,El Hierofante,el-hierofante,El Sumo Sacerdote
+major-05-hierophant,major,,5,The Hierophant,the-hierophant,El Papa,el-papa,El Hierofante|El Sumo Sacerdote
 major-06-lovers,major,,6,The Lovers,the-lovers,Los Enamorados,los-enamorados,
 major-07-chariot,major,,7,The Chariot,the-chariot,El Carro,el-carro,
 major-08-strength,major,,8,Strength,strength,La Fuerza,la-fuerza,
@@ -32,7 +32,7 @@ wands-08-eight,minor,wands,8,Eight of Wands,eight-of-wands,Ocho de Bastos,ocho-d
 wands-09-nine,minor,wands,9,Nine of Wands,nine-of-wands,Nueve de Bastos,nueve-de-bastos,
 wands-10-ten,minor,wands,10,Ten of Wands,ten-of-wands,Diez de Bastos,diez-de-bastos,
 wands-11-page,minor,wands,11,Page of Wands,page-of-wands,Sota de Bastos,sota-de-bastos,Paje de Bastos
-wands-12-knight,minor,wands,12,Knight of Wands,knight-of-wands,Caballo de Bastos,caballo-de-bastos,Caballero de Bastos
+wands-12-knight,minor,wands,12,Knight of Wands,knight-of-wands,Caballero de Bastos,caballero-de-bastos,Caballo de Bastos
 wands-13-queen,minor,wands,13,Queen of Wands,queen-of-wands,Reina de Bastos,reina-de-bastos,
 wands-14-king,minor,wands,14,King of Wands,king-of-wands,Rey de Bastos,rey-de-bastos,
 cups-01-ace,minor,cups,1,Ace of Cups,ace-of-cups,As de Copas,as-de-copas,
@@ -46,7 +46,7 @@ cups-08-eight,minor,cups,8,Eight of Cups,eight-of-cups,Ocho de Copas,ocho-de-cop
 cups-09-nine,minor,cups,9,Nine of Cups,nine-of-cups,Nueve de Copas,nueve-de-copas,
 cups-10-ten,minor,cups,10,Ten of Cups,ten-of-cups,Diez de Copas,diez-de-copas,
 cups-11-page,minor,cups,11,Page of Cups,page-of-cups,Sota de Copas,sota-de-copas,Paje de Copas
-cups-12-knight,minor,cups,12,Knight of Cups,knight-of-cups,Caballo de Copas,caballo-de-copas,Caballero de Copas
+cups-12-knight,minor,cups,12,Knight of Cups,knight-of-cups,Caballero de Copas,caballero-de-copas,Caballo de Copas
 cups-13-queen,minor,cups,13,Queen of Cups,queen-of-cups,Reina de Copas,reina-de-copas,
 cups-14-king,minor,cups,14,King of Cups,king-of-cups,Rey de Copas,rey-de-copas,
 swords-01-ace,minor,swords,1,Ace of Swords,ace-of-swords,As de Espadas,as-de-espadas,
@@ -60,7 +60,7 @@ swords-08-eight,minor,swords,8,Eight of Swords,eight-of-swords,Ocho de Espadas,o
 swords-09-nine,minor,swords,9,Nine of Swords,nine-of-swords,Nueve de Espadas,nueve-de-espadas,
 swords-10-ten,minor,swords,10,Ten of Swords,ten-of-swords,Diez de Espadas,diez-de-espadas,
 swords-11-page,minor,swords,11,Page of Swords,page-of-swords,Sota de Espadas,sota-de-espadas,Paje de Espadas
-swords-12-knight,minor,swords,12,Knight of Swords,knight-of-swords,Caballo de Espadas,caballo-de-espadas,Caballero de Espadas
+swords-12-knight,minor,swords,12,Knight of Swords,knight-of-swords,Caballero de Espadas,caballero-de-espadas,Caballo de Espadas
 swords-13-queen,minor,swords,13,Queen of Swords,queen-of-swords,Reina de Espadas,reina-de-espadas,
 swords-14-king,minor,swords,14,King of Swords,king-of-swords,Rey de Espadas,rey-de-espadas,
 pentacles-01-ace,minor,pentacles,1,Ace of Pentacles,ace-of-pentacles,As de Oros,as-de-oros,As de Pentáculos
@@ -74,6 +74,6 @@ pentacles-08-eight,minor,pentacles,8,Eight of Pentacles,eight-of-pentacles,Ocho 
 pentacles-09-nine,minor,pentacles,9,Nine of Pentacles,nine-of-pentacles,Nueve de Oros,nueve-de-oros,Nueve de Pentáculos
 pentacles-10-ten,minor,pentacles,10,Ten of Pentacles,ten-of-pentacles,Diez de Oros,diez-de-oros,Diez de Pentáculos
 pentacles-11-page,minor,pentacles,11,Page of Pentacles,page-of-pentacles,Sota de Oros,sota-de-oros,Sota de Pentáculos|Paje de Oros|Paje de Pentáculos
-pentacles-12-knight,minor,pentacles,12,Knight of Pentacles,knight-of-pentacles,Caballo de Oros,caballo-de-oros,Caballo de Pentáculos|Caballero de Oros|Caballero de Pentáculos
+pentacles-12-knight,minor,pentacles,12,Knight of Pentacles,knight-of-pentacles,Caballero de Oros,caballero-de-oros,Caballo de Oros|Caballo de Pentáculos|Caballero de Pentáculos
 pentacles-13-queen,minor,pentacles,13,Queen of Pentacles,queen-of-pentacles,Reina de Oros,reina-de-oros,Reina de Pentáculos
 pentacles-14-king,minor,pentacles,14,King of Pentacles,king-of-pentacles,Rey de Oros,rey-de-oros,Rey de Pentáculos
