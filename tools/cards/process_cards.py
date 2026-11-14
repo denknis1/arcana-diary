@@ -4,7 +4,8 @@
   python3 tools/cards/process_cards.py SRC_DIR                                — все 78 карт в site/public/cards/
   python3 tools/cards/process_cards.py SRC_DIR --only ID,ID --out WORKDIR     — проба обрезки на нескольких картах
   python3 tools/cards/process_cards.py SRC_DIR --sheet WORKDIR/contact-sheet.jpg  — плюс контактный лист
-SRC_DIR — папка со сканами из fetch_sources.py; доли обрезки — card.artCrop в docs/design/tokens.json.
+SRC_DIR — папка со сканами из fetch_sources.py; доли обрезки — card.artCrop в docs/design/tokens.json,
+правки по отдельным картам — content/cards/crop-overrides.json ({card_id: {top|bottom|left|right: доля}}).
 """
 import hashlib
 import json
@@ -39,10 +40,21 @@ def art_height(sources: list[dict], crop: dict, width: int) -> int:
     return 2 * round(width * statistics.median(ratios) / 2)
 
 
+def crop_for(card_id: str, crop: dict, overrides: dict | None) -> dict:
+    """Доли обрезки одной карты: общие top/bottom/sides (sides → left = right), поверх — правки из crop-overrides.json."""
+    result = {"top": crop["top"], "bottom": crop["bottom"],
+              "left": crop.get("left", crop.get("sides")), "right": crop.get("right", crop.get("sides"))}
+    result.update((overrides or {}).get(card_id, {}))
+    return result
+
+
 def crop_filter(width: int, height: int, crop: dict, out_w: int, out_h: int) -> str:
-    """Фильтр ffmpeg: срезать поля по долям, вписать с заполнением в out_w × out_h, лишнее срезать по центру."""
-    x, y = round(width * crop["sides"]), round(height * crop["top"])
-    cw = width - 2 * x
+    """Фильтр ffmpeg: срезать поля по долям, вписать с заполнением в out_w × out_h, лишнее срезать по центру.
+    crop: top, bottom и либо sides, либо left и right."""
+    x = round(width * crop.get("left", crop.get("sides")))
+    right = round(width * crop.get("right", crop.get("sides")))
+    y = round(height * crop["top"])
+    cw = width - x - right
     ch = height - y - round(height * crop["bottom"])
     return (f"crop={cw}:{ch}:{x}:{y},scale={out_w}:{out_h}:force_original_aspect_ratio=increase:flags=lanczos,"
             f"crop={out_w}:{out_h}")
@@ -64,7 +76,7 @@ def run_ffmpeg(src: Path, vf: str, dst: Path) -> None:
 
 
 def process(src_dir: Path, out_dir: Path, sources: list[dict], deck: list[dict], crop: dict,
-            only: set[str] | None = None) -> list[Path]:
+            only: set[str] | None = None, overrides: dict | None = None) -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     by_id = {c["card_id"]: c for c in deck}
     heights = {w: art_height(sources, crop, w) for w in WIDTHS}
@@ -76,7 +88,8 @@ def process(src_dir: Path, out_dir: Path, sources: list[dict], deck: list[dict],
         check_scan(src, s)
         for w in WIDTHS:
             dst = out_dir / out_name(by_id[s["card_id"]]["image"], w)
-            run_ffmpeg(src, crop_filter(s["width"], s["height"], crop, w, heights[w]), dst)
+            card_crop = crop_for(s["card_id"], crop, overrides)
+            run_ffmpeg(src, crop_filter(s["width"], s["height"], card_crop, w, heights[w]), dst)
             written.append(dst)
     return written
 
@@ -104,7 +117,9 @@ def main(argv: list[str]) -> int:
     sources = load_json(CONTENT / "sources.json")
     deck = load_json(CONTENT / "deck.json")
     crop = load_json(TOKENS)["card"]["artCrop"]
-    written = process(src_dir, out_dir, sources, deck, crop, only)
+    overrides_path = CONTENT / "crop-overrides.json"
+    overrides = load_json(overrides_path) if overrides_path.exists() else None
+    written = process(src_dir, out_dir, sources, deck, crop, only, overrides)
     print(f"OK: {len(written)} файлов в {out_dir}")
     if "--sheet" in args:
         sheet = Path(args[args.index("--sheet") + 1])

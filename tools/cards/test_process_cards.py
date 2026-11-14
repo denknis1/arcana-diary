@@ -4,7 +4,7 @@ import subprocess
 
 import pytest
 
-from process_cards import art_height, check_scan, contact_sheet, crop_filter, out_name, process
+from process_cards import art_height, check_scan, contact_sheet, crop_filter, crop_for, out_name, process
 
 CROP = {"top": 0.1, "bottom": 0.1, "sides": 0.05}
 needs_ffmpeg = pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="нет ffmpeg")
@@ -19,6 +19,19 @@ def test_out_names():
 def test_crop_filter_numbers():
     assert crop_filter(1000, 2000, CROP, 700, 1400) == (
         "crop=900:1600:50:200,scale=700:1400:force_original_aspect_ratio=increase:flags=lanczos,crop=700:1400")
+
+
+def test_crop_filter_asymmetric_left_right():
+    crop = {"top": 0.1, "bottom": 0.1, "left": 0.02, "right": 0.08}
+    assert crop_filter(1000, 2000, crop, 700, 1400) == (
+        "crop=900:1600:20:200,scale=700:1400:force_original_aspect_ratio=increase:flags=lanczos,crop=700:1400")
+
+
+def test_crop_for_merges_overrides():
+    assert crop_for("a", CROP, None) == {"top": 0.1, "bottom": 0.1, "left": 0.05, "right": 0.05}
+    assert crop_for("a", CROP, {"b": {"top": 0.2}}) == {"top": 0.1, "bottom": 0.1, "left": 0.05, "right": 0.05}
+    assert crop_for("a", CROP, {"a": {"top": 0.12, "right": 0.09}}) == {
+        "top": 0.12, "bottom": 0.1, "left": 0.05, "right": 0.09}
 
 
 def test_art_height_median_even():
