@@ -11,9 +11,8 @@
 | `meanings.en.json`, `meanings.es.json` | короткие значения: ключевые слова, прямое, перевёрнутое, «в любви», «как совет», строка «почему» к вердикту «да/нет», статус |
 | `yes-no-rules.json` | правило вердикта для 1 и 3 карт и подписи EN/ES; эталонная реализация — `tools/cards/yes_no.py` |
 | `sources.json` | откуда взяты сканы: файл Commons, адрес, sha256, размеры |
-| `crop-overrides.json` | поправки обрезки для отдельных карт (`top`, `bottom`, `left`, `right` — доли скана), если общие доли оставляют край номера, подписи или рамки |
 
-Рисунки: `site/public/cards/<slug_en>.webp` (700 px), `<slug_en>@350.webp`, `<slug_en>@160.webp`, рубашка `back.svg`.
+Рисунки: `site/public/cards/<slug_en>.webp` (700 × 1200), `<slug_en>@350.webp`, `<slug_en>@160.webp`, рубашка `back.svg`.
 
 ## Рисунки
 
@@ -28,7 +27,9 @@ python3 tools/cards/fetch_sources.py --download ~/arcana-diary-work/scans-1909
 python3 tools/cards/process_cards.py ~/arcana-diary-work/scans-1909 --sheet ~/arcana-diary-work/contact-sheet.jpg
 ```
 
-Общие доли обрезки номера, подписи и полей — `card.artCrop` в `docs/design/tokens.json`; поправки для отдельных карт — `crop-overrides.json`. Все рисунки одного размера внутри ширины: 700 × 1090, 350 × 544, 160 × 250. Сканы и контактный лист в репозиторий не входят. Сканы скачиваются медленно: Wikimedia ограничивает частоту запросов, скрипт ждёт по заголовку Retry-After.
+Рисунок — вся напечатанная карта: номер, английская подпись и кайма остаются (решение владельца 14.11.2026). Размеры
+рисунков: 700 × 1200, 350 × 600, 160 × 274 (пропорция 7 : 12, как `card.masterWidth`/`masterHeight` в
+`docs/design/tokens.json`); скан вписывается с заполнением, лишнее (не больше около 2 %) срезается по центру. Сканы и контактный лист в репозиторий не входят. Сканы скачиваются медленно: Wikimedia ограничивает частоту запросов, скрипт ждёт по заголовку Retry-After.
 
 ## Тексты
 

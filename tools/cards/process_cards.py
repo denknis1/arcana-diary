@@ -1,16 +1,15 @@
-"""Рисунки колоды: сканы «Roses & Lilies» → WebP 700/350/160 px в site/public/cards/ и контактный лист.
+"""Рисунки колоды: сканы «Roses & Lilies» → WebP 700×1200 / 350×600 / 160×274 px в site/public/cards/ и контактный лист.
 
 Запуск из корня репозитория:
   python3 tools/cards/process_cards.py SRC_DIR                                — все 78 карт в site/public/cards/
-  python3 tools/cards/process_cards.py SRC_DIR --only ID,ID --out WORKDIR     — проба обрезки на нескольких картах
+  python3 tools/cards/process_cards.py SRC_DIR --only ID,ID --out WORKDIR     — проба на нескольких картах
   python3 tools/cards/process_cards.py SRC_DIR --sheet WORKDIR/contact-sheet.jpg  — плюс контактный лист
-SRC_DIR — папка со сканами из fetch_sources.py; доли обрезки — card.artCrop в docs/design/tokens.json,
-правки по отдельным картам — content/cards/crop-overrides.json ({card_id: {top|bottom|left|right: доля}}).
+SRC_DIR — папка со сканами из fetch_sources.py. Карта целиком, как напечатана (номер, подпись, кайма); пропорция
+7 : 12 — card.masterWidth/masterHeight в docs/design/tokens.json; скан вписывается с заполнением, лишнее срезается по центру.
 """
 import hashlib
 import json
 import shutil
-import statistics
 import subprocess
 import sys
 import tempfile
@@ -33,31 +32,14 @@ def out_name(slug: str, width: int) -> str:
     return f"{slug}.webp" if width == WIDTHS[0] else f"{slug}@{width}.webp"
 
 
-def art_height(sources: list[dict], crop: dict, width: int) -> int:
-    """Высота выхода при ширине width: медианная пропорция обрезанных сканов, округлено до чётного."""
-    ratios = [s["height"] * (1 - crop["top"] - crop["bottom"]) / (s["width"] * (1 - 2 * crop["sides"]))
-              for s in sources]
-    return 2 * round(width * statistics.median(ratios) / 2)
+def out_height(width: int, ratio: tuple[int, int]) -> int:
+    """Высота выхода при ширине width: width × 12 / 7, округлено до чётного (160 → 274)."""
+    return 2 * round(width * ratio[1] / ratio[0] / 2)
 
 
-def crop_for(card_id: str, crop: dict, overrides: dict | None) -> dict:
-    """Доли обрезки одной карты: общие top/bottom/sides (sides → left = right), поверх — правки из crop-overrides.json."""
-    result = {"top": crop["top"], "bottom": crop["bottom"],
-              "left": crop.get("left", crop.get("sides")), "right": crop.get("right", crop.get("sides"))}
-    result.update((overrides or {}).get(card_id, {}))
-    return result
-
-
-def crop_filter(width: int, height: int, crop: dict, out_w: int, out_h: int) -> str:
-    """Фильтр ffmpeg: срезать поля по долям, вписать с заполнением в out_w × out_h, лишнее срезать по центру.
-    crop: top, bottom и либо sides, либо left и right."""
-    x = round(width * crop.get("left", crop.get("sides")))
-    right = round(width * crop.get("right", crop.get("sides")))
-    y = round(height * crop["top"])
-    cw = width - x - right
-    ch = height - y - round(height * crop["bottom"])
-    return (f"crop={cw}:{ch}:{x}:{y},scale={out_w}:{out_h}:force_original_aspect_ratio=increase:flags=lanczos,"
-            f"crop={out_w}:{out_h}")
+def cover_filter(out_w: int, out_h: int) -> str:
+    """Фильтр ffmpeg: вписать скан с заполнением в out_w × out_h, лишнее срезать по центру. Карта целиком, без обрезки полей."""
+    return f"scale={out_w}:{out_h}:force_original_aspect_ratio=increase:flags=lanczos,crop={out_w}:{out_h}"
 
 
 def check_scan(path: Path, source: dict) -> None:
@@ -75,11 +57,10 @@ def run_ffmpeg(src: Path, vf: str, dst: Path) -> None:
                     "-c:v", "libwebp", "-quality", str(QUALITY), "-compression_level", "6", str(dst)], check=True)
 
 
-def process(src_dir: Path, out_dir: Path, sources: list[dict], deck: list[dict], crop: dict,
-            only: set[str] | None = None, overrides: dict | None = None) -> list[Path]:
+def process(src_dir: Path, out_dir: Path, sources: list[dict], deck: list[dict], ratio: tuple[int, int],
+            only: set[str] | None = None) -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     by_id = {c["card_id"]: c for c in deck}
-    heights = {w: art_height(sources, crop, w) for w in WIDTHS}
     written = []
     for s in sources:
         if only and s["card_id"] not in only:
@@ -88,14 +69,13 @@ def process(src_dir: Path, out_dir: Path, sources: list[dict], deck: list[dict],
         check_scan(src, s)
         for w in WIDTHS:
             dst = out_dir / out_name(by_id[s["card_id"]]["image"], w)
-            card_crop = crop_for(s["card_id"], crop, overrides)
-            run_ffmpeg(src, crop_filter(s["width"], s["height"], card_crop, w, heights[w]), dst)
+            run_ffmpeg(src, cover_filter(w, out_height(w, ratio)), dst)
             written.append(dst)
     return written
 
 
 def contact_sheet(out_dir: Path, deck: list[dict], dst: Path, only: set[str] | None = None) -> None:
-    """Все миниатюры 160 px сеткой по 13 в ряд, в порядке колоды, с серым зазором — видно края и обрезку."""
+    """Все миниатюры 160 px сеткой по 13 в ряд, в порядке колоды, с серым зазором — видно края."""
     cards = [c for c in sorted(deck, key=lambda c: c["order"]) if not only or c["card_id"] in only]
     rows = -(-len(cards) // SHEET_COLUMNS)
     with tempfile.TemporaryDirectory() as tmp:
@@ -116,10 +96,8 @@ def main(argv: list[str]) -> int:
     only = set(args[args.index("--only") + 1].split(",")) if "--only" in args else None
     sources = load_json(CONTENT / "sources.json")
     deck = load_json(CONTENT / "deck.json")
-    crop = load_json(TOKENS)["card"]["artCrop"]
-    overrides_path = CONTENT / "crop-overrides.json"
-    overrides = load_json(overrides_path) if overrides_path.exists() else None
-    written = process(src_dir, out_dir, sources, deck, crop, only, overrides)
+    card = load_json(TOKENS)["card"]
+    written = process(src_dir, out_dir, sources, deck, (card["masterWidth"], card["masterHeight"]), only)
     print(f"OK: {len(written)} файлов в {out_dir}")
     if "--sheet" in args:
         sheet = Path(args[args.index("--sheet") + 1])
