@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "reversed_shift": {"yes": "unclear", "no": "unclear", "unclear": "unclear"},
+  "spread_sizes": [1, 3],
+  "majority": 2,
+  "fallback": "unclear",
+  "labels": {
+    "en": {"yes": "Yes", "no": "No", "unclear": "Not clear yet"},
+    "es": {"yes": "Sí", "no": "No", "unclear": "Todavía no está claro"}
+  }
+}
