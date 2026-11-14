@@ -40,13 +40,14 @@
   `docs/research/stage1/cards.csv`; `slug_en`/`slug_es` совпадают с `cards.csv`;
 - все поля заполнены, длины в пределах раздела 1, ключевых слов 3–5, `yes_no` только из трёх значений;
 - `order` 1–78 без пропусков; старших арканов 22, в каждой масти 14;
-- словарь запретов (EN и ES, без учёта регистра): обещания точности и предсказания событий («will happen»,
-  «guarantee», «definitely», «for sure», «destined», «pasará», «garantiza», «seguro que», «sin duda», «está
-  destinado»), здоровье, беременность, смерть как событие, суд («illness», «pregnan», «die», «lawsuit»,
-  «enfermedad», «embaraz», «morir», «juicio» как суд), чтение чужих мыслей («he feels», «she thinks», «what they
-  feel», «lo que siente», «piensa de ti»), запугивание («curse», «danger», «maldición»); исключения — названия карт
-  («Death», «La Muerte», «Judgement», «El Juicio») в поле `name` и ссылки на карту по имени; совпадение — ошибка
-  с указанием карты, поля и слова;
+- словарь запретов (EN и ES, без учёта регистра, совпадение по границе слова; основа со звёздочкой — любое
+  окончание): обещания точности и предсказания событий («will happen», «guarantee*», «definitely», «for sure»,
+  «destined», «pasará», «garantiz*», «seguro que», «sin duda», «destinad*»), здоровье, беременность, смерть как
+  событие, суд («illness», «pregnan*», «die», «dying», «lawsuit», «court», «enfermedad*», «embaraz*», «morir*»,
+  «tribunal*», «demanda judicial»), чтение чужих мыслей («he feels», «she feels», «they feel», «he thinks», «she
+  thinks», «lo que siente», «piensa de ti»), запугивание («curse*», «maldici*»); названия карт («Death», «La
+  Muerte», «Judgement», «El Juicio») в словарь не входят; совпадение — ошибка с указанием карты, поля и слова;
+  словарь — файл `tools/cards/banned_terms.json`, его можно расширять;
 - `yes-no-rules.json`: функция вердикта (в `tools/cards/yes_no.py`) покрыта тестами на 1 и 3 карты, перевёрнутые,
   отсутствие большинства.
 
