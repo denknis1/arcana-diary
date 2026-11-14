@@ -59,7 +59,8 @@ def list_files() -> list[dict]:
         data = _get(params)
         for page in data.get("query", {}).get("pages", {}).values():
             info = page["imageinfo"][0]
-            files.append({"commons_title": page["title"], "url": info["url"], "width": info["width"],
+            url = urllib.parse.urlsplit(info["url"])._replace(query="", fragment="").geturl()  # без ?utm_*
+            files.append({"commons_title": page["title"], "url": url, "width": info["width"],
                           "height": info["height"], "bytes": info["size"], "sha1": info["sha1"]})
         if "continue" not in data:
             return files

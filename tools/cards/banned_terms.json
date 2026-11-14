@@ -3,12 +3,15 @@
     "will happen", "guarantee*", "definitely", "for sure", "destined",
     "illness", "pregnan*", "die", "dying", "lawsuit", "court",
     "he feels", "she feels", "they feel", "he thinks", "she thinks",
-    "curse*"
+    "curse*",
+    "feels the same", "feelings for you", "misses you", "thinking of you", "is coming"
   ],
   "es": [
     "pasará", "garantiz*", "seguro que", "sin duda", "destinad*",
     "enfermedad*", "embaraz*", "morir*", "tribunal*", "demanda judicial",
     "lo que siente", "piensa de ti",
-    "maldici*"
+    "maldici*",
+    "siente por ti", "sienten por ti", "piensa en ti", "te extraña", "atracción mutua",
+    "llegará", "volverá", "va a pasar"
   ]
 }

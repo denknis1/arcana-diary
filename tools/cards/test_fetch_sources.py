@@ -68,3 +68,12 @@ def test_fetch_does_not_retry_404(monkeypatch):
     with pytest.raises(urllib.error.HTTPError):
         fetch_sources._fetch("https://upload.wikimedia.org/x")
     assert len(calls) == 1
+
+
+def test_list_files_strips_query_from_url(monkeypatch):
+    page = {"title": "File:RWS1909 - 00 Fool.jpeg", "imageinfo": [{
+        "url": "https://upload.wikimedia.org/a/b/RWS1909_-_00_Fool.jpeg?utm_source=commons.wikimedia.org&utm_campaign=x",
+        "width": 825, "height": 1429, "size": 285790, "sha1": "abc"}]}
+    monkeypatch.setattr(fetch_sources, "_get", lambda params: {"query": {"pages": {"1": page}}})
+    files = fetch_sources.list_files()
+    assert [f["url"] for f in files] == ["https://upload.wikimedia.org/a/b/RWS1909_-_00_Fool.jpeg"]
