@@ -10,9 +10,9 @@
     ],
     "upright": "A new path may be opening, and The Fool steps toward it with a light bag, a white rose and a dog at his heels, right at the cliff's edge. This can feel like excitement mixed with not knowing enough yet. Say yes to the first small step, and keep one eye on the ground in front of you.",
     "reversed": "Reversed, The Fool can point to a leap you want to take but keep holding back from, or to rushing ahead without looking. The fresh start is still possible; it is only tangled with doubt or haste. Ask what would make the first step feel safe enough, then take that smaller version of it.",
-    "love": "In love, The Fool invites you to meet your feelings with curiosity rather than a plan. Enjoy what feels new without deciding right away where it must lead.",
-    "advice": "Take one small step toward something new today, without waiting to feel ready.",
-    "yes_no_why": "The Fool favors fresh starts and open roads, so the answer leans toward yes.",
+    "love": "Meet your feelings with curiosity rather than a plan, the way The Fool meets the road. Enjoy what feels new without deciding right away where it must lead.",
+    "advice": "Take a different route on a walk or commute and notice what the change shows you.",
+    "yes_no_why": "The Fool steps forward with a light bag and an open face, ready for what is new.",
     "status": "draft"
   },
   {
@@ -25,10 +25,10 @@
       "resources"
     ],
     "upright": "Everything you need may already be on the table, as it is for The Magician: cup, sword, wand and coin within reach. This card can feel like a click of focus, when intention and ability line up. Choose one goal and put your tools to work on it instead of spreading your energy thin.",
-    "reversed": "When The Magician is reversed, your skills may be present but scattered, or used to impress rather than to build. It can also point to doubting what you are able to do. Bring your attention back to one honest aim, and let your abilities serve that aim instead of an image.",
-    "love": "In matters of the heart, The Magician asks you to say plainly what you want instead of hinting. Your own words and actions shape more than you may think.",
-    "advice": "Write down one goal and list the tools and skills you already have for it.",
-    "yes_no_why": "The Magician shows skill and resources ready to use, which tips the answer toward yes.",
+    "reversed": "Skills that are present but scattered, or used to impress rather than to build, are the shadow side of this card. You may also be doubting what you are able to do. Bring your attention back to one honest aim, and let your abilities serve that aim instead of an image.",
+    "love": "Say plainly what you want instead of hinting. With The Magician, your own words and actions shape more than you may think.",
+    "advice": "Gather the tools for one plan onto a single table or page, as the Magician does.",
+    "yes_no_why": "Cup, sword, wand and coin all lie within the Magician's reach, ready to be used.",
     "status": "draft"
   },
   {
@@ -43,8 +43,8 @@
     "upright": "Seated between a dark pillar and a light one, The High Priestess keeps a scroll half-hidden in her lap. She speaks of knowing that comes through quiet rather than effort: a hunch, a dream, a feeling that keeps returning. Give yourself some silence and listen before you speak or decide.",
     "reversed": "Reversed, The High Priestess may suggest that your inner voice is being drowned out by noise, advice or busyness. Sometimes she points to things you sense but have not yet named, even to yourself. Step back from outside opinions for a while and notice what you know underneath them.",
     "love": "Before looking for answers outside, The High Priestess asks you to trust what you sense within. Some feelings need quiet time before they become clear to you.",
-    "advice": "Spend ten quiet minutes without your phone and note the first feeling that rises.",
-    "yes_no_why": "The High Priestess keeps her scroll half-hidden, so the answer is not ready to show itself yet.",
+    "advice": "Sleep on the question you are holding and notice the first feeling you wake up with.",
+    "yes_no_why": "The High Priestess keeps her scroll half-hidden behind her robe.",
     "status": "draft"
   },
   {
@@ -57,10 +57,10 @@
       "comfort"
     ],
     "upright": "Ripe wheat, a flowing stream and soft cushions surround The Empress, who embodies growth that comes from care rather than force. Her card can point to a rich time for ideas, projects and pleasure in simple things. Tend what you have started the way you would tend a garden, and let yourself enjoy it.",
-    "reversed": "Upside down, The Empress may point to giving care to everyone except yourself until the well runs low. Creativity can feel stuck when comfort and rest are missing. Turn some of that nurturing inward: one kind, restoring thing for you is not a luxury here.",
-    "love": "In relationships, The Empress invites warmth and generosity, starting with how you treat yourself. Let affection be something you enjoy giving and receiving, not something you have to earn.",
-    "advice": "Do one thing purely for your own comfort today, like a slow meal or time in nature.",
-    "yes_no_why": "The Empress speaks of growth and plenty, so the answer leans toward yes.",
+    "reversed": "Creativity that feels dry, or pleasure postponed until everything else is done, can mark the reversed Empress. Growth slows when nothing feeds it. Give yourself one unhurried, sensory pleasure, such as music, color or good food, and let ideas come back from there.",
+    "love": "Let affection be something you enjoy rather than something you earn. The Empress invites warmth, sensuality and generosity, starting with how you treat yourself.",
+    "advice": "Bring something living into your space, like fresh flowers or a plant.",
+    "yes_no_why": "Ripe wheat and a flowing stream surround The Empress: things are growing.",
     "status": "draft"
   },
   {
@@ -73,10 +73,10 @@
       "boundaries"
     ],
     "upright": "On a stone throne set among bare mountains, The Emperor stands for order you build yourself. He can point to a moment that calls for clear rules, firm decisions and taking charge of your part. Put structure around what matters to you: a plan, a schedule, a boundary you are willing to keep.",
-    "reversed": "When reversed, The Emperor can show structure turned rigid, or control slipping just when it is needed. You may feel pressed by someone else's rules or by your own strictness. Look at which rules still protect you and which only hold you in place, and loosen the second kind.",
-    "love": "Where love is concerned, The Emperor asks you to know your own boundaries and state them calmly. Steadiness you choose for yourself can make closeness feel safer.",
-    "advice": "Set one clear boundary today and say it out loud, kindly and plainly.",
-    "yes_no_why": "The Emperor stands for firm ground and decisive action, so the answer leans toward yes.",
+    "reversed": "Structure turned rigid, or control slipping just when it is needed, shows the Emperor's reversed side. You may feel pressed by someone else's rules or by your own strictness. Look at which rules still protect you and which only hold you in place, and loosen the second kind.",
+    "love": "Know your own boundaries and state them calmly. Steadiness you choose for yourself, as The Emperor does, can make closeness feel safer.",
+    "advice": "Set one clear boundary and say it out loud, kindly and plainly.",
+    "yes_no_why": "The Emperor sits on a stone throne: firm ground, clear rules, a decision made.",
     "status": "draft"
   },
   {
@@ -89,10 +89,10 @@
       "shared values"
     ],
     "upright": "Two followers kneel before The Hierophant, who raises his hand in blessing between the pillars of a temple. This may be a time to learn from tradition, a teacher, or a community whose values you share. Tried paths hold wisdom right now, so ask someone experienced before reinventing everything.",
-    "reversed": "Reversed, The Hierophant may point to rules that no longer fit you, or to following custom out of habit rather than belief. It can feel like quiet rebellion, or like living inside someone else's expectations. Ask which beliefs are truly yours, and keep the ones you would choose again.",
-    "love": "In love, this card asks what commitment and shared values mean to you. Notice whether you want a familiar shape of relationship or one you design in your own way.",
+    "reversed": "Rules that no longer fit you, or customs followed out of habit rather than belief, can surface with the reversed Hierophant. It can feel like quiet rebellion, or like living inside someone else's expectations. Ask which beliefs are truly yours, and keep the ones you would choose again.",
+    "love": "What do commitment and shared values mean to you? Notice whether you want a familiar shape of relationship or one you design in your own way.",
     "advice": "Ask someone you respect how they would approach the question you are holding.",
-    "yes_no_why": "The Hierophant favors proven paths and good counsel, so it leans toward yes.",
+    "yes_no_why": "Two followers kneel for the Hierophant's blessing, trusting a tried path and good counsel.",
     "status": "draft"
   },
   {
@@ -105,10 +105,10 @@
       "harmony"
     ],
     "upright": "Beneath an angel's open wings, two figures stand in a garden, honest and unguarded. The Lovers can point to a deep connection, and also to a choice that shows what you value most. Let your decision come from your heart and your principles together, not from fear of missing out.",
-    "reversed": "When The Lovers appear reversed, you may feel torn between what you want and what you believe is right. Often the split is inside you more than between you and someone else. Get honest with yourself first; a choice made in line with your values can feel lighter afterward.",
-    "love": "Here The Lovers ask what you truly want, beyond what looks good or safe. Choosing openly and honestly is the heart of this card for you.",
+    "reversed": "Feeling torn between what you want and what you believe is right sits at the center of the reversed Lovers. Often the split is inside you more than between you and someone else. Get honest with yourself first; a choice made in line with your values can feel lighter afterward.",
+    "love": "Ask yourself what you truly want, beyond what looks good or safe. The Lovers support a choice you make openly, with your heart and your values in agreement.",
     "advice": "Write down the choice in front of you and the value each option protects.",
-    "yes_no_why": "The Lovers point to harmony and a heartfelt choice, so the answer leans toward yes.",
+    "yes_no_why": "Under the angel's open wings, two figures stand together openly, in harmony.",
     "status": "draft"
   },
   {
@@ -122,9 +122,9 @@
     ],
     "upright": "With no reins in hand, the driver of The Chariot steers two sphinxes, one black and one white, by will alone. The card can point to forward motion that comes from focus and self-discipline. Decide where you are heading, and get your opposing impulses pulling in the same direction.",
     "reversed": "Upside down, The Chariot may show momentum stalling because your energy pulls two ways at once. Sometimes it points to pushing so hard that you lose sight of the destination. Pause to check your direction before adding more force; steering matters more than speed right now.",
-    "love": "In matters of the heart, The Chariot asks you to move toward what you want with intention. Know your own direction, and let your choices follow it rather than your doubts.",
-    "advice": "Name your destination in one sentence and take the first concrete step toward it.",
-    "yes_no_why": "The Chariot is about moving forward with resolve, so the answer leans toward yes.",
+    "love": "Move toward what you want with intention. Know your own direction, and let your choices follow it rather than your doubts.",
+    "advice": "Pick the one direction that matters most this week and turn down one thing that pulls against it.",
+    "yes_no_why": "Even without reins, the charioteer drives forward by focus and will.",
     "status": "draft"
   },
   {
@@ -137,10 +137,10 @@
       "inner strength"
     ],
     "upright": "A woman calmly holds a lion's jaws with her bare hands, an infinity sign floating above her head. Strength speaks of power that is soft rather than loud: patience, compassion, steady nerves. Meet what feels wild in you or around you with kindness and persistence instead of force.",
-    "reversed": "When reversed, Strength may point to self-doubt, or to a gentle nature worn thin by holding everything together. Old fears or frustrations can feel louder than usual. Be patient with yourself first; courage often comes back through small acts rather than big ones.",
-    "love": "With Strength, love asks for tenderness that does not erase you. Stay gentle and patient while staying honest about your own needs.",
-    "advice": "Face one thing you have been avoiding, slowly and gently, for just ten minutes.",
-    "yes_no_why": "Strength shows calm courage equal to the task, so the answer leans toward yes.",
+    "reversed": "Self-doubt, or a gentle nature worn thin by holding everything together, can come up with Strength reversed. Old fears or frustrations may feel louder than usual. Be patient with yourself first; courage often comes back through small acts rather than big ones.",
+    "love": "Tenderness that does not erase you is the lesson of Strength here. Stay gentle and patient while staying honest about your own needs.",
+    "advice": "When something frustrates you, lower your voice and slow down instead of pushing harder.",
+    "yes_no_why": "Strength closes the lion's jaws gently, with calm courage equal to the task.",
     "status": "draft"
   },
   {
@@ -153,10 +153,10 @@
       "wisdom"
     ],
     "upright": "Alone on a snowy peak, The Hermit holds up a lantern with a star inside, lighting only the next step. It may be a time to step back from noise and find your own answers. Solitude here is not loneliness but focus, so give yourself space to think before you choose.",
-    "reversed": "Reversed, The Hermit may suggest isolation that has stopped helping, or avoiding reflection by staying constantly busy. Too much distance and too little can both dim your inner light. Ask whether you need more quiet or more company, and give yourself a little of that today.",
-    "love": "In relationships, The Hermit asks you to understand your own heart before you share it. Time alone with your feelings can make you clearer about what you want.",
-    "advice": "Take a walk alone and keep one open question in mind as you go.",
-    "yes_no_why": "The Hermit's lantern lights only the next step, so the full answer stays open for now.",
+    "reversed": "Isolation that has stopped helping, or constant busyness that keeps reflection away: either can dim the Hermit's lantern. Both extremes leave you without a clear inner signal. Ask whether you need more quiet or more company, and give yourself a little of that.",
+    "love": "Understanding your own heart comes before sharing it, says The Hermit. Time alone with your feelings can make you clearer about what you want.",
+    "advice": "Take a walk alone and carry one open question with you, without rushing to answer it.",
+    "yes_no_why": "The Hermit's lantern lights only the next step, not the whole road.",
     "status": "draft"
   },
   {
@@ -168,11 +168,11 @@
       "turning point",
       "luck"
     ],
-    "upright": "The great wheel turns, with a sphinx seated on top and a serpent sliding down one side. Wheel of Fortune can point to a shift in circumstances, a moment when stuck things begin to move. Notice where the momentum is and lean into the change rather than clinging to how things were.",
+    "upright": "The great wheel turns, with a sphinx seated on top and a serpent sliding down one side. The Wheel of Fortune can point to a shift in circumstances, a moment when stuck things begin to move. Notice where the momentum is and lean into the change rather than clinging to how things were.",
     "reversed": "Upside down, the Wheel may point to resisting a change that seems to be underway, or to feeling that luck has turned away. Cycles keep moving even when you feel stuck at the bottom of one. Focus on what you can influence, and stop trying to control the timing.",
-    "love": "Where love is concerned, the Wheel asks you to stay flexible as feelings and situations shift. Notice what you want now, not only what you wanted before.",
-    "advice": "Name one area where things are shifting and make one small move to go with it.",
-    "yes_no_why": "The Wheel turns toward movement and new chances, so the answer leans toward yes.",
+    "love": "Feelings and situations shift, and the Wheel asks you to shift with them. Notice what you want now, not only what you wanted before.",
+    "advice": "Notice where things are shifting and make one small move that goes with the change.",
+    "yes_no_why": "The Wheel of Fortune is turning, and things that were stuck begin to move.",
     "status": "draft"
   },
   {
@@ -185,10 +185,10 @@
       "accountability"
     ],
     "upright": "Justice sits with an upright sword in one hand and level scales in the other, looking straight ahead. This card can point to moments that ask for honesty, fairness and owning your choices. Weigh the facts carefully, then act in a way you could explain to yourself later without flinching.",
-    "reversed": "When reversed, Justice may point to something feeling unbalanced or unfair, or to avoiding your own part in a situation. It may also reflect self-judgment harsher than the facts support. Look at things as an honest friend would, and take ownership only of what is truly yours.",
-    "love": "In love, Justice asks whether give and take feels balanced to you. Be honest with yourself about what you offer and what you need.",
-    "advice": "List the facts of the situation on one side and your assumptions on the other.",
-    "yes_no_why": "Justice weighs both sides before deciding, so the answer stays open until the facts are clear.",
+    "reversed": "Something feeling unbalanced or unfair, or a reluctance to look at your own part, can show up with Justice reversed. Self-judgment harsher than the facts support belongs here too. Look at things as an honest friend would, and take ownership only of what is truly yours.",
+    "love": "Does give and take feel balanced to you? Be honest with yourself about what you offer and what you need.",
+    "advice": "Divide a page into facts and assumptions, and sort your situation into the two columns.",
+    "yes_no_why": "Justice is still weighing both sides on her scales before anything is decided.",
     "status": "draft"
   },
   {
@@ -201,10 +201,10 @@
       "waiting"
     ],
     "upright": "Hanging calmly by one foot from a living tree, a glow around his head, The Hanged Man is seeing the world upside down on purpose. His card can point to a pause that offers a new angle on an old problem. Stop pushing for a moment and let the situation show you another side.",
-    "reversed": "Reversed, The Hanged Man may point to waiting that has turned into stalling, or to a sacrifice that no longer makes sense to you. You may feel restless yet unwilling to let go of the old view. Ask what you are holding on to, and whether the pause still serves you.",
-    "love": "In matters of the heart, The Hanged Man asks you to see your situation from a different angle. Pausing before you react can show you what you really feel.",
-    "advice": "Look at your current problem from the opposite point of view for five minutes.",
-    "yes_no_why": "The Hanged Man is suspended in a pause, so the answer is still forming and remains open.",
+    "reversed": "Waiting that has turned into stalling, or a sacrifice that no longer makes sense to you, marks the reversed Hanged Man. You may feel restless yet unwilling to let go of the old view. Ask what you are holding on to, and whether the pause still serves you.",
+    "love": "See your situation from a different angle before you act. Pausing before you react can show you what you really feel.",
+    "advice": "Argue the opposite side of your problem, out loud or on paper, and see what shifts.",
+    "yes_no_why": "The Hanged Man hangs in a deliberate pause, and his new view is still forming.",
     "status": "draft"
   },
   {
@@ -218,9 +218,9 @@
     ],
     "upright": "A dark rider carries a banner with a white rose, while the sun rises between two towers on the horizon. In tarot, Death is the card of transformation: one chapter closing so another can begin. Let go of what has run its course, and make room for what is ready to grow.",
     "reversed": "Upside down, Death may point to resisting a change you can feel is needed, or holding on to a phase that may have run its course. This can feel like being stuck between old and new. Ask what you are afraid to release, and let go of one small piece of it.",
-    "love": "In relationships, Death speaks of change within your own feelings and patterns. Notice what you are ready to leave behind so something more honest can grow.",
+    "love": "Change within your own feelings and patterns is what Death speaks of here. Notice what you are ready to leave behind so something more honest can grow.",
     "advice": "Clear out one object or habit that belongs to a chapter you are ready to close.",
-    "yes_no_why": "Death speaks of closing a chapter rather than continuing it, so the answer leans toward no.",
+    "yes_no_why": "Death is about a chapter closing rather than going on as it was.",
     "status": "draft"
   },
   {
@@ -233,10 +233,10 @@
       "blending"
     ],
     "upright": "One foot on land and one in water, an angel pours liquid between two cups in a steady stream. Temperance can point to finding balance through patience and the blending of opposites. Go gently, combine what works, and trust a pace that is steady rather than dramatic.",
-    "reversed": "When reversed, Temperance may point to imbalance: too much of one thing and too little of another, or impatience with a slow process. You may notice yourself swinging from one extreme to the other. Bring things back toward the middle with one small adjustment rather than a big overhaul.",
-    "love": "Where love is concerned, Temperance invites patience and a gentle middle ground. Notice where you can soften, and where you need to stay true to yourself.",
-    "advice": "Choose one area where you overdo or underdo things and adjust it slightly today.",
-    "yes_no_why": "Temperance shows things blending well with patience, which tips the answer toward yes.",
+    "reversed": "Too much of one thing and too little of another, or impatience with a slow process, shows Temperance out of balance. You may notice yourself swinging from one extreme to the other. Bring things back toward the middle with one small adjustment rather than a big overhaul.",
+    "love": "A gentle middle ground is what Temperance offers. Notice where you can soften, and where you need to stay true to yourself.",
+    "advice": "Choose one area where you overdo or underdo things and adjust it slightly.",
+    "yes_no_why": "The angel pours between two cups without spilling, blending opposites with patience.",
     "status": "draft"
   },
   {
@@ -249,10 +249,10 @@
       "restriction"
     ],
     "upright": "Two figures stand chained to a pedestal beneath The Devil, yet the chains around their necks are loose enough to lift off. The card can point to habits, attachments or patterns that hold you more than you would like. Name what has a grip on you; seeing it clearly is the first step to slipping free.",
-    "reversed": "Reversed, The Devil may suggest that a pattern is losing its hold as you begin to see it for what it is. It can also point to a private struggle with a habit you would rather not look at. Freedom grows from honesty here: admit the pull, then make one choice against it.",
+    "reversed": "A pattern losing its hold as you begin to see it for what it is: that is one side of The Devil reversed. It can also point to a private struggle with a habit you would rather not look at. Freedom grows from honesty here: admit the pull, then make one choice against it.",
     "love": "In love, The Devil asks you to notice where desire, or the fear of being alone, may be limiting you. Choose what feels freeing, not only what feels familiar.",
-    "advice": "Notice one habit that pulls at you and skip it once today, on purpose.",
-    "yes_no_why": "The Devil points to attachments that limit your choices, so the answer leans toward no.",
+    "advice": "Notice one habit that pulls at you and skip it once, on purpose.",
+    "yes_no_why": "The chains in The Devil keep the figures in place, even though they could be lifted off.",
     "status": "draft"
   },
   {
@@ -265,10 +265,10 @@
       "release"
     ],
     "upright": "Lightning strikes The Tower and knocks off its crown, a picture of change that shakes whatever was built on weak ground. The card can point to a sudden realization or disruption that clears away illusions. Unsettling as it can feel, what falls may make room for something truer, so steady yourself and look at what remains.",
-    "reversed": "Upside down, The Tower may point to a shake-up you are trying to hold off, or to change unfolding quietly inside you. Sometimes it brings relief at a crisis avoided, sometimes the tension of one delayed. Ask what in your life no longer feels stable, and start reshaping it gently on your own terms.",
+    "reversed": "A shake-up you are trying to hold off, or change unfolding quietly inside you, can be the reversed Tower. Sometimes it brings relief at an upheaval avoided, sometimes the tension of one delayed. Ask what in your life no longer feels stable, and start reshaping it gently on your own terms.",
     "love": "In matters of the heart, The Tower asks you to be honest about what no longer feels solid to you. Truth spoken calmly can clear the air.",
-    "advice": "Name one plan that feels shaky and write down what you would build instead.",
-    "yes_no_why": "The Tower shakes up existing plans, so for now the answer leans toward no.",
+    "advice": "Name one plan that feels shaky and sketch what you would build in its place.",
+    "yes_no_why": "Lightning strikes The Tower and knocks its crown loose, shaking existing plans.",
     "status": "draft"
   },
   {
@@ -280,11 +280,11 @@
       "calm",
       "inspiration"
     ],
-    "upright": "Under a large eight-pointed star, a woman kneels by a pool, pouring water onto the land and back into the stream. The Star can point to quiet hope and a sense of renewal, the feeling of breathing more easily. Let yourself believe in something good again, and take one small, honest step toward it.",
-    "reversed": "When reversed, The Star may point to hope running low, or to feeling cut off from what usually inspires you. That light can still be there even when it is hard to see. Reconnect with one small thing that has brought you calm before, and let that be enough for today.",
+    "upright": "Under a large eight-pointed star, a woman kneels by a pool, pouring water onto the land and back into the pool. The Star can point to quiet hope and a sense of renewal, the feeling of breathing more easily. Let yourself believe in something good again, and take one small, honest step toward it.",
+    "reversed": "Hope running low, or feeling cut off from what usually inspires you, can come with the reversed Star. That light can still be there even when it is hard to see. Reconnect with one small thing that has brought you calm before, and let that be enough for now.",
     "love": "In relationships, The Star invites openness and gentle optimism. Let yourself hope for a connection that feels kind and honest, and offer yourself that kindness first.",
-    "advice": "Step outside tonight, look at the sky for a few minutes and name one hope.",
-    "yes_no_why": "The Star brings hope and renewal, so the answer leans toward yes.",
+    "advice": "Step outside tonight, look at the sky for a while and name one hope.",
+    "yes_no_why": "Under the great star, the woman pours water freely, a picture of hope and renewal.",
     "status": "draft"
   },
   {
@@ -296,11 +296,11 @@
       "dreams",
       "hidden feelings"
     ],
-    "upright": "The Moon points to a stretch where things are not fully visible yet. Feelings, hints and half-formed fears can blur together, so move slowly and check what is real before you act. Your intuition is useful here: let it shape your questions, not your conclusions.",
+    "upright": "A path winds between two towers under a full moon, where a dog and a wolf howl and a crayfish climbs from the water. The Moon points to a stretch where things are not fully visible yet, and feelings, hints and half-formed fears can blur together. Move slowly, check what is real before you act, and let your intuition shape your questions, not your conclusions.",
     "reversed": "Reversed, The Moon may suggest that confusion is starting to lift, or that something you avoided looking at is coming into view. It can also point to worry running ahead of the facts. Name what you actually know, and let the rest wait for clearer light.",
     "love": "In love, The Moon asks for patience with mixed signals. Notice what you feel, ask openly instead of guessing, and give trust time to grow.",
     "advice": "Wait for clearer light: write down what you know and what you only fear.",
-    "yes_no_why": "The Moon is about what cannot be seen yet, so the answer stays open for now.",
+    "yes_no_why": "Under the Moon's light the path is only half visible, and shapes are hard to read.",
     "status": "draft"
   },
   {
@@ -313,10 +313,10 @@
       "confidence"
     ],
     "upright": "A child rides a white horse beneath a bright sun, sunflowers rising behind a garden wall. Few cards feel as open: The Sun can point to joy, clarity and confidence, a time when things feel simple and warm. Let yourself be seen and enjoy what is going well, without waiting for something to spoil it.",
-    "reversed": "Reversed, The Sun may point to joy that is present but muted, perhaps by tiredness or self-doubt. It can feel like clouds passing over a sunny day rather than a storm. Look for one bright thing in your day and let yourself enjoy it fully, without downplaying it.",
-    "love": "Where love is concerned, The Sun invites warmth, play and openness. Let yourself show what you feel freely, and enjoy the lightness of being yourself.",
-    "advice": "Do one thing today that makes you laugh or feel playful, just for its own sake.",
-    "yes_no_why": "The Sun stands for clarity and warmth, so the answer leans clearly toward yes.",
+    "reversed": "Joy that is present but muted, perhaps by tiredness or self-doubt, is the reversed Sun. It can feel like clouds passing over a sunny day rather than a storm. Look for one bright thing in your day and let yourself enjoy it fully, without downplaying it.",
+    "love": "Warmth, play and openness belong to The Sun. Let yourself show what you feel freely, and enjoy the lightness of being yourself.",
+    "advice": "Spend time in daylight doing something that makes you laugh or feel playful.",
+    "yes_no_why": "The child rides under a bright sun, open and unafraid, with nothing hidden.",
     "status": "draft"
   },
   {
@@ -330,9 +330,9 @@
     ],
     "upright": "An angel sounds a trumpet, and figures below rise with open arms, answering a call. Judgement can point to a moment of awakening, when you see your life more clearly and feel drawn toward something. Listen to what is asking for your attention, and answer it honestly, as the person you are becoming.",
     "reversed": "Upside down, Judgement may point to self-criticism that drowns out the call, or to hesitation before a choice you sense you need to make. You might be replaying old mistakes instead of learning from them. Offer yourself the fairness you would give a friend, then decide what comes next.",
-    "love": "In love, Judgement asks you to see your own patterns clearly and choose with fresh eyes. Forgiving yourself can be part of opening your heart.",
-    "advice": "Write down one thing you feel called to do and the first step toward it.",
-    "yes_no_why": "Judgement shows a call heard and answered, so the answer leans toward yes.",
+    "love": "See your own patterns clearly and choose with fresh eyes. Forgiving yourself, as Judgement suggests, can be part of opening your heart.",
+    "advice": "Act on one thing you keep feeling called to do, even with a single message or sign-up.",
+    "yes_no_why": "The angel's trumpet sounds, and the figures rise with open arms to answer the call.",
     "status": "draft"
   },
   {
@@ -345,10 +345,10 @@
       "accomplishment"
     ],
     "upright": "Wrapped in a sash and dancing inside a laurel wreath, the figure of The World shows a cycle coming together. The card can point to completion, wholeness and the quiet satisfaction of growing through something. Take a moment to honor your growth, and enjoy that sense of fit before you begin the next chapter.",
-    "reversed": "When reversed, The World may point to something almost finished but not quite closed, a last step that keeps getting postponed. It can feel like hovering at the edge of a new beginning. Find the loose end and tie it off, so you can move forward lighter.",
-    "love": "In matters of the heart, The World invites you to feel whole in yourself. From that place, closeness can feel like sharing rather than needing.",
+    "reversed": "Something almost finished but not quite closed, a last step that keeps getting postponed, often shows with the World reversed. It can feel like hovering at the edge of a new beginning. Find the loose end and tie it off, so you can move forward lighter.",
+    "love": "Feeling whole in yourself comes first with The World. From that place, closeness can feel like sharing rather than needing.",
     "advice": "Finish one small task you left almost done and mark it complete.",
-    "yes_no_why": "The World signals a cycle reaching fulfillment, so the answer leans toward yes.",
+    "yes_no_why": "The dancer moves freely inside the laurel wreath as a cycle comes together.",
     "status": "draft"
   },
   {
@@ -361,10 +361,10 @@
       "potential"
     ],
     "upright": "A hand reaches out of a cloud holding a living branch, new leaves sprouting from the wood. The Ace of Wands can point to a spark: an idea, a wish to create, a burst of energy for something new. Catch it while it is warm and give it a first concrete form, however small.",
-    "reversed": "Reversed, the Ace of Wands may show an idea that keeps flickering but never quite catches, or energy spent before it finds a direction. You might feel eager and stuck at once. Choose the one spark that excites you most and give it a few protected minutes instead of chasing every flame.",
-    "love": "In relationships, the Ace of Wands brings a fresh spark of desire or curiosity in you. Let yourself feel that excitement and act on it in a simple, honest way.",
-    "advice": "Write your newest idea down and spend five minutes acting on it today.",
-    "yes_no_why": "The Ace of Wands is a spark of new energy and will, so the answer leans toward yes.",
+    "reversed": "An idea that keeps flickering but never quite catches, or energy spent before it finds direction, may describe the reversed Ace of Wands. You might feel eager and stuck at once. Choose the one spark that excites you most and give it protected time instead of chasing every flame.",
+    "love": "A fresh spark of desire or curiosity may light up in you. Let yourself feel that excitement and act on it in a simple, honest way.",
+    "advice": "Give your newest idea a name and do the very first, smallest piece of it.",
+    "yes_no_why": "A living branch sprouts in the hand from the cloud, full of fresh energy.",
     "status": "draft"
   },
   {
@@ -377,10 +377,10 @@
       "wider horizons"
     ],
     "upright": "Standing on a castle wall, a man holds a small globe and looks out past the land he knows. The Two of Wands speaks of planning a bigger move, weighing the familiar against a wider horizon. Let your ambitions take shape on paper and sketch where you want to go before you step off the wall.",
-    "reversed": "Upside down, the Two of Wands may point to staying somewhere comfortable while part of you keeps looking outward. Fear of the unknown can turn planning into endless postponing. Pick one piece of the bigger plan and test it in a small, low-risk way.",
-    "love": "Where love is concerned, this card asks what you want your life to look like, and whether your choices are moving you toward it. Let your own vision lead.",
-    "advice": "Draw a simple map of where you want to be in a year and mark the first stop.",
-    "yes_no_why": "The Two of Wands shows a plan ready to reach further, which tips the answer toward yes.",
+    "reversed": "Staying somewhere comfortable while part of you keeps looking outward is the reversed Two of Wands. Fear of the unknown can turn planning into endless postponing. Pick one piece of the bigger plan and test it in a small, low-risk way.",
+    "love": "What do you want your life to look like, and are your choices moving you toward it? Let your own vision lead.",
+    "advice": "Look at a map or a photo of a place you want to reach and name what draws you there.",
+    "yes_no_why": "The figure holds a small globe in his hand and looks out at a wider horizon.",
     "status": "draft"
   },
   {
@@ -392,11 +392,11 @@
       "progress",
       "looking ahead"
     ],
-    "upright": "From a high cliff, a figure watches ships cross a golden sea, three wands planted firmly beside them. This is the stage after the first step, when efforts are underway and the view opens up. Keep your eyes on the horizon and stay ready for what your work makes possible.",
-    "reversed": "When reversed, the Three of Wands may show impatience when progress feels slower than you hoped, or plans that need a wider view. It may also reflect holding back from opportunities further from home. Check what is still in your hands, and adjust your course rather than abandoning it.",
-    "love": "In love, the Three of Wands invites you to look further ahead and ask what kind of connection you want to grow into. Your own openness widens the view.",
-    "advice": "Reach out today to one person or opportunity outside your usual circle.",
-    "yes_no_why": "The Three of Wands shows efforts setting out and gaining ground, so it leans toward yes.",
+    "upright": "From a high cliff, a figure watches ships cross a golden sea, three wands planted firmly beside the figure. This may be the stage after the first step, when efforts are underway and the view opens up. Keep your eyes on the horizon and stay ready for what your work makes possible.",
+    "reversed": "Impatience when progress feels slower than you hoped, or plans that need a wider view, can belong to the reversed Three of Wands. So can holding back from opportunities further from home. Check what is still in your hands, and adjust your course rather than abandoning it.",
+    "love": "Look further ahead and ask what kind of connection you want to grow into. Your own openness widens the view.",
+    "advice": "Reach out to one person or opportunity outside your usual circle.",
+    "yes_no_why": "Ships are out on the sea, and the figure on the cliff watches them make headway.",
     "status": "draft"
   },
   {
@@ -410,9 +410,9 @@
     ],
     "upright": "Four wands hold up a garland of flowers, and figures wave bouquets in front of a castle as if welcoming someone home. Celebration, belonging and a stable base to stand on are the heart of this card. Mark the good moments in your life, and share them with people who feel like home.",
     "reversed": "Reversed, the Four of Wands may point to a celebration that feels hollow, or to not quite feeling at home where you are. It can also show joy held back while you wait for everything to be perfect. Let yourself enjoy a smaller, simpler version of what you hoped for.",
-    "love": "In matters of the heart, the Four of Wands invites you to feel at ease and celebrate what you value in your connections. Notice where you feel truly welcomed and safe.",
-    "advice": "Plan a small gathering or shared meal with someone who feels like home to you.",
-    "yes_no_why": "The Four of Wands is celebration and steady ground, so the answer leans toward yes.",
+    "love": "Feeling at ease, welcomed and safe is what the Four of Wands celebrates. Notice where you truly feel that in your connections.",
+    "advice": "Decorate one corner of your space with flowers or something festive, just because.",
+    "yes_no_why": "A garland hangs over four wands, and people come out to celebrate.",
     "status": "draft"
   },
   {
@@ -425,10 +425,10 @@
       "clashing ideas"
     ],
     "upright": "Five young men wave wands at one another, more scramble than battle, with no one clearly winning. Friction, competition or too many voices pulling in different directions may be in the air. Decide which contests are worth your energy, and say clearly what you want instead of shouting louder.",
-    "reversed": "Upside down, the Five of Wands may show conflict turning inward, or avoiding a disagreement that could actually clear the air. Sometimes it points to tension easing as people start to listen. Choose one honest conversation and have it calmly rather than letting friction simmer.",
-    "love": "In relationships, this card asks you to notice whether you are competing for attention or for being right. Say what you need without turning it into a contest.",
-    "advice": "Pick the one disagreement that matters most and let the smaller ones go for today.",
-    "yes_no_why": "With every wand pulling a different way, the Five of Wands leaves the answer open for now.",
+    "reversed": "Conflict turning inward, or a disagreement avoided that could actually clear the air, can come with the reversed Five of Wands. Sometimes it points to tension easing as people start to listen. Choose one honest conversation and have it calmly rather than letting friction simmer.",
+    "love": "Are you competing for attention, or for being right? Say what you need without turning it into a contest.",
+    "advice": "Pick the one disagreement that matters most and let the smaller ones go.",
+    "yes_no_why": "Five wands clash in a scramble, and no one has the upper hand.",
     "status": "draft"
   },
   {
@@ -440,11 +440,11 @@
       "confidence",
       "progress"
     ],
-    "upright": "A rider on a white horse wears a laurel wreath, and another crowns the wand he carries through a cheering crowd. The Six of Wands may reflect recognition, a win, or simply the confidence of being seen for good work. Accept credit where it is due and let it fuel the next step.",
-    "reversed": "When reversed, the Six of Wands may point to working hard without feeling seen, or to leaning too much on other people's approval. It can also be hard to accept praise when it does come. Remind yourself what you are proud of, whether or not anyone is cheering yet.",
+    "upright": "A rider on a white horse wears a laurel wreath, and a second wreath crowns the wand he carries through a cheering crowd. The Six of Wands may reflect recognition, a win, or simply the confidence of being seen for good work. Accept credit where it is due and let it fuel the next step.",
+    "reversed": "Working hard without feeling seen, or leaning too much on other people's approval: both belong to the reversed Six of Wands. It can also be hard to accept praise when it does come. Remind yourself what you are proud of, whether or not anyone is cheering yet.",
     "love": "Where love is concerned, the Six of Wands invites you to feel proud of who you are and to let yourself be appreciated. Confidence in your own worth shapes how you choose.",
-    "advice": "Write down one thing you did well this week and tell someone about it.",
-    "yes_no_why": "The Six of Wands shows a win and open recognition, so the answer leans toward yes.",
+    "advice": "Tell someone about one thing you did well this week, without playing it down.",
+    "yes_no_why": "The rider's wand is crowned with a laurel wreath as the crowd cheers.",
     "status": "draft"
   },
   {
@@ -458,9 +458,9 @@
     ],
     "upright": "On higher ground, a man holds off six wands rising from below, his shoes mismatched as if he dressed in a hurry. The Seven of Wands can point to defending your position, your boundaries or your ideas under pressure. Stand firm where it matters to you, and stop defending what you no longer care about.",
     "reversed": "Reversed, the Seven of Wands may show tiredness from constantly defending yourself, or doubt about whether your position is worth holding. You might be tempted to give in just to end the pressure. Ask which ground is truly yours, and protect that with calm rather than exhaustion.",
-    "love": "In love, this card asks you to stand by your own needs and values without becoming defensive. Holding your ground can be gentle.",
+    "love": "Stand by your own needs and values without becoming defensive. Holding your ground can be calm and gentle rather than a fight.",
     "advice": "Decide which one position you will keep and which you are willing to let go.",
-    "yes_no_why": "The Seven of Wands shows a position still being defended, so the outcome remains open.",
+    "yes_no_why": "On the hill, one figure is still holding off six wands, and the contest goes on.",
     "status": "draft"
   },
   {
@@ -473,10 +473,10 @@
       "momentum"
     ],
     "upright": "Eight wands fly through a clear sky over open country, all angled in the same direction. Things may be moving quickly now: messages, decisions, plans picking up speed. Act while the path is clear, and keep your replies simple so the momentum keeps going.",
-    "reversed": "Upside down, the Eight of Wands may point to delays, crossed messages, or rushing so fast that details get lost. It can feel like energy with nowhere to land. Slow down enough to aim, then send one clear message or take one clear action.",
-    "love": "In matters of the heart, the Eight of Wands brings a sense of movement and excitement. Notice what you want to say and say it while the feeling is fresh.",
-    "advice": "Answer the one message or task you have been putting off, quickly and simply.",
-    "yes_no_why": "The Eight of Wands is fast, unobstructed movement, so the answer leans toward yes.",
+    "reversed": "Delays, crossed messages, or rushing so fast that details get lost may show up with the Eight of Wands reversed. It can feel like energy with nowhere to land. Slow down enough to aim, then send one clear message or take one clear action.",
+    "love": "There is movement and excitement in this card. Notice what you want to say and say it while the feeling is fresh.",
+    "advice": "Answer the one message you have been putting off, quickly and simply.",
+    "yes_no_why": "Eight wands fly through a clear sky with nothing in their way.",
     "status": "draft"
   },
   {
@@ -489,10 +489,10 @@
       "last stretch"
     ],
     "upright": "Leaning on his staff with a bandaged head, a watchful man stands before a row of eight wands like a fence. The Nine of Wands speaks of persistence near the end of a long effort, and of the guardedness that comes with it. Keep going, but check whether every defense you hold is still needed.",
-    "reversed": "When reversed, the Nine of Wands may show defenses stretched thin, or a sense that you cannot face one more challenge. Sometimes it points to guarding so much that support cannot reach you. Let someone help with part of the load, and rest your guard where it is safe.",
-    "love": "In relationships, this card asks whether your caution protects you or keeps out what you want. Lower your guard a little where you feel safe.",
-    "advice": "Ask one person for help with a task you have been carrying alone.",
-    "yes_no_why": "The Nine of Wands shows the last stretch still being held, so the answer is not settled yet.",
+    "reversed": "Defenses stretched thin, or a sense that you cannot face one more challenge, can mark the reversed Nine of Wands. So can guarding so much that support cannot reach you. Let someone help with part of the load, and rest your guard where it is safe.",
+    "love": "Does your caution protect you, or keep out what you want? Lower your guard a little where you feel safe.",
+    "advice": "Check one thing you are guarding against and ask whether it is still a real threat.",
+    "yes_no_why": "Behind his fence of wands, the guarded figure is still holding the line.",
     "status": "draft"
   },
   {
@@ -506,9 +506,9 @@
     ],
     "upright": "Bent forward, a figure carries ten heavy wands toward a distant town, arms wrapped around a load that blocks the view ahead. The Ten of Wands may reflect taking on too much and losing sight of why. Look at what you are carrying, and set down what is not truly yours to hold.",
     "reversed": "Reversed, the Ten of Wands may point to starting to put burdens down, or to refusing help when the load is already too much. You might be carrying responsibilities out of habit or guilt. Choose one task to hand off, postpone or drop, and notice how that feels.",
-    "love": "Where love is concerned, the Ten of Wands asks whether you are carrying more than your share of the emotional work. Choose what you can hold with care and what to put down.",
-    "advice": "Cross one obligation off your list today by handing it off, postponing it or saying no.",
-    "yes_no_why": "The Ten of Wands shows a load already too heavy to add to, so the answer leans toward no.",
+    "love": "Are you carrying more than your share of the emotional work? Choose what you can hold with care and what to put down.",
+    "advice": "Cross one obligation off your list by handing it off, postponing it or saying no.",
+    "yes_no_why": "Ten wands bend the figure forward, more than can comfortably be held.",
     "status": "draft"
   },
   {
@@ -521,10 +521,10 @@
       "new ideas"
     ],
     "upright": "In an open desert, a young messenger studies the tip of his sprouting wand as if it holds a secret. The Page of Wands can point to curiosity, fresh enthusiasm and the urge to explore an idea for its own sake. Follow your interest with a playful first try, and treat it as discovery rather than a test.",
-    "reversed": "Upside down, the Page of Wands may show enthusiasm that flares and fades, or ideas you hesitate to share. It may also reflect restlessness without knowing what you want to try. Choose one small experiment and finish it, even if it is imperfect.",
-    "love": "In love, the Page of Wands invites playfulness and curiosity. Let yourself explore what excites you without needing to know where it leads.",
+    "reversed": "Enthusiasm that flares and fades, or ideas you hesitate to share, can belong to the reversed Page of Wands. Restlessness without knowing what you want to try may be part of it. Choose one small experiment and finish it, even if it is imperfect.",
+    "love": "Playfulness and curiosity lead here. Let yourself explore what excites you without needing to know where it leads.",
     "advice": "Try one new thing today simply because it makes you curious.",
-    "yes_no_why": "The Page of Wands brings eager news and fresh interest, so the answer leans toward yes.",
+    "yes_no_why": "The Page studies his sprouting wand with eager curiosity, ready to explore.",
     "status": "draft"
   },
   {
@@ -537,10 +537,10 @@
       "passion"
     ],
     "upright": "His horse rearing, the Knight of Wands charges forward with pyramids in the distance and salamanders on his tunic. This card speaks of bold action, passion and a hunger for adventure. Move toward what lights you up, but give your energy a direction so it does not burn out halfway.",
-    "reversed": "When reversed, the Knight of Wands may point to impatience, scattered energy, or starting many things without finishing them. Frustration can grow when action has no clear aim. Pick one goal and put your fire into it, letting the rest wait.",
-    "love": "In matters of the heart, the Knight of Wands brings passion and spontaneity. Act on what you feel, while checking that your choices match what you truly want.",
-    "advice": "Take one bold step today on something you have only been talking about doing.",
-    "yes_no_why": "The Knight of Wands rushes forward with drive, so the answer leans toward yes.",
+    "reversed": "Impatience, scattered energy, or many things started and few finished can show the Knight of Wands reversed. Frustration grows when action has no clear aim. Pick one goal and put your fire into it, letting the rest wait.",
+    "love": "Passion and spontaneity ride with the Knight of Wands. Act on what you feel, while checking that your choices match what you truly want.",
+    "advice": "Say yes to one spontaneous plan or invitation instead of thinking it over.",
+    "yes_no_why": "The Knight's horse rears and charges forward, full of drive.",
     "status": "draft"
   },
   {
@@ -553,10 +553,10 @@
       "independence"
     ],
     "upright": "Flanked by lions and holding a sunflower, the Queen of Wands has a black cat at her feet and an easy, open gaze. She stands for confidence, warmth and the courage to be fully yourself. Take up space today: speak in your own voice and let your energy draw others in.",
-    "reversed": "Reversed, the Queen of Wands may show your confidence dimming, or warmth turning into impatience when you feel overstretched. You may be hiding your light to avoid attention. Reconnect with one thing that makes you feel bold, and let yourself be seen doing it.",
+    "reversed": "Confidence dimming, or warmth turning into impatience when you feel overstretched, can describe the reversed Queen of Wands. You may be hiding your light to avoid attention. Reconnect with one thing that makes you feel bold, and let yourself be seen doing it.",
     "love": "In relationships, the Queen of Wands invites you to show up warmly and confidently as yourself. Say what you want without shrinking it.",
-    "advice": "Wear, say or do one thing today that makes you feel fully yourself.",
-    "yes_no_why": "The Queen of Wands acts with warm confidence, so the answer leans toward yes.",
+    "advice": "Wear, say or do one thing that makes you feel fully yourself.",
+    "yes_no_why": "The Queen sits open and at ease between her lions, sunflower in hand.",
     "status": "draft"
   },
   {
@@ -569,10 +569,10 @@
       "boldness"
     ],
     "upright": "Leaning forward on his throne, wand in hand, the King of Wands looks ready to rise at any moment, a salamander resting at his feet. He can point to leadership, vision and the ability to turn ideas into action. Take charge of your direction, and inspire others by acting on what you believe.",
-    "reversed": "Upside down, the King of Wands may point to pushing too hard, impatience with others, or a vision that lacks follow-through. It can also show doubt about your right to lead. Lead by example in one small area, and leave room for others to contribute.",
-    "love": "Where love is concerned, the King of Wands asks you to be clear and generous about what you want. Lead with honesty, not control.",
+    "reversed": "Pushing too hard, impatience with others, or a vision without follow-through may mark the reversed King of Wands. Doubt about your right to lead can also appear. Lead by example in one small area, and leave room for others to contribute.",
+    "love": "Be clear and generous about what you want, and say it in your own voice. Lead with honesty, not control.",
     "advice": "Make one decision you have been delaying and tell the people it affects.",
-    "yes_no_why": "The King of Wands turns vision into action, so the answer leans toward yes.",
+    "yes_no_why": "The King leans forward on his throne, ready to turn vision into action.",
     "status": "draft"
   },
   {
@@ -585,10 +585,10 @@
       "emotional renewal"
     ],
     "upright": "Five streams pour from a cup held out of a cloud, while a dove descends toward a pond of lilies. The Ace of Cups speaks of an open heart: new feelings, tenderness, a wish to give and receive love. Let yourself feel fully, and offer some of that warmth to yourself as well.",
-    "reversed": "When reversed, the Ace of Cups may point to feelings held in, or a heart kept carefully guarded. You may be giving to others while running dry yourself. Fill your own cup first with something gentle, and let feeling flow back at its own pace.",
+    "reversed": "Feelings held in, or a heart kept carefully guarded, can come with the reversed Ace of Cups. Emotion may be there but not flowing. Let one feeling out in a safe way, through tears, music or words, and let the rest follow at its own pace.",
     "love": "In love, the Ace of Cups invites you to open your heart to new or deeper feeling. Let yourself receive affection as much as you give it.",
-    "advice": "Write a few lines about what you feel today, without judging or editing them.",
-    "yes_no_why": "The Ace of Cups overflows with feeling and openness, so the answer leans toward yes.",
+    "advice": "Let one piece of music move you all the way through, and notice what you feel.",
+    "yes_no_why": "The cup overflows in five streams, and feeling moves freely.",
     "status": "draft"
   },
   {
@@ -601,10 +601,10 @@
       "harmony"
     ],
     "upright": "Two people face each other and exchange cups, a winged lion's head rising above them on a staff. A meaningful connection based on mutual respect may be at the center here: a friendship, a partnership, a meeting of equals. Show up openly and honestly, and value the bond for what it is.",
-    "reversed": "Reversed, the Two of Cups may show a sense of imbalance in a connection, or difficulty feeling close even to yourself. It can point to misunderstandings or to giving more than feels good. Ask what you need in order to feel equal, and say it kindly.",
-    "love": "In matters of the heart, the Two of Cups invites you to choose connection where respect flows both ways. Offer what you feel openly and let yourself receive.",
+    "reversed": "A sense of imbalance in a connection, or difficulty feeling close even to yourself, may describe the reversed Two of Cups. Misunderstandings, or giving more than feels good, can be part of it. Ask what you need in order to feel equal, and say it kindly.",
+    "love": "Choose connection where respect flows both ways. Offer what you feel openly and let yourself receive.",
     "advice": "Tell someone you care about one specific thing you value about them.",
-    "yes_no_why": "The Two of Cups shows two cups meeting as equals, so the answer leans toward yes.",
+    "yes_no_why": "Two figures exchange cups as equals beneath the winged lion's sign.",
     "status": "draft"
   },
   {
@@ -618,9 +618,9 @@
     ],
     "upright": "Three women raise their cups together in a dance, fruit and flowers at their feet. The Three of Cups may reflect friendship, shared joy and the support of people who lift you up. Make time to celebrate with others, even over something small, and let yourself be part of the circle.",
     "reversed": "Upside down, the Three of Cups may show feeling left out, or giving so much social energy that little is left for you. Sometimes it points to gossip or friendships that feel uneven. Spend time with one person who truly feels good to be around.",
-    "love": "In relationships, the Three of Cups invites joy and lightness, and a reminder to keep your friendships close. Your circle can help you feel more like yourself.",
-    "advice": "Message a friend today and suggest a simple plan to meet up.",
-    "yes_no_why": "The Three of Cups raises a toast in good company, which tips the answer toward yes.",
+    "love": "Joy and lightness come with the Three of Cups, along with a reminder to keep your friendships close. Your circle can help you feel more like yourself.",
+    "advice": "Message a friend and suggest a simple plan to meet up.",
+    "yes_no_why": "Three friends raise their cups together in a dance of shared joy.",
     "status": "draft"
   },
   {
@@ -633,10 +633,10 @@
       "overlooked offers"
     ],
     "upright": "Arms crossed beneath a tree, a young man sits before three cups, not noticing a fourth offered by a hand from a cloud. Boredom, withdrawal or a flat mood can make new chances hard to see. Take time to reflect, then look up and ask what might be on offer for you right now.",
-    "reversed": "When reversed, the Four of Cups may point to waking up from a slump and becoming curious again. It may also reflect a readiness to say yes to something you have been ignoring. Follow that returning interest gently, one small step at a time.",
-    "love": "Where love is concerned, this card asks whether you are turning away from what is offered because it does not match what you expected. Look again with fresh eyes.",
+    "reversed": "Waking up from a slump and becoming curious again is one side of the reversed Four of Cups. A readiness to say yes to something you have been ignoring may come with it. Follow that returning interest gently, one small step at a time.",
+    "love": "Are you turning away from what is offered because it does not match what you expected? Look again with fresh eyes.",
     "advice": "List three things available to you right now that you may be overlooking.",
-    "yes_no_why": "The Four of Cups has not yet reached for the offered cup, so the answer stays open.",
+    "yes_no_why": "The fourth cup is still being offered, and the seated figure has not looked up.",
     "status": "draft"
   },
   {
@@ -649,10 +649,10 @@
       "what remains"
     ],
     "upright": "A figure in a dark cloak looks down at three spilled cups, while two more still stand upright behind them. The Five of Cups can point to disappointment and regret, when attention stays fixed on what feels lost. Let yourself feel the sadness, then slowly turn around to see what is still standing.",
-    "reversed": "Reversed, the Five of Cups may show sadness beginning to soften, or a readiness to look at what remains. It can also point to sorrow kept hidden instead of felt. Give yourself a moment to acknowledge what hurts, and then name one thing that still supports you.",
-    "love": "In love, the Five of Cups asks you to be gentle with any disappointment you feel. Notice what is still there for you, including your own care for yourself.",
-    "advice": "Name one disappointment honestly, then write down two things that are still standing.",
-    "yes_no_why": "The Five of Cups looks at spilled cups more than full ones, so the answer leans toward no.",
+    "reversed": "Sadness beginning to soften, or a readiness to look at what remains, can come with the reversed Five of Cups. Sorrow kept hidden instead of felt may also be part of it. Give yourself a moment to acknowledge what hurts, and then name one thing that still supports you.",
+    "love": "Be gentle with any disappointment you feel. Notice what is still there for you, including your own care for yourself.",
+    "advice": "Name one disappointment honestly, then name two things in your life that still hold.",
+    "yes_no_why": "The cloaked figure's eyes stay on the three spilled cups, not on the two still standing.",
     "status": "draft"
   },
   {
@@ -665,10 +665,10 @@
       "memories"
     ],
     "upright": "In a sunny garden, a child offers a cup filled with white flowers to a smaller child. Sweetness, simple kindness and memories that bring comfort may come forward with this card. Let something from your earlier years remind you what you enjoy, and bring that lightness into today.",
-    "reversed": "Upside down, the Six of Cups may point to being stuck in the past, or idealizing a time that was not as simple as memory suggests. Sometimes it shows a need to move forward instead of looking back. Honor what was good, and choose one thing to enjoy that belongs to the present.",
-    "love": "In matters of the heart, the Six of Cups invites tenderness and simple, playful affection. Notice what makes you feel safe and at ease, and choose more of that.",
-    "advice": "Do something today that you loved doing as a child, even for ten minutes.",
-    "yes_no_why": "The Six of Cups offers kindness and a gentle welcome, so the answer leans toward yes.",
+    "reversed": "Being stuck in the past, or idealizing a time that was not as simple as memory suggests, can show the Six of Cups reversed. Sometimes it shows a need to move forward instead of looking back. Honor what was good, and choose one thing to enjoy that belongs to the present.",
+    "love": "Tenderness and simple, playful affection belong to this card. Notice what makes you feel safe and at ease, and choose more of that.",
+    "advice": "Do something you loved doing as a child, even briefly.",
+    "yes_no_why": "A child offers a cup of white flowers, a picture of simple kindness and welcome.",
     "status": "draft"
   },
   {
@@ -681,10 +681,10 @@
       "options"
     ],
     "upright": "Seven cups float in a cloud, each holding a different vision: a castle, jewels, a wreath, a dragon, a veiled figure. The Seven of Cups speaks of many options or daydreams, not all of them real or right for you. Enjoy imagining, then pick one possibility and test it against the facts.",
-    "reversed": "When reversed, the Seven of Cups may show the fog beginning to clear as you see which options are realistic. It may also reflect feeling so overwhelmed by choices that you choose nothing. Narrow your list to two and make a small decision between them.",
-    "love": "In relationships, the Seven of Cups asks you to separate fantasy from what you actually want. Look at your choices honestly rather than at an ideal picture.",
-    "advice": "Write down all your options, cross out half, and look closely at what remains.",
-    "yes_no_why": "The Seven of Cups shows too many visions to choose from, so the answer remains unclear.",
+    "reversed": "The fog beginning to clear as you see which options are realistic: that is one face of the reversed Seven of Cups. It may also reflect feeling so overwhelmed by choices that you choose nothing. Narrow your list to two and make a small decision between them.",
+    "love": "Separate fantasy from what you actually want. Look at your choices honestly rather than at an ideal picture.",
+    "advice": "Cross out half of the options you are juggling and look closely at what remains.",
+    "yes_no_why": "Seven visions float in the clouds, and it is hard to tell which of them are real.",
     "status": "draft"
   },
   {
@@ -697,10 +697,10 @@
       "search for meaning"
     ],
     "upright": "By the light of a watchful moon, a figure with a staff walks away from eight neatly stacked cups toward the mountains. The Eight of Cups may reflect leaving behind something that no longer satisfies, even when it still looks fine from the outside. Ask what is missing for you, and give yourself permission to look for it.",
-    "reversed": "Reversed, the Eight of Cups may point to wanting to leave but feeling unable to, or drifting away from something that still has value. It can also show fear of what lies beyond the familiar. Get clear on what you truly want before you decide whether to stay or go.",
-    "love": "Where love is concerned, the Eight of Cups asks whether your own needs are being met. Choose honestly, even if that means wanting more for yourself.",
-    "advice": "Write down what feels missing in your life right now, in one honest sentence.",
-    "yes_no_why": "The Eight of Cups turns away from what is in front of it, so the answer leans toward no.",
+    "reversed": "Wanting to leave but feeling unable to, or drifting away from something that still has value, can belong to the reversed Eight of Cups. Fear of what lies beyond the familiar may be part of it. Get clear on what you truly want before you decide whether to stay or go.",
+    "love": "Are your own needs being met? Like the figure walking toward the mountains, you may want more than what is stacked in front of you; choose honestly.",
+    "advice": "Say in one honest sentence what feels missing in your life right now.",
+    "yes_no_why": "The figure walks away from the stacked cups, toward something not yet found.",
     "status": "draft"
   },
   {
@@ -714,9 +714,9 @@
     ],
     "upright": "Seated in front of nine cups on a curved shelf, a man folds his arms with a satisfied smile. Often called the wish card, the Nine of Cups can point to contentment and the pleasure of having what you need. Enjoy what is good right now, and let yourself name a wish without embarrassment.",
     "reversed": "Upside down, the Nine of Cups may point to a wish that feels less satisfying than you expected, or to contentment that depends on outer things. Sometimes it shows difficulty enjoying what you have. Notice what truly brings you contentment, rather than what only looks like it should.",
-    "love": "In love, the Nine of Cups invites you to be honest about what you wish for. Let yourself want it, and enjoy feeling at peace with yourself.",
-    "advice": "Name one wish clearly and write down one small step that moves you toward it.",
-    "yes_no_why": "The Nine of Cups is known as the wish card, so the answer leans toward yes.",
+    "love": "Be honest about what you wish for. Let yourself want it, and enjoy feeling at peace with yourself.",
+    "advice": "Say your wish out loud, once, without explaining or apologizing for it.",
+    "yes_no_why": "Nine cups stand in a row behind a satisfied host: this is the wish card.",
     "status": "draft"
   },
   {
@@ -729,10 +729,10 @@
       "belonging"
     ],
     "upright": "A couple raises their arms toward a rainbow of ten cups, while two children dance beside them near a small house. Emotional fulfillment, belonging and a sense of home, whatever home looks like for you, are at the heart of this card. Notice where you feel peaceful and connected, and invest your time there.",
-    "reversed": "When reversed, the Ten of Cups may show a gap between the picture of happiness you hold and the life in front of you. It may also reflect tension at home or with people close to you. Set the ideal image aside for a moment and look for the small moments of warmth that are real.",
+    "reversed": "A gap between the picture of happiness you hold and the life in front of you may show with the Ten of Cups reversed. Tension at home or with people close to you can belong here as well. Set the ideal image aside for a moment and look for the small moments of warmth that are real.",
     "love": "In matters of the heart, the Ten of Cups invites you to imagine the kind of loving home you want. Let your choices move you toward that, at your own pace.",
-    "advice": "Spend unhurried time today with someone who feels like family to you.",
-    "yes_no_why": "The Ten of Cups shows a rainbow over a happy home, so the answer leans toward yes.",
+    "advice": "Spend unhurried time with someone who feels like family to you.",
+    "yes_no_why": "A rainbow of cups arches over the family and the house, full of belonging.",
     "status": "draft"
   },
   {
@@ -745,10 +745,10 @@
       "sensitivity"
     ],
     "upright": "A young page in a flowered tunic looks at a fish peeking out of his cup, delighted rather than startled. The Page of Cups can point to a sweet surprise, creative imagination, or a new feeling you are only starting to explore. Stay open to the unexpected and let yourself be gently playful.",
-    "reversed": "Reversed, the Page of Cups may point to feelings you are too shy to express, or to moods that are hard to make sense of. It can also show creativity blocked by self-consciousness. Give your feelings a safe outlet, such as a journal or a creative project, before sharing them.",
-    "love": "In relationships, the Page of Cups invites tenderness and curiosity about your own heart. Let yourself say one simple, sincere thing you feel.",
-    "advice": "Make something small with your hands or words today, just for the joy of it.",
-    "yes_no_why": "The Page of Cups brings a sweet message and an open heart, so the answer leans toward yes.",
+    "reversed": "Feelings you are too shy to express, or moods that are hard to make sense of, can show the Page of Cups reversed. Creativity may be blocked by self-consciousness. Give your feelings a safe outlet, such as a journal or a creative project, before sharing them.",
+    "love": "Tenderness and curiosity about your own heart lead the way. Let yourself say one simple, sincere thing you feel.",
+    "advice": "Notice one small, odd surprise in your day and let it make you smile.",
+    "yes_no_why": "A fish pops out of the Page's cup, a sweet surprise met with delight.",
     "status": "draft"
   },
   {
@@ -761,10 +761,10 @@
       "following the heart"
     ],
     "upright": "Riding a calm white horse beside a river, the Knight of Cups holds his cup out before him like an offering. He speaks of an invitation, a romantic gesture, or the urge to follow your heart. Move toward what moves you, while keeping your feet on the ground.",
-    "reversed": "Upside down, the Knight of Cups may point to moods that shift quickly, or to dreams that stay in the imagination. Sometimes it shows unrealistic expectations of yourself or others. Keep the dream, but ask what one real step toward it would look like.",
-    "love": "Where love is concerned, the Knight of Cups invites you to express affection and romance in your own way. Offer what you feel without needing an immediate answer.",
-    "advice": "Make one kind gesture today toward someone or something that moves you.",
-    "yes_no_why": "The Knight of Cups arrives with an offering and good intent, so it leans toward yes.",
+    "reversed": "Moods that shift quickly, or dreams that stay in the imagination, may belong to the reversed Knight of Cups. Sometimes it shows unrealistic expectations of yourself or others. Keep the dream, but ask what one real step toward it would look like.",
+    "love": "Express affection and romance in your own way. Offer what you feel without needing an immediate answer.",
+    "advice": "Make one kind gesture toward someone or something that moves you.",
+    "yes_no_why": "The Knight rides calmly forward, holding out his cup like an offering.",
     "status": "draft"
   },
   {
@@ -776,11 +776,11 @@
       "emotional depth",
       "care"
     ],
-    "upright": "At the water's edge, the Queen of Cups gazes into an ornate, closed cup, as if listening to what it holds. She stands for empathy, emotional depth and intuition you can trust. Care for others from a full heart, and give the same gentle attention to your own feelings.",
-    "reversed": "When reversed, the Queen of Cups may show absorbing other people's moods until you lose track of your own. It may also reflect feelings bottled up rather than understood. Set a gentle boundary, and spend some time with your own emotions first.",
+    "upright": "At the water's edge, the Queen of Cups gazes into an ornate, closed cup, as if listening to what it holds. She stands for empathy, emotional depth and intuition you can trust. Trust what you sense, and let your feelings run deep without letting them pull you under.",
+    "reversed": "Absorbing other people's moods until you lose track of your own can mark the reversed Queen of Cups. Feelings may be bottled up rather than understood. Set a gentle boundary, and listen to your own emotions before tending anyone else's.",
     "love": "In love, the Queen of Cups invites compassion that includes you too. Listen to your intuition about what feels nourishing and what does not.",
     "advice": "Pause right now, ask yourself what you are feeling, and name it in one word.",
-    "yes_no_why": "The Queen of Cups moves with care and emotional wisdom, so the answer leans toward yes.",
+    "yes_no_why": "The Queen gazes into her cup with calm, trusting intuition.",
     "status": "draft"
   },
   {
@@ -794,9 +794,9 @@
     ],
     "upright": "The King of Cups sits on a throne floating in a choppy sea, holding his cup steady while waves rise around him. He can point to emotional maturity: feeling deeply without being swept away. Stay calm under pressure, listen well, and answer from a centered place.",
     "reversed": "Reversed, the King of Cups may point to emotions pushed down rather than handled, or calm worn as a mask. Moods can then leak out in unexpected ways. Acknowledge what you feel beneath the composure, and let it be there without needing to control it.",
-    "love": "In matters of the heart, the King of Cups invites steadiness and honest emotional presence. You can stay calm and still let your feelings show.",
-    "advice": "Before reacting to something today, take three slow breaths and then respond.",
-    "yes_no_why": "The King of Cups stays steady in rough water, so the answer leans toward yes.",
+    "love": "Steadiness and honest emotional presence go together here. You can stay calm and still let your feelings show.",
+    "advice": "Before reacting to something difficult, take three slow breaths and then respond.",
+    "yes_no_why": "The King holds his cup steady on a rough sea without being swept away.",
     "status": "draft"
   },
   {
@@ -809,10 +809,10 @@
       "decision"
     ],
     "upright": "A hand grips an upright sword that pierces a crown, olive and palm branches hanging from it above jagged mountains. The Ace of Swords speaks of a moment of clarity: an insight, a truth spoken, a decision that cuts through confusion. Say what you see plainly, and let the clear thought guide your next move.",
-    "reversed": "Upside down, the Ace of Swords may show thoughts that feel foggy, or a truth you sense but are not ready to say. It can also point to sharp words used too quickly. Sort what you think from what you fear, then speak once you can say it clearly and kindly.",
-    "love": "In relationships, the Ace of Swords asks for honest clarity about what you want. Naming it to yourself, plainly and without blame, can cut through a lot of confusion.",
-    "advice": "Write one sentence that states plainly what you really think about your situation.",
-    "yes_no_why": "The Ace of Swords cuts through confusion toward clarity, so the answer leans toward yes.",
+    "reversed": "Thoughts that feel foggy, or a truth you sense but are not ready to say, may describe the Ace of Swords reversed. Sharp words used too quickly can also belong here. Sort what you think from what you fear, then speak once you can say it clearly and kindly.",
+    "love": "Honest clarity about what you want cuts through a lot of confusion. Name it to yourself, plainly and without blame.",
+    "advice": "Cut one vague worry down to a single clear sentence about what is true.",
+    "yes_no_why": "The upright sword rises cleanly through the clouds toward a crown.",
     "status": "draft"
   },
   {
@@ -826,9 +826,9 @@
     ],
     "upright": "Blindfolded, a woman sits with two swords crossed over her chest, a calm sea and scattered rocks behind her. The Two of Swords may reflect a choice held at arm's length, kept in balance by not looking at it. Take the blindfold off gently: gather what you need to know, then let yourself lean one way.",
     "reversed": "When reversed, the Two of Swords may point to a decision becoming hard to ignore, or to feeling overloaded by information. Sometimes it shows the relief of admitting what you want. Pick the option you would choose if no one else were watching, and start from there.",
-    "love": "Where love is concerned, this card asks whether you are avoiding a feeling to keep the peace. Look honestly at what you want before you decide anything.",
-    "advice": "Write the pros and cons of your choice, then circle the one that matters most.",
-    "yes_no_why": "The Two of Swords keeps the choice balanced behind a blindfold, so the answer stays open.",
+    "love": "Are you avoiding a feeling to keep the peace? Look honestly at what you want before you decide anything.",
+    "advice": "Gather the one piece of information you are missing before you decide.",
+    "yes_no_why": "The blindfolded woman holds both swords in balance and has not chosen a side.",
     "status": "draft"
   },
   {
@@ -841,10 +841,10 @@
       "release"
     ],
     "upright": "Three swords pierce a red heart against a gray, rainy sky. This card can point to heartache, a painful truth or words that hurt, and it does not pretend these are small. Let yourself feel it and let the rain fall; naming the hurt honestly is how moving through it begins.",
-    "reversed": "Reversed, the Three of Swords may show pain beginning to ease, or sorrow you are holding in rather than letting out. It may also reflect replaying hurtful words again and again. Be kind to your heart: talk to someone you trust, or write the hurt down and let it rest.",
-    "love": "In love, the Three of Swords asks you to honor your own sadness rather than hide it. Gentle honesty with yourself is a form of care.",
-    "advice": "Write down what hurts in a few plain sentences, then do one comforting thing for yourself.",
-    "yes_no_why": "The Three of Swords speaks of heartache rather than ease, so the answer leans toward no.",
+    "reversed": "Pain beginning to ease, or sorrow held in rather than let out, can come with the Three of Swords reversed. You may also find yourself replaying hurtful words again and again. Be kind to your heart: talk to someone you trust, or write the hurt down and let it rest.",
+    "love": "Honor your own sadness rather than hiding it, even if the rain has not stopped yet. Gentle honesty with yourself is a form of care.",
+    "advice": "Name what hurts in a few plain words, then do one comforting thing for yourself.",
+    "yes_no_why": "Three swords pierce the heart under a rainy sky, a picture of hurt rather than ease.",
     "status": "draft"
   },
   {
@@ -857,10 +857,10 @@
       "pause"
     ],
     "upright": "A figure lies still beneath a stained-glass window, hands folded, three swords hanging above and one resting below. The Four of Swords speaks of a needed pause: rest, quiet and space to let your mind settle. Step back from the noise for a while; clarity often returns once you stop forcing it.",
-    "reversed": "Upside down, the Four of Swords may point to restlessness when you need rest, or to pushing on while your mind is tired. It can also show a pause that has lasted longer than is helpful. Give yourself a real break today, or, if you have rested a long time, take one small step back into motion.",
-    "love": "In matters of the heart, the Four of Swords invites you to rest before deciding anything. Quiet time can help you hear what you really feel.",
-    "advice": "Set aside twenty minutes of complete quiet today and protect it like an appointment.",
-    "yes_no_why": "The Four of Swords is a pause before the next step, so the answer is still open for now.",
+    "reversed": "Restlessness when you need rest, or pushing on while your mind is tired, can mark the reversed Four of Swords. It may also be a pause that has lasted longer than is helpful. Give yourself a real break, or, if you have rested a long time, take one small step back into motion.",
+    "love": "Rest your mind before deciding anything about love. Quiet time can help you hear what you really feel.",
+    "advice": "Lie down for a short rest with your eyes closed before your next task.",
+    "yes_no_why": "Lying in stillness, the figure rests, and the next move has not begun.",
     "status": "draft"
   },
   {
@@ -874,9 +874,9 @@
     ],
     "upright": "A man gathers up swords with a thin smile as two others walk away under a windswept sky. The Five of Swords may reflect a conflict where winning costs more than it gives, or tension that leaves everyone a little alone. Ask whether being right is worth the distance, and choose peace where you can.",
     "reversed": "When reversed, the Five of Swords may show a wish to make peace after a clash, or tension that keeps lingering in the air. Sometimes it points to holding on to resentment. Decide what you can let go of, and offer one gesture of repair if it feels right to you.",
-    "love": "In relationships, this card asks you to notice when the wish to win replaces the wish to connect. Choose what matters more to you.",
-    "advice": "Let go of one argument you do not need to win today.",
-    "yes_no_why": "The Five of Swords shows a win that costs too much, so the answer leans toward no.",
+    "love": "Notice when the wish to win replaces the wish to connect. Ask yourself which of the two you want more, and choose that.",
+    "advice": "Let go of one argument you do not need to win.",
+    "yes_no_why": "One figure collects the swords while the others walk away, and the win leaves people apart.",
     "status": "draft"
   },
   {
@@ -889,10 +889,10 @@
       "journey"
     ],
     "upright": "A ferryman poles a small boat carrying a cloaked woman and a child toward a calmer shore, six swords standing upright in the boat. The Six of Swords can point to a transition: leaving rough water behind, slowly and quietly. Carry what you need, let go of the rest, and focus on the next shore rather than the last.",
-    "reversed": "Reversed, the Six of Swords may point to feeling unable to move on, or to carrying old worries into a new place. A transition can feel stuck halfway across. Look at what you keep bringing along that you could set down before you continue.",
-    "love": "Where love is concerned, the Six of Swords invites you to move toward emotional calm at your own pace. Choose what helps you feel steadier.",
-    "advice": "Write down one worry you are ready to leave behind, then tear up the paper.",
-    "yes_no_why": "The Six of Swords is still crossing the water, so the answer is not settled yet.",
+    "reversed": "Feeling unable to move on, or carrying old worries into a new place, can describe the Six of Swords reversed. A transition can feel stuck halfway across. Look at what you keep bringing along that you could set down before you continue.",
+    "love": "Move toward emotional calm at your own pace, the way the boat crosses slowly toward the quieter shore. Choose what helps you feel steadier.",
+    "advice": "Choose one worry to leave behind, set it down on paper, then tear the paper up.",
+    "yes_no_why": "The boat is still mid-crossing, and the far shore has not been reached.",
     "status": "draft"
   },
   {
@@ -905,10 +905,10 @@
       "half-truths"
     ],
     "upright": "Tiptoeing away from a camp, a man carries five swords and glances back at the two he leaves behind. The Seven of Swords speaks of secrecy, strategy, or trying to get away with something, including dodging a hard truth with yourself. Ask what you are holding back, and choose the honest path even if it is less clever.",
-    "reversed": "Upside down, the Seven of Swords may show a wish to come clean, or a plan that feels heavy to carry alone. It may also reflect self-deception slowly coming into view. Tell the truth where you can, starting with yourself.",
-    "love": "In love, this card asks you to notice anything you are hiding, even from yourself. Honesty with your own heart is the first step.",
-    "advice": "Name one thing you have been avoiding saying and decide when you will say it.",
-    "yes_no_why": "The Seven of Swords suggests hidden moves and half-truths, so the answer leans toward no.",
+    "reversed": "A wish to come clean, or a plan that feels heavy to carry alone, may come with the reversed Seven of Swords. Self-deception can also slowly come into view. Tell the truth where you can, starting with yourself.",
+    "love": "Notice anything you are hiding, even from yourself. Honesty with your own heart is the first step.",
+    "advice": "Admit one small truth you have been dodging, even if only to yourself.",
+    "yes_no_why": "Slipping away with the swords, the figure keeps what is really going on hidden.",
     "status": "draft"
   },
   {
@@ -921,10 +921,10 @@
       "self-doubt"
     ],
     "upright": "Blindfolded and loosely bound, a woman stands among eight swords, yet the path in front of her is open. The Eight of Swords may reflect feeling trapped by circumstances or by your own thoughts. Look at which limits are real and which are beliefs, and loosen one knot at a time.",
-    "reversed": "When reversed, the Eight of Swords may show a way out coming into view, or fears beginning to loosen their hold. It can also point to inner pressure that feels heavier than the situation itself. Take one small step that shows you there is more room than you thought.",
+    "reversed": "A way out coming into view, or fears beginning to loosen their hold, can show with the Eight of Swords reversed. Inner pressure may feel heavier than the situation itself. Take one small step that shows you there is more room than you thought.",
     "love": "In matters of the heart, this card asks whether your own fears are limiting what you allow yourself to feel or choose. Freedom often starts with one honest thought.",
-    "advice": "Write down one belief that limits you and one fact that quietly contradicts it.",
-    "yes_no_why": "The Eight of Swords feels hemmed in for now, so the answer leans toward no.",
+    "advice": "Find one fact that contradicts a belief that limits you, and say it to yourself.",
+    "yes_no_why": "Bound and blindfolded among the swords, the figure feels hemmed in.",
     "status": "draft"
   },
   {
@@ -937,10 +937,10 @@
       "inner pressure"
     ],
     "upright": "Sitting up in bed in the dark, a woman covers her face with her hands while nine swords line the wall behind her. The Nine of Swords can point to anxiety and night-time worries that grow larger in the mind than in life. You do not have to face them alone: share them with someone you trust and let daylight help you see them more clearly.",
-    "reversed": "Reversed, the Nine of Swords may show worry starting to ease, or fears kept so private that they grow heavier. Sometimes it points to a readiness to ask for support. Speak your worry out loud to someone kind, and notice how it changes once it is shared.",
-    "love": "In relationships, the Nine of Swords asks you to be gentle with your anxious thoughts. Share your fears with someone you trust instead of carrying them alone.",
-    "advice": "Tell one trusted person about the worry that weighs on you most at night.",
-    "yes_no_why": "The Nine of Swords is caught in worry rather than clarity, so the answer leans toward no.",
+    "reversed": "Worry starting to ease, or fears kept so private that they grow heavier, can belong to the Nine of Swords reversed. Sometimes it points to a readiness to ask for support. Speak your worry out loud to someone kind, and notice how it changes once it is shared.",
+    "love": "Be gentle with your anxious thoughts. Share your fears with someone you trust instead of carrying them alone.",
+    "advice": "Before bed, move one recurring worry out of your head and onto paper, then close the notebook.",
+    "yes_no_why": "Nine swords line the dark wall while the figure sits awake with worry.",
     "status": "draft"
   },
   {
@@ -952,11 +952,11 @@
       "hitting bottom",
       "new dawn"
     ],
-    "upright": "Beside a still lake, a figure lies under ten swords while a yellow dawn breaks along the horizon. The Ten of Swords speaks of the end of a painful pattern, or the feeling of having had enough. Let what is over be over, rest, and notice the light at the edge of the picture: this card leaves room for a new day.",
-    "reversed": "Upside down, the Ten of Swords may show the slow work of getting back up, or holding on to a painful story longer than it serves you. It may also reflect dwelling on the worst possible outcome. Turn your attention to one small sign of the new day, and take care of yourself as you rise.",
-    "love": "Where love is concerned, the Ten of Swords asks you to release a painful story about yourself. You can let a hard chapter close and still keep your heart open.",
+    "upright": "Beside a still lake, a figure lies under ten swords while a yellow dawn breaks along the horizon. The Ten of Swords speaks of the end of a painful pattern, or the feeling of having had enough. Let what has run its course rest, and notice the light at the edge of the picture: this card leaves room for a new day.",
+    "reversed": "The slow work of getting back up, or holding on to a painful story longer than it serves you, may describe the reversed Ten of Swords. Dwelling on the worst possible outcome can be part of it too. Turn your attention to one small sign of the new day, and take care of yourself as you rise.",
+    "love": "Release a painful story about yourself. You can let a hard chapter close and still keep your heart open.",
     "advice": "Pick one painful thought you are ready to stop replaying and answer it with one kind fact.",
-    "yes_no_why": "The Ten of Swords marks an ending rather than a beginning, so the answer leans toward no.",
+    "yes_no_why": "Ten swords mark the end of a painful pattern, and dawn is only starting at the edge.",
     "status": "draft"
   },
   {
@@ -970,9 +970,9 @@
     ],
     "upright": "On a windy hill, a young page holds his sword high, glancing over his shoulder as clouds rush past. The Page of Swords may reflect sharp curiosity, a hunger for information and a mind eager to learn. Ask questions, gather facts, and keep your words honest while your ideas take shape.",
     "reversed": "When reversed, the Page of Swords may point to scattered thoughts, gossip, or speaking before thinking. It can also show defensiveness when you feel unsure. Slow down, check your sources, and say only what you can stand behind.",
-    "love": "In love, the Page of Swords invites honest curiosity about what you want and why. Ask yourself questions before you look for answers elsewhere.",
-    "advice": "Look into one question you have been wondering about and note what you learn.",
-    "yes_no_why": "The Page of Swords is still gathering information, so the answer remains open for now.",
+    "love": "Bring honest curiosity to what you want and why. Ask yourself questions before you look for answers elsewhere.",
+    "advice": "Look into one question you keep wondering about and note what you learn.",
+    "yes_no_why": "The Page stands alert in the wind, still scanning for information.",
     "status": "draft"
   },
   {
@@ -985,10 +985,10 @@
       "directness"
     ],
     "upright": "Charging at full speed, the Knight of Swords leans into the wind with his sword raised, trees bending behind him. He can point to fast thinking, bold words and a strong drive to act on an idea right away. Use that energy, but aim it: check your facts before you rush in.",
-    "reversed": "Reversed, the Knight of Swords may show haste that creates confusion, or words that land harder than you meant. Sometimes it points to scattered energy with no clear target. Slow down long enough to see where you are heading, and soften how you say things.",
-    "love": "In matters of the heart, the Knight of Swords asks you to be direct without being harsh. Say what you think, then pause to notice how you feel.",
-    "advice": "Before you send an important message today, wait ten minutes and read it again.",
-    "yes_no_why": "The Knight of Swords rushes ahead before the picture is complete, so the answer stays open.",
+    "reversed": "Haste that creates confusion, or words that land harder than you meant, can mark the Knight of Swords reversed. Sometimes it points to scattered energy with no clear target. Slow down long enough to see where you are heading, and soften how you say things.",
+    "love": "Be direct without being harsh, even when your feelings move at the Knight's speed. Say what you think, then pause to notice how you feel.",
+    "advice": "Before you send an important message, wait a while and read it again.",
+    "yes_no_why": "The Knight charges in before the whole picture is visible.",
     "status": "draft"
   },
   {
@@ -1001,10 +1001,10 @@
       "discernment"
     ],
     "upright": "Seated in profile, the Queen of Swords holds her sword upright and raises one hand as if inviting the truth. She speaks of clear judgment, independence and the kind of honesty that comes from experience. Speak plainly and fairly, and trust your ability to see a situation as it is.",
-    "reversed": "Upside down, the Queen of Swords may show clarity turning cold, or guardedness sharpening your words. It may also reflect doubting your own judgment. Be honest and kind at the same time, and listen for your own clear voice.",
-    "love": "In relationships, the Queen of Swords asks you to be honest about your needs and boundaries. Clarity with yourself can be a form of self-respect.",
-    "advice": "Say one honest thing today that you have been softening too much.",
-    "yes_no_why": "The Queen of Swords wants clear facts before deciding, so the answer is not clear yet.",
+    "reversed": "Clarity turning cold, or guardedness sharpening your words, may show the Queen of Swords reversed. Doubting your own judgment can belong here too. Be honest and kind at the same time, and listen for your own clear voice.",
+    "love": "Be honest about your needs and boundaries, the way the Queen holds her sword upright. Clarity with yourself can be a form of self-respect.",
+    "advice": "Say one honest thing that you have been softening too much.",
+    "yes_no_why": "The Queen raises her hand and waits for the truth before she judges.",
     "status": "draft"
   },
   {
@@ -1017,10 +1017,10 @@
       "clear thinking"
     ],
     "upright": "Facing forward on a throne carved with butterflies, the King of Swords holds his blade upright and steady. He stands for clear reasoning, fair decisions and the authority that comes from thinking things through. Use your logic and integrity to make the call that is yours to make.",
-    "reversed": "When reversed, the King of Swords may point to rigid thinking, or to using logic to avoid feelings. It can also show hesitation to use your own authority. Balance reason with compassion, and make a decision you can explain honestly.",
-    "love": "Where love is concerned, the King of Swords invites you to think clearly about what you want and to communicate it fairly. Let your head and heart work together.",
-    "advice": "Make one clear decision today based on facts, and write down your reasons.",
-    "yes_no_why": "The King of Swords decides with clear, fair reasoning, so the answer leans toward yes.",
+    "reversed": "Rigid thinking, or logic used to avoid feelings, can belong to the reversed King of Swords. Hesitation to use your own authority may also show up. Balance reason with compassion, and make a decision you can explain honestly.",
+    "love": "Think clearly about what you want and say it fairly, without hiding behind logic. Let your head and heart work together.",
+    "advice": "Make one clear decision based on facts, and note your reasons in a sentence.",
+    "yes_no_why": "The King holds his blade upright and steady, deciding with clear reasoning.",
     "status": "draft"
   },
   {
@@ -1033,10 +1033,10 @@
       "groundedness"
     ],
     "upright": "Held out from a cloud, a golden coin hangs above a flowering garden, where a path leads through a hedge arch toward the mountains. The Ace of Pentacles can point to a practical opportunity: work, a project, or a chance to build something solid. Plant the seed with a concrete first step you can see and touch.",
-    "reversed": "Reversed, the Ace of Pentacles may show an opportunity you hesitate to take, or a plan that needs firmer ground before it grows. Sometimes it points to worry about resources slowing you down. Look for the most practical, low-pressure way to begin, and start there.",
-    "love": "In love, the Ace of Pentacles invites steadiness and care you can show in everyday ways. Let your feelings take a simple, grounded form.",
-    "advice": "Take one practical step today on something you want to build, however small.",
-    "yes_no_why": "The Ace of Pentacles offers a solid opportunity, so the answer leans toward yes.",
+    "reversed": "An opportunity you hesitate to take, or a plan that needs firmer ground before it grows, may come with the reversed Ace of Pentacles. Sometimes it points to worry about resources slowing you down. Look for the most practical, low-pressure way to begin, and start there.",
+    "love": "Steadiness and care can show up in everyday ways. Let your feelings take a simple, grounded form.",
+    "advice": "Plant something small you can watch grow, a seed or a cutting, as a sign of your new start.",
+    "yes_no_why": "A golden coin is held out above a flowering garden, offered and within reach.",
     "status": "draft"
   },
   {
@@ -1050,9 +1050,9 @@
     ],
     "upright": "A young man dances while juggling two coins inside an endless loop, ships rising and falling on the waves behind him. The Two of Pentacles speaks of balancing several demands at once: work, money, home and time. Stay light on your feet, and decide what truly needs your attention first.",
     "reversed": "Upside down, the Two of Pentacles may show juggling too much and dropping a few things along the way. It may also reflect feeling stretched between priorities that pull in opposite directions. Put down one thing you do not need to carry today, and let the rest steady itself.",
-    "love": "In matters of the heart, the Two of Pentacles asks you to notice how you balance your own needs with everything else. Make some room for what you value.",
-    "advice": "List today's tasks, choose the two that matter most, and let the rest wait.",
-    "yes_no_why": "The Two of Pentacles keeps everything moving between two hands, so the answer remains open.",
+    "love": "Notice how you balance your own needs with everything else you keep in the air. Make some room for what you value, even on busy days.",
+    "advice": "Choose the two tasks that matter most and let the rest wait.",
+    "yes_no_why": "The juggler keeps both coins in motion, and neither has landed yet.",
     "status": "draft"
   },
   {
@@ -1065,10 +1065,10 @@
       "skill"
     ],
     "upright": "Inside a cathedral, a stonemason stands on a bench while two others hold up the plans and discuss the work. Collaboration, skill and the satisfaction of building something together are at the heart of this card. Share your expertise, listen to others, and value the different strengths each person brings.",
-    "reversed": "When reversed, the Three of Pentacles may point to teamwork that feels uneven, or skills that go unseen. It can also show working alone when help would make things easier. Clarify roles, ask for feedback, and say plainly what you bring.",
-    "love": "In relationships, the Three of Pentacles invites you to see closeness as something you build step by step. Bring your effort and ask for what you need.",
+    "reversed": "Teamwork that feels uneven, or skills that go unseen, can mark the Three of Pentacles reversed. Working alone when help would make things easier may be part of it. Clarify roles, ask for feedback, and say plainly what you bring.",
+    "love": "Closeness can be something you build step by step. Bring your effort and ask for what you need.",
     "advice": "Ask a colleague or friend for feedback on something you are working on.",
-    "yes_no_why": "The Three of Pentacles shows skilled work coming together, so the answer leans toward yes.",
+    "yes_no_why": "The mason and the planners work together on something built to last.",
     "status": "draft"
   },
   {
@@ -1081,10 +1081,10 @@
       "saving"
     ],
     "upright": "A crowned man sits holding one coin tight to his chest, another balanced on his head and two under his feet, a city behind him. The Four of Pentacles may reflect the wish for security and the habit of holding on tightly. Protect what matters, and notice whether your grip leaves room for anything new.",
-    "reversed": "Reversed, the Four of Pentacles may point to loosening your grip, or to anxiety about losing control of money or comfort. Sometimes it shows swinging between holding tight and letting go too much. Look for a middle path where you feel safe and still open.",
+    "reversed": "Loosening your grip, or anxiety about losing control of money or comfort, can come with the reversed Four of Pentacles. You might also swing between holding tight and letting go too much. Look for a middle path where you feel safe and still open.",
     "love": "Where love is concerned, the Four of Pentacles asks whether you are guarding your heart too closely. Notice what you are protecting and what you might be keeping out.",
     "advice": "Find one thing you are holding too tightly and loosen your grip on it a little.",
-    "yes_no_why": "The Four of Pentacles holds tight and waits, so the answer is not clear yet.",
+    "yes_no_why": "The figure clutches his coins and waits, holding everything still.",
     "status": "draft"
   },
   {
@@ -1097,10 +1097,10 @@
       "seeking support"
     ],
     "upright": "Two figures trudge through falling snow past a glowing church window, not looking up at the light. The Five of Pentacles can point to a hard stretch with money or support, or to feeling left out in the cold. Help may be closer than it seems, so look up and ask for the warmth that is available.",
-    "reversed": "Upside down, the Five of Pentacles may point to a hard time beginning to ease, or to accepting help instead of coping alone. It may also reflect feeling isolated even when support is near. Reach out for practical help, and accept it without shame.",
-    "love": "In love, the Five of Pentacles asks you to let yourself be supported when you feel low. Asking for care is not weakness.",
-    "advice": "Ask for one concrete form of help today, from a person or a service you trust.",
-    "yes_no_why": "The Five of Pentacles walks through a cold stretch, so the answer leans toward no.",
+    "reversed": "A hard time beginning to ease, or accepting help instead of coping alone, may describe the reversed Five of Pentacles. Feeling isolated even when support is near can be part of it. Reach out for practical help, and accept it without shame.",
+    "love": "Let yourself be supported when you feel low or left out. Asking for care is not weakness; it is part of closeness.",
+    "advice": "Find out about one source of practical support near you, such as a service or a group.",
+    "yes_no_why": "Two figures pass through the snow without seeing the lit window, out in the cold.",
     "status": "draft"
   },
   {
@@ -1113,10 +1113,10 @@
       "support"
     ],
     "upright": "A merchant holds a pair of scales in one hand and drops coins into the open hands of two kneeling figures with the other. The Six of Pentacles speaks of generosity and a fair flow of giving and receiving. Share what you can, accept what is offered, and keep the exchange balanced.",
-    "reversed": "When reversed, the Six of Pentacles may show help that comes with strings attached, or giving that leaves you depleted. It can also point to difficulty receiving. Look honestly at the balance of what you give and take, and adjust one part of it.",
-    "love": "In matters of the heart, the Six of Pentacles invites a fair exchange of care and attention. Notice whether you give and receive in a way that feels good to you.",
-    "advice": "Offer one small, practical kindness to someone today, with no strings attached.",
-    "yes_no_why": "The Six of Pentacles shows help and resources flowing fairly, so it leans toward yes.",
+    "reversed": "Help that comes with strings attached, or giving that leaves you depleted, can show the Six of Pentacles reversed. Difficulty receiving may be part of it too. Look honestly at the balance of what you give and take, and adjust one part of it.",
+    "love": "Notice whether you give and receive care and attention in a way that feels fair and good to you.",
+    "advice": "Offer one small, practical kindness to someone, with no strings attached.",
+    "yes_no_why": "The merchant balances his scales and gives freely, so resources flow fairly.",
     "status": "draft"
   },
   {
@@ -1130,9 +1130,9 @@
     ],
     "upright": "Resting on his hoe, a farmer looks at seven coins growing on a leafy bush, pausing to see what his work has produced so far. The Seven of Pentacles may reflect patience and an honest look at long-term effort. Take stock of what is growing, adjust where needed, and give the rest time.",
     "reversed": "Reversed, the Seven of Pentacles may show impatience with slow results, or effort spent where it does not bear fruit. Sometimes it points to doubt about whether to keep going. Look at what is actually working, and decide where your energy is best spent.",
-    "love": "In relationships, the Seven of Pentacles asks you to be patient with what you are growing. Notice your own effort and whether it still feels worthwhile to you.",
-    "advice": "Review one ongoing project and write down what is working and what to change.",
-    "yes_no_why": "The Seven of Pentacles is still waiting for the harvest, so the answer stays open.",
+    "love": "Be patient with what you are growing. Notice your own effort and whether it still feels worthwhile to you.",
+    "advice": "Look over one ongoing project and decide what to keep, what to change and what to drop.",
+    "yes_no_why": "The farmer leans on his hoe, waiting for the harvest to ripen.",
     "status": "draft"
   },
   {
@@ -1145,10 +1145,10 @@
       "focus"
     ],
     "upright": "At a workbench, an apprentice carves one coin after another, the finished pieces displayed beside him. The Eight of Pentacles can point to dedication, practice and the quiet pride of getting better at something. Give your full attention to one task, and let steady effort do its work.",
-    "reversed": "Upside down, the Eight of Pentacles may point to work that feels repetitive, or perfectionism that slows progress. It may also reflect skills left undeveloped because of boredom or doubt. Return to what you enjoy about the craft, and set one small, achievable goal.",
-    "love": "Where love is concerned, the Eight of Pentacles invites steady care and attention to small details. Notice what you put into your connections and what you want to grow.",
-    "advice": "Spend thirty focused minutes practicing a skill you want to improve.",
-    "yes_no_why": "The Eight of Pentacles shows steady, skilled effort, so the answer leans toward yes.",
+    "reversed": "Work that feels repetitive, or perfectionism that slows progress, may belong to the Eight of Pentacles reversed. Skills can be left undeveloped because of boredom or doubt. Return to what you enjoy about the craft, and set one small, achievable goal.",
+    "love": "Steady care and attention to small details matter here. Notice what you put into your connections and what you want to grow.",
+    "advice": "Practice a skill you want to improve for one focused half hour.",
+    "yes_no_why": "The apprentice carves coin after coin with steady, skilled attention.",
     "status": "draft"
   },
   {
@@ -1161,10 +1161,10 @@
       "refinement"
     ],
     "upright": "In a garden heavy with grapes, an elegantly dressed woman stands alone with a falcon resting on her gloved hand. The Nine of Pentacles speaks of independence, comfort and enjoying the fruits of your own effort. Treat yourself well, and appreciate what your own work makes possible.",
-    "reversed": "When reversed, the Nine of Pentacles may show depending on others more than feels right, or struggling to enjoy what you have. It can also point to self-worth tied too closely to possessions. Find one way to feel at home in your own life, as it is today.",
-    "love": "In love, the Nine of Pentacles invites you to feel whole and comfortable in yourself. Choose connections that add to your life rather than complete it.",
-    "advice": "Give yourself one small luxury today and enjoy it without guilt.",
-    "yes_no_why": "The Nine of Pentacles shows comfort built through your own effort, so it leans toward yes.",
+    "reversed": "Depending on others more than feels right, or struggling to enjoy what you have, can describe the reversed Nine of Pentacles. Self-worth may be tied too closely to possessions. Find one way to feel at home in your own life, as it is right now.",
+    "love": "Feel whole and comfortable in yourself. Choose connections that add to your life rather than complete it.",
+    "advice": "Give yourself one small pleasure and enjoy it without guilt.",
+    "yes_no_why": "The woman stands at ease in her own ripe garden, a falcon on her glove.",
     "status": "draft"
   },
   {
@@ -1177,10 +1177,10 @@
       "long-term security"
     ],
     "upright": "Under a stone archway, an old man sits with his dogs while a family gathers nearby, ten coins arranged around them in the shape of a tree. The Ten of Pentacles may reflect lasting stability, family ties and things built to last. Think about what you want to create that will still matter years from now, and take a step toward it.",
-    "reversed": "Reversed, the Ten of Pentacles may point to tension around family, money or tradition, or a sense that stability feels shaky. Sometimes it shows pressure to follow a path set by others. Ask what security means to you, and build it in your own way.",
-    "love": "In matters of the heart, the Ten of Pentacles invites you to think about the kind of lasting home or bond you want. Let your choices reflect your values.",
-    "advice": "Write down what lasting security means to you, in three concrete points.",
-    "yes_no_why": "The Ten of Pentacles points to lasting, solid foundations, so the answer leans toward yes.",
+    "reversed": "Tension around family, money or tradition, or a sense that stability feels shaky, may come with the Ten of Pentacles reversed. Pressure to follow a path set by others can also show. Ask what security means to you, and build it in your own way.",
+    "love": "Think about the kind of lasting home or bond you want, the one you would like to grow old in. Let your choices reflect your values.",
+    "advice": "Name three concrete things that lasting security means to you.",
+    "yes_no_why": "Ten coins form a tree over three generations, foundations meant to last.",
     "status": "draft"
   },
   {
@@ -1193,10 +1193,10 @@
       "ambition"
     ],
     "upright": "Standing in a green field, a young page holds a single coin up in both hands, studying it with full attention. The Page of Pentacles can point to a new practical interest: a course, a job, a skill, a plan to grow. Learn with patience, and treat each small step as part of something real.",
-    "reversed": "Upside down, the Page of Pentacles may show plans that stay on paper, or focus slipping before learning takes root. It may also reflect doubts about whether you can succeed. Choose one practical step and complete it today.",
+    "reversed": "Plans that stay on paper, or focus slipping before learning takes root, can belong to the reversed Page of Pentacles. Doubts about whether you can succeed may slow you down. Choose one practical step and complete it.",
     "love": "In relationships, the Page of Pentacles invites you to show care through small, practical gestures. Let your intentions take a simple, tangible form.",
-    "advice": "Start learning one practical skill today, even with a single short lesson.",
-    "yes_no_why": "The Page of Pentacles brings a practical new chance, so the answer leans toward yes.",
+    "advice": "Start learning one practical skill, even with a single short lesson.",
+    "yes_no_why": "The Page studies his coin with patient focus, ready to learn.",
     "status": "draft"
   },
   {
@@ -1209,10 +1209,10 @@
       "slow progress"
     ],
     "upright": "Unlike the other knights, the Knight of Pentacles sits still on a heavy horse, looking at the coin in his hand above a plowed field. He speaks of steady, reliable work and progress that comes step by step. Keep your routine, finish what you start, and trust slow and careful effort.",
-    "reversed": "When reversed, the Knight of Pentacles may point to routine that has turned into a rut, or caution that keeps you from moving at all. It can also show boredom with steady work. Change one small thing in your routine to bring back a sense of purpose.",
-    "love": "Where love is concerned, the Knight of Pentacles invites consistency and patience. Show up steadily for what you value, at a pace that feels right to you.",
-    "advice": "Pick one daily routine that supports you and keep it today, start to finish.",
-    "yes_no_why": "The Knight of Pentacles moves slowly and carefully, so the answer is not clear yet.",
+    "reversed": "Routine that has turned into a rut, or caution that keeps you from moving at all, may mark the reversed Knight of Pentacles. Boredom with steady work can show too. Change one small thing in your routine to bring back a sense of purpose.",
+    "love": "Consistency and patience matter here. Show up steadily for what you value, at a pace that feels right to you.",
+    "advice": "Pick one daily routine that supports you and keep it, start to finish.",
+    "yes_no_why": "The Knight's horse stands still in the plowed field, and progress comes slowly.",
     "status": "draft"
   },
   {
@@ -1224,11 +1224,11 @@
       "comfort",
       "security"
     ],
-    "upright": "Roses and greenery surround the Queen of Pentacles, who sits with a coin cradled in her lap, a small rabbit at her feet. She stands for warm, practical care: a well-run home, resources handled wisely, comfort shared. Look after yourself and your space with the same care you give others.",
-    "reversed": "Reversed, the Queen of Pentacles may show caring for everything except yourself, or worries about money or home taking up too much space. Sometimes it points to losing touch with simple comforts. Do one grounding thing for your own well-being today.",
-    "love": "In love, the Queen of Pentacles invites warmth that is practical and steady. Notice how you can make your daily life feel more nourishing.",
+    "upright": "Roses and greenery surround the Queen of Pentacles, who sits with a coin cradled in her lap, a small rabbit at her feet. She stands for warm, practical care: a well-run home, resources handled wisely, comfort shared. Look after your home and your everyday comfort in simple ways: a warm meal, a tidy room, rest when your body asks for it.",
+    "reversed": "Worries about money or home taking up too much space, or losing touch with simple physical comforts, can show the Queen of Pentacles reversed. Practical care may be going everywhere but into your own daily life. Do one grounding, practical thing for your own everyday comfort.",
+    "love": "Warmth that is practical and steady is the Queen of Pentacles' way. Notice how you can make your daily life feel more nourishing.",
     "advice": "Tidy one corner of your home and make it a little more comfortable.",
-    "yes_no_why": "The Queen of Pentacles brings steady, practical care, so the answer leans toward yes.",
+    "yes_no_why": "The Queen sits in a blooming garden with her coin, at home and well provided for.",
     "status": "draft"
   },
   {
@@ -1243,8 +1243,8 @@
     "upright": "Surrounded by grapevines, with bulls carved into his throne and a castle behind him, the King of Pentacles rests one hand on a golden coin. He can point to security, generosity and the confidence that comes from steady effort. Make decisions that build lasting value, for yourself and those around you.",
     "reversed": "Upside down, the King of Pentacles may point to valuing security so much that it becomes rigid, or to measuring worth only through money. It may also reflect doubt about your ability to provide. Remember what truly matters to you, and let that guide your practical choices.",
     "love": "In matters of the heart, the King of Pentacles invites you to offer steadiness and reliability. Notice how you can show care through your actions.",
-    "advice": "Look over your spending in one area of life and make one sensible adjustment.",
-    "yes_no_why": "The King of Pentacles stands on solid, prosperous ground, so the answer leans toward yes.",
+    "advice": "Steady one everyday foundation: a loose routine, a small repair, an unfinished chore.",
+    "yes_no_why": "Surrounded by vines, with a castle behind him, the King rests a hand on solid, prosperous ground.",
     "status": "draft"
   }
 ]
