@@ -60,7 +60,7 @@
     "upright": "La Emperatriz descansa en un campo de trigo maduro, entre árboles y un arroyo que corre. Celebra el crecimiento, la creatividad y el gusto por los placeres sencillos: la comida, la belleza, el contacto con la naturaleza. Es una carta generosa para los proyectos que piden paciencia y cariño.",
     "reversed": "La creatividad puede sentirse seca, como un jardín sin agua, o el disfrute queda para después de terminar los pendientes. La autoexigencia puede apurar lo que necesita crecer a su propio ritmo. Recupera algo que te dé gusto sin tener que ganártelo.",
     "love": "En pareja o sin ella, La Emperatriz te invita a disfrutar el afecto con los sentidos despiertos y sin prisa. Fíjate qué gestos, sabores o lugares te hacen sentir en casa.",
-    "advice": "Crea algo bonito con tus manos, un dibujo, un arreglo de flores o una manualidad, solo por el gusto de hacerlo.",
+    "advice": "Consiente tus sentidos con algo sencillo: una fruta madura, un aroma que te guste o flores frescas cerca.",
     "yes_no_why": "La Emperatriz está rodeada de trigo maduro: lo que se cuida con paciencia da fruto.",
     "status": "draft"
   },
@@ -73,10 +73,10 @@
       "estabilidad",
       "límites claros"
     ],
-    "upright": "El Emperador ocupa un trono de piedra decorado con cabezas de carnero. Representa el orden, la responsabilidad y la capacidad de sostener lo que construyes con reglas claras. Tomar el mando de tu situación y poner límites que te protejan está a tu alcance.",
+    "upright": "El Emperador ocupa un trono de piedra decorado con cabezas de carnero. Representa el orden, la responsabilidad y la capacidad de sostener lo que construyes con reglas claras. Puedes tomar el mando de tu situación y poner límites que te protejan.",
     "reversed": "El control se vuelve rigidez: una autoridad que se impone sin escuchar, ya sea la tuya o la de alguien más. En otros casos ocurre lo contrario: falta estructura y los días pasan sin orden. Revisa dónde necesitas más firmeza y dónde más flexibilidad.",
     "love": "En lo afectivo, El Emperador te pide claridad sobre lo que necesitas para sentir tranquilidad en una relación. Los acuerdos firmes pueden darte paz, siempre que dejen espacio para la ternura.",
-    "advice": "Define un límite concreto y dilo con palabras sencillas y firmes.",
+    "advice": "Define una regla o rutina sencilla que dé orden a tu día y síguela.",
     "yes_no_why": "El Emperador se apoya en un trono de piedra: hay base sólida y control de la situación.",
     "status": "draft"
   },
@@ -254,7 +254,7 @@
     "reversed": "Lo que te ata quizá se ve ya con más claridad, y con eso llegan las ganas de soltarlo. Ojo con las tentaciones que se disfrazan de libertad. Celebra cada paso hacia tu libertad, aunque parezca mínimo, y no te castigues si a veces regresas al mismo lugar.",
     "love": "Con El Diablo, mira con honestidad si un vínculo te da libertad o te limita. Distingue entre deseo, costumbre y apego, y elige lo que te hace bien.",
     "advice": "Identifica un hábito que te quita energía y sáltatelo por un día, como quien se quita una cadena floja.",
-    "yes_no_why": "Las cadenas de El Diablo siguen puestas, aunque flojas, y atan a lo que no te conviene.",
+    "yes_no_why": "Las cadenas de El Diablo siguen puestas, aunque flojas, y te atan a lo que no te conviene.",
     "status": "draft"
   },
   {
@@ -429,7 +429,7 @@
     "upright": "Cinco jóvenes cruzan sus bastos en un forcejeo desordenado, sin que se vea un ganador. Representa roces, competencia o diferencias de opinión que generan tensión. No siempre es un conflicto grave: a veces es la fricción necesaria para encontrar una mejor idea.",
     "reversed": "Quizá evitas un conflicto que necesitas hablar, o la tensión empieza a bajar después de tanto choque. Competir por todo cansa, incluso cuando se trata de cosas que no te importan tanto. Elige qué batallas valen tu energía.",
     "love": "Los choques de ideas no tienen que ser malos: a veces muestran lo que cada quien necesita. Escucha antes de defender tu punto y busca lo que tienen en común.",
-    "advice": "Escoge una sola discusión que valga la pena y deja pasar las demás.",
+    "advice": "Escoge una sola batalla que de verdad te importe y deja pasar las demás.",
     "yes_no_why": "En el Cinco de Bastos todos forcejean y no se ve quién gana.",
     "status": "draft"
   },
@@ -540,7 +540,7 @@
     ],
     "upright": "El Caballero de Bastos cabalga a toda velocidad en un caballo que se encabrita, con la mirada fija al frente. Con él llegan la pasión, la valentía y las ganas de lanzarte a la aventura. La energía está de tu lado, aunque conviene pensar un poco antes de saltar.",
     "reversed": "La impaciencia y las decisiones impulsivas pueden dejar proyectos abandonados a la mitad. El caballo corre, pero la frustración aparece cuando el mundo no va a tu velocidad. Canaliza esa energía en algo que puedas terminar.",
-    "love": "Hay intensidad y atracción con el Caballero de Bastos. Disfruta la emoción, pero observa si esa pasión tiene raíces o es solo la chispa del momento.",
+    "love": "Hay intensidad y atracción con el Caballero de Bastos. Disfruta la emoción que sientes, pero observa si tu pasión tiene raíces o es solo la chispa del momento.",
     "advice": "Muévete para soltar la energía acumulada: sal a caminar a buen paso o baila una canción completa.",
     "yes_no_why": "El Caballero de Bastos avanza con fuerza y decisión hacia adelante.",
     "status": "draft"
@@ -554,9 +554,9 @@
       "calidez",
       "determinación"
     ],
-    "upright": "La Reina de Bastos se sienta con un girasol en la mano y un gato negro a sus pies. Su presencia transmite confianza, calidez y un carisma que inspira a otros. Te invita a brillar con autenticidad y a tomar tu lugar sin pedir permiso.",
+    "upright": "La Reina de Bastos se sienta con un girasol en la mano y un gato negro a sus pies. Transmite confianza, calidez y un carisma que inspira a otros. Brilla con autenticidad y toma tu lugar sin pedir permiso.",
     "reversed": "La inseguridad, los celos o la sensación de que tu luz se apaga frente a otros ocupan el lugar del girasol. Tal vez das tanto de tu energía que te quedas sin fuego para ti. Reconecta con algo que te haga sentir tú.",
-    "love": "La Reina de Bastos te anima a mostrar tu calidez y tu deseo con seguridad. Te invita a dar desde la confianza, no desde la necesidad de aprobación.",
+    "love": "La Reina de Bastos te anima a mostrar tu calidez y tu deseo con seguridad. Da desde la confianza, no desde la necesidad de aprobación.",
     "advice": "Ponte algo amarillo, del color del girasol de la Reina, o cualquier prenda que te dé confianza.",
     "yes_no_why": "La Reina de Bastos ocupa su trono con un girasol en la mano y la mirada firme.",
     "status": "draft"
@@ -570,9 +570,9 @@
       "iniciativa",
       "audacia"
     ],
-    "upright": "El Rey de Bastos mira a lo lejos desde un trono adornado con leones y salamandras. Representa el liderazgo con visión, la capacidad de inspirar y de convertir ideas en proyectos reales. Tomar la iniciativa y guiar con el ejemplo está en tus manos.",
+    "upright": "El Rey de Bastos mira a lo lejos desde un trono adornado con leones y salamandras. Representa el liderazgo con visión, la capacidad de inspirar y de convertir ideas en proyectos reales. Toma la iniciativa y guía con el ejemplo.",
     "reversed": "La impaciencia o las expectativas demasiado altas, contigo o con los demás, se vuelven autoritarismo. Otras veces la visión es grande, pero no termina de aterrizar en pasos reales. Escucha a tu gente antes de imponer el rumbo.",
-    "love": "En el amor, el Rey de Bastos aporta pasión madura y compromiso con lo que quieres construir. Toma la iniciativa con respeto y comparte tus planes con claridad.",
+    "love": "En el amor, el Rey de Bastos apunta a tu propia pasión madura y a tu compromiso con lo que quieres construir. Toma la iniciativa con respeto y comparte tus planes con claridad.",
     "advice": "Mueve tú un asunto que nadie está moviendo y explica a los demás hacia dónde va.",
     "yes_no_why": "El Rey de Bastos sostiene un bastón que florece y mira lejos, con un plan en mente.",
     "status": "draft"
@@ -666,7 +666,7 @@
       "inocencia",
       "ternura"
     ],
-    "upright": "En un patio tranquilo, un niño ofrece a una niña una copa llena de flores. Despierta recuerdos, ternura e inocencia, y la alegría de las cosas simples. Puede despertar el recuerdo de un lugar o de una sensación que te hace bien.",
+    "upright": "En un patio tranquilo, un niño ofrece a una niña una copa llena de flores. Trae recuerdos, ternura e inocencia, y la alegría de las cosas simples. Puede devolverte el recuerdo de un lugar o de una sensación que te hace bien.",
     "reversed": "La nostalgia ancla al ayer y lo que ya quedó atrás se idealiza. En otros casos marca las ganas de crecer y dejar viejos patrones. Honra tus recuerdos y lo que aprendiste de ellos, sin quedarte a vivir ahí.",
     "love": "El Seis de Copas trae a la relación ternura, juego y afecto sencillo. Recupera los gestos pequeños que te hacen sentir en confianza.",
     "advice": "Regresa a algo que te encantaba en la infancia, como dibujar, jugar o escuchar una canción vieja.",
@@ -748,8 +748,8 @@
     ],
     "upright": "La Sota de Copas mira con sorpresa a un pececito que asoma de su copa, a la orilla del mar. Esta sota es sensibilidad y creatividad en estado puro, atenta a mensajes o emociones que pueden llegar sin aviso. Déjate sorprender y escucha a tu imaginación.",
     "reversed": "Las emociones se sienten a flor de piel o la creatividad se bloquea justo cuando quieres usarla. Quizá te cuesta tomar en serio tus propios sentimientos y los tratas como cosa de niños. Escúchalos con ternura, sin juzgarlos.",
-    "love": "Un mensaje tierno o un detalle dulce pueden moverte el corazón con esta carta. Ábrelo con curiosidad, sin forzar lo que sientes.",
-    "advice": "Haz algo creativo sin ningún propósito, solo para ver qué pez sale de tu copa.",
+    "love": "Si un mensaje tierno o un detalle dulce te mueve el corazón, recíbelo con curiosidad y sin forzar lo que sientes.",
+    "advice": "Juega con una idea creativa sin propósito y mira qué pez sale de tu copa.",
     "yes_no_why": "La Sota de Copas trae un mensaje dulce y una sorpresa amable.",
     "status": "draft"
   },
@@ -762,7 +762,7 @@
       "idealismo",
       "encanto"
     ],
-    "upright": "El Caballero de Copas avanza despacio sobre un caballo blanco, ofreciendo su copa con delicadeza. Su camino es el del romance, las propuestas y lo que te dicta el corazón. Es una carta de encanto y de ideales que piden ser vividos.",
+    "upright": "El Caballero de Copas avanza despacio sobre un caballo blanco, ofreciendo su copa con delicadeza. Trae romance, propuestas y la invitación a seguir lo que te dicta el corazón. Es una carta de encanto y de ideales que piden ser vividos.",
     "reversed": "Las promesas bonitas no siempre se sostienen, y la idealización o los cambios de humor pueden confundirte. La fantasía puede llevarte más lejos que los hechos. Pide hechos concretos que respalden las palabras, incluidas las tuyas.",
     "love": "Romanticismo, detalles y ganas de expresar lo que sientes llegan con este caballero. Ofrece tu cariño con sinceridad y observa si lo que recibes es igual de real.",
     "advice": "Pon por escrito lo que sientes y entrégalo sin prisa, como quien ofrece una copa.",
@@ -780,7 +780,7 @@
     ],
     "upright": "La Reina de Copas contempla una copa ornamentada y cerrada, sentada a la orilla del mar. Su fuerza está en la empatía, la intuición y la capacidad de sostener emociones profundas sin ahogarte en ellas. Lo que tu corazón sabe merece ser escuchado y tener un lugar.",
     "reversed": "Las emociones de otros se te pegan, como olas que mojan la orilla, o tus propios sentimientos se desbordan. Cuesta distinguir qué emoción es tuya y cuál viene de otra persona. Pon un límite amable que proteja tu mundo emocional.",
-    "love": "La Reina de Copas ama con ternura profunda y escucha con el corazón. Ofrece tu comprensión, pero pon en palabras también lo que tú sientes.",
+    "love": "La Reina de Copas pone en valor tu ternura y tu manera de escuchar con el corazón. Ofrece tu comprensión, pero pon en palabras también lo que tú sientes.",
     "advice": "Cuando llegue una emoción fuerte, distingue si es tuya o de alguien más antes de responder.",
     "yes_no_why": "La Reina de Copas guarda su copa cerrada a la orilla del mar, en paz con sus propias emociones.",
     "status": "draft"
@@ -796,7 +796,7 @@
     ],
     "upright": "El Rey de Copas se sienta en un trono que flota sobre un mar agitado, sin perder la calma. Es la madurez emocional hecha persona: sentir con profundidad y responder con serenidad. Escuchar sin reaccionar de inmediato te permite ofrecer apoyo con equilibrio.",
     "reversed": "Las emociones reprimidas o los cambios de humor, propios o ajenos, agitan el mar bajo el trono. Mostrar vulnerabilidad cuesta, y es más fácil aparentar que todo está bajo control. Di lo que sientes antes de que se acumule.",
-    "love": "El Rey de Copas propone un cariño maduro, estable y de apoyo mutuo. Elige relaciones donde puedas sentir sin miedo y hablar con calma.",
+    "love": "El Rey de Copas pone el foco en tu madurez emocional dentro de la relación. Elige vínculos donde puedas sentir sin miedo y hablar con calma.",
     "advice": "Escucha a alguien hasta el final sin interrumpir ni dar consejos.",
     "yes_no_why": "El Rey de Copas se mantiene sereno sobre aguas agitadas.",
     "status": "draft"
@@ -877,7 +877,7 @@
     "upright": "Un hombre recoge espadas con media sonrisa mientras dos figuras se alejan cabizbajas hacia el mar. La escena muestra conflictos donde ganar cuesta demasiado, orgullo y relaciones lastimadas. Pregúntate si tener la razón vale lo que pierdes en el camino.",
     "reversed": "Las ganas de hacer las paces o de dejar atrás una pelea empiezan a aparecer. Aun así, puede quedar resentimiento vivo debajo de la superficie. Da el primer paso hacia la reconciliación si eso te hace bien.",
     "love": "Las discusiones donde nadie gana pueden desgastar el cariño. Elige el diálogo sobre el orgullo y suelta la necesidad de tener la última palabra.",
-    "advice": "Baja el tono en una discusión que no vale la pena, aunque creas tener la razón.",
+    "advice": "Baja el tono en una pelea donde ganar te costaría demasiado, aunque creas tener la razón.",
     "yes_no_why": "Quien gana en el Cinco de Espadas se queda con las espadas, pero pierde a los demás.",
     "status": "draft"
   },
@@ -990,7 +990,7 @@
     "reversed": "Las palabras duras, la prisa sin dirección o las discusiones que escalan aparecen con fuerza. Si las cosas no avanzan a tu ritmo, la frustración puede empujarte a cargar sin mirar. Frena un poco y piensa en el impacto de lo que dices.",
     "love": "Con el Caballero de Espadas, las pláticas pueden subir de tono muy rápido. Di lo que necesitas con franqueza, pero sin herir.",
     "advice": "Cuenta hasta diez antes de enviar un mensaje importante y relee lo que escribiste.",
-    "yes_no_why": "El Caballero de Espadas carga contra el viento entre nubes revueltas, sin un rumbo claro.",
+    "yes_no_why": "El Caballero de Espadas carga contra el viento entre nubes revueltas, antes de ver el panorama completo.",
     "status": "draft"
   },
   {
@@ -1002,7 +1002,7 @@
       "honestidad",
       "límites"
     ],
-    "upright": "La Reina de Espadas mira al frente con la espada en alto y una mano extendida, como quien invita a hablar con la verdad. Su claridad nace de la experiencia, y con ella vienen la independencia y la honestidad directa. Ver las cosas como son te permite poner límites con firmeza.",
+    "upright": "La Reina de Espadas mira al frente con la espada en alto y una mano extendida, como quien invita a hablar con la verdad. Ve con la claridad que da la experiencia y habla con independencia y honestidad directa. Ver las cosas como son te permite poner límites con firmeza.",
     "reversed": "La frialdad, las críticas duras o una distancia que protege pero aísla toman el lugar de la claridad. A veces la espada se vuelve contra ti y la experiencia se convierte en amargura que cuesta soltar. Habla con claridad sin cerrar tu corazón.",
     "love": "La Reina de Espadas te pide honestidad sobre lo que aceptas y lo que no en el amor. Cuidar tu independencia no está peleado con abrirte al cariño.",
     "advice": "Di un «no» claro a algo que no quieres, sin dar mil explicaciones.",
@@ -1020,7 +1020,7 @@
     ],
     "upright": "El Rey de Espadas se sienta de frente con la espada levemente inclinada, bajo un cielo con aves y nubes. Gobierna con pensamiento claro, criterio firme y capacidad de decidir con objetividad. Usa la cabeza más que la emoción y actúa con integridad.",
     "reversed": "La rigidez mental, el poder usado para imponer o las decisiones frías que no consideran a las personas marcan esta posición. En otros casos, el problema es el contrario: dudas para fijar una postura. Equilibra la razón con la empatía.",
-    "love": "El Rey de Espadas lleva al amor acuerdos claros y conversaciones maduras. Expresa lo que piensas con respeto y escucha también lo que la otra parte necesita.",
+    "love": "Los acuerdos claros y las conversaciones maduras son tu mejor apuesta con el Rey de Espadas. Expresa lo que piensas con respeto y escucha también lo que la otra parte necesita.",
     "advice": "Decide un asunto pendiente con base en hechos y no en el miedo.",
     "yes_no_why": "El Rey de Espadas mira de frente con la espada firme y decide con cabeza fría.",
     "status": "draft"
@@ -1196,7 +1196,7 @@
     ],
     "upright": "La Sota de Oros contempla con atención la moneda que sostiene, de pie en un campo verde. Invita a aprender, estudiar y dar los primeros pasos firmes hacia una meta concreta. Empieza algo con disciplina y paciencia.",
     "reversed": "La distracción, la falta de constancia o las metas que se quedan en planes le quitan fuerza a esta carta. El miedo a empezar por no saber lo suficiente puede dejar la moneda quieta en tu mano. Da un primer paso imperfecto y aprende sobre la marcha.",
-    "love": "La Sota de Oros se acerca al amor despacio, como quien cuida una semilla. Demuestra tu interés con constancia y atención a los detalles.",
+    "love": "Si alguien te interesa, acércate despacio, con el mismo cuidado con que la Sota de Oros sostiene su moneda. Demuestra tu interés con constancia y atención a los detalles.",
     "advice": "Elige un tema concreto que quieras aprender y consigue lo necesario para empezar.",
     "yes_no_why": "La Sota de Oros da pasos firmes hacia algo concreto.",
     "status": "draft"
@@ -1210,11 +1210,11 @@
       "responsabilidad",
       "método"
     ],
-    "upright": "El Caballero de Oros se detiene sobre un caballo pesado y quieto, mirando la moneda frente a un campo arado. Su forma de avanzar es despacio y con método: cumple lo que promete y cuida los detalles. Puede parecer lento, pero rara vez se detiene.",
+    "upright": "El Caballero de Oros se detiene sobre un caballo pesado y quieto, mirando la moneda frente a un campo arado. Avanza despacio y con método: cumple lo que promete y cuida los detalles. Puede parecer lento, pero rara vez se detiene.",
     "reversed": "El estancamiento, la rutina excesiva o el perfeccionismo frenan el avance hasta que el caballo deja de moverse. El aburrimiento también puede instalarse cuando todo es demasiado predecible. Agrega algo de flexibilidad a tu plan para que vuelva a moverse.",
-    "love": "El Caballero de Oros quiere con lealtad y lo demuestra con hechos. Valora la estabilidad, pero cuida que no se convierta en monotonía.",
+    "love": "Con el Caballero de Oros, tu cariño se nota más en los hechos que en las palabras. Elige la constancia y la lealtad, y cuida que la estabilidad no se vuelva monotonía.",
     "advice": "Cumple una sola tarea de principio a fin, a paso lento pero sin detenerte.",
-    "yes_no_why": "El caballo de Oros está quieto en el campo arado y su jinete sigue mirando la moneda.",
+    "yes_no_why": "Su caballo está quieto en el campo arado y el Caballero de Oros sigue mirando la moneda.",
     "status": "draft"
   },
   {
@@ -1228,7 +1228,7 @@
     ],
     "upright": "La Reina de Oros sostiene una moneda en su regazo, rodeada de flores, frutos y un pequeño conejo. Su cuidado es práctico y generoso: sabe crear un hogar cálido y estable. Pon atención a lo concreto, como tu casa, tu cuerpo y tus rutinas, sin descuidar el disfrute.",
     "reversed": "El desorden en tu espacio o unas rutinas que ya no te sostienen hacen que la casa pierda su calor. Tal vez lo práctico se vuelve pura preocupación y se te olvida que la casa y el cuerpo también son para disfrutarse. Vuelve a lo básico: tu descanso, tu espacio, tu calma.",
-    "love": "La Reina de Oros cuida con gestos concretos y crea un ambiente acogedor. Ofrece apoyo práctico y recibe con gusto el que te den.",
+    "love": "La Reina de Oros te recuerda que el cariño también se demuestra con cosas prácticas, como crear un ambiente acogedor. Ofrece apoyo concreto y recibe con gusto el que te den.",
     "advice": "Acomoda un rincón de tu casa para que tu cuerpo descanse a gusto: buena luz, algo suave, una planta.",
     "yes_no_why": "La Reina de Oros está rodeada de flores y frutos: lo que cuida, crece.",
     "status": "draft"
@@ -1244,8 +1244,8 @@
     ],
     "upright": "El Rey de Oros se sienta entre racimos de uvas, con un castillo a su espalda y la moneda en la mano. Simboliza la estabilidad, la abundancia y el éxito que nace del esfuerzo constante. Es una carta de liderazgo práctico y de seguridad bien construida.",
     "reversed": "El apego al estatus, la rigidez o el miedo a perder lo que tienes endurecen la mirada del Rey. Cuando todo se decide solo por lo material, el castillo puede volverse una jaula. Recuerda que tu valor no se mide por lo que posees.",
-    "love": "El Rey de Oros trae estabilidad, protección y compromiso serio a tus vínculos. Construye una relación que te dé paz, no solo seguridad.",
-    "advice": "Dale mantenimiento a algo que te sostiene, como tu espacio, una herramienta de trabajo o una rutina.",
+    "love": "Busca en tus vínculos la estabilidad y el compromiso serio que representa el Rey de Oros. Construye una relación que te dé paz, no solo seguridad.",
+    "advice": "Dale mantenimiento a algo que te sostiene, como una herramienta de trabajo, un hábito o una relación de confianza.",
     "yes_no_why": "El Rey de Oros tiene raíces firmes y recursos estables a su alrededor.",
     "status": "draft"
   }
