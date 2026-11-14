@@ -191,3 +191,10 @@ def test_sources_wrong_set():
     s = [source(r) for r in ROWS]
     s[0]["commons_title"] = "File:RWS Tarot 18 Moon.jpg"
     assert any("RWS1909" in e for e in check_sources(s, ROWS))
+
+
+# --- настоящая база в репозитории ---
+
+def test_repository_base_is_valid():
+    from validate_cards import validate
+    assert validate() == []
