@@ -20,6 +20,9 @@ SOURCES = {
     "112": "https://www.sanidad.gob.es/linea024/home.htm",
     "135": "https://findahelpline.com/organizations/linea-de-prevencion-del-suicidio-buenos-aires",
     "(011) 5275-1135": "https://findahelpline.com/organizations/linea-de-prevencion-del-suicidio-buenos-aires",
+    "016": "https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/igualdad/Paginas/2026/telefono-016-que-es.aspx",
+    "144": "https://www.argentina.gob.ar/node/402275",
+    "155": "https://www.policia.gov.co/noticia/linea-155-orientacion-mujeres-victimas-violencia",
     "106": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/"
            "directorio-salud-mental-prevencion-suicidio-minsalud.pdf",
 }
@@ -51,15 +54,15 @@ def test_lines_have_topic_source_and_check_date():
     for line in all_lines():
         assert line["topic"] in ("crisis", "violence", "emergency", "directory"), line["name"]
         assert line["source"].startswith("https://"), line["name"]
-        assert line["checked"] == "2026-11-14", line["name"]
+        assert line["checked"] in ("2026-11-14", "2026-11-18"), line["name"]
     unverified = {line.get("number") for line in all_lines() if line["verify_before_launch"]}
-    assert unverified == {"106", "079", "800 911 2000"}
+    assert unverified == {"106", "079", "800 911 2000", "155"}
 
 
 def test_numbers_and_sources_match_spec():
     numbers = {code: [line["number"] for line in rec["lines"]] for code, rec in HELP["countries"].items()}
-    assert numbers == {"US": ["988", "1-800-799-7233"], "MX": ["800 911 2000", "079"], "ES": ["024", "112"],
-                       "AR": ["135", "(011) 5275-1135"], "CO": ["106"]}
+    assert numbers == {"US": ["988", "1-800-799-7233"], "MX": ["800 911 2000", "079"], "ES": ["024", "112", "016"],
+                       "AR": ["135", "(011) 5275-1135", "144"], "CO": ["106", "155"]}
     assert {line["number"]: line["source"] for line in all_lines() if "number" in line} == SOURCES
 
 
@@ -68,6 +71,23 @@ def test_violence_lines():
     assert (us["topic"], us["sms"], us["hours"]) == ("violence", "START to 88788", "24/7")
     mx = HELP["countries"]["MX"]["lines"][1]
     assert (mx["topic"], mx["note"], mx["hours"]) == ("violence", "opción 1", "24/7")
+
+
+def test_every_country_has_both_kinds_and_violence_goes_first():
+    texts = TEXTS["es"]
+    for code, record in HELP["countries"].items():
+        topics = {line["topic"] for line in record["lines"]}
+        assert {"crisis", "violence"} <= topics, code
+        calm = crisis_payload(texts, HELP, code, "timezone", violence=False)["helplines"]["lines"]
+        hurt = crisis_payload(texts, HELP, code, "timezone", violence=True)["helplines"]["lines"]
+        assert calm[0]["topic"] == "crisis" and hurt[0]["topic"] == "violence", code
+
+
+def test_new_violence_lines():
+    lines = {c: [x for x in HELP["countries"][c]["lines"] if x["topic"] == "violence"][0] for c in ("ES", "AR", "CO")}
+    assert [lines[c]["number"] for c in ("ES", "AR", "CO")] == ["016", "144", "155"]
+    assert lines["ES"]["verify_before_launch"] is False and lines["CO"]["verify_before_launch"] is True
+    assert all(x["hours"] == "24/7" and x["checked"] == "2026-11-18" for x in lines.values())
 
 
 @pytest.mark.parametrize("country, expected", [("mx", "MX"), ("US", "US"), (None, None), ("FR", None),

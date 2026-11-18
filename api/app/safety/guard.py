@@ -55,7 +55,8 @@ class GuardUnavailable(Exception):
 class CrisisFilter:
     """Stop-phrases from crisis_terms.json: unambiguous self_harm and violence lists, the ambiguous
     ask_model_self_harm and ask_model_violence lists (§9.3), ask_model_continuations ("don't want to live with",
-    "no quiero vivir con": cut before the unambiguous lists are searched and themselves ambiguous self_harm, В17),
+    "no quiero vivir con": an unambiguous phrase wholly inside one is ignored, the continuation itself is
+    ambiguous self_harm, В17),
     and idioms that are excluded first ("me quiero morir de la vergüenza", "my ex hit me up", "Suicide Squad").
     Everything is compared after normalize()."""
 
@@ -68,29 +69,51 @@ class CrisisFilter:
         self.exclude = [rx for _, rx in compile_terms([normalize(t) for terms in data["exclude"].values()
                                                        for t in terms])]
 
-    def _clean(self, text: str) -> str:
-        clean = normalize(text)
-        for rx in self.exclude:
-            clean = rx.sub(" ", clean)
-        return clean
+    def _variants(self, text: str) -> list[str]:
+        """Zero-width characters removed ("ki\u200bll myself") and as a space ("kill\u200bmyself"), both searched."""
+        first, second = normalize(text), normalize(text, zero_width=" ")
+        return [first] if first == second else [first, second]
+
+    def _spans(self, clean: str, kind: str) -> list[tuple[int, int]]:
+        return [m.span() for _, rx in self.phrases[kind] for m in rx.finditer(clean)]
+
+    def _live(self, clean: str, kind: str, cut: list[tuple[int, int]]
+              ) -> list[tuple[int, int]]:
+        """Matches of a list that survive the idiom excludes and the continuations. An exclude drops a match that
+        overlaps it, unless the match is longer and encloses it ("hit me up against" holds "hit me up"). A match
+        that lies wholly inside a continuation is dropped ("no quiero vivir" inside "no quiero vivir con"); one
+        that only overlaps a continuation stays ("no quiero vivir sin razón para vivir")."""
+        excludes = [m.span() for rx in self.exclude for m in rx.finditer(clean)]
+        live = []
+        for start, end in self._spans(clean, kind):
+            if any(s < end and start < e and not (start <= s and e <= end and (end - start) > (e - s))
+                   for s, e in excludes):
+                continue
+            if any(cs <= start and end <= ce for cs, ce in cut):
+                continue
+            live.append((start, end))
+        return live
+
+    def _continuations(self, clean: str) -> list[tuple[int, int]]:
+        return self._live(clean, "ask_model_continuations", [])
 
     def match(self, text: str) -> str | None:
         """An unambiguous stop-phrase: "violence", "self_harm" or None."""
-        clean = self._clean(text)
-        for _, rx in self.phrases["ask_model_continuations"]:
-            clean = rx.sub(" ", clean)
-        for kind in ("violence", "self_harm"):
-            if find_banned(clean, self.phrases[kind]):
-                return kind
+        for clean in self._variants(text):
+            cut = self._continuations(clean)
+            for kind in ("violence", "self_harm"):
+                if self._live(clean, kind, cut):
+                    return kind
         return None
 
     def ambiguous(self, text: str) -> str | None:
         """An ambiguous stop-phrase that the model decides: "violence", "self_harm" or None."""
-        clean = self._clean(text)
-        if find_banned(clean, self.phrases["ask_model_violence"]):
-            return "violence"
-        if find_banned(clean, self.phrases["ask_model_self_harm"] + self.phrases["ask_model_continuations"]):
-            return "self_harm"
+        for clean in self._variants(text):
+            if self._live(clean, "ask_model_violence", []):
+                return "violence"
+        for clean in self._variants(text):
+            if self._live(clean, "ask_model_self_harm", []) or self._continuations(clean):
+                return "self_harm"
         return None
 
 
@@ -132,7 +155,7 @@ class Guard:
         except ProviderRefusal as exc:
             log.warning("guard model refused: treated as crisis")
             r = exc.result
-            return GuardResult("crisis", "refusal", False, model, _ms(started), r and r.tokens_in,
+            return GuardResult("crisis", "refusal", failed_violence, model, _ms(started), r and r.tokens_in,
                                r and r.tokens_out, "refusal")
         except ProviderTimeout:
             log.warning("guard timeout")
@@ -140,6 +163,10 @@ class Guard:
         except Exception as exc:  # any other provider failure: ok, the reader prompt has its own safety net
             log.warning("guard call failed: %s", type(exc).__name__)
             return GuardResult(failed, "error", failed_violence, model, _ms(started), stop_reason="error")
+        if getattr(usage, "stop_reason", None) == "refusal":  # a refusal reported in the result, not raised
+            log.warning("guard model refused (stop_reason): treated as crisis")
+            return GuardResult("crisis", "refusal", failed_violence, model, _ms(started), usage.tokens_in,
+                               usage.tokens_out, "refusal")
         group = data.get("group") if isinstance(data, dict) else None
         if group not in GROUPS:
             log.warning("guard returned an unknown group")

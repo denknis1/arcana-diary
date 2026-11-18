@@ -44,7 +44,13 @@ def test_load_terms_languages():
 
 @pytest.mark.parametrize("raw, expected", [
     ("Mejor sin MÍ", "mejor sin mi"), ("I don\u2019t  want to live", "i don't want to live"),
+    ("kill\u200bmyself", "killmyself"), ("kill\u200c\u200d\ufeffmyself", "killmyself"),
+    ("kill-myself", "kill myself"), ("Self-Harm", "self harm"),
     ("Me violó", "me violo"), ("ya no quiero estar aquí", "ya no quiero estar aqui"), ("Pingüino", "pinguino"),
 ])
 def test_normalize(raw, expected):
     assert normalize(raw) == expected
+
+
+def test_normalize_can_turn_zero_width_into_a_space():
+    assert normalize("kill\u200bmyself", zero_width=" ") == "kill myself"

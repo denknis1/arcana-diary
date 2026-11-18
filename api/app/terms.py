@@ -12,9 +12,18 @@ from pathlib import Path
 _APOSTROPHES = str.maketrans({"’": "'", "‘": "'", "ʼ": "'", "`": "'", "´": "'"})
 
 
-def normalize(text: str) -> str:
-    """Lower case, no accents (NFKD without combining marks), straight apostrophes, single spaces."""
-    decomposed = unicodedata.normalize("NFKD", text.translate(_APOSTROPHES))
+_ZERO_WIDTH = str.maketrans({"\u200b": None, "\u200c": None, "\u200d": None, "\ufeff": None})
+_HYPHENS = str.maketrans({"-": " ", "\u2010": " ", "\u2011": " "})
+
+
+def normalize(text: str, zero_width: str = "") -> str:
+    """Lower case, no accents (NFKD without combining marks), straight apostrophes, hyphens as spaces, no
+    zero-width characters (removed, or replaced by zero_width), single spaces."""
+    if zero_width:
+        text = text.translate({ord(c): zero_width for c in "\u200b\u200c\u200d\ufeff"})
+    else:
+        text = text.translate(_ZERO_WIDTH)
+    decomposed = unicodedata.normalize("NFKD", text.translate(_APOSTROPHES).translate(_HYPHENS))
     plain = "".join(ch for ch in decomposed if not unicodedata.combining(ch))
     return " ".join(plain.lower().split())
 

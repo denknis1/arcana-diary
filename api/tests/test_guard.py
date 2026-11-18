@@ -147,7 +147,7 @@ def test_ambiguous_phrase_asks_the_model():
 def test_ambiguous_phrase_without_a_model_answer_is_crisis(reply, error, source):
     result = make_guard(StubProvider(reply=reply, error=error)).classify("he hits me with the truth every time")
     assert (result.group, result.source) == ("crisis", source)
-    assert result.violence is (source != "refusal")
+    assert result.violence is True  # a refusal keeps the violence flag: the DV line goes first
 
 
 def test_over_the_guard_budget_only_stop_phrases_answer():
@@ -273,3 +273,83 @@ def test_bare_phrases_stay_immediate_without_the_model(text):
     provider = StubProvider(reply={"group": "ok", "violence": False})
     result = make_guard(provider).classify(text)
     assert (result.group, result.source, provider.calls) == ("crisis", "terms", [])
+
+
+# Fix round 1
+NEW_IMMEDIATE = [
+    ("I dont wanna live", "self_harm"), ("I don't wanna live anymore", "self_harm"),
+    ("i do not wanna live", "self_harm"), ("I cannot go on anymore", "self_harm"),
+    ("I can't go on any more", "self_harm"), ("i cant go on anymore", "self_harm"),
+    ("I cannot go on any more", "self_harm"), ("Me voy a pegar un tiro", "self_harm"),
+    ("Quiero pegarme un tiro", "self_harm"), ("ya no quiero existir", "self_harm"),
+    ("No quiero existir", "self_harm"),
+    ("My husband is hitting me", "violence"), ("my boyfriend has been hitting me", "violence"),
+    ("He slapped me again", "violence"), ("My stepfather hits me", "violence"),
+    ("my stepfather beats me", "violence"), ("Mi papá me pegaba de niña", "violence"),
+    ("Mi ex me golpeaba", "violence"),
+    ("kill\u200bmyself", "self_harm"), ("ki\u200bll myself", "self_harm"), ("kill-myself", "self_harm"),
+    ("I want to self-harm", "self_harm"), ("I want to kill\u200d-myself", "self_harm"),
+    # hit me up: casual is cleared, real violence is not
+    ("My husband hit me up against the wall", "violence"), ("he hit me up against the door", "violence"),
+    # an immediate phrase that only partly overlaps a continuation still counts
+    ("No quiero vivir sin razón para vivir", "self_harm"),
+]
+
+
+@pytest.mark.parametrize("text, kind", NEW_IMMEDIATE)
+def test_new_phrases_are_immediate(text, kind):
+    assert FILTER.match(text) == kind
+    provider = StubProvider(reply={"group": "ok", "violence": False})
+    result = make_guard(provider).classify(text)
+    assert (result.group, result.source, result.violence, provider.calls) == ("crisis", "terms", kind == "violence", [])
+
+
+@pytest.mark.parametrize("text", [
+    "Hit me up on Instagram", "My ex hit me up last night", "He'll hit me up later", "Se me pegaba la canción",
+    "Should I tell him to hit me up when he's back?",
+])
+def test_casual_phrases_are_cleared(text):
+    assert FILTER.match(text) is None and FILTER.ambiguous(text) is None
+
+
+@pytest.mark.parametrize("text", [
+    "I don't wanna live with my parents", "I dont wanna live in this city", "I do not wanna live without him",
+    "I don't wanna live here anymore", "I don't want to live in this world anymore",
+    "Ya no quiero vivir en este mundo",
+    "I don't want to die alone", "i dont want to die alone", "do not want to die alone", "No quiero morir sola",
+    "no quiero morir solo", "No quiero morirme sola",
+])
+def test_continuations_go_to_the_model(text):
+    assert FILTER.match(text) is None and FILTER.ambiguous(text) == "self_harm"
+    provider = StubProvider(reply={"group": "ok", "violence": False})
+    result = make_guard(provider).classify(text)
+    assert (result.group, result.source, len(provider.calls)) == ("ok", "model", 1)
+    failed = make_guard(StubProvider(error=ProviderError("down"))).classify(text)
+    assert (failed.group, failed.source) == ("crisis", "error")
+
+
+def test_immediate_match_inside_a_continuation_is_ignored_but_another_one_counts():
+    assert FILTER.match("No quiero vivir con él") is None
+    assert FILTER.match("No quiero vivir con él, quiero morir") == "self_harm"
+
+
+def test_refusal_on_an_ambiguous_violence_phrase_keeps_the_flag():
+    error = ProviderRefusal(StreamResult(40, 0, "refusal", "stub-guard", None))
+    hurt = make_guard(StubProvider(error=error)).classify("he hits me with the truth every time")
+    assert (hurt.group, hurt.source, hurt.violence) == ("crisis", "refusal", True)
+    plain = make_guard(StubProvider(error=error)).classify("Something the model will not touch")
+    assert (plain.group, plain.source, plain.violence) == ("crisis", "refusal", False)
+
+
+@pytest.mark.parametrize("reply", [{"group": "ok", "violence": False}, None, {"group": "maybe"}])
+def test_stop_reason_refusal_in_the_result_is_crisis(reply):
+    class Refusing(StubProvider):
+        def complete_json(self, system, messages, schema, max_tokens):
+            self.calls.append(1)
+            return self.reply, SimpleNamespace(tokens_in=40, tokens_out=0, stop_reason="refusal")
+
+    result = make_guard(Refusing(reply=reply)).classify("Should I move?")
+    assert (result.group, result.source, result.violence, result.stop_reason) == ("crisis", "refusal", False,
+                                                                                  "refusal")
+    hurt = make_guard(Refusing(reply=reply)).classify("he hits me with the truth every time")
+    assert (hurt.group, hurt.source, hurt.violence) == ("crisis", "refusal", True)
