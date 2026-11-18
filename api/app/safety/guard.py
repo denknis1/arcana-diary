@@ -99,10 +99,10 @@ class CrisisFilter:
 
     def match(self, text: str) -> str | None:
         """An unambiguous stop-phrase: "violence", "self_harm" or None."""
-        for clean in self._variants(text):
-            cut = self._continuations(clean)
-            for kind in ("violence", "self_harm"):
-                if self._live(clean, kind, cut):
+        variants = self._variants(text)
+        for kind in ("violence", "self_harm"):  # violence in any variant wins over self_harm
+            for clean in variants:
+                if self._live(clean, kind, self._continuations(clean)):
                     return kind
         return None
 
@@ -138,7 +138,9 @@ class Guard:
         """allow_model=False: the guard's own budget is spent (§9.2)."""
         kind = self.filter.match(text)
         if kind:
-            return GuardResult("crisis", "terms", violence=kind == "violence")
+            # an ambiguous violence phrase beside a self-harm stop-phrase still puts the violence line first
+            violence = kind == "violence" or self.filter.ambiguous(text) == "violence"
+            return GuardResult("crisis", "terms", violence=violence)
         unsure = self.filter.ambiguous(text)
         if not allow_model:
             if unsure:

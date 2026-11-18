@@ -45,7 +45,8 @@ def test_load_terms_languages():
 @pytest.mark.parametrize("raw, expected", [
     ("Mejor sin MÍ", "mejor sin mi"), ("I don\u2019t  want to live", "i don't want to live"),
     ("kill\u200bmyself", "killmyself"), ("kill\u200c\u200d\ufeffmyself", "killmyself"),
-    ("kill-myself", "kill myself"), ("Self-Harm", "self harm"),
+    ("kill-myself", "kill myself"), ("kil\u00adl\u2060myself", "killmyself"), ("kill\u2013myself", "kill myself"),
+    ("kill\u2014myself", "kill myself"), ("Self-Harm", "self harm"),
     ("Me violó", "me violo"), ("ya no quiero estar aquí", "ya no quiero estar aqui"), ("Pingüino", "pinguino"),
 ])
 def test_normalize(raw, expected):

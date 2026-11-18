@@ -284,7 +284,9 @@ NEW_IMMEDIATE = [
     ("Quiero pegarme un tiro", "self_harm"), ("ya no quiero existir", "self_harm"),
     ("No quiero existir", "self_harm"),
     ("My husband is hitting me", "violence"), ("my boyfriend has been hitting me", "violence"),
-    ("He slapped me again", "violence"), ("My stepfather hits me", "violence"),
+    ("My husband slapped me again", "violence"), ("My stepfather hits me", "violence"),
+    ("my dad has been hitting me", "violence"), ("Mi esposo me pegaba", "violence"),
+    ("mi padrastro me golpeaba", "violence"),
     ("my stepfather beats me", "violence"), ("Mi papá me pegaba de niña", "violence"),
     ("Mi ex me golpeaba", "violence"),
     ("kill\u200bmyself", "self_harm"), ("ki\u200bll myself", "self_harm"), ("kill-myself", "self_harm"),
@@ -314,8 +316,8 @@ def test_casual_phrases_are_cleared(text):
 
 @pytest.mark.parametrize("text", [
     "I don't wanna live with my parents", "I dont wanna live in this city", "I do not wanna live without him",
-    "I don't wanna live here anymore", "I don't want to live in this world anymore",
-    "Ya no quiero vivir en este mundo",
+    "I don't wanna live here anymore", "I don't want to live in this city anymore",
+    "Ya no quiero vivir en esta ciudad",
     "I don't want to die alone", "i dont want to die alone", "do not want to die alone", "No quiero morir sola",
     "no quiero morir solo", "No quiero morirme sola",
 ])
@@ -353,3 +355,67 @@ def test_stop_reason_refusal_in_the_result_is_crisis(reply):
                                                                                   "refusal")
     hurt = make_guard(Refusing(reply=reply)).classify("he hits me with the truth every time")
     assert (hurt.group, hurt.source, hurt.violence) == ("crisis", "refusal", True)
+
+
+# Fix round 2
+BARE_VIOLENCE = [
+    "The breakup has been hitting me hard, will he come back?", "This song has been hitting me different lately",
+    "Reality slapped me when he left", "La nostalgia me golpeaba cada noche", "Me pegaba la depresión",
+]
+CLEARED = ["Mi ex me pegaba los cuernos", "El sol me pegaba en la cara", "Me pegaba el sol en el parque",
+           "Me pegaba un susto cada vez que sonaba el teléfono"]
+
+
+@pytest.mark.parametrize("text", BARE_VIOLENCE)
+def test_bare_violence_phrases_go_to_the_model(text):
+    assert FILTER.match(text) is None and FILTER.ambiguous(text) == "violence"
+    failed = make_guard(StubProvider(error=ProviderError("down"))).classify(text)
+    assert (failed.group, failed.source, failed.violence) == ("crisis", "error", True)
+
+
+@pytest.mark.parametrize("text", CLEARED)
+def test_casual_pegaba_is_cleared(text):
+    assert FILTER.match(text) is None and FILTER.ambiguous(text) is None
+
+
+@pytest.mark.parametrize("text", ["he hits me and I want to die", "él me pega y quiero morir",
+                                  "me pegó y quiero morirme", "my husband\u200bhits me and I want to die"])
+def test_violence_first_when_self_harm_is_immediate(text):
+    result = make_guard(StubProvider()).classify(text)
+    assert (result.group, result.source, result.violence) == ("crisis", "terms", True)
+
+
+def test_self_harm_alone_has_no_violence_flag():
+    assert make_guard(StubProvider()).classify("I want to die").violence is False
+
+
+@pytest.mark.parametrize("text", ["I don't want to live in this world anymore", "don't wanna live in this world",
+                                  "Ya no quiero vivir en este mundo", "no quiero seguir viviendo en este mundo"])
+def test_in_this_world_is_immediate(text):
+    assert FILTER.match(text) == "self_harm"
+    provider = StubProvider()
+    assert make_guard(provider).classify(text).source == "terms" and provider.calls == []
+
+
+@pytest.mark.parametrize("text", ["I want to live in this world", "Quiero vivir en este mundo",
+                                  "I don't want to live in this city"])
+def test_positive_in_this_world_is_not_a_stop_phrase(text):
+    assert FILTER.match(text) is None
+
+
+@pytest.mark.parametrize("text", [
+    "I don't wanna live alone forever, will I find love?", "no quiero vivir sola toda la vida",
+    "No quiero existir sin él", "I can't go on anymore without him?", "I cannot go on any more without her",
+    "I don't want to live together yet", "I do not want to live alone", "no quiero vivir juntos todavía",
+    "No quiero vivir juntas",
+])
+def test_alone_together_without_go_to_the_model(text):
+    assert FILTER.match(text) is None and FILTER.ambiguous(text) == "self_harm"
+    ok = make_guard(StubProvider(reply={"group": "ok", "violence": False})).classify(text)
+    assert (ok.group, ok.source) == ("ok", "model")
+    failed = make_guard(StubProvider(error=ProviderError("down"))).classify(text)
+    assert (failed.group, failed.source) == ("crisis", "error")
+
+
+def test_bare_cant_go_on_stays_immediate():
+    assert FILTER.match("I can't go on anymore") == "self_harm"
