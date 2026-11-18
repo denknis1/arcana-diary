@@ -1,12 +1,29 @@
 {
 	import /etc/caddy/parts/global-{$TLS_MODE}.caddy
+	# abort runs before every other handler, so cf-true.caddy closes the connection before auth, files or the API
+	order abort before vars
 }
 
 {$SITE_DOMAIN} {
+	# TRUST_CLOUDFLARE=true: only Cloudflare's addresses may connect (§8.2); the same flag the API reads
+	import /etc/caddy/parts/cf-{$TRUST_CLOUDFLARE:false}.caddy
 	import /etc/caddy/parts/noindex-{$LAUNCHED}.caddy
 	import /etc/caddy/parts/auth-{$LAUNCHED}.caddy
-	root * /srv/site
-	file_server
+	# API on the main domain: first-party cookie, no CORS; flush_interval -1 passes the SSE stream unbuffered.
+	# X-Real-IP is always overwritten with the TCP peer, so a client cannot choose its own address (§8.2).
+	handle /api/* {
+		request_body {
+			max_size 64KB
+		}
+		reverse_proxy api:8000 {
+			flush_interval -1
+			header_up X-Real-IP {remote_host}
+		}
+	}
+	handle {
+		root * /srv/site
+		file_server
+	}
 	handle_errors {
 		import /etc/caddy/parts/noindex-{$LAUNCHED}.caddy
 		respond "{err.status_code} {err.status_text}"
@@ -14,11 +31,21 @@
 }
 
 www.{$SITE_DOMAIN} {
+	import /etc/caddy/parts/cf-{$TRUST_CLOUDFLARE:false}.caddy
 	import /etc/caddy/parts/noindex-{$LAUNCHED}.caddy
 	redir https://{$SITE_DOMAIN}{uri} permanent
 }
 
+# Only /health here (§8.11): the API itself lives behind the stage password on the main domain.
 api.{$SITE_DOMAIN} {
+	import /etc/caddy/parts/cf-{$TRUST_CLOUDFLARE:false}.caddy
 	header X-Robots-Tag "noindex, nofollow"
-	reverse_proxy api:8000
+	handle /health {
+		reverse_proxy api:8000 {
+			header_up X-Real-IP {remote_host}
+		}
+	}
+	handle {
+		respond 404
+	}
 }

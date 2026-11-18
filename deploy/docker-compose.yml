@@ -12,6 +12,7 @@ services:
       SITE_DOMAIN: ${SITE_DOMAIN}
       TLS_MODE: ${TLS_MODE}
       LAUNCHED: ${LAUNCHED}
+      TRUST_CLOUDFLARE: ${TRUST_CLOUDFLARE:-false}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - ./caddy:/etc/caddy/parts:ro
@@ -28,6 +29,19 @@ services:
     restart: unless-stopped
     expose:
       - "8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      READER_PROVIDER: ${READER_PROVIDER:-claude}
+      READER_MODEL: ${READER_MODEL:-claude-haiku-5-5}
+      READER_EFFORT: ${READER_EFFORT:-medium}
+      GUARD_MODEL: ${GUARD_MODEL:-claude-haiku-5-5}
+      JUDGE_MODEL: ${JUDGE_MODEL:-claude-sonnet-5-5}
+      TURNSTILE_SITEKEY: ${TURNSTILE_SITEKEY:-}
+      TURNSTILE_SECRET: ${TURNSTILE_SECRET:-}
+      TRUST_CLOUDFLARE: ${TRUST_CLOUDFLARE:-false}
+      DAILY_BUDGET_USD: ${DAILY_BUDGET_USD:-5}
+      GUARD_BUDGET_USD: ${GUARD_BUDGET_USD:-1}
 
 volumes:
   caddy_data:
