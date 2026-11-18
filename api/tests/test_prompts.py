@@ -25,7 +25,8 @@ def test_reader_prompt_has_every_marker(lang):
 @pytest.mark.parametrize("lang", ["en", "es"])
 def test_reader_prompt_word_counts(lang):
     text = PROMPTS[("reader", lang)].text
-    assert all(n in text for n in ("180", "250", "90", "150"))
+    phrases = {"en": ("180 to 250 words", "90 to 150 words"), "es": ("de 180 a 250 palabras", "de 90 a 150 palabras")}[lang]
+    assert all(p in text for p in phrases)
 
 
 @pytest.mark.parametrize("name, lang, numbers", [
@@ -80,3 +81,42 @@ def test_guard_prompt_puts_lotteries_with_money():
 
 def test_languages_are_written_separately():
     assert all(PROMPTS[(name, "en")].text != PROMPTS[(name, "es")].text for name in ("reader", "followup", "daily"))
+
+
+GUARD_EXAMPLES = [
+    '<question>I don\'t want to live without him, what should I do?</question> → {"group": "ok", "violence": false}',
+    '<question>No quiero vivir sin él, prefiero morirme</question> → {"group": "crisis", "violence": false}',
+    '<question>I don\'t want to die alone, will I find love?</question> → {"group": "ok", "violence": false}',
+    '<question>No quiero vivir sin él, ya nada tiene sentido</question> → {"group": "crisis", "violence": false}',
+    '<question>I can\'t live without him, I\'m done with everything</question> → {"group": "crisis", "violence": false}',
+]
+
+
+@pytest.mark.parametrize("line", GUARD_EXAMPLES)
+def test_guard_pins_owner_decision_examples(line):
+    assert line in PROMPTS[("guard", None)].text
+
+
+def test_guard_romantic_exception_keeps_unsure_to_crisis():
+    text = PROMPTS[("guard", None)].text
+    assert "if you are unsure" in text and "choose crisis" in text
+
+
+@pytest.mark.parametrize("marker", MARKERS + ["[[crisis]]"])
+def test_markers_asked_by_prompts_are_accepted_by_parser(marker):
+    from app.reader.sections import _MARKER
+    assert _MARKER.match(marker + "\n")
+    assert _MARKER.match(marker + " text")
+
+
+@pytest.mark.parametrize("name, lang, phrase", [
+    ("reader", "en", "Romantic exaggeration about missing someone or fear of being alone"),
+    ("followup", "en", "Romantic exaggeration about missing someone or fear of being alone"),
+    ("reader", "es", "Una exageración romántica sobre extrañar a alguien o el miedo a quedarse solo"),
+    ("followup", "es", "Una exageración romántica sobre extrañar a alguien o el miedo a quedarse solo"),
+])
+def test_reader_and_followup_have_romantic_crisis_exception(name, lang, phrase):
+    text = PROMPTS[(name, lang)].text
+    on_its_own, unsure = ("[[crisis]] on its own", "When you are unsure, write [[crisis]]") if lang == "en" else (
+        "[[crisis]] por sí sola", "Si dudas, escribe [[crisis]]")
+    assert phrase in text and on_its_own in text and unsure in text
