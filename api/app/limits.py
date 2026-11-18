@@ -18,6 +18,7 @@ IP_DAILY_THRESHOLD = 20
 IP_BURST_THRESHOLD = 5
 BURST_WINDOW_S = 60.0
 DAILY_RATE_LIMIT = 30  # GET /api/daily per address per minute
+NO_COUNTRY = {"XX", "T1"}  # Cloudflare: unknown location, and Tor exit nodes
 UTC = ZoneInfo("UTC")
 _ZONE_NAME = re.compile(r"[A-Za-z][A-Za-z0-9_+-]*(/[A-Za-z0-9_+-]+)*")  # an IANA name, never a path
 # Old names browsers still report (CLDR) whose links Debian's tzdata no longer ships
@@ -159,13 +160,17 @@ def ip_blocked(ip_readings_today: int) -> bool:
 
 
 def ip_key(ip: str) -> str:
-    """IPv6 counts by its /64 network (one home or phone gets a whole /64); IPv4 and anything else as is."""
+    """IPv6 counts by its /64 network (one home or phone gets a whole /64); an IPv4-mapped IPv6 address
+    counts as its IPv4 address; IPv4 and anything else as is."""
     try:
         address = ipaddress.ip_address(ip)
     except ValueError:
         return ip
     if address.version == 6:
-        return str(ipaddress.ip_network(f"{address}/64", strict=False))
+        if address.ipv4_mapped is not None:
+            return str(address.ipv4_mapped)
+        # Built from the integer value, so a scope id (fe80::1%eth0) is not part of the network
+        return str(ipaddress.IPv6Network(((int(address) >> 64) << 64, 64)))
     return str(address)
 
 
@@ -188,18 +193,28 @@ class DailySalt:
 
 
 class BurstCounter:
-    """Requests per key within a sliding window (in memory, one API process)."""
+    """Requests per key within a sliding window (in memory, one API process).
+
+    Keys with no hit left in the window are dropped at most once per window interval, so a hit is O(1)
+    amortized: each prune scans only keys that had a hit in the window before it, and prunes are a window apart.
+    """
 
     def __init__(self, window_s: float = BURST_WINDOW_S):
         self.window_s = window_s
         self._hits: dict[str, deque[float]] = {}
+        self._next_prune = float("-inf")
         self._lock = threading.Lock()
+
+    def _prune(self, t: float) -> None:
+        cutoff = t - self.window_s
+        self._hits = {k: q for k, q in self._hits.items() if q and q[-1] > cutoff}
 
     def hit(self, key: str, now: datetime) -> int:
         t = now.timestamp()
         with self._lock:
-            if len(self._hits) > 10_000:
-                self._hits = {k: q for k, q in self._hits.items() if q and q[-1] > t - self.window_s}
+            if t >= self._next_prune:
+                self._prune(t)
+                self._next_prune = t + self.window_s
             q = self._hits.setdefault(key, deque())
             while q and q[0] <= t - self.window_s:
                 q.popleft()
@@ -222,8 +237,11 @@ def client_ip(request, trust_cloudflare: bool) -> str:
 
 
 def client_country(request, trust_cloudflare: bool) -> str | None:
-    """CF-IPCountry only behind Cloudflare; used for the crisis answer only and never stored."""
+    """CF-IPCountry only behind Cloudflare; XX (unknown) and T1 (Tor) give None. Used for the crisis answer only,
+    never stored."""
     if not trust_cloudflare:
         return None
     code = (request.headers.get("cf-ipcountry") or "").strip().upper()
-    return code if len(code) == 2 and code.isalpha() else None
+    if len(code) != 2 or not code.isalpha() or code in NO_COUNTRY:
+        return None
+    return code

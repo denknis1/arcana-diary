@@ -1,6 +1,7 @@
 from urllib.parse import parse_qs
 
 import httpx
+import pytest
 
 from app.turnstile import SITEVERIFY_URL, TurnstileVerifier
 
@@ -55,3 +56,21 @@ def test_no_secret_makes_no_request():
     v, seen = verifier(lambda r: httpx.Response(200, json={"success": True}), secret="")
     assert v.verify("token-1") is False
     assert seen == []
+
+
+@pytest.mark.parametrize("body", ["[]", "null", '"x"', "1", '["success", true]'])
+def test_non_object_json_is_false(body):
+    v, _ = verifier(lambda r: httpx.Response(200, content=body.encode(), headers={"content-type": "application/json"}))
+    assert v.verify("token-1") is False
+
+
+def test_overlong_token_makes_no_request():
+    v, seen = verifier(lambda r: httpx.Response(200, json={"success": True}))
+    assert v.verify("t" * 2049) is False
+    assert seen == []
+
+
+def test_token_at_limit_is_sent():
+    v, seen = verifier(lambda r: httpx.Response(200, json={"success": True}))
+    assert v.verify("t" * 2048) is True
+    assert len(seen) == 1

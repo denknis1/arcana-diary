@@ -93,9 +93,23 @@ def test_daily_salt_changes_at_utc_midnight():
     ("2001:db8:abcd:12:1:2:3:4", "2001:db8:abcd:12::/64"),
     ("2001:db8:abcd:12:ffff::9", "2001:db8:abcd:12::/64"),
     ("unknown", "unknown"),
+    ("::ffff:203.0.113.9", "203.0.113.9"),
+    ("fe80::1%eth0", "fe80::/64"),
+    ("2001:db8:abcd:12:1:2:3:4%en0", "2001:db8:abcd:12::/64"),
 ])
 def test_ip_key(ip, expected):
     assert ip_key(ip) == expected
+
+
+def test_ipv4_mapped_key_equals_plain_ipv4():
+    assert ip_key("::ffff:203.0.113.9") == ip_key("203.0.113.9") == "203.0.113.9"
+
+
+def test_different_mapped_addresses_get_different_keys():
+    assert ip_key("::ffff:203.0.113.9") != ip_key("::ffff:203.0.113.10")
+    salt = DailySalt()
+    now = datetime(2026, 11, 20, 10, 0, tzinfo=timezone.utc)
+    assert salt.hash_ip("::ffff:203.0.113.9", now) != salt.hash_ip("::ffff:203.0.113.10", now)
 
 
 def test_ipv6_addresses_in_one_64_share_a_hash():
@@ -120,6 +134,31 @@ def test_burst_keys_independent():
     assert burst.hit("b", t) == 1
 
 
+def test_burst_drops_many_distinct_keys_older_than_window():
+    burst = BurstCounter()
+    t = datetime(2026, 11, 20, 10, 0, tzinfo=timezone.utc)
+    for i in range(20_000):
+        burst.hit(f"attacker-{i}", t)
+    assert burst.hit("fresh", t + timedelta(seconds=61)) == 1
+    assert len(burst._hits) == 1
+
+
+def test_burst_prunes_at_most_once_per_window(monkeypatch):
+    burst = BurstCounter()
+    calls = []
+    original = BurstCounter._prune
+
+    def counting(self, now_ts):
+        calls.append(now_ts)
+        return original(self, now_ts)
+
+    monkeypatch.setattr(BurstCounter, "_prune", counting)
+    t = datetime(2026, 11, 20, 10, 0, tzinfo=timezone.utc)
+    for i in range(20_000):
+        burst.hit(f"attacker-{i}", t + timedelta(seconds=i / 1000))  # all within one 60 s window
+    assert len(calls) <= 1
+
+
 SPOOF = {"cf-connecting-ip": "198.51.100.7", "cf-ipcountry": "MX", "x-forwarded-for": "10.0.0.1"}
 
 
@@ -136,6 +175,7 @@ def test_client_ip(headers, trust, expected):
 
 @pytest.mark.parametrize("headers, trust, expected", [
     ({"cf-ipcountry": "mx"}, True, "MX"), ({"cf-ipcountry": "mx"}, False, None), ({"cf-ipcountry": "XX1"}, True, None),
+    ({"cf-ipcountry": "XX"}, True, None), ({"cf-ipcountry": "t1"}, True, None),
     ({}, True, None),
 ])
 def test_client_country(headers, trust, expected):
