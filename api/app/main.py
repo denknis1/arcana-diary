@@ -1,5 +1,6 @@
-"""Arcana Diary API: app assembly, routes, /health."""
+"""Arcana Diary API: app assembly, routes, /health, background work (migrations, cleanup, card of the day)."""
 import asyncio
+import contextlib
 import logging
 from contextlib import asynccontextmanager
 
@@ -10,7 +11,8 @@ from starlette.datastructures import MutableHeaders
 
 from app.config import Settings, load_settings
 from app.context import build_context
-from app.db import DatabaseUnavailable, migrate
+from app.db import DatabaseUnavailable
+from app.housekeeping import run_background
 from app.routes import daily, followups, readings
 from app.routes import limits as limits_routes
 
@@ -44,12 +46,15 @@ class ApiHeaders:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     ctx = app.state.ctx
-    if ctx.settings.run_migrations and ctx.settings.database_url:
-        try:
-            await asyncio.to_thread(migrate, ctx.db, ctx.settings.migrations_dir)
-        except DatabaseUnavailable as exc:
-            log.error("migrations skipped, database unavailable: %s", exc)
-    yield
+    task = asyncio.create_task(run_background(ctx)) if ctx.settings.database_url else None
+    app.state.background_task = task
+    try:
+        yield
+    finally:
+        if task is not None:
+            task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await task
 
 
 async def db_unavailable(request: Request, exc: DatabaseUnavailable) -> JSONResponse:
