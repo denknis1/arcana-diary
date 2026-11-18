@@ -4,6 +4,7 @@ import pytest
 
 from app.reader.check import VERDICT_PATTERNS, load_reader_terms
 from app.reader.engine import Chunk, Failed, Finished, run_stream
+from app.reader.errors import ProviderTimeout
 from app.reader.provider import FakeProvider, FakeReply, ProviderRefusal, StreamResult, canned_answer, canned_text
 from app.reader.sections import SectionParser, required_sections
 from app.terms import find_banned
@@ -113,3 +114,20 @@ def test_run_stream_refusal():
     items = list(run_stream(FakeProvider(replies=[FakeReply(chunks=["a"], refuse=True)]), "s", MSG3, 100, 1.0))
     assert isinstance(items[-1], Failed) and items[-1].reason == "refusal" and items[-1].after_text
     assert items[-1].result.stop_reason == "refusal"
+
+
+class _TimeoutProvider:
+    model = "t"
+
+    def __init__(self, chunks):
+        self.chunks = chunks
+
+    def stream(self, system, messages, max_tokens):
+        yield from self.chunks
+        raise ProviderTimeout("sdk gave up")
+
+
+@pytest.mark.parametrize("chunks, after_text", [([], False), (["a"], True)])
+def test_run_stream_provider_timeout_is_reported_as_timeout(chunks, after_text):
+    items = list(run_stream(_TimeoutProvider(chunks), "s", MSG3, 100, 1.0))
+    assert isinstance(items[-1], Failed) and items[-1].reason == "timeout" and items[-1].after_text is after_text

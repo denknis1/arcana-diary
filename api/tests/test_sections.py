@@ -110,3 +110,38 @@ def test_crisis_marker_and_order_seen():
 ])
 def test_required_sections(kind, with_why, expected):
     assert required_sections(kind, with_why) == expected
+
+
+def test_crisis_marker_inline_is_crisis_and_never_shown():
+    parser, events = feed_all(["[[headline]]\nI'm worried about you. [[crisis]] Please reach out.\n"])
+    assert "crisis" in parser.seen
+    assert "[[" not in "".join(e.text for e in events if e.kind == "text")
+
+
+@pytest.mark.parametrize("chunks", [
+    ["[[headline]]\nI'm worried. [[cri", "sis]] Please reach out.\n"],
+    ["[[headline]]\nI'm worried. [", "[ Crisis ]", "] Please.\n"],
+    list("[[headline]]\nI'm worried. [[crisis]] Please.\n"),
+    ["I'm worried. [[CRISIS]]"],
+])
+def test_crisis_marker_inline_split_across_chunks(chunks):
+    parser, events = feed_all(chunks)
+    assert "crisis" in parser.seen
+    visible = "".join(e.text for e in events if e.kind == "text")
+    assert "[[cri" not in visible and "sis]]" not in visible
+
+
+def test_other_marker_partial_inline_is_text():
+    parser, _ = feed_all(["[[headline]]\nSee [[ste", "p]] here.\n"])
+    assert parser.sections() == {"headline": "See [[step]] here."}
+
+
+def test_trailing_bracket_is_flushed_at_the_end():
+    parser, _ = feed_all(["[[headline]]\nAn aside [[cri"])
+    assert parser.sections() == {"headline": "An aside [[cri"}
+
+
+def test_crlf_split_across_chunks_does_not_leak_the_marker():
+    parser, events = feed_all(["[[headline]]\r\nHi.\r\n[[card 1]]\r", "\nOne.\r\n"])
+    assert parser.sections() == {"headline": "Hi.", "card1": "One."}
+    assert "[[card 1]]" not in "".join(e.text for e in events if e.kind == "text")

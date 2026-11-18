@@ -1,6 +1,7 @@
 """Streaming parser of section markers (§2.2). A marker starts a line: [[headline]], [[card 1]] … [[why]], and
 [[crisis]] — the reader's safety net (§8.6). Markdown decoration around it (**, ##) is ignored, and text may follow
-the marker on the same line.
+the marker on the same line. The exception is [[crisis]]: it is recognised anywhere in the text (inline, split
+across chunks), and its characters are never emitted as text.
 
 Text is emitted as soon as it cannot be the start of a marker; a line that already started as text never becomes
 a marker. Text before the first marker goes to "headline".
@@ -11,7 +12,10 @@ from dataclasses import dataclass
 SECTION_ORDER = ("headline", "card1", "card2", "card3", "synthesis", "step", "why")
 _NAMES = r"(headline|card\s*[123]|synthesis|step|why|crisis)"
 _MARKER = re.compile(r"^\s*[#*_]*\s*\[\[\s*" + _NAMES + r"\s*\]\][*_]*[ \t]*(.*)$", re.IGNORECASE | re.DOTALL)
-_PARTIAL = re.compile(r"^\s*[#*_]*\s*(\[(\[[a-z0-9 ]*(\](\][*_ \t]*)?)?)?)?$", re.IGNORECASE)
+_PARTIAL = re.compile(r"^\s*[#*_]*\s*(\[(\[[a-z0-9 ]*(\](\][*_ \t\r]*)?)?)?)?$", re.IGNORECASE)
+_CRISIS = re.compile(r"\[\[\s*crisis\s*\]\]", re.IGNORECASE)
+# a suffix that may still grow into [[crisis]]: held back until the next chunk
+_CRISIS_PARTIAL = re.compile(r"\[(?:\[\s*(?:c(?:r(?:i(?:s(?:i(?:s\s*\]?)?)?)?)?)?)?)?$", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -40,6 +44,7 @@ class SectionParser:
         self._parts: dict[str, list[str]] = {}
         self._buf = ""
         self._line_started = False  # part of the current line was already emitted as text
+        self._tail = ""  # a possible start of an inline [[crisis]] held back from the text
 
     def feed(self, chunk: str) -> list[Event]:
         self._buf += chunk
@@ -63,7 +68,8 @@ class SectionParser:
     def finish(self) -> list[Event]:
         events = self._line(self._buf) if self._buf else []
         self._buf = ""
-        return events
+        tail, self._tail = self._tail, ""
+        return events + self._emit(tail)
 
     def sections(self) -> dict[str, str]:
         out = {}
@@ -88,6 +94,21 @@ class SectionParser:
         return self._text(line)
 
     def _text(self, text: str) -> list[Event]:
+        """Text with the crisis marker taken out wherever it is; a possible start of it waits for the next chunk."""
+        text = self._tail + text
+        self._tail = ""
+        events: list[Event] = []
+        while (match := _CRISIS.search(text)):
+            events += self._emit(text[:match.start()]) + self._start("crisis")
+            text = text[match.end():]
+        partial = _CRISIS_PARTIAL.search(text)
+        if partial:
+            self._tail, text = partial.group(0), text[:partial.start()]
+        return events + self._emit(text)
+
+    def _emit(self, text: str) -> list[Event]:
+        if not text:
+            return []
         events = []
         if self.current is None:
             if not text.strip():

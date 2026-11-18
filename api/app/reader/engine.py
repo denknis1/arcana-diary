@@ -6,7 +6,7 @@ import time
 from dataclasses import dataclass
 from typing import Iterator
 
-from app.reader.provider import ProviderRefusal, StreamResult
+from app.reader.provider import ProviderRefusal, StreamResult, ProviderTimeout
 
 log = logging.getLogger("arcana.reader")
 IDLE_TIMEOUT_S = 30.0
@@ -48,6 +48,8 @@ def run_stream(provider, system: str, messages: list[dict], max_tokens: int, fir
             q.put(("end", None))
         except ProviderRefusal as exc:
             q.put(("refusal", exc.result))
+        except ProviderTimeout:
+            q.put(("timeout", None))
         except Exception as exc:  # any provider failure becomes Failed("error")
             q.put(("error", exc))
 
@@ -77,6 +79,10 @@ def run_stream(provider, system: str, messages: list[dict], max_tokens: int, fir
                     yield Chunk(item)
             elif kind == "end":
                 yield Finished(result or StreamResult(None, None, None, getattr(provider, "model", "")), first, ms())
+                return
+            elif kind == "timeout":
+                log.warning("reader stream timeout (provider)")
+                yield Failed("timeout", first is not None, first, ms(), result)
                 return
             elif kind == "refusal":
                 yield Failed("refusal", first is not None, first, ms(), item)

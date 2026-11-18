@@ -18,7 +18,8 @@ from app.terms import find_banned, load_terms
 
 READER_TERMS = Path(__file__).resolve().parent / "reader_banned_terms.json"
 VERDICT_RULES = {
-    "en": [r"\byes\b", r"^\W*no\s*[,.!:;—–]", r"\bthe answer is (a )?no\b", r"\bit'?s a no\b",
+    "en": [r"^\W*yes\b", r"[.!?]\s+yes\s*[,.!:;—–]", r"\bthe answer is (a )?yes\b", r"\bit'?s a yes\b",
+           r"\btowards? (a )?yes\b", r"^\W*no\s*[,.!:;—–]", r"\bthe answer is (a )?no\b", r"\bit'?s a no\b",
            r"\btowards? (a )?no\b(?! one)", r"\bprobably not\b", r"\bnot (yet )?clear\b", r"\bunclear\b",
            r"\bmaybe\b"],
     "es": [r"(?<!\ben )(?<!\bpara )\bsí\b(?! mism)", r"^\W*no\s*[,.!:;—–]", r"\bla respuesta es (sí|no)\b",
@@ -27,11 +28,19 @@ VERDICT_RULES = {
 }
 VERDICT_PATTERNS = {lang: [(rule, re.compile(rule, re.IGNORECASE)) for rule in rules]
                     for lang, rules in VERDICT_RULES.items()}
-# Words that mark "the cards cannot know this" before a term in the same clause (В14 of the re-review)
+# Explicit "cannot know / cannot tell / cannot promise" phrasing before a term in the same clause (В14 of the
+# re-review). A bare no / nadie / nothing / nobody is NOT enough ("No dudes que volverá", "Nobody else matters
+# because he misses you" are claims).
 NEGATION_RULES = {
-    "en": r"\b(can['’]t|cannot|can not|couldn['’]t|could not|no one|nobody|nothing|whether|no way to"
-          r"|(don['’]t|do not|doesn['’]t|does not) know|not sure)\b",
-    "es": r"\b(no|nadie|nada|ni)\b",
+    "en": r"\b((can['’]t|cannot|can not|couldn['’]t|could not)\s+(\w+\s+)?(tell|know|say|promise|predict|guarantee"
+          r"|be sure|see|speak)"
+          r"|(no one|nobody)\s+can\s+(\w+\s+)?(tell|know|say|promise|predict|guarantee|be sure)"
+          r"|nothing\s+(here\s+|in (the|this) (cards?|spread)\s+)?(says|shows|tells|promises|guarantees)"
+          r"|there['’]?s no way to|whether|(don['’]t|do not|doesn['’]t|does not) know|not sure)\b",
+    "es": r"\b(no\s+(sé|se sabe|sabemos|se puede saber|se puede decir|puedo saber|puedo decir|puedo asegurar"
+          r"|puedo prometer|podemos saber|pueden decir\w*|pueden saber|puede decir\w*|puede saber"
+          r"|hay (forma|manera) de saber)"
+          r"|nadie (puede|podría|sabe)|nada (dice|muestra|asegura|garantiza))(?!\w)",
 }
 NEGATION = {lang: re.compile(rule, re.IGNORECASE) for lang, rule in NEGATION_RULES.items()}
 _CLAUSE_END = re.compile(r"[.,!?;:—–\n]|\b(but|pero|aunque)\b", re.IGNORECASE)

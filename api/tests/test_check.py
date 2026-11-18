@@ -127,3 +127,66 @@ def test_length_limits():
 
 def test_word_count_keeps_contractions_whole():
     assert word_count("Don't rush — it's fine, self-care first.") == 6
+
+
+@pytest.mark.parametrize("lang, text, expected", [
+    ("es", "No dudes que volverá.", ["volverá"]),
+    ("es", "No tengas miedo porque te extraña.", ["te extraña"]),
+    ("es", "Él no te olvidó y volverá.", ["volverá"]),
+    ("en", "Nothing has changed and he still loves you.", ["still loves you"]),
+    ("en", "Nobody else matters because he misses you.", ["misses you"]),
+    ("en", "He loves you, and nobody else matters.", ["he loves you"]),
+    ("es", "Nadie más importa porque te ama.", ["te ama"]),
+])
+def test_a_loose_negation_word_does_not_hide_a_claim(lang, text, expected):
+    assert find_claims(text, TERMS[lang], lang)[0] == expected
+
+
+@pytest.mark.parametrize("lang, text", [
+    ("en", "The cards cannot tell you whether he loves you."),
+    ("en", "No one can know if she regrets it."),
+    ("en", "Nobody can promise that he will come back."),
+    ("en", "There's no way to know what he feels."),
+    ("en", "I can't be sure he misses you."),
+    ("es", "No se puede saber si te quiere."),
+    ("es", "No puedo decir si te extraña."),
+    ("es", "No hay forma de saber si volverá."),
+    ("es", "Nadie sabe si se arrepiente."),
+    ("es", "No sé si te ama."),
+])
+def test_explicit_cannot_know_phrasing_is_negated(lang, text):
+    assert find_claims(text, TERMS[lang], lang)[0] == []
+
+
+@pytest.mark.parametrize("lang, text, term", [
+    ("en", "He loves you.", "he loves you"), ("en", "She loves you.", "she loves you"),
+    ("en", "He loves you back.", "loves you back"), ("en", "He wants you back.", "wants you back"),
+    ("en", "He regrets it.", "he regrets"), ("en", "She regrets it.", "she regrets"),
+    ("en", "Someone misses you.", "misses you"),
+    ("es", "Él te ama.", "te ama"), ("es", "Ella te quiere.", "te quiere"),
+    ("es", "Él se arrepiente.", "se arrepiente"), ("es", "Alguien te extraña.", "te extraña"),
+    ("es", "Pasará algo bueno.", "pasará algo"), ("es", "Llegará el amor.", "llegará el amor"),
+])
+def test_live_dictionary_claims(lang, text, term):
+    assert term in find_claims(text, TERMS[lang], lang)[0]
+
+
+@pytest.mark.parametrize("text", ["Esta etapa pasará.", "El miedo pasará con calma.", "El cansancio llegará y se irá."])
+def test_a_phase_passing_is_not_an_event_claim(text):
+    assert find_claims(text, TERMS["es"], "es")[0] == []
+
+
+def test_say_yes_to_yourself_is_not_a_verdict_in_why():
+    for text in ("You can say yes to yourself, and the card shows open hands.",):
+        assert check_answer(one_card(why=text), "yes_no", "en", TERMS["en"], with_why=True).why_ok
+
+
+@pytest.mark.parametrize("why", ["Yes — the card is bright.", "Yes.", "The answer is yes.", "It leans toward a yes.",
+                                 "The card is warm. Yes, go."])
+def test_yes_as_the_answer_is_a_verdict_in_why(why):
+    assert not check_answer(one_card(why=why), "yes_no", "en", TERMS["en"], with_why=True).why_ok
+
+
+@pytest.mark.parametrize("why", ["Sí — la carta brilla.", "La respuesta es sí."])
+def test_es_yes_verdict_in_why(why):
+    assert not check_answer(one_card(why=why), "yes_no", "es", TERMS["es"], with_why=True).why_ok
