@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY content/cards ./content/cards
 COPY tools/cards/banned_terms.json ./tools/cards/banned_terms.json
 COPY api/app ./app
+COPY api/migrations ./migrations
 ENV CONTENT_DIR=/srv/content/cards \
     BANNED_TERMS_PATH=/srv/tools/cards/banned_terms.json \
     MIGRATIONS_DIR=/srv/migrations \
