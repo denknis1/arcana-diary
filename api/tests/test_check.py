@@ -1,0 +1,129 @@
+import pytest
+
+from app.config import load_settings
+from app.reader.check import (FOLLOWUP_WORDS, banned_in, check_answer, find_claims, length_ok, load_reader_terms,
+                              word_count)
+from app.terms import find_banned, load_terms
+
+TERMS = load_reader_terms()
+BASE_TERMS = load_terms(load_settings({}).banned_terms_path)
+
+
+def words(n: int) -> str:
+    return " ".join(["calm"] * n)
+
+
+def one_card(**overrides) -> dict:
+    sections = {"headline": "A calm way forward.", "card1": words(100), "step": "Write one line today."}
+    sections.update(overrides)
+    return sections
+
+
+def test_reader_terms_languages():
+    assert set(TERMS) == {"en", "es"}
+
+
+def test_clean_answer_passes():
+    result = check_answer(one_card(), "one", "en", TERMS["en"], with_why=False)
+    assert result.body_ok and result.why_ok and result.banned == () and result.length_ok
+
+
+@pytest.mark.parametrize("lang, text, expected", [
+    ("en", "This will happen for sure.", ("for sure", "will happen")),
+    ("en", "He feels the same way about you.", ("feels the same", "he feels")),
+    ("en", "Your ex still loves you and misses you.", ("misses you", "still loves you")),
+    ("es", "Seguro que no es fácil, pero él siente lo mismo.", ("él siente",)),
+    ("es", "Te extraña y volverá pronto.", ("te extraña", "volverá")),
+])
+def test_claims_in_body_are_caught(lang, text, expected):
+    result = check_answer(one_card(card1=text), "one", lang, TERMS[lang], with_why=False)
+    assert not result.body_ok and result.banned == expected
+
+
+@pytest.mark.parametrize("lang, text", [
+    ("en", "The cards can't tell you what he feels, but they can speak to what you need."),
+    ("en", "I can't say what she thinks."),
+    ("en", "Nothing here says this will happen."),
+    ("es", "Las cartas no pueden decirte lo que siente por ti."),
+    ("es", "No sé si piensa en ti."),
+    ("es", "Nadie puede asegurar que volverá."),
+    ("es", "Date un tiempo destinado solo a ti."),
+])
+def test_saying_the_cards_cannot_know_is_not_a_claim(lang, text):
+    result = check_answer(one_card(card1=text), "one", lang, TERMS[lang], with_why=False)
+    assert result.body_ok and result.banned == ()
+    assert banned_in(text, TERMS[lang], lang) == []
+
+
+@pytest.mark.parametrize("lang, text, expected", [
+    ("en", "Don't worry, he still loves you.", ["still loves you"]),
+    ("en", "I can't promise anything, but he misses you.", ["misses you"]),
+    ("es", "No te preocupes: te extraña.", ["te extraña"]),
+])
+def test_a_negation_in_another_clause_does_not_hide_a_claim(lang, text, expected):
+    assert find_claims(text, TERMS[lang], lang)[0] == expected
+
+
+def test_negated_terms_are_reported_apart():
+    result = check_answer(one_card(card1="I can't tell you what he feels."), "one", "en", TERMS["en"], False)
+    assert result.body_ok and result.negated == ("he feels",)
+
+
+@pytest.mark.parametrize("lang, text", [
+    ("en", "I can't speak to the pregnancy itself, but this card can help you with how you carry it."),
+    ("en", "A doctor is the right person for questions about illness."),
+    ("en", "Look at what is coming up for you this week."),
+    ("en", "The court cards in this deck are about people."),
+    ("es", "No puedo hablar del embarazo, pero sí de cómo lo estás viviendo."),
+    ("es", "Seguro que no es fácil, y está bien ir despacio."),
+])
+def test_naming_a_topic_is_not_a_violation(lang, text):
+    assert find_banned(text, BASE_TERMS[lang])  # the card base's dictionary would have replaced it
+    assert check_answer(one_card(card1=text), "one", lang, TERMS[lang], with_why=False).body_ok
+
+
+@pytest.mark.parametrize("lang, why", [
+    ("en", "Yes, the card is bright."), ("en", "The answer is no for now."), ("en", "No, not this time."),
+    ("en", "It is not clear from the card."), ("en", "Maybe later."), ("en", "It leans toward yes."),
+    ("es", "Sí, la carta brilla."), ("es", "No, por ahora no."), ("es", "La respuesta es no por ahora."),
+    ("es", "Quizá más adelante."), ("es", "Todavía no está claro."), ("es", "Tal vez con calma."),
+    ("en", "No — the card shows a wall."), ("en", "The card leans toward a no."),
+    ("en", "Probably not, the card is heavy."), ("es", "No — la carta muestra un muro."),
+    ("es", "La carta se inclina hacia un no."), ("es", "Probablemente no, la carta pesa."),
+])
+def test_verdict_words_in_why(lang, why):
+    result = check_answer(one_card(why=why), "yes_no", lang, TERMS[lang], with_why=True)
+    assert result.body_ok and not result.why_ok
+
+
+@pytest.mark.parametrize("lang, why", [
+    ("en", "There is no rush in this card, only open hands and a clear road."),
+    ("en", "The card shows open hands and a clear road."),
+    ("es", "La carta muestra calma y no hay prisa."),
+    ("es", "Aún no se ve el camino completo, y la carta en sí habla de paciencia."),
+    ("es", "La carta muestra manos abiertas y un camino despejado."),
+])
+def test_ordinary_no_in_why_passes(lang, why):
+    assert check_answer(one_card(why=why), "yes_no", lang, TERMS[lang], with_why=True).why_ok
+
+
+def test_live_term_in_why_only():
+    result = check_answer(one_card(why="Your wish is destined to come true."), "yes_no", "en", TERMS["en"], True)
+    assert result.body_ok and not result.why_ok
+
+
+def test_missing_why_when_required():
+    assert not check_answer(one_card(), "yes_no", "en", TERMS["en"], with_why=True).why_ok
+    assert check_answer(one_card(), "yes_no", "en", TERMS["en"], with_why=False).why_ok
+
+
+def test_length_limits():
+    assert not check_answer(one_card(card1=words(40)), "one", "en", TERMS["en"], False).length_ok
+    three = {"headline": words(10), "card1": words(50), "card2": words(50), "card3": words(50),
+             "synthesis": words(20), "step": words(20)}
+    assert check_answer(three, "three", "en", TERMS["en"], False).length_ok
+    assert length_ok(words(70), FOLLOWUP_WORDS) and not length_ok(words(130), FOLLOWUP_WORDS)
+
+
+def test_word_count_keeps_contractions_whole():
+    assert word_count("Don't rush — it's fine, self-care first.") == 6
