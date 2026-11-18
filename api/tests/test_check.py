@@ -163,8 +163,8 @@ def test_explicit_cannot_know_phrasing_is_negated(lang, text):
     ("en", "He loves you back.", "loves you back"), ("en", "He wants you back.", "wants you back"),
     ("en", "He regrets it.", "he regrets"), ("en", "She regrets it.", "she regrets"),
     ("en", "Someone misses you.", "misses you"),
-    ("es", "Él te ama.", "te ama"), ("es", "Ella te quiere.", "te quiere"),
-    ("es", "Él se arrepiente.", "se arrepiente"), ("es", "Alguien te extraña.", "te extraña"),
+    ("es", "Él te ama.", "te ama"), ("es", "Ella te quiere.", "ella te quiere"),
+    ("es", "Él se arrepiente.", "él se arrepiente"), ("es", "Alguien te extraña.", "te extraña"),
     ("es", "Pasará algo bueno.", "pasará algo"), ("es", "Llegará el amor.", "llegará el amor"),
 ])
 def test_live_dictionary_claims(lang, text, term):
@@ -190,3 +190,40 @@ def test_yes_as_the_answer_is_a_verdict_in_why(why):
 @pytest.mark.parametrize("why", ["Sí — la carta brilla.", "La respuesta es sí."])
 def test_es_yes_verdict_in_why(why):
     assert not check_answer(one_card(why=why), "yes_no", "es", TERMS["es"], with_why=True).why_ok
+
+
+@pytest.mark.parametrize("lang, text, expected", [
+    ("es", "Nadie puede negar que te extraña.", ["te extraña"]),
+    ("es", "Nadie sabe amarte como él y volverá.", ["volverá"]),
+    ("es", "No sé por qué dudas de que volverá.", ["volverá"]),
+    ("en", "I don't know why you doubt that he will come back.", ["will come back"]),
+    ("en", "Whether you believe it or not he will come back.", ["will come back"]),
+    ("en", "Not sure why you worry when he still loves you.", ["still loves you"]),
+    ("en", "You can't see how much he misses you.", ["misses you"]),
+    ("es", "Él te quiere.", ["él te quiere"]), ("es", "Ella se arrepiente.", ["ella se arrepiente"]),
+])
+def test_knowing_verbs_only_negate(lang, text, expected):
+    assert find_claims(text, TERMS[lang], lang)[0] == expected
+
+
+@pytest.mark.parametrize("lang, text", [
+    ("en", "I don't know whether he feels the same."), ("en", "Not sure if she thinks of you."),
+    ("en", "I cannot speak to whether he misses you."), ("en", "No one can know whether he misses you."),
+    ("es", "No sé si piensa en ti."), ("es", "Nadie sabe si volverá."), ("es", "Nadie puede saber si te extraña."),
+    ("es", "No sé qué siente por ti."),
+])
+def test_knowing_phrasing_stays_negated(lang, text):
+    assert find_claims(text, TERMS[lang], lang)[0] == []
+
+
+@pytest.mark.parametrize("text", ["Esta carta te quiere decir que confíes.", "La vida te quiere mostrar algo.",
+                                  "Nadie se arrepiente de cuidarse."])
+def test_te_quiere_and_se_arrepiente_need_a_person(text):
+    assert find_claims(text, TERMS["es"], "es")[0] == []
+
+
+@pytest.mark.parametrize("lang, why", [("en", "The cards say yes."), ("en", "The card points to a yes."),
+                                       ("en", "It leans yes."), ("es", "Las cartas dicen que sí."),
+                                       ("es", "La carta apunta a un sí.")])
+def test_say_yes_forms_are_verdicts(lang, why):
+    assert not check_answer(one_card(why=why), "yes_no", lang, TERMS[lang], with_why=True).why_ok

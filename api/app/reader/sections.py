@@ -15,7 +15,7 @@ _MARKER = re.compile(r"^\s*[#*_]*\s*\[\[\s*" + _NAMES + r"\s*\]\][*_]*[ \t]*(.*)
 _PARTIAL = re.compile(r"^\s*[#*_]*\s*(\[(\[[a-z0-9 ]*(\](\][*_ \t\r]*)?)?)?)?$", re.IGNORECASE)
 _CRISIS = re.compile(r"\[\[\s*crisis\s*\]\]", re.IGNORECASE)
 # a suffix that may still grow into [[crisis]]: held back until the next chunk
-_CRISIS_PARTIAL = re.compile(r"\[(?:\[\s*(?:c(?:r(?:i(?:s(?:i(?:s\s*\]?)?)?)?)?)?)?)?$", re.IGNORECASE)
+_CRISIS_PARTIAL = re.compile(r"\[(?:\[[ \t\r]*(?:c(?:r(?:i(?:s(?:i(?:s[ \t\r]*\]?)?)?)?)?)?)?)?\Z", re.IGNORECASE)
 
 
 @dataclass(frozen=True)

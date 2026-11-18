@@ -145,3 +145,18 @@ def test_crlf_split_across_chunks_does_not_leak_the_marker():
     parser, events = feed_all(["[[headline]]\r\nHi.\r\n[[card 1]]\r", "\nOne.\r\n"])
     assert parser.sections() == {"headline": "Hi.", "card1": "One."}
     assert "[[card 1]]" not in "".join(e.text for e in events if e.kind == "text")
+
+
+def test_bracket_at_line_end_keeps_its_newline():
+    parser, events = feed_all(["[[headline]]\nSee [\nNext line"])
+    assert parser.sections() == {"headline": "See [\nNext line"}
+
+
+def test_bracket_at_line_end_before_a_marker():
+    parser, _ = feed_all(["[[headline]]\nSee [\n[[step]]\nGo"])
+    assert parser.sections()["step"] == "Go"
+
+
+def test_bracket_then_crisis_on_the_next_line_is_not_crisis():
+    parser, _ = feed_all(["[[headline]]\nSee [", "\n[crisis]]\n"])
+    assert "crisis" not in parser.seen
