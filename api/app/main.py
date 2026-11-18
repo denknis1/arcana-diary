@@ -11,7 +11,8 @@ from starlette.datastructures import MutableHeaders
 from app.config import Settings, load_settings
 from app.context import build_context
 from app.db import DatabaseUnavailable, migrate
-from app.routes import readings
+from app.routes import followups, readings
+from app.routes import limits as limits_routes
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 log = logging.getLogger("arcana")
@@ -71,6 +72,8 @@ def create_app(settings: Settings | None = None, *, reader=None, guard_provider=
     app.add_exception_handler(RequestValidationError, invalid_request)
     app.add_middleware(ApiHeaders)
     app.include_router(readings.router)
+    app.include_router(followups.router)
+    app.include_router(limits_routes.router)
 
     @app.get("/health")
     def health() -> dict[str, str]:

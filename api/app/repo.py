@@ -66,14 +66,20 @@ def insert_followup(conn, followup: dict) -> bool:
     return row is not None
 
 
-def save_followup_answer(conn, followup_id, answer: dict, model: str | None, counted: bool = True) -> None:
-    """counted=False: a cut or replaced answer, kept with both texts, does not use a free follow-up (§9.4)."""
-    conn.execute("UPDATE followups SET answer = %s, model = %s, counted = %s WHERE id = %s",
-                 (Jsonb(answer), model, counted, followup_id))
+def save_followup_answer(conn, followup_id, answer: dict, model: str | None, counted: bool = True) -> bool:
+    """counted=False: a cut or replaced answer, kept with both texts, does not use a free follow-up (§9.4).
+
+    False when the row is gone (freed as stale while its generation was still running): nothing is saved.
+    """
+    row = conn.execute("UPDATE followups SET answer = %s, model = %s, counted = %s WHERE id = %s RETURNING id",
+                       (Jsonb(answer), model, counted, followup_id)).fetchone()
+    return row is not None
 
 
-def delete_followup(conn, followup_id) -> None:
-    conn.execute("DELETE FROM followups WHERE id = %s", (followup_id,))
+def delete_followup(conn, followup_id) -> bool:
+    """True when this call deleted the row; False when it was already gone (so nobody refunds twice)."""
+    row = conn.execute("DELETE FROM followups WHERE id = %s RETURNING id", (followup_id,)).fetchone()
+    return row is not None
 
 
 def delete_stale_followups(conn, reading_id, before) -> list:

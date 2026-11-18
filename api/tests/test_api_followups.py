@@ -1,0 +1,519 @@
+import threading
+import uuid
+from dataclasses import replace
+from datetime import timedelta
+
+import pytest
+
+from app import limits, repo
+from app.config import FOLLOWUP_ATTEMPTS
+from app.db import DatabaseUnavailable
+from app.reader import fallback
+from app.reader.followups import stream_followup
+from app.reader.provider import FakeReply
+from helpers import dump_tables, from_ip, parse_sse, post_reading
+
+MX = "America/Mexico_City"
+
+
+def ready_reading(api, client=None, **body):
+    client = client or api.client
+    response = post_reading(client, tz=MX, **body)
+    assert response.status_code == 201, response.text
+    reading_id = response.json()["id"]
+    parse_sse(client.get(f"/api/readings/{reading_id}/stream").text)
+    return reading_id
+
+
+def fin(events):
+    """The done event without followup_attempts_left (checked in its own test)."""
+    name, data = events[-1]
+    return name, {k: v for k, v in data.items() if k != "followup_attempts_left"}
+
+
+def ask(client, reading_id, question, **extra):
+    return client.post(f"/api/readings/{reading_id}/followups", json={"question": question, **extra})
+
+
+def followups(api, reading_id) -> list[dict]:
+    with api.db.connect() as conn:
+        return repo.list_followups(conn, uuid.UUID(reading_id))
+
+
+def test_full_guest_path(api):
+    c = api.client
+    created = post_reading(c, kind="three", question="How can I settle into my new team?", topic="work", tz=MX)
+    assert created.status_code == 201 and created.json()["remaining"] == 2
+    reading_id = created.json()["id"]
+    assert parse_sse(c.get(f"/api/readings/{reading_id}/stream").text)[-1] == ("done", {"answer_shown": "model"})
+    for n in (1, 2):
+        followup = ask(c, reading_id, f"What can help me with this, part {n}?")
+        assert followup.status_code == 200
+        assert followup.headers["content-type"].startswith("text/event-stream")
+        assert fin(parse_sse(followup.text)) == ("done", {"answer_shown": "model", "followups_left": 2 - n})
+    third = ask(c, reading_id, "And one more thing?", tz=MX)
+    assert third.status_code == 402 and third.json() == {"reason": "confirm", "remaining": 2}
+    paid = ask(c, reading_id, "And one more thing?", tz=MX, use_reading=True)
+    assert fin(parse_sse(paid.text)) == ("done", {"answer_shown": "model", "followups_left": 0, "used_reading": True})
+    assert post_reading(c, kind="one", tz=MX).json()["remaining"] == 0
+    fourth = ask(c, reading_id, "Anything else?", tz=MX, use_reading=True)
+    assert fourth.status_code == 402 and fourth.json() == {"reason": "plus", "remaining": 0}
+    reading = post_reading(c, kind="one", tz=MX)
+    assert reading.status_code == 429 and reading.json() == {"reason": "limit", "remaining": 0}
+    assert c.get("/api/limits", params={"tz": MX}).json()["remaining"] == 0
+
+
+def test_followup_is_saved_and_restored(api):
+    reading_id = ready_reading(api, kind="one", question="What should I focus on?")
+    events = parse_sse(ask(api.client, reading_id, "How do I start?").text)
+    assert events[0][0] == "meta" and events[0][1]["followup"] == 1
+    text = "".join(d["text"] for e, d in events if e == "text").strip()
+    full = api.client.get(f"/api/readings/{reading_id}").json()
+    assert full["followups"] == [{"n": 1, "question": "How do I start?", "answer": text, "soft_line": None}]
+    assert full["followups_left"] == 1
+    call = api.reader.stream_calls()[-1]
+    assert [m["role"] for m in call["messages"]] == ["user", "assistant", "user"]
+    assert call["system"] == api.ctx.prompts[("followup", "en")].text
+    assert call["messages"][-1]["content"] == '<followup guard_group="ok">How do I start?</followup>'
+
+
+def test_followup_crisis_is_not_stored_or_counted(api):
+    reading_id = ready_reading(api, kind="one")
+    response = ask(api.client, reading_id, "Honestly I want to die.", tz="America/New_York")
+    assert response.status_code == 200
+    assert response.json()["group"] == "crisis" and response.json()["helplines"]["country"] == "US"
+    assert followups(api, reading_id) == []
+    assert "want to die" not in dump_tables(api.db)
+    second = ask(api.client, reading_id, "What helps me rest?")
+    assert fin(parse_sse(second.text)) == ("done", {"answer_shown": "model", "followups_left": 1})
+
+
+def test_reader_safety_net_in_a_followup(api):
+    reading_id = ready_reading(api, kind="one")
+    api.reader.replies.append(FakeReply(chunks=["[[crisis]]", "\nPlease talk to someone today."]))
+    events = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX).text)
+    assert [e for e, _ in events] == ["meta", "section", "crisis", "done"]
+    assert events[2][1]["helplines"]["country"] == "MX"
+    assert fin(events)[1] == {"answer_shown": "crisis", "followups_left": 2}
+    assert followups(api, reading_id) == [] and "Nothing matters" not in dump_tables(api.db)
+
+
+def test_followup_failure_does_not_use_a_slot(api):
+    reading_id = ready_reading(api, kind="one")
+    api.reader.replies.append(FakeReply(fail_after=0))
+    events = parse_sse(ask(api.client, reading_id, "What now?").text)
+    fb = next(d for e, d in events if e == "fallback")
+    assert fb["sections"] == {"followup": api.ctx.texts["en"]["followup_unavailable"]}
+    assert fin(events) == ("done", {"answer_shown": "fallback", "followups_left": 2})
+    assert followups(api, reading_id) == []
+    assert fin(parse_sse(ask(api.client, reading_id, "What now?").text))[1]["followups_left"] == 1
+
+
+def test_followup_banned_claim_is_replaced(api):
+    reading_id = ready_reading(api, kind="three")
+    api.reader.replies.append(FakeReply(chunks=["He feels the same ", "way about you."]))
+    events = parse_sse(ask(api.client, reading_id, "Is there hope?").text)
+    [replaced] = [d for e, d in events if e == "replace"]
+    with api.db.connect() as conn:
+        reading = repo.get_reading(conn, uuid.UUID(reading_id), api.clock())
+    [row] = followups(api, reading_id)
+    expected = fallback.followup_fallback(api.ctx.cards, reading)
+    assert replaced == {"sections": {"followup": expected}, "reason": "banned", "retry": False}
+    assert fin(events) == ("done", {"answer_shown": "fallback", "followups_left": 2})  # §9.4: no slot used
+    assert row["answer"] == {"model": "He feels the same way about you.", "fallback": expected}
+    assert row["counted"] is False
+    full = api.client.get(f"/api/readings/{reading_id}").json()
+    assert full["followups"][0]["answer"] == expected and full["followups_left"] == 2
+
+
+def test_followup_by_other_guest_is_404(api):
+    reading_id = ready_reading(api, kind="one")
+    assert ask(api.new_client(), reading_id, "Can I ask too?").status_code == 404
+
+
+def test_followup_before_answer_is_409(api):
+    created = post_reading(api.client, kind="one", tz=MX)
+    response = ask(api.client, created.json()["id"], "Too early?")
+    assert response.status_code == 409 and response.json() == {"reason": "no_answer"}
+
+
+def test_no_followup_while_the_base_answer_is_shown(api):
+    api.reader.replies.append(FakeReply(fail_after=0))
+    reading_id = ready_reading(api, kind="one")
+    response = ask(api.client, reading_id, "And now?")
+    assert response.status_code == 409 and response.json() == {"reason": "fallback"}
+
+
+def test_followup_redirect_person_reaches_the_model(api):
+    reading_id = ready_reading(api, kind="three", topic="love")
+    api.guard.json_replies.append({"group": "redirect_person", "violence": False})
+    events = parse_sse(ask(api.client, reading_id, "What does he think about me?").text)
+    assert events[0][1]["soft_line"] == api.ctx.texts["en"]["soft_lines"]["redirect_person"]
+    last = api.reader.stream_calls()[-1]["messages"][-1]["content"]
+    assert last.startswith('<followup guard_group="redirect_person">')
+
+
+def test_followup_to_a_yes_no_without_verdict_sends_no_verdict(api):
+    api.guard.json_replies.append({"group": "redirect_topic", "violence": False})
+    reading_id = ready_reading(api, kind="yes_no", question="Will my scan be clear?")
+    ask(api.client, reading_id, "How do I stay calm meanwhile?")
+    assert "<verdict" not in api.reader.stream_calls()[-1]["messages"][0]["content"]
+
+
+def test_client_disconnect_keeps_the_followup(api):
+    reading_id = ready_reading(api, kind="one")
+    with api.db.connect() as conn:
+        reading = repo.get_reading(conn, uuid.UUID(reading_id), api.clock())
+        followup = {"id": uuid.uuid4(), "reading_id": reading["id"], "n": 1, "question": "How do I begin?",
+                    "created_at": api.clock()}
+        repo.insert_followup(conn, followup)
+    api.reader.replies.append(FakeReply(chunk_delay=0.02))
+    events = stream_followup(api.ctx, reading, followup, [], "ok")
+    assert next(events).startswith("event: meta")  # the client goes away after the first event
+    assert events.join(timeout=10)
+    full = api.client.get(f"/api/readings/{reading_id}").json()
+    assert [f["n"] for f in full["followups"]] == [1] and full["followups"][0]["answer"]
+    assert full["followups_left"] == 1
+
+
+def test_a_followup_still_writing_blocks_the_next_one(api):
+    reading_id = ready_reading(api, kind="one")
+    with api.db.connect() as conn:
+        repo.insert_followup(conn, {"id": uuid.uuid4(), "reading_id": uuid.UUID(reading_id), "n": 1,
+                                    "question": "First?", "created_at": api.clock()})
+    response = ask(api.client, reading_id, "Second?")
+    assert response.status_code == 409 and response.json() == {"reason": "busy"}
+
+
+def test_a_stale_unanswered_followup_frees_its_slot(api):
+    reading_id = ready_reading(api, kind="one")
+    with api.db.connect() as conn:
+        repo.insert_followup(conn, {"id": uuid.uuid4(), "reading_id": uuid.UUID(reading_id), "n": 1,
+                                    "question": "Cut by a restart?", "created_at": api.clock() - timedelta(minutes=5)})
+    events = parse_sse(ask(api.client, reading_id, "Can I ask again?").text)
+    assert events[0][1]["followup"] == 1 and fin(events)[1]["followups_left"] == 1
+
+
+def test_followup_over_budget_does_not_use_a_slot(api):
+    reading_id = ready_reading(api, kind="one")
+    calls = len(api.reader.stream_calls())
+    api.ctx.settings = replace(api.ctx.settings, daily_budget_usd=0.0)
+    events = parse_sse(ask(api.client, reading_id, "What next?").text)
+    assert next(d for e, d in events if e == "fallback")["reason"] == "budget"
+    assert len(api.reader.stream_calls()) == calls and followups(api, reading_id) == []
+
+
+CRISIS = {"group": "crisis", "violence": False}
+
+
+def set_attempts(api, reading_id, attempts: int) -> None:
+    with api.db.connect() as conn:
+        conn.execute("UPDATE readings SET followup_attempts = %s WHERE id = %s", (attempts, uuid.UUID(reading_id)))
+
+
+def attempts_of(api, reading_id) -> int:
+    with api.db.connect() as conn:
+        return repo.get_reading(conn, uuid.UUID(reading_id), api.clock())["followup_attempts"]
+
+
+def test_followup_attempts_are_capped_per_reading(api):
+    reading_id = ready_reading(api, kind="one")
+    api.guard.json_replies.extend([CRISIS] * 10)
+    codes = [ask(api.client, reading_id, "Is any of this even worth it?").status_code for _ in range(10)]
+    assert codes == [200] * FOLLOWUP_ATTEMPTS + [429, 429]
+    assert ask(api.client, reading_id, "And now?").json() == {"reason": "attempts"}
+    assert len(api.guard.json_calls()) == FOLLOWUP_ATTEMPTS and followups(api, reading_id) == []
+
+
+def test_reader_crisis_and_failures_use_attempts_too(api):
+    reading_id = ready_reading(api, kind="one")
+    set_attempts(api, reading_id, FOLLOWUP_ATTEMPTS - 4)  # four attempts left
+    api.reader.replies.extend([FakeReply(chunks=["[[crisis]]"]), FakeReply(fail_after=0), FakeReply(refuse=True)])
+    for _ in range(3):
+        ask(api.client, reading_id, "What now?")
+    assert fin(parse_sse(ask(api.client, reading_id, "What now?").text))[1]["answer_shown"] == "model"
+    response = ask(api.client, reading_id, "One more?")
+    assert response.status_code == 429 and response.json() == {"reason": "attempts"}
+    assert len(api.reader.stream_calls()) == 5  # the reading and four follow-up attempts
+
+
+def test_followup_ip_limit(api):
+    reading_id = ready_reading(api, kind="one")
+    ip_hash = api.ctx.salt.hash_ip("198.51.100.7", api.clock())
+    with api.db.connect() as conn:
+        conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, %s)",
+                     (limits.followup_ip_subject(ip_hash), limits.utc_day(api.clock()), limits.IP_FOLLOWUP_LIMIT))
+    response = api.client.post(f"/api/readings/{reading_id}/followups", json={"question": "What next?"},
+                               headers=from_ip("198.51.100.7"))
+    assert response.status_code == 429 and response.json() == {"reason": "ip_limit"}
+    assert api.guard.json_calls() == []
+    assert ask(api.client, reading_id, "What next?").status_code == 200  # another address
+
+
+def test_followup_over_the_guard_budget_is_503(api):
+    reading_id = ready_reading(api, kind="one")
+    with api.db.connect() as conn:
+        repo.log_llm_call(conn, {"reading_id": None, "purpose": "guard", "model": "claude-haiku-5-5",
+                                 "prompt_version": "guard.v1", "ms_first_token": None, "ms_total": 1,
+                                 "tokens_in": 1, "tokens_out": 1, "cost_usd": 1.0, "stop_reason": "end_turn",
+                                 "refusal_category": None, "created_at": api.clock()})
+    response = ask(api.client, reading_id, "What next?")
+    assert response.status_code == 503 and response.json() == {"reason": "unavailable"}
+    assert api.guard.json_calls() == [] and followups(api, reading_id) == []
+    assert attempts_of(api, reading_id) == 0  # м1: a question nobody checked takes no attempt
+    crisis = ask(api.client, reading_id, "Honestly I want to die.")  # a stop-phrase still answers
+    assert crisis.json()["group"] == "crisis" and attempts_of(api, reading_id) == 1
+
+
+def test_crisis_marker_after_a_preface_or_split_is_caught(api):
+    reading_id = ready_reading(api, kind="one")
+    chunks = ["I hear how heavy this is.\n", "[", "[cri", "sis]]\nPlease reach out."]
+    api.reader.replies.append(FakeReply(chunks=chunks))
+    events = parse_sse(ask(api.client, reading_id, "Everything feels too much tonight", tz=MX).text)
+    assert [e for e, _ in events] == ["meta", "section", "text", "crisis", "done"]
+    assert events[2][1]["text"] == "I hear how heavy this is.\n"
+    assert fin(events)[1] == {"answer_shown": "crisis", "followups_left": 2}
+    assert followups(api, reading_id) == [] and "too much tonight" not in dump_tables(api.db)
+
+
+def test_cut_followup_keeps_both_texts_and_its_slot(api):
+    reading_id = ready_reading(api, kind="one")
+    api.reader.replies.append(FakeReply(chunks=["Breathe, and take ", "one small"], fail_after=2))
+    events = parse_sse(ask(api.client, reading_id, "How do I slow down?").text)
+    assert next(d for e, d in events if e == "replace")["reason"] == "cut"
+    assert fin(events) == ("done", {"answer_shown": "fallback", "followups_left": 2})
+    [row] = followups(api, reading_id)
+    assert row["answer"]["model"] == "Breathe, and take one small" and row["counted"] is False
+    for n in (1, 2):
+        assert fin(parse_sse(ask(api.client, reading_id, f"And then, part {n}?").text))[1]["followups_left"] == 2 - n
+    assert ask(api.client, reading_id, "Third?").status_code == 402
+
+
+def test_money_followup_keeps_its_disclaimer_after_reload(api):
+    reading_id = ready_reading(api, kind="one")
+    api.guard.json_replies.append({"group": "redirect_money", "violence": False})
+    ask(api.client, reading_id, "Should I buy the car now?")
+    [shown] = api.client.get(f"/api/readings/{reading_id}").json()["followups"]
+    assert shown["soft_line"] == api.ctx.texts["en"]["soft_lines"]["redirect_money"]
+
+
+def test_blank_followup_question_is_422_with_one_shape(api):
+    reading_id = ready_reading(api, kind="one")
+    response = ask(api.client, reading_id, "   ")
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["question"]}
+
+
+def test_brackets_in_a_followup_stream_as_usual(api):
+    reading_id = ready_reading(api, kind="one")
+    api.reader.replies.append(FakeReply(chunks=["Try this [a small step] today. ", "Then rest a little."]))
+    events = parse_sse(ask(api.client, reading_id, "How do I begin?").text)
+    assert [d["text"] for e, d in events if e == "text"] == ["Try this [a small step] today. ", "Then rest a little."]
+
+
+def test_followups_left_never_exceeds_the_attempts_left(api):
+    reading_id = ready_reading(api, kind="one")
+    for attempts, left in ((FOLLOWUP_ATTEMPTS - 1, 1), (FOLLOWUP_ATTEMPTS, 0)):
+        set_attempts(api, reading_id, attempts)
+        assert api.client.get(f"/api/readings/{reading_id}").json()["followups_left"] == left
+
+
+# --- §10.1: after two free follow-ups each one uses a reading of the guest's day ---
+
+def guest_used(api, reading_id) -> int:
+    with api.db.connect() as conn:
+        guest = repo.get_reading(conn, uuid.UUID(reading_id), api.clock())["guest_id"]
+        return limits.used(conn, limits.guest_subject(guest), limits.local_day(limits.resolve_tz(MX), api.clock()))
+
+
+def free_used(api, reading_id, client=None) -> None:
+    for n in (1, 2):
+        events = parse_sse(ask(client or api.client, reading_id, f"What helps, part {n}?", tz=MX).text)
+        assert fin(events)[1]["followups_left"] == 2 - n
+
+
+def test_third_followup_without_confirmation_is_402_and_takes_nothing(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    guard_calls = len(api.guard.json_calls())
+    response = ask(api.client, reading_id, "And one more?", tz=MX)
+    assert response.status_code == 402 and response.json() == {"reason": "confirm", "remaining": 2}
+    assert (guest_used(api, reading_id), attempts_of(api, reading_id)) == (1, 2)
+    assert len(api.guard.json_calls()) == guard_calls and len(followups(api, reading_id)) == 2
+
+
+def test_confirmed_followup_uses_a_reading(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    events = parse_sse(ask(api.client, reading_id, "And one more?", tz=MX, use_reading=True).text)
+    assert events[0][1]["paid"] is True and events[0][1]["followup"] == 3
+    assert fin(events) == ("done", {"answer_shown": "model", "followups_left": 0, "used_reading": True})
+    assert guest_used(api, reading_id) == 2
+    assert api.client.get("/api/limits", params={"tz": MX}).json()["remaining"] == 1
+    row = followups(api, reading_id)[-1]
+    assert (row["n"], row["counted"], row["paid_day"]) == (3, True, limits.local_day(limits.resolve_tz(MX),
+                                                                                    api.clock()))
+    again = ask(api.client, reading_id, "And another?", tz=MX)
+    assert again.status_code == 402 and again.json() == {"reason": "confirm", "remaining": 1}
+
+
+def test_no_readings_left_is_402_plus(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    for _ in range(2):
+        assert post_reading(api.client, kind="one", tz=MX).status_code == 201
+    for extra in ({}, {"use_reading": True}):
+        response = ask(api.client, reading_id, "And one more?", tz=MX, **extra)
+        assert response.status_code == 402 and response.json() == {"reason": "plus", "remaining": 0}
+    assert attempts_of(api, reading_id) == 2 and guest_used(api, reading_id) == 3
+
+
+@pytest.mark.parametrize("reply, reason", [
+    (FakeReply(fail_after=0), "error"),
+    (FakeReply(chunks=["Breathe, and take ", "one small"], fail_after=2), "cut"),
+    (FakeReply(chunks=["He feels the same ", "way about you."]), "banned"),
+])
+def test_failed_paid_followup_gives_the_reading_back(api, reply, reason):
+    reading_id = ready_reading(api, kind="three")
+    free_used(api, reading_id)
+    api.reader.replies.append(reply)
+    events = parse_sse(ask(api.client, reading_id, "And one more?", tz=MX, use_reading=True).text)
+    assert next(d for e, d in events if e in ("fallback", "replace"))["reason"] == reason
+    assert fin(events) == ("done", {"answer_shown": "fallback", "followups_left": 0, "used_reading": False})
+    assert guest_used(api, reading_id) == 1
+
+
+def test_crisis_of_the_question_check_uses_no_reading(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    api.guard.json_replies.append(CRISIS)
+    response = ask(api.client, reading_id, "Is any of this even worth it?", tz=MX, use_reading=True)
+    assert response.status_code == 200 and response.json()["group"] == "crisis"
+    assert guest_used(api, reading_id) == 1 and len(followups(api, reading_id)) == 2
+
+
+def test_reader_crisis_marker_uses_the_paid_reading(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    api.reader.replies.append(FakeReply(chunks=["[[crisis]]"]))
+    events = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX, use_reading=True).text)
+    assert fin(events) == ("done", {"answer_shown": "crisis", "followups_left": 0, "used_reading": True})
+    assert guest_used(api, reading_id) == 2 and len(followups(api, reading_id)) == 2
+
+
+def test_a_stale_paid_followup_gives_its_reading_back(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    day = limits.local_day(limits.resolve_tz(MX), api.clock())
+    with api.db.connect() as conn:
+        reading = repo.get_reading(conn, uuid.UUID(reading_id), api.clock())
+        repo.insert_followup(conn, {"id": uuid.uuid4(), "reading_id": reading["id"], "n": 3, "question": "Cut?",
+                                    "paid_day": day, "created_at": api.clock() - timedelta(minutes=5)})
+        limits.take_slot(conn, limits.guest_subject(reading["guest_id"]), day, limits.DAILY_LIMIT)
+    assert guest_used(api, reading_id) == 2
+    response = ask(api.client, reading_id, "Can I ask again?", tz=MX)
+    assert response.json() == {"reason": "confirm", "remaining": 2} and guest_used(api, reading_id) == 1
+
+
+def test_paid_followups_at_once_cannot_overspend_the_day(api):
+    first, second = ready_reading(api, kind="one"), ready_reading(api, kind="one")
+    free_used(api, first)
+    free_used(api, second)
+    api.guard.json_delay = 0.3  # all three requests wait in the guard, then race for the last reading
+    start = threading.Barrier(3)
+    codes = []
+
+    def worker(action):
+        start.wait()
+        codes.append(action().status_code)
+
+    actions = [lambda: ask(api.client, first, "One more?", tz=MX, use_reading=True),
+               lambda: ask(api.client, second, "One more?", tz=MX, use_reading=True),
+               lambda: post_reading(api.client, kind="one", tz=MX, question="What helps me focus?")]
+    threads = [threading.Thread(target=worker, args=(a,)) for a in actions]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert len([c for c in codes if c in (200, 201)]) == 1 and len(codes) == 3
+    assert guest_used(api, first) == 3
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM followups WHERE paid_day IS NOT NULL").fetchone()["n"] + \
+            conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3
+
+
+# --- Fable plan check: attempts before confirm, attempts_left in done, м10 stale deletion during a live stream ---
+
+def test_exhausted_attempts_answer_429_before_the_confirm_question(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    set_attempts(api, reading_id, FOLLOWUP_ATTEMPTS)
+    for extra in ({}, {"use_reading": True}):
+        response = ask(api.client, reading_id, "And one more?", tz=MX, **extra)
+        assert response.status_code == 429 and response.json() == {"reason": "attempts"}
+    assert guest_used(api, reading_id) == 1
+
+
+def test_done_carries_the_attempts_left(api):
+    reading_id = ready_reading(api, kind="one")
+    first = parse_sse(ask(api.client, reading_id, "How do I start?").text)[-1][1]
+    assert (first["followups_left"], first["followup_attempts_left"]) == (1, FOLLOWUP_ATTEMPTS - 1)
+    set_attempts(api, reading_id, FOLLOWUP_ATTEMPTS - 2)  # two attempts left, one free follow-up left
+    second = parse_sse(ask(api.client, reading_id, "And then?").text)[-1][1]
+    assert (second["followups_left"], second["followup_attempts_left"]) == (0, 1)
+    third = parse_sse(ask(api.client, reading_id, "More?", tz=MX, use_reading=True).text)[-1][1]
+    assert (third["followups_left"], third["followup_attempts_left"]) == (0, 0)
+
+
+def slow_paid_followup(api, reply):
+    """A paid follow-up whose generation is still running while the clock moves past the stale limit."""
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    day = limits.local_day(limits.resolve_tz(MX), api.clock())
+    with api.db.connect() as conn:
+        reading = repo.get_reading(conn, uuid.UUID(reading_id), api.clock())
+        followup = {"id": uuid.uuid4(), "reading_id": reading["id"], "n": 3, "question": "Slow?", "paid_day": day,
+                    "created_at": api.clock()}
+        repo.insert_followup(conn, followup)
+        limits.take_slot(conn, limits.guest_subject(reading["guest_id"]), day, limits.DAILY_LIMIT)
+        previous = repo.list_followups(conn, reading["id"])[:2]
+    assert guest_used(api, reading_id) == 2
+    api.reader.replies.append(reply)
+    events = stream_followup(api.ctx, reading, {**followup, "attempts": 3}, previous, "ok")
+    assert next(events).startswith("event: meta")
+    return reading_id, events
+
+
+def test_stale_deletion_during_a_slow_stream_refunds_once_and_a_cut_does_not_refund_again(api):
+    reply = FakeReply(chunks=["Breathe, ", "and take ", "one small ", "step now"], fail_after=3, chunk_delay=0.15)
+    reading_id, events = slow_paid_followup(api, reply)
+    api.clock.advance(seconds=181)
+    again = ask(api.client, reading_id, "Can I ask again?", tz=MX)
+    assert again.json() == {"reason": "confirm", "remaining": 2} and guest_used(api, reading_id) == 1
+    assert events.join(timeout=10)
+    assert guest_used(api, reading_id) == 1  # no second refund
+    assert len(followups(api, reading_id)) == 2
+
+
+def test_stale_deletion_during_a_slow_stream_then_a_successful_end_saves_and_charges_nothing(api):
+    reply = FakeReply(chunks=["Breathe, ", "and take ", "one small ", "step now."], chunk_delay=0.15)
+    reading_id, events = slow_paid_followup(api, reply)
+    api.clock.advance(seconds=181)
+    assert ask(api.client, reading_id, "Can I ask again?", tz=MX).status_code == 402
+    rest = list(events)
+    assert events.join(timeout=10)
+    # the person who was still watching sees the answer, told that no reading was used; it is not stored
+    assert parse_sse("".join(rest))[-1][1]["used_reading"] is False
+    assert guest_used(api, reading_id) == 1 and len(followups(api, reading_id)) == 2
+
+
+def test_crisis_marker_still_sends_helplines_when_saving_fails(api, monkeypatch):
+    reading_id = ready_reading(api, kind="one")
+    api.reader.replies.append(FakeReply(chunks=["[[crisis]]"]))
+
+    def broken(*args, **kwargs):
+        raise DatabaseUnavailable("down")
+
+    monkeypatch.setattr(repo, "delete_followup", broken)
+    events = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX).text)
+    names = [e for e, _ in events]
+    assert names[-2:] == ["crisis", "error"] and events[-2][1]["helplines"]["country"] == "MX"

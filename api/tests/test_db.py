@@ -164,9 +164,11 @@ def test_followups_unique_n(db):
         repo.insert_reading(conn, reading)
         assert repo.insert_followup(conn, first) is True
         assert repo.insert_followup(conn, {**first, "id": uuid.uuid4()}) is False
-        repo.save_followup_answer(conn, first["id"], {"model": "Text.", "fallback": None}, "fake-reader")
+        assert repo.save_followup_answer(conn, first["id"], {"model": "Text.", "fallback": None}, "fake-reader") is True
         rows = repo.list_followups(conn, reading["id"])
-        repo.delete_followup(conn, first["id"])
+        assert repo.delete_followup(conn, first["id"]) is True
+        assert repo.delete_followup(conn, first["id"]) is False  # already gone: nobody refunds twice
+        assert repo.save_followup_answer(conn, first["id"], {"model": "Late.", "fallback": None}, "fake-reader") is False
         assert repo.list_followups(conn, reading["id"]) == []
     assert [(r["n"], r["answer"]) for r in rows] == [(1, {"model": "Text.", "fallback": None})]
     assert (rows[0]["guard_group"], rows[0]["counted"]) == ("ok", True)
