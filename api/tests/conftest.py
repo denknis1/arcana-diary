@@ -70,3 +70,42 @@ def db(migrated) -> Database:
     with migrated.connect() as conn:
         conn.execute("TRUNCATE " + ", ".join(APP_TABLES) + " RESTART IDENTITY CASCADE")
     return migrated
+
+
+
+# --- task 8: the API with fakes on the test database ---
+from dataclasses import replace as _replace  # noqa: E402
+from types import SimpleNamespace  # noqa: E402
+
+from fastapi.testclient import TestClient  # noqa: E402
+
+from app.main import create_app  # noqa: E402
+from app.reader.provider import FakeProvider  # noqa: E402
+from helpers import T_API, FakeTurnstile, MutableClock  # noqa: E402
+
+
+def _client(app) -> TestClient:
+    return TestClient(app, base_url="https://testserver")  # https: the guest cookie is Secure
+
+
+def make_api(db, **settings_overrides):
+    clock = MutableClock(T_API)
+    reader = FakeProvider(model="fake-reader")
+    guard = FakeProvider(model="fake-guard")
+    turnstile = FakeTurnstile()
+    settings = _replace(load_settings({}), database_url=db.url, first_token_timeout_s=0.3, guard_timeout_s=0.5,
+                        run_migrations=False, **settings_overrides)
+    app = create_app(settings, reader=reader, guard_provider=guard, turnstile=turnstile, clock=clock)
+    return SimpleNamespace(app=app, ctx=app.state.ctx, client=_client(app), new_client=lambda: _client(app),
+                           clock=clock, reader=reader, guard=guard, turnstile=turnstile, db=db)
+
+
+@pytest.fixture
+def api(db):
+    return make_api(db)
+
+
+@pytest.fixture
+def api_factory(db):
+    """The same API with other settings, e.g. api_factory(trust_cloudflare=True)."""
+    return lambda **overrides: make_api(db, **overrides)

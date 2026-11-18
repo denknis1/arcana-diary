@@ -75,11 +75,11 @@ class ClaudeProvider:
         if response.stop_reason == "refusal":
             raise ProviderRefusal(result)
         if response.stop_reason == "max_tokens":
-            raise ProviderError("max_tokens: structured output truncated")
+            raise ProviderError("max_tokens: structured output truncated", result)
         text = next((block.text for block in response.content if block.type == "text"), None)
         if text is None:
-            raise ProviderError("no text block")
+            raise ProviderError("no text block", result)
         try:
             return json.loads(text), result
         except ValueError as exc:
-            raise ProviderError("invalid JSON") from exc
+            raise ProviderError("invalid JSON", result) from exc

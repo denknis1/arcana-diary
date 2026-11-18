@@ -12,7 +12,12 @@ class StreamResult:
 
 
 class ProviderError(Exception):
-    """The call failed: network, API status, truncated or invalid JSON."""
+    """The call failed: network, API status, truncated or invalid JSON. `result` is set when the model had
+    answered (a cut or unreadable reply): such a call was billed (м15); a connection or status error has none."""
+
+    def __init__(self, message: str = "", result: StreamResult | None = None):
+        super().__init__(message)
+        self.result = result
 
 
 class ProviderTimeout(ProviderError):
@@ -23,5 +28,4 @@ class ProviderRefusal(ProviderError):
     """stop_reason == "refusal": an error for the reader (§5.1), a crisis for the question guard (§8.6)."""
 
     def __init__(self, result: StreamResult | None = None):
-        super().__init__("refusal")
-        self.result = result
+        super().__init__("refusal", result)

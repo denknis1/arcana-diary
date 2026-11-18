@@ -46,6 +46,7 @@ class GuardResult:
     tokens_in: int | None = None
     tokens_out: int | None = None
     stop_reason: str | None = None
+    responded: bool = False  # the model answered, but the answer was unusable (cut, no text, bad JSON): billed, м15
 
 
 class GuardUnavailable(Exception):
@@ -164,7 +165,9 @@ class Guard:
             return GuardResult(failed, "timeout", failed_violence, model, _ms(started), stop_reason="timeout")
         except Exception as exc:  # any other provider failure: ok, the reader prompt has its own safety net
             log.warning("guard call failed: %s", type(exc).__name__)
-            return GuardResult(failed, "error", failed_violence, model, _ms(started), stop_reason="error")
+            r = getattr(exc, "result", None)  # set when the model had answered but the answer was unusable
+            return GuardResult(failed, "error", failed_violence, model, _ms(started), r and r.tokens_in,
+                               r and r.tokens_out, "error", responded=r is not None)
         if getattr(usage, "stop_reason", None) == "refusal":  # a refusal reported in the result, not raised
             log.warning("guard model refused (stop_reason): treated as crisis")
             return GuardResult("crisis", "refusal", failed_violence, model, _ms(started), usage.tokens_in,
