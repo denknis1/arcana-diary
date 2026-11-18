@@ -130,14 +130,23 @@ def test_complete_json_refusal_checked_before_content():
 
 def test_complete_json_max_tokens_is_an_error():
     msgs = FakeMessages(create=message(stop_reason="max_tokens", content=[SimpleNamespace(type="text", text='{"gr')]))
-    with pytest.raises(ProviderError):
+    with pytest.raises(ProviderError) as info:
         ClaudeProvider("key", "claude-haiku-5-5", client=FakeClient(msgs)).complete_json(SYSTEM, MSGS, {}, 1024)
+    assert info.value.result == StreamResult(30, 12, "max_tokens", "claude-haiku-5-5")
 
 
 def test_complete_json_invalid_json_is_an_error():
     msgs = FakeMessages(create=message(content=[SimpleNamespace(type="text", text="not json")]))
-    with pytest.raises(ProviderError):
+    with pytest.raises(ProviderError) as info:
         ClaudeProvider("key", "claude-haiku-5-5", client=FakeClient(msgs)).complete_json(SYSTEM, MSGS, {}, 1024)
+    assert info.value.result == StreamResult(30, 12, "end_turn", "claude-haiku-5-5")
+
+
+def test_complete_json_without_a_text_block_is_an_error_that_keeps_usage():
+    msgs = FakeMessages(create=message(content=[SimpleNamespace(type="thinking", thinking="")]))
+    with pytest.raises(ProviderError) as info:
+        ClaudeProvider("key", "claude-haiku-5-5", client=FakeClient(msgs)).complete_json(SYSTEM, MSGS, {}, 1024)
+    assert info.value.result == StreamResult(30, 12, "end_turn", "claude-haiku-5-5")
 
 
 def test_judge_style_call_without_effort():

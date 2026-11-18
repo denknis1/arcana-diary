@@ -71,8 +71,9 @@ def create_reading(body: ReadingIn, request: Request):
     reading_id = uuid.uuid4()
     guard = None
     if question:
-        allow_model = not flow.guard_over_budget(ctx)
-        if allow_model and not ctx.guard.filter.match(question):  # м12: a stop-phrase needs no model call, no slot
+        stop_phrase = bool(ctx.guard.filter.match(question))  # м12: a stop-phrase needs no model call, no slot
+        allow_model = stop_phrase or not flow.guard_over_budget(ctx)  # ...and no budget query either
+        if allow_model and not stop_phrase:
             # В18: IP_GUARD_LIMIT checks per address per UTC day, then only the stop-phrases answer
             with ctx.db.connect() as conn:
                 allow_model = limits.take_slot(conn, limits.guard_ip_subject(ip_hash), ip_day,

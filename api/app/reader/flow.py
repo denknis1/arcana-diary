@@ -283,6 +283,8 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
                 log_call(conn, ctx, reading["id"], "reader", ctx.reader.model, prompt.version, outcome,
                          READER_MAX_TOKENS)
     except DatabaseUnavailable:
+        if final.shown == "crisis":  # the helplines need no database: the client gets them first
+            yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))
         yield sse("error", {"reason": "db"})
         return
     if final.event == "crisis":

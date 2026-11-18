@@ -7,6 +7,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app import limits, repo
+from app.db import DatabaseUnavailable
 from app.config import IP_GUARD_LIMIT, load_settings
 from app.main import create_app
 from app.reader import fallback, flow
@@ -239,6 +240,17 @@ def test_reader_safety_net_turns_the_reading_into_a_crisis_answer(api):
     owner_view = api.client.get(f"/api/readings/{body['id']}").json()
     assert owner_view["answer_shown"] == "crisis" and owner_view["group"] == "crisis"
     assert api.new_client().get(f"/api/readings/{body['id']}").status_code == 404
+
+
+def test_crisis_helplines_reach_the_client_even_if_saving_fails(api, monkeypatch):
+    def broken(*args, **kwargs):
+        raise DatabaseUnavailable("down")
+    api.reader.replies.append(FakeReply(chunks=["[[cri", "sis]]\n", "Please talk to someone."]))
+    body = create(api, kind="one", question="Everything feels pointless lately")
+    monkeypatch.setattr(repo, "save_crisis", broken)
+    events = stream(api, body["id"], tz=MX)
+    assert [e for e, _ in events] == ["meta", "crisis", "error"]
+    assert events[1][1]["helplines"]["country"] == "MX" and events[2][1] == {"reason": "db"}
 
 
 def test_first_token_timeout_gives_fallback_then_retry_succeeds(api):
@@ -493,6 +505,15 @@ def test_over_the_guard_budget_a_question_is_503_and_nothing_is_written(api):
     assert response.status_code == 503 and response.json() == {"reason": "unavailable"}
     assert api.guard.json_calls() == [] and guest_usage(api) == 0
     assert post_reading(api.client, kind="one", tz=MX).status_code == 201  # no question: no check needed
+
+
+def test_a_stop_phrase_does_not_query_the_budget(api, monkeypatch):
+    calls = []
+    monkeypatch.setattr(flow, "guard_over_budget", lambda ctx: calls.append(1) or False)
+    response = post_reading(api.client, kind="one", question="I want to die", tz=MX)
+    assert response.status_code == 200 and response.json()["group"] == "crisis" and calls == []
+    post_reading(api.client, kind="one", question="Should I move?", tz=MX)
+    assert calls == [1]
 
 
 def test_over_the_guard_budget_an_ambiguous_phrase_is_crisis(api):
