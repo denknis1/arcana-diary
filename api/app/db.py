@@ -37,7 +37,7 @@ class Database:
         try:
             conn = psycopg.connect(self.url, connect_timeout=self.connect_timeout, prepare_threshold=None,
                                    row_factory=dict_row)
-        except psycopg.OperationalError as exc:
+        except (psycopg.OperationalError, psycopg.ProgrammingError) as exc:  # ProgrammingError: malformed DSN
             raise DatabaseUnavailable(str(exc)) from exc
         try:
             with conn:

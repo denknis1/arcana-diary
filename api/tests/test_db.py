@@ -262,3 +262,11 @@ def test_check_constraint_rejects_bad_kind(db):
     with pytest.raises(psycopg.errors.CheckViolation):
         with db.connect() as conn:
             repo.insert_reading(conn, make_reading(kind="five"))
+
+
+def test_malformed_dsn_is_database_unavailable():
+    import pytest as _pytest
+    from app.db import Database, DatabaseUnavailable
+    with _pytest.raises(DatabaseUnavailable):
+        with Database("postgresql://[bad").connect():
+            pass

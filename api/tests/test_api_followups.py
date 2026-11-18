@@ -517,3 +517,14 @@ def test_crisis_marker_still_sends_helplines_when_saving_fails(api, monkeypatch)
     events = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX).text)
     names = [e for e, _ in events]
     assert names[-2:] == ["crisis", "error"] and events[-2][1]["helplines"]["country"] == "MX"
+
+
+def test_nul_in_a_followup_question_is_422_before_any_guard_call_or_attempt(api):
+    reading_id = ready_reading(api, kind="one")
+    guard_calls = len(api.guard.calls)
+    response = ask(api.client, reading_id, "And then\x00 what?")
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["question"]}
+    assert followups(api, reading_id) == []
+    with api.db.connect() as conn:
+        assert repo.get_reading(conn, uuid.UUID(reading_id), api.clock())["followup_attempts"] == 0
+    assert len(api.guard.calls) == guard_calls

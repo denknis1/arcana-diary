@@ -419,3 +419,21 @@ def test_alone_together_without_go_to_the_model(text):
 
 def test_bare_cant_go_on_stays_immediate():
     assert FILTER.match("I can't go on anymore") == "self_harm"
+
+
+HERE_ANYMORE = ["I don't want to be here anymore", "I do not want to be here anymore", "i dont want to be here anymore",
+                "Honestly, I don\u2019t want to be here anymore."]
+
+
+@pytest.mark.parametrize("text", HERE_ANYMORE)
+def test_be_here_anymore_is_left_to_the_model(text):
+    assert FILTER.match(text) is None and FILTER.ambiguous(text) == "self_harm"
+    provider = StubProvider(reply={"group": "ok", "violence": False})
+    result = make_guard(provider).classify(text)
+    assert (result.group, result.source, len(provider.calls)) == ("ok", "model", 1)
+
+
+@pytest.mark.parametrize("text", HERE_ANYMORE)
+def test_be_here_anymore_with_a_failing_model_is_crisis(text):
+    result = make_guard(StubProvider(error=ProviderTimeout("slow"))).classify(text)
+    assert (result.group, result.source) == ("crisis", "timeout")

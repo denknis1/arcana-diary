@@ -68,6 +68,13 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
     effort = env.get("READER_EFFORT") or "medium"
     if effort not in EFFORTS:
         raise ValueError(f"READER_EFFORT must be one of {EFFORTS}, got {effort!r}")
+    reader_model = env.get("READER_MODEL") or DEFAULT_MODEL
+    guard_model = env.get("GUARD_MODEL") or DEFAULT_MODEL
+    # И1: a model without a price row has cost_usd NULL, which the budgets count as 0 - both ceilings would be off
+    for name, model in (("READER_MODEL", reader_model), ("GUARD_MODEL", guard_model)):
+        if model not in PRICES_PER_MTOK:
+            raise ValueError(f"{name}={model!r} has no price in PRICES_PER_MTOK (app/config.py): the money ceilings "
+                             f"would not work. Add a price row for the model first.")
     return Settings(
         content_dir=Path(env.get("CONTENT_DIR") or REPO_ROOT / "content/cards"),
         banned_terms_path=Path(env.get("BANNED_TERMS_PATH") or REPO_ROOT / "tools/cards/banned_terms.json"),
@@ -75,9 +82,9 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         database_url=env.get("DATABASE_URL", ""),
         reader_provider=provider,
         anthropic_api_key=env.get("ANTHROPIC_API_KEY", ""),
-        reader_model=env.get("READER_MODEL") or DEFAULT_MODEL,
+        reader_model=reader_model,
         reader_effort=effort,
-        guard_model=env.get("GUARD_MODEL") or DEFAULT_MODEL,
+        guard_model=guard_model,
         judge_model=env.get("JUDGE_MODEL") or "claude-sonnet-5-5",
         turnstile_secret=env.get("TURNSTILE_SECRET", ""),
         turnstile_sitekey=env.get("TURNSTILE_SITEKEY", ""),

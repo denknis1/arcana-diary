@@ -161,3 +161,55 @@ def test_stale_unanswered_followups_are_freed_and_paid_ones_refunded_once(db):
     assert usage_count(db, reading["guest_id"], day) == 2  # only the paid one gave its reading back
     assert free_stale_followups(db, T0) == 0
     assert usage_count(db, reading["guest_id"], day) == 2
+
+
+def test_a_non_database_migration_error_is_logged_and_retried(db, caplog):
+    class Broken(FlakyDatabase):
+        @contextmanager
+        def connect(self):
+            self.attempts += 1
+            if self.attempts <= self.failures:
+                raise RuntimeError("malformed DSN")
+            with self.real.connect() as conn:
+                yield conn
+
+    broken = Broken(db, failures=2)
+    with caplog.at_level("ERROR", logger="arcana.housekeeping"):
+        applied = asyncio.run(migrate_until_done(broken, load_settings({}).migrations_dir, retry_s=0.01))
+    assert applied == [] and broken.attempts == 3
+    assert "migrations failed" in caplog.text and "malformed DSN" in caplog.text
+
+
+def test_a_failing_cleanup_step_does_not_skip_the_other(db, monkeypatch, caplog):
+    ran = []
+
+    def boom(database, now):
+        raise RuntimeError("delete failed")
+
+    monkeypatch.setattr(housekeeping, "delete_expired", boom)
+    monkeypatch.setattr(housekeeping, "free_stale_followups", lambda database, now: ran.append("freed"))
+
+    async def scenario():
+        task = asyncio.create_task(cleanup_loop(db, 0.05, lambda: T0))
+        await asyncio.sleep(0.2)
+        task.cancel()
+
+    asyncio.run(scenario())
+    assert "freed" in ran and "delete failed" in caplog.text
+
+
+def test_one_background_job_crashing_does_not_stop_the_other(db, monkeypatch, caplog):
+    finished = []
+
+    async def crashing_daily(ctx, interval_s, card_ids=None):
+        raise RuntimeError("daily crashed")
+
+    async def fake_cleanup(database, interval_s, clock):
+        await asyncio.sleep(0.1)
+        finished.append("cleanup")
+
+    monkeypatch.setattr(housekeeping, "daily_loop", crashing_daily)
+    monkeypatch.setattr(housekeeping, "cleanup_loop", fake_cleanup)
+    settings = replace(load_settings({}), database_url=db.url, cleanup_interval_s=60.0, daily_job_interval_s=900.0)
+    asyncio.run(run_background(SimpleNamespace(settings=settings, db=db, clock=lambda: T0)))
+    assert finished == ["cleanup"] and "daily crashed" in caplog.text

@@ -67,16 +67,19 @@ async def migrate_until_done(db: Database, migrations_dir, retry_s: float = MIGR
         except DatabaseUnavailable as exc:
             log.error("migrations waiting for the database: %s", exc)
             await asyncio.sleep(retry_s)
+        except Exception:  # not a connection problem (bad DSN, no rights, broken SQL): say why, keep trying
+            log.exception("migrations failed with an unexpected error, retrying in %.0f s", retry_s)
+            await asyncio.sleep(retry_s)
 
 
 async def cleanup_loop(db: Database, interval_s: float, clock) -> None:
     while True:
-        try:
-            now = clock()
-            await asyncio.to_thread(delete_expired, db, now)
-            await asyncio.to_thread(free_stale_followups, db, now)
-        except Exception:  # a failed cleanup must not stop the loop or the API
-            log.exception("cleanup failed")
+        now = clock()
+        for step in (delete_expired, free_stale_followups):  # separate tries: one failing step skips nothing else
+            try:
+                await asyncio.to_thread(step, db, now)
+            except Exception:  # a failed cleanup must not stop the loop or the API
+                log.exception("cleanup step %s failed", step.__name__)
         await asyncio.sleep(interval_s)
 
 
@@ -87,4 +90,7 @@ async def run_background(ctx, migrate_retry_s: float = MIGRATE_RETRY_S) -> None:
     jobs = [cleanup_loop(ctx.db, settings.cleanup_interval_s, ctx.clock)]
     if settings.daily_job_interval_s > 0:
         jobs.append(daily_loop(ctx, settings.daily_job_interval_s))
-    await asyncio.gather(*jobs)
+    results = await asyncio.gather(*jobs, return_exceptions=True)  # one crashing job must not cancel the other
+    for job, result in zip(jobs, results):
+        if isinstance(result, BaseException):
+            log.error("background job %s stopped", getattr(job, "__name__", job), exc_info=result)

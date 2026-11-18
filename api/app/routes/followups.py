@@ -14,7 +14,7 @@
 import uuid
 
 from fastapi import APIRouter, Request
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from app import limits, repo
 from app.config import DAILY_LIMIT, FOLLOWUP_ATTEMPTS
@@ -22,7 +22,7 @@ from app.context import get_ctx
 from app.reader import flow
 from app.reader.followups import stream_followup
 from app.routes.common import country_hint, is_owner, not_found, respond, stream_response
-from app.routes.readings import clean
+from app.routes.readings import clean, reject_nul
 from app.safety.guard import GuardUnavailable
 
 router = APIRouter(prefix="/api")
@@ -32,6 +32,8 @@ class FollowupIn(BaseModel):
     question: str = Field(min_length=1, max_length=500)
     tz: str | None = Field(default=None, max_length=64)
     use_reading: bool = False  # §10.1: the person confirmed that a follow-up after the free ones uses a reading
+
+    _no_nul = field_validator("question", "tz", mode="after")(reject_nul)
 
 
 @router.post("/readings/{reading_id}/followups")

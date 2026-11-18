@@ -62,3 +62,19 @@ def test_cost_usd(model, tokens_in, tokens_out, expected):
 def test_cost_unknown_model_or_tokens():
     assert cost_usd("fake-reader", 10, 10) is None
     assert cost_usd("claude-haiku-5-5", None, 10) is None
+
+
+def test_unpriced_reader_model_refuses_to_start():
+    with pytest.raises(ValueError, match=r"READER_MODEL.*claude-opus-5-5.*PRICES_PER_MTOK"):
+        load_settings({"READER_MODEL": "claude-opus-5-5"})
+
+
+def test_unpriced_guard_model_refuses_to_start():
+    with pytest.raises(ValueError, match=r"GUARD_MODEL.*claude-haiku-5-5-20261001.*PRICES_PER_MTOK"):
+        load_settings({"GUARD_MODEL": "claude-haiku-5-5-20261001"})
+
+
+def test_priced_models_load_and_cost_is_known():
+    s = load_settings({"READER_MODEL": "claude-sonnet-5-5", "GUARD_MODEL": "claude-haiku-5-5"})
+    assert cost_usd(s.reader_model, 1000, 1000) is not None and cost_usd(s.guard_model, 1000, 1000) is not None
+    assert cost_usd("claude-opus-5-5", 1000, 1000) is None  # cost_usd itself is unchanged

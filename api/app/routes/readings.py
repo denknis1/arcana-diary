@@ -4,7 +4,7 @@ from datetime import timedelta
 from typing import Literal
 
 from fastapi import APIRouter, Request
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from app import limits, repo
 from app.config import DAILY_LIMIT, GUEST_RETENTION_DAYS, IP_GUARD_LIMIT, RETRY_LIMIT
@@ -18,6 +18,13 @@ from app.safety.guard import NO_VERDICT_GROUPS, GuardUnavailable
 router = APIRouter(prefix="/api")
 
 
+def reject_nul(value: str | None) -> str | None:
+    """PostgreSQL text cannot hold NUL: reject it with the standard 422 before any model call or slot."""
+    if value is not None and "\x00" in value:
+        raise ValueError("NUL character")
+    return value
+
+
 class ReadingIn(BaseModel):
     lang: Literal["en", "es"]
     kind: Literal["one", "three", "yes_no", "card_page"]
@@ -27,6 +34,8 @@ class ReadingIn(BaseModel):
     card_id: str | None = Field(default=None, max_length=80)
     tz: str | None = Field(default=None, max_length=64)
     turnstile_token: str | None = Field(default=None, max_length=4096)
+
+    _no_nul = field_validator("question", "situation", "card_id", "tz", mode="after")(reject_nul)
 
 
 def clean(text: str | None) -> str | None:

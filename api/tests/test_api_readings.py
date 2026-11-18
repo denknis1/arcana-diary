@@ -674,3 +674,12 @@ def test_owner_view_shows_follow_up_attempts_left(api):
             conn.execute("UPDATE readings SET followup_attempts = %s WHERE id = %s", (used, body["id"]))
         assert api.client.get(f"/api/readings/{body['id']}").json()["followup_attempts_left"] == left
     assert "followup_attempts_left" not in api.new_client().get(f"/api/readings/{body['id']}").json()
+
+
+def test_nul_in_a_question_is_422_before_any_guard_call_or_slot(api):
+    response = post_reading(api.client, question="Will it work\x00 out?", tz=MX)
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["question"]}
+    assert api.guard.calls == [] and api.reader.calls == []
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM usage").fetchone()["n"] == 0
+        assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 0
