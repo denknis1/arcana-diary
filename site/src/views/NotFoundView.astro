@@ -1,0 +1,31 @@
+---
+// 404 EN / ES (screen 11b). Caddy serves it for unknown addresses (deploy/Caddyfile, handle_errors 404).
+import Base from '../layouts/Base.astro';
+import { t } from '../i18n';
+import { pagePath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = t(lang);
+const links = [
+  { href: pagePath('home', lang), label: d.notFoundReading },
+  { href: pagePath('yes_no', lang), label: d.navYesNo },
+  { href: pagePath('daily', lang), label: d.navDaily },
+];
+---
+<Base lang={lang} title={d.notFoundTitle} path={pagePath('not_found', lang)}>
+  <section class="page-hero">
+    <p class="eyebrow">{d.notFoundEyebrow}</p>
+    <h1 class="display">{d.notFoundH1}</h1>
+    <p class="lead">{d.notFoundLead}</p>
+  </section>
+  <nav class="page-section" aria-label={d.notFoundNav}>
+    <ul class="link-list">
+      {links.map((link) => <li><a href={link.href}><span class="link-list__name">{link.label}</span></a></li>)}
+    </ul>
+  </nav>
+</Base>

@@ -1,0 +1,47 @@
+---
+// Header (design system: Header): wordmark; on a phone the menu button opens the menu (screens 11c, 11d);
+// on a desktop the menu items and EN | ES sit in the header (screen 13a).
+import MenuToggle from '../islands/MenuToggle';
+import LangSwitch from './LangSwitch.astro';
+import MoonMark from './MoonMark.astro';
+import { t, type DictKey } from '../i18n';
+import { NAV_KEYS, pagePath, type PageKey } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+  path: string;
+  current?: PageKey;
+}
+
+const { lang, path, current } = Astro.props;
+const d = t(lang);
+const LABELS: Record<string, DictKey> = { home: 'navHome', yes_no: 'navYesNo', love: 'navLove', daily: 'navDaily' };
+const items = NAV_KEYS.map((key) => ({ key, href: pagePath(key, lang), label: d[LABELS[key]] }));
+---
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__bar">
+      <a class="brand" href={pagePath('home', lang)}><MoonMark />{d.siteName}</a>
+      <div class="site-header__desktop">
+        <nav aria-label={d.navLabel}>
+          <ul>
+            {items.map((item) => (
+              <li><a href={item.href} aria-current={item.key === current ? 'page' : undefined}>{item.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+        <LangSwitch lang={lang} path={path} />
+      </div>
+      <MenuToggle client:load lang={lang} navId="site-menu" />
+    </div>
+    <nav id="site-menu" class="site-nav" aria-label={d.navLabel}>
+      <ul>
+        {items.map((item) => (
+          <li><a href={item.href} aria-current={item.key === current ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+      <LangSwitch lang={lang} path={path} />
+    </nav>
+  </div>
+</header>

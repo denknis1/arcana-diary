@@ -1,0 +1,23 @@
+---
+// A card face on a day page: the printed card in a gold frame (three sizes, srcset) and its name as text.
+import { fill, t } from '../i18n';
+import { cardImage, cardName, cardSrcset, type DeckCard } from '../lib/deck';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  card: DeckCard;
+  lang: Lang;
+  sizes: string;
+  eager?: boolean;
+}
+
+const { card, lang, sizes, eager = false } = Astro.props;
+const name = cardName(card, lang);
+---
+<figure class="card-frame card-frame--day">
+  <div class="card-frame__art">
+    <img src={cardImage(card, 350)} srcset={cardSrcset(card)} sizes={sizes} width="350" height="600"
+      alt={fill(t(lang).cardAlt, { name })} loading={eager ? 'eager' : 'lazy'} />
+  </div>
+  <figcaption class="card-frame__name"><b>{card.numeral}</b> {name}</figcaption>
+</figure>

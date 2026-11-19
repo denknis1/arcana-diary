@@ -1,0 +1,11 @@
+---
+// The brand mark: a crescent in a thin ring, in currentColor (design system: Logo).
+interface Props {
+  size?: number;
+}
+const { size = 24 } = Astro.props;
+---
+<svg width={size} height={size} viewBox="0 0 64 64" fill="none" aria-hidden="true">
+  <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="2.5"></circle>
+  <path d="M39 14a19 19 0 1 0 0 36A15 15 0 1 1 39 14Z" stroke="currentColor" stroke-width="3"></path>
+</svg>

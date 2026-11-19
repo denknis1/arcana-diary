@@ -1,0 +1,338 @@
+/* Arcana Diary, stage 4.4a. Colours, type, spacing, radii and motion come only from tokens.css
+   (docs/design/tokens.json); overlays mix token colours with transparency. Phone first; desktop from 900px. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-day-bg);
+  color: var(--color-day-text);
+  font-family: var(--font-text);
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+}
+
+body.is-locked { overflow: hidden; }
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--color-day-accent); }
+
+:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+/* The ring takes the text colour of the surface it sits on, not of the control: a gold button or a pressed chip has
+   night-blue text, the ink button white text, and currentColor would vanish there (plan review I2). */
+.night-panel :focus-visible, .night :focus-visible, .daily :focus-visible { outline-color: var(--color-night-text); }
+.plus-slot :focus-visible, .plus__card :focus-visible { outline-color: var(--color-day-text); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-4); top: calc(-1 * var(--space-8)); z-index: 30;
+  padding: var(--space-3) var(--space-4); background: var(--color-day-surface); color: var(--color-day-text);
+  border-radius: var(--radius-field);
+}
+.skip-link:focus { top: var(--space-2); }
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-4); }
+
+/* Header, menu, language switch (screens 11c, 11d; desktop 13a) */
+.site-header { border-bottom: 1px solid var(--color-day-line); background: var(--color-day-bg); }
+.site-header__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 60px; }
+.brand {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; color: var(--color-day-text);
+  font-family: var(--font-display); font-size: var(--font-size-h-2); font-weight: 600; text-decoration: none;
+}
+.brand svg { color: var(--color-day-accent); }
+.menu-button {
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0;
+  border: 0; background: transparent; color: var(--color-day-text); cursor: pointer; border-radius: var(--radius-pill);
+}
+.site-nav { display: none; padding: var(--space-2) 0 var(--space-5); }
+.site-nav.is-open { display: block; }
+.site-nav ul { list-style: none; margin: 0; padding: 0; }
+.site-nav a {
+  display: flex; align-items: center; min-height: 52px; border-bottom: 1px solid var(--color-day-line);
+  color: var(--color-day-text); font-family: var(--font-display); font-size: var(--font-size-h-2); text-decoration: none;
+}
+.site-nav a[aria-current='page'] { color: var(--color-day-accent); }
+.site-nav .lang-switch { margin-top: var(--space-4); }
+.lang-switch { display: flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-day-text-muted); }
+.lang-switch a, .lang-switch span[aria-current] {
+  display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; justify-content: center;
+}
+.lang-switch a { color: var(--color-day-text-muted); }
+.lang-switch span[aria-current] { color: var(--color-day-text); font-weight: 700; }
+.site-header__desktop { display: none; }
+
+@media (min-width: 900px) {
+  .menu-button, .site-nav { display: none !important; }
+  .site-header__desktop { display: flex; align-items: center; gap: var(--space-6); }
+  .site-header__desktop ul { display: flex; gap: var(--space-5); list-style: none; margin: 0; padding: 0; }
+  .site-header__desktop a {
+    display: inline-flex; align-items: center; min-height: 44px; color: var(--color-day-text); text-decoration: none;
+    border-bottom: 2px solid transparent; font-weight: 500;
+  }
+  .site-header__desktop a[aria-current='page'] { border-bottom-color: var(--color-day-accent); }
+  .container { padding: 0 var(--space-6); }
+}
+
+/* Type */
+.eyebrow {
+  margin: 0; font-size: var(--font-size-caption); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--color-day-accent);
+}
+.display { margin: 0; font-family: var(--font-display); font-weight: 500; line-height: 1.04; font-size: var(--font-size-display-2); }
+.display--home { font-size: var(--font-size-display-1); }
+.lead { margin: 0; color: var(--color-day-text-muted); }
+.h2 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-1); line-height: 1.1; }
+.small { font-size: var(--font-size-small); }
+.muted { color: var(--color-day-text-muted); }
+@media (min-width: 900px) {
+  .display--home { font-size: var(--font-size-display-l); }
+  .display { font-size: var(--font-size-display-1); }
+}
+
+.page-hero { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6) 0 0; }
+.page-section { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-7) 0 0; }
+.tool-layout { display: grid; gap: var(--space-5); }
+@media (min-width: 900px) {
+  .tool-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: var(--space-7); padding-top: var(--space-5); }
+}
+
+/* Buttons and chips (design system: Button, Chips) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 52px;
+  padding: 0 var(--space-5); border-radius: var(--radius-pill); border: 1px solid transparent; cursor: pointer;
+  font-family: var(--font-text); font-size: var(--font-size-body); font-weight: 700; text-decoration: none; text-align: center;
+}
+.btn--block { width: 100%; }
+.btn--gold { background: var(--color-night-accent); color: var(--color-night-on-accent); }
+.btn--ink { background: var(--color-brand-ink-button); color: var(--color-day-on-accent); }
+.btn--outline { background: transparent; color: inherit; border-color: var(--color-day-control-border); font-weight: 600; }
+.night .btn--outline, .night-panel .btn--outline { border-color: var(--color-night-control-border); }
+.btn--text { background: transparent; color: var(--color-day-accent); font-weight: 600; }
+.night .btn--text, .night-panel .btn--text { color: var(--color-night-accent); }
+.btn[disabled] { cursor: default; opacity: 0.6; }
+
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; border: 0; }
+.chip {
+  display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-4);
+  border-radius: var(--radius-pill); border: 1px solid var(--color-night-control-border); background: transparent;
+  color: var(--color-night-text); font-family: var(--font-text); font-size: var(--font-size-body); font-weight: 600; cursor: pointer;
+}
+.chip[aria-pressed='true'] { background: var(--color-night-accent); color: var(--color-night-on-accent); }
+.chip svg { display: none; }
+.chip[aria-pressed='true'] svg { display: block; }
+
+/* The night panel on day pages (screens 1, 5a, 6, 12a) */
+.night-panel {
+  display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-5) var(--space-5) var(--space-5);
+  border-radius: var(--radius-panel-large); background: var(--color-night-bg); color: var(--color-night-text);
+  margin: var(--space-5) calc(-1 * var(--space-1)) 0;
+}
+.night-panel a { color: var(--color-night-accent); }
+.field { display: flex; flex-direction: column; gap: var(--space-2); }
+.field label, .field__label { font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.input {
+  width: 100%; min-height: 52px; padding: 0 var(--space-4); border-radius: var(--radius-field);
+  border: 1px solid var(--color-night-control-border); background: var(--color-night-surface); color: var(--color-night-text);
+  font-family: var(--font-text); font-size: var(--font-size-body);
+}
+.input::placeholder { color: var(--color-night-text-muted); }
+.input--day { border-color: var(--color-day-control-border); background: var(--color-day-surface); color: var(--color-day-text); }
+.input--day::placeholder { color: var(--color-day-text-muted); }
+.panel-hint { margin: 0; text-align: center; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.backs { display: flex; justify-content: center; gap: var(--space-4); padding: var(--space-3) 0; }
+.backs img { width: 92px; aspect-ratio: var(--card-ratio); border-radius: var(--radius-card); }
+.backs img:nth-child(1) { transform: rotate(-6deg) translateY(6px); }
+.backs img:nth-child(3) { transform: rotate(6deg) translateY(6px); }
+
+/* Cards (design system: TarotCard) */
+.card-frame {
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-2); margin: 0;
+}
+.card-frame__art {
+  width: 100%; aspect-ratio: var(--card-ratio); padding: var(--space-1); border-radius: var(--radius-card);
+  border: 1px solid var(--color-night-accent); background: var(--color-night-bg);
+}
+.card-frame__art img { width: 100%; height: 100%; object-fit: cover; border-radius: calc(var(--radius-card) - var(--space-1)); }
+.card-frame__art img.is-reversed { transform: rotate(180deg); }
+.card-frame__name { font-family: var(--font-display); font-weight: 600; font-size: var(--font-size-small); text-align: center; }
+.card-frame__name b { color: var(--color-night-accent); font-weight: 600; }
+.card-frame--day .card-frame__name b { color: var(--color-day-accent); }
+
+/* Lists of formats, cards and steps on day pages */
+.link-list { list-style: none; margin: 0; padding: 0; }
+.link-list a {
+  display: flex; align-items: center; gap: var(--space-4); min-height: 64px; padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-day-line); color: var(--color-day-text); text-decoration: none;
+}
+.link-list__text { display: flex; flex-direction: column; gap: var(--space-1); flex: 1; }
+.link-list__name { font-weight: 600; }
+.link-list__hint { font-size: var(--font-size-small); color: var(--color-day-text-muted); }
+.link-list svg { color: var(--color-day-accent); flex-shrink: 0; }
+.card-row { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.card-row a { width: 100px; color: var(--color-day-text); text-decoration: none; }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+.steps li { display: flex; gap: var(--space-4); align-items: flex-start; }
+.steps__n {
+  display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; flex-shrink: 0;
+  border-radius: var(--radius-pill); border: 1px solid var(--color-day-accent); color: var(--color-day-accent);
+  font-size: var(--font-size-small); font-weight: 700;
+}
+.tile {
+  display: flex; gap: var(--space-4); align-items: center; padding: var(--space-5); margin-top: var(--space-6);
+  border-radius: var(--radius-panel); background: var(--color-day-surface);
+}
+.tile img { width: 56px; aspect-ratio: var(--card-ratio); border-radius: calc(var(--radius-card) - var(--space-1)); flex-shrink: 0; }
+.tile__body { display: flex; flex-direction: column; gap: var(--space-2); }
+.tile__body a { font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+
+/* The night room (screens 2a–2e, 5b, 8b, 13d) */
+.night-room {
+  position: fixed; inset: 0; z-index: 20; display: flex; align-items: stretch; justify-content: center;
+  background: color-mix(in srgb, var(--color-night-bg) 62%, transparent);
+}
+.night {
+  position: relative; width: 100%; max-width: 960px; overflow-y: auto; padding: var(--space-5) var(--space-4) var(--space-7);
+  background: var(--color-night-bg); color: var(--color-night-text);
+  animation: night-open var(--motion-night-open) var(--motion-easing);
+}
+@media (min-width: 900px) {
+  .night-room { align-items: center; padding: var(--space-6); }
+  .night { max-height: 100%; border-radius: var(--radius-panel-large); padding: var(--space-6) var(--space-7) var(--space-7); }
+}
+.night a { color: var(--color-night-accent); }
+.night__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.night__question { margin: 0; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.night__title { margin: var(--space-5) 0 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-1); line-height: 1.15; text-align: center; }
+.close-button {
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: var(--radius-pill); border: 1px solid var(--color-night-control-border); background: transparent;
+  color: var(--color-night-text); cursor: pointer;
+}
+.night__status { margin: var(--space-6) 0 0; text-align: center; color: var(--color-night-text-muted); }
+.spread { display: flex; justify-content: center; gap: var(--space-3); margin-top: var(--space-6); }
+.spread__slot { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); width: 106px; }
+.spread--one .spread__slot { width: 150px; }
+.spread__pos { font-size: var(--font-size-caption); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-night-text-muted); }
+.flip { position: relative; width: 100%; aspect-ratio: var(--card-ratio); perspective: 800px; }
+.flip__inner {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  transition: transform var(--motion-card-flip) var(--motion-easing);
+}
+.flip.is-turned .flip__inner { transform: rotateY(180deg); }
+.flip__side { position: absolute; inset: 0; backface-visibility: hidden; }
+.flip__side--face { transform: rotateY(180deg); }
+.flip__side img.back { width: 100%; height: 100%; border-radius: var(--radius-card); }
+.deck-shuffle { display: flex; justify-content: center; margin-top: var(--space-8); }
+.deck-shuffle img { width: 100px; aspect-ratio: var(--card-ratio); border-radius: var(--radius-card); }
+
+/* With the answer (2e, 5b, 13d): cards and text side by side when there is room (desktop), cards above on a phone */
+.night__body { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-7); align-items: flex-start; margin-top: var(--space-5); }
+.night__cards { flex: 0 1 420px; min-width: 0; }
+.night__text { flex: 999 1 360px; min-width: 0; display: flex; flex-direction: column; gap: var(--space-5); }
+.night__text > .night__actions, .night__text > .followups { margin-top: 0; }
+.spread--small { margin-top: 0; }
+.spread--small .spread__slot { width: 78px; }
+.spread--small .card-frame__name { font-size: var(--font-size-caption); }
+.answer__headline { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-1); line-height: 1.1; }
+@media (min-width: 900px) {
+  .night__question { font-size: var(--font-size-body); }
+  .spread--small .spread__slot { width: 128px; }
+  .spread--small .card-frame__name { font-size: var(--font-size-small); }
+  .answer__headline { font-size: var(--font-size-display-2); }
+}
+.answer__soft { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-field); border: 1px solid var(--color-night-line); color: var(--color-night-text-muted); }
+.answer__label { display: block; font-size: var(--font-size-caption); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-night-accent); }
+.answer__text { margin: var(--space-1) 0 0; white-space: pre-line; }
+.answer__synthesis { margin: 0; padding: var(--space-4); border-radius: var(--radius-field); background: var(--color-night-surface); white-space: pre-line; }
+.verdict { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; }
+.verdict__word { display: flex; align-items: center; gap: var(--space-4); font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-display-1); line-height: 1; }
+.verdict__word svg { color: var(--color-night-accent); }
+.more-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: var(--space-2); }
+.more-cards .btn { font-size: var(--font-size-small); padding: 0 var(--space-2); }
+.night__actions { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+.night__foot { margin: var(--space-6) 0 0; text-align: center; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.followups { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-night-line); }
+.followup__q { margin: 0; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.followup__a { margin: var(--space-1) 0 0; white-space: pre-line; }
+.followup-form { display: flex; flex-direction: column; gap: var(--space-3); }
+.notice { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-field); border: 1px solid var(--color-night-control-border); }
+.notice--day { border-color: var(--color-day-control-border); background: var(--color-day-surface); }
+
+/* Crisis answer: warm words and help lines, nothing else */
+.crisis { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-5); }
+.crisis h2 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-1); }
+.crisis p { margin: 0; }
+.helplines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.helplines li { padding: var(--space-4); border-radius: var(--radius-field); background: var(--color-night-surface); display: flex; flex-direction: column; gap: var(--space-1); }
+.helplines a { min-height: 44px; display: inline-flex; align-items: center; font-weight: 700; }
+
+/* Plus at the free limit (screen 11a) */
+.plus-slot { margin-top: var(--space-5); }
+.plus { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-2) 0; }
+.plus .display { font-size: var(--font-size-display-2); }
+.plus__card {
+  display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-panel);
+  background: var(--color-day-surface); color: var(--color-day-text); border-top: 2px solid var(--color-brand-gold);
+}
+.plus__card h3 { margin: 0; font-size: var(--font-size-h-3); }
+.plus__card ul { margin: 0; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-1); }
+.plus__card label { font-size: var(--font-size-small); color: var(--color-day-text-muted); }
+.plus__card a { color: var(--color-day-accent); }
+.plus__card form { gap: var(--space-3); }
+.plus__row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.plus__row a, .plus__daily { min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; }
+.plus__card { margin-top: var(--space-3); }
+/* the same card after the free follow-ups inside the night room (402 plus) */
+.night .plus .lead { color: var(--color-night-text-muted); }
+
+.help-line { margin: 0; font-size: var(--font-size-small); }
+.help-line a { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Card of the Day (screens 7a, 7b) */
+.daily { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); padding: var(--space-6) var(--space-5); margin-top: var(--space-5); border-radius: var(--radius-panel-large); background: var(--color-night-bg); color: var(--color-night-text); text-align: center; }
+.daily a { color: var(--color-night-accent); min-height: 44px; display: inline-flex; align-items: center; }
+.daily__back { padding: 0; border: 0; background: transparent; cursor: pointer; border-radius: var(--radius-card); color: var(--color-night-text); display: flex; flex-direction: column; align-items: center; gap: var(--space-3); font-family: var(--font-text); font-size: var(--font-size-body); }
+.daily__back img { width: 160px; aspect-ratio: var(--card-ratio); border-radius: var(--radius-card); }
+.daily .card-frame { width: 180px; }
+.daily__text { margin: 0; max-width: 560px; text-align: left; white-space: pre-line; }
+
+/* Simple card page */
+.card-page { display: grid; gap: var(--space-6); padding-top: var(--space-6); }
+.card-page__art { max-width: 280px; }
+.card-page__text { display: flex; flex-direction: column; gap: var(--space-4); }
+.card-page__text p { margin: 0; }
+.keywords { margin: 0; color: var(--color-day-text-muted); }
+.card-nav { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-7) 0 0; }
+.card-nav a { display: flex; flex-direction: column; min-height: 44px; text-decoration: none; color: var(--color-day-text); }
+.card-nav small { color: var(--color-day-text-muted); }
+@media (min-width: 900px) {
+  .card-page { grid-template-columns: 280px minmax(0, 1fr) minmax(0, 380px); align-items: start; }
+}
+
+/* Footer */
+.site-footer { margin-top: var(--space-8); padding: var(--space-5) 0 var(--space-6); border-top: 1px solid var(--color-day-line); }
+.site-footer__inner { display: flex; flex-direction: column; gap: var(--space-4); }
+.site-footer ul { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); list-style: none; margin: 0; padding: 0; }
+.site-footer ul a { min-height: 44px; display: inline-flex; align-items: center; }
+.site-footer p { margin: 0; font-size: var(--font-size-small); color: var(--color-day-text-muted); }
+
+.turnstile-slot { position: fixed; bottom: 0; right: 0; z-index: 40; } /* above the night room (z 20) */
+
+@keyframes night-open { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* Without motion: the room and the cards fade in, cards already turned (00-design.md) */
+@media (prefers-reduced-motion: reduce) {
+  .night { animation: fade-in var(--motion-night-open) linear; }
+  .flip__inner { transition: none; }
+  .night__body, .daily .card-frame { animation: fade-in var(--motion-night-open) linear; }
+  .backs img:nth-child(1), .backs img:nth-child(3) { transform: none; }
+}
