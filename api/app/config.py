@@ -1,6 +1,7 @@
 """API settings from environment variables; limits; model prices for the LLM call log."""
 import os
 from dataclasses import dataclass
+from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Mapping
 
@@ -18,11 +19,33 @@ IP_GUARD_LIMIT = 60        # §10.5 (В18): question checks by the model per add
 RETRY_LIMIT = 2
 GUEST_RETENTION_DAYS = 7
 
-# USD per 1M tokens: (input, output)
+PROVIDERS = ("claude", "openai", "gemini", "fake")
+KEY_NAMES = {"claude": "ANTHROPIC_API_KEY", "openai": "OPENAI_API_KEY", "gemini": "GOOGLE_AI_API_KEY"}
+
+# USD per 1M tokens: (input, output). Official pages on 19.11.2026: developers.openai.com/api/docs/pricing,
+# aistudio.google.com/docs/pricing (spec 2026-11-19 §3).
 PRICES_PER_MTOK = {
     "claude-haiku-5-5": (0.10, 0.50),
     "claude-sonnet-5-5": (2.00, 10.00),
+    "gpt-6-luna": (0.10, 0.50),
+    "gpt-6.2-sol": (2.00, 10.00),
+    "gemini-3.8-flash": (0.75, 3.75),
+    "gemini-4-argon": (2.00, 10.00),
 }
+# Announced price rises: model -> (first UTC day, (input, output)). cost_usd applies the new price from that day on,
+# so the comparison meter and the live budgets never undercount; reports also show it as a second column.
+PRICE_CHANGES = {
+    "gemini-4-argon": ("2026-12-01", (4.00, 20.00)),
+    "gemini-3.8-flash": ("2027-01-01", (1.50, 7.50)),
+}
+
+
+def provider_for_model(model: str) -> str:
+    """claude-... -> claude, gpt-... -> openai, gemini-... -> gemini; any other name raises ValueError."""
+    for prefix, provider in (("claude-", "claude"), ("gpt-", "openai"), ("gemini-", "gemini")):
+        if model.startswith(prefix):
+            return provider
+    raise ValueError(f"no provider for model {model!r}: expected a claude-, gpt- or gemini- model")
 
 
 @dataclass(frozen=True)
@@ -33,6 +56,8 @@ class Settings:
     database_url: str
     reader_provider: str
     anthropic_api_key: str
+    openai_api_key: str
+    google_ai_api_key: str
     reader_model: str
     reader_effort: str
     guard_model: str
@@ -63,8 +88,8 @@ def _true_or_false(name: str, value: str) -> bool:
 def load_settings(env: Mapping[str, str] | None = None) -> Settings:
     env = os.environ if env is None else env
     provider = env.get("READER_PROVIDER") or "claude"
-    if provider not in ("claude", "fake"):
-        raise ValueError(f"READER_PROVIDER must be 'claude' or 'fake', got {provider!r}")
+    if provider not in PROVIDERS:
+        raise ValueError(f"READER_PROVIDER must be one of {PROVIDERS}, got {provider!r}")
     effort = env.get("READER_EFFORT") or "medium"
     if effort not in EFFORTS:
         raise ValueError(f"READER_EFFORT must be one of {EFFORTS}, got {effort!r}")
@@ -75,6 +100,16 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         if model not in PRICES_PER_MTOK:
             raise ValueError(f"{name}={model!r} has no price in PRICES_PER_MTOK (app/config.py): the money ceilings "
                              f"would not work. Add a price row for the model first.")
+    if provider != "fake":
+        family = provider_for_model(reader_model)
+        if family != provider:
+            raise ValueError(f"READER_MODEL={reader_model!r} is a {family} model, but READER_PROVIDER={provider}")
+        if provider in ("openai", "gemini"):
+            for key in (KEY_NAMES[provider], "ANTHROPIC_API_KEY"):  # the question check stays on Claude
+                if not env.get(key):
+                    raise ValueError(f"READER_PROVIDER={provider} needs {key} (deploy/.env)")
+    if provider_for_model(guard_model) != "claude":
+        raise ValueError(f"GUARD_MODEL={guard_model!r}: the question check stays on Claude (spec 2026-11-19 §2.4)")
     return Settings(
         content_dir=Path(env.get("CONTENT_DIR") or REPO_ROOT / "content/cards"),
         banned_terms_path=Path(env.get("BANNED_TERMS_PATH") or REPO_ROOT / "tools/cards/banned_terms.json"),
@@ -82,6 +117,8 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         database_url=env.get("DATABASE_URL", ""),
         reader_provider=provider,
         anthropic_api_key=env.get("ANTHROPIC_API_KEY", ""),
+        openai_api_key=env.get("OPENAI_API_KEY", ""),
+        google_ai_api_key=env.get("GOOGLE_AI_API_KEY", ""),
         reader_model=reader_model,
         reader_effort=effort,
         guard_model=guard_model,
@@ -99,8 +136,13 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
     )
 
 
-def cost_usd(model: str, tokens_in: int | None, tokens_out: int | None) -> float | None:
+def cost_usd(model: str, tokens_in: int | None, tokens_out: int | None, day: date | None = None) -> float | None:
+    """The price of a call on `day` (default: today, UTC): from the day of an announced rise (PRICE_CHANGES) the
+    new price applies. None for a model without a price row or a call without usage."""
     price = PRICES_PER_MTOK.get(model)
     if price is None or tokens_in is None or tokens_out is None:
         return None
+    change = PRICE_CHANGES.get(model)
+    if change is not None and (day or datetime.now(timezone.utc).date()) >= date.fromisoformat(change[0]):
+        price = change[1]
     return round((tokens_in * price[0] + tokens_out * price[1]) / 1_000_000, 6)

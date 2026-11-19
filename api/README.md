@@ -34,8 +34,10 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 | Переменная | По умолчанию | Что это |
 |---|---|---|
 | `DATABASE_URL` | пусто | строка подключения Postgres (Supabase: пулер в режиме transaction); пусто — `503` на всё, кроме `/health` |
-| `ANTHROPIC_API_KEY` | пусто | ключ Claude API |
-| `READER_PROVIDER` | `claude` | `claude` или `fake` |
+| `ANTHROPIC_API_KEY` | пусто | ключ Claude API; нужен и при `READER_PROVIDER=openai` или `gemini`: проверка вопроса всегда на Claude |
+| `OPENAI_API_KEY` | пусто | ключ OpenAI; обязателен при `READER_PROVIDER=openai` |
+| `GOOGLE_AI_API_KEY` | пусто | ключ Google AI (Gemini); обязателен при `READER_PROVIDER=gemini` |
+| `READER_PROVIDER` | `claude` | `claude`, `openai`, `gemini` или `fake`; `READER_MODEL` должна быть моделью этого поставщика |
 | `READER_MODEL` | `claude-haiku-5-5` | модель чтеца, уточнений и карты дня |
 | `READER_EFFORT` | `medium` | `output_config.effort` чтеца (`low` … `max`); сравнить уровни на тестовом наборе |
 | `GUARD_MODEL` | `claude-haiku-5-5` | модель проверки вопроса (effort `low`) |
@@ -126,3 +128,19 @@ RLS включён на всех таблицах без политик, а `mig
 `--yes` не запускается; `--yes` — только после «да» владельца, ключ — из `deploy/.env`
 (`set -a && . deploy/.env && set +a`); пустой ключ останавливает прогон до первого вызова. Результаты —
 `api/evals/results/` (в git не попадают).
+
+## Сравнение чтецов (Claude / ChatGPT / Gemini)
+
+Спецификация: `docs/superpowers/specs/2026-11-19-reader-model-comparison-design.md`. Каждый платный шаг — только после
+«да» владельца с названной суммой; потолок `--max-usd` общий на этап (ответы + судья Gemini), расходы пишутся после
+каждого вызова (`calls.jsonl`, `spend.json`). Перед каждым платным шагом цены сверяются с официальными страницами.
+
+1. `python -m evals.compare --stage A` — оценка цены; `--yes --max-usd 0.2 --limit 1` — пробный прогон на первых
+   элементах; `--yes --max-usd 5` — ответы трёх моделей на 50 элементов `evals/compare_set.json` в
+   `evals/results/compare-<время>-A/` (существующая папка не перезаписывается).
+2. `python -m evals.compare_judges export <папка>` — слепые партии для Fable в отдельной папке
+   `evals/results/judging-<8 знаков>/` (путь — в `blind-key.json`); контроллер раздаёт их помощникам Fable по
+   `FABLE-INSTRUCTIONS.md` из этой папки; `check-fable <папка>` проверяет оценки.
+3. `python -m evals.compare_judges judge2 <папка> --yes` — второй судья Gemini 4 Argon в пределах того же потолка;
+   сначала 8 заведомо плохих ответов, при пропуске хотя бы одного — остановка (код 6, `--force` — продолжить).
+4. `python -m evals.compare_judges merge <папка>`, затем `python -m evals.compare_report <папка>` — `report.html`.
