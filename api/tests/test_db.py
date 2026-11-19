@@ -28,7 +28,7 @@ def test_split_sql():
 
 
 def test_migrate_creates_tables_with_rls_and_no_policies(fresh_db):
-    assert migrate(fresh_db, MIGRATIONS) == ["001_init"]
+    assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts"]
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT relname, relrowsecurity FROM pg_class"
                             " WHERE relnamespace = 'public'::regnamespace AND relkind = 'r'").fetchall()
@@ -48,8 +48,13 @@ def test_migrate_revokes_supabase_browser_roles(fresh_db):
     migrate(fresh_db, MIGRATIONS)
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT has_table_privilege('anon', 'public.readings', 'SELECT') AS a,"
-                            " has_table_privilege('authenticated', 'public.llm_calls', 'INSERT') AS b").fetchone()
-    assert rows == {"a": False, "b": False}
+                            " has_table_privilege('authenticated', 'public.llm_calls', 'INSERT') AS b,"
+                            " has_table_privilege('anon', 'public.profiles', 'SELECT') AS c,"
+                            " has_table_privilege('authenticated', 'public.claim_tokens', 'SELECT') AS d,"
+                            " has_table_privilege('anon', 'public.plus_waitlist', 'INSERT') AS e,"
+                            " has_table_privilege('authenticated', 'public.deleted_accounts', 'SELECT') AS f"
+                            ).fetchone()
+    assert rows == {"a": False, "b": False, "c": False, "d": False, "e": False, "f": False}
 
 
 def test_migrate_leaves_other_tables_alone(fresh_db):
@@ -270,3 +275,65 @@ def test_malformed_dsn_is_database_unavailable():
     with _pytest.raises(DatabaseUnavailable):
         with Database("postgresql://[bad").connect():
             pass
+
+
+
+# --- stage 4.3: migration 002 (spec 2026-11-19 §9) ---
+
+def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
+    reading = make_reading()
+    with fresh_db.connect() as conn:  # the database as stage 4.2 left it: 001 applied, a guest reading in it
+        conn.execute("CREATE TABLE schema_migrations ("
+                     "version text PRIMARY KEY, applied_at timestamptz NOT NULL DEFAULT now())")
+        for statement in split_sql((MIGRATIONS / "001_init.sql").read_text(encoding="utf-8")):
+            conn.execute(statement)
+        conn.execute("INSERT INTO schema_migrations (version) VALUES ('001_init')")
+        repo.insert_reading(conn, reading)
+    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts"]
+    with fresh_db.connect() as conn:
+        row = conn.execute("SELECT user_id, outcome, outcome_at, note, note_updated_at FROM readings WHERE id = %s",
+                           (reading["id"],)).fetchone()
+    assert row == {"user_id": None, "outcome": None, "outcome_at": None, "note": None, "note_updated_at": None}
+
+
+def test_002_indexes(db):
+    with db.connect() as conn:
+        names = {r["indexname"] for r in conn.execute("SELECT indexname FROM pg_indexes WHERE schemaname = 'public'")}
+    assert {"readings_user_created_idx", "claim_tokens_reading_idx", "claim_tokens_expires_idx",
+            "plus_waitlist_user_idx"} <= names
+
+
+def test_reading_keeps_its_account_and_diary_fields(db):
+    user = uuid.uuid4()
+    reading = make_reading(user_id=user, expires_at=None)
+    with db.connect() as conn:
+        repo.insert_reading(conn, reading)
+        conn.execute("UPDATE readings SET outcome = 'partly', note = %s WHERE id = %s", ("x" * 1000, reading["id"]))
+        saved = repo.get_reading(conn, reading["id"], T0 + timedelta(days=365))
+    assert (saved["user_id"], saved["expires_at"], saved["outcome"], len(saved["note"])) == (user, None, "partly",
+                                                                                            1000)
+
+
+@pytest.mark.parametrize("sql", [
+    "UPDATE readings SET outcome = 'maybe'",
+    "UPDATE readings SET note = repeat('x', 1001)",
+    "INSERT INTO plus_waitlist (email, lang, created_at) VALUES ('Person@Example.com', 'en', now())",
+    "INSERT INTO plus_waitlist (email, lang, created_at) VALUES ('person@example.com', 'fr', now())",
+])
+def test_002_checks(db, sql):
+    with db.connect() as conn:
+        repo.insert_reading(conn, make_reading())
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with db.connect() as conn:
+            conn.execute(sql)
+
+
+def test_claim_tokens_go_with_their_reading(db):
+    reading = make_reading()
+    with db.connect() as conn:
+        repo.insert_reading(conn, reading)
+        conn.execute("INSERT INTO claim_tokens (token_hash, reading_id, created_at, expires_at)"
+                     " VALUES ('hash', %s, %s, %s)", (reading["id"], T0, T0 + timedelta(days=7)))
+        conn.execute("DELETE FROM readings WHERE id = %s", (reading["id"],))
+        left = conn.execute("SELECT count(*) AS n FROM claim_tokens").fetchone()["n"]
+    assert left == 0

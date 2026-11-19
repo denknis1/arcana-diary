@@ -10,7 +10,8 @@ from psycopg.rows import dict_row
 
 log = logging.getLogger("arcana.db")
 
-APP_TABLES = ("readings", "followups", "daily_cache", "daily_draws", "usage", "guard_events", "llm_calls")
+APP_TABLES = ("readings", "followups", "daily_cache", "daily_draws", "usage", "guard_events", "llm_calls",
+              "claim_tokens", "profiles", "plus_waitlist", "deleted_accounts")
 APP_SEQUENCES = "llm_calls_id_seq"
 # Supabase gives these roles to the browser (PostgREST); our tables are for the API only
 PUBLIC_ROLES = ("anon", "authenticated")

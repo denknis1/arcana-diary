@@ -11,12 +11,13 @@ EMPTY_ANSWER = {"model": None, "fallback": None}
 
 
 def insert_reading(conn, reading: dict) -> None:
+    """user_id: the account of a signed-in person (spec 4.3 §5); without it the reading is a guest's."""
     conn.execute(
-        "INSERT INTO readings (id, guest_id, lang, kind, question, topic, situation, source_card_id, cards, seed,"
-        " verdict, guard_group, created_at, expires_at)"
-        " VALUES (%(id)s, %(guest_id)s, %(lang)s, %(kind)s, %(question)s, %(topic)s, %(situation)s,"
+        "INSERT INTO readings (id, guest_id, user_id, lang, kind, question, topic, situation, source_card_id, cards,"
+        " seed, verdict, guard_group, created_at, expires_at)"
+        " VALUES (%(id)s, %(guest_id)s, %(user_id)s, %(lang)s, %(kind)s, %(question)s, %(topic)s, %(situation)s,"
         " %(source_card_id)s, %(cards)s, %(seed)s, %(verdict)s, %(guard_group)s, %(created_at)s, %(expires_at)s)",
-        {**reading, "cards": Jsonb(reading["cards"])})
+        {"user_id": None, **reading, "cards": Jsonb(reading["cards"])})
 
 
 def get_reading(conn, reading_id, now) -> dict | None:
