@@ -46,3 +46,22 @@ def test_make_reader_follows_the_settings():
     gemini = make_reader(settings(READER_PROVIDER="gemini", READER_MODEL="gemini-3.8-flash"))
     assert isinstance(gemini, GeminiProvider) and gemini._effort == "medium"
     assert isinstance(make_reader(settings()), ClaudeProvider)
+
+
+def test_the_live_claude_process_does_not_import_the_other_sdks():
+    """READER_PROVIDER=claude (the default): neither app.main nor the startup reader pulls in openai/google-genai."""
+    import os
+    import subprocess
+    import sys
+    from pathlib import Path
+    code = ("import sys\n"
+            "import app.main\n"
+            "from app.config import load_settings\n"
+            "from app.reader.providers import make_reader\n"
+            "make_reader(load_settings({'ANTHROPIC_API_KEY': 'a'}))\n"
+            "print(sorted(m for m in sys.modules if m == 'openai' or m.startswith(('openai.', 'google.genai'))))\n")
+    env = {k: v for k, v in os.environ.items() if k != "READER_PROVIDER"}
+    out = subprocess.run([sys.executable, "-c", code], cwd=Path(__file__).resolve().parents[1], env=env,
+                         capture_output=True, text=True, timeout=60)
+    assert out.returncode == 0, out.stderr
+    assert out.stdout.strip() == "[]"

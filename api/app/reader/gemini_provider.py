@@ -4,8 +4,11 @@ stream(): client.models.generate_content_stream(model, contents, config) yields 
 "thought" parts) are the answer; the last chunk with usage_metadata carries the totals. Billed output =
 candidates_token_count + thoughts_token_count (thinking is billed as output). Effort -> ThinkingConfig.thinking_level:
 low -> LOW, medium -> MEDIUM, high/xhigh/max -> HIGH; no effort -> no thinking config (the model's default).
-A blocked prompt (prompt_feedback.block_reason) or a safety finish (SAFETY, PROHIBITED_CONTENT, BLOCKLIST, SPII) ->
-ProviderRefusal; MAX_TOKENS -> stop_reason "max_tokens". The SDK does not retry by default. An httpx2/httpx
+Finish reasons: STOP -> stop_reason "end_turn"; MAX_TOKENS -> "max_tokens"; a blocked prompt
+(prompt_feedback.block_reason) or a refusing finish (SAFETY, PROHIBITED_CONTENT, BLOCKLIST, SPII, RECITATION,
+LANGUAGE) -> ProviderRefusal (category = the reason, lower-case); any other finish reason, or none at all (a dropped
+stream), -> ProviderError(result) after the text: a cut answer is never taken as complete. The SDK does not retry
+by default. An httpx2/httpx
 TimeoutException -> ProviderTimeout; any other error -> ProviderError. HttpOptions.timeout is in milliseconds.
 The client is created lazily, so building the provider makes no network call.
 """
@@ -19,7 +22,8 @@ from google.genai import types
 from app.reader.errors import ProviderError, ProviderRefusal, ProviderTimeout, StreamResult
 
 _LEVELS = {"low": "LOW", "medium": "MEDIUM", "high": "HIGH", "xhigh": "HIGH", "max": "HIGH"}
-_REFUSALS = {"SAFETY", "PROHIBITED_CONTENT", "BLOCKLIST", "SPII"}
+_REFUSALS = {"SAFETY", "PROHIBITED_CONTENT", "BLOCKLIST", "SPII", "RECITATION", "LANGUAGE"}
+_STOPS = {"STOP": "end_turn", "MAX_TOKENS": "max_tokens"}
 _TIMEOUTS = (httpx2.TimeoutException, httpx.TimeoutException)
 
 
@@ -82,8 +86,15 @@ class GeminiProvider:
         thoughts = (getattr(usage, "thoughts_token_count", None) or 0) if usage is not None else 0
         tokens_out = None if out is None and not thoughts else (out or 0) + thoughts
         refused = blocked is not None or finish in _REFUSALS
-        stop = "refusal" if refused else ("max_tokens" if finish == "MAX_TOKENS" else "end_turn")
+        stop = "refusal" if refused else _STOPS.get(finish)  # None: an unknown finish or none at all
         return StreamResult(tokens_in, tokens_out, stop, self.model, (blocked or finish).lower() if refused else None)
+
+    @staticmethod
+    def _check(result: StreamResult, finish: str | None) -> None:
+        if result.stop_reason == "refusal":
+            raise ProviderRefusal(result)
+        if result.stop_reason is None:
+            raise ProviderError(f"finish reason {finish or 'missing'}: the answer may be cut", result)
 
     def stream(self, system: str, messages: list[dict], max_tokens: int):
         usage = finish = blocked = None
@@ -103,8 +114,7 @@ class GeminiProvider:
         except Exception as exc:  # SDK errors (APIError, ClientError, ServerError, ...)
             raise ProviderError(type(exc).__name__) from exc
         result = self._result(usage, finish, blocked)
-        if result.stop_reason == "refusal":
-            raise ProviderRefusal(result)
+        self._check(result, finish)
         yield result
 
     def complete_json(self, system: str, messages: list[dict], schema: dict, max_tokens: int):
@@ -118,9 +128,9 @@ class GeminiProvider:
             raise ProviderTimeout(type(exc).__name__) from exc
         except Exception as exc:
             raise ProviderError(type(exc).__name__) from exc
-        result = self._result(getattr(response, "usage_metadata", None), _finish(response), _blocked(response))
-        if result.stop_reason == "refusal":
-            raise ProviderRefusal(result)
+        finish = _finish(response)
+        result = self._result(getattr(response, "usage_metadata", None), finish, _blocked(response))
+        self._check(result, finish)
         if result.stop_reason == "max_tokens":
             raise ProviderError("max_tokens: structured output truncated", result)
         text = _text(response)

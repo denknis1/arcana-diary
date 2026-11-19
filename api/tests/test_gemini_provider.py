@@ -130,3 +130,30 @@ def test_complete_json_failures():
         provider(FakeModels(response=chunk(finish="SAFETY", usage=USAGE))).complete_json(SYSTEM, MSGS[:1], SCHEMA, 64)
     with pytest.raises(ProviderTimeout):
         provider(FakeModels(error=httpx2.ReadTimeout("slow"))).complete_json(SYSTEM, MSGS[:1], SCHEMA, 64)
+
+
+@pytest.mark.parametrize("finish, category", [("RECITATION", "recitation"), (types.FinishReason.LANGUAGE, "language")])
+def test_recitation_and_language_stops_are_refusals(finish, category):
+    with pytest.raises(ProviderRefusal) as exc:
+        list(provider(FakeModels(chunks=[chunk("Hel"), chunk(finish=finish, usage=USAGE)])).stream(SYSTEM, MSGS, 100))
+    assert exc.value.result == StreamResult(30, 20, "refusal", "gemini-3.8-flash", category)
+    with pytest.raises(ProviderRefusal):
+        provider(FakeModels(response=chunk('{"group": "ok"}', finish=finish, usage=USAGE))).complete_json(
+            SYSTEM, MSGS[:1], SCHEMA, 64)
+
+
+@pytest.mark.parametrize("finish", ["OTHER", types.FinishReason.MALFORMED_FUNCTION_CALL, "SOMETHING_NEW", None])
+def test_any_other_finish_or_none_is_an_error_after_the_text(finish):
+    pieces = []
+    stream = provider(FakeModels(chunks=[chunk("Hel"), chunk("lo", finish=finish, usage=USAGE)])).stream(
+        SYSTEM, MSGS, 100)
+    with pytest.raises(ProviderError) as exc:
+        for piece in stream:
+            pieces.append(piece)
+    assert pieces == ["Hel", "lo"]  # the text came, but it is not a complete answer
+    assert not isinstance(exc.value, (ProviderRefusal, ProviderTimeout))
+    assert (exc.value.result.tokens_in, exc.value.result.tokens_out) == (30, 20)  # billed: the meter keeps the usage
+    with pytest.raises(ProviderError) as exc:
+        provider(FakeModels(response=chunk('{"group": "ok"}', finish=finish, usage=USAGE))).complete_json(
+            SYSTEM, MSGS[:1], SCHEMA, 64)
+    assert not isinstance(exc.value, ProviderRefusal) and exc.value.result.tokens_in == 30
