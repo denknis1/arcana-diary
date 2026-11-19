@@ -2,7 +2,7 @@
 // with every request. Streams are read through fetch (spec 4.4a §4). Nothing here touches the page.
 import { classifyError, type ErrorKind } from './errors';
 import { followupRefusal, type FollowupBody, type FollowupRefusal } from './followups';
-import { readSse, type SseEvent } from './sse';
+import { readSse, STREAM_IDLE_MS, type SseEvent } from './sse';
 import type { CreateBody, CrisisPayload, DailyCard, Lang, ReadingCreated, ReadingView } from './types';
 
 export type FetchFn = (input: string, init?: RequestInit) => Promise<Response>;
@@ -60,7 +60,26 @@ function isStream(response: Response): boolean {
   return response.ok && response.body !== null && (response.headers.get('content-type') ?? '').includes('text/event-stream');
 }
 
-export function createApi(fetchFn: FetchFn): Api {
+export interface ApiOptions {
+  /** Silence on a stream, in ms, after which the request is aborted and counts as broken. */
+  idleMs?: number;
+}
+
+/** An abort signal that fires when nothing happened for `idleMs`; `touch` re-arms it, `stop` ends it for good. */
+function idleWatchdog(idleMs: number): { signal: AbortSignal; touch: () => void; stop: () => void } {
+  const controller = new AbortController();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const touch = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => controller.abort(), idleMs);
+  };
+  touch();
+  return { signal: controller.signal, touch, stop: () => clearTimeout(timer) };
+}
+
+export function createApi(fetchFn: FetchFn, options: ApiOptions = {}): Api {
+  const idleMs = options.idleMs ?? STREAM_IDLE_MS;
+
   async function call<T>(path: string, init?: RequestInit): Promise<ApiResult<T>> {
     let response: Response;
     try {
@@ -74,21 +93,28 @@ export function createApi(fetchFn: FetchFn): Api {
   }
 
   async function stream(path: string, init: RequestInit, onEvent: (event: SseEvent) => void): Promise<StreamEnd> {
-    let response: Response;
+    const watch = idleWatchdog(idleMs);
     try {
-      response = await fetchFn(path, { ...init, headers: { ...(init.headers ?? {}), accept: 'text/event-stream' } });
-    } catch {
-      return { type: 'broken' };
-    }
-    if (!isStream(response)) {
-      const body = await jsonBody(response);
-      return { type: 'error', error: classifyError(response.ok ? 500 : response.status, body), body };
-    }
-    try {
-      await readSse(response.body!, onEvent);
-      return { type: 'ended' };
-    } catch {
-      return { type: 'broken' };
+      let response: Response;
+      try {
+        response = await fetchFn(path, {
+          ...init, headers: { ...(init.headers ?? {}), accept: 'text/event-stream' }, signal: watch.signal,
+        });
+      } catch {
+        return { type: 'broken' };
+      }
+      if (!isStream(response)) {
+        const body = await jsonBody(response);
+        return { type: 'error', error: classifyError(response.ok ? 500 : response.status, body), body };
+      }
+      try {
+        await readSse(response.body!, onEvent, watch.touch);
+        return { type: 'ended' };
+      } catch {
+        return { type: 'broken' };
+      }
+    } finally {
+      watch.stop();
     }
   }
 
@@ -111,20 +137,28 @@ export function createApi(fetchFn: FetchFn): Api {
       return call<ReadingView>(withQuery(readingPath(id), { tz }));
     },
     async postFollowup(id, body, onEvent) {
-      let response: Response;
+      // The API sends headers only after its question check, so a request that breaks here may already have
+      // stored (and charged) the follow-up: report it as a broken stream and let the caller restore from GET.
+      const watch = idleWatchdog(idleMs);
       try {
-        response = await fetchFn(readingPath(id, '/followups'), {
-          method: 'POST', headers: { ...JSON_HEADERS, accept: 'text/event-stream' }, body: JSON.stringify(body),
-        });
-      } catch {
-        return { type: 'refused', refusal: { type: 'error', error: 'network' } };
-      }
-      if (!isStream(response)) return { type: 'refused', refusal: followupRefusal(response.status, await jsonBody(response)) };
-      try {
-        await readSse(response.body!, onEvent);
-        return { type: 'stream', end: { type: 'ended' } };
-      } catch {
-        return { type: 'stream', end: { type: 'broken' } };
+        let response: Response;
+        try {
+          response = await fetchFn(readingPath(id, '/followups'), {
+            method: 'POST', headers: { ...JSON_HEADERS, accept: 'text/event-stream' }, body: JSON.stringify(body),
+            signal: watch.signal,
+          });
+        } catch {
+          return { type: 'stream', end: { type: 'broken' } };
+        }
+        if (!isStream(response)) return { type: 'refused', refusal: followupRefusal(response.status, await jsonBody(response)) };
+        try {
+          await readSse(response.body!, onEvent, watch.touch);
+          return { type: 'stream', end: { type: 'ended' } };
+        } catch {
+          return { type: 'stream', end: { type: 'broken' } };
+        }
+      } finally {
+        watch.stop();
       }
     },
     getDaily(lang, tz) {

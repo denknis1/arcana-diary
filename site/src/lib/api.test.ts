@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createApi, withQuery } from './api';
 import type { SseEvent } from './sse';
-import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText } from './testing/fakes';
+import { brokenSseResponse, fakeFetch, jsonResponse, slowSseResponse, sseResponse, sseText, stalledSseResponse } from './testing/fakes';
 
 const CREATED = {
   id: 'r1', lang: 'en', kind: 'three', soft_line: null, verdict: null, remaining: 2,
@@ -87,6 +87,12 @@ describe('follow-ups', () => {
     expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'crisis', payload: CRISIS } });
     expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'error', error: 'attempts' } });
   });
+
+  it('treats a request that throws as a broken stream (to be restored), not a network refusal', async () => {
+    const { fetch } = fakeFetch(new TypeError('offline'));
+    const result = await createApi(fetch).postFollowup('r1', { question: 'q', use_reading: false }, () => {});
+    expect(result).toEqual({ type: 'stream', end: { type: 'broken' } });
+  });
 });
 
 describe('other calls', () => {
@@ -107,5 +113,54 @@ describe('other calls', () => {
   it('leaves out empty query values', () => {
     expect(withQuery('/api/daily', { lang: 'en', tz: undefined })).toBe('/api/daily?lang=en');
     expect(withQuery('/x', {})).toBe('/x');
+  });
+});
+
+describe('idle watchdog', () => {
+  const IDLE = 30;
+
+  it('ends a stalled reading stream as broken, after passing on what arrived', async () => {
+    const { fetch, signals } = fakeFetch(stalledSseResponse(sseText([['section', { name: 'headline' }]])));
+    const events: SseEvent[] = [];
+    const end = await createApi(fetch, { idleMs: IDLE }).streamReading('r1', undefined, (e) => events.push(e));
+    expect(end).toEqual({ type: 'broken' });
+    expect(events).toHaveLength(1);
+    expect(signals[0]?.aborted).toBe(true);
+  });
+
+  it('ends a stalled retry as broken', async () => {
+    const { fetch } = fakeFetch(stalledSseResponse());
+    expect(await createApi(fetch, { idleMs: IDLE }).retryReading('r1', undefined, () => {})).toEqual({ type: 'broken' });
+  });
+
+  it('ends a stalled follow-up as stream/broken', async () => {
+    const { fetch } = fakeFetch(stalledSseResponse());
+    const result = await createApi(fetch, { idleMs: IDLE }).postFollowup('r1', { question: 'q', use_reading: false }, () => {});
+    expect(result).toEqual({ type: 'stream', end: { type: 'broken' } });
+  });
+
+  it('aborts while waiting for the response headers', async () => {
+    const hanging: Parameters<typeof createApi>[0] = (_url, init) =>
+      new Promise((_resolve, reject) => init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError'))));
+    const api = createApi(hanging, { idleMs: IDLE });
+    expect(await api.streamReading('r1', undefined, () => {})).toEqual({ type: 'broken' });
+    expect(await api.postFollowup('r1', { question: 'q', use_reading: false }, () => {})).toEqual({ type: 'stream', end: { type: 'broken' } });
+  });
+
+  it('does not abort a stream that keeps sending chunks more often than the idle time', async () => {
+    const pieces = ['a', 'b', 'c', 'd', 'e', 'f'].map((n) => sseText([['text', { name: n }]]));
+    const { fetch, signals } = fakeFetch(slowSseResponse(pieces, 15));
+    const events: SseEvent[] = [];
+    const end = await createApi(fetch, { idleMs: IDLE }).streamReading('r1', undefined, (e) => events.push(e));
+    expect(end).toEqual({ type: 'ended' });
+    expect(events).toHaveLength(6);
+    expect(signals[0]?.aborted).toBe(false);
+  });
+
+  it('clears the timer on a normal end (no late abort)', async () => {
+    const { fetch, signals } = fakeFetch(sseResponse(sseText([['done', {}]])));
+    expect(await createApi(fetch, { idleMs: 10 }).streamReading('r1', undefined, () => {})).toEqual({ type: 'ended' });
+    await new Promise((resolve) => setTimeout(resolve, 40));
+    expect(signals[0]?.aborted).toBe(false);
   });
 });

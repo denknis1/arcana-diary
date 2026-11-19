@@ -33,6 +33,49 @@ export function brokenSseResponse(text: string): Response {
   return new Response(body, { status: 200, headers: { 'content-type': 'text/event-stream' } });
 }
 
+const stalls = new WeakMap<Response, ReadableStreamDefaultController<Uint8Array>>();
+
+/** A stream that sends `text` and then goes silent for good (half-open connection); aborting the request ends it. */
+export function stalledSseResponse(text = ''): Response {
+  let control!: ReadableStreamDefaultController<Uint8Array>;
+  const body = new ReadableStream<Uint8Array>({
+    start(controller) {
+      control = controller;
+      if (text) controller.enqueue(bytes(text));
+    },
+  });
+  const response = new Response(body, { status: 200, headers: { 'content-type': 'text/event-stream' } });
+  stalls.set(response, control);
+  return response;
+}
+
+/** A stream that sends each piece `everyMs` apart, then ends; aborting the request breaks it. */
+export function slowSseResponse(pieces: string[], everyMs: number): Response {
+  let index = 0;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let control!: ReadableStreamDefaultController<Uint8Array>;
+  const next = () => {
+    timer = setTimeout(() => {
+      if (index < pieces.length) {
+        control.enqueue(bytes(pieces[index++]));
+        next();
+      } else control.close();
+    }, everyMs);
+  };
+  const body = new ReadableStream<Uint8Array>({
+    start(controller) {
+      control = controller;
+      next();
+    },
+    cancel() {
+      clearTimeout(timer);
+    },
+  });
+  const response = new Response(body, { status: 200, headers: { 'content-type': 'text/event-stream' } });
+  stalls.set(response, { error: (e: unknown) => { clearTimeout(timer); control.error(e); } } as ReadableStreamDefaultController<Uint8Array>);
+  return response;
+}
+
 export function jsonResponse(status: number, body: unknown): Response {
   return new Response(body === null ? null : JSON.stringify(body), {
     status, headers: { 'content-type': 'application/json' },
@@ -40,15 +83,23 @@ export function jsonResponse(status: number, body: unknown): Response {
 }
 
 /** Answers calls in order; an Error in the queue is thrown (no network). */
-export function fakeFetch(...queue: Array<Response | Error>): { fetch: FetchFn; calls: Call[] } {
+export function fakeFetch(...queue: Array<Response | Error>): { fetch: FetchFn; calls: Call[]; signals: Array<AbortSignal | undefined> } {
   const calls: Call[] = [];
+  const signals: Array<AbortSignal | undefined> = [];
   const fetchFn: FetchFn = async (url, init) => {
     const headers = (init?.headers ?? {}) as Record<string, string>;
+    signals.push(init?.signal ?? undefined);
     calls.push({ url, method: init?.method ?? 'GET', body: init?.body ? JSON.parse(String(init.body)) : undefined, headers });
     const next = queue.shift();
     if (!next) throw new Error(`unexpected call ${url}`);
     if (next instanceof Error) throw next;
+    const stall = stalls.get(next);
+    if (stall && init?.signal) {
+      const abort = () => stall.error(new DOMException('aborted', 'AbortError'));
+      if (init.signal.aborted) abort();
+      else init.signal.addEventListener('abort', abort, { once: true });
+    }
     return next;
   };
-  return { fetch: fetchFn, calls };
+  return { fetch: fetchFn, calls, signals };
 }

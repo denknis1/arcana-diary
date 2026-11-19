@@ -57,14 +57,23 @@ export class SseParser {
   }
 }
 
-/** Reads a whole SSE body; resolves when the body ends, rejects if the connection breaks. */
-export async function readSse(body: ReadableStream<Uint8Array>, onEvent: (event: SseEvent) => void): Promise<void> {
+/** How long a stream may stay silent before it counts as broken (the API sends no heartbeat). */
+export const STREAM_IDLE_MS = 60_000;
+
+/** Reads a whole SSE body; resolves when the body ends, rejects if the connection breaks.
+ *  `onChunk` is called for every received chunk (the idle watchdog resets on it). */
+export async function readSse(
+  body: ReadableStream<Uint8Array>,
+  onEvent: (event: SseEvent) => void,
+  onChunk?: () => void,
+): Promise<void> {
   const parser = new SseParser(onEvent);
   const decoder = new TextDecoder('utf-8');
   const reader = body.getReader();
   for (;;) {
     const { done, value } = await reader.read();
     if (done) break;
+    onChunk?.();
     parser.feed(decoder.decode(value, { stream: true }));
   }
   parser.feed(decoder.decode());
