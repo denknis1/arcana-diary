@@ -23,8 +23,8 @@ from app.config import FOLLOWUP_ATTEMPTS
 from app.db import DatabaseUnavailable
 from app.reader import check, compose, fallback
 from app.reader.engine import Chunk, Failed, run_stream
-from app.reader.flow import (Detached, crisis_answer, day_start, followup_text, followups_left, log_call,
-                             over_budget, shown_sections, soft_line, sse, verdict_label)
+from app.reader.flow import (Detached, crisis_answer, day_start, followup_text, followups_left, load_history,
+                             log_call, over_budget, shown_sections, soft_line, sse, verdict_label)
 
 log = logging.getLogger("arcana.reader")
 
@@ -52,6 +52,7 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
                        "prompt_version": prompt.version, "soft_line": soft_line(ctx, lang, group)})
     try:
         spent = over_budget(ctx)
+        history = load_history(ctx, reading)  # stage 4.3 §7: the same block as the reading had
     except DatabaseUnavailable:
         yield sse("error", {"reason": "db"})
         return
@@ -59,10 +60,10 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
     parts, outcome, held, crisis = [], None, "", False
     if not spent:
         excerpts = ctx.cards.excerpts(reading["cards"], lang, reading["topic"])
-        history = [(f["question"], followup_text(f)) for f in previous if followup_text(f)]
+        earlier = [(f["question"], followup_text(f)) for f in previous if followup_text(f)]
         messages = compose.followup_messages(reading, excerpts, verdict_label(ctx, reading),
-                                             compose.answer_text(shown_sections(reading)), history,
-                                             followup["question"], group)
+                                             compose.answer_text(shown_sections(reading)), earlier,
+                                             followup["question"], group, history)
         for item in run_stream(ctx.reader, prompt.text, messages, FOLLOWUP_MAX_TOKENS,
                                ctx.settings.first_token_timeout_s):
             if not isinstance(item, Chunk):
@@ -105,7 +106,7 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
                 gone = not repo.save_followup_answer(conn, followup["id"], answer, ctx.reader.model, counted=not replace)
             # §10.1: a failed paid follow-up gives back its reading, once: only the call that removed the row
             if paid and not crisis and not gone and (answer is None or replace):
-                limits.give_back_slot(conn, limits.guest_subject(reading["guest_id"]), followup["paid_day"])
+                limits.give_back_slot(conn, limits.owner_quota(reading).subject, followup["paid_day"])
     except DatabaseUnavailable:
         if crisis:  # the helplines need no database: the client gets them first (as in the reading flow)
             yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))

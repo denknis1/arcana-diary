@@ -18,6 +18,7 @@ def test_defaults():
     assert s.daily_budget_usd == 5.0
     assert s.guard_budget_usd == 1.0
     assert s.daily_job_interval_s == 3600.0
+    assert s.cleanup_interval_s == 3600.0  # stage 4.3 §10: hourly, not daily
     assert s.run_migrations is True
     assert s.database_url == ""
     assert (s.content_dir / "deck.json").is_file()
@@ -154,3 +155,10 @@ def test_guard_stays_on_claude():
 def test_keys_default_to_empty():
     s = load_settings({})
     assert (s.openai_api_key, s.google_ai_api_key) == ("", "")
+
+
+def test_supabase_url():
+    assert load_settings({}).supabase_url == ""  # sign-in off
+    assert load_settings({"SUPABASE_URL": " https://abc.supabase.co/ "}).supabase_url == "https://abc.supabase.co"
+    with pytest.raises(ValueError, match="SUPABASE_URL"):
+        load_settings({"SUPABASE_URL": "http://abc.supabase.co"})

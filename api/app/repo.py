@@ -11,12 +11,15 @@ EMPTY_ANSWER = {"model": None, "fallback": None}
 
 
 def insert_reading(conn, reading: dict) -> None:
+    """user_id: the account of a signed-in person (spec 4.3 §5); without it the reading is a guest's.
+    guard_source: GuardResult.source of the question check (migration 003); None without a question."""
     conn.execute(
-        "INSERT INTO readings (id, guest_id, lang, kind, question, topic, situation, source_card_id, cards, seed,"
-        " verdict, guard_group, created_at, expires_at)"
-        " VALUES (%(id)s, %(guest_id)s, %(lang)s, %(kind)s, %(question)s, %(topic)s, %(situation)s,"
-        " %(source_card_id)s, %(cards)s, %(seed)s, %(verdict)s, %(guard_group)s, %(created_at)s, %(expires_at)s)",
-        {**reading, "cards": Jsonb(reading["cards"])})
+        "INSERT INTO readings (id, guest_id, user_id, lang, kind, question, topic, situation, source_card_id, cards,"
+        " seed, verdict, guard_group, guard_source, created_at, expires_at)"
+        " VALUES (%(id)s, %(guest_id)s, %(user_id)s, %(lang)s, %(kind)s, %(question)s, %(topic)s, %(situation)s,"
+        " %(source_card_id)s, %(cards)s, %(seed)s, %(verdict)s, %(guard_group)s, %(guard_source)s, %(created_at)s,"
+        " %(expires_at)s)",
+        {"user_id": None, "guard_source": None, **reading, "cards": Jsonb(reading["cards"])})
 
 
 def get_reading(conn, reading_id, now) -> dict | None:
@@ -33,6 +36,11 @@ def claim_stream(conn, reading_id, now) -> bool:
     return row is not None
 
 
+def release_stream(conn, reading_id) -> None:
+    """м-н8: a generation stopped by the database frees its claim at once, not after STREAM_CLAIM_STALE."""
+    conn.execute("UPDATE readings SET stream_started_at = NULL WHERE id = %s AND answer IS NULL", (reading_id,))
+
+
 def save_answer(conn, reading_id, answer: dict, shown: str, model: str | None, prompt_version: str) -> None:
     conn.execute("UPDATE readings SET answer = %s, answer_shown = %s, model = %s, prompt_version = %s,"
                  " stream_started_at = NULL WHERE id = %s",
@@ -44,6 +52,23 @@ def save_crisis(conn, reading_id, model: str | None, prompt_version: str) -> Non
     conn.execute("UPDATE readings SET question = NULL, topic = NULL, situation = NULL, answer = %s,"
                  " answer_shown = 'crisis', model = %s, prompt_version = %s, stream_started_at = NULL WHERE id = %s",
                  (Jsonb(EMPTY_ANSWER), model, prompt_version, reading_id))
+
+
+def topic_history(conn, user_id, topic: str, before, exclude_id, limit: int) -> list[dict]:
+    """Stage 4.3 §7: the account's latest earlier answered readings on the same topic, oldest first. Only what the
+    reader may see is selected — the time, the question and the stored answer (for its headline); never the note
+    or the outcome. A crisis answer has no topic (save_crisis), so it never matches. Only guard_group 'ok': a
+    question the check redirected (health, safety, another person, money) must not come back by name in a later
+    reading, where the rule "do not name what you decline" no longer knows about it. And only a question the check
+    really classified (guard_source 'terms' or 'model'): a timeout or an error also gives 'ok' (fail open), and a
+    row from before migration 003 has no source — neither is a checked 'ok' (final review I2). A reading without a
+    question has nothing to check and stays in."""
+    rows = conn.execute(
+        "SELECT created_at, question, answer, answer_shown FROM readings WHERE user_id = %s AND topic = %s"
+        " AND id <> %s AND created_at < %s AND answer_shown IN ('model', 'fallback') AND guard_group = 'ok'"
+        " AND (question IS NULL OR guard_source IN ('terms', 'model'))"
+        " ORDER BY created_at DESC LIMIT %s", (user_id, topic, exclude_id, before, limit)).fetchall()
+    return rows[::-1]
 
 
 def reset_for_retry(conn, reading_id, retry_limit: int) -> int | None:
@@ -92,15 +117,14 @@ def delete_stale_followups(conn, reading_id, before) -> list:
     return [r["paid_day"] for r in rows]
 
 
-def delete_all_stale_followups(conn, before) -> list[tuple]:
+def delete_all_stale_followups(conn, before) -> list[dict]:
     """Housekeeping: every unanswered follow-up older than `before` (cut by a restart), across readings.
 
-    Returns (guest_id, paid_day) per deleted row; RETURNING hands each paid row to exactly one caller.
+    Returns guest_id, user_id and paid_day per deleted row; RETURNING hands each paid row to exactly one caller.
     """
-    rows = conn.execute("DELETE FROM followups f USING readings r WHERE r.id = f.reading_id"
-                        " AND f.answer IS NULL AND f.created_at < %s RETURNING r.guest_id, f.paid_day",
+    return conn.execute("DELETE FROM followups f USING readings r WHERE r.id = f.reading_id"
+                        " AND f.answer IS NULL AND f.created_at < %s RETURNING r.guest_id, r.user_id, f.paid_day",
                         (before,)).fetchall()
-    return [(r["guest_id"], r["paid_day"]) for r in rows]
 
 
 def get_daily_cache(conn, card_id: str, reversed_: bool, lang: str, day) -> dict | None:

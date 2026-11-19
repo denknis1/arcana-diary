@@ -6,13 +6,13 @@ from typing import Literal
 from fastapi import APIRouter, Request
 from pydantic import BaseModel, Field, field_validator
 
-from app import limits, repo
-from app.config import DAILY_LIMIT, GUEST_RETENTION_DAYS, IP_GUARD_LIMIT, RETRY_LIMIT
+from app import account_repo, limits, repo
+from app.config import GUEST_RETENTION_DAYS, IP_GUARD_LIMIT, RETRY_LIMIT
 from app.context import get_ctx
 from app.draw import draw_spread, new_seed
 from app.reader import flow
 from app.reader.compose import SITUATIONS
-from app.routes.common import country_hint, is_owner, not_found, respond, stream_response
+from app.routes.common import country_hint, not_found, owns, respond, stream_response, viewer
 from app.safety.guard import NO_VERDICT_GROUPS, GuardUnavailable
 
 router = APIRouter(prefix="/api")
@@ -53,8 +53,8 @@ def load_reading(ctx, reading_id) -> dict | None:
 def create_reading(body: ReadingIn, request: Request):
     ctx = get_ctx(request)
     now = ctx.clock()
-    guest_id, is_new = limits.guest_from_request(request)
-    new_guest = guest_id if is_new else None
+    who = viewer(ctx, request)
+    guest_id, new_guest = who.guest_id, who.new_guest
     card_ok = body.card_id is None or body.card_id in ctx.cards.deck
     if (body.kind == "card_page") != (body.card_id is not None) or not card_ok:
         return respond(422, {"reason": "invalid", "fields": ["card_id"]}, new_guest)
@@ -65,16 +65,19 @@ def create_reading(body: ReadingIn, request: Request):
     ip = limits.client_ip(request, ctx.settings.trust_cloudflare)
     ip_hash = ctx.salt.hash_ip(ip, now)
     hits = ctx.burst.hit(ip_hash, now)
+    quota = who.quota  # stage 4.3 §5: the account's 5 when signed in, else this device's 3
     with ctx.db.connect() as conn:
+        if who.user:  # stage 4.3 §8: a token that outlived its account — before any model call
+            account_repo.refuse_deleted(conn, who.user.id)
         ip_used = limits.used(conn, limits.ip_subject(ip_hash), ip_day)
         checks = limits.used(conn, limits.guard_ip_subject(ip_hash), ip_day)
-        guest_used = limits.used(conn, limits.guest_subject(guest_id), day)
+        quota_used = limits.used(conn, quota.subject, day)
     if limits.ip_blocked(ip_used):
         return respond(429, {"reason": "ip_limit", "remaining": 0}, new_guest)
     # В18: question checks count too, so crisis answers (no reading, no slot) also lead to Turnstile
     if limits.needs_turnstile(hits, max(ip_used, checks)) and not ctx.turnstile.verify(body.turnstile_token):
         return respond(403, {"reason": "turnstile", "sitekey": ctx.settings.turnstile_sitekey}, new_guest)
-    if guest_used >= DAILY_LIMIT:
+    if quota_used >= quota.limit:
         return respond(429, {"reason": "limit", "remaining": 0}, new_guest)
     question = clean(body.question)
     reading_id = uuid.uuid4()
@@ -96,36 +99,43 @@ def create_reading(body: ReadingIn, request: Request):
             flow.record_guard(conn, ctx, guard, body.lang, ip_day, None if guard.group == "crisis" else reading_id)
     if guard is not None and guard.group == "crisis":
         payload = flow.crisis_answer(ctx, body.lang, country_hint(ctx, request), body.tz, guard.violence)
-        return respond(200, {**payload, "remaining": DAILY_LIMIT - guest_used}, new_guest)
+        return respond(200, {**payload, "remaining": quota.limit - quota_used}, new_guest)
     group = guard.group if guard else "ok"
     seed = new_seed()
     cards = draw_spread(seed, body.kind, ctx.cards.order)
     with_verdict = body.kind == "yes_no" and group not in NO_VERDICT_GROUPS  # §8.1
     reading = {
-        "id": reading_id, "guest_id": guest_id, "lang": body.lang, "kind": body.kind, "question": question,
+        "id": reading_id, "guest_id": guest_id, "user_id": who.user.id if who.user else None,
+        "lang": body.lang, "kind": body.kind, "question": question,
         "topic": body.topic, "situation": body.situation, "source_card_id": body.card_id, "cards": cards,
         "seed": seed, "verdict": ctx.cards.verdict(cards) if with_verdict else None, "guard_group": group,
-        "created_at": now, "expires_at": now + timedelta(days=GUEST_RETENTION_DAYS),
+        "guard_source": guard.source if guard else None,  # final review I2: only 'terms'/'model' feed the memory
+        # an account's readings stay until it deletes them; a guest's live GUEST_RETENTION_DAYS (stage 4.3 §4)
+        "created_at": now, "expires_at": None if who.user else now + timedelta(days=GUEST_RETENTION_DAYS),
     }
     try:
         with ctx.db.connect() as conn:
-            count = limits.take_reading_slots(conn, guest_id, day, ip_hash, ip_day)  # §8.11: atomic
+            if who.user:  # and again in the insert transaction: the account may have gone meanwhile
+                account_repo.lock_account(conn, who.user.id)  # R4: takes turns with delete_account
+                account_repo.refuse_deleted(conn, who.user.id)
+            count = limits.take_reading_slots(conn, quota, day, ip_hash, ip_day)  # §8.11: atomic
             repo.insert_reading(conn, reading)
     except limits.LimitReached as exc:
         return respond(429, {"reason": exc.reason, "remaining": 0}, new_guest)
     view = flow.reading_view(ctx, reading, owner=True)
-    return respond(201, {**view, "remaining": DAILY_LIMIT - count}, new_guest)
+    return respond(201, {**view, "remaining": quota.limit - count}, new_guest)
 
 
 @router.get("/readings/{reading_id}")
 def get_reading(reading_id: uuid.UUID, request: Request, tz: str | None = None):
     ctx = get_ctx(request)
+    who = viewer(ctx, request)
     with ctx.db.connect() as conn:
         reading = repo.get_reading(conn, reading_id, ctx.clock())
         followups = repo.list_followups(conn, reading_id) if reading else []
     if reading is None:
         return not_found()
-    owner = is_owner(request, reading)
+    owner = owns(who, reading)
     if reading["answer_shown"] == "crisis":
         if not owner:
             return not_found()
@@ -138,10 +148,11 @@ def get_reading(reading_id: uuid.UUID, request: Request, tz: str | None = None):
 def stream_reading(reading_id: uuid.UUID, request: Request, tz: str | None = None):
     """The first stream only for the owner (§8.3); afterwards the saved answer replays for anyone with the link."""
     ctx = get_ctx(request)
+    who = viewer(ctx, request)
     reading = load_reading(ctx, reading_id)
     if reading is None:
         return not_found()
-    if not is_owner(request, reading):
+    if not owns(who, reading):
         if reading["answer_shown"] == "crisis":
             return not_found()
         if reading["answer"] is None:
@@ -153,8 +164,9 @@ def stream_reading(reading_id: uuid.UUID, request: Request, tz: str | None = Non
 def retry_reading(reading_id: uuid.UUID, request: Request, tz: str | None = None):
     """After a fallback: a new attempt that does not use the daily limit, at most RETRY_LIMIT times (§5.1)."""
     ctx = get_ctx(request)
+    who = viewer(ctx, request)
     reading = load_reading(ctx, reading_id)
-    if reading is None or not is_owner(request, reading):
+    if reading is None or not owns(who, reading):
         return not_found()
     if reading["answer_shown"] != "fallback":
         return respond(409, {"reason": "not_fallback"})

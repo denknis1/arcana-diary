@@ -11,6 +11,7 @@ REPO_ROOT = APP_DIR.parents[1]
 DEFAULT_MODEL = "claude-haiku-5-5"
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
 DAILY_LIMIT = 3
+USER_DAILY_LIMIT = 5       # signed in: per account, on every device (spec 2026-11-19 stage 4.3 §5)
 IP_HARD_LIMIT = 60
 FOLLOWUP_LIMIT = 2         # free follow-ups per reading; each next one uses a reading of DAILY_LIMIT (§10.1)
 FOLLOWUP_ATTEMPTS = 8      # §10.2: follow-up requests per reading, crisis answers, refusals and failures included
@@ -18,6 +19,11 @@ IP_FOLLOWUP_LIMIT = 40     # §9.2: follow-up requests per address per UTC day
 IP_GUARD_LIMIT = 60        # §10.5 (В18): question checks by the model per address per UTC day on POST /api/readings
 RETRY_LIMIT = 2
 GUEST_RETENTION_DAYS = 7
+CLAIM_TOKEN_DAYS = 7           # stage 4.3 §4.2: a one-time token to save a guest reading from another device
+CLAIM_TOKENS_PER_READING = 5   # live tokens per reading at once ("Save to diary" may be pressed again, not forever)
+NOTE_MAX_CHARS = 1000          # stage 4.3 §6: the private note of a diary entry (never sent to a model)
+HISTORY_LIMIT = 5              # stage 4.3 §7: earlier readings of the same topic in the reader's input
+WAITLIST_IP_LIMIT = 5          # stage 4.3 §8: Plus waitlist requests per address per UTC day
 
 PROVIDERS = ("claude", "openai", "gemini", "fake")
 KEY_NAMES = {"claude": "ANTHROPIC_API_KEY", "openai": "OPENAI_API_KEY", "gemini": "GOOGLE_AI_API_KEY"}
@@ -72,6 +78,7 @@ class Settings:
     cleanup_interval_s: float
     daily_job_interval_s: float
     run_migrations: bool
+    supabase_url: str  # stage 4.3 §3: the project's public address; "" — sign-in is off
 
 
 def _bool(value: str) -> bool:
@@ -83,6 +90,14 @@ def _true_or_false(name: str, value: str) -> bool:
     if value not in ("true", "false"):
         raise ValueError(f"{name} must be exactly 'true' or 'false', got {value!r}")
     return value == "true"
+
+
+def _supabase_url(value: str) -> str:
+    """Tokens must name <SUPABASE_URL>/auth/v1 as their issuer; the keys come from the same address."""
+    url = value.strip().rstrip("/")
+    if url and not url.startswith("https://"):
+        raise ValueError(f"SUPABASE_URL must start with https://, got {url!r}")
+    return url
 
 
 def load_settings(env: Mapping[str, str] | None = None) -> Settings:
@@ -130,9 +145,10 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         guard_budget_usd=float(env.get("GUARD_BUDGET_USD") or 1),
         first_token_timeout_s=float(env.get("FIRST_TOKEN_TIMEOUT_S") or 15),
         guard_timeout_s=float(env.get("GUARD_TIMEOUT_S") or 5),
-        cleanup_interval_s=float(env.get("CLEANUP_INTERVAL_S") or 86400),
+        cleanup_interval_s=float(env.get("CLEANUP_INTERVAL_S") or 3600),  # stage 4.3 §10: hourly
         daily_job_interval_s=float(env.get("DAILY_JOB_INTERVAL_S") or 3600),
         run_migrations=_bool(env.get("RUN_MIGRATIONS") or "true"),
+        supabase_url=_supabase_url(env.get("SUPABASE_URL") or ""),
     )
 
 

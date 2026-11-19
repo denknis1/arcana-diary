@@ -9,7 +9,8 @@ from starlette.requests import Request
 
 from app import limits, repo
 from app.limits import (BurstCounter, DailySalt, LimitReached, client_country, client_ip, give_back_slot,
-                        guest_from_request, guest_subject, ip_blocked, ip_key, ip_subject, local_day, needs_turnstile,
+                        guest_from_request, guest_quota, guest_subject, ip_blocked, ip_key, ip_subject, local_day,
+                        needs_turnstile,
                         parse_guest_id, remaining, resolve_tz, set_guest_cookie, take_followup_slots,
                         take_reading_slots, take_slot, used)
 from helpers import make_reading
@@ -213,8 +214,8 @@ def test_take_slot_is_atomic_under_concurrency(db):
 def test_take_reading_slots_counts_guest_and_address(db):
     other = uuid.uuid4()
     with db.connect() as conn:
-        assert take_reading_slots(conn, GID, DAY, "hash-1", DAY) == 1
-        assert take_reading_slots(conn, other, DAY, "hash-1", DAY) == 1
+        assert take_reading_slots(conn, guest_quota(GID), DAY, "hash-1", DAY) == 1
+        assert take_reading_slots(conn, guest_quota(other), DAY, "hash-1", DAY) == 1
         assert used(conn, guest_subject(GID), DAY) == 1
         assert used(conn, ip_subject("hash-1"), DAY) == 2
 
@@ -222,9 +223,9 @@ def test_take_reading_slots_counts_guest_and_address(db):
 def test_guest_limit_raises(db):
     with db.connect() as conn:
         for _ in range(3):
-            take_reading_slots(conn, GID, DAY, "hash-1", DAY)
+            take_reading_slots(conn, guest_quota(GID), DAY, "hash-1", DAY)
         with pytest.raises(LimitReached) as info:
-            take_reading_slots(conn, GID, DAY, "hash-1", DAY)
+            take_reading_slots(conn, guest_quota(GID), DAY, "hash-1", DAY)
     assert info.value.reason == "limit"
 
 
@@ -233,7 +234,7 @@ def test_ip_limit_rolls_back_the_guest_slot(db):
         conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, 60)", (ip_subject("hash-1"), DAY))
     with pytest.raises(LimitReached) as info:
         with db.connect() as conn:
-            take_reading_slots(conn, GID, DAY, "hash-1", DAY)
+            take_reading_slots(conn, guest_quota(GID), DAY, "hash-1", DAY)
     assert info.value.reason == "ip_limit"
     with db.connect() as conn:
         assert used(conn, guest_subject(GID), DAY) == 0
@@ -242,9 +243,9 @@ def test_ip_limit_rolls_back_the_guest_slot(db):
 def test_remaining_and_midnight_reset(db):
     with db.connect() as conn:
         for _ in range(3):
-            take_reading_slots(conn, GID, DAY, "hash-1", date(2026, 11, 21))
-        assert remaining(conn, GID, DAY) == 0
-        assert remaining(conn, GID, date(2026, 11, 21)) == limits.DAILY_LIMIT
+            take_reading_slots(conn, guest_quota(GID), DAY, "hash-1", date(2026, 11, 21))
+        assert remaining(conn, guest_quota(GID), DAY) == 0
+        assert remaining(conn, guest_quota(GID), date(2026, 11, 21)) == limits.DAILY_LIMIT
 
 
 def test_followup_attempts_stop_at_eight_per_reading(db):
@@ -278,9 +279,9 @@ def test_followup_ip_limit_rolls_back_the_attempt(db):
 def test_give_back_slot_never_goes_below_zero(db):
     with db.connect() as conn:
         for _ in range(3):
-            take_reading_slots(conn, GID, DAY, "hash-1", DAY)
+            take_reading_slots(conn, guest_quota(GID), DAY, "hash-1", DAY)
         give_back_slot(conn, guest_subject(GID), DAY)
-        assert remaining(conn, GID, DAY) == 1
+        assert remaining(conn, guest_quota(GID), DAY) == 1
         for _ in range(3):
             give_back_slot(conn, guest_subject(GID), DAY)
         give_back_slot(conn, guest_subject(uuid.uuid4()), DAY)  # no row: nothing to give back
@@ -290,3 +291,23 @@ def test_give_back_slot_never_goes_below_zero(db):
 def test_question_checks_are_counted_apart():
     assert limits.guard_ip_subject("hash-1") == "ipg:hash-1"
     assert len({limits.guard_ip_subject("h"), limits.followup_ip_subject("h"), ip_subject("h")}) == 3
+
+
+
+# --- stage 4.3 §5: the guest's 3 or the account's 5 ---
+
+def test_quotas():
+    user = uuid.uuid4()
+    assert guest_quota(GID) == limits.Quota(f"guest:{GID}", 3)
+    assert limits.user_quota(user) == limits.Quota(f"user:{user}", 5)
+    assert limits.owner_quota({"guest_id": GID, "user_id": None}) == guest_quota(GID)
+    assert limits.owner_quota({"guest_id": GID, "user_id": user}) == limits.user_quota(user)
+
+
+def test_an_account_takes_five_a_day(db):
+    quota = limits.user_quota(uuid.uuid4())
+    with db.connect() as conn:
+        assert [take_reading_slots(conn, quota, DAY, "hash-1", DAY) for _ in range(5)] == [1, 2, 3, 4, 5]
+        with pytest.raises(LimitReached):
+            take_reading_slots(conn, quota, DAY, "hash-1", DAY)
+        assert remaining(conn, quota, DAY) == 0 and used(conn, ip_subject("hash-1"), DAY) == 5

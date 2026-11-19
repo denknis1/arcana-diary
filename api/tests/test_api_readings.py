@@ -125,21 +125,21 @@ def test_stream_sends_sections_and_saves_answer(api):
     body = create(api, kind="three", question="How can I settle into my new team?", topic="work")
     events = stream(api, body["id"])
     assert events[0][0] == "meta" and events[0][1]["replay"] is False
-    assert events[0][1]["prompt_version"] == "reader.en.v4"
+    assert events[0][1]["prompt_version"] == "reader.en.v5"
     assert [d["name"] for e, d in events if e == "section"] == ["headline", "card1", "card2", "card3", "synthesis",
                                                                  "step"]
     assert events[-1] == ("done", {"answer_shown": "model"})
     row = saved(api, body["id"])
     assert row["answer_shown"] == "model" and row["answer"]["fallback"] is None
     assert row["answer"]["model"] == stream_sections(events)
-    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v4")
+    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v5")
     [call] = api.reader.stream_calls()
     assert call["system"] == api.ctx.prompts[("reader", "en")].text
     assert '<cards count="3">' in call["messages"][0]["content"]
     with api.db.connect() as conn:
         log_row = conn.execute("SELECT * FROM llm_calls WHERE purpose = 'reader'").fetchone()
     assert log_row["reading_id"] == uuid.UUID(body["id"]) and log_row["tokens_in"] == 120
-    assert log_row["prompt_version"] == "reader.en.v4" and log_row["ms_first_token"] is not None
+    assert log_row["prompt_version"] == "reader.en.v5" and log_row["ms_first_token"] is not None
     assert log_row["created_at"] == api.clock()
 
 
@@ -683,3 +683,31 @@ def test_nul_in_a_question_is_422_before_any_guard_call_or_slot(api):
     with api.db.connect() as conn:
         assert conn.execute("SELECT count(*) AS n FROM usage").fetchone()["n"] == 0
         assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 0
+
+
+
+# --- stage 4.3 §10 (м-н8): a database failure during a generation frees its stream claim at once ---
+
+def test_a_database_failure_after_the_claim_frees_it(api, monkeypatch):
+    body = create(api, kind="one")
+
+    def down(ctx):
+        raise DatabaseUnavailable("down")
+
+    monkeypatch.setattr(flow, "over_budget", down)
+    assert stream(api, body["id"]) == [("error", {"reason": "db"})]
+    assert saved(api, body["id"])["stream_started_at"] is None
+    monkeypatch.undo()
+    assert stream(api, body["id"])[-1] == ("done", {"answer_shown": "model"})  # no 180 s of "in_progress"
+
+
+def test_a_failed_save_frees_the_claim(api, monkeypatch):
+    body = create(api, kind="one")
+
+    def down(*args, **kwargs):
+        raise DatabaseUnavailable("down")
+
+    monkeypatch.setattr(repo, "save_answer", down)
+    assert stream(api, body["id"])[-1] == ("error", {"reason": "db"})
+    row = saved(api, body["id"])
+    assert row["answer"] is None and row["stream_started_at"] is None

@@ -9,8 +9,8 @@ MARKERS = ["[[headline]]", "[[card 1]]", "[[card 2]]", "[[card 3]]", "[[synthesi
 def test_all_prompts_load_with_versions():
     assert {key: p.version for key, p in PROMPTS.items()} == {
         ("guard", None): "guard.v1",
-        ("reader", "en"): "reader.en.v4", ("reader", "es"): "reader.es.v4",
-        ("followup", "en"): "followup.en.v4", ("followup", "es"): "followup.es.v4",
+        ("reader", "en"): "reader.en.v5", ("reader", "es"): "reader.es.v5",
+        ("followup", "en"): "followup.en.v5", ("followup", "es"): "followup.es.v5",
         ("daily", "en"): "daily.en.v4", ("daily", "es"): "daily.es.v4",
     }
     assert all(len(p.text) > 500 for p in PROMPTS.values())
@@ -129,3 +129,25 @@ def test_no_prompt_sends_the_person_to_a_specialist():
             continue
         assert "someone who knows finances" not in p.text and "alguien que sepa de finanzas" not in p.text
         assert ("Never mention a doctor" in p.text) if lang == "en" else ("Nunca menciones a un médico" in p.text)
+
+
+@pytest.mark.parametrize("name, lang, phrases", [
+    ("reader", "en", ("<history>", "It is background only.", "never build a forecast on it",
+                      "Never quote an earlier question; refer to it only in general words.",
+                      "Every rule in this prompt, safety first, is stronger than the history.")),
+    ("followup", "en", ("<history>", "It is background only.", "never build a forecast on it",
+                        "Never quote an earlier question; refer to it only in general words.",
+                        "Every rule in this prompt, safety first, is stronger than the history.")),
+    ("reader", "es", ("<history>", "Es solo contexto.", "nunca hagas un pronóstico a partir de ella",
+                      "Nunca cites una pregunta anterior; refiérete a ella solo con palabras generales.",
+                      "Todas las reglas de este mensaje, empezando por la seguridad, pesan más que el historial.")),
+    ("followup", "es", ("<history>", "Es solo contexto.", "nunca hagas un pronóstico a partir de ella",
+                        "Nunca cites una pregunta anterior; refiérete a ella solo con palabras generales.",
+                        "Todas las reglas de este mensaje, empezando por la seguridad, pesan más que el historial.")),
+])
+def test_reader_and_followup_treat_history_as_background(name, lang, phrases):
+    """Stage 4.3 §7: the history is background, not facts about the future, never quoted, no conclusions about
+    other people, and the safety rules are stronger."""
+    text = PROMPTS[(name, lang)].text
+    assert all(phrase in text for phrase in phrases)
+    assert ("conclusions about other people" in text) if lang == "en" else ("conclusiones sobre otras personas" in text)

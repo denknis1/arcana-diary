@@ -1,8 +1,9 @@
 # Arcana Diary API
 
-FastAPI-сервис расклада и ИИ-чтеца (этап 4.2). Спецификация —
-`docs/superpowers/specs/2026-11-14-stage4-2-reader-design.md` (раздел 8 — решения после проверки Fable 5.2),
-план — `docs/superpowers/plans/2026-11-14-stage4-2-reader.md`.
+FastAPI-сервис расклада и ИИ-чтеца (этап 4.2), входа, дневника и аккаунта (этап 4.3). Спецификации —
+`docs/superpowers/specs/2026-11-14-stage4-2-reader-design.md` (раздел 8 — решения после проверки Fable 5.2) и
+`docs/superpowers/specs/2026-11-19-stage4-3-accounts-diary-design.md`; планы —
+`docs/superpowers/plans/2026-11-14-stage4-2-reader.md` и `docs/superpowers/plans/2026-11-19-stage4-3-accounts-diary.md`.
 
 ## Тесты
 
@@ -14,7 +15,10 @@ cd ~/arcana-diary/api
 
 Тесты с базой поднимают временный контейнер `postgres:16.10-alpine` (нужен Docker) и удаляют его в конце; без Docker
 они пропускаются с причиной. Свою пустую базу можно задать через `TEST_DATABASE_URL` — тесты очищают её таблицы.
-Ни один тест не обращается к Anthropic, Supabase или Cloudflare: поставщик модели — `FakeProvider`, Turnstile — подделка.
+Ни один тест не обращается к Anthropic, Supabase или Cloudflare: поставщик модели — `FakeProvider`, Turnstile — подделка,
+токены входа подписываются тестовым ключом ES256, а ключи подставляются вместо сети (`helpers.FakeJwks`).
+`TEST_DATABASE_URL`, похожий на Supabase (`supabase.co`, `pooler.supabase.com`), тесты не трогают — выход с кодом 4,
+если не задано `TEST_DATABASE_ALLOW_SUPABASE=yes`.
 
 ## Запуск без ключей
 
@@ -48,7 +52,8 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 | `GUARD_BUDGET_USD` | `1` | суточный предел расходов на проверку вопроса моделью; сверх — только стоп-фразы, остальные вопросы получают `503 {"reason": "unavailable"}` |
 | `FIRST_TOKEN_TIMEOUT_S` | `15` | сколько ждать первых слов чтеца до запасного ответа |
 | `GUARD_TIMEOUT_S` | `5` | тайм-аут проверки вопроса (решение владельца 19.11.2026, спецификация §10.10) |
-| `CLEANUP_INTERVAL_S` | `86400` | как часто удалять просроченное |
+| `CLEANUP_INTERVAL_S` | `3600` | как часто удалять просроченное (гостевые расклады, токены переноса) и возвращать слоты за оборванные платные уточнения |
+| `SUPABASE_URL` | пусто | открытый адрес проекта Supabase (`https://<ref>.supabase.co`, не секрет); пусто — вход выключен, любой `Authorization: Bearer` получает `401` |
 | `DAILY_JOB_INTERVAL_S` | `3600` | как часто задача карты дня дописывает недостающие тексты; `0` — выключить |
 | `RUN_MIGRATIONS` | `true` | применять миграции при старте |
 | `CONTENT_DIR`, `BANNED_TERMS_PATH`, `MIGRATIONS_DIR` | пути в репозитории | в образе заданы в `api/Dockerfile` |
@@ -70,6 +75,31 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 раскладами ведут к Turnstile с 20-й; сверх 60 — только стоп-фразы, остальное — `503 {"reason": "unavailable"}`.
 Любой `422` — `{"reason": "invalid", "fields": [...]}`.
 
+**Этап 4.3.** Вошедший шлёт `Authorization: Bearer <access token Supabase>`; без заголовка (или с `Basic` пароля
+стенда) — гость, как раньше. Токен проверяется на каждом адресе `/api/*` до разбора запроса (и на
+`GET /api/daily`). Неверный или просроченный токен — `401 {"reason": "auth"}`, ключи Supabase
+недоступны — `503 {"reason": "auth_unavailable"}`, адрес только для вошедших без токена — `401 {"reason": "sign_in"}`.
+Лимит: гость — 3 расклада в день на устройство, вошедший — 5 на аккаунт на всех устройствах (`GET /api/limits`
+отвечает по аккаунту); платное уточнение берёт слот у владельца расклада. Расклад в аккаунте принадлежит только
+аккаунту, гостевой — устройству (кука `ad_guest`); владельцу `GET /api/readings/{id}` отдаёт ещё `in_diary`,
+`outcome`, `note`. Перенос:
+`POST /api/readings/{id}/claim-token` (только устройство, где сделан расклад; `201 {"token", "expires_at"}`, 7 дней, не больше
+5 живых на расклад) и `POST /api/account/claim {"tokens": [...]}` → `{"claimed": [id, ...]}`. Дневник:
+`GET /api/diary?before=&limit=` (20, не больше 50; `next_before` — начало следующей страницы),
+`PATCH /api/diary/{id} {"outcome": "yes" | "partly" | "no" | null, "note": "…" | null}` (заметка до 1000 знаков,
+хранится как есть, отдаётся только в JSON), `DELETE /api/diary/{id}` → `204`; чужой расклад — `404`. Аккаунт:
+`GET /api/account?tz=`, `PATCH /api/account {"reminders_consent": bool}`, `GET /api/account/export` (файл JSON),
+`DELETE /api/account {"confirm": "DELETE"}` — сразу; журналы `llm_calls` остаются. Удаление, создание расклада,
+перенос, согласие и список Plus одного аккаунта идут по очереди (блокировка аккаунта в базе); повторный
+`DELETE /api/account` с тем же токеном — `401 {"reason": "auth"}`, как и любая запись по токену удалённого аккаунта
+(8 дней). Список Plus:
+`POST /api/plus/waitlist {"email", "lang"}` — повтор без ошибки, не больше 5 заявок с адреса в сутки; вошедшему
+почта берётся только из токена (в токене нет почты — `422`, почта из тела не используется). Память чтеца:
+вошедшему в ввод чтеца и его уточнений добавляется `<history>` — до 5 прошлых раскладов той же темы только с
+обычными вопросами (группа `ok` от настоящей проверки — `readings.guard_source` `model`/`terms`, миграция 003; вопрос,
+не проверенный из-за таймаута или ошибки, не возвращается; дата, вопрос, заголовок; без заметок и отметок), промпты `reader.*.v5`,
+`followup.*.v5`.
+
 ## Ограничения, о которых надо помнить
 
 - **Один процесс uvicorn** (`--workers 1` в `api/Dockerfile`): соль адреса и счётчики всплеска живут в памяти; каждый
@@ -90,6 +120,15 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 - Карта дня: первый старт пишет 936 текстов (около $0.30), сначала сегодняшние, потом завтрашние и вчерашние; в первые
   10–20 минут после первого старта `GET /api/daily` может отдавать `"source": "fallback"`. После 5 неудачных вызовов
   подряд (пустой ключ, кончился баланс) задача останавливается до следующего часа.
+- Токен доступа Supabase действует до своего `exp` (по умолчанию час), в том числе после удаления аккаунта: сайт
+  выходит из аккаунта сразу после `DELETE /api/account`, а API отказывает такому токену (см. ниже).
+- Страницы дневника идут по времени создания (`before`): два расклада одного аккаунта с одинаковым до микросекунды
+  временем на границе страницы могут разойтись по страницам или пропасть из выдачи.
+- Токен аккаунта, удалённого меньше 8 дней назад, получает `401 {"reason": "auth"}` на любую запись (таблица
+  `deleted_accounts`); через 8 дней запись о нём стирается — дольше любой срок токена Supabase не бывает.
+- Реальный потолок на человека — 3 расклада гостем и 5 вошедшим, то есть 8 в день; новые адреса почты (в том числе
+  с `+`) дают новые аккаунты. Ограничивают это, как и смену куки гостем, только предел адреса (60 в сутки, Turnstile
+  с 20-го) и суточные бюджеты.
 
 ## Перед включением `TRUST_CLOUDFLARE=true`
 
@@ -120,6 +159,65 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 
 RLS включён на всех таблицах без политик, а `migrate()` отзывает права на таблицы у ролей `anon` и `authenticated`.
 Проверка в SQL Editor: `select has_table_privilege('anon', 'public.readings', 'select');` — `false`.
+
+## Вход через Supabase (этап 4.3): шаги владельца
+
+Сервер не хранит паролей и не шлёт писем входа: браузер (экраны 4.4) входит через Supabase JS, API только проверяет
+токен (ES256 по ключам `<SUPABASE_URL>/auth/v1/.well-known/jwks.json`, кэш 10 минут).
+
+1. **Google.** Google Cloud Console → APIs & Services → OAuth consent screen: тип External, название Arcana Diary,
+   почта поддержки, домен `arcanadiary.com`, области `openid`, `email`, `profile`. Затем Credentials → Create
+   credentials → OAuth client ID → Web application: Authorized JavaScript origins — `https://arcanadiary.com`,
+   Authorized redirect URIs — `https://<ref>.supabase.co/auth/v1/callback` (точный адрес показан в Supabase на
+   странице провайдера). Client ID и Client secret — в Supabase → Authentication → Providers → Google, включить.
+2. **Адреса возврата.** Supabase → Authentication → URL Configuration: Site URL — `https://arcanadiary.com`;
+   Redirect URLs — `https://arcanadiary.com/diary` и `https://arcanadiary.com/es/diario` (адреса с `?claim=…` им
+   соответствуют).
+3. **`SUPABASE_URL`** в `deploy/.env` — Project Settings → API → Project URL (не секрет), затем `deploy/deploy.sh`.
+   Тот же деплой включает куку стенда (решение владельца 19.11.2026): пока `LAUNCHED=false`, страница, открытая
+   с паролем, ставит куку `ad_stage` (HttpOnly, Secure, SameSite=Lax, 7 дней, секрет — в `stage_auth.caddy`, новый
+   при каждом деплое), и с ней запросы к `/api/*` проходят без Basic — так вошедший шлёт `Authorization: Bearer`.
+   Без пароля стенд по-прежнему закрыт; `deploy/check-indexing.sh` проверяет это после деплоя, а
+   `deploy/test-stage-auth.sh` — до него, на временном контейнере. После деплоя каждая вкладка один раз снова
+   просит пароль (новый секрет). С `LAUNCHED=true` куки нет.
+   Изменение `Caddyfile` пересоздаёт контейнер Caddy (несколько секунд простоя); деплой запускает владелец, не субагент.
+   Если первый деплой упал на проверке куки стенда — запустить `deploy/deploy.sh` ещё раз (в этом деплое ещё работает старый `deploy.sh`).
+   Откат этого коммита требует после `git revert` выполнить `cd deploy && docker compose up -d --force-recreate caddy`: откатанный `deploy.sh` Caddy уже не пересоздаёт, а старый одиночный mount `Caddyfile` импортировал бы удалённый файл.
+4. **До запуска** — почтовый сервис для писем входа (Authentication → SMTP Settings); встроенная почта Supabase —
+   только для проверки, несколько писем в час.
+5. **Настройки, на которые опирается API** (Authentication → Sign In / Providers и Settings): анонимный вход
+   выключен (API всё равно отвечает `401` на токен с `is_anonymous`), «Confirm email» включено (иначе в токене
+   может оказаться чужая неподтверждённая почта), срок токена (JWT expiry) — 3600 секунд.
+6. **Перед первым развёртыванием 4.3** — в SQL Editor:
+   `select to_regclass('public.profiles'), to_regclass('public.claim_tokens'), to_regclass('public.plus_waitlist'), to_regclass('public.deleted_accounts');`
+   — все четыре `NULL`. Если какая-то таблица уже есть (`profiles` бывает в шаблонах Supabase), миграция 002 будет
+   повторяться каждые 30 секунд: сначала переименовать или удалить ту таблицу.
+7. Удаление аккаунта стирает и пользователя Supabase (`DELETE FROM auth.users` через `DATABASE_URL`). До того как
+   открыть вход кому-либо, проверить в SQL Editor: `select has_table_privilege(current_user, 'auth.users', 'delete');`
+   — `true`. Если пользователь Supabase не удалился, в журнале API будет строка уровня `ERROR` с номером аккаунта
+   («Supabase user was not deleted») — удалить его вручную в Authentication → Users.
+
+## Передача в 4.4 (экраны)
+
+- Заметки, вопросы, заголовки и всё из выгрузки — сырой текст: выводить через `textContent`, никогда через
+  `innerHTML` или `set:html`.
+- Поток расклада и уточнений читать через `fetch` с заголовком `Authorization`: `EventSource` не умеет слать
+  заголовки.
+- На `401 {"reason": "auth"}` — один раз обновить токен и повторить; не помогло — выйти из сессии и повторить как
+  гость. `401 {"reason": "sign_in"}` — показать вход.
+- 401 без JSON-причины на стенде — перезагрузить страницу (кука стенда устарела), не обновлять токен.
+- Сразу после `DELETE /api/account` выйти из сессии Supabase на этом устройстве.
+- `next_before` передавать в адресе закодированным (`+00:00` → `%2B00%3A00`, `URLSearchParams` делает это сам).
+- После `POST /api/account/claim` убрать `?claim=…` из адресной строки (`history.replaceState`).
+- Расклад в аккаунте принадлежит только аккаунту: после выхода из аккаунта это устройство видит его как чужую
+  ссылку (карты и ответ, без вопроса и заметки).
+- `POST /api/account/claim` без токенов переносит **все** гостевые расклады куки этого устройства — на общем
+  компьютере это и расклады предыдущего человека. Звать его один раз, сразу после входа, начатого явным действием
+  («Сохранить в дневник» / «Войти»), а не при каждой загрузке страницы.
+- Текст политики конфиденциальности: после удаления аккаунта его номер хранится 8 дней в `deleted_accounts`,
+  счётчик дня `user:<id>` — до 2 дней, `llm_calls` (номера и числа, без текстов) — 90 дней.
+- Перед первой рассылкой Plus: гостевые заявки не подтверждены (любой может вписать любой адрес, 5 в сутки с
+  адреса) — подтвердить письмом или писать только строкам с `user_id`.
 
 ## Тестовый набор чтеца
 

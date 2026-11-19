@@ -14,7 +14,7 @@ from typing import Iterator
 
 from app import repo
 from app.cards import label
-from app.config import FOLLOWUP_ATTEMPTS, FOLLOWUP_LIMIT, RETRY_LIMIT, cost_usd
+from app.config import FOLLOWUP_ATTEMPTS, FOLLOWUP_LIMIT, HISTORY_LIMIT, RETRY_LIMIT, cost_usd
 from app.db import DatabaseUnavailable
 from app.reader import compose
 from app.reader.engine import Chunk, run_stream
@@ -116,6 +116,31 @@ def shown_sections(reading: dict) -> dict | None:
     return answer["fallback"] if reading["answer_shown"] == "fallback" else answer["model"]
 
 
+def has_history(reading: dict) -> bool:
+    """Stage 4.3 §7: only a signed-in person's reading with a topic can have a history; guests never do."""
+    return bool(reading.get("user_id") and reading.get("topic"))
+
+
+def reader_history(conn, reading: dict) -> list[dict]:
+    """Stage 4.3 §7: up to HISTORY_LIMIT earlier readings of the account on the reading's topic (date, question,
+    headline); [] when the reading cannot have a history. Follow-ups use the same reading, so the same block."""
+    if not has_history(reading):
+        return []
+    rows = repo.topic_history(conn, reading["user_id"], reading["topic"], reading["created_at"], reading["id"],
+                              HISTORY_LIMIT)
+    return [{"day": row["created_at"].astimezone(timezone.utc).date(), "question": row["question"],
+             "headline": (shown_sections(row) or {}).get("headline")} for row in rows]
+
+
+def load_history(ctx, reading: dict) -> list[dict]:
+    """reader_history in a connection of its own, opened only when there can be a history: a guest follow-up
+    makes no extra query."""
+    if not has_history(reading):
+        return []
+    with ctx.db.connect() as conn:
+        return reader_history(conn, reading)
+
+
 def followup_text(followup: dict) -> str | None:
     answer = followup.get("answer")
     if not answer:
@@ -159,6 +184,9 @@ def full_view(ctx, reading: dict, followups: list[dict], owner: bool, now: datet
                            "soft_line": soft_line(ctx, reading["lang"], f["guard_group"])} for f in answered],
             "followups_left": followups_left(followups, reading["followup_attempts"]),
             "followup_attempts_left": max(FOLLOWUP_ATTEMPTS - reading["followup_attempts"], 0),
+            # stage 4.3 §6: the owner (the account; for a guest reading, its device) also sees the diary fields
+            "in_diary": reading.get("user_id") is not None,
+            "outcome": reading.get("outcome"), "note": reading.get("note"),
         })
     return view
 
@@ -238,16 +266,30 @@ def replay_reading(ctx, reading: dict, cf_country: str | None, tz: str | None) -
     yield sse("done", {"answer_shown": shown})
 
 
+def release_claim(ctx, reading_id) -> None:
+    """Stage 4.3 §10 (м-н8): best effort — when the database is still down, the claim frees itself after
+    STREAM_CLAIM_STALE."""
+    try:
+        with ctx.db.connect() as conn:
+            repo.release_stream(conn, reading_id)
+    except DatabaseUnavailable:
+        log.warning("stream claim not released: the database is unavailable")
+
+
 def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) -> Iterator[str]:
     lang, kind = reading["lang"], reading["kind"]
     if reading["answer"] is not None:
         yield from replay_reading(ctx, reading, cf_country, tz)
         return
+    claimed = False
     try:
         with ctx.db.connect() as conn:
             claimed = repo.claim_stream(conn, reading["id"], ctx.clock())
+            history = reader_history(conn, reading) if claimed else []
         spent = claimed and over_budget(ctx)
     except DatabaseUnavailable:
+        if claimed:
+            release_claim(ctx, reading["id"])
         yield sse("error", {"reason": "db"})
         return
     if not claimed:
@@ -258,7 +300,7 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
     parser, outcome = SectionParser(), None
     if not spent:
         excerpts = ctx.cards.excerpts(reading["cards"], lang, reading["topic"])
-        messages = compose.reader_messages(reading, excerpts, verdict_label(ctx, reading))
+        messages = compose.reader_messages(reading, excerpts, verdict_label(ctx, reading), history)
         for item in run_stream(ctx.reader, prompt.text, messages, READER_MAX_TOKENS,
                                ctx.settings.first_token_timeout_s):
             if isinstance(item, Chunk):
@@ -283,6 +325,7 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
                 log_call(conn, ctx, reading["id"], "reader", ctx.reader.model, prompt.version, outcome,
                          READER_MAX_TOKENS)
     except DatabaseUnavailable:
+        release_claim(ctx, reading["id"])  # nothing was saved: the next stream may write the answer
         if final.shown == "crisis":  # the helplines need no database: the client gets them first
             yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))
         yield sse("error", {"reason": "db"})

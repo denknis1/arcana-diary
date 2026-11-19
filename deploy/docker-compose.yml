@@ -42,6 +42,7 @@ services:
       TRUST_CLOUDFLARE: ${TRUST_CLOUDFLARE:-false}
       DAILY_BUDGET_USD: ${DAILY_BUDGET_USD:-5}
       GUARD_BUDGET_USD: ${GUARD_BUDGET_USD:-1}
+      SUPABASE_URL: ${SUPABASE_URL:-}
 
 volumes:
   caddy_data:

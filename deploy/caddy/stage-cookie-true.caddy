@@ -1,0 +1,2 @@
+# LAUNCHED=true: no stage password, no stage cookie
+vars stage_cookie_off true

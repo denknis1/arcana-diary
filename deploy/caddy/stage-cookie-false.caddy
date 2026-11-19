@@ -1,0 +1,2 @@
+# LAUNCHED=false: pages opened after the stage password set the stage cookie (secret in stage_auth.caddy)
+header Set-Cookie {vars.stage_cookie}

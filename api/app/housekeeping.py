@@ -1,8 +1,9 @@
 """Background work inside the API process (§4.3, §8.8), no separate queue:
 
 - migrations at start, retried every 30 s while the database is unreachable (requests meanwhile get 503);
-- the daily cleanup: expired guest readings with their follow-ups, stale counters and caches, old logs;
-- freeing follow-ups cut by a restart (no answer, stale) and giving paid ones back to the guest;
+- the hourly cleanup (CLEANUP_INTERVAL_S): expired guest readings with their follow-ups, expired claim tokens,
+  old deleted-account marks, stale counters and caches, old logs;
+- freeing follow-ups cut by a restart (no answer, stale) and giving paid ones back to their owner;
 - the card-of-the-day job (app.daily.daily_loop).
 """
 import asyncio
@@ -20,6 +21,7 @@ KEEP_DAILY_CACHE_DAYS = 2
 KEEP_DAILY_DRAWS_DAYS = 7
 KEEP_LLM_CALLS_DAYS = 90      # no texts; enough for cost and latency reviews
 KEEP_GUARD_EVENTS_DAYS = 365  # counts only
+KEEP_DELETED_ACCOUNTS_DAYS = 8  # longer than the longest Supabase access token (7 days): stage 4.3 §8
 MIGRATE_RETRY_S = 30.0
 
 
@@ -42,6 +44,9 @@ def delete_expired(db: Database, now: datetime) -> dict[str, int]:
                                       (now - timedelta(days=KEEP_LLM_CALLS_DAYS),)).rowcount,
             "guard_events": conn.execute("DELETE FROM guard_events WHERE day < %s",
                                          (before(KEEP_GUARD_EVENTS_DAYS),)).rowcount,
+            "claim_tokens": conn.execute("DELETE FROM claim_tokens WHERE expires_at <= %s", (now,)).rowcount,
+            "deleted_accounts": conn.execute("DELETE FROM deleted_accounts WHERE deleted_at < %s",
+                                             (now - timedelta(days=KEEP_DELETED_ACCOUNTS_DAYS),)).rowcount,
         }
     log.info("cleanup: %s", counts)
     return counts
@@ -52,9 +57,9 @@ def free_stale_followups(db: Database, now: datetime) -> int:
     ones their reading back. DELETE ... RETURNING makes the refund happen once even next to the route's cleanup."""
     with db.connect() as conn:
         rows = repo.delete_all_stale_followups(conn, now - repo.STREAM_CLAIM_STALE)
-        for guest_id, paid_day in rows:
-            if paid_day is not None:
-                limits.give_back_slot(conn, limits.guest_subject(guest_id), paid_day)
+        for row in rows:
+            if row["paid_day"] is not None:  # back to whoever paid: the account if the reading has one
+                limits.give_back_slot(conn, limits.owner_quota(row).subject, row["paid_day"])
     if rows:
         log.info("cleanup: freed %d stale follow-ups", len(rows))
     return len(rows)
@@ -83,14 +88,20 @@ async def cleanup_loop(db: Database, interval_s: float, clock) -> None:
         await asyncio.sleep(interval_s)
 
 
+async def _logged(name: str, job) -> None:
+    """м-п1: a job that dies says so at once; gather alone would report it only after every other job ended, and
+    the cleanup never ends. Cancellation (shutdown) passes through."""
+    try:
+        await job
+    except Exception:
+        log.exception("background job %s stopped", name)
+
+
 async def run_background(ctx, migrate_retry_s: float = MIGRATE_RETRY_S) -> None:
     settings = ctx.settings
     if settings.run_migrations:
         await migrate_until_done(ctx.db, settings.migrations_dir, migrate_retry_s)
-    jobs = [cleanup_loop(ctx.db, settings.cleanup_interval_s, ctx.clock)]
+    jobs = [("cleanup", cleanup_loop(ctx.db, settings.cleanup_interval_s, ctx.clock))]
     if settings.daily_job_interval_s > 0:
-        jobs.append(daily_loop(ctx, settings.daily_job_interval_s))
-    results = await asyncio.gather(*jobs, return_exceptions=True)  # one crashing job must not cancel the other
-    for job, result in zip(jobs, results):
-        if isinstance(result, BaseException):
-            log.error("background job %s stopped", getattr(job, "__name__", job), exc_info=result)
+        jobs.append(("daily", daily_loop(ctx, settings.daily_job_interval_s)))
+    await asyncio.gather(*(_logged(name, job) for name, job in jobs))  # one crashing job does not stop the other
