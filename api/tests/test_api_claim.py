@@ -4,6 +4,7 @@ import uuid
 from datetime import timedelta
 
 from app import account_repo
+from app.housekeeping import delete_expired
 from helpers import bearer, dump_tables, post_reading
 
 MX = "America/Mexico_City"
@@ -127,3 +128,15 @@ def test_a_device_without_a_cookie_moves_nothing_and_gets_no_cookie(api):
     assert response.json() == {"claimed": []} and "set-cookie" not in response.headers
     with api.db.connect() as conn:
         assert conn.execute("SELECT user_id FROM profiles").fetchone()["user_id"] == ANA
+
+
+def test_a_claimed_reading_survives_the_cleanup(api):
+    """Final review I1: after the claim the reading has no expiry, so the hourly cleanup never takes it."""
+    reading_id = new_reading(api.client)
+    left = new_reading(api.new_client())  # another device's guest reading: not claimed, it expires
+    assert claim(api.client, ANA).json() == {"claimed": [reading_id]}
+    api.clock.advance(days=8)
+    assert delete_expired(api.db, api.clock())["readings"] == 1
+    diary = api.client.get("/api/diary", headers=bearer(ANA))
+    assert diary.status_code == 200 and [item["id"] for item in diary.json()["items"]] == [reading_id]
+    assert reading_row(api, left) is None

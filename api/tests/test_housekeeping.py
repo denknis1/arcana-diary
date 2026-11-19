@@ -242,6 +242,19 @@ def test_deleted_accounts_are_forgotten_after_eight_days(db):
         assert [r["user_id"] for r in conn.execute("SELECT user_id FROM deleted_accounts").fetchall()] == [recent]
 
 
+def test_account_readings_survive_the_cleanup(db):
+    """Stage 4.3 §4.3: a reading in an account has no expiry; only the old guest reading goes."""
+    old = T0 - timedelta(days=400)
+    mine = make_reading(now=old, user_id=uuid.uuid4(), expires_at=None)
+    guest = make_reading(now=old)
+    with db.connect() as conn:
+        repo.insert_reading(conn, mine)
+        repo.insert_reading(conn, guest)
+    assert delete_expired(db, T0)["readings"] == 1
+    with db.connect() as conn:
+        assert [r["id"] for r in conn.execute("SELECT id FROM readings").fetchall()] == [mine["id"]]
+
+
 def test_a_crashed_background_job_is_logged_at_once(db, monkeypatch, caplog):
     async def crashing_daily(ctx, interval_s, card_ids=None):
         raise RuntimeError("daily crashed")
