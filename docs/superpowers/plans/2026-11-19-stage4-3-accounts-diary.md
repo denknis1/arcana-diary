@@ -3497,6 +3497,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ### Task 7: The account (profile, consent, export, delete) and the Plus waitlist
 
+> **Amendment after the Fable re-check (R4), required:** close the delete/create race. At the top of `delete_account`'s transaction and in the signed-in insert transaction of reading creation (before `refuse_deleted`), take `SELECT pg_advisory_xact_lock(hashtext(%s))` on the user id string. Add a test that the lock call is made in both places (or a two-connection test if reliable). Update the task's expected test counts accordingly and report the real numbers.
+
 **Files:**
 - Create: `api/app/routes/account.py`, `api/app/routes/plus.py`
 - Modify: `api/app/account_repo.py` (append; `ensure_profile` refuses deleted accounts), `api/app/config.py` (`WAITLIST_IP_LIMIT`), `api/app/limits.py` (`waitlist_ip_subject`), `api/app/routes/readings.py` (`create_reading` refuses deleted accounts), `api/app/main.py` (routers)
@@ -4096,6 +4098,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ### Task 8: Stage 4.2 tail (hourly cleanup, stream claim, background log, test-database guard) and the docs
 
+> **Amendment after the Fable re-check (R3), required:** add to the README hand-off list for 4.4: «401 без JSON-причины на стенде — перезагрузить страницу (кука стенда устарела), не обновлять токен».
+
 **Files:**
 - Modify: `api/app/config.py` (`CLEANUP_INTERVAL_S` default 3600), `api/app/housekeeping.py` (claim tokens and old `deleted_accounts` rows in `delete_expired`, `_logged`, `run_background`), `api/app/repo.py` (`release_stream`), `api/app/reader/flow.py` (`release_claim`, `_reading_events`)
 - Modify: `api/tests/conftest.py` (`pg_url` refuses Supabase), `api/tests/helpers.py` (`supabase_like`)
@@ -4666,6 +4670,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ---
 
 ### Task 9: Stage cookie, so signed-in requests pass the stage password (deploy/)
+
+> **Amendments after the Fable re-check, required.** **R1:** in `deploy/deploy.sh`, before the `caddy reload` line, add `docker compose exec -T caddy cat /etc/caddy/Caddyfile | cmp -s - Caddyfile || docker compose up -d --force-recreate caddy` (a single-file bind mount keeps the old Caddyfile after `git pull`), and one README line: a Caddyfile change recreates the Caddy container (a few seconds of downtime); the owner runs deploys, never a subagent. **R2:** in `check-indexing.sh`, the "/api с кукой стенда" check expects "not 401" instead of 200: `expect "/api с кукой стенда" "$([ "$(status -H "Cookie: $stage_pair" "https://$D/api/limits")" != 401 ] && echo yes || echo no)" yes`. Re-run `deploy/test-stage-auth.sh` on throwaway containers and report the result.
 
 Owner decision 19.11.2026 (option B of the Fable review): while `LAUNCHED=false`, Caddy sets an HttpOnly, Secure, SameSite=Lax cookie `ad_stage=<random secret>` on page responses — reached only after the stage password — and skips `basic_auth` when a request carries that cookie. The browser sends it with every same-origin `fetch`, so `/api/*` requests with `Authorization: Bearer` pass; anyone without the password still gets 401. The secret is made by `deploy/gen-stage-auth.sh` into the git-ignored `deploy/caddy/stage_auth.caddy` (a new one on every deploy) and the whole mechanism disappears with `LAUNCHED=true`. No API or site code changes.
 
