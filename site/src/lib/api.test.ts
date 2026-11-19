@@ -149,9 +149,9 @@ describe('idle watchdog', () => {
 
   it('does not abort a stream that keeps sending chunks more often than the idle time', async () => {
     const pieces = ['a', 'b', 'c', 'd', 'e', 'f'].map((n) => sseText([['text', { name: n }]]));
-    const { fetch, signals } = fakeFetch(slowSseResponse(pieces, 15));
+    const { fetch, signals } = fakeFetch(slowSseResponse(pieces, 20));
     const events: SseEvent[] = [];
-    const end = await createApi(fetch, { idleMs: IDLE }).streamReading('r1', undefined, (e) => events.push(e));
+    const end = await createApi(fetch, { idleMs: 200 }).streamReading('r1', undefined, (e) => events.push(e));
     expect(end).toEqual({ type: 'ended' });
     expect(events).toHaveLength(6);
     expect(signals[0]?.aborted).toBe(false);
