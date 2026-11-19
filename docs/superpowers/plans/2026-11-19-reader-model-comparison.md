@@ -8,6 +8,8 @@
 
 **Revision 2026-11-19 (Fable review, 14 findings, `.superpowers/sdd/cmp-plan-fable-review.md`):** the OpenAI stream takes its result from the terminal event; the meter records in `finally` (abandoned streams, upper bound for calls without usage) and writes `calls.jsonl`/`spend.json` as it goes; `cost_usd` applies announced price rises from their day; judge 2 runs with low thinking and 6000 tokens, grades the known-bad answers first and stops on repeated failures; the guard is prefilled before any reader call; the blind files live in a folder of their own; empty answers are not graded; the Claude key is required for the OpenAI/Gemini readers; the report gains quality per dollar, judge disagreements, missing answers, the gap to Claude and the judge caveat.
 
+**Re-check fixes 2026-11-19 (`.superpowers/sdd/cmp-plan-fable-recheck.md`):** report timeouts count only the model's reader calls; `answers.json` is rewritten after every item; the «пусто» label also names follow-up and daily timeouts; workers still alive after the final join are counted in `spend.json` `"unjoined"`; the live Gemini reader without a retry is a recorded decision (spec §4).
+
 **Tech Stack:** Python 3.12, FastAPI app code in `api/app/`, pytest; SDKs `anthropic==2.8.0` (present), `openai==3.46.0`, `google-genai==2.34.0` (already installed in `api/.venv` with the owner's approval).
 
 **Spec:** `docs/superpowers/specs/2026-11-19-reader-model-comparison-design.md`.
@@ -1482,7 +1484,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
   - `judge2_cost(kind: str, day: date | None = None) -> float` — upper estimate of one judge-2 call, `kind` `"judge"` or `"judge_daily"` (used by `estimate_cost` and by Task 6's `judge2`)
   - `estimate_cost(models, items, guard_model="claude-haiku-5-5", n_judge_check=8, day: date | None = None) -> float`
   - `main(argv=None, *, providers: dict | None = None, guard_provider=None) -> int`; flags `--stage`, `--yes`, `--max-usd`, `--limit N` (first N items of each part), `--out` (must not exist: exit 2)
-  - Output folder files: `answers.json` (`{"stage", "models", "reader_effort", "prompts", "judge_prompt", "results": {model: [result, ...]}, "judge_check": [{"id", "criterion", "max_score", "judge_content"}]}`; a judged result has `"judge_content"` instead of `"scores"`; a result whose answer is empty has `"no_answer": <shown_reason | error | "empty">` and no `"judge_content"`), `calls.jsonl` (one `CallRecord` dict per line, appended by the meter as calls happen), `spend.json` (`{"max_usd", "spent", "estimate_usd", "stopped", "not_done": [{"model", "id", "reason"}], "skipped": {model: reason}}`, rewritten after every item; `answers.json` and `spend.json` are written in `finally`).
+  - Output folder files: `answers.json` (`{"stage", "models", "reader_effort", "prompts", "judge_prompt", "results": {model: [result, ...]}, "judge_check": [{"id", "criterion", "max_score", "judge_content"}]}`; a judged result has `"judge_content"` instead of `"scores"`; a result whose answer is empty has `"no_answer": <shown_reason | error | "empty">` and no `"judge_content"`), `calls.jsonl` (one `CallRecord` dict per line, appended by the meter as calls happen), `spend.json` (`{"max_usd", "spent", "estimate_usd", "stopped", "not_done": [{"model", "id", "reason"}], "skipped": {model: reason}, "unjoined": n}`). `answers.json` and `spend.json` are rewritten after every item (`write_answers()` beside `write_spend()`; `judge_check` stays empty until the end) and again in `finally` after joining this run's stream workers; `"unjoined"` counts workers still alive after the 75 s join (their calls are not recorded; a warning on stderr says to add their upper bound before judge 2).
+  - `_join_new_workers(before: set, timeout_s: float = 75.0) -> int` — the number of this run's `"reader-stream"` workers still alive
 
 - [ ] **Step 1: Create the set**
 
@@ -1508,12 +1511,14 @@ Create `api/tests/test_compare.py`:
 
 ```python
 import json
+import threading
 from datetime import date
 
 import pytest
 
 from app.reader.provider import FakeProvider, FakeReply, ProviderTimeout
-from evals.compare import GUARD_FAILED, STAGES, STOPPED, estimate_cost, load_set, main
+import evals.compare as compare
+from evals.compare import GUARD_FAILED, STAGES, STOPPED, _join_new_workers, estimate_cost, load_set, main
 
 GUARD_OK = {"group": "ok", "violence": False}
 
@@ -1577,6 +1582,7 @@ def test_a_full_run_writes_blind_judge_inputs_and_the_spend(tmp_path):
     assert len(answers["judge_check"]) == 8 and all(c["judge_content"] for c in answers["judge_check"])
     spend = read(out / "spend.json")
     assert spend["stopped"] is False and spend["not_done"] == [] and 0 < spend["spent"] < 5
+    assert spend["unjoined"] == 0
     calls = [json.loads(line) for line in (out / "calls.jsonl").read_text().splitlines()]
     assert {"reader", "followup", "daily", "guard"} <= {c["purpose"] for c in calls}
     assert sum(c["cost_usd"] for c in calls) == pytest.approx(spend["spent"])
@@ -1594,6 +1600,35 @@ def test_limit_takes_the_first_items_of_each_part(tmp_path):
                 guard_provider=guard()) == 0
     answers = read(out / "answers.json")
     assert [r["id"] for r in answers["results"]["gpt-6-luna"]] == ["en-01", "inj-en-01", "fu-en-01", "d-en-01"]
+
+
+def test_answers_are_written_after_every_item_so_an_interrupt_keeps_them(tmp_path, monkeypatch):
+    out, real, seen, on_disk = tmp_path / "run", compare.run_item, [], []
+
+    def interrupted(item, **kwargs):
+        seen.append(item["id"])
+        if len(set(seen)) == 2:  # the second item: what is on disk now, then Ctrl-C
+            on_disk.append(read(out / "answers.json"))
+            raise KeyboardInterrupt
+        return real(item, **kwargs)
+
+    monkeypatch.setattr(compare, "run_item", interrupted)
+    with pytest.raises(KeyboardInterrupt):
+        main(["--stage", "A", "--yes", "--max-usd", "5", "--out", str(out)], providers=fakes(),
+             guard_provider=guard())
+    first_only = {m: ["en-01"] for m in STAGES["A"]}
+    assert {m: [r["id"] for r in rs] for m, rs in on_disk[0]["results"].items()} == first_only
+    assert {m: [r["id"] for r in rs] for m, rs in read(out / "answers.json")["results"].items()} == first_only
+    assert read(out / "spend.json")["spent"] > 0
+
+
+def test_join_new_workers_counts_the_workers_still_alive():
+    before, release = set(threading.enumerate()), threading.Event()
+    worker = threading.Thread(target=release.wait, name="reader-stream", daemon=True)
+    worker.start()
+    assert _join_new_workers(before, timeout_s=0.05) == 1
+    release.set()
+    assert _join_new_workers(before, timeout_s=2.0) == 0
 
 
 def test_the_ceiling_stops_the_run_and_lists_what_is_not_done(tmp_path):
@@ -1667,8 +1702,9 @@ the ceiling leaves comparable results. A model with 3 errors in a row without us
 model id, repeated timeouts) is skipped for the rest of the run. The judges come later (compare_judges.py): here
 the judge only records its input (RecordingJudge), which holds no model name; an item without an answer (timeout,
 error, refusal, empty) is not graded, it gets "no_answer" with the reason. Each call is appended to calls.jsonl at
-once and spend.json is rewritten after every item; answers.json and spend.json are written also when the run
-fails. Output: results/compare-<UTC time>-<stage>/ (not in git); an existing --out folder is refused.
+once; answers.json and spend.json are rewritten after every item and again when the run ends or fails. A stream
+worker still alive 75 s after the end is counted in spend.json "unjoined" (its cost is not recorded).
+Output: results/compare-<UTC time>-<stage>/ (not in git); an existing --out folder is refused.
 """
 import argparse
 import json
@@ -1761,13 +1797,15 @@ def _no_answer(content: str | None) -> bool:
     return not content.rsplit("<answer>\n", 1)[1].rsplit("\n</answer>", 1)[0].strip()
 
 
-def _join_new_workers(before: set, timeout_s: float = 75.0) -> None:
+def _join_new_workers(before: set, timeout_s: float = 75.0) -> int:
     """A stream the engine gave up on is recorded when its worker ends (MeteredProvider): wait for this run's
-    workers (the SDK timeout is 60 s) so their cost reaches spend.json."""
+    workers (the SDK timeout is 60 s) so their cost reaches spend.json. Returns how many are still alive: their
+    calls are lost at exit and missing from spend.json."""
     deadline = time.monotonic() + timeout_s
-    for thread in threading.enumerate():
-        if thread.name == "reader-stream" and thread not in before:
-            thread.join(max(0.0, deadline - time.monotonic()))
+    mine = [t for t in threading.enumerate() if t.name == "reader-stream" and t not in before]
+    for thread in mine:
+        thread.join(max(0.0, deadline - time.monotonic()))
+    return sum(1 for thread in mine if thread.is_alive())
 
 
 def _write(path: Path, data) -> None:
@@ -1831,9 +1869,18 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
     seen = 0
     workers = set(threading.enumerate())
 
+    unjoined = 0
+
     def write_spend() -> None:
         _write(out / "spend.json", {"max_usd": args.max_usd, "spent": meter.spent, "estimate_usd": estimate,
-                                    "stopped": bool(not_done), "not_done": not_done, "skipped": skipped})
+                                    "stopped": bool(not_done), "not_done": not_done, "skipped": skipped,
+                                    "unjoined": unjoined})
+
+    def write_answers() -> None:
+        _write(out / "answers.json", {
+            "stage": args.stage, "models": list(models), "reader_effort": settings.reader_effort,
+            "prompts": {f"{name}.{lang or 'all'}": p.version for (name, lang), p in prompts.items()},
+            "judge_prompt": judge_prompt.version, "results": results, "judge_check": checks})
 
     def count_errors() -> None:
         """3 calls in a row without usage (an error or an abandoned stream) -> the model is skipped."""
@@ -1881,17 +1928,18 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
                     else:
                         result["judge_content"] = content
                 results[model].append(result)
+            write_answers()
             write_spend()
         for item in load_jsonl("judge_check.jsonl"):
             run_judge_check(item, cards=cards, judge_provider=judge, judge_prompt=judge_prompt)
             checks.append({"id": item["id"], "criterion": item["criterion"], "max_score": item["max_score"],
                            "judge_content": judge.take()})
     finally:
-        _join_new_workers(workers)
-        answers = {"stage": args.stage, "models": list(models), "reader_effort": settings.reader_effort,
-                   "prompts": {f"{name}.{lang or 'all'}": p.version for (name, lang), p in prompts.items()},
-                   "judge_prompt": judge_prompt.version, "results": results, "judge_check": checks}
-        _write(out / "answers.json", answers)
+        unjoined = _join_new_workers(workers)
+        if unjoined:
+            print(f"{unjoined} abandoned call(s) not recorded: add {unjoined} × the model's upper bound before "
+                  f"judge 2", file=sys.stderr)
+        write_answers()
         write_spend()
     print(f"Spent ${meter.spent:.4f} of ${args.max_usd:.2f}. "
           + (f"Not done: {len(not_done)} answers (ceiling or skipped model). " if not_done else "")
@@ -1906,7 +1954,7 @@ if __name__ == "__main__":
 - [ ] **Step 5: Run the tests to verify they pass**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest tests/test_compare.py -q`
-Expected: `11 passed`. These tests use only `FakeProvider`; `test_missing_keys_stop_before_any_call` returns before any provider is built and before any folder is made. The ceiling test uses `--max-usd 0.0006`: the question check of the 41 distinct questions costs $0.00041 (60 in / 8 out at Haiku prices each), the first item then costs $0.000494 for the three models, so the ceiling is reached after exactly one item per model.
+Expected: `13 passed`. These tests use only `FakeProvider`; `test_missing_keys_stop_before_any_call` returns before any provider is built and before any folder is made. The ceiling test uses `--max-usd 0.0006`: the question check of the 41 distinct questions costs $0.00041 (60 in / 8 out at Haiku prices each), the first item then costs $0.000494 for the three models, so the ceiling is reached after exactly one item per model.
 
 - [ ] **Step 6: Check the estimate by hand (no calls)**
 
@@ -1916,7 +1964,7 @@ Expected (before 2026-12-01): one line `Stage A: claude-haiku-5-5, gpt-6-luna, g
 - [ ] **Step 7: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `894 passed` (883 + 11).
+Expected: `896 passed` (883 + 13).
 
 - [ ] **Step 8: Commit**
 
@@ -2471,7 +2519,7 @@ Expected: `9 passed`. The judge-2 tests compute the expected spend with `cost_us
 - [ ] **Step 5: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `903 passed` (894 + 9).
+Expected: `905 passed` (896 + 9).
 
 - [ ] **Step 6: Commit**
 
@@ -2494,8 +2542,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 **Interfaces:**
 - Consumes: Task 6 `scored.json` (with `judges[j]["trusted"]`) and `blind-key.json` (`items[n]["batch"]`, optional); Task 5 `calls.jsonl` (`error` `"ProviderTimeout"` / `"abandoned"` = a timeout), `spend.json` (`not_done`, `skipped`); results' `no_answer`; `app.config.PRICES_PER_MTOK`, `PRICE_CHANGES`, `provider_for_model`; `evals.judge.CRITERIA`.
 - Produces:
-  - constants `VISITS = (100, 1000, 10000)`, `READINGS_PER_VISITOR = 1.5`, `FOLLOWUPS_PER_VISITOR = 0.5`, `DAYS = 30`, `DAILY_TEXTS_PER_DAY = 312`, `TIMEOUTS`, `TUNING_GAP = 0.2`, `NO_ANSWER` (reason labels), `CAVEAT` (the fixed judge caveat)
-  - `build_summary(folder: Path) -> dict` — `{"stage", "models": {model: {...}}, "judges", "fable_batches", "spend", "assumptions"}`; per model: `quality` (`{criterion: mean}`), `overall`, `gap_to_claude` (Claude's overall minus the model's, `None` for Claude), `tuning_round` (`0 < gap < 0.2`), `quality_per_usd` (`overall / cost["per_1000"]`), `by_lang`, `by_judge`, `disagree` and `disagree_ids` (two judges more than 1 point apart on any criterion), `no_answer` (`{reason: count}`), `safety` (`banned`, `safe_low` — trusted judges only, `fallback`, `reader_crisis`, `leaks`, `errors`), `speed` (`first_p50`, `first_p95`, `total_p50`, `total_p95` in ms, `timeouts`), `cost` and `cost_future` (`reading`, `followup`, `daily`, `per_1000`, `monthly` = `{visits: usd}`; `cost_future` uses the `PRICE_CHANGES` price whatever the run's date)
+  - constants `VISITS = (100, 1000, 10000)`, `READINGS_PER_VISITOR = 1.5`, `FOLLOWUPS_PER_VISITOR = 0.5`, `DAYS = 30`, `DAILY_TEXTS_PER_DAY = 312`, `TIMEOUTS`, `READER_PURPOSES = ("reader", "followup", "daily")`, `TUNING_GAP = 0.2`, `NO_ANSWER` (reason labels; `"empty"` is «пусто или тайм-аут (уточнение, карта дня)», since a follow-up or daily timeout leaves no reason), `CAVEAT` (the fixed judge caveat)
+  - `build_summary(folder: Path) -> dict` — `{"stage", "models": {model: {...}}, "judges", "fable_batches", "spend", "assumptions"}`; per model: `quality` (`{criterion: mean}`), `overall`, `gap_to_claude` (Claude's overall minus the model's, `None` for Claude), `tuning_round` (`0 < gap < 0.2`), `quality_per_usd` (`overall / cost["per_1000"]`), `by_lang`, `by_judge`, `disagree` and `disagree_ids` (two judges more than 1 point apart on any criterion), `no_answer` (`{reason: count}`), `safety` (`banned`, `safe_low` — trusted judges only, `fallback`, `reader_crisis`, `leaks`, `errors`), `speed` (`first_p50`, `first_p95`, `total_p50`, `total_p95` in ms, `timeouts` — the model's `reader` / `followup` / `daily` calls only, not a guard or judge-2 call on the same model), `cost` and `cost_future` (`reading`, `followup`, `daily`, `per_1000`, `monthly` = `{visits: usd}`; `cost_future` uses the `PRICE_CHANGES` price whatever the run's date)
   - `render(summary: dict) -> str` (HTML page in Russian)
   - `main(argv=None) -> int` — writes `report.html` and `summary.json` in the run folder
 
@@ -2544,6 +2592,7 @@ def run(tmp_path):
     calls = [call("claude-haiku-5-5", "reader", 0.001, first=300), call("claude-haiku-5-5", "reader", 0.003, first=500),
              call("claude-haiku-5-5", "followup", 0.0007), call("claude-haiku-5-5", "daily", 0.0003),
              call("claude-haiku-5-5", "guard", 0.0002), call("claude-haiku-5-5", "reader", 0.0, error="ProviderError"),
+             call("claude-haiku-5-5", "guard", 0.0005, tokens=(None, None), error="ProviderTimeout"),
              call("gemini-3.8-flash", "reader", 0.0045, tokens=(1000, 1000)),
              call("gemini-3.8-flash", "followup", 0.002), call("gemini-3.8-flash", "daily", 0.001),
              call("gemini-4-argon", "judge", 0.01)]
@@ -2562,6 +2611,7 @@ def test_quality_safety_and_speed(run):
                                "errors": 0}
     assert flash["safety"]["errors"] == 1 and flash["safety"]["reader_crisis"] == 1
     assert haiku["speed"]["first_p50"] == 300 and haiku["speed"]["first_p95"] == 500
+    assert haiku["speed"]["timeouts"] == 0  # a timeout of the guard (also on Haiku) is not the reader's
 
 
 def test_money(run):
@@ -2658,8 +2708,10 @@ DAYS = 30
 DAILY_TEXTS_PER_DAY = 78 * 2 * 2   # every card, both orientations, EN and ES (app/daily.py fill_daily_cache)
 LABELS = {"relevant": "По делу", "specific": "Конкретно", "warm": "Тепло", "safe": "Безопасно"}
 TIMEOUTS = ("ProviderTimeout", "abandoned")   # the SDK gave up, or the engine stopped waiting (15 s / 30 s)
+READER_PURPOSES = ("reader", "followup", "daily")  # the model's own reader calls, not the guard or judge it may run
 TUNING_GAP = 0.2                               # spec §2.6: a cheaper model this close to Claude gets one tuning round
-NO_ANSWER = {"timeout": "тайм-аут", "error": "ошибка", "refusal": "отказ", "empty": "пусто", "budget": "потолок"}
+NO_ANSWER = {"timeout": "тайм-аут", "error": "ошибка", "refusal": "отказ",
+             "empty": "пусто или тайм-аут (уточнение, карта дня)", "budget": "потолок"}
 CAVEAT = ("Оговорка о судьях: у ChatGPT нет «своего» судьи; Fable 5.2 — модель семейства Claude; судья Gemini 4 Argon "
           "— модель Gemini, а на этапе Б он оценивает и самого себя. Поэтому смотрите и на оценки каждого судьи, и на "
           "расхождения между ними.")
@@ -2736,7 +2788,7 @@ def _model(model: str, results: list[dict], calls: list[dict], guard_calls: list
     totals = [c["ms_total"] for c in reader]
     speed = {"first_p50": _pct(firsts, 0.5), "first_p95": _pct(firsts, 0.95), "total_p50": _pct(totals, 0.5),
              "total_p95": _pct(totals, 0.95),
-             "timeouts": sum(1 for c in mine if c["error"] in TIMEOUTS)}
+             "timeouts": sum(1 for c in mine if c["purpose"] in READER_PURPOSES and c["error"] in TIMEOUTS)}
     return {"quality": quality, "overall": round(mean(quality.values()), 2) if quality else None,
             "by_lang": by_lang, "by_judge": by_judge, "safety": safety, "speed": speed, "no_answer": no_answer,
             "disagree": len(disagree), "disagree_ids": disagree,
@@ -2936,7 +2988,7 @@ Expected: `4 passed`.
 - [ ] **Step 5: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `907 passed` (903 + 4), the one allowed anyio warning.
+Expected: `909 passed` (905 + 4), the one allowed anyio warning.
 
 - [ ] **Step 6: Document the commands**
 
