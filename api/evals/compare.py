@@ -18,6 +18,7 @@ Output: results/compare-<UTC time>-<stage>/ (not in git); an existing --out fold
 """
 import argparse
 import json
+import math
 import sys
 import threading
 import time
@@ -90,7 +91,7 @@ def _missing_keys(settings, models, need_guard: bool) -> list[str]:
             "gemini": settings.google_ai_api_key}
     families = {provider_for_model(m) for m in models} | {"gemini"}  # judge 2 runs on Gemini
     if need_guard:
-        families.add("claude")
+        families.add(provider_for_model(settings.guard_model))
     return sorted(KEY_NAMES[f] for f in families if not keys[f])
 
 
@@ -130,6 +131,9 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
     parser.add_argument("--limit", type=int, default=None, help="only the first N items of each part (smoke run)")
     parser.add_argument("--out", type=Path, default=None)
     args = parser.parse_args(argv)
+    if args.limit is not None and args.limit < 1:
+        print("--limit must be at least 1.", file=sys.stderr)
+        return 2
     settings = load_settings()
     models = STAGES[args.stage]
     items = {part: rows[:args.limit] for part, rows in load_set().items()}
@@ -141,6 +145,9 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
         return 2
     if args.max_usd is None:
         print("--max-usd is required with --yes (spec §2.9).", file=sys.stderr)
+        return 2
+    if not math.isfinite(args.max_usd) or args.max_usd <= 0:
+        print("--max-usd must be a finite number above 0.", file=sys.stderr)
         return 2
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = args.out or EVALS_DIR / "results" / f"compare-{stamp}-{args.stage}"
@@ -195,7 +202,8 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
     def count_errors() -> None:
         """3 calls in a row without usage (an error or an abandoned stream) -> the model is skipped."""
         nonlocal seen
-        new, seen = meter.calls[seen:], len(meter.calls)
+        n = len(meter.calls)
+        new, seen = meter.calls[seen:n], n
         for record in new:
             if record.model not in streak or record.purpose == "guard":
                 continue
@@ -204,6 +212,7 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
                 skipped[record.model] = f"{ERRORS_IN_A_ROW} errors in a row without usage (last: {record.error})"
                 print(f"{record.model}: {skipped[record.model]}; skipped for the rest of the run", file=sys.stderr)
 
+    interrupted = False
     try:
         failed = guard.prefill(_questions(items))
         seen = len(meter.calls)
@@ -244,7 +253,20 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
             run_judge_check(item, cards=cards, judge_provider=judge, judge_prompt=judge_prompt)
             checks.append({"id": item["id"], "criterion": item["criterion"], "max_score": item["max_score"],
                            "judge_content": judge.take()})
+    except BaseException:
+        interrupted = True
+        raise
     finally:
+        if interrupted:
+            listed = {(n["model"], n["id"]) for n in not_done}
+            done = {(m, r["id"]) for m, rs in results.items() for r in rs}
+            not_done += [{"model": m, "id": item["id"], "reason": "interrupted"}
+                         for _, item in runs for m in models if (m, item["id"]) not in listed | done]
+        write_answers()
+        write_spend()
+        waiting = sum(1 for t in threading.enumerate() if t.name == "reader-stream" and t not in workers)
+        if waiting:
+            print(f"waiting up to 75 s for {waiting} stream worker(s)…", file=sys.stderr)
         unjoined = _join_new_workers(workers)
         if unjoined:
             print(f"{unjoined} abandoned call(s) not recorded: add {unjoined} × the model's upper bound before "

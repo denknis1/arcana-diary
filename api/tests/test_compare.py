@@ -107,7 +107,23 @@ def test_answers_are_written_after_every_item_so_an_interrupt_keeps_them(tmp_pat
     first_only = {m: ["en-01"] for m in STAGES["A"]}
     assert {m: [r["id"] for r in rs] for m, rs in on_disk[0]["results"].items()} == first_only
     assert {m: [r["id"] for r in rs] for m, rs in read(out / "answers.json")["results"].items()} == first_only
-    assert read(out / "spend.json")["spent"] > 0
+    spend = read(out / "spend.json")
+    assert spend["spent"] > 0 and spend["stopped"] is True
+    assert len(spend["not_done"]) == 3 * 49 and {n["reason"] for n in spend["not_done"]} == {"interrupted"}
+    assert {(n["model"], n["id"]) for n in spend["not_done"]}.isdisjoint(
+        {(m, "en-01") for m in STAGES["A"]})
+
+
+@pytest.mark.parametrize("flag,value", [("--max-usd", "nan"), ("--max-usd", "inf"), ("--max-usd", "0"),
+                                        ("--max-usd", "-1"), ("--limit", "0"), ("--limit", "-1")])
+def test_bad_ceiling_or_limit_is_refused(tmp_path, flag, value):
+    providers, guard_provider = fakes(), guard()
+    argv = ["--stage", "A", "--yes", "--out", str(tmp_path / "run")]
+    if flag == "--limit":
+        argv += ["--max-usd", "5"]
+    assert main([*argv, flag, value], providers=providers, guard_provider=guard_provider) == 2
+    assert all(not p.calls for p in providers.values()) and not guard_provider.calls
+    assert not (tmp_path / "run").exists()
 
 
 def test_join_new_workers_counts_the_workers_still_alive():
