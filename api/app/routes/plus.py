@@ -36,6 +36,7 @@ def join_waitlist(body: WaitlistIn, request: Request):
     ip_hash = ctx.salt.hash_ip(limits.client_ip(request, ctx.settings.trust_cloudflare), now)
     with ctx.db.connect() as conn:
         if who.user:
+            account_repo.lock_account(conn, who.user.id)  # takes turns with delete_account
             account_repo.refuse_deleted(conn, who.user.id)
         if limits.take_slot(conn, limits.waitlist_ip_subject(ip_hash), limits.utc_day(now), WAITLIST_IP_LIMIT) is None:
             return respond(429, {"reason": "ip_limit"})

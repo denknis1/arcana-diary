@@ -206,7 +206,7 @@ def test_the_account_lock_is_taken_before_the_deleted_check(api, monkeypatch):
     assert events[-2:] == [("lock", ANA), ("refuse", ANA)]
     events.clear()
     assert delete_account(api, confirm="DELETE").status_code == 200
-    assert events == [("lock", ANA)]
+    assert events == [("lock", ANA), ("refuse", ANA)]
 
 
 def test_the_lock_makes_a_delete_wait_for_a_creating_transaction(api):
@@ -221,3 +221,42 @@ def test_the_lock_makes_a_delete_wait_for_a_creating_transaction(api):
     worker.join(10)
     assert done.is_set()
 
+
+
+def test_claim_and_the_waitlist_take_the_lock_before_the_deleted_check(api, monkeypatch):
+    """Review fix: ensure_profile (claim, consent, account) and the signed-in waitlist lock, then refuse."""
+    from app import account_repo
+    events = []
+    real_lock, real_refuse = account_repo.lock_account, account_repo.refuse_deleted
+    monkeypatch.setattr(account_repo, "lock_account", lambda conn, user_id: (events.append("lock"),
+                                                                              real_lock(conn, user_id))[1])
+    monkeypatch.setattr(account_repo, "refuse_deleted", lambda conn, user_id: (events.append("refuse"),
+                                                                                real_refuse(conn, user_id))[1])
+    assert api.client.post("/api/account/claim", headers=bearer(ANA)).status_code == 200
+    assert events == ["lock", "refuse"]
+    events.clear()
+    assert join(api.client, headers=bearer(ANA)).status_code == 200
+    assert events == ["lock", "refuse"]
+
+
+def test_a_claim_waits_for_a_delete_in_progress(api):
+    """Two real connections: while another transaction holds the account's lock, a claim waits for it."""
+    import threading
+    done = threading.Event()
+    with api.db.connect() as holder:
+        holder.execute("SELECT pg_advisory_xact_lock(hashtext(%s))", (str(ANA),))
+        worker = threading.Thread(target=lambda: (api.client.post("/api/account/claim", headers=bearer(ANA)),
+                                                  done.set()))
+        worker.start()
+        assert not done.wait(1.0)
+    worker.join(10)
+    assert done.is_set()
+
+
+def test_a_repeated_delete_is_refused_and_logs_no_false_error(api, caplog):
+    assert delete_account(api, confirm="DELETE").status_code == 200
+    caplog.clear()
+    with caplog.at_level("ERROR", logger="arcana.account"):
+        again = delete_account(api, confirm="DELETE")
+    assert again.status_code == 401 and again.json() == {"reason": "auth"}
+    assert caplog.text == ""

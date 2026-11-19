@@ -48,6 +48,7 @@ def claim_by_tokens(conn, user_id, hashes: list[str], now) -> list:
 def ensure_profile(conn, user_id, now) -> dict:
     """The profile is made the first time the API sees the account; its created_at is the account's date here.
     A deleted account is refused first, so its still-valid token cannot bring the profile back."""
+    lock_account(conn, user_id)  # takes turns with delete_account
     refuse_deleted(conn, user_id)
     conn.execute("INSERT INTO profiles (user_id, created_at) VALUES (%s, %s) ON CONFLICT (user_id) DO NOTHING",
                  (user_id, now))
@@ -143,6 +144,7 @@ def delete_account(conn, user_id, email: str | None, now) -> dict[str, int]:
     the id goes into deleted_accounts so a still-valid token cannot write again. llm_calls stay (no text); the
     account's day counter in usage (a number) expires with the other counters."""
     lock_account(conn, user_id)
+    refuse_deleted(conn, user_id)  # a repeat DELETE with a still-valid token: 401, not a second deletion
     conn.execute("INSERT INTO deleted_accounts (user_id, deleted_at) VALUES (%s, %s) ON CONFLICT (user_id) DO NOTHING",
                  (user_id, now))
     counts = {
