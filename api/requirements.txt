@@ -1,5 +1,6 @@
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 anthropic==2.8.0
+openai==3.46.0
 psycopg[binary]==3.3.9
 httpx==0.28.1
