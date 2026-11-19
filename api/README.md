@@ -34,8 +34,10 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 | Переменная | По умолчанию | Что это |
 |---|---|---|
 | `DATABASE_URL` | пусто | строка подключения Postgres (Supabase: пулер в режиме transaction); пусто — `503` на всё, кроме `/health` |
-| `ANTHROPIC_API_KEY` | пусто | ключ Claude API |
-| `READER_PROVIDER` | `claude` | `claude` или `fake` |
+| `ANTHROPIC_API_KEY` | пусто | ключ Claude API; нужен и при `READER_PROVIDER=openai` или `gemini`: проверка вопроса всегда на Claude |
+| `OPENAI_API_KEY` | пусто | ключ OpenAI; обязателен при `READER_PROVIDER=openai` |
+| `GOOGLE_AI_API_KEY` | пусто | ключ Google AI (Gemini); обязателен при `READER_PROVIDER=gemini` |
+| `READER_PROVIDER` | `claude` | `claude`, `openai`, `gemini` или `fake`; `READER_MODEL` должна быть моделью этого поставщика |
 | `READER_MODEL` | `claude-haiku-5-5` | модель чтеца, уточнений и карты дня |
 | `READER_EFFORT` | `medium` | `output_config.effort` чтеца (`low` … `max`); сравнить уровни на тестовом наборе |
 | `GUARD_MODEL` | `claude-haiku-5-5` | модель проверки вопроса (effort `low`) |

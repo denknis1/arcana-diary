@@ -11,6 +11,7 @@ from app.reader.check import load_reader_terms
 from app.reader.claude import ClaudeProvider
 from app.reader.compose import load_prompts
 from app.reader.provider import FakeProvider
+from app.reader.providers import make_reader
 from app.safety.content import load_all_texts, load_helplines
 from app.safety.guard import Guard
 from app.turnstile import TurnstileVerifier
@@ -39,9 +40,7 @@ class AppContext:
 
 
 def _reader(settings: Settings):
-    if settings.reader_provider == "fake":
-        return FakeProvider(model=f"fake-{settings.reader_model}")
-    return ClaudeProvider(settings.anthropic_api_key, settings.reader_model, effort=settings.reader_effort)
+    return make_reader(settings)
 
 
 def _guard_provider(settings: Settings):
