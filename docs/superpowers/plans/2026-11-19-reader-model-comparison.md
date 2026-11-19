@@ -4,7 +4,9 @@
 
 **Goal:** Connect ChatGPT and Gemini to the Arcana Diary reader as real providers and build a cheap, capped, blind two-judge comparison (Claude / ChatGPT / Gemini) with a Russian report.
 
-**Architecture:** Two new provider classes implement the existing `Provider` protocol (`stream`, `complete_json`) next to `ClaudeProvider`; a factory picks the class by model-name prefix and `READER_PROVIDER` selects the live reader. The comparison is three commands under `api/evals/`: `compare` generates answers for a fixed 50-item set with a spend meter and a hard ceiling; `compare_judges` exports blind batches for Fable subagents, runs Gemini 4 Argon as the second judge and merges both; `compare_report` builds the HTML report.
+**Architecture:** Two new provider classes implement the existing `Provider` protocol (`stream`, `complete_json`) next to `ClaudeProvider`; a factory picks the class by model-name prefix and `READER_PROVIDER` selects the live reader. The comparison is three commands under `api/evals/`: `compare` checks every question once, then generates answers for a fixed 50-item set with a spend meter (every call recorded at once, abandoned streams included) and a hard ceiling; `compare_judges` exports blind batches for Fable subagents into a separate blind folder, runs Gemini 4 Argon as the second judge (known-bad answers first) and merges both; `compare_report` builds the HTML report.
+
+**Revision 2026-11-19 (Fable review, 14 findings, `.superpowers/sdd/cmp-plan-fable-review.md`):** the OpenAI stream takes its result from the terminal event; the meter records in `finally` (abandoned streams, upper bound for calls without usage) and writes `calls.jsonl`/`spend.json` as it goes; `cost_usd` applies announced price rises from their day; judge 2 runs with low thinking and 6000 tokens, grades the known-bad answers first and stops on repeated failures; the guard is prefilled before any reader call; the blind files live in a folder of their own; empty answers are not graded; the Claude key is required for the OpenAI/Gemini readers; the report gains quality per dollar, judge disagreements, missing answers, the gap to Claude and the judge caveat.
 
 **Tech Stack:** Python 3.12, FastAPI app code in `api/app/`, pytest; SDKs `anthropic==2.8.0` (present), `openai==3.46.0`, `google-genai==2.34.0` (already installed in `api/.venv` with the owner's approval).
 
@@ -13,15 +15,17 @@
 ## Global Constraints
 
 - Tests never touch the network: SDK clients are replaced by fakes; no test reads `deploy/.env`.
-- Never run `python -m evals.compare … --yes`, `python -m evals.compare_judges judge2 … --yes` or any call that spends API money. Paid runs are the controller's, after the owner's explicit yes.
+- Never run `python -m evals.compare … --yes`, `python -m evals.compare_judges judge2 … --yes` or any call that spends API money (a `--limit 1` smoke run costs money too). Paid runs are the controller's, after the owner's explicit yes.
 - Never read, print or commit `deploy/.env`; secrets only come from environment variables.
 - Exact SDK pins in `api/requirements.txt`: `openai==3.46.0`, `google-genai==2.34.0`.
 - The question check (guard) always stays on Claude (`GUARD_MODEL`, spec §2.4).
-- Model ids and prices (USD per 1M tokens, input/output), verbatim: `claude-haiku-5-5` 0.10/0.50, `claude-sonnet-5-5` 2.00/10.00, `gpt-6-luna` 0.10/0.50, `gpt-6.2-sol` 2.00/10.00, `gemini-3.8-flash` 0.75/3.75, `gemini-4-argon` 2.00/10.00. Announced rises: `gemini-4-argon` 4.00/20.00 from 2026-12-01; `gemini-3.8-flash` 1.50/7.50 from 2027-01-01.
-- Stage A models: `claude-haiku-5-5`, `gpt-6-luna`, `gemini-3.8-flash`. Stage B: `claude-sonnet-5-5`, `gpt-6.2-sol`, `gemini-4-argon`. Judge 2: `gemini-4-argon`.
-- Environment variable names: `READER_PROVIDER` (`claude` | `openai` | `gemini` | `fake`), `OPENAI_API_KEY`, `GOOGLE_AI_API_KEY`.
+- Model ids and prices (USD per 1M tokens, input/output), verbatim: `claude-haiku-5-5` 0.10/0.50, `claude-sonnet-5-5` 2.00/10.00, `gpt-6-luna` 0.10/0.50, `gpt-6.2-sol` 2.00/10.00, `gemini-3.8-flash` 0.75/3.75, `gemini-4-argon` 2.00/10.00. Announced rises: `gemini-4-argon` 4.00/20.00 from 2026-12-01; `gemini-3.8-flash` 1.50/7.50 from 2027-01-01. `cost_usd` applies a rise from its day (UTC), so tests that depend on a price either inject the day or compute the expected value with `cost_usd` itself.
+- Stage A models: `claude-haiku-5-5`, `gpt-6-luna`, `gemini-3.8-flash`. Stage B: `claude-sonnet-5-5`, `gpt-6.2-sol`, `gemini-4-argon`. Judge 2: `gemini-4-argon`, `json_effort="low"`, `max_tokens` 6000, estimate tokens (in, out) 2200/1500 per answer and 1200/1300 per card-of-the-day text (`JUDGE2_EST_TOKENS`).
+- The comparison builds every provider with `max_retries=0` (Claude, OpenAI; google-genai does not retry), so every billed attempt is one metered call.
+- Exit codes of the comparison commands: 2 not run (no `--yes`, no ceiling, existing `--out`), 3 a key is missing, 4 stopped (ceiling, skipped model, 3 judge failures in a row), 5 the question check failed before any reader call, 6 judge 2 missed a known-bad answer (`--force` continues).
+- Environment variable names: `READER_PROVIDER` (`claude` | `openai` | `gemini` | `fake`), `OPENAI_API_KEY`, `GOOGLE_AI_API_KEY`. `READER_PROVIDER=openai|gemini` also needs `ANTHROPIC_API_KEY` (the guard); `claude` and `fake` start without any key (many tests call `load_settings({})`).
 - The comparison set has exactly 50 items: 30 questions (15 EN + 15 ES), 6 injections, 7 follow-ups, 7 card-of-the-day texts; no crisis items.
-- Judges grade blind: no model or provider name in any file a judge reads.
+- Judges grade blind: no model or provider name in any file a judge reads; the Fable files live in their own folder `api/evals/results/judging-<8 hex>/`, apart from `answers.json` and `blind-key.json`.
 - Report language: Russian. Monthly cost assumptions: 1.5 readings and 0.5 follow-ups per visitor, 30 days, visitors 100 / 1000 / 10 000 per day, 312 card-of-the-day texts per day (78 cards × 2 orientations × 2 languages).
 - Every commit message ends with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 - Run tests from `api/`: `cd ~/arcana-diary/api && .venv/bin/pytest -q`. Baseline before this plan: 828 passed.
@@ -35,12 +39,12 @@
 | `api/app/reader/openai_provider.py` (new) | `OpenAIProvider`: Responses API stream + structured JSON, error mapping |
 | `api/app/reader/gemini_provider.py` (new) | `GeminiProvider`: google-genai stream + structured JSON, error mapping |
 | `api/app/reader/providers.py` (new) | `make_provider(model, settings, …)`, `make_reader(settings)` |
-| `api/app/config.py` (modify) | price rows, `PRICE_CHANGES`, `provider_for_model`, new settings fields and checks |
+| `api/app/config.py` (modify) | price rows, `PRICE_CHANGES` (applied by `cost_usd` from their day), `provider_for_model`, new settings fields and checks |
 | `api/app/context.py` (modify) | live reader built by `make_reader` |
-| `api/evals/metering.py` (new) | `Meter`, `MeteredProvider`, `CachingGuard`, `RecordingJudge`, `BudgetExceeded` |
+| `api/evals/metering.py` (new) | `Meter` (with a `calls.jsonl` sink), `MeteredProvider`, `CachingGuard` (prefill), `RecordingJudge`, `BudgetExceeded` |
 | `api/evals/compare_set.json` (new) | the fixed 50-item set (ids) |
-| `api/evals/compare.py` (new) | step 1: answers for a stage, estimate, ceiling |
-| `api/evals/compare_judges.py` (new) | step 2: blind export, Fable check, Gemini judge, merge |
+| `api/evals/compare.py` (new) | step 1: guard prefill, answers for a stage, estimate, ceiling, `--limit`, skipped models |
+| `api/evals/compare_judges.py` (new) | step 2: blind export (separate folder), Fable check, Gemini judge (checks first), merge |
 | `api/evals/compare_report.py` (new) | step 3: numbers + Russian HTML report |
 | `api/requirements.txt`, `deploy/.env.example`, `api/README.md` (modify) | pins and docs |
 
@@ -55,7 +59,7 @@
 
 **Interfaces:**
 - Consumes: `app.reader.errors` — `StreamResult(tokens_in, tokens_out, stop_reason, model, refusal_category=None)`, `ProviderError(message, result=None)`, `ProviderTimeout`, `ProviderRefusal(result)`.
-- Produces: `OpenAIProvider(api_key: str, model: str, client=None, timeout_s: float = 60.0, max_retries: int = 1, effort: str | None = None, json_timeout_s: float = 3.0, json_effort: str | None = "low")` with `.model`, `.stream(system, messages, max_tokens)` (yields `str` chunks, then one `StreamResult`) and `.complete_json(system, messages, schema, max_tokens) -> tuple[dict, StreamResult]`. Private attributes `_api_key`, `_effort`, `_json_timeout_s`, `_json_effort` are read by Task 3 tests.
+- Produces: `OpenAIProvider(api_key: str, model: str, client=None, timeout_s: float = 60.0, max_retries: int = 1, effort: str | None = None, json_timeout_s: float = 3.0, json_effort: str | None = "low")` with `.model`, `.stream(system, messages, max_tokens)` (yields `str` chunks, then one `StreamResult`; the result comes from the terminal event `response.completed` / `response.incomplete` / `response.failed`, never from `get_final_response()`, which raises unless the stream completed) and `.complete_json(system, messages, schema, max_tokens) -> tuple[dict, StreamResult]`. A failed response raises `ProviderError` with `StreamResult(..., stop_reason="failed")`. Private attributes `_api_key`, `_effort`, `_max_retries`, `_json_timeout_s`, `_json_effort` are read by Task 3 tests.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -78,8 +82,8 @@ SCHEMA = {"type": "object", "properties": {"group": {"type": "string"}}, "requir
           "additionalProperties": False}
 
 
-def ev(type_, delta=None):
-    return SimpleNamespace(type=type_, delta=delta)
+def ev(type_, delta=None, response=None):
+    return SimpleNamespace(type=type_, delta=delta, response=response)
 
 
 def response(status="completed", reason=None, tokens=(30, 12), refusal=False, text="Hello"):
@@ -90,13 +94,22 @@ def response(status="completed", reason=None, tokens=(30, 12), refusal=False, te
                            output_text="" if refusal else text)
 
 
+def end(final):
+    """The terminal event the SDK sends last: response.completed, response.incomplete or response.failed."""
+    kind = {"completed": "response.completed", "incomplete": "response.incomplete"}.get(final.status,
+                                                                                         "response.failed")
+    return ev(kind, response=final)
+
+
 def sdk_timeout():
     return openai.APITimeoutError(request=httpx2.Request("POST", "https://api.openai.com/v1/responses"))
 
 
 class FakeStream:
-    def __init__(self, events, final):
-        self.events, self.final = events, final
+    """Like the SDK's ResponseStream: get_final_response() works only after a response.completed event."""
+
+    def __init__(self, events):
+        self.events = events
 
     def __enter__(self):
         return self
@@ -108,7 +121,10 @@ class FakeStream:
         return iter(self.events)
 
     def get_final_response(self):
-        return self.final
+        done = [e for e in self.events if e.type == "response.completed"]
+        if not done:
+            raise RuntimeError("Didn't receive a `response.completed` event.")
+        return done[-1].response
 
 
 class FakeResponses:
@@ -145,8 +161,8 @@ def provider(responses, **kwargs):
 
 def test_stream_yields_text_then_result_and_sends_the_conversation():
     events = [ev("response.created"), ev("response.output_text.delta", "Hel"), ev("response.output_text.delta", "lo"),
-              ev("response.completed")]
-    responses = FakeResponses(stream=FakeStream(events, response()))
+              end(response())]
+    responses = FakeResponses(stream=FakeStream(events))
     items = list(provider(responses, effort="medium").stream(SYSTEM, MSGS, 500))
     assert items == ["Hel", "lo", StreamResult(30, 12, "end_turn", "gpt-6-luna")]
     call = responses.calls[0]
@@ -155,31 +171,39 @@ def test_stream_yields_text_then_result_and_sends_the_conversation():
 
 
 def test_no_effort_sends_no_reasoning():
-    responses = FakeResponses(stream=FakeStream([ev("response.output_text.delta", "Hi")], response()))
+    responses = FakeResponses(stream=FakeStream([ev("response.output_text.delta", "Hi"), end(response())]))
     list(provider(responses).stream(SYSTEM, MSGS, 100))
     assert "reasoning" not in responses.calls[0]
 
 
 def test_cut_by_token_limit_is_a_result_not_an_error():
     final = response(status="incomplete", reason="max_output_tokens")
-    responses = FakeResponses(stream=FakeStream([ev("response.output_text.delta", "Hel")], final))
+    responses = FakeResponses(stream=FakeStream([ev("response.output_text.delta", "Hel"), end(final)]))
     items = list(provider(responses).stream(SYSTEM, MSGS, 100))
-    assert items[-1].stop_reason == "max_tokens"
+    assert items[-1] == StreamResult(30, 12, "max_tokens", "gpt-6-luna")
 
 
 @pytest.mark.parametrize("final", [response(refusal=True), response(status="incomplete", reason="content_filter")])
 def test_refusal_raises_with_its_result(final):
-    responses = FakeResponses(stream=FakeStream([ev("response.refusal.delta", "no")], final))
+    responses = FakeResponses(stream=FakeStream([ev("response.refusal.delta", "no"), end(final)]))
     with pytest.raises(ProviderRefusal) as exc:
         list(provider(responses).stream(SYSTEM, MSGS, 100))
     assert exc.value.result == StreamResult(30, 12, "refusal", "gpt-6-luna", "content_filter")
 
 
-def test_failed_response_is_an_error():
-    responses = FakeResponses(stream=FakeStream([], response(status="failed")))
+def test_failed_response_is_an_error_with_its_usage():
+    responses = FakeResponses(stream=FakeStream([end(response(status="failed"))]))
     with pytest.raises(ProviderError) as exc:
         list(provider(responses).stream(SYSTEM, MSGS, 100))
-    assert not isinstance(exc.value, (ProviderTimeout, ProviderRefusal)) and exc.value.result is not None
+    assert not isinstance(exc.value, (ProviderTimeout, ProviderRefusal))
+    assert exc.value.result == StreamResult(30, 12, "failed", "gpt-6-luna")
+
+
+def test_a_stream_without_a_terminal_event_is_an_error():
+    responses = FakeResponses(stream=FakeStream([ev("response.output_text.delta", "Hel")]))
+    with pytest.raises(ProviderError) as exc:
+        list(provider(responses).stream(SYSTEM, MSGS, 100))
+    assert exc.value.result is None and "terminal event" in str(exc.value)
 
 
 def test_timeout_and_other_errors():
@@ -226,18 +250,24 @@ Create `api/app/reader/openai_provider.py`:
 ```python
 """ChatGPT through the official openai SDK 3.46.0, Responses API (spec 2026-11-19 §4).
 
-stream(): client.responses.stream(...) yields events; "response.output_text.delta" carries the text, then
-get_final_response() gives status, usage and output. Usage: input_tokens / output_tokens (reasoning tokens are part
+stream(): client.responses.stream(...) yields events; "response.output_text.delta" carries the text. The stream
+ends with one terminal event that carries the whole response (status, usage, output): "response.completed",
+"response.incomplete" or "response.failed". It is taken from the loop: the SDK's get_final_response() raises
+unless the stream ended with response.completed, which would turn a cut or filtered answer into a plain error and
+lose its usage. No terminal event -> ProviderError. Usage: input_tokens / output_tokens (reasoning tokens are part
 of output_tokens and billed as output). status "incomplete" with reason "max_output_tokens" -> stop_reason
 "max_tokens"; a "refusal" content part or reason "content_filter" -> ProviderRefusal; status "failed" ->
-ProviderError. store=False: OpenAI keeps no copy of the conversation. openai.APITimeoutError -> ProviderTimeout; any
-other SDK error -> ProviderError. The client is created lazily, so building the provider makes no network call.
+ProviderError with the usage. store=False: OpenAI keeps no copy of the conversation. openai.APITimeoutError ->
+ProviderTimeout; any other SDK error -> ProviderError. The client is created lazily, so building the provider makes
+no network call.
 """
 import json
 
 import openai
 
 from app.reader.errors import ProviderError, ProviderRefusal, ProviderTimeout, StreamResult
+
+TERMINAL_EVENTS = ("response.completed", "response.incomplete", "response.failed")
 
 
 def _refused(response) -> bool:
@@ -252,10 +282,11 @@ def _refused(response) -> bool:
 
 
 def _stop_reason(response) -> str:
-    if getattr(response, "status", None) == "incomplete":
+    status = getattr(response, "status", None)
+    if status == "incomplete":
         reason = getattr(getattr(response, "incomplete_details", None), "reason", None)
         return "max_tokens" if reason == "max_output_tokens" else (reason or "incomplete")
-    return "end_turn"
+    return status if status in ("failed", "cancelled") else "end_turn"
 
 
 class OpenAIProvider:
@@ -293,21 +324,26 @@ class OpenAIProvider:
         return params
 
     def stream(self, system: str, messages: list[dict], max_tokens: int):
+        final = None
         try:
             with self.client.responses.stream(**self._params(system, messages, max_tokens, self._effort)) as stream:
                 for event in stream:
-                    if getattr(event, "type", None) == "response.output_text.delta" and event.delta:
+                    kind = getattr(event, "type", None)
+                    if kind == "response.output_text.delta" and event.delta:
                         yield event.delta
-                final = stream.get_final_response()
+                    elif kind in TERMINAL_EVENTS:
+                        final = event.response
         except openai.APITimeoutError as exc:
             raise ProviderTimeout("APITimeoutError") from exc
         except Exception as exc:  # SDK errors (APIStatusError, APIConnectionError, ...)
             raise ProviderError(type(exc).__name__) from exc
+        if final is None:
+            raise ProviderError("stream ended without a terminal event")
         result = self._result(final)
         if result.stop_reason == "refusal":
             raise ProviderRefusal(result)
-        if getattr(final, "status", None) in ("failed", "cancelled"):
-            raise ProviderError(f"response {final.status}", result)
+        if result.stop_reason in ("failed", "cancelled"):
+            raise ProviderError(f"response {result.stop_reason}", result)
         yield result
 
     def complete_json(self, system: str, messages: list[dict], schema: dict, max_tokens: int):
@@ -324,7 +360,7 @@ class OpenAIProvider:
         if result.stop_reason == "refusal":
             raise ProviderRefusal(result)
         if result.stop_reason != "end_turn":
-            raise ProviderError(f"{result.stop_reason}: structured output truncated", result)
+            raise ProviderError(f"{result.stop_reason}: no complete structured output", result)
         text = getattr(response, "output_text", "") or ""
         if not text:
             raise ProviderError("no text", result)
@@ -343,12 +379,12 @@ openai==3.46.0
 - [ ] **Step 4: Run the tests to verify they pass**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest tests/test_openai_provider.py -q`
-Expected: `9 passed`.
+Expected: `10 passed`. (`FakeStream.get_final_response` raises like the SDK unless the stream completed, so a provider that called it would fail the cut, the content-filter refusal and the failed-response tests.)
 
 - [ ] **Step 5: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `837 passed` (828 + 9), the one allowed anyio warning.
+Expected: `838 passed` (828 + 10), the one allowed anyio warning.
 
 - [ ] **Step 6: Commit**
 
@@ -670,7 +706,7 @@ Expected: `15 passed`.
 - [ ] **Step 5: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `852 passed`.
+Expected: `853 passed` (838 + 15).
 
 - [ ] **Step 6: Commit**
 
@@ -690,7 +726,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Modify: `api/app/config.py`
 - Create: `api/app/reader/providers.py`
 - Modify: `api/app/context.py:11,41-44`
-- Modify: `api/tests/test_config.py:43-45`
+- Modify: `api/tests/test_config.py:1-3,43-45`
 - Modify: `deploy/.env.example`, `api/README.md`
 - Test: `api/tests/test_config.py`, `api/tests/test_providers.py`
 
@@ -698,17 +734,23 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Consumes: `OpenAIProvider` (Task 1), `GeminiProvider` (Task 2), `ClaudeProvider(api_key, model, client=None, timeout_s=60.0, max_retries=1, effort=None, json_timeout_s=3.0, json_effort="low")`, `FakeProvider(model=...)`.
 - Produces:
   - `app.config.PROVIDERS = ("claude", "openai", "gemini", "fake")`
-  - `app.config.PRICE_CHANGES: dict[str, tuple[str, tuple[float, float]]]`
+  - `app.config.KEY_NAMES = {"claude": "ANTHROPIC_API_KEY", "openai": "OPENAI_API_KEY", "gemini": "GOOGLE_AI_API_KEY"}`
+  - `app.config.PRICE_CHANGES: dict[str, tuple[str, tuple[float, float]]]` (model -> (first UTC day `"YYYY-MM-DD"`, (input, output)))
+  - `app.config.cost_usd(model: str, tokens_in: int | None, tokens_out: int | None, day: date | None = None) -> float | None` — uses the `PRICE_CHANGES` price when `day` (default: today, UTC) is on or after its date; existing callers are unchanged
   - `app.config.provider_for_model(model: str) -> str` (`"claude"` | `"openai"` | `"gemini"`, else `ValueError`)
-  - `Settings.openai_api_key: str`, `Settings.google_ai_api_key: str`
-  - `app.reader.providers.make_provider(model: str, settings: Settings, *, effort: str | None = None, json_timeout_s: float = 3.0, json_effort: str | None = "low")`
+  - `Settings.openai_api_key: str`, `Settings.google_ai_api_key: str`; `load_settings` requires the provider's key and `ANTHROPIC_API_KEY` when `READER_PROVIDER` is `openai` or `gemini`, nothing for `claude` / `fake`
+  - `app.reader.providers.make_provider(model: str, settings: Settings, *, effort: str | None = None, json_timeout_s: float = 3.0, json_effort: str | None = "low", max_retries: int | None = None)` — `max_retries` goes to Claude and OpenAI when given (None keeps their default 1); Gemini gets none (the SDK does not retry)
   - `app.reader.providers.make_reader(settings: Settings)`
 
 - [ ] **Step 1: Write the failing tests**
 
-In `api/tests/test_config.py`, change the import line to:
+In `api/tests/test_config.py`, replace the imports at the top (`import pytest`, the blank line and the `from app.config import …` line) with:
 
 ```python
+from datetime import date
+
+import pytest
+
 from app.config import DEFAULT_MODEL, PRICE_CHANGES, PRICES_PER_MTOK, cost_usd, load_settings, provider_for_model
 ```
 
@@ -736,6 +778,17 @@ def test_price_changes_are_announced_rises_of_priced_models():
         assert price_in >= PRICES_PER_MTOK[model][0] and price_out >= PRICES_PER_MTOK[model][1]
 
 
+@pytest.mark.parametrize("model, day, expected", [
+    ("gemini-4-argon", date(2026, 11, 30), 0.012),
+    ("gemini-4-argon", date(2026, 12, 1), 0.024),
+    ("gemini-3.8-flash", date(2026, 12, 31), 0.0045),
+    ("gemini-3.8-flash", date(2027, 1, 1), 0.009),
+    ("claude-haiku-5-5", date(2030, 1, 1), 0.0006),
+])
+def test_cost_usd_applies_an_announced_rise_from_its_day(model, day, expected):
+    assert cost_usd(model, 1000, 1000, day) == pytest.approx(expected)
+
+
 @pytest.mark.parametrize("model, provider", [("claude-haiku-5-5", "claude"), ("gpt-6-luna", "openai"),
                                              ("gpt-6.2-sol", "openai"), ("gemini-4-argon", "gemini")])
 def test_provider_for_model(model, provider):
@@ -749,13 +802,25 @@ def test_unknown_model_family():
 
 def test_openai_and_gemini_readers_need_their_keys():
     with pytest.raises(ValueError, match="OPENAI_API_KEY"):
-        load_settings({"READER_PROVIDER": "openai", "READER_MODEL": "gpt-6-luna"})
-    s = load_settings({"READER_PROVIDER": "openai", "READER_MODEL": "gpt-6-luna", "OPENAI_API_KEY": "k"})
+        load_settings({"READER_PROVIDER": "openai", "READER_MODEL": "gpt-6-luna", "ANTHROPIC_API_KEY": "a"})
+    s = load_settings({"READER_PROVIDER": "openai", "READER_MODEL": "gpt-6-luna", "OPENAI_API_KEY": "k",
+                       "ANTHROPIC_API_KEY": "a"})
     assert (s.reader_provider, s.reader_model, s.openai_api_key) == ("openai", "gpt-6-luna", "k")
     with pytest.raises(ValueError, match="GOOGLE_AI_API_KEY"):
-        load_settings({"READER_PROVIDER": "gemini", "READER_MODEL": "gemini-3.8-flash"})
-    s = load_settings({"READER_PROVIDER": "gemini", "READER_MODEL": "gemini-3.8-flash", "GOOGLE_AI_API_KEY": "g"})
+        load_settings({"READER_PROVIDER": "gemini", "READER_MODEL": "gemini-3.8-flash", "ANTHROPIC_API_KEY": "a"})
+    s = load_settings({"READER_PROVIDER": "gemini", "READER_MODEL": "gemini-3.8-flash", "GOOGLE_AI_API_KEY": "g",
+                       "ANTHROPIC_API_KEY": "a"})
     assert (s.reader_provider, s.google_ai_api_key) == ("gemini", "g")
+
+
+def test_openai_and_gemini_readers_need_the_claude_key_for_the_question_check():
+    with pytest.raises(ValueError, match="ANTHROPIC_API_KEY"):
+        load_settings({"READER_PROVIDER": "openai", "READER_MODEL": "gpt-6-luna", "OPENAI_API_KEY": "k"})
+    with pytest.raises(ValueError, match="ANTHROPIC_API_KEY"):
+        load_settings({"READER_PROVIDER": "gemini", "READER_MODEL": "gemini-3.8-flash", "GOOGLE_AI_API_KEY": "g"})
+    # claude and fake still start without any key (local runs and the tests use load_settings({}))
+    assert load_settings({}).anthropic_api_key == ""
+    assert load_settings({"READER_PROVIDER": "fake"}).reader_provider == "fake"
 
 
 def test_reader_model_must_belong_to_the_provider():
@@ -803,6 +868,14 @@ def test_make_provider_picks_the_class_by_model_name():
     assert (gemini._json_timeout_s, gemini._json_effort) == (120.0, None)
 
 
+def test_make_provider_passes_max_retries_to_claude_and_openai():
+    s = settings()
+    assert make_provider("claude-haiku-5-5", s)._max_retries == 1      # the providers' own default
+    assert make_provider("claude-haiku-5-5", s, max_retries=0)._max_retries == 0
+    assert make_provider("gpt-6-luna", s, max_retries=0)._max_retries == 0
+    assert isinstance(make_provider("gemini-3.8-flash", s, max_retries=0), GeminiProvider)  # no retries by default
+
+
 def test_make_provider_rejects_unknown_families():
     with pytest.raises(ValueError):
         make_provider("llama-4", settings())
@@ -825,6 +898,12 @@ Expected: collection errors — `ImportError: cannot import name 'PRICE_CHANGES'
 
 - [ ] **Step 3: Change `api/app/config.py`**
 
+Add to the imports, right after `from dataclasses import dataclass`:
+
+```python
+from datetime import date, datetime, timezone
+```
+
 Replace the price table block (from `# USD per 1M tokens: (input, output)` through the closing `}` of `PRICES_PER_MTOK`) with:
 
 ```python
@@ -841,8 +920,8 @@ PRICES_PER_MTOK = {
     "gemini-3.8-flash": (0.75, 3.75),
     "gemini-4-argon": (2.00, 10.00),
 }
-# Announced price rises: model -> (date, (input, output)). Reports show them as a second column; the live budgets
-# use PRICES_PER_MTOK, which is updated on the date.
+# Announced price rises: model -> (first UTC day, (input, output)). cost_usd applies the new price from that day on,
+# so the comparison meter and the live budgets never undercount; reports also show it as a second column.
 PRICE_CHANGES = {
     "gemini-4-argon": ("2026-12-01", (4.00, 20.00)),
     "gemini-3.8-flash": ("2027-01-01", (1.50, 7.50)),
@@ -887,8 +966,10 @@ and, right after the existing `for name, model in (("READER_MODEL", reader_model
         family = provider_for_model(reader_model)
         if family != provider:
             raise ValueError(f"READER_MODEL={reader_model!r} is a {family} model, but READER_PROVIDER={provider}")
-        if provider in ("openai", "gemini") and not env.get(KEY_NAMES[provider]):
-            raise ValueError(f"READER_PROVIDER={provider} needs {KEY_NAMES[provider]} (deploy/.env)")
+        if provider in ("openai", "gemini"):
+            for key in (KEY_NAMES[provider], "ANTHROPIC_API_KEY"):  # the question check stays on Claude
+                if not env.get(key):
+                    raise ValueError(f"READER_PROVIDER={provider} needs {key} (deploy/.env)")
     if provider_for_model(guard_model) != "claude":
         raise ValueError(f"GUARD_MODEL={guard_model!r}: the question check stays on Claude (spec 2026-11-19 §2.4)")
 ```
@@ -900,13 +981,30 @@ In the `return Settings(...)` call, add right after `anthropic_api_key=env.get("
         google_ai_api_key=env.get("GOOGLE_AI_API_KEY", ""),
 ```
 
+Replace the whole `cost_usd` function (the last function of the file) with:
+
+```python
+def cost_usd(model: str, tokens_in: int | None, tokens_out: int | None, day: date | None = None) -> float | None:
+    """The price of a call on `day` (default: today, UTC): from the day of an announced rise (PRICE_CHANGES) the
+    new price applies. None for a model without a price row or a call without usage."""
+    price = PRICES_PER_MTOK.get(model)
+    if price is None or tokens_in is None or tokens_out is None:
+        return None
+    change = PRICE_CHANGES.get(model)
+    if change is not None and (day or datetime.now(timezone.utc).date()) >= date.fromisoformat(change[0]):
+        price = change[1]
+    return round((tokens_in * price[0] + tokens_out * price[1]) / 1_000_000, 6)
+```
+
 - [ ] **Step 4: Create the factory**
 
 Create `api/app/reader/providers.py`:
 
 ```python
 """Builds model providers (spec 2026-11-19 §4): the class follows the model-name prefix, the key comes from
-settings. The live reader follows READER_PROVIDER; the question check stays on Claude (context.py)."""
+settings. The live reader follows READER_PROVIDER; the question check stays on Claude (context.py).
+max_retries=None keeps each SDK's own default (Claude and OpenAI: 1 retry; google-genai does not retry); the
+comparison passes 0 so every billed attempt is a metered call."""
 from app.config import Settings, provider_for_model
 from app.reader.claude import ClaudeProvider
 from app.reader.gemini_provider import GeminiProvider
@@ -915,16 +1013,15 @@ from app.reader.provider import FakeProvider
 
 
 def make_provider(model: str, settings: Settings, *, effort: str | None = None, json_timeout_s: float = 3.0,
-                  json_effort: str | None = "low"):
+                  json_effort: str | None = "low", max_retries: int | None = None):
     family = provider_for_model(model)
+    common = {"effort": effort, "json_timeout_s": json_timeout_s, "json_effort": json_effort}
+    retries = {} if max_retries is None else {"max_retries": max_retries}
     if family == "claude":
-        return ClaudeProvider(settings.anthropic_api_key, model, effort=effort, json_timeout_s=json_timeout_s,
-                              json_effort=json_effort)
+        return ClaudeProvider(settings.anthropic_api_key, model, **common, **retries)
     if family == "openai":
-        return OpenAIProvider(settings.openai_api_key, model, effort=effort, json_timeout_s=json_timeout_s,
-                              json_effort=json_effort)
-    return GeminiProvider(settings.google_ai_api_key, model, effort=effort, json_timeout_s=json_timeout_s,
-                          json_effort=json_effort)
+        return OpenAIProvider(settings.openai_api_key, model, **common, **retries)
+    return GeminiProvider(settings.google_ai_api_key, model, **common)
 
 
 def make_reader(settings: Settings):
@@ -959,29 +1056,35 @@ In `deploy/.env.example`, replace the line `# claude (default) or fake (canned a
 and add after the `ANTHROPIC_API_KEY=` line:
 
 ```
-# only needed when READER_PROVIDER=openai or gemini (and for the model comparison in api/evals/)
+# only needed when READER_PROVIDER=openai or gemini (and for the model comparison in api/evals/);
+# ANTHROPIC_API_KEY is still needed then: the question check always runs on Claude
 OPENAI_API_KEY=
 GOOGLE_AI_API_KEY=
 ```
 
-In `api/README.md`, in the settings table, replace the `READER_PROVIDER` row's description so it reads `claude`, `openai`, `gemini` или `fake`; add two rows after the `ANTHROPIC_API_KEY` row:
+In `api/README.md`, in the settings table, replace the row `` | `ANTHROPIC_API_KEY` | пусто | ключ Claude API | `` with these three rows:
 
 ```
+| `ANTHROPIC_API_KEY` | пусто | ключ Claude API; нужен и при `READER_PROVIDER=openai` или `gemini`: проверка вопроса всегда на Claude |
 | `OPENAI_API_KEY` | пусто | ключ OpenAI; обязателен при `READER_PROVIDER=openai` |
 | `GOOGLE_AI_API_KEY` | пусто | ключ Google AI (Gemini); обязателен при `READER_PROVIDER=gemini` |
 ```
 
-(Read the table first with `grep -n "READER_PROVIDER\|ANTHROPIC_API_KEY" api/README.md` and keep its column format.)
+and the row `` | `READER_PROVIDER` | `claude` | `claude` или `fake` | `` with:
+
+```
+| `READER_PROVIDER` | `claude` | `claude`, `openai`, `gemini` или `fake`; `READER_MODEL` должна быть моделью этого поставщика |
+```
 
 - [ ] **Step 7: Run the tests to verify they pass**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest tests/test_config.py tests/test_providers.py -q`
-Expected: all pass.
+Expected: `35 passed` (31 in `test_config.py`: 14 old + 17 new; 4 in `test_providers.py`).
 
 - [ ] **Step 8: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `866 passed` (852 + 11 config + 3 providers). If any older test builds `Settings(...)` directly and now misses the two new fields, add `openai_api_key=""`, `google_ai_api_key=""` to that call.
+Expected: `874 passed` (853 + 17 config + 4 providers). If any older test builds `Settings(...)` directly and now misses the two new fields, add `openai_api_key=""`, `google_ai_api_key=""` to that call.
 
 - [ ] **Step 9: Commit**
 
@@ -989,7 +1092,7 @@ Expected: `866 passed` (852 + 11 config + 3 providers). If any older test builds
 cd ~/arcana-diary
 git add api/app/config.py api/app/reader/providers.py api/app/context.py api/tests/test_config.py \
         api/tests/test_providers.py deploy/.env.example api/README.md
-git commit -m "feat(api): READER_PROVIDER openai/gemini, prices of the compared models, provider factory
+git commit -m "feat(api): READER_PROVIDER openai/gemini, dated prices of the compared models, provider factory
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
@@ -1003,14 +1106,15 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Test: `api/tests/test_metering.py`
 
 **Interfaces:**
-- Consumes: `app.config.cost_usd(model, tokens_in, tokens_out) -> float | None`; `StreamResult`, `ProviderError`; `evals.judge.CRITERIA = ("relevant", "specific", "warm", "safe")`.
+- Consumes: `app.config.cost_usd(model, tokens_in, tokens_out, day=None) -> float | None` (Task 3); `StreamResult`, `ProviderError`; `app.reader.engine.run_stream` and `Failed` (test only: a stream the engine abandons); `evals.judge.CRITERIA = ("relevant", "specific", "warm", "safe")`.
 - Produces:
   - `BudgetExceeded(Exception)`
-  - `CallRecord` dataclass: `model, purpose, item, tokens_in, tokens_out, cost_usd, ms_first, ms_total, error`
-  - `Meter(max_usd: float, spent: float = 0.0)` with `.spent`, `.max_usd`, `.calls: list[CallRecord]`, `.item: str | None`, `.refused: int`, `.exhausted -> bool`, `.check()`, `.add(model, purpose, result, ms_first, ms_total, error=None)`, `.records() -> list[dict]`
+  - `CallRecord` dataclass: `model, purpose, item, tokens_in, tokens_out, cost_usd, ms_first, ms_total, error`; `error` is the exception name, `"abandoned"` for a stream closed before its end, or `None`
+  - `Meter(max_usd: float, spent: float = 0.0, sink: Path | None = None)` with `.spent`, `.max_usd`, `.sink`, `.calls: list[CallRecord]`, `.item: str | None`, `.refused: int`, `.exhausted -> bool`, `.check()`, `.add(model, purpose, result, ms_first, ms_total, error=None, item=None, max_tokens=None) -> CallRecord`, `.records() -> list[dict]`. `add` appends the record to `sink` (one JSON line) at once; when the call has no usage and `error` is set, its cost is `cost_usd(model, 0, max_tokens) or 0.0` (upper bound); `item=None` means `meter.item`
   - `purpose_of(messages) -> "reader" | "followup" | "daily"`
-  - `MeteredProvider(inner, meter, purpose: str | None = None)` — same `stream` / `complete_json` contract as any provider, `.model == inner.model`
-  - `CachingGuard(guard)` with `.classify(question)`
+  - `MeteredProvider(inner, meter, purpose: str | None = None)` — same `stream` / `complete_json` contract as any provider, `.model == inner.model`; records every call in `finally` with the item taken when the call started
+  - `NOT_CACHED = ("timeout", "error")`, `ABANDONED = "abandoned"`
+  - `CachingGuard(guard)` with `.prefill(questions, attempts: int = 3) -> list[str]` (the questions still without a real answer) and `.classify(question)` (from the cache; asks only for a question that is missing)
   - `RecordingJudge()` with `.complete_json(...)` and `.take() -> str | None`
 
 - [ ] **Step 1: Write the failing tests**
@@ -1018,10 +1122,13 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 Create `api/tests/test_metering.py`:
 
 ```python
+import json
+import time
 from types import SimpleNamespace
 
 import pytest
 
+from app.reader.engine import Failed, run_stream
 from app.reader.provider import FakeProvider, FakeReply, ProviderError
 from evals.metering import BudgetExceeded, CachingGuard, Meter, MeteredProvider, RecordingJudge, purpose_of
 
@@ -1052,12 +1159,29 @@ def test_purpose_of_messages():
     assert purpose_of([*READING, {"role": "assistant", "content": "a"}, {"role": "user", "content": "q"}]) == "followup"
 
 
-def test_a_failed_call_is_recorded_with_its_error():
+def test_a_failed_call_without_usage_costs_its_upper_bound():
     meter = Meter(1.0)
     failing = FakeProvider(model="claude-haiku-5-5", replies=[FakeReply(fail_after=1)])
     with pytest.raises(ProviderError):
         list(MeteredProvider(failing, meter).stream("system", READING, 100))
-    assert meter.calls[0].error == "ProviderError" and meter.calls[0].cost_usd == 0.0
+    assert meter.calls[0].error == "ProviderError" and meter.calls[0].tokens_out is None
+    assert meter.calls[0].cost_usd == pytest.approx(0.00005)  # 100 output tokens at 0.50
+
+
+def test_a_stream_abandoned_by_the_engine_is_recorded_for_its_item_at_its_upper_bound():
+    meter = Meter(1.0)
+    slow = MeteredProvider(FakeProvider(model="claude-haiku-5-5", replies=[FakeReply(first_delay=0.3)]), meter)
+    meter.item = "en-01"
+    pieces = list(run_stream(slow, "system", READING, 100, first_token_timeout=0.05))
+    assert isinstance(pieces[-1], Failed) and pieces[-1].reason == "timeout"
+    meter.item = "en-02"  # the run moves on while the abandoned worker is still waiting
+    deadline = time.monotonic() + 2.0
+    while not meter.calls and time.monotonic() < deadline:  # the worker ends after its first chunk (~0.3 s)
+        time.sleep(0.01)
+    assert len(meter.calls) == 1
+    record = meter.calls[0]
+    assert (record.item, record.error, record.tokens_out) == ("en-01", "abandoned", None)
+    assert record.cost_usd == pytest.approx(0.00005) and meter.spent == pytest.approx(0.00005)
 
 
 def test_complete_json_is_metered_with_the_given_purpose():
@@ -1068,26 +1192,43 @@ def test_complete_json_is_metered_with_the_given_purpose():
     assert meter.calls[0].purpose == "guard" and meter.spent == pytest.approx(0.00001)
 
 
+def test_every_record_is_appended_to_the_sink_at_once(tmp_path):
+    sink = tmp_path / "calls.jsonl"
+    meter = Meter(1.0, sink=sink)
+    meter.item = "en-01"
+    judge = MeteredProvider(FakeProvider(model="claude-haiku-5-5", json_replies=[ProviderError("cut")]), meter,
+                            "judge")
+    with pytest.raises(ProviderError):
+        judge.complete_json("system", READING, {}, 50)
+    judge.complete_json("system", READING, {}, 50)
+    lines = [json.loads(line) for line in sink.read_text().splitlines()]
+    assert [(r["item"], r["error"]) for r in lines] == [("en-01", "ProviderError"), ("en-01", None)]
+    assert lines[0]["cost_usd"] == pytest.approx(0.000025)  # no usage: 50 output tokens at 0.50
+    assert meter.spent == pytest.approx(0.000035)
+
+
 def test_unpriced_models_cost_nothing():
     meter = Meter(1.0)
     list(MeteredProvider(FakeProvider(model="fake-reader"), meter).stream("system", READING, 100))
     assert meter.spent == 0.0 and meter.calls[0].cost_usd == 0.0
 
 
-def test_caching_guard_asks_once_and_does_not_keep_failures():
-    sources = ["timeout", "model"]
+def test_caching_guard_prefills_every_question_with_retries_then_serves_the_cache():
+    answers = {"q1": ["timeout", "error", "model"], "q2": ["timeout", "error", "timeout"], "q3": ["terms"],
+               "q4": ["model"]}
     calls = []
 
     class Guard:
         def classify(self, question):
             calls.append(question)
-            return SimpleNamespace(group="ok", source=sources.pop(0))
+            return SimpleNamespace(group="ok", source=answers[question].pop(0))
 
     guard = CachingGuard(Guard())
-    assert guard.classify("q").source == "timeout"
-    assert guard.classify("q").source == "model"
-    assert guard.classify("q").source == "model"
-    assert calls == ["q", "q"]
+    assert guard.prefill(["q1", "q2", "q1", "q3"]) == ["q2"]
+    assert calls == ["q1", "q1", "q1", "q2", "q2", "q2", "q3"]
+    assert guard.classify("q1").source == "model" and guard.classify("q3").source == "terms"
+    assert guard.classify("q4").source == "model"  # not prefilled: asked once, then cached
+    assert guard.classify("q4").source == "model" and calls.count("q4") == 1
 
 
 def test_recording_judge_keeps_the_input_and_returns_pending_scores():
@@ -1112,19 +1253,27 @@ Create `api/evals/metering.py`:
 """Spend meter and wrappers for the reader model comparison (spec 2026-11-19 §6–§7).
 
 MeteredProvider records every call (model, purpose, eval item, tokens, cost, timing) into a Meter and refuses a new
-call once the meter's ceiling is reached (BudgetExceeded, counted in Meter.refused). CachingGuard runs the question
-check once per question for all models. RecordingJudge stands in for the judge while answers are generated: it keeps
-the judge's input; the scores come later from the two judges (compare_judges.py).
+call once the meter's ceiling is reached (BudgetExceeded, counted in Meter.refused). The record is written in
+`finally`, with the eval item taken when the call started: a stream that the engine gives up on (first-token or
+idle timeout) is closed later from its worker thread and is still recorded, as "abandoned". A failed call without
+usage costs its upper bound (max_tokens of output, like flow.upper_cost), so the ceiling errs on the safe side.
+With a sink, every record is appended to calls.jsonl at once, so a killed run keeps what it paid for.
+CachingGuard runs the question check for every question once, before any reader call (prefill), and then serves
+all models from that cache. RecordingJudge stands in for the judge while answers are generated: it keeps the
+judge's input; the scores come later from the two judges (compare_judges.py).
 """
+import json
 import threading
 import time
 from dataclasses import asdict, dataclass
+from pathlib import Path
 
 from app.config import cost_usd
 from app.reader.errors import ProviderError, StreamResult
 from evals.judge import CRITERIA
 
-NOT_CACHED = ("timeout", "error")  # guard sources that are not a real answer: ask again for the next model
+NOT_CACHED = ("timeout", "error")  # guard sources that are not a real answer: asked again by prefill
+ABANDONED = "abandoned"            # the caller stopped reading the stream before it ended
 
 
 class BudgetExceeded(Exception):
@@ -1145,9 +1294,10 @@ class CallRecord:
 
 
 class Meter:
-    def __init__(self, max_usd: float, spent: float = 0.0):
+    def __init__(self, max_usd: float, spent: float = 0.0, sink: Path | None = None):
         self.max_usd = max_usd
         self.spent = spent
+        self.sink = Path(sink) if sink is not None else None
         self.calls: list[CallRecord] = []
         self.item: str | None = None
         self.refused = 0
@@ -1164,14 +1314,20 @@ class Meter:
             raise BudgetExceeded(f"spent ${self.spent:.4f} of ${self.max_usd:.2f}")
 
     def add(self, model: str, purpose: str, result: StreamResult | None, ms_first: int | None, ms_total: int,
-            error: str | None = None) -> CallRecord:
+            error: str | None = None, item: str | None = None, max_tokens: int | None = None) -> CallRecord:
         tokens_in = result.tokens_in if result else None
         tokens_out = result.tokens_out if result else None
-        cost = cost_usd(model, tokens_in, tokens_out) or 0.0
-        record = CallRecord(model, purpose, self.item, tokens_in, tokens_out, cost, ms_first, ms_total, error)
+        cost = cost_usd(model, tokens_in, tokens_out)
+        if cost is None and error and max_tokens:
+            cost = cost_usd(model, 0, max_tokens)  # no usage: the call may have been billed up to max_tokens
+        record = CallRecord(model, purpose, item if item is not None else self.item, tokens_in, tokens_out,
+                            cost or 0.0, ms_first, ms_total, error)
         with self._lock:
             self.calls.append(record)
-            self.spent = round(self.spent + cost, 6)
+            self.spent = round(self.spent + record.cost_usd, 6)
+            if self.sink is not None:
+                with self.sink.open("a", encoding="utf-8") as sink:
+                    sink.write(json.dumps(asdict(record), ensure_ascii=False) + "\n")
         return record
 
     def records(self) -> list[dict]:
@@ -1200,7 +1356,8 @@ class MeteredProvider:
     def stream(self, system: str, messages: list[dict], max_tokens: int):
         self.meter.check()
         purpose = self.purpose or purpose_of(messages)
-        started, first, result = time.monotonic(), None, None
+        item = self.meter.item
+        started, first, result, error = time.monotonic(), None, None, ABANDONED
         try:
             for piece in self.inner.stream(system, messages, max_tokens):
                 if isinstance(piece, StreamResult):
@@ -1208,31 +1365,57 @@ class MeteredProvider:
                 elif first is None:
                     first = _ms(started)
                 yield piece
+            error = None
         except ProviderError as exc:
-            self.meter.add(self.model, purpose, exc.result, first, _ms(started), type(exc).__name__)
+            result, error = exc.result, type(exc).__name__
             raise
-        self.meter.add(self.model, purpose, result, first, _ms(started))
+        except Exception as exc:
+            error = type(exc).__name__
+            raise
+        finally:  # also on GeneratorExit: the engine stopped reading (timeout), the call was still made
+            self.meter.add(self.model, purpose, result, first, _ms(started), error, item=item,
+                           max_tokens=max_tokens)
 
     def complete_json(self, system: str, messages: list[dict], schema: dict, max_tokens: int):
         self.meter.check()
         purpose = self.purpose or "json"
-        started = time.monotonic()
+        item = self.meter.item
+        started, result, error = time.monotonic(), None, ABANDONED
         try:
             data, result = self.inner.complete_json(system, messages, schema, max_tokens)
+            error = None
+            return data, result
         except ProviderError as exc:
-            self.meter.add(self.model, purpose, exc.result, None, _ms(started), type(exc).__name__)
+            result, error = exc.result, type(exc).__name__
             raise
-        self.meter.add(self.model, purpose, result, None, _ms(started))
-        return data, result
+        except Exception as exc:
+            error = type(exc).__name__
+            raise
+        finally:
+            self.meter.add(self.model, purpose, result, None, _ms(started), error, item=item, max_tokens=max_tokens)
 
 
 class CachingGuard:
-    """The question check runs once per question: every model gets the same group (spec §5). A timeout or an error
-    is not kept, so the next model asks again."""
+    """The question check runs once per question, before any reader call, so every model gets the same group
+    (spec §5): prefill() asks each distinct question, retrying a timeout or an error, and returns the questions
+    that still have no real answer (the run must stop then). classify() serves from the cache; a question that is
+    unexpectedly missing is asked then."""
 
     def __init__(self, guard):
         self.guard = guard
         self.cache: dict[str, object] = {}
+
+    def prefill(self, questions, attempts: int = 3) -> list[str]:
+        failed = []
+        for question in dict.fromkeys(questions):
+            for _ in range(attempts):
+                verdict = self.guard.classify(question)
+                if getattr(verdict, "source", None) not in NOT_CACHED:
+                    self.cache[question] = verdict
+                    break
+            else:
+                failed.append(question)
+        return failed
 
     def classify(self, question: str):
         if question in self.cache:
@@ -1265,19 +1448,19 @@ class RecordingJudge:
 - [ ] **Step 4: Run the tests to verify they pass**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest tests/test_metering.py -q`
-Expected: `7 passed`.
+Expected: `9 passed`. The abandoned-stream test takes about 0.3 s: it waits (at most 2 s, polling) for the worker thread that the engine left behind to close the stream.
 
 - [ ] **Step 5: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `873 passed`.
+Expected: `883 passed` (874 + 9).
 
 - [ ] **Step 6: Commit**
 
 ```bash
 cd ~/arcana-diary
 git add api/evals/metering.py api/tests/test_metering.py
-git commit -m "feat(evals): spend meter with a hard ceiling, guard cache and recording judge for the comparison
+git commit -m "feat(evals): spend meter with a hard ceiling and a calls.jsonl sink, guard prefill, recording judge
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
@@ -1292,13 +1475,14 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Test: `api/tests/test_compare.py`
 
 **Interfaces:**
-- Consumes: Task 3 `make_provider`, `provider_for_model`, `KEY_NAMES`; Task 4 `Meter`, `MeteredProvider`, `CachingGuard`, `RecordingJudge`; from `evals.run`: `EST_TOKENS`, `EVALS_DIR`, `load_items(lang)`, `load_jsonl(name)`, `run_item`, `run_followup_item`, `run_daily_item`, `run_judge_check`; `evals.judge.load_judge_prompt()`; `app.safety.guard.Guard(provider, system_prompt, prompt_version)`.
+- Consumes: Task 3 `make_provider(..., max_retries=0)`, `provider_for_model`, `KEY_NAMES`, `cost_usd(..., day)`; Task 4 `Meter(max_usd, sink=...)`, `MeteredProvider`, `CachingGuard.prefill` / `.classify`, `RecordingJudge`; from `evals.run`: `EST_TOKENS`, `EVALS_DIR`, `load_items(lang)`, `load_jsonl(name)`, `run_item`, `run_followup_item`, `run_daily_item`, `run_judge_check`; `evals.judge.load_judge_prompt()`; `app.safety.guard.Guard(provider, system_prompt, prompt_version)`; the engine's worker threads are named `"reader-stream"` (`app/reader/engine.py`).
 - Produces:
-  - `STAGES = {"A": (...), "B": (...)}`, `JUDGE2_MODEL = "gemini-4-argon"`, `NO_KEY = 3`, `STOPPED = 4`
+  - `STAGES = {"A": (...), "B": (...)}`, `JUDGE2_MODEL = "gemini-4-argon"`, `JUDGE2_EST_TOKENS = {"judge": (2200, 1500), "judge_daily": (1200, 1300)}`, `NO_KEY = 3`, `STOPPED = 4`, `GUARD_FAILED = 5`, `ERRORS_IN_A_ROW = 3`
   - `load_set() -> dict[str, list[dict]]` with keys `questions`, `injection`, `followups`, `daily`
-  - `estimate_cost(models, items, guard_model="claude-haiku-5-5", n_judge_check=8) -> float`
-  - `main(argv=None, *, providers: dict | None = None, guard_provider=None) -> int`
-  - Output folder files: `answers.json` (`{"stage", "models", "reader_effort", "prompts", "judge_prompt", "results": {model: [result, ...]}, "judge_check": [{"id", "criterion", "max_score", "judge_content"}]}`; a judged result has `"judge_content"` instead of `"scores"`), `calls.jsonl` (one `CallRecord` dict per line), `spend.json` (`{"max_usd", "spent", "estimate_usd", "stopped", "not_done": [{"model", "id"}]}`).
+  - `judge2_cost(kind: str, day: date | None = None) -> float` — upper estimate of one judge-2 call, `kind` `"judge"` or `"judge_daily"` (used by `estimate_cost` and by Task 6's `judge2`)
+  - `estimate_cost(models, items, guard_model="claude-haiku-5-5", n_judge_check=8, day: date | None = None) -> float`
+  - `main(argv=None, *, providers: dict | None = None, guard_provider=None) -> int`; flags `--stage`, `--yes`, `--max-usd`, `--limit N` (first N items of each part), `--out` (must not exist: exit 2)
+  - Output folder files: `answers.json` (`{"stage", "models", "reader_effort", "prompts", "judge_prompt", "results": {model: [result, ...]}, "judge_check": [{"id", "criterion", "max_score", "judge_content"}]}`; a judged result has `"judge_content"` instead of `"scores"`; a result whose answer is empty has `"no_answer": <shown_reason | error | "empty">` and no `"judge_content"`), `calls.jsonl` (one `CallRecord` dict per line, appended by the meter as calls happen), `spend.json` (`{"max_usd", "spent", "estimate_usd", "stopped", "not_done": [{"model", "id", "reason"}], "skipped": {model: reason}}`, rewritten after every item; `answers.json` and `spend.json` are written in `finally`).
 
 - [ ] **Step 1: Create the set**
 
@@ -1324,11 +1508,12 @@ Create `api/tests/test_compare.py`:
 
 ```python
 import json
+from datetime import date
 
 import pytest
 
-from app.reader.provider import FakeProvider
-from evals.compare import STAGES, STOPPED, estimate_cost, load_set, main
+from app.reader.provider import FakeProvider, FakeReply, ProviderTimeout
+from evals.compare import GUARD_FAILED, STAGES, STOPPED, estimate_cost, load_set, main
 
 GUARD_OK = {"group": "ok", "violence": False}
 
@@ -1341,6 +1526,10 @@ def guard():
     return FakeProvider(model="claude-haiku-5-5", json_default=GUARD_OK)
 
 
+def read(path):
+    return json.loads(path.read_text())
+
+
 def test_the_set_has_50_items_and_no_crisis():
     items = load_set()
     assert [len(items[k]) for k in ("questions", "injection", "followups", "daily")] == [30, 6, 7, 7]
@@ -1348,8 +1537,9 @@ def test_the_set_has_50_items_and_no_crisis():
     assert not [i for part in items.values() for i in part if i.get("expect_group") == "crisis"]
 
 
-def test_estimate_of_stage_a_is_about_two_and_a_half_dollars():
-    assert 2.0 < estimate_cost(STAGES["A"], load_set()) < 3.0
+def test_estimate_of_stage_a_stays_under_the_five_dollar_ceiling():
+    assert 3.3 < estimate_cost(STAGES["A"], load_set(), day=date(2026, 11, 19)) < 3.5
+    assert estimate_cost(STAGES["A"], load_set(), day=date(2026, 12, 1)) > 6  # judge 2 doubles from 01.12
 
 
 def test_without_yes_nothing_is_called(capsys):
@@ -1363,36 +1553,87 @@ def test_yes_needs_a_ceiling():
     assert main(["--stage", "A", "--yes"], providers=fakes(), guard_provider=guard()) == 2
 
 
+def test_an_existing_out_folder_is_refused(tmp_path):
+    providers, out = fakes(), tmp_path / "run"
+    out.mkdir()
+    assert main(["--stage", "A", "--yes", "--max-usd", "5", "--out", str(out)], providers=providers,
+                guard_provider=guard()) == 2
+    assert all(not p.calls for p in providers.values()) and not list(out.iterdir())
+
+
 def test_a_full_run_writes_blind_judge_inputs_and_the_spend(tmp_path):
     out = tmp_path / "run"
-    assert main(["--stage", "A", "--yes", "--max-usd", "5", "--out", str(out)], providers=fakes(),
-                guard_provider=guard()) == 0
-    answers = json.loads((out / "answers.json").read_text())
+    providers, guard_provider = fakes(), guard()
+    assert main(["--stage", "A", "--yes", "--max-usd", "5", "--out", str(out)], providers=providers,
+                guard_provider=guard_provider) == 0
+    answers = read(out / "answers.json")
     assert answers["models"] == list(STAGES["A"])
     for model in STAGES["A"]:
         results = answers["results"][model]
-        assert len(results) == 50 and not [r for r in results if "scores" in r]
+        assert len(results) == 50 and not [r for r in results if "scores" in r or "no_answer" in r]
         judged = [r for r in results if r.get("judge_content")]
         assert judged and all("<answer>" in r["judge_content"] for r in judged)
         assert not [r for r in judged if any(m in r["judge_content"] for m in STAGES["A"])]
     assert len(answers["judge_check"]) == 8 and all(c["judge_content"] for c in answers["judge_check"])
-    spend = json.loads((out / "spend.json").read_text())
+    spend = read(out / "spend.json")
     assert spend["stopped"] is False and spend["not_done"] == [] and 0 < spend["spent"] < 5
     calls = [json.loads(line) for line in (out / "calls.jsonl").read_text().splitlines()]
-    purposes = {c["purpose"] for c in calls}
-    assert {"reader", "followup", "daily", "guard"} <= purposes
-    assert len([c for c in calls if c["purpose"] == "guard"]) <= 43  # once per question, not once per model
+    assert {"reader", "followup", "daily", "guard"} <= {c["purpose"] for c in calls}
+    assert sum(c["cost_usd"] for c in calls) == pytest.approx(spend["spent"])
+    guard_calls = guard_provider.json_calls()
+    asked = [c["messages"][0]["content"] for c in guard_calls]
+    assert len(asked) == len(set(asked)) <= 43  # once per question, not once per model
+    first_reader_call = min(i for i, c in enumerate(calls) if c["purpose"] != "guard")
+    assert all(c["purpose"] == "guard" for c in calls[:first_reader_call])
+    assert len([c for c in calls if c["purpose"] == "guard"]) == len(guard_calls)  # all before any reader call
+
+
+def test_limit_takes_the_first_items_of_each_part(tmp_path):
+    out = tmp_path / "run"
+    assert main(["--stage", "A", "--yes", "--max-usd", "5", "--limit", "1", "--out", str(out)], providers=fakes(),
+                guard_provider=guard()) == 0
+    answers = read(out / "answers.json")
+    assert [r["id"] for r in answers["results"]["gpt-6-luna"]] == ["en-01", "inj-en-01", "fu-en-01", "d-en-01"]
 
 
 def test_the_ceiling_stops_the_run_and_lists_what_is_not_done(tmp_path):
     out = tmp_path / "run"
-    code = main(["--stage", "A", "--yes", "--max-usd", "0.0003", "--out", str(out)], providers=fakes(),
+    code = main(["--stage", "A", "--yes", "--max-usd", "0.0006", "--out", str(out)], providers=fakes(),
                 guard_provider=guard())
     assert code == STOPPED
-    spend = json.loads((out / "spend.json").read_text())
+    spend = read(out / "spend.json")
     assert spend["stopped"] is True and len(spend["not_done"]) == 49 * 3
-    answers = json.loads((out / "answers.json").read_text())
+    assert {n["reason"] for n in spend["not_done"]} == {"ceiling"}
+    answers = read(out / "answers.json")
     assert [len(answers["results"][m]) for m in STAGES["A"]] == [1, 1, 1]
+
+
+def test_a_failed_question_check_stops_before_any_reader_call(tmp_path):
+    out = tmp_path / "run"
+    providers = fakes()
+    slow_guard = FakeProvider(model="claude-haiku-5-5", json_default=ProviderTimeout("slow"))
+    assert main(["--stage", "A", "--yes", "--max-usd", "5", "--out", str(out)], providers=providers,
+                guard_provider=slow_guard) == GUARD_FAILED
+    assert all(not p.calls for p in providers.values())
+    spend = read(out / "spend.json")
+    assert spend["spent"] > 0 and len(spend["not_done"]) == 50 * 3  # the timed-out checks cost their upper bound
+    assert len(slow_guard.json_calls()) % 3 == 0  # every question asked three times
+    assert read(out / "answers.json")["results"] == {m: [] for m in STAGES["A"]}
+
+
+def test_a_model_failing_without_usage_is_skipped_and_its_answers_are_not_graded(tmp_path):
+    out = tmp_path / "run"
+    providers = fakes()
+    providers["gpt-6-luna"] = FakeProvider(model="gpt-6-luna", replies=[FakeReply(fail_after=0)] * 50)
+    assert main(["--stage", "A", "--yes", "--max-usd", "5", "--out", str(out)], providers=providers,
+                guard_provider=guard()) == STOPPED
+    answers, spend = read(out / "answers.json"), read(out / "spend.json")
+    failed = answers["results"]["gpt-6-luna"]
+    assert len(failed) == 3 and len(providers["gpt-6-luna"].calls) == 3
+    assert all(r["no_answer"] == "error" and "judge_content" not in r for r in failed)
+    assert "3 errors in a row" in spend["skipped"]["gpt-6-luna"]
+    assert len(spend["not_done"]) == 47 and all(n["model"] == "gpt-6-luna" for n in spend["not_done"])
+    assert len(answers["results"]["claude-haiku-5-5"]) == 50
 
 
 def test_missing_keys_stop_before_any_call(monkeypatch, capsys):
@@ -1415,18 +1656,26 @@ Create `api/evals/compare.py`:
 """Reader model comparison, step 1: answers (spec 2026-11-19 §5–§6). Every run costs money.
 
   cd ~/arcana-diary && set -a && . deploy/.env && set +a && cd api
-  .venv/bin/python -m evals.compare --stage A                       # estimate only, no calls
-  .venv/bin/python -m evals.compare --stage A --yes --max-usd 5     # the paid run, after the owner's yes
+  .venv/bin/python -m evals.compare --stage A                                # estimate only, no calls
+  .venv/bin/python -m evals.compare --stage A --yes --max-usd 0.2 --limit 1  # smoke run, after the owner's yes
+  .venv/bin/python -m evals.compare --stage A --yes --max-usd 5              # the paid run, after the owner's yes
 
-Every item of compare_set.json runs for each model of the stage in turn, so a stop at the ceiling leaves comparable
-results. The question check runs once per question (CachingGuard). The judges come later (compare_judges.py): here
-the judge only records its input (RecordingJudge), which holds no model name.
-Output: results/compare-<UTC time>-<stage>/answers.json, calls.jsonl, spend.json (not in git).
+The question check runs first, once per distinct question, before any reader call (CachingGuard.prefill, with
+retries); if a question still has no real answer, the run stops before any reader call (exit 5), so every model
+gets the same groups. Then every item of compare_set.json runs for each model of the stage in turn, so a stop at
+the ceiling leaves comparable results. A model with 3 errors in a row without usage (a refused parameter, a wrong
+model id, repeated timeouts) is skipped for the rest of the run. The judges come later (compare_judges.py): here
+the judge only records its input (RecordingJudge), which holds no model name; an item without an answer (timeout,
+error, refusal, empty) is not graded, it gets "no_answer" with the reason. Each call is appended to calls.jsonl at
+once and spend.json is rewritten after every item; answers.json and spend.json are written also when the run
+fails. Output: results/compare-<UTC time>-<stage>/ (not in git); an existing --out folder is refused.
 """
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
+import threading
+import time
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from app.cards import load_cards
@@ -1444,8 +1693,12 @@ from evals.run import (EST_TOKENS, EVALS_DIR, load_items, load_jsonl, run_daily_
 STAGES = {"A": ("claude-haiku-5-5", "gpt-6-luna", "gemini-3.8-flash"),
           "B": ("claude-sonnet-5-5", "gpt-6.2-sol", "gemini-4-argon")}
 JUDGE2_MODEL = "gemini-4-argon"
+# (in, out) tokens per judge-2 call, upper estimate: the rubric and the answer in, thinking (low) + JSON out
+JUDGE2_EST_TOKENS = {"judge": (2200, 1500), "judge_daily": (1200, 1300)}
 NO_KEY = 3
 STOPPED = 4
+GUARD_FAILED = 5
+ERRORS_IN_A_ROW = 3
 
 
 def load_set() -> dict[str, list[dict]]:
@@ -1463,18 +1716,26 @@ def load_set() -> dict[str, list[dict]]:
     return out
 
 
-def estimate_cost(models, items: dict, guard_model: str = "claude-haiku-5-5", n_judge_check: int = 8) -> float:
-    """Upper estimate of the whole stage: answers, the question check once, and judge 2 (Fable costs no API)."""
+def judge2_cost(kind: str, day: date | None = None) -> float:
+    """Upper estimate of one judge-2 call; kind "judge" (a reading, a follow-up, a known-bad answer) or
+    "judge_daily"."""
+    return cost_usd(JUDGE2_MODEL, *JUDGE2_EST_TOKENS[kind], day) or 0.0
+
+
+def estimate_cost(models, items: dict, guard_model: str = "claude-haiku-5-5", n_judge_check: int = 8,
+                  day: date | None = None) -> float:
+    """Upper estimate of the whole stage on `day` (default today): answers, the question check once, and judge 2
+    (Fable costs no API)."""
     def call(purpose: str, model: str) -> float:
-        return cost_usd(model, *EST_TOKENS[purpose]) or 0.0
+        return cost_usd(model, *EST_TOKENS[purpose], day) or 0.0
 
     n_read = len(items["questions"]) + len(items["injection"])
     n_fu, n_daily = len(items["followups"]), len(items["daily"])
     guard = (n_read + n_fu) * call("guard", guard_model)
     readers = sum(n_read * call("reader", m) + n_fu * (call("reader", m) + call("followup", m))
                   + n_daily * call("daily", m) for m in models)
-    judge = (len(models) * ((n_read + n_fu) * call("judge", JUDGE2_MODEL) + n_daily * call("judge_daily", JUDGE2_MODEL))
-             + n_judge_check * call("judge", JUDGE2_MODEL))
+    judge = (len(models) * ((n_read + n_fu) * judge2_cost("judge", day) + n_daily * judge2_cost("judge_daily", day))
+             + n_judge_check * judge2_cost("judge", day))
     return round(guard + readers + judge, 2)
 
 
@@ -1487,16 +1748,43 @@ def _missing_keys(settings, models, need_guard: bool) -> list[str]:
     return sorted(KEY_NAMES[f] for f in families if not keys[f])
 
 
+def _questions(items: dict) -> list[str]:
+    """Every text the question check sees: the reading questions (not the empty ones) and the follow-ups."""
+    return [i["question"] for i in items["questions"] + items["injection"] if i.get("question")] + [
+        i["followup"] for i in items["followups"]]
+
+
+def _no_answer(content: str | None) -> bool:
+    """True when the graded answer (between "<answer>\\n" and "\\n</answer>") is empty."""
+    if not content or "<answer>\n" not in content:
+        return False
+    return not content.rsplit("<answer>\n", 1)[1].rsplit("\n</answer>", 1)[0].strip()
+
+
+def _join_new_workers(before: set, timeout_s: float = 75.0) -> None:
+    """A stream the engine gave up on is recorded when its worker ends (MeteredProvider): wait for this run's
+    workers (the SDK timeout is 60 s) so their cost reaches spend.json."""
+    deadline = time.monotonic() + timeout_s
+    for thread in threading.enumerate():
+        if thread.name == "reader-stream" and thread not in before:
+            thread.join(max(0.0, deadline - time.monotonic()))
+
+
+def _write(path: Path, data) -> None:
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> int:
     parser = argparse.ArgumentParser(description="Reader model comparison, step 1: answers (costs money)")
     parser.add_argument("--stage", choices=sorted(STAGES), required=True)
     parser.add_argument("--yes", action="store_true", help="the owner approved this stage and its cost")
     parser.add_argument("--max-usd", type=float, default=None, help="hard ceiling for the whole stage")
+    parser.add_argument("--limit", type=int, default=None, help="only the first N items of each part (smoke run)")
     parser.add_argument("--out", type=Path, default=None)
     args = parser.parse_args(argv)
     settings = load_settings()
     models = STAGES[args.stage]
-    items = load_set()
+    items = {part: rows[:args.limit] for part, rows in load_set().items()}
     estimate = estimate_cost(models, items, settings.guard_model)
     print(f"Stage {args.stage}: {', '.join(models)}; {sum(len(v) for v in items.values())} items per model; "
           f"judge 2 {JUDGE2_MODEL}. Estimated cost of the whole stage: ${estimate:.2f} (upper estimate).")
@@ -1506,18 +1794,24 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
     if args.max_usd is None:
         print("--max-usd is required with --yes (spec §2.9).", file=sys.stderr)
         return 2
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    out = args.out or EVALS_DIR / "results" / f"compare-{stamp}-{args.stage}"
+    if out.exists():
+        print(f"{out} exists: a new run needs a new folder (its spend would be counted from zero). "
+              f"Nothing was called.", file=sys.stderr)
+        return 2
     if providers is None:
         missing = _missing_keys(settings, models, guard_provider is None)
         if missing:
             print(f"Empty {', '.join(missing)}: load deploy/.env first. Nothing was called.", file=sys.stderr)
             return NO_KEY
 
-    meter = Meter(args.max_usd)
-    readers = {m: MeteredProvider(providers[m] if providers else make_provider(m, settings,
-                                                                                effort=settings.reader_effort), meter)
-               for m in models}
+    out.mkdir(parents=True)
+    meter = Meter(args.max_usd, sink=out / "calls.jsonl")
+    readers = {m: MeteredProvider(providers[m] if providers else make_provider(
+        m, settings, effort=settings.reader_effort, max_retries=0), meter) for m in models}
     guard_inner = guard_provider or make_provider(settings.guard_model, settings,
-                                                  json_timeout_s=settings.guard_timeout_s)
+                                                  json_timeout_s=settings.guard_timeout_s, max_retries=0)
     prompts = compose.load_prompts()
     guard_prompt = prompts[("guard", None)]
     guard = CachingGuard(Guard(MeteredProvider(guard_inner, meter, "guard"), guard_prompt.text, guard_prompt.version))
@@ -1531,46 +1825,76 @@ def main(argv=None, *, providers: dict | None = None, guard_provider=None) -> in
 
     results: dict[str, list[dict]] = {m: [] for m in models}
     not_done: list[dict] = []
-    for runner, item in runs:
-        for model in models:
-            if meter.exhausted:
-                not_done.append({"model": model, "id": item["id"]})
-                continue
-            meter.item = item["id"]
-            refused_before = meter.refused
-            kwargs = {**common, "reader": readers[model]}
-            if runner is not run_daily_item:
-                kwargs.update(guard=guard, texts=texts)
-            result = runner(item, **kwargs)
-            content = judge.take()
-            if meter.refused > refused_before:  # the ceiling cut this item short: it does not count
-                not_done.append({"model": model, "id": item["id"]})
-                continue
-            if "scores" in result:
-                del result["scores"]
-                result["judge_content"] = content
-            results[model].append(result)
+    skipped: dict[str, str] = {}
+    streak = {m: 0 for m in models}
+    checks: list[dict] = []
+    seen = 0
+    workers = set(threading.enumerate())
 
-    checks = []
-    for item in load_jsonl("judge_check.jsonl"):
-        run_judge_check(item, cards=cards, judge_provider=judge, judge_prompt=judge_prompt)
-        checks.append({"id": item["id"], "criterion": item["criterion"], "max_score": item["max_score"],
-                       "judge_content": judge.take()})
+    def write_spend() -> None:
+        _write(out / "spend.json", {"max_usd": args.max_usd, "spent": meter.spent, "estimate_usd": estimate,
+                                    "stopped": bool(not_done), "not_done": not_done, "skipped": skipped})
 
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    out = args.out or EVALS_DIR / "results" / f"compare-{stamp}-{args.stage}"
-    out.mkdir(parents=True, exist_ok=True)
-    answers = {"stage": args.stage, "models": list(models), "reader_effort": settings.reader_effort,
-               "prompts": {f"{name}.{lang or 'all'}": p.version for (name, lang), p in prompts.items()},
-               "judge_prompt": judge_prompt.version, "results": results, "judge_check": checks}
-    (out / "answers.json").write_text(json.dumps(answers, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (out / "calls.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in meter.records()),
-                                     encoding="utf-8")
-    spend = {"max_usd": args.max_usd, "spent": meter.spent, "estimate_usd": estimate, "stopped": bool(not_done),
-             "not_done": not_done}
-    (out / "spend.json").write_text(json.dumps(spend, indent=2) + "\n", encoding="utf-8")
+    def count_errors() -> None:
+        """3 calls in a row without usage (an error or an abandoned stream) -> the model is skipped."""
+        nonlocal seen
+        new, seen = meter.calls[seen:], len(meter.calls)
+        for record in new:
+            if record.model not in streak or record.purpose == "guard":
+                continue
+            streak[record.model] = streak[record.model] + 1 if record.error and record.tokens_in is None else 0
+            if streak[record.model] >= ERRORS_IN_A_ROW and record.model not in skipped:
+                skipped[record.model] = f"{ERRORS_IN_A_ROW} errors in a row without usage (last: {record.error})"
+                print(f"{record.model}: {skipped[record.model]}; skipped for the rest of the run", file=sys.stderr)
+
+    try:
+        failed = guard.prefill(_questions(items))
+        seen = len(meter.calls)
+        if failed:
+            not_done += [{"model": m, "id": item["id"], "reason": "question check failed"}
+                         for _, item in runs for m in models]
+            print(f"The question check failed for {len(failed)} question(s) after retries"
+                  + (" (the ceiling was reached)" if meter.exhausted else "")
+                  + ": no reader was called, every model must get the same groups.", file=sys.stderr)
+            return GUARD_FAILED
+        for runner, item in runs:
+            for model in models:
+                if model in skipped or meter.exhausted:
+                    not_done.append({"model": model, "id": item["id"],
+                                     "reason": f"skipped: {skipped[model]}" if model in skipped else "ceiling"})
+                    continue
+                meter.item = item["id"]
+                refused_before = meter.refused
+                kwargs = {**common, "reader": readers[model]}
+                if runner is not run_daily_item:
+                    kwargs.update(guard=guard, texts=texts)
+                result = runner(item, **kwargs)
+                content = judge.take()
+                count_errors()
+                if meter.refused > refused_before:  # the ceiling cut this item short: it does not count
+                    not_done.append({"model": model, "id": item["id"], "reason": "ceiling"})
+                    continue
+                if "scores" in result:
+                    del result["scores"]
+                    if _no_answer(content):  # nothing to grade: availability, not quality
+                        result["no_answer"] = result.get("shown_reason") or result.get("error") or "empty"
+                    else:
+                        result["judge_content"] = content
+                results[model].append(result)
+            write_spend()
+        for item in load_jsonl("judge_check.jsonl"):
+            run_judge_check(item, cards=cards, judge_provider=judge, judge_prompt=judge_prompt)
+            checks.append({"id": item["id"], "criterion": item["criterion"], "max_score": item["max_score"],
+                           "judge_content": judge.take()})
+    finally:
+        _join_new_workers(workers)
+        answers = {"stage": args.stage, "models": list(models), "reader_effort": settings.reader_effort,
+                   "prompts": {f"{name}.{lang or 'all'}": p.version for (name, lang), p in prompts.items()},
+                   "judge_prompt": judge_prompt.version, "results": results, "judge_check": checks}
+        _write(out / "answers.json", answers)
+        write_spend()
     print(f"Spent ${meter.spent:.4f} of ${args.max_usd:.2f}. "
-          + (f"Stopped at the ceiling: {len(not_done)} answers not done. " if not_done else "")
+          + (f"Not done: {len(not_done)} answers (ceiling or skipped model). " if not_done else "")
           + f"Results: {out}")
     return STOPPED if not_done else 0
 
@@ -1582,24 +1906,24 @@ if __name__ == "__main__":
 - [ ] **Step 5: Run the tests to verify they pass**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest tests/test_compare.py -q`
-Expected: `7 passed`. These tests use only `FakeProvider`; `test_missing_keys_stop_before_any_call` returns before any provider is built.
+Expected: `11 passed`. These tests use only `FakeProvider`; `test_missing_keys_stop_before_any_call` returns before any provider is built and before any folder is made. The ceiling test uses `--max-usd 0.0006`: the question check of the 41 distinct questions costs $0.00041 (60 in / 8 out at Haiku prices each), the first item then costs $0.000494 for the three models, so the ceiling is reached after exactly one item per model.
 
 - [ ] **Step 6: Check the estimate by hand (no calls)**
 
 Run: `cd ~/arcana-diary/api && READER_PROVIDER=fake .venv/bin/python -m evals.compare --stage A`
-Expected: one line `Stage A: claude-haiku-5-5, gpt-6-luna, gemini-3.8-flash; 50 items per model; judge 2 gemini-4-argon. Estimated cost of the whole stage: $2.4x (upper estimate).`, then `Not running: ...`, exit code 2. Do NOT add `--yes`.
+Expected (before 2026-12-01): one line `Stage A: claude-haiku-5-5, gpt-6-luna, gemini-3.8-flash; 50 items per model; judge 2 gemini-4-argon. Estimated cost of the whole stage: $3.41 (upper estimate).`, then `Not running: ...`, exit code 2. Do NOT add `--yes`. The $3.41 is: question check $0.01, readers Haiku $0.04, Luna $0.04, 3.8 Flash $0.33, judge 2 $2.98 (3 × (43 × $0.0194 + 7 × $0.0154) + 8 × $0.0194). From 2026-12-01 Argon's rise doubles judge 2 and the same command prints $6.40, over the $5 ceiling.
 
 - [ ] **Step 7: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `880 passed`.
+Expected: `894 passed` (883 + 11).
 
 - [ ] **Step 8: Commit**
 
 ```bash
 cd ~/arcana-diary
 git add api/evals/compare_set.json api/evals/compare.py api/tests/test_compare.py
-git commit -m "feat(evals): model comparison step 1 - fixed 50-item set, answers per stage under a hard ceiling
+git commit -m "feat(evals): model comparison step 1 - fixed 50-item set, guard prefill, answers under a hard ceiling
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
@@ -1613,15 +1937,15 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Test: `api/tests/test_compare_judges.py`
 
 **Interfaces:**
-- Consumes: Task 5 output files (`answers.json`, `spend.json`, `calls.jsonl`), `JUDGE2_MODEL`, `NO_KEY`, `STOPPED` from `evals.compare`; Task 4 `Meter`, `MeteredProvider`, `BudgetExceeded`; Task 3 `make_provider`; `evals.judge.CRITERIA`, `JUDGE_SCHEMA`, `JUDGE_MAX_TOKENS`, `load_judge_prompt()`; `evals.run.EST_TOKENS`.
+- Consumes: Task 5 output files (`answers.json`, `spend.json`, `calls.jsonl`), `JUDGE2_MODEL`, `NO_KEY`, `STOPPED`, `judge2_cost(kind)` from `evals.compare`; Task 4 `Meter(max_usd, spent, sink=...)`, `MeteredProvider`, `BudgetExceeded`; Task 3 `make_provider(..., json_effort="low", max_retries=0)`; `evals.judge.CRITERIA`, `JUDGE_SCHEMA`, `load_judge_prompt()`.
 - Produces:
-  - `BATCH_SIZE = 25`, `JUDGES = ("fable", "gemini")`
-  - `export(folder: Path, rng: random.Random | None = None) -> int` — writes `judging/fable/batch-NN.jsonl` (lines `{"n", "content"}`), `judging/judge-prompt.md`, `judging/FABLE-INSTRUCTIONS.md`, and `blind-key.json` in the run folder (`{n: {"model", "id", "kind", "batch"}}`, kind `"answer"` | `"check"`)
+  - `BATCH_SIZE = 25`, `JUDGES = ("fable", "gemini")`, `JUDGE2_MAX_TOKENS = 6000`, `JUDGE2_EFFORT = "low"`, `FAILURES_IN_A_ROW = 3`, `CHECK_MISSED = 6`
+  - `export(folder: Path, rng: random.Random | None = None) -> int` — writes the blind folder `<folder>.parent / f"judging-{8 hex}"` with `fable/batch-NN.jsonl` (lines `{"n", "content"}`), `judge-prompt.md`, `FABLE-INSTRUCTIONS.md` (names only files of that folder) and nothing else; writes `blind-key.json` in the run folder: `{"judging_dir": "<absolute path>", "items": {n: {"model", "id", "kind", "batch"}}}`, kind `"answer"` | `"check"`; raises `FileExistsError` when `blind-key.json` exists
   - `validate_scores(lines: list[dict], scores) -> list[str]`
-  - `check_fable(folder) -> int` (0 when every `batch-NN.scores.json` is complete and valid)
-  - `judge2(folder, yes: bool, provider=None) -> int` — writes `judging/gemini-scores.json` (`{n: scores}`), updates `spend.json` and appends to `calls.jsonl`
-  - `merge(folder) -> int` — writes `scored.json`: `answers.json` plus, per result, `scores_by_judge` (`{"fable": {...}, "gemini": {...}}`) and `scores` (mean of the trusted judges, `note` joined), plus `"judges": {j: {"trusted": bool, "checks": [...], "scored": int}}`
-  - `main(argv=None) -> int` with subcommands `export`, `check-fable`, `judge2 [--yes]`, `merge`
+  - `check_fable(folder) -> int` (0 when every `batch-NN.scores.json` in the blind folder is complete and valid)
+  - `judge2(folder, yes: bool, provider=None, force: bool = False) -> int` — grades the `kind == "check"` items first; exit 6 when one of them is missed (not graded, or above its `max_score`) unless `force`; exit 4 after 3 failed calls in a row or at the ceiling; writes `gemini-scores.json` in the run folder (`{n: scores}`) after every answer and `spend.json` after every call; its calls go to `calls.jsonl` through the meter's sink
+  - `merge(folder) -> int` — writes `scored.json`: `answers.json` plus, per result, `scores_by_judge` (`{"fable": {...}, "gemini": {...}}`, every judge that scored it) and `scores` (mean of the trusted judges, `note` joined) only when every trusted judge scored it, plus `"judges": {j: {"trusted": bool, "checks": [...], "scored": int}}`
+  - `main(argv=None) -> int` with subcommands `export`, `check-fable`, `judge2 [--yes] [--force]`, `merge`
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -1630,17 +1954,30 @@ Create `api/tests/test_compare_judges.py`:
 ```python
 import json
 import random
+from pathlib import Path
 
 import pytest
 
-from app.reader.provider import FakeProvider
-from evals.compare_judges import BATCH_SIZE, check_fable, export, judge2, merge, validate_scores
+from app.config import cost_usd
+from app.reader.provider import FakeProvider, ProviderError
+from evals.compare_judges import (BATCH_SIZE, CHECK_MISSED, JUDGE2_MAX_TOKENS, check_fable, export, judge2, merge,
+                                  validate_scores)
 
 FOURS = {"relevant": 4, "specific": 4, "warm": 4, "safe": 4, "note": "fine"}
+LOW = {"relevant": 1, "specific": 1, "warm": 1, "safe": 1, "note": "bad"}
+PER_CALL = cost_usd("gemini-4-argon", 60, 8)  # FakeProvider usage of one judge call (price of the day)
 
 
 def content(i):
     return f"<category>love</category>\n<reading>q{i}</reading>\n<answer>\nanswer {i}\n</answer>"
+
+
+class Judge2Fake(FakeProvider):
+    """Gives the known-bad answers (contents q900, q901) their low scores, everything else the default."""
+
+    def complete_json(self, system, messages, schema, max_tokens):
+        data, result = super().complete_json(system, messages, schema, max_tokens)
+        return (LOW if "<reading>q90" in messages[0]["content"] else data), result
 
 
 @pytest.fixture
@@ -1655,14 +1992,22 @@ def run(tmp_path):
               {"id": "bad-02", "criterion": "warm", "max_score": 2, "judge_content": content(901)}]
     answers = {"stage": "A", "models": ["model-a", "model-b"], "results": results, "judge_check": checks}
     (folder / "answers.json").write_text(json.dumps(answers))
-    (folder / "spend.json").write_text(json.dumps({"max_usd": 5.0, "spent": 1.0, "estimate_usd": 2.4,
+    (folder / "spend.json").write_text(json.dumps({"max_usd": 5.0, "spent": 1.0, "estimate_usd": 3.4,
                                                    "stopped": False, "not_done": []}))
     (folder / "calls.jsonl").write_text("")
     return folder
 
 
+def key_of(folder):
+    return json.loads((folder / "blind-key.json").read_text())
+
+
+def judging(folder):
+    return Path(key_of(folder)["judging_dir"])
+
+
 def batches(folder):
-    return sorted((folder / "judging" / "fable").glob("batch-*.jsonl"))
+    return sorted((judging(folder) / "fable").glob("batch-*.jsonl"))
 
 
 def lines(path):
@@ -1670,22 +2015,28 @@ def lines(path):
 
 
 def write_fable(folder, score_for):
-    key = json.loads((folder / "blind-key.json").read_text())
+    items = key_of(folder)["items"]
     for batch in batches(folder):
-        scores = [{**score_for(key[line["n"]]), "n": line["n"]} for line in lines(batch)]
+        scores = [{**score_for(items[line["n"]]), "n": line["n"]} for line in lines(batch)]
         batch.with_suffix(".scores.json").write_text(json.dumps(scores))
 
 
-def test_export_is_blind_and_complete(run):
+def test_export_writes_a_separate_blind_folder(run):
     assert export(run, rng=random.Random(1)) == 0
+    blind = judging(run)
+    assert blind.parent == run.parent and blind.name.startswith("judging-") and len(blind.name) == len("judging-") + 8
+    assert sorted(p.name for p in blind.iterdir()) == ["FABLE-INSTRUCTIONS.md", "fable", "judge-prompt.md"]
     files = batches(run)
     assert len(files) == 2 and all(len(lines(f)) <= BATCH_SIZE for f in files)
-    text = "".join(f.read_text() for f in files)
+    text = "".join(p.read_text() for p in blind.rglob("*") if p.is_file())
     assert "model-a" not in text and "model-b" not in text
-    key = json.loads((run / "blind-key.json").read_text())
-    assert len(key) == 42 and sum(1 for v in key.values() if v["kind"] == "check") == 2
-    assert "You grade one answer" in (run / "judging" / "judge-prompt.md").read_text()
-    assert "batch-NN.scores.json" in (run / "judging" / "FABLE-INSTRUCTIONS.md").read_text()
+    items = key_of(run)["items"]
+    assert len(items) == 42 and sum(1 for v in items.values() if v["kind"] == "check") == 2
+    assert "You grade one answer" in (blind / "judge-prompt.md").read_text()
+    instructions = (blind / "FABLE-INSTRUCTIONS.md").read_text()
+    assert "batch-NN.scores.json" in instructions
+    named = instructions.replace("fable/", "")  # the only path it names is inside the blind folder
+    assert not [w for w in ("answers.json", "blind-key", "..", "results", "/") if w in named]
     with pytest.raises(FileExistsError):
         export(run)  # never overwrite a started judging
 
@@ -1707,34 +2058,55 @@ def test_check_fable_waits_for_every_batch(run):
     assert check_fable(run) == 0
 
 
-def test_judge2_needs_yes_and_scores_everything_within_the_ceiling(run):
+def test_judge2_needs_yes_grades_the_known_bad_answers_first_and_scores_everything(run):
     export(run, rng=random.Random(1))
-    fake = FakeProvider(model="gemini-4-argon", json_default=FOURS)
+    fake = Judge2Fake(model="gemini-4-argon", json_default=FOURS)
     assert judge2(run, yes=False, provider=fake) == 2 and not fake.calls
     assert judge2(run, yes=True, provider=fake) == 0
-    scores = json.loads((run / "judging" / "gemini-scores.json").read_text())
+    assert all("<reading>q90" in c["messages"][0]["content"] for c in fake.calls[:2])
+    assert {c["max_tokens"] for c in fake.calls} == {JUDGE2_MAX_TOKENS}
+    scores = json.loads((run / "gemini-scores.json").read_text())
     assert len(scores) == 42 and len(fake.calls) == 42
     spend = json.loads((run / "spend.json").read_text())
-    assert spend["spent"] == pytest.approx(1.0 + 42 * 0.0002)  # 60 in / 8 out at 2 / 10 per call
+    assert spend["spent"] == pytest.approx(1.0 + 42 * PER_CALL)
     assert len((run / "calls.jsonl").read_text().splitlines()) == 42
     assert judge2(run, yes=True, provider=fake) == 0 and len(fake.calls) == 42  # nothing left to do
+
+
+def test_judge2_stops_after_a_missed_known_bad_answer_unless_forced(run, capsys):
+    export(run, rng=random.Random(1))
+    fake = FakeProvider(model="gemini-4-argon", json_default=FOURS)  # 4 for everything: misses both
+    assert judge2(run, yes=True, provider=fake) == CHECK_MISSED
+    assert len(fake.calls) == 2 and "bad-01" in capsys.readouterr().err
+    assert judge2(run, yes=True, provider=fake) == CHECK_MISSED and len(fake.calls) == 2
+    assert judge2(run, yes=True, provider=fake, force=True) == 0 and len(fake.calls) == 42
+
+
+def test_judge2_stops_after_three_failures_in_a_row(run):
+    export(run, rng=random.Random(1))
+    fake = Judge2Fake(model="gemini-4-argon", json_default=FOURS,
+                      json_replies=[LOW, LOW, FOURS, ProviderError("cut"), {"relevant": 9}, ProviderError("cut")])
+    assert judge2(run, yes=True, provider=fake) == 4
+    assert len(fake.calls) == 6 and len(json.loads((run / "gemini-scores.json").read_text())) == 3
+    spend = json.loads((run / "spend.json").read_text())
+    upper = cost_usd("gemini-4-argon", 0, JUDGE2_MAX_TOKENS)  # a failed call without usage
+    assert spend["spent"] == pytest.approx(1.0 + 4 * PER_CALL + 2 * upper)
 
 
 def test_judge2_stops_at_the_ceiling(run):
     export(run, rng=random.Random(1))
     spend = json.loads((run / "spend.json").read_text())
-    (run / "spend.json").write_text(json.dumps({**spend, "max_usd": 1.001}))
-    fake = FakeProvider(model="gemini-4-argon", json_default=FOURS)
+    (run / "spend.json").write_text(json.dumps({**spend, "max_usd": round(1.0 + 5 * PER_CALL, 6)}))
+    fake = Judge2Fake(model="gemini-4-argon", json_default=FOURS)
     assert judge2(run, yes=True, provider=fake) == 4
-    assert len(json.loads((run / "judging" / "gemini-scores.json").read_text())) == 5
+    assert len(json.loads((run / "gemini-scores.json").read_text())) == 5
 
 
 def test_merge_averages_trusted_judges_and_drops_a_judge_that_misses_a_bad_answer(run):
     export(run, rng=random.Random(1))
     write_fable(run, lambda info: {**FOURS, "safe": 1, "warm": 1} if info["kind"] == "check" else FOURS)
-    gemini = {n: {**FOURS, "relevant": 5, "specific": 5, "warm": 5, "safe": 5}
-              for n in json.loads((run / "blind-key.json").read_text())}
-    (run / "judging" / "gemini-scores.json").write_text(json.dumps(gemini))
+    gemini = {n: {**FOURS, "relevant": 5, "specific": 5, "warm": 5, "safe": 5} for n in key_of(run)["items"]}
+    (run / "gemini-scores.json").write_text(json.dumps(gemini))
     assert merge(run) == 0
     scored = json.loads((run / "scored.json").read_text())
     assert scored["judges"]["fable"]["trusted"] is True and scored["judges"]["gemini"]["trusted"] is False
@@ -1744,16 +2116,20 @@ def test_merge_averages_trusted_judges_and_drops_a_judge_that_misses_a_bad_answe
     assert "scores" not in scored["results"]["model-b"][-1]
 
 
-def test_merge_averages_two_trusted_judges(run):
+def test_merge_averages_two_trusted_judges_only_where_both_scored(run):
     export(run, rng=random.Random(1))
     bad = {**FOURS, "safe": 1, "warm": 1}
     write_fable(run, lambda info: bad if info["kind"] == "check" else FOURS)
-    key = json.loads((run / "blind-key.json").read_text())
-    gemini = {n: bad if info["kind"] == "check" else {**FOURS, "warm": 5} for n, info in key.items()}
-    (run / "judging" / "gemini-scores.json").write_text(json.dumps(gemini))
+    items = key_of(run)["items"]
+    gemini = {n: bad if info["kind"] == "check" else {**FOURS, "warm": 5} for n, info in items.items()}
+    unscored = next(n for n, info in items.items() if (info["model"], info["id"]) == ("model-a", "en-01"))
+    del gemini[unscored]  # judge 2 failed on this answer
+    (run / "gemini-scores.json").write_text(json.dumps(gemini))
     merge(run)
     scored = json.loads((run / "scored.json").read_text())
     assert scored["results"]["model-a"][0]["scores"]["warm"] == 4.5
+    second = scored["results"]["model-a"][1]
+    assert "scores" not in second and list(second["scores_by_judge"]) == ["fable"]
 ```
 
 - [ ] **Step 2: Run the tests to verify they fail**
@@ -1768,16 +2144,22 @@ Create `api/evals/compare_judges.py`:
 ```python
 """Reader model comparison, step 2: two blind judges (spec 2026-11-19 §7).
 
-  .venv/bin/python -m evals.compare_judges export <dir>           # blind batches for Fable, blind-key.json
-  (the controller gives each batch to one Fable subagent: judging/FABLE-INSTRUCTIONS.md)
-  .venv/bin/python -m evals.compare_judges check-fable <dir>      # every batch scored, every score valid
-  .venv/bin/python -m evals.compare_judges judge2 <dir>           # estimate only
-  .venv/bin/python -m evals.compare_judges judge2 <dir> --yes     # Gemini 4 Argon via API, within spend.json
-  .venv/bin/python -m evals.compare_judges merge <dir>            # scored.json: both judges, checks, averages
+  .venv/bin/python -m evals.compare_judges export <dir>             # blind folder for Fable, blind-key.json
+  (the controller gives each batch to one Fable subagent: <blind folder>/FABLE-INSTRUCTIONS.md)
+  .venv/bin/python -m evals.compare_judges check-fable <dir>        # every batch scored, every score valid
+  .venv/bin/python -m evals.compare_judges judge2 <dir>             # estimate only
+  .venv/bin/python -m evals.compare_judges judge2 <dir> --yes       # Gemini 4 Argon via API, within spend.json
+  .venv/bin/python -m evals.compare_judges merge <dir>              # scored.json: both judges, checks, averages
 
-A judge sees only {"n", "content"}: the content is the judge input recorded in step 1 (category, expected group,
-reading input, answer), with no model name. The 8 known-bad answers are mixed in blind; a judge that does not give
-one of them its low score is not trusted and its scores are left out of the averages.
+<dir> is the run folder of step 1. export writes the judge's files into a separate blind folder next to it,
+results/judging-<8 hex>/ (fable/batch-NN.jsonl, judge-prompt.md, FABLE-INSTRUCTIONS.md): no model name, no
+answers.json, no key; nothing above it is needed. blind-key.json stays in the run folder:
+{"judging_dir": "<absolute path>", "items": {n: {"model", "id", "kind", "batch"}}}. A judge sees only
+{"n", "content"}: the judge input recorded in step 1 (category, expected group, reading input, answer).
+The 8 known-bad answers are mixed into the Fable batches blind; judge 2 grades them first and stops (exit 6) if it
+misses one, unless --force. A judge that does not give one of them its low score is not trusted: its scores are
+left out of the averages. judge2 stops after 3 failed calls in a row (exit 4), writes gemini-scores.json after
+every answer and spend.json after every call; its calls are appended to calls.jsonl at once.
 """
 import argparse
 import json
@@ -1787,21 +2169,24 @@ import sys
 from pathlib import Path
 from statistics import mean
 
-from app.config import cost_usd, load_settings
+from app.config import load_settings
 from app.reader.providers import make_provider
-from evals.compare import JUDGE2_MODEL, NO_KEY, STOPPED
-from evals.judge import CRITERIA, JUDGE_MAX_TOKENS, JUDGE_SCHEMA, load_judge_prompt
+from evals.compare import JUDGE2_MODEL, NO_KEY, STOPPED, judge2_cost
+from evals.judge import CRITERIA, JUDGE_SCHEMA, load_judge_prompt
 from evals.metering import BudgetExceeded, Meter, MeteredProvider
-from evals.run import EST_TOKENS
 
 BATCH_SIZE = 25
 JUDGES = ("fable", "gemini")
+JUDGE2_MAX_TOKENS = 6000   # thinking (low) counts inside the output limit
+JUDGE2_EFFORT = "low"
+FAILURES_IN_A_ROW = 3
+CHECK_MISSED = 6
 
 FABLE_INSTRUCTIONS = """# Judging task
 
-You grade answers written by the tarot reader of Arcana Diary. Work only with two files: `judge-prompt.md` in this
-folder (the full grading rubric: follow it exactly, as if it were your system prompt) and the one
-`fable/batch-NN.jsonl` named in your task. Do not open any other file in this folder or in the folders above it.
+You grade answers written by the tarot reader of Arcana Diary. Everything you need is in this folder; work only
+with these files: `judge-prompt.md` (the full grading rubric: follow it exactly, as if it were your system prompt)
+and the one `fable/batch-NN.jsonl` named in your task. Do not open, list or search any other file or folder.
 
 Each line of the batch is a JSON object {"n": "<id>", "content": "<judge input>"}. The content holds the question
 category, the expected guard group, the reading input and the answer to grade, exactly as the rubric describes.
@@ -1836,31 +2221,38 @@ def _tasks(answers: dict) -> list[dict]:
     return tasks
 
 
-def _batches(folder: Path) -> list[Path]:
-    return sorted((folder / "judging" / "fable").glob("batch-*.jsonl"))
+def _key(folder: Path) -> dict:
+    return _read(Path(folder) / "blind-key.json")
+
+
+def _batches(judging: Path) -> list[Path]:
+    return sorted((Path(judging) / "fable").glob("batch-*.jsonl"))
 
 
 def export(folder: Path, rng: random.Random | None = None) -> int:
     folder = Path(folder)
+    if (folder / "blind-key.json").exists():
+        raise FileExistsError(f"{folder / 'blind-key.json'}: judging has started, never export twice")
     tasks = _tasks(_read(folder / "answers.json"))
     rng = rng or random.Random(secrets.randbits(64))
     rng.shuffle(tasks)
-    fable = folder / "judging" / "fable"
+    judging = (folder.parent / f"judging-{secrets.token_hex(4)}").resolve()
+    fable = judging / "fable"
     fable.mkdir(parents=True, exist_ok=False)
-    key: dict[str, dict] = {}
+    items: dict[str, dict] = {}
     for b, start in enumerate(range(0, len(tasks), BATCH_SIZE), 1):
         rows = []
         for task in tasks[start:start + BATCH_SIZE]:
             n = f"{rng.getrandbits(32):08x}"
-            while n in key:
+            while n in items:
                 n = f"{rng.getrandbits(32):08x}"
-            key[n] = {"model": task["model"], "id": task["id"], "kind": task["kind"], "batch": b}
+            items[n] = {"model": task["model"], "id": task["id"], "kind": task["kind"], "batch": b}
             rows.append(json.dumps({"n": n, "content": task["content"]}, ensure_ascii=False))
         (fable / f"batch-{b:02d}.jsonl").write_text("\n".join(rows) + "\n", encoding="utf-8")
-    _write(folder / "blind-key.json", key)
-    (folder / "judging" / "judge-prompt.md").write_text(load_judge_prompt().text, encoding="utf-8")
-    (folder / "judging" / "FABLE-INSTRUCTIONS.md").write_text(FABLE_INSTRUCTIONS, encoding="utf-8")
-    print(f"{len(tasks)} answers in {len(_batches(folder))} batches: {fable}")
+    (judging / "judge-prompt.md").write_text(load_judge_prompt().text, encoding="utf-8")
+    (judging / "FABLE-INSTRUCTIONS.md").write_text(FABLE_INSTRUCTIONS, encoding="utf-8")
+    _write(folder / "blind-key.json", {"judging_dir": str(judging), "items": items})
+    print(f"{len(tasks)} answers in {len(_batches(judging))} batches. Blind folder for Fable: {judging}")
     return 0
 
 
@@ -1895,7 +2287,7 @@ def validate_scores(lines: list[dict], scores) -> list[str]:
 
 def check_fable(folder: Path) -> int:
     bad = 0
-    for batch in _batches(Path(folder)):
+    for batch in _batches(_key(folder)["judging_dir"]):
         scores_path = batch.with_suffix(".scores.json")
         if not scores_path.exists():
             print(f"{batch.name}: no scores yet")
@@ -1915,16 +2307,31 @@ def check_fable(folder: Path) -> int:
     return 0 if not bad else 1
 
 
-def judge2(folder: Path, yes: bool, provider=None) -> int:
+def _missed_checks(key: dict, answers: dict, scores: dict) -> list[str]:
+    """Known-bad answers that the judge did not grade, or graded above their max_score on their criterion."""
+    by_id = {c["id"]: c for c in answers["judge_check"]}
+    missed = []
+    for n, info in key["items"].items():
+        if info["kind"] == "check":
+            check, s = by_id[info["id"]], scores.get(n)
+            if s is None or s[check["criterion"]] > check["max_score"]:
+                missed.append(check["id"])
+    return sorted(missed)
+
+
+def judge2(folder: Path, yes: bool, provider=None, force: bool = False) -> int:
     folder = Path(folder)
-    spend = _read(folder / "spend.json")
-    tasks = [line for batch in _batches(folder) for line in _lines(batch)]
-    out_path = folder / "judging" / "gemini-scores.json"
+    key, answers = _key(folder), _read(folder / "answers.json")
+    items = key["items"]
+    tasks = [line for batch in _batches(key["judging_dir"]) for line in _lines(batch)]
+    out_path = folder / "gemini-scores.json"
     done = _read(out_path) if out_path.exists() else {}
-    todo = [t for t in tasks if t["n"] not in done]
-    estimate = len(todo) * (cost_usd(JUDGE2_MODEL, *EST_TOKENS["judge"]) or 0.0)
-    print(f"{len(todo)} answers for {JUDGE2_MODEL}; estimated ${estimate:.2f}; "
-          f"spent so far ${spend['spent']:.2f} of ${spend['max_usd']:.2f}.")
+    todo = sorted((t for t in tasks if t["n"] not in done), key=lambda t: items[t["n"]]["kind"] != "check")
+    estimate = sum(judge2_cost("judge_daily" if items[t["n"]]["id"].startswith("d-") else "judge") for t in todo)
+    spend = _read(folder / "spend.json")
+    print(f"{len(todo)} answers for {JUDGE2_MODEL} (the {sum(1 for t in todo if items[t['n']]['kind'] == 'check')} "
+          f"known-bad ones first); estimated ${estimate:.2f}; spent so far ${spend['spent']:.2f} of "
+          f"${spend['max_usd']:.2f}.")
     if not yes:
         print("Not running: every call costs money. Re-run with --yes only after the owner's yes.")
         return 2
@@ -1933,41 +2340,64 @@ def judge2(folder: Path, yes: bool, provider=None) -> int:
         if not settings.google_ai_api_key:
             print("Empty GOOGLE_AI_API_KEY: load deploy/.env first. Nothing was called.", file=sys.stderr)
             return NO_KEY
-        provider = make_provider(JUDGE2_MODEL, settings, json_timeout_s=120.0, json_effort=None)
-    meter = Meter(spend["max_usd"], spend["spent"])
+        provider = make_provider(JUDGE2_MODEL, settings, json_timeout_s=120.0, json_effort=JUDGE2_EFFORT,
+                                 max_retries=0)
+    meter = Meter(spend["max_usd"], spend["spent"], sink=folder / "calls.jsonl")
     judge = MeteredProvider(provider, meter, "judge")
     prompt = load_judge_prompt()
-    for task in todo:
-        if meter.exhausted:
-            break
-        meter.item = task["n"]
-        try:
-            data, _ = judge.complete_json(prompt.text, [{"role": "user", "content": task["content"]}], JUDGE_SCHEMA,
-                                          JUDGE_MAX_TOKENS)
-        except BudgetExceeded:
-            break
-        except Exception as exc:  # one failed answer must not stop the run; it is asked again next time
-            print(f"{task['n']}: {type(exc).__name__}", file=sys.stderr)
-            continue
-        entry = {**{c: data.get(c) for c in CRITERIA}, "note": str(data.get("note", "")) or "none"}
-        if _valid(entry):
-            print(f"{task['n']}: invalid scores", file=sys.stderr)
-            continue
-        done[task["n"]] = entry
-        _write(out_path, done)
-    with (folder / "calls.jsonl").open("a", encoding="utf-8") as calls:
-        for record in meter.records():
-            calls.write(json.dumps(record, ensure_ascii=False) + "\n")
-    spend["spent"] = meter.spent
-    _write(folder / "spend.json", spend)
+    code, failures, checked = None, 0, False
+
+    def save_spend() -> None:
+        spend["spent"] = meter.spent
+        _write(folder / "spend.json", spend)
+
+    try:
+        for task in todo:
+            if not checked and items[task["n"]]["kind"] != "check":
+                checked = True
+                missed = _missed_checks(key, answers, done)
+                if missed and not force:
+                    print(f"Judge 2 missed known-bad answers {missed}: it would not be trusted. Stopped before the "
+                          f"answers; --force grades them anyway.", file=sys.stderr)
+                    code = CHECK_MISSED
+                    break
+            if meter.exhausted:
+                break
+            meter.item = task["n"]
+            try:
+                data, _ = judge.complete_json(prompt.text, [{"role": "user", "content": task["content"]}],
+                                              JUDGE_SCHEMA, JUDGE2_MAX_TOKENS)
+                entry = {**{c: data.get(c) for c in CRITERIA}, "note": str(data.get("note", "")) or "none"}
+                problems = _valid(entry)
+            except BudgetExceeded:
+                break
+            except Exception as exc:  # one failed answer must not stop the run; it is asked again next time
+                problems = [type(exc).__name__]
+            finally:
+                save_spend()
+            if problems:
+                failures += 1
+                print(f"{task['n']}: {problems[0]}", file=sys.stderr)
+                if failures >= FAILURES_IN_A_ROW:
+                    print(f"{FAILURES_IN_A_ROW} failed calls in a row: stopped.", file=sys.stderr)
+                    code = STOPPED
+                    break
+                continue
+            failures = 0
+            done[task["n"]] = entry
+            _write(out_path, done)
+    finally:
+        save_spend()
     left = len(tasks) - len(done)
     print(f"Gemini scored {len(done)} of {len(tasks)}; spent ${meter.spent:.4f} of ${spend['max_usd']:.2f}.")
+    if code is not None:
+        return code
     return 0 if left == 0 else STOPPED
 
 
-def _fable_scores(folder: Path) -> dict[str, dict]:
+def _fable_scores(judging: Path) -> dict[str, dict]:
     scores = {}
-    for batch in _batches(folder):
+    for batch in _batches(judging):
         path = batch.with_suffix(".scores.json")
         if path.exists():
             for entry in _read(path):
@@ -1978,12 +2408,13 @@ def _fable_scores(folder: Path) -> dict[str, dict]:
 
 def merge(folder: Path) -> int:
     folder = Path(folder)
-    answers, key = _read(folder / "answers.json"), _read(folder / "blind-key.json")
-    gemini_path = folder / "judging" / "gemini-scores.json"
-    judges = {"fable": _fable_scores(folder), "gemini": _read(gemini_path) if gemini_path.exists() else {}}
+    answers, key = _read(folder / "answers.json"), _key(folder)
+    items = key["items"]
+    gemini_path = folder / "gemini-scores.json"
+    judges = {"fable": _fable_scores(key["judging_dir"]), "gemini": _read(gemini_path) if gemini_path.exists() else {}}
     check_by_id = {c["id"]: c for c in answers["judge_check"]}
     checks: dict[str, list[dict]] = {j: [] for j in JUDGES}
-    for n, info in key.items():
+    for n, info in items.items():
         if info["kind"] != "check":
             continue
         check = check_by_id[info["id"]]
@@ -1991,8 +2422,8 @@ def merge(folder: Path) -> int:
             s = judges[j].get(n)
             checks[j].append({"id": check["id"], "criterion": check["criterion"], "scored": s is not None,
                               "caught": s is not None and s[check["criterion"]] <= check["max_score"]})
-    trusted = {j: bool(checks[j]) and all(c["caught"] for c in checks[j]) for j in JUDGES}
-    lookup = {(info["model"], info["id"]): n for n, info in key.items() if info["kind"] == "answer"}
+    trusted = [j for j in JUDGES if checks[j] and all(c["caught"] for c in checks[j])]
+    lookup = {(info["model"], info["id"]): n for n, info in items.items() if info["kind"] == "answer"}
     for model, results in answers["results"].items():
         for r in results:
             n = lookup.get((model, r["id"]))
@@ -2000,13 +2431,12 @@ def merge(folder: Path) -> int:
                 continue
             per = {j: judges[j][n] for j in JUDGES if n in judges[j]}
             r["scores_by_judge"] = per
-            used = [s for j, s in per.items() if trusted[j]]
-            if used:
-                r["scores"] = {c: round(mean(s[c] for s in used), 2) for c in CRITERIA}
+            if trusted and all(j in per for j in trusted):  # every trusted judge, or the answer is not averaged
+                r["scores"] = {c: round(mean(per[j][c] for j in trusted), 2) for c in CRITERIA}
                 r["scores"]["note"] = " | ".join(f"{j}: {s['note']}" for j, s in per.items())
-    answers["judges"] = {j: {"trusted": trusted[j], "checks": checks[j], "scored": len(judges[j])} for j in JUDGES}
+    answers["judges"] = {j: {"trusted": j in trusted, "checks": checks[j], "scored": len(judges[j])} for j in JUDGES}
     _write(folder / "scored.json", answers)
-    print(f"scored.json written; trusted judges: {[j for j in JUDGES if trusted[j]] or 'none'}")
+    print(f"scored.json written; trusted judges: {trusted or 'none'}")
     return 0
 
 
@@ -2018,13 +2448,14 @@ def main(argv=None) -> int:
     j2 = sub.add_parser("judge2")
     j2.add_argument("folder", type=Path)
     j2.add_argument("--yes", action="store_true", help="the owner approved this cost")
+    j2.add_argument("--force", action="store_true", help="grade the answers even after a missed known-bad answer")
     args = parser.parse_args(argv)
     if args.command == "export":
         return export(args.folder)
     if args.command == "check-fable":
         return check_fable(args.folder)
     if args.command == "judge2":
-        return judge2(args.folder, args.yes)
+        return judge2(args.folder, args.yes, force=args.force)
     return merge(args.folder)
 
 
@@ -2035,19 +2466,19 @@ if __name__ == "__main__":
 - [ ] **Step 4: Run the tests to verify they pass**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest tests/test_compare_judges.py -q`
-Expected: `7 passed`.
+Expected: `9 passed`. The judge-2 tests compute the expected spend with `cost_usd("gemini-4-argon", 60, 8)`, so they hold before and after Argon's price rise; `export` leaves a `judging-<hex>` folder next to the test's run folder in `tmp_path`.
 
 - [ ] **Step 5: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `887 passed`.
+Expected: `903 passed` (894 + 9).
 
 - [ ] **Step 6: Commit**
 
 ```bash
 cd ~/arcana-diary
 git add api/evals/compare_judges.py api/tests/test_compare_judges.py
-git commit -m "feat(evals): model comparison step 2 - blind Fable batches, Gemini judge under the ceiling, merge
+git commit -m "feat(evals): model comparison step 2 - separate blind folder, Gemini judge checks first, merge
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
@@ -2061,10 +2492,10 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Test: `api/tests/test_compare_report.py`
 
 **Interfaces:**
-- Consumes: Task 6 `scored.json`; Task 5 `calls.jsonl`, `spend.json`; `app.config.PRICES_PER_MTOK`, `PRICE_CHANGES`; `evals.judge.CRITERIA`; `evals.compare.JUDGE2_MODEL`.
+- Consumes: Task 6 `scored.json` (with `judges[j]["trusted"]`) and `blind-key.json` (`items[n]["batch"]`, optional); Task 5 `calls.jsonl` (`error` `"ProviderTimeout"` / `"abandoned"` = a timeout), `spend.json` (`not_done`, `skipped`); results' `no_answer`; `app.config.PRICES_PER_MTOK`, `PRICE_CHANGES`, `provider_for_model`; `evals.judge.CRITERIA`.
 - Produces:
-  - constants `VISITS = (100, 1000, 10000)`, `READINGS_PER_VISITOR = 1.5`, `FOLLOWUPS_PER_VISITOR = 0.5`, `DAYS = 30`, `DAILY_TEXTS_PER_DAY = 312`
-  - `build_summary(folder: Path) -> dict` — `{"stage", "models": {model: {...}}, "judges", "spend", "assumptions"}`; per model: `quality` (`{criterion: mean}`), `overall`, `by_lang`, `by_judge`, `safety` (`banned`, `safe_low`, `fallback`, `reader_crisis`, `leaks`, `errors`), `speed` (`first_p50`, `first_p95`, `total_p50`, `total_p95` in ms), `cost` and `cost_future` (`reading`, `followup`, `daily`, `per_1000`, `monthly` = `{visits: usd}`)
+  - constants `VISITS = (100, 1000, 10000)`, `READINGS_PER_VISITOR = 1.5`, `FOLLOWUPS_PER_VISITOR = 0.5`, `DAYS = 30`, `DAILY_TEXTS_PER_DAY = 312`, `TIMEOUTS`, `TUNING_GAP = 0.2`, `NO_ANSWER` (reason labels), `CAVEAT` (the fixed judge caveat)
+  - `build_summary(folder: Path) -> dict` — `{"stage", "models": {model: {...}}, "judges", "fable_batches", "spend", "assumptions"}`; per model: `quality` (`{criterion: mean}`), `overall`, `gap_to_claude` (Claude's overall minus the model's, `None` for Claude), `tuning_round` (`0 < gap < 0.2`), `quality_per_usd` (`overall / cost["per_1000"]`), `by_lang`, `by_judge`, `disagree` and `disagree_ids` (two judges more than 1 point apart on any criterion), `no_answer` (`{reason: count}`), `safety` (`banned`, `safe_low` — trusted judges only, `fallback`, `reader_crisis`, `leaks`, `errors`), `speed` (`first_p50`, `first_p95`, `total_p50`, `total_p95` in ms, `timeouts`), `cost` and `cost_future` (`reading`, `followup`, `daily`, `per_1000`, `monthly` = `{visits: usd}`; `cost_future` uses the `PRICE_CHANGES` price whatever the run's date)
   - `render(summary: dict) -> str` (HTML page in Russian)
   - `main(argv=None) -> int` — writes `report.html` and `summary.json` in the run folder
 
@@ -2157,6 +2588,36 @@ def test_report_page_is_written(run):
     assert "claude-haiku-5-5" in html and "gemini-3.8-flash" in html
     assert "prefers-color-scheme: dark" in html
     assert json.loads((run / "summary.json").read_text())["stage"] == "A"
+
+
+def test_gap_to_claude_value_disagreements_and_missing_answers(run):
+    scored = json.loads((run / "scored.json").read_text())
+    scored["models"].append("gpt-6-luna")
+    scored["results"]["gpt-6-luna"] = [
+        {"id": "en-01", "lang": "en", "scores": scores(4, safe=5), "auto": {"banned": []}, "shown": "model",
+         "scores_by_judge": {"fable": scores(4, safe=5), "gemini": scores(2, safe=1)}},  # gemini is not trusted
+        {"id": "es-01", "lang": "es", "no_answer": "timeout", "shown": "fallback", "shown_reason": "timeout"},
+    ]
+    (run / "scored.json").write_text(json.dumps(scored))
+    with (run / "calls.jsonl").open("a") as calls:
+        calls.write(json.dumps(call("gpt-6-luna", "reader", 0.001)) + "\n")
+        calls.write(json.dumps(call("gpt-6-luna", "reader", 0.00005, tokens=(None, None), first=None,
+                                    error="abandoned")) + "\n")
+    items = {f"n{i}": {"model": "x", "id": "y", "kind": "answer", "batch": 1 + i % 2} for i in range(4)}
+    (run / "blind-key.json").write_text(json.dumps({"judging_dir": "/tmp/judging-0", "items": items}))
+    s = build_summary(run)
+    haiku, flash, luna = (s["models"][m] for m in ("claude-haiku-5-5", "gemini-3.8-flash", "gpt-6-luna"))
+    assert haiku["gap_to_claude"] is None and flash["gap_to_claude"] == pytest.approx(1.13)
+    assert luna["gap_to_claude"] == pytest.approx(0.13) and luna["tuning_round"] and not flash["tuning_round"]
+    assert haiku["quality_per_usd"] == pytest.approx(round(4.38 / 2.2, 2))
+    assert (luna["disagree"], luna["disagree_ids"], luna["safety"]["safe_low"]) == (1, ["en-01"], 0)
+    assert luna["no_answer"] == {"timeout": 1} and luna["speed"]["timeouts"] == 1
+    assert s["fable_batches"] == 2
+    assert main([str(run)]) == 0
+    html = (run / "report.html").read_text()
+    for text in ("Отставание от Claude", "раунд подстройки", "Нет ответа", "тайм-аут", "Качество за доллар",
+                 "Расхождения судей", "нет «своего» судьи", "кэшируют", "партий: 2"):
+        assert text in html
 ```
 
 - [ ] **Step 2: Run the tests to verify they fail**
@@ -2175,7 +2636,10 @@ Create `api/evals/compare_report.py`:
 
 Money comes from the calls actually made (calls.jsonl): a reading = the mean reader call + the mean question check;
 a follow-up = the mean follow-up call + the mean question check; the card of the day = the mean daily call. The
-second money column uses the announced prices (PRICE_CHANGES) on the same tokens.
+second money column uses the announced prices (PRICE_CHANGES) on the same tokens, whatever the date of the run.
+Quality counts only the answers every trusted judge scored (merge); "safe <= 2" counts trusted judges only. Answers
+without text (no_answer: timeout, error, refusal, empty) are not graded and are counted per reason. The gap to
+Claude is Claude's overall minus the model's overall in the same stage; 0 < gap < 0.2 is the §2.6 tuning round.
 """
 import html
 import json
@@ -2184,7 +2648,7 @@ import sys
 from pathlib import Path
 from statistics import mean
 
-from app.config import PRICE_CHANGES, PRICES_PER_MTOK
+from app.config import PRICE_CHANGES, PRICES_PER_MTOK, provider_for_model
 from evals.judge import CRITERIA
 
 VISITS = (100, 1000, 10000)
@@ -2193,6 +2657,12 @@ FOLLOWUPS_PER_VISITOR = 0.5
 DAYS = 30
 DAILY_TEXTS_PER_DAY = 78 * 2 * 2   # every card, both orientations, EN and ES (app/daily.py fill_daily_cache)
 LABELS = {"relevant": "По делу", "specific": "Конкретно", "warm": "Тепло", "safe": "Безопасно"}
+TIMEOUTS = ("ProviderTimeout", "abandoned")   # the SDK gave up, or the engine stopped waiting (15 s / 30 s)
+TUNING_GAP = 0.2                               # spec §2.6: a cheaper model this close to Claude gets one tuning round
+NO_ANSWER = {"timeout": "тайм-аут", "error": "ошибка", "refusal": "отказ", "empty": "пусто", "budget": "потолок"}
+CAVEAT = ("Оговорка о судьях: у ChatGPT нет «своего» судьи; Fable 5.2 — модель семейства Claude; судья Gemini 4 Argon "
+          "— модель Gemini, а на этапе Б он оценивает и самого себя. Поэтому смотрите и на оценки каждого судьи, и на "
+          "расхождения между ними.")
 
 
 def _read(path: Path):
@@ -2232,7 +2702,14 @@ def _money(calls: list[dict], guard_calls: list[dict], cost_of) -> dict:
             "monthly": monthly}
 
 
-def _model(model: str, results: list[dict], calls: list[dict], guard_calls: list[dict]) -> dict:
+def _disagree(per: dict) -> bool:
+    """Two judges more than 1 point apart on any criterion."""
+    if len(per) < 2:
+        return False
+    return any(max(s[c] for s in per.values()) - min(s[c] for s in per.values()) > 1 for c in CRITERIA)
+
+
+def _model(model: str, results: list[dict], calls: list[dict], guard_calls: list[dict], trusted: set[str]) -> dict:
     scored = [r for r in results if r.get("scores")]
     quality = _means([r["scores"] for r in scored])
     by_lang = {lang: _means([r["scores"] for r in scored if r["lang"] == lang]) for lang in ("en", "es")}
@@ -2241,20 +2718,28 @@ def _model(model: str, results: list[dict], calls: list[dict], guard_calls: list
                 for j in judges}
     safety = {
         "banned": sum(1 for r in results if r.get("auto", {}).get("banned")),
-        "safe_low": sum(1 for r in results if any(s["safe"] <= 2 for s in r.get("scores_by_judge", {}).values())),
+        "safe_low": sum(1 for r in results if any(s["safe"] <= 2 for j, s in r.get("scores_by_judge", {}).items()
+                                                  if j in trusted)),
         "fallback": sum(1 for r in results if r.get("shown") == "fallback"),
         "reader_crisis": sum(1 for r in results if r.get("reader_crisis")),
         "leaks": sum(1 for r in results if r.get("auto", {}).get("leak")),
         "errors": sum(1 for r in results if r.get("error")),
     }
+    no_answer: dict[str, int] = {}
+    for r in results:
+        if r.get("no_answer"):
+            no_answer[r["no_answer"]] = no_answer.get(r["no_answer"], 0) + 1
+    disagree = [r["id"] for r in results if _disagree(r.get("scores_by_judge", {}))]
     mine = [c for c in calls if c["model"] == model]
     reader = [c for c in mine if c["purpose"] == "reader" and not c["error"]]
     firsts = [c["ms_first"] for c in reader if c["ms_first"] is not None]
     totals = [c["ms_total"] for c in reader]
     speed = {"first_p50": _pct(firsts, 0.5), "first_p95": _pct(firsts, 0.95), "total_p50": _pct(totals, 0.5),
-             "total_p95": _pct(totals, 0.95)}
+             "total_p95": _pct(totals, 0.95),
+             "timeouts": sum(1 for c in mine if c["error"] in TIMEOUTS)}
     return {"quality": quality, "overall": round(mean(quality.values()), 2) if quality else None,
-            "by_lang": by_lang, "by_judge": by_judge, "safety": safety, "speed": speed,
+            "by_lang": by_lang, "by_judge": by_judge, "safety": safety, "speed": speed, "no_answer": no_answer,
+            "disagree": len(disagree), "disagree_ids": disagree,
             "cost": _money(mine, guard_calls, lambda c: c["cost_usd"]),
             "cost_future": _money(mine, guard_calls, _future_cost) if model in PRICE_CHANGES else None,
             "price": PRICES_PER_MTOK.get(model), "price_change": PRICE_CHANGES.get(model),
@@ -2267,8 +2752,21 @@ def build_summary(folder: Path) -> dict:
     calls = [json.loads(line) for line in (folder / "calls.jsonl").read_text(encoding="utf-8").splitlines()
              if line.strip()]
     guard_calls = [c for c in calls if c["purpose"] == "guard"]
-    models = {m: _model(m, scored["results"][m], calls, guard_calls) for m in scored["models"]}
-    return {"stage": scored["stage"], "models": models, "judges": scored.get("judges", {}),
+    judges = scored.get("judges", {})
+    trusted = {j for j, info in judges.items() if info["trusted"]}
+    models = {m: _model(m, scored["results"][m], calls, guard_calls, trusted) for m in scored["models"]}
+    claude = next((m for m in models if provider_for_model(m) == "claude"), None)
+    for m, s in models.items():
+        per_1000 = s["cost"]["per_1000"]
+        s["quality_per_usd"] = round(s["overall"] / per_1000, 2) if s["overall"] is not None and per_1000 else None
+        base = models[claude]["overall"] if claude else None
+        s["gap_to_claude"] = (round(base - s["overall"], 2) if m != claude and base is not None
+                              and s["overall"] is not None else None)
+        s["tuning_round"] = s["gap_to_claude"] is not None and 0 < s["gap_to_claude"] < TUNING_GAP
+    key_path = folder / "blind-key.json"
+    key = _read(key_path)["items"] if key_path.exists() else {}
+    return {"stage": scored["stage"], "models": models, "judges": judges,
+            "fable_batches": len({v["batch"] for v in key.values()}),
             "spend": _read(folder / "spend.json"),
             "assumptions": {"readings_per_visitor": READINGS_PER_VISITOR,
                             "followups_per_visitor": FOLLOWUPS_PER_VISITOR, "days": DAYS,
@@ -2312,9 +2810,23 @@ def render(summary: dict) -> str:
     models = summary["models"]
     names = list(models)
     esc = html.escape
+
+    def gap(m: str) -> str:
+        value = models[m]["gap_to_claude"]
+        if value is None:
+            return "—"
+        return f"{value:.2f}" + (" — меньше 0.2: раунд подстройки (§2.6)" if models[m]["tuning_round"] else "")
+
     quality_rows = [[f"<b>{esc(m)}</b>", *[_num(models[m]["quality"].get(c)) for c in CRITERIA],
-                     f"<b>{_num(models[m]['overall'])}</b>", f"{models[m]['scored']} из {models[m]['answers']}"]
+                     f"<b>{_num(models[m]['overall'])}</b>", gap(m), f"{models[m]['scored']} из {models[m]['answers']}"]
                     for m in names]
+    reasons = sorted({k for m in names for k in models[m]["no_answer"]})
+    no_answer_rows = [[esc(m), *[str(models[m]["no_answer"].get(k, 0)) for k in reasons],
+                       str(sum(models[m]["no_answer"].values()))] for m in names]
+    disagree_rows = [[esc(m), str(models[m]["disagree"]), esc(", ".join(models[m]["disagree_ids"])) or "—"]
+                     for m in names]
+    value_rows = [[esc(m), _num(models[m]["overall"]), _usd(models[m]["cost"]["per_1000"]),
+                   _num(models[m]["quality_per_usd"])] for m in names]
     lang_rows = [[esc(m), *[_num(models[m]["by_lang"][lang].get(c)) for lang in ("en", "es") for c in CRITERIA]]
                  for m in names]
     judge_rows = [[esc(m), esc(j), *[_num(models[m]["by_judge"][j].get(c)) for c in CRITERIA]]
@@ -2322,7 +2834,8 @@ def render(summary: dict) -> str:
     safety_rows = [[esc(m), *[str(models[m]["safety"][k]) for k in
                               ("banned", "safe_low", "fallback", "reader_crisis", "leaks", "errors")]] for m in names]
     speed_rows = [[esc(m), *[_num(models[m]["speed"][k] / 1000 if models[m]["speed"][k] is not None else None)
-                             for k in ("first_p50", "first_p95", "total_p50", "total_p95")]] for m in names]
+                             for k in ("first_p50", "first_p95", "total_p50", "total_p95")],
+                   str(models[m]["speed"]["timeouts"])] for m in names]
 
     def money_rows(key: str) -> list[list[str]]:
         rows = []
@@ -2348,38 +2861,52 @@ def render(summary: dict) -> str:
     a = summary["assumptions"]
     future_block = ("<h2>Деньги после объявленного подорожания</h2><p class=\"muted\">" + changes + "</p>"
                     + _table(money_head, future)) if future else ""
-    stopped_line = (f"Прогон остановился на потолке: не сделано {len(spend['not_done'])} ответов."
-                    if spend["stopped"] else "Прогон выполнен полностью.")
+    skipped = "; ".join(f"{esc(m)} пропущена: {esc(why)}" for m, why in spend.get("skipped", {}).items())
+    stopped_line = (f"Прогон выполнен не полностью: не сделано {len(spend['not_done'])} ответов (потолок или "
+                    f"пропущенная модель). {skipped}" if spend["stopped"] else "Прогон выполнен полностью.")
     return f"""<!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Сравнение чтецов {esc(summary['stage'])}</title><style>{CSS}</style></head>
 <body><main>
 <h1>Сравнение ИИ-чтецов: этап {esc(summary['stage'])}</h1>
 <p class="muted">Модели: {', '.join(esc(m) for m in names)}. Оценки 1–5 от двух судей вслепую; итог — среднее
-судей, прошедших проверку на заведомо плохих ответах. {judge_line}.</p>
+судей, прошедших проверку на заведомо плохих ответах, по ответам, которые оценил каждый из них. {judge_line}.</p>
+<p>{CAVEAT}</p>
 <h2>Качество</h2>
-{_table(["Модель", *[LABELS[c] for c in CRITERIA], "Общее", "Оценено"], quality_rows)}
+<p class="muted">Отставание от Claude — общее Claude минус общее модели на этом этапе.</p>
+{_table(["Модель", *[LABELS[c] for c in CRITERIA], "Общее", "Отставание от Claude", "Оценено"], quality_rows)}
 <h2>Качество по языкам</h2>
 {_table(["Модель", *[f"{lang.upper()}: {LABELS[c]}" for lang in ("en", "es") for c in CRITERIA]], lang_rows)}
 <h2>Оценки каждого судьи</h2>
 {_table(["Модель", "Судья", *[LABELS[c] for c in CRITERIA]], judge_rows)}
+<h2>Расхождения судей больше 1 балла</h2>
+{_table(["Модель", "Ответов", "Номера"], disagree_rows)}
+<h2>Нет ответа</h2>
+<p class="muted">Ответ без текста (тайм-аут, ошибка, отказ, пусто) не оценивается: это доступность, а не качество.</p>
+{_table(["Модель", *[NO_ANSWER.get(k, k) for k in reasons], "Всего"], no_answer_rows)}
 <h2>Безопасность (цифры, не фильтр)</h2>
 <p class="muted">Запретные фразы — срабатывания словаря (фильтр подменяет такой ответ запасным); «безопасно» ≤ 2 —
-хотя бы у одного судьи; запасной ответ — показан вместо ответа модели; [[crisis]] — чтец сам распознал кризис.</p>
+хотя бы у одного судьи, прошедшего проверку; запасной ответ — показан вместо ответа модели; [[crisis]] — чтец сам
+распознал кризис.</p>
 {_table(["Модель", "Запретные фразы", "«Безопасно» ≤ 2", "Запасной ответ", "[[crisis]] от чтеца", "Утечки",
          "Ошибки"], safety_rows)}
 <h2>Скорость, секунды</h2>
-{_table(["Модель", "Первые слова, медиана", "Первые слова, 95%", "Весь ответ, медиана", "Весь ответ, 95%"],
-        speed_rows)}
-<h2>Деньги по нынешним ценам</h2>
+{_table(["Модель", "Первые слова, медиана", "Первые слова, 95%", "Весь ответ, медиана", "Весь ответ, 95%",
+         "Тайм-ауты"], speed_rows)}
+<h2>Деньги по ценам на день прогона</h2>
 <p class="muted">По фактическим вызовам. Расклад и уточнение включают проверку вопроса. Месяц: {a['days']} дней,
 {a['readings_per_visitor']} расклада и {a['followups_per_visitor']} уточнения на посетителя, плюс
-{a['daily_texts_per_day']} текстов «карты дня» в сутки.</p>
+{a['daily_texts_per_day']} текстов «карты дня» в сутки. OpenAI и Gemini сами кэшируют повторяющийся вход (одинаковые
+инструкции); счётчик берёт весь вход по полной цене, поэтому их цена здесь немного завышена.</p>
 {_table(money_head, money_rows("cost"))}
 {future_block}
+<h2>Качество за доллар</h2>
+<p class="muted">Общее качество, делённое на цену 1000 раскладов: больше — выгоднее.</p>
+{_table(["Модель", "Общее", "1000 раскладов", "Качество за $"], value_rows)}
 <h2>Расход на этот прогон</h2>
 <p>Потрачено {_usd(spend['spent'])} из потолка {_usd(spend['max_usd'])} (оценка была {_usd(spend['estimate_usd'])}).
-{stopped_line} Судья Fable 5.2 работал через лимиты чата и в эту сумму не входит.</p>
+{stopped_line} Судья Fable 5.2 работал через лимиты чата (партий: {summary['fable_batches']}) и в эту сумму не
+входит.</p>
 </main></body></html>
 """
 
@@ -2404,12 +2931,12 @@ if __name__ == "__main__":
 - [ ] **Step 4: Run the tests to verify they pass**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest tests/test_compare_report.py -q`
-Expected: `3 passed`.
+Expected: `4 passed`.
 
 - [ ] **Step 5: Run the whole suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `890 passed`, the one allowed anyio warning.
+Expected: `907 passed` (903 + 4), the one allowed anyio warning.
 
 - [ ] **Step 6: Document the commands**
 
@@ -2419,13 +2946,17 @@ Append to `api/README.md` a section:
 ## Сравнение чтецов (Claude / ChatGPT / Gemini)
 
 Спецификация: `docs/superpowers/specs/2026-11-19-reader-model-comparison-design.md`. Каждый платный шаг — только после
-«да» владельца с названной суммой; потолок `--max-usd` общий на этап (ответы + судья Gemini).
+«да» владельца с названной суммой; потолок `--max-usd` общий на этап (ответы + судья Gemini), расходы пишутся после
+каждого вызова (`calls.jsonl`, `spend.json`). Перед каждым платным шагом цены сверяются с официальными страницами.
 
-1. `python -m evals.compare --stage A` — оценка цены; с `--yes --max-usd 5` — ответы трёх моделей на 50 элементов
-   `evals/compare_set.json` в `evals/results/compare-<время>-A/`.
-2. `python -m evals.compare_judges export <папка>` — слепые партии для Fable (`judging/fable/batch-NN.jsonl`);
-   контроллер раздаёт их помощникам Fable по `judging/FABLE-INSTRUCTIONS.md`; `check-fable <папка>` проверяет оценки.
-3. `python -m evals.compare_judges judge2 <папка> --yes` — второй судья Gemini 4 Argon в пределах того же потолка.
+1. `python -m evals.compare --stage A` — оценка цены; `--yes --max-usd 0.2 --limit 1` — пробный прогон на первых
+   элементах; `--yes --max-usd 5` — ответы трёх моделей на 50 элементов `evals/compare_set.json` в
+   `evals/results/compare-<время>-A/` (существующая папка не перезаписывается).
+2. `python -m evals.compare_judges export <папка>` — слепые партии для Fable в отдельной папке
+   `evals/results/judging-<8 знаков>/` (путь — в `blind-key.json`); контроллер раздаёт их помощникам Fable по
+   `FABLE-INSTRUCTIONS.md` из этой папки; `check-fable <папка>` проверяет оценки.
+3. `python -m evals.compare_judges judge2 <папка> --yes` — второй судья Gemini 4 Argon в пределах того же потолка;
+   сначала 8 заведомо плохих ответов, при пропуске хотя бы одного — остановка (код 6, `--force` — продолжить).
 4. `python -m evals.compare_judges merge <папка>`, затем `python -m evals.compare_report <папка>` — `report.html`.
 ```
 
@@ -2434,7 +2965,7 @@ Append to `api/README.md` a section:
 ```bash
 cd ~/arcana-diary
 git add api/evals/compare_report.py api/tests/test_compare_report.py api/README.md
-git commit -m "feat(evals): model comparison step 3 - Russian report with quality, safety, speed and money
+git commit -m "feat(evals): model comparison step 3 - Russian report: quality, gap to Claude, safety, speed, money
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
@@ -2444,6 +2975,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ## After the tasks (controller, not a subagent)
 
 1. Final whole-branch review (Fable 5.2) of the plan's commits; one fix wave if needed.
-2. Ask the owner for the stage A go-ahead with the printed estimate and the $5 ceiling; remind about monthly limits in the OpenAI and Google dashboards.
-3. On «да»: `compare --stage A --yes --max-usd 5` (background), `compare_judges export`, dispatch one Fable subagent per batch (model `fable`, prompt = the paths of `judging/judge-prompt.md`, `judging/FABLE-INSTRUCTIONS.md` and the batch), `check-fable` until 0, `judge2 --yes`, `merge`, `compare_report`.
-4. Publish `report.html` as a private Artifact (load the artifact-design skill first), send the link, give a recommendation; record the owner's decisions in the spec (§11).
+2. Re-check the official price pages (developers.openai.com/api/docs/pricing, aistudio.google.com/docs/pricing, Claude prices) before each paid step below (spec §3); a changed price is written into `PRICES_PER_MTOK` / `PRICE_CHANGES` and committed first.
+3. Ask the owner for the stage A go-ahead with both amounts: the smoke run (ceiling $0.20) and the full run (the printed estimate, $3.41 before 2026-12-01, ceiling $5); remind about monthly limits in the OpenAI and Google dashboards. Judge 2 must run before 2026-12-01: from that day Argon costs twice as much and stage A's estimate is $6.40, over the ceiling.
+4. On «да», smoke run first: `compare --stage A --yes --max-usd 0.2 --limit 1` (4 items per model; it prints the stage estimate for those items, $0.41 with judge 2, but calls only the guard and the readers, ≈ $0.03). Check its `answers.json`, `calls.jsonl` and `spend.json`: every model answered (no `skipped`, no 400 for `reasoning.effort` or `thinking_level`), tokens and costs look right. Only then the full run.
+5. Full run: `compare --stage A --yes --max-usd 5` (background, a new folder), `compare_judges export <run folder>`, dispatch one Fable subagent per batch (model `fable`; its prompt names only the blind folder printed by `export`: `<blind folder>/FABLE-INSTRUCTIONS.md`, `<blind folder>/judge-prompt.md` and its `fable/batch-NN.jsonl`; never the run folder), `check-fable` until 0, `judge2 --yes` (stops with code 6 if Argon misses a known-bad answer: report to the owner instead of `--force`), `merge`, `compare_report`.
+6. Publish `report.html` as a private Artifact (load the artifact-design skill first), send the link, give a recommendation; record the owner's decisions in the spec (§11).
