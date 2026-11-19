@@ -7,7 +7,10 @@ a follow-up = the mean follow-up call + the mean question check; the card of the
 second money column uses the announced prices (PRICE_CHANGES) on the same tokens, whatever the date of the run.
 Quality counts only the answers every trusted judge scored (merge); "safe <= 2" counts trusted judges only. Answers
 without text (no_answer: timeout, error, refusal, empty) are not graded and are counted per reason. The gap to
-Claude is Claude's overall minus the model's overall in the same stage; 0 < gap < 0.2 is the §2.6 tuning round.
+Claude is Claude's overall minus the model's overall in the same stage; 0 < gap < 0.2 is the §2.6 tuning round,
+decided on the unrounded numbers (rounded only for display). A model without a good reader call has no reading,
+follow-up, per-1000 or monthly price («—»). A judge that is not counted is labelled with why: it failed the
+known-bad check, or its scores are incomplete (merge --allow-incomplete).
 """
 import html
 import json
@@ -29,7 +32,9 @@ TIMEOUTS = ("ProviderTimeout", "abandoned")   # the SDK gave up, or the engine s
 READER_PURPOSES = ("reader", "followup", "daily")  # the model's own reader calls, not the guard or judge it may run
 TUNING_GAP = 0.2                               # spec §2.6: a cheaper model this close to Claude gets one tuning round
 NO_ANSWER = {"timeout": "тайм-аут", "error": "ошибка", "refusal": "отказ",
-             "empty": "пусто или тайм-аут (уточнение, карта дня)", "budget": "потолок"}
+             "empty": "пусто, тайм-аут или ответ без разделов", "budget": "потолок"}
+NOT_COUNTED = {"failed": "не учтён (не прошёл проверку)", "incomplete": "не учтён (оценки неполные)"}
+JUDGE_NAMES = {"fable": "Fable 5.2", "gemini": "Gemini 4 Argon"}
 CAVEAT = ("Оговорка о судьях: у ChatGPT нет «своего» судьи; Fable 5.2 — модель семейства Claude; судья Gemini 4 Argon "
           "— модель Gemini, а на этапе Б он оценивает и самого себя. Поэтому смотрите и на оценки каждого судьи, и на "
           "расхождения между ними.")
@@ -47,8 +52,14 @@ def _pct(values: list[float], q: float) -> float | None:
     return ordered[max(0, math.ceil(q * len(ordered)) - 1)]
 
 
-def _means(rows: list[dict]) -> dict:
-    return {c: round(mean(r[c] for r in rows), 2) for c in CRITERIA} if rows else {}
+def _means(rows: list[dict], digits: int | None = 2) -> dict:
+    return {c: round(mean(r[c] for r in rows), digits) if digits is not None else mean(r[c] for r in rows)
+            for c in CRITERIA} if rows else {}
+
+
+def _status(info: dict) -> str:
+    """trusted | failed | incomplete; a scored.json without "status" (before merge knew "incomplete")."""
+    return info.get("status") or ("trusted" if info.get("trusted") else "failed")
 
 
 def _future_cost(call: dict) -> float:
@@ -60,12 +71,15 @@ def _future_cost(call: dict) -> float:
 
 
 def _money(calls: list[dict], guard_calls: list[dict], cost_of) -> dict:
-    def avg(purpose: str, pool: list[dict]) -> float:
+    def avg(purpose: str, pool: list[dict]) -> float | None:
         values = [cost_of(c) for c in pool if c["purpose"] == purpose and not c["error"]]
-        return mean(values) if values else 0.0
+        return mean(values) if values else None
 
-    guard = avg("guard", guard_calls)
-    reading, followup, daily = avg("reader", calls) + guard, avg("followup", calls) + guard, avg("daily", calls)
+    guard, reader, daily = avg("guard", guard_calls) or 0.0, avg("reader", calls), avg("daily", calls) or 0.0
+    if reader is None:  # no good reader call (a skipped model): the guard alone is not a reading's price
+        return {"reading": None, "followup": None, "daily": daily, "per_1000": None,
+                "monthly": {str(v): None for v in VISITS}}
+    reading, followup = reader + guard, (avg("followup", calls) or 0.0) + guard
     monthly = {str(v): DAYS * (v * (READINGS_PER_VISITOR * reading + FOLLOWUPS_PER_VISITOR * followup)
                                + DAILY_TEXTS_PER_DAY * daily) for v in VISITS}
     return {"reading": reading, "followup": followup, "daily": daily, "per_1000": reading * 1000,
@@ -82,6 +96,7 @@ def _disagree(per: dict) -> bool:
 def _model(model: str, results: list[dict], calls: list[dict], guard_calls: list[dict], trusted: set[str]) -> dict:
     scored = [r for r in results if r.get("scores")]
     quality = _means([r["scores"] for r in scored])
+    exact = _means([r["scores"] for r in scored], digits=None)
     by_lang = {lang: _means([r["scores"] for r in scored if r["lang"] == lang]) for lang in ("en", "es")}
     judges = sorted({j for r in results for j in r.get("scores_by_judge", {})})
     by_judge = {j: _means([r["scores_by_judge"][j] for r in results if j in r.get("scores_by_judge", {})])
@@ -108,6 +123,7 @@ def _model(model: str, results: list[dict], calls: list[dict], guard_calls: list
              "total_p95": _pct(totals, 0.95),
              "timeouts": sum(1 for c in mine if c["purpose"] in READER_PURPOSES and c["error"] in TIMEOUTS)}
     return {"quality": quality, "overall": round(mean(quality.values()), 2) if quality else None,
+            "overall_exact": mean(exact.values()) if exact else None,
             "by_lang": by_lang, "by_judge": by_judge, "safety": safety, "speed": speed, "no_answer": no_answer,
             "disagree": len(disagree), "disagree_ids": disagree,
             "cost": _money(mine, guard_calls, lambda c: c["cost_usd"]),
@@ -129,10 +145,11 @@ def build_summary(folder: Path) -> dict:
     for m, s in models.items():
         per_1000 = s["cost"]["per_1000"]
         s["quality_per_usd"] = round(s["overall"] / per_1000, 2) if s["overall"] is not None and per_1000 else None
-        base = models[claude]["overall"] if claude else None
-        s["gap_to_claude"] = (round(base - s["overall"], 2) if m != claude and base is not None
-                              and s["overall"] is not None else None)
-        s["tuning_round"] = s["gap_to_claude"] is not None and 0 < s["gap_to_claude"] < TUNING_GAP
+        base = models[claude]["overall_exact"] if claude else None
+        gap = (base - s["overall_exact"] if m != claude and base is not None and s["overall_exact"] is not None
+               else None)
+        s["gap_to_claude"] = round(gap, 2) if gap is not None else None  # for display
+        s["tuning_round"] = gap is not None and 0 < gap < TUNING_GAP    # on the unrounded gap
     key_path = folder / "blind-key.json"
     key = _read(key_path)["items"] if key_path.exists() else {}
     return {"stage": scored["stage"], "models": models, "judges": judges,
@@ -212,8 +229,17 @@ def render(summary: dict) -> str:
                    _num(models[m]["quality_per_usd"])] for m in names]
     lang_rows = [[esc(m), *[_num(models[m]["by_lang"][lang].get(c)) for lang in ("en", "es") for c in CRITERIA]]
                  for m in names]
-    judge_rows = [[esc(m), esc(j), *[_num(models[m]["by_judge"][j].get(c)) for c in CRITERIA]]
+    judges = summary["judges"]
+    not_counted = {j: NOT_COUNTED[_status(info)] for j, info in judges.items() if _status(info) in NOT_COUNTED}
+
+    def judge_cell(j: str) -> str:
+        return esc(j) + (f" — {not_counted[j]}" if j in not_counted else "")
+
+    judge_rows = [[esc(m), judge_cell(j), *[_num(models[m]["by_judge"][j].get(c)) for c in CRITERIA]]
                   for m in names for j in models[m]["by_judge"]]
+    not_counted_line = ("<p class=\"muted\">" + "; ".join(f"{esc(JUDGE_NAMES.get(j, j))}: {label}"
+                                                          for j, label in not_counted.items()) + ".</p>"
+                        if not_counted else "")
     safety_rows = [[esc(m), *[str(models[m]["safety"][k]) for k in
                               ("banned", "safe_low", "fallback", "reader_crisis", "leaks", "errors")]] for m in names]
     speed_rows = [[esc(m), *[_num(models[m]["speed"][k] / 1000 if models[m]["speed"][k] is not None else None)
@@ -236,11 +262,18 @@ def render(summary: dict) -> str:
     changes = "; ".join(f"{esc(m)} — с {models[m]['price_change'][0]}: ${models[m]['price_change'][1][0]} / "
                         f"${models[m]['price_change'][1][1]} за 1 млн токенов"
                         for m in names if models[m]["price_change"])
-    judges = summary["judges"]
-    judge_line = "; ".join(f"{'Fable 5.2' if j == 'fable' else 'Gemini 4 Argon'}: "
-                           f"{'прошёл проверку' if info['trusted'] else 'НЕ прошёл проверку, его оценки не учтены'}"
-                           f", оценил {info['scored']}" for j, info in judges.items())
+    verdicts = {"trusted": "прошёл проверку", "failed": "НЕ прошёл проверку, его оценки не учтены",
+                "incomplete": "оценки неполные, не учтены"}
+    judge_line = "; ".join(f"{esc(JUDGE_NAMES.get(j, j))}: {verdicts[_status(info)]}, оценил {info['scored']}"
+                           for j, info in judges.items())
     spend = summary["spend"]
+    unjoined = int(spend.get("unjoined") or 0)
+    unjoined_line = ""
+    if unjoined > 0:
+        charged = int(spend.get("unjoined_charged") or 0) >= unjoined
+        unjoined_line = (f" Брошенных и не записанных вызовов чтеца: {unjoined} — "
+                         + ("в сумму входят по верхней оценке (судья 2 добавил их)." if charged
+                            else "в сумму не входят."))
     a = summary["assumptions"]
     future_block = ("<h2>Деньги после объявленного подорожания</h2><p class=\"muted\">" + changes + "</p>"
                     + _table(money_head, future)) if future else ""
@@ -259,11 +292,13 @@ def render(summary: dict) -> str:
 <h2>Качество</h2>
 <p class="muted">Отставание от Claude — общее Claude минус общее модели на этом этапе.</p>
 {_table(["Модель", *[LABELS[c] for c in CRITERIA], "Общее", "Отставание от Claude", "Оценено"], quality_rows)}
+<p class="muted">Средние — по оценённым ответам каждой модели; при многих "нет ответа" выборка меньше.</p>
 <h2>Качество по языкам</h2>
 {_table(["Модель", *[f"{lang.upper()}: {LABELS[c]}" for lang in ("en", "es") for c in CRITERIA]], lang_rows)}
 <h2>Оценки каждого судьи</h2>
 {_table(["Модель", "Судья", *[LABELS[c] for c in CRITERIA]], judge_rows)}
 <h2>Расхождения судей больше 1 балла</h2>
+{not_counted_line}
 {_table(["Модель", "Ответов", "Номера"], disagree_rows)}
 <h2>Нет ответа</h2>
 <p class="muted">Ответ без текста (тайм-аут, ошибка, отказ, пусто) не оценивается: это доступность, а не качество.</p>
@@ -280,7 +315,7 @@ def render(summary: dict) -> str:
 <h2>Деньги по ценам на день прогона</h2>
 <p class="muted">По фактическим вызовам. Расклад и уточнение включают проверку вопроса. Месяц: {a['days']} дней,
 {a['readings_per_visitor']} расклада и {a['followups_per_visitor']} уточнения на посетителя, плюс
-{a['daily_texts_per_day']} текстов «карты дня» в сутки. OpenAI и Gemini сами кэшируют повторяющийся вход (одинаковые
+{a['daily_texts_per_day']} текстов «карты дня» в сутки. Месячная сумма уже включает тексты «карты дня». OpenAI и Gemini сами кэшируют повторяющийся вход (одинаковые
 инструкции); счётчик берёт весь вход по полной цене, поэтому их цена здесь немного завышена.</p>
 {_table(money_head, money_rows("cost"))}
 {future_block}
@@ -288,7 +323,7 @@ def render(summary: dict) -> str:
 <p class="muted">Общее качество, делённое на цену 1000 раскладов: больше — выгоднее.</p>
 {_table(["Модель", "Общее", "1000 раскладов", "Качество за $"], value_rows)}
 <h2>Расход на этот прогон</h2>
-<p>Потрачено {_usd(spend['spent'])} из потолка {_usd(spend['max_usd'])} (оценка была {_usd(spend['estimate_usd'])}).
+<p>Потрачено {_usd(spend['spent'])} из потолка {_usd(spend['max_usd'])} (оценка была {_usd(spend['estimate_usd'])}).{unjoined_line}
 {stopped_line} Судья Fable 5.2 работал через лимиты чата (партий: {summary['fable_batches']}) и в эту сумму не
 входит.</p>
 </main></body></html>

@@ -103,8 +103,9 @@ def test_gap_to_claude_value_disagreements_and_missing_answers(run):
     (run / "blind-key.json").write_text(json.dumps({"judging_dir": "/tmp/judging-0", "items": items}))
     s = build_summary(run)
     haiku, flash, luna = (s["models"][m] for m in ("claude-haiku-5-5", "gemini-3.8-flash", "gpt-6-luna"))
-    assert haiku["gap_to_claude"] is None and flash["gap_to_claude"] == pytest.approx(1.13)
-    assert luna["gap_to_claude"] == pytest.approx(0.13) and luna["tuning_round"] and not flash["tuning_round"]
+    # gaps from the unrounded overalls (4.375 - 3.25, 4.375 - 4.25), rounded for display
+    assert haiku["gap_to_claude"] is None and flash["gap_to_claude"] == pytest.approx(1.12)
+    assert luna["gap_to_claude"] == pytest.approx(0.12) and luna["tuning_round"] and not flash["tuning_round"]
     assert haiku["quality_per_usd"] == pytest.approx(round(4.38 / 2.2, 2))
     assert (luna["disagree"], luna["disagree_ids"], luna["safety"]["safe_low"]) == (1, ["en-01"], 0)
     assert luna["no_answer"] == {"timeout": 1} and luna["speed"]["timeouts"] == 1
@@ -131,3 +132,62 @@ def test_stopped_line_groups_not_done_by_reason(run):
     assert ("не сделано 7 ответов — потолок: 2, прерван: 1, модель пропущена: 2, "
             "проверка вопроса не удалась: 1, weird: 1") in html
 
+
+
+@pytest.mark.parametrize("value, shown", [(3.804, "0.20"), (3.996, "0.00")])
+def test_tuning_flag_uses_the_unrounded_gap(run, value, shown):
+    scored = json.loads((run / "scored.json").read_text())
+    scored["results"]["claude-haiku-5-5"] = [{"id": "en-01", "lang": "en", "scores": scores(4, safe=4)}]
+    scored["results"]["gemini-3.8-flash"] = [{"id": "en-01", "lang": "en", "scores": scores(value, safe=value)}]
+    (run / "scored.json").write_text(json.dumps(scored))
+    flash = build_summary(run)["models"]["gemini-3.8-flash"]
+    assert flash["tuning_round"] is True  # a gap of 0.196 / 0.004 is inside (0, 0.2)
+    assert f"{flash['gap_to_claude']:.2f}" == shown
+    assert main([str(run)]) == 0
+    assert f"{shown} — меньше 0.2: раунд подстройки" in (run / "report.html").read_text()
+
+
+def test_a_model_without_a_good_reader_call_has_no_reading_price(run):
+    calls = [json.loads(line) for line in (run / "calls.jsonl").read_text().splitlines()]
+    calls = [c for c in calls if not (c["model"] == "gemini-3.8-flash" and c["purpose"] == "reader")]
+    calls.append(call("gemini-3.8-flash", "reader", 0.015, tokens=(None, None), error="ProviderError"))
+    (run / "calls.jsonl").write_text("".join(json.dumps(c) + "\n" for c in calls))
+    s = build_summary(run)
+    cost = s["models"]["gemini-3.8-flash"]["cost"]
+    assert (cost["reading"], cost["followup"], cost["per_1000"]) == (None, None, None)
+    assert set(cost["monthly"].values()) == {None} and cost["daily"] == pytest.approx(0.001)
+    assert s["models"]["gemini-3.8-flash"]["quality_per_usd"] is None
+    assert main([str(run)]) == 0
+    row = next(r.split("</tr>")[0] for r in (run / "report.html").read_text().split("<tr>")
+               if "gemini-3.8-flash" in r and "$0.0010" in r)
+    assert row.count("—") == 6  # reading, follow-up, 1000 readings, three months; the card of the day stays
+
+
+def test_report_wording_unjoined_and_judge_labels(run):
+    scored = json.loads((run / "scored.json").read_text())
+    scored["results"]["gemini-3.8-flash"][1] = {"id": "es-01", "lang": "es", "no_answer": "empty"}
+    scored["results"]["claude-haiku-5-5"][0]["scores_by_judge"]["gemini"] = scores(4)
+    scored["judges"]["gemini"]["status"] = "incomplete"
+    (run / "scored.json").write_text(json.dumps(scored))
+    spend = json.loads((run / "spend.json").read_text())
+    (run / "spend.json").write_text(json.dumps({**spend, "unjoined": 2}))
+    assert main([str(run)]) == 0
+    html = (run / "report.html").read_text()
+    assert "пусто, тайм-аут или ответ без разделов" in html
+    assert "Средние — по оценённым ответам каждой модели; при многих \"нет ответа\" выборка меньше." in html
+    assert "Брошенных и не записанных вызовов чтеца: 2" in html
+    assert "Месячная сумма уже включает тексты «карты дня»" in html
+    judges_part = html.split("<h2>Оценки каждого судьи</h2>")[1].split("<h2>Нет ответа</h2>")[0]
+    assert judges_part.count("gemini — не учтён (оценки неполные)") == 1
+    disagree_part = judges_part.split("<h2>Расхождения")[1]
+    assert "Gemini 4 Argon: не учтён (оценки неполные)" in disagree_part
+    scored["judges"]["gemini"]["status"] = "failed"
+    (run / "scored.json").write_text(json.dumps(scored))
+    main([str(run)])
+    html = (run / "report.html").read_text()
+    assert "gemini — не учтён (не прошёл проверку)" in html and "Gemini 4 Argon: не учтён (не прошёл проверку)" in html
+    del scored["judges"]["gemini"]["status"]  # an older scored.json: untrusted counts as failed
+    (run / "scored.json").write_text(json.dumps(scored))
+    main([str(run)])
+    assert "gemini — не учтён (не прошёл проверку)" in (run / "report.html").read_text()
+    assert "Брошенных" in html
