@@ -23,8 +23,10 @@ a { color: var(--color-day-accent); }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 /* The ring takes the text colour of the surface it sits on, not of the control: a gold button or a pressed chip has
    night-blue text, the ink button white text, and currentColor would vanish there (plan review I2). */
+.btn--ink:focus-visible, .btn--gold:focus-visible { outline-color: var(--color-day-text); }
 .night-panel :focus-visible, .night :focus-visible, .daily :focus-visible { outline-color: var(--color-night-text); }
 .plus-slot :focus-visible, .plus__card :focus-visible { outline-color: var(--color-day-text); }
+main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip link: no page-wide ring */
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;

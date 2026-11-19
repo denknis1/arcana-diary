@@ -25,7 +25,7 @@ export default function MenuToggle({ lang, navId }: { lang: Lang; navId: string 
 
   return (
     <button type="button" class="menu-button" ref={button} aria-expanded={open} aria-controls={navId}
-      aria-label={open ? d.menuClose : d.menuOpen} onClick={() => setOpen(!open)}>
+      aria-label={d.menuOpen} onClick={() => setOpen(!open)}>
       {open ? <CloseIcon /> : <MenuIcon />}
     </button>
   );

@@ -14,7 +14,7 @@ const other = switchPath(path);
 const d = t(lang);
 ---
 <nav class="lang-switch" aria-label={d.langLabel}>
-  {lang === 'en' ? <span aria-current="true" lang="en">EN</span> : <a href={other} lang="en" hreflang="en">EN</a>}
+  {lang === 'en' ? <span aria-current="true" lang="en">EN</span> : <a href={other} lang="en">EN</a>}
   <span aria-hidden="true">|</span>
-  {lang === 'es' ? <span aria-current="true" lang="es">ES</span> : <a href={other} lang="es" hreflang="es">ES</a>}
+  {lang === 'es' ? <span aria-current="true" lang="es">ES</span> : <a href={other} lang="es">ES</a>}
 </nav>
