@@ -4,6 +4,8 @@
 
 **Goal:** On the closed site a person can make a real reading — open a tool, draw cards in the night room, read the reader's answer as it streams, ask follow-ups, turn the Card of the Day — on a phone and a desktop, in English and Spanish; the API gets our own event counter for the funnel.
 
+**Revision 19.11.2026 (Fable 5.2 review `.superpowers/sdd/s44a-plan-fable-review.md`, READY WITH FIXES, 0/6/11; owner decisions by form):** yes/no is one card in 4.4a and "yes/no with three cards" becomes its own sub-stage before launch (spec §3 updated); the screens follow the prototypes exactly — with the answer the question sits small at top left and the headline is the large title (2e, 5b), the desktop room has cards left and text right (13d), the Plus card is a day block (11a); no Plus price on the closed stage; the Card of the Day 503 fallback, the hidden links (restore list in spec §11) and the corrected /retry sentence (spec §4) are accepted. Applied: I1 Escape on the document and focus back to the title, I2 focus ring in the surface's text colour, I3 a broken follow-up is read back, I4 502/504 = unavailable, I5 SMS link, help link and the question cleared on a crisis, I6 one history entry for the room; M1–M7, M9, M10; M11 (self-hosted fonts) is a stage 7 note in the spec.
+
 **Architecture:** Astro static build in `site/` (one HTML file per page, `build.format: 'file'`) with three Preact islands: `ReadingIsland` (draw panel, night room, Plus card), `DailyIsland`, `MenuToggle`. Everything without a screen is a plain TS module in `site/src/lib` or `site/src/i18n` with Vitest tests in Node: the night-room state machine (`nightRoom.ts`), the SSE parser (`sse.ts`), the API client (`api.ts`), the request flow with restore/retry/Turnstile (`readingFlow.ts`), answer sections (`answer.ts`), follow-up rules (`followups.ts`), per-page panel settings (`panel.ts`), routes and language pairs (`routes.ts`), dictionaries. Islands only draw state, run timers and move focus. The build container sees only `site/`, so `tools/site/sync_site_data.py` copies the tokens and generates the card data and the language pairs into `site/src` (committed, with a `--check` test). The API gets `POST /api/events` with migration `004_events.sql`; Caddy serves `/one-card` from `one-card.html` and each language's 404 page.
 
 **Tech Stack:** Astro 5.18.2, @astrojs/preact 4.1.3, preact 10.29.8, Vitest 5.1.0 — all already locked in `site/package-lock.json` (commit 4d0c01b, owner-approved); Node 22 only in Docker; FastAPI 0.115.6, psycopg 3.3.9, pytest 8.3.4 in `api/.venv` (nothing new); Caddy 2.8.4 for route checks on a throwaway container.
@@ -14,18 +16,18 @@
 
 - Pages (spec §3): EN `/`, `/one-card`, `/yes-no`, `/love`, `/daily`, `/cards/{slug_en}` ×78, `/404`; ES `/es` (one-card mode = section `/es#una-carta`), `/es/si-o-no`, `/es/amor`, `/es/carta-del-dia`, `/es/cartas/{slug_es}` ×78, `/es/404`. 167 HTML files in `site/dist`. Slugs: `docs/research/stage1/cards.csv` (the same as `content/cards/deck.json`); language pairs: `docs/research/stage2/hreflang.csv`. Simple card page = picture, keywords, upright and reversed meaning from `content/cards/meanings.*.json`, at the final address (stage 6 replaces the template).
 - Not in 4.4a and not shown anywhere: "Save to diary", sign-in, diary, account, "Remind me tomorrow" (4.4b); card hubs, full card pages, the yes/no reference, the "Card Meanings" menu item and "All 78 card meanings" (stage 6); privacy/about links (stage 7). No `hreflang` tags (all rows of `hreflang.csv` are `in_hreflang=no` until launch); the stage stays closed by Caddy (password, `X-Robots-Tag: noindex`).
-- Night room (spec §4, 00-design.md): a full-screen layer over the current page without an address of its own; closed by "×" and Escape; focus trapped inside and returned to the draw button; on a desktop a stage up to 960 px wide over the dimmed page. States: opening → dealing → cards turn (up to 1 s per card) → the reader's answer streams → the answer by sections (headline, cards, synthesis, one step; "why" with a verdict) → follow-up field and "More about these cards". `prefers-reduced-motion`: a fade, the cards already turned.
-- API (spec §4): `POST /api/readings` (kind, question, topic/situation, lang, `tz`) → `GET /api/readings/{id}/stream` read with `fetch`, not `EventSource`; on a break — `GET /api/readings/{id}` (the API keeps writing, spec 4.2 §8.11); on a fallback answer — `POST /api/readings/{id}/retry` by the rules of 4.2. Follow-ups: `POST /api/readings/{id}/followups` with the same `tz`. Two free; a paid one is offered only when `followups_left == 0` and `followup_attempts_left > 0`: first the warning "this will use 1 reading", then the same request with `"use_reading": true`; `402 confirm`, `402 plus` and `done.used_reading` are handled; after a crisis in a follow-up the shown text is cleared.
-- Crisis answer: the warm message and help lines from the API; no reading is shown. Errors `429` (daily limit or burst), `403 turnstile`, `503`: plain strings and a link to help lines (`https://findahelpline.com`). `403 turnstile` → the invisible Cloudflare Turnstile widget with the site key from the 403 answer (`TURNSTILE_SITEKEY` on the server), then the request again; the Turnstile script is loaded only at that moment. Limit reached → the Plus card (screen 11a) with the e-mail field "tell me when it opens" (`POST /api/plus/waitlist`).
+- Night room (spec §4, 00-design.md): a full-screen layer over the current page without an address of its own (it adds one history entry with the same address, so the phone's Back closes it); closed by "×", Escape and Back; focus trapped inside and returned to the draw button; on a desktop a stage up to 960 px wide over the dimmed page. States: opening → dealing → cards turn (up to 1 s per card) → the reader's answer streams → the answer by sections (headline, cards, synthesis, one step; "why" with a verdict) → follow-up field and "More about these cards". `prefers-reduced-motion`: a fade, the cards already turned. Layout as the prototypes: while dealing — positions on top, the question as the large title (2b–2d); with the answer — the question small at top left, the headline as the large title (2e, 5b); desktop — cards left, text right (13d).
+- API (spec §4): `POST /api/readings` (kind, question, topic/situation, lang, `tz`) → `GET /api/readings/{id}/stream` read with `fetch`, not `EventSource`; on a break — `GET /api/readings/{id}` (the API keeps writing, spec 4.2 §8.11); `POST /api/readings/{id}/retry` only after a fallback answer (a refused retry restores via GET). Follow-ups: `POST /api/readings/{id}/followups` with the same `tz`. Two free; a paid one is offered only when `followups_left == 0` and `followup_attempts_left > 0`: the first request goes without `use_reading`, the API's `402 confirm` brings the warning "this will use 1 reading" with the readings left, then the same request with `"use_reading": true`; `402 confirm`, `402 plus` and `done.used_reading` are handled; after a crisis in a follow-up the shown text is cleared; a broken follow-up stream is read back from `GET /api/readings/{id}`.
+- Crisis answer: the warm message and help lines from the API; no reading is shown. Errors `429` (daily limit, burst, the address's day cap, follow-up attempts), `403 turnstile`, `503` (and `502`/`504` while the API restarts): plain strings and a link to help lines (`https://findahelpline.com`). On a crisis answer the question field is emptied. `403 turnstile` → the invisible Cloudflare Turnstile widget with the site key from the 403 answer (`TURNSTILE_SITEKEY` on the server), then the request again; the Turnstile script is loaded only at that moment. Limit reached → the Plus card (screen 11a, a day block in place of the night panel) with the e-mail field "tell me when it opens" (`POST /api/plus/waitlist`); no price on the closed stage (owner, 19.11.2026; the owner names it before launch).
 - Answers, names and labels are rendered as text (Preact/Astro text nodes, i.e. `textContent`), never as markup: no `innerHTML`, `dangerouslySetInnerHTML`, `set:html` (a Vitest test scans the sources).
-- Card of the Day (spec §5): `GET /api/daily` (lang, `tz`) → tap the back → the card and its meaning for today; on `503` a card from the card base.
-- Analytics (spec §6): `POST /api/events {"name", "tool", "lang", "params"}`; only the events and parameters of `docs/design/analytics-events.md` are accepted (each listed parameter required, nothing else); no address, cookie or identifiers stored; more than 30 requests a minute from one address → `429`; table `events` (migration 004: day, name, tool, language, parameters, time) with RLS on and no rights for `anon` / `authenticated`, like the other tables. 4.4a sends `tool_view`, `draw_click`, `night_open`, `cards_revealed`, `reading_shown`, `more_about_cards`, `plus_view` with `navigator.sendBeacon` (else `fetch` with `keepalive`); a counter failure never reaches the reading. The funnel SQL lives in `api/README.md`.
-- Code rules (00-design.md): colours, fonts, spacing, radii and motion only from `docs/design/tokens.css` (copied to `site/src/styles/tokens.css`); fonts from Google Fonts — Cormorant Garamond 500/600, Manrope 400–700; touch targets ≥ 44 px (main buttons 52 px); focus ring 2 px `currentColor`, offset 2 px; real `<button>`, `<a>`, `<label>`; field, chip and outline-button borders use `control-border`. Card pictures from `site/public/cards/` in three sizes with `srcset`.
+- Card of the Day (spec §5): `GET /api/daily` (lang, `tz`) → tap the back → the card and its meaning for today; on `503` (or `502`/`504`) one card for everyone that local day, upright, from the card base, with a note.
+- Analytics (spec §6): `POST /api/events {"name", "tool", "lang", "params"}`; only the events and parameters of `docs/design/analytics-events.md` are accepted (each listed parameter required, nothing else); no address, cookie or identifiers stored; more than 30 requests a minute from one address or 600 from all addresses → `429`; table `events` (migration 004: day, name, tool, language, parameters, time) with RLS on and no rights for `anon` / `authenticated`, like the other tables. 4.4a sends `tool_view`, `draw_click`, `night_open`, `cards_revealed`, `reading_shown`, `more_about_cards`, `plus_view` with `navigator.sendBeacon` (else `fetch` with `keepalive`); a counter failure never reaches the reading; a one-card draw on the Spanish home counts as `one_card`. The funnel SQL lives in `api/README.md` and starts from the launch day.
+- Code rules (00-design.md): colours, fonts, spacing, radii and motion only from `docs/design/tokens.css` (copied to `site/src/styles/tokens.css`); fonts from Google Fonts — Cormorant Garamond 500/600, Manrope 400–700; touch targets ≥ 44 px (main buttons 52 px); focus ring 2 px, offset 2 px, in the text colour of the surface (`currentColor` by default; `--color-night-text` in night areas, `--color-day-text` on the Plus card); real `<button>`, `<a>`, `<label>`; field, chip and outline-button borders use `control-border`. Card pictures from `site/public/cards/` in three sizes with `srcset`.
 - Copy: one dictionary per language (`site/src/i18n/en.ts`, `es.ts`); prototype strings verbatim; strings the prototypes lack are drafted and listed in `enDrafts` / `esDrafts` under the comment `// draft — review with stage 5 texts`. Spanish: Mexican, `tú`, no gendered forms for the person.
 - No secrets in `site/`. Builds and Node commands only in Docker `node:22`: build — `deploy/build-site.sh` (runs `npm ci` and `npm run build`; it also provides `site/node_modules` for Vitest); Vitest — from the repository root `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -v "$PWD/site:/app" -w /app node:22 npx vitest run [files]`.
 - Install nothing: the site uses only the packages of commit 4d0c01b (`@astrojs/preact` 4.1.3, `preact` 10.29.8, `vitest` 5.1.0, Astro 5.18.2); the API only `api/requirements*.txt`.
 - Never read, print or commit `deploy/.env` or `deploy/caddy/stage_auth.caddy*`; never touch, reload or restart `arcana-caddy-1` / `arcana-api-1`; never run `deploy/deploy.sh` or `docker compose` in `deploy/` — deploying is the owner's step; Caddy is checked only on throwaway containers. No paid API calls.
-- Counts (measured by applying this plan to a scratch copy of `stage4-screens` at 4d0c01b): API `cd ~/arcana-diary/api && .venv/bin/pytest -q` — baseline `1048 passed`, after Task 1 `1082 passed`; Vitest after Task 8 — `115 passed` in 17 files; `api/.venv/bin/pytest -q tools/site` — `7 passed`; the build — 167 HTML pages.
+- Counts (measured by applying this revised plan to a scratch copy of `stage4-screens` at 4d0c01b): API `cd ~/arcana-diary/api && .venv/bin/pytest -q` — baseline `1048 passed`, after Task 1 `1083 passed`; Vitest after Task 8 — `122 passed` in 17 files; `api/.venv/bin/pytest -q tools/site` — `7 passed`; the build — 167 HTML pages.
 - Every commit message ends with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
 ---
@@ -55,7 +57,8 @@
 | `site/src/components/ui/{icons,CardFace,HelpLine,CrisisView,PlusCard,NightRoom}.tsx` | Preact pieces the islands draw |
 | `site/src/views/{HomeView,ToolView,CardView,DailyView,NotFoundView}.astro` | page templates by language |
 | `site/src/pages/**` | one small file per address (and `/data/daily-<lang>.json`) |
-| `deploy/Caddyfile`, `deploy/test-site-routes.sh` (new) | `try_files {path}.html`, the 404 page per language; their check |
+| `deploy/Caddyfile`, `deploy/test-site-routes.sh` (new), `deploy/check-indexing.sh` | `try_files {path}.html`, redirects of `/x/` and `/x.html` to `/x`, the 404 page per language; their checks |
+| `docs/design/00-design.md` | the focus-ring rule: the surface's text colour |
 
 ---
 
@@ -73,8 +76,8 @@
 - Produces:
   - Table `events (id uuid PK DEFAULT gen_random_uuid(), day date, name text CHECK (10 names), tool text NULL CHECK (6 tools), lang text CHECK ('en','es'), params jsonb DEFAULT '{}', created_at timestamptz)`, index `events_day_name_idx (day, name)`, RLS on; `"events"` is the last item of `app.db.APP_TABLES` (tests truncate it; `migrate()` revokes the browser roles on it). No sequence (the id is `gen_random_uuid()`), so `APP_SEQUENCES` is unchanged.
   - `app.events.TOOLS: tuple[str, ...]`, `app.events.EVENTS: dict[str, tuple[bool, dict[str, Callable]]]`, `app.events.InvalidEvent(field)` with `.field`, `app.events.check_event(name, tool, params) -> None` (raises `InvalidEvent`), `app.events.record_event(conn, name, tool, lang, params, now) -> None`.
-  - `app.config.EVENTS_PER_MINUTE = 30`; `AppContext.events_burst: BurstCounter`.
-  - `POST /api/events {"name": str, "tool": str | null, "lang": "en" | "es", "params": {}}` → `204` (no body, no cookie); invalid → `422 {"reason": "invalid", "fields": ["name" | "tool" | "params.<key>"]}`; over the burst → `429 {"reason": "rate"}`; a bad Bearer token → `401` (router dependency).
+  - `app.config.EVENTS_PER_MINUTE = 30`, `app.config.EVENTS_GLOBAL_PER_MINUTE = 600`; `AppContext.events_burst: BurstCounter` (per address and, under the key `app.routes.events.ALL_ADDRESSES = "all"`, for all addresses).
+  - `POST /api/events {"name": str, "tool": str | null, "lang": "en" | "es", "params": {}}` → `204` (no body, no cookie); invalid → `422 {"reason": "invalid", "fields": ["name" | "tool" | "params.<key>"]}`; over the burst (per address or all together) → `429 {"reason": "rate"}`; a bad Bearer token → `401` (router dependency).
   - `api/README.md` section `## Счётчик событий (этап 4.4а)` with one ```` ```sql ```` block (named parameters `%(day_from)s`, `%(day_to)s`) — `test_api_events.py` runs it.
 
 - [ ] **Step 1: Write the failing tests**
@@ -84,11 +87,13 @@ Create `api/tests/test_api_events.py`:
 ````python
 """POST /api/events (spec 2026-11-19 stage 4.4a §6): only the events and parameters of
 docs/design/analytics-events.md, nothing about the person, a burst limit per address."""
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
 
 from app.config import EVENTS_PER_MINUTE
+from app.routes import events as events_route
 from helpers import from_ip, guest_headers
 
 VALID = [
@@ -181,6 +186,14 @@ def test_a_burst_from_one_address_is_cut(api):
     assert len(rows(api)) == EVENTS_PER_MINUTE + 2
 
 
+def test_a_flood_from_many_addresses_is_cut(api, monkeypatch):
+    monkeypatch.setattr(events_route, "EVENTS_GLOBAL_PER_MINUTE", 3)
+    statuses = [api.client.post("/api/events", json=VALID[0], headers=from_ip(f"198.51.100.{i}")).status_code
+                for i in range(5)]
+    assert statuses == [204, 204, 204, 429, 429]
+    assert len(rows(api)) == 3
+
+
 def test_a_bad_token_is_refused_before_anything(api):
     response = api.client.post("/api/events", json=VALID[0], headers={"Authorization": "Bearer not-a-token"})
     assert response.status_code == 401 and rows(api) == []
@@ -189,12 +202,14 @@ def test_a_bad_token_is_refused_before_anything(api):
 def test_the_funnel_query_of_the_readme_counts_the_steps(api):
     readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
     sql = readme.split("## Счётчик событий (этап 4.4а)", 1)[1].split("```sql\n", 1)[1].split("```", 1)[0]
+    assert api.client.post("/api/events", json=VALID[0]).status_code == 204  # the closed stage: not counted
+    api.clock.now = datetime(2026, 12, 15, 18, 0, tzinfo=timezone.utc)
     for body in (VALID[0], VALID[0], {**VALID[1], "tool": "home"}, VALID[4],
                  {"name": "reading_shown", "tool": "home", "lang": "en", "params": {"ms_from_draw": 900}},
                  {"name": "draw_click", "tool": "home", "lang": "en", "params": {"has_question": False, "entry": "tool"}}):
         assert api.client.post("/api/events", json=body).status_code == 204
     with api.db.connect() as conn:
-        rows = conn.execute(sql, {"day_from": "2026-11-20", "day_to": "2026-11-20"}).fetchall()
+        rows = conn.execute(sql, {"day_from": "2026-11-01", "day_to": "2026-12-31"}).fetchall()
     assert [(r["tool"], r["lang"], r["views"], r["draws"], r["shown"], r["saves"], float(r["shown_pct"])) for r in rows] == [
         ("home", "en", 2, 1, 1, 0, 100.0), ("home", "es", 0, 1, 0, 0, 0.0)]
 ````
@@ -384,18 +399,20 @@ Create `api/app/routes/events.py`:
 ```python
 """POST /api/events (spec 2026-11-19 stage 4.4a §6): {"name", "tool", "lang", "params"} → 204. The site sends it
 with navigator.sendBeacon; nothing here reads or sets a cookie, and the answer carries no body. More than
-EVENTS_PER_MINUTE requests a minute from one address → 429 {"reason": "rate"}, nothing stored."""
+EVENTS_PER_MINUTE requests a minute from one address, or more than EVENTS_GLOBAL_PER_MINUTE from all addresses together
+(a flood from many addresses) → 429 {"reason": "rate"}, nothing stored."""
 from typing import Any, Literal
 
 from fastapi import APIRouter, Request, Response
 from pydantic import BaseModel, Field
 
 from app import events, limits
-from app.config import EVENTS_PER_MINUTE
+from app.config import EVENTS_GLOBAL_PER_MINUTE, EVENTS_PER_MINUTE
 from app.context import get_ctx
 from app.routes.common import respond
 
 router = APIRouter(prefix="/api")
+ALL_ADDRESSES = "all"  # the key of the global counter; address keys are sha256 hex, so they never collide
 
 
 class EventIn(BaseModel):
@@ -411,6 +428,8 @@ def post_event(body: EventIn, request: Request):
     now = ctx.clock()
     ip_hash = ctx.salt.hash_ip(limits.client_ip(request, ctx.settings.trust_cloudflare), now)
     if ctx.events_burst.hit(ip_hash, now) > EVENTS_PER_MINUTE:
+        return respond(429, {"reason": "rate"})
+    if ctx.events_burst.hit(ALL_ADDRESSES, now) > EVENTS_GLOBAL_PER_MINUTE:
         return respond(429, {"reason": "rate"})
     try:
         events.check_event(body.name, body.tool, body.params)
@@ -432,6 +451,7 @@ with:
 ```python
 WAITLIST_IP_LIMIT = 5          # stage 4.3 §8: Plus waitlist requests per address per UTC day
 EVENTS_PER_MINUTE = 30         # stage 4.4a §6: POST /api/events per address per minute (a reading sends about 6)
+EVENTS_GLOBAL_PER_MINUTE = 600  # stage 4.4a §6: POST /api/events per minute from all addresses together (plan review M9)
 ```
 
 In `api/app/db.py`, replace:
@@ -528,11 +548,12 @@ with:
 только события и параметры из `docs/design/analytics-events.md` (`app/events.py`, каждый параметр события обязателен,
 лишний — `422 {"reason": "invalid", "fields": ["params.<имя>"]}`). Ни адреса, ни cookie, ни номера гостя или аккаунта
 не пишется: таблица `events` (миграция 004) — день UTC, имя, инструмент, язык, параметры, время. Больше
-`EVENTS_PER_MINUTE` (30) запросов в минуту с адреса — `429 {"reason": "rate"}`, ничего не пишется (счётчик в памяти,
-как у всплеска раскладов).
+`EVENTS_PER_MINUTE` (30) запросов в минуту с адреса или `EVENTS_GLOBAL_PER_MINUTE` (600) со всех адресов вместе —
+`429 {"reason": "rate"}`, ничего не пишется (счётчики в памяти, как у всплеска раскладов).
 
 Воронка `tool_view → draw_click → reading_shown → save_click` по инструментам и языкам за период (разбор — через
-2–3 недели после запуска); `signup_done` без инструмента считается отдельно:
+2–3 недели после запуска); `signup_done` без инструмента считается отдельно. Запрос берёт строки только с дня запуска
+(14.12.2026; сдвинется запуск — поправить дату): события закрытого стенда — проверки, а не посетители.
 
 ```sql
 SELECT tool, lang,
@@ -543,12 +564,12 @@ SELECT tool, lang,
        round(100.0 * count(*) FILTER (WHERE name = 'reading_shown')
              / nullif(count(*) FILTER (WHERE name = 'draw_click'), 0), 1) AS shown_pct
 FROM events
-WHERE day BETWEEN %(day_from)s AND %(day_to)s AND tool IS NOT NULL
+WHERE day >= DATE '2026-12-14' AND day BETWEEN %(day_from)s AND %(day_to)s AND tool IS NOT NULL
 GROUP BY tool, lang
 ORDER BY tool, lang;
 ```
 
-В SQL Editor Supabase вместо `%(day_from)s` и `%(day_to)s` подставить даты, например `'2026-12-14'`.
+В SQL Editor Supabase вместо `%(day_from)s` и `%(day_to)s` подставить даты, например `'2026-12-14'` и `'2027-01-04'`.
 
 ## Тестовый набор чтеца
 ````
@@ -556,12 +577,12 @@ ORDER BY tool, lang;
 - [ ] **Step 5: Run the new and changed tests**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_events.py tests/test_db.py tests/test_api_auth.py`
-Expected: `76 passed` (30 in `test_api_events.py`; `test_api_auth.py::test_every_api_route_checks_a_bearer_token_first` now also checks `POST /api/events`).
+Expected: `77 passed` (31 in `test_api_events.py`; `test_api_auth.py::test_every_api_route_checks_a_bearer_token_first` now also checks `POST /api/events`).
 
 - [ ] **Step 6: Run the whole API suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `1082 passed` (1048 before + 30 + 4).
+Expected: `1083 passed` (1048 before + 31 + 4).
 
 - [ ] **Step 7: Commit**
 
@@ -907,7 +928,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Interfaces:**
 - Consumes: `site/src/data/deck.json`, `site/src/data/pairs.json` (Task 2).
-- Produces (`site/src/lib/types.ts`): `Lang = 'en' | 'es'`, `LANGS`, `Tool = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily'`, `Kind = 'one' | 'three' | 'yes_no' | 'card_page'`, `Position = 'past' | 'present' | 'path' | 'card'`, `Situation`, `SITUATIONS` (`single`, `relationship`, `after_breakup`, `complicated`), `DrawnCard {card_id, position, reversed, name}`, `Verdict {value, label}`, `ReadingCreated {id, lang, kind, cards, verdict, soft_line, remaining}`, `HelpLine`, `CrisisPayload {group: 'crisis', crisis: {title, body, not_saved, contacts_intro, emergency_line, fallback_contacts, closing}, helplines: {country, source, lines}}`, `FollowupCounts {followups_left, followup_attempts_left}`, `ReadingView` (owner view of `GET /api/readings/{id}`: `answer`, `answer_shown`, `status`, `retries_left`, counts…), `DailyCard {day, card: {card_id, name, reversed}, text, source}`, `CreateBody {lang, kind, question?, topic?, situation?, card_id?, tz?, turnstile_token?}`.
+- Produces (`site/src/lib/types.ts`): `Lang = 'en' | 'es'`, `LANGS`, `Tool = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily'`, `Kind = 'one' | 'three' | 'yes_no' | 'card_page'`, `Position = 'past' | 'present' | 'path' | 'card'`, `Situation`, `SITUATIONS` (`single`, `relationship`, `after_breakup`, `complicated`), `DrawnCard {card_id, position, reversed, name}`, `Verdict {value, label}`, `ReadingCreated {id, lang, kind, cards, verdict, soft_line, remaining}`, `HelpLine`, `CrisisPayload {group: 'crisis', crisis: {title, body, not_saved, contacts_intro, emergency_line, fallback_contacts, closing}, helplines: {country, source, lines}}`, `FollowupCounts {followups_left, followup_attempts_left}`, `ReadingView` (owner view of `GET /api/readings/{id}`: `answer`, `answer_shown`, `status`, `retries_left`, counts, `followups: SavedFollowup[]`), `SavedFollowup {n, question, answer, soft_line}`, `DailyCard {day, card: {card_id, name, reversed}, text, source}`, `CreateBody {lang, kind, question?, topic?, situation?, card_id?, tz?, turnstile_token?}`.
 - Produces (`deck.ts`): `DeckCard`, `DECK: readonly DeckCard[]` (78), `CARD_BACK = '/cards/back.svg'`, `CardWidth = 160 | 350 | 700`, `cardById(id) -> DeckCard | undefined`, `cardName(card, lang)`, `cardSlug(card, lang)`, `cardImage(card, width)`, `cardSrcset(card)`, `neighbors(card) -> {prev, next}`, `fallbackDailyCard(isoDay) -> DeckCard`.
 - Produces (`routes.ts`): `PageKey = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily' | 'not_found'`, `HELP_URL = 'https://findahelpline.com'`, `NAV_KEYS = ['home','yes_no','love','daily']`, `pagePath(key, lang)`, `cardPath(card, lang)`, `langOf(path)`, `switchPath(path)`, `allPagePaths() -> string[]` (167), `distFile(path)`.
 
@@ -1123,6 +1144,15 @@ export interface ReadingView extends FollowupCounts {
   answer_shown: 'model' | 'fallback' | 'crisis' | null;
   status: 'pending' | 'streaming' | 'done';
   retries_left: number;
+  followups: SavedFollowup[];
+}
+
+/** A follow-up with its answer as GET /api/readings/{id} keeps it (answered ones only). */
+export interface SavedFollowup {
+  n: number;
+  question: string;
+  answer: string | null;
+  soft_line: string | null;
 }
 
 /** 200 of GET /api/daily. */
@@ -1295,7 +1325,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Interfaces:**
 - Consumes: `Lang` from `site/src/lib/types.ts`.
-- Produces: `en` (153 keys), `DictKey = keyof typeof en`, `Dict = Record<DictKey, string>`, `es: Dict`, `enDrafts` (55 keys), `esDrafts` (112 keys); from `site/src/i18n/index.ts`: `DICTS`, `DRAFTS`, `t(lang) -> Dict`, `fill(template, vars) -> string` (`{name}` placeholders; an unknown one stays), `placeholders(template) -> string[]`, re-exported types `Dict`, `DictKey`. Later tasks use these keys by name, e.g. `drawThree`, `drawOne`, `drawLove`, `drawForQuestion`, `questionLabel`, `yesNoLabel`, `*Placeholder`, `shuffling`, `dealtThree`, `dealtOne`, `writing`, `readingReady`, `restoring`, `streamLost`, `followup*`, `err*`, `plus*`, `crisis*`, `fullMeaning`, `backTo`, `closeBackTo`, `notGuarantee`.
+- Produces: `en` (156 keys), `DictKey = keyof typeof en`, `Dict = Record<DictKey, string>`, `es: Dict`, `enDrafts` (57 keys), `esDrafts` (115 keys); from `site/src/i18n/index.ts`: `DICTS`, `DRAFTS`, `t(lang) -> Dict`, `fill(template, vars) -> string` (`{name}` placeholders; an unknown one stays), `placeholders(template) -> string[]`, re-exported types `Dict`, `DictKey`. Later tasks use these keys by name, e.g. `drawThree`, `drawOne`, `drawLove`, `drawForQuestion`, `questionLabel`, `yesNoLabel`, `*Placeholder`, `shuffling`, `dealtThree`, `dealtOne`, `writing`, `readingReady`, `restoring`, `streamLost`, `followup*` (incl. `followupReady`), `err*` (incl. `errDayCap`), `plus*` (incl. `plusNotNow`), `crisis*`, `fullMeaning`, `backTo`, `closeBackTo`, `notGuarantee`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1310,7 +1340,7 @@ const keys = (lang: 'en' | 'es') => Object.keys(DICTS[lang]).sort();
 describe('dictionaries', () => {
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(153);
+    expect(keys('en').length).toBe(156);
   });
 
   it('have no empty strings', () => {
@@ -1331,8 +1361,8 @@ describe('dictionaries', () => {
       expect(new Set(DRAFTS[lang]).size).toBe(DRAFTS[lang].length);
       for (const key of DRAFTS[lang]) expect(keys(lang)).toContain(key);
     }
-    expect(DRAFTS.en.length).toBe(55);
-    expect(DRAFTS.es.length).toBe(112);
+    expect(DRAFTS.en.length).toBe(57);
+    expect(DRAFTS.es.length).toBe(115);
   });
 
   it('keep the prototype copy', () => {
@@ -1516,8 +1546,10 @@ export const en = {
   followupUsedReading: 'This question used 1 of your readings for today.',
   followupNone: "You've asked all the follow-up questions this reading can take.",
   followupYouAsked: 'You asked',
+  followupReady: 'The answer to your question is ready.',
 
   errBusy: 'Too many requests right now. Please wait a minute and try again.',
+  errDayCap: 'This connection has made a lot of readings today. Please come back tomorrow.',
   errTurnstile: "We couldn't check that this is a person and not a robot. Please try again.",
   errUnavailable: 'The service is unavailable right now. Please try again in a few minutes.',
   errNetwork: 'You seem to be offline. Check your connection and try again.',
@@ -1535,6 +1567,7 @@ export const en = {
   plusEmailPlaceholder: 'e.g. you@example.com',
   plusNotify: 'Tell me when it opens',
   plusDone: "Thank you — we'll write when Plus opens.",
+  plusNotNow: 'Not now',
   plusEmailError: 'Please check the e-mail address and try again.',
   plusDaily: 'Open your free Card of the Day',
 
@@ -1557,7 +1590,7 @@ export const enDrafts: readonly DictKey[] = [
   'followupConfirm', 'followupCancel', 'followupUsedReading', 'followupNone', 'followupYouAsked', 'errBusy',
   'errTurnstile', 'errUnavailable', 'errNetwork', 'errStage', 'errGone', 'errOther', 'plusEmailLabel',
   'plusEmailPlaceholder', 'plusNotify', 'plusDone', 'plusEmailError', 'crisisCall', 'crisisText', 'crisisHours',
-  'crisisWeb',
+  'crisisWeb', 'errDayCap', 'followupReady',
 ];
 ```
 
@@ -1710,8 +1743,10 @@ export const es: Dict = {
   followupUsedReading: 'Esta pregunta usó 1 de tus lecturas de hoy.',
   followupNone: 'Ya hiciste todas las preguntas de seguimiento que admite esta lectura.',
   followupYouAsked: 'Preguntaste',
+  followupReady: 'La respuesta a tu pregunta está lista.',
 
   errBusy: 'Hay demasiadas solicitudes en este momento. Espera un minuto e inténtalo de nuevo.',
+  errDayCap: 'Desde esta conexión se hicieron muchas lecturas hoy. Vuelve mañana.',
   errTurnstile: 'No pudimos comprobar que eres una persona y no un robot. Inténtalo de nuevo.',
   errUnavailable: 'El servicio no está disponible en este momento. Inténtalo de nuevo en unos minutos.',
   errNetwork: 'Parece que no tienes conexión. Revísala e inténtalo de nuevo.',
@@ -1729,6 +1764,7 @@ export const es: Dict = {
   plusEmailPlaceholder: 'p. ej. tu@ejemplo.com',
   plusNotify: 'Avísame cuando abra',
   plusDone: 'Gracias: te escribiremos cuando abra Plus.',
+  plusNotNow: 'Ahora no',
   plusEmailError: 'Revisa la dirección de correo e inténtalo de nuevo.',
   plusDaily: 'Abre tu Carta del día gratis',
 
@@ -1757,6 +1793,7 @@ export const esDrafts: readonly DictKey[] = [
   'errUnavailable', 'errNetwork', 'errStage', 'errGone', 'errOther', 'plusTitle', 'plusLead', 'plusGives',
   'plusBenefit1', 'plusBenefit2', 'plusBenefit3', 'plusEmailLabel', 'plusEmailPlaceholder', 'plusNotify',
   'plusDone', 'plusEmailError', 'plusDaily', 'crisisCall', 'crisisText', 'crisisHours', 'crisisWeb',
+  'errDayCap', 'followupReady', 'plusNotNow',
 ];
 ```
 
@@ -1812,7 +1849,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Interfaces:**
 - Consumes: types from `site/src/lib/types.ts`; `DictKey` from `site/src/i18n`.
-- Produces (`errors.ts`): `ErrorKind = 'limit' | 'busy' | 'turnstile' | 'unavailable' | 'stage' | 'gone' | 'network' | 'other'`, `reasonOf(body)`, `classifyError(status, body) -> ErrorKind` (429 limit → `limit`, other 429 → `busy`, 403 turnstile → `turnstile`, 503 → `unavailable`, 401 without JSON reason → `stage`, 404 → `gone`, no answer (status 0) → `network`), `needsHelpLink(kind)` (true for limit, busy, turnstile, unavailable), `errorMessageKey(kind) -> DictKey`.
+- Produces (`errors.ts`): `ErrorKind = 'limit' | 'busy' | 'daycap' | 'attempts' | 'turnstile' | 'unavailable' | 'stage' | 'gone' | 'network' | 'other'`, `reasonOf(body)`, `classifyError(status, body) -> ErrorKind` (429 limit → `limit`, 429 ip_limit → `daycap`, 429 attempts → `attempts`, other 429 → `busy`, 403 turnstile → `turnstile`, 502 / 503 / 504 → `unavailable`, 401 without JSON reason → `stage`, 404 → `gone`, no answer (status 0) → `network`), `needsHelpLink(kind)` (true for limit, busy, daycap, attempts, turnstile, unavailable), `errorMessageKey(kind) -> DictKey` (`daycap` → `errDayCap`, `attempts` → `followupNone`).
 - Produces (`sse.ts`): `SseEvent {event: string, data: unknown}`, `class SseParser(onEvent)` with `feed(chunk)`, `finish()`; `readSse(body: ReadableStream<Uint8Array>, onEvent) -> Promise<void>` (rejects when the connection breaks).
 - Produces (`followups.ts`): `Offer = 'free' | 'paid' | 'none'`, `followupOffer(counts | null) -> Offer`, `FollowupBody {question, tz?, use_reading}`, `followupBody(question, tz, useReading)`, `FollowupRefusal = {type: 'confirm', remaining} | {type: 'plus'} | {type: 'crisis', payload} | {type: 'error', error}`, `followupRefusal(status, body)`, `Followup {question, text, status: 'streaming' | 'done' | 'replaced' | 'failed', softLine, usedReading}`, `newFollowup(question)`, `FollowupUpdate {followup, counts?, crisis?}`, `applyFollowupEvent(followup, event) -> FollowupUpdate`.
 - Produces (`api.ts`): `FetchFn`, `ApiResult<T> = {ok: true, status, data} | {ok: false, status, error, body}`, `CreateResult = {type: 'reading', reading} | {type: 'crisis', payload} | {type: 'error', error, body}`, `StreamEnd = {type: 'ended'} | {type: 'broken'} | {type: 'error', error, body}`, `FollowupResult = {type: 'stream', end} | {type: 'refused', refusal}`, `interface Api {createReading(body); streamReading(id, tz, onEvent); retryReading(id, tz, onEvent); getReading(id, tz); postFollowup(id, body, onEvent); getDaily(lang, tz); joinWaitlist(email, lang)}`, `createApi(fetchFn) -> Api`, `browserFetch() -> FetchFn`, `withQuery(path, params)`.
@@ -1829,14 +1866,16 @@ import { classifyError, errorMessageKey, needsHelpLink, reasonOf } from './error
 describe('classifyError', () => {
   it('maps every answer of api/README.md to a kind', () => {
     expect(classifyError(429, { reason: 'limit', remaining: 0 })).toBe('limit');
-    expect(classifyError(429, { reason: 'ip_limit', remaining: 0 })).toBe('busy');
-    expect(classifyError(429, { reason: 'attempts' })).toBe('busy');
+    expect(classifyError(429, { reason: 'ip_limit', remaining: 0 })).toBe('daycap');
+    expect(classifyError(429, { reason: 'attempts' })).toBe('attempts');
     expect(classifyError(429, { reason: 'rate' })).toBe('busy');
     expect(classifyError(403, { reason: 'turnstile', sitekey: 'k' })).toBe('turnstile');
     expect(classifyError(403, { reason: 'owner_only' })).toBe('other');
     expect(classifyError(503, { reason: 'unavailable' })).toBe('unavailable');
     expect(classifyError(503, { reason: 'db' })).toBe('unavailable');
     expect(classifyError(503, null)).toBe('unavailable');
+    expect(classifyError(502, null)).toBe('unavailable'); // Caddy while the API restarts
+    expect(classifyError(504, null)).toBe('unavailable');
     expect(classifyError(401, null)).toBe('stage');
     expect(classifyError(401, { reason: 'auth' })).toBe('other');
     expect(classifyError(404, { reason: 'not_found' })).toBe('gone');
@@ -1846,7 +1885,7 @@ describe('classifyError', () => {
   });
 
   it('adds the help link to the 429, 403 turnstile and 503 messages only', () => {
-    expect(['limit', 'busy', 'turnstile', 'unavailable'].every((k) => needsHelpLink(k as never))).toBe(true);
+    expect(['limit', 'busy', 'daycap', 'attempts', 'turnstile', 'unavailable'].every((k) => needsHelpLink(k as never))).toBe(true);
     expect(['stage', 'gone', 'network', 'other'].some((k) => needsHelpLink(k as never))).toBe(false);
   });
 
@@ -1854,6 +1893,8 @@ describe('classifyError', () => {
     expect(errorMessageKey('busy')).toBe('errBusy');
     expect(errorMessageKey('unavailable')).toBe('errUnavailable');
     expect(errorMessageKey('limit')).toBe('plusTitle');
+    expect(errorMessageKey('daycap')).toBe('errDayCap');
+    expect(errorMessageKey('attempts')).toBe('followupNone');
   });
 
   it('reads the reason only when it is a string', () => {
@@ -1986,7 +2027,7 @@ describe('followupRefusal', () => {
     expect(followupRefusal(402, { reason: 'plus', remaining: 0 })).toEqual({ type: 'plus' });
     const crisis = { group: 'crisis', crisis: {}, helplines: { lines: [] } };
     expect(followupRefusal(200, crisis)).toEqual({ type: 'crisis', payload: crisis });
-    expect(followupRefusal(429, { reason: 'attempts' })).toEqual({ type: 'error', error: 'busy' });
+    expect(followupRefusal(429, { reason: 'attempts' })).toEqual({ type: 'error', error: 'attempts' });
     expect(followupRefusal(503, { reason: 'unavailable' })).toEqual({ type: 'error', error: 'unavailable' });
     expect(followupRefusal(409, { reason: 'busy' })).toEqual({ type: 'error', error: 'other' });
   });
@@ -2112,7 +2153,7 @@ describe('follow-ups', () => {
     expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'confirm', remaining: 2 } });
     expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'plus' } });
     expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'crisis', payload: CRISIS } });
-    expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'error', error: 'busy' } });
+    expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'error', error: 'attempts' } });
   });
 });
 
@@ -2153,9 +2194,11 @@ import type { DictKey } from '../i18n';
 
 export type ErrorKind =
   | 'limit' // 429 {"reason": "limit"}: today's free readings are used — the Plus card (screen 11a)
-  | 'busy' // any other 429: a burst, the address limit, follow-up attempts, the daily-card rate
+  | 'busy' // 429 burst or rate: wait a minute
+  | 'daycap' // 429 {"reason": "ip_limit"}: this address's cap for the day — try again tomorrow
+  | 'attempts' // 429 {"reason": "attempts"}: this reading takes no more follow-ups
   | 'turnstile' // 403 {"reason": "turnstile"}: run the invisible Turnstile check and repeat the request
-  | 'unavailable' // 503: database, model budget, sign-in keys
+  | 'unavailable' // 503 (database, model budget, sign-in keys) and 502 / 504 (the API restarts, e.g. a deploy)
   | 'stage' // 401 without a JSON reason: the stage cookie is stale — reload the page
   | 'gone' // 404: the reading expired or is not ours
   | 'network' // no answer at all
@@ -2172,9 +2215,13 @@ export function reasonOf(body: unknown): string | undefined {
 export function classifyError(status: number, body: unknown): ErrorKind {
   const reason = reasonOf(body);
   if (status === 0) return 'network';
-  if (status === 429) return reason === 'limit' ? 'limit' : 'busy';
+  if (status === 429) {
+    if (reason === 'limit') return 'limit';
+    if (reason === 'ip_limit') return 'daycap';
+    return reason === 'attempts' ? 'attempts' : 'busy';
+  }
   if (status === 403 && reason === 'turnstile') return 'turnstile';
-  if (status === 503) return 'unavailable';
+  if (status === 502 || status === 503 || status === 504) return 'unavailable';
   if (status === 401 && reason === undefined) return 'stage';
   if (status === 404) return 'gone';
   return 'other';
@@ -2182,12 +2229,15 @@ export function classifyError(status: number, body: unknown): ErrorKind {
 
 /** §10.8 of spec 4.2: the 429, 403 and 503 messages also link to help lines. */
 export function needsHelpLink(kind: ErrorKind): boolean {
-  return kind === 'limit' || kind === 'busy' || kind === 'turnstile' || kind === 'unavailable';
+  return kind === 'limit' || kind === 'busy' || kind === 'daycap' || kind === 'attempts' || kind === 'turnstile'
+    || kind === 'unavailable';
 }
 
 const MESSAGES: Record<ErrorKind, DictKey> = {
   limit: 'plusTitle',
   busy: 'errBusy',
+  daycap: 'errDayCap',
+  attempts: 'followupNone',
   turnstile: 'errTurnstile',
   unavailable: 'errUnavailable',
   stage: 'errStage',
@@ -2618,8 +2668,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 **Interfaces:**
 - Consumes: `SseEvent` (Task 5), `ErrorKind`, `applyFollowupEvent`, `followupOffer`, `newFollowup`, `Followup`, `FollowupRefusal`, `Offer`, `followupBody`, `Api` (Task 5), `DictKey` (Task 4), types (Task 3).
 - Produces (`answer.ts`): `SECTION_ORDER = ['headline','card1','card2','card3','synthesis','step','why']`, `SectionName`, `Sections`, `Answer {sections, started, shown: 'model' | 'fallback' | null, replaced: 'replace' | 'fallback' | null, retry}`, `EMPTY_ANSWER`, `pickSections(raw)`, `applyAnswerEvent(answer, event) -> Answer`, `answerFromView(view) -> Answer`, `AnswerBlock`, `answerBlocks(answer, cards) -> AnswerBlock[]`.
-- Produces (`nightRoom.ts`): `Phase = 'closed' | 'opening' | 'reading' | 'crisis' | 'limit' | 'error'`, `StreamState = 'waiting' | 'streaming' | 'done' | 'restoring' | 'lost'`, `DEAL_MS = 600`, `FLIP_INTERVAL_MS = 900`, `NightState {phase, reading, revealed, answer, softLine, stream, crisis, error, counts, remaining, followups, confirm, followupError, followupPlus}`, `CLOSED`, `NightAction` (`open`, `created {reading, reducedMotion}`, `crisis {payload}`, `failed {error}`, `flip`, `stream {event}`, `streamEnded {outcome: 'done' | 'lost'}`, `restoring`, `restored {view}`, `retrying`, `counts {counts}`, `followupAsk {question}`, `followupConfirm {question, remaining}`, `followupCancel`, `followupEvent {event}`, `followupRefused {question, refusal}`, `followupLost`, `close`), `nightReducer(state, action) -> NightState`, `cardsCount`, `allRevealed`, `answerVisible`, `readingShown`, `statusKey(state) -> DictKey | null`, `followupNow(state) -> Offer`, `RoomEvent`, `transitionEvents(prev, next) -> RoomEvent[]`.
-- Produces (`readingFlow.ts`): `FlowDeps {api, dispatch, turnstileToken(sitekey) -> Promise<string | null>, sleep(ms), reducedMotion}`, `RESTORE_TRIES = 10`, `RESTORE_WAIT_MS = 2000`, `startReading(deps, body)`, `streamReading(deps, id, tz, mode: 'stream' | 'retry', restoreOnLoss = true)`, `restoreReading(deps, id, tz)`, `loadCounts(deps, id, tz)`, `askFollowup(deps, id, question, tz, useReading)` — all `Promise<void>`.
+- Produces (`nightRoom.ts`): `Phase = 'closed' | 'opening' | 'reading' | 'crisis' | 'limit' | 'error'`, `StreamState = 'waiting' | 'streaming' | 'done' | 'restoring' | 'lost'`, `DEAL_MS = 600`, `FLIP_INTERVAL_MS = 900`, `NightState {phase, reading, revealed, answer, softLine, stream, crisis, error, counts, remaining, followups, confirm, followupError, followupPlus}`, `CLOSED`, `NightAction` (`open`, `created {reading, reducedMotion}`, `crisis {payload}`, `failed {error}`, `flip`, `stream {event}`, `streamEnded {outcome: 'done' | 'lost'}`, `restoring`, `restored {view}`, `retrying`, `counts {counts}`, `followupAsk {question}`, `followupCancel`, `followupEvent {event}`, `followupRefused {question, refusal}` (a `402 confirm` refusal sets `confirm {question, remaining}` — the paid warning), `followupRestored {followup: SavedFollowup}`, `followupLost`, `close`; every `meta` stream event empties the answer), `nightReducer(state, action) -> NightState`, `cardsCount`, `allRevealed`, `answerVisible`, `readingShown`, `statusKey(state) -> DictKey | null` (also `writing` / `followupReady` for follow-ups), `followupNow(state) -> Offer`, `RoomEvent`, `transitionEvents(prev, next) -> RoomEvent[]`.
+- Produces (`readingFlow.ts`): `FlowDeps {api, dispatch, turnstileToken(sitekey) -> Promise<string | null>, sleep(ms), reducedMotion}`, `RESTORE_TRIES = 10`, `RESTORE_WAIT_MS = 2000`, `DEFAULT_COUNTS = {followups_left: 2, followup_attempts_left: 8}`, `startReading(deps, body)`, `streamReading(deps, id, tz, mode: 'stream' | 'retry', restoreOnLoss = true)` (a refused retry restores via GET), `restoreReading(deps, id, tz)`, `loadCounts(deps, id, tz)` (two tries, then `DEFAULT_COUNTS`), `restoreFollowup(deps, id, question, tz)`, `askFollowup(deps, id, question, tz, useReading)` (a broken stream → `restoreFollowup`) — all `Promise<void>`.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -2805,6 +2855,12 @@ describe('the answer', () => {
     expect(s.stream).toBe('waiting');
   });
 
+  it('starts the answer again on every meta, so a repeated stream never appends', () => {
+    const s = run([{ type: 'open' }, created(true), text('headline', 'Half'), { type: 'stream', event: { event: 'error', data: { reason: 'db' } } },
+      { type: 'stream', event: { event: 'meta', data: {} } }, text('headline', 'Whole')]);
+    expect(s.answer.sections).toEqual({ headline: 'Whole' });
+  });
+
   it('turns a stream error event into a lost stream, and done is final', () => {
     const lost = run([{ type: 'open' }, created(true), { type: 'stream', event: { event: 'error', data: { reason: 'db' } } }]);
     expect(lost.stream).toBe('lost');
@@ -2832,6 +2888,7 @@ describe('follow-ups', () => {
   it('streams a follow-up, updates the counts and offers no second one while it streams', () => {
     let s = run([counts(1, 8), { type: 'followupAsk', question: 'And work?' }], shown());
     expect(followupNow(s)).toBe('none');
+    expect(statusKey(s)).toBe('writing');
     s = run([
       { type: 'followupEvent', event: { event: 'text', data: { name: 'followup', text: 'Maybe.' } } },
       { type: 'followupEvent', event: { event: 'done', data: { answer_shown: 'model', followups_left: 0, followup_attempts_left: 7 } } },
@@ -2840,9 +2897,11 @@ describe('follow-ups', () => {
     expect(followupNow(s)).toBe('paid');
   });
 
-  it('warns before a paid follow-up and counts the reading it used', () => {
-    let s = run([counts(0, 6), { type: 'followupConfirm', question: 'More?', remaining: 2 }], shown());
+  it('warns before a paid follow-up when the API asks (402 confirm) and counts the reading it used', () => {
+    let s = run([counts(0, 6), { type: 'followupAsk', question: 'More?' },
+      { type: 'followupRefused', question: 'More?', refusal: { type: 'confirm', remaining: 2 } }], shown());
     expect(s.confirm).toEqual({ question: 'More?', remaining: 2 });
+    expect(s.followups).toEqual([]);
     s = run([{ type: 'followupCancel' }], s);
     expect(s.confirm).toBeNull();
     s = run([
@@ -2875,6 +2934,14 @@ describe('follow-ups', () => {
     expect(refused.phase).toBe('crisis');
   });
 
+  it('puts a saved answer into a follow-up whose stream broke, and announces it', () => {
+    const s = run([counts(2, 8), { type: 'followupAsk', question: 'q' },
+      { type: 'followupEvent', event: { event: 'text', data: { name: 'followup', text: 'Half' } } },
+      { type: 'followupRestored', followup: { n: 1, question: 'q', answer: 'Whole answer', soft_line: null } }], shown());
+    expect(s.followups[0]).toMatchObject({ text: 'Whole answer', status: 'done' });
+    expect(statusKey(s)).toBe('followupReady');
+  });
+
   it('marks a follow-up whose stream broke', () => {
     const s = run([counts(2, 8), { type: 'followupAsk', question: 'q' }, { type: 'followupLost' }], shown());
     expect(s.followups[0].status).toBe('failed');
@@ -2903,7 +2970,9 @@ Create `site/src/lib/readingFlow.test.ts`:
 import { describe, expect, it } from 'vitest';
 import { createApi } from './api';
 import { CLOSED, nightReducer, type NightAction, type NightState } from './nightRoom';
-import { RESTORE_TRIES, askFollowup, restoreReading, startReading, streamReading, type FlowDeps } from './readingFlow';
+import {
+  DEFAULT_COUNTS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, startReading, streamReading, type FlowDeps,
+} from './readingFlow';
 import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText } from './testing/fakes';
 
 const CREATED = {
@@ -2915,7 +2984,8 @@ const STREAM = sseText([
   ['text', { name: 'headline', text: 'Slow down.' }], ['done', { answer_shown: 'model' }],
 ]);
 const VIEW = { id: 'r1', status: 'done', answer: { headline: 'Slow down.' }, answer_shown: 'model', retries_left: 0,
-  soft_line: null, followups_left: 2, followup_attempts_left: 8, cards: CREATED.cards, kind: 'one', verdict: null };
+  soft_line: null, followups_left: 2, followup_attempts_left: 8, cards: CREATED.cards, kind: 'one', verdict: null,
+  followups: [] as Array<{ n: number; question: string; answer: string | null; soft_line: string | null }> };
 
 function harness(...responses: Array<Response | Error>) {
   const { fetch, calls } = fakeFetch(...responses);
@@ -2993,6 +3063,14 @@ describe('a broken stream', () => {
     expect(h.state().stream).toBe('lost');
   });
 
+  it('keeps the saved answer when the API refuses a retry', async () => {
+    const h = harness(jsonResponse(409, { reason: 'retries' }), jsonResponse(200, { ...VIEW, answer_shown: 'fallback', answer: { headline: 'Base' } }));
+    h.deps.dispatch({ type: 'created', reading: CREATED as never, reducedMotion: true });
+    await streamReading(h.deps, 'r1', undefined, 'retry');
+    expect(h.state()).toMatchObject({ phase: 'reading', stream: 'done' });
+    expect(h.state().answer.sections).toEqual({ headline: 'Base' });
+  });
+
   it('retries a fallback answer with POST /retry', async () => {
     const h = harness(sseResponse(STREAM), jsonResponse(200, VIEW));
     h.deps.dispatch({ type: 'created', reading: CREATED as never, reducedMotion: true });
@@ -3030,11 +3108,30 @@ describe('askFollowup', () => {
     expect(h.state().remaining).toBe(1);
   });
 
-  it('resyncs the counts when a follow-up stream breaks', async () => {
-    const h = ready(brokenSseResponse(''), jsonResponse(200, { ...VIEW, followups_left: 1, followup_attempts_left: 7 }));
+  it('reads back the answer of a follow-up whose stream broke', async () => {
+    const saved = { n: 1, question: 'q', answer: 'Saved answer.', soft_line: null };
+    const h = ready(brokenSseResponse(sseText([['text', { name: 'followup', text: 'Sav' }]])),
+      jsonResponse(200, { ...VIEW, status: 'done' }),
+      jsonResponse(200, { ...VIEW, followups: [saved], followups_left: 1, followup_attempts_left: 7 }));
+    await askFollowup(h.deps, 'r1', ' q ', undefined, false);
+    expect(h.state().followups[0]).toMatchObject({ text: 'Saved answer.', status: 'done' });
+    expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
+    expect(h.state().followupError).toBeNull();
+  });
+
+  it('gives up on a lost follow-up after a bounded number of tries and resyncs the counts', async () => {
+    const h = ready(brokenSseResponse(''), ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, VIEW)),
+      jsonResponse(200, { ...VIEW, followups_left: 1, followup_attempts_left: 7 }));
     await askFollowup(h.deps, 'r1', 'q', undefined, false);
     expect(h.state().followups[0].status).toBe('failed');
+    expect(h.state().followupError).toBe('network');
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
+  });
+
+  it('offers follow-ups with the defaults when the counts cannot be read', async () => {
+    const h = ready(new TypeError('offline'), new TypeError('offline'));
+    await loadCounts(h.deps, 'r1', undefined);
+    expect(h.state().counts).toEqual(DEFAULT_COUNTS);
   });
 });
 ```
@@ -3149,7 +3246,7 @@ import type { DictKey } from '../i18n';
 import type { ErrorKind } from './errors';
 import { applyFollowupEvent, followupOffer, newFollowup, type Followup, type FollowupRefusal, type Offer } from './followups';
 import type { SseEvent } from './sse';
-import type { CrisisPayload, FollowupCounts, ReadingCreated, ReadingView } from './types';
+import type { CrisisPayload, FollowupCounts, ReadingCreated, ReadingView, SavedFollowup } from './types';
 
 /** closed — not shown; limit — closed, the panel shows the Plus card (screen 11a) instead. */
 export type Phase = 'closed' | 'opening' | 'reading' | 'crisis' | 'limit' | 'error';
@@ -3168,7 +3265,7 @@ export interface NightState {
   crisis: CrisisPayload | null;
   error: ErrorKind | null;
   counts: FollowupCounts | null;
-  remaining: number | null; // readings left today, for the paid follow-up warning
+  remaining: number | null; // readings left today (from creation; the paid warning uses 402 confirm's number)
   followups: Followup[];
   confirm: { question: string; remaining: number } | null;
   followupError: ErrorKind | null;
@@ -3193,10 +3290,10 @@ export type NightAction =
   | { type: 'retrying' }
   | { type: 'counts'; counts: FollowupCounts }
   | { type: 'followupAsk'; question: string }
-  | { type: 'followupConfirm'; question: string; remaining: number }
   | { type: 'followupCancel' }
   | { type: 'followupEvent'; event: SseEvent }
   | { type: 'followupRefused'; question: string; refusal: FollowupRefusal }
+  | { type: 'followupRestored'; followup: SavedFollowup }
   | { type: 'followupLost' }
   | { type: 'close' };
 
@@ -3237,9 +3334,9 @@ export function nightReducer(state: NightState, action: NightAction): NightState
       const { event } = action;
       const data = (event.data && typeof event.data === 'object' ? event.data : {}) as Record<string, unknown>;
       if (event.event === 'crisis') return toCrisis(state, data as unknown as CrisisPayload);
-      if (event.event === 'meta') {
+      if (event.event === 'meta') { // every stream starts again from nothing: a repeated stream never appends
         const softLine = typeof data.soft_line === 'string' ? data.soft_line : state.softLine;
-        return { ...state, softLine, stream: 'streaming' };
+        return { ...state, softLine, stream: 'streaming', answer: EMPTY_ANSWER };
       }
       if (event.event === 'error') return { ...state, stream: 'lost' };
       const answer = applyAnswerEvent(state.answer, event);
@@ -3266,8 +3363,6 @@ export function nightReducer(state: NightState, action: NightAction): NightState
     case 'followupAsk':
       if (state.phase !== 'reading') return state;
       return { ...state, confirm: null, followupError: null, followupPlus: false, followups: [...state.followups, newFollowup(action.question)] };
-    case 'followupConfirm':
-      return state.phase === 'reading' ? { ...state, confirm: { question: action.question, remaining: action.remaining } } : state;
     case 'followupCancel':
       return { ...state, confirm: null };
     case 'followupEvent': {
@@ -3290,6 +3385,11 @@ export function nightReducer(state: NightState, action: NightAction): NightState
       if (refusal.type === 'plus') return { ...next, followupPlus: true };
       return { ...next, followupError: refusal.error };
     }
+    case 'followupRestored': // the stream broke but the API saved the answer (spec 4.2 §8.11)
+      if (state.phase !== 'reading') return state;
+      return lastFollowup({ ...state, followupError: null }, (f) => ({
+        ...f, text: action.followup.answer ?? '', softLine: action.followup.soft_line, status: 'done',
+      }));
     case 'followupLost':
       return lastFollowup({ ...state, followupError: 'network' }, (f) => (f.status === 'streaming' ? { ...f, status: 'failed' } : f));
     case 'close':
@@ -3323,7 +3423,11 @@ export function statusKey(state: NightState): DictKey | null {
   if (state.stream === 'lost') return 'streamLost';
   if (!allRevealed(state)) return cardsCount(state) === 3 ? 'dealtThree' : 'dealtOne';
   if (!state.answer.started) return 'writing';
-  return state.stream === 'done' ? 'readingReady' : 'writing';
+  if (state.stream !== 'done') return 'writing';
+  const last = state.followups[state.followups.length - 1];
+  if (last?.status === 'streaming') return 'writing';
+  if (last?.status === 'done' || last?.status === 'replaced') return 'followupReady';
+  return 'readingReady';
 }
 
 /** Which follow-up the room may offer now: only under a finished model answer, one at a time. */
@@ -3350,11 +3454,12 @@ Create `site/src/lib/readingFlow.ts`:
 ```ts
 // The requests behind the night room (spec 4.4a §4): create → (403 turnstile → token → create again) → stream;
 // a broken stream is restored with GET /api/readings/{id} (wait while it is still being written, stream again if
-// nobody is writing); a fallback answer may be retried with POST /retry; follow-ups stream the same way.
+// nobody is writing); POST /retry only after a fallback answer; follow-ups stream the same way and a broken one
+// is read back from GET /api/readings/{id} too (the API keeps writing it, spec 4.2 §8.11).
 import type { Api } from './api';
 import { followupBody } from './followups';
 import type { NightAction } from './nightRoom';
-import type { CreateBody } from './types';
+import type { CreateBody, FollowupCounts } from './types';
 
 export interface FlowDeps {
   api: Api;
@@ -3366,6 +3471,9 @@ export interface FlowDeps {
 
 export const RESTORE_TRIES = 10;
 export const RESTORE_WAIT_MS = 2000;
+/** What a new reading allows (two free follow-ups, eight attempts); used only when the counts cannot be read —
+ * the API still refuses what is not allowed (402 / 429). */
+export const DEFAULT_COUNTS: FollowupCounts = { followups_left: 2, followup_attempts_left: 8 };
 
 export async function startReading(deps: FlowDeps, body: CreateBody): Promise<void> {
   let result = await deps.api.createReading(body);
@@ -3400,7 +3508,8 @@ export async function streamReading(deps: FlowDeps, id: string, tz: string | und
   };
   const end = mode === 'stream' ? await deps.api.streamReading(id, tz, onEvent) : await deps.api.retryReading(id, tz, onEvent);
   if (end.type === 'error') {
-    deps.dispatch({ type: 'failed', error: end.error });
+    if (mode === 'retry' && restoreOnLoss) await restoreReading(deps, id, tz); // a refused retry keeps the saved answer
+    else deps.dispatch({ type: 'failed', error: end.error });
     return;
   }
   if (crisis) return;
@@ -3436,12 +3545,40 @@ export async function restoreReading(deps: FlowDeps, id: string, tz: string | un
 }
 
 export async function loadCounts(deps: FlowDeps, id: string, tz: string | undefined): Promise<void> {
-  const result = await deps.api.getReading(id, tz);
-  if (result.ok) {
-    deps.dispatch({ type: 'counts', counts: {
-      followups_left: result.data.followups_left, followup_attempts_left: result.data.followup_attempts_left,
-    } });
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const result = await deps.api.getReading(id, tz);
+    if (result.ok) {
+      deps.dispatch({ type: 'counts', counts: {
+        followups_left: result.data.followups_left, followup_attempts_left: result.data.followup_attempts_left,
+      } });
+      return;
+    }
+    if (attempt === 0) await deps.sleep(RESTORE_WAIT_MS);
   }
+  deps.dispatch({ type: 'counts', counts: DEFAULT_COUNTS });
+}
+
+/** A follow-up stream broke: read the answer the API saved (it is listed once it is complete). */
+export async function restoreFollowup(deps: FlowDeps, id: string, question: string, tz: string | undefined): Promise<void> {
+  const asked = question.trim();
+  for (let attempt = 0; attempt < RESTORE_TRIES; attempt++) {
+    const result = await deps.api.getReading(id, tz);
+    if (result.ok) {
+      const saved = result.data.followups?.[result.data.followups.length - 1];
+      if (saved && saved.question === asked && saved.answer) {
+        deps.dispatch({ type: 'followupRestored', followup: saved });
+        deps.dispatch({ type: 'counts', counts: {
+          followups_left: result.data.followups_left, followup_attempts_left: result.data.followup_attempts_left,
+        } });
+        return;
+      }
+    } else if (result.error === 'gone') {
+      break;
+    }
+    await deps.sleep(RESTORE_WAIT_MS);
+  }
+  deps.dispatch({ type: 'followupLost' });
+  await loadCounts(deps, id, tz);
 }
 
 export async function askFollowup(deps: FlowDeps, id: string, question: string, tz: string | undefined,
@@ -3456,17 +3593,14 @@ export async function askFollowup(deps: FlowDeps, id: string, question: string, 
     deps.dispatch({ type: 'followupRefused', question, refusal: result.refusal });
     return;
   }
-  if (!done) {
-    deps.dispatch({ type: 'followupLost' });
-    await loadCounts(deps, id, tz);
-  }
+  if (!done) await restoreFollowup(deps, id, question, tz);
 }
 ```
 
 - [ ] **Step 4: Run the tests**
 
 Run: `cd ~/arcana-diary && docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -v "$PWD/site:/app" -w /app node:22 npx vitest run src/lib/answer.test.ts src/lib/nightRoom.test.ts src/lib/readingFlow.test.ts`
-Expected: `Test Files  3 passed (3)`, `Tests  36 passed (36)`.
+Expected: `Test Files  3 passed (3)`, `Tests  41 passed (41)`.
 
 - [ ] **Step 5: Commit**
 
@@ -3491,11 +3625,11 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Interfaces:**
 - Consumes: `t`, `DictKey` (Task 4); `ApiResult` (Task 5); `ErrorKind` (Task 5); `cardById`, `cardName`, `fallbackDailyCard`, `DeckCard` (Task 3); types (Task 3).
-- Produces (`panel.ts`): `PanelPage = 'home' | 'one_card' | 'yes_no' | 'love' | 'card'`, `PanelConfig {page, lang, tool, entry: 'tool' | 'card_page', kind, countToggle, situations, topic: 'love' | null, cardId, labelKey, placeholderKey}`, `ONE_CARD_ANCHOR = '#una-carta'`, `QUESTION_MAX = 500`, `panelConfig(page, lang, cardId = null)`, `initialKind(config, hash) -> Kind`, `drawLabelKey(config, kind) -> DictKey`, `cardsFor(kind) -> 1 | 3`, `cleanQuestion(question)`, `buildCreateBody(config, {kind, question, situation, tz}) -> CreateBody`, `situationKey(situation) -> DictKey`.
+- Produces (`panel.ts`): `PanelPage = 'home' | 'one_card' | 'yes_no' | 'love' | 'card'`, `PanelConfig {page, lang, tool, entry: 'tool' | 'card_page', kind, countToggle, situations, topic: 'love' | null, cardId, labelKey, placeholderKey}`, `ONE_CARD_ANCHOR = '#una-carta'`, `QUESTION_MAX = 500`, `panelConfig(page, lang, cardId = null)`, `initialKind(config, hash) -> Kind`, `drawLabelKey(config, kind) -> DictKey`, `toolFor(config, kind) -> Tool` (one card on the Spanish home → `one_card`), `cardsFor(kind) -> 1 | 3`, `cleanQuestion(question)`, `buildCreateBody(config, {kind, question, situation, tz}) -> CreateBody`, `situationKey(situation) -> DictKey`.
 - Produces (`turnstile.ts`): `TURNSTILE_SRC`, `TOKEN_TIMEOUT_MS = 15000`, `TurnstileApi`, `TurnstileHost {document, window}`, `loadTurnstile(host) -> Promise<TurnstileApi>` (adds the script once), `turnstileToken(sitekey, host) -> Promise<string | null>`, `resetTurnstileForTests()`.
 - Produces (`analytics.ts`): `EventName` (the seven 4.4a events), `Params`, `AnalyticsEvent {name, tool, lang, params}`, `EVENTS_URL = '/api/events'`, `analyticsEvent(name, tool, lang, params = {})` (`plus_view` → `tool: null`), `Transport`, `browserTransport()`, `sendEvent(event, transport = browserTransport()) -> void` (never throws).
 - Produces (`focus.ts`): `FOCUSABLE`, `trapIndex(count, current, backwards) -> number | null`, `handleDialogKey(event, container, onEscape) -> void`.
-- Produces (`helplines.ts`): `telHref(number) -> string | null`, `safeUrl(url) -> string | null` (https only), `canCall(line) -> boolean`.
+- Produces (`helplines.ts`): `telHref(number) -> string | null`, `smsHref(number) -> string | null`, `safeUrl(url) -> string | null` (https only), `canCall(line) -> boolean`, `canText(line) -> boolean` (channel `sms` without an `sms` keyword, e.g. 988).
 - Produces (`daily.ts`): `DailyShown {card, name, reversed, text, day, fromBase}`, `BaseMeaning {card_id, upright}`, `DailyNext = {type: 'shown', shown} | {type: 'base'} | {type: 'error', error}`, `localIsoDay(date, timeZone?)`, `formatDay(isoDay, lang)`, `dailyNext(result, lang) -> DailyNext`, `shownFromBase(isoDay, lang, meanings) -> DailyShown | null`, `baseUrl(lang) -> '/data/daily-<lang>.json'`.
 
 - [ ] **Step 1: Write the failing tests**
@@ -3505,7 +3639,7 @@ Create `site/src/lib/panel.test.ts`:
 ```ts
 import { describe, expect, it } from 'vitest';
 import { t } from '../i18n';
-import { buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey } from './panel';
+import { buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor } from './panel';
 import { SITUATIONS } from './types';
 
 describe('panelConfig', () => {
@@ -3521,6 +3655,13 @@ describe('panelConfig', () => {
     expect(panelConfig('card', 'en', 'major-18-moon')).toMatchObject({
       tool: 'one_card', entry: 'card_page', kind: 'card_page', cardId: 'major-18-moon',
     });
+  });
+
+  it('counts one card on the Spanish home as the one-card tool', () => {
+    expect(toolFor(panelConfig('home', 'es'), 'one')).toBe('one_card');
+    expect(toolFor(panelConfig('home', 'es'), 'three')).toBe('home');
+    expect(toolFor(panelConfig('card', 'en', 'x'), 'card_page')).toBe('one_card');
+    expect(toolFor(panelConfig('yes_no', 'en'), 'yes_no')).toBe('yes_no');
   });
 
   it('starts the Spanish home with one card at #una-carta', () => {
@@ -3709,7 +3850,7 @@ Create `site/src/lib/helplines.test.ts`:
 
 ```ts
 import { describe, expect, it } from 'vitest';
-import { canCall, safeUrl, telHref } from './helplines';
+import { canCall, canText, safeUrl, smsHref, telHref } from './helplines';
 import type { HelpLine } from './types';
 
 describe('help lines', () => {
@@ -3719,6 +3860,15 @@ describe('help lines', () => {
     expect(telHref('988')).toBe('tel:988');
     expect(telHref('+34 024')).toBe('tel:+34024');
     expect(telHref('call us')).toBeNull();
+  });
+
+  it('texts 988 from the same digits when the line names no keyword', () => {
+    expect(smsHref('988')).toBe('sms:988');
+    expect(smsHref('none')).toBeNull();
+    const line = { name: '988', number: '988', channels: ['call', 'sms'], hours: '24/7', topic: 'crisis', purpose: 'p' } as HelpLine;
+    expect(canText(line)).toBe(true);
+    expect(canText({ ...line, sms: 'START to 88788' })).toBe(false);
+    expect(canText({ ...line, channels: ['call'] })).toBe(false);
   });
 
   it('opens only https addresses', () => {
@@ -3847,6 +3997,11 @@ export function drawLabelKey(config: PanelConfig, kind: Kind): DictKey {
   if (config.page === 'card') return 'drawForQuestion';
   if (config.page === 'love') return 'drawLove';
   return kind === 'three' ? 'drawThree' : 'drawOne';
+}
+
+/** The tool an event names: one card drawn on the Spanish home counts as one card (plan review M9). */
+export function toolFor(config: PanelConfig, kind: Kind): Tool {
+  return config.countToggle && kind === 'one' ? 'one_card' : config.tool;
 }
 
 export function cardsFor(kind: Kind): 1 | 3 {
@@ -4060,6 +4215,16 @@ export function telHref(number: string): string | null {
   return /\d{3,}/.test(digits) ? `tel:${digits}` : null;
 }
 
+/** "sms:" + the same digits, for a line that takes texts but names no SMS keyword (988 in the US). */
+export function smsHref(number: string): string | null {
+  const tel = telHref(number);
+  return tel ? `sms:${tel.slice(4)}` : null;
+}
+
+export function canText(line: HelpLine): boolean {
+  return Boolean(line.number) && line.channels.includes('sms') && !line.sms;
+}
+
 export function safeUrl(url: string | undefined): string | null {
   if (!url) return null;
   try {
@@ -4144,7 +4309,7 @@ export function baseUrl(lang: Lang): string {
 - [ ] **Step 4: Run the tests**
 
 Run: `cd ~/arcana-diary && docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -v "$PWD/site:/app" -w /app node:22 npx vitest run src/lib/panel.test.ts src/lib/turnstile.test.ts src/lib/analytics.test.ts src/lib/focus.test.ts src/lib/helplines.test.ts src/lib/daily.test.ts`
-Expected: `Test Files  6 passed (6)`, `Tests  26 passed (26)`.
+Expected: `Test Files  6 passed (6)`, `Tests  28 passed (28)`.
 
 - [ ] **Step 5: Commit**
 
@@ -4163,6 +4328,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ### Task 8: Layout, header and menu, footer, language switch, 404 pages
 
 **Files:**
+- Modify: `docs/design/00-design.md` (the focus-ring rule)
 - Create: `site/src/styles/global.css`, `site/src/layouts/Base.astro`, `site/src/components/Header.astro`, `site/src/components/Footer.astro`, `site/src/components/LangSwitch.astro`, `site/src/components/MoonMark.astro`, `site/src/components/CardFigure.astro`, `site/src/components/ui/icons.tsx`, `site/src/islands/MenuToggle.tsx`, `site/src/views/NotFoundView.astro`, `site/src/pages/404.astro`, `site/src/pages/es/404.astro`
 - Test: `site/src/lib/guards.test.ts`
 
@@ -4173,7 +4339,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
   - `CardFigure.astro` props `{card: DeckCard, lang: Lang, sizes: string, eager?: boolean}`.
   - `icons.tsx`: `CloseIcon`, `MenuIcon`, `CheckIcon`, `VerdictIcon({value})` (check / cross / hourglass).
   - Island `MenuToggle` (default export) props `{lang, navId}`; the nav element with id `navId` gets class `is-open`.
-  - CSS classes later tasks use: `.night-panel`, `.field`, `.field__label`, `.input`, `.input--day`, `.btn` + `--gold` / `--ink` / `--outline` / `--text` / `--block`, `.chips`, `.chip`, `.backs`, `.panel-hint`, `.card-frame`, `.card-frame__art`, `.card-frame__name`, `.night-room`, `.night`, `.night__top`, `.night__question`, `.night__title`, `.night__status`, `.close-button`, `.spread`, `.spread--one`, `.spread__slot`, `.spread__pos`, `.flip`, `.flip.is-turned`, `.flip__inner`, `.flip__side`, `.flip__side--face`, `.deck-shuffle`, `.answer`, `.answer__headline`, `.answer__soft`, `.answer__label`, `.answer__text`, `.answer__synthesis`, `.verdict`, `.verdict__word`, `.more-cards`, `.night__actions`, `.night__foot`, `.followups`, `.followup__q`, `.followup__a`, `.followup-form`, `.notice`, `.crisis`, `.helplines`, `.plus`, `.plus__card`, `.plus__links`, `.help-line`, `.daily`, `.daily__back`, `.daily__text`, `.card-page`, `.card-page__art`, `.card-page__text`, `.keywords`, `.card-nav`, `.page-hero`, `.page-section`, `.tool-layout`, `.eyebrow`, `.display`, `.display--home`, `.lead`, `.h2`, `.small`, `.muted`, `.link-list`, `.card-row`, `.steps`, `.tile`, `.visually-hidden`, `body.is-locked`.
+  - CSS classes later tasks use: `.night-panel`, `.field`, `.field__label`, `.input`, `.input--day`, `.btn` + `--gold` / `--ink` / `--outline` / `--text` / `--block`, `.chips`, `.chip`, `.backs`, `.panel-hint`, `.card-frame`, `.card-frame__art`, `.card-frame__name`, `.night-room`, `.night`, `.night__top`, `.night__question`, `.night__title`, `.night__status`, `.close-button`, `.spread`, `.spread--one`, `.spread__slot`, `.spread__pos`, `.flip`, `.flip.is-turned`, `.flip__inner`, `.flip__side`, `.flip__side--face`, `.deck-shuffle`, `.night__body`, `.night__cards`, `.night__text`, `.spread--small`, `.answer__headline`, `.answer__soft`, `.answer__label`, `.answer__text`, `.answer__synthesis`, `.verdict`, `.verdict__word`, `.more-cards`, `.night__actions`, `.night__foot`, `.followups`, `.followup__q`, `.followup__a`, `.followup-form`, `.notice`, `.crisis`, `.helplines`, `.plus-slot`, `.plus`, `.plus__card`, `.plus__row`, `.plus__daily`, `.help-line`, `.daily`, `.daily__back`, `.daily__text`, `.card-page`, `.card-page__art`, `.card-page__text`, `.keywords`, `.card-nav`, `.page-hero`, `.page-section`, `.tool-layout`, `.eyebrow`, `.display`, `.display--home`, `.lead`, `.h2`, `.small`, `.muted`, `.link-list`, `.card-row`, `.steps`, `.tile`, `.visually-hidden`, `body.is-locked`, `.turnstile-slot` (z-index 40, above the room). Focus ring: `currentColor`, but `--color-night-text` inside `.night-panel`, `.night`, `.daily` and `--color-day-text` inside `.plus-slot`, `.plus__card`.
   - `guards.test.ts` scans `site/src` (no `innerHTML`/`set:html`, no colour literals outside `tokens.css`, no secrets, no `EventSource`, Turnstile only in `turnstile.ts`) — it covers the files of Tasks 9–10 too.
 
 - [ ] **Step 1: Write the failing test**
@@ -4257,6 +4423,10 @@ img { max-width: 100%; display: block; }
 a { color: var(--color-day-accent); }
 
 :focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+/* The ring takes the text colour of the surface it sits on, not of the control: a gold button or a pressed chip has
+   night-blue text, the ink button white text, and currentColor would vanish there (plan review I2). */
+.night-panel :focus-visible, .night :focus-visible, .daily :focus-visible { outline-color: var(--color-night-text); }
+.plus-slot :focus-visible, .plus__card :focus-visible { outline-color: var(--color-day-text); }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
@@ -4465,8 +4635,21 @@ a { color: var(--color-day-accent); }
 .deck-shuffle { display: flex; justify-content: center; margin-top: var(--space-8); }
 .deck-shuffle img { width: 100px; aspect-ratio: var(--card-ratio); border-radius: var(--radius-card); }
 
-.answer { display: flex; flex-direction: column; gap: var(--space-5); margin-top: var(--space-6); }
+/* With the answer (2e, 5b, 13d): cards and text side by side when there is room (desktop), cards above on a phone */
+.night__body { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-7); align-items: flex-start; margin-top: var(--space-5); }
+.night__cards { flex: 0 1 420px; min-width: 0; }
+.night__text { flex: 999 1 360px; min-width: 0; display: flex; flex-direction: column; gap: var(--space-5); }
+.night__text > .night__actions, .night__text > .followups { margin-top: 0; }
+.spread--small { margin-top: 0; }
+.spread--small .spread__slot { width: 78px; }
+.spread--small .card-frame__name { font-size: var(--font-size-caption); }
 .answer__headline { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-1); line-height: 1.1; }
+@media (min-width: 900px) {
+  .night__question { font-size: var(--font-size-body); }
+  .spread--small .spread__slot { width: 128px; }
+  .spread--small .card-frame__name { font-size: var(--font-size-small); }
+  .answer__headline { font-size: var(--font-size-display-2); }
+}
 .answer__soft { margin: 0; padding: var(--space-3) var(--space-4); border-radius: var(--radius-field); border: 1px solid var(--color-night-line); color: var(--color-night-text-muted); }
 .answer__label { display: block; font-size: var(--font-size-caption); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-night-accent); }
 .answer__text { margin: var(--space-1) 0 0; white-space: pre-line; }
@@ -4494,7 +4677,9 @@ a { color: var(--color-day-accent); }
 .helplines a { min-height: 44px; display: inline-flex; align-items: center; font-weight: 700; }
 
 /* Plus at the free limit (screen 11a) */
-.plus { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-5) 0; }
+.plus-slot { margin-top: var(--space-5); }
+.plus { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-2) 0; }
+.plus .display { font-size: var(--font-size-display-2); }
 .plus__card {
   display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5); border-radius: var(--radius-panel);
   background: var(--color-day-surface); color: var(--color-day-text); border-top: 2px solid var(--color-brand-gold);
@@ -4503,9 +4688,12 @@ a { color: var(--color-day-accent); }
 .plus__card ul { margin: 0; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-1); }
 .plus__card label { font-size: var(--font-size-small); color: var(--color-day-text-muted); }
 .plus__card a { color: var(--color-day-accent); }
-.plus__links { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
-.plus__links a { min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; }
-.night-panel .plus h2, .night-panel .plus p { color: var(--color-night-text); }
+.plus__card form { gap: var(--space-3); }
+.plus__row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.plus__row a, .plus__daily { min-height: 44px; display: inline-flex; align-items: center; font-weight: 600; }
+.plus__card { margin-top: var(--space-3); }
+/* the same card after the free follow-ups inside the night room (402 plus) */
+.night .plus .lead { color: var(--color-night-text-muted); }
 
 .help-line { margin: 0; font-size: var(--font-size-small); }
 .help-line a { min-height: 44px; display: inline-flex; align-items: center; }
@@ -4538,7 +4726,7 @@ a { color: var(--color-day-accent); }
 .site-footer ul a { min-height: 44px; display: inline-flex; align-items: center; }
 .site-footer p { margin: 0; font-size: var(--font-size-small); color: var(--color-day-text-muted); }
 
-.turnstile-slot { position: fixed; bottom: 0; right: 0; }
+.turnstile-slot { position: fixed; bottom: 0; right: 0; z-index: 40; } /* above the night room (z 20) */
 
 @keyframes night-open { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
@@ -4547,7 +4735,7 @@ a { color: var(--color-day-accent); }
 @media (prefers-reduced-motion: reduce) {
   .night { animation: fade-in var(--motion-night-open) linear; }
   .flip__inner { transition: none; }
-  .answer, .daily .card-frame { animation: fade-in var(--motion-night-open) linear; }
+  .night__body, .daily .card-frame { animation: fade-in var(--motion-night-open) linear; }
   .backs img:nth-child(1), .backs img:nth-child(3) { transform: none; }
 }
 ```
@@ -4843,6 +5031,21 @@ export default function MenuToggle({ lang, navId }: { lang: Lang; navId: string 
 }
 ```
 
+In `docs/design/00-design.md`, replace:
+
+```markdown
+- Касание ≥ 44 px; рамка фокуса 2 px цветом текста (`currentColor`), отступ 2 px; настоящие `<button>`, `<a>`, `<label>`.
+```
+
+with:
+
+```markdown
+- Касание ≥ 44 px; рамка фокуса 2 px цветом текста (`currentColor`), отступ 2 px; настоящие `<button>`, `<a>`, `<label>`.
+  Рамка берёт цвет текста поверхности, на которой стоит элемент, а не цвет его надписи: ночью — `--color-night-text`,
+  на белой карточке и днём — `--color-day-text` (у золотой кнопки и выбранного чипа надпись цвета фона ночи, у
+  чернильной — белая, и `currentColor` там не виден; проверка плана 4.4а, I2).
+```
+
 - [ ] **Step 4: Write the 404 pages**
 
 Create `site/src/views/NotFoundView.astro`:
@@ -4902,7 +5105,7 @@ import NotFoundView from '../../views/NotFoundView.astro';
 - [ ] **Step 5: Run all Vitest tests and build**
 
 Run: `cd ~/arcana-diary && docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -v "$PWD/site:/app" -w /app node:22 npx vitest run`
-Expected: `Test Files  17 passed (17)`, `Tests  115 passed (115)`.
+Expected: `Test Files  17 passed (17)`, `Tests  122 passed (122)`.
 
 Run: `cd ~/arcana-diary && deploy/build-site.sh 2>&1 | tail -3 && ls site/dist site/dist/es`
 Expected: `3 page(s) built`, `Complete!`; `site/dist` holds `404.html`, `_astro`, `cards`, `es`, `index.html`, `robots.txt`; `site/dist/es` holds `404.html`.
@@ -4912,7 +5115,8 @@ Expected: `3 page(s) built`, `Complete!`; `site/dist` holds `404.html`, `_astro`
 ```bash
 cd ~/arcana-diary
 git add site/src/styles/global.css site/src/layouts site/src/components site/src/islands/MenuToggle.tsx \
-  site/src/views/NotFoundView.astro site/src/pages/404.astro site/src/pages/es/404.astro site/src/lib/guards.test.ts
+  site/src/views/NotFoundView.astro site/src/pages/404.astro site/src/pages/es/404.astro site/src/lib/guards.test.ts \
+  docs/design/00-design.md
 git commit -m "feat(site): layout from tokens, menu, footer, language switch, 404 pages, source guards
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
@@ -4931,8 +5135,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 **Interfaces:**
 - Consumes: everything of Tasks 3–8: `panelConfig`, `initialKind`, `drawLabelKey`, `buildCreateBody`, `cardsFor`, `situationKey` (panel); `nightReducer`, `CLOSED`, `DEAL_MS`, `FLIP_INTERVAL_MS`, `followupNow`, `transitionEvents`, `allRevealed`, `answerVisible`, `readingShown`, `statusKey` (nightRoom); `startReading`, `streamReading`, `restoreReading`, `askFollowup`, `FlowDeps` (readingFlow); `createApi`, `browserFetch` (api); `turnstileToken` (turnstile); `analyticsEvent`, `sendEvent` (analytics); `handleDialogKey` (focus); `canCall`, `telHref`, `safeUrl` (helplines); `answerBlocks`; `errorMessageKey`, `needsHelpLink`; `cardById`, `cardImage`, `cardSrcset`, `CARD_BACK`, `DECK`, `neighbors`, `cardName`; `cardPath`, `pagePath`, `HELP_URL`; `Base.astro`, `CardFigure.astro`, icons; CSS classes of Task 8.
 - Produces:
-  - Island `ReadingIsland` (default export) props `{lang: Lang, page: PanelPage, cardId?: string, cardName?: string, showBacks?: boolean}` — the night panel form, the night room, the Plus card at the limit; on the Spanish home the panel has `id="una-carta"`.
-  - `NightRoom` props `NightRoomProps {state, lang, config, question, sourceName, onClose, onRetry, onRestore, onFollowup(question), onConfirmFollowup, onCancelFollowup, onMoreAbout, onAskAnother}`; `CardArt`, `CardName`, `CardFace` props `{cardId, name, reversed, lang, sizes?}`; `HelpLine({lang})`; `CrisisView({payload, lang})`; `PlusCard({lang, tool, focusOnShow?})`.
+  - Island `ReadingIsland` (default export) props `{lang: Lang, page: PanelPage, cardId?: string, cardName?: string, showBacks?: boolean}` — the night panel form and the night room; at the limit the Plus card replaces the dark panel (`.plus-slot`, screen 11a); on the Spanish home the panel (or slot) has `id="una-carta"`. It pushes one history entry `{arcanaNight: true}` (same address) when the room opens; `popstate` closes the room; ×, Escape, "Back to …" and "Ask another question" step back over the entry. Follow-ups always go first without `use_reading`. On a crisis the question field is emptied. Events name `toolFor(config, kind)`.
+  - `NightRoom` props `NightRoomProps {state, lang, config, question, sourceName, onClose, onRetry, onRestore, onFollowup(question), onConfirmFollowup, onCancelFollowup, onMoreAbout, onAskAnother}`; `CardArt`, `CardName`, `CardFace` props `{cardId, name, reversed, lang, sizes?}`; `HelpLine({lang})`; `CrisisView({payload, lang})` (call, `sms:` for lines like 988, `HelpLine` under the fallback sentence); `PlusCard({lang, tool, focusOnShow?})` (11a: title, lead, help link, white card with benefits, the e-mail form, "Not now", then "Open your free Card of the Day"). `NightRoom` listens for keys on the document (Escape, Tab trap) and moves focus to `#night-title` on open, on every phase change, when the answer layout replaces the title, and after Try again / Use 1 reading / Not now.
   - `HomeView({lang})`, `ToolView({lang, page: 'one_card' | 'yes_no' | 'love'})`, `CardView({lang, card, meaning})` and its exported type `Meaning {card_id, keywords, upright, reversed}`.
 
 - [ ] **Step 1: Write the Preact pieces of the night room**
@@ -5017,10 +5221,12 @@ export function HelpLine({ lang }: { lang: Lang }) {
 Create `site/src/components/ui/CrisisView.tsx`:
 
 ```tsx
-// The crisis answer (spec 4.2 §3.2): warm words and help lines from the API, no cards, no reading.
+// The crisis answer (spec 4.2 §3.2): warm words and help lines from the API, no cards, no reading. A line that
+// takes texts without a keyword (988) gets an sms: link; findahelpline.com is a link under the fallback sentence.
 import { fill, t } from '../../i18n';
-import { canCall, safeUrl, telHref } from '../../lib/helplines';
+import { canCall, canText, safeUrl, smsHref, telHref } from '../../lib/helplines';
 import type { CrisisPayload, Lang } from '../../lib/types';
+import { HelpLine } from './HelpLine';
 
 export function CrisisView({ payload, lang }: { payload: CrisisPayload; lang: Lang }) {
   const d = t(lang);
@@ -5033,12 +5239,14 @@ export function CrisisView({ payload, lang }: { payload: CrisisPayload; lang: La
       <ul class="helplines">
         {payload.helplines.lines.map((line) => {
           const tel = canCall(line) ? telHref(line.number!) : null;
+          const sms = canText(line) ? smsHref(line.number!) : null;
           const url = safeUrl(line.url);
           return (
             <li key={line.name}>
               <strong>{line.name}</strong>
               <span>{line.purpose}</span>
               {tel ? <a href={tel}>{fill(d.crisisCall, { number: line.number! })}</a> : null}
+              {sms ? <a href={sms}>{fill(d.crisisText, { sms: line.number! })}</a> : null}
               {line.sms ? <span>{fill(d.crisisText, { sms: line.sms })}</span> : null}
               {url ? <a href={url} rel="noopener noreferrer" target="_blank">{fill(d.crisisWeb, { name: line.name })}</a> : null}
               {line.note ? <span>{line.note}</span> : null}
@@ -5048,6 +5256,7 @@ export function CrisisView({ payload, lang }: { payload: CrisisPayload; lang: La
         })}
       </ul>
       <p>{c.fallback_contacts}</p>
+      <HelpLine lang={lang} />
       <p>{c.emergency_line}</p>
       <p>{c.closing}</p>
     </div>
@@ -5058,8 +5267,10 @@ export function CrisisView({ payload, lang }: { payload: CrisisPayload; lang: La
 Create `site/src/components/ui/PlusCard.tsx`:
 
 ```tsx
-// Today's free readings are used (screen 11a, spec 4.4a §4): a calm Plus card with "tell me when it opens"
-// (POST /api/plus/waitlist), the free Card of the Day and the help link. Never inside the answer text.
+// Today's free readings are used (screen 11a, spec 4.4a §4): a day page block — the title, the lead, the help link,
+// a white card with a gold rule ("What Plus gives you", the benefits, "tell me when it opens" by e-mail through
+// POST /api/plus/waitlist, "Not now"), then the free Card of the Day. No price on the closed stage (owner,
+// 19.11.2026); never inside the answer text.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { t } from '../../i18n';
 import { analyticsEvent, sendEvent } from '../../lib/analytics';
@@ -5080,6 +5291,7 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
   const heading = useRef<HTMLHeadingElement>(null);
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'invalid' | ErrorKind>('idle');
+  const id = `plus-${tool}`;
 
   useEffect(() => {
     sendEvent(analyticsEvent('plus_view', tool, lang, { place: 'limit' }));
@@ -5096,14 +5308,15 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
 
   const error = status === 'invalid' ? d.plusEmailError
     : status !== 'idle' && status !== 'sending' && status !== 'done' ? d[errorMessageKey(status)] : null;
+  const daily = pagePath('daily', lang);
 
   return (
     <div class="plus">
-      <h2 class="h2" tabIndex={-1} ref={heading}>{d.plusTitle}</h2>
-      <p>{d.plusLead}</p>
+      <h2 class="display" tabIndex={-1} ref={heading}>{d.plusTitle}</h2>
+      <p class="lead">{d.plusLead}</p>
       <HelpLine lang={lang} />
-      <div class="plus__card">
-        <h3>{d.plusGives}</h3>
+      <section class="plus__card" aria-labelledby={`${id}-title`}>
+        <h3 id={`${id}-title`}>{d.plusGives}</h3>
         <ul>
           <li>{d.plusBenefit1}</li>
           <li>{d.plusBenefit2}</li>
@@ -5113,9 +5326,9 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
           <p role="status">{d.plusDone}</p>
         ) : (
           <form class="field" onSubmit={submit}>
-            <label for={`plus-email-${tool}`}>{d.plusEmailLabel}</label>
+            <label for={`${id}-email`}>{d.plusEmailLabel}</label>
             <input
-              id={`plus-email-${tool}`}
+              id={`${id}-email`}
               class="input input--day"
               type="email"
               autocomplete="email"
@@ -5125,14 +5338,15 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
               value={email}
               onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
             />
-            <button type="submit" class="btn btn--ink" disabled={status === 'sending'}>{d.plusNotify}</button>
+            <div class="plus__row">
+              <button type="submit" class="btn btn--ink" disabled={status === 'sending'}>{d.plusNotify}</button>
+              <a href={daily}>{d.plusNotNow}</a>
+            </div>
             {error ? <p role="alert">{error}</p> : null}
           </form>
         )}
-        <div class="plus__links">
-          <a href={pagePath('daily', lang)}>{d.plusDaily}</a>
-        </div>
-      </div>
+      </section>
+      <a class="plus__daily" href={daily}>{d.plusDaily}</a>
     </div>
   );
 }
@@ -5143,14 +5357,17 @@ Create `site/src/components/ui/NightRoom.tsx`:
 ```tsx
 // The night room (screens 2a–2e, 5b, 8b, 13d): a full-screen layer over the page with no address of its own.
 // It only draws NightState (src/lib/nightRoom.ts) and calls back; requests and timers live in ReadingIsland.
-// Close: the × button and Escape; focus stays inside and returns to the draw button (ReadingIsland).
+// While cards are dealt: the positions on top, the question as the large title, the cards. With the answer (2e, 5b):
+// the question small at top left, the headline as the large title; on a desktop cards left, text right (13d).
+// Close: × and Escape (listened on the document, so it works wherever focus is); Tab stays inside; after an action
+// whose button disappears, and on every change of phase, focus goes to the title.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
 import { answerBlocks } from '../../lib/answer';
 import { CARD_BACK, cardById } from '../../lib/deck';
 import { errorMessageKey, needsHelpLink } from '../../lib/errors';
 import { handleDialogKey } from '../../lib/focus';
-import { allRevealed, answerVisible, followupNow, readingShown, statusKey, type NightState } from '../../lib/nightRoom';
+import { answerVisible, followupNow, readingShown, statusKey, type NightState } from '../../lib/nightRoom';
 import type { PanelConfig } from '../../lib/panel';
 import { cardPath } from '../../lib/routes';
 import type { DrawnCard, Lang, Position } from '../../lib/types';
@@ -5195,21 +5412,42 @@ export function NightRoom(props: NightRoomProps) {
   const d = t(lang);
   const dialog = useRef<HTMLElement>(null);
   const title = useRef<HTMLHeadingElement>(null);
+  const onClose = useRef(props.onClose);
+  onClose.current = props.onClose;
   const [followupText, setFollowupText] = useState('');
-
-  useEffect(() => {
-    title.current?.focus();
-  }, []);
+  const lastPhase = useRef<string | null>(null);
 
   const reading = state.reading;
   const cards = reading?.cards ?? [];
   const three = cards.length === 3;
+  const withAnswer = state.phase === 'reading' && answerVisible(state);
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => dialog.current && handleDialogKey(event, dialog.current, () => onClose.current());
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, []);
+
+  // the title takes focus on open, on every change of phase (a crisis answer is announced) and when the title
+  // moves under the cards with the answer (the old element is gone)
+  useEffect(() => {
+    const active = document.activeElement;
+    const lost = !active || active === document.body || !dialog.current?.contains(active);
+    if (lastPhase.current !== state.phase || lost) title.current?.focus();
+    lastPhase.current = state.phase;
+  }, [state.phase, withAnswer]);
+
+  const then = (action: () => void) => () => {
+    action();
+    title.current?.focus(); // the button that was pressed disappears
+  };
+
   const status = statusKey(state);
+  const quoted = props.question ? `“${props.question}”` : config.kind === 'three' ? d.noQuestionThree : d.noQuestionOne;
   const closeLabel = props.sourceName ? fill(d.closeBackTo, { name: props.sourceName }) : d.close;
-  const heading = state.phase === 'crisis' && state.crisis
-    ? state.crisis.crisis.title
-    : props.question ? `“${props.question}”` : config.kind === 'three' ? d.noQuestionThree : d.noQuestionOne;
-  const positions = three ? [d.posPast, d.posPresent, d.posPath].join(' · ') : '';
+  const top = withAnswer ? quoted : state.phase === 'reading' && three ? [d.posPast, d.posPresent, d.posPath].join(' · ') : '';
+  const heading = state.phase === 'crisis' && state.crisis ? state.crisis.crisis.title : quoted;
+  const headline = state.answer.sections.headline?.trim();
 
   const submitFollowup = (event: Event) => {
     event.preventDefault();
@@ -5219,25 +5457,40 @@ export function NightRoom(props: NightRoomProps) {
     setFollowupText('');
   };
 
+  const spread = (small: boolean) => (
+    <div class={`spread${three ? '' : ' spread--one'}${small ? ' spread--small' : ''}`}>
+      {cards.map((card, i) => (
+        <div class="spread__slot" key={card.card_id}>
+          <div class={i < state.revealed ? 'flip is-turned' : 'flip'}>
+            <div class="flip__inner">
+              <div class="flip__side" aria-hidden="true"><img class="back" src={CARD_BACK} alt="" /></div>
+              <div class="flip__side flip__side--face">
+                {i < state.revealed ? (
+                  <CardArt cardId={card.card_id} name={card.name} reversed={card.reversed} lang={lang}
+                    sizes={small ? '(min-width: 900px) 128px, 78px' : three ? '106px' : '150px'} />
+                ) : null}
+              </div>
+            </div>
+          </div>
+          {i < state.revealed ? <CardName cardId={card.card_id} name={card.name} /> : null}
+          {three ? <span class="spread__pos">{d[POSITION_KEYS[card.position]!]}</span> : null}
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div class="night-room">
-      <section
-        class="night"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="night-title"
-        tabIndex={-1}
-        ref={dialog}
-        onKeyDown={(e) => dialog.current && handleDialogKey(e, dialog.current, props.onClose)}
-      >
+      <section class="night" role="dialog" aria-modal="true" aria-labelledby="night-title" tabIndex={-1} ref={dialog}>
         <div class="night__top">
-          <p class="night__question">{state.phase === 'reading' ? positions : ''}</p>
+          <p class="night__question">{top}</p>
           <button type="button" class="close-button" aria-label={closeLabel} onClick={props.onClose}>
             <CloseIcon />
           </button>
         </div>
-        <h2 id="night-title" class="night__title" tabIndex={-1} ref={title}>{heading}</h2>
-        <p class={status === 'readingReady' ? 'visually-hidden' : 'night__status'} role="status" aria-live="polite">
+        {withAnswer ? null : <h2 id="night-title" class="night__title" tabIndex={-1} ref={title}>{heading}</h2>}
+        <p class={status === 'readingReady' || status === 'followupReady' ? 'visually-hidden' : 'night__status'}
+          role="status" aria-live="polite">
           {status ? d[status] : ''}
         </p>
 
@@ -5245,99 +5498,88 @@ export function NightRoom(props: NightRoomProps) {
           <div class="deck-shuffle" aria-hidden="true"><img src={CARD_BACK} alt="" /></div>
         ) : null}
 
-        {state.phase === 'reading' && reading ? (
-          <div class={three ? 'spread' : 'spread spread--one'}>
-            {cards.map((card, i) => (
-              <div class="spread__slot" key={card.card_id}>
-                <div class={i < state.revealed ? 'flip is-turned' : 'flip'}>
-                  <div class="flip__inner">
-                    <div class="flip__side" aria-hidden="true"><img class="back" src={CARD_BACK} alt="" /></div>
-                    <div class="flip__side flip__side--face">
-                      {i < state.revealed ? (
-                        <CardArt cardId={card.card_id} name={card.name} reversed={card.reversed} lang={lang}
-                          sizes={three ? '106px' : '150px'} />
-                      ) : null}
-                    </div>
-                  </div>
+        {state.phase === 'reading' && reading && !withAnswer ? spread(false) : null}
+
+        {withAnswer && reading ? (
+          <div class="night__body">
+            <div class="night__cards">{spread(true)}</div>
+            <div class="night__text">
+              <h2 id="night-title" class="answer__headline" tabIndex={-1} ref={title}>{headline || quoted}</h2>
+              {state.softLine ? <p class="answer__soft">{state.softLine}</p> : null}
+              {reading.verdict ? (
+                <div class="verdict">
+                  <p class="verdict__word"><VerdictIcon value={reading.verdict.value} />{reading.verdict.label}</p>
+                  {state.answer.sections.why ? <p>{d.whyPrefix} {state.answer.sections.why.trim()}</p> : null}
                 </div>
-                {i < state.revealed ? <CardName cardId={card.card_id} name={card.name} /> : null}
-                {three ? <span class="spread__pos">{d[POSITION_KEYS[card.position]!]}</span> : null}
-              </div>
-            ))}
+              ) : null}
+              {answerBlocks(state.answer, cards).map((block, i) => {
+                if (block.kind === 'card') {
+                  return (
+                    <div key={i}>
+                      <span class="answer__label">{cardLabel(block.card, lang)}</span>
+                      <p class="answer__text">{block.text}</p>
+                    </div>
+                  );
+                }
+                if (block.kind === 'synthesis') return <p key={i} class="answer__synthesis">{block.text}</p>;
+                if (block.kind === 'step') {
+                  return (
+                    <div key={i}>
+                      <span class="answer__label">{d.stepLabel}</span>
+                      <p class="answer__text">{block.text}</p>
+                    </div>
+                  );
+                }
+                return null; // the headline is the title; `why` is shown under the verdict
+              })}
+              {state.answer.replaced === 'fallback' && state.answer.retry && state.stream === 'done' ? (
+                <button type="button" class="btn btn--outline" onClick={then(props.onRetry)}>{d.retry}</button>
+              ) : null}
+              {state.stream === 'lost' ? (
+                <div class="night__actions">
+                  <HelpLine lang={lang} />
+                  <button type="button" class="btn btn--outline" onClick={then(props.onRestore)}>{d.retry}</button>
+                </div>
+              ) : null}
+              {readingShown(state) ? (
+                <Followups {...props} text={followupText} setText={setFollowupText} onSubmit={submitFollowup}
+                  onConfirm={then(props.onConfirmFollowup)} onCancel={then(props.onCancelFollowup)} />
+              ) : null}
+              {readingShown(state) ? (
+                <div class="night__actions">
+                  {three ? (
+                    <>
+                      <span class="answer__label">{d.moreAbout}</span>
+                      <div class="more-cards">
+                        {cards.map((card) => {
+                          const href = cardHref(card, lang);
+                          return href ? <a class="btn btn--outline" href={href} onClick={props.onMoreAbout}>{card.name}</a> : null;
+                        })}
+                      </div>
+                    </>
+                  ) : (
+                    cards.map((card) => {
+                      const href = cardHref(card, lang);
+                      return href ? (
+                        <a class="btn btn--outline" href={href} onClick={props.onMoreAbout}>{fill(d.fullMeaning, { name: card.name })}</a>
+                      ) : null;
+                    })
+                  )}
+                  {props.sourceName ? (
+                    <button type="button" class="btn btn--gold" onClick={props.onClose}>{fill(d.backTo, { name: props.sourceName })}</button>
+                  ) : null}
+                  <button type="button" class="btn btn--text" onClick={props.onAskAnother}>{d.askAnother}</button>
+                </div>
+              ) : null}
+              <p class="night__foot">{d.notGuarantee}</p>
+            </div>
           </div>
         ) : null}
 
-        {state.phase === 'reading' && reading && answerVisible(state) ? (
-          <div class="answer">
-            {state.softLine ? <p class="answer__soft">{state.softLine}</p> : null}
-            {reading.verdict ? (
-              <div class="verdict">
-                <p class="verdict__word"><VerdictIcon value={reading.verdict.value} />{reading.verdict.label}</p>
-                {state.answer.sections.why ? <p>{d.whyPrefix} {state.answer.sections.why.trim()}</p> : null}
-              </div>
-            ) : null}
-            {answerBlocks(state.answer, cards).map((block, i) => {
-              if (block.kind === 'headline') return <h3 key={i} class="answer__headline">{block.text}</h3>;
-              if (block.kind === 'card') {
-                return (
-                  <div key={i}>
-                    <span class="answer__label">{cardLabel(block.card, lang)}</span>
-                    <p class="answer__text">{block.text}</p>
-                  </div>
-                );
-              }
-              if (block.kind === 'synthesis') return <p key={i} class="answer__synthesis">{block.text}</p>;
-              if (block.kind === 'step') {
-                return (
-                  <div key={i}>
-                    <span class="answer__label">{d.stepLabel}</span>
-                    <p class="answer__text">{block.text}</p>
-                  </div>
-                );
-              }
-              return null; // `why` is shown under the verdict
-            })}
-            {state.answer.replaced === 'fallback' && state.answer.retry && state.stream === 'done' ? (
-              <button type="button" class="btn btn--outline" onClick={props.onRetry}>{d.retry}</button>
-            ) : null}
-          </div>
-        ) : null}
-
-        {state.phase === 'reading' && state.stream === 'lost' ? (
+        {state.phase === 'reading' && !withAnswer && state.stream === 'lost' ? (
           <div class="night__actions">
             <HelpLine lang={lang} />
-            <button type="button" class="btn btn--outline" onClick={props.onRestore}>{d.retry}</button>
-          </div>
-        ) : null}
-
-        {state.phase === 'reading' && readingShown(state) ? (
-          <Followups {...props} text={followupText} setText={setFollowupText} onSubmit={submitFollowup} />
-        ) : null}
-
-        {state.phase === 'reading' && reading && allRevealed(state) && readingShown(state) ? (
-          <div class="night__actions">
-            {three ? (
-              <>
-                <span class="answer__label">{d.moreAbout}</span>
-                <div class="more-cards">
-                  {cards.map((card) => {
-                    const href = cardHref(card, lang);
-                    return href ? <a class="btn btn--outline" href={href} onClick={props.onMoreAbout}>{card.name}</a> : null;
-                  })}
-                </div>
-              </>
-            ) : (
-              cards.map((card) => {
-                const href = cardHref(card, lang);
-                return href ? (
-                  <a class="btn btn--outline" href={href} onClick={props.onMoreAbout}>{fill(d.fullMeaning, { name: card.name })}</a>
-                ) : null;
-              })
-            )}
-            {props.sourceName ? (
-              <button type="button" class="btn btn--gold" onClick={props.onClose}>{fill(d.backTo, { name: props.sourceName })}</button>
-            ) : null}
-            <button type="button" class="btn btn--text" onClick={props.onAskAnother}>{d.askAnother}</button>
+            <button type="button" class="btn btn--outline" onClick={then(props.onRestore)}>{d.retry}</button>
           </div>
         ) : null}
 
@@ -5354,8 +5596,6 @@ export function NightRoom(props: NightRoomProps) {
             )}
           </div>
         ) : null}
-
-        {state.phase === 'reading' ? <p class="night__foot">{d.notGuarantee}</p> : null}
       </section>
     </div>
   );
@@ -5365,6 +5605,8 @@ interface FollowupProps extends NightRoomProps {
   text: string;
   setText: (text: string) => void;
   onSubmit: (event: Event) => void;
+  onConfirm: () => void;
+  onCancel: () => void;
 }
 
 function Followups(props: FollowupProps) {
@@ -5372,13 +5614,17 @@ function Followups(props: FollowupProps) {
   const d = t(lang);
   const offer = followupNow(state);
   const counts = state.counts;
+  const streaming = state.followups.some((f) => f.status === 'streaming');
+  // the form stays mounted while an answer streams (its button is disabled), so focus never falls out of the room
+  const formShown = !state.confirm && !state.followupPlus && state.answer.shown === 'model'
+    && counts !== null && counts.followup_attempts_left > 0;
   return (
-    <section class="followups" aria-labelledby="followup-label">
+    <section class="followups" aria-label={d.followupLabel}>
       {state.followups.map((f, i) => (
         <div key={i}>
           <p class="followup__q">{d.followupYouAsked}: {f.question}</p>
           {f.softLine ? <p class="answer__soft">{f.softLine}</p> : null}
-          <p class="followup__a" aria-live={f.status === 'streaming' ? 'off' : 'polite'}>{f.text}</p>
+          <p class="followup__a">{f.text}</p>
           {f.usedReading ? <p class="small">{d.followupUsedReading}</p> : null}
         </div>
       ))}
@@ -5393,23 +5639,22 @@ function Followups(props: FollowupProps) {
         <div class="notice">
           <p>{fill(d.followupPaidWarning, { n: state.confirm.remaining })}</p>
           <div class="night__actions">
-            <button type="button" class="btn btn--gold" onClick={props.onConfirmFollowup}>{d.followupConfirm}</button>
-            <button type="button" class="btn btn--text" onClick={props.onCancelFollowup}>{d.followupCancel}</button>
+            <button type="button" class="btn btn--gold" onClick={props.onConfirm}>{d.followupConfirm}</button>
+            <button type="button" class="btn btn--text" onClick={props.onCancel}>{d.followupCancel}</button>
           </div>
         </div>
-      ) : offer !== 'none' && !state.followupPlus ? (
+      ) : null}
+      {formShown ? (
         <form class="followup-form" onSubmit={props.onSubmit}>
-          <label id="followup-label" for="followup-input" class="field__label">{d.followupLabel}</label>
-          <input id="followup-input" class="input" maxLength={500} value={props.text} placeholder={d.followupPlaceholder}
-            onInput={(e) => props.setText((e.target as HTMLInputElement).value)} />
+          <label for="followup-input" class="field__label">{d.followupLabel}</label>
+          <input id="followup-input" class="input" maxLength={500} autocomplete="off" value={props.text}
+            placeholder={d.followupPlaceholder} onInput={(e) => props.setText((e.target as HTMLInputElement).value)} />
           {offer === 'free' && counts ? <p class="small">{fill(d.followupFreeLeft, { n: counts.followups_left })}</p> : null}
-          <button type="submit" class="btn btn--outline">{d.followupSend}</button>
+          <button type="submit" class="btn btn--outline" disabled={streaming}>{d.followupSend}</button>
         </form>
       ) : counts && counts.followup_attempts_left <= 0 ? (
-        <p id="followup-label" class="small">{d.followupNone}</p>
-      ) : (
-        <span id="followup-label" class="visually-hidden">{d.followupLabel}</span>
-      )}
+        <p class="small">{d.followupNone}</p>
+      ) : null}
     </section>
   );
 }
@@ -5421,19 +5666,21 @@ Create `site/src/islands/ReadingIsland.tsx`:
 
 ```tsx
 // The draw panel and its night room (spec 4.4a §4). Thin: state lives in src/lib/nightRoom.ts, requests in
-// src/lib/readingFlow.ts, the page's choices in src/lib/panel.ts; here are only the DOM, timers and focus.
+// src/lib/readingFlow.ts, the page's choices in src/lib/panel.ts; here are only the DOM, timers, focus and history.
+// History: the open room adds one entry with the same address (still no address of its own), so the phone's Back
+// closes the room instead of leaving the page; × and Escape step back over that entry.
 import { useEffect, useMemo, useReducer, useRef, useState } from 'preact/hooks';
 import { t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
 import { browserFetch, createApi } from '../lib/api';
 import { CARD_BACK } from '../lib/deck';
+import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
 import {
-  CLOSED, DEAL_MS, FLIP_INTERVAL_MS, followupNow, nightReducer, transitionEvents, type NightAction, type NightState,
-} from '../lib/nightRoom';
-import { buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, type PanelPage } from '../lib/panel';
+  buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor, type PanelPage,
+} from '../lib/panel';
 import { askFollowup, restoreReading, startReading, streamReading, type FlowDeps } from '../lib/readingFlow';
 import { turnstileToken } from '../lib/turnstile';
-import { SITUATIONS, type Kind, type Lang, type Situation } from '../lib/types';
+import { SITUATIONS, type Kind, type Lang, type Situation, type Tool } from '../lib/types';
 import { NightRoom } from '../components/ui/NightRoom';
 import { PlusCard } from '../components/ui/PlusCard';
 import { CheckIcon } from '../components/ui/icons';
@@ -5468,8 +5715,11 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const drawButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const run = useRef(0); // each draw is a run; a closed room ignores the late answers of its run
-  const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '' });
+  const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool });
   const previous = useRef<NightState>(CLOSED);
+  const inHistory = useRef(false); // the room's history entry is on top
+  const roomIsOpen = useRef(false);
+  const focusQuestion = useRef(false); // "Ask another question": focus the question field once the room is closed
   const api = useMemo(() => createApi(browserFetch()), []);
   const inputId = `question-${page}`;
 
@@ -5477,9 +5727,17 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     const fromHash = () => setKind(initialKind(config, location.hash));
     fromHash();
     if (page !== 'card') sendEvent(analyticsEvent('tool_view', config.tool, lang));
-    if (!config.countToggle) return;
-    window.addEventListener('hashchange', fromHash); // the footer link "Una carta" on the Spanish home itself
-    return () => window.removeEventListener('hashchange', fromHash);
+    const onPop = () => {
+      if (!inHistory.current) return;
+      inHistory.current = false;
+      if (roomIsOpen.current) closeNow();
+    };
+    window.addEventListener('popstate', onPop);
+    if (config.countToggle) window.addEventListener('hashchange', fromHash); // the footer link "Una carta" on this page
+    return () => {
+      window.removeEventListener('popstate', onPop);
+      window.removeEventListener('hashchange', fromHash);
+    };
   }, []);
 
   const deps = (): FlowDeps => {
@@ -5502,11 +5760,20 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     for (const name of transitionEvents(previous.current, state)) {
       const params = name === 'cards_revealed' ? { cards_count: state.reading?.cards.length ?? 1 }
         : name === 'reading_shown' ? { ms_from_draw: Math.min(Math.max(Date.now() - drawn.current.at, 0), 600000) } : {};
-      sendEvent(analyticsEvent(name, config.tool, lang, params));
+      sendEvent(analyticsEvent(name, drawn.current.tool, lang, params));
     }
     const wasOpen = previous.current.phase !== 'closed' && previous.current.phase !== 'limit';
     const isOpen = state.phase !== 'closed' && state.phase !== 'limit';
-    if (wasOpen && !isOpen && state.phase === 'closed') drawButton.current?.focus();
+    roomIsOpen.current = isOpen;
+    if (wasOpen && !isOpen && state.phase === 'closed') {
+      (focusQuestion.current ? input.current : drawButton.current)?.focus();
+      focusQuestion.current = false;
+    }
+    if (wasOpen && !isOpen && inHistory.current) { // closed by the limit: drop the room's history entry
+      inHistory.current = false;
+      history.back();
+    }
+    if (state.phase === 'crisis' && previous.current.phase !== 'crisis') setQuestion(''); // "we haven't saved it"
     document.body.classList.toggle('is-locked', isOpen);
     previous.current = state;
   }, [state]);
@@ -5523,74 +5790,83 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     run.current += 1;
     const tz = timeZone();
     const body = buildCreateBody(config, { kind, question, situation, tz });
-    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '' };
-    sendEvent(analyticsEvent('draw_click', config.tool, lang, { has_question: Boolean(body.question), entry: config.entry }));
+    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind) };
+    sendEvent(analyticsEvent('draw_click', drawn.current.tool, lang, { has_question: Boolean(body.question), entry: config.entry }));
+    if (!inHistory.current) {
+      history.pushState({ arcanaNight: true }, '');
+      inHistory.current = true;
+    }
     rawDispatch({ type: 'open' });
     void startReading(deps(), body);
   };
 
-  const close = () => {
+  function closeNow() {
     run.current += 1;
     rawDispatch({ type: 'close' });
+  }
+
+  const close = () => {
+    if (inHistory.current) history.back(); // popstate closes the room
+    else closeNow();
   };
 
   const askAnother = () => {
-    close();
+    focusQuestion.current = true;
     setQuestion('');
-    setTimeout(() => input.current?.focus(), 0);
+    close();
   };
 
-  const onFollowup = (text: string) => {
-    if (followupNow(state) === 'paid') { // warn first: "this will use 1 reading"; send only after the confirmation
-      rawDispatch({ type: 'followupConfirm', question: text, remaining: state.remaining ?? 0 });
-      return;
-    }
-    void askFollowup(deps(), drawn.current.id, text, drawn.current.tz, false);
-  };
+  // always first without use_reading: after the free ones the API answers 402 confirm with the readings left (the
+  // warning) or 402 plus, and only the confirmation sends use_reading: true
+  const onFollowup = (text: string) => void askFollowup(deps(), drawn.current.id, text, drawn.current.tz, false);
 
   const roomOpen = state.phase !== 'closed' && state.phase !== 'limit';
 
+  if (state.phase === 'limit') { // screen 11a: a day block, not the dark panel
+    return (
+      <div class="plus-slot" id={config.countToggle ? 'una-carta' : undefined}>
+        <PlusCard lang={lang} tool={drawn.current.tool} focusOnShow />
+      </div>
+    );
+  }
+
   return (
     <div class="night-panel" id={config.countToggle ? 'una-carta' : undefined}>
-      {state.phase === 'limit' ? (
-        <PlusCard lang={lang} tool={config.tool} focusOnShow />
-      ) : (
-        <form class="field" onSubmit={draw}>
-          {config.countToggle ? (
-            <div class="chips" role="group" aria-label={d.countGroupLabel}>
-              {(['one', 'three'] as const).map((k) => (
-                <button type="button" class="chip" aria-pressed={kind === k} onClick={() => setKind(k)}>
-                  <CheckIcon />{k === 'one' ? d.oneCardChip : d.threeCardsChip}
+      <form class="field" onSubmit={draw}>
+        {config.countToggle ? (
+          <div class="chips" role="group" aria-label={d.countGroupLabel}>
+            {(['one', 'three'] as const).map((k) => (
+              <button type="button" class="chip" aria-pressed={kind === k} onClick={() => setKind(k)}>
+                <CheckIcon />{k === 'one' ? d.oneCardChip : d.threeCardsChip}
+              </button>
+            ))}
+          </div>
+        ) : null}
+        {config.situations ? (
+          <div class="field">
+            <span id={`situation-${page}`} class="field__label">{d.situationLabel}</span>
+            <div class="chips" role="group" aria-labelledby={`situation-${page}`}>
+              {SITUATIONS.map((s) => (
+                <button type="button" class="chip" aria-pressed={situation === s}
+                  onClick={() => setSituation(situation === s ? null : s)}>
+                  <CheckIcon />{d[situationKey(s)]}
                 </button>
               ))}
             </div>
-          ) : null}
-          {config.situations ? (
-            <div class="field">
-              <span id={`situation-${page}`} class="field__label">{d.situationLabel}</span>
-              <div class="chips" role="group" aria-labelledby={`situation-${page}`}>
-                {SITUATIONS.map((s) => (
-                  <button type="button" class="chip" aria-pressed={situation === s}
-                    onClick={() => setSituation(situation === s ? null : s)}>
-                    <CheckIcon />{d[situationKey(s)]}
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : null}
-          <label for={inputId}>{d[config.labelKey]}</label>
-          <input id={inputId} ref={input} class="input" type="text" maxLength={500} autocomplete="off"
-            placeholder={d[config.placeholderKey]} value={question}
-            onInput={(e) => setQuestion((e.target as HTMLInputElement).value)} />
-          {showBacks ? (
-            <div class="backs" aria-hidden="true">
-              {Array.from({ length: cardsFor(kind) }, () => <img src={CARD_BACK} alt="" />)}
-            </div>
-          ) : null}
-          <button type="submit" class="btn btn--gold btn--block" ref={drawButton}>{d[drawLabelKey(config, kind)]}</button>
-          <p class="panel-hint">{d.freeNoSignup}</p>
-        </form>
-      )}
+          </div>
+        ) : null}
+        <label for={inputId}>{d[config.labelKey]}</label>
+        <input id={inputId} ref={input} class="input" type="text" maxLength={500} autocomplete="off"
+          placeholder={d[config.placeholderKey]} value={question}
+          onInput={(e) => setQuestion((e.target as HTMLInputElement).value)} />
+        {showBacks ? (
+          <div class="backs" aria-hidden="true">
+            {Array.from({ length: cardsFor(kind) }, () => <img src={CARD_BACK} alt="" />)}
+          </div>
+        ) : null}
+        <button type="submit" class="btn btn--gold btn--block" ref={drawButton}>{d[drawLabelKey(config, kind)]}</button>
+        <p class="panel-hint">{d.freeNoSignup}</p>
+      </form>
       {roomOpen ? (
         <NightRoom
           state={state}
@@ -5604,7 +5880,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
           onFollowup={onFollowup}
           onConfirmFollowup={() => state.confirm && void askFollowup(deps(), drawn.current.id, state.confirm.question, drawn.current.tz, true)}
           onCancelFollowup={() => rawDispatch({ type: 'followupCancel' })}
-          onMoreAbout={() => sendEvent(analyticsEvent('more_about_cards', config.tool, lang))}
+          onMoreAbout={() => sendEvent(analyticsEvent('more_about_cards', drawn.current.tool, lang))}
           onAskAnother={askAnother}
         />
       ) : null}
@@ -5910,7 +6186,7 @@ const { card, meaning } = Astro.props;
 - [ ] **Step 4: Run all Vitest tests and build**
 
 Run: `cd ~/arcana-diary && docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -v "$PWD/site:/app" -w /app node:22 npx vitest run`
-Expected: `Test Files  17 passed (17)`, `Tests  115 passed (115)` (the source guards now also cover the new files).
+Expected: `Test Files  17 passed (17)`, `Tests  122 passed (122)` (the source guards now also cover the new files).
 
 Run: `cd ~/arcana-diary && deploy/build-site.sh 2>&1 | tail -3 && find site/dist -name '*.html' | wc -l && ls site/dist/_astro | grep -c ReadingIsland`
 Expected: `165 page(s) built`, `Complete!`, `165`, `1`.
@@ -6115,7 +6391,7 @@ export function GET({ params }: { params: { lang: 'en' | 'es' } }) {
 - [ ] **Step 2: Run all Vitest tests, build and check every page of spec §3**
 
 Run: `cd ~/arcana-diary && docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -v "$PWD/site:/app" -w /app node:22 npx vitest run`
-Expected: `Test Files  17 passed (17)`, `Tests  115 passed (115)`.
+Expected: `Test Files  17 passed (17)`, `Tests  122 passed (122)`.
 
 Run: `cd ~/arcana-diary && deploy/build-site.sh 2>&1 | tail -3 && python3 tools/site/check_dist.py && python3 -c "import json; d=json.load(open('site/dist/data/daily-es.json')); print(len(d), sorted(d[0]))"`
 Expected: `167 page(s) built`, `Complete!`, `OK: 167 pages`, `78 ['card_id', 'upright']`.
@@ -6136,12 +6412,12 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ### Task 11: Caddy serves the pages and the 404 page of each language
 
 **Files:**
-- Modify: `deploy/Caddyfile`
+- Modify: `deploy/Caddyfile`, `deploy/check-indexing.sh`
 - Create: `deploy/test-site-routes.sh`
 
 **Interfaces:**
 - Consumes: `site/dist` from Task 10 (`one-card.html`, `es.html`, `es/404.html`, `404.html`, …); `caddy:2.8.4`; `deploy/caddy/*.caddy` parts (never `stage_auth.caddy`).
-- Produces: in the `handle` block `try_files {path} {path}.html` before `file_server`; a `handle_errors 404` block that serves `/es/404.html` for `/es` and `/es/*`, otherwise `/404.html`, with status 404 and the noindex part; `deploy/test-site-routes.sh` (throwaway container `arcana-routetest-<pid>`, removed on exit; prints `OK: адреса страниц и 404`).
+- Produces: `handle` blocks that redirect `/index.html` → `/`, `/x/` → `/x` and `/x.html` → `/x` (308; `/api/*` keeps its own block first); in the `handle` block `try_files {path} {path}.html` before `file_server`; a `handle_errors 404` block that serves `/es/404.html` for `/es` and `/es/*`, otherwise `/404.html`, with status 404 and the noindex part; `deploy/test-site-routes.sh` (throwaway container `arcana-routetest-<pid>`, removed on exit; prints `OK: адреса страниц и 404`).
 
 - [ ] **Step 1: Write the failing check**
 
@@ -6182,6 +6458,7 @@ fails=0
 expect() { if [ "$2" = "$3" ]; then echo "PASS $1 ($2)"; else echo "FAIL $1: ожидалось '$3', получено '$2'"; fails=$((fails + 1)); fi; }
 status() { "${CURL[@]}" -o /dev/null -w '%{http_code}' "$URL$1"; }
 html_lang() { "${CURL[@]}" "$URL$1" | grep -o '<html lang="[a-z]*"' | head -1; }
+moved_to() { "${CURL[@]}" -o /dev/null -w '%{http_code} %{redirect_url}' "$URL$1"; }
 
 for path in / /one-card /yes-no /love /daily /cards/the-moon /cards/ace-of-cups /es /es/si-o-no /es/amor \
   /es/carta-del-dia /es/cartas/la-luna /404 /es/404 /data/daily-en.json /data/daily-es.json /cards/back.svg; do
@@ -6193,14 +6470,47 @@ expect "/nope — страница 404 EN" "$(html_lang /nope)" '<html lang="en"
 expect "/es/nope" "$(status /es/nope)" 404
 expect "/es/nope — страница 404 ES" "$(html_lang /es/nope)" '<html lang="es"'
 expect "/cards/no-such-card" "$(status /cards/no-such-card)" 404
+expect "/es/ → /es" "$(moved_to /es/)" "308 $URL/es"
+expect "/one-card/ → /one-card" "$(moved_to /one-card/)" "308 $URL/one-card"
+expect "/one-card.html → /one-card" "$(moved_to /one-card.html)" "308 $URL/one-card"
+expect "/index.html → /" "$(moved_to /index.html)" "308 $URL/"
+expect "/api/ не перенаправляется" "$(status /api/limits/)" 502
 
 if [ "$fails" -eq 0 ]; then echo "OK: адреса страниц и 404"; else echo "ПРОВАЛ: $fails"; exit 1; fi
 ```
 
-Run: `cd ~/arcana-diary && chmod +x deploy/test-site-routes.sh && deploy/test-site-routes.sh | grep -E '^FAIL /one-card|ПРОВАЛ'`
-Expected: `FAIL /one-card: ожидалось '200', получено '404'` and `ПРОВАЛ: 16` (every address without `.html` and both 404 pages fail; the container is removed on exit).
+Run: `cd ~/arcana-diary && chmod +x deploy/test-site-routes.sh && deploy/test-site-routes.sh | grep -E '^FAIL /one-card:|ПРОВАЛ'`
+Expected: `FAIL /one-card: ожидалось '200', получено '404'` and `ПРОВАЛ: 20` (every address without `.html`, both 404 pages and the four redirects fail; the container is removed on exit).
 
-- [ ] **Step 2: Serve the page files and the 404 pages**
+- [ ] **Step 2: Serve the page files, the redirects and the 404 pages**
+
+In `deploy/Caddyfile`, replace:
+
+```
+	}
+	handle {
+		# LAUNCHED=false: the stage cookie, so /api/* requests with Authorization: Bearer pass the password (4.3)
+```
+
+with:
+
+```
+	}
+	# stage 4.4a: one address per page — a trailing slash or .html goes to the clean address (308)
+	handle /index.html {
+		redir * / 308
+	}
+	@slash path_regexp slash ^(/.+)/$
+	handle @slash {
+		redir {re.slash.1} 308
+	}
+	@html path_regexp html ^(/.+)\.html$
+	handle @html {
+		redir {re.html.1} 308
+	}
+	handle {
+		# LAUNCHED=false: the stage cookie, so /api/* requests with Authorization: Bearer pass the password (4.3)
+```
 
 In `deploy/Caddyfile`, replace:
 
@@ -6234,6 +6544,26 @@ with:
 	handle_errors {
 ```
 
+`deploy/check-indexing.sh` runs after the owner's deploy and reads `deploy/.env`, so here it is only syntax-checked.
+
+In `deploy/check-indexing.sh`, replace:
+
+```bash
+  expect "сайт с паролем" "$(status "${AUTH[@]}" "https://$D/")" 200
+```
+
+with:
+
+```bash
+  expect "сайт с паролем" "$(status "${AUTH[@]}" "https://$D/")" 200
+  # stage 4.4a: the new Caddyfile is live — a page without .html opens, an unknown address is a 404 page
+  expect "страница без .html с паролем" "$(status "${AUTH[@]}" "https://$D/one-card")" 200
+  expect "неизвестный адрес с паролем" "$(status "${AUTH[@]}" "https://$D/no-such-page")" 404
+```
+
+Run: `cd ~/arcana-diary && bash -n deploy/check-indexing.sh && echo syntax ok`
+Expected: `syntax ok`.
+
 - [ ] **Step 3: Run the route check and the stage-password check**
 
 Run: `cd ~/arcana-diary && deploy/test-site-routes.sh | tail -1 && deploy/test-stage-auth.sh | tail -1 && docker ps -a --format '{{.Names}}'`
@@ -6242,19 +6572,19 @@ Expected: `OK: адреса страниц и 404`, `OK: пароль и кук�
 - [ ] **Step 4: Final run of every suite**
 
 Run: `cd ~/arcana-diary && docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -v "$PWD/site:/app" -w /app node:22 npx vitest run 2>&1 | grep -E 'Test Files|Tests ' && api/.venv/bin/pytest -q tools/site | tail -1 && python3 tools/site/sync_site_data.py --check && python3 tools/site/check_dist.py && (cd api && .venv/bin/pytest -q | tail -1)`
-Expected: `Test Files  17 passed (17)`, `Tests  115 passed (115)`, `7 passed`, `OK: 167 pages`, `1082 passed`.
+Expected: `Test Files  17 passed (17)`, `Tests  122 passed (122)`, `7 passed`, `OK: 167 pages`, `1083 passed`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 cd ~/arcana-diary
-git add deploy/Caddyfile deploy/test-site-routes.sh
-git commit -m "feat(deploy): pages without .html and a 404 page per language; their check on a throwaway Caddy
+git add deploy/Caddyfile deploy/test-site-routes.sh deploy/check-indexing.sh
+git commit -m "feat(deploy): pages without .html, one address per page, a 404 page per language; their checks
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
-After this task the owner deploys (`deploy/deploy.sh`, spec §9) and makes the first real reading; then Fable 5.2 walks paths П1–П5 on the closed site by the stage 3 checklist (phone and desktop, EN and ES, errors, reduced motion, keyboard).
+After this task the owner deploys (`deploy/deploy.sh`, spec §9; `deploy/check-indexing.sh` then confirms the new Caddyfile is live) and makes the first real reading. Before Turnstile can ever be needed, the owner creates the widget in Cloudflare with the mode **Invisible** (the site renders it into a corner slot above the room and shows no challenge UI); then Fable 5.2 walks paths П1–П5 on the closed site by the stage 3 checklist (phone and desktop, EN and ES, errors, reduced motion, keyboard).
 
 ---
 
@@ -6262,17 +6592,22 @@ After this task the owner deploys (`deploy/deploy.sh`, spec §9) and makes the f
 
 | Spec | Where |
 |---|---|
-| §3 pages, menu, footer, language switch, phone and desktop | Tasks 2–3 (routes, pairs), 8 (layout, menu, footer, 404), 9 (tools, cards), 10 (daily), 11 (addresses on the server) |
-| §4 night room: layer, ×/Escape, focus trap and return, 960 px stage, states, reduced motion | Task 6 (`nightRoom.ts`), Task 7 (`focus.ts`), Task 8 (CSS), Task 9 (`NightRoom.tsx`, `ReadingIsland.tsx`) |
-| §4 API: create → stream via fetch → restore / retry; follow-ups with the paid warning, 402 confirm / plus, used_reading, crisis clears text | Tasks 5–6 (`sse.ts`, `api.ts`, `followups.ts`, `readingFlow.ts`, `nightRoom.ts`) |
-| §4 crisis, 429 / 403 / 503 with help link, Turnstile on demand, Plus card with the waitlist, textContent only | Tasks 5–7, 9 (`CrisisView`, `HelpLine`, `PlusCard`), guard test in Task 8 |
-| §5 Card of the Day with the base on 503 | Tasks 7, 10 |
-| §6 events endpoint, migration 004, whitelist, no person data, burst, funnel SQL; the seven 4.4a events | Task 1; Tasks 7, 9, 10 (`analytics.ts`, islands) |
-| §7 Astro + Preact islands, tokens, fonts, 44 px, focus, real controls, dictionaries with drafts, srcset, logic in tested modules | Tasks 2–10 |
-| §8 Vitest for states, SSE, sections, follow-ups, errors, crisis, dictionaries, routes and pairs; API tests; build of every page | Tasks 1, 3–8, 10 (`check_dist.py`) |
+| §3 pages, menu, footer, language switch, phone and desktop | Tasks 2–3 (routes, pairs), 8 (layout, menu, footer, 404), 9 (tools, cards), 10 (daily), 11 (addresses, redirects and 404 on the server) |
+| §3 yes/no — one card, no toggle (owner, 19.11.2026) | Task 7 (`panelConfig('yes_no')`), Task 9 (`ToolView`) |
+| §4 night room: layer, ×/Escape/Back, focus trap and return, 960 px stage with cards left and text right, states, layout of 2b–2e / 5b / 13d, reduced motion | Task 6 (`nightRoom.ts`), Task 7 (`focus.ts`), Task 8 (CSS), Task 9 (`NightRoom.tsx`, `ReadingIsland.tsx`) |
+| §4 API: create → stream via fetch → restore via GET; `/retry` only after a fallback; follow-ups: free, then `402 confirm` warning → `use_reading: true`, `402 plus`, `used_reading`, a broken follow-up read back, crisis clears text | Tasks 5–6 (`sse.ts`, `api.ts`, `followups.ts`, `readingFlow.ts`, `nightRoom.ts`) |
+| §4 crisis (call / SMS / help link, question cleared), 429 / 403 / 502–504 with help link, Turnstile on demand, Plus card (11a) with the waitlist and no price, textContent only | Tasks 5–7, 9 (`CrisisView`, `HelpLine`, `PlusCard`), guard test in Task 8 |
+| §5 Card of the Day; one base card for everyone on 503 / 502 / 504 | Tasks 5, 7, 10 |
+| §6 events endpoint, migration 004, whitelist, no person data, per-address and global limits, funnel SQL from the launch day; the seven 4.4a events, one card on the ES home as `one_card` | Task 1; Tasks 7, 9, 10 (`analytics.ts`, `toolFor`, islands) |
+| §7 Astro + Preact islands, tokens, fonts, 44 px, focus ring in the surface's text colour, real controls, dictionaries with drafts, srcset, logic in tested modules | Tasks 2–10 |
+| §8 Vitest for states, SSE, sections, follow-ups, errors, crisis, dictionaries, routes and pairs; API tests; build of every page | Tasks 1, 3–8, 10 (`check_dist.py`), 11 (`test-site-routes.sh`) |
+| §11 restore list (hidden until 4.4b and stages 6–7) | nothing is drawn for those items in 4.4a; the list is in the spec |
 
-## Spec point not implemented as written
+## Owner decisions applied (19.11.2026, after the Fable review)
 
-- **Yes or No "1 / 3 cards" toggle (§3, screens 5a/5b/12b).** The API draws one card for `kind: "yes_no"` (`api/app/draw.py`: `KIND_COUNTS["yes_no"] = 1`); `POST /api/readings` has no way to ask for three yes/no cards, and the reader's sections and checks (`required_sections`, `finalize`) treat three cards only as `kind: "three"`. The yes/no pages therefore draw one card and show no toggle. Proposed resolution: a small API change in a follow-up sub-project (an optional `count: 1 | 3` for `yes_no`, the majority verdict that `app/cards.py` already computes, the reader prompt and the eval set for three yes/no cards — a paid eval run needs the owner's "yes"), then the toggle (`panel.ts` already has the pattern of the Spanish home's `countToggle`).
-- **Plus price.** Screen 11a shows "[PRICE] a month"; the price is not decided (spec 4.2 §10: tariffs are decided separately), so the card shows the benefits and the waitlist form without a price line. The benefit "Your reader remembers your past readings" is left out (owner decision 14.11.2026, item 2).
-- **Card of the Day on 503.** The personal card is drawn by the API from the HttpOnly guest cookie, which the page cannot read; on 503 the site shows the same card for everyone that local day (`fallbackDailyCard`), upright, with its meaning from the card base, and says so (`dailyFallbackNote`).
+- **Yes or No is one card in 4.4a**, without the "1 / 3 cards" toggle and its hint line: the API draws one card for `kind: "yes_no"` (`api/app/draw.py`). "Yes/no with three cards" is its own small sub-stage before launch 14.12.2026 (API, reader prompt, paid eval run with the owner's "yes", site) — spec §3.
+- **Prototype fidelity:** with the answer the question is small at top left and the headline is the large title (2e, 5b); the desktop room has cards left and text right (13d); the Plus card is a day block in place of the night panel (11a, with "Not now" and "Open your free Card of the Day").
+- **Plus without a price** on the closed stage; the owner names the price before launch (spec §4). "Your reader remembers your past readings" stays out (decision of 14.11.2026, item 2).
+- **Card of the Day on 503 / 502 / 504:** the personal card comes from the HttpOnly guest cookie, which the page cannot read; the site shows one card for everyone that local day, upright, from the card base, with a note (`dailyFallbackNote`).
+- **Hidden links** ("Save to diary", "Remind me tomorrow", the Card Meanings menu item, "All 78 card meanings", the yes/no reference, About, Privacy, "Your diary") and the rewritten lines ("Free · no sign-up", step 3 of "How a reading works", the Plus lead without the diary sentence): accepted; the restore list is spec §11.
+- **Fonts** stay on Google Fonts in 4.4a; self-hosting is a stage 7 item (spec §11).
