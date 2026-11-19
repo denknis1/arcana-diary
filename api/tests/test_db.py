@@ -3,6 +3,7 @@ from datetime import date, timedelta
 
 import psycopg
 import pytest
+from psycopg.types.json import Jsonb
 
 from app import repo
 from app.config import load_settings
@@ -28,7 +29,7 @@ def test_split_sql():
 
 
 def test_migrate_creates_tables_with_rls_and_no_policies(fresh_db):
-    assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts"]
+    assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source"]
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT relname, relrowsecurity FROM pg_class"
                             " WHERE relnamespace = 'public'::regnamespace AND relkind = 'r'").fetchall()
@@ -280,20 +281,52 @@ def test_malformed_dsn_is_database_unavailable():
 
 # --- stage 4.3: migration 002 (spec 2026-11-19 §9) ---
 
-def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
-    reading = make_reading()
-    with fresh_db.connect() as conn:  # the database as stage 4.2 left it: 001 applied, a guest reading in it
+def apply_up_to(db, *versions: str) -> None:
+    """The database as an earlier stage left it: these migrations applied by hand, in order."""
+    with db.connect() as conn:
         conn.execute("CREATE TABLE schema_migrations ("
                      "version text PRIMARY KEY, applied_at timestamptz NOT NULL DEFAULT now())")
-        for statement in split_sql((MIGRATIONS / "001_init.sql").read_text(encoding="utf-8")):
-            conn.execute(statement)
-        conn.execute("INSERT INTO schema_migrations (version) VALUES ('001_init')")
-        repo.insert_reading(conn, reading)
-    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts"]
+        for version in versions:
+            for statement in split_sql((MIGRATIONS / f"{version}.sql").read_text(encoding="utf-8")):
+                conn.execute(statement)
+            conn.execute("INSERT INTO schema_migrations (version) VALUES (%s)", (version,))
+
+
+def insert_001_reading(conn, reading: dict) -> None:
+    """A reading with the 001 columns only, as the code of stage 4.2 wrote it."""
+    conn.execute("INSERT INTO readings (id, guest_id, lang, kind, question, topic, cards, seed, guard_group,"
+                 " created_at, expires_at) VALUES (%(id)s, %(guest_id)s, %(lang)s, %(kind)s, %(question)s, %(topic)s,"
+                 " %(cards)s, %(seed)s, %(guard_group)s, %(created_at)s, %(expires_at)s)",
+                 {**reading, "cards": Jsonb(reading["cards"])})
+
+
+def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
+    reading = make_reading()
+    apply_up_to(fresh_db, "001_init")  # stage 4.2: 001 applied, a guest reading in it
+    with fresh_db.connect() as conn:
+        insert_001_reading(conn, reading)
+    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source"]
     with fresh_db.connect() as conn:
         row = conn.execute("SELECT user_id, outcome, outcome_at, note, note_updated_at FROM readings WHERE id = %s",
                            (reading["id"],)).fetchone()
     assert row == {"user_id": None, "outcome": None, "outcome_at": None, "note": None, "note_updated_at": None}
+
+
+def test_003_applies_over_002_and_leaves_the_old_rows_without_a_source(fresh_db):
+    """Final review I2: a nullable column without a default (no table rewrite on the live database); rows made
+    before it keep NULL, which the reader memory reads as "not checked"."""
+    reading = make_reading()
+    apply_up_to(fresh_db, "001_init", "002_accounts")  # the live database after stage 4.3's first deploy
+    with fresh_db.connect() as conn:
+        insert_001_reading(conn, reading)
+    assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source"]
+    with fresh_db.connect() as conn:
+        column = conn.execute("SELECT is_nullable, column_default FROM information_schema.columns"
+                              " WHERE table_name = 'readings' AND column_name = 'guard_source'").fetchone()
+        row = conn.execute("SELECT guard_group, guard_source FROM readings WHERE id = %s",
+                           (reading["id"],)).fetchone()
+    assert column == {"is_nullable": "YES", "column_default": None}
+    assert row == {"guard_group": "ok", "guard_source": None}
 
 
 def test_002_indexes(db):

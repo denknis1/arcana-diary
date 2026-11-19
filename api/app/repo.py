@@ -11,13 +11,15 @@ EMPTY_ANSWER = {"model": None, "fallback": None}
 
 
 def insert_reading(conn, reading: dict) -> None:
-    """user_id: the account of a signed-in person (spec 4.3 §5); without it the reading is a guest's."""
+    """user_id: the account of a signed-in person (spec 4.3 §5); without it the reading is a guest's.
+    guard_source: GuardResult.source of the question check (migration 003); None without a question."""
     conn.execute(
         "INSERT INTO readings (id, guest_id, user_id, lang, kind, question, topic, situation, source_card_id, cards,"
-        " seed, verdict, guard_group, created_at, expires_at)"
+        " seed, verdict, guard_group, guard_source, created_at, expires_at)"
         " VALUES (%(id)s, %(guest_id)s, %(user_id)s, %(lang)s, %(kind)s, %(question)s, %(topic)s, %(situation)s,"
-        " %(source_card_id)s, %(cards)s, %(seed)s, %(verdict)s, %(guard_group)s, %(created_at)s, %(expires_at)s)",
-        {"user_id": None, **reading, "cards": Jsonb(reading["cards"])})
+        " %(source_card_id)s, %(cards)s, %(seed)s, %(verdict)s, %(guard_group)s, %(guard_source)s, %(created_at)s,"
+        " %(expires_at)s)",
+        {"user_id": None, "guard_source": None, **reading, "cards": Jsonb(reading["cards"])})
 
 
 def get_reading(conn, reading_id, now) -> dict | None:
@@ -57,10 +59,14 @@ def topic_history(conn, user_id, topic: str, before, exclude_id, limit: int) -> 
     reader may see is selected — the time, the question and the stored answer (for its headline); never the note
     or the outcome. A crisis answer has no topic (save_crisis), so it never matches. Only guard_group 'ok': a
     question the check redirected (health, safety, another person, money) must not come back by name in a later
-    reading, where the rule "do not name what you decline" no longer knows about it."""
+    reading, where the rule "do not name what you decline" no longer knows about it. And only a question the check
+    really classified (guard_source 'terms' or 'model'): a timeout or an error also gives 'ok' (fail open), and a
+    row from before migration 003 has no source — neither is a checked 'ok' (final review I2). A reading without a
+    question has nothing to check and stays in."""
     rows = conn.execute(
         "SELECT created_at, question, answer, answer_shown FROM readings WHERE user_id = %s AND topic = %s"
         " AND id <> %s AND created_at < %s AND answer_shown IN ('model', 'fallback') AND guard_group = 'ok'"
+        " AND (question IS NULL OR guard_source IN ('terms', 'model'))"
         " ORDER BY created_at DESC LIMIT %s", (user_id, topic, exclude_id, before, limit)).fetchall()
     return rows[::-1]
 

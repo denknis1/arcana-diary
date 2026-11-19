@@ -109,6 +109,7 @@ def create_reading(body: ReadingIn, request: Request):
         "lang": body.lang, "kind": body.kind, "question": question,
         "topic": body.topic, "situation": body.situation, "source_card_id": body.card_id, "cards": cards,
         "seed": seed, "verdict": ctx.cards.verdict(cards) if with_verdict else None, "guard_group": group,
+        "guard_source": guard.source if guard else None,  # final review I2: only 'terms'/'model' feed the memory
         # an account's readings stay until it deletes them; a guest's live GUEST_RETENTION_DAYS (stage 4.3 §4)
         "created_at": now, "expires_at": None if who.user else now + timedelta(days=GUEST_RETENTION_DAYS),
     }
