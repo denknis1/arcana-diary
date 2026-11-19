@@ -105,7 +105,7 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
                 gone = not repo.save_followup_answer(conn, followup["id"], answer, ctx.reader.model, counted=not replace)
             # §10.1: a failed paid follow-up gives back its reading, once: only the call that removed the row
             if paid and not crisis and not gone and (answer is None or replace):
-                limits.give_back_slot(conn, limits.guest_subject(reading["guest_id"]), followup["paid_day"])
+                limits.give_back_slot(conn, limits.owner_quota(reading).subject, followup["paid_day"])
     except DatabaseUnavailable:
         if crisis:  # the helplines need no database: the client gets them first (as in the reading flow)
             yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))

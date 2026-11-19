@@ -17,7 +17,7 @@ from fastapi import APIRouter, Request
 from pydantic import BaseModel, Field, field_validator
 
 from app import limits, repo
-from app.config import DAILY_LIMIT, FOLLOWUP_ATTEMPTS
+from app.config import FOLLOWUP_ATTEMPTS
 from app.context import get_ctx
 from app.reader import flow
 from app.reader.followups import stream_followup
@@ -45,8 +45,8 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
         reading = repo.get_reading(conn, reading_id, now)
         if reading:
             for paid_day in repo.delete_stale_followups(conn, reading_id, now - repo.STREAM_CLAIM_STALE):
-                if paid_day is not None:  # cut by a crash: the reading goes back
-                    limits.give_back_slot(conn, limits.guest_subject(reading["guest_id"]), paid_day)
+                if paid_day is not None:  # cut by a crash: the reading goes back to the owner (stage 4.3 §5)
+                    limits.give_back_slot(conn, limits.owner_quota(reading).subject, paid_day)
         previous = repo.list_followups(conn, reading_id) if reading else []
     if reading is None or not owns(who, reading):
         return not_found()
@@ -65,7 +65,7 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
     if flow.followups_left(previous) == 0:  # §10.1: the free ones are used
         paid_day = limits.local_day(limits.resolve_tz(body.tz), now)
         with ctx.db.connect() as conn:
-            left = limits.remaining(conn, reading["guest_id"], paid_day)
+            left = limits.remaining(conn, limits.owner_quota(reading), paid_day)
         if left == 0:
             return respond(402, {"reason": "plus", "remaining": 0})
         if not body.use_reading:
@@ -96,8 +96,9 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
     try:
         with ctx.db.connect() as conn:
             inserted = repo.insert_followup(conn, followup)
-            if inserted and paid_day is not None:  # atomic with the follow-up: never more than DAILY_LIMIT
-                if limits.take_slot(conn, limits.guest_subject(reading["guest_id"]), paid_day, DAILY_LIMIT) is None:
+            if inserted and paid_day is not None:  # atomic with the follow-up: never more than the owner's limit
+                quota = limits.owner_quota(reading)  # stage 4.3 §5: the account if the reading has one, else the guest
+                if limits.take_slot(conn, quota.subject, paid_day, quota.limit) is None:
                     raise limits.LimitReached("limit")
     except limits.LimitReached:  # a parallel reading or follow-up took the last one; the insert rolls back
         return respond(402, {"reason": "plus", "remaining": 0})

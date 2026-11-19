@@ -1,5 +1,5 @@
-"""Guest cookie, the visitor's local day, the 3-per-day limit (readings and paid follow-ups), the IP counters,
-the follow-up attempts (§4.1, §4.2, §8.2, §8.4, §9.2, §10)."""
+"""Guest cookie, the visitor's local day, the daily limit (readings and paid follow-ups: 3 per guest, 5 per
+account, stage 4.3 §5), the IP counters, the follow-up attempts (§4.1, §4.2, §8.2, §8.4, §9.2, §10)."""
 import hashlib
 import ipaddress
 import re
@@ -7,10 +7,11 @@ import secrets
 import threading
 import uuid
 from collections import deque
+from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from app.config import DAILY_LIMIT, FOLLOWUP_ATTEMPTS, IP_FOLLOWUP_LIMIT, IP_HARD_LIMIT
+from app.config import DAILY_LIMIT, FOLLOWUP_ATTEMPTS, IP_FOLLOWUP_LIMIT, IP_HARD_LIMIT, USER_DAILY_LIMIT
 
 COOKIE_NAME = "ad_guest"
 COOKIE_MAX_AGE = 365 * 24 * 3600
@@ -83,6 +84,32 @@ def guest_subject(guest_id) -> str:
     return f"guest:{guest_id}"
 
 
+def user_subject(user_id) -> str:
+    """Stage 4.3 §5: a signed-in person's readings count per account, on every device."""
+    return f"user:{user_id}"
+
+
+@dataclass(frozen=True)
+class Quota:
+    """Whose "N per day" a reading or a paid follow-up uses: the usage subject and its daily limit."""
+    subject: str
+    limit: int
+
+
+def guest_quota(guest_id) -> Quota:
+    return Quota(guest_subject(guest_id), DAILY_LIMIT)
+
+
+def user_quota(user_id) -> Quota:
+    return Quota(user_subject(user_id), USER_DAILY_LIMIT)
+
+
+def owner_quota(reading) -> Quota:
+    """§5: a paid follow-up uses a slot of the reading's owner — its account if it has one, else the guest — and a
+    refund goes back to the same place. `reading`: any mapping with guest_id and user_id."""
+    return user_quota(reading["user_id"]) if reading.get("user_id") else guest_quota(reading["guest_id"])
+
+
 def ip_subject(ip_hash: str) -> str:
     return f"ip:{ip_hash}"
 
@@ -117,12 +144,13 @@ def give_back_slot(conn, subject: str, day: date) -> None:
     conn.execute("UPDATE usage SET count = count - 1 WHERE subject = %s AND day = %s AND count > 0", (subject, day))
 
 
-def take_reading_slots(conn, guest_id, guest_day: date, ip_hash: str, ip_day: date) -> int:
-    """One reading for the guest (local day, 3) and the address (UTC day, hard cap 60) in the caller's transaction.
+def take_reading_slots(conn, quota: Quota, day: date, ip_hash: str, ip_day: date) -> int:
+    """One reading for the guest or the account (local day, quota.limit) and the address (UTC day, hard cap 60) in
+    the caller's transaction.
 
-    Returns the guest's new count; raises LimitReached, so the caller's transaction (and the reading) rolls back.
+    Returns the quota's new count; raises LimitReached, so the caller's transaction (and the reading) rolls back.
     """
-    count = take_slot(conn, guest_subject(guest_id), guest_day, DAILY_LIMIT)
+    count = take_slot(conn, quota.subject, day, quota.limit)
     if count is None:
         raise LimitReached("limit")
     if take_slot(conn, ip_subject(ip_hash), ip_day, IP_HARD_LIMIT) is None:
@@ -146,8 +174,8 @@ def take_followup_slots(conn, reading_id, ip_hash: str, ip_day: date) -> int:
     return row["followup_attempts"]
 
 
-def remaining(conn, guest_id, day: date) -> int:
-    return max(DAILY_LIMIT - used(conn, guest_subject(guest_id), day), 0)
+def remaining(conn, quota: Quota, day: date) -> int:
+    return max(quota.limit - used(conn, quota.subject, day), 0)
 
 
 def needs_turnstile(burst_hits: int, ip_readings_today: int) -> bool:

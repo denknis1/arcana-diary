@@ -93,15 +93,14 @@ def delete_stale_followups(conn, reading_id, before) -> list:
     return [r["paid_day"] for r in rows]
 
 
-def delete_all_stale_followups(conn, before) -> list[tuple]:
+def delete_all_stale_followups(conn, before) -> list[dict]:
     """Housekeeping: every unanswered follow-up older than `before` (cut by a restart), across readings.
 
-    Returns (guest_id, paid_day) per deleted row; RETURNING hands each paid row to exactly one caller.
+    Returns guest_id, user_id and paid_day per deleted row; RETURNING hands each paid row to exactly one caller.
     """
-    rows = conn.execute("DELETE FROM followups f USING readings r WHERE r.id = f.reading_id"
-                        " AND f.answer IS NULL AND f.created_at < %s RETURNING r.guest_id, f.paid_day",
+    return conn.execute("DELETE FROM followups f USING readings r WHERE r.id = f.reading_id"
+                        " AND f.answer IS NULL AND f.created_at < %s RETURNING r.guest_id, r.user_id, f.paid_day",
                         (before,)).fetchall()
-    return [(r["guest_id"], r["paid_day"]) for r in rows]
 
 
 def get_daily_cache(conn, card_id: str, reversed_: bool, lang: str, day) -> dict | None:

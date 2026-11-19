@@ -11,6 +11,7 @@ REPO_ROOT = APP_DIR.parents[1]
 DEFAULT_MODEL = "claude-haiku-5-5"
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
 DAILY_LIMIT = 3
+USER_DAILY_LIMIT = 5       # signed in: per account, on every device (spec 2026-11-19 stage 4.3 §5)
 IP_HARD_LIMIT = 60
 FOLLOWUP_LIMIT = 2         # free follow-ups per reading; each next one uses a reading of DAILY_LIMIT (§10.1)
 FOLLOWUP_ATTEMPTS = 8      # §10.2: follow-up requests per reading, crisis answers, refusals and failures included

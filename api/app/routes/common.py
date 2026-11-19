@@ -44,6 +44,11 @@ class Viewer:
     new_guest: uuid.UUID | None  # set when the request had no cookie: the answer may set it
     user: User | None
 
+    @property
+    def quota(self) -> limits.Quota:
+        """Stage 4.3 §5: signed in — the account's 5 a day on every device; otherwise this device's 3."""
+        return limits.user_quota(self.user.id) if self.user else limits.guest_quota(self.guest_id)
+
 
 _UNCHECKED = object()
 

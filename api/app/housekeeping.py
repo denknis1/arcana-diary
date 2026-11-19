@@ -52,9 +52,9 @@ def free_stale_followups(db: Database, now: datetime) -> int:
     ones their reading back. DELETE ... RETURNING makes the refund happen once even next to the route's cleanup."""
     with db.connect() as conn:
         rows = repo.delete_all_stale_followups(conn, now - repo.STREAM_CLAIM_STALE)
-        for guest_id, paid_day in rows:
-            if paid_day is not None:
-                limits.give_back_slot(conn, limits.guest_subject(guest_id), paid_day)
+        for row in rows:
+            if row["paid_day"] is not None:  # back to whoever paid: the account if the reading has one
+                limits.give_back_slot(conn, limits.owner_quota(row).subject, row["paid_day"])
     if rows:
         log.info("cleanup: freed %d stale follow-ups", len(rows))
     return len(rows)
