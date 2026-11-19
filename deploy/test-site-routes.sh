@@ -44,13 +44,12 @@ status() { "${CURL[@]}" -o /dev/null -w '%{http_code}' "$URL$1"; }
 html_lang() { "${CURL[@]}" "$URL$1" | grep -o '<html lang="[a-z]*"' | head -1; }
 moved_to() { "${CURL[@]}" -o /dev/null -w '%{http_code} %{redirect_url}' "$URL$1"; }
 location() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^location:/ { print }'; }
-safe_location() {  # ни Location с // или \ в начале пути, ни чужого хоста
-  local l; l="$(location "$1" | sed 's/^[Ll]ocation: *//')"
-  case "$l" in "") echo ok ;; "$URL"/[!/\\]*|"$URL") echo ok ;; *) echo "unsafe:$l" ;; esac
+no_location() {  # ответ вообще без заголовка Location
+  if [ -z "$(location "$1")" ]; then echo ok; else echo "has-location:$(location "$1")"; fi
 }
 
 for path in / /one-card /yes-no /love /daily /cards/the-moon /cards/ace-of-cups /es /es/si-o-no /es/amor \
-  /es/carta-del-dia /es/cartas/la-luna /404 /es/404 /data/daily-en.json /data/daily-es.json /cards/back.svg; do
+  /es/carta-del-dia /es/cartas/la-luna /data/daily-en.json /data/daily-es.json /cards/back.svg; do
   expect "$path" "$(status "$path")" 200
 done
 expect "/es — испанская главная" "$(html_lang /es)" '<html lang="es"'
@@ -58,6 +57,12 @@ expect "/nope" "$(status /nope)" 404
 expect "/nope — страница 404 EN" "$(html_lang /nope)" '<html lang="en"'
 expect "/es/nope" "$(status /es/nope)" 404
 expect "/es/nope — страница 404 ES" "$(html_lang /es/nope)" '<html lang="es"'
+for path in /index /404 /es/404; do
+  expect "$path — дубль, 404" "$(status "$path")" 404
+done
+expect "/index — страница 404 EN" "$(html_lang /index)" '<html lang="en"'
+expect "/404 — страница 404 EN" "$(html_lang /404)" '<html lang="en"'
+expect "/es/404 — страница 404 ES" "$(html_lang /es/404)" '<html lang="es"'
 expect "/cards/no-such-card" "$(status /cards/no-such-card)" 404
 expect "/es/ → /es" "$(moved_to /es/)" "308 $URL/es"
 expect "/one-card/ → /one-card" "$(moved_to /one-card/)" "308 $URL/one-card"
@@ -78,13 +83,13 @@ expect "/%5Cexample.com/ → 404" "$(status /%5Cexample.com/)" 404
 expect "/%5Cexample.com/ без Location" "$(location /%5Cexample.com/ | wc -l)" 0
 expect "/%5Cexample.com/x.html → 404" "$(status /%5Cexample.com/x.html)" 404
 expect "/%5Cexample.com/x.html без Location" "$(location /%5Cexample.com/x.html | wc -l)" 0
-expect "//example.com/ безопасен" "$(safe_location //example.com/)" ok
+expect "//example.com/ без Location" "$(no_location //example.com/)" ok
 expect "//example.com/ не уходит на чужой адрес" "$(status //example.com/ | grep -c '^30')" 0
-expect "/%2F%2Fexample.com/ безопасен" "$(safe_location /%2F%2Fexample.com/)" ok
+expect "/%2F%2Fexample.com/ без Location" "$(no_location /%2F%2Fexample.com/)" ok
 expect "/%2F%2Fexample.com/ не уходит на чужой адрес" "$(status /%2F%2Fexample.com/ | grep -c '^30')" 0
-expect "//example.com/x.html безопасен" "$(safe_location //example.com/x.html)" ok
-expect "/%2F%2Fexample.com/x.html безопасен" "$(safe_location /%2F%2Fexample.com/x.html)" ok
-expect "/..%2F..%2Fexample.com/ безопасен" "$(safe_location /..%2F..%2Fexample.com/)" ok
+expect "//example.com/x.html без Location" "$(no_location //example.com/x.html)" ok
+expect "/%2F%2Fexample.com/x.html без Location" "$(no_location /%2F%2Fexample.com/x.html)" ok
+expect "/..%2F..%2Fexample.com/ без Location" "$(no_location /..%2F..%2Fexample.com/)" ok
 # /api/* идёт к API раньше этих правил, 404 API проходит без изменений
 expect "/api/ с заглушкой: 404 API без изменений" "$(status /api/limits)" 404
 expect "/api/ тело ответа API" "$("${CURL[@]}" "$URL/api/limits")" "api-404"

@@ -56,6 +56,12 @@
 	handle @html {
 		redir {re.html.1} 308
 	}
+	# the 404 page and the bare /index are not pages of their own: they answer 404 like any unknown address
+	# (try_files would otherwise serve /index.html, /404.html and /es/404.html as 200 duplicates)
+	@dup path /index /404 /es/404
+	handle @dup {
+		error 404
+	}
 	handle {
 		# LAUNCHED=false: the stage cookie, so /api/* requests with Authorization: Bearer pass the password (4.3)
 		import /etc/caddy/parts/stage-cookie-{$LAUNCHED}.caddy
