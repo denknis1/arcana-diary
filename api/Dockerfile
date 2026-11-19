@@ -15,6 +15,7 @@ ENV CONTENT_DIR=/srv/content/cards \
     MIGRATIONS_DIR=/srv/migrations \
     PYTHONDONTWRITEBYTECODE=1
 RUN python -c "import zoneinfo; zoneinfo.ZoneInfo('America/Mexico_City'); zoneinfo.ZoneInfo('America/Argentina/Buenos_Aires')"
+RUN python -c "from jwt.algorithms import has_crypto; assert has_crypto, 'PyJWT cannot check ES256 tokens'"
 USER nobody
 # One process: the IP salt and the burst counters live in memory. No access log: it would keep reading ids.
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1", "--no-access-log"]

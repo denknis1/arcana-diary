@@ -72,6 +72,7 @@ class Settings:
     cleanup_interval_s: float
     daily_job_interval_s: float
     run_migrations: bool
+    supabase_url: str  # stage 4.3 §3: the project's public address; "" — sign-in is off
 
 
 def _bool(value: str) -> bool:
@@ -83,6 +84,14 @@ def _true_or_false(name: str, value: str) -> bool:
     if value not in ("true", "false"):
         raise ValueError(f"{name} must be exactly 'true' or 'false', got {value!r}")
     return value == "true"
+
+
+def _supabase_url(value: str) -> str:
+    """Tokens must name <SUPABASE_URL>/auth/v1 as their issuer; the keys come from the same address."""
+    url = value.strip().rstrip("/")
+    if url and not url.startswith("https://"):
+        raise ValueError(f"SUPABASE_URL must start with https://, got {url!r}")
+    return url
 
 
 def load_settings(env: Mapping[str, str] | None = None) -> Settings:
@@ -133,6 +142,7 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         cleanup_interval_s=float(env.get("CLEANUP_INTERVAL_S") or 86400),
         daily_job_interval_s=float(env.get("DAILY_JOB_INTERVAL_S") or 3600),
         run_migrations=_bool(env.get("RUN_MIGRATIONS") or "true"),
+        supabase_url=_supabase_url(env.get("SUPABASE_URL") or ""),
     )
 
 

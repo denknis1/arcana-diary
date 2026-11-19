@@ -5,3 +5,6 @@ openai==3.46.0
 google-genai==2.34.0
 psycopg[binary]==3.3.9
 httpx==0.28.1
+PyJWT==2.15.1
+# ES256 sign-in tokens (stage 4.3): PyJWT needs cryptography; already installed, pinned so the image keeps it
+cryptography==50.0.2

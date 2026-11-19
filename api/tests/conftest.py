@@ -81,23 +81,26 @@ from fastapi.testclient import TestClient  # noqa: E402
 
 from app.main import create_app  # noqa: E402
 from app.reader.provider import FakeProvider  # noqa: E402
-from helpers import T_API, FakeTurnstile, MutableClock  # noqa: E402
+from helpers import AUTH_URL, T_API, FakeJwks, FakeTurnstile, MutableClock  # noqa: E402
 
 
 def _client(app) -> TestClient:
     return TestClient(app, base_url="https://testserver")  # https: the guest cookie is Secure
 
 
-def make_api(db, **settings_overrides):
+def make_api(db, jwks=None, **settings_overrides):
+    """Sign-in is on (SUPABASE_URL = helpers.AUTH_URL) with the test key set: requests without a token are guests,
+    as before; helpers.bearer() signs one in."""
     clock = MutableClock(T_API)
     reader = FakeProvider(model="fake-reader")
     guard = FakeProvider(model="fake-guard")
     turnstile = FakeTurnstile()
+    jwks = jwks or FakeJwks()
     settings = _replace(load_settings({}), database_url=db.url, first_token_timeout_s=0.3, guard_timeout_s=0.5,
-                        run_migrations=False, **settings_overrides)
-    app = create_app(settings, reader=reader, guard_provider=guard, turnstile=turnstile, clock=clock)
+                        run_migrations=False, **{"supabase_url": AUTH_URL, **settings_overrides})
+    app = create_app(settings, reader=reader, guard_provider=guard, turnstile=turnstile, clock=clock, jwks=jwks)
     return SimpleNamespace(app=app, ctx=app.state.ctx, client=_client(app), new_client=lambda: _client(app),
-                           clock=clock, reader=reader, guard=guard, turnstile=turnstile, db=db)
+                           clock=clock, reader=reader, guard=guard, turnstile=turnstile, db=db, jwks=jwks)
 
 
 @pytest.fixture

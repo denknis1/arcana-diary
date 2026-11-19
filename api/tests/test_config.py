@@ -154,3 +154,10 @@ def test_guard_stays_on_claude():
 def test_keys_default_to_empty():
     s = load_settings({})
     assert (s.openai_api_key, s.google_ai_api_key) == ("", "")
+
+
+def test_supabase_url():
+    assert load_settings({}).supabase_url == ""  # sign-in off
+    assert load_settings({"SUPABASE_URL": " https://abc.supabase.co/ "}).supabase_url == "https://abc.supabase.co"
+    with pytest.raises(ValueError, match="SUPABASE_URL"):
+        load_settings({"SUPABASE_URL": "http://abc.supabase.co"})

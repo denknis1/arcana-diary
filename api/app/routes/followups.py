@@ -21,7 +21,7 @@ from app.config import DAILY_LIMIT, FOLLOWUP_ATTEMPTS
 from app.context import get_ctx
 from app.reader import flow
 from app.reader.followups import stream_followup
-from app.routes.common import country_hint, is_owner, not_found, respond, stream_response
+from app.routes.common import country_hint, not_found, owns, respond, stream_response, viewer
 from app.routes.readings import clean, reject_nul
 from app.safety.guard import GuardUnavailable
 
@@ -40,6 +40,7 @@ class FollowupIn(BaseModel):
 def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
     ctx = get_ctx(request)
     now = ctx.clock()
+    who = viewer(ctx, request)
     with ctx.db.connect() as conn:
         reading = repo.get_reading(conn, reading_id, now)
         if reading:
@@ -47,7 +48,7 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
                 if paid_day is not None:  # cut by a crash: the reading goes back
                     limits.give_back_slot(conn, limits.guest_subject(reading["guest_id"]), paid_day)
         previous = repo.list_followups(conn, reading_id) if reading else []
-    if reading is None or not is_owner(request, reading):
+    if reading is None or not owns(who, reading):
         return not_found()
     if reading["answer"] is None:
         return respond(409, {"reason": "no_answer"})
