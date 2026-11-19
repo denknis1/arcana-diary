@@ -266,17 +266,30 @@ def replay_reading(ctx, reading: dict, cf_country: str | None, tz: str | None) -
     yield sse("done", {"answer_shown": shown})
 
 
+def release_claim(ctx, reading_id) -> None:
+    """Stage 4.3 §10 (м-н8): best effort — when the database is still down, the claim frees itself after
+    STREAM_CLAIM_STALE."""
+    try:
+        with ctx.db.connect() as conn:
+            repo.release_stream(conn, reading_id)
+    except DatabaseUnavailable:
+        log.warning("stream claim not released: the database is unavailable")
+
+
 def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) -> Iterator[str]:
     lang, kind = reading["lang"], reading["kind"]
     if reading["answer"] is not None:
         yield from replay_reading(ctx, reading, cf_country, tz)
         return
+    claimed = False
     try:
         with ctx.db.connect() as conn:
             claimed = repo.claim_stream(conn, reading["id"], ctx.clock())
             history = reader_history(conn, reading) if claimed else []
         spent = claimed and over_budget(ctx)
     except DatabaseUnavailable:
+        if claimed:
+            release_claim(ctx, reading["id"])
         yield sse("error", {"reason": "db"})
         return
     if not claimed:
@@ -312,6 +325,7 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
                 log_call(conn, ctx, reading["id"], "reader", ctx.reader.model, prompt.version, outcome,
                          READER_MAX_TOKENS)
     except DatabaseUnavailable:
+        release_claim(ctx, reading["id"])  # nothing was saved: the next stream may write the answer
         if final.shown == "crisis":  # the helplines need no database: the client gets them first
             yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))
         yield sse("error", {"reason": "db"})

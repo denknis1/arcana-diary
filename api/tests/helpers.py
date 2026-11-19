@@ -155,3 +155,10 @@ def make_token(user_id, email: str | None = "person@example.com", *, key=None, k
 
 def bearer(user_id, **kwargs) -> dict:
     return {"Authorization": f"Bearer {make_token(user_id, **kwargs)}"}
+
+
+
+def supabase_like(url: str) -> bool:
+    """Stage 4.3 §10: the fixtures empty every table they use, so a Supabase database is refused by default."""
+    lowered = url.lower()
+    return "supabase.co" in lowered or "pooler.supabase.com" in lowered

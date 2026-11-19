@@ -34,6 +34,11 @@ def claim_stream(conn, reading_id, now) -> bool:
     return row is not None
 
 
+def release_stream(conn, reading_id) -> None:
+    """м-н8: a generation stopped by the database frees its claim at once, not after STREAM_CLAIM_STALE."""
+    conn.execute("UPDATE readings SET stream_started_at = NULL WHERE id = %s AND answer IS NULL", (reading_id,))
+
+
 def save_answer(conn, reading_id, answer: dict, shown: str, model: str | None, prompt_version: str) -> None:
     conn.execute("UPDATE readings SET answer = %s, answer_shown = %s, model = %s, prompt_version = %s,"
                  " stream_started_at = NULL WHERE id = %s",

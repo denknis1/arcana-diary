@@ -337,3 +337,34 @@ def test_claim_tokens_go_with_their_reading(db):
         conn.execute("DELETE FROM readings WHERE id = %s", (reading["id"],))
         left = conn.execute("SELECT count(*) AS n FROM claim_tokens").fetchone()["n"]
     assert left == 0
+
+
+
+# --- stage 4.3 §10: the tests never empty a Supabase database by mistake ---
+import os  # noqa: E402
+import subprocess  # noqa: E402
+import sys  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+from helpers import supabase_like  # noqa: E402
+
+API_DIR = Path(__file__).resolve().parents[1]
+
+
+def test_supabase_like_urls():
+    assert supabase_like("postgresql://postgres.abc:pw@aws-0-eu-central-1.pooler.supabase.com:6543/postgres")
+    assert supabase_like("postgresql://postgres:pw@db.abcdefgh.SUPABASE.co:5432/postgres")
+    assert not supabase_like("postgresql://postgres:test@127.0.0.1:55432/arcana")
+
+
+def test_the_tests_refuse_a_supabase_database():
+    """A separate pytest run that stops before connecting. hostaddr=127.0.0.1 and port 1: even without the guard
+    the run would only knock on a closed local port — no name lookup, nothing goes over the network."""
+    env = {k: v for k, v in os.environ.items() if k != "TEST_DATABASE_ALLOW_SUPABASE"}
+    env["TEST_DATABASE_URL"] = ("postgresql://postgres.abc:pw@aws-0-eu-central-1.pooler.supabase.com:1/postgres"
+                                "?hostaddr=127.0.0.1&connect_timeout=2")
+    result = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider",
+                             "tests/test_db.py::test_reading_roundtrip"], cwd=API_DIR, env=env, capture_output=True,
+                            text=True, timeout=120)
+    assert result.returncode == 4, result.stdout + result.stderr
+    assert "looks like a Supabase database" in result.stdout + result.stderr

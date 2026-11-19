@@ -39,6 +39,11 @@ def _wait_for(url: str, seconds: float = 60.0) -> None:
 def pg_url():
     url = os.environ.get("TEST_DATABASE_URL")
     if url:
+        from helpers import supabase_like
+        if supabase_like(url) and os.environ.get("TEST_DATABASE_ALLOW_SUPABASE") != "yes":
+            pytest.exit("TEST_DATABASE_URL looks like a Supabase database (supabase.co / pooler.supabase.com): the "
+                        "tests empty every table they use. Use a throwaway database, or set "
+                        "TEST_DATABASE_ALLOW_SUPABASE=yes if this one really is.", returncode=4)
         yield url
         return
     problem = _docker_problem()

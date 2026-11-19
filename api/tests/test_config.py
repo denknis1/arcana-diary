@@ -18,6 +18,7 @@ def test_defaults():
     assert s.daily_budget_usd == 5.0
     assert s.guard_budget_usd == 1.0
     assert s.daily_job_interval_s == 3600.0
+    assert s.cleanup_interval_s == 3600.0  # stage 4.3 §10: hourly, not daily
     assert s.run_migrations is True
     assert s.database_url == ""
     assert (s.content_dir / "deck.json").is_file()

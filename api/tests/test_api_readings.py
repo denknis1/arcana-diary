@@ -683,3 +683,31 @@ def test_nul_in_a_question_is_422_before_any_guard_call_or_slot(api):
     with api.db.connect() as conn:
         assert conn.execute("SELECT count(*) AS n FROM usage").fetchone()["n"] == 0
         assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 0
+
+
+
+# --- stage 4.3 §10 (м-н8): a database failure during a generation frees its stream claim at once ---
+
+def test_a_database_failure_after_the_claim_frees_it(api, monkeypatch):
+    body = create(api, kind="one")
+
+    def down(ctx):
+        raise DatabaseUnavailable("down")
+
+    monkeypatch.setattr(flow, "over_budget", down)
+    assert stream(api, body["id"]) == [("error", {"reason": "db"})]
+    assert saved(api, body["id"])["stream_started_at"] is None
+    monkeypatch.undo()
+    assert stream(api, body["id"])[-1] == ("done", {"answer_shown": "model"})  # no 180 s of "in_progress"
+
+
+def test_a_failed_save_frees_the_claim(api, monkeypatch):
+    body = create(api, kind="one")
+
+    def down(*args, **kwargs):
+        raise DatabaseUnavailable("down")
+
+    monkeypatch.setattr(repo, "save_answer", down)
+    assert stream(api, body["id"])[-1] == ("error", {"reason": "db"})
+    row = saved(api, body["id"])
+    assert row["answer"] is None and row["stream_started_at"] is None
