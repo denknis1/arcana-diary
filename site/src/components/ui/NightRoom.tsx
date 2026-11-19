@@ -267,6 +267,16 @@ function Followups(props: FollowupProps) {
   // the form stays mounted while an answer streams (its button is disabled), so focus never falls out of the room
   const formShown = !state.confirm && !state.followupPlus && state.answer.shown === 'model'
     && counts !== null && counts.followup_attempts_left > 0;
+  // the form went away (the last attempt was used): if focus fell out of the room, the title takes it
+  const wasShown = useRef(formShown);
+  useEffect(() => {
+    if (wasShown.current && !formShown) {
+      const active = document.activeElement;
+      const dialog = document.getElementById('night-title')?.closest('[role="dialog"]');
+      if (!active || active === document.body || !dialog?.contains(active)) document.getElementById('night-title')?.focus();
+    }
+    wasShown.current = formShown;
+  }, [formShown]);
   return (
     <section class="followups" aria-label={d.followupLabel}>
       {state.followups.map((f, i) => (
@@ -283,7 +293,7 @@ function Followups(props: FollowupProps) {
           {needsHelpLink(state.followupError) ? <HelpLine lang={lang} /> : null}
         </>
       ) : null}
-      {state.followupPlus ? <PlusCard lang={lang} tool={config.tool} /> : null}
+      {state.followupPlus ? <PlusCard lang={lang} tool={config.tool} focusOnShow /> : null}
       {state.confirm ? (
         <div class="notice" role="alert">
           <p>{fill(d.followupPaidWarning, { n: state.confirm.remaining })}</p>

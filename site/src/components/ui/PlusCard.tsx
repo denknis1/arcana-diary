@@ -31,6 +31,10 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
 
   const submit = async (event: Event) => {
     event.preventDefault();
+    if (!email.trim().includes('@')) { // the API still validates; this keeps the browser's own bubble away
+      setStatus('invalid');
+      return;
+    }
     setStatus('sending');
     const result = await createApi(browserFetch()).joinWaitlist(email.trim(), lang);
     if (result.ok) setStatus('done');
@@ -55,7 +59,7 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
         {status === 'done' ? (
           <p role="status">{d.plusDone}</p>
         ) : (
-          <form class="field" onSubmit={submit}>
+          <form class="field" onSubmit={submit} noValidate>
             <label for={`${id}-email`}>{d.plusEmailLabel}</label>
             <input
               id={`${id}-email`}
@@ -63,6 +67,8 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
               type="email"
               autocomplete="email"
               required
+              aria-invalid={error ? 'true' : undefined}
+              aria-describedby={error ? `${id}-error` : undefined}
               maxLength={254}
               placeholder={d.plusEmailPlaceholder}
               value={email}
@@ -72,7 +78,7 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
               <button type="submit" class="btn btn--ink" disabled={status === 'sending'}>{d.plusNotify}</button>
               <a href={daily}>{d.plusNotNow}</a>
             </div>
-            {error ? <p role="alert">{error}</p> : null}
+            {error ? <p role="alert" id={`${id}-error`}>{error}</p> : null}
           </form>
         )}
       </section>

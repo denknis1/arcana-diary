@@ -9,7 +9,7 @@ import { browserFetch, createApi } from '../lib/api';
 import { CARD_BACK } from '../lib/deck';
 import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
 import {
-  buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor, type PanelPage,
+  ONE_CARD_ANCHOR, buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor, type PanelPage,
 } from '../lib/panel';
 import { askFollowup, restoreReading, startReading, streamReading, type FlowDeps } from '../lib/readingFlow';
 import { turnstileToken } from '../lib/turnstile';
@@ -51,6 +51,8 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool });
   const previous = useRef<NightState>(CLOSED);
   const inHistory = useRef(false); // the room's history entry is on top
+  const ownPops = useRef(0); // popstates caused by our own history.back(): already handled, ignored
+  const shownFor = useRef(0); // the run that already sent reading_shown
   const roomIsOpen = useRef(false);
   const focusQuestion = useRef(false); // "Ask another question": focus the question field once the room is closed
   const api = useMemo(() => createApi(browserFetch()), []);
@@ -61,15 +63,21 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     fromHash();
     if (page !== 'card') sendEvent(analyticsEvent('tool_view', config.tool, lang));
     const onPop = () => {
+      if (ownPops.current > 0) { // the result of our own step back: the room is already closed
+        ownPops.current -= 1;
+        return;
+      }
       if (!inHistory.current) return;
       inHistory.current = false;
       if (roomIsOpen.current) closeNow();
     };
     window.addEventListener('popstate', onPop);
-    if (config.countToggle) window.addEventListener('hashchange', fromHash); // the footer link "Una carta" on this page
+    // the footer link "Una carta" on this page; other hash changes (the skip link #main) leave the choice alone
+    const onHash = () => { if (location.hash === ONE_CARD_ANCHOR) fromHash(); };
+    if (config.countToggle) window.addEventListener('hashchange', onHash);
     return () => {
       window.removeEventListener('popstate', onPop);
-      window.removeEventListener('hashchange', fromHash);
+      window.removeEventListener('hashchange', onHash);
     };
   }, []);
 
@@ -82,8 +90,11 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         if (action.type === 'created') drawn.current.id = action.reading.id;
         rawDispatch(action);
       },
-      turnstileToken: (sitekey) => turnstileToken(sitekey, { document, window }),
-      sleep: (ms) => new Promise((resolve) => setTimeout(resolve, ms)),
+      turnstileToken: async (sitekey) => { // a room closed during the check gets no token: the flow does not post
+        const token = await turnstileToken(sitekey, { document, window });
+        return run.current === mine ? token : null;
+      },
+      sleep: (ms) => new Promise((resolve) => setTimeout(() => { if (run.current === mine) resolve(); }, ms)), // a stale run never wakes
       reducedMotion: prefersReducedMotion(),
     };
   };
@@ -91,6 +102,10 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   // analytics on transitions: night_open, cards_revealed, reading_shown
   useEffect(() => {
     for (const name of transitionEvents(previous.current, state)) {
+      if (name === 'reading_shown') { // once per drawn reading (not again after a fallback Retry)
+        if (shownFor.current === run.current) continue;
+        shownFor.current = run.current;
+      }
       const params = name === 'cards_revealed' ? { cards_count: state.reading?.cards.length ?? 1 }
         : name === 'reading_shown' ? { ms_from_draw: Math.min(Math.max(Date.now() - drawn.current.at, 0), 600000) } : {};
       sendEvent(analyticsEvent(name, drawn.current.tool, lang, params));
@@ -103,8 +118,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
       focusQuestion.current = false;
     }
     if (wasOpen && !isOpen && inHistory.current) { // closed by the limit: drop the room's history entry
-      inHistory.current = false;
-      history.back();
+      stepBack();
     }
     if (state.phase === 'crisis' && previous.current.phase !== 'crisis') setQuestion(''); // "we haven't saved it"
     document.body.classList.toggle('is-locked', isOpen);
@@ -138,9 +152,17 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     rawDispatch({ type: 'close' });
   }
 
+  // the single step back over the room's entry: the flag drops at once, so a second × or Escape cannot step twice
+  function stepBack() {
+    if (!inHistory.current) return;
+    inHistory.current = false;
+    ownPops.current += 1;
+    history.back();
+  }
+
   const close = () => {
-    if (inHistory.current) history.back(); // popstate closes the room
-    else closeNow();
+    stepBack();
+    closeNow();
   };
 
   const askAnother = () => {
