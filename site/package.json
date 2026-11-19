@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "astro build"
+    "build": "astro build",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/preact": "4.1.3",
