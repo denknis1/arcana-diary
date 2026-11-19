@@ -4,6 +4,8 @@ caller owns the transaction. Nothing here hands a note or an outcome to a model.
 """
 import hashlib
 
+from app.auth import AuthError
+
 
 def token_hash(token: str) -> str:
     """Only the hash is stored: a copy of the table gives no working claim tokens."""
@@ -44,7 +46,9 @@ def claim_by_tokens(conn, user_id, hashes: list[str], now) -> list:
 
 
 def ensure_profile(conn, user_id, now) -> dict:
-    """The profile is made the first time the API sees the account; its created_at is the account's date here."""
+    """The profile is made the first time the API sees the account; its created_at is the account's date here.
+    A deleted account is refused first, so its still-valid token cannot bring the profile back."""
+    refuse_deleted(conn, user_id)
     conn.execute("INSERT INTO profiles (user_id, created_at) VALUES (%s, %s) ON CONFLICT (user_id) DO NOTHING",
                  (user_id, now))
     return conn.execute("SELECT * FROM profiles WHERE user_id = %s", (user_id,)).fetchone()
@@ -85,3 +89,68 @@ def delete_diary_entry(conn, reading_id, user_id) -> bool:
     row = conn.execute("DELETE FROM readings WHERE id = %s AND user_id = %s RETURNING id",
                        (reading_id, user_id)).fetchone()
     return row is not None
+
+
+def set_consent(conn, user_id, consent: bool, now) -> dict:
+    """§8: reminder e-mails, off by default. consent_at is when the consent was given (kept while it stays on),
+    NULL when it is off."""
+    ensure_profile(conn, user_id, now)
+    return conn.execute("UPDATE profiles SET reminders_consent = %(on)s,"
+                        " consent_at = CASE WHEN %(on)s THEN coalesce(consent_at, %(now)s) ELSE NULL END"
+                        " WHERE user_id = %(user)s RETURNING *", {"on": consent, "now": now, "user": user_id}).fetchone()
+
+
+def export_readings(conn, user_id) -> list[tuple[dict, list[dict]]]:
+    """§8: every reading of the account, oldest first, each with its follow-ups."""
+    readings = conn.execute("SELECT * FROM readings WHERE user_id = %s ORDER BY created_at, id",
+                            (user_id,)).fetchall()
+    followups: dict = {}
+    for row in conn.execute("SELECT f.* FROM followups f JOIN readings r ON r.id = f.reading_id"
+                            " WHERE r.user_id = %s ORDER BY f.n", (user_id,)).fetchall():
+        followups.setdefault(row["reading_id"], []).append(row)
+    return [(reading, followups.get(reading["id"], [])) for reading in readings]
+
+
+def waitlist_entry(conn, user_id, email: str | None) -> dict | None:
+    return conn.execute("SELECT email, lang, created_at FROM plus_waitlist WHERE user_id = %s OR email = %s"
+                        " ORDER BY created_at LIMIT 1", (user_id, email)).fetchone()
+
+
+def join_waitlist(conn, email: str, lang: str, user_id, now) -> None:
+    """§8: one row per e-mail; a repeat is no error and keeps the first language; a signed-in repeat links the
+    account to an entry made as a guest."""
+    conn.execute("INSERT INTO plus_waitlist (email, lang, user_id, created_at) VALUES (%s, %s, %s, %s)"
+                 " ON CONFLICT (email) DO UPDATE SET user_id = coalesce(plus_waitlist.user_id, EXCLUDED.user_id)",
+                 (email, lang, user_id, now))
+
+
+def refuse_deleted(conn, user_id) -> None:
+    """§8: an access token outlives the account it was issued for (until its exp). Such a token writes nothing:
+    401 "auth", and the browser's refresh fails, which signs it out."""
+    if conn.execute("SELECT 1 FROM deleted_accounts WHERE user_id = %s", (user_id,)).fetchone():
+        raise AuthError("deleted account")
+
+
+def lock_account(conn, user_id) -> None:
+    """Held until the transaction ends: deleting an account and creating a reading for it take turns, so a reading
+    cannot be written after the delete has looked and before it has committed."""
+    conn.execute("SELECT pg_advisory_xact_lock(hashtext(%s))", (str(user_id),))
+
+
+def delete_account(conn, user_id, email: str | None, now) -> dict[str, int]:
+    """§8: everything of the account at once — its readings (their follow-ups and claim tokens go with them), the
+    profile, the Plus waitlist entry and, where the database has Supabase's auth schema, the Supabase user itself;
+    the id goes into deleted_accounts so a still-valid token cannot write again. llm_calls stay (no text); the
+    account's day counter in usage (a number) expires with the other counters."""
+    lock_account(conn, user_id)
+    conn.execute("INSERT INTO deleted_accounts (user_id, deleted_at) VALUES (%s, %s) ON CONFLICT (user_id) DO NOTHING",
+                 (user_id, now))
+    counts = {
+        "readings": conn.execute("DELETE FROM readings WHERE user_id = %s", (user_id,)).rowcount,
+        "profiles": conn.execute("DELETE FROM profiles WHERE user_id = %s", (user_id,)).rowcount,
+        "plus_waitlist": conn.execute("DELETE FROM plus_waitlist WHERE user_id = %s OR email = %s",
+                                      (user_id, email)).rowcount,
+    }
+    if conn.execute("SELECT to_regclass('auth.users') IS NOT NULL AS present").fetchone()["present"]:
+        counts["auth_users"] = conn.execute("DELETE FROM auth.users WHERE id = %s", (user_id,)).rowcount
+    return counts

@@ -23,6 +23,7 @@ CLAIM_TOKEN_DAYS = 7           # stage 4.3 §4.2: a one-time token to save a gue
 CLAIM_TOKENS_PER_READING = 5   # live tokens per reading at once ("Save to diary" may be pressed again, not forever)
 NOTE_MAX_CHARS = 1000          # stage 4.3 §6: the private note of a diary entry (never sent to a model)
 HISTORY_LIMIT = 5              # stage 4.3 §7: earlier readings of the same topic in the reader's input
+WAITLIST_IP_LIMIT = 5          # stage 4.3 §8: Plus waitlist requests per address per UTC day
 
 PROVIDERS = ("claude", "openai", "gemini", "fake")
 KEY_NAMES = {"claude": "ANTHROPIC_API_KEY", "openai": "OPENAI_API_KEY", "gemini": "GOOGLE_AI_API_KEY"}

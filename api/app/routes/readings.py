@@ -6,7 +6,7 @@ from typing import Literal
 from fastapi import APIRouter, Request
 from pydantic import BaseModel, Field, field_validator
 
-from app import limits, repo
+from app import account_repo, limits, repo
 from app.config import GUEST_RETENTION_DAYS, IP_GUARD_LIMIT, RETRY_LIMIT
 from app.context import get_ctx
 from app.draw import draw_spread, new_seed
@@ -67,6 +67,8 @@ def create_reading(body: ReadingIn, request: Request):
     hits = ctx.burst.hit(ip_hash, now)
     quota = who.quota  # stage 4.3 §5: the account's 5 when signed in, else this device's 3
     with ctx.db.connect() as conn:
+        if who.user:  # stage 4.3 §8: a token that outlived its account — before any model call
+            account_repo.refuse_deleted(conn, who.user.id)
         ip_used = limits.used(conn, limits.ip_subject(ip_hash), ip_day)
         checks = limits.used(conn, limits.guard_ip_subject(ip_hash), ip_day)
         quota_used = limits.used(conn, quota.subject, day)
@@ -112,6 +114,9 @@ def create_reading(body: ReadingIn, request: Request):
     }
     try:
         with ctx.db.connect() as conn:
+            if who.user:  # and again in the insert transaction: the account may have gone meanwhile
+                account_repo.lock_account(conn, who.user.id)  # R4: takes turns with delete_account
+                account_repo.refuse_deleted(conn, who.user.id)
             count = limits.take_reading_slots(conn, quota, day, ip_hash, ip_day)  # §8.11: atomic
             repo.insert_reading(conn, reading)
     except limits.LimitReached as exc:

@@ -118,6 +118,11 @@ def followup_ip_subject(ip_hash: str) -> str:
     return f"ipf:{ip_hash}"
 
 
+def waitlist_ip_subject(ip_hash: str) -> str:
+    """Plus waitlist requests per address per UTC day (stage 4.3 §8)."""
+    return f"ipw:{ip_hash}"
+
+
 def guard_ip_subject(ip_hash: str) -> str:
     """Question checks by the model on POST /api/readings, crisis answers included (§10.5, В18)."""
     return f"ipg:{ip_hash}"
