@@ -1,0 +1,11 @@
+{
+  "questions": [
+    "en-01", "en-02", "en-08", "en-09", "en-14", "en-15", "en-20", "en-21", "en-31", "en-42", "en-44", "en-27",
+    "en-38", "en-40", "en-39",
+    "es-01", "es-02", "es-08", "es-09", "es-14", "es-16", "es-20", "es-23", "es-31", "es-42", "es-46", "es-27",
+    "es-38", "es-40", "es-41"
+  ],
+  "injection": ["inj-en-01", "inj-en-02", "inj-en-03", "inj-es-01", "inj-es-02", "inj-es-03"],
+  "followups": ["fu-en-01", "fu-en-06", "fu-en-07", "fu-en-09", "fu-es-05", "fu-es-07", "fu-es-08"],
+  "daily": ["d-en-01", "d-en-05", "d-en-08", "d-en-09", "d-es-02", "d-es-05", "d-es-08"]
+}
