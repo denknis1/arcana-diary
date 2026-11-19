@@ -144,6 +144,7 @@
 | «Free · save it to your diary after» / «Gratis · guárdala en tu diario después» (сейчас «Free · no sign-up») | 1, 12a, 13a | 4.4б |
 | шаг 3 «Save it, and check later what came true.» (сейчас — о двух бесплатных уточнениях) | 1 | 4.4б |
 | «Your diary keeps everything you saved.» в карточке Plus | 11a | 4.4б |
+| третье преимущество Plus «Your whole diary, with no limit» / «Todo tu diario, sin límite» (текст остаётся в словаре `plusBenefit3`; в 4.4а карточка показывает два преимущества — решение владельца 19.11.2026) | 11a | 4.4б |
 | пункт меню «Card Meanings» / «Significados», «All 78 card meanings» / «Las 78 cartas», «Card meanings» в подвале | 1, 11c, 11d, 12a, 13a | этап 6 |
 | «Which cards mean yes, and which mean no» | 5a | этап 6 |
 | «Tirada de 3 cartas» в «Otras formas de preguntar» | 12a | когда появится страница `/es/tiradas/3-cartas` (не в 4.4а) |
