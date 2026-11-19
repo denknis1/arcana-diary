@@ -174,6 +174,14 @@ def test_signed_in_the_waitlist_uses_the_tokens_email(api):
     assert waitlist(api) == [("ana@example.com", "en", ANA), ("ben@example.com", "es", BEN)]
 
 
+def test_signed_in_without_an_email_in_the_token_the_body_is_not_used(api):
+    """Final review M3: the e-mail of a signed-in person comes only from the token; without one — 422, no row."""
+    for email in (None, ""):
+        response = join(api.client, headers=bearer(ANA, email=email), email="someone@else.com")
+        assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["email"]}
+    assert waitlist(api) == []
+
+
 def test_the_waitlist_rejects_bad_emails(api):
     for bad in ({"email": "not-an-email"}, {}, {"email": "a@b"}, {"email": "x" * 250 + "@b.co"}):
         response = join(api.client, **bad)

@@ -30,7 +30,9 @@ def join_waitlist(body: WaitlistIn, request: Request):
     ctx = get_ctx(request)
     who = viewer(ctx, request)
     now = ctx.clock()
-    email = (who.user.email if who.user and who.user.email else body.email or "").strip().lower()
+    if who.user and not who.user.email:  # final review M3: never link an account to an address from the body
+        return respond(422, {"reason": "invalid", "fields": ["email"]})
+    email = (who.user.email if who.user else body.email or "").strip().lower()
     if len(email) > 254 or not EMAIL.fullmatch(email):
         return respond(422, {"reason": "invalid", "fields": ["email"]})
     ip_hash = ctx.salt.hash_ip(limits.client_ip(request, ctx.settings.trust_cloudflare), now)
