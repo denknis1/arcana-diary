@@ -159,6 +159,9 @@ def full_view(ctx, reading: dict, followups: list[dict], owner: bool, now: datet
                            "soft_line": soft_line(ctx, reading["lang"], f["guard_group"])} for f in answered],
             "followups_left": followups_left(followups, reading["followup_attempts"]),
             "followup_attempts_left": max(FOLLOWUP_ATTEMPTS - reading["followup_attempts"], 0),
+            # stage 4.3 §6: the owner (the account; for a guest reading, its device) also sees the diary fields
+            "in_diary": reading.get("user_id") is not None,
+            "outcome": reading.get("outcome"), "note": reading.get("note"),
         })
     return view
 

@@ -48,3 +48,40 @@ def ensure_profile(conn, user_id, now) -> dict:
     conn.execute("INSERT INTO profiles (user_id, created_at) VALUES (%s, %s) ON CONFLICT (user_id) DO NOTHING",
                  (user_id, now))
     return conn.execute("SELECT * FROM profiles WHERE user_id = %s", (user_id,)).fetchone()
+
+
+def diary_page(conn, user_id, before, limit: int) -> list[dict]:
+    """§6: the account's readings, newest first, older than `before` (None: from the newest), with the number of
+    answered follow-ups."""
+    return conn.execute(
+        "SELECT r.*, (SELECT count(*) FROM followups f WHERE f.reading_id = r.id AND f.answer IS NOT NULL)"
+        " AS followup_count FROM readings r WHERE r.user_id = %s"
+        " AND (%s::timestamptz IS NULL OR r.created_at < %s) ORDER BY r.created_at DESC, r.id DESC LIMIT %s",
+        (user_id, before, before, limit)).fetchall()
+
+
+DIARY_FIELDS = "outcome, outcome_at, note, note_updated_at"
+
+
+def update_diary_entry(conn, reading_id, user_id, fields: dict, now) -> dict | None:
+    """§6: only the fields present in `fields` ("outcome", "note") change; their time is `now`, or NULL when the
+    field is cleared. None when the reading is not this account's."""
+    sets = []
+    if "outcome" in fields:
+        sets.append("outcome = %(outcome)s,"
+                    " outcome_at = CASE WHEN %(outcome)s::text IS NULL THEN NULL ELSE %(now)s END")
+    if "note" in fields:
+        sets.append("note = %(note)s, note_updated_at = CASE WHEN %(note)s::text IS NULL THEN NULL ELSE %(now)s END")
+    params = {"id": reading_id, "user": user_id, "now": now, "outcome": fields.get("outcome"),
+              "note": fields.get("note")}
+    where = " WHERE id = %(id)s AND user_id = %(user)s"
+    if not sets:
+        return conn.execute(f"SELECT {DIARY_FIELDS} FROM readings{where}", params).fetchone()
+    return conn.execute(f"UPDATE readings SET {', '.join(sets)}{where} RETURNING {DIARY_FIELDS}", params).fetchone()
+
+
+def delete_diary_entry(conn, reading_id, user_id) -> bool:
+    """§6: the reading goes with its follow-ups and claim tokens (ON DELETE CASCADE); llm_calls keep no text."""
+    row = conn.execute("DELETE FROM readings WHERE id = %s AND user_id = %s RETURNING id",
+                       (reading_id, user_id)).fetchone()
+    return row is not None
