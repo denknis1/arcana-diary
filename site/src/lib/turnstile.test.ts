@@ -63,3 +63,25 @@ describe('turnstile', () => {
     expect(await turnstileToken('k', fakeHost('noscript').host)).toBeNull();
   });
 });
+
+describe('turnstile token flow', () => {
+  it('removes the widget when the callback fires inside render, and counts only the first outcome', async () => {
+    const f = fakeHost('token');
+    const orig = f.api.render.bind(f.api);
+    f.api.render = (el, o) => { const id = orig(el, o); (o['error-callback'] as () => void)(); return id; };
+    expect(await turnstileToken('k', f.host)).toBe('tok-1');
+    expect(f.api.removed).toEqual(['w1']);
+  });
+
+  it('lets a later attempt load again when onload fires without window.turnstile', async () => {
+    const appended: FakeEl[] = [];
+    const host = {
+      document: { createElement: () => ({ remove() {} }) as FakeEl, querySelector: () => null, body: { appendChild() {} },
+        head: { appendChild: (el: FakeEl) => { appended.push(el); el.onload!(); } } },
+      window: { turnstile: undefined, setTimeout, clearTimeout },
+    } as unknown as TurnstileHost;
+    await expect(loadTurnstile(host)).rejects.toThrow();
+    await expect(loadTurnstile(host)).rejects.toThrow();
+    expect(appended).toHaveLength(2);
+  });
+});

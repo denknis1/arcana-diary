@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { t } from '../i18n';
-import { buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor } from './panel';
+import { buildCreateBody, QUESTION_MAX, cleanQuestion, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor } from './panel';
 import { SITUATIONS } from './types';
 
 describe('panelConfig', () => {
@@ -64,5 +64,14 @@ describe('buildCreateBody', () => {
 
   it('names the four love situations of stage 3', () => {
     expect(SITUATIONS.map((s) => t('en')[situationKey(s)])).toEqual(['Single', 'In a relationship', 'After a breakup', "It's complicated"]);
+  });
+});
+
+describe('cleanQuestion', () => {
+  it('cuts by code points, never splitting an emoji', () => {
+    const q = 'a'.repeat(QUESTION_MAX - 1) + '😀' + 'tail';
+    const out = cleanQuestion(q);
+    expect(Array.from(out)).toHaveLength(QUESTION_MAX);
+    expect(out.endsWith('😀')).toBe(true);
   });
 });

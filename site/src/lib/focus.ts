@@ -21,7 +21,7 @@ export function handleDialogKey(event: KeyboardEvent, container: HTMLElement, on
     return;
   }
   if (event.key !== 'Tab') return;
-  const items = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((el) => !el.hasAttribute('inert'));
+  const items = Array.from(container.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((el) => el.tabIndex >= 0 && !el.closest('[hidden],[inert]'));
   const target = trapIndex(items.length, items.indexOf(document.activeElement as HTMLElement), event.shiftKey);
   if (target !== null) {
     event.preventDefault();

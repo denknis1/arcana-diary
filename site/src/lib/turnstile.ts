@@ -25,14 +25,26 @@ export function loadTurnstile(host: TurnstileHost): Promise<TurnstileApi> {
     const script = host.document.createElement('script');
     script.src = TURNSTILE_SRC;
     script.async = true;
-    script.onload = () => (host.window.turnstile ? resolve(host.window.turnstile) : reject(new Error('turnstile missing')));
+    script.onload = () => {
+      if (host.window.turnstile) {
+        resolve(host.window.turnstile);
+      } else {
+        loading = null;
+        reject(new Error('turnstile missing'));
+      }
+    };
     script.onerror = () => {
       loading = null;
       reject(new Error('turnstile script failed'));
     };
     host.document.head.appendChild(script);
   });
-  return loading;
+  const attempt = loading;
+  // A failed attempt must not stay cached (also covers onload firing before `loading` is assigned).
+  attempt.catch(() => {
+    if (loading === attempt) loading = null;
+  });
+  return attempt;
 }
 
 /** A token from an invisible widget, or null (script blocked, check failed, no answer in time). */
@@ -48,7 +60,10 @@ export async function turnstileToken(sitekey: string, host: TurnstileHost): Prom
   host.document.body.appendChild(container);
   return new Promise<string | null>((resolve) => {
     let widgetId: string | undefined;
+    let done = false;
     const finish = (token: string | null) => {
+      if (done) return;
+      done = true;
       host.window.clearTimeout(timer);
       if (widgetId) api.remove(widgetId);
       container.remove();
@@ -64,7 +79,10 @@ export async function turnstileToken(sitekey: string, host: TurnstileHost): Prom
       });
     } catch {
       finish(null);
+      return;
     }
+    // The callback may have fired inside render, before the widget id was known.
+    if (done && widgetId) api.remove(widgetId);
   });
 }
 

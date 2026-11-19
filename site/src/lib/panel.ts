@@ -60,7 +60,7 @@ export function cardsFor(kind: Kind): 1 | 3 {
 }
 
 export function cleanQuestion(question: string): string {
-  return question.trim().slice(0, QUESTION_MAX);
+  return Array.from(question.trim()).slice(0, QUESTION_MAX).join('');
 }
 
 export function buildCreateBody(config: PanelConfig, input: { kind: Kind; question: string; situation: Situation | null;

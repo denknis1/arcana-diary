@@ -18,10 +18,10 @@ export function canText(line: HelpLine): boolean {
 }
 
 export function safeUrl(url: string | undefined): string | null {
-  if (!url) return null;
+  if (!url || url !== url.trim()) return null;
   try {
     const parsed = new URL(url);
-    return parsed.protocol === 'https:' ? parsed.href : null;
+    return parsed.protocol === 'https:' && !parsed.username && !parsed.password ? parsed.href : null;
   } catch {
     return null;
   }

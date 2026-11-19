@@ -34,3 +34,11 @@ describe('help lines', () => {
     expect(canCall({ ...line, number: undefined })).toBe(false);
   });
 });
+
+describe('safeUrl rejects', () => {
+  it.each([
+    'data:text/html,<b>x</b>', '//evil.example', ' https://ok.example', 'https://user:pass@host.example',
+    'https://user@host.example', 'http://host.example', 'javascript:alert(1)',
+  ])('%s', (url) => expect(safeUrl(url)).toBeNull());
+  it('accepts a plain https address', () => expect(safeUrl('https://host.example/a')).toBe('https://host.example/a'));
+});

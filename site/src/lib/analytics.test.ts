@@ -29,11 +29,22 @@ describe('sendEvent', () => {
     const calls: Array<[string, RequestInit]> = [];
     sendEvent(event, { sendBeacon: () => false, fetch: async (url, init) => { calls.push([url, init]); } });
     expect(calls[0][0]).toBe(EVENTS_URL);
-    expect(calls[0][1]).toMatchObject({ method: 'POST', keepalive: true, credentials: 'omit' });
+    expect(calls[0][1]).toMatchObject({ method: 'POST', keepalive: true, credentials: 'same-origin' });
   });
 
   it('never throws', () => {
     expect(() => sendEvent(event, { sendBeacon: () => { throw new Error('x'); }, fetch: () => Promise.reject(new Error('y')) })).not.toThrow();
     expect(() => sendEvent(event, {})).not.toThrow();
+  });
+});
+
+describe('ms_from_draw clamp', () => {
+  it('sends an integer within 0..600000', () => {
+    const ms = (x: number) => analyticsEvent('reading_shown', 'home', 'en', { ms_from_draw: x }).params.ms_from_draw;
+    expect(ms(4200.6)).toBe(4201);
+    expect(ms(-5)).toBe(0);
+    expect(ms(9e9)).toBe(600000);
+    expect(ms(NaN)).toBe(0);
+    expect(ms(Infinity)).toBe(0);
   });
 });

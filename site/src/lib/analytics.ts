@@ -19,7 +19,12 @@ export const EVENTS_URL = '/api/events';
 
 /** plus_view carries no tool (its only parameter is `place`); every other 4.4a event names its tool. */
 export function analyticsEvent(name: EventName, tool: Tool, lang: Lang, params: Params = {}): AnalyticsEvent {
-  return { name, tool: name === 'plus_view' ? null : tool, lang, params };
+  const clean: Params = { ...params };
+  if ('ms_from_draw' in clean) {
+    const ms = Number(clean.ms_from_draw);
+    clean.ms_from_draw = Number.isFinite(ms) ? Math.min(600000, Math.max(0, Math.round(ms))) : 0;
+  }
+  return { name, tool: name === 'plus_view' ? null : tool, lang, params: clean };
 }
 
 export interface Transport {
@@ -44,7 +49,7 @@ export function sendEvent(event: AnalyticsEvent, transport: Transport = browserT
   }
   try {
     transport.fetch?.(EVENTS_URL, {
-      method: 'POST', body, headers: { 'content-type': 'application/json' }, keepalive: true, credentials: 'omit',
+      method: 'POST', body, headers: { 'content-type': 'application/json' }, keepalive: true, credentials: 'same-origin',
     })?.catch(() => {});
   } catch {
     // the counter never breaks the page
