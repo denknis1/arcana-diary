@@ -1,0 +1,82 @@
+// Today's free readings are used (screen 11a, spec 4.4a §4): a day page block — the title, the lead, the help link,
+// a white card with a gold rule ("What Plus gives you", the benefits, "tell me when it opens" by e-mail through
+// POST /api/plus/waitlist, "Not now"), then the free Card of the Day. No price on the closed stage (owner,
+// 19.11.2026); never inside the answer text.
+import { useEffect, useRef, useState } from 'preact/hooks';
+import { t } from '../../i18n';
+import { analyticsEvent, sendEvent } from '../../lib/analytics';
+import { browserFetch, createApi } from '../../lib/api';
+import { errorMessageKey, type ErrorKind } from '../../lib/errors';
+import { pagePath } from '../../lib/routes';
+import type { Lang, Tool } from '../../lib/types';
+import { HelpLine } from './HelpLine';
+
+interface Props {
+  lang: Lang;
+  tool: Tool;
+  focusOnShow?: boolean;
+}
+
+export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
+  const d = t(lang);
+  const heading = useRef<HTMLHeadingElement>(null);
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'invalid' | ErrorKind>('idle');
+  const id = `plus-${tool}`;
+
+  useEffect(() => {
+    sendEvent(analyticsEvent('plus_view', tool, lang, { place: 'limit' }));
+    if (focusOnShow) heading.current?.focus();
+  }, []);
+
+  const submit = async (event: Event) => {
+    event.preventDefault();
+    setStatus('sending');
+    const result = await createApi(browserFetch()).joinWaitlist(email.trim(), lang);
+    if (result.ok) setStatus('done');
+    else setStatus(result.status === 422 ? 'invalid' : result.error);
+  };
+
+  const error = status === 'invalid' ? d.plusEmailError
+    : status !== 'idle' && status !== 'sending' && status !== 'done' ? d[errorMessageKey(status)] : null;
+  const daily = pagePath('daily', lang);
+
+  return (
+    <div class="plus">
+      <h2 class="display" tabIndex={-1} ref={heading}>{d.plusTitle}</h2>
+      <p class="lead">{d.plusLead}</p>
+      <HelpLine lang={lang} />
+      <section class="plus__card" aria-labelledby={`${id}-title`}>
+        <h3 id={`${id}-title`}>{d.plusGives}</h3>
+        <ul>
+          <li>{d.plusBenefit1}</li>
+          <li>{d.plusBenefit2}</li>
+        </ul>
+        {status === 'done' ? (
+          <p role="status">{d.plusDone}</p>
+        ) : (
+          <form class="field" onSubmit={submit}>
+            <label for={`${id}-email`}>{d.plusEmailLabel}</label>
+            <input
+              id={`${id}-email`}
+              class="input input--day"
+              type="email"
+              autocomplete="email"
+              required
+              maxLength={254}
+              placeholder={d.plusEmailPlaceholder}
+              value={email}
+              onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
+            />
+            <div class="plus__row">
+              <button type="submit" class="btn btn--ink" disabled={status === 'sending'}>{d.plusNotify}</button>
+              <a href={daily}>{d.plusNotNow}</a>
+            </div>
+            {error ? <p role="alert">{error}</p> : null}
+          </form>
+        )}
+      </section>
+      <a class="plus__daily" href={daily}>{d.plusDaily}</a>
+    </div>
+  );
+}

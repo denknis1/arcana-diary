@@ -1,0 +1,60 @@
+---
+// The simple card page (spec 4.4a §2.2, §3) until the stage 6 template takes the same address: the picture, the
+// keywords, the upright and the reversed meaning from content/cards, the draw panel of path П2 and the
+// neighbouring cards.
+import Base from '../layouts/Base.astro';
+import CardFigure from '../components/CardFigure.astro';
+import ReadingIsland from '../islands/ReadingIsland';
+import { fill, t } from '../i18n';
+import { cardName, neighbors, type DeckCard } from '../lib/deck';
+import { cardPath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+export interface Meaning {
+  card_id: string;
+  keywords: string[];
+  upright: string;
+  reversed: string;
+}
+
+interface Props {
+  lang: Lang;
+  card: DeckCard;
+  meaning: Meaning;
+}
+
+const { lang, card, meaning } = Astro.props;
+const d = t(lang);
+const name = cardName(card, lang);
+const { prev, next } = neighbors(card);
+const eyebrow = card.arcana === 'major' ? fill(d.cardEyebrowMajor, { numeral: card.numeral }) : d.cardEyebrowMinor;
+---
+<Base lang={lang} title={fill(d.cardTitle, { name })} path={cardPath(card, lang)}>
+  <div class="card-page">
+    <div class="card-page__art">
+      <CardFigure card={card} lang={lang} sizes="(min-width: 900px) 280px, 70vw" eager />
+    </div>
+    <div class="card-page__text">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 class="display">{name}</h1>
+      <p class="keywords">{meaning.keywords.join(' · ')}</p>
+      <section aria-labelledby="upright">
+        <h2 class="h2" id="upright">{d.uprightTitle}</h2>
+        <p>{meaning.upright}</p>
+      </section>
+      <section aria-labelledby="reversed">
+        <h2 class="h2" id="reversed">{fill(d.reversedTitle, { name })}</h2>
+        <p>{meaning.reversed}</p>
+      </section>
+    </div>
+    <section aria-labelledby="draw-heading">
+      <h2 class="h2" id="draw-heading">{d.cardDrawHeading}</h2>
+      <p class="muted">{d.cardDrawLead}</p>
+      <ReadingIsland client:visible lang={lang} page="card" cardId={card.card_id} cardName={name} />
+    </section>
+  </div>
+  <nav class="card-nav" aria-label={d.cardNav}>
+    <a href={cardPath(prev, lang)}><small>{d.prevCard}</small>{prev.numeral} {cardName(prev, lang)}</a>
+    <a href={cardPath(next, lang)}><small>{d.nextCard}</small>{next.numeral} {cardName(next, lang)}</a>
+  </nav>
+</Base>
