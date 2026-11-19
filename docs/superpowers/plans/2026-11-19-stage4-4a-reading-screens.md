@@ -2661,6 +2661,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ### Task 6: Answer sections, the night-room state machine and the request flow
 
+> **Amendment after the Fable re-check (R2), required:** `restoreFollowup` must not match a saved follow-up by question text. Pass the number of answered follow-ups known before the request and accept a restored answer only when the API's `followups.length` is greater than that number (take the last one). Add a `readingFlow.test.ts` case where the same question is asked twice.
+
 **Files:**
 - Create: `site/src/lib/answer.ts`, `site/src/lib/nightRoom.ts`, `site/src/lib/readingFlow.ts`
 - Test: `site/src/lib/answer.test.ts`, `site/src/lib/nightRoom.test.ts`, `site/src/lib/readingFlow.test.ts`
@@ -5126,6 +5128,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ### Task 9: The reading island and the tool and card pages
 
+> **Amendment after the Fable re-check (R3), required:** when `402 confirm` arrives and the form unmounts, move focus to the confirm button (and give the notice `role="alert"`), so the "this will use 1 reading" notice is announced and focus never falls to `<body>`.
+
 **Files:**
 - Create: `site/src/components/ui/CardFace.tsx`, `site/src/components/ui/HelpLine.tsx`, `site/src/components/ui/CrisisView.tsx`, `site/src/components/ui/PlusCard.tsx`, `site/src/components/ui/NightRoom.tsx`, `site/src/islands/ReadingIsland.tsx`
 - Create: `site/src/views/HomeView.astro`, `site/src/views/ToolView.astro`, `site/src/views/CardView.astro`
@@ -6410,6 +6414,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ---
 
 ### Task 11: Caddy serves the pages and the 404 page of each language
+
+> **Amendments after the Fable re-check, required.** **R1 (open redirect):** restrict both redirect patterns to the site's own address characters — `^(/[a-z0-9][a-z0-9/-]*)/$` and `^(/[a-z0-9][a-z0-9/-]*)\.html$` (keep the `/index.html` rule equally strict). Add to `deploy/test-site-routes.sh`: `/%5Cexample.com/` and `/%5Cexample.com/x.html` answer 404 and neither response has a `Location` header; run it on throwaway containers and report. **R4:** keep the query string in these redirects (`/es/?utm_source=x` → `/es?utm_source=x`), with one test line.
 
 **Files:**
 - Modify: `deploy/Caddyfile`, `deploy/check-indexing.sh`
