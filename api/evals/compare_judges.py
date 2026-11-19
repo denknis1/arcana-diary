@@ -6,6 +6,7 @@
   .venv/bin/python -m evals.compare_judges judge2 <dir>             # estimate only
   .venv/bin/python -m evals.compare_judges judge2 <dir> --yes       # Gemini 4 Argon via API, within spend.json
   .venv/bin/python -m evals.compare_judges merge <dir>              # scored.json: both judges, checks, averages
+  .venv/bin/python -m evals.compare_judges merge <dir> --allow-incomplete   # leave an incomplete judge out
 
 <dir> is the run folder of step 1. export writes the judge's files into a separate blind folder next to it,
 results/judging-<8 hex>/ (fable/batch-NN.jsonl, judge-prompt.md, FABLE-INSTRUCTIONS.md): no model name, no
@@ -14,7 +15,9 @@ answers.json, no key; nothing above it is needed. blind-key.json stays in the ru
 {"n", "content"}: the judge input recorded in step 1 (category, expected group, reading input, answer).
 The 8 known-bad answers are mixed into the Fable batches blind; judge 2 grades them first and stops (exit 6) if it
 misses one, unless --force. A judge that does not give one of them its low score is not trusted: its scores are
-left out of the averages. judge2 stops after 3 failed calls in a row (exit 4), writes gemini-scores.json after
+left out of the averages ("failed"). merge stops (exit 7) while a judge is "incomplete" (a known-bad answer not
+scored, or a Fable batch missing or invalid), unless --allow-incomplete leaves that judge out. export warns about
+answers that name a model or its maker (blind ids on stderr). judge2 stops after 3 failed calls in a row (exit 4), writes gemini-scores.json after
 every answer and spend.json after every call; its calls are appended to calls.jsonl at once. It starts its meter
 from the larger of spend.json and the sum of calls.jsonl, plus every stream worker step 1 could not wait for
 (spend.json "unjoined", charged once) at the upper bound of the stage's dearest reader. After the known-bad answers
@@ -24,6 +27,7 @@ the ceiling, unless --force.
 import argparse
 import json
 import random
+import re
 import secrets
 import sys
 from pathlib import Path
@@ -37,6 +41,8 @@ from evals.metering import BudgetExceeded, Meter, MeteredProvider
 from evals.run import READER_MAX_TOKENS
 
 BATCH_SIZE = 25
+# a word that may name the answer's maker (blindness, M8): "gpt" anywhere (ChatGPT), the rest as whole words
+MAKER_WORDS = re.compile(r"gpt|(?<![a-z])(?:claude|anthropic|openai|gemini|google)(?![a-z])", re.IGNORECASE)
 JUDGES = ("fable", "gemini")
 JUDGE2_MAX_TOKENS = 6000   # thinking (low) counts inside the output limit
 JUDGE2_EFFORT = "low"
@@ -93,7 +99,7 @@ def _batches(judging: Path) -> list[Path]:
 
 
 def export(folder: Path, rng: random.Random | None = None) -> int:
-    folder = Path(folder)
+    folder = Path(folder).resolve()  # `export .` puts the blind folder beside the run folder, not inside it
     if (folder / "blind-key.json").exists():
         raise FileExistsError(f"{folder / 'blind-key.json'}: judging has started, never export twice")
     tasks = _tasks(_read(folder / "answers.json"))
@@ -116,7 +122,21 @@ def export(folder: Path, rng: random.Random | None = None) -> int:
     (judging / "FABLE-INSTRUCTIONS.md").write_text(FABLE_INSTRUCTIONS, encoding="utf-8")
     _write(folder / "blind-key.json", {"judging_dir": str(judging), "items": items})
     print(f"{len(tasks)} answers in {len(_batches(judging))} batches. Blind folder for Fable: {judging}")
+    _warn_maker_words(tasks, items)
     return 0
+
+
+def _warn_maker_words(tasks: list[dict], items: dict[str, dict]) -> None:
+    """An answer that names a model or its maker can break blindness: list those blind ids (kept, not dropped)."""
+    by_task = {(info["model"], info["id"], info["kind"]): n for n, info in items.items()}
+    hits = []
+    for task in tasks:
+        words = sorted({m.group(0).lower() for m in MAKER_WORDS.finditer(task["content"])})
+        if words:
+            hits.append(f"{by_task[(task['model'], task['id'], task['kind'])]} ({', '.join(words)})")
+    if hits:
+        print(f"Warning: {len(hits)} answer(s) name a model or its maker; read them before giving the batches to "
+              f"Fable (kept, not dropped): " + "; ".join(hits), file=sys.stderr)
 
 
 def _valid(entry: dict) -> list[str]:
@@ -295,23 +315,51 @@ def judge2(folder: Path, yes: bool, provider=None, force: bool = False) -> int:
     return 0 if left == 0 else STOPPED
 
 
-def _fable_scores(judging: Path) -> dict[str, dict]:
-    scores = {}
+def _fable_scores(judging: Path) -> tuple[dict[str, dict], list[str]]:
+    """Fable's valid scores, and the batches that are missing, not JSON or not fully valid (like check_fable)."""
+    scores, problems = {}, []
     for batch in _batches(judging):
         path = batch.with_suffix(".scores.json")
-        if path.exists():
-            for entry in _read(path):
-                if isinstance(entry, dict) and entry.get("n") and not _valid(entry):
-                    scores[entry["n"]] = {c: entry[c] for c in (*CRITERIA, "note")}
-    return scores
+        if not path.exists():
+            problems.append(f"{batch.name}: no scores")
+            continue
+        try:
+            data = _read(path)
+        except ValueError:
+            problems.append(f"{path.name}: invalid JSON")
+            continue
+        bad = validate_scores(_lines(batch), data)
+        if bad:
+            problems.append(f"{path.name}: " + "; ".join(bad[:3]))
+        for entry in data if isinstance(data, list) else []:
+            if isinstance(entry, dict) and entry.get("n") and not _valid(entry):
+                scores[entry["n"]] = {c: entry[c] for c in (*CRITERIA, "note")}
+    return scores, problems
 
 
-def merge(folder: Path) -> int:
+def _gemini_scores(folder: Path) -> tuple[dict[str, dict], list[str]]:
+    path = folder / "gemini-scores.json"
+    if not path.exists():
+        return {}, []
+    try:
+        data = _read(path)
+    except ValueError:
+        return {}, [f"{path.name}: invalid JSON"]
+    return (data, []) if isinstance(data, dict) else ({}, [f"{path.name}: not a JSON object"])
+
+
+def merge(folder: Path, allow_incomplete: bool = False) -> int:
+    """A judge is "failed" when it scored a known-bad answer above its max_score, "incomplete" when it has not
+    scored every known-bad answer or (Fable) a batch is missing or invalid, otherwise "trusted". Only trusted
+    judges are averaged. An incomplete judge stops merge (exit 7, scored.json not written) unless
+    --allow-incomplete, which leaves it out like a failed one."""
     folder = Path(folder)
     answers, key = _read(folder / "answers.json"), _key(folder)
     items = key["items"]
-    gemini_path = folder / "gemini-scores.json"
-    judges = {"fable": _fable_scores(key["judging_dir"]), "gemini": _read(gemini_path) if gemini_path.exists() else {}}
+    fable, fable_problems = _fable_scores(key["judging_dir"])
+    gemini, gemini_problems = _gemini_scores(folder)
+    judges = {"fable": fable, "gemini": gemini}
+    problems = {"fable": fable_problems, "gemini": gemini_problems}
     check_by_id = {c["id"]: c for c in answers["judge_check"]}
     checks: dict[str, list[dict]] = {j: [] for j in JUDGES}
     for n, info in items.items():
@@ -322,7 +370,21 @@ def merge(folder: Path) -> int:
             s = judges[j].get(n)
             checks[j].append({"id": check["id"], "criterion": check["criterion"], "scored": s is not None,
                               "caught": s is not None and s[check["criterion"]] <= check["max_score"]})
-    trusted = [j for j in JUDGES if checks[j] and all(c["caught"] for c in checks[j])]
+    status = {}
+    for j in JUDGES:
+        problems[j] += [f"known-bad answer {c['id']} not scored" for c in checks[j] if not c["scored"]]
+        if not checks[j] or any(c["scored"] and not c["caught"] for c in checks[j]):
+            status[j] = "failed"
+        else:
+            status[j] = "incomplete" if problems[j] else "trusted"
+    incomplete = [j for j in JUDGES if status[j] == "incomplete"]
+    if incomplete and not allow_incomplete:
+        for j in incomplete:
+            print(f"{j}: scores incomplete: " + "; ".join(problems[j][:10]), file=sys.stderr)
+        print("scored.json not written: finish the scores (check-fable, judge2), or merge with --allow-incomplete "
+              "to leave the incomplete judge out.", file=sys.stderr)
+        return INCOMPLETE
+    trusted = [j for j in JUDGES if status[j] == "trusted"]
     lookup = {(info["model"], info["id"]): n for n, info in items.items() if info["kind"] == "answer"}
     for model, results in answers["results"].items():
         for r in results:
@@ -334,17 +396,23 @@ def merge(folder: Path) -> int:
             if trusted and all(j in per for j in trusted):  # every trusted judge, or the answer is not averaged
                 r["scores"] = {c: round(mean(per[j][c] for j in trusted), 2) for c in CRITERIA}
                 r["scores"]["note"] = " | ".join(f"{j}: {s['note']}" for j, s in per.items())
-    answers["judges"] = {j: {"trusted": j in trusted, "checks": checks[j], "scored": len(judges[j])} for j in JUDGES}
+    answers["judges"] = {j: {"trusted": j in trusted, "status": status[j], "checks": checks[j],
+                             "scored": len(judges[j]), "problems": problems[j]} for j in JUDGES}
     _write(folder / "scored.json", answers)
-    print(f"scored.json written; trusted judges: {trusted or 'none'}")
+    print(f"scored.json written; trusted judges: {trusted or 'none'}"
+          + "".join(f"; {j}: {status[j]}" for j in JUDGES if status[j] != "trusted"))
     return 0
 
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description="Reader model comparison, step 2: blind judges")
     sub = parser.add_subparsers(dest="command", required=True)
-    for name in ("export", "check-fable", "merge"):
+    for name in ("export", "check-fable"):
         sub.add_parser(name).add_argument("folder", type=Path)
+    mg = sub.add_parser("merge")
+    mg.add_argument("folder", type=Path)
+    mg.add_argument("--allow-incomplete", action="store_true",
+                    help="leave a judge with missing or invalid scores out instead of stopping")
     j2 = sub.add_parser("judge2")
     j2.add_argument("folder", type=Path)
     j2.add_argument("--yes", action="store_true", help="the owner approved this cost")
@@ -357,7 +425,7 @@ def main(argv=None) -> int:
         return check_fable(args.folder)
     if args.command == "judge2":
         return judge2(args.folder, args.yes, force=args.force)
-    return merge(args.folder)
+    return merge(args.folder, allow_incomplete=args.allow_incomplete)
 
 
 if __name__ == "__main__":

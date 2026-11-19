@@ -6,8 +6,8 @@ import pytest
 
 from app.config import cost_usd
 from app.reader.provider import FakeProvider, ProviderError
-from evals.compare_judges import (BATCH_SIZE, CHECK_MISSED, JUDGE2_MAX_TOKENS, check_fable, export, judge2, merge,
-                                  validate_scores)
+from evals.compare_judges import (BATCH_SIZE, CHECK_MISSED, INCOMPLETE, JUDGE2_MAX_TOKENS, check_fable, export, judge2,
+                                  main, merge, validate_scores)
 
 FOURS = {"relevant": 4, "specific": 4, "warm": 4, "safe": 4, "note": "fine"}
 LOW = {"relevant": 1, "specific": 1, "warm": 1, "safe": 1, "note": "bad"}
@@ -156,6 +156,7 @@ def test_merge_averages_trusted_judges_and_drops_a_judge_that_misses_a_bad_answe
     assert merge(run) == 0
     scored = json.loads((run / "scored.json").read_text())
     assert scored["judges"]["fable"]["trusted"] is True and scored["judges"]["gemini"]["trusted"] is False
+    assert (scored["judges"]["fable"]["status"], scored["judges"]["gemini"]["status"]) == ("trusted", "failed")
     first = scored["results"]["model-a"][0]
     assert first["scores"]["warm"] == 4 and first["scores_by_judge"]["gemini"]["warm"] == 5
     assert "fable: fine" in first["scores"]["note"]
@@ -212,3 +213,85 @@ def test_judge2_stops_when_the_projection_does_not_fit_the_ceiling_unless_forced
     assert judge2(run, yes=True, provider=fake) == WONT_FIT and len(fake.calls) == 2  # projected from calls.jsonl
     assert judge2(run, yes=True, provider=fake, force=True) == 4  # forced: runs up to the ceiling
     assert len(json.loads((run / "gemini-scores.json").read_text())) == 20
+
+
+BAD = {**FOURS, "safe": 1, "warm": 1}
+
+
+def both_judges_pass(folder):
+    write_fable(folder, lambda info: BAD if info["kind"] == "check" else FOURS)
+    gemini = {n: BAD if info["kind"] == "check" else {**FOURS, "warm": 5} for n, info in key_of(folder)["items"].items()}
+    (folder / "gemini-scores.json").write_text(json.dumps(gemini))
+
+
+def batch_with_check(folder):
+    items = key_of(folder)["items"]
+    return next(b for b in batches(folder) if any(items[line["n"]]["kind"] == "check" for line in lines(b)))
+
+
+def test_merge_refuses_when_a_fable_batch_is_missing_or_invalid(run, capsys):
+    export(run, rng=random.Random(1))
+    both_judges_pass(run)
+    missing = batch_with_check(run)
+    missing.with_suffix(".scores.json").unlink()
+    assert merge(run) == INCOMPLETE and not (run / "scored.json").exists()
+    err = capsys.readouterr().err
+    assert "fable" in err and missing.name in err and "--allow-incomplete" in err
+    missing.with_suffix(".scores.json").write_text("[{not json")  # a broken file: a message, no traceback
+    assert merge(run) == INCOMPLETE and "invalid JSON" in capsys.readouterr().err
+    assert not (run / "scored.json").exists()
+
+
+def test_merge_refuses_when_judge2_has_not_scored_a_known_bad_answer(run, capsys):
+    export(run, rng=random.Random(1))
+    both_judges_pass(run)
+    gemini = json.loads((run / "gemini-scores.json").read_text())
+    check = next(n for n, info in key_of(run)["items"].items() if info["kind"] == "check")
+    del gemini[check]
+    (run / "gemini-scores.json").write_text(json.dumps(gemini))
+    assert main(["merge", str(run)]) == INCOMPLETE and not (run / "scored.json").exists()
+    assert "gemini" in capsys.readouterr().err
+
+
+def test_merge_allow_incomplete_leaves_the_incomplete_judge_out(run):
+    export(run, rng=random.Random(1))
+    both_judges_pass(run)
+    batch_with_check(run).with_suffix(".scores.json").write_text("[{not json")
+    assert main(["merge", str(run), "--allow-incomplete"]) == 0
+    scored = json.loads((run / "scored.json").read_text())
+    fable, gemini = scored["judges"]["fable"], scored["judges"]["gemini"]
+    assert (fable["status"], fable["trusted"]) == ("incomplete", False)
+    assert (gemini["status"], gemini["trusted"]) == ("trusted", True)
+    assert any(not c["scored"] for c in fable["checks"]) and fable["problems"]
+    assert scored["results"]["model-a"][0]["scores"]["warm"] == 5  # gemini only
+
+
+def test_a_judge_that_scored_and_missed_is_failed_not_incomplete(run):
+    export(run, rng=random.Random(1))
+    both_judges_pass(run)
+    gemini = {n: FOURS for n in key_of(run)["items"]}  # scored the known-bad answers too high
+    (run / "gemini-scores.json").write_text(json.dumps(gemini))
+    assert merge(run) == 0
+    assert json.loads((run / "scored.json").read_text())["judges"]["gemini"]["status"] == "failed"
+
+
+def test_export_warns_about_answers_that_name_a_model_maker(run, capsys):
+    answers = json.loads((run / "answers.json").read_text())
+    answers["results"]["model-a"][3]["judge_content"] = content(3).replace("answer 3", "As ChatGPT I see the Tower")
+    answers["results"]["model-b"][5]["judge_content"] = content(105).replace("answer 105", "Google says: patience")
+    answers["results"]["model-b"][6]["judge_content"] = content(106).replace("answer 106", "the Geminid shower")
+    (run / "answers.json").write_text(json.dumps(answers))
+    assert export(run, rng=random.Random(1)) == 0
+    items = key_of(run)["items"]
+    hits = {n for n, info in items.items() if (info["model"], info["id"]) in {("model-a", "en-03"), ("model-b", "en-05")}}
+    err = capsys.readouterr().err
+    assert all(n in err for n in hits) and "gpt" in err.lower() and "google" in err.lower()
+    other = next(n for n, info in items.items() if (info["model"], info["id"]) == ("model-b", "en-06"))
+    assert other not in err  # "Geminid" is not "Gemini"
+    assert len(items) == 42  # warned, not dropped
+
+
+def test_export_of_the_current_folder_puts_the_blind_folder_beside_it(run, monkeypatch):
+    monkeypatch.chdir(run)
+    assert export(Path(".")) == 0
+    assert judging(run).parent == run.resolve().parent
