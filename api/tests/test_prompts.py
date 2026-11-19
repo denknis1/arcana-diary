@@ -9,9 +9,9 @@ MARKERS = ["[[headline]]", "[[card 1]]", "[[card 2]]", "[[card 3]]", "[[synthesi
 def test_all_prompts_load_with_versions():
     assert {key: p.version for key, p in PROMPTS.items()} == {
         ("guard", None): "guard.v1",
-        ("reader", "en"): "reader.en.v1", ("reader", "es"): "reader.es.v1",
-        ("followup", "en"): "followup.en.v1", ("followup", "es"): "followup.es.v1",
-        ("daily", "en"): "daily.en.v1", ("daily", "es"): "daily.es.v1",
+        ("reader", "en"): "reader.en.v2", ("reader", "es"): "reader.es.v2",
+        ("followup", "en"): "followup.en.v2", ("followup", "es"): "followup.es.v2",
+        ("daily", "en"): "daily.en.v2", ("daily", "es"): "daily.es.v2",
     }
     assert all(len(p.text) > 500 for p in PROMPTS.values())
 
@@ -120,3 +120,12 @@ def test_reader_and_followup_have_romantic_crisis_exception(name, lang, phrase):
     on_its_own, unsure = ("[[crisis]] on its own", "When you are unsure, write [[crisis]]") if lang == "en" else (
         "[[crisis]] por sí sola", "Si dudas, escribe [[crisis]]")
     assert phrase in text and on_its_own in text and unsure in text
+
+
+def test_no_prompt_sends_the_person_to_a_specialist():
+    """Owner decision 19.11 (spec §10.9): the reader never mentions a doctor, lawyer or other specialist."""
+    for (name, lang), p in PROMPTS.items():
+        if name == "guard":
+            continue
+        assert "someone who knows finances" not in p.text and "alguien que sepa de finanzas" not in p.text
+        assert ("Never mention a doctor" in p.text) if lang == "en" else ("Nunca menciones a un médico" in p.text)

@@ -245,7 +245,7 @@ def test_judge_sends_schema_and_parses_scores():
     provider = FakeProvider(json_default=FIVES)
     prompt = load_judge_prompt()
     scores = judge(provider, prompt, {"category": "love", "expect_group": "ok"}, "<reading></reading>", "Answer.")
-    assert scores == FIVES and prompt.version == "judge.v1"
+    assert scores == FIVES and prompt.version == "judge.v2"
     [call] = provider.json_calls()
     assert call["schema"] == JUDGE_SCHEMA and call["system"] == prompt.text
     assert "<answer>\nAnswer.\n</answer>" in call["messages"][0]["content"]

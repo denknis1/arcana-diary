@@ -24,7 +24,7 @@ def test_daily_dates_cover_every_local_day_today_first():
 def test_fill_writes_every_missing_text_once(api):
     assert fill_daily_cache(api.ctx, DAY, TWO) == {"written": 8, "failed": 0, "budget": False, "stopped": False}
     rows = cache_rows(api)
-    assert len(rows) == 8 and {r["prompt_version"] for r in rows} == {"daily.en.v1", "daily.es.v1"}
+    assert len(rows) == 8 and {r["prompt_version"] for r in rows} == {"daily.en.v2", "daily.es.v2"}
     assert len(api.reader.stream_calls()) == 8
     assert fill_daily_cache(api.ctx, DAY, TWO) == {"written": 0, "failed": 0, "budget": False, "stopped": False}
     assert len(api.reader.stream_calls()) == 8
