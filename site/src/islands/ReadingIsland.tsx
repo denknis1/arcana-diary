@@ -51,7 +51,6 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool });
   const previous = useRef<NightState>(CLOSED);
   const inHistory = useRef(false); // the room's history entry is on top
-  const ownPops = useRef(0); // popstates caused by our own history.back(): already handled, ignored
   const shownFor = useRef(0); // the run that already sent reading_shown
   const roomIsOpen = useRef(false);
   const focusQuestion = useRef(false); // "Ask another question": focus the question field once the room is closed
@@ -63,11 +62,9 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     fromHash();
     if (page !== 'card') sendEvent(analyticsEvent('tool_view', config.tool, lang));
     const onPop = () => {
-      if (ownPops.current > 0) { // the result of our own step back: the room is already closed
-        ownPops.current -= 1;
-        return;
-      }
-      if (!inHistory.current) return;
+      if (!inHistory.current) return; // our own step back: the flag dropped already
+      // still on a room entry (a late step back of an earlier room landed there): the open room stays
+      if ((history.state as { arcanaNight?: boolean } | null)?.arcanaNight) return;
       inHistory.current = false;
       if (roomIsOpen.current) closeNow();
     };
@@ -156,7 +153,6 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   function stepBack() {
     if (!inHistory.current) return;
     inHistory.current = false;
-    ownPops.current += 1;
     history.back();
   }
 

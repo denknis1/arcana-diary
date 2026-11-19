@@ -31,7 +31,7 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
 
   const submit = async (event: Event) => {
     event.preventDefault();
-    if (!email.trim().includes('@')) { // the API still validates; this keeps the browser's own bubble away
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { // the API still validates; this keeps the browser's own bubble away
       setStatus('invalid');
       return;
     }
