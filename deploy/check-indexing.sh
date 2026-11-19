@@ -26,6 +26,7 @@ has_noindex() { case "$1" in *noindex*) echo yes ;; *) echo no ;; esac; }
 
 expect "api /health" "$(status "https://api.$D/health")" 200
 expect "api noindex" "$(has_noindex "$(header X-Robots-Tag "https://api.$D/health")")" yes
+expect "api. только /health" "$(status "https://api.$D/api/limits")" 404
 expect "www -> 301" "$(status "https://www.$D/some/path")" 301
 expect "www Location" "$(header Location "https://www.$D/some/path")" "https://$D/some/path"
 
@@ -36,6 +37,8 @@ if [ "$LAUNCHED" = "false" ]; then
   expect "сайт с паролем" "$(status "${AUTH[@]}" "https://$D/")" 200
   expect "сайт с паролем noindex" "$(has_noindex "$(header X-Robots-Tag "${AUTH[@]}" "https://$D/")")" yes
   expect "www noindex" "$(has_noindex "$(header X-Robots-Tag "https://www.$D/")")" yes
+  expect "/api без пароля" "$(status "https://$D/api/limits")" 401
+  expect "/api noindex" "$(has_noindex "$(header X-Robots-Tag "https://$D/api/limits")")" yes
 else
   expect "сайт открыт" "$(status "https://$D/")" 200
   expect "нет noindex в заголовке" "$(has_noindex "$(header X-Robots-Tag "https://$D/")")" no

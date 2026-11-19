@@ -9,7 +9,7 @@
 |---|---|
 | `deck.json` | 78 карт, общие для языков: `card_id`, аркан, масть, номер, римская цифра, порядок, базовый вердикт «да/нет», имя рисунка, слаги EN/ES. Собирается `python3 tools/cards/build_deck.py` из `docs/research/stage1/cards.csv` |
 | `meanings.en.json`, `meanings.es.json` | короткие значения: ключевые слова, прямое, перевёрнутое, «в любви», «как совет», строка «почему» к вердикту «да/нет», статус |
-| `yes-no-rules.json` | правило вердикта для 1 и 3 карт и подписи EN/ES; эталонная реализация — `tools/cards/yes_no.py` |
+| `yes-no-rules.json` | правило вердикта для 1 и 3 карт и подписи EN/ES; эталонная реализация — `tools/cards/yes_no.py`; API считает по тому же правилу в `api/app/cards.py`, тест `api/tests/test_cards.py` сверяет обе реализации на всех картах и сочетаниях |
 | `sources.json` | откуда взяты сканы: файл Commons, адрес, sha256, размеры |
 
 Рисунки: `site/public/cards/<slug_en>.webp` (700 × 1200), `<slug_en>@350.webp`, `<slug_en>@160.webp`, рубашка `back.svg`.

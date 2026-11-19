@@ -1,0 +1,84 @@
+{
+  "checked": "2026-11-14",
+  "countries": {
+    "US": {
+      "country": "US",
+      "lines": [
+        {"name": "988 Suicide & Crisis Lifeline", "number": "988", "channels": ["call", "sms"], "hours": "24/7",
+         "langs": ["en", "es"], "topic": "crisis", "source": "https://988lifeline.org/", "checked": "2026-11-14",
+         "verify_before_launch": false},
+        {"name": "National Domestic Violence Hotline", "number": "1-800-799-7233", "sms": "START to 88788",
+         "channels": ["call", "sms"], "hours": "24/7", "langs": ["en"], "topic": "violence",
+         "source": "https://www.thehotline.org", "checked": "2026-11-14", "verify_before_launch": false}
+      ]
+    },
+    "MX": {
+      "country": "MX",
+      "lines": [
+        {"name": "Línea de la Vida (CONASAMA)", "number": "800 911 2000", "channels": ["call"], "hours": "24/7",
+         "langs": ["es"], "topic": "crisis",
+         "source": "https://politica.expansion.mx/mexico/2025/09/10/prevencion-del-suicidio-servicios-y-numeros-de-ayuda-mexico",
+         "checked": "2026-11-14", "verify_before_launch": true},
+        {"name": "Línea de las Mujeres (Secretaría de las Mujeres)", "number": "079", "note": "opción 1",
+         "channels": ["call"], "hours": "24/7", "langs": ["es"], "topic": "violence",
+         "source": "https://www.nmas.com.mx/sociedad/nueva-linea-de-las-mujeres-numero-telefono-atencion-emergencias-violencia",
+         "checked": "2026-11-14", "verify_before_launch": true}
+      ]
+    },
+    "ES": {
+      "country": "ES",
+      "lines": [
+        {"name": "Línea 024 (Ministerio de Sanidad)", "number": "024", "channels": ["call"], "hours": "24/7",
+         "langs": ["es"], "topic": "crisis", "source": "https://www.sanidad.gob.es/linea024/home.htm",
+         "checked": "2026-11-14", "verify_before_launch": false},
+        {"name": "Emergencias", "number": "112", "channels": ["call"], "hours": "24/7", "langs": ["es"],
+         "topic": "emergency", "note": "si hay un riesgo inmediato para la vida",
+         "source": "https://www.sanidad.gob.es/linea024/home.htm", "checked": "2026-11-14",
+         "verify_before_launch": false},
+        {"name": "Servicio 016 (violencia contra las mujeres)", "number": "016",
+         "note": "gratuito; WhatsApp 600 000 016; emergencias 112", "channels": ["call", "whatsapp"],
+         "hours": "24/7", "langs": ["es"], "topic": "violence",
+         "source": "https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/igualdad/Paginas/2026/telefono-016-que-es.aspx",
+         "checked": "2026-11-18", "verify_before_launch": false}
+      ]
+    },
+    "AR": {
+      "country": "AR",
+      "lines": [
+        {"name": "Línea de Prevención del Suicidio", "number": "135", "channels": ["call"], "hours": null,
+         "langs": ["es"], "topic": "crisis", "area": "Buenos Aires y Gran Buenos Aires",
+         "source": "https://findahelpline.com/organizations/linea-de-prevencion-del-suicidio-buenos-aires",
+         "checked": "2026-11-14", "verify_before_launch": false},
+        {"name": "Línea de Prevención del Suicidio", "number": "(011) 5275-1135", "channels": ["call"],
+         "hours": null, "langs": ["es"], "topic": "crisis", "area": "todo el país",
+         "source": "https://findahelpline.com/organizations/linea-de-prevencion-del-suicidio-buenos-aires",
+         "checked": "2026-11-14", "verify_before_launch": false},
+        {"name": "Línea 144 (violencia por motivos de género)", "number": "144", "note": "gratuita, 365 días",
+         "channels": ["call"], "hours": "24/7", "langs": ["es"], "topic": "violence",
+         "source": "https://www.argentina.gob.ar/node/402275", "also": "https://www.gba.gob.ar/mujeres/linea144",
+         "checked": "2026-11-18", "verify_before_launch": false}
+      ]
+    },
+    "CO": {
+      "country": "CO",
+      "lines": [
+        {"name": "Línea 106", "number": "106", "channels": ["call"], "hours": null, "langs": ["es"],
+         "topic": "crisis",
+         "source": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/directorio-salud-mental-prevencion-suicidio-minsalud.pdf",
+         "checked": "2026-11-14", "verify_before_launch": true},
+        {"name": "Línea 155 (orientación a mujeres víctimas de violencia)", "number": "155",
+         "note": "gratuita; emergencias 123", "channels": ["call"], "hours": "24/7", "langs": ["es"],
+         "topic": "violence", "source": "https://www.policia.gov.co/noticia/linea-155-orientacion-mujeres-victimas-violencia",
+         "checked": "2026-11-18", "verify_before_launch": true}
+      ]
+    }
+  },
+  "default": {
+    "country": null,
+    "lines": [
+      {"name": "Find A Helpline", "url": "https://findahelpline.com", "channels": ["web"], "hours": null,
+       "langs": ["en", "es"], "topic": "directory", "source": "https://findahelpline.com", "checked": "2026-11-14",
+       "verify_before_launch": false}
+    ]
+  }
+}

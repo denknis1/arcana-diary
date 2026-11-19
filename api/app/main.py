@@ -1,8 +1,91 @@
-from fastapi import FastAPI
+"""Arcana Diary API: app assembly, routes, /health, background work (migrations, cleanup, card of the day)."""
+import asyncio
+import contextlib
+import logging
+from contextlib import asynccontextmanager
 
-app = FastAPI(title="Arcana Diary API", docs_url=None, redoc_url=None, openapi_url=None)
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from starlette.datastructures import MutableHeaders
+
+from app.config import Settings, load_settings
+from app.context import build_context
+from app.db import DatabaseUnavailable
+from app.housekeeping import run_background
+from app.routes import daily, followups, readings
+from app.routes import limits as limits_routes
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
+log = logging.getLogger("arcana")
 
 
-@app.get("/health")
-def health() -> dict[str, str]:
-    return {"status": "ok"}
+class ApiHeaders:
+    """Plain ASGI middleware (no buffering, safe for SSE): /api/* answers are never cached, never indexed and
+    send no Referer onwards (§8.3)."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] != "http" or not scope["path"].startswith("/api/"):
+            await self.app(scope, receive, send)
+            return
+
+        async def send_with_headers(message):
+            if message["type"] == "http.response.start":
+                headers = MutableHeaders(scope=message)
+                headers["Cache-Control"] = "no-store"
+                headers["Referrer-Policy"] = "no-referrer"
+                headers["X-Robots-Tag"] = "noindex, nofollow"
+            await send(message)
+
+        await self.app(scope, receive, send_with_headers)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    ctx = app.state.ctx
+    task = asyncio.create_task(run_background(ctx)) if ctx.settings.database_url else None
+    app.state.background_task = task
+    try:
+        yield
+    finally:
+        if task is not None:
+            task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await task
+
+
+async def db_unavailable(request: Request, exc: DatabaseUnavailable) -> JSONResponse:
+    log.error("database unavailable: %s", exc)
+    return JSONResponse(status_code=503, content={"reason": "db"})
+
+
+async def invalid_request(request: Request, exc: RequestValidationError) -> JSONResponse:
+    """One shape for every 422: {"reason": ..., "fields": [...]} (the input itself is never echoed)."""
+    fields = [".".join(str(part) for part in error["loc"][1:]) for error in exc.errors()]
+    return JSONResponse(status_code=422, content={"reason": "invalid", "fields": fields})
+
+
+def create_app(settings: Settings | None = None, *, reader=None, guard_provider=None, turnstile=None,
+               clock=None) -> FastAPI:
+    app = FastAPI(title="Arcana Diary API", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
+    app.state.ctx = build_context(settings or load_settings(), reader=reader, guard_provider=guard_provider,
+                                  turnstile=turnstile, clock=clock)
+    app.add_exception_handler(DatabaseUnavailable, db_unavailable)
+    app.add_exception_handler(RequestValidationError, invalid_request)
+    app.add_middleware(ApiHeaders)
+    app.include_router(readings.router)
+    app.include_router(followups.router)
+    app.include_router(limits_routes.router)
+    app.include_router(daily.router)
+
+    @app.get("/health")
+    def health() -> dict[str, str]:
+        return {"status": "ok"}
+
+    return app
+
+
+app = create_app()

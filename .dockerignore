@@ -1,0 +1,9 @@
+# Build context is the repo root (deploy/docker-compose.yml → api.build.context: ..); only what the API needs.
+*
+!api/requirements.txt
+!api/app
+!api/migrations
+!content/cards
+!tools/cards/banned_terms.json
+**/__pycache__
+**/*.pyc

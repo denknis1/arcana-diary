@@ -1,0 +1,113 @@
+{
+  "self_harm": {
+    "en": [
+      "suicid*", "kill myself", "killing myself", "end my life", "ending my life", "take my own life",
+      "want to die", "wanna die", "wish i was dead", "wish i were dead", "better off dead",
+      "everyone would be better off without me", "everyone be better off without me",
+      "everybody would be better off without me", "world would be better off without me", "no reason to live",
+      "no point in living", "no point living", "not worth living", "don't want to live", "dont want to live",
+      "do not want to live", "don't want to be alive", "dont want to be alive", "can't go on anymore",
+      "cant go on anymore", "cannot go on anymore", "can't go on any more", "cant go on any more",
+      "cannot go on any more", "dont wanna live", "don't wanna live", "do not wanna live", "don't want to live in this world",
+      "dont want to live in this world", "do not want to live in this world", "don't wanna live in this world",
+      "dont wanna live in this world", "do not wanna live in this world", "self harm", "self-harm", "self harming", "cut myself on purpose",
+      "been cutting myself", "started cutting myself", "cut my wrists", "slit my wrists", "hang myself",
+      "take an overdose", "took an overdose", "overdose on pills"
+    ],
+    "es": [
+      "suicid*", "me quiero matar", "quiero matarme", "quitarme la vida", "acabar con mi vida",
+      "terminar con mi vida", "quiero morir", "quiero morirme", "me quiero morir", "quisiera morirme",
+      "quisiera estar muert*", "no quiero vivir", "no quiero seguir viviendo", "no vale la pena vivir",
+      "sin razón para vivir", "todos estarían mejor sin mí", "todos estarán mejor sin mí",
+      "el mundo estaría mejor sin mí", "cortarme las venas", "autolesi*", "tomarme todas las pastillas",
+      "tomar una sobredosis", "tomarme una sobredosis", "me tomé una sobredosis",
+      "me voy a pegar un tiro", "quiero pegarme un tiro", "pegarme un tiro", "ya no quiero existir",
+      "no quiero existir", "no quiero vivir en este mundo", "no quiero seguir viviendo en este mundo"
+    ]
+  },
+  "violence": {
+    "en": [
+      "my husband hits me", "my husband hit me", "my husband beats me", "my wife hits me", "my wife hit me",
+      "my wife beats me", "my partner hits me", "my partner hit me", "my partner beats me",
+      "my boyfriend hits me", "my boyfriend hit me", "my boyfriend beats me", "my girlfriend hits me",
+      "my girlfriend hit me", "my girlfriend beats me", "my dad hits me", "my dad hit me", "my dad beats me",
+      "my mom hits me", "my mom hit me", "my mom beats me", "my ex hits me", "my ex hit me", "my ex beats me",
+      "abuses me", "abusing me", "raped", "sexually assaulted", "threatens to kill me",
+      "threatened to kill me", "afraid he will kill me", "afraid she will kill me",
+      "husband is hitting me", "stepfather hits me", "stepfather beats me",
+      "my husband has been hitting me", "my boyfriend has been hitting me", "my partner has been hitting me", "my ex has been hitting me", "my father has been hitting me", "my dad has been hitting me", "my stepfather has been hitting me", "my husband slapped me", "my boyfriend slapped me", "my partner slapped me",
+      "hit me up against", "hits me up against"
+    ],
+    "es": [
+      "mi esposo me pega", "mi esposo me pegó", "mi esposo me golpea", "mi esposo me golpeó",
+      "mi esposo me maltrata", "mi esposa me pega", "mi esposa me pegó", "mi esposa me golpea",
+      "mi esposa me golpeó", "mi esposa me maltrata", "mi pareja me pega", "mi pareja me pegó",
+      "mi pareja me golpea", "mi pareja me golpeó", "mi pareja me maltrata", "mi novio me pega",
+      "mi novio me pegó", "mi novio me golpea", "mi novio me golpeó", "mi novio me maltrata",
+      "mi novia me pega", "mi novia me pegó", "mi novia me golpea", "mi novia me golpeó",
+      "mi novia me maltrata", "mi marido me pega", "mi marido me pegó", "mi marido me golpea",
+      "mi marido me golpeó", "mi marido me maltrata", "mi papá me pega", "mi papá me pegó",
+      "mi papá me golpea", "mi papá me golpeó", "mi papá me maltrata", "mi mamá me pega", "mi mamá me pegó",
+      "mi mamá me golpea", "mi mamá me golpeó", "mi mamá me maltrata", "mi padrastro me pega",
+      "mi padrastro me pegó", "mi padrastro me golpea", "mi padrastro me golpeó", "mi padrastro me maltrata",
+      "mi ex me pega", "mi ex me pegó", "mi ex me golpea", "mi ex me golpeó", "mi ex me maltrata",
+      "me golpean", "abusa de mí", "abusó de mí", "me violó", "me violaron", "me amenaza con matarme",
+      "mi esposo me pegaba", "mi esposo me golpeaba", "mi marido me pegaba", "mi marido me golpeaba", "mi novio me pegaba", "mi novio me golpeaba", "mi pareja me pegaba", "mi pareja me golpeaba", "mi papá me pegaba", "mi papá me golpeaba", "mi padrastro me pegaba", "mi padrastro me golpeaba", "mi ex me pegaba", "mi ex me golpeaba", "mi mamá me pegaba", "mi mamá me golpeaba", "mi esposa me pegaba", "mi esposa me golpeaba", "mi novia me pegaba", "mi novia me golpeaba"
+    ]
+  },
+  "ask_model_self_harm": {
+    "en": [
+      "end it all", "hurt myself", "hurting myself", "harm myself", "harming myself", "better off without me",
+      "can't go on like this", "cant go on like this", "want to disappear forever",
+      "don't want to be here anymore", "do not want to be here anymore", "dont want to be here anymore"
+    ],
+    "es": [
+      "matarme", "hacerme daño", "lastimarme", "mejor sin mí", "ya no quiero estar aquí", "me voy a matar",
+      "desaparecer para siempre"
+    ]
+  },
+  "ask_model_violence": {
+    "en": [
+      "he hits me", "she hits me", "want to kill him", "want to kill her", "he hit me", "she hit me",
+      "he beats me", "she beats me", "has been hitting me", "slapped me"
+    ],
+    "es": [
+      "me pega cuando", "me golpea cuando", "quiero matarlo", "quiero matarla", "él me pega", "ella me pega",
+      "me pegó", "me maltratan", "me pegaba", "me golpeaba"
+    ]
+  },
+  "ask_model_continuations": {
+    "en": [
+      "don't want to live with", "don't want to live in", "don't want to live here",
+      "don't want to live there", "dont want to live with", "dont want to live in", "dont want to live here",
+      "dont want to live there", "do not want to live with", "do not want to live in",
+      "do not want to live here", "do not want to live there",
+      "don't want to live without", "dont want to live without", "do not want to live without",
+      "don't wanna live with", "don't wanna live in", "don't wanna live here", "don't wanna live there",
+      "don't wanna live without", "dont wanna live with", "dont wanna live in", "dont wanna live here",
+      "dont wanna live there", "dont wanna live without", "do not wanna live with", "do not wanna live in",
+      "do not wanna live here", "do not wanna live there", "do not wanna live without",
+      "don't want to die alone", "dont want to die alone", "do not want to die alone", "don't wanna die alone", "don't want to live alone", "don't want to live together", "dont want to live alone", "dont want to live together", "do not want to live alone", "do not want to live together", "don't wanna live alone", "don't wanna live together", "dont wanna live alone", "dont wanna live together", "do not wanna live alone", "do not wanna live together", "can't go on anymore without", "can't go on any more without", "cannot go on anymore without", "cannot go on any more without", "cant go on anymore without", "cant go on any more without",
+      "dont wanna die alone", "do not wanna die alone"
+    ],
+    "es": [
+      "no quiero vivir con", "no quiero vivir en", "no quiero vivir aquí", "no quiero vivir ahí",
+      "no quiero vivir allá", "no quiero seguir viviendo con", "no quiero seguir viviendo en",
+      "no quiero seguir viviendo aquí", "no quiero seguir viviendo ahí", "no quiero seguir viviendo allá",
+      "no quiero vivir sin", "no quiero seguir viviendo sin",
+      "no quiero morir sola", "no quiero vivir sola", "no quiero vivir solo", "no quiero vivir juntos", "no quiero vivir juntas", "no quiero existir sin", "no quiero morir solo", "no quiero morirme sola", "no quiero morirme solo"
+    ]
+  },
+  "exclude": {
+    "en": [
+      "hit me up", "hits me up", "kill myself laughing", "killing myself laughing", "suicide squad"
+    ],
+    "es": [
+      "se me pegó", "se me pega", "se me pegaba", "pegaba los cuernos", "me pegaba el sol", "el sol me pegaba",
+      "me pegaba un susto", "morir de la vergüenza", "morir de vergüenza", "morirme de la vergüenza",
+      "morirme de vergüenza", "morir de risa", "morirme de risa", "matarme de risa", "morir de ganas",
+      "morirme de ganas", "morir de hambre", "morirme de hambre", "morir de sueño", "morirme de sueño",
+      "morir de calor", "morirme de calor", "morir de frío", "morirme de frío"
+    ]
+  }
+}
