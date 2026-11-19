@@ -95,7 +95,7 @@ describe('the answer', () => {
     s = nightReducer(s, { type: 'restoring' });
     expect(statusKey(s)).toBe('restoring');
     const view = {
-      answer: { headline: 'Whole' }, answer_shown: 'model', retries_left: 0, soft_line: null, followups_left: 2,
+      id: 'r1', answer: { headline: 'Whole' }, answer_shown: 'model', retries_left: 0, soft_line: null, followups_left: 2,
       followup_attempts_left: 8,
     } as unknown as ReadingView;
     s = nightReducer(s, { type: 'restored', view });
@@ -121,7 +121,7 @@ describe('the answer', () => {
   });
 
   it('restores a crisis reading as the crisis answer', () => {
-    const view = { ...CRISIS, answer_shown: 'crisis' } as unknown as ReadingView;
+    const view = { ...CRISIS, id: 'r1', answer_shown: 'crisis' } as unknown as ReadingView;
     expect(run([{ type: 'open' }, created(true), { type: 'restored', view }]).phase).toBe('crisis');
   });
 });
@@ -212,5 +212,24 @@ describe('transitionEvents', () => {
       s = next;
     }
     expect(seen).toEqual(['night_open', 'cards_revealed', 'reading_shown']);
+  });
+});
+
+describe('guards', () => {
+  const view = { id: 'other', status: 'done', answer: { headline: 'X' }, answer_shown: 'model', followups_left: 2,
+    followup_attempts_left: 8, cards: [], kind: 'three', verdict: null, soft_line: null, retries_left: 0 } as unknown as ReadingView;
+
+  it('ignores a restored answer of another reading', () => {
+    const s = run([{ type: 'open' }, created(true), { type: 'restored', view }]);
+    expect(s.stream).toBe('waiting');
+    expect(s.answer.started).toBe(false);
+  });
+
+  it('applies followupLost and followupCancel only in the reading phase', () => {
+    const crisis = run([{ type: 'open' }, created(true), { type: 'crisis', payload: CRISIS }]);
+    expect(run([{ type: 'followupLost' }], crisis)).toBe(crisis);
+    expect(run([{ type: 'followupCancel' }], crisis)).toBe(crisis);
+    expect(run([{ type: 'followupLost' }])).toBe(CLOSED);
+    expect(run([{ type: 'followupCancel' }])).toBe(CLOSED);
   });
 });

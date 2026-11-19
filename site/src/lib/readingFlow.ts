@@ -59,7 +59,9 @@ export async function streamReading(deps: FlowDeps, id: string, tz: string | und
   const end = mode === 'stream' ? await deps.api.streamReading(id, tz, onEvent) : await deps.api.retryReading(id, tz, onEvent);
   if (end.type === 'error') {
     if (mode === 'retry' && restoreOnLoss) await restoreReading(deps, id, tz); // a refused retry keeps the saved answer
-    else deps.dispatch({ type: 'failed', error: end.error });
+    else if (mode === 'stream' && restoreOnLoss && (end.error === 'unavailable' || end.error === 'network')) {
+      await restoreReading(deps, id, tz); // the reading is created and counted, the API keeps writing it
+    } else deps.dispatch({ type: 'failed', error: end.error });
     return;
   }
   if (crisis) return;
@@ -110,13 +112,17 @@ export async function loadCounts(deps: FlowDeps, id: string, tz: string | undefi
 
 /** A follow-up stream broke: read the answer the API saved (it is listed once it is complete). `answeredBefore` is
  * how many answered follow-ups the room knew before the request; a restored answer counts only when the API
- * lists more than that (never matched by question text: the same question may be asked twice). */
-export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore: number, tz: string | undefined): Promise<void> {
+ * lists more than that (never matched by question text: the same question may be asked twice).
+ * `n` is the follow-up number from the stream's `meta` event, when it arrived: then only the saved follow-up with
+ * exactly that `n` counts (a newer-but-other one never does); without it the `answeredBefore` rule is the fallback. */
+export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore: number, tz: string | undefined,
+  n?: number): Promise<void> {
   for (let attempt = 0; attempt < RESTORE_TRIES; attempt++) {
     const result = await deps.api.getReading(id, tz);
     if (result.ok) {
       const list = result.data.followups ?? [];
-      const saved = list.length > answeredBefore ? list[list.length - 1] : undefined;
+      const saved = n !== undefined ? list.find((f) => f.n === n)
+        : list.length > answeredBefore ? list[list.length - 1] : undefined;
       if (saved && saved.answer) {
         deps.dispatch({ type: 'followupRestored', followup: saved });
         deps.dispatch({ type: 'counts', counts: {
@@ -134,16 +140,24 @@ export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore
 }
 
 export async function askFollowup(deps: FlowDeps, id: string, question: string, tz: string | undefined,
-  useReading: boolean, answeredBefore = 0): Promise<void> {
+  useReading: boolean, answeredBefore: number): Promise<void> {
   deps.dispatch({ type: 'followupAsk', question });
   let done = false;
+  let crisis = false;
+  let n: number | undefined;
   const result = await deps.api.postFollowup(id, followupBody(question, tz, useReading), (event) => {
     if (event.event === 'done') done = true;
+    if (event.event === 'crisis') crisis = true; // the API deletes that follow-up: nothing to restore
+    if (event.event === 'meta') {
+      const num = (event.data as { followup?: unknown } | null)?.followup;
+      if (typeof num === 'number') n = num;
+    }
     deps.dispatch({ type: 'followupEvent', event });
   });
   if (result.type === 'refused') {
     deps.dispatch({ type: 'followupRefused', question, refusal: result.refusal });
     return;
   }
-  if (!done) await restoreFollowup(deps, id, answeredBefore, tz); // broken request or stream, or no `done`
+  if (crisis) return;
+  if (!done) await restoreFollowup(deps, id, answeredBefore, tz, n); // broken request or stream, or no `done`
 }

@@ -121,6 +121,22 @@ describe('a broken stream', () => {
   });
 });
 
+describe('opening stream answers with an HTTP error', () => {
+  it('restores the saved answer when the stream answers 503', async () => {
+    const h = harness(jsonResponse(201, CREATED), jsonResponse(503, { reason: 'db' }), jsonResponse(200, VIEW));
+    await startReading(h.deps, { lang: 'en', kind: 'one' });
+    expect(h.state()).toMatchObject({ phase: 'reading', stream: 'done' });
+    expect(h.state().answer.sections.headline).toBe('Slow down.');
+  });
+
+  it('keeps other error kinds as errors', async () => {
+    const h = harness(jsonResponse(201, CREATED), jsonResponse(404, {}));
+    await startReading(h.deps, { lang: 'en', kind: 'one' });
+    expect(h.state()).toMatchObject({ phase: 'error', error: 'gone' });
+    expect(h.calls).toHaveLength(2);
+  });
+});
+
 describe('askFollowup', () => {
   const ready = (...responses: Array<Response | Error>) => {
     const h = harness(...responses);
@@ -133,7 +149,7 @@ describe('askFollowup', () => {
   it('sends the question with the same tz and streams the answer', async () => {
     const h = ready(sseResponse(sseText([['text', { name: 'followup', text: 'Yes, gently.' }],
       ['done', { answer_shown: 'model', followups_left: 1, followup_attempts_left: 7 }]])));
-    await askFollowup(h.deps, 'r1', 'And work?', 'Europe/Madrid', false);
+    await askFollowup(h.deps, 'r1', 'And work?', 'Europe/Madrid', false, 0);
     expect(h.calls[0].body).toEqual({ question: 'And work?', tz: 'Europe/Madrid', use_reading: false });
     expect(h.state().followups[0]).toMatchObject({ text: 'Yes, gently.', status: 'done' });
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
@@ -142,9 +158,9 @@ describe('askFollowup', () => {
   it('asks for confirmation on 402 confirm and sends use_reading only after it', async () => {
     const h = ready(jsonResponse(402, { reason: 'confirm', remaining: 2 }),
       sseResponse(sseText([['done', { answer_shown: 'model', followups_left: 0, followup_attempts_left: 5, used_reading: true }]])));
-    await askFollowup(h.deps, 'r1', 'More?', undefined, false);
+    await askFollowup(h.deps, 'r1', 'More?', undefined, false, 0);
     expect(h.state().confirm).toEqual({ question: 'More?', remaining: 2 });
-    await askFollowup(h.deps, 'r1', 'More?', undefined, true);
+    await askFollowup(h.deps, 'r1', 'More?', undefined, true, 0);
     expect(h.calls[1].body).toEqual({ question: 'More?', use_reading: true });
     expect(h.state().remaining).toBe(1);
   });
@@ -154,7 +170,7 @@ describe('askFollowup', () => {
     const h = ready(brokenSseResponse(sseText([['text', { name: 'followup', text: 'Sav' }]])),
       jsonResponse(200, { ...VIEW, status: 'done' }),
       jsonResponse(200, { ...VIEW, followups: [saved], followups_left: 1, followup_attempts_left: 7 }));
-    await askFollowup(h.deps, 'r1', ' q ', undefined, false);
+    await askFollowup(h.deps, 'r1', ' q ', undefined, false, 0);
     expect(h.state().followups[0]).toMatchObject({ text: 'Saved answer.', status: 'done' });
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
     expect(h.state().followupError).toBeNull();
@@ -163,7 +179,7 @@ describe('askFollowup', () => {
   it('restores via GET when the follow-up request itself fails before any answer', async () => {
     const saved = { n: 1, question: 'q', answer: 'Saved anyway.', soft_line: null };
     const h = ready(new TypeError('offline'), jsonResponse(200, { ...VIEW, followups: [saved], followups_left: 1, followup_attempts_left: 7 }));
-    await askFollowup(h.deps, 'r1', 'q', undefined, false);
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
     expect(h.calls.map((c) => c.url)).toEqual(['/api/readings/r1/followups', '/api/readings/r1']);
     expect(h.state().followups[0]).toMatchObject({ text: 'Saved anyway.', status: 'done' });
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
@@ -182,7 +198,7 @@ describe('askFollowup', () => {
   it('on a lost follow-up dispatches followupLost, then reloads the counts', async () => {
     const h = ready(brokenSseResponse(''), ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, VIEW)),
       jsonResponse(200, { ...VIEW, followups_left: 0, followup_attempts_left: 6 }));
-    await askFollowup(h.deps, 'r1', 'q', undefined, false);
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
     const types = h.actions.map((a) => a.type);
     expect(types.slice(-2)).toEqual(['followupLost', 'counts']);
   });
@@ -190,10 +206,38 @@ describe('askFollowup', () => {
   it('gives up on a lost follow-up after a bounded number of tries and resyncs the counts', async () => {
     const h = ready(brokenSseResponse(''), ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, VIEW)),
       jsonResponse(200, { ...VIEW, followups_left: 1, followup_attempts_left: 7 }));
-    await askFollowup(h.deps, 'r1', 'q', undefined, false);
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
     expect(h.state().followups[0].status).toBe('failed');
     expect(h.state().followupError).toBe('network');
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
+  });
+
+  it('with the number from meta restores exactly that follow-up, never an earlier one', async () => {
+    const f = (n: number) => ({ n, question: 'q', answer: `A${n}`, soft_line: null });
+    const stale = () => jsonResponse(200, { ...VIEW, followups: [f(1), f(2)] });
+    const h = ready(brokenSseResponse(sseText([['meta', { followup: 3 }]])), stale(), stale(), stale(),
+      jsonResponse(200, { ...VIEW, followups: [f(1), f(2), f(3)], followups_left: 0, followup_attempts_left: 5 }));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 1);
+    expect(h.calls).toHaveLength(5);
+    expect(h.state().followups.at(-1)).toMatchObject({ text: 'A3', status: 'done' });
+  });
+
+  it('with the number from meta and that follow-up never listed, ends lost and reloads the counts', async () => {
+    const f = (n: number) => ({ n, question: 'q', answer: `A${n}`, soft_line: null });
+    const h = ready(brokenSseResponse(sseText([['meta', { followup: 3 }]])),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [f(1), f(2)] })),
+      jsonResponse(200, { ...VIEW, followups: [f(1), f(2)], followups_left: 0, followup_attempts_left: 4 }));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 1);
+    expect(h.actions.map((a) => a.type).slice(-2)).toEqual(['followupLost', 'counts']);
+    expect(h.state().followups.at(-1)?.status).toBe('failed');
+    expect(h.state().counts).toEqual({ followups_left: 0, followup_attempts_left: 4 });
+  });
+
+  it('does not poll for a restore after a crisis in a broken follow-up stream', async () => {
+    const h = ready(brokenSseResponse(sseText([['meta', { followup: 1 }], ['crisis', { group: 'crisis' }]])));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.calls).toHaveLength(1);
+    expect(h.state()).toMatchObject({ phase: 'crisis', followupError: null });
   });
 
   it('offers follow-ups with the defaults when the counts cannot be read', async () => {

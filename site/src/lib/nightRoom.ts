@@ -110,6 +110,7 @@ export function nightReducer(state: NightState, action: NightAction): NightState
     case 'restored': {
       if (state.phase !== 'reading') return state;
       const { view } = action;
+      if (state.reading && view.id !== state.reading.id) return state; // a late answer of another reading
       if (view.answer_shown === 'crisis') return toCrisis(state, view as unknown as CrisisPayload);
       return {
         ...state, answer: answerFromView(view), stream: 'done', softLine: view.soft_line ?? state.softLine,
@@ -124,7 +125,7 @@ export function nightReducer(state: NightState, action: NightAction): NightState
       if (state.phase !== 'reading') return state;
       return { ...state, confirm: null, followupError: null, followupPlus: false, followups: [...state.followups, newFollowup(action.question)] };
     case 'followupCancel':
-      return { ...state, confirm: null };
+      return state.phase === 'reading' ? { ...state, confirm: null } : state;
     case 'followupEvent': {
       if (state.phase !== 'reading' || state.followups.length === 0) return state;
       const update = applyFollowupEvent(state.followups[state.followups.length - 1], action.event);
@@ -151,6 +152,7 @@ export function nightReducer(state: NightState, action: NightAction): NightState
         ...f, text: action.followup.answer ?? '', softLine: action.followup.soft_line, status: 'done',
       }));
     case 'followupLost':
+      if (state.phase !== 'reading') return state;
       return lastFollowup({ ...state, followupError: 'network' }, (f) => (f.status === 'streaming' ? { ...f, status: 'failed' } : f));
     case 'close':
       return CLOSED;
