@@ -3,14 +3,22 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
+before="$(sha256sum "$0")"
 git pull --ff-only
+# git pull мог заменить сам deploy.sh: тогда запускаем свежую версию (один раз), иначе новые строки не сработают
+if [ -z "${DEPLOY_REEXEC:-}" ] && [ "$before" != "$(sha256sum "$0")" ]; then
+  DEPLOY_REEXEC=1 exec "$0" "$@"
+fi
 deploy/gen-stage-auth.sh
 deploy/build-site.sh
 cd deploy
 docker compose up -d --build
-# одиночный bind-mount Caddyfile держит старый файл после git pull: при отличии пересоздаём Caddy
-docker compose exec -T caddy cat /etc/caddy/Caddyfile | cmp -s - Caddyfile || docker compose up -d --force-recreate caddy
-docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
+# одиночный bind-mount Caddyfile держит старый файл после git pull: при отличии пересоздаём Caddy, иначе reload
+if docker compose exec -T caddy cat /etc/caddy/Caddyfile | cmp -s - Caddyfile; then
+  docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile --adapter caddyfile
+else
+  docker compose up -d --force-recreate caddy
+fi
 # Первый выпуск сертификата Let's Encrypt может занять до минуты.
 for attempt in 1 2 3 4 5 6; do
   if ./check-indexing.sh; then exit 0; fi

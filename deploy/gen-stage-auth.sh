@@ -11,11 +11,14 @@ OUT="${OUT:-$DIR/caddy/stage_auth.caddy}"
 set -a; . "$ENV_FILE"; set +a
 hash="$(docker run --rm caddy:2.8.4 caddy hash-password --plaintext "$STAGE_PASSWORD")"
 secret="$(od -An -N32 -tx1 /dev/urandom | tr -d ' \n')"
+[ ${#secret} -eq 64 ] || { echo "no secret" >&2; exit 1; }
 umask 077
+tmp="$(mktemp "$OUT.XXXXXX")"
 {
   printf 'vars stage_cookie "ad_stage=%s; Path=/; Max-Age=604800; Secure; HttpOnly; SameSite=Lax"\n' "$secret"
   printf '@stage_locked not header_regexp Cookie `(^|;\\s*)ad_stage=%s(;|$)`\n' "$secret"
   printf 'basic_auth @stage_locked {\n\t%s %s\n}\n' "$STAGE_USER" "$hash"
-} > "$OUT"
-chmod 600 "$OUT"
+} > "$tmp"
+chmod 600 "$tmp"
+mv "$tmp" "$OUT"
 echo "stage_auth.caddy обновлён"
