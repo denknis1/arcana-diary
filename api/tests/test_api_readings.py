@@ -125,21 +125,21 @@ def test_stream_sends_sections_and_saves_answer(api):
     body = create(api, kind="three", question="How can I settle into my new team?", topic="work")
     events = stream(api, body["id"])
     assert events[0][0] == "meta" and events[0][1]["replay"] is False
-    assert events[0][1]["prompt_version"] == "reader.en.v4"
+    assert events[0][1]["prompt_version"] == "reader.en.v5"
     assert [d["name"] for e, d in events if e == "section"] == ["headline", "card1", "card2", "card3", "synthesis",
                                                                  "step"]
     assert events[-1] == ("done", {"answer_shown": "model"})
     row = saved(api, body["id"])
     assert row["answer_shown"] == "model" and row["answer"]["fallback"] is None
     assert row["answer"]["model"] == stream_sections(events)
-    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v4")
+    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v5")
     [call] = api.reader.stream_calls()
     assert call["system"] == api.ctx.prompts[("reader", "en")].text
     assert '<cards count="3">' in call["messages"][0]["content"]
     with api.db.connect() as conn:
         log_row = conn.execute("SELECT * FROM llm_calls WHERE purpose = 'reader'").fetchone()
     assert log_row["reading_id"] == uuid.UUID(body["id"]) and log_row["tokens_in"] == 120
-    assert log_row["prompt_version"] == "reader.en.v4" and log_row["ms_first_token"] is not None
+    assert log_row["prompt_version"] == "reader.en.v5" and log_row["ms_first_token"] is not None
     assert log_row["created_at"] == api.clock()
 
 

@@ -2,8 +2,10 @@ import pytest
 
 from app.cards import load_cards
 from app.config import load_settings
+from datetime import date
+
 from app.reader.compose import (NO_QUESTION, SITUATIONS, answer_text, daily_messages, followup_messages,
-                                load_prompt, reader_messages, reading_input)
+                                history_block, load_prompt, reader_messages, reading_input)
 from helpers import make_reading
 
 BASE = load_cards(load_settings({}).content_dir)
@@ -108,3 +110,30 @@ def test_answer_text_follows_section_order():
 def test_situation_keys():
     assert set(SITUATIONS) == {"single", "relationship", "after_breakup", "complicated"}
     assert all(set(labels) == {"en", "es"} for labels in SITUATIONS.values())
+
+
+
+HISTORY = [{"day": date(2026, 11, 1), "question": "Will <b>he</b> call?", "headline": "A pause & a breath."},
+           {"day": date(2026, 11, 9), "question": None, "headline": None}]
+
+
+def test_history_block_escapes_the_persons_text():
+    assert history_block(HISTORY, "en") == "\n".join([
+        "<history>",
+        '<past date="2026-11-01">', "<past_question>Will &lt;b&gt;he&lt;/b&gt; call?</past_question>",
+        "<past_headline>A pause &amp; a breath.</past_headline>", "</past>",
+        '<past date="2026-11-09">', "<past_question>(no question)</past_question>", "<past_headline></past_headline>",
+        "</past>",
+        "</history>"])
+    assert "<past_question>(sin pregunta)</past_question>" in history_block(HISTORY, "es")
+
+
+def test_history_goes_before_the_reading_in_the_first_message():
+    reading, ex = three()
+    plain = reading_input(reading, ex, None)
+    [msg] = reader_messages(reading, ex, None, HISTORY)
+    assert msg["content"] == history_block(HISTORY, "en") + "\n" + plain
+    assert reader_messages(reading, ex, None, []) == reader_messages(reading, ex, None)
+    msgs = followup_messages(reading, ex, None, "First answer.", [], "And now?", "ok", HISTORY)
+    assert msgs[0]["content"] == msg["content"] and msgs[1]["content"] == "First answer."
+    assert followup_messages(reading, ex, None, "First answer.", [], "And now?", "ok")[0]["content"] == plain

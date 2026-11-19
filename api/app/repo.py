@@ -47,6 +47,19 @@ def save_crisis(conn, reading_id, model: str | None, prompt_version: str) -> Non
                  (Jsonb(EMPTY_ANSWER), model, prompt_version, reading_id))
 
 
+def topic_history(conn, user_id, topic: str, before, exclude_id, limit: int) -> list[dict]:
+    """Stage 4.3 §7: the account's latest earlier answered readings on the same topic, oldest first. Only what the
+    reader may see is selected — the time, the question and the stored answer (for its headline); never the note
+    or the outcome. A crisis answer has no topic (save_crisis), so it never matches. Only guard_group 'ok': a
+    question the check redirected (health, safety, another person, money) must not come back by name in a later
+    reading, where the rule "do not name what you decline" no longer knows about it."""
+    rows = conn.execute(
+        "SELECT created_at, question, answer, answer_shown FROM readings WHERE user_id = %s AND topic = %s"
+        " AND id <> %s AND created_at < %s AND answer_shown IN ('model', 'fallback') AND guard_group = 'ok'"
+        " ORDER BY created_at DESC LIMIT %s", (user_id, topic, exclude_id, before, limit)).fetchall()
+    return rows[::-1]
+
+
 def reset_for_retry(conn, reading_id, retry_limit: int) -> int | None:
     """Only a fallback answer with retries left is reset; None — someone else got there first or no retries."""
     row = conn.execute("UPDATE readings SET answer = NULL, answer_shown = NULL, stream_started_at = NULL,"

@@ -15,6 +15,7 @@ LANGS = ("en", "es")
 
 NO_QUESTION = {"en": "(no question: read the cards as a message about where the person is now)",
                "es": "(sin pregunta: lee las cartas como un mensaje sobre el momento que vive la persona)"}
+NO_PAST_QUESTION = {"en": "(no question)", "es": "(sin pregunta)"}
 NOT_SPECIFIED = {"en": "not specified", "es": "no indicada"}
 TOPIC_LABELS = {
     "en": {"love": "love", "work": "work", "self": "yourself", "decision": "a decision", "general": "general"},
@@ -93,8 +94,26 @@ def reading_input(reading: dict, excerpts: list[dict], verdict_label: str | None
     return "\n".join(lines)
 
 
-def reader_messages(reading: dict, excerpts: list[dict], verdict_label: str | None) -> list[dict]:
-    return [{"role": "user", "content": reading_input(reading, excerpts, verdict_label)}]
+def history_block(history: list[dict], lang: str) -> str:
+    """Stage 4.3 §7: earlier readings on the same topic as background, oldest first — the date, the question and
+    the headline only (never a note or an outcome). The person's text is escaped like the question."""
+    lines = ["<history>"]
+    for item in history:
+        question = _escape(item["question"]) if item.get("question") else NO_PAST_QUESTION[lang]
+        lines += [f'<past date="{item["day"].isoformat()}">', f"<past_question>{question}</past_question>",
+                  f"<past_headline>{_escape(item.get('headline') or '')}</past_headline>", "</past>"]
+    lines.append("</history>")
+    return "\n".join(lines)
+
+
+def _with_history(content: str, history: list[dict] | None, lang: str) -> str:
+    return f"{history_block(history, lang)}\n{content}" if history else content
+
+
+def reader_messages(reading: dict, excerpts: list[dict], verdict_label: str | None,
+                    history: list[dict] | None = None) -> list[dict]:
+    content = _with_history(reading_input(reading, excerpts, verdict_label), history, reading["lang"])
+    return [{"role": "user", "content": content}]
 
 
 def answer_text(sections: dict[str, str]) -> str:
@@ -102,10 +121,12 @@ def answer_text(sections: dict[str, str]) -> str:
 
 
 def followup_messages(reading: dict, excerpts: list[dict], verdict_label: str | None, first_answer: str,
-                      previous: list[tuple[str, str]], question: str, group: str) -> list[dict]:
-    """§2.3: the reading, the first answer, earlier follow-ups, then the new question — no new cards."""
-    messages = [{"role": "user", "content": reading_input(reading, excerpts, verdict_label)},
-                {"role": "assistant", "content": first_answer}]
+                      previous: list[tuple[str, str]], question: str, group: str,
+                      history: list[dict] | None = None) -> list[dict]:
+    """§2.3: the reading (after the same <history> as the reading had, stage 4.3 §7), the first answer, earlier
+    follow-ups, then the new question — no new cards."""
+    first = _with_history(reading_input(reading, excerpts, verdict_label), history, reading["lang"])
+    messages = [{"role": "user", "content": first}, {"role": "assistant", "content": first_answer}]
     for earlier_question, earlier_answer in previous:
         messages += [{"role": "user", "content": f"<followup>{_escape(earlier_question)}</followup>"},
                      {"role": "assistant", "content": earlier_answer}]
