@@ -10,7 +10,7 @@
 - Over the guard's own budget (GUARD_BUDGET_USD, §9.2) the model is not called: an ambiguous phrase gives crisis,
   anything else raises GuardUnavailable ("service temporarily unavailable", never a reading without a check).
 - Every result says where the group came from (source), so timeouts and refusals are counted in guard_events.
-The 3-second timeout is the provider's own (ClaudeProvider json_timeout_s); there is no thread pool here.
+The 5-second timeout (GUARD_TIMEOUT_S) is the provider's own (ClaudeProvider json_timeout_s); there is no thread pool here.
 The question text is never logged.
 """
 import html

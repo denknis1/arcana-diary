@@ -9,9 +9,9 @@ MARKERS = ["[[headline]]", "[[card 1]]", "[[card 2]]", "[[card 3]]", "[[synthesi
 def test_all_prompts_load_with_versions():
     assert {key: p.version for key, p in PROMPTS.items()} == {
         ("guard", None): "guard.v1",
-        ("reader", "en"): "reader.en.v2", ("reader", "es"): "reader.es.v2",
-        ("followup", "en"): "followup.en.v2", ("followup", "es"): "followup.es.v2",
-        ("daily", "en"): "daily.en.v2", ("daily", "es"): "daily.es.v2",
+        ("reader", "en"): "reader.en.v3", ("reader", "es"): "reader.es.v3",
+        ("followup", "en"): "followup.en.v3", ("followup", "es"): "followup.es.v3",
+        ("daily", "en"): "daily.en.v3", ("daily", "es"): "daily.es.v3",
     }
     assert all(len(p.text) > 500 for p in PROMPTS.values())
 

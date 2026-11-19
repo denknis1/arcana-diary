@@ -42,7 +42,7 @@ def test_daily_text_comes_from_the_cache_all_day(api):
     second = daily(api, guest)
     assert first["card"] == second["card"] and first["day"] == second["day"] == "2026-11-20"
     assert (first["source"], second["source"]) == ("cache", "cache") and first["text"] == second["text"]
-    assert first["prompt_version"] == "daily.en.v2"
+    assert first["prompt_version"] == "daily.en.v3"
     assert len(api.reader.stream_calls()) == calls  # a request never calls the model
 
 

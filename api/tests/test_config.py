@@ -10,7 +10,7 @@ def test_defaults():
     assert s.judge_model == "claude-sonnet-5-5"
     assert s.reader_provider == "claude"
     assert s.first_token_timeout_s == 15.0
-    assert s.guard_timeout_s == 3.0
+    assert s.guard_timeout_s == 5.0
     assert s.reader_effort == "medium"
     assert s.trust_cloudflare is False
     assert s.daily_budget_usd == 5.0
