@@ -144,7 +144,7 @@ def test_judge2_stops_at_the_ceiling(run):
     spend = json.loads((run / "spend.json").read_text())
     (run / "spend.json").write_text(json.dumps({**spend, "max_usd": round(1.0 + 5 * PER_CALL, 6)}))
     fake = Judge2Fake(model="gemini-4-argon", json_default=FOURS)
-    assert judge2(run, yes=True, provider=fake) == 4
+    assert judge2(run, yes=True, provider=fake, force=True) == 4  # forced past the projection: the ceiling stops it
     assert len(json.loads((run / "gemini-scores.json").read_text())) == 5
 
 
@@ -176,3 +176,39 @@ def test_merge_averages_two_trusted_judges_only_where_both_scored(run):
     assert scored["results"]["model-a"][0]["scores"]["warm"] == 4.5
     second = scored["results"]["model-a"][1]
     assert "scores" not in second and list(second["scores_by_judge"]) == ["fable"]
+
+
+def test_judge2_starts_from_the_larger_of_spend_and_calls_plus_unjoined_workers(run, capsys):
+    from evals.run import READER_MAX_TOKENS
+    export(run, rng=random.Random(1))
+    answers = json.loads((run / "answers.json").read_text())
+    answers["models"] = ["claude-haiku-5-5", "gemini-3.8-flash"]  # the dearer reader sets the bound
+    (run / "answers.json").write_text(json.dumps(answers))
+    spend = json.loads((run / "spend.json").read_text())
+    (run / "spend.json").write_text(json.dumps({**spend, "spent": 1.0, "unjoined": 2}))
+    (run / "calls.jsonl").write_text(json.dumps({"purpose": "reader", "cost_usd": 0.75}) + "\n"
+                                     + json.dumps({"purpose": "reader", "cost_usd": 0.5}) + "\n")  # $1.25 > $1.00
+    fake = Judge2Fake(model="gemini-4-argon", json_default=FOURS)
+    assert judge2(run, yes=True, provider=fake) == 0
+    bound = cost_usd("gemini-3.8-flash", 0, READER_MAX_TOKENS)
+    start = 1.25 + 2 * bound
+    assert json.loads((run / "spend.json").read_text())["spent"] == pytest.approx(start + 42 * PER_CALL)
+    out = capsys.readouterr().out
+    assert "calls.jsonl" in out and "2 unrecorded" in out
+    assert judge2(run, yes=True, provider=fake) == 0  # nothing left: the start is not raised a second time
+    assert json.loads((run / "spend.json").read_text())["spent"] == pytest.approx(start + 42 * PER_CALL)
+
+
+def test_judge2_stops_when_the_projection_does_not_fit_the_ceiling_unless_forced(run, capsys):
+    from evals.compare_judges import WONT_FIT
+    export(run, rng=random.Random(1))
+    spend = json.loads((run / "spend.json").read_text())
+    (run / "spend.json").write_text(json.dumps({**spend, "max_usd": round(1.0 + 20 * PER_CALL, 6)}))
+    fake = Judge2Fake(model="gemini-4-argon", json_default=FOURS)
+    assert judge2(run, yes=True, provider=fake) == WONT_FIT
+    assert len(fake.calls) == 2  # only the known-bad answers
+    out = capsys.readouterr()
+    assert "40 answers left" in out.out + out.err and "--force" in out.err
+    assert judge2(run, yes=True, provider=fake) == WONT_FIT and len(fake.calls) == 2  # projected from calls.jsonl
+    assert judge2(run, yes=True, provider=fake, force=True) == 4  # forced: runs up to the ceiling
+    assert len(json.loads((run / "gemini-scores.json").read_text())) == 20

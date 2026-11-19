@@ -114,3 +114,15 @@ def test_recording_judge_keeps_the_input_and_returns_pending_scores():
     assert result.tokens_in is None
     assert judge.take() == "<answer>x</answer>"
     assert judge.take() is None
+
+
+@pytest.mark.parametrize("usage", [(None, None), (None, 900)])
+def test_a_finished_call_without_full_usage_costs_its_upper_bound(usage):
+    from app.config import cost_usd
+    from app.reader.errors import StreamResult
+    meter = Meter(1.0)
+    result = StreamResult(usage[0], usage[1], "end_turn", "gemini-3.8-flash")
+    record = meter.add("gemini-3.8-flash", "reader", result, 10, 20, error=None, max_tokens=4000)
+    assert record.error is None
+    assert record.cost_usd == pytest.approx(cost_usd("gemini-3.8-flash", 0, 4000)) and record.cost_usd > 0
+    assert meter.spent == pytest.approx(record.cost_usd)

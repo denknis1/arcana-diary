@@ -15,7 +15,11 @@ answers.json, no key; nothing above it is needed. blind-key.json stays in the ru
 The 8 known-bad answers are mixed into the Fable batches blind; judge 2 grades them first and stops (exit 6) if it
 misses one, unless --force. A judge that does not give one of them its low score is not trusted: its scores are
 left out of the averages. judge2 stops after 3 failed calls in a row (exit 4), writes gemini-scores.json after
-every answer and spend.json after every call; its calls are appended to calls.jsonl at once.
+every answer and spend.json after every call; its calls are appended to calls.jsonl at once. It starts its meter
+from the larger of spend.json and the sum of calls.jsonl, plus every stream worker step 1 could not wait for
+(spend.json "unjoined", charged once) at the upper bound of the stage's dearest reader. After the known-bad answers
+it projects the answers left at the mean cost per judge call so far and stops (exit 8) if that does not fit under
+the ceiling, unless --force.
 """
 import argparse
 import json
@@ -25,11 +29,12 @@ import sys
 from pathlib import Path
 from statistics import mean
 
-from app.config import load_settings
+from app.config import cost_usd, load_settings
 from app.reader.providers import make_provider
 from evals.compare import JUDGE2_MODEL, NO_KEY, STOPPED, judge2_cost
 from evals.judge import CRITERIA, JUDGE_SCHEMA, load_judge_prompt
 from evals.metering import BudgetExceeded, Meter, MeteredProvider
+from evals.run import READER_MAX_TOKENS
 
 BATCH_SIZE = 25
 JUDGES = ("fable", "gemini")
@@ -37,6 +42,8 @@ JUDGE2_MAX_TOKENS = 6000   # thinking (low) counts inside the output limit
 JUDGE2_EFFORT = "low"
 FAILURES_IN_A_ROW = 3
 CHECK_MISSED = 6
+INCOMPLETE = 7   # merge: a judge's scores are incomplete (see --allow-incomplete)
+WONT_FIT = 8     # judge2: the projected cost of the answers left does not fit under the ceiling (see --force)
 
 FABLE_INSTRUCTIONS = """# Judging task
 
@@ -175,6 +182,26 @@ def _missed_checks(key: dict, answers: dict, scores: dict) -> list[str]:
     return sorted(missed)
 
 
+def _calls(folder: Path) -> list[dict]:
+    path = Path(folder) / "calls.jsonl"
+    return _lines(path) if path.exists() else []
+
+
+def _start(spend: dict, calls: list[dict], models: list[str]) -> tuple[float, str]:
+    """Where judge 2's meter starts: the larger of spend.json and the sum of calls.jsonl (after a hard kill
+    spend.json can lag), plus the stream workers step 1 could not wait for ("unjoined", not yet charged) at the
+    upper bound of the stage's dearest reader call. Returns the start and a line saying what was added."""
+    recorded = round(sum(c.get("cost_usd") or 0.0 for c in calls), 6)
+    base = max(spend["spent"], recorded)
+    unjoined = int(spend.get("unjoined") or 0) - int(spend.get("unjoined_charged") or 0)
+    bound = max((cost_usd(m, 0, READER_MAX_TOKENS) or 0.0 for m in models), default=0.0)
+    added = max(0, unjoined) * bound
+    line = (f"Meter starts at ${base + added:.4f}: spend.json ${spend['spent']:.4f}, calls.jsonl ${recorded:.4f}"
+            + (f", + {unjoined} unrecorded abandoned call(s) × ${bound:.4f} = ${added:.4f}" if unjoined > 0 else "")
+            + ".")
+    return round(base + added, 6), line
+
+
 def judge2(folder: Path, yes: bool, provider=None, force: bool = False) -> int:
     folder = Path(folder)
     key, answers = _key(folder), _read(folder / "answers.json")
@@ -188,6 +215,9 @@ def judge2(folder: Path, yes: bool, provider=None, force: bool = False) -> int:
     print(f"{len(todo)} answers for {JUDGE2_MODEL} (the {sum(1 for t in todo if items[t['n']]['kind'] == 'check')} "
           f"known-bad ones first); estimated ${estimate:.2f}; spent so far ${spend['spent']:.2f} of "
           f"${spend['max_usd']:.2f}.")
+    calls = _calls(folder)
+    start, start_line = _start(spend, calls, answers.get("models", []))
+    print(start_line)
     if not yes:
         print("Not running: every call costs money. Re-run with --yes only after the owner's yes.")
         return 2
@@ -198,7 +228,10 @@ def judge2(folder: Path, yes: bool, provider=None, force: bool = False) -> int:
             return NO_KEY
         provider = make_provider(JUDGE2_MODEL, settings, json_timeout_s=120.0, json_effort=JUDGE2_EFFORT,
                                  max_retries=0)
-    meter = Meter(spend["max_usd"], spend["spent"], sink=folder / "calls.jsonl")
+    if spend.get("unjoined"):
+        spend["unjoined_charged"] = spend["unjoined"]  # counted in the start, never again
+    prior = [c.get("cost_usd") or 0.0 for c in calls if c.get("purpose") == "judge"]
+    meter = Meter(spend["max_usd"], start, sink=folder / "calls.jsonl")
     judge = MeteredProvider(provider, meter, "judge")
     prompt = load_judge_prompt()
     code, failures, checked = None, 0, False
@@ -217,6 +250,17 @@ def judge2(folder: Path, yes: bool, provider=None, force: bool = False) -> int:
                           f"answers; --force grades them anyway.", file=sys.stderr)
                     code = CHECK_MISSED
                     break
+                costs = prior + [r.cost_usd for r in meter.calls]
+                if costs:
+                    left_now = sum(1 for t in todo if t["n"] not in done)
+                    projected, room = mean(costs) * left_now, spend["max_usd"] - meter.spent
+                    print(f"Projection: {left_now} answers left × ${mean(costs):.4f} per call = ${projected:.2f}; "
+                          f"${room:.2f} left under the ceiling.", file=sys.stderr)
+                    if projected > room and not force:
+                        print("It will not fit under the ceiling: stopped before the answers; --force grades them "
+                              "anyway, up to the ceiling.", file=sys.stderr)
+                        code = WONT_FIT
+                        break
             if meter.exhausted:
                 break
             meter.item = task["n"]
@@ -304,7 +348,8 @@ def main(argv=None) -> int:
     j2 = sub.add_parser("judge2")
     j2.add_argument("folder", type=Path)
     j2.add_argument("--yes", action="store_true", help="the owner approved this cost")
-    j2.add_argument("--force", action="store_true", help="grade the answers even after a missed known-bad answer")
+    j2.add_argument("--force", action="store_true",
+                    help="grade the answers even after a missed known-bad answer or a projection over the ceiling")
     args = parser.parse_args(argv)
     if args.command == "export":
         return export(args.folder)

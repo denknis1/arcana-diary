@@ -4,7 +4,8 @@ MeteredProvider records every call (model, purpose, eval item, tokens, cost, tim
 call once the meter's ceiling is reached (BudgetExceeded, counted in Meter.refused). The record is written in
 `finally`, with the eval item taken when the call started: a stream that the engine gives up on (first-token or
 idle timeout) is closed later from its worker thread and is still recorded, as "abandoned". A failed call without
-usage costs its upper bound (max_tokens of output, like flow.upper_cost), so the ceiling errs on the safe side.
+usage costs its upper bound (max_tokens of output, like flow.upper_cost), so the ceiling errs on the safe side; so
+does a call that ended normally with no or partial usage (either token count missing).
 With a sink, every record is appended to calls.jsonl at once, so a killed run keeps what it paid for.
 CachingGuard runs the question check for every question once, before any reader call (prefill), and then serves
 all models from that cache. RecordingJudge stands in for the judge while answers are generated: it keeps the
@@ -66,8 +67,8 @@ class Meter:
         tokens_in = result.tokens_in if result else None
         tokens_out = result.tokens_out if result else None
         cost = cost_usd(model, tokens_in, tokens_out)
-        if cost is None and error and max_tokens:
-            cost = cost_usd(model, 0, max_tokens)  # no usage: the call may have been billed up to max_tokens
+        if cost is None and max_tokens:  # no full usage (failed or not): the call may have been billed up to max_tokens
+            cost = cost_usd(model, 0, max_tokens)
         record = CallRecord(model, purpose, item if item is not None else self.item, tokens_in, tokens_out,
                             cost or 0.0, ms_first, ms_total, error)
         with self._lock:
