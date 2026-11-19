@@ -169,6 +169,13 @@ RLS включён на всех таблицах без политик, а `mig
    Redirect URLs — `https://arcanadiary.com/diary` и `https://arcanadiary.com/es/diario` (адреса с `?claim=…` им
    соответствуют).
 3. **`SUPABASE_URL`** в `deploy/.env` — Project Settings → API → Project URL (не секрет), затем `deploy/deploy.sh`.
+   Тот же деплой включает куку стенда (решение владельца 19.11.2026): пока `LAUNCHED=false`, страница, открытая
+   с паролем, ставит куку `ad_stage` (HttpOnly, Secure, SameSite=Lax, 7 дней, секрет — в `stage_auth.caddy`, новый
+   при каждом деплое), и с ней запросы к `/api/*` проходят без Basic — так вошедший шлёт `Authorization: Bearer`.
+   Без пароля стенд по-прежнему закрыт; `deploy/check-indexing.sh` проверяет это после деплоя, а
+   `deploy/test-stage-auth.sh` — до него, на временном контейнере. После деплоя каждая вкладка один раз снова
+   просит пароль (новый секрет). С `LAUNCHED=true` куки нет.
+   Изменение `Caddyfile` пересоздаёт контейнер Caddy (несколько секунд простоя); деплой запускает владелец, не субагент.
 4. **До запуска** — почтовый сервис для писем входа (Authentication → SMTP Settings); встроенная почта Supabase —
    только для проверки, несколько писем в час.
 5. **Настройки, на которые опирается API** (Authentication → Sign In / Providers и Settings): анонимный вход

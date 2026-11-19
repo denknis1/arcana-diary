@@ -39,6 +39,12 @@ if [ "$LAUNCHED" = "false" ]; then
   expect "www noindex" "$(has_noindex "$(header X-Robots-Tag "https://www.$D/")")" yes
   expect "/api без пароля" "$(status "https://$D/api/limits")" 401
   expect "/api noindex" "$(has_noindex "$(header X-Robots-Tag "https://$D/api/limits")")" yes
+  # stage 4.3: the stage cookie (set after the password) lets /api/* requests with Authorization: Bearer through
+  stage_pair="$(header Set-Cookie "${AUTH[@]}" "https://$D/" | grep -o 'ad_stage=[0-9a-f]*' | head -1)"
+  expect "пароль ставит куку стенда" "$([ -n "$stage_pair" ] && echo yes || echo no)" yes
+  expect "401 без куки стенда" "$(header Set-Cookie "https://$D/" | grep -c ad_stage)" 0
+  expect "/api с кукой стенда" "$([ "$(status -H "Cookie: $stage_pair" "https://$D/api/limits")" != 401 ] && echo yes || echo no)" yes
+  expect "/api с чужой кукой стенда" "$(status -H "Cookie: ad_stage=0" "https://$D/api/limits")" 401
 else
   expect "сайт открыт" "$(status "https://$D/")" 200
   expect "нет noindex в заголовке" "$(has_noindex "$(header X-Robots-Tag "https://$D/")")" no

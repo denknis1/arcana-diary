@@ -21,6 +21,8 @@
 		}
 	}
 	handle {
+		# LAUNCHED=false: the stage cookie, so /api/* requests with Authorization: Bearer pass the password (4.3)
+		import /etc/caddy/parts/stage-cookie-{$LAUNCHED}.caddy
 		root * /srv/site
 		file_server
 	}
