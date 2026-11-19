@@ -29,7 +29,7 @@ def test_split_sql():
 
 
 def test_migrate_creates_tables_with_rls_and_no_policies(fresh_db):
-    assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source"]
+    assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source", "004_events"]
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT relname, relrowsecurity FROM pg_class"
                             " WHERE relnamespace = 'public'::regnamespace AND relkind = 'r'").fetchall()
@@ -53,9 +53,11 @@ def test_migrate_revokes_supabase_browser_roles(fresh_db):
                             " has_table_privilege('anon', 'public.profiles', 'SELECT') AS c,"
                             " has_table_privilege('authenticated', 'public.claim_tokens', 'SELECT') AS d,"
                             " has_table_privilege('anon', 'public.plus_waitlist', 'INSERT') AS e,"
-                            " has_table_privilege('authenticated', 'public.deleted_accounts', 'SELECT') AS f"
+                            " has_table_privilege('authenticated', 'public.deleted_accounts', 'SELECT') AS f,"
+                            " has_table_privilege('anon', 'public.events', 'INSERT') AS g,"
+                            " has_table_privilege('authenticated', 'public.events', 'SELECT') AS h"
                             ).fetchone()
-    assert rows == {"a": False, "b": False, "c": False, "d": False, "e": False, "f": False}
+    assert rows == {"a": False, "b": False, "c": False, "d": False, "e": False, "f": False, "g": False, "h": False}
 
 
 def test_migrate_leaves_other_tables_alone(fresh_db):
@@ -305,7 +307,7 @@ def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
     apply_up_to(fresh_db, "001_init")  # stage 4.2: 001 applied, a guest reading in it
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
-    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source"]
+    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source", "004_events"]
     with fresh_db.connect() as conn:
         row = conn.execute("SELECT user_id, outcome, outcome_at, note, note_updated_at FROM readings WHERE id = %s",
                            (reading["id"],)).fetchone()
@@ -319,7 +321,7 @@ def test_003_applies_over_002_and_leaves_the_old_rows_without_a_source(fresh_db)
     apply_up_to(fresh_db, "001_init", "002_accounts")  # the live database after stage 4.3's first deploy
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
-    assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source"]
+    assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source", "004_events"]
     with fresh_db.connect() as conn:
         column = conn.execute("SELECT is_nullable, column_default FROM information_schema.columns"
                               " WHERE table_name = 'readings' AND column_name = 'guard_source'").fetchone()
@@ -401,3 +403,27 @@ def test_the_tests_refuse_a_supabase_database():
                             text=True, timeout=120)
     assert result.returncode == 4, result.stdout + result.stderr
     assert "looks like a Supabase database" in result.stdout + result.stderr
+
+
+
+# --- stage 4.4a: migration 004 (spec 2026-11-19 §6) ---
+
+def test_004_applies_over_003(fresh_db):
+    apply_up_to(fresh_db, "001_init", "002_accounts", "003_guard_source")  # the live database after stage 4.3
+    assert migrate(fresh_db, MIGRATIONS) == ["004_events"]
+    with fresh_db.connect() as conn:
+        security = conn.execute("SELECT relrowsecurity FROM pg_class WHERE relname = 'events'").fetchone()
+        names = {r["indexname"] for r in conn.execute("SELECT indexname FROM pg_indexes WHERE tablename = 'events'")}
+    assert security == {"relrowsecurity": True}
+    assert "events_day_name_idx" in names
+
+
+@pytest.mark.parametrize("sql", [
+    "INSERT INTO events (day, name, lang, created_at) VALUES ('2026-11-20', 'page_view', 'en', now())",
+    "INSERT INTO events (day, name, tool, lang, created_at) VALUES ('2026-11-20', 'tool_view', 'diary', 'en', now())",
+    "INSERT INTO events (day, name, lang, created_at) VALUES ('2026-11-20', 'tool_view', 'fr', now())",
+])
+def test_004_checks(db, sql):
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with db.connect() as conn:
+            conn.execute(sql)

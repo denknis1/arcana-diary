@@ -38,6 +38,7 @@ class AppContext:
     salt: DailySalt
     burst: BurstCounter        # POST /api/readings per address
     daily_burst: BurstCounter  # GET /api/daily per address
+    events_burst: BurstCounter  # POST /api/events per address (stage 4.4a)
     clock: Callable[[], datetime]
 
 
@@ -63,7 +64,8 @@ def build_context(settings: Settings, *, reader=None, guard_provider=None, turns
         turnstile=turnstile or TurnstileVerifier(settings.turnstile_secret),
         auth=TokenVerifier(settings.supabase_url, jwks) if settings.supabase_url else None, prompts=prompts,
         texts=load_all_texts(), helplines=load_helplines(), terms=load_reader_terms(),
-        salt=DailySalt(), burst=BurstCounter(), daily_burst=BurstCounter(), clock=clock or utc_now,
+        salt=DailySalt(), burst=BurstCounter(), daily_burst=BurstCounter(), events_burst=BurstCounter(),
+        clock=clock or utc_now,
     )
 
 
