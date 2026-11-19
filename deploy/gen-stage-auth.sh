@@ -14,6 +14,7 @@ secret="$(od -An -N32 -tx1 /dev/urandom | tr -d ' \n')"
 [ ${#secret} -eq 64 ] || { echo "no secret" >&2; exit 1; }
 umask 077
 tmp="$(mktemp "$OUT.XXXXXX")"
+trap 'rm -f "$tmp"' EXIT
 {
   printf 'vars stage_cookie "ad_stage=%s; Path=/; Max-Age=604800; Secure; HttpOnly; SameSite=Lax"\n' "$secret"
   printf '@stage_locked not header_regexp Cookie `(^|;\\s*)ad_stage=%s(;|$)`\n' "$secret"

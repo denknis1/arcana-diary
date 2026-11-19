@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # Деплой: код из main → пароль стенда → сборка сайта → контейнеры → проверка индексации.
 set -euo pipefail
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+SELF="$(cd "$(dirname "$0")" && pwd)/$(basename "$0")"  # до любого cd
+ROOT="$(cd "$(dirname "$SELF")/.." && pwd)"
 cd "$ROOT"
-before="$(sha256sum "$0")"
+before="$(sha256sum "$SELF")"
 git pull --ff-only
 # git pull мог заменить сам deploy.sh: тогда запускаем свежую версию (один раз), иначе новые строки не сработают
-if [ -z "${DEPLOY_REEXEC:-}" ] && [ "$before" != "$(sha256sum "$0")" ]; then
-  DEPLOY_REEXEC=1 exec "$0" "$@"
+if [ -z "${DEPLOY_REEXEC:-}" ] && [ "$before" != "$(sha256sum "$SELF")" ]; then
+  DEPLOY_REEXEC=1 exec "$SELF" "$@"
 fi
 deploy/gen-stage-auth.sh
 deploy/build-site.sh
