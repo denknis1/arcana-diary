@@ -24,11 +24,13 @@ export interface NightRoomProps {
   state: NightState;
   lang: Lang;
   config: PanelConfig;
+  threeCards: boolean; // the drawn spread (not the page's default kind) picks the no-question title
   question: string;
   sourceName: string | null; // the card page's card, for "Back to The Moon"
   onClose: () => void;
   onRetry: () => void;
   onRestore: () => void;
+  onRestoreFollowup: () => void;
   onFollowup: (question: string) => void;
   onConfirmFollowup: () => void;
   onCancelFollowup: () => void;
@@ -86,7 +88,7 @@ export function NightRoom(props: NightRoomProps) {
   };
 
   const status = statusKey(state);
-  const quoted = props.question ? `“${props.question}”` : config.kind === 'three' ? d.noQuestionThree : d.noQuestionOne;
+  const quoted = props.question ? `“${props.question}”` : props.threeCards ? d.noQuestionThree : d.noQuestionOne;
   const closeLabel = props.sourceName ? fill(d.closeBackTo, { name: props.sourceName }) : d.close;
   const top = withAnswer ? quoted : state.phase === 'reading' && three ? [d.posPast, d.posPresent, d.posPath].join(' · ') : '';
   const heading = state.phase === 'crisis' && state.crisis ? state.crisis.crisis.title : quoted;
@@ -186,7 +188,7 @@ export function NightRoom(props: NightRoomProps) {
               ) : null}
               {readingShown(state) ? (
                 <Followups {...props} text={followupText} setText={setFollowupText} onSubmit={submitFollowup}
-                  onConfirm={then(props.onConfirmFollowup)} onCancel={then(props.onCancelFollowup)} />
+                  onConfirm={then(props.onConfirmFollowup)} onRestoreFollowup={then(props.onRestoreFollowup)} onCancel={then(props.onCancelFollowup)} />
               ) : null}
               {readingShown(state) ? (
                 <div class="night__actions">
@@ -285,6 +287,9 @@ function Followups(props: FollowupProps) {
           {f.softLine ? <p class="answer__soft">{f.softLine}</p> : null}
           <p class="followup__a">{f.text}</p>
           {f.usedReading ? <p class="small">{d.followupUsedReading}</p> : null}
+          {f.lost && f.status === 'failed' && i === state.followups.length - 1 ? (
+            <button type="button" class="btn btn--outline" onClick={props.onRestoreFollowup}>{d.retry}</button>
+          ) : null}
         </div>
       ))}
       {state.followupError ? (

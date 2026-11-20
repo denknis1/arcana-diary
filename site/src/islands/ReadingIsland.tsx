@@ -7,13 +7,13 @@ import { t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
 import { browserFetch, createApi } from '../lib/api';
 import { CARD_BACK } from '../lib/deck';
-import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
+import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, crisisPayloadOf, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
 import {
   ONE_CARD_ANCHOR, buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor, type PanelPage,
 } from '../lib/panel';
-import { askFollowup, restoreReading, startReading, streamReading, type FlowDeps } from '../lib/readingFlow';
+import { askFollowup, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps } from '../lib/readingFlow';
 import { turnstileToken } from '../lib/turnstile';
-import { SITUATIONS, type Kind, type Lang, type Situation, type Tool } from '../lib/types';
+import { SITUATIONS, type CrisisPayload, type Kind, type Lang, type Situation, type Tool } from '../lib/types';
 import { NightRoom } from '../components/ui/NightRoom';
 import { PlusCard } from '../components/ui/PlusCard';
 import { CheckIcon } from '../components/ui/icons';
@@ -48,7 +48,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const drawButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const run = useRef(0); // each draw is a run; a closed room ignores the late answers of its run
-  const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool });
+  const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool, kind: config.kind as Kind });
   const previous = useRef<NightState>(CLOSED);
   const inHistory = useRef(false); // the room's history entry is on top
   const shownFor = useRef(0); // the run that already sent reading_shown
@@ -83,7 +83,12 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     return {
       api,
       dispatch: (action) => {
-        if (run.current !== mine) return;
+        if (run.current !== mine) {
+          // owner decision 20.11.2026: a crisis answer that arrives after the room was closed still shows its help
+          const payload = crisisPayloadOf(action);
+          if (payload && !roomIsOpen.current && previous.current.phase === 'closed') reopenForCrisis(payload);
+          return;
+        }
         if (action.type === 'created') drawn.current.id = action.reading.id;
         rawDispatch(action);
       },
@@ -129,18 +134,33 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     return () => clearTimeout(timer);
   }, [state.phase, state.reading, state.revealed]);
 
+  function reopenForCrisis(payload: CrisisPayload) {
+    run.current += 1; // the late run is over
+    drawn.current = { ...drawn.current, question: '', id: '' };
+    setQuestion('');
+    if (!inHistory.current) {
+      history.pushState({ arcanaNight: true }, '');
+      inHistory.current = true;
+    }
+    rawDispatch({ type: 'open' });
+    rawDispatch({ type: 'crisis', payload });
+    roomIsOpen.current = true;
+  }
+
   const draw = (event: Event) => {
     event.preventDefault();
+    if (roomIsOpen.current) return; // a bounced Enter or second click must not spend a second reading
     run.current += 1;
     const tz = timeZone();
     const body = buildCreateBody(config, { kind, question, situation, tz });
-    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind) };
+    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind), kind };
     sendEvent(analyticsEvent('draw_click', drawn.current.tool, lang, { has_question: Boolean(body.question), entry: config.entry }));
     if (!inHistory.current) {
       history.pushState({ arcanaNight: true }, '');
       inHistory.current = true;
     }
     rawDispatch({ type: 'open' });
+    roomIsOpen.current = true;
     void startReading(deps(), body);
   };
 
@@ -224,11 +244,16 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
           state={state}
           lang={lang}
           config={config}
+          threeCards={cardsFor(drawn.current.kind) === 3}
           question={drawn.current.question}
           sourceName={cardName ?? null}
           onClose={close}
           onRetry={() => void streamReading(deps(), drawn.current.id, drawn.current.tz, 'retry')}
           onRestore={() => void restoreReading(deps(), drawn.current.id, drawn.current.tz)}
+          onRestoreFollowup={() => {
+            const lost = state.followups[state.followups.length - 1]?.lost;
+            if (lost) void retryFollowup(deps(), drawn.current.id, drawn.current.tz, lost);
+          }}
           onFollowup={onFollowup}
           onConfirmFollowup={() => state.confirm && void askFollowup(deps(), drawn.current.id, state.confirm.question, drawn.current.tz, true, state.followups.length)}
           onCancelFollowup={() => rawDispatch({ type: 'followupCancel' })}

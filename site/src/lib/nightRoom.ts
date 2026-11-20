@@ -54,7 +54,8 @@ export type NightAction =
   | { type: 'followupEvent'; event: SseEvent }
   | { type: 'followupRefused'; question: string; refusal: FollowupRefusal }
   | { type: 'followupRestored'; followup: SavedFollowup }
-  | { type: 'followupLost' }
+  | { type: 'followupLost'; n?: number; answeredBefore: number }
+  | { type: 'followupRetrying' }
   | { type: 'close' };
 
 function toCrisis(state: NightState, payload: CrisisPayload): NightState {
@@ -149,14 +150,32 @@ export function nightReducer(state: NightState, action: NightAction): NightState
     case 'followupRestored': // the stream broke but the API saved the answer (spec 4.2 §8.11)
       if (state.phase !== 'reading') return state;
       return lastFollowup({ ...state, followupError: null }, (f) => ({
-        ...f, text: action.followup.answer ?? '', softLine: action.followup.soft_line, status: 'done',
+        ...f, text: action.followup.answer ?? '', softLine: action.followup.soft_line, status: 'done', lost: undefined,
       }));
-    case 'followupLost':
+    case 'followupLost': // the partial text goes: the API may have replaced it with a crisis answer we never got
       if (state.phase !== 'reading') return state;
-      return lastFollowup({ ...state, followupError: 'network' }, (f) => (f.status === 'streaming' ? { ...f, status: 'failed' } : f));
+      return lastFollowup({ ...state, followupError: 'network' }, (f) => (f.status === 'streaming'
+        ? { ...f, status: 'failed', text: '', lost: { n: action.n, answeredBefore: action.answeredBefore } } : f));
+    case 'followupRetrying': // "Try again" on a lost follow-up: the same read-back runs again
+      if (state.phase !== 'reading') return state;
+      return lastFollowup({ ...state, followupError: null }, (f) => (f.lost ? { ...f, status: 'streaming' } : f));
     case 'close':
       return CLOSED;
   }
+}
+
+/** The crisis answer a late (stale-run) action would bring, or null for any other action. */
+export function crisisPayloadOf(action: NightAction): CrisisPayload | null {
+  if (action.type === 'crisis') return action.payload;
+  if (action.type === 'stream' && action.event.event === 'crisis') {
+    return (action.event.data && typeof action.event.data === 'object' ? action.event.data : {}) as unknown as CrisisPayload;
+  }
+  if (action.type === 'restored' && action.view.answer_shown === 'crisis') return action.view as unknown as CrisisPayload;
+  return null;
+}
+
+export function isCrisisAction(action: NightAction): boolean {
+  return crisisPayloadOf(action) !== null;
 }
 
 export function cardsCount(state: NightState): number {

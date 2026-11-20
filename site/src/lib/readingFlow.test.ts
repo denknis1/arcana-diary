@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createApi } from './api';
 import { CLOSED, nightReducer, type NightAction, type NightState } from './nightRoom';
 import {
-  DEFAULT_COUNTS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, startReading, streamReading, type FlowDeps,
+  DEFAULT_COUNTS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps,
 } from './readingFlow';
 import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText } from './testing/fakes';
 
@@ -210,6 +210,24 @@ describe('askFollowup', () => {
     expect(h.state().followups[0].status).toBe('failed');
     expect(h.state().followupError).toBe('network');
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
+  });
+
+  it('Try again on a lost follow-up reads it back with the same n and sends no new POST (I2)', async () => {
+    const f = (n: number) => ({ n, question: 'q', answer: `A${n}`, soft_line: null });
+    const h = ready(brokenSseResponse(sseText([['meta', { followup: 2 }], ['text', { name: 'followup', text: 'Hal' }]])),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [f(1)] })),
+      jsonResponse(200, { ...VIEW, followups: [f(1)] }), // counts after the loss
+      jsonResponse(200, { ...VIEW, followups: [f(1), f(2)], followups_left: 0, followup_attempts_left: 5 }));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 1);
+    const lost = h.state().followups[0];
+    expect(lost).toMatchObject({ status: 'failed', text: '', lost: { n: 2, answeredBefore: 1 } });
+    const posts = () => h.calls.filter((c) => c.url.endsWith('/followups')).length;
+    expect(posts()).toBe(1);
+    await retryFollowup(h.deps, 'r1', undefined, lost.lost!);
+    expect(posts()).toBe(1);
+    expect(h.state().followups[0]).toMatchObject({ text: 'A2', status: 'done' });
+    expect(h.state().followupError).toBeNull();
+    expect(h.state().counts).toEqual({ followups_left: 0, followup_attempts_left: 5 });
   });
 
   it('with the number from meta restores exactly that follow-up, never an earlier one', async () => {

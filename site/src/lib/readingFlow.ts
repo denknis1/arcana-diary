@@ -135,8 +135,16 @@ export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore
     }
     await deps.sleep(RESTORE_WAIT_MS);
   }
-  deps.dispatch({ type: 'followupLost' });
+  deps.dispatch({ type: 'followupLost', n, answeredBefore });
   await loadCounts(deps, id, tz);
+}
+
+/** "Try again" on a lost follow-up: the same GET read-back with the same `n` and `answeredBefore`, never a new POST
+ * (the API may have answered it and, if paid, kept the reading). */
+export async function retryFollowup(deps: FlowDeps, id: string, tz: string | undefined,
+  lost: { n?: number; answeredBefore: number }): Promise<void> {
+  deps.dispatch({ type: 'followupRetrying' });
+  await restoreFollowup(deps, id, lost.answeredBefore, tz, lost.n);
 }
 
 export async function askFollowup(deps: FlowDeps, id: string, question: string, tz: string | undefined,

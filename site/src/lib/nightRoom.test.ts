@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   CLOSED, DEAL_MS, FLIP_INTERVAL_MS, allRevealed, answerVisible, followupNow, nightReducer, readingShown, statusKey,
-  transitionEvents, type NightAction, type NightState,
+  crisisPayloadOf, isCrisisAction, transitionEvents, type NightAction, type NightState,
 } from './nightRoom';
 import type { CrisisPayload, ReadingCreated, ReadingView } from './types';
 
@@ -195,9 +195,21 @@ describe('follow-ups', () => {
   });
 
   it('marks a follow-up whose stream broke', () => {
-    const s = run([counts(2, 8), { type: 'followupAsk', question: 'q' }, { type: 'followupLost' }], shown());
+    const s = run([counts(2, 8), { type: 'followupAsk', question: 'q' }, { type: 'followupLost', answeredBefore: 0 }], shown());
     expect(s.followups[0].status).toBe('failed');
     expect(s.followupError).toBe('network');
+  });
+
+  it('clears the partial text of a lost follow-up and remembers n and answeredBefore (M3, I2)', () => {
+    const s = run([counts(2, 8), { type: 'followupAsk', question: 'q' },
+      { type: 'followupEvent', event: { event: 'text', data: { name: 'followup', text: 'Half' } } },
+      { type: 'followupLost', n: 3, answeredBefore: 2 }], shown());
+    expect(s.followups[0]).toMatchObject({ text: '', status: 'failed', lost: { n: 3, answeredBefore: 2 } });
+    const retrying = nightReducer(s, { type: 'followupRetrying' });
+    expect(retrying.followups[0].status).toBe('streaming');
+    expect(retrying.followupError).toBeNull();
+    const restored = nightReducer(retrying, { type: 'followupRestored', followup: { n: 3, question: 'q', answer: 'Back', soft_line: null } });
+    expect(restored.followups[0]).toMatchObject({ text: 'Back', status: 'done', lost: undefined });
   });
 });
 
@@ -227,9 +239,35 @@ describe('guards', () => {
 
   it('applies followupLost and followupCancel only in the reading phase', () => {
     const crisis = run([{ type: 'open' }, created(true), { type: 'crisis', payload: CRISIS }]);
-    expect(run([{ type: 'followupLost' }], crisis)).toBe(crisis);
+    expect(run([{ type: 'followupLost', answeredBefore: 0 }], crisis)).toBe(crisis);
     expect(run([{ type: 'followupCancel' }], crisis)).toBe(crisis);
-    expect(run([{ type: 'followupLost' }])).toBe(CLOSED);
+    expect(run([{ type: 'followupLost', answeredBefore: 0 }])).toBe(CLOSED);
     expect(run([{ type: 'followupCancel' }])).toBe(CLOSED);
+  });
+});
+
+describe('isCrisisAction (a late answer of a closed room)', () => {
+  it('recognises the crisis action from create', () => {
+    expect(isCrisisAction({ type: 'crisis', payload: CRISIS })).toBe(true);
+    expect(crisisPayloadOf({ type: 'crisis', payload: CRISIS })).toBe(CRISIS);
+  });
+
+  it('recognises a stream crisis event', () => {
+    const action: NightAction = { type: 'stream', event: { event: 'crisis', data: CRISIS } };
+    expect(isCrisisAction(action)).toBe(true);
+    expect(crisisPayloadOf(action)).toBe(CRISIS);
+  });
+
+  it('recognises a restored view shown as crisis', () => {
+    const view = { ...CRISIS, id: 'r1', status: 'done', answer_shown: 'crisis' } as unknown as ReadingView;
+    expect(isCrisisAction({ type: 'restored', view })).toBe(true);
+  });
+
+  it('does not take any other action for a crisis', () => {
+    const view = { id: 'r1', status: 'done', answer_shown: 'model' } as unknown as ReadingView;
+    expect(isCrisisAction({ type: 'restored', view })).toBe(false);
+    expect(isCrisisAction({ type: 'stream', event: { event: 'text', data: { name: 'headline', text: 'x' } } })).toBe(false);
+    expect(isCrisisAction({ type: 'created', reading: THREE, reducedMotion: false })).toBe(false);
+    expect(isCrisisAction({ type: 'failed', error: 'network' })).toBe(false);
   });
 });

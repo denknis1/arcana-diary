@@ -49,6 +49,8 @@ export interface Followup {
   status: 'streaming' | 'done' | 'replaced' | 'failed';
   softLine: string | null;
   usedReading: boolean | null;
+  /** set when the answer could not be read back in time: the GET-based restore may be run again (never a new POST) */
+  lost?: { n?: number; answeredBefore: number };
 }
 
 export function newFollowup(question: string): Followup {
