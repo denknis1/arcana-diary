@@ -263,6 +263,21 @@ describe('isCrisisAction (a late answer of a closed room)', () => {
     expect(isCrisisAction({ type: 'restored', view })).toBe(true);
   });
 
+  it('recognises a follow-up refused with a crisis answer', () => {
+    const action: NightAction = { type: 'followupRefused', question: 'q', refusal: { type: 'crisis', payload: CRISIS } };
+    expect(isCrisisAction(action)).toBe(true);
+    expect(crisisPayloadOf(action)).toBe(CRISIS);
+    expect(isCrisisAction({ type: 'followupRefused', question: 'q', refusal: { type: 'plus' } })).toBe(false);
+  });
+
+  it('recognises a follow-up stream crisis event, not other follow-up events', () => {
+    const action: NightAction = { type: 'followupEvent', event: { event: 'crisis', data: CRISIS } };
+    expect(isCrisisAction(action)).toBe(true);
+    expect(crisisPayloadOf(action)).toBe(CRISIS);
+    expect(isCrisisAction({ type: 'followupEvent', event: { event: 'text', data: { text: 'x' } } })).toBe(false);
+    expect(isCrisisAction({ type: 'followupEvent', event: { event: 'done', data: { answer_shown: 'model' } } })).toBe(false);
+  });
+
   it('does not take any other action for a crisis', () => {
     const view = { id: 'r1', status: 'done', answer_shown: 'model' } as unknown as ReadingView;
     expect(isCrisisAction({ type: 'restored', view })).toBe(false);

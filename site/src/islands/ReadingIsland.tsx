@@ -86,7 +86,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         if (run.current !== mine) {
           // owner decision 20.11.2026: a crisis answer that arrives after the room was closed still shows its help
           const payload = crisisPayloadOf(action);
-          if (payload && !roomIsOpen.current && previous.current.phase === 'closed') reopenForCrisis(payload);
+          if (payload && !roomIsOpen.current && previous.current.phase !== 'limit') reopenForCrisis(payload);
           return;
         }
         if (action.type === 'created') drawn.current.id = action.reading.id;
@@ -166,6 +166,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
 
   function closeNow() {
     run.current += 1;
+    roomIsOpen.current = false; // at once: a late crisis before the next effect must still find the room closed
     rawDispatch({ type: 'close' });
   }
 

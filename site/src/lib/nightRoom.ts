@@ -171,6 +171,10 @@ export function crisisPayloadOf(action: NightAction): CrisisPayload | null {
     return (action.event.data && typeof action.event.data === 'object' ? action.event.data : {}) as unknown as CrisisPayload;
   }
   if (action.type === 'restored' && action.view.answer_shown === 'crisis') return action.view as unknown as CrisisPayload;
+  if (action.type === 'followupRefused' && action.refusal.type === 'crisis') return action.refusal.payload;
+  if (action.type === 'followupEvent' && action.event.event === 'crisis') { // same extraction as applyFollowupEvent
+    return (action.event.data && typeof action.event.data === 'object' ? action.event.data : {}) as unknown as CrisisPayload;
+  }
   return null;
 }
 
