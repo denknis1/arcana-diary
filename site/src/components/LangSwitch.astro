@@ -1,0 +1,20 @@
+---
+// EN | ES (pairs from hreflang.csv through src/lib/routes.ts). The current language is not a link.
+import { t } from '../i18n';
+import { switchPath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const other = switchPath(path);
+const d = t(lang);
+---
+<nav class="lang-switch" aria-label={d.langLabel}>
+  {lang === 'en' ? <span aria-current="true" lang="en">EN</span> : <a href={other} lang="en">EN</a>}
+  <span aria-hidden="true">|</span>
+  {lang === 'es' ? <span aria-current="true" lang="es">ES</span> : <a href={other} lang="es">ES</a>}
+</nav>

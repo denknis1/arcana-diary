@@ -18,6 +18,9 @@ for f in "$DIR"/caddy/*.caddy; do
   [ "$(basename "$f")" = stage_auth.caddy ] || cp "$f" "$TMP/parts/"
 done
 printf '<!doctype html><title>stage</title>\n' > "$TMP/site/index.html"
+mkdir -p "$TMP/site/es"
+printf '<!doctype html><html lang="es"><title>404 es</title>\n' > "$TMP/site/es/404.html"
+printf '<!doctype html><html lang="en"><title>404</title>\n' > "$TMP/site/404.html"
 printf 'STAGE_USER=tester\nSTAGE_PASSWORD=dummy-password\n' > "$TMP/.env"
 ENV_FILE="$TMP/.env" OUT="$TMP/parts/stage_auth.caddy" "$DIR/gen-stage-auth.sh" >/dev/null
 chmod 644 "$TMP/parts/stage_auth.caddy"  # the caddy user in the container must read it; a dummy secret
@@ -68,6 +71,19 @@ expect "/api с чужой кукой" "$(status -H 'Cookie: ad_stage=0000' "$UR
 expect "/api с удлинённой кукой" "$(status -H "Cookie: ${PAIR}0" "$URL/api/limits")" 401
 expect "страница с кукой без пароля" "$(status -H "Cookie: $PAIR" "$URL/")" 200
 expect "/api не ставит куку" "$(cookies -u tester:dummy-password "$URL/api/limits" | grep -c ad_stage)" 0
+# stage 4.4a: the new addresses are closed too; an unknown address is a 404 (with noindex) only after the password
+location() { "${CURL[@]}" -o /dev/null -D - "$@" | tr -d '\r' | awk 'tolower($0) ~ /^location:/ { print }'; }
+expect "/nope без пароля" "$(status "$URL/nope")" 401
+expect "/one-card/ без пароля" "$(status "$URL/one-card/")" 401
+expect "/one-card/ без пароля: нет Location" "$(location "$URL/one-card/" | wc -l)" 0
+expect "/one-card.html без пароля" "$(status "$URL/one-card.html")" 401
+expect "/one-card.html без пароля: нет Location" "$(location "$URL/one-card.html" | wc -l)" 0
+expect "/nope с паролем" "$(status -u tester:dummy-password "$URL/nope")" 404
+expect "/nope с паролем: noindex" "$("${CURL[@]}" -o /dev/null -D - -u tester:dummy-password "$URL/nope" | tr -d '\r' | grep -i '^x-robots-tag:' | grep -ci noindex)" 1
+expect "/es/nope с паролем" "$(status -u tester:dummy-password "$URL/es/nope")" 404
+expect "/es/nope с паролем: страница ES" "$("${CURL[@]}" -u tester:dummy-password "$URL/es/nope" | grep -c '<html lang="es"')" 1
+expect "/one-card/ с паролем → 308" "$(status -u tester:dummy-password "$URL/one-card/")" 308
+expect "/one-card/ с паролем: Location" "$(location -u tester:dummy-password "$URL/one-card/" | sed 's/^[Ll]ocation: *//')" "/one-card"
 docker rm -f "$NAME-false" >/dev/null
 
 PORT="$(start true)"

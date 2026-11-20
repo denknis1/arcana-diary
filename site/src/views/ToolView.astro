@@ -1,0 +1,37 @@
+---
+// A tool page (screens 5a, 6, one card): eyebrow, title, lead and the night panel; love adds a note under it.
+import Base from '../layouts/Base.astro';
+import ReadingIsland from '../islands/ReadingIsland';
+import { t, type DictKey } from '../i18n';
+import { pagePath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+type ToolPage = 'one_card' | 'yes_no' | 'love';
+
+interface Props {
+  lang: Lang;
+  page: ToolPage;
+}
+
+const { lang, page } = Astro.props;
+const d = t(lang);
+const COPY: Record<ToolPage, { title: DictKey; eyebrow: DictKey; h1: DictKey; lead: DictKey; note?: DictKey }> = {
+  one_card: { title: 'oneCardTitle', eyebrow: 'oneCardEyebrow', h1: 'oneCardH1', lead: 'oneCardLead' },
+  yes_no: { title: 'yesNoTitle', eyebrow: 'yesNoEyebrow', h1: 'yesNoH1', lead: 'yesNoLead' },
+  love: { title: 'loveTitle', eyebrow: 'loveEyebrow', h1: 'loveH1', lead: 'loveLead', note: 'loveNote' },
+};
+const copy = COPY[page];
+---
+<Base lang={lang} title={d[copy.title]} path={pagePath(page, lang)} current={page === 'one_card' ? undefined : page}>
+  <div class="tool-layout">
+    <section class="page-hero">
+      <p class="eyebrow">{d[copy.eyebrow]}</p>
+      <h1 class="display">{d[copy.h1]}</h1>
+      <p class="lead">{d[copy.lead]}</p>
+    </section>
+    <div>
+      <ReadingIsland client:load lang={lang} page={page} />
+      {copy.note ? <p class="small muted">{d[copy.note]}</p> : null}
+    </div>
+  </div>
+</Base>

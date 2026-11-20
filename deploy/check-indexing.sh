@@ -35,6 +35,13 @@ if [ "$LAUNCHED" = "false" ]; then
   expect "401 несёт noindex" "$(has_noindex "$(header X-Robots-Tag "https://$D/")")" yes
   expect "401 просит пароль" "$( [ -n "$(header WWW-Authenticate "https://$D/")" ] && echo yes || echo no)" yes
   expect "сайт с паролем" "$(status "${AUTH[@]}" "https://$D/")" 200
+  # stage 4.4a: the new Caddyfile is live — a page without .html opens, an unknown address is a 404 page
+  expect "страница без .html с паролем" "$(status "${AUTH[@]}" "https://$D/one-card")" 200
+  expect "неизвестный адрес с паролем" "$(status "${AUTH[@]}" "https://$D/no-such-page")" 404
+  expect "неизвестный адрес без пароля" "$(status "https://$D/no-such-page")" 401
+  expect "/one-card/ без пароля" "$(status "https://$D/one-card/")" 401
+  expect "/one-card/ без пароля: нет Location" "$([ -z "$(header Location "https://$D/one-card/")" ] && echo yes || echo no)" yes
+  expect "неизвестный адрес с паролем noindex" "$(has_noindex "$(header X-Robots-Tag "${AUTH[@]}" "https://$D/no-such-page")")" yes
   expect "сайт с паролем noindex" "$(has_noindex "$(header X-Robots-Tag "${AUTH[@]}" "https://$D/")")" yes
   expect "www noindex" "$(has_noindex "$(header X-Robots-Tag "https://www.$D/")")" yes
   expect "/api без пароля" "$(status "https://$D/api/limits")" 401

@@ -20,10 +20,65 @@
 			header_up X-Real-IP {remote_host}
 		}
 	}
+	# stage 4.4a: one address per page — a trailing slash or .html goes to the clean address (308, query kept).
+	# The patterns allow only the site's own address characters, so a path like /%5Cexample.com/ (decoded
+	# /\example.com/) or //example.com/ never matches and can never reach Location (open redirect).
+	# Two blocks per rule: with a query string it is kept (?{query}), without one no trailing "?" is added.
+	@indexq {
+		path /index.html
+		expression {http.request.uri.query} != ''
+	}
+	handle @indexq {
+		redir * /?{query} 308
+	}
+	handle /index.html {
+		redir * / 308
+	}
+	@slashq {
+		path_regexp slash ^(/[a-z0-9][a-z0-9/-]*)/$
+		expression {http.request.uri.query} != ''
+	}
+	handle @slashq {
+		redir {re.slash.1}?{query} 308
+	}
+	@slash path_regexp slash ^(/[a-z0-9][a-z0-9/-]*)/$
+	handle @slash {
+		redir {re.slash.1} 308
+	}
+	@htmlq {
+		path_regexp html ^(/[a-z0-9][a-z0-9/-]*)\.html$
+		expression {http.request.uri.query} != ''
+	}
+	handle @htmlq {
+		redir {re.html.1}?{query} 308
+	}
+	@html path_regexp html ^(/[a-z0-9][a-z0-9/-]*)\.html$
+	handle @html {
+		redir {re.html.1} 308
+	}
+	# the 404 page and the bare /index are not pages of their own: they answer 404 like any unknown address
+	# (try_files would otherwise serve /index.html, /404.html and /es/404.html as 200 duplicates)
+	@dup path /index /404 /es/404
+	handle @dup {
+		error 404
+	}
 	handle {
 		# LAUNCHED=false: the stage cookie, so /api/* requests with Authorization: Bearer pass the password (4.3)
 		import /etc/caddy/parts/stage-cookie-{$LAUNCHED}.caddy
 		root * /srv/site
+		# stage 4.4a: one HTML file per page (Astro build.format "file"): /one-card → /one-card.html, /es → /es.html
+		try_files {path} {path}.html
+		file_server
+	}
+	# stage 4.4a: an unknown address gets the 404 page of its language with status 404 (/es/... → /es/404.html)
+	handle_errors 404 {
+		import /etc/caddy/parts/noindex-{$LAUNCHED}.caddy
+		root * /srv/site
+		map {path} {not_found_page} {
+			~^/es(/|$) /es/404.html
+			default /404.html
+		}
+		rewrite * {not_found_page}
 		file_server
 	}
 	handle_errors {

@@ -1,0 +1,22 @@
+---
+// Card of the Day (screens 7a, 7b).
+import Base from '../layouts/Base.astro';
+import DailyIsland from '../islands/DailyIsland';
+import { t } from '../i18n';
+import { pagePath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = t(lang);
+---
+<Base lang={lang} title={d.dailyTitle} path={pagePath('daily', lang)} current="daily">
+  <section class="page-hero">
+    <p class="eyebrow">{d.dailyEyebrow}</p>
+    <h1 class="display">{d.dailyH1}</h1>
+  </section>
+  <DailyIsland client:load lang={lang} />
+</Base>

@@ -24,6 +24,8 @@ CLAIM_TOKENS_PER_READING = 5   # live tokens per reading at once ("Save to diary
 NOTE_MAX_CHARS = 1000          # stage 4.3 §6: the private note of a diary entry (never sent to a model)
 HISTORY_LIMIT = 5              # stage 4.3 §7: earlier readings of the same topic in the reader's input
 WAITLIST_IP_LIMIT = 5          # stage 4.3 §8: Plus waitlist requests per address per UTC day
+EVENTS_PER_MINUTE = 30         # stage 4.4a §6: POST /api/events per address per minute (a reading sends about 6)
+EVENTS_GLOBAL_PER_MINUTE = 600  # stage 4.4a §6: POST /api/events per minute from all addresses together (plan review M9)
 
 PROVIDERS = ("claude", "openai", "gemini", "fake")
 KEY_NAMES = {"claude": "ANTHROPIC_API_KEY", "openai": "OPENAI_API_KEY", "gemini": "GOOGLE_AI_API_KEY"}

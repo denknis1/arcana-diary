@@ -1,0 +1,77 @@
+---
+// Home EN / ES (screens 1, 12a, 13a): the question and three cards in the night panel; ES adds "1 carta / 3 cartas"
+// and is the one-card page at #una-carta. Hub links and diary steps wait for stages 6 and 4.4b.
+import Base from '../layouts/Base.astro';
+import CardFigure from '../components/CardFigure.astro';
+import ReadingIsland from '../islands/ReadingIsland';
+import { t } from '../i18n';
+import { CARD_BACK, cardById } from '../lib/deck';
+import { cardPath, pagePath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = t(lang);
+const formats = [
+  ...(lang === 'en' ? [{ href: pagePath('one_card', lang), name: d.fmtOneCard, hint: d.fmtOneCardHint }] : []),
+  { href: pagePath('yes_no', lang), name: d.fmtYesNo, hint: d.fmtYesNoHint },
+  { href: pagePath('love', lang), name: d.fmtLove, hint: d.fmtLoveHint },
+  { href: pagePath('daily', lang), name: d.fmtDaily, hint: d.fmtDailyHint },
+];
+const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => cardById(id)!);
+const steps = [d.howStep1, d.howStep2, d.howStep3];
+---
+<Base lang={lang} title={d.homeTitle} path={pagePath('home', lang)} current="home">
+  <div class="tool-layout">
+    <section class="page-hero">
+      <p class="eyebrow">{d.homeEyebrow}</p>
+      <h1 class="display display--home">{d.homeH1}</h1>
+      <p class="lead">{d.homeLead}</p>
+    </section>
+    <ReadingIsland client:load lang={lang} page="home" showBacks />
+  </div>
+
+  <section class="page-section" aria-labelledby="other-ways">
+    <h2 class="h2" id="other-ways">{d.otherWays}</h2>
+    <ul class="link-list">
+      {formats.map((f) => (
+        <li>
+          <a href={f.href}>
+            <span class="link-list__text"><span class="link-list__name">{f.name}</span><span class="link-list__hint">{f.hint}</span></span>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 4l5 5-5 5"></path></svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="tile" aria-labelledby="daily-tile">
+    <img src={CARD_BACK} alt="" />
+    <div class="tile__body">
+      <p class="eyebrow" id="daily-tile">{d.dailyTileEyebrow}</p>
+      <p>{d.dailyTileText}</p>
+      <a href={pagePath('daily', lang)}>{d.dailyTileLink}</a>
+    </div>
+  </section>
+
+  <section class="page-section" aria-labelledby="learn">
+    <h2 class="h2" id="learn">{d.learnTitle}</h2>
+    <p class="lead">{d.learnLead}</p>
+    <div class="card-row">
+      {faces.map((card) => (
+        <a href={cardPath(card, lang)}><CardFigure card={card} lang={lang} sizes="100px" /></a>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section" aria-labelledby="how">
+    <h2 class="h2" id="how">{d.howTitle}</h2>
+    <ol class="steps">
+      {steps.map((text, i) => <li><span class="steps__n" aria-hidden="true">{i + 1}</span><span>{text}</span></li>)}
+    </ol>
+    <p class="small muted">{d.disclaimer}</p>
+  </section>
+</Base>

@@ -61,7 +61,8 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 ## Адреса
 
 `POST /api/readings`, `GET /api/readings/{id}`, `GET /api/readings/{id}/stream` (SSE), `POST /api/readings/{id}/retry`
-(SSE), `POST /api/readings/{id}/followups` (SSE), `GET /api/daily?lang=&tz=`, `GET /api/limits?tz=`. Поддомен `api.`
+(SSE), `POST /api/readings/{id}/followups` (SSE), `GET /api/daily?lang=&tz=`, `GET /api/limits?tz=`, `POST /api/events`
+(этап 4.4а, ниже). Поддомен `api.`
 отдаёт только `GET /health`, остальное — `404`. События потока: `meta`, `section`, `text`, `replace`, `fallback`,
 `crisis`, `done`, `error`. Все ответы `/api/*`: `Cache-Control: no-store`, `Referrer-Policy: no-referrer`,
 `X-Robots-Tag: noindex, nofollow`. Уточнения: два бесплатных к каждому раскладу (обрезанное или заменённое из базы не
@@ -218,6 +219,36 @@ RLS включён на всех таблицах без политик, а `mig
   счётчик дня `user:<id>` — до 2 дней, `llm_calls` (номера и числа, без текстов) — 90 дней.
 - Перед первой рассылкой Plus: гостевые заявки не подтверждены (любой может вписать любой адрес, 5 в сутки с
   адреса) — подтвердить письмом или писать только строкам с `user_id`.
+
+## Счётчик событий (этап 4.4а)
+
+Спецификация — `docs/superpowers/specs/2026-11-19-stage4-4a-reading-screens-design.md`, §6. Сайт шлёт
+`POST /api/events {"name", "tool", "lang", "params"}` через `navigator.sendBeacon`; ответ — `204` без тела. Принимаются
+только события и параметры из `docs/design/analytics-events.md` (`app/events.py`, каждый параметр события обязателен,
+лишний — `422 {"reason": "invalid", "fields": ["params.<имя>"]}`). Ни адреса, ни cookie, ни номера гостя или аккаунта
+не пишется: таблица `events` (миграция 004) — день UTC, имя, инструмент, язык, параметры, время. Больше
+`EVENTS_PER_MINUTE` (30) запросов в минуту с адреса или `EVENTS_GLOBAL_PER_MINUTE` (600) со всех адресов вместе —
+`429 {"reason": "rate"}`, ничего не пишется (счётчики в памяти, как у всплеска раскладов).
+
+Воронка `tool_view → draw_click → reading_shown → save_click` по инструментам и языкам за период (разбор — через
+2–3 недели после запуска); `signup_done` без инструмента считается отдельно. Запрос берёт строки только с дня запуска
+(14.12.2026; сдвинется запуск — поправить дату): события закрытого стенда — проверки, а не посетители.
+
+```sql
+SELECT tool, lang,
+       count(*) FILTER (WHERE name = 'tool_view')     AS views,
+       count(*) FILTER (WHERE name = 'draw_click')    AS draws,
+       count(*) FILTER (WHERE name = 'reading_shown') AS shown,
+       count(*) FILTER (WHERE name = 'save_click')    AS saves,
+       round(100.0 * count(*) FILTER (WHERE name = 'reading_shown')
+             / nullif(count(*) FILTER (WHERE name = 'draw_click'), 0), 1) AS shown_pct
+FROM events
+WHERE day >= DATE '2026-12-14' AND day BETWEEN %(day_from)s AND %(day_to)s AND tool IS NOT NULL
+GROUP BY tool, lang
+ORDER BY tool, lang;
+```
+
+В SQL Editor Supabase вместо `%(day_from)s` и `%(day_to)s` подставить даты, например `'2026-12-14'` и `'2027-01-04'`.
 
 ## Тестовый набор чтеца
 
