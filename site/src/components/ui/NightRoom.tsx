@@ -188,7 +188,7 @@ export function NightRoom(props: NightRoomProps) {
               ) : null}
               {readingShown(state) ? (
                 <Followups {...props} text={followupText} setText={setFollowupText} onSubmit={submitFollowup}
-                  onConfirm={then(props.onConfirmFollowup)} onRestoreFollowup={then(props.onRestoreFollowup)} onCancel={then(props.onCancelFollowup)} />
+                  onConfirm={props.onConfirmFollowup} onRestoreFollowup={then(props.onRestoreFollowup)} onCancel={then(props.onCancelFollowup)} />
               ) : null}
               {readingShown(state) ? (
                 <div class="night__actions">
@@ -264,6 +264,13 @@ function Followups(props: FollowupProps) {
   useEffect(() => {
     if (state.confirm) confirmButton.current?.focus();
   }, [state.confirm]);
+  // after "Use 1 reading and ask" the notice goes away: focus (and the scroll) go to the follow-up field, right under
+  // the answer being written, not to the title at the top of the room (stage walk-through 20.11.2026)
+  const focusFieldNext = useRef(false);
+  const confirm = () => {
+    focusFieldNext.current = true;
+    props.onConfirm();
+  };
   const counts = state.counts;
   const streaming = state.followups.some((f) => f.status === 'streaming');
   // the form stays mounted while an answer streams (its button is disabled), so focus never falls out of the room
@@ -276,6 +283,10 @@ function Followups(props: FollowupProps) {
       const active = document.activeElement;
       const dialog = document.getElementById('night-title')?.closest('[role="dialog"]');
       if (!active || active === document.body || !dialog?.contains(active)) document.getElementById('night-title')?.focus();
+    }
+    if (formShown && focusFieldNext.current) {
+      focusFieldNext.current = false;
+      document.getElementById('followup-input')?.focus();
     }
     wasShown.current = formShown;
   }, [formShown]);
@@ -303,7 +314,7 @@ function Followups(props: FollowupProps) {
         <div class="notice" role="alert">
           <p>{fill(d.followupPaidWarning, { n: state.confirm.remaining })}</p>
           <div class="night__actions">
-            <button type="button" class="btn btn--gold" ref={confirmButton} onClick={props.onConfirm}>{d.followupConfirm}</button>
+            <button type="button" class="btn btn--gold" ref={confirmButton} onClick={confirm}>{d.followupConfirm}</button>
             <button type="button" class="btn btn--text" onClick={props.onCancel}>{d.followupCancel}</button>
           </div>
         </div>
