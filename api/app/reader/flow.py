@@ -308,7 +308,8 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
     parser, outcome = SectionParser(), None
     if not spent:
         excerpts = ctx.cards.excerpts(reading["cards"], lang, reading["topic"])
-        messages = compose.reader_messages(reading, excerpts, verdict_label(ctx, reading), history)
+        messages = compose.reader_messages(reading, excerpts, verdict_label(ctx, reading), history,
+                                           compose.card_votes(reading, ctx.cards))
         for item in run_stream(ctx.reader, prompt.text, messages, READER_MAX_TOKENS,
                                ctx.settings.first_token_timeout_s):
             if isinstance(item, Chunk):

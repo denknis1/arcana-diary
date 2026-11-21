@@ -65,7 +65,7 @@ def finalize(reading: dict, streamed: dict[str, str], seen: list[str], outcome, 
     final = dict(filled)
     why_replaced = with_why and bool(written.get("why")) and not result.why_ok
     if why_replaced:
-        final["why"] = fallback.why_line(base, reading["cards"][0], lang)
+        final["why"] = fallback.reading_why(base, reading)
     headline_replaced = kind == "yes_no" and not with_why and check.verdict_in(final.get("headline", ""), lang)
     if headline_replaced:
         final["headline"] = fallback.headline_line(base, reading)

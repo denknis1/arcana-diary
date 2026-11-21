@@ -2,8 +2,8 @@ import pytest
 
 from app.cards import load_cards
 from app.config import load_settings
-from app.reader.fallback import (REVERSED_WHY, card_line, daily_fallback, fallback_answer, fill_missing,
-                                 followup_fallback, why_line)
+from app.reader.fallback import (MAJORITY_WHY, REVERSED_VOTE, REVERSED_WHY, card_line, daily_fallback,
+                                 fallback_answer, fill_missing, followup_fallback, reading_why, why_line)
 from helpers import make_reading
 
 BASE = load_cards(load_settings({}).content_dir)
@@ -72,3 +72,52 @@ def test_followup_and_daily_fallbacks():
     assert text.startswith("The Fool: ") and BASE.meanings["en"]["cups-02-two"]["advice"] in text
     [ex] = BASE.excerpts([{"card_id": "major-18-moon", "position": "card", "reversed": True}], "es", None)
     assert daily_fallback(ex) == f"{ex['meaning']} {ex['advice']}"
+
+
+SUN, STAR, TOWER = "major-19-sun", "major-17-star", "major-16-tower"  # yes, yes, no in the card base
+
+
+def three_votes(*cards, lang="en", group="ok"):
+    drawn = [{"card_id": cid, "position": "card", "reversed": rev} for cid, rev in cards]
+    verdict = BASE.verdict(drawn) if group == "ok" else None
+    return make_reading(kind="yes_no", lang=lang, verdict=verdict, guard_group=group, cards=drawn)
+
+
+def test_three_yes_no_cards_from_the_base_give_each_vote_and_its_why():
+    reading = three_votes((SUN, False), (STAR, False), (TOWER, True))  # yes, yes, unclear
+    sections = fallback_answer(BASE, reading, NOTICE)
+    assert set(sections) == {"headline", "card1", "card2", "card3", "step", "why"}
+    assert sections["card1"] == f"The Sun: Yes. {BASE.meanings['en'][SUN]['yes_no_why']}"
+    assert sections["card3"] == f"The Tower, reversed: Not clear yet. {REVERSED_VOTE['en']}"  # said once
+    assert REVERSED_WHY["en"] not in sections["card3"]
+    assert sections["why"] == MAJORITY_WHY["en"]["two"]
+
+
+MOON = "major-18-moon"  # "not clear" in the card base
+
+
+@pytest.mark.parametrize("cards, lang, key", [
+    (((SUN, False), (STAR, False), ("major-21-world", False)), "en", "all"),
+    (((SUN, False), (STAR, False), (MOON, False)), "en", "two"),
+    (((SUN, False), (STAR, False), (TOWER, False)), "es", "two_of_three"),
+    (((TOWER, False), (MOON, False), (STAR, True)), "en", "one"),  # one decisive card: the verdict is no
+    (((SUN, False), (TOWER, False), (STAR, True)), "es", "tie"),  # yes, no, unclear: not clear yet
+    (((MOON, False), (SUN, True), (TOWER, True)), "en", "forming"),  # no decisive card: not clear yet
+])
+def test_the_majority_why(cards, lang, key):
+    reading = three_votes(*cards, lang=lang)
+    assert reading_why(BASE, reading) == MAJORITY_WHY[lang][key]
+
+
+def test_three_yes_no_cards_without_a_verdict_read_like_three_cards():
+    reading = three_votes((SUN, False), (STAR, False), (TOWER, False), group="redirect_topic")
+    sections = fallback_answer(BASE, reading, NOTICE)
+    first = BASE.excerpts(reading["cards"], "en", reading["topic"])[0]
+    assert "why" not in sections and sections["card1"] == card_line(first, "en")
+
+
+def test_fill_missing_on_three_yes_no_cards():
+    reading = three_votes((SUN, False), (STAR, False), (TOWER, False))
+    filled = fill_missing({"headline": "H.", "card1": "Model card."}, BASE, reading)
+    assert filled["card1"] == "Model card." and filled["card2"].startswith("The Star: Yes. ")
+    assert filled["why"] == MAJORITY_WHY["en"]["two_of_three"] and "synthesis" not in filled

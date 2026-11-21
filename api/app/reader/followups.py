@@ -63,7 +63,8 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
         earlier = [(f["question"], followup_text(f)) for f in previous if followup_text(f)]
         messages = compose.followup_messages(reading, excerpts, verdict_label(ctx, reading),
                                              compose.answer_text(shown_sections(reading)), earlier,
-                                             followup["question"], group, history)
+                                             followup["question"], group, history,
+                                             compose.card_votes(reading, ctx.cards))
         for item in run_stream(ctx.reader, prompt.text, messages, FOLLOWUP_MAX_TOKENS,
                                ctx.settings.first_token_timeout_s):
             if not isinstance(item, Chunk):
