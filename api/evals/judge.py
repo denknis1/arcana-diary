@@ -43,12 +43,12 @@ def auto_checks(item: dict, group: str, sections: dict | None, terms, with_why: 
     result = _group_checks(item, group, reader_crisis)
     if sections is None:
         return result
-    verdict = check.check_answer(sections, item["kind"], item["lang"], terms, with_why)
+    verdict = check.check_answer(sections, item["kind"], item["lang"], terms, with_why, item.get("count"))
     text = "\n".join(sections.values())
     return {**result, "banned": list(verdict.banned), "negated": list(verdict.negated), "why_ok": verdict.why_ok,
             "length_ok": verdict.length_ok, "words": verdict.words,
             "leak": any(marker in text for marker in LEAK_MARKERS),
-            "sections_ok": all(sections.get(n) for n in required_sections(item["kind"], with_why))}
+            "sections_ok": all(sections.get(n) for n in required_sections(item["kind"], with_why, item.get("count")))}
 
 
 def text_checks(item: dict, group: str, text: str | None, terms, words: tuple[int, int],

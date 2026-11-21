@@ -13,9 +13,17 @@ from evals import run
 from evals.judge import CRITERIA, JUDGE_SCHEMA, auto_checks, is_violation, judge, load_judge_prompt, summarize
 
 EXPECTED_COUNTS = {"love": 7, "work": 6, "decision": 6, "yes_no": 6, "no_question": 4, "love_situation": 5,
-                   "forbidden_topic": 4, "money": 3, "other_person": 5, "crisis": 4}
+                   "forbidden_topic": 4, "money": 3, "other_person": 5, "crisis": 4, "yes_no_three": 10}
+# stage 4.5 §4: yes/no on three cards — six ordinary questions, then money, a closed topic and two about another
+# person (no verdict, no votes); the fixed seeds give these votes (rule decisive_majority, owner 21.11.2026), so
+# the set holds a yes and a no decided by one card and by two, a tie, and no decisive card at all
+THREE_GROUPS = ["ok"] * 6 + ["redirect_money", "redirect_topic", "redirect_person", "redirect_person"]
+THREE_VOTES = [["unclear", "unclear", "yes"], ["no", "unclear", "yes"], ["no", "unclear", "unclear"],
+               ["unclear", "unclear", "unclear"], ["no", "yes", "yes"], ["no", "no", "yes"],
+               ["unclear", "yes", "yes"]]
 GROUP_BY_CATEGORY = {"forbidden_topic": "redirect_topic", "money": "redirect_money", "other_person": "redirect_person",
                      "crisis": "crisis"}
+PRICED = "claude-haiku-5-5"  # a model with a row in PRICES_PER_MTOK: the runner refuses one without (Fable re-check R1)
 FIVES = {"relevant": 5, "specific": 5, "warm": 5, "safe": 5, "note": "none"}
 ONES = {"relevant": 1, "specific": 1, "warm": 1, "safe": 1, "note": "bad"}
 OK, CRISIS = {"group": "ok", "violence": False}, {"group": "crisis", "violence": False}
@@ -24,9 +32,9 @@ FILTER = CrisisFilter()
 
 
 @pytest.mark.parametrize("lang", ["en", "es"])
-def test_fifty_unique_items(lang):
+def test_sixty_unique_items(lang):
     items = run.load_items(lang)
-    assert [i["id"] for i in items] == [f"{lang}-{n:02d}" for n in range(1, 51)]
+    assert [i["id"] for i in items] == [f"{lang}-{n:02d}" for n in range(1, 61)]
     assert all(i["lang"] == lang for i in items)
 
 
@@ -40,13 +48,20 @@ def test_category_counts(lang):
 
 def test_expected_groups_follow_categories():
     for lang in ("en", "es"):
-        for item in run.load_items(lang):
+        items = run.load_items(lang)
+        for item in items[:50]:
             assert item["expect_group"] == GROUP_BY_CATEGORY.get(item["category"], "ok"), item["id"]
+        assert [item["expect_group"] for item in items[50:]] == THREE_GROUPS
 
 
 def test_item_fields_are_valid():
     for item in [*run.load_items("en"), *run.load_items("es"), *run.load_jsonl("injection.jsonl")]:
-        assert set(item) == {"id", "lang", "category", "kind", "topic", "situation", "question", "expect_group"}
+        three = item["category"] == "yes_no_three"
+        extra = set()
+        if three:  # stage 4.5: "count", and a fixed "seed" where the item has a verdict
+            extra = {"count", "seed"} if item["expect_group"] in ("ok", "redirect_money") else {"count"}
+            assert (item["kind"], item["count"]) == ("yes_no", 3)
+        assert set(item) == {"id", "lang", "category", "kind", "topic", "situation", "question", "expect_group"} | extra
         assert item["kind"] in ("one", "three", "yes_no")
         assert item["topic"] in (None, "love", "work", "self", "decision", "general")
         assert (item["question"] is None) == (item["category"] == "no_question"), item["id"]
@@ -99,7 +114,10 @@ def test_injection_and_judge_check_sets():
     assert [i["id"] for i in injection] == [f"inj-{lang}-{n:02d}" for lang in ("en", "es") for n in range(1, 6)]
     assert {i["category"] for i in injection} == {"injection"}
     bad = run.load_jsonl("judge_check.jsonl")
-    assert len(bad) == 8 and {i["criterion"] for i in bad} <= set(CRITERIA)
+    assert len(bad) == 9 and {i["criterion"] for i in bad} <= set(CRITERIA)
+    lean = next(i for i in bad if i["id"] == "bad-09")  # Fable plan review I4: a lean without a verdict
+    assert (lean["kind"], lean["count"], lean["expect_group"], lean["criterion"]) == ("yes_no", 3, "redirect_person",
+                                                                                      "safe")
     assert all(i["max_score"] == 2 and i["answer"] for i in bad)
 
 
@@ -109,6 +127,13 @@ def test_estimate_cost():
     # per daily text: 700/400 + judge 1200/700 = $0.00967
     # → 110 × 0.01453 + 76 × 0.00022 + 8 × 0.0134 + 20 × 0.01505 + 20 × 0.00967 = $2.2166
     assert run.estimate_cost(110, 76, 8, load_settings({}), 20, 20) == 2.22
+    # stage 4.5: 130 reader items (60 + 60 + 10 injection) → $2.5072; --kind yes_no: 40 reader items, no
+    # follow-ups or daily texts → 40 × 0.01453 + 76 × 0.00022 + 8 × 0.0134 = $0.7059
+    assert run.estimate_cost(130, 76, 8, load_settings({}), 20, 20) == 2.51
+    assert run.estimate_cost(40, 76, 8, load_settings({})) == 0.71
+    # and the ninth judge check (bad-09): $2.5206 and $0.7193
+    assert run.estimate_cost(130, 76, 9, load_settings({}), 20, 20) == 2.52
+    assert run.estimate_cost(40, 76, 9, load_settings({})) == 0.72
     assert run.estimate_cost(110, 60, 8, load_settings({})) == 1.72
 
 
@@ -116,23 +141,25 @@ def test_refuses_without_yes(capsys, tmp_path):
     fakes = [FakeProvider(), FakeProvider(), FakeProvider(json_default=FIVES)]
     code = run.main(["--out", str(tmp_path)], reader=fakes[0], guard_provider=fakes[1], judge_provider=fakes[2])
     out = capsys.readouterr().out
-    assert code == 2 and "Items: 110 reader, 20 follow-up, 20 daily, 76 guard-only, 8 judge check." in out
-    assert "Estimated cost: $2.22" in out and "--yes" in out
+    assert code == 2 and "Items: 130 reader, 20 follow-up, 20 daily, 76 guard-only, 9 judge check." in out
+    assert "Estimated cost: $2.52" in out and "--yes --max-usd" in out
     assert all(f.calls == [] for f in fakes) and list(tmp_path.iterdir()) == []
 
 
 def test_empty_key_fails_loudly(capsys, tmp_path, monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "")
-    code = run.main(["--yes", "--out", str(tmp_path)])
+    code = run.main(["--yes", "--max-usd", "3", "--out", str(tmp_path)])
     assert code == run.NO_KEY and "ANTHROPIC_API_KEY is empty" in capsys.readouterr().err
     assert list(tmp_path.iterdir()) == []
 
 
 def test_run_with_fakes_writes_results(tmp_path):
     # 4 reader items, 2 follow-ups, then g-en-01 (g-es-01: a stop-phrase)
-    guard = FakeProvider(json_replies=[OK, OK, OK, OK, OK, OK, CRISIS])
-    judge_fake = FakeProvider(json_replies=[ONES, ONES], json_default=FIVES)  # the judge check runs first
-    code = run.main(["--yes", "--limit", "1", "--out", str(tmp_path)], reader=FakeProvider(), guard_provider=guard,
+    # the fakes carry a priced model: the runner refuses a model without a price row (R1)
+    guard = FakeProvider(PRICED, json_replies=[OK, OK, OK, OK, OK, OK, CRISIS])
+    judge_fake = FakeProvider(PRICED, json_replies=[ONES, ONES], json_default=FIVES)  # the judge check runs first
+    code = run.main(["--yes", "--max-usd", "3", "--limit", "1", "--out", str(tmp_path)], reader=FakeProvider(PRICED),
+                    guard_provider=guard,
                     judge_provider=judge_fake)
     assert code == 0
     [path] = list(tmp_path.glob("run-*.json"))
@@ -150,8 +177,9 @@ def test_run_with_fakes_writes_results(tmp_path):
 
 
 def test_guard_misses_and_an_unreliable_judge_fail_the_run(tmp_path):
-    code = run.main(["--yes", "--limit", "1", "--out", str(tmp_path)], reader=FakeProvider(),
-                    guard_provider=FakeProvider(), judge_provider=FakeProvider(json_default=FIVES))
+    code = run.main(["--yes", "--max-usd", "3", "--limit", "1", "--out", str(tmp_path)],
+                    reader=FakeProvider(PRICED), guard_provider=FakeProvider(PRICED),
+                    judge_provider=FakeProvider(PRICED, json_default=FIVES))
     data = json.loads(next(tmp_path.glob("run-*.json")).read_text(encoding="utf-8"))
     assert code == 1
     assert data["summary"]["judge_check"]["passed"] is False
@@ -245,7 +273,117 @@ def test_judge_sends_schema_and_parses_scores():
     provider = FakeProvider(json_default=FIVES)
     prompt = load_judge_prompt()
     scores = judge(provider, prompt, {"category": "love", "expect_group": "ok"}, "<reading></reading>", "Answer.")
-    assert scores == FIVES and prompt.version == "judge.v2"
+    assert scores == FIVES and prompt.version == "judge.v3"
     [call] = provider.json_calls()
     assert call["schema"] == JUDGE_SCHEMA and call["system"] == prompt.text
     assert "<answer>\nAnswer.\n</answer>" in call["messages"][0]["content"]
+
+
+@pytest.mark.parametrize("lang", ["en", "es"])
+def test_yes_no_three_items_draw_every_kind_of_verdict(lang):
+    cards = load_cards(load_settings({}).content_dir)
+    items = [i for i in run.load_items(lang) if i["category"] == "yes_no_three"]
+    seeded = [i for i in items if i["expect_group"] in ("ok", "redirect_money")]
+    votes = [sorted(cards.vote(c) for c in run.eval_reading(i, i["expect_group"], cards)["cards"]) for i in seeded]
+    assert votes == [sorted(v) for v in THREE_VOTES]
+    verdicts = [run.eval_reading(i, i["expect_group"], cards)["verdict"] for i in seeded]
+    assert verdicts == ["yes", "unclear", "no", "unclear", "yes", "no", "yes"]
+    closed = [run.eval_reading(i, i["expect_group"], cards) for i in items if i not in seeded]
+    assert all(r["verdict"] is None and len(r["cards"]) == 3 for r in closed)
+
+
+def test_yes_no_three_item_is_read_and_checked_with_its_votes():
+    settings = load_settings({})
+    prompts = load_prompts()
+    guard_prompt = prompts[("guard", None)]
+    cards = load_cards(settings.content_dir)
+    item = run.load_items("en")[50]  # en-51: one decisive yes card, two still forming
+    reader = FakeProvider()
+    result = run.run_item(item, cards=cards, prompts=prompts,
+                          guard=Guard(FakeProvider(json_default=OK), guard_prompt.text, guard_prompt.version),
+                          reader=reader, judge_provider=FakeProvider(json_default=FIVES),
+                          judge_prompt=load_judge_prompt(), terms=TERMS, texts=load_all_texts(),
+                          first_token_timeout_s=1.0)
+    content = reader.stream_calls()[0]["messages"][0]["content"]
+    assert '<cards count="3">' in content and content.count("vote: ") == 3
+    assert result["shown"] == "model" and result["auto"]["sections_ok"] is True
+    assert set(result["sections"]) == {"headline", "card1", "card2", "card3", "synthesis", "step", "why"}
+
+
+def test_kind_runs_only_those_reader_items(capsys, tmp_path):
+    code = run.main(["--kind", "yes_no", "--out", str(tmp_path)])
+    out = capsys.readouterr().out
+    assert code == 2 and "Items: 40 reader, 0 follow-up, 0 daily, 76 guard-only, 9 judge check." in out
+    assert "Estimated cost: $0.72" in out
+
+
+# --- Fable plan review I3: a hard ceiling for the paid run ---
+
+def test_yes_needs_a_ceiling_and_a_ceiling_above_the_estimate(capsys, tmp_path):
+    fakes = [FakeProvider(), FakeProvider(), FakeProvider(json_default=FIVES)]
+    for argv in (["--yes"], ["--yes", "--max-usd", "0"], ["--yes", "--max-usd", "nan"], ["--yes", "--max-usd", "1"]):
+        code = run.main([*argv, "--out", str(tmp_path)], reader=fakes[0], guard_provider=fakes[1],
+                        judge_provider=fakes[2])
+        assert code == 2, argv
+    err = capsys.readouterr().err
+    assert "--max-usd N (a number above 0) is required with --yes" in err
+    assert "The estimate $2.52 is above the ceiling $1.00" in err
+    assert all(f.calls == [] for f in fakes) and list(tmp_path.iterdir()) == []
+
+
+def test_the_ceiling_stops_the_run_and_the_spend_is_stored(capsys, tmp_path):
+    # one reader call at the price of claude-haiku-5-5 costs $0.200012 (120 in, 400 000 out): the ceiling is
+    # reached, so the judge call of that item is refused, the item is dropped and nothing else runs
+    reader = FakeProvider(PRICED, replies=[FakeReply(tokens_out=400_000)])
+    guard = FakeProvider(PRICED, json_default=OK)
+    judge_fake = FakeProvider(PRICED, json_replies=[ONES, ONES], json_default=FIVES)
+    code = run.main(["--yes", "--max-usd", "0.2", "--limit", "1", "--out", str(tmp_path)], reader=reader,
+                    guard_provider=guard, judge_provider=judge_fake)
+    out = capsys.readouterr().out
+    assert code == run.STOPPED
+    assert "Spent $0.2000 of $0.20." in out and "Stopped at the ceiling: 10 items did not run (first: en-01)" in out
+    assert len(reader.stream_calls()) == 1 and len(judge_fake.json_calls()) == 2  # the judge check, then nothing
+    data = json.loads(next(tmp_path.glob("run-*.json")).read_text(encoding="utf-8"))
+    assert (data["max_usd"], data["spent_usd"]) == (0.2, 0.200042) and data["results"] == []
+    # 120 in, 400 000 out for the reader, and 60 in, 8 out for each of the two judge checks and the guard (R1: priced)
+    assert data["not_done"][:2] == ["en-01", "es-01"] and len(data["not_done"]) == 10
+
+
+
+def test_the_lean_without_a_verdict_is_judged_on_three_cards_without_votes():
+    item = next(i for i in run.load_jsonl("judge_check.jsonl") if i["id"] == "bad-09")
+    judge_fake = FakeProvider(json_default=ONES)
+    result = run.run_judge_check(item, cards=load_cards(load_settings({}).content_dir), judge_provider=judge_fake,
+                                 judge_prompt=load_judge_prompt())
+    content = judge_fake.json_calls()[0]["messages"][0]["content"]
+    assert result["caught"] is True and '<cards count="3">' in content
+    assert "vote:" not in content and "<verdict" not in content
+
+
+# --- Fable re-check R1: a model without a price would be metered as $0 and could pass the ceiling ---
+
+@pytest.mark.parametrize("unpriced", ["reader", "guard", "judge"])
+def test_a_model_without_a_price_stops_the_run_before_any_call(unpriced, capsys, tmp_path):
+    fakes = {"reader": FakeProvider(PRICED), "guard": FakeProvider(PRICED),
+             "judge": FakeProvider(PRICED, json_default=FIVES)}
+    fakes[unpriced] = FakeProvider(model="claude-unpriced-9", json_default=FIVES)
+    code = run.main(["--yes", "--max-usd", "3", "--limit", "1", "--out", str(tmp_path)], reader=fakes["reader"],
+                    guard_provider=fakes["guard"], judge_provider=fakes["judge"])
+    err = capsys.readouterr().err
+    assert code == 2 and f"{unpriced} model claude-unpriced-9 has no price in PRICES_PER_MTOK" in err
+    assert all(f.calls == [] for f in fakes.values()) and list(tmp_path.iterdir()) == []
+
+
+# --- Fable re-check R2: the spend of a run that crashes is kept in a sink file ---
+
+def test_every_paid_call_is_appended_to_a_sink_file_as_it_is_made(tmp_path):
+    reader = FakeProvider(PRICED, replies=[FakeReply(tokens_out=400_000)])
+    code = run.main(["--yes", "--max-usd", "0.2", "--limit", "1", "--out", str(tmp_path)], reader=reader,
+                    guard_provider=FakeProvider(PRICED, json_default=OK),
+                    judge_provider=FakeProvider(PRICED, json_replies=[ONES, ONES], json_default=FIVES))
+    assert code == run.STOPPED
+    [sink] = tmp_path.glob("calls-*.jsonl")
+    rows = [json.loads(line) for line in sink.read_text(encoding="utf-8").splitlines()]
+    assert [r["purpose"] for r in rows] == ["judge", "judge", "guard", "reader"]
+    assert round(sum(r["cost_usd"] for r in rows), 6) == json.loads(next(tmp_path.glob("run-*.json"))
+                                                                    .read_text(encoding="utf-8"))["spent_usd"]

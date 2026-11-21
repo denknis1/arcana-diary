@@ -1,30 +1,37 @@
-"""Reader eval run (§5.3, §8.9). Every run costs money: it prints an estimate and refuses to run without --yes.
+"""Reader eval run (§5.3, §8.9). Every run costs money: it prints an estimate and refuses to run without --yes and
+a hard ceiling --max-usd (stage 4.5, Fable plan review I3): every model call goes through evals.metering, a call
+over the ceiling is refused, an item that met a refusal is not counted, and the run stops (exit STOPPED) with what
+it spent printed and stored.
 
 Six sets, all written in full in this folder:
-- questions.<lang>.jsonl — 50 reader questions per language (guard → reader → judge);
+- questions.<lang>.jsonl — 60 reader questions per language (guard → reader → judge); the last 10 are yes/no on
+  three cards (stage 4.5 §4: "count": 3, and a fixed "seed" where the votes must give yes, no, a tie, …);
 - injection.jsonl — 10 attempts to break the reader (guard → reader → judge, plus a leak check);
 - followups.jsonl — 10 follow-ups per language (§9.9): reader → guard on the follow-up → follow-up → judge;
 - daily.jsonl — 10 card-of-the-day texts per language (§9.9): daily prompt → judge;
 - guard.jsonl — 76 questions for the question check only: crisis, look-alike everyday phrases and ambiguous
   stop-phrases that must not give a crisis answer;
-- judge_check.jsonl — 8 known-bad answers: the judge must give each one 2 or less on the named criterion,
+- judge_check.jsonl — 9 known-bad answers: the judge must give each one 2 or less on the named criterion,
   otherwise its averages are not trusted and the run fails.
 Every result records the guard's source and time, the raw answer and what a person would see after §2.5.
 A reader answer of [[crisis]] is recorded (reader_crisis) and not graded: for a crisis question it counts as caught.
 
 The controller runs it only after the owner's explicit yes to the printed cost, with the key from deploy/.env:
   cd ~/arcana-diary && set -a && . deploy/.env && set +a && cd api
-  .venv/bin/python -m evals.run          # estimate only, no calls
-  .venv/bin/python -m evals.run --yes    # the paid run
+  .venv/bin/python -m evals.run                         # estimate only, no calls
+  .venv/bin/python -m evals.run --yes --max-usd 3.00     # the paid run, never above $3.00
+  .venv/bin/python -m evals.run --kind yes_no --yes --max-usd 1.00   # only the yes/no reader items, the guard set
+                                                                      # and the judge check
 """
 import argparse
 import json
+import math
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 from app.cards import label, load_cards
-from app.config import cost_usd, load_settings
+from app.config import PRICES_PER_MTOK, cost_usd, load_settings
 from app.draw import draw_spread
 from app.reader import check, compose
 from app.reader.check import load_reader_terms
@@ -36,6 +43,7 @@ from app.reader.sections import SectionParser
 from app.safety.content import load_all_texts
 from app.safety.guard import NO_VERDICT_GROUPS, Guard
 from evals.judge import auto_checks, judge, load_judge_prompt, summarize, text_checks
+from evals.metering import Meter, MeteredProvider
 
 EVALS_DIR = Path(__file__).resolve().parent
 # (in, out) tokens per call, upper estimate
@@ -44,6 +52,7 @@ EST_TOKENS = {"guard": (700, 300), "reader": (1600, 1500), "judge": (2200, 900),
 READER_MAX_TOKENS = 4000
 DAILY_MAX_TOKENS = 2000
 NO_KEY = 3
+STOPPED = 4  # the ceiling was reached: the items after it did not run
 
 
 def load_jsonl(name: str) -> list[dict]:
@@ -70,10 +79,12 @@ def estimate_cost(n_reader: int, n_guard: int, n_judge_check: int, settings, n_f
 
 
 def eval_reading(item: dict, group: str, cards) -> dict:
+    """The cards come from the item's own "seed" when it has one, else from its id; "count" — yes/no on three."""
     lang = item["lang"]
+    seed = item.get("seed") or f"eval:{item['id']}"
     reading = {"id": item["id"], "lang": lang, "kind": item["kind"], "question": item["question"],
                "topic": item["topic"], "situation": item["situation"], "guard_group": group,
-               "cards": draw_spread(f"eval:{item['id']}", item["kind"], cards.order)}
+               "cards": draw_spread(seed, item["kind"], cards.order, item.get("count"))}
     with_verdict = item["kind"] == "yes_no" and group not in NO_VERDICT_GROUPS
     reading["verdict"] = cards.verdict(reading["cards"]) if with_verdict else None
     return reading
@@ -82,7 +93,7 @@ def eval_reading(item: dict, group: str, cards) -> dict:
 def reading_input(reading: dict, cards) -> str:
     verdict_label = label(reading["verdict"], reading["lang"], cards.rules) if reading["verdict"] else None
     return compose.reading_input(reading, cards.excerpts(reading["cards"], reading["lang"], reading["topic"]),
-                                 verdict_label)
+                                 verdict_label, compose.card_votes(reading, cards))
 
 
 def read_sections(reader, prompt, reading: dict, user_input: str, first_token_timeout_s: float):
@@ -223,7 +234,10 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
     parser = argparse.ArgumentParser(description="Arcana Diary reader evals (each run costs money)")
     parser.add_argument("--lang", choices=["en", "es", "all"], default="all")
     parser.add_argument("--limit", type=int, default=None, help="only the first N items of each set per language")
+    parser.add_argument("--kind", choices=["one", "three", "yes_no"], default=None,
+                        help="only reader items of this kind; skips the follow-up and daily sets")
     parser.add_argument("--yes", action="store_true", help="the owner has approved this run and its cost")
+    parser.add_argument("--max-usd", type=float, default=None, help="hard ceiling of this run, required with --yes")
     parser.add_argument("--out", type=Path, default=EVALS_DIR / "results")
     args = parser.parse_args(argv)
     settings = load_settings()
@@ -235,6 +249,9 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
     items = per_lang([*load_items("en"), *load_items("es")]) + per_lang(load_jsonl("injection.jsonl"))
     followup_items = per_lang(load_jsonl("followups.jsonl"))
     daily_items = per_lang(load_jsonl("daily.jsonl"))
+    if args.kind:
+        items = [item for item in items if item["kind"] == args.kind]
+        followup_items, daily_items = [], []
     guard_items = per_lang(load_jsonl("guard.jsonl"))
     judge_items = per_lang(load_jsonl("judge_check.jsonl"))
     estimate = estimate_cost(len(items), len(guard_items), len(judge_items), settings, len(followup_items),
@@ -245,7 +262,15 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
           f"judge {settings.judge_model}.")
     print(f"Estimated cost: ${estimate:.2f} (upper estimate).")
     if not args.yes:
-        print("Not running: every run costs money. Re-run with --yes only after the owner has approved this cost.")
+        print("Not running: every run costs money. Re-run with --yes --max-usd N only after the owner has approved "
+              "this cost.")
+        return 2
+    if args.max_usd is None or not math.isfinite(args.max_usd) or args.max_usd <= 0:
+        print("--max-usd N (a number above 0) is required with --yes. Nothing was called.", file=sys.stderr)
+        return 2
+    if estimate > args.max_usd:
+        print(f"The estimate ${estimate:.2f} is above the ceiling ${args.max_usd:.2f}. Nothing was called.",
+              file=sys.stderr)
         return 2
     key = settings.anthropic_api_key
     if not key and None in (reader, guard_provider, judge_provider):
@@ -256,24 +281,56 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
     guard_provider = guard_provider or ClaudeProvider(key, settings.guard_model,
                                                       json_timeout_s=settings.guard_timeout_s)
     judge_provider = judge_provider or ClaudeProvider(key, settings.judge_model, json_timeout_s=60.0, json_effort=None)
+    unpriced = [f"{role} model {model}" for role, model in (("reader", reader.model), ("guard", guard_provider.model),
+                                                            ("judge", judge_provider.model))
+                if model not in PRICES_PER_MTOK]
+    if unpriced:  # a model without a price row would be metered as $0 and could never reach the ceiling
+        print(f"The {', '.join(unpriced)} has no price in PRICES_PER_MTOK (app/config.py): the ceiling would not "
+              f"work. Add a price row first. Nothing was called.", file=sys.stderr)
+        return 2
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    args.out.mkdir(parents=True, exist_ok=True)
+    # every call is appended at once, so what a crashed run spent is not lost (stage 4.5, Fable re-check R2)
+    meter = Meter(args.max_usd, sink=args.out / f"calls-{stamp}.jsonl")
+    reader = MeteredProvider(reader, meter)
+    guard_provider = MeteredProvider(guard_provider, meter, "guard")
+    judge_provider = MeteredProvider(judge_provider, meter, "judge")
     prompts = compose.load_prompts()
     guard_prompt = prompts[("guard", None)]
     guard = Guard(guard_provider, guard_prompt.text, guard_prompt.version)
     cards = load_cards(settings.content_dir)
     terms, texts, judge_prompt = load_reader_terms(), load_all_texts(), load_judge_prompt()
-    judge_check = [run_judge_check(item, cards=cards, judge_provider=judge_provider, judge_prompt=judge_prompt)
-                   for item in judge_items]
     common = {"cards": cards, "prompts": prompts, "reader": reader, "judge_provider": judge_provider,
               "judge_prompt": judge_prompt, "terms": terms, "first_token_timeout_s": settings.first_token_timeout_s}
-    results = [run_item(item, guard=guard, texts=texts, **common) for item in items]
-    results += [run_followup_item(item, guard=guard, texts=texts, **common) for item in followup_items]
-    results += [run_daily_item(item, **common) for item in daily_items]
-    guard_results = [run_guard_item(item, guard) for item in guard_items]
+    not_done: list[str] = []
+
+    def metered(runs) -> list[dict]:
+        """Each item while the ceiling holds. The guard and the reader engine turn a refused call into a fallback
+        and run_item into an error, so an item that met a refusal is dropped, not graded."""
+        out = []
+        for item, run in runs:
+            if meter.exhausted:
+                not_done.append(item["id"])
+                continue
+            meter.item, refused_before = item["id"], meter.refused
+            result = run(item)
+            if meter.refused > refused_before:
+                not_done.append(item["id"])
+            else:
+                out.append(result)
+        return out
+
+    judge_check = metered((item, lambda i: run_judge_check(i, cards=cards, judge_provider=judge_provider,
+                                                           judge_prompt=judge_prompt)) for item in judge_items)
+    results = metered((item, lambda i: run_item(i, guard=guard, texts=texts, **common)) for item in items)
+    results += metered((item, lambda i: run_followup_item(i, guard=guard, texts=texts, **common))
+                       for item in followup_items)
+    results += metered((item, lambda i: run_daily_item(i, **common)) for item in daily_items)
+    guard_results = metered((item, lambda i: run_guard_item(i, guard)) for item in guard_items)
     summary = summarize(results, guard_results, judge_check)
-    args.out.mkdir(parents=True, exist_ok=True)
-    path = args.out / f"run-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}.json"
+    path = args.out / f"run-{stamp}.json"
     report = {
-        "estimate_usd": estimate,
+        "estimate_usd": estimate, "max_usd": args.max_usd, "spent_usd": meter.spent, "not_done": not_done,
         "models": {"reader": reader.model, "guard": guard_provider.model, "judge": judge_provider.model},
         "reader_effort": settings.reader_effort,
         "prompts": {f"{name}.{lang or 'all'}": p.version for (name, lang), p in prompts.items()},
@@ -290,7 +347,11 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
             print(f"{lang}: means {s['means']}, safety violations {s['safety_violations']}, "
                   f"guard missed crisis {s['guard']['missed_crisis']}, false crisis {s['guard']['false_crisis']}, "
                   f"guard sources {s['guard']['sources']}, errors {s['errors']} -> {'PASS' if s['passed'] else 'FAIL'}")
+    print(f"Spent ${meter.spent:.4f} of ${args.max_usd:.2f}.")
     print(f"Results: {path}")
+    if not_done:
+        print(f"Stopped at the ceiling: {len(not_done)} items did not run (first: {not_done[0]}) -> NOT A RESULT")
+        return STOPPED
     passed = judge_ok and all(summary[lang]["passed"] for lang in langs if lang in summary)
     return 0 if passed else 1
 
