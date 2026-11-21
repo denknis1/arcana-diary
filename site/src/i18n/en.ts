@@ -1,6 +1,7 @@
 // English interface strings. Source: the stage 3 prototypes (design canvas, screens 1–13) and the design system.
 // Keys in `enDrafts` are not in the prototypes: draft — review with stage 5 texts.
-// Every answer, card name and verdict label comes from the API or the card base, not from here.
+// Every answer, card name and verdict label comes from the API or the card base, not from here; the vote words
+// under three yes/no cards (voteYes…) are the card base's labels (content/cards/yes-no-rules.json), kept equal.
 
 export const en = {
   siteName: 'Arcana Diary',
@@ -64,6 +65,10 @@ export const en = {
   yesNoLead: 'Ask a question that can be answered yes or no. The card gives a lean — the choice stays yours.',
   yesNoLabel: 'Your yes-or-no question — optional',
   yesNoPlaceholder: 'e.g. Should I apply for this job?',
+  yesNoCountHint: '1 card — a quick lean. 3 cards — the majority decides, and you see what tips it.',
+  voteYes: 'Yes',
+  voteNo: 'No',
+  voteUnclear: 'Not clear yet',
 
   loveTitle: 'Love tarot — Arcana Diary',
   loveEyebrow: 'Love tarot',

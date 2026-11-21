@@ -65,6 +65,10 @@ export const es: Dict = {
   yesNoLead: 'Haz una pregunta que se pueda responder con sí o no. La carta muestra una inclinación; la decisión sigue siendo tuya.',
   yesNoLabel: 'Tu pregunta de sí o no — opcional',
   yesNoPlaceholder: 'p. ej. ¿Debo aceptar esta oferta?',
+  yesNoCountHint: '1 carta: una inclinación rápida. 3 cartas: decide la mayoría, y ves qué inclina la balanza.',
+  voteYes: 'Sí',
+  voteNo: 'No',
+  voteUnclear: 'Todavía no está claro',
 
   loveTitle: 'Tarot del amor — Arcana Diary',
   loveEyebrow: 'Tarot del amor',
@@ -194,5 +198,5 @@ export const esDrafts: readonly DictKey[] = [
   'errUnavailable', 'errNetwork', 'errStage', 'errGone', 'errOther', 'plusTitle', 'plusLead', 'plusGives',
   'plusBenefit1', 'plusBenefit2', 'plusBenefit3', 'plusEmailLabel', 'plusEmailPlaceholder', 'plusNotify',
   'plusDone', 'plusEmailError', 'plusDaily', 'crisisCall', 'crisisText', 'crisisHours', 'crisisWeb',
-  'errDayCap', 'followupReady', 'plusNotNow',
+  'errDayCap', 'followupReady', 'plusNotNow', 'yesNoCountHint',
 ];

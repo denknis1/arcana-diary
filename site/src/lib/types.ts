@@ -11,6 +11,12 @@ export type Kind = 'one' | 'three' | 'yes_no' | 'card_page';
 
 export type Position = 'past' | 'present' | 'path' | 'card';
 
+/** A yes/no answer: the reading's verdict, or one card's own vote (spec 4.5 §4). */
+export type Vote = 'yes' | 'no' | 'unclear';
+
+/** How many cards a yes/no reading draws (spec 4.5 §4); one is the default. */
+export type CardCount = 1 | 3;
+
 export type Situation = 'single' | 'relationship' | 'after_breakup' | 'complicated';
 export const SITUATIONS: readonly Situation[] = ['single', 'relationship', 'after_breakup', 'complicated'];
 
@@ -19,10 +25,11 @@ export interface DrawnCard {
   position: Position;
   reversed: boolean;
   name: string;
+  vote?: Vote; // a yes/no reading with a verdict: this card's own vote (spec 4.5 §4)
 }
 
 export interface Verdict {
-  value: 'yes' | 'no' | 'unclear';
+  value: Vote;
   label: string;
 }
 
@@ -109,4 +116,6 @@ export interface CreateBody {
   card_id?: string;
   tz?: string;
   turnstile_token?: string;
+  count?: CardCount; // yes/no only
+  request_id?: string; // spec 4.5 §5: one number per press of Draw, the same on its one automatic repeat
 }

@@ -42,6 +42,16 @@ describe('draw button', () => {
     expect(cardsFor('three')).toBe(3);
     expect(cardsFor('yes_no')).toBe(1);
   });
+
+  it('follows the yes/no toggle (spec 4.5 §4)', () => {
+    const yesNo = panelConfig('yes_no', 'en');
+    expect(yesNo.yesNoCount).toBe(true);
+    expect(t('en')[drawLabelKey(yesNo, 'yes_no', 3)]).toBe('Draw three cards');
+    expect(t('es')[drawLabelKey(panelConfig('yes_no', 'es'), 'yes_no', 3)]).toBe('Saca tres cartas');
+    expect(t('en')[drawLabelKey(yesNo, 'yes_no', 1)]).toBe('Draw a card');
+    expect([cardsFor('yes_no', 3), cardsFor('yes_no', 1), cardsFor('one', 3)]).toEqual([3, 1, 1]);
+    expect(panelConfig('home', 'es').yesNoCount).toBe(false);
+  });
 });
 
 describe('buildCreateBody', () => {
@@ -60,6 +70,16 @@ describe('buildCreateBody', () => {
       .toEqual({ lang: 'en', kind: 'three', topic: 'love' });
     expect(buildCreateBody(panelConfig('card', 'en', 'major-18-moon'), { kind: 'card_page', question: '', situation: null, tz: undefined }))
       .toEqual({ lang: 'en', kind: 'card_page', card_id: 'major-18-moon' });
+  });
+
+  it('sends the yes/no count, one by default, and no count elsewhere', () => {
+    const yesNo = panelConfig('yes_no', 'es');
+    expect(buildCreateBody(yesNo, { kind: 'yes_no', question: '¿Me cambio?', situation: null, tz: 'UTC', count: 3 }))
+      .toEqual({ lang: 'es', kind: 'yes_no', count: 3, question: '¿Me cambio?', tz: 'UTC' });
+    expect(buildCreateBody(yesNo, { kind: 'yes_no', question: '', situation: null, tz: undefined }))
+      .toEqual({ lang: 'es', kind: 'yes_no', count: 1 });
+    expect(buildCreateBody(panelConfig('home', 'en'), { kind: 'three', question: '', situation: null, tz: undefined, count: 3 }))
+      .toEqual({ lang: 'en', kind: 'three' });
   });
 
   it('names the four love situations of stage 3', () => {
