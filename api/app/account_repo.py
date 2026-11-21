@@ -24,8 +24,10 @@ def live_claim_tokens(conn, reading_id, now) -> int:
 
 
 def claim_device(conn, user_id, guest_id, now) -> list:
-    """§4.1: every unexpired reading of this device's guest cookie that has no account yet; returns their ids."""
-    rows = conn.execute("UPDATE readings SET user_id = %s, expires_at = NULL WHERE guest_id = %s AND user_id IS NULL"
+    """§4.1: every unexpired reading of this device's guest cookie that has no account yet; returns their ids.
+    The request number goes (stage 4.5 §5): it is unique per owner, and the account may hold the same one."""
+    rows = conn.execute("UPDATE readings SET user_id = %s, expires_at = NULL, request_id = NULL"
+                        " WHERE guest_id = %s AND user_id IS NULL"
                         " AND (expires_at IS NULL OR expires_at > %s) RETURNING id",
                         (user_id, guest_id, now)).fetchall()
     return [r["id"] for r in rows]
@@ -33,13 +35,15 @@ def claim_device(conn, user_id, guest_id, now) -> list:
 
 def claim_by_tokens(conn, user_id, hashes: list[str], now) -> list:
     """§4.2: every live token in the list is used up, once, even when its reading does not move; the reading moves
-    only while it has no account and has not expired. Unknown, used or expired tokens are skipped."""
+    only while it has no account and has not expired. Unknown, used or expired tokens are skipped. A moved reading
+    drops its request number, as in claim_device."""
     if not hashes:
         return []
     rows = conn.execute(
         "WITH used AS (UPDATE claim_tokens SET used_at = %(now)s WHERE token_hash = ANY(%(hashes)s)"
         " AND used_at IS NULL AND expires_at > %(now)s RETURNING reading_id)"
-        " UPDATE readings r SET user_id = %(user)s, expires_at = NULL FROM used WHERE r.id = used.reading_id"
+        " UPDATE readings r SET user_id = %(user)s, expires_at = NULL, request_id = NULL FROM used"
+        " WHERE r.id = used.reading_id"
         " AND r.user_id IS NULL AND (r.expires_at IS NULL OR r.expires_at > %(now)s) RETURNING r.id",
         {"now": now, "hashes": hashes, "user": user_id}).fetchall()
     return list(dict.fromkeys(r["id"] for r in rows))

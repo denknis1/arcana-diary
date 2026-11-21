@@ -29,7 +29,8 @@ def test_split_sql():
 
 
 def test_migrate_creates_tables_with_rls_and_no_policies(fresh_db):
-    assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source", "004_events"]
+    assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source", "004_events",
+                                           "005_request_ids"]
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT relname, relrowsecurity FROM pg_class"
                             " WHERE relnamespace = 'public'::regnamespace AND relkind = 'r'").fetchall()
@@ -307,7 +308,7 @@ def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
     apply_up_to(fresh_db, "001_init")  # stage 4.2: 001 applied, a guest reading in it
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
-    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source", "004_events"]
+    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source", "004_events", "005_request_ids"]
     with fresh_db.connect() as conn:
         row = conn.execute("SELECT user_id, outcome, outcome_at, note, note_updated_at FROM readings WHERE id = %s",
                            (reading["id"],)).fetchone()
@@ -321,7 +322,7 @@ def test_003_applies_over_002_and_leaves_the_old_rows_without_a_source(fresh_db)
     apply_up_to(fresh_db, "001_init", "002_accounts")  # the live database after stage 4.3's first deploy
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
-    assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source", "004_events"]
+    assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source", "004_events", "005_request_ids"]
     with fresh_db.connect() as conn:
         column = conn.execute("SELECT is_nullable, column_default FROM information_schema.columns"
                               " WHERE table_name = 'readings' AND column_name = 'guard_source'").fetchone()
@@ -410,7 +411,7 @@ def test_the_tests_refuse_a_supabase_database():
 
 def test_004_applies_over_003(fresh_db):
     apply_up_to(fresh_db, "001_init", "002_accounts", "003_guard_source")  # the live database after stage 4.3
-    assert migrate(fresh_db, MIGRATIONS) == ["004_events"]
+    assert migrate(fresh_db, MIGRATIONS) == ["004_events", "005_request_ids"]
     with fresh_db.connect() as conn:
         security = conn.execute("SELECT relrowsecurity FROM pg_class WHERE relname = 'events'").fetchone()
         names = {r["indexname"] for r in conn.execute("SELECT indexname FROM pg_indexes WHERE tablename = 'events'")}
@@ -427,3 +428,59 @@ def test_004_checks(db, sql):
     with pytest.raises(psycopg.errors.CheckViolation):
         with db.connect() as conn:
             conn.execute(sql)
+
+
+# --- stage 4.5: migration 005 (spec 2026-11-20 §5) ---
+
+def test_005_applies_over_004_and_leaves_the_old_rows_without_a_number(fresh_db):
+    reading = make_reading()
+    apply_up_to(fresh_db, "001_init", "002_accounts", "003_guard_source", "004_events")  # the live database
+    with fresh_db.connect() as conn:
+        insert_001_reading(conn, reading)
+        conn.execute("INSERT INTO followups (id, reading_id, n, question, created_at) VALUES (%s, %s, 1, 'Q?', %s)",
+                     (uuid.uuid4(), reading["id"], T0))
+    assert migrate(fresh_db, MIGRATIONS) == ["005_request_ids"]
+    with fresh_db.connect() as conn:
+        columns = conn.execute("SELECT table_name, is_nullable, column_default FROM information_schema.columns"
+                               " WHERE column_name = 'request_id' ORDER BY table_name").fetchall()
+        names = {r["indexname"] for r in conn.execute("SELECT indexname FROM pg_indexes WHERE schemaname = 'public'")}
+        old = conn.execute("SELECT request_id FROM readings WHERE id = %s", (reading["id"],)).fetchone()
+    assert columns == [{"table_name": t, "is_nullable": "YES", "column_default": None}
+                       for t in ("followups", "readings")]
+    assert {"readings_user_request_idx", "readings_guest_request_idx", "followups_reading_request_key"} <= names
+    assert old == {"request_id": None}
+
+
+def test_a_request_number_is_unique_per_owner(db):
+    number, guest, user = uuid.uuid4(), uuid.uuid4(), uuid.uuid4()
+    first = make_reading(guest_id=guest, request_id=number)
+    with db.connect() as conn:
+        assert repo.insert_reading(conn, first) is True
+        assert repo.insert_reading(conn, make_reading(guest_id=guest, request_id=number)) is False
+        assert repo.insert_reading(conn, make_reading(request_id=number)) is True  # another device
+        assert repo.insert_reading(conn, make_reading(guest_id=guest, user_id=user, request_id=number)) is True
+        assert repo.insert_reading(conn, make_reading(user_id=user, request_id=number)) is False  # same account
+        assert repo.insert_reading(conn, make_reading(guest_id=guest)) is True  # no number: never a conflict
+        assert repo.insert_reading(conn, make_reading(guest_id=guest)) is True
+        found = repo.find_reading_by_request(conn, number, None, guest, T0)
+        assert found["id"] == first["id"]
+        assert repo.find_reading_by_request(conn, number, None, uuid.uuid4(), T0) is None
+        assert repo.find_reading_by_request(conn, number, user, guest, T0)["user_id"] == user
+        assert repo.find_reading_by_request(conn, number, uuid.uuid4(), guest, T0) is None
+        assert repo.find_reading_by_request(conn, number, None, guest, T0 + timedelta(days=8)) is None  # expired
+
+
+def test_a_follow_up_number_is_unique_per_reading(db):
+    reading, other = make_reading(), make_reading()
+    number = uuid.uuid4()
+    first = {"id": uuid.uuid4(), "reading_id": reading["id"], "n": 1, "question": "And then?", "created_at": T0,
+             "request_id": number}
+    with db.connect() as conn:
+        repo.insert_reading(conn, reading)
+        repo.insert_reading(conn, other)
+        assert repo.insert_followup(conn, first) is True
+        assert repo.insert_followup(conn, {**first, "id": uuid.uuid4(), "n": 2}) is False  # the same number
+        assert repo.insert_followup(conn, {**first, "id": uuid.uuid4(), "reading_id": other["id"]}) is True
+        assert repo.insert_followup(conn, {**first, "id": uuid.uuid4(), "n": 2, "request_id": None}) is True
+        rows = repo.list_followups(conn, reading["id"])
+    assert [(r["n"], r["request_id"]) for r in rows] == [(1, number), (2, None)]

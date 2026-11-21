@@ -3,9 +3,9 @@ made-up token, a used one, an expired one, a reading that already has an account
 import uuid
 from datetime import timedelta
 
-from app import account_repo
+from app import account_repo, repo
 from app.housekeeping import delete_expired
-from helpers import bearer, dump_tables, post_reading
+from helpers import bearer, dump_tables, make_reading, post_reading
 
 MX = "America/Mexico_City"
 ANA = uuid.UUID("1a2b3c4d-0000-4000-8000-000000000001")
@@ -140,3 +140,26 @@ def test_a_claimed_reading_survives_the_cleanup(api):
     diary = api.client.get("/api/diary", headers=bearer(ANA))
     assert diary.status_code == 200 and [item["id"] for item in diary.json()["items"]] == [reading_id]
     assert reading_row(api, left) is None
+
+
+def test_a_claim_moves_a_reading_whose_request_number_the_account_already_has(api):
+    """Stage 4.5 §5: request numbers are unique per owner; a moved reading drops its own, so a claim never meets
+    the account's reading with the same number (Fable plan review I2)."""
+    here = new_reading(api.client)
+    away_client = api.new_client()
+    away = new_reading(away_client)
+    first, second = uuid.uuid4(), uuid.uuid4()
+    with api.db.connect() as conn:
+        conn.execute("UPDATE readings SET request_id = %s WHERE id = %s", (first, uuid.UUID(here)))
+        conn.execute("UPDATE readings SET request_id = %s WHERE id = %s", (second, uuid.UUID(away)))
+        for number in (first, second):
+            repo.insert_reading(conn, make_reading(user_id=ANA, request_id=number, expires_at=None))
+    device = claim(api.client, ANA)
+    assert device.status_code == 200 and device.json() == {"claimed": [here]}
+    token = claim_token(away_client, away).json()["token"]
+    by_token = claim(api.client, ANA, [token])
+    assert by_token.status_code == 200 and by_token.json() == {"claimed": [away]}
+    with api.db.connect() as conn:
+        moved = conn.execute("SELECT user_id, request_id FROM readings WHERE id = ANY(%s)",
+                             ([uuid.UUID(here), uuid.UUID(away)],)).fetchall()
+    assert moved == [{"user_id": ANA, "request_id": None}] * 2
