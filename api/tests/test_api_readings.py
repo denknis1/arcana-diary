@@ -711,3 +711,78 @@ def test_a_failed_save_frees_the_claim(api, monkeypatch):
     assert stream(api, body["id"])[-1] == ("error", {"reason": "db"})
     row = saved(api, body["id"])
     assert row["answer"] is None and row["stream_started_at"] is None
+
+
+# --- stage 4.5 §3: help first, then the limit ---
+
+def use_up_the_day(api, client=None, headers=None):
+    for _ in range(3):
+        assert post_reading(client or api.client, kind="one", tz=MX, headers=headers).status_code == 201
+
+
+def guard_calls_logged(api) -> int:
+    with api.db.connect() as conn:
+        return conn.execute("SELECT count(*) AS n FROM llm_calls WHERE purpose = 'guard'").fetchone()["n"]
+
+
+def test_a_stop_phrase_at_the_daily_limit_gets_the_crisis_answer(api):
+    use_up_the_day(api)
+    response = post_reading(api.client, kind="one", tz=MX, question="I want to die")
+    assert response.status_code == 200
+    body = response.json()
+    assert (body["group"], body["remaining"]) == ("crisis", 0)
+    assert api.guard.json_calls() == [] and guest_usage(api) == 3
+    assert guard_rows(api) == [{"lang": "en", "guard_group": "crisis", "source": "terms", "count": 1}]
+
+
+def test_a_crisis_found_by_the_check_model_at_the_daily_limit_gets_the_crisis_answer(api):
+    use_up_the_day(api)
+    api.guard.json_replies.append(CRISIS)
+    response = post_reading(api.client, kind="three", tz=MX, question="Is there any way out of this?")
+    assert response.status_code == 200 and response.json()["group"] == "crisis"
+    assert len(api.guard.json_calls()) == 1 and guard_calls_logged(api) == 1
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3
+
+
+def test_an_ordinary_question_at_the_daily_limit_is_checked_then_refused(api):
+    use_up_the_day(api)
+    response = post_reading(api.client, kind="one", tz=MX, question="Should I take the pottery class?")
+    assert response.status_code == 429 and response.json() == {"reason": "limit", "remaining": 0}
+    assert len(api.guard.json_calls()) == 1  # the check first; its call is logged for the guard budget
+    assert guard_calls_logged(api) == 1 and guest_usage(api) == 3
+    with api.db.connect() as conn:  # ...for no reading: none is made
+        assert conn.execute("SELECT reading_id FROM llm_calls WHERE purpose = 'guard'").fetchone()["reading_id"] is None
+    assert guard_rows(api) == [{"lang": "en", "guard_group": "ok", "source": "model", "count": 1}]
+    assert post_reading(api.client, kind="one", tz=MX).json() == {"reason": "limit", "remaining": 0}
+    assert len(api.guard.json_calls()) == 1  # no question: nothing to check
+
+
+def test_the_address_cap_still_comes_before_the_question_check(api):
+    ip = "198.51.100.123"
+    ip_hash = api.ctx.salt.hash_ip(ip, api.clock())
+    with api.db.connect() as conn:
+        conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, 60)",
+                     (limits.ip_subject(ip_hash), limits.utc_day(api.clock())))
+    response = post_reading(api.client, kind="one", tz=MX, question="I want to die", headers=from_ip(ip))
+    assert response.status_code == 429 and response.json() == {"reason": "ip_limit", "remaining": 0}
+    assert guard_rows(api) == []
+
+
+def test_at_the_daily_limit_a_question_nobody_can_check_is_429_limit(api):
+    """Fable plan review I6(b): over the guard's budget, or with the address's checks used, a question only the
+    model can check cannot get a reading anyway — the limit answers, not "unavailable" (below the limit: 503)."""
+    use_up_the_day(api)
+    with api.db.connect() as conn:
+        repo.log_llm_call(conn, {"reading_id": None, "purpose": "guard", "model": "claude-haiku-5-5",
+                                 "prompt_version": "guard.v1", "ms_first_token": None, "ms_total": 1,
+                                 "tokens_in": 1, "tokens_out": 1, "cost_usd": 1.0, "stop_reason": "end_turn",
+                                 "refusal_category": None, "created_at": api.clock()})
+    over_budget = post_reading(api.client, kind="one", tz=MX, question="Should I take the pottery class?")
+    assert over_budget.status_code == 429 and over_budget.json() == {"reason": "limit", "remaining": 0}
+    crisis = post_reading(api.client, kind="one", tz=MX, question="I want to die")  # a stop-phrase still helps
+    assert crisis.status_code == 200 and crisis.json()["group"] == "crisis"
+    below = post_reading(api.new_client(), kind="one", tz=MX, question="Should I take the pottery class?",
+                         headers=from_ip("198.51.100.150"))  # another device and address
+    assert below.status_code == 503 and below.json() == {"reason": "unavailable"}
+    assert api.guard.json_calls() == []

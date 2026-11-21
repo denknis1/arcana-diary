@@ -77,8 +77,9 @@ def create_reading(body: ReadingIn, request: Request):
     # В18: question checks count too, so crisis answers (no reading, no slot) also lead to Turnstile
     if limits.needs_turnstile(hits, max(ip_used, checks)) and not ctx.turnstile.verify(body.turnstile_token):
         return respond(403, {"reason": "turnstile", "sitekey": ctx.settings.turnstile_sitekey}, new_guest)
-    if quota_used >= quota.limit:
-        return respond(429, {"reason": "limit", "remaining": 0}, new_guest)
+    # stage 4.5 §3: the question check comes before the daily limit, so a crisis question gets help even when
+    # today's readings are used; its result is kept for the reading (guard_group, guard_source), never re-checked
+    at_limit = quota_used >= quota.limit
     question = clean(body.question)
     reading_id = uuid.uuid4()
     guard = None
@@ -93,13 +94,18 @@ def create_reading(body: ReadingIn, request: Request):
         try:
             guard = ctx.guard.classify(question, allow_model=allow_model)
         except GuardUnavailable:  # §9.2: never a reading without the question check
+            if at_limit:  # no reading can come of it anyway: the limit (its screen links to help), not "unavailable"
+                return respond(429, {"reason": "limit", "remaining": 0}, new_guest)
             return respond(503, {"reason": "unavailable"}, new_guest)
-    if guard is not None:
+    if guard is not None:  # the call is logged with the reading it is for — none at the limit or on a crisis
         with ctx.db.connect() as conn:
-            flow.record_guard(conn, ctx, guard, body.lang, ip_day, None if guard.group == "crisis" else reading_id)
+            flow.record_guard(conn, ctx, guard, body.lang, ip_day,
+                              None if guard.group == "crisis" or at_limit else reading_id)
     if guard is not None and guard.group == "crisis":
         payload = flow.crisis_answer(ctx, body.lang, country_hint(ctx, request), body.tz, guard.violence)
         return respond(200, {**payload, "remaining": quota.limit - quota_used}, new_guest)
+    if at_limit:
+        return respond(429, {"reason": "limit", "remaining": 0}, new_guest)
     group = guard.group if guard else "ok"
     seed = new_seed()
     cards = draw_spread(seed, body.kind, ctx.cards.order)
