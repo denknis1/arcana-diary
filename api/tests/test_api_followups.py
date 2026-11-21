@@ -616,3 +616,79 @@ def test_a_free_followup_written_meanwhile_in_another_tab_is_counted(api, monkey
     again = ask(api.client, reading_id, "Second?", tz=MX)
     assert again.status_code == 402 and again.json()["reason"] == "confirm"
 
+
+# --- stage 4.5 §5: one request, one follow-up ---
+
+def counts_now(api, reading_id) -> tuple[int, int]:
+    full = api.client.get(f"/api/readings/{reading_id}").json()
+    return full["followups_left"], full["followup_attempts_left"]
+
+
+def test_the_same_number_replays_the_saved_followup(api):
+    reading_id = ready_reading(api, kind="one")
+    number = str(uuid.uuid4())
+    first = parse_sse(ask(api.client, reading_id, "How do I start?", request_id=number).text)
+    calls, guard_calls = len(api.reader.stream_calls()), len(api.guard.json_calls())
+    again = parse_sse(ask(api.client, reading_id, "How do I start?", request_id=number).text)
+    assert [e for e, _ in again] == ["meta", "section", "text", "done"]
+    assert again[0][1] == {"reading_id": reading_id, "followup": 1, "replay": True, "paid": False,
+                           "prompt_version": None, "soft_line": None}
+    text = "".join(d["text"] for e, d in first if e == "text").strip()
+    assert again[2][1] == {"name": "followup", "text": text}
+    assert again[-1] == ("done", {"answer_shown": "model", "followups_left": 1,
+                                  "followup_attempts_left": FOLLOWUP_ATTEMPTS - 1})
+    assert (len(api.reader.stream_calls()), len(api.guard.json_calls())) == (calls, guard_calls)
+    assert attempts_of(api, reading_id) == 1 and len(followups(api, reading_id)) == 1
+    assert followups(api, reading_id)[0]["request_id"] == uuid.UUID(number)
+
+
+def test_the_same_number_replays_a_replaced_answer_as_replaced(api):
+    reading_id = ready_reading(api, kind="three")
+    number = str(uuid.uuid4())
+    api.reader.replies.append(FakeReply(chunks=["He feels the same ", "way about you."]))
+    ask(api.client, reading_id, "Is there hope?", request_id=number)
+    again = parse_sse(ask(api.client, reading_id, "Is there hope?", request_id=number).text)
+    [replaced] = [d for e, d in again if e == "replace"]
+    assert replaced["reason"] == "saved" and replaced["sections"]["followup"] == followups(api, reading_id)[0][
+        "answer"]["fallback"]
+    assert fin(again) == ("done", {"answer_shown": "fallback", "followups_left": 2})
+
+
+def test_the_same_number_of_a_paid_followup_uses_no_second_reading(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    number = str(uuid.uuid4())
+    ask(api.client, reading_id, "And one more?", tz=MX, use_reading=True, request_id=number)
+    assert guest_used(api, reading_id) == 2
+    again = parse_sse(ask(api.client, reading_id, "And one more?", tz=MX, use_reading=True, request_id=number).text)
+    assert again[0][1]["paid"] is True
+    assert fin(again) == ("done", {"answer_shown": "model", "followups_left": 0, "used_reading": True})
+    assert guest_used(api, reading_id) == 2 and attempts_of(api, reading_id) == 3
+
+
+def test_the_same_number_while_it_is_written_says_in_progress(api):
+    reading_id = ready_reading(api, kind="one")
+    number = uuid.uuid4()
+    with api.db.connect() as conn:
+        repo.insert_followup(conn, {"id": uuid.uuid4(), "reading_id": uuid.UUID(reading_id), "n": 1,
+                                    "question": "First?", "request_id": number, "created_at": api.clock()})
+    events = parse_sse(ask(api.client, reading_id, "First?", request_id=str(number)).text)
+    assert [e for e, _ in events] == ["meta", "error"]
+    assert events[0][1]["followup"] == 1 and events[1][1] == {"reason": "in_progress"}
+    assert api.guard.json_calls() == [] and attempts_of(api, reading_id) == 0
+    other = ask(api.client, reading_id, "Second?", request_id=str(uuid.uuid4()))
+    assert other.status_code == 409 and other.json() == {"reason": "busy"}  # still one at a time
+
+
+def test_a_number_belongs_to_its_reading(api):
+    first, second = ready_reading(api, kind="one"), ready_reading(api, kind="one")
+    number = str(uuid.uuid4())
+    ask(api.client, first, "How do I start?", request_id=number)
+    events = parse_sse(ask(api.client, second, "How do I start?", request_id=number).text)
+    assert events[0][1]["replay"] is False and len(followups(api, second)) == 1
+
+
+def test_a_followup_number_must_be_a_uuid(api):
+    reading_id = ready_reading(api, kind="one")
+    response = ask(api.client, reading_id, "How do I start?", request_id="ask-1")
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["request_id"]}

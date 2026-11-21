@@ -133,3 +133,34 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
 def stream_followup(ctx, reading: dict, followup: dict, previous: list[dict], group: str,
                     cf_country: str | None = None, tz: str | None = None) -> Detached:
     return Detached(_followup_events(ctx, reading, followup, previous, group, cf_country, tz))
+
+
+def replay_followup(ctx, reading: dict, followup: dict) -> Iterator[str]:
+    """Stage 4.5 §5: the same request again (its first answer never reached the site). A saved answer is sent
+    again as it was shown — the model's text, or the card base line that replaced it; a follow-up still being
+    written gets "in_progress", as a second stream of a reading does, and the site reads it back with
+    GET /api/readings/{id}. Nothing is taken: no attempt, no question check, no reading."""
+    lang = reading["lang"]
+    paid = followup.get("paid_day") is not None
+    yield sse("meta", {"reading_id": str(reading["id"]), "followup": followup["n"], "replay": True, "paid": paid,
+                       "prompt_version": None, "soft_line": soft_line(ctx, lang, followup["guard_group"])})
+    if followup["answer"] is None:
+        yield sse("error", {"reason": "in_progress"})
+        return
+    try:
+        with ctx.db.connect() as conn:
+            fresh = repo.get_reading(conn, reading["id"], ctx.clock()) or reading
+            followups = repo.list_followups(conn, reading["id"])
+    except DatabaseUnavailable:
+        yield sse("error", {"reason": "db"})
+        return
+    attempts = fresh["followup_attempts"]
+    yield sse("section", {"name": "followup"})
+    replaced = followup["answer"].get("fallback")
+    if replaced:
+        yield sse("replace", {"sections": {"followup": replaced}, "reason": "saved", "retry": False})
+    else:
+        yield sse("text", {"name": "followup", "text": followup["answer"]["model"]})
+    data = {"answer_shown": "fallback" if replaced else "model", "followups_left": followups_left(followups, attempts),
+            "followup_attempts_left": max(FOLLOWUP_ATTEMPTS - attempts, 0)}
+    yield sse("done", {**data, "used_reading": followup["counted"]} if paid else data)

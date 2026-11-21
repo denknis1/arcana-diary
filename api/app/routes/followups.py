@@ -14,6 +14,9 @@ Order (stage 4.5 §3, owner decision 20.11.2026: help first, then the limits):
   tab while this question was checked, is 409 "busy"; then it inserts the follow-up and, for a paid one, takes its
   reading. The reader gets that fresh list. A failed paid follow-up gives it back (reader/followups.py); the reader's [[crisis]] marker does
   not (§9.5).
+- request_id (stage 4.5 §5): the same number again in this reading gets that follow-up's stream — its saved
+  answer, or "in_progress" while it is written — and takes nothing a second time; it is looked up in the list read
+  first and again under the lock (a parallel twin).
 """
 import uuid
 
@@ -24,7 +27,7 @@ from app import limits, repo
 from app.config import FOLLOWUP_ATTEMPTS, IP_FOLLOWUP_LIMIT
 from app.context import get_ctx
 from app.reader import flow
-from app.reader.followups import stream_followup
+from app.reader.followups import replay_followup, stream_followup
 from app.routes.common import country_hint, not_found, owns, respond, stream_response, viewer
 from app.routes.readings import clean, reject_nul
 from app.safety.guard import GuardUnavailable
@@ -36,12 +39,21 @@ class FollowupIn(BaseModel):
     question: str = Field(min_length=1, max_length=500)
     tz: str | None = Field(default=None, max_length=64)
     use_reading: bool = False  # §10.1: the person confirmed that a follow-up after the free ones uses a reading
+    request_id: uuid.UUID | None = None  # stage 4.5 §5: the site's number of this request; optional
 
     _no_nul = field_validator("question", "tz", mode="after")(reject_nul)
 
 
 class Busy(Exception):
     """Another follow-up of the reading is still being written: the transaction rolls back (attempt included)."""
+
+
+class Repeated(Exception):
+    """A parallel request with the same request_id inserted its follow-up first: this one shows that one."""
+
+    def __init__(self, followup: dict):
+        super().__init__("repeated")
+        self.followup = followup
 
 
 @router.post("/readings/{reading_id}/followups")
@@ -65,6 +77,10 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
     question = clean(body.question)
     if question is None:
         return respond(422, {"reason": "invalid", "fields": ["question"]})
+    if body.request_id is not None:
+        same = next((f for f in previous if f["request_id"] == body.request_id), None)
+        if same is not None:  # stage 4.5 §5: the same request again
+            return stream_response(replay_followup(ctx, reading, same))
     if any(f["answer"] is None for f in previous):
         return respond(409, {"reason": "busy"})
     allow_model = not flow.guard_over_budget(ctx)
@@ -97,12 +113,15 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
         if not body.use_reading:
             return respond(402, {"reason": "confirm", "remaining": left})
     followup = {"id": uuid.uuid4(), "reading_id": reading_id, "question": question, "guard_group": guard.group,
-                "paid_day": paid_day, "created_at": now}
+                "paid_day": paid_day, "request_id": body.request_id, "created_at": now}
     try:
         with ctx.db.connect() as conn:
             attempts = limits.take_followup_attempt(conn, reading_id)  # locks the reading until the commit
-            # read again under the lock: another tab may have asked while this question was checked
+            # read again under the lock: another tab (or a twin of this request) may have asked meanwhile
             current = repo.list_followups(conn, reading_id)
+            twin = next((f for f in current if body.request_id and f["request_id"] == body.request_id), None)
+            if twin is not None:
+                raise Repeated(twin)
             if any(f["answer"] is None for f in current):
                 raise Busy()
             if paid_day is None and flow.followups_left(current) == 0:  # the free ones went meanwhile
@@ -120,5 +139,7 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
         return respond(402, {"reason": "plus", "remaining": 0})
     except Busy:
         return respond(409, {"reason": "busy"})
+    except Repeated as exc:
+        return stream_response(replay_followup(ctx, reading, exc.followup))
     return stream_response(stream_followup(ctx, reading, {**followup, "attempts": attempts}, current, guard.group,
                                            country_hint(ctx, request), body.tz))
