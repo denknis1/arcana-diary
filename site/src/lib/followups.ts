@@ -16,11 +16,14 @@ export interface FollowupBody {
   question: string;
   tz?: string;
   use_reading: boolean;
+  request_id?: string; // spec 4.5 §5: one number per follow-up sent, the same on its one automatic repeat
 }
 
 /** The same tz as the reading was created with (api/README.md: otherwise the day is UTC). */
-export function followupBody(question: string, tz: string | undefined, useReading: boolean): FollowupBody {
-  return tz ? { question: question.trim(), tz, use_reading: useReading } : { question: question.trim(), use_reading: useReading };
+export function followupBody(question: string, tz: string | undefined, useReading: boolean, requestId?: string): FollowupBody {
+  const body: FollowupBody = tz ? { question: question.trim(), tz, use_reading: useReading } : { question: question.trim(), use_reading: useReading };
+  if (requestId) body.request_id = requestId;
+  return body;
 }
 
 export type FollowupRefusal =
@@ -81,8 +84,8 @@ export function applyFollowupEvent(followup: Followup, event: SseEvent): Followu
       return { followup: { ...followup, text: sectionText(data), status: 'failed' } };
     case 'crisis': // the shown text is cleared; the room shows the crisis answer instead
       return { followup: { ...followup, text: '', status: 'failed' }, crisis: data as unknown as CrisisPayload };
-    case 'error':
-      return { followup: { ...followup, status: 'failed' } };
+    case 'error': // "in_progress": a repeat of a follow-up the API is still writing — it is read back, still streaming
+      return data.reason === 'in_progress' ? { followup } : { followup: { ...followup, status: 'failed' } };
     case 'done': {
       const update: FollowupUpdate = {
         followup: {

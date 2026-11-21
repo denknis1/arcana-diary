@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createApi } from './api';
 import { CLOSED, nightReducer, type NightAction, type NightState } from './nightRoom';
 import {
-  DEFAULT_COUNTS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps,
+  DEFAULT_COUNTS, REPEAT_WAIT_MS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps,
 } from './readingFlow';
 import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText } from './testing/fakes';
 
@@ -23,14 +23,17 @@ function harness(...responses: Array<Response | Error>) {
   const actions: NightAction[] = [];
   const tokens: string[] = [];
   let state: NightState = nightReducer(CLOSED, { type: 'open' });
+  let ids = 0;
+  const sleeps: number[] = [];
   const deps: FlowDeps = {
     api: createApi(fetch),
     dispatch: (a) => { actions.push(a); state = nightReducer(state, a); },
     turnstileToken: async (sitekey) => { tokens.push(sitekey); return sitekey === 'none' ? null : 'tok-1'; },
-    sleep: async () => {},
+    sleep: async (ms) => { sleeps.push(ms); },
     reducedMotion: true,
+    newId: () => `id-${++ids}`,
   };
-  return { deps, calls, actions, tokens, state: () => state };
+  return { deps, calls, actions, tokens, sleeps, state: () => state };
 }
 
 describe('startReading', () => {
@@ -47,7 +50,7 @@ describe('startReading', () => {
       sseResponse(STREAM), jsonResponse(200, VIEW));
     await startReading(h.deps, { lang: 'en', kind: 'one' });
     expect(h.tokens).toEqual(['0xSITE']);
-    expect(h.calls[1].body).toMatchObject({ turnstile_token: 'tok-1' });
+    expect(h.calls[1].body).toMatchObject({ turnstile_token: 'tok-1', request_id: 'id-1' }); // the same press of Draw
     expect(h.state().stream).toBe('done');
   });
 
@@ -150,7 +153,7 @@ describe('askFollowup', () => {
     const h = ready(sseResponse(sseText([['text', { name: 'followup', text: 'Yes, gently.' }],
       ['done', { answer_shown: 'model', followups_left: 1, followup_attempts_left: 7 }]])));
     await askFollowup(h.deps, 'r1', 'And work?', 'Europe/Madrid', false, 0);
-    expect(h.calls[0].body).toEqual({ question: 'And work?', tz: 'Europe/Madrid', use_reading: false });
+    expect(h.calls[0].body).toEqual({ question: 'And work?', tz: 'Europe/Madrid', use_reading: false, request_id: 'id-1' });
     expect(h.state().followups[0]).toMatchObject({ text: 'Yes, gently.', status: 'done' });
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
   });
@@ -161,7 +164,7 @@ describe('askFollowup', () => {
     await askFollowup(h.deps, 'r1', 'More?', undefined, false, 0);
     expect(h.state().confirm).toEqual({ question: 'More?', remaining: 2 });
     await askFollowup(h.deps, 'r1', 'More?', undefined, true, 0);
-    expect(h.calls[1].body).toEqual({ question: 'More?', use_reading: true });
+    expect(h.calls[1].body).toEqual({ question: 'More?', use_reading: true, request_id: 'id-2' }); // a new press, a new number
     expect(h.state().remaining).toBe(1);
   });
 
@@ -176,11 +179,13 @@ describe('askFollowup', () => {
     expect(h.state().followupError).toBeNull();
   });
 
-  it('restores via GET when the follow-up request itself fails before any answer', async () => {
+  it('restores via GET when the follow-up request and its one repeat both get no answer', async () => {
     const saved = { n: 1, question: 'q', answer: 'Saved anyway.', soft_line: null };
-    const h = ready(new TypeError('offline'), jsonResponse(200, { ...VIEW, followups: [saved], followups_left: 1, followup_attempts_left: 7 }));
+    const h = ready(new TypeError('offline'), new TypeError('offline'),
+      jsonResponse(200, { ...VIEW, followups: [saved], followups_left: 1, followup_attempts_left: 7 }));
     await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
-    expect(h.calls.map((c) => c.url)).toEqual(['/api/readings/r1/followups', '/api/readings/r1']);
+    expect(h.calls.map((c) => c.url)).toEqual(['/api/readings/r1/followups', '/api/readings/r1/followups', '/api/readings/r1']);
+    expect(h.calls[1].body).toEqual(h.calls[0].body); // the same request_id
     expect(h.state().followups[0]).toMatchObject({ text: 'Saved anyway.', status: 'done' });
     expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
   });
@@ -196,7 +201,7 @@ describe('askFollowup', () => {
   });
 
   it('on a lost follow-up dispatches followupLost, then reloads the counts', async () => {
-    const h = ready(brokenSseResponse(''), ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, VIEW)),
+    const h = ready(brokenSseResponse(''), ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, VIEW)), IN_PROGRESS(),
       jsonResponse(200, { ...VIEW, followups_left: 0, followup_attempts_left: 6 }));
     await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
     const types = h.actions.map((a) => a.type);
@@ -204,7 +209,7 @@ describe('askFollowup', () => {
   });
 
   it('gives up on a lost follow-up after a bounded number of tries and resyncs the counts', async () => {
-    const h = ready(brokenSseResponse(''), ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, VIEW)),
+    const h = ready(brokenSseResponse(''), ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, VIEW)), IN_PROGRESS(),
       jsonResponse(200, { ...VIEW, followups_left: 1, followup_attempts_left: 7 }));
     await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
     expect(h.state().followups[0].status).toBe('failed');
@@ -215,16 +220,16 @@ describe('askFollowup', () => {
   it('Try again on a lost follow-up reads it back with the same n and sends no new POST (I2)', async () => {
     const f = (n: number) => ({ n, question: 'q', answer: `A${n}`, soft_line: null });
     const h = ready(brokenSseResponse(sseText([['meta', { followup: 2 }], ['text', { name: 'followup', text: 'Hal' }]])),
-      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [f(1)] })),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [f(1)] })), IN_PROGRESS(), // A1 re-POST
       jsonResponse(200, { ...VIEW, followups: [f(1)] }), // counts after the loss
       jsonResponse(200, { ...VIEW, followups: [f(1), f(2)], followups_left: 0, followup_attempts_left: 5 }));
     await askFollowup(h.deps, 'r1', 'q', undefined, false, 1);
     const lost = h.state().followups[0];
     expect(lost).toMatchObject({ status: 'failed', text: '', lost: { n: 2, answeredBefore: 1 } });
     const posts = () => h.calls.filter((c) => c.url.endsWith('/followups')).length;
-    expect(posts()).toBe(1);
+    expect(posts()).toBe(2); // the first ask and its one A1 re-POST
     await retryFollowup(h.deps, 'r1', undefined, lost.lost!);
-    expect(posts()).toBe(1);
+    expect(posts()).toBe(2); // "Try again" never posts
     expect(h.state().followups[0]).toMatchObject({ text: 'A2', status: 'done' });
     expect(h.state().followupError).toBeNull();
     expect(h.state().counts).toEqual({ followups_left: 0, followup_attempts_left: 5 });
@@ -243,7 +248,7 @@ describe('askFollowup', () => {
   it('with the number from meta and that follow-up never listed, ends lost and reloads the counts', async () => {
     const f = (n: number) => ({ n, question: 'q', answer: `A${n}`, soft_line: null });
     const h = ready(brokenSseResponse(sseText([['meta', { followup: 3 }]])),
-      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [f(1), f(2)] })),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [f(1), f(2)] })), IN_PROGRESS(),
       jsonResponse(200, { ...VIEW, followups: [f(1), f(2)], followups_left: 0, followup_attempts_left: 4 }));
     await askFollowup(h.deps, 'r1', 'q', undefined, false, 1);
     expect(h.actions.map((a) => a.type).slice(-2)).toEqual(['followupLost', 'counts']);
@@ -262,5 +267,118 @@ describe('askFollowup', () => {
     const h = ready(new TypeError('offline'), new TypeError('offline'));
     await loadCounts(h.deps, 'r1', undefined);
     expect(h.state().counts).toEqual(DEFAULT_COUNTS);
+  });
+});
+
+const IN_PROGRESS = () => sseResponse(sseText([['meta', { followup: 1, replay: true }], ['error', { reason: 'in_progress' }]]));
+
+describe('one request, one reading (spec 4.5 §5)', () => {
+  it('sends a new number with every press of Draw', async () => {
+    const h = harness(jsonResponse(201, CREATED), sseResponse(STREAM), jsonResponse(200, VIEW),
+      jsonResponse(201, CREATED), sseResponse(STREAM), jsonResponse(200, VIEW));
+    await startReading(h.deps, { lang: 'en', kind: 'yes_no', count: 3 });
+    await startReading(h.deps, { lang: 'en', kind: 'yes_no', count: 3 });
+    const posts = h.calls.filter((c) => c.url === '/api/readings');
+    expect(posts.map((c) => c.body)).toEqual([
+      { lang: 'en', kind: 'yes_no', count: 3, request_id: 'id-1' }, { lang: 'en', kind: 'yes_no', count: 3, request_id: 'id-2' },
+    ]);
+  });
+
+  it('repeats a draw that got no answer once, with the same number, and shows the reading it gives', async () => {
+    const h = harness(new TypeError('offline'), jsonResponse(201, CREATED), sseResponse(STREAM), jsonResponse(200, VIEW));
+    await startReading(h.deps, { lang: 'en', kind: 'one' });
+    expect(h.calls.map((c) => c.url).slice(0, 2)).toEqual(['/api/readings', '/api/readings']);
+    expect(h.calls[1].body).toEqual(h.calls[0].body);
+    expect(h.sleeps[0]).toBe(REPEAT_WAIT_MS); // a second between the two tries
+    expect(h.state()).toMatchObject({ phase: 'reading', stream: 'done' });
+  });
+
+  it('repeats only once, then shows the usual offline error', async () => {
+    const h = harness(new TypeError('offline'), new TypeError('offline'));
+    await startReading(h.deps, { lang: 'en', kind: 'one' });
+    expect(h.calls).toHaveLength(2);
+    expect(h.state()).toMatchObject({ phase: 'error', error: 'network' });
+  });
+
+  it('never repeats a draw that got an answer, even an error', async () => {
+    const h = harness(jsonResponse(503, { reason: 'unavailable' }));
+    await startReading(h.deps, { lang: 'en', kind: 'one' });
+    expect(h.calls).toHaveLength(1);
+    expect(h.state()).toMatchObject({ phase: 'error', error: 'unavailable' });
+  });
+
+  const ready = (...responses: Array<Response | Error>) => {
+    const h = harness(...responses);
+    h.deps.dispatch({ type: 'created', reading: CREATED as never, reducedMotion: true });
+    h.deps.dispatch({ type: 'stream', event: { event: 'text', data: { name: 'headline', text: 'H' } } });
+    h.deps.dispatch({ type: 'stream', event: { event: 'done', data: { answer_shown: 'model' } } });
+    return h;
+  };
+
+  it('repeats a follow-up that got no answer once with the same number and shows the stream it gives', async () => {
+    const replay = sseText([['meta', { followup: 1, replay: true, soft_line: null }], ['section', { name: 'followup' }],
+      ['text', { name: 'followup', text: 'Saved.' }], ['done', { answer_shown: 'model', followups_left: 1, followup_attempts_left: 7 }]]);
+    const h = ready(new TypeError('offline'), sseResponse(replay));
+    await askFollowup(h.deps, 'r1', 'q', 'UTC', false, 0);
+    expect(h.calls).toHaveLength(2);
+    expect(h.calls[0].body).toEqual({ question: 'q', tz: 'UTC', use_reading: false, request_id: 'id-1' });
+    expect(h.calls[1].body).toEqual(h.calls[0].body);
+    expect(h.sleeps).toEqual([REPEAT_WAIT_MS]);
+    expect(h.state().followups).toHaveLength(1);
+    expect(h.state().followups[0]).toMatchObject({ text: 'Saved.', status: 'done' });
+  });
+
+  it('reads back a repeated follow-up that the API is still writing', async () => {
+    const saved = { n: 1, question: 'q', answer: 'Written meanwhile.', soft_line: null };
+    const h = ready(new TypeError('offline'), sseResponse(sseText([['meta', { followup: 1, replay: true }], ['error', { reason: 'in_progress' }]])),
+      jsonResponse(200, { ...VIEW, followups: [] }),
+      jsonResponse(200, { ...VIEW, followups: [saved], followups_left: 1, followup_attempts_left: 7 }));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.calls.map((c) => c.method)).toEqual(['POST', 'POST', 'GET', 'GET']);
+    expect(h.state().followups[0]).toMatchObject({ text: 'Written meanwhile.', status: 'done' });
+  });
+
+  it('sends a new number with every follow-up', async () => {
+    const done = (left: number) => sseResponse(sseText([['done', { answer_shown: 'model', followups_left: left, followup_attempts_left: 7 }]]));
+    const h = ready(done(1), done(0));
+    await askFollowup(h.deps, 'r1', 'one', undefined, false, 0);
+    await askFollowup(h.deps, 'r1', 'two', undefined, false, 1);
+    expect(h.calls.map((c) => (c.body as { request_id: string }).request_id)).toEqual(['id-1', 'id-2']);
+  });
+
+  it('A1: lost after the GET restore, posts once more with the same number and body and shows the replayed answer', async () => {
+    const replay = sseText([['meta', { followup: 1, replay: true, soft_line: null }], ['section', { name: 'followup' }],
+      ['text', { name: 'followup', text: 'Replayed.' }], ['done', { answer_shown: 'model', followups_left: 1, followup_attempts_left: 7 }]]);
+    const h = ready(brokenSseResponse(sseText([['meta', { followup: 1 }], ['text', { name: 'followup', text: 'Hal' }]])),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [] })), sseResponse(replay));
+    await askFollowup(h.deps, 'r1', 'q', 'UTC', false, 0);
+    const posts = h.calls.filter((c) => c.method === 'POST');
+    expect(posts).toHaveLength(2);
+    expect(posts[1].body).toEqual(posts[0].body);
+    expect((posts[1].body as { request_id: string }).request_id).toBe('id-1');
+    expect(h.calls).toHaveLength(RESTORE_TRIES + 2); // 1 POST + the GETs + 1 re-POST, no more
+    expect(h.state().followups).toHaveLength(1);
+    expect(h.state().followups[0]).toMatchObject({ text: 'Replayed.', status: 'done' }); // no leftover partial text
+    expect(h.state().counts).toEqual({ followups_left: 1, followup_attempts_left: 7 });
+  });
+
+  it('A1: a replayed crisis (the tombstone) takes the room to the crisis phase, with no third request', async () => {
+    const h = ready(brokenSseResponse(''),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [] })),
+      sseResponse(sseText([['meta', { followup: 1, replay: true }], ['crisis', { group: 'crisis', crisis: {}, helplines: { lines: [] } }]])));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.state().phase).toBe('crisis');
+    expect(h.calls.filter((c) => c.method === 'POST')).toHaveLength(2);
+    expect(h.calls).toHaveLength(RESTORE_TRIES + 2);
+  });
+
+  it('A1: in_progress on the re-POST leaves the follow-up lost and restorable, with only one re-POST', async () => {
+    const h = ready(brokenSseResponse(''),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [] })), IN_PROGRESS(),
+      jsonResponse(200, { ...VIEW, followups: [], followups_left: 1, followup_attempts_left: 7 }));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.calls.filter((c) => c.method === 'POST')).toHaveLength(2);
+    expect(h.state().followups[0]).toMatchObject({ status: 'failed', text: '', lost: { answeredBefore: 0 } });
+    expect(h.state().followupError).toBe('network');
   });
 });

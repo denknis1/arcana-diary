@@ -1,10 +1,13 @@
 // The requests behind the night room (spec 4.4a §4): create → (403 turnstile → token → create again) → stream;
 // a broken stream is restored with GET /api/readings/{id} (wait while it is still being written, stream again if
 // nobody is writing); POST /retry only after a fallback answer; follow-ups stream the same way and a broken one
-// is read back from GET /api/readings/{id} too (the API keeps writing it, spec 4.2 §8.11).
+// is read back from GET /api/readings/{id} too (the API keeps writing it, spec 4.2 §8.11). Spec 4.5 §5: every press
+// of Draw and every follow-up sent carries a new request_id; a request that got no answer at all is sent once more
+// with the same number (the API gives back what it already made), then the usual restore follows.
 import type { Api } from './api';
 import { followupBody } from './followups';
 import type { NightAction } from './nightRoom';
+import type { SseEvent } from './sse';
 import type { CreateBody, FollowupCounts } from './types';
 
 export interface FlowDeps {
@@ -13,16 +16,28 @@ export interface FlowDeps {
   turnstileToken: (sitekey: string) => Promise<string | null>;
   sleep: (ms: number) => Promise<void>;
   reducedMotion: boolean;
+  newId: () => string; // a request number (requestId.ts)
 }
 
 export const RESTORE_TRIES = 10;
 export const RESTORE_WAIT_MS = 2000;
+/** Before the one automatic repeat of a request that got no answer: an instant repeat would fail the same way. */
+export const REPEAT_WAIT_MS = 1000;
 /** What a new reading allows (two free follow-ups, eight attempts); used only when the counts cannot be read —
  * the API still refuses what is not allowed (402 / 429). */
 export const DEFAULT_COUNTS: FollowupCounts = { followups_left: 2, followup_attempts_left: 8 };
 
-export async function startReading(deps: FlowDeps, body: CreateBody): Promise<void> {
-  let result = await deps.api.createReading(body);
+/** POST /api/readings; when it got no answer at all, once more a second later with the same body and request_id. */
+async function create(deps: FlowDeps, body: CreateBody) {
+  const result = await deps.api.createReading(body);
+  if (result.type !== 'error' || result.error !== 'network') return result;
+  await deps.sleep(REPEAT_WAIT_MS);
+  return deps.api.createReading(body);
+}
+
+export async function startReading(deps: FlowDeps, draw: CreateBody): Promise<void> {
+  const body: CreateBody = { ...draw, request_id: deps.newId() }; // one number for this press of Draw
+  let result = await create(deps, body);
   if (result.type === 'error' && result.error === 'turnstile') {
     const sitekey = typeof result.body?.sitekey === 'string' ? result.body.sitekey : '';
     if (!sitekey) { // no key to run the check with: the room shows "unavailable" with the help link
@@ -30,7 +45,7 @@ export async function startReading(deps: FlowDeps, body: CreateBody): Promise<vo
       return;
     }
     const token = await deps.turnstileToken(sitekey);
-    if (token) result = await deps.api.createReading({ ...body, turnstile_token: token });
+    if (token) result = await create(deps, { ...body, turnstile_token: token });
   }
   if (result.type === 'crisis') {
     deps.dispatch({ type: 'crisis', payload: result.payload });
@@ -116,7 +131,8 @@ export async function loadCounts(deps: FlowDeps, id: string, tz: string | undefi
  * `n` is the follow-up number from the stream's `meta` event, when it arrived: then only the saved follow-up with
  * exactly that `n` counts (a newer-but-other one never does); without it the `answeredBefore` rule is the fallback. */
 export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore: number, tz: string | undefined,
-  n?: number): Promise<void> {
+  n?: number, repost?: () => Promise<boolean>): Promise<void> {
+  let gone = false;
   for (let attempt = 0; attempt < RESTORE_TRIES; attempt++) {
     const result = await deps.api.getReading(id, tz);
     if (result.ok) {
@@ -131,9 +147,17 @@ export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore
         return;
       }
     } else if (result.error === 'gone') {
+      gone = true;
       break;
     }
     await deps.sleep(RESTORE_WAIT_MS);
+  }
+  // Stage 4.5 A1: GET never lists a crisis tombstone, so ask once more with the same request_id and body; the API
+  // replays the saved answer or the crisis, or says in_progress (then the follow-up stays lost, as before).
+  if (repost && !gone) {
+    deps.dispatch({ type: 'followupLost', n, answeredBefore }); // clears the partial text, then shows it as streaming again
+    deps.dispatch({ type: 'followupRetrying' });
+    if (await repost()) return;
   }
   deps.dispatch({ type: 'followupLost', n, answeredBefore });
   await loadCounts(deps, id, tz);
@@ -153,7 +177,8 @@ export async function askFollowup(deps: FlowDeps, id: string, question: string, 
   let done = false;
   let crisis = false;
   let n: number | undefined;
-  const result = await deps.api.postFollowup(id, followupBody(question, tz, useReading), (event) => {
+  const body = followupBody(question, tz, useReading, deps.newId()); // one number for this follow-up
+  const onEvent = (event: SseEvent) => {
     if (event.event === 'done') done = true;
     if (event.event === 'crisis') crisis = true; // the API deletes that follow-up: nothing to restore
     if (event.event === 'meta') {
@@ -161,11 +186,27 @@ export async function askFollowup(deps: FlowDeps, id: string, question: string, 
       if (typeof num === 'number') n = num;
     }
     deps.dispatch({ type: 'followupEvent', event });
-  });
+  };
+  let result = await deps.api.postFollowup(id, body, onEvent);
+  if (result.type === 'noResponse') { // once more, a second later, with the same number
+    await deps.sleep(REPEAT_WAIT_MS);
+    result = await deps.api.postFollowup(id, body, onEvent);
+  }
   if (result.type === 'refused') {
     deps.dispatch({ type: 'followupRefused', question, refusal: result.refusal });
     return;
   }
   if (crisis) return;
-  if (!done) await restoreFollowup(deps, id, answeredBefore, tz, n); // broken request or stream, or no `done`
+  if (!done) { // broken request or stream, or no `done`
+    let reposted = false;
+    const repost = async () => { // A1: at most one, same body (same request_id), only after the GET restore found nothing
+      if (reposted) return false;
+      reposted = true;
+      done = false;
+      crisis = false;
+      await deps.api.postFollowup(id, body, onEvent);
+      return done || crisis;
+    };
+    await restoreFollowup(deps, id, answeredBefore, tz, n, repost);
+  }
 }

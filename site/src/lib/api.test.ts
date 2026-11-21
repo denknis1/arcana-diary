@@ -88,10 +88,10 @@ describe('follow-ups', () => {
     expect(await ask()).toEqual({ type: 'refused', refusal: { type: 'error', error: 'attempts' } });
   });
 
-  it('treats a request that throws as a broken stream (to be restored), not a network refusal', async () => {
+  it('reports a request that throws as no answer at all (to be repeated, then restored), not a refusal', async () => {
     const { fetch } = fakeFetch(new TypeError('offline'));
-    const result = await createApi(fetch).postFollowup('r1', { question: 'q', use_reading: false }, () => {});
-    expect(result).toEqual({ type: 'stream', end: { type: 'broken' } });
+    const result = await createApi(fetch).postFollowup('r1', { question: 'q', use_reading: false, request_id: 'n-1' }, () => {});
+    expect(result).toEqual({ type: 'noResponse' });
   });
 });
 
@@ -144,7 +144,18 @@ describe('idle watchdog', () => {
       new Promise((_resolve, reject) => init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError'))));
     const api = createApi(hanging, { idleMs: IDLE });
     expect(await api.streamReading('r1', undefined, () => {})).toEqual({ type: 'broken' });
-    expect(await api.postFollowup('r1', { question: 'q', use_reading: false }, () => {})).toEqual({ type: 'stream', end: { type: 'broken' } });
+    expect(await api.postFollowup('r1', { question: 'q', use_reading: false }, () => {})).toEqual({ type: 'noResponse' });
+  });
+
+  it('gives up on POST /api/readings that does not answer in time (a network error, spec 4.5 §5)', async () => {
+    const signals: Array<AbortSignal | undefined> = [];
+    const hanging: Parameters<typeof createApi>[0] = (_url, init) => {
+      signals.push(init?.signal ?? undefined);
+      return new Promise((_resolve, reject) => init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError'))));
+    };
+    const result = await createApi(hanging, { createTimeoutMs: IDLE }).createReading({ lang: 'en', kind: 'one', request_id: 'n-1' });
+    expect(result).toEqual({ type: 'error', error: 'network', body: null });
+    expect(signals[0]?.aborted).toBe(true);
   });
 
   it('does not abort a stream that keeps sending chunks more often than the idle time', async () => {

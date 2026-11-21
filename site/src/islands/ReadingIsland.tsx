@@ -12,6 +12,7 @@ import {
   ONE_CARD_ANCHOR, buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor, type PanelPage,
 } from '../lib/panel';
 import { askFollowup, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps } from '../lib/readingFlow';
+import { newRequestId } from '../lib/requestId';
 import { turnstileToken } from '../lib/turnstile';
 import { SITUATIONS, type CrisisPayload, type Kind, type Lang, type Situation, type Tool } from '../lib/types';
 import { NightRoom } from '../components/ui/NightRoom';
@@ -98,6 +99,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
       },
       sleep: (ms) => new Promise((resolve) => setTimeout(() => { if (run.current === mine) resolve(); }, ms)), // a stale run never wakes
       reducedMotion: prefersReducedMotion(),
+      newId: () => newRequestId(),
     };
   };
 
