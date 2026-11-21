@@ -896,3 +896,61 @@ def test_a_number_of_an_expired_reading_is_409(api):
     response = post_reading(api.client, kind="one", tz=MX, request_id=str(number))
     assert response.status_code == 409 and response.json() == {"reason": "request_id"}
     assert guest_usage(api) == 1 and reading_count(api) == 1  # the new insert and its slot rolled back
+
+
+# --- stage 4.5 §4: yes/no on three cards ---
+
+def test_yes_no_on_three_cards_has_votes_and_the_majority(api):
+    body = create(api, kind="yes_no", count=3, question="Should I sign up for the pottery class?")
+    assert [c["position"] for c in body["cards"]] == ["card"] * 3
+    assert [c["vote"] for c in body["cards"]] == [api.ctx.cards.vote(c) for c in body["cards"]]
+    expected = api.ctx.cards.verdict(body["cards"])
+    assert body["verdict"] == {"value": expected, "label": api.ctx.cards.rules["labels"]["en"][expected]}
+    assert (body["remaining"], guest_usage(api)) == (2, 1)  # three cards are one reading
+    events = stream(api, body["id"])
+    assert [d["name"] for e, d in events if e == "section"] == ["headline", "card1", "card2", "card3", "synthesis",
+                                                                 "step", "why"]
+    assert events[-1] == ("done", {"answer_shown": "model"})
+    assert '<cards count="3">' in api.reader.stream_calls()[0]["messages"][0]["content"]
+    view = api.client.get(f"/api/readings/{body['id']}").json()
+    assert view["cards"] == body["cards"] and view["verdict"] == body["verdict"]
+
+
+def test_the_decisive_cards_decide_and_a_tie_is_unclear(api, monkeypatch):
+    cards = [{"card_id": "major-19-sun", "position": "card", "reversed": False},  # yes
+             {"card_id": "major-17-star", "position": "card", "reversed": False},  # yes
+             {"card_id": "major-16-tower", "position": "card", "reversed": False}]  # no
+    monkeypatch.setattr("app.routes.readings.draw_spread", lambda seed, kind, order, count=None: cards)
+    body = create(api, kind="yes_no", count=3)
+    assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["yes", "yes", "no"], "yes")
+    split = [cards[0], cards[2], {**cards[1], "reversed": True}]  # yes, no, unclear
+    monkeypatch.setattr("app.routes.readings.draw_spread", lambda seed, kind, order, count=None: split)
+    body = create(api, kind="yes_no", count=3)
+    assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["yes", "no", "unclear"], "unclear")
+    one_decides = [cards[2], {**cards[0], "reversed": True}, {**cards[1], "reversed": True}]  # no, unclear, unclear
+    monkeypatch.setattr("app.routes.readings.draw_spread", lambda seed, kind, order, count=None: one_decides)
+    body = create(api, kind="yes_no", count=3)
+    assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["no", "unclear", "unclear"], "no")
+
+
+@pytest.mark.parametrize("group", ["redirect_topic", "redirect_person"])
+def test_three_yes_no_cards_on_a_closed_topic_have_no_verdict_and_no_votes(api, group):
+    api.guard.json_replies.append({"group": group, "violence": False})
+    body = create(api, kind="yes_no", count=3, question="Will she text me back?")
+    assert body["verdict"] is None and len(body["cards"]) == 3
+    assert all("vote" not in c for c in body["cards"])
+    events = stream(api, body["id"])
+    assert "why" not in stream_sections(events) and "synthesis" in stream_sections(events)
+
+
+def test_count_is_for_yes_no_only(api):
+    assert create(api, kind="yes_no", count=1)["cards"][0]["position"] == "card"
+    assert len(create(api, kind="yes_no")["cards"]) == 1  # the default is one card
+    for body in ({"kind": "three", "count": 3}, {"kind": "one", "count": 1}, {"kind": "yes_no", "count": 2}):
+        response = post_reading(api.client, tz=MX, **body)
+        assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["count"]}
+
+
+def test_one_yes_no_card_carries_its_vote_too(api):
+    body = create(api, kind="yes_no", question="Should I sign up for the pottery class?")
+    assert body["cards"][0]["vote"] == body["verdict"]["value"]

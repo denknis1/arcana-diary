@@ -227,3 +227,10 @@ def test_te_quiere_and_se_arrepiente_need_a_person(text):
                                        ("es", "La carta apunta a un sí.")])
 def test_say_yes_forms_are_verdicts(lang, why):
     assert not check_answer(one_card(why=why), "yes_no", lang, TERMS[lang], with_why=True).why_ok
+
+
+def test_three_yes_no_cards_use_the_three_card_length():
+    sections = {"headline": "A lean.", "card1": "word " * 60, "card2": "word " * 60, "card3": "word " * 60,
+                "step": "Write it down.", "why": "Two of the cards lean the same way."}
+    assert check_answer(sections, "yes_no", "en", TERMS["en"], True, 3).length_ok is True
+    assert check_answer(sections, "yes_no", "en", TERMS["en"], True).length_ok is False  # one card: 90–150

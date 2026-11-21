@@ -45,7 +45,7 @@ def fill_missing(sections: dict[str, str], base, reading: dict) -> dict[str, str
     lang = reading["lang"]
     excerpts = _excerpts(base, reading)
     out = {name: text for name, text in sections.items() if text}
-    for name in required_sections(reading["kind"], reading.get("verdict") is not None):
+    for name in required_sections(reading["kind"], reading.get("verdict") is not None, len(reading["cards"])):
         if name in out or name == "synthesis":
             continue
         if name == "headline":

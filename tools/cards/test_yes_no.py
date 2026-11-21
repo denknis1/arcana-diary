@@ -38,13 +38,24 @@ def test_three_cards_majority_no():
     assert spread_verdict([("tower", False), ("ten-swords", False), ("sun", False)], DECK, RULES) == "no"
 
 
-def test_three_cards_reversed_breaks_majority():
-    # sun перевёрнута → unclear; yes, no, unclear — большинства нет
+def test_three_cards_reversed_abstains_and_a_tie_is_unclear():
+    # sun перевёрнута → unclear и воздерживается; остаются yes и no — ничья
     assert spread_verdict([("sun", True), ("star", False), ("tower", False)], DECK, RULES) == "unclear"
 
 
-def test_three_cards_majority_unclear():
-    assert spread_verdict([("moon", False), ("sun", True), ("star", False)], DECK, RULES) == "unclear"
+def test_three_cards_one_decisive_card_decides():
+    # этап 4.5, правило decisive_majority: две карты «пока неясно» не голосуют против третьей
+    assert spread_verdict([("moon", False), ("sun", True), ("star", False)], DECK, RULES) == "yes"
+    assert spread_verdict([("moon", False), ("tower", False), ("star", True)], DECK, RULES) == "no"
+
+
+def test_three_cards_without_a_decisive_card_are_unclear():
+    assert spread_verdict([("moon", False), ("sun", True), ("tower", True)], DECK, RULES) == "unclear"
+
+
+def test_unknown_rule_raises():
+    with pytest.raises(ValueError):
+        spread_verdict([("sun", False)] * 3, DECK, dict(RULES, rule="two_of_three"))
 
 
 @pytest.mark.parametrize("n", [0, 2, 4])
@@ -71,6 +82,6 @@ def test_rules_missing_label():
     assert any("labels.es" in e for e in check_rules(rules))
 
 
-def test_rules_wrong_majority():
-    rules = dict(RULES, majority=1)
-    assert any("majority" in e for e in check_rules(rules))
+def test_rules_wrong_rule():
+    rules = dict(RULES, rule="two_of_three")
+    assert any("decisive_majority" in e for e in check_rules(rules))

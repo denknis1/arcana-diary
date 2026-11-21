@@ -156,13 +156,21 @@ def stream_status(reading: dict, now: datetime) -> str:
     return "streaming" if started and now - started < repo.STREAM_CLAIM_STALE else "pending"
 
 
+def card_view(ctx, card: dict, lang: str, with_vote: bool) -> dict:
+    """A drawn card with its name; in a yes/no reading with a verdict also its own vote (stage 4.5 §4)."""
+    view = {**card, "name": ctx.cards.name(card["card_id"], lang)}
+    if with_vote:
+        view["vote"] = ctx.cards.vote(card)
+    return view
+
+
 def reading_view(ctx, reading: dict, owner: bool) -> dict:
     """§8.3: anyone with the link sees the cards and the answer; the question, topic and situation — the owner."""
     lang = reading["lang"]
     verdict = reading.get("verdict")
     view = {
         "id": str(reading["id"]), "lang": lang, "kind": reading["kind"], "owner": owner,
-        "cards": [{**c, "name": ctx.cards.name(c["card_id"], lang)} for c in reading["cards"]],
+        "cards": [card_view(ctx, c, lang, verdict is not None) for c in reading["cards"]],
         "verdict": {"value": verdict, "label": verdict_label(ctx, reading)} if verdict else None,
         "soft_line": soft_line(ctx, lang, reading["guard_group"]),
     }

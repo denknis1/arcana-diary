@@ -22,15 +22,21 @@ def card_verdict(base: str, reversed_: bool, rules: dict) -> str:
 
 
 def spread_verdict(draws: list[tuple[str, bool]], deck: dict[str, dict], rules: dict) -> str:
-    """draws — список (card_id, перевёрнута ли); deck — card_id → запись deck.json."""
+    """draws — список (card_id, перевёрнута ли); deck — card_id → запись deck.json.
+
+    Три карты, правило decisive_majority (этап 4.5, решение владельца 21.11.2026): карты «пока неясно»
+    воздерживаются; «да» больше, чем «нет», — «да», «нет» больше — «нет»; ничья или ни одной решающей — fallback.
+    """
     if len(draws) not in rules["spread_sizes"]:
         raise ValueError(f"вердикт считается по {rules['spread_sizes']} картам, а не по {len(draws)}")
+    if rules["rule"] != "decisive_majority":
+        raise ValueError(f"неизвестное правило: {rules['rule']}")
     verdicts = [card_verdict(deck[cid]["yes_no"], rev, rules) for cid, rev in draws]
     if len(verdicts) == 1:
         return verdicts[0]
-    for v in VERDICTS:
-        if verdicts.count(v) >= rules["majority"]:
-            return v
+    yes, no = verdicts.count("yes"), verdicts.count("no")
+    if yes != no:
+        return "yes" if yes > no else "no"
     return rules["fallback"]
 
 

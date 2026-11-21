@@ -101,14 +101,16 @@ def why_ok(why: str, lang: str, terms) -> bool:
     return bool(why) and not verdict_in(why, lang) and not find_claims(why, terms, lang)[0]
 
 
-def check_answer(sections: dict[str, str], kind: str, lang: str, terms, with_why: bool) -> CheckResult:
+def check_answer(sections: dict[str, str], kind: str, lang: str, terms, with_why: bool,
+                 cards: int | None = None) -> CheckResult:
+    """cards: how many were drawn (stage 4.5 §4); None — the kind's own number. Only the length depends on it."""
     body = [text for name, text in sections.items() if name != "why" and text]
     found = [find_claims(text, terms, lang) for text in body]
     hits = sorted({term for h, _ in found for term in h})
     negated = sorted({term for _, n in found for term in n} - set(hits))
     why_good = why_ok(sections.get("why", ""), lang, terms) if with_why else True
     words = sum(word_count(text) for text in body)
-    low, high = WORD_LIMITS[3 if kind == "three" else 1]
+    low, high = WORD_LIMITS[cards or (3 if kind == "three" else 1)]
     return CheckResult(not hits, why_good, tuple(hits), words, low <= words <= high, tuple(negated))
 
 

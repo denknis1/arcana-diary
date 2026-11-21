@@ -34,6 +34,7 @@ class ReadingIn(BaseModel):
     card_id: str | None = Field(default=None, max_length=80)
     tz: str | None = Field(default=None, max_length=64)
     turnstile_token: str | None = Field(default=None, max_length=4096)
+    count: Literal[1, 3] | None = None  # stage 4.5 §4: yes_no only — one card (default) or three
     request_id: uuid.UUID | None = None  # stage 4.5 §5: the site's number of this draw; optional
 
     _no_nul = field_validator("question", "situation", "card_id", "tz", mode="after")(reject_nul)
@@ -72,6 +73,8 @@ def create_reading(body: ReadingIn, request: Request):
         return respond(422, {"reason": "invalid", "fields": ["card_id"]}, new_guest)
     if body.situation is not None and body.situation not in SITUATIONS:
         return respond(422, {"reason": "invalid", "fields": ["situation"]}, new_guest)
+    if body.count is not None and body.kind != "yes_no":
+        return respond(422, {"reason": "invalid", "fields": ["count"]}, new_guest)
     day = limits.local_day(limits.resolve_tz(body.tz), now)
     ip_day = limits.utc_day(now)
     ip = limits.client_ip(request, ctx.settings.trust_cloudflare)
@@ -127,8 +130,10 @@ def create_reading(body: ReadingIn, request: Request):
         return respond(429, {"reason": "limit", "remaining": 0}, new_guest)
     group = guard.group if guard else "ok"
     seed = new_seed()
-    cards = draw_spread(seed, body.kind, ctx.cards.order)
-    with_verdict = body.kind == "yes_no" and group not in NO_VERDICT_GROUPS  # §8.1
+    cards = draw_spread(seed, body.kind, ctx.cards.order, body.count)
+    # §8.1: no verdict (and no votes) on health, death, courts, safety or another person, also with three cards;
+    # three cards: the yes and no cards decide, "unclear" ones abstain, a tie or none is "unclear" (spread_verdict)
+    with_verdict = body.kind == "yes_no" and group not in NO_VERDICT_GROUPS
     reading = {
         "id": reading_id, "guest_id": guest_id, "user_id": who.user.id if who.user else None,
         "lang": body.lang, "kind": body.kind, "question": question,
