@@ -3349,6 +3349,16 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ### Task 8: The test set for three cards, the money ceiling of the runner, the API docs
 
+> **Amendments after the Fable re-check (21.11.2026), required.**
+> **R1 (ceiling bypass):** in `api/evals/run.py`, before any paid call, exit with code 2 and a clear message when the
+> reader, guard or judge model has no row in `PRICES_PER_MTOK` (a model without a price would be metered as $0 and
+> could pass the ceiling); add one test (a judge model without a price → exit 2, no provider call).
+> **R2 (spend record):** give the run's `Meter` a sink file under `api/evals/results/` so the spend of a crashed run
+> is kept.
+> **R3 (docs):** add the note "rule replaced by stage 4.5 (decisive majority, spec 2026-11-20 §2.6)" next to the
+> "two of three" wording in `docs/superpowers/specs/2026-11-14-stage4-1-cards-base-design.md` (lines ~30 and ~52)
+> and in `docs/design/00-design.md` decision 7, as for the 4.2 and 4.4a specs.
+
 **Files:**
 - Modify: `api/evals/questions.en.jsonl`, `api/evals/questions.es.jsonl` (10 items each, appended), `api/evals/judge_check.jsonl` (a ninth item), `api/evals/run.py`, `api/evals/judge.py`, `api/evals/judge.md`, `api/README.md`
 - Test: `api/tests/test_evals.py`, `api/tests/test_compare.py` (the comparison tool runs every judge check: 9 now)
@@ -6104,6 +6114,11 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ---
 
 ### Task 12: The paid eval run (controller, after Tasks 1–11)
+
+> **Amendments after the Fable re-check (21.11.2026), required.** Step 1: stop (no paid run) if the free estimate is
+> not $2.52 within a few cents, or if the printed reader / guard / judge models are not the ones the plan names, and
+> report to the owner. Any second paid run — after FAIL, a crash or exit 4 — needs a new sum from the owner; the
+> owner's yes covers one full run with `--max-usd 3.00`.
 
 **Files:** none changed; results go to `api/evals/results/` (not in git).
 
