@@ -11,7 +11,7 @@ from app import limits, repo
 from app.limits import (BurstCounter, DailySalt, LimitReached, client_country, client_ip, give_back_slot,
                         guest_from_request, guest_quota, guest_subject, ip_blocked, ip_key, ip_subject, local_day,
                         needs_turnstile,
-                        parse_guest_id, remaining, resolve_tz, set_guest_cookie, take_followup_slots,
+                        parse_guest_id, remaining, resolve_tz, set_guest_cookie, take_followup_attempt,
                         take_reading_slots, take_slot, used)
 from helpers import make_reading
 
@@ -253,27 +253,25 @@ def test_followup_attempts_stop_at_eight_per_reading(db):
     with db.connect() as conn:
         repo.insert_reading(conn, reading)
         repo.insert_reading(conn, other)
-        assert [take_followup_slots(conn, reading["id"], "hash-1", DAY) for _ in range(8)] == list(range(1, 9))
+        assert [take_followup_attempt(conn, reading["id"]) for _ in range(8)] == list(range(1, 9))
         with pytest.raises(LimitReached) as info:
-            take_followup_slots(conn, reading["id"], "hash-1", DAY)
-        assert take_followup_slots(conn, other["id"], "hash-1", DAY) == 1
-        assert used(conn, limits.followup_ip_subject("hash-1"), DAY) == 9
+            take_followup_attempt(conn, reading["id"])
+        assert take_followup_attempt(conn, other["id"]) == 1
+        assert used(conn, limits.followup_ip_subject("hash-1"), DAY) == 0  # the address slot is the route's
     assert info.value.reason == "attempts"
 
 
-def test_followup_ip_limit_rolls_back_the_attempt(db):
+def test_a_rolled_back_attempt_is_given_back(db):
     reading = make_reading()
     with db.connect() as conn:
         repo.insert_reading(conn, reading)
-        conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, %s)",
-                     (limits.followup_ip_subject("hash-1"), DAY, limits.IP_FOLLOWUP_LIMIT))
-    with pytest.raises(LimitReached) as info:
+    with pytest.raises(LimitReached):
         with db.connect() as conn:
-            take_followup_slots(conn, reading["id"], "hash-1", DAY)
-    assert info.value.reason == "ip_limit"
+            assert take_followup_attempt(conn, reading["id"]) == 1
+            raise LimitReached("limit")  # e.g. the paid reading went to a parallel request
     with db.connect() as conn:
         assert repo.get_reading(conn, reading["id"], reading["created_at"])["followup_attempts"] == 0
-        assert used(conn, ip_subject("hash-1"), DAY) == 0  # readings and follow-ups are counted apart
+        assert take_followup_attempt(conn, reading["id"]) == 1
 
 
 def test_give_back_slot_never_goes_below_zero(db):

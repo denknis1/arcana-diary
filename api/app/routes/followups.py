@@ -1,15 +1,19 @@
-"""Follow-ups (§2.3, §9.2, §9.4, §10): two free per reading; each next one uses a reading of the guest's
-"3 per day" (the same counter as readings) and only with use_reading=true; the question goes through §3.
+"""Follow-ups (§2.3, §9.2, §9.4, §10): two free per reading; each next one uses a reading of the owner's day
+(the same counter as readings) and only with use_reading=true; the question goes through §3.
 
-- Free follow-ups used, no use_reading: 402 {"reason": "confirm", "remaining": N} (the site warns "this will use
-  1 reading"); no readings left: 402 {"reason": "plus", "remaining": 0}.
-- Before the question check calls a model, every request takes an attempt of the reading (FOLLOWUP_ATTEMPTS) and of
-  the address (IP_FOLLOWUP_LIMIT per UTC day): 429 "attempts" / "ip_limit"; exhausted attempts answer 429 before
-  any 402 (nobody is asked to confirm a follow-up that cannot happen). Over the guard's budget a question that
-  only the model can check is 503 and takes nothing (м1).
-- A paid follow-up takes its reading in the transaction that inserts it, after the question check, so a crisis
-  answer of the check takes none. A failed paid follow-up gives it back (reader/followups.py); the reader's
-  [[crisis]] marker does not (§9.5).
+Order (stage 4.5 §3, owner decision 20.11.2026: help first, then the limits):
+- the address: every request that may call the question check takes a slot of IP_FOLLOWUP_LIMIT per UTC day
+  first (429 "ip_limit"); over the guard's budget a question that only the model can check is 503 and takes
+  nothing (м1);
+- the question check: a crisis answer is 200 and takes no attempt and no reading;
+- then 429 "attempts" (FOLLOWUP_ATTEMPTS per reading, never a confirm for what cannot happen), then 402: free
+  follow-ups used and no use_reading — {"reason": "confirm", "remaining": N}; no readings left — {"reason":
+  "plus", "remaining": 0};
+- one transaction takes the attempt (its count is the follow-up's number n, never repeated) — which locks the
+  reading — and reads the follow-ups again: one still being written, or the free ones used meanwhile by another
+  tab while this question was checked, is 409 "busy"; then it inserts the follow-up and, for a paid one, takes its
+  reading. The reader gets that fresh list. A failed paid follow-up gives it back (reader/followups.py); the reader's [[crisis]] marker does
+  not (§9.5).
 """
 import uuid
 
@@ -17,7 +21,7 @@ from fastapi import APIRouter, Request
 from pydantic import BaseModel, Field, field_validator
 
 from app import limits, repo
-from app.config import FOLLOWUP_ATTEMPTS
+from app.config import FOLLOWUP_ATTEMPTS, IP_FOLLOWUP_LIMIT
 from app.context import get_ctx
 from app.reader import flow
 from app.reader.followups import stream_followup
@@ -34,6 +38,10 @@ class FollowupIn(BaseModel):
     use_reading: bool = False  # §10.1: the person confirmed that a follow-up after the free ones uses a reading
 
     _no_nul = field_validator("question", "tz", mode="after")(reject_nul)
+
+
+class Busy(Exception):
+    """Another follow-up of the reading is still being written: the transaction rolls back (attempt included)."""
 
 
 @router.post("/readings/{reading_id}/followups")
@@ -54,11 +62,29 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
         return respond(409, {"reason": "no_answer"})
     if reading["answer_shown"] in ("fallback", "crisis"):  # nothing to follow up on: retry first, or no reading
         return respond(409, {"reason": reading["answer_shown"]})
-    if any(f["answer"] is None for f in previous):
-        return respond(409, {"reason": "busy"})
     question = clean(body.question)
     if question is None:
         return respond(422, {"reason": "invalid", "fields": ["question"]})
+    if any(f["answer"] is None for f in previous):
+        return respond(409, {"reason": "busy"})
+    allow_model = not flow.guard_over_budget(ctx)
+    if not allow_model and not ctx.guard.answers_without_model(question):
+        return respond(503, {"reason": "unavailable"})  # м1: nothing is taken for a question nobody checked
+    day = limits.utc_day(now)
+    ip_hash = ctx.salt.hash_ip(limits.client_ip(request, ctx.settings.trust_cloudflare), now)
+    with ctx.db.connect() as conn:  # §9.2: the address first — it bounds the question checks
+        address_ok = limits.take_slot(conn, limits.followup_ip_subject(ip_hash), day, IP_FOLLOWUP_LIMIT) is not None
+    if not address_ok:
+        return respond(429, {"reason": "ip_limit"})
+    try:
+        guard = ctx.guard.classify(question, allow_model=allow_model)
+    except GuardUnavailable:
+        return respond(503, {"reason": "unavailable"})
+    with ctx.db.connect() as conn:  # every check is counted, and a model call logged for the guard budget
+        flow.record_guard(conn, ctx, guard, reading["lang"], day, None if guard.group == "crisis" else reading_id)
+    if guard.group == "crisis":
+        return respond(200, flow.crisis_answer(ctx, reading["lang"], country_hint(ctx, request), body.tz,
+                                               guard.violence))
     if reading["followup_attempts"] >= FOLLOWUP_ATTEMPTS:  # м13: never ask to confirm what cannot happen
         return respond(429, {"reason": "attempts"})
     paid_day = None
@@ -70,39 +96,29 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
             return respond(402, {"reason": "plus", "remaining": 0})
         if not body.use_reading:
             return respond(402, {"reason": "confirm", "remaining": left})
-    allow_model = not flow.guard_over_budget(ctx)
-    if not allow_model and not ctx.guard.answers_without_model(question):
-        return respond(503, {"reason": "unavailable"})  # м1: nothing is taken for a question nobody checked
-    day = limits.utc_day(now)
-    ip_hash = ctx.salt.hash_ip(limits.client_ip(request, ctx.settings.trust_cloudflare), now)
+    followup = {"id": uuid.uuid4(), "reading_id": reading_id, "question": question, "guard_group": guard.group,
+                "paid_day": paid_day, "created_at": now}
     try:
         with ctx.db.connect() as conn:
-            attempts = limits.take_followup_slots(conn, reading_id, ip_hash, day)
-    except limits.LimitReached as exc:
-        return respond(429, {"reason": exc.reason})
-    try:
-        guard = ctx.guard.classify(question, allow_model=allow_model)
-    except GuardUnavailable:
-        return respond(503, {"reason": "unavailable"})
-    if guard.group == "crisis":
-        with ctx.db.connect() as conn:
-            flow.record_guard(conn, ctx, guard, reading["lang"], day, None)
-        return respond(200, flow.crisis_answer(ctx, reading["lang"], country_hint(ctx, request), body.tz,
-                                               guard.violence))
-    followup = {"id": uuid.uuid4(), "reading_id": reading_id, "n": max((f["n"] for f in previous), default=0) + 1,
-                "question": question, "guard_group": guard.group, "paid_day": paid_day, "created_at": now}
-    with ctx.db.connect() as conn:
-        flow.record_guard(conn, ctx, guard, reading["lang"], day, reading_id)
-    try:
-        with ctx.db.connect() as conn:
-            inserted = repo.insert_followup(conn, followup)
-            if inserted and paid_day is not None:  # atomic with the follow-up: never more than the owner's limit
+            attempts = limits.take_followup_attempt(conn, reading_id)  # locks the reading until the commit
+            # read again under the lock: another tab may have asked while this question was checked
+            current = repo.list_followups(conn, reading_id)
+            if any(f["answer"] is None for f in current):
+                raise Busy()
+            if paid_day is None and flow.followups_left(current) == 0:  # the free ones went meanwhile
+                raise Busy()  # the next press gets 402 confirm
+            followup["n"] = attempts
+            if not repo.insert_followup(conn, followup):
+                raise Busy()
+            if paid_day is not None:  # atomic with the follow-up: never more than the owner's limit
                 quota = limits.owner_quota(reading)  # stage 4.3 §5: the account if the reading has one, else the guest
                 if limits.take_slot(conn, quota.subject, paid_day, quota.limit) is None:
                     raise limits.LimitReached("limit")
-    except limits.LimitReached:  # a parallel reading or follow-up took the last one; the insert rolls back
+    except limits.LimitReached as exc:  # the last attempt or reading went to a parallel request; all rolls back
+        if exc.reason == "attempts":
+            return respond(429, {"reason": "attempts"})
         return respond(402, {"reason": "plus", "remaining": 0})
-    if not inserted:
+    except Busy:
         return respond(409, {"reason": "busy"})
-    return stream_response(stream_followup(ctx, reading, {**followup, "attempts": attempts}, previous, guard.group,
+    return stream_response(stream_followup(ctx, reading, {**followup, "attempts": attempts}, current, guard.group,
                                            country_hint(ctx, request), body.tz))

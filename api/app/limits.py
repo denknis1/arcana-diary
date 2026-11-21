@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-from app.config import DAILY_LIMIT, FOLLOWUP_ATTEMPTS, IP_FOLLOWUP_LIMIT, IP_HARD_LIMIT, USER_DAILY_LIMIT
+from app.config import DAILY_LIMIT, FOLLOWUP_ATTEMPTS, IP_HARD_LIMIT, USER_DAILY_LIMIT
 
 COOKIE_NAME = "ad_guest"
 COOKIE_MAX_AGE = 365 * 24 * 3600
@@ -163,19 +163,20 @@ def take_reading_slots(conn, quota: Quota, day: date, ip_hash: str, ip_day: date
     return count
 
 
-def take_followup_slots(conn, reading_id, ip_hash: str, ip_day: date) -> int:
-    """One follow-up request (§9.2): an attempt of the reading (FOLLOWUP_ATTEMPTS, crisis answers and failures
-    included) and of the address (IP_FOLLOWUP_LIMIT per UTC day), before the question check calls a model.
+def take_followup_attempt(conn, reading_id) -> int:
+    """One attempt of the reading (§10.2, FOLLOWUP_ATTEMPTS), taken in the transaction that inserts the follow-up:
+    after the question check, so a crisis answer of the check takes none (stage 4.5 §3); a reader [[crisis]],
+    a refusal and a failure keep it. The UPDATE locks the reading's row until that transaction ends, so the
+    follow-ups of one reading are created one at a time.
 
-    Returns the reading's new attempt count; raises LimitReached, so the caller's transaction rolls back.
+    Returns the new count, which is also the follow-up's number n — never repeated, even when a follow-up was
+    deleted (stage 4.5 §5); raises LimitReached("attempts"), so the caller's transaction rolls back.
     """
     row = conn.execute("UPDATE readings SET followup_attempts = followup_attempts + 1"
                        " WHERE id = %s AND followup_attempts < %s RETURNING followup_attempts",
                        (reading_id, FOLLOWUP_ATTEMPTS)).fetchone()
     if row is None:
         raise LimitReached("attempts")
-    if take_slot(conn, followup_ip_subject(ip_hash), ip_day, IP_FOLLOWUP_LIMIT) is None:
-        raise LimitReached("ip_limit")
     return row["followup_attempts"]
 
 

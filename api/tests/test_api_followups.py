@@ -6,7 +6,7 @@ from datetime import timedelta
 import pytest
 
 from app import limits, repo
-from app.config import FOLLOWUP_ATTEMPTS
+from app.config import FOLLOWUP_ATTEMPTS, IP_FOLLOWUP_LIMIT
 from app.db import DatabaseUnavailable
 from app.reader import fallback
 from app.reader.followups import stream_followup
@@ -216,13 +216,23 @@ def attempts_of(api, reading_id) -> int:
         return repo.get_reading(conn, uuid.UUID(reading_id), api.clock())["followup_attempts"]
 
 
-def test_followup_attempts_are_capped_per_reading(api):
+def test_crisis_answers_of_the_check_take_no_attempt(api):
     reading_id = ready_reading(api, kind="one")
     api.guard.json_replies.extend([CRISIS] * 10)
     codes = [ask(api.client, reading_id, "Is any of this even worth it?").status_code for _ in range(10)]
-    assert codes == [200] * FOLLOWUP_ATTEMPTS + [429, 429]
-    assert ask(api.client, reading_id, "And now?").json() == {"reason": "attempts"}
-    assert len(api.guard.json_calls()) == FOLLOWUP_ATTEMPTS and followups(api, reading_id) == []
+    assert codes == [200] * 10  # stage 4.5 §3: help first; the address cap (40 a day) still bounds them
+    assert attempts_of(api, reading_id) == 0 and followups(api, reading_id) == []
+    assert len(api.guard.json_calls()) == 10
+
+
+def test_followup_attempts_are_capped_per_reading(api):
+    reading_id = ready_reading(api, kind="one")
+    set_attempts(api, reading_id, FOLLOWUP_ATTEMPTS)
+    response = ask(api.client, reading_id, "And now?")
+    assert response.status_code == 429 and response.json() == {"reason": "attempts"}
+    assert len(api.guard.json_calls()) == 1 and followups(api, reading_id) == []  # checked first, then refused
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM llm_calls WHERE purpose = 'guard'").fetchone()["n"] == 1
 
 
 def test_reader_crisis_and_failures_use_attempts_too(api):
@@ -242,7 +252,7 @@ def test_followup_ip_limit(api):
     ip_hash = api.ctx.salt.hash_ip("198.51.100.7", api.clock())
     with api.db.connect() as conn:
         conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, %s)",
-                     (limits.followup_ip_subject(ip_hash), limits.utc_day(api.clock()), limits.IP_FOLLOWUP_LIMIT))
+                     (limits.followup_ip_subject(ip_hash), limits.utc_day(api.clock()), IP_FOLLOWUP_LIMIT))
     response = api.client.post(f"/api/readings/{reading_id}/followups", json={"question": "What next?"},
                                headers=from_ip("198.51.100.7"))
     assert response.status_code == 429 and response.json() == {"reason": "ip_limit"}
@@ -262,7 +272,7 @@ def test_followup_over_the_guard_budget_is_503(api):
     assert api.guard.json_calls() == [] and followups(api, reading_id) == []
     assert attempts_of(api, reading_id) == 0  # м1: a question nobody checked takes no attempt
     crisis = ask(api.client, reading_id, "Honestly I want to die.")  # a stop-phrase still answers
-    assert crisis.json()["group"] == "crisis" and attempts_of(api, reading_id) == 1
+    assert crisis.json()["group"] == "crisis" and attempts_of(api, reading_id) == 0  # stage 4.5 §3
 
 
 def test_crisis_marker_after_a_preface_or_split_is_caught(api):
@@ -331,14 +341,15 @@ def free_used(api, reading_id, client=None) -> None:
         assert fin(events)[1]["followups_left"] == 2 - n
 
 
-def test_third_followup_without_confirmation_is_402_and_takes_nothing(api):
+def test_third_followup_without_confirmation_is_402_and_takes_no_reading_or_attempt(api):
     reading_id = ready_reading(api, kind="one")
     free_used(api, reading_id)
     guard_calls = len(api.guard.json_calls())
     response = ask(api.client, reading_id, "And one more?", tz=MX)
     assert response.status_code == 402 and response.json() == {"reason": "confirm", "remaining": 2}
     assert (guest_used(api, reading_id), attempts_of(api, reading_id)) == (1, 2)
-    assert len(api.guard.json_calls()) == guard_calls and len(followups(api, reading_id)) == 2
+    # stage 4.5 §3: the question is checked before the 402, so a crisis question gets help instead
+    assert len(api.guard.json_calls()) == guard_calls + 1 and len(followups(api, reading_id)) == 2
 
 
 def test_confirmed_followup_uses_a_reading(api):
@@ -528,3 +539,80 @@ def test_nul_in_a_followup_question_is_422_before_any_guard_call_or_attempt(api)
     with api.db.connect() as conn:
         assert repo.get_reading(conn, uuid.UUID(reading_id), api.clock())["followup_attempts"] == 0
     assert len(api.guard.calls) == guard_calls
+
+
+# --- stage 4.5 §3 and §5: help before attempts and 402; a follow-up number never repeats ---
+
+def test_crisis_at_exhausted_attempts_gets_the_crisis_answer(api):
+    reading_id = ready_reading(api, kind="one")
+    set_attempts(api, reading_id, FOLLOWUP_ATTEMPTS)
+    response = ask(api.client, reading_id, "Honestly I want to die.", tz=MX)
+    assert response.status_code == 200 and response.json()["group"] == "crisis"
+    api.guard.json_replies.append(CRISIS)
+    response = ask(api.client, reading_id, "Is any of this even worth it?", tz=MX)
+    assert response.status_code == 200 and response.json()["group"] == "crisis"
+    assert attempts_of(api, reading_id) == FOLLOWUP_ATTEMPTS
+
+
+@pytest.mark.parametrize("readings_left", [2, 0])  # 402 confirm, 402 plus
+def test_crisis_where_a_402_would_come_gets_the_crisis_answer(api, readings_left):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    for _ in range(2 - readings_left):
+        assert post_reading(api.client, kind="one", tz=MX).status_code == 201
+    response = ask(api.client, reading_id, "Honestly I want to die.", tz=MX)
+    assert response.status_code == 200 and response.json()["group"] == "crisis"
+    assert attempts_of(api, reading_id) == 2 and guest_used(api, reading_id) == 3 - readings_left
+
+
+def test_a_followup_number_is_never_used_twice(api):
+    reading_id = ready_reading(api, kind="one")
+    api.reader.replies.append(FakeReply(fail_after=0))  # the first follow-up fails and is deleted
+    assert fin(parse_sse(ask(api.client, reading_id, "What now?").text))[1]["answer_shown"] == "fallback"
+    events = parse_sse(ask(api.client, reading_id, "And now?").text)
+    assert events[0][1]["followup"] == 2  # the attempt count, not "the highest saved number + 1"
+    assert [f["n"] for f in api.client.get(f"/api/readings/{reading_id}").json()["followups"]] == [2]
+
+
+def test_two_followups_at_once_make_one(api):
+    reading_id = ready_reading(api, kind="one")
+    api.guard.json_delay = 0.3  # both wait in the question check, then race for the reading's row
+    start = threading.Barrier(2)
+    codes = []
+
+    def worker(i):
+        start.wait()
+        codes.append(ask(api.client, reading_id, f"Part {i}?").status_code)
+
+    threads = [threading.Thread(target=worker, args=(i,)) for i in range(2)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert sorted(codes) == [200, 409]
+    assert len(followups(api, reading_id)) == 1 and attempts_of(api, reading_id) == 1
+
+
+def test_a_free_followup_written_meanwhile_in_another_tab_is_counted(api, monkeypatch):
+    """Fable plan review I1: the free-or-paid decision is taken again from the list read under the reading's lock,
+    not from the one read before the question check."""
+    reading_id = ready_reading(api, kind="one")
+    assert fin(parse_sse(ask(api.client, reading_id, "First?").text))[1]["followups_left"] == 1
+    check = api.guard.complete_json
+
+    def another_tab_answers_meanwhile(*args, **kwargs):
+        with api.db.connect() as conn:
+            fid = uuid.uuid4()
+            repo.insert_followup(conn, {"id": fid, "reading_id": uuid.UUID(reading_id), "n": 7, "question": "Other?",
+                                        "created_at": api.clock()})
+            repo.save_followup_answer(conn, fid, {"model": "Done.", "fallback": None}, "fake-reader")
+        return check(*args, **kwargs)
+
+    monkeypatch.setattr(api.guard, "complete_json", another_tab_answers_meanwhile)
+    response = ask(api.client, reading_id, "Second?")
+    assert response.status_code == 409 and response.json() == {"reason": "busy"}
+    assert len(followups(api, reading_id)) == 2 and attempts_of(api, reading_id) == 1  # the attempt rolled back
+    monkeypatch.setattr(api.guard, "complete_json", check)
+    again = ask(api.client, reading_id, "Second?", tz=MX)
+    assert again.status_code == 402 and again.json()["reason"] == "confirm"
+
