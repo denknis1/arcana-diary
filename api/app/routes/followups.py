@@ -56,6 +56,18 @@ class Repeated(Exception):
         self.followup = followup
 
 
+def twin_or(ctx, request: Request, reading: dict, body: FollowupIn, status: int, refusal: dict):
+    """Stage 4.5 review M2: a refusal that a parallel twin of this request caused (it took the last attempt or
+    reading) shows the twin's follow-up instead, found in a new connection; otherwise the refusal."""
+    if body.request_id is not None:
+        with ctx.db.connect() as conn:
+            same = next((f for f in repo.list_followups(conn, reading["id"]) if f["request_id"] == body.request_id),
+                        None)
+        if same is not None:
+            return stream_response(replay_followup(ctx, reading, same, country_hint(ctx, request), body.tz))
+    return respond(status, refusal)
+
+
 @router.post("/readings/{reading_id}/followups")
 def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
     ctx = get_ctx(request)
@@ -80,7 +92,7 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
     if body.request_id is not None:
         same = next((f for f in previous if f["request_id"] == body.request_id), None)
         if same is not None:  # stage 4.5 §5: the same request again
-            return stream_response(replay_followup(ctx, reading, same))
+            return stream_response(replay_followup(ctx, reading, same, country_hint(ctx, request), body.tz))
     if any(f["answer"] is None for f in previous):
         return respond(409, {"reason": "busy"})
     allow_model = not flow.guard_over_budget(ctx)
@@ -102,14 +114,14 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
         return respond(200, flow.crisis_answer(ctx, reading["lang"], country_hint(ctx, request), body.tz,
                                                guard.violence))
     if reading["followup_attempts"] >= FOLLOWUP_ATTEMPTS:  # м13: never ask to confirm what cannot happen
-        return respond(429, {"reason": "attempts"})
+        return twin_or(ctx, request, reading, body, 429, {"reason": "attempts"})
     paid_day = None
     if flow.followups_left(previous) == 0:  # §10.1: the free ones are used
         paid_day = limits.local_day(limits.resolve_tz(body.tz), now)
         with ctx.db.connect() as conn:
             left = limits.remaining(conn, limits.owner_quota(reading), paid_day)
         if left == 0:
-            return respond(402, {"reason": "plus", "remaining": 0})
+            return twin_or(ctx, request, reading, body, 402, {"reason": "plus", "remaining": 0})
         if not body.use_reading:
             return respond(402, {"reason": "confirm", "remaining": left})
     followup = {"id": uuid.uuid4(), "reading_id": reading_id, "question": question, "guard_group": guard.group,
@@ -135,11 +147,11 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
                     raise limits.LimitReached("limit")
     except limits.LimitReached as exc:  # the last attempt or reading went to a parallel request; all rolls back
         if exc.reason == "attempts":
-            return respond(429, {"reason": "attempts"})
-        return respond(402, {"reason": "plus", "remaining": 0})
+            return twin_or(ctx, request, reading, body, 429, {"reason": "attempts"})
+        return twin_or(ctx, request, reading, body, 402, {"reason": "plus", "remaining": 0})
     except Busy:
         return respond(409, {"reason": "busy"})
     except Repeated as exc:
-        return stream_response(replay_followup(ctx, reading, exc.followup))
+        return stream_response(replay_followup(ctx, reading, exc.followup, country_hint(ctx, request), body.tz))
     return stream_response(stream_followup(ctx, reading, {**followup, "attempts": attempts}, current, guard.group,
                                            country_hint(ctx, request), body.tz))

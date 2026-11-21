@@ -95,7 +95,8 @@ def test_reader_safety_net_in_a_followup(api):
     assert [e for e, _ in events] == ["meta", "section", "crisis", "done"]
     assert events[2][1]["helplines"]["country"] == "MX"
     assert fin(events)[1] == {"answer_shown": "crisis", "followups_left": 2}
-    assert followups(api, reading_id) == [] and "Nothing matters" not in dump_tables(api.db)
+    [mark] = followups(api, reading_id)  # review I1: a tombstone, not a used follow-up, the question not stored
+    assert mark["answer"] == {"crisis": True} and mark["counted"] is False and "Nothing matters" not in dump_tables(api.db)
 
 
 def test_followup_failure_does_not_use_a_slot(api):
@@ -283,7 +284,8 @@ def test_crisis_marker_after_a_preface_or_split_is_caught(api):
     assert [e for e, _ in events] == ["meta", "section", "text", "crisis", "done"]
     assert events[2][1]["text"] == "I hear how heavy this is.\n"
     assert fin(events)[1] == {"answer_shown": "crisis", "followups_left": 2}
-    assert followups(api, reading_id) == [] and "too much tonight" not in dump_tables(api.db)
+    assert [f["answer"] for f in followups(api, reading_id)] == [{"crisis": True}]  # the tombstone (review I1)
+    assert "too much tonight" not in dump_tables(api.db)
 
 
 def test_cut_followup_keeps_both_texts_and_its_slot(api):
@@ -408,7 +410,7 @@ def test_reader_crisis_marker_uses_the_paid_reading(api):
     api.reader.replies.append(FakeReply(chunks=["[[crisis]]"]))
     events = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX, use_reading=True).text)
     assert fin(events) == ("done", {"answer_shown": "crisis", "followups_left": 0, "used_reading": True})
-    assert guest_used(api, reading_id) == 2 and len(followups(api, reading_id)) == 2
+    assert guest_used(api, reading_id) == 2 and len(followups(api, reading_id)) == 3  # the third is the tombstone
 
 
 def test_a_stale_paid_followup_gives_its_reading_back(api):
@@ -524,7 +526,7 @@ def test_crisis_marker_still_sends_helplines_when_saving_fails(api, monkeypatch)
     def broken(*args, **kwargs):
         raise DatabaseUnavailable("down")
 
-    monkeypatch.setattr(repo, "delete_followup", broken)
+    monkeypatch.setattr(repo, "tombstone_followup", broken)
     events = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX).text)
     names = [e for e, _ in events]
     assert names[-2:] == ["crisis", "error"] and events[-2][1]["helplines"]["country"] == "MX"
@@ -619,11 +621,6 @@ def test_a_free_followup_written_meanwhile_in_another_tab_is_counted(api, monkey
 
 # --- stage 4.5 §5: one request, one follow-up ---
 
-def counts_now(api, reading_id) -> tuple[int, int]:
-    full = api.client.get(f"/api/readings/{reading_id}").json()
-    return full["followups_left"], full["followup_attempts_left"]
-
-
 def test_the_same_number_replays_the_saved_followup(api):
     reading_id = ready_reading(api, kind="one")
     number = str(uuid.uuid4())
@@ -692,3 +689,140 @@ def test_a_followup_number_must_be_a_uuid(api):
     reading_id = ready_reading(api, kind="one")
     response = ask(api.client, reading_id, "How do I start?", request_id="ask-1")
     assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["request_id"]}
+
+
+# --- stage 4.5 review (fix wave) ---
+
+def test_the_same_number_after_a_reader_crisis_replays_the_crisis_and_takes_nothing(api):
+    reading_id = ready_reading(api, kind="one")
+    number = str(uuid.uuid4())
+    api.reader.replies.append(FakeReply(chunks=["[[crisis]]", "\nPlease talk to someone today."]))
+    live = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX, request_id=number).text)
+    calls, guard_calls, attempts = len(api.reader.stream_calls()), len(api.guard.json_calls()), attempts_of(
+        api, reading_id)
+    again = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX, request_id=number).text)
+    assert [e for e, _ in live] == ["meta", "section", "crisis", "done"]
+    assert [e for e, _ in again] == ["meta", "section", "crisis", "done"]
+    assert again[0][1]["replay"] is True and again[0][1]["followup"] == 1
+    assert again[2][1] == live[2][1] and again[2][1]["helplines"]["country"] == "MX"
+    assert fin(again) == ("done", {"answer_shown": "crisis", "followups_left": 2})
+    assert (len(api.reader.stream_calls()), len(api.guard.json_calls()), attempts_of(api, reading_id)) == (
+        calls, guard_calls, attempts)
+    assert len(followups(api, reading_id)) == 1
+
+
+def test_the_tombstone_is_no_answer_and_no_used_free_followup(api):
+    reading_id = ready_reading(api, kind="one")
+    api.reader.replies.append(FakeReply(chunks=["[[crisis]]"]))
+    ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX)
+    full = api.client.get(f"/api/readings/{reading_id}").json()
+    assert full["followups"] == [] and full["followups_left"] == 2
+    first = parse_sse(ask(api.client, reading_id, "What helps me rest?").text)
+    assert fin(first) == ("done", {"answer_shown": "model", "followups_left": 1})
+    full = api.client.get(f"/api/readings/{reading_id}").json()
+    assert [f["n"] for f in full["followups"]] == [2] and full["followups_left"] == 1
+    # the reader's memory of earlier follow-ups holds the answered one only, not the tombstone
+    parse_sse(ask(api.client, reading_id, "And then?").text)
+    earlier = [m for m in api.reader.stream_calls()[-1]["messages"] if "What helps me rest?" in str(m["content"])]
+    assert len(earlier) >= 1 and "Nothing matters" not in str(api.reader.stream_calls()[-1]["messages"])
+
+
+def test_the_same_number_after_a_paid_reader_crisis_uses_no_second_reading(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    number = str(uuid.uuid4())
+    api.reader.replies.append(FakeReply(chunks=["[[crisis]]"]))
+    ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX, use_reading=True, request_id=number)
+    calls = len(api.reader.stream_calls())
+    again = parse_sse(ask(api.client, reading_id, "Nothing matters anymore, right?", tz=MX, use_reading=True,
+                          request_id=number).text)
+    assert [e for e, _ in again] == ["meta", "section", "crisis", "done"] and again[0][1]["paid"] is True
+    assert fin(again) == ("done", {"answer_shown": "crisis", "followups_left": 0, "used_reading": True})
+    assert guest_used(api, reading_id) == 2 and attempts_of(api, reading_id) == 3
+    assert len(api.reader.stream_calls()) == calls and len(followups(api, reading_id)) == 3
+
+
+def test_a_twin_inserted_during_the_question_check_is_replayed_in_the_lock(api, monkeypatch):
+    """Review M1: the Repeated branch under the reading's lock."""
+    reading_id = ready_reading(api, kind="one")
+    number = uuid.uuid4()
+    check = api.guard.complete_json
+
+    def twin_answers_meanwhile(*args, **kwargs):
+        with api.db.connect() as conn:
+            fid = uuid.uuid4()
+            conn.execute("UPDATE readings SET followup_attempts = 1 WHERE id = %s", (uuid.UUID(reading_id),))
+            repo.insert_followup(conn, {"id": fid, "reading_id": uuid.UUID(reading_id), "n": 1, "question": "Q?",
+                                        "request_id": number, "created_at": api.clock()})
+            repo.save_followup_answer(conn, fid, {"model": "Done.", "fallback": None}, "fake-reader")
+        return check(*args, **kwargs)
+
+    monkeypatch.setattr(api.guard, "complete_json", twin_answers_meanwhile)
+    events = parse_sse(ask(api.client, reading_id, "Q?", request_id=str(number)).text)
+    assert events[0][0] == "meta" and events[0][1]["replay"] is True and events[0][1]["followup"] == 1
+    assert events[2] == ("text", {"name": "followup", "text": "Done."})
+    assert attempts_of(api, reading_id) == 1 and len(followups(api, reading_id)) == 1
+
+
+def test_a_twin_that_took_the_last_attempt_is_replayed_not_429(api, monkeypatch):
+    """Review M2: the refusal caused by the twin itself shows the twin's follow-up."""
+    reading_id = ready_reading(api, kind="one")
+    number = uuid.uuid4()
+    check = api.guard.complete_json
+
+    def twin_takes_the_last_attempt(*args, **kwargs):
+        with api.db.connect() as conn:
+            fid = uuid.uuid4()
+            conn.execute("UPDATE readings SET followup_attempts = %s WHERE id = %s",
+                         (FOLLOWUP_ATTEMPTS, uuid.UUID(reading_id)))
+            repo.insert_followup(conn, {"id": fid, "reading_id": uuid.UUID(reading_id), "n": FOLLOWUP_ATTEMPTS,
+                                        "question": "Q?", "request_id": number, "created_at": api.clock()})
+            repo.save_followup_answer(conn, fid, {"model": "Done.", "fallback": None}, "fake-reader")
+        return check(*args, **kwargs)
+
+    monkeypatch.setattr(api.guard, "complete_json", twin_takes_the_last_attempt)
+    response = ask(api.client, reading_id, "Q?", request_id=str(number))
+    assert response.status_code == 200
+    events = parse_sse(response.text)
+    assert events[0][1]["replay"] is True and events[0][1]["followup"] == FOLLOWUP_ATTEMPTS
+    assert attempts_of(api, reading_id) == FOLLOWUP_ATTEMPTS
+    other = ask(api.client, reading_id, "Q?", request_id=str(uuid.uuid4()))  # another number still gets the 429
+    assert other.status_code == 429 and other.json() == {"reason": "attempts"}
+
+
+def test_a_crisis_question_repeated_with_one_number_gets_the_crisis_both_times(api):
+    reading_id = ready_reading(api, kind="one")
+    number = str(uuid.uuid4())
+    api.guard.json_replies.extend([CRISIS] * 2)
+    codes = [ask(api.client, reading_id, "Is any of this even worth it?", request_id=number) for _ in range(2)]
+    assert [c.status_code for c in codes] == [200, 200] and all(c.json()["group"] == "crisis" for c in codes)
+    assert attempts_of(api, reading_id) == 0 and followups(api, reading_id) == []
+
+
+def test_a_confirmed_repeat_of_a_402_with_the_same_number_is_a_normal_paid_followup(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    number = str(uuid.uuid4())
+    refused = ask(api.client, reading_id, "And one more?", tz=MX, request_id=number)
+    assert refused.status_code == 402 and refused.json()["reason"] == "confirm"
+    events = parse_sse(ask(api.client, reading_id, "And one more?", tz=MX, use_reading=True, request_id=number).text)
+    assert events[0][1]["replay"] is False and events[0][1]["paid"] is True
+    assert fin(events) == ("done", {"answer_shown": "model", "followups_left": 0, "used_reading": True})
+    assert guest_used(api, reading_id) == 2  # the reading and the one paid follow-up
+
+
+def test_the_same_number_of_a_paid_followup_still_written_says_in_progress(api):
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    number = uuid.uuid4()
+    with api.db.connect() as conn:
+        repo.insert_followup(conn, {"id": uuid.uuid4(), "reading_id": uuid.UUID(reading_id), "n": 3,
+                                    "question": "And one more?", "request_id": number, "created_at": api.clock(),
+                                    "paid_day": limits.local_day(limits.resolve_tz(MX), api.clock())})
+    attempts, used, guard_calls = attempts_of(api, reading_id), guest_used(api, reading_id), len(api.guard.json_calls())
+    events = parse_sse(ask(api.client, reading_id, "And one more?", tz=MX, use_reading=True,
+                           request_id=str(number)).text)
+    assert [e for e, _ in events] == ["meta", "error"] and events[0][1]["paid"] is True
+    assert events[1][1] == {"reason": "in_progress"}
+    assert (attempts_of(api, reading_id), guest_used(api, reading_id), len(api.guard.json_calls())) == (
+        attempts, used, guard_calls)

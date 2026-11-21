@@ -118,6 +118,15 @@ def save_followup_answer(conn, followup_id, answer: dict, model: str | None, cou
     return row is not None
 
 
+def tombstone_followup(conn, followup_id) -> bool:
+    """Stage 4.5 review I1: the reader's own [[crisis]] keeps the row as a mark — answer {"crisis": true}, not
+    counted, the question blanked (never stored) — so the same request_id again shows the crisis help instead of
+    asking the model again. False when the row is gone (freed as stale)."""
+    row = conn.execute("UPDATE followups SET answer = %s, question = '', counted = false WHERE id = %s RETURNING id",
+                       (Jsonb({"crisis": True}), followup_id)).fetchone()
+    return row is not None
+
+
 def delete_followup(conn, followup_id) -> bool:
     """True when this call deleted the row; False when it was already gone (so nobody refunds twice)."""
     row = conn.execute("DELETE FROM followups WHERE id = %s RETURNING id", (followup_id,)).fetchone()

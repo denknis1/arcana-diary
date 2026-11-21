@@ -63,7 +63,7 @@ def diary_page(conn, user_id, before, limit: int) -> list[dict]:
     """§6: the account's readings, newest first, older than `before` (None: from the newest), with the number of
     answered follow-ups."""
     return conn.execute(
-        "SELECT r.*, (SELECT count(*) FROM followups f WHERE f.reading_id = r.id AND f.answer IS NOT NULL)"
+        "SELECT r.*, (SELECT count(*) FROM followups f WHERE f.reading_id = r.id AND f.answer IS NOT NULL AND f.answer ->> 'crisis' IS NULL)"
         " AS followup_count FROM readings r WHERE r.user_id = %s"
         " AND (%s::timestamptz IS NULL OR r.created_at < %s) ORDER BY r.created_at DESC, r.id DESC LIMIT %s",
         (user_id, before, before, limit)).fetchall()

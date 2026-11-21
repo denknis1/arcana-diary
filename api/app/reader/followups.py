@@ -6,8 +6,8 @@ question; plain text, 60–120 words. It runs Detached like the reading, so a di
   not use one of the two free slots (counted = false, §9.4). FOLLOWUP_ATTEMPTS bounds the retries (§9.2, §10.2).
 - A paid follow-up (paid_day set, §10.1) that fails either way gives its reading back to the guest's day; the
   done event of a paid follow-up says whether the reading was used (used_reading).
-- The reader's safety net: an answer with [[crisis]] anywhere is never kept; the follow-up is deleted and the
-  crisis answer is sent (the site clears any text it already showed). A tail that may still become the marker
+- The reader's safety net: an answer with [[crisis]] anywhere is never kept; the row stays as a tombstone (answer
+  {"crisis": true}, counted = false, question blanked: stage 4.5 review I1) and the crisis answer is sent (the site clears any text it already showed). A tail that may still become the marker
   ("[", "[[cri") is held back until it is clear, so the marker itself is never sent; after it nothing more is sent.
   Other brackets ("Try this [a small step] today") stream as usual (м3).
 - м10: a follow-up without an answer older than 180 s is freed by the next request even if its generation is still
@@ -98,10 +98,11 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
             if outcome is not None:
                 log_call(conn, ctx, reading["id"], "followup", ctx.reader.model, prompt.version, outcome,
                          FOLLOWUP_MAX_TOKENS)
-            if answer is None:
+            if crisis:  # review I1: a tombstone, so the same request_id shows the help again and asks nothing
+                gone = not repo.tombstone_followup(conn, followup["id"])
+                repo.count_guard_event(conn, day_start(ctx.clock()).date(), lang, "crisis", "reader")
+            elif answer is None:
                 gone = not repo.delete_followup(conn, followup["id"])
-                if crisis:
-                    repo.count_guard_event(conn, day_start(ctx.clock()).date(), lang, "crisis", "reader")
             else:
                 gone = not repo.save_followup_answer(conn, followup["id"], answer, ctx.reader.model, counted=not replace)
             # §10.1: a failed paid follow-up gives back its reading, once: only the call that removed the row
@@ -135,7 +136,8 @@ def stream_followup(ctx, reading: dict, followup: dict, previous: list[dict], gr
     return Detached(_followup_events(ctx, reading, followup, previous, group, cf_country, tz))
 
 
-def replay_followup(ctx, reading: dict, followup: dict) -> Iterator[str]:
+def replay_followup(ctx, reading: dict, followup: dict, cf_country: str | None = None,
+                    tz: str | None = None) -> Iterator[str]:
     """Stage 4.5 §5: the same request again (its first answer never reached the site). A saved answer is sent
     again as it was shown — the model's text, or the card base line that replaced it; a follow-up still being
     written gets "in_progress", as a second stream of a reading does, and the site reads it back with
@@ -147,14 +149,25 @@ def replay_followup(ctx, reading: dict, followup: dict) -> Iterator[str]:
     if followup["answer"] is None:
         yield sse("error", {"reason": "in_progress"})
         return
+    crisis = bool(followup["answer"].get("crisis"))  # review I1: the reader's crisis, kept as a mark
     try:
         with ctx.db.connect() as conn:
             fresh = repo.get_reading(conn, reading["id"], ctx.clock()) or reading
             followups = repo.list_followups(conn, reading["id"])
     except DatabaseUnavailable:
+        if crisis:
+            yield sse("section", {"name": "followup"})
+            yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))
         yield sse("error", {"reason": "db"})
         return
     attempts = fresh["followup_attempts"]
+    if crisis:
+        yield sse("section", {"name": "followup"})
+        yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))
+        data = {"answer_shown": "crisis", "followups_left": followups_left(followups, attempts),
+                "followup_attempts_left": max(FOLLOWUP_ATTEMPTS - attempts, 0)}
+        yield sse("done", {**data, "used_reading": paid} if paid else data)
+        return
     yield sse("section", {"name": "followup"})
     replaced = followup["answer"].get("fallback")
     if replaced:

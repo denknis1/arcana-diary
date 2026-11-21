@@ -143,7 +143,7 @@ def load_history(ctx, reading: dict) -> list[dict]:
 
 def followup_text(followup: dict) -> str | None:
     answer = followup.get("answer")
-    if not answer:
+    if not answer or answer.get("crisis"):  # a crisis tombstone has no answer to show (stage 4.5 review I1)
         return None
     return answer["fallback"] or answer["model"]
 
@@ -177,7 +177,7 @@ def full_view(ctx, reading: dict, followups: list[dict], owner: bool, now: datet
     view = {**reading_view(ctx, reading, owner), "answer": shown_sections(reading), "answer_shown": shown,
             "status": stream_status(reading, now)}
     if owner:
-        answered = [f for f in followups if f.get("answer")]
+        answered = [f for f in followups if followup_text(f)]
         view.update({
             "retries_left": RETRY_LIMIT - reading["retries"] if shown == "fallback" else 0,
             "followups": [{"n": f["n"], "question": f["question"], "answer": followup_text(f),
