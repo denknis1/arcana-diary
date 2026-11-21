@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
-  CLOSED, DEAL_MS, FLIP_INTERVAL_MS, allRevealed, answerVisible, followupNow, nightReducer, readingShown, statusKey,
-  crisisPayloadOf, isCrisisAction, transitionEvents, type NightAction, type NightState,
+  CLOSED, DEAL_MS, FLIP_INTERVAL_MS, allRevealed, answerVisible, cardVotes, followupNow, nightReducer, readingShown,
+  statusKey, crisisPayloadOf, isCrisisAction, timedSpread, transitionEvents, type NightAction, type NightState,
 } from './nightRoom';
 import type { CrisisPayload, ReadingCreated, ReadingView } from './types';
 
@@ -284,5 +284,40 @@ describe('isCrisisAction (a late answer of a closed room)', () => {
     expect(isCrisisAction({ type: 'stream', event: { event: 'text', data: { name: 'headline', text: 'x' } } })).toBe(false);
     expect(isCrisisAction({ type: 'created', reading: THREE, reducedMotion: false })).toBe(false);
     expect(isCrisisAction({ type: 'failed', error: 'network' })).toBe(false);
+  });
+});
+
+describe('yes/no on three cards (spec 4.5 §4)', () => {
+  const YES_NO_THREE: ReadingCreated = {
+    id: 'r3', lang: 'en', kind: 'yes_no', soft_line: null, remaining: 2, verdict: { value: 'yes', label: 'Yes' },
+    cards: [
+      { card_id: 'major-19-sun', position: 'card', reversed: false, name: 'The Sun', vote: 'yes' },
+      { card_id: 'major-16-tower', position: 'card', reversed: false, name: 'The Tower', vote: 'no' },
+      { card_id: 'major-17-star', position: 'card', reversed: false, name: 'The Star', vote: 'yes' },
+    ],
+  };
+  const open = (reading: ReadingCreated) => run([{ type: 'open' }, { type: 'created', reading, reducedMotion: false }]);
+
+  it('shows each vote under its card as the card turns', () => {
+    let s = open(YES_NO_THREE);
+    expect(cardVotes(s)).toEqual([null, null, null]);
+    expect(statusKey(s)).toBe('dealtThree');
+    s = run(flips(2), s);
+    expect(cardVotes(s)).toEqual(['yes', 'no', null]);
+    s = run(flips(1), s);
+    expect(cardVotes(s)).toEqual(['yes', 'no', 'yes']);
+  });
+
+  it('has no positions in time, unlike the three-card reading', () => {
+    expect(timedSpread(open(YES_NO_THREE))).toBe(false);
+    expect(timedSpread(open(THREE))).toBe(true);
+  });
+
+  it('shows no votes for one card, without a verdict, or for the three-card reading', () => {
+    const one = { ...YES_NO_THREE, cards: YES_NO_THREE.cards.slice(0, 1) };
+    expect(cardVotes(run(flips(1), open(one)))).toEqual([null]);
+    const closed = { ...YES_NO_THREE, verdict: null, cards: YES_NO_THREE.cards.map(({ vote: _vote, ...card }) => card) };
+    expect(cardVotes(run(flips(3), open(closed)))).toEqual([null, null, null]);
+    expect(cardVotes(run(flips(3), open(THREE)))).toEqual([null, null, null]);
   });
 });

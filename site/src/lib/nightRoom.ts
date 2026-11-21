@@ -6,7 +6,7 @@ import type { DictKey } from '../i18n';
 import type { ErrorKind } from './errors';
 import { applyFollowupEvent, followupOffer, newFollowup, type Followup, type FollowupRefusal, type Offer } from './followups';
 import type { SseEvent } from './sse';
-import type { CrisisPayload, FollowupCounts, ReadingCreated, ReadingView, SavedFollowup } from './types';
+import type { CrisisPayload, FollowupCounts, ReadingCreated, ReadingView, SavedFollowup, Vote } from './types';
 
 /** closed — not shown; limit — closed, the panel shows the Plus card (screen 11a) instead. */
 export type Phase = 'closed' | 'opening' | 'reading' | 'crisis' | 'limit' | 'error';
@@ -184,6 +184,19 @@ export function isCrisisAction(action: NightAction): boolean {
 
 export function cardsCount(state: NightState): number {
   return state.reading ? state.reading.cards.length : 0;
+}
+
+/** Past · present · path: only the three-card reading has positions in time; yes/no cards have none (spec 4.5 §4). */
+export function timedSpread(state: NightState): boolean {
+  const cards = state.reading?.cards ?? [];
+  return cards.length === 3 && cards.every((card) => card.position !== 'card');
+}
+
+/** Spec 4.5 §4: under each turned card of a three-card yes/no reading, its own vote; null where none is shown (one
+ * card shows only the verdict, and a reading without a verdict has no votes). */
+export function cardVotes(state: NightState): Array<Vote | null> {
+  const cards = state.reading?.cards ?? [];
+  return cards.map((card, i) => (cards.length === 3 && i < state.revealed && card.vote ? card.vote : null));
 }
 
 export function allRevealed(state: NightState): boolean {

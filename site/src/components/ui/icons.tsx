@@ -24,15 +24,16 @@ export function CheckIcon() {
   );
 }
 
-/** Yes, No and Not yet differ by shape (check, cross, hourglass), never by colour alone. */
-export function VerdictIcon({ value }: { value: 'yes' | 'no' | 'unclear' }) {
+/** Yes, No and Not yet differ by shape (check, cross, hourglass), never by colour alone. `size` — 40 for the
+ * verdict, smaller for the vote under each of three yes/no cards (spec 4.5 §4). */
+export function VerdictIcon({ value, size = 40 }: { value: 'yes' | 'no' | 'unclear'; size?: number }) {
   const paths = {
     yes: 'M7.5 13.5l3.5 3.5 7.5-8',
     no: 'M8.5 8.5l9 9M17.5 8.5l-9 9',
     unclear: 'M9 7h8M9 19h8M10 7c0 3.5 6 4.5 6 6s-6 2.5-6 6M16 7c0 3.5-6 4.5-6 6s6 2.5 6 6',
   };
   return (
-    <svg width="40" height="40" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <svg width={size} height={size} viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
       <circle cx="13" cy="13" r="12" />
       <path d={paths[value]} />
     </svg>

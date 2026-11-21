@@ -149,6 +149,7 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .input--day { border-color: var(--color-day-control-border); background: var(--color-day-surface); color: var(--color-day-text); }
 .input--day::placeholder { color: var(--color-day-text-muted); }
 .panel-hint { margin: 0; text-align: center; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.count-hint { margin: 0; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
 .backs { display: flex; justify-content: center; gap: var(--space-4); padding: var(--space-3) 0; }
 .backs img { width: 92px; aspect-ratio: var(--card-ratio); border-radius: var(--radius-card); }
 .backs img:nth-child(1) { transform: rotate(-6deg) translateY(6px); }
@@ -223,6 +224,9 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .spread__slot { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); width: 106px; }
 .spread--one .spread__slot { width: 150px; }
 .spread__pos { font-size: var(--font-size-caption); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-night-text-muted); }
+.spread__vote { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); font-size: var(--font-size-small); text-align: center; color: var(--color-night-text); }
+.spread__vote svg { flex: none; color: var(--color-night-accent); }
+.spread--small .spread__vote { font-size: var(--font-size-caption); }
 .flip { position: relative; width: 100%; aspect-ratio: var(--card-ratio); perspective: 800px; }
 .flip__inner {
   position: absolute; inset: 0; transform-style: preserve-3d;
