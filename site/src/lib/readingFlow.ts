@@ -131,7 +131,7 @@ export async function loadCounts(deps: FlowDeps, id: string, tz: string | undefi
  * `n` is the follow-up number from the stream's `meta` event, when it arrived: then only the saved follow-up with
  * exactly that `n` counts (a newer-but-other one never does); without it the `answeredBefore` rule is the fallback. */
 export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore: number, tz: string | undefined,
-  n?: number, repost?: () => Promise<boolean>): Promise<void> {
+  n?: number, repost?: () => Promise<{ ended: boolean; n?: number }>): Promise<void> {
   let gone = false;
   for (let attempt = 0; attempt < RESTORE_TRIES; attempt++) {
     const result = await deps.api.getReading(id, tz);
@@ -157,7 +157,9 @@ export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore
   if (repost && !gone) {
     deps.dispatch({ type: 'followupLost', n, answeredBefore }); // clears the partial text, then shows it as streaming again
     deps.dispatch({ type: 'followupRetrying' });
-    if (await repost()) return;
+    const got = await repost();
+    if (got.ended) return;
+    n = n ?? got.n; // no number from the first stream: the one the re-POST's meta named, for "Try again"
   }
   deps.dispatch({ type: 'followupLost', n, answeredBefore });
   await loadCounts(deps, id, tz);
@@ -200,12 +202,16 @@ export async function askFollowup(deps: FlowDeps, id: string, question: string, 
   if (!done) { // broken request or stream, or no `done`
     let reposted = false;
     const repost = async () => { // A1: at most one, same body (same request_id), only after the GET restore found nothing
-      if (reposted) return false;
+      if (reposted) return { ended: false, n };
       reposted = true;
       done = false;
       crisis = false;
-      await deps.api.postFollowup(id, body, onEvent);
-      return done || crisis;
+      const r = await deps.api.postFollowup(id, body, onEvent);
+      if (r.type === 'refused') { // a fresh ask to the API: crisis / 402 / 429 / 409 come back as JSON
+        deps.dispatch({ type: 'followupRefused', question, refusal: r.refusal });
+        return { ended: true, n };
+      }
+      return { ended: done || crisis, n };
     };
     await restoreFollowup(deps, id, answeredBefore, tz, n, repost);
   }

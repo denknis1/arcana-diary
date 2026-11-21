@@ -381,4 +381,51 @@ describe('one request, one reading (spec 4.5 §5)', () => {
     expect(h.state().followups[0]).toMatchObject({ status: 'failed', text: '', lost: { answeredBefore: 0 } });
     expect(h.state().followupError).toBe('network');
   });
+
+  const CRISIS_JSON = { group: 'crisis', crisis: {}, helplines: { lines: [] } };
+  const lostThen = (repostResponse: Response, first = brokenSseResponse(sseText([['meta', { followup: 1 }], ['text', { name: 'followup', text: 'Hal' }]]))) =>
+    ready(first, ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [] })), repostResponse,
+      jsonResponse(200, { ...VIEW, followups: [], followups_left: 1, followup_attempts_left: 7 }));
+
+  it('I1: the re-POST answered with a crisis JSON takes the room to the crisis phase', async () => {
+    const h = lostThen(jsonResponse(200, CRISIS_JSON));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.state().phase).toBe('crisis');
+    expect(h.calls.filter((c) => c.method === 'POST')).toHaveLength(2);
+  });
+
+  it('I1: the re-POST answered 402 plus or 429 leaves the matching refusal, no lost follow-up to retry', async () => {
+    const plus = lostThen(jsonResponse(402, { error: 'plus_required' }));
+    await askFollowup(plus.deps, 'r1', 'q', undefined, false, 0);
+    expect(plus.state().followupPlus).toBe(true);
+    expect(plus.state().followups).toHaveLength(0);
+    const rate = lostThen(jsonResponse(429, { error: 'rate_limited' }));
+    await askFollowup(rate.deps, 'r1', 'q', undefined, false, 0);
+    expect(rate.state().followups).toHaveLength(0);
+    expect(rate.state().followupError).not.toBeNull();
+    expect(rate.state().followupError).not.toBe('network');
+  });
+
+  it('M1: the number from the re-POST meta (in_progress) is what Try again restores by', async () => {
+    const h = lostThen(sseResponse(sseText([['meta', { followup: 3, replay: true }], ['error', { reason: 'in_progress' }]])),
+      brokenSseResponse(sseText([['text', { name: 'followup', text: 'Hal' }]]))); // the first stream never got its meta
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.state().followups[0].lost).toEqual({ n: 3, answeredBefore: 0 });
+  });
+
+  it('M2: a re-POST that ends with a fallback answer clears the lost marker', async () => {
+    const h = lostThen(sseResponse(sseText([['meta', { followup: 1, replay: true }],
+      ['fallback', { sections: { followup: 'Fallback.' } }], ['done', { answer_shown: 'fallback', followups_left: 1, followup_attempts_left: 7 }]])));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.state().followups[0]).toMatchObject({ text: 'Fallback.', status: 'failed' });
+    expect(h.state().followups[0].lost).toBeUndefined();
+  });
+
+  it('M3: a re-POST does not append to text left by a stream that ended with an error event', async () => {
+    const first = sseResponse(sseText([['meta', { followup: 1 }], ['text', { name: 'followup', text: 'Hal' }], ['error', { reason: 'upstream' }]]));
+    const h = lostThen(sseResponse(sseText([['meta', { followup: 1, replay: true }], ['text', { name: 'followup', text: 'Whole.' }],
+      ['done', { answer_shown: 'model', followups_left: 1, followup_attempts_left: 7 }]])), first);
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.state().followups[0]).toMatchObject({ text: 'Whole.', status: 'done' });
+  });
 });

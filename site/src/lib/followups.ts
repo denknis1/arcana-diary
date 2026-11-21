@@ -75,7 +75,8 @@ export function applyFollowupEvent(followup: Followup, event: SseEvent): Followu
   const data = (event.data && typeof event.data === 'object' ? event.data : {}) as Record<string, unknown>;
   switch (event.event) {
     case 'meta':
-      return { followup: { ...followup, softLine: typeof data.soft_line === 'string' ? data.soft_line : null } };
+      // a meta opens a stream (also the A1 re-POST's): whatever text an earlier, broken stream left is dropped
+      return { followup: { ...followup, text: '', softLine: typeof data.soft_line === 'string' ? data.soft_line : null } };
     case 'text':
       return typeof data.text === 'string' ? { followup: { ...followup, text: followup.text + data.text } } : { followup };
     case 'replace':
@@ -92,6 +93,7 @@ export function applyFollowupEvent(followup: Followup, event: SseEvent): Followu
           ...followup,
           status: data.answer_shown === 'model' ? 'done' : followup.status === 'streaming' ? 'failed' : followup.status,
           usedReading: typeof data.used_reading === 'boolean' ? data.used_reading : null,
+          lost: undefined, // it got an answer (even a fallback one): nothing left to read back
         },
       };
       if (typeof data.followups_left === 'number' && typeof data.followup_attempts_left === 'number') {
