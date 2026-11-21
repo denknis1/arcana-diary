@@ -14,7 +14,7 @@ from app.reader import fallback, flow
 from app.reader.engine import Failed
 from app.reader.provider import FakeReply, ProviderError, ProviderRefusal, ProviderTimeout, StreamResult, canned_answer, split_chunks
 from app.safety.guard import GuardResult
-from helpers import dump_tables, from_ip, guest_headers, parse_sse, post_reading, stream_sections
+from helpers import bearer, dump_tables, from_ip, guest_headers, parse_sse, post_reading, stream_sections
 
 MX = "America/Mexico_City"
 
@@ -786,3 +786,113 @@ def test_at_the_daily_limit_a_question_nobody_can_check_is_429_limit(api):
                          headers=from_ip("198.51.100.150"))  # another device and address
     assert below.status_code == 503 and below.json() == {"reason": "unavailable"}
     assert api.guard.json_calls() == []
+
+
+# --- stage 4.5 §5: one request, one reading ---
+
+def reading_count(api) -> int:
+    with api.db.connect() as conn:
+        return conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"]
+
+
+def test_the_same_request_number_returns_the_same_reading(api):
+    number = str(uuid.uuid4())
+    ask = dict(kind="three", tz=MX, question="How can I settle into my new team?", request_id=number)
+    first = post_reading(api.client, **ask)
+    again = post_reading(api.client, **ask)
+    assert (first.status_code, again.status_code) == (201, 201)
+    assert again.json() == first.json() and first.json()["remaining"] == 2
+    assert (reading_count(api), guest_usage(api), len(api.guard.json_calls())) == (1, 1, 1)
+    assert saved(api, first.json()["id"])["request_id"] == uuid.UUID(number)
+
+
+def test_a_repeat_of_the_last_reading_of_the_day_is_not_refused(api):
+    use_up_the_day(api)
+    with api.db.connect() as conn:  # the third reading was made with a number
+        conn.execute("UPDATE readings SET request_id = %s WHERE id = (SELECT id FROM readings LIMIT 1)",
+                     (uuid.UUID("00000000-0000-4000-8000-000000000003"),))
+    again = post_reading(api.client, kind="one", tz=MX, request_id="00000000-0000-4000-8000-000000000003")
+    assert again.status_code == 201 and again.json()["remaining"] == 0
+    assert (reading_count(api), guest_usage(api)) == (3, 3)
+
+
+def test_another_owners_number_finds_nothing(api):
+    number = str(uuid.uuid4())
+    mine = create(api, kind="one", request_id=number)
+    other = create(api, client=api.new_client(), kind="one", request_id=number)
+    assert other["id"] != mine["id"] and reading_count(api) == 2
+
+
+def test_an_account_finds_its_reading_from_any_device(api):
+    user, number = uuid.uuid4(), str(uuid.uuid4())
+    phone, laptop = api.new_client(), api.new_client()
+    first = post_reading(phone, kind="one", tz=MX, request_id=number, headers=bearer(user))
+    again = post_reading(laptop, kind="one", tz=MX, request_id=number, headers=bearer(user))
+    as_guest = post_reading(phone, kind="one", tz=MX, request_id=number)
+    assert again.json()["id"] == first.json()["id"] and again.json()["remaining"] == 4
+    assert as_guest.json()["id"] != first.json()["id"]  # the device's guest is another owner
+
+
+def test_without_a_number_every_request_is_a_new_reading(api):
+    first, second = create(api, kind="one"), create(api, kind="one")
+    assert first["id"] != second["id"] and guest_usage(api) == 2
+
+
+def test_a_request_number_must_be_a_uuid(api):
+    response = post_reading(api.client, kind="one", tz=MX, request_id="draw-1")
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["request_id"]}
+
+
+def test_two_requests_with_one_number_at_once_make_one_reading(api):
+    api.guard.json_delay = 0.3  # both wait in the question check, then race to insert
+    guest, number = uuid.uuid4(), str(uuid.uuid4())
+    start = threading.Barrier(2)
+    answers = []
+
+    def worker():
+        client = api.new_client()
+        start.wait()
+        answers.append(post_reading(client, kind="one", tz=MX, question="What helps me focus?", request_id=number,
+                                    headers=guest_headers(guest)))
+
+    threads = [threading.Thread(target=worker) for _ in range(2)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert [a.status_code for a in answers] == [201, 201]
+    assert answers[0].json()["id"] == answers[1].json()["id"]
+    assert (reading_count(api), guest_usage(api)) == (1, 1)  # the loser's slot rolled back with its insert
+
+
+def test_a_repeat_is_found_before_the_address_cap_and_turnstile(api):
+    """Fable plan review I6(a): a repeat takes nothing, and a Turnstile token works once — so the lookup comes
+    before both (owner decision 21.11.2026)."""
+    ip = "198.51.100.160"
+    ip_hash = api.ctx.salt.hash_ip(ip, api.clock())
+    number = str(uuid.uuid4())
+    with api.db.connect() as conn:  # from here on the address needs Turnstile
+        conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, %s)",
+                     (limits.ip_subject(ip_hash), limits.utc_day(api.clock()), limits.IP_DAILY_THRESHOLD))
+    ask = dict(kind="one", tz=MX, request_id=number, headers=from_ip(ip))
+    first = post_reading(api.client, turnstile_token="good-token", **ask)
+    assert first.status_code == 201
+    without_token = post_reading(api.client, **ask)
+    assert without_token.status_code == 201 and without_token.json()["id"] == first.json()["id"]
+    with api.db.connect() as conn:  # and now the address is at its hard cap
+        conn.execute("UPDATE usage SET count = 60 WHERE subject = %s", (limits.ip_subject(ip_hash),))
+    capped = post_reading(api.client, **ask)
+    assert capped.status_code == 201 and capped.json()["id"] == first.json()["id"]
+    assert post_reading(api.client, kind="one", tz=MX, headers=from_ip(ip)).json() == {"reason": "ip_limit",
+                                                                                         "remaining": 0}
+    assert api.turnstile.calls == ["good-token"] and reading_count(api) == 1
+
+
+def test_a_number_of_an_expired_reading_is_409(api):
+    number = uuid.uuid4()
+    create(api, kind="one")
+    with api.db.connect() as conn:  # expired, and not purged yet
+        conn.execute("UPDATE readings SET request_id = %s, expires_at = %s", (number, api.clock()))
+    response = post_reading(api.client, kind="one", tz=MX, request_id=str(number))
+    assert response.status_code == 409 and response.json() == {"reason": "request_id"}
+    assert guest_usage(api) == 1 and reading_count(api) == 1  # the new insert and its slot rolled back

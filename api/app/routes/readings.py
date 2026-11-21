@@ -34,6 +34,7 @@ class ReadingIn(BaseModel):
     card_id: str | None = Field(default=None, max_length=80)
     tz: str | None = Field(default=None, max_length=64)
     turnstile_token: str | None = Field(default=None, max_length=4096)
+    request_id: uuid.UUID | None = None  # stage 4.5 §5: the site's number of this draw; optional
 
     _no_nul = field_validator("question", "situation", "card_id", "tz", mode="after")(reject_nul)
 
@@ -44,9 +45,20 @@ def clean(text: str | None) -> str | None:
     return text.strip() or None
 
 
+class Repeated(Exception):
+    """A parallel request with the same request_id inserted its reading first: this transaction (and its slots)
+    rolls back and the request answers with that reading."""
+
+
 def load_reading(ctx, reading_id) -> dict | None:
     with ctx.db.connect() as conn:
         return repo.get_reading(conn, reading_id, ctx.clock())
+
+
+def repeat_answer(ctx, reading: dict, quota, quota_used: int, new_guest):
+    """Stage 4.5 §5: the reading this owner already made with the request's number, as its first answer was."""
+    return respond(201, {**flow.reading_view(ctx, reading, owner=True), "remaining": max(quota.limit - quota_used, 0)},
+                   new_guest)
 
 
 @router.post("/readings")
@@ -66,12 +78,19 @@ def create_reading(body: ReadingIn, request: Request):
     ip_hash = ctx.salt.hash_ip(ip, now)
     hits = ctx.burst.hit(ip_hash, now)
     quota = who.quota  # stage 4.3 §5: the account's 5 when signed in, else this device's 3
+    owner_id = who.user.id if who.user else None
     with ctx.db.connect() as conn:
         if who.user:  # stage 4.3 §8: a token that outlived its account — before any model call
             account_repo.refuse_deleted(conn, who.user.id)
+        # stage 4.5 §5: the same request again (no answer reached the site) gets the reading it already made —
+        # before every check and limit, since it takes nothing: no slot, no question check
+        earlier = (repo.find_reading_by_request(conn, body.request_id, owner_id, guest_id, now)
+                   if body.request_id is not None else None)
         ip_used = limits.used(conn, limits.ip_subject(ip_hash), ip_day)
         checks = limits.used(conn, limits.guard_ip_subject(ip_hash), ip_day)
         quota_used = limits.used(conn, quota.subject, day)
+    if earlier is not None:
+        return repeat_answer(ctx, earlier, quota, quota_used, new_guest)
     if limits.ip_blocked(ip_used):
         return respond(429, {"reason": "ip_limit", "remaining": 0}, new_guest)
     # В18: question checks count too, so crisis answers (no reading, no slot) also lead to Turnstile
@@ -116,6 +135,7 @@ def create_reading(body: ReadingIn, request: Request):
         "topic": body.topic, "situation": body.situation, "source_card_id": body.card_id, "cards": cards,
         "seed": seed, "verdict": ctx.cards.verdict(cards) if with_verdict else None, "guard_group": group,
         "guard_source": guard.source if guard else None,  # final review I2: only 'terms'/'model' feed the memory
+        "request_id": body.request_id,
         # an account's readings stay until it deletes them; a guest's live GUEST_RETENTION_DAYS (stage 4.3 §4)
         "created_at": now, "expires_at": None if who.user else now + timedelta(days=GUEST_RETENTION_DAYS),
     }
@@ -124,10 +144,19 @@ def create_reading(body: ReadingIn, request: Request):
             if who.user:  # and again in the insert transaction: the account may have gone meanwhile
                 account_repo.lock_account(conn, who.user.id)  # R4: takes turns with delete_account
                 account_repo.refuse_deleted(conn, who.user.id)
+            # the insert first: a parallel request with the same request_id waits here and then finds this one
+            if not repo.insert_reading(conn, reading):
+                raise Repeated()
             count = limits.take_reading_slots(conn, quota, day, ip_hash, ip_day)  # §8.11: atomic
-            repo.insert_reading(conn, reading)
     except limits.LimitReached as exc:
         return respond(429, {"reason": exc.reason, "remaining": 0}, new_guest)
+    except Repeated:
+        with ctx.db.connect() as conn:
+            earlier = repo.find_reading_by_request(conn, body.request_id, owner_id, guest_id, now)
+            quota_used = limits.used(conn, quota.subject, day)
+        if earlier is None:  # the number belongs to an expired reading not purged yet (a hand-made request)
+            return respond(409, {"reason": "request_id"}, new_guest)
+        return repeat_answer(ctx, earlier, quota, quota_used, new_guest)
     view = flow.reading_view(ctx, reading, owner=True)
     return respond(201, {**view, "remaining": quota.limit - count}, new_guest)
 
