@@ -310,6 +310,27 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .daily .card-frame { width: 180px; }
 .daily__text { margin: 0; max-width: 560px; text-align: left; white-space: pre-line; }
 
+/* Stage 4.4b: the save sheet in the night room (screens 3, 3b) */
+.sheet {
+  position: sticky; bottom: 0; z-index: 1; display: flex; flex-direction: column; gap: var(--space-3);
+  margin: var(--space-6) calc(-1 * var(--space-4)) calc(-1 * var(--space-7)); padding: var(--space-5) var(--space-4) var(--space-6);
+  border-radius: var(--radius-panel-large) var(--radius-panel-large) 0 0; background: var(--color-night-surface);
+  border-top: 1px solid var(--color-night-line);
+}
+@media (min-width: 900px) { /* the room's side padding is wider there: the sheet still meets its edges (review I9) */
+  .sheet { margin-inline: calc(-1 * var(--space-7)); padding-inline: var(--space-7); }
+}
+.sheet__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.sheet__title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-2); }
+.check { display: flex; align-items: flex-start; gap: var(--space-3); min-height: 44px; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: var(--space-1) 0 0; flex: none; accent-color: var(--color-night-accent); }
+.signin { display: flex; flex-direction: column; gap: var(--space-3); }
+.signin__title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-2); }
+.signin__or { margin: 0; text-align: center; font-size: var(--font-size-small); }
+.signin--day .field label { color: var(--color-day-text-muted); } /* the night label colour is ≈1.8:1 on day (review I6) */
+.saved-mark { margin: 0; font-weight: 600; }
+.saved-mark a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-night-accent); } /* M16 */
+
 /* Simple card page */
 .card-page { display: grid; gap: var(--space-6); padding-top: var(--space-6); }
 .card-page__art { max-width: 280px; }

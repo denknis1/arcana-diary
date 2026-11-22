@@ -4,7 +4,10 @@
 // the question small at top left, the headline as the large title; on a desktop cards left, text right (13d).
 // Close: × and Escape (listened on the document, so it works wherever focus is); Tab stays inside; after an action
 // whose button disappears, and on every change of phase, focus goes to the title. Yes/no on three cards (spec 4.5
-// §4): under each card its own vote (icon and word), the verdict and "why" large in the text column.
+// §4): under each card its own vote (icon and word), the verdict and "why" large in the text column. Stage 4.4b §4:
+// the last of the answer's actions is "Save to diary" (a guest: opens the save sheet inside this dialog; Escape then
+// closes the sheet first, and the room behind it is inert) or "Saved to your diary ✓" with the link to the entry.
+import type { ComponentChildren } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
 import { answerBlocks } from '../../lib/answer';
@@ -37,6 +40,17 @@ export interface NightRoomProps {
   onCancelFollowup: () => void;
   onMoreAbout: () => void;
   onAskAnother: () => void;
+  /** Spec 4.4b §4: null where sign-in is off (no button at all). */
+  save?: SaveSlot | null;
+  /** The open save sheet, drawn inside the dialog so that focus stays in the room. */
+  sheet?: ComponentChildren;
+  onCloseSheet?: () => void;
+}
+
+export interface SaveSlot {
+  saved: boolean; // signed in: the reading is in the account already
+  href: string; // the diary entry of this reading
+  onSave: () => void;
 }
 
 const POSITION_KEYS: Record<Position, DictKey | null> = { past: 'posPast', present: 'posPresent', path: 'posPath', card: null };
@@ -61,6 +75,10 @@ export function NightRoom(props: NightRoomProps) {
   const title = useRef<HTMLHeadingElement>(null);
   const onClose = useRef(props.onClose);
   onClose.current = props.onClose;
+  const onCloseSheet = useRef(props.onCloseSheet);
+  onCloseSheet.current = props.onCloseSheet;
+  const saveButton = useRef<HTMLButtonElement>(null);
+  const hadSheet = useRef(false);
   const [followupText, setFollowupText] = useState('');
   const lastPhase = useRef<string | null>(null);
 
@@ -72,7 +90,11 @@ export function NightRoom(props: NightRoomProps) {
   const withAnswer = state.phase === 'reading' && answerVisible(state);
 
   useEffect(() => {
-    const onKey = (event: KeyboardEvent) => dialog.current && handleDialogKey(event, dialog.current, () => onClose.current());
+    const onKey = (event: KeyboardEvent) => {
+      const sheet = dialog.current?.querySelector<HTMLElement>('.sheet');
+      if (sheet && onCloseSheet.current) handleDialogKey(event, sheet, () => onCloseSheet.current?.());
+      else if (dialog.current) handleDialogKey(event, dialog.current, () => onClose.current());
+    };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
@@ -85,6 +107,13 @@ export function NightRoom(props: NightRoomProps) {
     if (lastPhase.current !== state.phase || lost) title.current?.focus();
     lastPhase.current = state.phase;
   }, [state.phase, withAnswer]);
+
+  // the sheet closed: focus goes back to "Save to diary"
+  useEffect(() => {
+    const open = Boolean(props.sheet);
+    if (hadSheet.current && !open) saveButton.current?.focus();
+    hadSheet.current = open;
+  }, [Boolean(props.sheet)]);
 
   const then = (action: () => void) => () => {
     action();
@@ -134,7 +163,7 @@ export function NightRoom(props: NightRoomProps) {
   return (
     <div class="night-room">
       <section class="night" role="dialog" aria-modal="true" aria-labelledby="night-title" tabIndex={-1} ref={dialog}>
-        <div class="night__top">
+        <div class="night__top" inert={props.sheet ? true : undefined}>
           <p class="night__question">{top}</p>
           <button type="button" class="close-button" aria-label={closeLabel} onClick={props.onClose}>
             <CloseIcon />
@@ -153,7 +182,7 @@ export function NightRoom(props: NightRoomProps) {
         {state.phase === 'reading' && reading && !withAnswer ? spread(false) : null}
 
         {withAnswer && reading ? (
-          <div class="night__body">
+          <div class="night__body" inert={props.sheet ? true : undefined}>
             <div class="night__cards">{spread(true)}</div>
             <div class="night__text">
               <h2 id="night-title" class="answer__headline" tabIndex={-1} ref={title}>{headline || quoted}</h2>
@@ -221,6 +250,11 @@ export function NightRoom(props: NightRoomProps) {
                     <button type="button" class="btn btn--gold" onClick={props.onClose}>{fill(d.backTo, { name: props.sourceName })}</button>
                   ) : null}
                   <button type="button" class="btn btn--text" onClick={props.onAskAnother}>{d.askAnother}</button>
+                  {props.save ? (props.save.saved ? (
+                    <p class="saved-mark"><a href={props.save.href}>{d.savedToDiary}</a></p>
+                  ) : (
+                    <button type="button" class="btn btn--gold" ref={saveButton} onClick={props.save.onSave}>{d.saveToDiary}</button>
+                  )) : null}
                 </div>
               ) : null}
               <p class="night__foot">{d.notGuarantee}</p>
@@ -236,6 +270,8 @@ export function NightRoom(props: NightRoomProps) {
         ) : null}
 
         {state.phase === 'crisis' && state.crisis ? <CrisisView payload={state.crisis} lang={lang} /> : null}
+
+        {props.sheet ?? null}
 
         {state.phase === 'error' && state.error ? (
           <div class="night__actions">

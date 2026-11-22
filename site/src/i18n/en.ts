@@ -177,6 +177,23 @@ export const en = {
   crisisText: 'Text {sms}',
   crisisHours: 'Hours: {hours}',
   crisisWeb: 'Open {name}',
+  // stage 4.4b: save to diary and sign-in (screens 3, 3b)
+  saveToDiary: 'Save to diary',
+  savedToDiary: 'Saved to your diary ✓',
+  saveTitle: 'Save to your diary',
+  saveLead: 'Your reading stays here — nothing is lost.',
+  saveRemind: 'Remind me in 7 days: did it come true?',
+  signInEmailLabel: 'Your e-mail',
+  signInSend: 'Send me a link',
+  signInOr: 'or',
+  signInGoogle: 'Continue with Google',
+  signInTooOften: 'Too many tries for now. Please wait a few minutes and try again.',
+  checkEmailTitle: 'Check your e-mail',
+  checkEmailLead: 'We sent a link to {email}. Open it on this or any other device to finish.',
+  checkEmailResend: 'Send it again',
+  checkEmailWait: 'You can send it again in {n} s.',
+  checkEmailOther: 'Use another e-mail',
+  checkEmailSent: 'Sent again.',
 };
 
 export type DictKey = keyof typeof en;
@@ -193,4 +210,6 @@ export const enDrafts: readonly DictKey[] = [
   'errTurnstile', 'errUnavailable', 'errNetwork', 'errStage', 'errGone', 'errOther', 'plusEmailLabel',
   'plusEmailPlaceholder', 'plusNotify', 'plusDone', 'plusEmailError', 'crisisCall', 'crisisText', 'crisisHours',
   'crisisWeb', 'errDayCap', 'followupReady',
+  'signInEmailLabel', 'signInSend', 'signInOr', 'signInTooOften', 'checkEmailLead', 'checkEmailResend', 'checkEmailWait',
+  'checkEmailOther', 'checkEmailSent',
 ];

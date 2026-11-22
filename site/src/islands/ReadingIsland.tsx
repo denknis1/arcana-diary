@@ -1,10 +1,14 @@
 // The draw panel and its night room (spec 4.4a §4). Thin: state lives in src/lib/nightRoom.ts, requests in
 // src/lib/readingFlow.ts, the page's choices in src/lib/panel.ts; here are only the DOM, timers, focus and history.
 // History: the open room adds one entry with the same address (still no address of its own), so the phone's Back
-// closes the room instead of leaving the page; × and Escape step back over that entry.
+// closes the room instead of leaving the page; × and Escape step back over that entry. Stage 4.4b §4: requests carry
+// the token of a signed-in person (siteApi.ts); under a shown answer "Save to diary" opens the save sheet
+// (useSaveToDiary.tsx). The open sheet has a history entry of its own above the room's (owner decision 14): Back
+// closes only the sheet, and the room closing with the sheet open steps back over both entries at once.
 import { useEffect, useMemo, useReducer, useRef, useState } from 'preact/hooks';
 import { t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
+import { isSignedIn } from '../lib/authState';
 import { siteApi } from '../lib/siteApi';
 import { CARD_BACK } from '../lib/deck';
 import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, crisisPayloadOf, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
@@ -17,6 +21,7 @@ import { turnstileToken } from '../lib/turnstile';
 import { SITUATIONS, type CardCount, type CrisisPayload, type Kind, type Lang, type Situation, type Tool } from '../lib/types';
 import { NightRoom } from '../components/ui/NightRoom';
 import { PlusCard } from '../components/ui/PlusCard';
+import { useSaveToDiary } from '../components/ui/useSaveToDiary';
 import { CheckIcon } from '../components/ui/icons';
 
 interface Props {
@@ -51,13 +56,15 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const input = useRef<HTMLInputElement>(null);
   const run = useRef(0); // each draw is a run; a closed room ignores the late answers of its run
   const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool,
-    cards: cardsFor(config.kind) as CardCount });
+    cards: cardsFor(config.kind) as CardCount, signedIn: false });
   const previous = useRef<NightState>(CLOSED);
   const inHistory = useRef(false); // the room's history entry is on top
   const shownFor = useRef(0); // the run that already sent reading_shown
   const roomIsOpen = useRef(false);
   const focusQuestion = useRef(false); // "Ask another question": focus the question field once the room is closed
   const api = useMemo(() => siteApi(), []);
+  const saving = useSaveToDiary({ lang, tool: drawn.current.tool, readingId: state.reading?.id ?? null,
+    signedIn: drawn.current.signedIn });
   const inputId = `question-${page}`;
 
   useEffect(() => {
@@ -92,7 +99,10 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
           if (payload && !roomIsOpen.current && previous.current.phase !== 'limit') reopenForCrisis(payload);
           return;
         }
-        if (action.type === 'created') drawn.current.id = action.reading.id;
+        if (action.type === 'created') {
+          drawn.current.id = action.reading.id;
+          drawn.current.signedIn = isSignedIn(); // the request carried the token: the reading is in the account
+        }
         rawDispatch(action);
       },
       turnstileToken: async (sitekey) => { // a room closed during the check gets no token: the flow does not post
@@ -157,7 +167,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     run.current += 1;
     const tz = timeZone();
     const body = buildCreateBody(config, { kind, question, situation, tz, count });
-    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind), cards: cardsFor(kind, count) };
+    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind), cards: cardsFor(kind, count), signedIn: false };
     sendEvent(analyticsEvent('draw_click', drawn.current.tool, lang, { has_question: Boolean(body.question), entry: config.entry }));
     if (!inHistory.current) {
       history.pushState({ arcanaNight: true }, '');
@@ -170,15 +180,17 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
 
   function closeNow() {
     run.current += 1;
+    saving.closeForRoom(); // the sheet goes with the room; its history entry is handled in stepBack
     roomIsOpen.current = false; // at once: a late crisis before the next effect must still find the room closed
     rawDispatch({ type: 'close' });
   }
 
   // the single step back over the room's entry: the flag drops at once, so a second × or Escape cannot step twice
   function stepBack() {
-    if (!inHistory.current) return;
+    const steps = (inHistory.current ? 1 : 0) + saving.closeForRoom(); // the sheet's entry sits above the room's
     inHistory.current = false;
-    history.back();
+    if (steps === 1) history.back();
+    else if (steps > 1) history.go(-steps);
   }
 
   const close = () => {
@@ -276,6 +288,9 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
           onCancelFollowup={() => rawDispatch({ type: 'followupCancel' })}
           onMoreAbout={() => sendEvent(analyticsEvent('more_about_cards', drawn.current.tool, lang))}
           onAskAnother={askAnother}
+          save={saving.slot}
+          sheet={saving.sheet}
+          onCloseSheet={saving.closeSheet}
         />
       ) : null}
     </div>

@@ -178,6 +178,23 @@ export const es: Dict = {
   crisisText: 'Envía {sms}',
   crisisHours: 'Horario: {hours}',
   crisisWeb: 'Abrir {name}',
+  // etapa 4.4b: guardar en el diario y acceso (pantallas 3, 3b)
+  saveToDiary: 'Guardar en el diario',
+  savedToDiary: 'Guardada en tu diario ✓',
+  saveTitle: 'Guárdala en tu diario',
+  saveLead: 'Tu tirada se queda aquí: no se pierde nada.',
+  saveRemind: 'Recuérdamelo en 7 días: ¿se cumplió?',
+  signInEmailLabel: 'Tu correo',
+  signInSend: 'Envíame un enlace',
+  signInOr: 'o',
+  signInGoogle: 'Continuar con Google',
+  signInTooOften: 'Demasiados intentos por ahora. Espera unos minutos y vuelve a intentarlo.',
+  checkEmailTitle: 'Revisa tu correo',
+  checkEmailLead: 'Enviamos un enlace a {email}. Ábrelo en este u otro dispositivo para terminar.',
+  checkEmailResend: 'Enviar de nuevo',
+  checkEmailWait: 'Podrás enviarlo de nuevo en {n} s.',
+  checkEmailOther: 'Usar otro correo',
+  checkEmailSent: 'Enviado de nuevo.',
 };
 
 // draft — review with stage 5 texts
@@ -200,4 +217,6 @@ export const esDrafts: readonly DictKey[] = [
   'plusBenefit1', 'plusBenefit2', 'plusBenefit3', 'plusEmailLabel', 'plusEmailPlaceholder', 'plusNotify',
   'plusDone', 'plusEmailError', 'plusDaily', 'crisisCall', 'crisisText', 'crisisHours', 'crisisWeb',
   'errDayCap', 'followupReady', 'plusNotNow', 'yesNoCountHint',
+  'savedToDiary', 'saveTitle', 'saveLead', 'saveRemind', 'signInEmailLabel', 'signInSend', 'signInOr', 'signInGoogle',
+  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',
 ];
