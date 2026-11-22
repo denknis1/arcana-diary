@@ -69,7 +69,7 @@ def judge2_cost(kind: str, day: date | None = None) -> float:
     return cost_usd(JUDGE2_MODEL, *JUDGE2_EST_TOKENS[kind], day) or 0.0
 
 
-def estimate_cost(models, items: dict, guard_model: str = "claude-haiku-5-5", n_judge_check: int = 9,
+def estimate_cost(models, items: dict, guard_model: str = "claude-haiku-5-5", n_judge_check: int = 12,
                   day: date | None = None) -> float:
     """Upper estimate of the whole stage on `day` (default today): answers, the question check once, and judge 2
     (Fable costs no API)."""

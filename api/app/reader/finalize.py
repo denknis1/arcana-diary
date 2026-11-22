@@ -6,7 +6,9 @@ stream and by the evals, so the evals grade exactly what a person would see.
 - A cut stream (an error after text, or stop_reason max_tokens): the section being written when it stopped is
   dropped, written sections stay, the missing ones come from the base.
 - Sections the reading does not ask for are dropped (no `why` without a verdict, no synthesis for one card).
-- A live-dictionary hit in the body: the card base answer is shown; both texts are kept.
+- A live-dictionary hit in the body: the card base answer is shown; both texts are kept. `terms` is the whole
+  dictionary (language → patterns): a reading in a group without an outcome is also checked against the
+  `<lang>_redirect` list (check.live_terms, stage 4.6).
 - A bad `why` written by the model: only `why` is replaced by the fixed line (a `why` filled from the base
   after a cut is not checked, so the reason stays "cut").
 - A yes/no reading without a verdict whose headline still sounds like one ("Yes, …", "Probably not"): only the
@@ -57,7 +59,8 @@ def finalize(reading: dict, streamed: dict[str, str], seen: list[str], outcome, 
         sections = fallback.fallback_answer(base, reading, notice)
         return Final("fallback", {"model": None, "fallback": sections}, sections, "fallback", reason)
     filled = fallback.fill_missing(written, base, reading)
-    result = check.check_answer(filled, kind, lang, terms, with_why, n)
+    live = check.live_terms(terms, lang, reading["guard_group"])
+    result = check.check_answer(filled, kind, lang, live, with_why, n)
     if not result.body_ok:
         sections = fallback.fallback_answer(base, reading, notice)
         return Final("fallback", {"model": filled, "fallback": sections}, sections, "replace", "banned",

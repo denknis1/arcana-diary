@@ -24,7 +24,7 @@ def test_daily_dates_cover_every_local_day_today_first():
 def test_fill_writes_every_missing_text_once(api):
     assert fill_daily_cache(api.ctx, DAY, TWO) == {"written": 8, "failed": 0, "budget": False, "stopped": False}
     rows = cache_rows(api)
-    assert len(rows) == 8 and {r["prompt_version"] for r in rows} == {"daily.en.v4", "daily.es.v4"}
+    assert len(rows) == 8 and {r["prompt_version"] for r in rows} == {"daily.en.v4", "daily.es.v5"}
     assert len(api.reader.stream_calls()) == 8
     assert fill_daily_cache(api.ctx, DAY, TWO) == {"written": 0, "failed": 0, "budget": False, "stopped": False}
     assert len(api.reader.stream_calls()) == 8
@@ -77,3 +77,10 @@ def test_cached_keys_ignore_other_days(api):
     fill_daily_cache(api.ctx, DAY, TWO[:1])
     with api.db.connect() as conn:
         assert repo.cached_daily_keys(conn, date(2026, 11, 21)) == set()
+
+
+def test_the_card_of_the_day_keeps_the_redirect_phrases_banned(api):
+    """Stage 4.6, Fable I5: the card of the day has no bolder permission, so "will happen" is not cached."""
+    api.reader.replies.extend([FakeReply(chunks=["Something good will happen today. Take one slow breath."]),
+                               FakeReply(chunks=["Va a pasar algo bueno hoy. Respira con calma."])])
+    assert fill_daily_cache(api.ctx, DAY, TWO[:1]) == {"written": 2, "failed": 2, "budget": False, "stopped": False}

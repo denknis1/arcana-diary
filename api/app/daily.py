@@ -50,7 +50,7 @@ def generate_one(ctx, card_id: str, reversed_: bool, lang: str, day: date) -> bo
             outcome = item
     text = "".join(parts).strip()
     usable = (bool(text) and isinstance(outcome, Finished) and outcome.result.stop_reason != "max_tokens"
-              and not check.banned_in(text, ctx.terms[lang], lang))
+              and not check.banned_in(text, check.live_terms(ctx.terms, lang), lang))  # no group: strict
     with ctx.db.connect() as conn:
         log_call(conn, ctx, None, "daily", ctx.reader.model, prompt.version, outcome, DAILY_MAX_TOKENS)
         if usable:

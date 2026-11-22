@@ -11,7 +11,7 @@ from app.reader.sections import SectionParser
 from helpers import make_reading
 
 BASE = load_cards(load_settings({}).content_dir)
-TERMS = load_reader_terms()["en"]
+TERMS = load_reader_terms()
 NOTICE = "The reader is unavailable right now."
 DONE = Finished(StreamResult(120, 80, "end_turn", "fake-reader"), 10, 50)
 
@@ -134,3 +134,14 @@ def test_a_bad_why_on_three_yes_no_cards_gets_the_majority_line():
     assert (final.shown, final.reason) == ("model", "why")
     assert final.sections["why"] == fallback.MAJORITY_WHY["en"]["two_of_three"]
     assert final.sections["card3"] and final.sections["synthesis"]
+
+
+@pytest.mark.parametrize("group, shown", [("ok", "model"), ("redirect_topic", "fallback"),
+                                          ("redirect_person", "fallback"), ("redirect_money", "fallback")])
+def test_redirect_phrases_are_banned_only_outside_group_ok(group, shown):
+    """Stage 4.6, Fable I5: "will happen" is allowed in group ok (decision 1), still banned without an outcome."""
+    text = canned_answer(3, False).replace("The cards may point to a quiet, steady way forward.",
+                                           "It will happen when the time is right.")
+    final = run(make_reading(guard_group=group), text)
+    assert final.shown == shown
+    assert final.reason == (None if group == "ok" else "banned")

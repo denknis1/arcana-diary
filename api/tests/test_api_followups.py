@@ -154,6 +154,21 @@ def test_followup_redirect_person_reaches_the_model(api):
     assert last.startswith('<followup guard_group="redirect_person">')
 
 
+@pytest.mark.parametrize("reading_group, followup_group, shown", [
+    ("ok", "ok", "model"), ("redirect_topic", "ok", "fallback"), ("ok", "redirect_person", "fallback"),
+])
+def test_a_redirect_phrase_in_a_followup_is_judged_by_the_stricter_group(api, reading_group, followup_group, shown):
+    """Stage 4.6, Fable I1/I5: an ok follow-up on a reading without an outcome is still checked strictly."""
+    if reading_group != "ok":
+        api.guard.json_replies.append({"group": reading_group, "violence": False})
+    reading_id = ready_reading(api, kind="one", question="Will my scan be clear?")
+    if followup_group != "ok":
+        api.guard.json_replies.append({"group": followup_group, "violence": False})
+    api.reader.replies.append(FakeReply(chunks=["It will happen when the time is right, so rest a little today."]))
+    events = parse_sse(ask(api.client, reading_id, "What helps me now?").text)
+    assert fin(events)[1]["answer_shown"] == shown
+
+
 def test_followup_to_a_yes_no_without_verdict_sends_no_verdict(api):
     api.guard.json_replies.append({"group": "redirect_topic", "violence": False})
     reading_id = ready_reading(api, kind="yes_no", question="Will my scan be clear?")

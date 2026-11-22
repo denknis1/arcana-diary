@@ -33,7 +33,9 @@ POSITION_LABELS = {
     "en": {"past": "past", "present": "present", "path": "where it leads", "card": "single card"},
     "es": {"past": "pasado", "present": "presente", "path": "hacia dónde va", "card": "carta única"},
 }
-ORIENTATION = {"en": ("upright", "reversed"), "es": ("derecha", "invertida")}
+# stage 4.6, owner decision 3: Spanish "al derecho" / "al revés" — "derecha" / "invertida" clash with masculine
+# card names ("El Emperador, invertida")
+ORIENTATION = {"en": ("upright", "reversed"), "es": ("al derecho", "al revés")}
 # stage 4.5 §4: the three cards of a yes/no reading have no time, each is one vote of three
 ONE_OF_THREE = {"en": "one of three", "es": "una de tres"}
 

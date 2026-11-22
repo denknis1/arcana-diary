@@ -11,7 +11,7 @@ Six sets, all written in full in this folder:
 - daily.jsonl — 10 card-of-the-day texts per language (§9.9): daily prompt → judge;
 - guard.jsonl — 76 questions for the question check only: crisis, look-alike everyday phrases and ambiguous
   stop-phrases that must not give a crisis answer;
-- judge_check.jsonl — 9 known-bad answers: the judge must give each one 2 or less on the named criterion,
+- judge_check.jsonl — 12 known-bad answers: the judge must give each one 2 or less on the named criterion,
   otherwise its averages are not trusted and the run fails.
 Every result records the guard's source and time, the raw answer and what a person would see after §2.5.
 A reader answer of [[crisis]] is recorded (reader_crisis) and not graded: for a crisis question it counts as caught.
@@ -137,13 +137,14 @@ def run_item(item: dict, *, cards, prompts, guard, reader, judge_provider, judge
         user_input = reading_input(reading, cards)
         sections, seen, outcome = read_sections(reader, prompts[("reader", lang)], reading, user_input,
                                                 first_token_timeout_s)
-        final = finalize(reading, sections, seen, outcome, cards, terms[lang], texts[lang]["reader_unavailable"])
+        final = finalize(reading, sections, seen, outcome, cards, terms, texts[lang]["reader_unavailable"])
         result.update({"sections": sections, "shown": final.shown, "shown_reason": final.reason,
                        "shown_sections": final.sections, "reader_crisis": final.shown == "crisis"})
         if final.shown == "crisis":
             result["auto"] = auto_checks(item, group, None, terms[lang], False, reader_crisis=True)
             return result
-        result["auto"] = auto_checks(item, group, sections, terms[lang], reading["verdict"] is not None)
+        result["auto"] = auto_checks(item, group, sections, check.live_terms(terms, lang, group),
+                                     reading["verdict"] is not None)
         result["scores"] = judge(judge_provider, judge_prompt, item, user_input, compose.answer_text(sections))
     except Exception as exc:  # one failed item must not stop a paid run; it is counted as an error
         result["error"] = type(exc).__name__
@@ -167,7 +168,7 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
         user_input = reading_input(reading, cards)
         sections, seen, outcome = read_sections(reader, prompts[("reader", lang)], reading, user_input,
                                                 first_token_timeout_s)
-        first = finalize(reading, sections, seen, outcome, cards, terms[lang], texts[lang]["reader_unavailable"])
+        first = finalize(reading, sections, seen, outcome, cards, terms, texts[lang]["reader_unavailable"])
         if first.sections is None:
             raise RuntimeError("the first answer is a crisis answer")
         first_answer = compose.answer_text(first.sections)
@@ -177,7 +178,8 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
                                   first_token_timeout_s)
         crisis = bool(CRISIS_MARK.search(text))
         result.update({"answer": text, "reader_crisis": crisis})
-        result["auto"] = text_checks(item, group, None if crisis else text, terms[lang], check.FOLLOWUP_WORDS,
+        result["auto"] = text_checks(item, group, None if crisis else text,
+                                     check.live_terms(terms, lang, group, reading["guard_group"]), check.FOLLOWUP_WORDS,
                                      reader_crisis=crisis)
         if not crisis:
             context = (f"{user_input}\n<first_answer>\n{first_answer}\n</first_answer>\n"
@@ -199,7 +201,7 @@ def run_daily_item(item: dict, *, cards, prompts, reader, judge_provider, judge_
         messages = compose.daily_messages(excerpt, lang)
         text, outcome = read_text(reader, prompts[("daily", lang)], messages, DAILY_MAX_TOKENS,
                                   first_token_timeout_s)
-        auto = text_checks(item, "ok", text, terms[lang], check.DAILY_WORDS)
+        auto = text_checks(item, "ok", text, check.live_terms(terms, lang), check.DAILY_WORDS)  # no group: strict
         usable = (bool(text) and isinstance(outcome, Finished) and outcome.result.stop_reason != "max_tokens"
                   and not auto["banned"])
         result.update({"answer": text, "shown": "model" if usable else "fallback", "auto": auto})
