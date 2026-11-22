@@ -52,6 +52,18 @@ describe('dictionaries', () => {
     expect([t('es').voteYes, t('es').voteNo, t('es').voteUnclear]).toEqual(['Sí', 'No', 'Todavía no está claro']);
   });
 
+  it('name a reversed card so the word agrees with every card name (stage 4.6, owner decision 3)', () => {
+    expect(t('en').reversedTag).toBe('Reversed');
+    expect(t('es').reversedTag).toBe('Al revés');
+    expect([t('es').cardAlt, t('es').cardAltReversed, t('es').reversedTitle]).toEqual([
+      '{name}, al derecho', '{name}, carta invertida', '{name}, carta invertida',
+    ]);
+    // "El Emperador, invertida" / "El As de Copas, derecha" clash with masculine names: only "carta invertida" agrees
+    for (const [key, value] of Object.entries(DICTS.es)) {
+      expect(value.replace(/carta invertida/gi, ''), key).not.toMatch(/invertid|\bderecha\b/i);
+    }
+  });
+
   it('never call a reading a forecast (design decision 13.11.2026)', () => {
     for (const lang of ['en', 'es'] as const) {
       for (const value of Object.values(DICTS[lang])) expect(value.toLowerCase()).not.toMatch(/forecast|pronóstico|predic/);

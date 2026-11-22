@@ -1,6 +1,7 @@
 // Spanish (Mexico, tú) interface strings. Source: the stage 3 prototypes (screens 11d, 12a–12d) and the design
 // system. Keys in `esDrafts` are not in the prototypes: draft — review with stage 5 texts. No gendered forms for
-// the person (design review); a card name is followed by "carta invertida", which agrees with every card.
+// the person (design review); a card name is followed by "carta invertida" or "al revés" (never a bare "invertida"
+// or "derecha", which clash with masculine names such as "El Emperador"; stage 4.6), which agree with every card.
 import type { Dict, DictKey } from './en';
 
 export const es: Dict = {
@@ -92,7 +93,7 @@ export const es: Dict = {
   dailyFallbackNote: 'Ahora mismo no pudimos traer tu carta personal; aquí tienes la carta de hoy según nuestra base.',
   dailyError: 'Ahora mismo no se puede voltear tu carta. Inténtalo de nuevo en un momento.',
   fullMeaning: '{name} — significado completo',
-  reversedTag: 'Invertida',
+  reversedTag: 'Al revés',
 
   cardTitle: '{name}: significado en el tarot — Arcana Diary',
   cardEyebrowMajor: 'Arcanos mayores · {numeral}',

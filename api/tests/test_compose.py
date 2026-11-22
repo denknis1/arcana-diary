@@ -54,7 +54,7 @@ def test_love_topic_and_situation_es():
     assert "<topic>amor</topic>" in text
     assert "<situation>después de una ruptura</situation>" in text
     assert f"love: {BASE.meanings['es']['cups-02-two']['love']}" in text
-    assert 'orientation="invertida"' in text
+    assert 'orientation="al revés"' in text and "invertida" not in text
 
 
 def test_yes_no_has_verdict():
@@ -99,7 +99,7 @@ def test_daily_messages():
     [ex] = BASE.excerpts([{"card_id": "major-18-moon", "position": "card", "reversed": False}], "es", None)
     [msg] = daily_messages(ex, "es")
     assert msg["role"] == "user"
-    assert msg["content"].startswith('<daily lang="es">\n<card orientation="derecha">\nname: La Luna')
+    assert msg["content"].startswith('<daily lang="es">\n<card orientation="al derecho">\nname: La Luna')
     assert f"advice: {ex['advice']}" in msg["content"]
 
 
@@ -167,3 +167,15 @@ def test_no_votes_for_one_card_or_without_a_verdict():
     assert card_votes(one, BASE) is None and card_votes(closed, BASE) is None
     text = reading_input(closed, BASE.excerpts(YES_NO_THREE, "en", None), None, card_votes(closed, BASE))
     assert "vote:" not in text and text.count('position="one of three"') == 3
+
+
+def test_spanish_orientation_words_agree_with_every_card_name():
+    """Stage 4.6, owner decision 3: "al derecho" / "al revés", never "derecha" / "invertida" after a card name."""
+    from app.reader.compose import ORIENTATION
+    assert ORIENTATION == {"en": ("upright", "reversed"), "es": ("al derecho", "al revés")}
+    reading = make_reading(lang="es", cards=[{"card_id": "major-04-emperor", "position": "past", "reversed": True},
+                                             {"card_id": "cups-01-ace", "position": "present", "reversed": False},
+                                             {"card_id": "wands-09-nine", "position": "path", "reversed": True}])
+    text = reading_input(reading, BASE.excerpts(reading["cards"], "es", None), None)
+    assert text.count('orientation="al revés"') == 2 and text.count('orientation="al derecho"') == 1
+    assert 'orientation="invertida"' not in text and 'orientation="derecha"' not in text

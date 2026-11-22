@@ -26,7 +26,7 @@ def test_one_card_upright_en():
 
 def test_three_cards_es_positions_and_reversed():
     sections = fallback_answer(BASE, make_reading(lang="es"), "Aviso.")
-    assert sections["card2"] == f"Presente: La Luna, invertida. {BASE.meanings['es']['major-18-moon']['reversed']}"
+    assert sections["card2"] == f"Presente: La Luna, al revés. {BASE.meanings['es']['major-18-moon']['reversed']}"
     assert sections["card1"].startswith("Pasado: El Loco. ")
     assert sections["step"] == BASE.meanings["es"]["cups-02-two"]["advice"]
     assert set(sections) == {"headline", "card1", "card2", "card3", "step"}
@@ -34,7 +34,7 @@ def test_three_cards_es_positions_and_reversed():
 
 @pytest.mark.parametrize("lang, line", [
     ("en", "The card is reversed, so its answer softens: not clear yet."),
-    ("es", "La carta salió invertida: su respuesta se suaviza, todavía no está claro."),
+    ("es", "La carta salió al revés: su respuesta se suaviza, todavía no está claro."),
 ])
 def test_reversed_why_line_is_fixed(lang, line):
     sections = fallback_answer(BASE, one(reversed_=True, kind="yes_no", lang=lang), NOTICE)
@@ -134,3 +134,33 @@ def test_every_majority_why_and_reversed_vote_line_passes_the_check_and_has_no_b
         for line in lines:
             assert why_ok(line, lang, terms[lang]), (lang, line)
             assert banned_in(line, terms[lang], lang) == [], (lang, line)
+
+
+EMPEROR = "major-04-emperor"  # a masculine card name: "El Emperador, invertida" read wrong on the stage (4.6)
+
+
+def test_spanish_reversed_word_agrees_with_masculine_card_names():
+    """Stage 4.6, owner decision 3: the base answer says "al revés", which agrees with every card name."""
+    from app.reader.fallback import REVERSED_WORD
+    assert REVERSED_WORD == {"en": "reversed", "es": "al revés"}
+    reading = make_reading(lang="es", cards=[{"card_id": EMPEROR, "position": "past", "reversed": True},
+                                             {"card_id": "cups-01-ace", "position": "present", "reversed": False},
+                                             {"card_id": "wands-09-nine", "position": "path", "reversed": True}])
+    sections = fallback_answer(BASE, reading, "Aviso.")
+    assert sections["card1"].startswith("Pasado: El Emperador, al revés. ")
+    assert sections["card2"].startswith("Presente: As de Copas. ")
+    assert sections["card3"].startswith("Hacia dónde va: Nueve de Bastos, al revés. ")
+
+
+def test_spanish_reversed_vote_line_reads_naturally():
+    reading = three_votes((SUN, False), (STAR, False), (EMPEROR, True), lang="es")
+    card3 = fallback_answer(BASE, reading, "Aviso.")["card3"]
+    assert card3 == "El Emperador, al revés: Todavía no está claro. Al revés, su respuesta todavía se está formando."
+    assert REVERSED_VOTE["es"] == "Al revés, su respuesta todavía se está formando."
+    assert REVERSED_WHY["es"] == "La carta salió al revés: su respuesta se suaviza, todavía no está claro."
+
+
+def test_no_spanish_base_line_says_invertida_or_derecha():
+    from app.reader.fallback import REVERSED_WORD
+    lines = [REVERSED_WORD["es"], REVERSED_VOTE["es"], REVERSED_WHY["es"], *MAJORITY_WHY["es"].values()]
+    assert not [line for line in lines if "invertid" in line.lower() or "derech" in line.lower()]

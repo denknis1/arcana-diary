@@ -5,10 +5,10 @@ from app.cards import label
 from app.reader.sections import required_sections
 
 REVERSED_WHY = {"en": "The card is reversed, so its answer softens: not clear yet.",
-                "es": "La carta salió invertida: su respuesta se suaviza, todavía no está claro."}
+                "es": "La carta salió al revés: su respuesta se suaviza, todavía no está claro."}
 POSITION_TITLES = {"en": {"past": "Past", "present": "Present", "path": "Where it leads"},
                    "es": {"past": "Pasado", "present": "Presente", "path": "Hacia dónde va"}}
-REVERSED_WORD = {"en": "reversed", "es": "invertida"}
+REVERSED_WORD = {"en": "reversed", "es": "al revés"}  # stage 4.6: agrees with every card name
 # how three yes/no votes add up (rule decisive_majority: "not clear" cards abstain); no verdict words, the site
 # shows the verdict right above
 MAJORITY_WHY = {
@@ -26,7 +26,7 @@ MAJORITY_WHY = {
            "forming": "Las tres cartas todavía están formando su respuesta."},
 }
 REVERSED_VOTE = {"en": "Reversed, its answer is still forming.",
-                 "es": "Invertida, su respuesta todavía se está formando."}
+                 "es": "Al revés, su respuesta todavía se está formando."}
 
 
 def card_line(excerpt: dict, lang: str) -> str:
