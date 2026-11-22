@@ -1,5 +1,6 @@
-"""Daily limits with accounts (spec 4.3 §5): a guest has 3 per device, a signed-in person 5 per account on every
-device; a paid follow-up uses a slot of the reading's owner and gives it back there."""
+"""Daily limits with accounts (spec 4.3 §5, stage 4.4b §2): a guest has 2 per device, a signed-in person 3 per
+account on every device; a paid follow-up uses a slot of the reading's owner and gives it back there."""
+import threading
 import uuid
 from datetime import timedelta
 
@@ -22,26 +23,26 @@ def guest_rows(api) -> int:
         return conn.execute("SELECT count(*) AS n FROM usage WHERE subject LIKE 'guest:%'").fetchone()["n"]
 
 
-def test_a_guest_still_has_three(api):
-    assert [post_reading(api.client, kind="one", tz=MX).json()["remaining"] for _ in range(3)] == [2, 1, 0]
+def test_a_guest_has_two(api):
+    assert [post_reading(api.client, kind="one", tz=MX).json()["remaining"] for _ in range(2)] == [1, 0]
     assert post_reading(api.client, kind="one", tz=MX).json() == {"reason": "limit", "remaining": 0}
 
 
-def test_signed_in_has_five_per_account_on_every_device(api):
+def test_signed_in_has_three_per_account_on_every_device(api):
     phone, laptop = api.new_client(), api.new_client()
     token = bearer(USER)
     remaining = []
-    for client in (phone, laptop, phone, laptop, phone):
+    for client in (phone, laptop, phone):
         api.clock.advance(minutes=1)  # one address: stay under the burst threshold (Turnstile after 5 a minute)
         remaining.append(post_reading(client, headers=token, kind="one", tz=MX).json()["remaining"])
-    assert remaining == [4, 3, 2, 1, 0]
+    assert remaining == [2, 1, 0]
     api.clock.advance(minutes=1)
-    sixth = post_reading(laptop, headers=token, kind="one", tz=MX)
-    assert sixth.status_code == 429 and sixth.json() == {"reason": "limit", "remaining": 0}
+    fourth = post_reading(laptop, headers=token, kind="one", tz=MX)
+    assert fourth.status_code == 429 and fourth.json() == {"reason": "limit", "remaining": 0}
     assert laptop.get("/api/limits", params={"tz": MX}, headers=token).json() == {
-        "limit": 5, "used": 5, "remaining": 0, "day": "2026-11-20"}
+        "limit": 3, "used": 3, "remaining": 0, "day": "2026-11-20"}
     assert guest_rows(api) == 0
-    assert laptop.get("/api/limits", params={"tz": MX}).json()["remaining"] == 3  # the device as a guest
+    assert laptop.get("/api/limits", params={"tz": MX}).json()["remaining"] == 2  # the device as a guest
     api.clock.advance(minutes=1)
     assert post_reading(laptop, kind="one", tz=MX).status_code == 201
 
@@ -56,18 +57,18 @@ def test_an_account_reading_is_kept_and_a_guest_reading_expires(api):
 
 
 def test_guest_slots_stay_with_the_guest_after_sign_in(api):
-    for _ in range(3):
+    for _ in range(2):
         post_reading(api.client, kind="one", tz=MX)
     assert post_reading(api.client, kind="one", tz=MX).status_code == 429
     signed_in = post_reading(api.client, headers=bearer(USER), kind="one", tz=MX)
-    assert signed_in.status_code == 201 and signed_in.json()["remaining"] == 4
+    assert signed_in.status_code == 201 and signed_in.json()["remaining"] == 2
     assert api.client.get("/api/limits", params={"tz": MX}).json()["remaining"] == 0
 
 
 def test_a_crisis_answer_shows_what_the_account_has_left(api):
     post_reading(api.client, headers=bearer(USER), kind="one", tz=MX)
     response = post_reading(api.client, headers=bearer(USER), kind="one", question="I want to end my life", tz=MX)
-    assert response.status_code == 200 and response.json()["remaining"] == 4
+    assert response.status_code == 200 and response.json()["remaining"] == 2
     assert used(api, limits.user_subject(USER)) == 1
 
 
@@ -89,7 +90,7 @@ def test_a_paid_followup_uses_the_account_slot_from_any_device(api):
     reading_id = account_reading_with_free_followups_used(api.new_client())
     laptop = api.new_client()
     confirm = ask(laptop, reading_id)
-    assert confirm.status_code == 402 and confirm.json() == {"reason": "confirm", "remaining": 4}
+    assert confirm.status_code == 402 and confirm.json() == {"reason": "confirm", "remaining": 2}
     events = parse_sse(ask(laptop, reading_id, use_reading=True).text)
     assert events[-1][1]["used_reading"] is True
     assert used(api, limits.user_subject(USER)) == 2 and guest_rows(api) == 0
@@ -113,3 +114,34 @@ def test_a_stale_paid_followup_refunds_the_account(api):
                                     "paid_day": day, "created_at": api.clock() - timedelta(minutes=5)})
     assert free_stale_followups(api.db, api.clock()) == 1
     assert used(api, limits.user_subject(USER)) == 0 and guest_rows(api) == 0
+
+
+# --- Fable plan review M5: the three-way race for the last reading of the day, with an account ---
+
+def test_paid_followups_of_an_account_at_once_cannot_overspend_the_day(api):
+    """test_api_followups.py races two requests since a guest has only two readings a day; the account's three keep
+    the three-way race: two paid follow-ups and a new reading, from three devices, for the account's last reading."""
+    first = account_reading_with_free_followups_used(api.new_client())
+    second = account_reading_with_free_followups_used(api.new_client())  # two of the account's three are used
+    api.guard.json_delay = 0.3  # all three requests wait in the guard, then race for the last reading
+    start = threading.Barrier(3)
+    codes = []
+
+    def worker(action):
+        start.wait()
+        codes.append(action().status_code)
+
+    actions = [lambda: ask(api.new_client(), first, use_reading=True),
+               lambda: ask(api.new_client(), second, use_reading=True),
+               lambda: post_reading(api.new_client(), headers=bearer(USER), kind="one", tz=MX,
+                                    question="What helps me focus?")]
+    threads = [threading.Thread(target=worker, args=(a,)) for a in actions]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert len([c for c in codes if c in (200, 201)]) == 1 and len(codes) == 3
+    assert used(api, limits.user_subject(USER)) == 3
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM followups WHERE paid_day IS NOT NULL").fetchone()["n"] + \
+            conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3

@@ -43,7 +43,7 @@ def followups(api, reading_id) -> list[dict]:
 def test_full_guest_path(api):
     c = api.client
     created = post_reading(c, kind="three", question="How can I settle into my new team?", topic="work", tz=MX)
-    assert created.status_code == 201 and created.json()["remaining"] == 2
+    assert created.status_code == 201 and created.json()["remaining"] == 1
     reading_id = created.json()["id"]
     assert parse_sse(c.get(f"/api/readings/{reading_id}/stream").text)[-1] == ("done", {"answer_shown": "model"})
     for n in (1, 2):
@@ -52,10 +52,9 @@ def test_full_guest_path(api):
         assert followup.headers["content-type"].startswith("text/event-stream")
         assert fin(parse_sse(followup.text)) == ("done", {"answer_shown": "model", "followups_left": 2 - n})
     third = ask(c, reading_id, "And one more thing?", tz=MX)
-    assert third.status_code == 402 and third.json() == {"reason": "confirm", "remaining": 2}
+    assert third.status_code == 402 and third.json() == {"reason": "confirm", "remaining": 1}
     paid = ask(c, reading_id, "And one more thing?", tz=MX, use_reading=True)
     assert fin(parse_sse(paid.text)) == ("done", {"answer_shown": "model", "followups_left": 0, "used_reading": True})
-    assert post_reading(c, kind="one", tz=MX).json()["remaining"] == 0
     fourth = ask(c, reading_id, "Anything else?", tz=MX, use_reading=True)
     assert fourth.status_code == 402 and fourth.json() == {"reason": "plus", "remaining": 0}
     reading = post_reading(c, kind="one", tz=MX)
@@ -363,7 +362,7 @@ def test_third_followup_without_confirmation_is_402_and_takes_no_reading_or_atte
     free_used(api, reading_id)
     guard_calls = len(api.guard.json_calls())
     response = ask(api.client, reading_id, "And one more?", tz=MX)
-    assert response.status_code == 402 and response.json() == {"reason": "confirm", "remaining": 2}
+    assert response.status_code == 402 and response.json() == {"reason": "confirm", "remaining": 1}
     assert (guest_used(api, reading_id), attempts_of(api, reading_id)) == (1, 2)
     # stage 4.5 §3: the question is checked before the 402, so a crisis question gets help instead
     assert len(api.guard.json_calls()) == guard_calls + 1 and len(followups(api, reading_id)) == 2
@@ -376,23 +375,22 @@ def test_confirmed_followup_uses_a_reading(api):
     assert events[0][1]["paid"] is True and events[0][1]["followup"] == 3
     assert fin(events) == ("done", {"answer_shown": "model", "followups_left": 0, "used_reading": True})
     assert guest_used(api, reading_id) == 2
-    assert api.client.get("/api/limits", params={"tz": MX}).json()["remaining"] == 1
+    assert api.client.get("/api/limits", params={"tz": MX}).json()["remaining"] == 0
     row = followups(api, reading_id)[-1]
     assert (row["n"], row["counted"], row["paid_day"]) == (3, True, limits.local_day(limits.resolve_tz(MX),
                                                                                     api.clock()))
     again = ask(api.client, reading_id, "And another?", tz=MX)
-    assert again.status_code == 402 and again.json() == {"reason": "confirm", "remaining": 1}
+    assert again.status_code == 402 and again.json() == {"reason": "plus", "remaining": 0}
 
 
 def test_no_readings_left_is_402_plus(api):
     reading_id = ready_reading(api, kind="one")
     free_used(api, reading_id)
-    for _ in range(2):
-        assert post_reading(api.client, kind="one", tz=MX).status_code == 201
+    assert post_reading(api.client, kind="one", tz=MX).status_code == 201
     for extra in ({}, {"use_reading": True}):
         response = ask(api.client, reading_id, "And one more?", tz=MX, **extra)
         assert response.status_code == 402 and response.json() == {"reason": "plus", "remaining": 0}
-    assert attempts_of(api, reading_id) == 2 and guest_used(api, reading_id) == 3
+    assert attempts_of(api, reading_id) == 2 and guest_used(api, reading_id) == 2
 
 
 @pytest.mark.parametrize("reply, reason", [
@@ -439,15 +437,14 @@ def test_a_stale_paid_followup_gives_its_reading_back(api):
         limits.take_slot(conn, limits.guest_subject(reading["guest_id"]), day, limits.DAILY_LIMIT)
     assert guest_used(api, reading_id) == 2
     response = ask(api.client, reading_id, "Can I ask again?", tz=MX)
-    assert response.json() == {"reason": "confirm", "remaining": 2} and guest_used(api, reading_id) == 1
+    assert response.json() == {"reason": "confirm", "remaining": 1} and guest_used(api, reading_id) == 1
 
 
 def test_paid_followups_at_once_cannot_overspend_the_day(api):
-    first, second = ready_reading(api, kind="one"), ready_reading(api, kind="one")
+    first = ready_reading(api, kind="one")  # one of the guest's two readings: one is left
     free_used(api, first)
-    free_used(api, second)
-    api.guard.json_delay = 0.3  # all three requests wait in the guard, then race for the last reading
-    start = threading.Barrier(3)
+    api.guard.json_delay = 0.3  # both requests wait in the guard, then race for the last reading
+    start = threading.Barrier(2)
     codes = []
 
     def worker(action):
@@ -455,18 +452,17 @@ def test_paid_followups_at_once_cannot_overspend_the_day(api):
         codes.append(action().status_code)
 
     actions = [lambda: ask(api.client, first, "One more?", tz=MX, use_reading=True),
-               lambda: ask(api.client, second, "One more?", tz=MX, use_reading=True),
                lambda: post_reading(api.client, kind="one", tz=MX, question="What helps me focus?")]
     threads = [threading.Thread(target=worker, args=(a,)) for a in actions]
     for t in threads:
         t.start()
     for t in threads:
         t.join()
-    assert len([c for c in codes if c in (200, 201)]) == 1 and len(codes) == 3
-    assert guest_used(api, first) == 3
+    assert len([c for c in codes if c in (200, 201)]) == 1 and len(codes) == 2
+    assert guest_used(api, first) == 2
     with api.db.connect() as conn:
         assert conn.execute("SELECT count(*) AS n FROM followups WHERE paid_day IS NOT NULL").fetchone()["n"] + \
-            conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3
+            conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 2
 
 
 # --- Fable plan check: attempts before confirm, attempts_left in done, м10 stale deletion during a live stream ---
@@ -516,7 +512,7 @@ def test_stale_deletion_during_a_slow_stream_refunds_once_and_a_cut_does_not_ref
     reading_id, events = slow_paid_followup(api, reply)
     api.clock.advance(seconds=181)
     again = ask(api.client, reading_id, "Can I ask again?", tz=MX)
-    assert again.json() == {"reason": "confirm", "remaining": 2} and guest_used(api, reading_id) == 1
+    assert again.json() == {"reason": "confirm", "remaining": 1} and guest_used(api, reading_id) == 1
     assert events.join(timeout=10)
     assert guest_used(api, reading_id) == 1  # no second refund
     assert len(followups(api, reading_id)) == 2
@@ -571,15 +567,15 @@ def test_crisis_at_exhausted_attempts_gets_the_crisis_answer(api):
     assert attempts_of(api, reading_id) == FOLLOWUP_ATTEMPTS
 
 
-@pytest.mark.parametrize("readings_left", [2, 0])  # 402 confirm, 402 plus
+@pytest.mark.parametrize("readings_left", [1, 0])  # 402 confirm, 402 plus
 def test_crisis_where_a_402_would_come_gets_the_crisis_answer(api, readings_left):
     reading_id = ready_reading(api, kind="one")
     free_used(api, reading_id)
-    for _ in range(2 - readings_left):
+    for _ in range(1 - readings_left):
         assert post_reading(api.client, kind="one", tz=MX).status_code == 201
     response = ask(api.client, reading_id, "Honestly I want to die.", tz=MX)
     assert response.status_code == 200 and response.json()["group"] == "crisis"
-    assert attempts_of(api, reading_id) == 2 and guest_used(api, reading_id) == 3 - readings_left
+    assert attempts_of(api, reading_id) == 2 and guest_used(api, reading_id) == 2 - readings_left
 
 
 def test_a_followup_number_is_never_used_twice(api):

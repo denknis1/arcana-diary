@@ -61,7 +61,7 @@ def test_create_three_sets_cookie_and_returns_cards(api):
     body = response.json()
     assert [c["position"] for c in body["cards"]] == ["past", "present", "path"]
     assert all(c["name"] for c in body["cards"]) and body["verdict"] is None
-    assert (body["guard_group"], body["remaining"], body["soft_line"], body["owner"]) == ("ok", 2, None, True)
+    assert (body["guard_group"], body["remaining"], body["soft_line"], body["owner"]) == ("ok", 1, None, True)
     assert api.guard.json_calls() == []  # no question, no guard call
 
 
@@ -180,7 +180,7 @@ def test_crisis_returns_help_and_stores_nothing(api, caplog):
         response = post_reading(api.client, kind="three", question=question, tz=MX, headers={"CF-IPCountry": "US"})
     assert response.status_code == 200
     body = response.json()
-    assert body["group"] == "crisis" and body["remaining"] == 3
+    assert body["group"] == "crisis" and body["remaining"] == 2
     assert (body["helplines"]["country"], body["helplines"]["source"]) == ("MX", "timezone")  # CF-* ignored
     assert [line["topic"] for line in body["helplines"]["lines"]] == ["crisis", "violence"]
     assert body["crisis"]["title"] == api.ctx.texts["en"]["crisis"]["title"]
@@ -463,10 +463,10 @@ def test_daily_limit_is_atomic_under_concurrency(api):
         t.start()
     for t in threads:
         t.join()
-    assert sorted(codes) == [201, 201, 201, 429, 429, 429]
-    assert guest_usage(api) == 3
+    assert sorted(codes) == [201, 201, 429, 429, 429, 429]
+    assert guest_usage(api) == 2
     with api.db.connect() as conn:
-        assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3
+        assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 2
 
 
 def test_spent_budget_gives_base_meanings(api):
@@ -654,8 +654,8 @@ def test_guard_answer_that_is_unusable_still_costs_something(api):
     api.guard.json_replies.extend([ProviderError("max_tokens: structured output truncated", cut),
                                    ProviderError("no text block", silent),
                                    ProviderError("APIConnectionError")])
-    for i in range(3):
-        body = create(api, kind="one", question=f"What helps me rest, attempt {i}?")
+    for i in range(3):  # three devices: a guest has two readings a day
+        body = create(api, client=api.new_client(), kind="one", question=f"What helps me rest, attempt {i}?")
         assert body["guard_group"] == "ok"
         api.clock.advance(seconds=13)
     with api.db.connect() as conn:
@@ -716,7 +716,7 @@ def test_a_failed_save_frees_the_claim(api, monkeypatch):
 # --- stage 4.5 §3: help first, then the limit ---
 
 def use_up_the_day(api, client=None, headers=None):
-    for _ in range(3):
+    for _ in range(2):
         assert post_reading(client or api.client, kind="one", tz=MX, headers=headers).status_code == 201
 
 
@@ -731,7 +731,7 @@ def test_a_stop_phrase_at_the_daily_limit_gets_the_crisis_answer(api):
     assert response.status_code == 200
     body = response.json()
     assert (body["group"], body["remaining"]) == ("crisis", 0)
-    assert api.guard.json_calls() == [] and guest_usage(api) == 3
+    assert api.guard.json_calls() == [] and guest_usage(api) == 2
     assert guard_rows(api) == [{"lang": "en", "guard_group": "crisis", "source": "terms", "count": 1}]
 
 
@@ -750,7 +750,7 @@ def test_a_crisis_found_by_the_check_model_at_the_daily_limit_gets_the_crisis_an
     assert response.status_code == 200 and response.json()["group"] == "crisis"
     assert len(api.guard.json_calls()) == 1 and guard_calls_logged(api) == 1
     with api.db.connect() as conn:
-        assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3
+        assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 2
 
 
 def test_an_ordinary_question_at_the_daily_limit_is_checked_then_refused(api):
@@ -758,7 +758,7 @@ def test_an_ordinary_question_at_the_daily_limit_is_checked_then_refused(api):
     response = post_reading(api.client, kind="one", tz=MX, question="Should I take the pottery class?")
     assert response.status_code == 429 and response.json() == {"reason": "limit", "remaining": 0}
     assert len(api.guard.json_calls()) == 1  # the check first; its call is logged for the guard budget
-    assert guard_calls_logged(api) == 1 and guest_usage(api) == 3
+    assert guard_calls_logged(api) == 1 and guest_usage(api) == 2
     with api.db.connect() as conn:  # ...for no reading: none is made
         assert conn.execute("SELECT reading_id FROM llm_calls WHERE purpose = 'guard'").fetchone()["reading_id"] is None
     assert guard_rows(api) == [{"lang": "en", "guard_group": "ok", "source": "model", "count": 1}]
@@ -809,19 +809,19 @@ def test_the_same_request_number_returns_the_same_reading(api):
     first = post_reading(api.client, **ask)
     again = post_reading(api.client, **ask)
     assert (first.status_code, again.status_code) == (201, 201)
-    assert again.json() == first.json() and first.json()["remaining"] == 2
+    assert again.json() == first.json() and first.json()["remaining"] == 1
     assert (reading_count(api), guest_usage(api), len(api.guard.json_calls())) == (1, 1, 1)
     assert saved(api, first.json()["id"])["request_id"] == uuid.UUID(number)
 
 
 def test_a_repeat_of_the_last_reading_of_the_day_is_not_refused(api):
     use_up_the_day(api)
-    with api.db.connect() as conn:  # the third reading was made with a number
+    with api.db.connect() as conn:  # the second (last) reading was made with a number
         conn.execute("UPDATE readings SET request_id = %s WHERE id = (SELECT id FROM readings LIMIT 1)",
                      (uuid.UUID("00000000-0000-4000-8000-000000000003"),))
     again = post_reading(api.client, kind="one", tz=MX, request_id="00000000-0000-4000-8000-000000000003")
     assert again.status_code == 201 and again.json()["remaining"] == 0
-    assert (reading_count(api), guest_usage(api)) == (3, 3)
+    assert (reading_count(api), guest_usage(api)) == (2, 2)
 
 
 def test_another_owners_number_finds_nothing(api):
@@ -837,7 +837,7 @@ def test_an_account_finds_its_reading_from_any_device(api):
     first = post_reading(phone, kind="one", tz=MX, request_id=number, headers=bearer(user))
     again = post_reading(laptop, kind="one", tz=MX, request_id=number, headers=bearer(user))
     as_guest = post_reading(phone, kind="one", tz=MX, request_id=number)
-    assert again.json()["id"] == first.json()["id"] and again.json()["remaining"] == 4
+    assert again.json()["id"] == first.json()["id"] and again.json()["remaining"] == 2
     assert as_guest.json()["id"] != first.json()["id"]  # the device's guest is another owner
 
 
@@ -920,7 +920,7 @@ def test_yes_no_on_three_cards_has_votes_and_the_majority(api):
     assert [c["vote"] for c in body["cards"]] == [api.ctx.cards.vote(c) for c in body["cards"]]
     expected = api.ctx.cards.verdict(body["cards"])
     assert body["verdict"] == {"value": expected, "label": api.ctx.cards.rules["labels"]["en"][expected]}
-    assert (body["remaining"], guest_usage(api)) == (2, 1)  # three cards are one reading
+    assert (body["remaining"], guest_usage(api)) == (1, 1)  # three cards are one reading
     events = stream(api, body["id"])
     assert [d["name"] for e, d in events if e == "section"] == ["headline", "card1", "card2", "card3", "synthesis",
                                                                  "step", "why"]
@@ -943,7 +943,7 @@ def test_the_decisive_cards_decide_and_a_tie_is_unclear(api, monkeypatch):
     assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["yes", "no", "unclear"], "unclear")
     one_decides = [cards[2], {**cards[0], "reversed": True}, {**cards[1], "reversed": True}]  # no, unclear, unclear
     monkeypatch.setattr("app.routes.readings.draw_spread", lambda seed, kind, order, count=None: one_decides)
-    body = create(api, kind="yes_no", count=3)
+    body = create(api, client=api.new_client(), kind="yes_no", count=3)  # a guest has two readings a day
     assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["no", "unclear", "unclear"], "no")
 
 

@@ -44,7 +44,7 @@ def test_the_account_shows_the_email_its_first_day_and_the_limit(api):
     body = api.client.get("/api/account", params={"tz": MX}, headers=bearer(ANA, email="Ana@Example.com")).json()
     assert body["email"] == "ana@example.com" and body["created_at"].startswith("2026-11-20T18:01:00")
     assert (body["reminders_consent"], body["consent_at"]) == (False, None)
-    assert (body["limit"], body["used"], body["remaining"], body["day"]) == (5, 1, 4, "2026-11-20")
+    assert (body["limit"], body["used"], body["remaining"], body["day"]) == (3, 1, 2, "2026-11-20")
     api.clock.advance(days=1)
     assert api.client.get("/api/account", headers=bearer(ANA)).json()["created_at"] == body["created_at"]
 

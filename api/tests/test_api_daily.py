@@ -82,7 +82,7 @@ def test_daily_new_card_and_text_after_local_midnight(api):
 def test_daily_does_not_count_and_new_guests_leave_no_draw(api):
     response = api.client.get("/api/daily", params={"lang": "es", "tz": MX})
     assert response.status_code == 200 and "ad_guest=" in response.headers["set-cookie"]
-    assert api.client.get("/api/limits", params={"tz": MX}).json()["remaining"] == 3
+    assert api.client.get("/api/limits", params={"tz": MX}).json()["remaining"] == 2
     with api.db.connect() as conn:
         assert conn.execute("SELECT count(*) AS n FROM daily_draws").fetchone()["n"] == 0
 
