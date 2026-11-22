@@ -54,6 +54,8 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 | `GUARD_TIMEOUT_S` | `5` | тайм-аут проверки вопроса (решение владельца 19.11.2026, спецификация §10.10) |
 | `CLEANUP_INTERVAL_S` | `3600` | как часто удалять просроченное (гостевые расклады, токены переноса) и возвращать слоты за оборванные платные уточнения |
 | `SUPABASE_URL` | пусто | открытый адрес проекта Supabase (`https://<ref>.supabase.co`, не секрет); пусто — вход выключен, любой `Authorization: Bearer` получает `401` |
+| `SUPABASE_ANON_KEY` | пусто | открытый ключ проекта Supabase (anon / publishable, не секрет) для входа в браузере; вместе с `SUPABASE_URL` включает вход на сайте (`GET /api/auth-config`), без него кнопки «Save to diary» нет. Никогда не `service_role` / `sb_secret_…`: такой ключ API не отдаёт (вход выключен, строка `SUPABASE_ANON_KEY is not the public key` в журнале) |
+| `GOOGLE_SIGNIN` | пусто | `true` — на сайте видна кнопка «Continue with Google» (после шага 1 «Вход через Supabase»); пусто или что угодно другое — выключено (другое значение — строка в журнале, API работает) |
 | `DAILY_JOB_INTERVAL_S` | `3600` | как часто задача карты дня дописывает недостающие тексты; `0` — выключить |
 | `RUN_MIGRATIONS` | `true` | применять миграции при старте |
 | `CONTENT_DIR`, `BANNED_TERMS_PATH`, `MIGRATIONS_DIR` | пути в репозитории | в образе заданы в `api/Dockerfile` |
@@ -62,7 +64,8 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 
 `POST /api/readings`, `GET /api/readings/{id}`, `GET /api/readings/{id}/stream` (SSE), `POST /api/readings/{id}/retry`
 (SSE), `POST /api/readings/{id}/followups` (SSE), `GET /api/daily?lang=&tz=`, `GET /api/limits?tz=`, `POST /api/events`
-(этап 4.4а, ниже). Поддомен `api.`
+(этап 4.4а, ниже), `GET /api/auth-config` (этап 4.4б: `{"enabled", "supabase_url", "anon_key", "google"}` — открытые
+настройки входа для браузера; без `SUPABASE_URL` или `SUPABASE_ANON_KEY` — `enabled: false` и пустые строки). Поддомен `api.`
 отдаёт только `GET /health`, остальное — `404`. События потока: `meta`, `section`, `text`, `replace`, `fallback`,
 `crisis`, `done`, `error`. Все ответы `/api/*`: `Cache-Control: no-store`, `Referrer-Policy: no-referrer`,
 `X-Robots-Tag: noindex, nofollow`. Уточнения: два бесплатных к каждому раскладу (обрезанное или заменённое из базы не

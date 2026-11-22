@@ -14,7 +14,7 @@ from app.config import Settings, load_settings
 from app.context import build_context
 from app.db import DatabaseUnavailable
 from app.housekeeping import run_background
-from app.routes import account, claim, daily, diary, events, followups, plus, readings
+from app.routes import account, auth_config, claim, daily, diary, events, followups, plus, readings
 from app.routes import limits as limits_routes
 from app.routes.common import check_token
 
@@ -102,6 +102,7 @@ def create_app(settings: Settings | None = None, *, reader=None, guard_provider=
     app.include_router(account.router, dependencies=API_AUTH)
     app.include_router(plus.router, dependencies=API_AUTH)
     app.include_router(events.router, dependencies=API_AUTH)
+    app.include_router(auth_config.router, dependencies=API_AUTH)
 
     @app.get("/health")
     def health() -> dict[str, str]:

@@ -43,6 +43,8 @@ services:
       DAILY_BUDGET_USD: ${DAILY_BUDGET_USD:-5}
       GUARD_BUDGET_USD: ${GUARD_BUDGET_USD:-1}
       SUPABASE_URL: ${SUPABASE_URL:-}
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-}
+      GOOGLE_SIGNIN: ${GOOGLE_SIGNIN:-}
 
 volumes:
   caddy_data:

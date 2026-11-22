@@ -1,4 +1,7 @@
 """API settings from environment variables; limits; model prices for the LLM call log."""
+import base64
+import json
+import logging
 import os
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
@@ -7,6 +10,7 @@ from typing import Mapping
 
 APP_DIR = Path(__file__).resolve().parent
 REPO_ROOT = APP_DIR.parents[1]
+log = logging.getLogger("arcana.config")
 
 DEFAULT_MODEL = "claude-haiku-5-5"
 EFFORTS = ("low", "medium", "high", "xhigh", "max")
@@ -84,6 +88,8 @@ class Settings:
     daily_job_interval_s: float
     run_migrations: bool
     supabase_url: str  # stage 4.3 §3: the project's public address; "" — sign-in is off
+    supabase_anon_key: str  # stage 4.4b §3: the project's public (anon / publishable) key for the browser; not a secret
+    google_signin: bool  # stage 4.4b §3: GOOGLE_SIGNIN=true shows "Continue with Google"
 
 
 def _bool(value: str) -> bool:
@@ -103,6 +109,36 @@ def _supabase_url(value: str) -> str:
     if url and not url.startswith("https://"):
         raise ValueError(f"SUPABASE_URL must start with https://, got {url!r}")
     return url
+
+
+def _flag(name: str, value: str) -> bool:
+    """Stage 4.4b §3: exactly "true" switches it on; anything else is off with a log line, never an error — the
+    settings are read when the API starts, and GOOGLE_SIGNIN=false must not stop the readings (Fable plan review I12)."""
+    value = value.strip()
+    if value not in ("", "true"):
+        log.warning("%s=%r is not 'true': Continue with Google stays off", name, value)
+    return value == "true"
+
+
+def _public_key(value: str) -> str:
+    """Stage 4.4b §3: SUPABASE_ANON_KEY goes to every visitor (GET /api/auth-config), so only the project's public key
+    may be used. A secret key — sb_secret_…, or a legacy JWT key whose role is not "anon" (service_role) — passes row
+    level security: it is dropped, sign-in stays off and the log says so without printing the key; the API still
+    starts (Fable plan review I3). The JWT's signature is not checked: only the role it names matters here."""
+    value = value.strip()
+    secret = value.startswith("sb_secret_")
+    parts = value.split(".")
+    if not secret and len(parts) == 3:  # a legacy key: a JWT
+        try:
+            payload = json.loads(base64.urlsafe_b64decode(parts[1] + "=" * (-len(parts[1]) % 4)))
+        except ValueError:  # bad base64 (binascii.Error) and bad JSON are both ValueErrors
+            payload = None
+        secret = not isinstance(payload, dict) or payload.get("role") != "anon"
+    if secret:
+        log.error("SUPABASE_ANON_KEY is not the public key (a secret key or a JWT whose role is not 'anon'): not used, "
+                  "sign-in stays off — set the anon / publishable key (api/README.md)")
+        return ""
+    return value
 
 
 def load_settings(env: Mapping[str, str] | None = None) -> Settings:
@@ -154,6 +190,8 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         daily_job_interval_s=float(env.get("DAILY_JOB_INTERVAL_S") or 3600),
         run_migrations=_bool(env.get("RUN_MIGRATIONS") or "true"),
         supabase_url=_supabase_url(env.get("SUPABASE_URL") or ""),
+        supabase_anon_key=_public_key(env.get("SUPABASE_ANON_KEY") or ""),
+        google_signin=_flag("GOOGLE_SIGNIN", env.get("GOOGLE_SIGNIN") or ""),
     )
 
 
