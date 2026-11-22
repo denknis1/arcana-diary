@@ -5,7 +5,7 @@
 import type { AuthConfig } from './authConfig';
 import { authConfig } from './authConfig';
 import {
-  browserStorage, clearSignInStarted, clearSignedIn, markSignedIn, type SignInMethod, type StorageLike,
+  browserStorage, clearLibrarySession, clearSignInStarted, clearSignedIn, markSignedIn, type SignInMethod, type StorageLike,
 } from './authState';
 
 export interface SessionLike {
@@ -44,7 +44,8 @@ export type SendResult = { ok: true } | { ok: false; error: SendError };
 export function sendError(error: AuthErrorLike): SendError {
   const code = error.code ?? '';
   if (error.status === 429 || code.includes('rate_limit')) return 'tooOften';
-  if (code === 'email_address_invalid' || code === 'validation_failed' || error.status === 400 || error.status === 422) {
+  // auth-js error codes (error-codes.ts): only these two mean "this address is wrong"; anything else is unavailable
+  if (code === 'email_address_invalid' || (code === 'validation_failed' && /e-?mail/i.test(error.message ?? ''))) {
     return 'badEmail';
   }
   return 'unavailable';
@@ -71,9 +72,10 @@ export function createAuth(config: AuthConfig, factory: ClientFactory = loadSupa
     throw error;
   }));
 
-  const keep = (current: SessionLike | null) => {
+  // a library error with no session (offline refresh, say) is not "signed out": the flag stays, no token this time
+  const keep = (current: SessionLike | null, error: unknown = null) => {
     if (current?.access_token) markSignedIn(storage);
-    else clearSignedIn(storage);
+    else if (!error) clearSignedIn(storage);
     return current?.access_token ? current : null;
   };
 
@@ -89,8 +91,8 @@ export function createAuth(config: AuthConfig, factory: ClientFactory = loadSupa
   return {
     async session() {
       try {
-        const { data } = await (await lib()).getSession();
-        return keep(data.session);
+        const { data, error } = await (await lib()).getSession();
+        return keep(data.session, error);
       } catch {
         return null;
       }
@@ -100,8 +102,8 @@ export function createAuth(config: AuthConfig, factory: ClientFactory = loadSupa
     },
     async refresh() {
       try {
-        const { data } = await (await lib()).refreshSession();
-        return keep(data.session)?.access_token ?? null;
+        const { data, error } = await (await lib()).refreshSession();
+        return keep(data.session, error)?.access_token ?? null;
       } catch {
         return null;
       }
@@ -115,6 +117,7 @@ export function createAuth(config: AuthConfig, factory: ClientFactory = loadSupa
     async signOut() {
       clearSignedIn(storage); // first: this device is a guest at once, even if the library fails or hangs (review M6)
       clearSignInStarted(storage);
+      clearLibrarySession(storage); // the library's own keys too, in case it cannot load below
       try {
         await (await lib()).signOut({ scope: 'local' }); // auth-js 2.119 drops the local session before its request
       } catch {

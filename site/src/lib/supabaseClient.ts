@@ -5,8 +5,7 @@
 import { AuthClient } from '@supabase/auth-js';
 import type { AuthClientLike } from './auth';
 import type { AuthConfig } from './authConfig';
-
-export const AUTH_STORAGE_KEY = 'ad-auth';
+import { AUTH_STORAGE_KEY } from './authState';
 
 export function createClient(config: AuthConfig): AuthClientLike {
   return new AuthClient({

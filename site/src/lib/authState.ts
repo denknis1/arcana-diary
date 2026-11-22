@@ -4,6 +4,10 @@
 // device's guest readings into the account once (api/README.md "Передача в 4.4"). Never a token, never an e-mail.
 
 export const SIGNED_IN_KEY = 'ad_signed_in';
+/** The key the sign-in library stores its session under (supabaseClient.ts passes it as `storageKey`); auth-js adds
+ * `-user` and `-code-verifier` next to it. Sign-out removes these itself, so it works even if the library cannot load. */
+export const AUTH_STORAGE_KEY = 'ad-auth';
+export const AUTH_STORAGE_KEYS = [AUTH_STORAGE_KEY, `${AUTH_STORAGE_KEY}-user`, `${AUTH_STORAGE_KEY}-code-verifier`];
 export const STARTED_KEY = 'ad_signin_started';
 /** An e-mail link opened later than this is not "started here" any more (the link itself lives an hour). */
 export const STARTED_MAX_AGE_MS = 24 * 60 * 60 * 1000;
@@ -63,4 +67,9 @@ export function signInStarted(now: number = Date.now(), storage: StorageLike | n
 
 export function clearSignInStarted(storage: StorageLike | null = browserStorage()): void {
   safely(undefined, () => storage?.removeItem(STARTED_KEY));
+}
+
+/** Removes the sign-in library's own stored session and its sibling keys. */
+export function clearLibrarySession(storage: StorageLike | null = browserStorage()): void {
+  for (const key of AUTH_STORAGE_KEYS) safely(undefined, () => storage?.removeItem(key));
 }

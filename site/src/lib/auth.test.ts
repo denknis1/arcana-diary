@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { createAuth, methodOf, openSession, sendError, type SessionLike } from './auth';
 import type { AuthConfig } from './authConfig';
-import { STARTED_KEY, SIGNED_IN_KEY, markSignInStarted } from './authState';
+import { AUTH_STORAGE_KEY, STARTED_KEY, SIGNED_IN_KEY, markSignInStarted } from './authState';
 import { fakeClient, memoryStorage, session } from './testing/auth';
 
 const CONFIG: AuthConfig = { enabled: true, supabase_url: 'https://abc.supabase.co', anon_key: 'sb_publishable_x', google: true };
@@ -56,7 +56,12 @@ describe('createAuth', () => {
     client.sendError = { status: 429, code: 'over_email_send_rate_limit' };
     expect(await auth.sendLink('ana@example.com', 'x')).toEqual({ ok: false, error: 'tooOften' });
     expect(sendError({ status: 400, code: 'email_address_invalid' })).toBe('badEmail');
-    expect(sendError({ status: 422, code: 'validation_failed' })).toBe('badEmail');
+    expect(sendError({ status: 422, code: 'validation_failed', message: 'Unable to validate email address: invalid format' })).toBe('badEmail');
+    expect(sendError({ status: 422, code: 'validation_failed', message: 'Password should be at least 6 characters' })).toBe('unavailable');
+    expect(sendError({ status: 400, code: 'bad_json' })).toBe('unavailable');
+    expect(sendError({ status: 400 })).toBe('unavailable');
+    expect(sendError({ status: 422 })).toBe('unavailable');
+    expect(sendError({ status: 400, code: 'email_address_not_authorized' })).toBe('unavailable');
     expect(sendError({ status: 500 })).toBe('unavailable');
     expect(sendError({ code: 'over_request_rate_limit' })).toBe('tooOften');
   });
@@ -86,6 +91,28 @@ describe('createAuth', () => {
       expect(storage.data[SIGNED_IN_KEY]).toBeUndefined();
       expect(storage.data[STARTED_KEY]).toBeUndefined();
     }
+  });
+
+  it('signs out even when the library cannot load: its stored session and sibling keys go too', async () => {
+    const own = [AUTH_STORAGE_KEY, `${AUTH_STORAGE_KEY}-user`, `${AUTH_STORAGE_KEY}-code-verifier`];
+    const storage = memoryStorage({ [SIGNED_IN_KEY]: '1', other: 'keep', ...Object.fromEntries(own.map((k) => [k, 'x'])) });
+    markSignInStarted('email', Date.now(), storage);
+    await createAuth(CONFIG, async () => { throw new Error('chunk failed'); }, storage).signOut();
+    expect(storage.data).toEqual({ other: 'keep' });
+  });
+
+  it('a transient library error keeps the sign-in; only a clean "no session" clears it', async () => {
+    const { auth, client, storage } = setup();
+    expect(await auth.token()).toBe('tok-1');
+    client.getSession = async () => ({ data: { session: null }, error: { message: 'Failed to fetch' } });
+    expect(await auth.session()).toBeNull();
+    expect(storage.data[SIGNED_IN_KEY]).toBe('1');
+    client.refreshSession = async () => ({ data: { session: null }, error: { message: 'Failed to fetch' } });
+    expect(await auth.refresh()).toBeNull();
+    expect(storage.data[SIGNED_IN_KEY]).toBe('1');
+    client.getSession = async () => ({ data: { session: null }, error: null });
+    expect(await auth.session()).toBeNull();
+    expect(storage.data[SIGNED_IN_KEY]).toBeUndefined();
   });
 
   it('a library that failed to load is loaded again on the next use (review M7)', async () => {
