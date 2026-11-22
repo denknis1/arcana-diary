@@ -88,5 +88,7 @@ describe('the DOM test setup (spec 4.4b §9)', () => {
     expect(keys).toEqual(['a']);
     expect(document.body.childElementCount).toBe(0);
     await expect(waitFor(() => false, 50)).rejects.toThrow('waitFor: the check stayed false');
+    await expect(waitFor(async () => true, 50)).rejects.toThrow('waitFor: the check must be synchronous');
+    expect(new Date(2026, 0, 1).getTimezoneOffset()).toBe(0); // TZ=UTC from vitest.config.ts: date tests do not depend on the machine
   });
 });

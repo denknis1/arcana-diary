@@ -50,7 +50,9 @@ export async function waitFor(check: () => unknown, timeoutMs = 2000): Promise<v
   for (;;) {
     let failure: unknown;
     try {
-      if (check() !== false) return;
+      const result = check();
+      if (result instanceof Promise) throw new TypeError('waitFor: the check must be synchronous');
+      if (result !== false) return;
       failure = new Error('waitFor: the check stayed false');
     } catch (error) {
       failure = error;
