@@ -22,6 +22,12 @@ VALID = [
     {"name": "outcome_answered", "lang": "es", "params": {"after_days": 7, "answer": "partly"}},
     {"name": "plus_view", "lang": "en", "params": {"place": "limit"}},
     {"name": "tool_view", "tool": "daily", "lang": "es"},
+    {"name": "plus_view", "lang": "es", "params": {"place": "diary"}},
+    {"name": "remind_click", "tool": "daily", "lang": "en", "params": {}},
+    {"name": "remind_click", "tool": "daily", "lang": "es"},
+    {"name": "signup_done", "lang": "es", "params": {"method": "google"}},
+    {"name": "outcome_answered", "lang": "en", "params": {"after_days": 30, "answer": "no"}},
+    {"name": "save_click", "tool": "yes_no", "lang": "es", "params": {}},
 ]
 
 INVALID = [
@@ -38,6 +44,11 @@ INVALID = [
     ({"name": "reading_shown", "tool": "home", "lang": "en", "params": {"ms_from_draw": -1}}, "params.ms_from_draw"),
     ({"name": "reading_shown", "tool": "home", "lang": "en", "params": {"ms_from_draw": 1.5}}, "params.ms_from_draw"),
     ({"name": "outcome_answered", "lang": "en", "params": {"after_days": 14, "answer": "yes"}}, "params.after_days"),
+    ({"name": "remind_click", "lang": "en"}, "tool"),
+    ({"name": "remind_click", "tool": "home", "lang": "en"}, "tool"),
+    ({"name": "remind_click", "tool": "daily", "lang": "en", "params": {"at": "09:00"}}, "params.at"),
+    ({"name": "plus_view", "lang": "en", "params": {"place": "account"}}, "params.place"),
+    ({"name": "signup_done", "lang": "en", "params": {}}, "params.method"),
 ]
 
 
