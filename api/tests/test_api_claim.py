@@ -3,6 +3,8 @@ made-up token, a used one, an expired one, a reading that already has an account
 import uuid
 from datetime import timedelta
 
+import pytest
+
 from app import account_repo, repo
 from app.housekeeping import delete_expired
 from helpers import bearer, dump_tables, make_reading, post_reading
@@ -188,6 +190,16 @@ def test_device_false_without_tokens_moves_nothing(api):
     assert reading_row(api, mine)["user_id"] is None
 
 
-def test_device_is_true_or_false_only(api):
-    response = api.client.post("/api/account/claim", headers=bearer(ANA), json={"tokens": [], "device": "no"})
+@pytest.mark.parametrize("value", ["no", "false", 0, None])
+def test_device_is_true_or_false_only(api, value):
+    response = api.client.post("/api/account/claim", headers=bearer(ANA), json={"tokens": [], "device": value})
     assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["device"]}
+
+
+def test_device_false_still_moves_the_token_reading_made_here(api):
+    """The token's reading is the token's own, wherever it was made: "device": false skips only the other guest readings."""
+    mine = new_reading(api.client)
+    other = new_reading(api.client)
+    token = claim_token(api.client, mine).json()["token"]
+    assert claim_without_device(api.client, ANA, [token]).json() == {"claimed": [mine]}
+    assert reading_row(api, mine)["user_id"] == ANA and reading_row(api, other)["user_id"] is None
