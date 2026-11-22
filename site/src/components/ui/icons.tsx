@@ -39,3 +39,13 @@ export function VerdictIcon({ value, size = 40 }: { value: 'yes' | 'no' | 'uncle
     </svg>
   );
 }
+
+/** A note in a diary entry (spec 4.4b §5). */
+export function NoteIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <path d="M3 2.5h7l3 3v8H3z" />
+      <path d="M5.5 8h5M5.5 10.5h5" />
+    </svg>
+  );
+}

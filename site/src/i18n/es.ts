@@ -196,6 +196,24 @@ export const es: Dict = {
   checkEmailWait: 'Podrás enviarlo de nuevo en {n} s.',
   checkEmailOther: 'Usar otro correo',
   checkEmailSent: 'Enviado de nuevo.',
+  // etapa 4.4b: el diario (pantalla 4a, menú 11d)
+  diaryTitle: 'Tu diario — Arcana Diary',
+  navDiary: 'Tu diario',
+  navDiaryShort: 'Diario',
+  diaryWhy: 'Guarda aquí tus tiradas y vuelve a ver qué se cumplió.',
+  diarySignInSoon: 'El acceso abrirá pronto.',
+  signInLinkExpired: 'Este enlace caducó o ya se usó. Envíate uno nuevo aquí abajo.',
+  diaryEmpty: 'Aquí aparecerán tus tiradas guardadas.',
+  diaryNoQuestion: 'Sin pregunta',
+  diaryKindThree: 'Tres cartas',
+  diaryHidden: 'Más tiradas en Plus: {n}',
+  diaryNoteMark: 'Tiene una nota',
+  outcomeYes: 'Se cumplió',
+  outcomePartly: 'En parte',
+  outcomeNo: 'No',
+  diaryAccountLink: 'Cuenta',
+  plusDiaryNote: 'Tu diario guarda tus últimas 10 tiradas. Plus las guarda todas.',
+  diaryConsentFailed: 'El recordatorio no se activó. Puedes activarlo en tu cuenta.',
 };
 
 // draft — review with stage 5 texts
@@ -219,5 +237,7 @@ export const esDrafts: readonly DictKey[] = [
   'plusDone', 'plusEmailError', 'plusDaily', 'crisisCall', 'crisisText', 'crisisHours', 'crisisWeb',
   'errDayCap', 'followupReady', 'plusNotNow', 'yesNoCountHint',
   'savedToDiary', 'saveTitle', 'saveLead', 'saveRemind', 'signInEmailLabel', 'signInSend', 'signInOr', 'signInGoogle',
-  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',
+  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',  'diaryTitle', 'navDiaryShort', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion',
+  'diaryKindThree', 'diaryHidden', 'diaryNoteMark', 'outcomeYes', 'outcomePartly', 'outcomeNo', 'diaryAccountLink',
+  'plusDiaryNote', 'diaryConsentFailed',
 ];

@@ -331,6 +331,26 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .saved-mark { margin: 0; font-weight: 600; }
 .saved-mark a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-night-accent); } /* M16 */
 
+/* Stage 4.4b: the diary (screen 4a) */
+.diary { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); max-width: 720px; }
+.diary__list, .diary__error { display: flex; flex-direction: column; gap: var(--space-4); }
+.diary-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.diary-item {
+  display: grid; gap: var(--space-1); padding: var(--space-4); border-radius: var(--radius-panel); text-decoration: none;
+  background: var(--color-day-surface); color: var(--color-day-text); border: 1px solid var(--color-day-line);
+}
+.diary-item__meta { font-size: var(--font-size-small); color: var(--color-day-text-muted); }
+.diary-item__question { font-weight: 600; }
+.diary-item__cards { display: flex; gap: var(--space-1); }
+.diary-item__cards img { width: 32px; height: auto; aspect-ratio: var(--card-ratio); border-radius: var(--radius-card); }
+.diary-item__cards img.is-reversed { transform: rotate(180deg); }
+.diary-item__headline { color: var(--color-day-text-muted); }
+.diary-item__marks { display: flex; gap: var(--space-3); align-items: center; font-size: var(--font-size-small); }
+.diary-item__outcome { font-weight: 600; color: var(--color-day-text); }
+.diary__hidden { margin: 0; font-weight: 600; }
+.diary__account { display: inline-flex; align-items: center; min-height: 44px; } /* a touch target (review M16) */
+.diary :focus-visible { outline-color: var(--color-day-text); }
+
 /* Simple card page */
 .card-page { display: grid; gap: var(--space-6); padding-top: var(--space-6); }
 .card-page__art { max-width: 280px; }

@@ -195,6 +195,24 @@ export const en = {
   checkEmailWait: 'You can send it again in {n} s.',
   checkEmailOther: 'Use another e-mail',
   checkEmailSent: 'Sent again.',
+  // stage 4.4b: the diary (screen 4a, menu 11c, desktop header 13a)
+  diaryTitle: 'Your diary — Arcana Diary',
+  navDiary: 'Your diary',
+  navDiaryShort: 'Diary',
+  diaryWhy: 'Save your readings here and come back to see what came true.',
+  diarySignInSoon: 'Signing in opens soon.',
+  signInLinkExpired: 'This link has expired or was already used. Send yourself a new one below.',
+  diaryEmpty: 'Your saved readings will appear here.',
+  diaryNoQuestion: 'No question',
+  diaryKindThree: 'Three cards',
+  diaryHidden: 'More readings in Plus: {n}',
+  diaryNoteMark: 'Has a note',
+  outcomeYes: 'Came true',
+  outcomePartly: 'Partly',
+  outcomeNo: 'No',
+  diaryAccountLink: 'Account',
+  plusDiaryNote: 'Your diary keeps your last 10 readings. Plus keeps all of them.',
+  diaryConsentFailed: 'The reminder was not switched on. You can switch it on in your account.',
 };
 
 export type DictKey = keyof typeof en;
@@ -213,4 +231,6 @@ export const enDrafts: readonly DictKey[] = [
   'crisisWeb', 'errDayCap', 'followupReady',
   'signInEmailLabel', 'signInSend', 'signInOr', 'signInTooOften', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait',
   'checkEmailOther', 'checkEmailSent',
+  'diaryTitle', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion', 'diaryKindThree',
+  'diaryHidden', 'diaryNoteMark', 'diaryAccountLink', 'diaryConsentFailed',
 ];
