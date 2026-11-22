@@ -275,4 +275,27 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     expect(byText(root, 'Something went wrong. Please try again.')).toBeTruthy();
     expect(queryText(root, 'Save your readings here and come back to see what came true.')).toBeNull();
   });
+
+  it('?r=<id> opens that entry of the account (screen 4b)', async () => {
+    history.replaceState(null, '', `/diary?r=${ITEM.id}`);
+    h.session = { access_token: 'tok-a' };
+    serve({ [`GET /api/readings/${ITEM.id}`]: () => jsonResponse(200, {
+      id: ITEM.id, kind: 'three', topic: 'work', question: 'Will the move go well?', created_at: ITEM.created_at,
+      cards: ITEM.cards, verdict: null, soft_line: null, answer_shown: 'model', status: 'done', retries_left: 0,
+      answer: { headline: 'Slow and steady.' }, followups: [], followups_left: 2, followup_attempts_left: 8,
+      in_diary: true, outcome: null, note: null,
+    }) });
+    const { root } = await open((r) => expect(r.querySelector('h2')?.textContent).toBe('Will the move go well?'));
+    expect(byText<HTMLAnchorElement>(root, '← Your diary', 'a').getAttribute('href')).toBe('/diary');
+  });
+
+  it('signing in from an entry\'s address comes back to that entry (review M21)', async () => {
+    history.replaceState(null, '', `/diary?r=${ITEM.id}`);
+    serve({});
+    const { root } = await open((r) => expect(r.querySelector('input[type="email"]')).not.toBeNull());
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    await waitFor(() => expect(h.sent).toHaveLength(1));
+    expect(h.sent[0]).toMatchObject({ options: { emailRedirectTo: `https://arcana.test/diary?r=${ITEM.id}` } });
+  });
 });

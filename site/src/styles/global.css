@@ -351,6 +351,25 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .diary__account { display: inline-flex; align-items: center; min-height: 44px; } /* a touch target (review M16) */
 .diary :focus-visible { outline-color: var(--color-day-text); }
 
+/* Stage 4.4b: a diary entry (screen 4b) */
+.entry { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); max-width: 720px; }
+.entry__back { min-height: 44px; display: inline-flex; align-items: center; align-self: flex-start; }
+.entry__error { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+.entry__cards { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.entry__cards .card-frame { width: 120px; }
+.entry__headline { margin: 0; font-family: var(--font-display); font-size: var(--font-size-h-2); }
+.entry__verdict { display: flex; align-items: center; gap: var(--space-3); margin: 0; font-weight: 600; }
+.entry .answer__label { color: var(--color-day-accent); }
+.entry .answer__soft { border-color: var(--color-day-line); }
+.entry .answer__soft, .entry .followup__q { color: var(--color-day-text-muted); }
+.entry__outcome h3 { margin: 0 0 var(--space-2); font-size: var(--font-size-h-3); }
+.chip--day { border-color: var(--color-day-control-border); background: transparent; color: var(--color-day-text); }
+.chip--day[aria-pressed='true'] { background: var(--color-brand-ink-button); color: var(--color-day-on-accent); }
+.entry .field label { color: var(--color-day-text-muted); } /* the night label colour is ≈1.8:1 on day (review I6) */
+.entry__note textarea { resize: vertical; min-height: 120px; padding: var(--space-3) var(--space-4); font: inherit; }
+.entry__note .btn, .entry > .btn { align-self: flex-start; }
+.entry :focus-visible { outline-color: var(--color-day-text); }
+
 /* Simple card page */
 .card-page { display: grid; gap: var(--space-6); padding-top: var(--space-6); }
 .card-page__art { max-width: 280px; }

@@ -212,6 +212,19 @@ export const en = {
   outcomeNo: 'No',
   diaryAccountLink: 'Account',
   plusDiaryNote: 'Your diary keeps your last 10 readings. Plus keeps all of them.',
+  // stage 4.4b: a diary entry (screen 4b)
+  diaryBack: '← Your diary',
+  entryOutcomeQuestion: 'Did it come true?',
+  entryOutcomeLater: 'Come back on {date} to mark whether it came true.',
+  entryOutcomeClear: 'Clear',
+  noteLabel: 'Your note — only you see it',
+  noteLeft: '{n} characters left',
+  noteSave: 'Save note',
+  noteSaved: 'Note saved.',
+  entryDelete: 'Delete this entry',
+  entryDeleteConfirm: 'Delete this reading from your diary? This cannot be undone.',
+  entryDeleteYes: 'Delete',
+  cancel: 'Cancel',
   diaryConsentFailed: 'The reminder was not switched on. You can switch it on in your account.',
 };
 
@@ -233,4 +246,6 @@ export const enDrafts: readonly DictKey[] = [
   'checkEmailOther', 'checkEmailSent',
   'diaryTitle', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion', 'diaryKindThree',
   'diaryHidden', 'diaryNoteMark', 'diaryAccountLink', 'diaryConsentFailed',
+  'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
+  'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
 ];

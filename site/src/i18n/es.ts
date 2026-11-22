@@ -213,6 +213,19 @@ export const es: Dict = {
   outcomeNo: 'No',
   diaryAccountLink: 'Cuenta',
   plusDiaryNote: 'Tu diario guarda tus últimas 10 tiradas. Plus las guarda todas.',
+  // etapa 4.4b: una entrada del diario (pantalla 4b)
+  diaryBack: '← Tu diario',
+  entryOutcomeQuestion: '¿Se cumplió?',
+  entryOutcomeLater: 'Vuelve el {date} para marcar si se cumplió.',
+  entryOutcomeClear: 'Quitar',
+  noteLabel: 'Tu nota — solo tú la ves',
+  noteLeft: 'Quedan {n} caracteres',
+  noteSave: 'Guardar nota',
+  noteSaved: 'Nota guardada.',
+  entryDelete: 'Borrar esta entrada',
+  entryDeleteConfirm: '¿Borrar esta tirada de tu diario? No se puede deshacer.',
+  entryDeleteYes: 'Borrar',
+  cancel: 'Cancelar',
   diaryConsentFailed: 'El recordatorio no se activó. Puedes activarlo en tu cuenta.',
 };
 
@@ -241,4 +254,6 @@ export const esDrafts: readonly DictKey[] = [
   'diaryTitle', 'navDiaryShort', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion',
   'diaryKindThree', 'diaryHidden', 'diaryNoteMark', 'outcomeYes', 'outcomePartly', 'outcomeNo', 'diaryAccountLink',
   'plusDiaryNote', 'diaryConsentFailed',
+  'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
+  'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
 ];

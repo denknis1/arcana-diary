@@ -1,7 +1,7 @@
 // The diary page (screens 4a, 4b; spec 4.4b §5) on /diary and /es/diario. Static HTML, drawn here after load:
 // sign-in off — "signing in opens soon"; not signed in — a line and the sign-in block (the person who comes back
-// signs in right here, owner decision 3); signed in — once, the claim after sign-in (claim.ts), then the list. Nothing
-// here runs at build time.
+// signs in right here, owner decision 3); signed in — once, the claim after sign-in (claim.ts), then the list or,
+// with ?r=<id>, one entry. Nothing here runs at build time.
 // The address hash is read before the sign-in library opens (it takes the session from `#access_token=…` and clears
 // the hash): whether this page load finished a sign-in decides if `?claim=` / `remind=1` count (owner decision 15),
 // and `#error=…` is an expired link.
@@ -12,10 +12,13 @@ import { sendEvent } from '../lib/analytics';
 import { methodOf, openSession, type SessionStatus } from '../lib/auth';
 import { browserStorage, clearSignedIn } from '../lib/authState';
 import { finishSignIn, linkFailed, readReturnParams, returnUrl, signInCallbackInUrl } from '../lib/claim';
+import { entryParam } from '../lib/diary';
 import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
 import { pagePath } from '../lib/routes';
 import { siteFetch } from '../lib/siteApi';
+import { deviceTimeZone } from '../lib/timeZone';
 import type { Lang } from '../lib/types';
+import { DiaryEntry } from '../components/ui/DiaryEntry';
 import { DiaryList } from '../components/ui/DiaryList';
 import { HelpLine } from '../components/ui/HelpLine';
 import { SignInBlock } from '../components/ui/SignInBlock';
@@ -24,7 +27,8 @@ type View =
   | { type: 'loading' }
   | { type: 'status'; status: Exclude<SessionStatus, { type: 'signedIn' }>; expired: boolean }
   | { type: 'failed'; error: ErrorKind } // the claim after sign-in did not go through
-  | { type: 'ready'; consentFailed: boolean; round: number }; // round: a new list for each open, even when renders batch
+  // round: a new list (or entry) for each open, even when renders batch; entry: ?r=<id> of the address, else the list
+  | { type: 'ready'; consentFailed: boolean; round: number; entry: string | null };
 
 export default function DiaryIsland({ lang }: { lang: Lang }) {
   const d = t(lang);
@@ -58,7 +62,10 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
     if (finished.type === 'error') setView({ type: 'failed', error: finished.error });
     else {
       rounds.current += 1;
-      setView({ type: 'ready', consentFailed: finished.type === 'claimed' && finished.consent === 'failed', round: rounds.current });
+      setView({
+        type: 'ready', consentFailed: finished.type === 'claimed' && finished.consent === 'failed', round: rounds.current,
+        entry: entryParam(location.search),
+      });
     }
   };
 
@@ -106,14 +113,23 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
         <p class="lead">{d.diaryWhy}</p>
         {view.expired ? <p role="alert">{d.signInLinkExpired}</p> : null}
         <SignInBlock lang={lang} auth={status.auth} google={status.google} idBase="diary" surface="day"
-          redirectTo={async () => returnUrl(location.origin, lang, keep)} />
+          redirectTo={async () => {
+            const back = new URL(returnUrl(location.origin, lang, keep)); // an entry's address comes back to it (M21)
+            const entry = entryParam(location.search);
+            if (entry) back.searchParams.set('r', entry);
+            return back.toString();
+          }} />
       </div>
     );
   }
   return (
     <div class="diary">
       {view.consentFailed ? <p role="status">{d.diaryConsentFailed}</p> : null}
-      <DiaryList key={view.round} lang={lang} api={api} onSignedOut={() => void signedOut()} />
+      {view.entry ? (
+        <DiaryEntry key={view.round} lang={lang} id={view.entry} api={api} tz={deviceTimeZone()} onSignedOut={() => void signedOut()} />
+      ) : (
+        <DiaryList key={view.round} lang={lang} api={api} onSignedOut={() => void signedOut()} />
+      )}
       <p><a class="diary__account" href={pagePath('account', lang)}>{d.diaryAccountLink}</a></p>
     </div>
   );
