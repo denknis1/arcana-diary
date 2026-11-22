@@ -12,6 +12,16 @@ describe('analyticsEvent', () => {
   it('sends plus_view without a tool', () => {
     expect(analyticsEvent('plus_view', 'home', 'en', { place: 'limit' }).tool).toBeNull();
   });
+
+  it('knows the events of stage 4.4b (spec §8): signup_done and outcome_answered without a tool', () => {
+    expect(analyticsEvent('save_click', 'love', 'es')).toEqual({ name: 'save_click', tool: 'love', lang: 'es', params: {} });
+    expect(analyticsEvent('remind_click', 'daily', 'en')).toEqual({ name: 'remind_click', tool: 'daily', lang: 'en', params: {} });
+    expect(analyticsEvent('signup_done', null, 'en', { method: 'google' })).toEqual({
+      name: 'signup_done', tool: null, lang: 'en', params: { method: 'google' },
+    });
+    expect(analyticsEvent('outcome_answered', 'home', 'es', { after_days: 7, answer: 'partly' }).tool).toBeNull();
+    expect(analyticsEvent('plus_view', null, 'en', { place: 'diary' }).params).toEqual({ place: 'diary' });
+  });
 });
 
 describe('sendEvent', () => {

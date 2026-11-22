@@ -4,7 +4,10 @@
 import type { Lang, Tool } from './types';
 
 export type EventName = 'tool_view' | 'draw_click' | 'night_open' | 'cards_revealed' | 'reading_shown'
-  | 'more_about_cards' | 'plus_view';
+  | 'more_about_cards' | 'plus_view' | 'save_click' | 'signup_done' | 'outcome_answered' | 'remind_click';
+
+/** The events of docs/design/analytics-events.md that carry no tool. */
+export const NO_TOOL: ReadonlySet<EventName> = new Set<EventName>(['plus_view', 'signup_done', 'outcome_answered']);
 
 export type Params = Record<string, string | number | boolean>;
 
@@ -17,14 +20,14 @@ export interface AnalyticsEvent {
 
 export const EVENTS_URL = '/api/events';
 
-/** plus_view carries no tool (its only parameter is `place`); every other 4.4a event names its tool. */
-export function analyticsEvent(name: EventName, tool: Tool, lang: Lang, params: Params = {}): AnalyticsEvent {
+/** plus_view, signup_done and outcome_answered carry no tool; every other event names its tool. */
+export function analyticsEvent(name: EventName, tool: Tool | null, lang: Lang, params: Params = {}): AnalyticsEvent {
   const clean: Params = { ...params };
   if ('ms_from_draw' in clean) {
     const ms = Number(clean.ms_from_draw);
     clean.ms_from_draw = Number.isFinite(ms) ? Math.min(600000, Math.max(0, Math.round(ms))) : 0;
   }
-  return { name, tool: name === 'plus_view' ? null : tool, lang, params: clean };
+  return { name, tool: NO_TOOL.has(name) ? null : tool, lang, params: clean };
 }
 
 export interface Transport {
