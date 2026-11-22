@@ -1,5 +1,9 @@
 """The diary (spec 2026-11-19 stage 4.3 §6): the account's readings, "did it come true?", a private note, delete.
 
+Stage 4.4b §5 (owner decision 9): the list shows only the FREE_DIARY_VISIBLE newest readings, in pages; the older
+ones are not deleted — `hidden_count` says how many there are, and the export and the entry's own link still show
+them. There is no Plus flag on an account yet, so the cap applies to everyone.
+
 Signed in only (401 "sign_in"); a reading of someone else, a guest reading of this device and a missing one are
 all 404 alike. The note is stored exactly as sent and returned only as JSON: the site shows it as text (escaped),
 never as HTML. No model ever sees the note or the outcome (reader memory, §7, reads neither).
@@ -12,7 +16,7 @@ from fastapi import APIRouter, Query, Request, Response
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 from app import account_repo
-from app.config import NOTE_MAX_CHARS
+from app.config import FREE_DIARY_VISIBLE, NOTE_MAX_CHARS
 from app.context import get_ctx
 from app.reader import flow
 from app.routes.common import not_found, respond, sign_in_required, viewer
@@ -52,9 +56,13 @@ def list_diary(request: Request, before: datetime | None = None, limit: int = Qu
     if before is not None and before.tzinfo is None:
         before = before.replace(tzinfo=timezone.utc)
     with ctx.db.connect() as conn:
-        rows = account_repo.diary_page(conn, who.user.id, before, limit)
-    return respond(200, {"items": [diary_item(ctx, row) for row in rows],
-                         "next_before": rows[-1]["created_at"] if len(rows) == limit else None})
+        visible = account_repo.diary_page(conn, who.user.id, None, FREE_DIARY_VISIBLE)
+        total = account_repo.diary_count(conn, who.user.id)
+    rest = [row for row in visible if before is None or row["created_at"] < before]
+    page = rest[:limit]
+    return respond(200, {"items": [diary_item(ctx, row) for row in page],
+                         "next_before": page[-1]["created_at"] if len(rest) > limit else None,
+                         "hidden_count": max(total - len(visible), 0)})
 
 
 @router.patch("/diary/{reading_id}")

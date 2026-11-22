@@ -201,6 +201,7 @@ def full_view(ctx, reading: dict, followups: list[dict], owner: bool, now: datet
             # stage 4.3 §6: the owner (the account; for a guest reading, its device) also sees the diary fields
             "in_diary": reading.get("user_id") is not None,
             "outcome": reading.get("outcome"), "note": reading.get("note"),
+            "created_at": reading["created_at"],  # stage 4.4b §5: "did it come true?" opens 7 days after it
         })
     return view
 

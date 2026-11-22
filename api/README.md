@@ -87,7 +87,9 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 `outcome`, `note`. Перенос:
 `POST /api/readings/{id}/claim-token` (только устройство, где сделан расклад; `201 {"token", "expires_at"}`, 7 дней, не больше
 5 живых на расклад) и `POST /api/account/claim {"tokens": [...]}` → `{"claimed": [id, ...]}`. Дневник:
-`GET /api/diary?before=&limit=` (20, не больше 50; `next_before` — начало следующей страницы),
+`GET /api/diary?before=&limit=` (20, не больше 50; `next_before` — начало следующей страницы; этап 4.4б: только 10
+последних раскладов — `FREE_DIARY_VISIBLE`, за ними `next_before: null`, и `hidden_count` — сколько более старых
+скрыто; выгрузка и `GET /api/readings/{id}` их по-прежнему отдают, владельцу — ещё и `created_at`),
 `PATCH /api/diary/{id} {"outcome": "yes" | "partly" | "no" | null, "note": "…" | null}` (заметка до 1000 знаков,
 хранится как есть, отдаётся только в JSON), `DELETE /api/diary/{id}` → `204`; чужой расклад — `404`. Аккаунт:
 `GET /api/account?tz=`, `PATCH /api/account {"reminders_consent": bool}`, `GET /api/account/export` (файл JSON),

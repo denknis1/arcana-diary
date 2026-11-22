@@ -69,6 +69,11 @@ def diary_page(conn, user_id, before, limit: int) -> list[dict]:
         (user_id, before, before, limit)).fetchall()
 
 
+def diary_count(conn, user_id) -> int:
+    """Stage 4.4b §5: every reading of the account, the ones hidden beyond the free diary's list included."""
+    return conn.execute("SELECT count(*) AS n FROM readings WHERE user_id = %s", (user_id,)).fetchone()["n"]
+
+
 DIARY_FIELDS = "outcome, outcome_at, note, note_updated_at"
 
 
