@@ -9,6 +9,7 @@ import { isSignedIn, type StorageLike, browserStorage } from './authState';
 
 export type AuthSource = () => Promise<Pick<Auth, 'token' | 'refresh' | 'signOut'> | null>;
 
+// Callers (api.ts) pass headers as a plain object; a Headers instance or an array would need normalising first.
 function withBearer(init: RequestInit | undefined, token: string): RequestInit {
   return { ...init, headers: { ...((init?.headers ?? {}) as Record<string, string>), authorization: `Bearer ${token}` } };
 }
@@ -35,6 +36,8 @@ export function authFetch(base: FetchFn, source: AuthSource, storage: StorageLik
       const again = await base(input, withBearer(init, fresh));
       if (!(await isAuthRefusal(again))) return again;
     }
+    // refresh() gives null both when the session is refused and on a passing network error; it cannot tell them
+    // apart, so the spec rule applies to both: sign out on this device and repeat as a guest (§3, accepted risk).
     await auth.signOut();
     return base(input, init);
   };

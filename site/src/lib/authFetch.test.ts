@@ -41,6 +41,13 @@ describe('authFetch', () => {
     expect(calls[0].headers.authorization).toBeUndefined();
   });
 
+  it.each(['https://evil.example/api/x', '//evil.example/api/x', '/apix', '/api', 'api/diary'])(
+    'never sends the token to %s (not a same-origin /api/* path)', async (url) => {
+      const { fetch, calls } = fakeFetch(jsonResponse(200, {}));
+      await authFetch(fetch, source({ token: 'tok-1' }).get, SIGNED())(url);
+      expect(calls[0].headers.authorization).toBeUndefined();
+    });
+
   it('401 "auth": one refresh and the same request again with the new token', async () => {
     const { fetch, calls } = fakeFetch(jsonResponse(401, { reason: 'auth' }), jsonResponse(200, { items: [] }));
     const auth = source({ token: 'tok-1', refresh: 'tok-2' });
