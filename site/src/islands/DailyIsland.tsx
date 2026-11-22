@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
-import { browserFetch, createApi } from '../lib/api';
+import { siteApi } from '../lib/siteApi';
 import { baseUrl, dailyNext, formatDay, localIsoDay, shownFromBase, type BaseMeaning, type DailyShown } from '../lib/daily';
 import { CARD_BACK } from '../lib/deck';
 import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
@@ -52,7 +52,7 @@ export default function DailyIsland({ lang }: { lang: Lang }) {
     sendEvent(analyticsEvent('draw_click', 'daily', lang, { has_question: false, entry: 'tool' }));
     setView({ type: 'loading' });
     const tz = timeZone();
-    const next = dailyNext(await createApi(browserFetch()).getDaily(lang, tz), lang);
+    const next = dailyNext(await siteApi().getDaily(lang, tz), lang);
     if (next.type === 'shown') return setView({ type: 'shown', shown: next.shown });
     if (next.type === 'error') return setView({ type: 'error', error: next.error });
     const shown = await fromBase(lang, tz);

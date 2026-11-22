@@ -5,7 +5,7 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from 'preact/hooks';
 import { t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
-import { browserFetch, createApi } from '../lib/api';
+import { siteApi } from '../lib/siteApi';
 import { CARD_BACK } from '../lib/deck';
 import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, crisisPayloadOf, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
 import {
@@ -57,7 +57,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const shownFor = useRef(0); // the run that already sent reading_shown
   const roomIsOpen = useRef(false);
   const focusQuestion = useRef(false); // "Ask another question": focus the question field once the room is closed
-  const api = useMemo(() => createApi(browserFetch()), []);
+  const api = useMemo(() => siteApi(), []);
   const inputId = `question-${page}`;
 
   useEffect(() => {

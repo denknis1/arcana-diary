@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { t } from '../../i18n';
 import { analyticsEvent, sendEvent } from '../../lib/analytics';
-import { browserFetch, createApi } from '../../lib/api';
+import { siteApi } from '../../lib/siteApi';
 import { errorMessageKey, type ErrorKind } from '../../lib/errors';
 import { pagePath } from '../../lib/routes';
 import type { Lang, Tool } from '../../lib/types';
@@ -36,7 +36,7 @@ export function PlusCard({ lang, tool, focusOnShow = false }: Props) {
       return;
     }
     setStatus('sending');
-    const result = await createApi(browserFetch()).joinWaitlist(email.trim(), lang);
+    const result = await siteApi().joinWaitlist(email.trim(), lang);
     if (result.ok) setStatus('done');
     else setStatus(result.status === 422 ? 'invalid' : result.error);
   };
