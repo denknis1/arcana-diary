@@ -6,7 +6,7 @@ const keys = (lang: 'en' | 'es') => Object.keys(DICTS[lang]).sort();
 describe('dictionaries', () => {
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(222);
+    expect(keys('en').length).toBe(224);
   });
 
   it('have no empty strings', () => {
@@ -27,8 +27,8 @@ describe('dictionaries', () => {
       expect(new Set(DRAFTS[lang]).size).toBe(DRAFTS[lang].length);
       for (const key of DRAFTS[lang]) expect(keys(lang)).toContain(key);
     }
-    expect(DRAFTS.en.length).toBe(103);
-    expect(DRAFTS.es.length).toBe(175);
+    expect(DRAFTS.en.length).toBe(105);
+    expect(DRAFTS.es.length).toBe(177);
   });
 
   it('keep the prototype copy', () => {
@@ -61,6 +61,17 @@ describe('dictionaries', () => {
     expect(DRAFTS.en).not.toContain('howStep3');
     expect(DRAFTS.es).toContain('howStep3');
     expect(DRAFTS.es).toContain('plusDiaryNote');
+  });
+
+  it('say that a sign-in switched the reminder on, as drafts (owner decision 16)', () => {
+    expect([fill(t('en').diaryReminderOn, { account: t('en').diaryReminderOnLink }),
+      fill(t('es').diaryReminderOn, { account: t('es').diaryReminderOnLink })]).toEqual([
+      'The reminder in 7 days is on — you can turn it off in your account.',
+      'El recordatorio en 7 días está activado — puedes desactivarlo en tu cuenta.']);
+    for (const lang of ['en', 'es'] as const) {
+      expect(DRAFTS[lang]).toContain('diaryReminderOn');
+      expect(DRAFTS[lang]).toContain('diaryReminderOnLink');
+    }
   });
 
   it('name the votes with the card base labels (content/cards/yes-no-rules.json)', () => {

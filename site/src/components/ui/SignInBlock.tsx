@@ -4,6 +4,9 @@
 // diary moves its guest readings into the account once after sign-in. "Use another e-mail" puts the focus back into
 // the e-mail field (review M15). The mark is set only while the person is signed out (owner decision 15): a device
 // that already has a sign-in (another tab) never marks, so a link opened there moves no guest readings.
+// "Send it again" ignores presses while its send is in flight (aria-disabled + early return, final review M7). A
+// surface may answer `null` from redirectTo — nothing is sent, the surface shows why (the save sheet's stage line,
+// final review M5).
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
 import type { Auth, SendError } from '../../lib/auth';
@@ -16,7 +19,7 @@ const MESSAGES: Record<SendError | 'invalid', DictKey> = {
   tooOften: 'signInTooOften', badEmail: 'plusEmailError', unavailable: 'errUnavailable', invalid: 'plusEmailError',
 };
 
-async function resolveTarget(redirectTo: Props['redirectTo']): Promise<{ url: string; thisDeviceOnly: boolean }> {
+async function resolveTarget(redirectTo: Props['redirectTo']): Promise<{ url: string; thisDeviceOnly: boolean } | null> {
   const target = await redirectTo();
   return typeof target === 'string' ? { url: target, thisDeviceOnly: false } : target;
 }
@@ -32,8 +35,9 @@ interface Props {
   google: boolean;
   idBase: string;
   /** Where the link and Google bring the person back (the save sheet adds the reading's claim token). `thisDeviceOnly`:
-   * no claim token could be made, so the link saves the reading only on the device that sent it. */
-  redirectTo: () => Promise<string | { url: string; thisDeviceOnly: boolean }>;
+   * no claim token could be made, so the link saves the reading only on the device that sent it. `null`: send
+   * nothing — the surface has replaced the block with its own line (the save sheet after a stage 401). */
+  redirectTo: () => Promise<string | { url: string; thisDeviceOnly: boolean } | null>;
   /** 'night' inside the night room, 'day' on the diary and account pages. */
   surface: 'night' | 'day';
 }
@@ -47,6 +51,8 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
   const [resent, setResent] = useState(false);
   const [thisDeviceOnly, setThisDeviceOnly] = useState(false); // the link carries no claim token (the sheet's request failed)
   const [busy, setBusy] = useState(false); // waiting for the address (the claim token) before the browser leaves for Google
+  const [resending, setResending] = useState(false); // "Send it again" is in flight: its button is aria-disabled
+  const resendingNow = useRef(false); // the same, at once: two quick presses come before the next render
   const sentTitle = useRef<HTMLHeadingElement>(null);
   const emailInput = useRef<HTMLInputElement>(null);
   const backToForm = useRef(false); // "Use another e-mail" was pressed
@@ -65,6 +71,7 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
   }, [phase]);
 
   const send = async (again: boolean) => {
+    if (again && resendingNow.current) return; // aria-disabled stays focusable: the press is ignored here
     const address = email.trim();
     if (!EMAIL.test(address)) {
       setError('invalid');
@@ -73,9 +80,21 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
     setError(null);
     setResent(false);
     if (!again) setPhase('sending');
+    else {
+      resendingNow.current = true;
+      setResending(true);
+    }
     markStarted('email');
     const target = await resolveTarget(redirectTo);
-    const result = await auth.sendLink(address, target.url);
+    const result = target ? await auth.sendLink(address, target.url) : null;
+    if (again) {
+      resendingNow.current = false;
+      setResending(false);
+    }
+    if (!target || !result) { // no target: the surface shows why nothing was sent
+      if (!again) setPhase('form');
+      return;
+    }
     if (!result.ok) {
       setError(result.error);
       if (!again) setPhase('form');
@@ -92,6 +111,7 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
     markStarted('google');
     setBusy(true);
     const target = await resolveTarget(redirectTo);
+    if (!target) { setBusy(false); return; } // the surface shows why
     const result = await auth.google(target.url); // on success the browser leaves for Google
     if (!result.ok) { setBusy(false); setError(result.error); }
   };
@@ -104,7 +124,8 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
       <div class={`signin signin--${surface}`}>
         <h3 class="signin__title" tabIndex={-1} ref={sentTitle}>{d.checkEmailTitle}</h3>
         <p>{fill(thisDeviceOnly ? d.checkEmailLeadThisDevice : d.checkEmailLead, { email: email.trim() })}</p>
-        <button type="button" class="btn btn--outline" disabled={counting} onClick={() => void send(true)}>
+        <button type="button" class="btn btn--outline" disabled={counting} aria-disabled={resending}
+          onClick={() => void send(true)}>
           {d.checkEmailResend}
         </button>
         {counting ? <p class="small">{fill(d.checkEmailWait, { n: wait })}</p> : null}

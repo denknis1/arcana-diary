@@ -106,6 +106,66 @@ describe('the save sheet (screens 3, 3b; spec 4.4b §4)', () => {
     expect(root.textContent).toContain('Sent again.');
   });
 
+  it('a claim token refused by the stage cookie (401 without JSON): the stage line and a reload button, no link sent (final review M5)', async () => {
+    const reload = vi.spyOn(location, 'reload').mockImplementation(() => {});
+    const f = fakes('tok-1', [], async () => ({ ok: false, status: 401, error: 'stage', body: null }));
+    const { root } = await mount(sheet(f, { google: true }));
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    expect(f.sent).toEqual([]); // not the "this device only" link: the stage needs a reload first (spec §3)
+    expect(root.querySelector('[role="alert"]')?.textContent)
+      .toBe('Your session on this preview site has expired. Reload the page to continue.');
+    expect(root.querySelector('input[type="email"]')).toBeNull();
+    expect(queryText(root, 'Continue with Google')).toBeNull();
+    const again = byText<HTMLButtonElement>(root, 'Try again', 'button');
+    expect(document.activeElement).toBe(again); // the pressed button is gone: the focus goes to its replacement
+    await click(again);
+    expect(reload).toHaveBeenCalledTimes(1);
+    reload.mockRestore();
+  });
+
+  it('the stage line also comes from Google: nothing leaves for Google (final review M5)', async () => {
+    const reload = vi.spyOn(location, 'reload').mockImplementation(() => {});
+    const f = fakes('tok-1', [], async () => ({ ok: false, status: 401, error: 'stage', body: null }));
+    const { root } = await mount(sheet(f, { google: true }));
+    await click(byText(root, 'Continue with Google', 'button'));
+    expect(f.sent).toEqual([]);
+    expect(byText(root, 'Your session on this preview site has expired. Reload the page to continue.')).toBeTruthy();
+    reload.mockRestore();
+  });
+
+  it('"Send it again" ignores presses while a send is in flight (final review M7)', async () => {
+    vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval'] });
+    const f = fakes();
+    let finish: (result: SendResult) => void = () => {};
+    const first = f.auth.sendLink;
+    let sends = 0;
+    f.auth.sendLink = (email, redirectTo) => {
+      sends += 1;
+      if (sends === 1) return first(email, redirectTo);
+      f.sent.push({ method: 'email', email, redirectTo });
+      return new Promise<SendResult>((resolve) => { finish = resolve; });
+    };
+    const { root } = await mount(sheet(f));
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    await act(() => {
+      vi.advanceTimersByTime(RESEND_WAIT_S * 1000);
+    });
+    const again = byText<HTMLButtonElement>(root, 'Send it again', 'button');
+    await click(again);
+    expect(f.sent).toHaveLength(2);
+    expect(again.getAttribute('aria-disabled')).toBe('true');
+    expect(again.disabled).toBe(false); // aria-disabled keeps the focus where it is
+    await click(again);
+    await click(again);
+    expect(f.sent).toHaveLength(2); // the presses in flight send nothing
+    await act(async () => { finish({ ok: true }); });
+    await settle();
+    expect(root.textContent).toContain('Sent again.');
+    expect(byText<HTMLButtonElement>(root, 'Send it again', 'button').getAttribute('aria-disabled')).not.toBe('true');
+  });
+
   it('closes with × before anything was sent, and makes no claim token', async () => {
     const onClose = vi.fn();
     const f = fakes();

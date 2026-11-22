@@ -245,6 +245,9 @@ export const es: Dict = {
   remindTomorrow: 'Recuérdamelo mañana',
   remindDone: 'Abre el archivo para añadirlo a tu calendario.',
   diaryConsentFailed: 'El recordatorio no se activó. Puedes activarlo en tu cuenta.',
+  // decisión 16 del dueño: {account} es el enlace a la cuenta (diaryReminderOnLink)
+  diaryReminderOn: 'El recordatorio en 7 días está activado — puedes desactivarlo en {account}.',
+  diaryReminderOnLink: 'tu cuenta',
 };
 
 // draft — review with stage 5 texts
@@ -271,7 +274,7 @@ export const esDrafts: readonly DictKey[] = [
   'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',
   'diaryTitle', 'navDiaryShort', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion',
   'diaryKindThree', 'diaryHidden', 'diaryNoteMark', 'outcomeYes', 'outcomePartly', 'outcomeNo', 'diaryAccountLink',
-  'plusDiaryNote', 'diaryConsentFailed',
+  'plusDiaryNote', 'diaryConsentFailed', 'diaryReminderOn', 'diaryReminderOnLink',
   'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
   'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
   'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',

@@ -102,8 +102,9 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   });
 
   it('after the e-mail link on another device: claims only the token once, gives consent, counts signup_done and cleans the address', async () => {
-    // the session came in the address (#access_token): this page load finished the sign-in (owner decision 15)
-    history.replaceState(null, '', '/diary?claim=tok-1&remind=1#access_token=x');
+    // the session came in the address: the library's session is the one of #access_token, so this page load
+    // finished the sign-in (owner decision 15; final review I1)
+    history.replaceState(null, '', '/diary?claim=tok-1&remind=1#access_token=tok-a');
     h.session = { access_token: 'tok-a', user: { app_metadata: { provider: 'email' } } };
     const served = serve({
       'POST /api/account/claim': () => jsonResponse(200, { claimed: [ITEM.id] }),
@@ -118,6 +119,68 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     expect(`${location.pathname}${location.search}`).toBe('/diary');
     expect(vi.mocked(sendEvent)).toHaveBeenCalledWith({ name: 'signup_done', tool: null, lang: 'en', params: { method: 'email' } });
     expect(localStorage.getItem(SIGNED_IN_KEY)).toBe('1');
+  });
+
+  it('a reminder switched on by the sign-in says so, with the account page to turn it off (owner decision 16)', async () => {
+    history.replaceState(null, '', '/diary?claim=tok-1&remind=1#access_token=tok-a');
+    h.session = { access_token: 'tok-a', user: { app_metadata: { provider: 'email' } } };
+    serve({
+      'POST /api/account/claim': () => jsonResponse(200, { claimed: [ITEM.id] }),
+      'PATCH /api/account': () => jsonResponse(200, { email: 'ana@example.com', reminders_consent: true, consent_at: null }),
+      'GET /api/diary': page([ITEM]),
+    });
+    const { root } = await open((r) => expect(r.querySelectorAll('a.diary-item')).toHaveLength(1));
+    const line = root.querySelector('p[role="status"]');
+    expect(line?.textContent).toBe('The reminder in 7 days is on — you can turn it off in your account.');
+    const link = line?.querySelector('a');
+    expect(link?.textContent).toBe('your account');
+    expect(link?.getAttribute('href')).toBe('/account');
+    expect(queryText(root, 'The reminder was not switched on. You can switch it on in your account.')).toBeNull();
+  });
+
+  it('the reminder line in Spanish links to the Spanish account page (owner decision 16)', async () => {
+    history.replaceState(null, '', '/es/diario?claim=tok-1&remind=1#access_token=tok-a');
+    h.session = { access_token: 'tok-a', user: { app_metadata: { provider: 'email' } } };
+    serve({
+      'POST /api/account/claim': () => jsonResponse(200, { claimed: [ITEM.id] }),
+      'PATCH /api/account': () => jsonResponse(200, { email: 'ana@example.com', reminders_consent: true, consent_at: null }),
+      'GET /api/diary': page([ITEM]),
+    });
+    const mounted = await mount(<DiaryIsland lang="es" />);
+    await waitFor(() => expect(mounted.root.querySelectorAll('a.diary-item')).toHaveLength(1));
+    const line = mounted.root.querySelector('p[role="status"]');
+    expect(line?.textContent).toBe('El recordatorio en 7 días está activado — puedes desactivarlo en tu cuenta.');
+    expect(line?.querySelector('a')?.textContent).toBe('tu cuenta');
+    expect(line?.querySelector('a')?.getAttribute('href')).toBe('/es/cuenta');
+  });
+
+  it('a sign-in that switched no reminder on shows no reminder line (consent "none")', async () => {
+    history.replaceState(null, '', '/diary?claim=tok-1#access_token=tok-a');
+    h.session = { access_token: 'tok-a', user: { app_metadata: { provider: 'email' } } };
+    serve({
+      'POST /api/account/claim': () => jsonResponse(200, { claimed: [ITEM.id] }),
+      'GET /api/diary': page([ITEM]),
+    });
+    const { root } = await open((r) => expect(r.querySelectorAll('a.diary-item')).toHaveLength(1));
+    expect(root.querySelector('p[role="status"]')).toBeNull();
+    expect(root.textContent).not.toContain('The reminder');
+  });
+
+  it('a forged #access_token on someone else\'s link opened while signed in: nothing claimed, no consent, no event, address cleaned (final review I1)', async () => {
+    // the library keeps the existing session when the address login fails (GoTrueClient.js:406-421): the session is
+    // not the one of the hash, so this page load finished no sign-in (owner decision 15)
+    history.replaceState(null, '', '/diary?claim=tok-1&remind=1#access_token=x');
+    h.session = { access_token: 'tok-a', user: { app_metadata: { provider: 'email' } } };
+    const served = serve({
+      'POST /api/account/claim': () => jsonResponse(200, { claimed: [ITEM.id] }),
+      'PATCH /api/account': () => jsonResponse(200, { email: 'ana@example.com', reminders_consent: true, consent_at: null }),
+      'GET /api/diary': page([ITEM]),
+    });
+    const { root } = await open((r) => expect(r.querySelectorAll('a.diary-item')).toHaveLength(1));
+    expect(served.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET /api/auth-config', 'GET /api/diary?limit=10']);
+    expect(vi.mocked(sendEvent)).not.toHaveBeenCalledWith(expect.objectContaining({ name: 'signup_done' }));
+    expect(`${location.pathname}${location.search}${location.hash}`).toBe('/diary');
+    expect(root.textContent).not.toContain('The reminder');
   });
 
   it('an ordinary visit claims nothing and lists the entries as text, a crisis entry without text', async () => {
@@ -216,7 +279,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   });
 
   it('a claim refused by the stage cookie: the stage line without the help line, and "Try again" reloads the page', async () => {
-    history.replaceState(null, '', '/diary?claim=tok-1#access_token=x');
+    history.replaceState(null, '', '/diary?claim=tok-1#access_token=tok-a');
     h.session = { access_token: 'tok-a' };
     const reload = vi.spyOn(location, 'reload').mockImplementation(() => {});
     const served = serve({ 'POST /api/account/claim': () => new Response('', { status: 401 }) });
@@ -235,6 +298,18 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     expect(root.querySelector('input[type="email"]')).not.toBeNull();
   });
 
+  it('an expired e-mail link: once the line is shown the hash leaves the address, the query stays (final review M3)', async () => {
+    history.replaceState(null, '', '/diary?claim=tok-1&remind=1#error=access_denied&error_code=otp_expired');
+    serve({});
+    const { root } = await open((r) => byText(r, 'This link has expired or was already used. Send yourself a new one below.'));
+    expect(location.hash).toBe('');
+    expect(`${location.pathname}${location.search}`).toBe('/diary?claim=tok-1&remind=1'); // the sign-in here keeps them
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    await waitFor(() => expect(h.sent).toHaveLength(1));
+    expect(h.sent[0]).toMatchObject({ options: { emailRedirectTo: 'https://arcana.test/diary?claim=tok-1&remind=1' } });
+  });
+
   it('someone else\'s link opened while signed in (no session in the address, no mark): nothing claimed, address cleaned (owner decision 15)', async () => {
     history.replaceState(null, '', '/diary?claim=tok-1&remind=1');
     h.session = { access_token: 'tok-a' };
@@ -246,7 +321,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   });
 
   it('a claim that failed: "Try again" claims the same token (still this page load\'s sign-in)', async () => {
-    history.replaceState(null, '', '/diary?claim=tok-1#access_token=x');
+    history.replaceState(null, '', '/diary?claim=tok-1#access_token=tok-a');
     h.session = { access_token: 'tok-a' };
     let claims = 0;
     const served = serve({
@@ -264,7 +339,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   });
 
   it('the reminder asked for but not saved: one line, and the list', async () => {
-    history.replaceState(null, '', '/diary?claim=tok-1&remind=1#access_token=x');
+    history.replaceState(null, '', '/diary?claim=tok-1&remind=1#access_token=tok-a');
     h.session = { access_token: 'tok-a' };
     serve({
       'POST /api/account/claim': () => jsonResponse(200, { claimed: [ITEM.id] }),
@@ -273,6 +348,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     });
     const { root } = await open((r) => expect(r.querySelectorAll('a.diary-item')).toHaveLength(1));
     expect(byText(root, 'The reminder was not switched on. You can switch it on in your account.')).toBeTruthy();
+    expect(root.textContent).not.toContain('The reminder in 7 days is on'); // owner decision 16: only on 'set'
   });
 
   it('a 401 "sign_in" signs out on this device and opens the page again: the session gone — the sign-in block', async () => {

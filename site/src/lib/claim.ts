@@ -8,8 +8,11 @@
 // The consent and signup_done need that mark or a reading actually moved: the same address opened again (Back after
 // the library cleared #access_token, or a made-up token) switches nothing on (Fable plan review I1).
 // `?claim=` and `remind=1` count only on the page load that itself finished a sign-in (the session came in the
-// address: the e-mail link or the Google redirect) or with the "started here" mark: someone else's link opened by a
+// address: the e-mail link or the Google redirect, and the library's session is that very token — a `#access_token`
+// stuck on by hand does not count, final review I1) or with the "started here" mark: someone else's link opened by a
 // person already signed in only has its address cleaned — nothing claimed, no consent, no event (owner decision 15).
+// `remind=1` still switches the consent on (the link may be opened on another device); the diary then says so in one
+// line with the account page to turn it off (owner decision 16).
 import type { AccountApi } from './accountApi';
 import { analyticsEvent, type AnalyticsEvent } from './analytics';
 import { clearSignInStarted, signInStarted, type SignInMethod, type StorageLike } from './authState';
@@ -46,20 +49,25 @@ export function cleanReturnUrl(href: string): string {
   return `${url.pathname}${url.search}`;
 }
 
-/** True when the address hash carries the session of the implicit flow (`#access_token=…`), which both the e-mail
- * link and the Google redirect bring (auth-js 2.119.0 `_isImplicitGrantCallback`, GoTrueClient.js:3352–3357, reads
- * `access_token` from the URL parameters). `#error=…` is a failed link, not a sign-in: false.
- * Read `location.hash` BEFORE the sign-in library is opened (`openSession`/`getAuth`): on initialise it takes the
- * session from the address and clears the hash (`window.location.hash = ''`, GoTrueClient.js:3334). */
-export function signInCallbackInUrl(hash: string): boolean {
-  return Boolean(new URLSearchParams(hash.replace(/^#/, '')).get('access_token'));
+/** The access token of the implicit flow in the address hash (`#access_token=…`, brought by the e-mail link and the
+ * Google redirect alike), or null; `#error=…` (a failed link) has none. Read `location.hash` BEFORE the sign-in
+ * library is opened (`openSession`/`getAuth`): on initialise it takes the session from the address and clears the
+ * hash (`window.location.hash = ''`, auth-js 2.119.0 GoTrueClient.js:3337); a session it takes has that very
+ * `access_token` (GoTrueClient.js:3300, 3326-3334).
+ * A token in the hash is not yet a sign-in: when the library cannot take a session from the address (a made-up
+ * `#access_token=x`, a used link) it keeps the session the device already had ("Don't remove existing session on URL
+ * login failure", GoTrueClient.js:406-421). This page load finished a sign-in only when the session the library then
+ * gives has exactly this token (final review I1). */
+export function hashAccessToken(hash: string): string | null {
+  return new URLSearchParams(hash.replace(/^#/, '')).get('access_token') || null;
 }
 
 export interface FinishDeps {
   api: Pick<AccountApi, 'claim' | 'setConsent'>;
   storage: StorageLike | null;
-  /** This page load carried a sign-in callback in its address: `signInCallbackInUrl(location.hash)`, with the hash
-   * read before the sign-in library is opened (the library clears it). Without it or the "started here" mark,
+  /** This page load itself finished a sign-in: the library's session is the one whose token came in the address
+   * (`session.access_token === hashAccessToken(location.hash)`, the hash read before the library is opened — it
+   * clears it). A token in the hash alone is not enough (final review I1). Without this or the "started here" mark,
    * `?claim=` and `remind=1` are only removed from the address (owner decision 15). */
   arrivedWithSession: boolean;
   href: string;

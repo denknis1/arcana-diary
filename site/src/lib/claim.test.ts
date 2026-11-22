@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { AnalyticsEvent } from './analytics';
 import { STARTED_KEY, markSignInStarted } from './authState';
 import {
-  cleanReturnUrl, finishSignIn, linkFailed, readReturnParams, returnUrl, signInCallbackInUrl, type FinishDeps,
+  cleanReturnUrl, finishSignIn, hashAccessToken, linkFailed, readReturnParams, returnUrl, type FinishDeps,
 } from './claim';
 import { memoryStorage } from './testing/auth';
 
@@ -162,19 +162,20 @@ describe('finishSignIn counts a claim link only right after a sign-in (owner dec
   });
 });
 
-describe('signInCallbackInUrl', () => {
-  it('is true when the address carries the session of the implicit flow (the e-mail link and Google alike)', () => {
-    expect(signInCallbackInUrl('#access_token=x&expires_in=3600&refresh_token=y&token_type=bearer&type=magiclink')).toBe(true);
-    expect(signInCallbackInUrl('#access_token=x&expires_at=1&provider_token=g&refresh_token=y&token_type=bearer')).toBe(true);
-    expect(signInCallbackInUrl('access_token=x')).toBe(true);
+describe('hashAccessToken', () => {
+  it('reads the access token of the implicit flow from the address hash (the e-mail link and Google alike)', () => {
+    expect(hashAccessToken('#access_token=x&expires_in=3600&refresh_token=y&token_type=bearer&type=magiclink')).toBe('x');
+    expect(hashAccessToken('#access_token=eyJ.a-b_c&expires_at=1&provider_token=g&refresh_token=y&token_type=bearer'))
+      .toBe('eyJ.a-b_c');
+    expect(hashAccessToken('access_token=x')).toBe('x');
   });
 
-  it('is false for a failed link, an empty token, another anchor or no hash', () => {
-    expect(signInCallbackInUrl('#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid')).toBe(false);
-    expect(signInCallbackInUrl('#access_token=')).toBe(false);
-    expect(signInCallbackInUrl('#top')).toBe(false);
-    expect(signInCallbackInUrl('#')).toBe(false);
-    expect(signInCallbackInUrl('')).toBe(false);
+  it('is null for a failed link, an empty token, another anchor or no hash', () => {
+    expect(hashAccessToken('#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid')).toBeNull();
+    expect(hashAccessToken('#access_token=')).toBeNull();
+    expect(hashAccessToken('#top')).toBeNull();
+    expect(hashAccessToken('#')).toBeNull();
+    expect(hashAccessToken('')).toBeNull();
   });
 });
 

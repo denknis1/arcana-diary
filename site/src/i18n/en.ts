@@ -244,6 +244,9 @@ export const en = {
   remindTomorrow: 'Remind me tomorrow',
   remindDone: 'Open the file to add it to your calendar.',
   diaryConsentFailed: 'The reminder was not switched on. You can switch it on in your account.',
+  // owner decision 16: {account} is the link to the account page (diaryReminderOnLink)
+  diaryReminderOn: 'The reminder in 7 days is on — you can turn it off in {account}.',
+  diaryReminderOnLink: 'your account',
 };
 
 export type DictKey = keyof typeof en;
@@ -263,7 +266,7 @@ export const enDrafts: readonly DictKey[] = [
   'signInEmailLabel', 'signInSend', 'signInOr', 'signInTooOften', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait',
   'checkEmailOther', 'checkEmailSent',
   'diaryTitle', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion', 'diaryKindThree',
-  'diaryHidden', 'diaryNoteMark', 'diaryAccountLink', 'diaryConsentFailed',
+  'diaryHidden', 'diaryNoteMark', 'diaryAccountLink', 'diaryConsentFailed', 'diaryReminderOn', 'diaryReminderOnLink',
   'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
   'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
   'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',
