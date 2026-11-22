@@ -11,7 +11,7 @@ def test_all_prompts_load_with_versions():
         ("guard", None): "guard.v1",
         ("reader", "en"): "reader.en.v7", ("reader", "es"): "reader.es.v7",
         ("followup", "en"): "followup.en.v6", ("followup", "es"): "followup.es.v6",
-        ("daily", "en"): "daily.en.v4", ("daily", "es"): "daily.es.v4",
+        ("daily", "en"): "daily.en.v4", ("daily", "es"): "daily.es.v5",
     }
     assert all(len(p.text) > 500 for p in PROMPTS.values())
 
@@ -255,3 +255,12 @@ def test_three_card_headline_speaks_of_the_cards_in_the_plural(lang, phrases):
     assert all(phrase in text for phrase in phrases), [p for p in phrases if p not in text]
     assert ('"The card leans toward yes, with care"' in text) if lang == "en" else (
         "«La carta se inclina hacia el sí, con cuidado»" in text)
+
+
+def test_spanish_daily_prompt_names_the_orientation_neutrally():
+    """Stage 4.6, owner decision 22.11.2026: the card of the day says «al revés» / «al derecho», like its input."""
+    text = PROMPTS[("daily", "es")].text
+    assert "si salió al revés, diciéndolo así: «al revés»" in text and "di «al derecho»" in text
+    assert "salió invertida" not in text
+    assert text.count("invertida") == 1 and text.count("derecha") == 1  # only in the line that forbids them
+    assert "saying whether it is reversed" in PROMPTS[("daily", "en")].text  # English unchanged
