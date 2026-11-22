@@ -163,3 +163,31 @@ def test_a_claim_moves_a_reading_whose_request_number_the_account_already_has(ap
         moved = conn.execute("SELECT user_id, request_id FROM readings WHERE id = ANY(%s)",
                              ([uuid.UUID(here), uuid.UUID(away)],)).fetchall()
     assert moved == [{"user_id": ANA, "request_id": None}] * 2
+
+
+# --- stage 4.4b §4 (owner decision 12): "device": false moves only the readings of the tokens ---
+
+def claim_without_device(client, user, tokens):
+    return client.post("/api/account/claim", headers=bearer(user), json={"tokens": tokens, "device": False})
+
+
+def test_a_link_opened_on_another_device_moves_only_its_own_reading(api):
+    reading_id = new_reading(api.client)
+    token = claim_token(api.client, reading_id).json()["token"]
+    other = api.new_client()  # someone else's computer, with a guest reading of its own
+    theirs = new_reading(other)
+    assert claim_without_device(other, ANA, [token]).json() == {"claimed": [reading_id]}
+    assert reading_row(api, reading_id)["user_id"] == ANA and reading_row(api, theirs)["user_id"] is None
+    assert claim(other, ANA).json() == {"claimed": [theirs]}  # without "device" the 4.3 behaviour is unchanged
+
+
+def test_device_false_without_tokens_moves_nothing(api):
+    mine = new_reading(api.client)
+    response = claim_without_device(api.client, ANA, [])
+    assert response.status_code == 200 and response.json() == {"claimed": []}
+    assert reading_row(api, mine)["user_id"] is None
+
+
+def test_device_is_true_or_false_only(api):
+    response = api.client.post("/api/account/claim", headers=bearer(ANA), json={"tokens": [], "device": "no"})
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["device"]}
