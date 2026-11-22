@@ -9,23 +9,30 @@ import { jsonResponse, routeFetch, type Call } from '../lib/testing/fakes';
 import DiaryIsland from './DiaryIsland';
 
 type FakeSession = { access_token: string; user?: { email?: string; app_metadata?: { provider?: string } } };
-const h = vi.hoisted(() => ({ session: null as FakeSession | null, error: null as unknown, sent: [] as unknown[] }));
+const h = vi.hoisted(() => ({ session: null as FakeSession | null, error: null as unknown, sent: [] as unknown[], loadFails: 0 }));
 vi.mock('../lib/supabaseClient', () => ({ // the sign-in library is never loaded in tests
-  createClient: () => ({
-    getSession: async () => ({ data: { session: h.session }, error: h.error }),
-    refreshSession: async () => ({ data: { session: null }, error: null }),
-    signInWithOtp: async (args: unknown) => { h.sent.push(args); return { error: null }; },
-    signInWithOAuth: async () => ({ error: null }),
-    signOut: async () => { h.session = null; return { error: null }; },
-  }),
+  createClient: () => {
+    if (h.loadFails > 0) { // the library's chunk did not arrive (offline for a moment)
+      h.loadFails -= 1;
+      throw new Error('chunk failed');
+    }
+    return {
+      getSession: async () => ({ data: { session: h.session }, error: h.error }),
+      refreshSession: async () => ({ data: { session: null }, error: null }),
+      signInWithOtp: async (args: unknown) => { h.sent.push(args); return { error: null }; },
+      signInWithOAuth: async () => ({ error: null }),
+      signOut: async () => { h.session = null; return { error: null }; },
+    };
+  },
 }));
 vi.mock('../lib/analytics', async (importOriginal) => ({
   ...(await importOriginal<typeof import('../lib/analytics')>()), sendEvent: vi.fn(),
 }));
 
 const ON = { enabled: true, supabase_url: 'https://abc.supabase.co', anon_key: 'sb_publishable_x', google: false };
+// created_at from a local date: the list shows the local day, so the test holds in any time zone
 const ITEM = {
-  id: '2b3c4d5e-0000-4000-8000-000000000001', created_at: '2026-11-20T18:00:00+00:00', lang: 'en', kind: 'three',
+  id: '2b3c4d5e-0000-4000-8000-000000000001', created_at: new Date(2026, 10, 20, 12).toISOString(), lang: 'en', kind: 'three',
   topic: 'work', question: 'Will the <b>move</b> go well?', headline: 'Slow and steady.', answer_shown: 'model',
   cards: [{ card_id: 'major-18-moon', position: 'past', reversed: true, name: 'The Moon' }], outcome: 'partly',
   has_note: true, followups: 1,
@@ -57,7 +64,9 @@ afterEach(() => {
   h.session = null;
   h.error = null;
   h.sent = [];
+  h.loadFails = 0;
   vi.unstubAllGlobals();
+  vi.restoreAllMocks();
   vi.mocked(sendEvent).mockClear();
 });
 
@@ -147,9 +156,23 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     expect(lists).toBe(2);
   });
 
-  it('signed out after a library error: clears ad_signed_in, so sending the link marks "started here" (handoff 6)', async () => {
+  it('a library error with no session: the try-again view, the sign-in kept; "Try again" opens the diary (controller, Task 14 review)', async () => {
     localStorage.setItem(SIGNED_IN_KEY, '1');
-    h.error = { message: 'storage hiccup' }; // the library keeps the flag on an error with no session
+    h.error = { message: 'Failed to fetch' }; // the library answered with an error and no session: not "signed out"
+    const served = serve({ 'GET /api/diary': page([ITEM]) });
+    const { root } = await open((r) => byText(r, 'The service is unavailable right now. Please try again in a few minutes.'));
+    expect(root.querySelector('input[type="email"]')).toBeNull();
+    expect(root.querySelector('.help-line')).not.toBeNull();
+    expect(localStorage.getItem(SIGNED_IN_KEY)).toBe('1');
+    h.error = null;
+    h.session = { access_token: 'tok-a' };
+    await click(byText(root, 'Try again', 'button'));
+    await waitFor(() => expect(root.querySelectorAll('a.diary-item')).toHaveLength(1));
+    expect(served.calls.filter((c) => c.url.startsWith('/api/diary'))).toHaveLength(1);
+  });
+
+  it('a clean "no session": the sign-in block, the flag cleared, so sending the link marks "started here" (handoff 6)', async () => {
+    localStorage.setItem(SIGNED_IN_KEY, '1'); // left from a session that went (signed out in another tab, say)
     serve({});
     const { root } = await open((r) => expect(r.querySelector('input[type="email"]')).not.toBeNull());
     expect(localStorage.getItem(SIGNED_IN_KEY)).toBeNull();
@@ -159,6 +182,32 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     expect(JSON.parse(localStorage.getItem(STARTED_KEY) ?? 'null')).toMatchObject({ method: 'email' });
     expect(h.sent).toEqual([{ email: 'ana@example.com',
       options: { emailRedirectTo: 'https://arcana.test/diary', shouldCreateUser: true } }]);
+  });
+
+  it('a library that did not load: the try-again view, the sign-in kept; a later open works', async () => {
+    localStorage.setItem(SIGNED_IN_KEY, '1');
+    h.session = { access_token: 'tok-a' };
+    h.loadFails = 1;
+    serve({ 'GET /api/diary': page([ITEM]) });
+    const { root } = await open((r) => byText(r, 'The service is unavailable right now. Please try again in a few minutes.'));
+    expect(root.querySelector('input[type="email"]')).toBeNull();
+    expect(localStorage.getItem(SIGNED_IN_KEY)).toBe('1');
+    await click(byText(root, 'Try again', 'button'));
+    await waitFor(() => expect(root.querySelectorAll('a.diary-item')).toHaveLength(1));
+    expect(localStorage.getItem(SIGNED_IN_KEY)).toBe('1');
+  });
+
+  it('a claim refused by the stage cookie: the stage line without the help line, and "Try again" reloads the page', async () => {
+    history.replaceState(null, '', '/diary?claim=tok-1#access_token=x');
+    h.session = { access_token: 'tok-a' };
+    const reload = vi.spyOn(location, 'reload').mockImplementation(() => {});
+    const served = serve({ 'POST /api/account/claim': () => new Response('', { status: 401 }) });
+    const { root } = await open((r) => byText(r, 'Your session on this preview site has expired. Reload the page to continue.'));
+    expect(root.querySelector('.help-line')).toBeNull();
+    await click(byText(root, 'Try again', 'button'));
+    await settle();
+    expect(reload).toHaveBeenCalledTimes(1);
+    expect(served.calls.filter((c) => c.url === '/api/account/claim')).toHaveLength(1); // not claimed again
   });
 
   it('an expired e-mail link: the line about it above the sign-in block', async () => {
@@ -187,6 +236,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
       'GET /api/diary': page([ITEM]),
     });
     const { root } = await open((r) => byText(r, 'The service is unavailable right now. Please try again in a few minutes.'));
+    expect(root.querySelector('.help-line')).not.toBeNull(); // a 503 links to the help lines (needsHelpLink)
     expect(location.search).toBe('?claim=tok-1'); // nothing changed yet: the address keeps its token
     await click(byText(root, 'Try again', 'button'));
     await waitFor(() => expect(root.querySelectorAll('a.diary-item')).toHaveLength(1));

@@ -51,8 +51,17 @@ export function sendError(error: AuthErrorLike): SendError {
   return 'unavailable';
 }
 
+/** What the library says about this device: a session; a clean "no session" (it answered, nothing there); or
+ * "unavailable" — it answered an error with no session, or did not load: not "signed out", try again later. */
+export type SessionCheck =
+  | { type: 'session'; session: SessionLike }
+  | { type: 'none' }
+  | { type: 'unavailable' };
+
 export interface Auth {
-  /** The current session, or null; keeps the `ad_signed_in` flag in step with it. */
+  /** The three answers apart; keeps the `ad_signed_in` flag in step (cleared only on `none`). */
+  check(): Promise<SessionCheck>;
+  /** The current session, or null (`none` and `unavailable` alike); keeps the `ad_signed_in` flag in step with it. */
   session(): Promise<SessionLike | null>;
   token(): Promise<string | null>;
   /** One refresh after 401 {"reason": "auth"}; null when it did not help. */
@@ -89,13 +98,19 @@ export function createAuth(config: AuthConfig, factory: ClientFactory = loadSupa
   };
 
   return {
-    async session() {
+    async check() {
       try {
         const { data, error } = await (await lib()).getSession();
-        return keep(data.session, error);
+        const current = keep(data.session, error);
+        if (current) return { type: 'session', session: current };
+        return error ? { type: 'unavailable' } : { type: 'none' };
       } catch {
-        return null;
+        return { type: 'unavailable' }; // the library did not load (or threw): no answer, the flag stays
       }
+    },
+    async session() {
+      const answer = await this.check();
+      return answer.type === 'session' ? answer.session : null;
     },
     async token() {
       return (await this.session())?.access_token ?? null;
@@ -149,8 +164,10 @@ export async function getAuth(): Promise<Auth | null> {
 
 export type SessionStatus =
   | { type: 'off' } // no SUPABASE_URL / SUPABASE_ANON_KEY: "sign-in opens soon"
-  | { type: 'unreachable' } // the settings could not be read: "try again later"
-  | { type: 'signedOut'; auth: Auth; google: boolean }
+  // the settings could not be read, or the library errored with no session or did not load: "try again later";
+  // never "signed out" — `ad_signed_in` stays
+  | { type: 'unreachable' }
+  | { type: 'signedOut'; auth: Auth; google: boolean } // a clean "no session": the flag is already cleared
   | { type: 'signedIn'; auth: Auth; google: boolean; session: SessionLike };
 
 /** What the diary and the account page start from (spec 4.4b §5, §6). */
@@ -160,8 +177,9 @@ export async function openSession(readConfig: () => Promise<AuthConfig | null> =
   if (config === null) return { type: 'unreachable' };
   if (!config.enabled) return { type: 'off' };
   const auth = makeAuth(config);
-  const current = await auth.session();
-  return current ? { type: 'signedIn', auth, google: config.google, session: current }
+  const answer = await auth.check();
+  if (answer.type === 'unavailable') return { type: 'unreachable' };
+  return answer.type === 'session' ? { type: 'signedIn', auth, google: config.google, session: answer.session }
     : { type: 'signedOut', auth, google: config.google };
 }
 

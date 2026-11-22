@@ -12,7 +12,7 @@ import { sendEvent } from '../lib/analytics';
 import { methodOf, openSession, type SessionStatus } from '../lib/auth';
 import { browserStorage, clearSignedIn } from '../lib/authState';
 import { finishSignIn, linkFailed, readReturnParams, returnUrl, signInCallbackInUrl } from '../lib/claim';
-import { errorMessageKey, type ErrorKind } from '../lib/errors';
+import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
 import { pagePath } from '../lib/routes';
 import { siteFetch } from '../lib/siteApi';
 import type { Lang } from '../lib/types';
@@ -43,8 +43,9 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
     setView({ type: 'loading' });
     const status = await openSession();
     if (status.type !== 'signedIn') {
-      // signed out here: drop the flag, so the sign-in block's "only when signed out" guard sets the started mark
-      if (status.type === 'signedOut') clearSignedIn();
+      // signedOut is a clean "no session" (auth.check() has cleared `ad_signed_in`, so the sign-in block's "only when
+      // signed out" guard sets the started mark); a library error or a library that did not load is `unreachable`:
+      // the try-again view, the flag kept
       setView({ type: 'status', status, expired });
       return;
     }
@@ -79,8 +80,10 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
     return (
       <div class="diary">
         <p role="alert">{d[errorMessageKey(view.error)]}</p>
-        <HelpLine lang={lang} />
-        <button type="button" class="btn btn--outline" onClick={() => void open()}>{d.retry}</button>
+        {needsHelpLink(view.error) ? <HelpLine lang={lang} /> : null}
+        {/* 'stage': the stage cookie went — reload the page (spec §3), do not claim again */}
+        <button type="button" class="btn btn--outline"
+          onClick={() => (view.error === 'stage' ? location.reload() : void open())}>{d.retry}</button>
       </div>
     );
   }

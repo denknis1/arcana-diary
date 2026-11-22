@@ -20,7 +20,7 @@ function fakes(config: AuthConfig | null = ON) {
   const events: AnalyticsEvent[] = [];
   let reads = 0;
   const auth: Auth = {
-    session: async () => null, token: async () => null, refresh: async () => null,
+    check: async () => ({ type: 'none' as const }), session: async () => null, token: async () => null, refresh: async () => null,
     sendLink: async () => ({ ok: true as const }), google: async () => ({ ok: true as const }), signOut: async () => {},
   };
   const accountApi: Pick<AccountApi, 'claimToken'> = {

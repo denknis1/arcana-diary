@@ -237,7 +237,8 @@ export const esDrafts: readonly DictKey[] = [
   'plusDone', 'plusEmailError', 'plusDaily', 'crisisCall', 'crisisText', 'crisisHours', 'crisisWeb',
   'errDayCap', 'followupReady', 'plusNotNow', 'yesNoCountHint',
   'savedToDiary', 'saveTitle', 'saveLead', 'saveRemind', 'signInEmailLabel', 'signInSend', 'signInOr', 'signInGoogle',
-  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',  'diaryTitle', 'navDiaryShort', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion',
+  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',
+  'diaryTitle', 'navDiaryShort', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion',
   'diaryKindThree', 'diaryHidden', 'diaryNoteMark', 'outcomeYes', 'outcomePartly', 'outcomeNo', 'diaryAccountLink',
   'plusDiaryNote', 'diaryConsentFailed',
 ];

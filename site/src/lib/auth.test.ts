@@ -115,6 +115,22 @@ describe('createAuth', () => {
     expect(storage.data[SIGNED_IN_KEY]).toBeUndefined();
   });
 
+  it('check() tells a session, a clean "no session" and "unavailable" apart (controller, after Task 14 review)', async () => {
+    const { auth, client, storage } = setup();
+    expect(await auth.check()).toEqual({ type: 'session', session: session() });
+    expect(storage.data[SIGNED_IN_KEY]).toBe('1');
+    client.getSession = async () => ({ data: { session: null }, error: { message: 'Failed to fetch' } });
+    expect(await auth.check()).toEqual({ type: 'unavailable' });
+    expect(storage.data[SIGNED_IN_KEY]).toBe('1'); // an error is not "signed out"
+    client.getSession = async () => ({ data: { session: null }, error: null });
+    expect(await auth.check()).toEqual({ type: 'none' });
+    expect(storage.data[SIGNED_IN_KEY]).toBeUndefined();
+    const storage2 = memoryStorage({ [SIGNED_IN_KEY]: '1' });
+    const failing = createAuth(CONFIG, async () => { throw new Error('chunk failed'); }, storage2);
+    expect(await failing.check()).toEqual({ type: 'unavailable' }); // the library did not load: no answer at all
+    expect(storage2.data[SIGNED_IN_KEY]).toBe('1');
+  });
+
   it('a library that failed to load is loaded again on the next use (review M7)', async () => {
     const client = fakeClient(session());
     let tries = 0;
@@ -148,5 +164,24 @@ describe('openSession', () => {
     expect(await openSession(async () => CONFIG, () => signed.auth)).toMatchObject({
       type: 'signedIn', google: true, session: { access_token: 'tok-1' },
     });
+  });
+
+  it('a library error or a library that cannot load is "unreachable", not signed out; a later open works', async () => {
+    const erring = setup();
+    erring.storage.data[SIGNED_IN_KEY] = '1';
+    erring.client.getSession = async () => ({ data: { session: null }, error: { message: 'Failed to fetch' } });
+    expect(await openSession(async () => CONFIG, () => erring.auth)).toEqual({ type: 'unreachable' });
+    expect(erring.storage.data[SIGNED_IN_KEY]).toBe('1');
+    const client = fakeClient(session());
+    const storage = memoryStorage({ [SIGNED_IN_KEY]: '1' });
+    let tries = 0;
+    const auth = createAuth(CONFIG, async () => {
+      tries += 1;
+      if (tries === 1) throw new Error('chunk failed');
+      return client;
+    }, storage);
+    expect(await openSession(async () => CONFIG, () => auth)).toEqual({ type: 'unreachable' });
+    expect(storage.data[SIGNED_IN_KEY]).toBe('1');
+    expect(await openSession(async () => CONFIG, () => auth)).toMatchObject({ type: 'signedIn', session: { access_token: 'tok-1' } });
   });
 });
