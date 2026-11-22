@@ -4,9 +4,9 @@
 
 **Goal:** On the closed stage a person saves a reading to the diary, signs in by e-mail link or Google, sees and marks their readings, writes a note, manages the account, and puts tomorrow's Card of the Day into a calendar — in English and Mexican Spanish, on a phone and a desktop.
 
-**Architecture:** The API (FastAPI + Postgres, built in 4.3) gets small changes only: limits 2/3, the free diary capped at the 10 newest readings with `hidden_count`, `GET /api/auth-config` with the public sign-in settings, the event `remind_click` (migration 007) and error logs in the three stream handlers. The site (Astro static pages + Preact islands) signs in with `@supabase/auth-js` (implicit flow), loaded with `import()` from one file (`src/lib/supabaseClient.ts`) only when a sheet, the diary, the account or an existing session needs it; a `fetch` wrapper (`authFetch`) adds `Authorization: Bearer` to every `/api/*` request of a signed-in person and handles `401`. New static pages `/diary`, `/es/diario`, `/account`, `/es/cuenta` (noindex) host the diary and account islands; the night room gets "Save to diary" and the Card of the Day gets a calendar file.
+**Architecture:** The API (FastAPI + Postgres, built in 4.3) gets small changes only: limits 2/3, the free diary capped at the 10 newest readings with `hidden_count`, `GET /api/auth-config` with the public sign-in settings, the event `remind_click` (migration 007), error logs in the three stream handlers and `"device": false` for `POST /api/account/claim` (owner decision 12). The site (Astro static pages + Preact islands) signs in with `@supabase/auth-js` (implicit flow), loaded with `import()` from one file (`src/lib/supabaseClient.ts`) only when a sheet, the diary, the account or an existing session needs it; a `fetch` wrapper (`authFetch`) adds `Authorization: Bearer` to every `/api/*` request of a signed-in person and handles `401`. New static pages `/diary`, `/es/diario`, `/account`, `/es/cuenta` (noindex) host the diary and account islands; the night room gets "Save to diary" and the Card of the Day gets a calendar file.
 
-**Tech Stack:** Python 3.12, FastAPI 0.115.6, psycopg 3.3.9, pytest 8.3.4 in `api/.venv` (nothing new); Astro 5.18.2, @astrojs/preact 4.1.3, preact 10.29.8, Vitest 5.1.0 (in `site/package-lock.json`); new after the owner's yes (Task 6): `@supabase/auth-js` 2.119.0, `@astrojs/check` 0.9.12, `typescript` 5.9.3, `happy-dom` 21.0.4; Node 22 only in Docker; Postgres 16.10 in a throwaway Docker container for the API tests.
+**Tech Stack:** Python 3.12, FastAPI 0.115.6, psycopg 3.3.9, pytest 8.3.4 in `api/.venv` (nothing new); Astro 5.18.2, @astrojs/preact 4.1.3, preact 10.29.8, Vitest 5.1.0 (in `site/package-lock.json`); new after the owner's yes (Task 7): `@supabase/auth-js` 2.119.0, `@astrojs/check` 0.9.12, `typescript` 5.9.3, `happy-dom` 21.0.4 and the peer `@emnapi/runtime` 1.11.3 that `astro check` needs; Node 22 only in Docker; Postgres 16.10 in a throwaway Docker container for the API tests.
 
 **Spec:** `docs/superpowers/specs/2026-11-22-stage4-4b-account-screens-design.md` (approved by the owner 22.11.2026; decisions in `.superpowers/sdd/progress-s44b.md`). Server contract: `docs/superpowers/specs/2026-11-19-stage4-3-accounts-diary-design.md`, `api/README.md` sections «Вход через Supabase» and «Передача в 4.4 (экраны)». Copy deferred from 4.4a: `docs/superpowers/specs/2026-11-19-stage4-4a-reading-screens-design.md` §11.
 
@@ -24,22 +24,28 @@ Binding text of the spec (copied verbatim; spec §2 decisions 1–10 and §3–�
 - Decision 8: «**Лимит вошедшего — 3 расклада в день** (было 5)» — `USER_DAILY_LIMIT = 3`.
 - Decision 9: «**Бесплатный дневник показывает 10 последних раскладов.** Более старые не удаляются, а скрыты под строкой «Ещё N раскладов — в Plus»; в Plus — весь дневник. Третье преимущество Plus («Your whole diary, with no limit» / «Todo tu diario, sin límite») показывается в карточке Plus.»
 - Decision 10: «Карта дня в дневник не сохраняется: на сервере это не расклад; под ней остаётся только «Remind me tomorrow».»
+- Decisions 11–14 (22.11.2026, «после проверки плана Fable», spec §2):
+  - 11: «**Напоминание со звуком.** В файле календаря — оповещение (`VALARM`, `DISPLAY`) в начале события, в 9:00 по местному времени; название — «Card of the Day — Arcana Diary» / «Carta del día — Arcana Diary».»
+  - 12: «**Ссылка из письма на чужом устройстве переносит только расклад своего токена.** Гостевые расклады устройства переносятся, только если вход начат на этом устройстве. Небольшая правка сервера 4.3: `POST /api/account/claim` получает поле `"device"`.»
+  - 13: «**«Сбылось?» открывается с начала названного дня:** в 00:00 по местному времени дня «местная дата расклада + 7 дней»; строка «Вернитесь …» и кнопки всегда совпадают.»
+  - 14: «**Кнопка «Назад» телефона при открытом листе сохранения закрывает только лист**; ночная комната и ответ остаются.»
 - §3: «Библиотека — `@supabase/auth-js` (только вход; таблицы Supabase браузер не читает). Загружается отдельным куском и только когда нужна: открыт лист сохранения, страница дневника или аккаунта, либо на устройстве уже есть вход. Страница расклада гостя её не грузит.»
 - §3: `GET /api/auth-config` → `{"enabled": bool, "supabase_url": "…", "anon_key": "…", "google": bool}`; settings `SUPABASE_URL`, `SUPABASE_ANON_KEY` («открытый ключ проекта, не секрет»), `GOOGLE_SIGNIN` (`true`/пусто); «Нет адреса или ключа — `enabled: false`: кнопка «Save to diary» не показывается, на странице дневника — строка «вход скоро откроется».»
+- §3 (added after the Fable check): «Из-за этих настроек API не останавливается (после проверки плана Fable): `GOOGLE_SIGNIN` не `true` — Google выключен; секретный ключ (`sb_secret_…` или JWT с ролью не `anon`) не отдаётся — вход выключен; в обоих случаях строка в журнале.»
 - §3: «Ссылка на почту: `signInWithOtp` с адресом возврата на страницу дневника языка страницы. Поток — implicit (токен в `#…` адреса): ссылку можно открыть на любом устройстве (решение 14.11.2026); PKCE этого не даёт. Google: `signInWithOAuth` с тем же адресом возврата.»
 - §3: «Сессию хранит библиотека (`localStorage`). Признак «на устройстве есть вход» — свой ключ `ad_signed_in`.»
 - §3: «Каждый запрос вошедшего к `/api/*` несёт `Authorization: Bearer`. … `401 {"reason": "auth"}` — один раз обновить токен и повторить; не помогло — выйти и повторить как гость; `401 {"reason": "sign_in"}` — показать вход; `401` без JSON на стенде — перезагрузить страницу; `503 auth_unavailable` — строка «попробуйте позже».»
 - §3: «Выход — кнопка в аккаунте: сессия и `ad_signed_in` удаляются, страница — главная.»
 - §4: «Кнопка — под ответом чтеца в ночной комнате (экраны 2e, 5b, 8b, 13d) во всех инструментах, кроме карты дня.»
 - §4 guest: `save_click` → bottom sheet: e-mail, «Remind me in 7 days: did it come true?» (off), Google (if on); `POST /api/readings/{id}/claim-token` → `/diary?claim=<token>` (+ `&remind=1`); «Check your e-mail» (3b) with «отправить ещё раз» after 60 seconds; Supabase errors «понятной строкой».
-- §4 after sign-in: «один раз `POST /api/account/claim` — с токеном из адреса, если он есть, — затем `?claim=…&remind=…` убираются из адресной строки (`history.replaceState`); при `remind=1` — `PATCH /api/account {"reminders_consent": true}`; событие `signup_done` (`method`: `email` или `google`). Перенос зовётся только после входа, начатого явным действием на этом устройстве (метка в `localStorage`, ставится при отправке почты или нажатии Google) либо при токене в адресе, — не при каждой загрузке страницы.»
-- §4 signed in: «Вместо кнопки — «Saved to your diary ✓» со ссылкой на запись.» «Расклад в ночной комнате при этом не теряется: лист закрывается, ответ остаётся на экране.»
+- §4 after sign-in: «один раз `POST /api/account/claim {"tokens": […], "device": …}` — с токеном из адреса, если он есть, — затем `?claim=…&remind=…` убираются из адресной строки (`history.replaceState`); при `remind=1` — `PATCH /api/account {"reminders_consent": true}`; событие `signup_done` (`method`: `email` или `google`). Перенос зовётся только после входа, начатого явным действием на этом устройстве (метка в `localStorage`, ставится при отправке почты или нажатии Google) либо при токене в адресе, — не при каждой загрузке страницы. `"device": true` (перенести и гостевые расклады устройства) — только при метке; с одним токеном в адресе — `"device": false`, переносится только расклад токена (решение 12). Согласие и `signup_done` — только при метке или если что-то перенесено: повторный заход по той же ссылке (кнопка «Назад») ничего не включает.»
+- §4 signed in: «Вместо кнопки — «Saved to your diary ✓» со ссылкой на запись.» «Расклад в ночной комнате при этом не теряется: лист закрывается, ответ остаётся на экране. Кнопка «Назад» телефона при открытом листе закрывает только лист (решение 14): открытый лист — своя запись истории, закрытие крестиком или Escape её снимает.»
 - §5: `/diary`, `/es/diario` «статические, `noindex`, вне карты сайта; содержимое рисует островок Preact»; list «до 10 записей, новые сверху: дата, вид расклада, вопрос (или «без вопроса»), маленькие карты, заголовок ответа, отметка «сбылось?», значок заметки. Кризисная запись — без текста»; empty — a line and a button «сделать расклад».
 - §5 cap: `GET /api/diary` returns at most `FREE_DIARY_VISIBLE = 10` newest and `hidden_count`; «`next_before` за пределом — `null`»; `hidden_count > 0` → «Ещё N раскладов — в Plus» and the Plus card (`plus_view`, `place: diary`); «выгрузка отдаёт все расклады; запись, открытая по своей ссылке, открывается»; «после удаления записи на её место приходит более старая».
-- §5 entry `?r=<id>`: cards, answer by sections, follow-ups; note ≤ 1000 with a counter and «сохранить» (`PATCH /api/diary/{id}`); «удалить запись» with confirmation (`DELETE`); outcome when the reading is 7 days old or more, changeable and clearable; `outcome_answered` (`after_days`: 7 up to 30 days, else 30); earlier — a line with the date to come back.
+- §5 entry `?r=<id>`: cards, answer by sections, follow-ups; note ≤ 1000 with a counter and «сохранить» (`PATCH /api/diary/{id}`); «удалить запись» with confirmation (`DELETE`); «Сбылось / Отчасти / Нет» — «с 00:00 по местному времени дня «местная дата расклада + 7 дней» (решение 13)», changeable and clearable; `outcome_answered` (`after_days`: 7 up to 30 days, else 30); earlier — «строка с этим днём, когда вернуться; строка и кнопки считаются по одному правилу».
 - §5: «Все тексты из API выводятся как текст (`textContent`), никогда как разметка.»
 - §6: `/account`, `/es/cuenta` noindex, linked from the diary; e-mail, readings left today, sign-out; consent switch (`PATCH /api/account`) «с пояснением, что письма начнутся позже»; «Скачать мои расклады» (`GET /api/account/export`); delete dialog → `DELETE /api/account {"confirm": "DELETE"}`; «После удаления — выход и главная со строкой «аккаунт удалён».»
-- §7: `.ics` made in the browser: one event tomorrow 9:00 local, 15 minutes, «Card of the Day — Arcana Diary» / «Carta del día — Arcana Diary», link `/daily` or `/es/carta-del-dia`; event `remind_click` (`tool: daily`, `lang`).
+- §7: `.ics` made in the browser: one event tomorrow 9:00 local, 15 minutes, «Card of the Day — Arcana Diary» / «Carta del día — Arcana Diary», link `/daily` or `/es/carta-del-dia`, «оповещение в начале события (решение 11)»; event `remind_click` (`tool: daily`, `lang`).
 - §8: menu «Your diary» / «Tu diario», desktop header «Diary» / «Diario»; «Free · save it to your diary after»; home step 3 «Save it, and check later what came true.»; Plus third benefit; Plus diary line «Your diary keeps your last 10 readings. Plus keeps all of them.» / «Tu diario guarda tus últimas 10 tiradas. Plus las guarda todas.»; events `save_click`, `signup_done`, `outcome_answered`, `plus_view` with `place: diary`, new `remind_click`; Caddy: the four addresses like the other pages, `deploy/test-site-routes.sh` and `check_dist` know them, language pairs in the switch; «Испанские тексты — черновик Claude в словаре сайта».
 - §9: `@astrojs/check` and `typescript`; «Try again» of a follow-up lost more than an hour ago — `GET` only; logs in the three API stream handlers on a break; DOM tests (save sheet, diary, entry, account, yes/no votes) with a DOM library for Vitest; yes/no votes on a 360 px phone.
 - §9: «Все новые пакеты ставятся после «да» владельца с названными версиями и размерами; версии — закреплённые, не моложе двух недель.»
@@ -47,24 +53,24 @@ Binding text of the spec (copied verbatim; spec §2 decisions 1–10 and §3–�
 
 Working rules (owner, unchanged from 4.4a / 4.5):
 
-- Install nothing outside Task 6, and Task 6 only after the owner's explicit yes (the controller supplies it). The API uses only `api/requirements*.txt`; the site only `site/package-lock.json`. Node commands only in Docker `node:22`.
+- Install nothing outside Task 7, and Task 7 only after the owner's explicit yes (the controller supplies it). The API uses only `api/requirements*.txt`; the site only `site/package-lock.json`. Node commands only in Docker `node:22`.
 - No paid API calls in any task. Tests never reach the network: the sign-in library is replaced by a fake (`vi.mock('../lib/supabaseClient', …)` or a fake client factory), `fetch` by `fakeFetch` / `routeFetch`, analytics by `vi.mock`.
 - Never read, print or commit `deploy/.env` or `deploy/caddy/stage_auth.caddy*`; never touch, reload or restart `arcana-caddy-1` / `arcana-api-1`; never run `deploy/deploy.sh`, `deploy/check-indexing.sh` or `docker compose` in `deploy/` — deploying is the owner's step. `deploy/test-site-routes.sh` and the API tests start their own throwaway containers and remove them.
-- Security: every text from the API is a text node (no `innerHTML`, `set:html`, `dangerouslySetInnerHTML`; `site/src/lib/guards.test.ts` scans the sources); `POST /api/account/claim` once, only after a sign-in started on this device or with `?claim=` in the address, then `history.replaceState` drops `claim`/`remind`; implicit flow; the library only through `import('./supabaseClient')` from `src/lib/auth.ts` (guards test + `tools/site/check_dist.py`); sign-out right after `DELETE /api/account`.
+- Security: every text from the API is a text node (no `innerHTML`, `set:html`, `dangerouslySetInnerHTML`; `site/src/lib/guards.test.ts` scans the sources); `POST /api/account/claim` once, only after a sign-in started on this device or with `?claim=` in the address, with `"device": true` only after a sign-in started on this device, then `history.replaceState` drops `claim`/`remind`; consent and `signup_done` only with that mark or when something was claimed (review I1); implicit flow; the library only through `import('./supabaseClient')` from `src/lib/auth.ts` (guards test + `tools/site/check_dist.py`); sign-out right after `DELETE /api/account`.
 - Copy: strings not in the prototypes and every new Spanish string are drafts — listed in `enDrafts` / `esDrafts` (`// draft — review with stage 5 texts`). Spanish: Mexican, `tú`, no gendered forms for the person. Colours, fonts, spacing, radii only from `tokens.css` (`docs/design/00-design.md` «Правила для кода»); touch targets ≥ 44 px; real `<button>`, `<a>`, `<label>`.
 - Commands (from the repository root unless noted):
   - API: `cd ~/arcana-diary/api && .venv/bin/pytest -q [files]` — baseline `1493 passed`.
   - Site tools: `cd ~/arcana-diary && api/.venv/bin/pytest -q tools/site tools/cards` — baseline `80 passed` (`tools/site` alone `7 passed`).
   - Vitest: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run [files]` — baseline `198 passed` in 18 files (needs `site/node_modules`: run `deploy/build-site.sh` once first, it runs `npm ci`).
   - Build: `deploy/build-site.sh`, then `python3 tools/site/check_dist.py` — baseline `OK: 167 pages`.
-  - Type check (from Task 19): `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 npx astro check`.
-- Counts (API Tasks 1–5 and the pure site modules of Tasks 7–10, 16 and 17 were measured by applying this plan's code to a copy of `stage4-4b-account` at 318a286 with the real `api/.venv`, `site/node_modules` and a throwaway Postgres; DOM tests (`*.test.tsx`) could not run before Task 6 installs happy-dom): API `1493` → T1 `1493` → T2 `1499` → T3 `1506` → T4 `1518` → T5 `1522 passed`. Vitest `198/18 files` → T6 `199/19` → T7 `216/22` → T8 `226/23` → T9 `231/24` → T10 `241/25` → T11 `251/28` → T12 `262/29` → T13 `268/30` → T14 `276/33` → T15 `281/35` → T16 `282/35` → T17 `285/35` → T18 `286/35`. `tools/site tools/cards`: `80` → T20 `86 passed` (`tools/site` `7` → `13`). Build: `167` → T12 `169` (`/diary`, `/es/diario`) → T14 `171` HTML pages.
+  - Type check (from Task 8 on, in the verification step of every site task, expected `- 0 errors`): `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 npx astro check`.
+- Counts — measured again while amending the plan after the Fable check (22.11.2026): the plan's code applied to scratch copies of `stage4-4b-account` at 318a286 with the real `api/.venv` and a throwaway Postgres (the API suite's own `arcana-test-pg-*` container), and with `site/node_modules` plus the five packages of Task 7 installed in the copy with `--no-save --before=2026-11-08T23:59:59Z`, so this time the DOM tests ran too (happy-dom 21.0.4): API `1493` → T1 `1494` → T2 `1500` → T3 `1512` → T4 `1524` → T5 `1528` → T6 `1531 passed`. Vitest `198/18 files` → T7 `204/19` → T8 `204/19` → T9 `223/22` → T10 `233/23` → T11 `238/24` → T12 `250/25` → T13 `266/29` → T14 `280/30` → T15 `291/31` → T16 `305/35` → T17 `312/37` → T18 `313/37` → T19 `316/37` → T20 `317/37` (T18 and T19 derived: Tasks 18–20 were applied together and `317/37` measured). `astro check`: `9 errors` on the existing code (Task 8, step 2) → `0 errors` after Task 8 and after each of Tasks 9–20. `tools/site tools/cards`: `80` → T21 `86 passed` (`tools/site` `7` → `13`). Build: `167` → T14 `169` (`/diary`, `/es/diario`; derived) → T16 `171` HTML pages (measured after T20); `check_dist` `OK: 171 pages` on that build. Not measured: `deploy/test-site-routes.sh` (it starts Caddy containers) and the "see it fail" counts of the site tasks' step 2 (derived from the tests).
 - `api/tests/test_api_followups.py::test_two_followups_at_once_make_one` is timing-based (two threads, 0.3 s guard delay) and failed once in five full runs of the measuring copy, before and after these changes; if it fails, run it alone three times — it is not caused by this plan.
-- Every commit message ends with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
+- Every commit message ends with a `Co-Authored-By:` trailer. The commit steps below show `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>` (the model that runs this stage); an implementer running on another model writes its own model name there (review M24).
 
 ---
 
-## Packages (Task 6, owner's yes required)
+## Packages (Task 7, owner's yes required)
 
 Read from `https://registry.npmjs.org/<package>` on 22.11.2026 (read-only). Rule: exact pins, each version published on or before 08.11.2026 (two weeks before 22.11.2026), the newest such version that fits the others' peer ranges.
 
@@ -74,10 +80,11 @@ Read from `https://registry.npmjs.org/<package>` on 22.11.2026 (read-only). Rule
 | `@astrojs/check` | 0.9.12 | 2026-10-21 | 15,663 B | 4 (`@astrojs/language-server` ^2.17.3, `chokidar` ^5, `yargs` ^18.2, `kleur` ^4.1.5) | `astro check` (owner decision 20.11.2026); development only, never shipped |
 | `typescript` | 5.9.3 | 2025-09-30 | 23,625,066 B (23.6 MB) | 0 | peer of `@astrojs/check` (`^5.0.0 \|\| ^6.0.0`, so 7.x is out); 5.x and not 6.0.3 (16.04.2026) because Astro 5.18.2's own dependencies declare TypeScript ^5 (`tsconfck` 3.1.6 `^5.0.0`, `zod-to-ts` 1.2.0 `^4.9.4 \|\| ^5.0.2` in `site/package-lock.json`); 5.9.3 is the newest 5.x; development only |
 | `happy-dom` | 21.0.4 | 2026-10-20 | 9,185,190 B (9.2 MB) | 7 (`ws`, `entities`, `whatwg-mimetype`, `buffer-image-size`, `@types/node`, `@types/ws`, `@types/whatwg-mimetype`) | a DOM for the screen tests; Vitest 5.1.0 lists `happy-dom: *` as an optional peer; development only |
+| `@emnapi/runtime` | 1.11.3 | 2026-07-25 | 436,901 B | 1 (`tslib` ^2.4.0, already in the tree through auth-js) | added while amending the plan: `@astrojs/check` 0.9.12 → `@astrojs/language-server` 2.17.3 → `@astrojs/astro2tsx` 0.1.3 → `@napi-rs/wasm-runtime` 1.2.4, whose **peer** `@emnapi/runtime` npm does not install under `site/.npmrc` `legacy-peer-deps=true`. Without it `astro check` cannot load (measured in a scratch copy, 22.11.2026: `ERR_MODULE_NOT_FOUND: Cannot find package '@emnapi/runtime'`, and `npx astro check` then asks to install `@astrojs/check`); with it the check runs. 1.11.3 is the newest version and matches `@emnapi/core` 1.11.3 that `astro2tsx` pins; development only |
 
 Why happy-dom alone and not `jsdom` + `@testing-library/preact`: the tests render with Preact's own `render` and `act` (`preact/test-utils`, part of preact 10.29.8) and query the DOM directly (`site/src/lib/testing/dom.ts`), so no testing library is needed. jsdom 31.0.0 (05.11.2026) has 18 direct dependencies and needs Node `^22.22.2`; `@testing-library/preact` 3.2.6 adds `@testing-library/dom` 10 and its tree. happy-dom is one package with 7 small dependencies. Transitive dependencies (`@astrojs/language-server` and its Volar packages are the largest) are resolved by npm's `--before=2026-11-08T23:59:59Z`, so no installed package is younger than the cut-off either.
 
-How it is installed (Task 6): the same Docker `node:22` as `deploy/build-site.sh`, inside `site/`, with `site/.npmrc` (`legacy-peer-deps=true`, unchanged since 4.4a) and `--save-exact --before=…`; `site/package.json` and `site/package-lock.json` are committed.
+How it is installed (Task 7): the same Docker `node:22` as `deploy/build-site.sh`, inside `site/`, with `site/.npmrc` (`legacy-peer-deps=true`, unchanged since 4.4a) and `--save-exact --before=…`; `site/package.json` and `site/package-lock.json` are committed. The four versions of the Fable plan check are unchanged; the fifth row is a peer that the check did not see (it read the registry, not an install). The owner's yes has to name it too.
 
 ---
 
@@ -85,7 +92,8 @@ How it is installed (Task 6): the same Docker `node:22` as `deploy/build-site.sh
 
 | File | Responsibility |
 |---|---|
-| `api/app/config.py` | `DAILY_LIMIT = 2`, `USER_DAILY_LIMIT = 3`, `FREE_DIARY_VISIBLE = 10`; settings `supabase_anon_key`, `google_signin` |
+| `api/app/config.py` | `DAILY_LIMIT = 2`, `USER_DAILY_LIMIT = 3`, `FREE_DIARY_VISIBLE = 10`; settings `supabase_anon_key` (a secret key is dropped), `google_signin` (never an error) |
+| `api/app/routes/claim.py` | `POST /api/account/claim` with `"device": false` (owner decision 12) |
 | `api/app/routes/diary.py`, `api/app/account_repo.py` | the list capped at 10 + `hidden_count`; `diary_count` |
 | `api/app/reader/flow.py` | the owner view carries `created_at`; logs in the reading stream |
 | `api/app/routes/auth_config.py` (new), `api/app/main.py` | `GET /api/auth-config` |
@@ -93,7 +101,7 @@ How it is installed (Task 6): the same Docker `node:22` as `deploy/build-site.sh
 | `api/app/reader/followups.py` | logs in the follow-up stream and its replay |
 | `api/README.md`, `deploy/docker-compose.yml`, `deploy/.env.example`, `docs/design/analytics-events.md` | the contract and the new settings |
 | `site/package.json`, `site/package-lock.json`, `site/vitest.config.ts` | the packages; `.test.tsx` files and the happy-dom URL |
-| `site/src/lib/testing/dom.ts`, `site/src/lib/testing/auth.ts` (new), `site/src/lib/testing/fakes.ts` | DOM test helpers; fake storage and sign-in client; `routeFetch` |
+| `site/src/lib/testing/dom.ts`, `site/src/lib/testing/auth.ts`, `site/src/lib/testing/night.ts` (new), `site/src/lib/testing/fakes.ts` | DOM test helpers (`mount`, `cleanup`, `waitFor`); fake storage and sign-in client; a shown night room; `routeFetch` |
 | `site/src/lib/authState.ts` (new) | `ad_signed_in` and the "sign-in started here" mark |
 | `site/src/lib/authConfig.ts` (new) | `GET /api/auth-config`, once per page |
 | `site/src/lib/auth.ts` (new) | the sign-in wrapper (`Auth`), `openSession`, Supabase error kinds; loads the library with `import()` |
@@ -102,9 +110,9 @@ How it is installed (Task 6): the same Docker `node:22` as `deploy/build-site.sh
 | `site/src/lib/api.ts` | `callJson`, `jsonBody`, `readingPath` exported for the account client |
 | `site/src/lib/accountApi.ts` (new) | claim token, claim, diary, entry, patch, delete, account, consent, export, delete account |
 | `site/src/lib/claim.ts` (new) | return address, `finishSignIn` (claim once, consent, `signup_done`, clean address), expired link |
-| `site/src/lib/diary.ts`, `site/src/lib/ics.ts`, `site/src/lib/notice.ts`, `site/src/lib/download.ts` (new) | diary rules (7 days, `after_days`, names, dates); the calendar file; the home notice; saving a file |
+| `site/src/lib/diary.ts`, `site/src/lib/ics.ts`, `site/src/lib/notice.ts`, `site/src/lib/download.ts`, `site/src/lib/sheetHistory.ts`, `site/src/lib/timeZone.ts` (new) | diary rules (the local-day rule of decision 13, `after_days`, names, dates); the calendar file (with its alarm); the home notice (with its sessionStorage mark); saving a file; the save sheet's history entry (decision 14); the device's time zone |
 | `site/src/lib/routes.ts`, `site/src/lib/analytics.ts`, `site/src/lib/readingFlow.ts`, `site/src/lib/nightRoom.ts`, `site/src/lib/followups.ts` | the four pages and their pairs, the menu; new events; "Try again" GET-only after an hour |
-| `site/src/components/ui/SignInBlock.tsx`, `SaveSheet.tsx`, `DiaryList.tsx`, `DiaryEntry.tsx`, `DeleteAccountDialog.tsx` (new) | the screens 3, 3b, 4a, 4b and the delete dialog |
+| `site/src/components/ui/SignInBlock.tsx`, `SaveSheet.tsx`, `useSaveToDiary.tsx`, `DiaryList.tsx`, `DiaryEntry.tsx`, `DeleteAccountDialog.tsx` (new) | the screens 3, 3b, 4a, 4b and the delete dialog; the night room's save wiring |
 | `site/src/components/ui/NightRoom.tsx`, `PlusCard.tsx`, `icons.tsx` | "Save to diary" / "Saved ✓" and the sheet in the room; Plus in the diary; `NoteIcon` |
 | `site/src/islands/DiaryIsland.tsx`, `AccountIsland.tsx`, `HomeNotice.tsx` (new); `ReadingIsland.tsx`, `DailyIsland.tsx` | the pages' islands; the save flow; "Remind me tomorrow" |
 | `site/src/views/DiaryView.astro`, `AccountView.astro`, `site/src/pages/diary.astro`, `account.astro`, `es/diario.astro`, `es/cuenta.astro` (new); `layouts/Base.astro`, `components/Header.astro`, `views/HomeView.astro` | the pages (noindex), the menu and header, the home notice |
@@ -112,14 +120,14 @@ How it is installed (Task 6): the same Docker `node:22` as `deploy/build-site.sh
 | `tools/site/check_dist.py`, `tools/site/test_check_dist.py` (new), `tools/site/test_sync_site_data.py` | 171 pages, noindex only on the four, no sign-in library at start on reading pages |
 | `deploy/Caddyfile`, `deploy/test-site-routes.sh`, `deploy/check-indexing.sh` | `X-Robots-Tag` on the four pages; route checks |
 
-Task order: 1 → 5 (API), 6 (packages, gated), 7 → 10 (site plumbing), 11 → 16 (screens), 17 → 20 (tails), 21 (final verification), then the owner's steps and the walk-through (not a task).
+Task order: 1 → 6 (API; Task 6 is owner decision 12), 7 (packages, gated), 8 (`astro check` on the existing code — before any new screen code, review I10), 9 → 12 (site plumbing), 13 → 18 (screens), 19 → 21 (tails), 22 (final verification), then the owner's steps and the walk-through (not a task). Renumbered after the Fable plan check: old 6 → 7, old 19 → 8, old 7–18 → 9–20, old 20 → 21, old 21 → 22; Task 6 is new.
 
 ---
 ### Task 1: API — daily limits 2 (guest) and 3 (signed in)
 
 **Files:**
-- Modify: `api/app/config.py:13-14`, comments in `api/app/limits.py:1-2,39`, `api/app/routes/common.py:49`, `api/app/routes/limits.py:1-2`, `api/app/routes/readings.py:90`, `api/README.md:69,84,197`
-- Test: `api/tests/test_limits.py`, `test_api_limits.py`, `test_api_user_limits.py`, `test_api_account.py`, `test_api_auth.py`, `test_api_daily.py`, `test_api_request_ids.py`, `test_api_followups.py`, `test_api_readings.py` (numbers only; one concurrency test races for the last of two slots instead of three)
+- Modify: `api/app/config.py:13-14`, comments in `api/app/limits.py:1-2,39`, `api/app/routes/common.py:49`, `api/app/routes/limits.py:1-2`, `api/app/routes/readings.py:90`, `api/README.md:69,84,197`, `docs/design/00-design.md:99` (the stage 3 decision row that names «3 в день», Fable plan review M4)
+- Test: `api/tests/test_limits.py`, `test_api_limits.py`, `test_api_user_limits.py`, `test_api_account.py`, `test_api_auth.py`, `test_api_daily.py`, `test_api_request_ids.py`, `test_api_followups.py`, `test_api_readings.py` (numbers only; the guest's concurrency test races two requests for the last of two slots instead of three) and one new test in `test_api_user_limits.py` that keeps the three-way race for an account (review M5)
 
 **Interfaces:**
 - Consumes: `app.limits.guest_quota`, `user_quota` (unchanged; they read the constants).
@@ -644,10 +652,63 @@ index c5113fc..8378c43 100644
 Run: `cd ~/arcana-diary && git apply --check /tmp/s44b-t1-tests.diff && git apply /tmp/s44b-t1-tests.diff && git diff --stat`
 Expected: `9 files changed, 71 insertions(+), 75 deletions(-)`, no rejects.
 
+- [ ] **Step 1b: Keep the three-way race for an account (review M5)**
+
+The guest's race above loses its third racer (a guest has only two readings a day). The same case stays covered with the account's three. In `api/tests/test_api_user_limits.py` (patched above) replace
+
+```python
+import uuid
+from datetime import timedelta
+```
+
+with
+
+```python
+import threading
+import uuid
+from datetime import timedelta
+```
+
+and append to the end of the file (two blank lines before):
+
+```python
+# --- Fable plan review M5: the three-way race for the last reading of the day, with an account ---
+
+def test_paid_followups_of_an_account_at_once_cannot_overspend_the_day(api):
+    """test_api_followups.py races two requests since a guest has only two readings a day; the account's three keep
+    the three-way race: two paid follow-ups and a new reading, from three devices, for the account's last reading."""
+    first = account_reading_with_free_followups_used(api.new_client())
+    second = account_reading_with_free_followups_used(api.new_client())  # two of the account's three are used
+    api.guard.json_delay = 0.3  # all three requests wait in the guard, then race for the last reading
+    start = threading.Barrier(3)
+    codes = []
+
+    def worker(action):
+        start.wait()
+        codes.append(action().status_code)
+
+    actions = [lambda: ask(api.new_client(), first, use_reading=True),
+               lambda: ask(api.new_client(), second, use_reading=True),
+               lambda: post_reading(api.new_client(), headers=bearer(USER), kind="one", tz=MX,
+                                    question="What helps me focus?")]
+    threads = [threading.Thread(target=worker, args=(a,)) for a in actions]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert len([c for c in codes if c in (200, 201)]) == 1 and len(codes) == 3
+    assert used(api, limits.user_subject(USER)) == 3
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM followups WHERE paid_day IS NOT NULL").fetchone()["n"] + \
+            conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3
+```
+
+(`ask`, `account_reading_with_free_followups_used`, `used`, `bearer`, `post_reading`, `USER`, `MX` already exist in that file.)
+
 - [ ] **Step 2: Run the changed tests against the old limits**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_limits.py tests/test_api_limits.py tests/test_api_user_limits.py tests/test_api_account.py tests/test_api_auth.py tests/test_api_daily.py tests/test_api_request_ids.py tests/test_api_followups.py tests/test_api_readings.py`
-Expected: FAIL — `35 failed, 223 passed` (e.g. `assert {'limit': 3, …} == {'limit': 2, …}`).
+Expected: FAIL — `36 failed, 223 passed` (e.g. `assert {'limit': 3, …} == {'limit': 2, …}`; the new race test fails too: with five a day all three racers win).
 
 - [ ] **Step 3: Change the limits and the texts that name them**
 
@@ -761,19 +822,22 @@ index 7e2992e..01e3450 100644
          if who.user:  # stage 4.3 §8: a token that outlived its account — before any model call
 ```
 
+In `docs/design/00-design.md` (the stage 3 decisions table, row `| 3 | Лимиты и защита |`; spec §8 «тексты, где названо число», review M4) replace `3 расклада в день, карта дня вне лимита; лимит одинаковый для гостя и вошедшего;` with `3 расклада в день, карта дня вне лимита; лимит одинаковый для гостя и вошедшего *(заменено этапом 4.4б: гость — 2, вошедший — 3 в день, спецификация 2026-11-22 §2, решения 7–8)*;`.
+
 - [ ] **Step 4: Run the full API suite**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: PASS — `1493 passed`.
+Expected: PASS — `1494 passed`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 rm -f /tmp/s44b-t1-tests.diff /tmp/s44b-t1-code.diff
-git add api/app/config.py api/app/limits.py api/app/routes/common.py api/app/routes/limits.py api/app/routes/readings.py api/README.md api/tests
+git add api/app/config.py api/app/limits.py api/app/routes/common.py api/app/routes/limits.py api/app/routes/readings.py api/README.md api/tests docs/design/00-design.md
 git commit -m "feat(api): stage 4.4b — daily limits 2 for a guest, 3 for an account
 
-Owner decisions 7 and 8 (22.11.2026). Tests name the new numbers.
+Owner decisions 7 and 8 (22.11.2026). Tests name the new numbers; the account keeps the
+three-way race for its last reading (Fable plan review M5).
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
@@ -792,7 +856,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
   - `app.config.FREE_DIARY_VISIBLE = 10`.
   - `account_repo.diary_count(conn, user_id) -> int`.
   - `GET /api/diary?before=&limit=` → `{"items": [...], "next_before": str | null, "hidden_count": int}` — items only among the 10 newest readings; `next_before` is `null` when no visible item is left; `hidden_count = max(total − 10, 0)`.
-  - `GET /api/readings/{id}` for its owner also carries `"created_at"` (ISO time; site Tasks 12–13 compute the 7 days from it). Not shown to anyone else.
+  - `GET /api/readings/{id}` for its owner also carries `"created_at"` (ISO time; site Tasks 14–15 compute the named day of decision 13 from it). Not shown to anyone else.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -827,6 +891,8 @@ def test_pages_stop_at_the_tenth_entry(api):
     assert [i["id"] for i in first["items"] + second["items"] + third["items"]] == newest[:10]
     assert third["next_before"] is None and len(third["items"]) == 2
     assert [p["hidden_count"] for p in (first, second, third)] == [2, 2, 2]
+    beyond = diary(api.client, ANA, before=third["items"][-1]["created_at"]).json()  # older than the 10th: hidden
+    assert beyond == {"items": [], "next_before": None, "hidden_count": 2}
 
 
 def test_ten_or_fewer_hide_nothing(api):
@@ -866,7 +932,7 @@ Expected: FAIL — 5 failed (`KeyError: 'hidden_count'`, 12 items instead of 10,
 
 - [ ] **Step 3: Implement**
 
-In `api/app/config.py`, after the line `NOTE_MAX_CHARS = 1000 …`, add:
+In `api/app/config.py`, after the line `NOTE_MAX_CHARS = 1000          # stage 4.3 §6: the private note of a diary entry (never sent to a model)` add:
 
 ```python
 FREE_DIARY_VISIBLE = 10        # stage 4.4b §5 (decision 9): the diary lists the newest 10; older ones are hidden, kept
@@ -945,7 +1011,7 @@ In `api/README.md`, replace `` `GET /api/diary?before=&limit=` (20, не бол�
 - [ ] **Step 4: Run the tests**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_diary.py && .venv/bin/pytest -q`
-Expected: PASS — `13 passed`, then `1499 passed`.
+Expected: PASS — `13 passed`, then `1500 passed`. (The list and the count are two queries: a reading inserted between them can make `hidden_count` one off in that one answer — accepted, review M3.)
 
 - [ ] **Step 5: Commit**
 
@@ -964,13 +1030,14 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Files:**
 - Create: `api/app/routes/auth_config.py`, `api/tests/test_api_auth_config.py`
-- Modify: `api/app/config.py` (`Settings`, `_on_or_empty`, `load_settings`), `api/app/main.py` (import, router), `deploy/docker-compose.yml` (api environment), `deploy/.env.example` (after `SUPABASE_URL=`), `api/README.md` (settings table, «Адреса»)
+- Modify: `api/app/config.py` (imports, `log`, `Settings`, `_flag`, `_public_key`, `load_settings`), `api/app/main.py` (import, router), `deploy/docker-compose.yml` (api environment), `deploy/.env.example` (after `SUPABASE_URL=`), `api/README.md` (settings table, «Адреса»)
 
 **Interfaces:**
 - Consumes: `Settings.supabase_url` (4.3), `routes.common.respond`, `main.API_AUTH` (a bad Bearer is `401` here too).
 - Produces:
-  - `Settings.supabase_anon_key: str` (stripped, `""` by default), `Settings.google_signin: bool` (`GOOGLE_SIGNIN` exactly `"true"` or empty, anything else is a `ValueError`).
-  - `GET /api/auth-config` → `200 {"enabled": bool, "supabase_url": str, "anon_key": str, "google": bool}`; `enabled = bool(supabase_url and supabase_anon_key)`; when off the strings are `""` and `google` is `false`. No cookie is set. Site Task 7 parses exactly these four keys.
+  - `Settings.supabase_anon_key: str` (stripped, `""` by default; a secret key is dropped — see below), `Settings.google_signin: bool` (`GOOGLE_SIGNIN` exactly `"true"` → on; empty → off; anything else → off and a `WARNING` line of logger `arcana.config`).
+  - The settings are read when `app.main` is imported (`deploy/docker-compose.yml`: `restart: unless-stopped`), so neither setting may raise (review I12): a typo like `GOOGLE_SIGNIN=false` would otherwise stop every reading in a restart loop. A secret key in `SUPABASE_ANON_KEY` (`sb_secret_…`, or a three-part JWT whose payload `role` is not `"anon"`, e.g. `service_role`, or a dotted value that does not decode) is never published: `supabase_anon_key = ""` (sign-in off) and an `ERROR` line that does not print the key (review I3: the key goes to every visitor and a secret key passes row level security).
+  - `GET /api/auth-config` → `200 {"enabled": bool, "supabase_url": str, "anon_key": str, "google": bool}`; `enabled = bool(supabase_url and supabase_anon_key)`; when off the strings are `""` and `google` is `false`. No cookie is set. Site Task 9 parses exactly these four keys.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -978,12 +1045,23 @@ Create `api/tests/test_api_auth_config.py`:
 
 ```python
 """GET /api/auth-config (spec 2026-11-22 stage 4.4b §3): the public sign-in settings for the browser."""
+import base64
+import json
+
 import pytest
 
 from app.config import load_settings
 from helpers import AUTH_URL
 
 ANON = "sb_publishable_test-key"  # a made-up public key; the real one is only in deploy/.env
+SECRET = "sb_secret_test-key"  # a made-up secret key: it must never reach a browser
+
+
+def jwt(role: str) -> str:
+    """A made-up legacy Supabase key: a JWT whose payload names its role (the signature is not checked here)."""
+    def part(data: dict) -> str:
+        return base64.urlsafe_b64encode(json.dumps(data).encode()).decode().rstrip("=")
+    return f"{part({'alg': 'HS256', 'typ': 'JWT'})}.{part({'iss': 'supabase', 'role': role})}.c2lnbmF0dXJl"
 
 
 def test_on_with_the_address_and_the_key(api_factory):
@@ -1019,9 +1097,32 @@ def test_the_settings():
     s = load_settings({"SUPABASE_ANON_KEY": f" {ANON} ", "GOOGLE_SIGNIN": "true"})
     assert (s.supabase_anon_key, s.google_signin) == (ANON, True)
     assert load_settings({"GOOGLE_SIGNIN": ""}).google_signin is False
-    for wrong in ("yes", "True", "1", "false"):
-        with pytest.raises(ValueError, match="GOOGLE_SIGNIN"):
-            load_settings({"GOOGLE_SIGNIN": wrong})
+
+
+def test_google_signin_other_than_true_is_off_with_a_log_line_never_a_crash(caplog):
+    """Fable plan review I12: the settings are read when the API starts; an error here would stop every reading."""
+    for wrong in ("yes", "True", "1", "false", " on "):
+        caplog.clear()
+        with caplog.at_level("WARNING", logger="arcana.config"):
+            assert load_settings({"GOOGLE_SIGNIN": wrong}).google_signin is False
+        assert f"GOOGLE_SIGNIN={wrong.strip()!r} is not 'true': Continue with Google stays off" in caplog.text
+
+
+@pytest.mark.parametrize("key", [SECRET, jwt("service_role"), "not.a.jwt"])
+def test_a_secret_key_is_never_published(key, caplog):
+    """Fable plan review I3: GET /api/auth-config shows the key to every visitor, and a secret key passes row level
+    security. It is dropped (sign-in stays off) with a log line that never prints the key; the API still starts."""
+    with caplog.at_level("ERROR", logger="arcana.config"):
+        assert load_settings({"SUPABASE_ANON_KEY": key}).supabase_anon_key == ""
+    assert "SUPABASE_ANON_KEY is not the public key" in caplog.text and key not in caplog.text
+
+
+def test_the_public_keys_are_used(caplog):
+    anon = jwt("anon")
+    with caplog.at_level("WARNING", logger="arcana.config"):
+        assert load_settings({"SUPABASE_ANON_KEY": anon}).supabase_anon_key == anon
+        assert load_settings({"SUPABASE_ANON_KEY": ANON}).supabase_anon_key == ANON
+    assert caplog.text == ""
 ```
 
 - [ ] **Step 2: Run them to see them fail**
@@ -1031,7 +1132,31 @@ Expected: FAIL — errors `TypeError: … unexpected keyword argument 'supabase_
 
 - [ ] **Step 3: Implement**
 
-In `api/app/config.py`, in `class Settings`, replace
+In `api/app/config.py` replace
+
+```python
+"""API settings from environment variables; limits; model prices for the LLM call log."""
+import os
+```
+
+with
+
+```python
+"""API settings from environment variables; limits; model prices for the LLM call log."""
+import base64
+import json
+import logging
+import os
+```
+
+replace `REPO_ROOT = APP_DIR.parents[1]` with
+
+```python
+REPO_ROOT = APP_DIR.parents[1]
+log = logging.getLogger("arcana.config")
+```
+
+(`app/main.py` sets up logging before it calls `load_settings()`, so these lines reach the API log.) In `class Settings`, replace
 
 ```python
     supabase_url: str  # stage 4.3 §3: the project's public address; "" — sign-in is off
@@ -1045,16 +1170,40 @@ with
     google_signin: bool  # stage 4.4b §3: GOOGLE_SIGNIN=true shows "Continue with Google"
 ```
 
-before `def load_settings(…)` add
+before `def load_settings(env: Mapping[str, str] | None = None) -> Settings:` add
 
 ```python
-def _on_or_empty(name: str, value: str) -> bool:
-    """Exactly "true" or empty (stage 4.4b §3): a typo never switches a sign-in button on or off silently."""
+def _flag(name: str, value: str) -> bool:
+    """Stage 4.4b §3: exactly "true" switches it on; anything else is off with a log line, never an error — the
+    settings are read when the API starts, and GOOGLE_SIGNIN=false must not stop the readings (Fable plan review I12)."""
     value = value.strip()
     if value not in ("", "true"):
-        raise ValueError(f"{name} must be 'true' or empty, got {value!r}")
+        log.warning("%s=%r is not 'true': Continue with Google stays off", name, value)
     return value == "true"
+
+
+def _public_key(value: str) -> str:
+    """Stage 4.4b §3: SUPABASE_ANON_KEY goes to every visitor (GET /api/auth-config), so only the project's public key
+    may be used. A secret key — sb_secret_…, or a legacy JWT key whose role is not "anon" (service_role) — passes row
+    level security: it is dropped, sign-in stays off and the log says so without printing the key; the API still
+    starts (Fable plan review I3). The JWT's signature is not checked: only the role it names matters here."""
+    value = value.strip()
+    secret = value.startswith("sb_secret_")
+    parts = value.split(".")
+    if not secret and len(parts) == 3:  # a legacy key: a JWT
+        try:
+            payload = json.loads(base64.urlsafe_b64decode(parts[1] + "=" * (-len(parts[1]) % 4)))
+        except ValueError:  # bad base64 (binascii.Error) and bad JSON are both ValueErrors
+            payload = None
+        secret = not isinstance(payload, dict) or payload.get("role") != "anon"
+    if secret:
+        log.error("SUPABASE_ANON_KEY is not the public key (a secret key or a JWT whose role is not 'anon'): not used, "
+                  "sign-in stays off — set the anon / publishable key (api/README.md)")
+        return ""
+    return value
 ```
+
+Why not refuse to start, as `_true_or_false` does for `TRUST_CLOUDFLARE`: the compose service restarts on failure, so a wrong sign-in setting would turn into an API that never answers a reading; with the key dropped the site only shows «Signing in opens soon.» and the log names the setting.
 
 and at the end of the `Settings(...)` call in `load_settings` replace
 
@@ -1067,8 +1216,8 @@ with
 
 ```python
         supabase_url=_supabase_url(env.get("SUPABASE_URL") or ""),
-        supabase_anon_key=(env.get("SUPABASE_ANON_KEY") or "").strip(),
-        google_signin=_on_or_empty("GOOGLE_SIGNIN", env.get("GOOGLE_SIGNIN") or ""),
+        supabase_anon_key=_public_key(env.get("SUPABASE_ANON_KEY") or ""),
+        google_signin=_flag("GOOGLE_SIGNIN", env.get("GOOGLE_SIGNIN") or ""),
     )
 ```
 
@@ -1112,17 +1261,19 @@ In `deploy/.env.example`, after the line `SUPABASE_URL=` add:
 
 ```
 # --- stage 4.4b: the browser's sign-in. Supabase → Project Settings → API Keys → the public (anon / publishable)
-# key; public, not a secret. Empty — sign-in is off: no "Save to diary" button, the diary says sign-in opens soon
+# key; public, not a secret — NEVER the service_role / sb_secret_… key (the API drops a secret key and logs it).
+# Empty — sign-in is off: no "Save to diary" button, the diary says sign-in opens soon
 SUPABASE_ANON_KEY=
-# true — show "Continue with Google" (after Google is set up in Supabase, api/README.md); empty — e-mail link only
+# true — show "Continue with Google" (after Google is set up in Supabase, api/README.md); empty (or anything else,
+# logged) — e-mail link only
 GOOGLE_SIGNIN=
 ```
 
 In `api/README.md`, in the settings table, before the row `` | `DAILY_JOB_INTERVAL_S` | `` add:
 
 ```
-| `SUPABASE_ANON_KEY` | пусто | открытый ключ проекта Supabase (anon / publishable, не секрет) для входа в браузере; вместе с `SUPABASE_URL` включает вход на сайте (`GET /api/auth-config`), без него кнопки «Save to diary» нет |
-| `GOOGLE_SIGNIN` | пусто | ровно `true` или пусто; `true` — на сайте видна кнопка «Continue with Google» (после шага 1 «Вход через Supabase») |
+| `SUPABASE_ANON_KEY` | пусто | открытый ключ проекта Supabase (anon / publishable, не секрет) для входа в браузере; вместе с `SUPABASE_URL` включает вход на сайте (`GET /api/auth-config`), без него кнопки «Save to diary» нет. Никогда не `service_role` / `sb_secret_…`: такой ключ API не отдаёт (вход выключен, строка `SUPABASE_ANON_KEY is not the public key` в журнале) |
+| `GOOGLE_SIGNIN` | пусто | `true` — на сайте видна кнопка «Continue with Google» (после шага 1 «Вход через Supabase»); пусто или что угодно другое — выключено (другое значение — строка в журнале, API работает) |
 ```
 
 and in «Адреса» replace `` (этап 4.4а, ниже). `` (the end of the first sentence, after `` `POST /api/events` ``) with
@@ -1135,7 +1286,7 @@ and in «Адреса» replace `` (этап 4.4а, ниже). `` (the end of th
 - [ ] **Step 4: Run the tests**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_auth_config.py tests/test_config.py && .venv/bin/pytest -q`
-Expected: PASS — `39 passed`, then `1506 passed`.
+Expected: PASS — `44 passed`, then `1512 passed`.
 
 - [ ] **Step 5: Commit**
 
@@ -1143,8 +1294,9 @@ Expected: PASS — `39 passed`, then `1506 passed`.
 git add api/app/config.py api/app/routes/auth_config.py api/app/main.py api/tests/test_api_auth_config.py deploy/docker-compose.yml deploy/.env.example api/README.md
 git commit -m "feat(api): stage 4.4b — GET /api/auth-config with the public sign-in settings
 
-SUPABASE_ANON_KEY (public key, not a secret) and GOOGLE_SIGNIN (true or empty); without
-the address or the key sign-in is off.
+SUPABASE_ANON_KEY (public key, not a secret) and GOOGLE_SIGNIN (true, else off); without
+the address or the key sign-in is off. A secret key is never published and neither
+setting can stop the API (Fable plan review I3, I12).
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
@@ -1154,12 +1306,12 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 **Files:**
 - Create: `api/migrations/007_remind_click.sql`
-- Modify: `api/app/events.py` (`EVENTS`, `ONLY_TOOL`, `check_event`), `docs/design/analytics-events.md` (table)
+- Modify: `api/app/events.py` (`EVENTS`, `ONLY_TOOL`, `check_event`), `docs/design/analytics-events.md` (table), `api/README.md` («Счётчик событий»: the table's migrations and the check of the constraint name before the deploy, review M2)
 - Test: `api/tests/test_api_events.py` (`VALID`, `INVALID`), `api/tests/test_db.py` (migration lists, new 007 test)
 
 **Interfaces:**
 - Consumes: `events.check_event`, `record_event`; the table `events` (migration 004 has an inline `CHECK (name IN (...))`, named `events_name_check` by Postgres — the code alone cannot store a new name).
-- Produces: `POST /api/events {"name": "remind_click", "tool": "daily", "lang": "en"|"es", "params": {}}` → `204`; any other tool or a parameter → `422`. `save_click`, `signup_done`, `outcome_answered`, `plus_view` `place: diary` were already accepted (4.4a) and are now covered by tests. Site Task 15 sends `remind_click`.
+- Produces: `POST /api/events {"name": "remind_click", "tool": "daily", "lang": "en"|"es", "params": {}}` → `204`; any other tool or a parameter → `422`. `save_click`, `signup_done`, `outcome_answered`, `plus_view` `place: diary` were already accepted (4.4a) and are now covered by tests. Site Task 17 sends `remind_click`.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -1328,16 +1480,27 @@ In `docs/design/analytics-events.md`, after the row of `plus_view` add:
 | `remind_click` | «Remind me tomorrow» под картой дня (этап 4.4б) | `tool` (только daily), `lang` | нужна ли карта дня назавтра |
 ```
 
+In `api/README.md` («Счётчик событий (этап 4.4а)») replace `` таблица `events` (миграция 004) — день UTC, имя, инструмент, язык, параметры, время. `` with
+
+```
+таблица `events` (миграции 004, 007) — день UTC, имя, инструмент, язык, параметры, время. Миграция 007 (этап 4.4б,
+`remind_click`) пересоздаёт ограничение имени: перед выкладкой проверить его имя на живой базе —
+`SELECT conname FROM pg_constraint WHERE conrelid = 'events'::regclass AND contype = 'c';` — ожидается
+`events_name_check` (иначе миграция остановится на `DROP CONSTRAINT`, ничего не изменив: она идёт одной транзакцией).
+```
+
+The migration itself is safe on the live table (review M2): `migrate()` applies each file in one transaction (`api/app/db.py:67–78`) once per `schema_migrations`, only DROP/ADD CHECK, the list is the ten old names plus `remind_click`; the table is small, so `NOT VALID` is not needed.
+
 - [ ] **Step 4: Run the tests**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_events.py tests/test_db.py && .venv/bin/pytest -q`
-Expected: PASS — `87 passed`, then `1518 passed`.
+Expected: PASS — `87 passed`, then `1524 passed`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 rm -f /tmp/s44b-t4-tests.diff
-git add api/migrations/007_remind_click.sql api/app/events.py docs/design/analytics-events.md api/tests/test_api_events.py api/tests/test_db.py
+git add api/migrations/007_remind_click.sql api/app/events.py docs/design/analytics-events.md api/README.md api/tests/test_api_events.py api/tests/test_db.py
 git commit -m "feat(api): stage 4.4b — event remind_click (migration 007), 4.4b events tested
 
 The events table checks its names in the database, so the new name needs migration 007
@@ -1426,8 +1589,8 @@ def test_a_database_failure_in_a_followup_replay_is_logged(api, monkeypatch, cap
 
 - [ ] **Step 2: Run them to see them fail**
 
-Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_readings.py tests/test_api_followups.py -k logged`
-Expected: FAIL — `4 failed` (`assert 'reading stream: …' in ''` and the like).
+Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_readings.py tests/test_api_followups.py -k is_logged`
+Expected: FAIL — `4 failed` (`assert 'reading stream: …' in ''` and the like), the rest deselected. (`-k is_logged` and not `-k logged`: the latter also picks `test_llm_cost_logged_for_priced_model`, review M1.)
 
 - [ ] **Step 3: Implement**
 
@@ -1514,8 +1677,8 @@ with
 
 - [ ] **Step 4: Run the tests**
 
-Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_readings.py tests/test_api_followups.py -k logged && .venv/bin/pytest -q`
-Expected: PASS — `4 passed`, then `1522 passed`.
+Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_readings.py tests/test_api_followups.py -k is_logged && .venv/bin/pytest -q`
+Expected: PASS — `4 passed`, then `1528 passed`.
 
 - [ ] **Step 5: Commit**
 
@@ -1531,9 +1694,154 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ---
 
-### Task 6: Packages and the DOM test setup
+### Task 6: API — `POST /api/account/claim` can leave this device's guest readings alone (`"device": false`)
 
-> **STOP — run only after the owner's explicit yes; the controller supplies it.** The yes covers exactly the four packages and versions of the table «Packages» above (`@supabase/auth-js` 2.119.0, `@astrojs/check` 0.9.12, `typescript` 5.9.3, `happy-dom` 21.0.4). Any other version, package or a failed install → stop and report; do not try another version.
+**Files:**
+- Modify: `api/app/routes/claim.py` (docstring, `ClaimIn`, `claim`), `api/README.md` («Перенос» in «Адреса»; «Передача в 4.4»)
+- Test: `api/tests/test_api_claim.py` (append)
+
+**Interfaces:**
+- Consumes: `account_repo.claim_device`, `account_repo.claim_by_tokens` (4.3, unchanged).
+- Produces: `POST /api/account/claim {"tokens": [...], "device": true | false}` → `200 {"claimed": [...]}`. `"device"` is optional and `true` by default (the 4.3 contract and its tests stay as they are); `false` skips `claim_device`: only the readings of the tokens move. Anything but a JSON boolean is `422 {"reason": "invalid", "fields": ["device"]}` (`StrictBool`: Pydantic would otherwise read `"no"` as `false`). Site Task 11 sends it; Task 12 sets it to `true` only when the "sign-in started here" mark is on the device.
+
+Why (owner decision 12, 22.11.2026, after the Fable plan check, question 2): the e-mail link may be opened on another device — a friend's computer. Without the field the claim there moves every guest reading of that browser into the person's account (someone else's questions in their diary). Why a body field and not a second address: one request and one transaction as before, the old body keeps its meaning, the site decides per request; a separate `POST /api/account/claim-tokens` would duplicate the route and its checks.
+
+- [ ] **Step 1: Write the failing tests**
+
+Append to the end of `api/tests/test_api_claim.py` (two blank lines before):
+
+```python
+# --- stage 4.4b §4 (owner decision 12): "device": false moves only the readings of the tokens ---
+
+def claim_without_device(client, user, tokens):
+    return client.post("/api/account/claim", headers=bearer(user), json={"tokens": tokens, "device": False})
+
+
+def test_a_link_opened_on_another_device_moves_only_its_own_reading(api):
+    reading_id = new_reading(api.client)
+    token = claim_token(api.client, reading_id).json()["token"]
+    other = api.new_client()  # someone else's computer, with a guest reading of its own
+    theirs = new_reading(other)
+    assert claim_without_device(other, ANA, [token]).json() == {"claimed": [reading_id]}
+    assert reading_row(api, reading_id)["user_id"] == ANA and reading_row(api, theirs)["user_id"] is None
+    assert claim(other, ANA).json() == {"claimed": [theirs]}  # without "device" the 4.3 behaviour is unchanged
+
+
+def test_device_false_without_tokens_moves_nothing(api):
+    mine = new_reading(api.client)
+    response = claim_without_device(api.client, ANA, [])
+    assert response.status_code == 200 and response.json() == {"claimed": []}
+    assert reading_row(api, mine)["user_id"] is None
+
+
+def test_device_is_true_or_false_only(api):
+    response = api.client.post("/api/account/claim", headers=bearer(ANA), json={"tokens": [], "device": "no"})
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["device"]}
+```
+
+- [ ] **Step 2: Run them to see them fail**
+
+Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_claim.py`
+Expected: FAIL — `3 failed, 12 passed`: the first two move this device's reading too (`{'claimed': [<both>]}`, `user_id == ANA`), the third gets `200` (an unknown field is ignored).
+
+- [ ] **Step 3: Implement**
+
+In `api/app/routes/claim.py` replace
+
+```python
+- POST /api/account/claim {"tokens": [...]} (signed in): moves every unexpired guest reading of this device and the
+  readings of the tokens into the account. A reading that already belongs to an account never moves; an unknown,
+  used or expired token is skipped. A moved reading loses its expiry; the day slots the guest used stay with the
+  guest.
+"""
+```
+
+with
+
+```python
+- POST /api/account/claim {"tokens": [...], "device": true | false} (signed in): moves every unexpired guest reading
+  of this device and the readings of the tokens into the account. A reading that already belongs to an account never
+  moves; an unknown, used or expired token is skipped. A moved reading loses its expiry; the day slots the guest used
+  stay with the guest. Stage 4.4b §4 (owner decision 12): "device": false moves only the readings of the tokens — the
+  site sends it when the e-mail link is opened on a device where the sign-in was not started (someone else's guest
+  readings stay there); left out, it is true, as in 4.3.
+"""
+```
+
+replace `from pydantic import BaseModel, Field` with `from pydantic import BaseModel, Field, StrictBool`, replace
+
+```python
+class ClaimIn(BaseModel):
+    tokens: list[ClaimToken] = Field(default_factory=list, max_length=20)
+```
+
+with
+
+```python
+class ClaimIn(BaseModel):
+    tokens: list[ClaimToken] = Field(default_factory=list, max_length=20)
+    device: StrictBool = True  # stage 4.4b §4: false — this device's guest readings stay where they are
+```
+
+and in `claim` replace
+
+```python
+    hashes = [account_repo.token_hash(token) for token in (body.tokens if body else [])]
+    with ctx.db.connect() as conn:
+        account_repo.ensure_profile(conn, who.user.id, now)
+        moved = [] if who.new_guest is not None else account_repo.claim_device(conn, who.user.id, who.guest_id, now)
+```
+
+with
+
+```python
+    hashes = [account_repo.token_hash(token) for token in (body.tokens if body else [])]
+    device = body.device if body else True
+    with ctx.db.connect() as conn:
+        account_repo.ensure_profile(conn, who.user.id, now)
+        moved = account_repo.claim_device(conn, who.user.id, who.guest_id, now) \
+            if device and who.new_guest is None else []
+```
+
+In `api/README.md` («Адреса», «Перенос») replace `` `POST /api/account/claim {"tokens": [...]}` → `{"claimed": [id, ...]}`. Дневник: `` with
+
+```
+`POST /api/account/claim {"tokens": [...], "device": true | false}` → `{"claimed": [id, ...]}` (этап 4.4б, решение
+владельца 12: `"device": false` — переносятся только расклады токенов, гостевые расклады устройства остаются; без
+поля — `true`, как в 4.3). Дневник:
+```
+
+and in «Передача в 4.4» replace `  («Сохранить в дневник» / «Войти»), а не при каждой загрузке страницы.` with
+
+```
+  («Сохранить в дневник» / «Войти»), а не при каждой загрузке страницы. Этап 4.4б (решение владельца 12): сайт
+  шлёт `"device": true` только после входа, начатого на этом устройстве; ссылка из письма, открытая на другом
+  устройстве, — `"device": false`, и переносится только расклад её токена.
+```
+
+- [ ] **Step 4: Run the tests**
+
+Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q tests/test_api_claim.py && .venv/bin/pytest -q`
+Expected: PASS — `15 passed`, then `1531 passed`.
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add api/app/routes/claim.py api/tests/test_api_claim.py api/README.md
+git commit -m "feat(api): stage 4.4b — claim with \"device\": false moves only the tokens' readings
+
+Owner decision 12 (22.11.2026): an e-mail link opened on another device must not move
+that browser's guest readings into the account. The field is optional and true by
+default, so the 4.3 contract stays.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+```
+
+---
+
+### Task 7: Packages and the DOM test setup
+
+> **STOP — run only after the owner's explicit yes; the controller supplies it.** The yes covers exactly the packages and versions of the table «Packages» above (`@supabase/auth-js` 2.119.0, `@astrojs/check` 0.9.12, `typescript` 5.9.3, `happy-dom` 21.0.4 and the peer `@emnapi/runtime` 1.11.3). Any other version, package or a failed install → stop and report; do not try another version.
 
 **Files:**
 - Modify: `site/package.json`, `site/package-lock.json` (by npm), `site/vitest.config.ts`
@@ -1543,9 +1851,11 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Consumes: `site/.npmrc` (`legacy-peer-deps=true`, unchanged), `preact` `render`, `preact/test-utils` `act`.
 - Produces (every later DOM test uses these):
   - `*.test.tsx` files run in Vitest; a file that starts with `// @vitest-environment happy-dom` gets a DOM at `https://arcana.test/` (`location.origin === 'https://arcana.test'`, `localStorage`, `history`).
-  - `site/src/lib/testing/dom.ts`: `mount(tree: ComponentChild): Promise<Mounted>` (`Mounted = { root: HTMLElement; unmount(): void }`), `settle(rounds?: number): Promise<void>`, `byText<T>(root: ParentNode, text: string, selector?: string): T` (throws when missing), `queryText(root, text, selector?): HTMLElement | null`, `click(el: Element): Promise<void>`, `typeInto(el: Element, value: string): Promise<void>`, `submit(form: Element): Promise<void>`.
+  - `site/src/lib/testing/dom.ts`: `mount(tree: ComponentChild): Promise<Mounted>` (`Mounted = { root: HTMLElement; unmount(): void }`; every mounted root is remembered), `cleanup(): void` (unmounts every root still mounted, then empties the body — **every DOM test file calls it in `afterEach`**, so listeners on `document` and timers never outlive a test), `settle(rounds?: number): Promise<void>`, `waitFor(check: () => unknown, timeoutMs = 2000): Promise<void>` (until `check` neither throws nor returns `false`; then its own error — use it instead of counting `settle` rounds), `byText<T>(root: ParentNode, text: string, selector?: string): T` (throws when missing), `queryText(root, text, selector?): HTMLElement | null`, `click(el: Element): Promise<void>`, `typeInto(el: Element, value: string): Promise<void>`, `submit(form: Element): Promise<void>`.
+  - `vitest.config.ts`: `env: { TZ: 'UTC' }` — a date a test prints never depends on the machine (Docker is UTC; a laptop at UTC+6 is not); the local-day rules of Tasks 14–15 are still tested with local dates (`new Date(y, m, d, h)`), so they pass in any zone.
+  - The smoke test pins the four happy-dom properties the screen tests rely on (review I11): `click()` on a checkbox fires `change`; `focus()` on `tabIndex = -1` moves `document.activeElement`; `pushState` / `replaceState` change `location` and `history.state`; `Response` behaves as the fakes use it (JSON, `clone()`, an empty `401` whose `json()` rejects). Measured: the six tests pass with happy-dom 21.0.4 (scratch copy, 22.11.2026); `history.back()` there also fires `popstate` asynchronously.
 
-- [ ] **Step 1: Install the four packages (after the yes)**
+- [ ] **Step 1: Install the five packages (after the yes)**
 
 Run from the repository root:
 
@@ -1553,16 +1863,16 @@ Run from the repository root:
 docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false \
   -v "$PWD/site:/app" -w /app node:22 sh -c '
     npm install --save-exact --before=2026-11-08T23:59:59Z @supabase/auth-js@2.119.0 &&
-    npm install --save-dev --save-exact --before=2026-11-08T23:59:59Z @astrojs/check@0.9.12 typescript@5.9.3 happy-dom@21.0.4 &&
+    npm install --save-dev --save-exact --before=2026-11-08T23:59:59Z @astrojs/check@0.9.12 typescript@5.9.3 happy-dom@21.0.4 @emnapi/runtime@1.11.3 &&
     npm ls --depth=0'
 ```
 
-Expected: `npm ls` lists `@astrojs/check@0.9.12`, `@astrojs/preact@4.1.3`, `@supabase/auth-js@2.119.0`, `astro@5.18.2`, `happy-dom@21.0.4`, `preact@10.29.8`, `typescript@5.9.3`, `vitest@5.1.0`; no `ERR!`. `--before` makes npm pick every transitive dependency from versions published by 08.11.2026 too.
+Expected: `npm ls` lists `@astrojs/check@0.9.12`, `@astrojs/preact@4.1.3`, `@emnapi/runtime@1.11.3`, `@supabase/auth-js@2.119.0`, `astro@5.18.2`, `happy-dom@21.0.4`, `preact@10.29.8`, `typescript@5.9.3`, `vitest@5.1.0`; no `ERR!`. `--before` makes npm pick every transitive dependency from versions published by 08.11.2026 too.
 
 - [ ] **Step 2: Check what changed**
 
 Run: `git diff site/package.json`
-Expected: exactly these lines added — under `dependencies` `"@supabase/auth-js": "2.119.0",`; under `devDependencies` `"@astrojs/check": "0.9.12",`, `"happy-dom": "21.0.4",`, `"typescript": "5.9.3",` (exact versions, no `^`). `astro` stays `^5.1.0` and resolves to 5.18.2 in the lockfile: `grep -A1 '"node_modules/astro"' site/package-lock.json` → `"version": "5.18.2"`. Report `du -sh site/node_modules` before (178M) and after.
+Expected: exactly these lines added — under `dependencies` `"@supabase/auth-js": "2.119.0",`; under `devDependencies` `"@astrojs/check": "0.9.12",`, `"@emnapi/runtime": "1.11.3",`, `"happy-dom": "21.0.4",`, `"typescript": "5.9.3",` (exact versions, no `^`). `astro` stays `^5.1.0` and resolves to 5.18.2 in the lockfile: `grep -A1 '"node_modules/astro"' site/package-lock.json` → `"version": "5.18.2"`. Report `du -sh site/node_modules` before (178M) and after.
 
 - [ ] **Step 3: Write the first DOM test**
 
@@ -1570,10 +1880,20 @@ Create `site/src/components/ui/HelpLine.test.tsx`:
 
 ```tsx
 // @vitest-environment happy-dom
-import { describe, expect, it } from 'vitest';
-import { mount } from '../../lib/testing/dom';
+import { useEffect, useState } from 'preact/hooks';
+import { afterEach, describe, expect, it } from 'vitest';
+import { cleanup, click, mount, waitFor } from '../../lib/testing/dom';
+import { jsonResponse } from '../../lib/testing/fakes';
 import { HelpLine } from './HelpLine';
 
+afterEach(() => {
+  cleanup();
+  localStorage.clear();
+  history.replaceState(null, '', '/');
+});
+
+// The screen tests of stage 4.4b lean on these properties of happy-dom; each is pinned here first (Fable plan review
+// I11), so a difference shows up in this file and not halfway through a screen task.
 describe('the DOM test setup (spec 4.4b §9)', () => {
   it('renders a component into a document with the stage address and a storage', async () => {
     const { root, unmount } = await mount(<HelpLine lang="es" />);
@@ -1583,9 +1903,72 @@ describe('the DOM test setup (spec 4.4b §9)', () => {
     expect(location.origin).toBe('https://arcana.test');
     localStorage.setItem('x', '1');
     expect(localStorage.getItem('x')).toBe('1');
-    localStorage.clear();
     unmount();
     expect(document.body.textContent).toBe('');
+  });
+
+  it('click() on a checkbox ticks it and fires change (the save sheet, the account switch)', async () => {
+    function Box() {
+      const [on, setOn] = useState(false);
+      return (
+        <label>
+          <input type="checkbox" checked={on} onChange={(e) => setOn((e.target as HTMLInputElement).checked)} />
+          <span>{on ? 'on' : 'off'}</span>
+        </label>
+      );
+    }
+    const { root } = await mount(<Box />);
+    await click(root.querySelector('input')!);
+    expect(root.querySelector('input')!.checked).toBe(true);
+    expect(root.querySelector('span')!.textContent).toBe('on');
+  });
+
+  it('focus() on a heading with tabIndex -1 moves document.activeElement (focus after a screen change)', async () => {
+    const { root } = await mount(<h2 tabIndex={-1}>Check your e-mail</h2>);
+    root.querySelector('h2')!.focus();
+    expect(document.activeElement?.textContent).toBe('Check your e-mail');
+  });
+
+  it('pushState and replaceState change location and history.state (the diary address, the sheet entry)', () => {
+    history.pushState({ arcanaNight: true }, '', '/diary?claim=t&remind=1');
+    expect(`${location.pathname}${location.search}`).toBe('/diary?claim=t&remind=1');
+    expect(history.state).toEqual({ arcanaNight: true });
+    history.replaceState(null, '', '/diary');
+    expect(`${location.pathname}${location.search}`).toBe('/diary');
+    expect(history.state).toBeNull();
+  });
+
+  it('Response as the fakes use it: JSON, clone(), an empty 401 whose json() fails', async () => {
+    const ok = jsonResponse(200, { a: 1 });
+    expect(ok).toBeInstanceOf(Response);
+    expect(await ok.clone().json()).toEqual({ a: 1 });
+    expect(await ok.json()).toEqual({ a: 1 });
+    const stage = new Response('', { status: 401 });
+    expect(stage.status).toBe(401);
+    await expect(stage.clone().json()).rejects.toThrow();
+    expect(typeof fetch).toBe('function');
+  });
+
+  it('cleanup() unmounts what is still mounted, so its listeners go; waitFor waits for a condition', async () => {
+    const keys: string[] = [];
+    function Listener() {
+      const [ready, setReady] = useState(false);
+      useEffect(() => {
+        const onKey = (event: KeyboardEvent) => keys.push(event.key);
+        document.addEventListener('keydown', onKey);
+        void Promise.resolve().then(() => setReady(true));
+        return () => document.removeEventListener('keydown', onKey);
+      }, []);
+      return <p>{ready ? 'ready' : 'waiting'}</p>;
+    }
+    const { root } = await mount(<Listener />);
+    await waitFor(() => expect(root.textContent).toBe('ready'));
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+    cleanup();
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'b' }));
+    expect(keys).toEqual(['a']);
+    expect(document.body.childElementCount).toBe(0);
+    await expect(waitFor(() => false, 50)).rejects.toThrow('waitFor: the check stayed false');
   });
 });
 ```
@@ -1593,8 +1976,9 @@ describe('the DOM test setup (spec 4.4b §9)', () => {
 Create `site/src/lib/testing/dom.ts`:
 
 ```ts
-// Screen tests (happy-dom): mount a Preact tree, let effects and fetches settle, find and press things the way a
-// person does — by their visible text or label.
+// Screen tests (happy-dom): mount a Preact tree, wait for effects and fetches, find and press things the way a
+// person does — by their visible text or label. Every DOM test file calls cleanup() in afterEach: it unmounts what
+// mount() rendered, so a test's listeners on document and its timers never outlive it (Fable plan review I11).
 import { render, type ComponentChild } from 'preact';
 import { act } from 'preact/test-utils';
 
@@ -1603,14 +1987,29 @@ export interface Mounted {
   unmount: () => void;
 }
 
+const mounted = new Set<HTMLElement>();
+
+function unmountRoot(root: HTMLElement): void {
+  if (!mounted.delete(root)) return;
+  render(null, root);
+  root.remove();
+}
+
 export async function mount(tree: ComponentChild): Promise<Mounted> {
   const root = document.createElement('div');
   document.body.appendChild(root);
+  mounted.add(root);
   await act(() => {
     render(tree, root);
   });
   await settle();
-  return { root, unmount: () => { render(null, root); root.remove(); } };
+  return { root, unmount: () => unmountRoot(root) };
+}
+
+/** For afterEach: unmounts every tree that is still mounted (their effect cleanups run), then empties the body. */
+export function cleanup(): void {
+  for (const root of Array.from(mounted)) unmountRoot(root);
+  document.body.replaceChildren();
 }
 
 /** Lets pending promises (fake fetches, effects) run, several rounds. */
@@ -1619,6 +2018,23 @@ export async function settle(rounds = 10): Promise<void> {
     await act(async () => {
       await new Promise<void>((resolve) => setTimeout(resolve, 0));
     });
+  }
+}
+
+/** Waits until `check` passes — it throws or returns false until then — for at most `timeoutMs`, then fails with
+ * the check's own error. For screens that make several requests one after another (the diary). */
+export async function waitFor(check: () => unknown, timeoutMs = 2000): Promise<void> {
+  const start = Date.now();
+  for (;;) {
+    let failure: unknown;
+    try {
+      if (check() !== false) return;
+      failure = new Error('waitFor: the check stayed false');
+    } catch (error) {
+      failure = error;
+    }
+    if (Date.now() - start > timeoutMs) throw failure;
+    await settle(1);
   }
 }
 
@@ -1673,13 +2089,15 @@ import { defineConfig } from 'vitest/config';
 
 // Logic without a screen lives in src/lib and src/i18n and is tested here in Node. Screens (spec 4.4b §9, §11) are
 // tested in *.test.tsx files that start with `// @vitest-environment happy-dom` (a DOM in memory, no browser, no
-// network: fetch is replaced in every test).
+// network: fetch is replaced in every test). TZ is fixed, so a date a test names never depends on the machine; the
+// day rules themselves are tested with local dates (spec 4.4b §2, decision 13).
 export default defineConfig({
   esbuild: { jsx: 'automatic', jsxImportSource: 'preact' },
   test: {
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
     environment: 'node',
     environmentOptions: { happyDOM: { url: 'https://arcana.test/' } },
+    env: { TZ: 'UTC' },
   },
 });
 ```
@@ -1687,7 +2105,7 @@ export default defineConfig({
 - [ ] **Step 6: Run the test, then everything, then the build**
 
 Run: the Vitest command of Step 4, then the same without a file, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
-Expected: `1 passed`; then `199 passed` in 19 files; then the build ends with `167 page(s) built` and `OK: 167 pages` (`npm ci` installs from the new lockfile).
+Expected: `6 passed`; then `204 passed` in 19 files (both measured in the scratch copy); then the build ends with `167 page(s) built` and `OK: 167 pages` (`npm ci` installs from the new lockfile). `astro check` comes in Task 8.
 
 - [ ] **Step 7: Commit**
 
@@ -1697,20 +2115,89 @@ git commit -m "build(site): stage 4.4b — auth-js 2.119.0, astro check 0.9.12, 
 
 Owner approved 22.11.2026. Exact versions published by 08.11.2026 (npm --before for the
 transitive ones). TypeScript 5.x: Astro 5.18.2's tsconfck and zod-to-ts declare ^5.
-Vitest runs *.test.tsx screen tests in happy-dom at https://arcana.test/.
+@emnapi/runtime 1.11.3: a peer that legacy-peer-deps skips and astro check needs.
+Vitest runs *.test.tsx screen tests in happy-dom at https://arcana.test/, TZ=UTC; the
+smoke test pins the happy-dom behaviour the screen tests rely on.
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
-### Task 7: Site — sign-in state, settings and the lazy sign-in library
+### Task 8: Site — `astro check` with no errors, before any new screen code
+
+**Files:**
+- Modify: `site/package.json` (`scripts.check`), `site/src/islands/ReadingIsland.tsx` (the `params` of the transition events), `site/src/lib/testing/fakes.ts` (`bytes`), `site/src/lib/readingFlow.test.ts` (the type of its `posts` helper)
+
+**Interfaces:**
+- Consumes: `@astrojs/check` 0.9.12, `typescript` 5.9.3 and `@emnapi/runtime` 1.11.3 (Task 7); `site/tsconfig.json` (`astro/tsconfigs/strict`, `jsxImportSource: preact`, unchanged).
+- Produces: `npm run check` (= `astro check`) → `0 errors`. From here on every site task (9–21) runs the check in its verification step and expects `- 0 errors`; a type error is fixed in the task that makes it (Fable plan review I10).
+
+Why this task comes here (review I10): run last, the check would meet twelve tasks of new TSX at once and its fixes would touch screens that were already reviewed. Measured while amending this plan (22.11.2026; a scratch copy of `stage4-4b-account` at 318a286 with Task 7's files and the five packages installed with `--no-save --before=2026-11-08T23:59:59Z`): the existing code has exactly 9 errors, all type-only, no bug among them:
+- `src/islands/ReadingIsland.tsx:117` TS2345 — the union `{ cards_count } | { ms_from_draw } | {}` is not a `Params` (`ms_from_draw?: undefined` against the index signature);
+- `src/lib/readingFlow.test.ts:241, 242, 250, 276` (seven errors) TS2339 — the helper `posts(h)` is typed `Array<{ url: string }>`, so `.body` does not exist for TypeScript;
+- `src/lib/testing/fakes.ts:20` TS2345 — `bytes()` is declared `Uint8Array` (= `Uint8Array<ArrayBufferLike>`), which TypeScript 5.9's DOM types do not accept as a `BodyInit`.
+Hints: 2 (unused `config` in `NightRoom.tsx:58`, unused `state` in `nightRoom.ts:61`); they may stay.
+
+- [ ] **Step 1: Add the script**
+
+In `site/package.json`, in `"scripts"`, after `"build": "astro build",` add `"check": "astro check",`.
+
+- [ ] **Step 2: Run the check to see the errors**
+
+Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 npx astro check`
+Expected: FAIL — `Result (78 files):`, `- 9 errors`, `- 0 warnings`, `- 2 hints`, the nine errors listed above. If Astro instead asks «To continue, Astro requires the following dependency to be installed: @astrojs/check» — that is the missing `@emnapi/runtime` of Task 7 (the import of `@astrojs/check` fails and Astro reads it as "not installed"): stop and report. Other errors than the nine: copy the full list into the report and fix them by the rules of Step 3 as well.
+
+- [ ] **Step 3: Fix the nine errors with type-only changes**
+
+In `site/src/islands/ReadingIsland.tsx` replace
+
+```tsx
+      const params = name === 'cards_revealed' ? { cards_count: state.reading?.cards.length ?? 1 }
+```
+
+with
+
+```tsx
+      const params: Record<string, number> = name === 'cards_revealed' ? { cards_count: state.reading?.cards.length ?? 1 }
+```
+
+In `site/src/lib/testing/fakes.ts` replace `function bytes(text: string): Uint8Array {` with `function bytes(text: string): Uint8Array<ArrayBuffer> {`.
+
+In `site/src/lib/readingFlow.test.ts` replace `import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText } from './testing/fakes';` with `import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText, type Call } from './testing/fakes';` and `  const posts = (h: { calls: Array<{ url: string }> }) => h.calls.filter((c) => c.url.endsWith('/followups'));` with `  const posts = (h: { calls: Call[] }) => h.calls.filter((c) => c.url.endsWith('/followups'));`.
+
+Rules for any other error (now and in every later task):
+- Fix the type, not the behaviour: a precise type, a narrowing (`if (!x) return`), a missing field in a test fixture, an `as` cast only where the value comes from JSON of the API. Never `any`, `// @ts-ignore`, `// @ts-expect-error`, and never weaken `tsconfig.json`.
+- If an error shows a real bug (a wrong field name, a possibly undefined value used at run time), stop and report it to the controller with the file and line: it becomes its own small fix with a test.
+- Warnings and hints may stay; list them in the report.
+
+- [ ] **Step 4: Run the check, the tests and the build**
+
+Run: the command of Step 2, then the Vitest command (no files), then `deploy/build-site.sh && python3 tools/site/check_dist.py`
+Expected: `- 0 errors` (`- 2 hints`); `204 passed` in 19 files; `OK: 167 pages`. (All three measured in the scratch copy described above.)
+
+- [ ] **Step 5: Commit**
+
+```bash
+git add site/package.json site/src/islands/ReadingIsland.tsx site/src/lib/testing/fakes.ts site/src/lib/readingFlow.test.ts
+git commit -m "build(site): stage 4.4b — astro check with no errors
+
+Owner decision 20.11.2026; run before the new screens (Fable plan review I10). Nine
+type-only errors of the existing code: the transition event params, the SSE fake's bytes,
+the follow-up test helper's call type.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+```
+
+---
+
+### Task 9: Site — sign-in state, settings and the lazy sign-in library
 
 **Files:**
 - Create: `site/src/lib/authState.ts`, `site/src/lib/authConfig.ts`, `site/src/lib/auth.ts`, `site/src/lib/supabaseClient.ts`, `site/src/lib/testing/auth.ts`
 - Test: `site/src/lib/authState.test.ts`, `site/src/lib/authConfig.test.ts`, `site/src/lib/auth.test.ts`; modify `site/src/lib/guards.test.ts`
 
 **Interfaces:**
-- Consumes: `FetchFn` from `site/src/lib/api.ts`; `fakeFetch`, `jsonResponse` from `site/src/lib/testing/fakes.ts`; `AuthClient` from `@supabase/auth-js` (Task 6) — in `supabaseClient.ts` only.
+- Consumes: `FetchFn` from `site/src/lib/api.ts`; `fakeFetch`, `jsonResponse` from `site/src/lib/testing/fakes.ts`; `AuthClient` from `@supabase/auth-js` (Task 7) — in `supabaseClient.ts` only.
 - Produces:
   - `authState.ts`: `SIGNED_IN_KEY = 'ad_signed_in'`, `STARTED_KEY = 'ad_signin_started'`, `STARTED_MAX_AGE_MS`, `type SignInMethod = 'email' | 'google'`, `interface StorageLike`, `browserStorage(): StorageLike | null`, `isSignedIn(storage?)`, `markSignedIn(storage?)`, `clearSignedIn(storage?)`, `markSignInStarted(method, now?, storage?)`, `signInStarted(now?, storage?): SignInMethod | null`, `clearSignInStarted(storage?)`.
   - `authConfig.ts`: `interface AuthConfig { enabled: boolean; supabase_url: string; anon_key: string; google: boolean }`, `AUTH_CONFIG_URL`, `parseAuthConfig(body: unknown): AuthConfig`, `fetchAuthConfig(fetchFn): Promise<AuthConfig | null>` (null = unreadable), `authConfig(fetchFn?)` (once per page), `forgetAuthConfig()` (tests).
@@ -1874,14 +2361,14 @@ Create `site/src/lib/auth.test.ts`:
 
 ```ts
 import { describe, expect, it } from 'vitest';
-import { createAuth, methodOf, openSession, sendError } from './auth';
+import { createAuth, methodOf, openSession, sendError, type SessionLike } from './auth';
 import type { AuthConfig } from './authConfig';
 import { STARTED_KEY, SIGNED_IN_KEY, markSignInStarted } from './authState';
 import { fakeClient, memoryStorage, session } from './testing/auth';
 
 const CONFIG: AuthConfig = { enabled: true, supabase_url: 'https://abc.supabase.co', anon_key: 'sb_publishable_x', google: true };
 
-function setup(current = session()) {
+function setup(current: SessionLike | null = session()) { // typed: setup(null) is a signed-out client
   const client = fakeClient(current);
   const storage = memoryStorage();
   let loads = 0;
@@ -1950,6 +2437,30 @@ describe('createAuth', () => {
     expect(client.calls.at(-1)).toEqual({ method: 'signOut', args: { scope: 'local' } });
     expect(storage.data[SIGNED_IN_KEY]).toBeUndefined();
     expect(storage.data[STARTED_KEY]).toBeUndefined();
+  });
+
+  it('signs out this device even when the library answers an error or throws (review M6)', async () => {
+    for (const signOut of [async () => ({ error: { message: 'offline' } }), async () => { throw new Error('offline'); }]) {
+      const client = { ...fakeClient(session()), signOut };
+      const storage = memoryStorage({ [SIGNED_IN_KEY]: '1' });
+      markSignInStarted('email', Date.now(), storage);
+      await createAuth(CONFIG, async () => client, storage).signOut();
+      expect(storage.data[SIGNED_IN_KEY]).toBeUndefined();
+      expect(storage.data[STARTED_KEY]).toBeUndefined();
+    }
+  });
+
+  it('a library that failed to load is loaded again on the next use (review M7)', async () => {
+    const client = fakeClient(session());
+    let tries = 0;
+    const auth = createAuth(CONFIG, async () => {
+      tries += 1;
+      if (tries === 1) throw new Error('chunk failed');
+      return client;
+    }, memoryStorage());
+    expect(await auth.token()).toBeNull(); // offline for a moment
+    expect(await auth.token()).toBe('tok-1');
+    expect(tries).toBe(2);
   });
 });
 
@@ -2194,7 +2705,11 @@ export interface Auth {
 export function createAuth(config: AuthConfig, factory: ClientFactory = loadSupabaseClient,
   storage: StorageLike | null = browserStorage()): Auth {
   let client: Promise<AuthClientLike> | null = null;
-  const lib = () => (client ??= factory(config));
+  // a failed load (offline, a chunk that did not arrive) is not kept: the next use tries again (review M7)
+  const lib = () => (client ??= factory(config).catch((error: unknown) => {
+    client = null;
+    throw error;
+  }));
 
   const keep = (current: SessionLike | null) => {
     if (current?.access_token) markSignedIn(storage);
@@ -2238,13 +2753,13 @@ export function createAuth(config: AuthConfig, factory: ClientFactory = loadSupa
       return sent(lib().then((c) => c.signInWithOAuth({ provider: 'google', options: { redirectTo } })));
     },
     async signOut() {
-      try {
-        await (await lib()).signOut({ scope: 'local' });
-      } catch {
-        // the flag goes anyway: this device is a guest again
-      }
-      clearSignedIn(storage);
+      clearSignedIn(storage); // first: this device is a guest at once, even if the library fails or hangs (review M6)
       clearSignInStarted(storage);
+      try {
+        await (await lib()).signOut({ scope: 'local' }); // auth-js 2.119 drops the local session before its request
+      } catch {
+        // nothing more to undo here
+      }
     },
   };
 }
@@ -2321,8 +2836,8 @@ export function createClient(config: AuthConfig): AuthClientLike {
 
 - [ ] **Step 4: Run the tests**
 
-Run: the Vitest command of Step 2, then the same without files.
-Expected: PASS — `24 passed` in 4 files; then `216 passed` in 22 files.
+Run: the Vitest command of Step 2, then the same without files, then the type check (Global Constraints).
+Expected: PASS — `26 passed` in 4 files; then `223 passed` in 22 files; `- 0 errors`.
 
 - [ ] **Step 5: Commit**
 
@@ -2339,7 +2854,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ---
 
-### Task 8: Site — the token on every API request of a signed-in person, and the `401` rules
+### Task 10: Site — the token on every API request of a signed-in person, and the `401` rules
 
 **Files:**
 - Create: `site/src/lib/authFetch.ts`, `site/src/lib/siteApi.ts`
@@ -2347,7 +2862,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Test: `site/src/lib/authFetch.test.ts`
 
 **Interfaces:**
-- Consumes: `isSignedIn`, `StorageLike`, `browserStorage` (Task 7), `Auth`, `getAuth` (Task 7), `reasonOf` (`errors.ts`), `createApi`, `browserFetch`, `FetchFn`, `Api`, `ApiOptions` (`api.ts`).
+- Consumes: `isSignedIn`, `StorageLike`, `browserStorage` (Task 9), `Auth`, `getAuth` (Task 9), `reasonOf` (`errors.ts`), `createApi`, `browserFetch`, `FetchFn`, `Api`, `ApiOptions` (`api.ts`).
 - Produces:
   - `authFetch(base: FetchFn, source: AuthSource, storage?: StorageLike | null): FetchFn` with `type AuthSource = () => Promise<Pick<Auth, 'token' | 'refresh' | 'signOut'> | null>`. Not signed in (no `ad_signed_in`) or not `/api/*` → `base` as is, the library is never loaded. Signed in → `authorization: Bearer <token>`; `401 {"reason": "auth"}` → `refresh()` once and repeat; still `401 "auth"` or no new token → `signOut()` and repeat once without the header (a guest). `401 "sign_in"`, `401` without JSON (the stage cookie — the existing `'stage'` error shows «Reload»), `503 auth_unavailable` (the existing `'unavailable'` message) go back unchanged.
   - `siteFetch(): FetchFn` = `authFetch(browserFetch(), getAuth)`; `siteApi(options?: ApiOptions): Api` = `createApi(siteFetch(), options)`.
@@ -2540,8 +3055,8 @@ In `site/src/components/ui/PlusCard.tsx` replace `import { browserFetch, createA
 
 - [ ] **Step 4: Run the tests and the build**
 
-Run: the Vitest command of Step 2, then the same without a file, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
-Expected: `10 passed`; then `226 passed` in 23 files; then `OK: 167 pages`.
+Run: the Vitest command of Step 2, then the same without a file, then the type check, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
+Expected: `10 passed`; then `233 passed` in 23 files; `- 0 errors`; then `OK: 167 pages`.
 
 - [ ] **Step 5: Commit**
 
@@ -2557,7 +3072,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ---
 
-### Task 9: Site — the account API client
+### Task 11: Site — the account API client
 
 **Files:**
 - Create: `site/src/lib/accountApi.ts`
@@ -2568,7 +3083,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Consumes: `FetchFn`, `ApiResult<T>`, `withQuery` (`api.ts`), `classifyError`, `ErrorKind` (`errors.ts`), `DrawnCard`, `Kind`, `Lang`, `ReadingView` (`types.ts`).
 - Produces:
   - `api.ts`: `readingPath(id: string, tail?: string): string`, `jsonBody(response): Promise<Record<string, unknown> | null>`, `callJson<T>(fetchFn, path, init?, timeoutMs?): Promise<ApiResult<T>>` (the same behaviour as the old inner `call`).
-  - `accountApi.ts`: `type Outcome = 'yes' | 'partly' | 'no'`; `interface DiaryItem` (the API's diary item), `interface DiaryPage { items; next_before: string | null; hidden_count: number }`, `interface DiaryEntry extends ReadingView { created_at; question; topic; in_diary; outcome; note }`, `interface EntryPatch { outcome?: Outcome | null; note?: string | null }`, `interface Account { email; created_at; reminders_consent; consent_at; limit; used; remaining; day }`, `type ExportResult = { ok: true; blob: Blob; filename: string } | { ok: false; status: number; error: ErrorKind }`, `interface AccountApi { claimToken(readingId); claim(tokens); diary(before?, limit?); entry(id, tz); patchEntry(id, patch); deleteEntry(id); account(tz); setConsent(on); exportFile(); deleteAccount() }`, `exportName(disposition, today): string`, `createAccountApi(fetchFn: FetchFn): AccountApi`.
+  - `accountApi.ts`: `type Outcome = 'yes' | 'partly' | 'no'`; `interface DiaryItem` (the API's diary item), `interface DiaryPage { items; next_before: string | null; hidden_count: number }`, `interface DiaryEntry extends ReadingView { created_at; question; topic; in_diary; outcome; note }`, `interface EntryPatch { outcome?: Outcome | null; note?: string | null }`, `interface Account { email; created_at; reminders_consent; consent_at; limit; used; remaining; day }`, `type ExportResult = { ok: true; blob: Blob; filename: string } | { ok: false; status: number; error: ErrorKind }`, `interface AccountApi { claimToken(readingId); claim(tokens, device); diary(before?, limit?); entry(id, tz); patchEntry(id, patch); deleteEntry(id); account(tz); setConsent(on); exportFile(); deleteAccount() }`, `exportName(disposition, today): string`, `createAccountApi(fetchFn: FetchFn): AccountApi`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -2580,13 +3095,16 @@ import { createAccountApi, exportName } from './accountApi';
 import { fakeFetch, jsonResponse } from './testing/fakes';
 
 describe('account API', () => {
-  it('asks for a claim token of the reading and claims with the tokens', async () => {
-    const { fetch, calls } = fakeFetch(jsonResponse(201, { token: 't1', expires_at: 'x' }), jsonResponse(200, { claimed: ['r1'] }));
+  it('asks for a claim token of the reading and claims with the tokens, with or without this device', async () => {
+    const { fetch, calls } = fakeFetch(jsonResponse(201, { token: 't1', expires_at: 'x' }), jsonResponse(200, { claimed: ['r1'] }),
+      jsonResponse(200, { claimed: [] }));
     const api = createAccountApi(fetch);
     expect(await api.claimToken('r 1')).toMatchObject({ ok: true, data: { token: 't1' } });
-    expect(await api.claim(['t1'])).toMatchObject({ ok: true, data: { claimed: ['r1'] } });
+    expect(await api.claim(['t1'], false)).toMatchObject({ ok: true, data: { claimed: ['r1'] } });
+    await api.claim([], true);
     expect(calls.map((c) => [c.method, c.url, c.body])).toEqual([
-      ['POST', '/api/readings/r%201/claim-token', undefined], ['POST', '/api/account/claim', { tokens: ['t1'] }],
+      ['POST', '/api/readings/r%201/claim-token', undefined], ['POST', '/api/account/claim', { tokens: ['t1'], device: false }],
+      ['POST', '/api/account/claim', { tokens: [], device: true }],
     ]);
   });
 
@@ -2771,7 +3289,8 @@ export type ExportResult = { ok: true; blob: Blob; filename: string } | { ok: fa
 
 export interface AccountApi {
   claimToken(readingId: string): Promise<ApiResult<{ token: string; expires_at: string }>>;
-  claim(tokens: string[]): Promise<ApiResult<{ claimed: string[] }>>;
+  /** `device`: also move this device's guest readings (spec 4.4b §4, owner decision 12; API Task 6). */
+  claim(tokens: string[], device: boolean): Promise<ApiResult<{ claimed: string[] }>>;
   diary(before?: string, limit?: number): Promise<ApiResult<DiaryPage>>;
   entry(id: string, tz: string | undefined): Promise<ApiResult<DiaryEntry>>;
   patchEntry(id: string, patch: EntryPatch): Promise<ApiResult<{ id: string; outcome: Outcome | null; note: string | null }>>;
@@ -2795,7 +3314,7 @@ export function createAccountApi(fetchFn: FetchFn): AccountApi {
   const call = <T>(path: string, init?: RequestInit) => callJson<T>(fetchFn, path, init);
   return {
     claimToken: (readingId) => call(readingPath(readingId, '/claim-token'), { method: 'POST' }),
-    claim: (tokens) => call('/api/account/claim', json('POST', { tokens })),
+    claim: (tokens, device) => call('/api/account/claim', json('POST', { tokens, device })),
     diary: (before, limit) => call(withQuery('/api/diary', { before, limit: limit ? String(limit) : undefined })),
     entry: (id, tz) => call(withQuery(readingPath(id), { tz })),
     patchEntry: (id, patch) => call(`/api/diary/${encodeURIComponent(id)}`, json('PATCH', patch)),
@@ -2820,8 +3339,8 @@ export function createAccountApi(fetchFn: FetchFn): AccountApi {
 
 - [ ] **Step 4: Run the tests**
 
-Run: the Vitest command of Step 2 with `src/lib/api.test.ts` added, then the same without files.
-Expected: PASS — `23 passed` in 2 files (`api.test.ts` unchanged at 18); then `231 passed` in 24 files.
+Run: the Vitest command of Step 2 with `src/lib/api.test.ts` added, then the same without files, then the type check.
+Expected: PASS — `23 passed` in 2 files (`api.test.ts` unchanged at 18); then `238 passed` in 24 files; `- 0 errors`.
 
 - [ ] **Step 5: Commit**
 
@@ -2834,7 +3353,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ---
 
-### Task 10: Site — the diary addresses, the 4.4b events, and finishing a sign-in (claim once)
+### Task 12: Site — the diary addresses, the 4.4b events, and finishing a sign-in (claim once)
 
 **Files:**
 - Create: `site/src/lib/claim.ts`
@@ -2842,11 +3361,11 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Test: `site/src/lib/claim.test.ts` (new), `site/src/lib/routes.test.ts`, `site/src/lib/analytics.test.ts`
 
 **Interfaces:**
-- Consumes: `AccountApi` (`claim`, `setConsent`, Task 9), `signInStarted`, `clearSignInStarted`, `SignInMethod`, `StorageLike` (Task 7), `memoryStorage` (Task 7 fakes).
+- Consumes: `AccountApi` (`claim`, `setConsent`, Task 11), `signInStarted`, `clearSignInStarted`, `SignInMethod`, `StorageLike` (Task 9), `memoryStorage` (Task 9 fakes).
 - Produces:
-  - `routes.ts`: `PageKey` gains `'diary' | 'account'`; `pagePath('diary', 'en') === '/diary'`, `'/es/diario'`, `pagePath('account', …)` `'/account'`, `'/es/cuenta'`; `PRIVATE_PAIRS` (the four, both ways) used by `switchPath`; `allPagePaths()` includes the four. (The menu item comes in Task 16, the pages in Tasks 12 and 14.)
+  - `routes.ts`: `PageKey` gains `'diary' | 'account'`; `pagePath('diary', 'en') === '/diary'`, `'/es/diario'`, `pagePath('account', …)` `'/account'`, `'/es/cuenta'`; `PRIVATE_PAIRS` (the four, both ways) used by `switchPath`; `allPagePaths()` includes the four. (The menu item comes in Task 18, the pages in Tasks 14 and 16.)
   - `analytics.ts`: `EventName` adds `'save_click' | 'signup_done' | 'outcome_answered' | 'remind_click'`; `NO_TOOL = {plus_view, signup_done, outcome_answered}`; `analyticsEvent(name, tool: Tool | null, lang, params?)`.
-  - `claim.ts`: `interface ReturnParams { claim: string | null; remind: boolean }`, `returnUrl(origin, lang, params?): string` (`<origin>/diary?claim=…&remind=1`), `readReturnParams(search): ReturnParams` (a token longer than 100 is ignored), `cleanReturnUrl(href): string` (drops `claim`, `remind` and the hash), `interface FinishDeps { api; storage; href; lang; method(started); replaceUrl(url); send(event); now? }`, `type FinishResult = {type:'none'} | {type:'claimed'; claimed: string[]} | {type:'error'; error: ErrorKind}`, `finishSignIn(deps): Promise<FinishResult>` (one run at a time per page), `linkFailed(hash): boolean`.
+  - `claim.ts`: `interface ReturnParams { claim: string | null; remind: boolean }`, `returnUrl(origin, lang, params?): string` (`<origin>/diary?claim=…&remind=1`), `readReturnParams(search): ReturnParams` (a token longer than 100 is ignored), `cleanReturnUrl(href): string` (drops `claim`, `remind` and the hash), `interface FinishDeps { api; storage; href; lang; method(started); replaceUrl(url); send(event); now? }`, `type FinishResult = {type:'none'} | {type:'claimed'; claimed: string[]} | {type:'error'; error: ErrorKind}`, `finishSignIn(deps): Promise<FinishResult>` (one run at a time per page; `api.claim(tokens, device)` with `device = true` only when the "sign-in started here" mark is set — owner decision 12; consent and `signup_done` only with the mark or when `claimed` is not empty — review I1; the address is cleaned in both cases), `linkFailed(hash): boolean`.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -2882,7 +3401,10 @@ function deps(href: string, overrides: Partial<FinishDeps> = {}) {
   const storage = memoryStorage();
   const d: FinishDeps = {
     api: {
-      claim: async (tokens) => { calls.push(`claim ${JSON.stringify(tokens)}`); return { ok: true, status: 200, data: { claimed: ['r1'] } }; },
+      claim: async (tokens, device) => {
+        calls.push(`claim ${JSON.stringify(tokens)} ${device ? 'device' : 'tokens only'}`);
+        return { ok: true, status: 200, data: { claimed: tokens.length || device ? ['r1'] : [] } };
+      },
       setConsent: async (on) => { calls.push(`consent ${on}`); return { ok: true, status: 200, data: { email: null, reminders_consent: on, consent_at: null } }; },
     },
     storage, href, lang: 'en', now: 1000,
@@ -2895,23 +3417,46 @@ function deps(href: string, overrides: Partial<FinishDeps> = {}) {
 }
 
 describe('finishSignIn', () => {
-  it('with a token in the address: claims it, gives consent, counts signup_done and cleans the address', async () => {
+  it('with only a token in the address (the link opened on another device): claims that reading only, gives consent, counts signup_done and cleans the address', async () => {
     const { d, calls, events, urls } = deps('https://arcana.test/diary?claim=tok&remind=1');
     expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: ['r1'] });
-    expect(calls).toEqual(['claim ["tok"]', 'consent true']);
+    expect(calls).toEqual(['claim ["tok"] tokens only', 'consent true']); // owner decision 12: not this browser's readings
     expect(events).toEqual([{ name: 'signup_done', tool: null, lang: 'en', params: { method: 'email' } }]);
     expect(urls).toEqual(['/diary']);
+  });
+
+  it('with the token and the mark (the link opened on the device that sent it): the token and this device', async () => {
+    const { d, calls, storage } = deps('https://arcana.test/diary?claim=tok&remind=1');
+    markSignInStarted('email', 900, storage);
+    await finishSignIn(d);
+    expect(calls).toEqual(['claim ["tok"] device', 'consent true']);
   });
 
   it('after a sign-in started here: claims this device with no token, with its method', async () => {
     const { d, calls, events, storage } = deps('https://arcana.test/diary');
     markSignInStarted('google', 900, storage);
     expect(await finishSignIn(d)).toMatchObject({ type: 'claimed' });
-    expect(calls).toEqual(['claim []']);
+    expect(calls).toEqual(['claim [] device']);
     expect(events[0].params).toEqual({ method: 'google' });
     expect(storage.data[STARTED_KEY]).toBeUndefined(); // once: the next visit claims nothing
     expect(await finishSignIn(d)).toEqual({ type: 'none' });
     expect(calls).toHaveLength(1);
+  });
+
+  it('a token that moves nothing, without the mark (made up, or the same link again after Back): no consent, no signup_done, a clean address (review I1)', async () => {
+    const { d, calls, events, urls } = deps('https://arcana.test/diary?claim=used&remind=1', {
+      api: {
+        claim: async (tokens, device) => {
+          calls.push(`claim ${JSON.stringify(tokens)} ${device ? 'device' : 'tokens only'}`);
+          return { ok: true, status: 200, data: { claimed: [] } };
+        },
+        setConsent: async () => { throw new Error('must not be called'); },
+      },
+    });
+    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: [] });
+    expect(calls).toEqual(['claim ["used"] tokens only']);
+    expect(events).toEqual([]);
+    expect(urls).toEqual(['/diary']);
   });
 
   it('an ordinary visit claims nothing (a shared computer keeps its guest readings)', async () => {
@@ -2936,7 +3481,7 @@ describe('finishSignIn', () => {
   it('runs once when two parts of the page ask at the same time', async () => {
     const { d, calls } = deps('https://arcana.test/diary?claim=tok');
     await Promise.all([finishSignIn(d), finishSignIn(d)]);
-    expect(calls).toEqual(['claim ["tok"]']);
+    expect(calls).toEqual(['claim ["tok"] tokens only']);
   });
 });
 
@@ -3017,7 +3562,7 @@ Expected: FAIL — `Failed to resolve import "./claim"`; routes: `expected 167 t
 In `site/src/lib/routes.ts`:
 
 - replace `export type PageKey = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily' | 'not_found';` with `export type PageKey = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily' | 'diary' | 'account' | 'not_found';`
-- after the line `const NOT_FOUND_PAIRS: … = { '/404': '/es/404', '/es/404': '/404' };` add:
+- after the line `const NOT_FOUND_PAIRS: Readonly<Record<string, string>> = { '/404': '/es/404', '/es/404': '/404' };` add:
 
 ```ts
 /** Spec 4.4b §5, §6: the diary and the account are noindex, outside hreflang.csv; the switch still pairs them. */
@@ -3095,7 +3640,10 @@ Create `site/src/lib/claim.ts`:
 // device) and `&remind=1` when "Remind me in 7 days" was ticked. After sign-in the diary calls
 // POST /api/account/claim once — only after a sign-in started on this device or with a token in the address
 // (api/README.md: on a shared computer a claim without tokens takes every guest reading of the device) — then
-// removes `claim` and `remind` from the address bar.
+// removes `claim` and `remind` from the address bar. This device's guest readings move ("device": true) only after
+// a sign-in started here: a link opened on another device moves the reading of its token only (owner decision 12).
+// The consent and signup_done need that mark or a reading actually moved: the same address opened again (Back after
+// the library cleared #access_token, or a made-up token) switches nothing on (Fable plan review I1).
 import type { AccountApi } from './accountApi';
 import { analyticsEvent, type AnalyticsEvent } from './analytics';
 import { clearSignInStarted, signInStarted, type SignInMethod, type StorageLike } from './authState';
@@ -3163,13 +3711,16 @@ async function finish(deps: FinishDeps): Promise<FinishResult> {
     if (params.remind) deps.replaceUrl(cleanReturnUrl(deps.href));
     return { type: 'none' };
   }
-  const result = await deps.api.claim(params.claim ? [params.claim] : []);
+  const result = await deps.api.claim(params.claim ? [params.claim] : [], started !== null);
   if (!result.ok) return { type: 'error', error: result.error };
-  if (params.remind) await deps.api.setConsent(true); // a failure here leaves the switch on the account page
-  deps.send(analyticsEvent('signup_done', null, deps.lang, { method: deps.method(started) }));
+  const claimed = result.data?.claimed ?? [];
+  if (started || claimed.length > 0) {
+    if (params.remind) await deps.api.setConsent(true); // a failure here leaves the switch on the account page
+    deps.send(analyticsEvent('signup_done', null, deps.lang, { method: deps.method(started) }));
+  }
   clearSignInStarted(deps.storage);
   deps.replaceUrl(cleanReturnUrl(deps.href));
-  return { type: 'claimed', claimed: result.data?.claimed ?? [] };
+  return { type: 'claimed', claimed };
 }
 
 /** Supabase sends a failed or expired link back with #error=…&error_code=… in the address. */
@@ -3180,8 +3731,8 @@ export function linkFailed(hash: string): boolean {
 
 - [ ] **Step 4: Run the tests**
 
-Run: the Vitest command of Step 2, then the same without files.
-Expected: PASS — `24 passed` in 3 files; then `241 passed` in 25 files.
+Run: the Vitest command of Step 2, then the same without files, then the type check.
+Expected: PASS — `26 passed` in 3 files; then `250 passed` in 25 files; `- 0 errors`.
 
 - [ ] **Step 5: Commit**
 
@@ -3190,27 +3741,31 @@ git add site/src/lib/claim.ts site/src/lib/claim.test.ts site/src/lib/routes.ts 
 git commit -m "feat(site): stage 4.4b — diary addresses, 4.4b events, finishing a sign-in
 
 The claim runs once per page and only after a sign-in started on this device or with a
-?claim= token; then the address loses claim, remind and the hash. The diary and account
-pairs are outside hreflang.csv.
+?claim= token; the device's guest readings only with that mark (owner decision 12); consent
+and signup_done only with the mark or a moved reading (review I1); then the address loses
+claim, remind and the hash. The diary and account pairs are outside hreflang.csv.
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
 
-### Task 11: Site — "Save to diary", the save sheet and "Check your e-mail" (screens 3, 3b)
+### Task 13: Site — "Save to diary", the save sheet and "Check your e-mail" (screens 3, 3b)
 
 **Files:**
-- Create: `site/src/components/ui/SignInBlock.tsx`, `site/src/components/ui/SaveSheet.tsx`, `site/src/lib/diary.ts` (entry addresses only; Task 12 adds the rest)
+- Create: `site/src/components/ui/SignInBlock.tsx`, `site/src/components/ui/SaveSheet.tsx`, `site/src/components/ui/useSaveToDiary.tsx` (the island's save wiring, review M20), `site/src/lib/sheetHistory.ts` (owner decision 14), `site/src/lib/diary.ts` (entry addresses only; Task 14 adds the rest), `site/src/lib/testing/night.ts` (a shown room for screen tests)
 - Modify: `site/src/components/ui/NightRoom.tsx`, `site/src/islands/ReadingIsland.tsx`, `site/src/i18n/en.ts`, `site/src/i18n/es.ts`, `site/src/i18n/i18n.test.ts`, `site/src/styles/global.css`
-- Test: `site/src/components/ui/SaveSheet.test.tsx`, `site/src/components/ui/NightRoom.test.tsx`, `site/src/lib/diary.test.ts` (new)
+- Test: `site/src/components/ui/SaveSheet.test.tsx`, `site/src/components/ui/NightRoom.test.tsx`, `site/src/components/ui/useSaveToDiary.test.tsx`, `site/src/lib/diary.test.ts` (new)
 
 **Interfaces:**
-- Consumes: `Auth`, `SendError`, `getAuth` (Task 7), `markSignInStarted`, `isSignedIn`, `STARTED_KEY` (Task 7), `authConfig`, `AuthConfig` (Task 7), `AccountApi.claimToken`, `createAccountApi` (Task 9), `siteFetch` (Task 8), `returnUrl` (Task 10), `analyticsEvent('save_click', …)` (Task 10), `pagePath('diary', …)` (Task 10), DOM helpers (Task 6).
+- Consumes: `Auth`, `SendError`, `getAuth` (Task 9), `markSignInStarted`, `isSignedIn`, `STARTED_KEY` (Task 9), `authConfig`, `AuthConfig` (Task 9), `AccountApi.claimToken`, `createAccountApi` (Task 11), `siteFetch` (Task 10), `returnUrl` (Task 12), `analyticsEvent('save_click', …)` (Task 12), `pagePath('diary', …)` (Task 12), DOM helpers incl. `cleanup`, `waitFor` (Task 7); the room's own history entry `{ arcanaNight: true }` and its `popstate` handler in `ReadingIsland.tsx` (4.4a, unchanged).
 - Produces:
-  - `SignInBlock` props `{ lang; auth: Pick<Auth, 'sendLink' | 'google'>; google: boolean; idBase: string; redirectTo: () => Promise<string>; surface: 'night' | 'day' }`; `RESEND_WAIT_S = 60`. Reused by the diary (Task 12) and the account (Task 14).
-  - `SaveSheet` props `{ lang; readingId; auth: Pick<Auth, 'sendLink' | 'google'> | null; google: boolean; accountApi: Pick<AccountApi, 'claimToken'>; origin: string; onClose(): void }` — one claim token per open sheet, asked for at the first send.
-  - `NightRoom` new optional props `save?: SaveSlot | null`, `sheet?: ComponentChildren`, `onCloseSheet?: () => void`; `export interface SaveSlot { saved: boolean; href: string; onSave(): void }`.
+  - `SignInBlock` props `{ lang; auth: Pick<Auth, 'sendLink' | 'google'>; google: boolean; idBase: string; redirectTo: () => Promise<string>; surface: 'night' | 'day' }`; `RESEND_WAIT_S = 60`; its root has the class `signin signin--<surface>` (the day labels' colour, review I6); «Use another e-mail» puts the focus into the e-mail field (review M15). Reused by the diary (Task 14) and the account (Task 16).
+  - `SaveSheet` props `{ lang; readingId; auth: Pick<Auth, 'sendLink' | 'google'> | null; google: boolean; accountApi: Pick<AccountApi, 'claimToken'>; origin: string; onClose(): void }` — one claim token per open sheet, asked for at the first send; only a token that was made is kept, a failure is asked again at the next send (review M13).
+  - `NightRoom` new optional props `save?: SaveSlot | null`, `sheet?: ComponentChildren`, `onCloseSheet?: () => void`; `export interface SaveSlot { saved: boolean; href: string; onSave(): void }`. «Save to diary» / «Saved ✓» is the **last** item of `.night__actions`, so a late button never moves the others under the finger (review M14); with the sheet open `.night__top` and `.night__body` are `inert` (review M15).
+  - `sheetHistory.ts`: `interface HistoryLike { readonly state: unknown; pushState(data, unused); back() }`, `SHEET_STATE = { arcanaNight: true, arcanaSheet: true }`, `class SheetHistory { push(); popped(state): boolean; consume(): number }` — the sheet's own history entry (owner decision 14).
+  - `useSaveToDiary(options): SaveToDiary` with `SaveToDiaryOptions { lang; tool; readingId: string | null; signedIn: boolean; readConfig?; loadAuth?; accountApi?; history?; send?; origin? }` and `SaveToDiary { slot: SaveSlot | null; sheet: ComponentChildren; closeSheet: (() => void) | undefined; closeForRoom(): number }`: reads `/api/auth-config` once a reading is created (not when the answer is shown — review M14), sends `save_click`, pushes the sheet's entry when the sheet opens; Back (`popstate`) closes only the sheet; × and Escape take the entry back with one `history.back()`; `closeForRoom()` tells `ReadingIsland` how many entries to step back over when the room closes with the sheet open.
+  - `testing/night.ts`: `ONE: ReadingCreated`, `shown(reading, sections): NightState`.
   - `diary.ts`: `entryParam(search: string): string | null` (a UUID only, lower-cased), `entryHref(lang, id): string` (`/diary?r=<id>`).
   - Dictionary keys (EN prototype copy unless listed as drafts): `saveToDiary`, `savedToDiary`, `saveTitle`, `saveLead`, `saveRemind`, `signInEmailLabel`, `signInSend`, `signInOr`, `signInGoogle`, `signInTooOften`, `checkEmailTitle`, `checkEmailLead` (`{email}`), `checkEmailResend`, `checkEmailWait` (`{n}`), `checkEmailOther`, `checkEmailSent`.
 
@@ -3225,7 +3780,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { AccountApi } from '../../lib/accountApi';
 import type { Auth, SendResult } from '../../lib/auth';
 import { STARTED_KEY } from '../../lib/authState';
-import { byText, click, mount, queryText, submit, typeInto } from '../../lib/testing/dom';
+import { byText, cleanup, click, mount, queryText, submit, typeInto } from '../../lib/testing/dom';
 import { SaveSheet } from './SaveSheet';
 import { RESEND_WAIT_S } from './SignInBlock';
 
@@ -3254,7 +3809,7 @@ function sheet(f: ReturnType<typeof fakes>, props: { lang?: 'en' | 'es'; google?
 }
 
 afterEach(() => {
-  document.body.replaceChildren();
+  cleanup();
   localStorage.clear();
   vi.useRealTimers();
 });
@@ -3334,6 +3889,29 @@ describe('the save sheet (screens 3, 3b; spec 4.4b §4)', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(f.tokens).toEqual([]);
   });
+
+  it('a claim token that could not be made is asked for again at the next send (review M13)', async () => {
+    vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval'] });
+    const f = fakes(null);
+    const { root } = await mount(sheet(f));
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    await act(() => {
+      vi.advanceTimersByTime(RESEND_WAIT_S * 1000);
+    });
+    await click(byText(root, 'Send it again', 'button'));
+    expect(f.tokens).toEqual(['r1', 'r1']); // a failure is not kept for the whole sheet
+    expect(f.sent.map((s) => s.redirectTo)).toEqual(['https://arcana.test/diary', 'https://arcana.test/diary']);
+  });
+
+  it('"Use another e-mail" goes back to the form with the focus in the e-mail field (review M15)', async () => {
+    const f = fakes();
+    const { root } = await mount(sheet(f));
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    await click(byText(root, 'Use another e-mail', 'button'));
+    expect(document.activeElement).toBe(root.querySelector('input[type="email"]'));
+  });
 });
 ```
 
@@ -3343,31 +3921,11 @@ Create `site/src/components/ui/NightRoom.test.tsx`:
 // @vitest-environment happy-dom
 import { act } from 'preact/test-utils';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CLOSED, nightReducer, type NightAction, type NightState } from '../../lib/nightRoom';
+import type { NightState } from '../../lib/nightRoom';
 import { panelConfig } from '../../lib/panel';
-import { byText, click, mount, queryText } from '../../lib/testing/dom';
-import type { ReadingCreated } from '../../lib/types';
+import { byText, cleanup, click, mount, queryText } from '../../lib/testing/dom';
+import { ONE, shown } from '../../lib/testing/night';
 import { NightRoom, type NightRoomProps } from './NightRoom';
-
-const ONE: ReadingCreated = {
-  id: 'r1', lang: 'en', kind: 'one', verdict: null, soft_line: null, remaining: 1,
-  cards: [{ card_id: 'major-18-moon', position: 'card', reversed: false, name: 'The Moon' }],
-};
-
-/** The room with the whole answer shown (cards turned, stream done). */
-function shown(reading: ReadingCreated, sections: Record<string, string>): NightState {
-  const actions: NightAction[] = [
-    { type: 'open' }, { type: 'created', reading, reducedMotion: true },
-    { type: 'stream', event: { event: 'meta', data: { soft_line: null } } },
-    ...Object.entries(sections).flatMap(([name, text]): NightAction[] => [
-      { type: 'stream', event: { event: 'section', data: { name } } },
-      { type: 'stream', event: { event: 'text', data: { name, text } } },
-    ]),
-    { type: 'stream', event: { event: 'done', data: { answer_shown: 'model' } } },
-    { type: 'counts', counts: { followups_left: 2, followup_attempts_left: 8 } },
-  ];
-  return actions.reduce(nightReducer, CLOSED);
-}
 
 function room(state: NightState, extra: Partial<NightRoomProps> = {}) {
   const noop = () => {};
@@ -3378,12 +3936,13 @@ function room(state: NightState, extra: Partial<NightRoomProps> = {}) {
   );
 }
 
-afterEach(() => document.body.replaceChildren());
+afterEach(() => cleanup());
 
 describe('the night room and the diary (spec 4.4b §4)', () => {
-  it('a guest gets "Save to diary" under the answer', async () => {
+  it('a guest gets "Save to diary" under the answer, after the other actions (review M14)', async () => {
     const onSave = vi.fn();
     const { root } = await mount(room(shown(ONE, { headline: 'Slow down.' }), { save: { saved: false, href: '/diary?r=r1', onSave } }));
+    expect(root.querySelector('.night__actions')!.lastElementChild?.textContent).toBe('Save to diary');
     await click(byText(root, 'Save to diary', 'button'));
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(queryText(root, 'Saved to your diary ✓')).toBeNull();
@@ -3405,11 +3964,176 @@ describe('the night room and the diary (spec 4.4b §4)', () => {
       onClose, onCloseSheet, save: { saved: false, href: '/diary?r=r1', onSave: vi.fn() },
       sheet: <div class="sheet"><button type="button">Inside</button></div>,
     }));
+    expect(document.querySelector('.night__top')!.hasAttribute('inert')).toBe(true); // review M15
     await act(() => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
     });
     expect(onCloseSheet).toHaveBeenCalledTimes(1);
     expect(onClose).not.toHaveBeenCalled();
+  });
+});
+```
+
+Create `site/src/lib/testing/night.ts` (the shown room moves here from the test file, so two screen tests share it):
+
+```ts
+// The night room with a whole answer on screen, for screen tests (NightRoom.test.tsx, useSaveToDiary.test.tsx).
+import { CLOSED, nightReducer, type NightAction, type NightState } from '../nightRoom';
+import type { ReadingCreated } from '../types';
+
+export const ONE: ReadingCreated = {
+  id: 'r1', lang: 'en', kind: 'one', verdict: null, soft_line: null, remaining: 1,
+  cards: [{ card_id: 'major-18-moon', position: 'card', reversed: false, name: 'The Moon' }],
+};
+
+/** The room with the whole answer shown (cards turned, stream done). */
+export function shown(reading: ReadingCreated, sections: Record<string, string>): NightState {
+  const actions: NightAction[] = [
+    { type: 'open' }, { type: 'created', reading, reducedMotion: true },
+    { type: 'stream', event: { event: 'meta', data: { soft_line: null } } },
+    ...Object.entries(sections).flatMap(([name, text]): NightAction[] => [
+      { type: 'stream', event: { event: 'section', data: { name } } },
+      { type: 'stream', event: { event: 'text', data: { name, text } } },
+    ]),
+    { type: 'stream', event: { event: 'done', data: { answer_shown: 'model' } } },
+    { type: 'counts', counts: { followups_left: 2, followup_attempts_left: 8 } },
+  ];
+  return actions.reduce(nightReducer, CLOSED);
+}
+```
+
+Create `site/src/components/ui/useSaveToDiary.test.tsx` (owner decision 14, review M14 and M20: the wiring the island uses, with the real night room; `history.back` is replaced by a spy and the Back press is a `popstate` the test sends, so nothing depends on happy-dom's navigation):
+
+```tsx
+// @vitest-environment happy-dom
+import { act } from 'preact/test-utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { AccountApi } from '../../lib/accountApi';
+import type { AnalyticsEvent } from '../../lib/analytics';
+import type { Auth } from '../../lib/auth';
+import type { AuthConfig } from '../../lib/authConfig';
+import { panelConfig } from '../../lib/panel';
+import { SHEET_STATE } from '../../lib/sheetHistory';
+import { byText, cleanup, click, mount, queryText, waitFor } from '../../lib/testing/dom';
+import { ONE, shown } from '../../lib/testing/night';
+import { NightRoom } from './NightRoom';
+import { useSaveToDiary, type SaveToDiaryOptions } from './useSaveToDiary';
+
+const ON: AuthConfig = { enabled: true, supabase_url: 'https://abc.supabase.co', anon_key: 'sb_publishable_x', google: false };
+const STATE = shown(ONE, { headline: 'Slow down.' });
+const ROOM = { arcanaNight: true }; // the room's own history entry (ReadingIsland)
+
+function fakes(config: AuthConfig | null = ON) {
+  const events: AnalyticsEvent[] = [];
+  let reads = 0;
+  const auth: Auth = {
+    session: async () => null, token: async () => null, refresh: async () => null,
+    sendLink: async () => ({ ok: true as const }), google: async () => ({ ok: true as const }), signOut: async () => {},
+  };
+  const accountApi: Pick<AccountApi, 'claimToken'> = {
+    claimToken: async () => ({ ok: true, status: 201, data: { token: 'tok-1', expires_at: '2026-11-29T00:00:00Z' } }),
+  };
+  const options = (extra: Partial<SaveToDiaryOptions> = {}): SaveToDiaryOptions => ({
+    lang: 'en', tool: 'love', readingId: 'r1', signedIn: false, accountApi, origin: 'https://arcana.test',
+    readConfig: async () => { reads += 1; return config; }, loadAuth: async () => auth,
+    send: (event) => { events.push(event); }, ...extra,
+  });
+  return { events, reads: () => reads, options };
+}
+
+/** What ReadingIsland does with the hook: its slot and its sheet in the real night room. */
+function Room({ options, onClose = () => {} }: { options: SaveToDiaryOptions; onClose?: (steps: number) => void }) {
+  const saving = useSaveToDiary(options);
+  const noop = () => {};
+  return (
+    <>
+      <NightRoom state={STATE} lang="en" config={panelConfig('one_card', 'en')} threeCards={false} question="Will it work?"
+        sourceName={null} onClose={noop} onRetry={noop} onRestore={noop} onRestoreFollowup={noop} onFollowup={noop}
+        onConfirmFollowup={noop} onCancelFollowup={noop} onMoreAbout={noop} onAskAnother={noop}
+        save={saving.slot} sheet={saving.sheet} onCloseSheet={saving.closeSheet} />
+      <button type="button" onClick={() => onClose(saving.closeForRoom())}>Close the room</button>
+    </>
+  );
+}
+
+/** The phone's Back: the browser is on the entry below and tells the page. */
+async function backTo(state: unknown) {
+  history.replaceState(state, '');
+  await act(() => {
+    window.dispatchEvent(new PopStateEvent('popstate', { state }));
+  });
+}
+
+beforeEach(() => history.replaceState(ROOM, '', '/love'));
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
+
+describe('Save to diary in the night room (spec 4.4b §4)', () => {
+  it('reads the sign-in settings once the reading exists and counts save_click when the sheet opens', async () => {
+    const none = fakes();
+    const before = await mount(<Room options={none.options({ readingId: null })} />);
+    expect(none.reads()).toBe(0);
+    expect(queryText(before.root, 'Save to diary', 'button')).toBeNull();
+    before.unmount();
+    const f = fakes();
+    const { root } = await mount(<Room options={f.options()} />);
+    await waitFor(() => byText(root, 'Save to diary', 'button'));
+    expect(f.reads()).toBe(1);
+    await click(byText(root, 'Save to diary', 'button'));
+    expect(f.events).toEqual([{ name: 'save_click', tool: 'love', lang: 'en', params: {} }]);
+    expect(root.querySelector('.night .sheet')).not.toBeNull();
+  });
+
+  it('signed in: "Saved to your diary ✓" with the entry link; sign-in off: no button at all', async () => {
+    const signed = await mount(<Room options={fakes().options({ signedIn: true })} />);
+    await waitFor(() => byText(signed.root, 'Saved to your diary ✓', 'a'));
+    expect(byText<HTMLAnchorElement>(signed.root, 'Saved to your diary ✓', 'a').getAttribute('href')).toBe('/diary?r=r1');
+    signed.unmount();
+    const off = fakes({ enabled: false, supabase_url: '', anon_key: '', google: false });
+    const { root } = await mount(<Room options={off.options()} />);
+    await waitFor(() => off.reads() === 1);
+    expect(queryText(root, 'Save to diary', 'button')).toBeNull();
+  });
+
+  it("the sheet is a history entry of its own: the phone's Back closes only the sheet (owner decision 14)", async () => {
+    const push = vi.spyOn(history, 'pushState');
+    const back = vi.spyOn(history, 'back').mockImplementation(() => {});
+    const { root } = await mount(<Room options={fakes().options()} />);
+    await waitFor(() => byText(root, 'Save to diary', 'button'));
+    await click(byText(root, 'Save to diary', 'button'));
+    expect(push).toHaveBeenCalledWith(SHEET_STATE, '');
+    await backTo(ROOM);
+    expect(root.querySelector('.sheet')).toBeNull();
+    expect(byText(root, 'Slow down.')).toBeTruthy(); // the room and its answer stay
+    expect(back).not.toHaveBeenCalled();
+    expect(document.activeElement?.textContent).toBe('Save to diary');
+  });
+
+  it('× and Escape take the entry back once; the room closing with the sheet open steps over both', async () => {
+    vi.spyOn(history, 'pushState');
+    const back = vi.spyOn(history, 'back').mockImplementation(() => {});
+    const steps: number[] = [];
+    const { root } = await mount(<Room options={fakes().options()} onClose={(n) => steps.push(n)} />);
+    await waitFor(() => byText(root, 'Save to diary', 'button'));
+    await click(byText(root, 'Save to diary', 'button'));
+    await click(root.querySelector('.sheet button[aria-label="Close"]')!);
+    expect(back).toHaveBeenCalledTimes(1);
+    expect(root.querySelector('.sheet')).toBeNull();
+    await backTo(ROOM); // the popstate of that back(): nothing more happens
+    expect(back).toHaveBeenCalledTimes(1);
+    await click(byText(root, 'Save to diary', 'button'));
+    await act(() => {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    });
+    expect(back).toHaveBeenCalledTimes(2);
+    expect(root.querySelector('.sheet')).toBeNull();
+    await click(byText(root, 'Save to diary', 'button'));
+    await click(byText(root, 'Close the room', 'button'));
+    expect(steps).toEqual([1]); // ReadingIsland then steps back over the sheet's entry and the room's in one go
+    expect(back).toHaveBeenCalledTimes(2);
+    expect(root.querySelector('.sheet')).toBeNull();
   });
 });
 ```
@@ -3434,8 +4158,8 @@ In `site/src/i18n/i18n.test.ts` replace `expect(keys('en').length).toBe(160);` w
 
 - [ ] **Step 2: Run them to see them fail**
 
-Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/components/ui/SaveSheet.test.tsx src/components/ui/NightRoom.test.tsx src/lib/diary.test.ts src/i18n/i18n.test.ts`
-Expected: FAIL — `Failed to resolve import "./SaveSheet"`, `"./SignInBlock"`, `"./diary"`; NightRoom: `no element with the text "Save to diary"`; i18n: `expected 160 to be 176`.
+Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/components/ui/SaveSheet.test.tsx src/components/ui/NightRoom.test.tsx src/components/ui/useSaveToDiary.test.tsx src/lib/diary.test.ts src/i18n/i18n.test.ts`
+Expected: FAIL — `Failed to resolve import "./SaveSheet"`, `"./SignInBlock"`, `"./useSaveToDiary"`, `"../../lib/sheetHistory"`, `"./diary"`; NightRoom: `no element with the text "Save to diary"`; i18n: `expected 160 to be 176`.
 
 - [ ] **Step 3: Implement**
 
@@ -3503,7 +4227,8 @@ Create `site/src/components/ui/SignInBlock.tsx`:
 // The sign-in block (screens 3, 3b; spec 4.4b §3–§6): an e-mail for a link and, when it is on, "Continue with
 // Google"; after the e-mail — "Check your e-mail" with "Send it again" after RESEND_WAIT_S seconds. The same block in
 // the save sheet, the diary and the account page. Pressing either button marks this device (authState.ts), so the
-// diary moves its guest readings into the account once after sign-in.
+// diary moves its guest readings into the account once after sign-in. "Use another e-mail" puts the focus back into
+// the e-mail field (review M15).
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
 import type { Auth, SendError } from '../../lib/auth';
@@ -3535,6 +4260,8 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
   const [wait, setWait] = useState(0);
   const [resent, setResent] = useState(false);
   const sentTitle = useRef<HTMLHeadingElement>(null);
+  const emailInput = useRef<HTMLInputElement>(null);
+  const backToForm = useRef(false); // "Use another e-mail" was pressed
   const counting = wait > 0;
 
   useEffect(() => {
@@ -3543,8 +4270,10 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
     return () => clearInterval(timer);
   }, [counting]);
 
-  useEffect(() => {
-    if (phase === 'sent') sentTitle.current?.focus(); // the form is gone: the new title takes focus
+  useEffect(() => { // the pressed button is gone: focus goes to what took its place
+    if (phase === 'sent') sentTitle.current?.focus();
+    else if (phase === 'form' && backToForm.current) emailInput.current?.focus();
+    backToForm.current = false;
   }, [phase]);
 
   const send = async (again: boolean) => {
@@ -3580,7 +4309,7 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
 
   if (phase === 'sent') {
     return (
-      <div class="signin">
+      <div class={`signin signin--${surface}`}>
         <h3 class="signin__title" tabIndex={-1} ref={sentTitle}>{d.checkEmailTitle}</h3>
         <p>{fill(d.checkEmailLead, { email: email.trim() })}</p>
         <button type="button" class="btn btn--outline" disabled={counting} onClick={() => void send(true)}>
@@ -3589,7 +4318,7 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
         {counting ? <p class="small">{fill(d.checkEmailWait, { n: wait })}</p> : null}
         <p class="small" role="status">{resent ? d.checkEmailSent : ''}</p>
         {message ? <p role="alert">{message}</p> : null}
-        <button type="button" class="btn btn--text" onClick={() => { setPhase('form'); setWait(0); setError(null); }}>
+        <button type="button" class="btn btn--text" onClick={() => { backToForm.current = true; setPhase('form'); setWait(0); setError(null); }}>
           {d.checkEmailOther}
         </button>
       </div>
@@ -3597,10 +4326,10 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
   }
 
   return (
-    <div class="signin">
+    <div class={`signin signin--${surface}`}>
       <form class="field" onSubmit={(event) => { event.preventDefault(); void send(false); }} noValidate>
         <label for={`${idBase}-email`}>{d.signInEmailLabel}</label>
-        <input id={`${idBase}-email`} class={surface === 'day' ? 'input input--day' : 'input'} type="email"
+        <input id={`${idBase}-email`} ref={emailInput} class={surface === 'day' ? 'input input--day' : 'input'} type="email"
           autocomplete="email" required maxLength={254} placeholder={d.plusEmailPlaceholder} value={email}
           aria-invalid={error ? 'true' : undefined} aria-describedby={message ? errorId : undefined}
           onInput={(e) => setEmail((e.target as HTMLInputElement).value)} />
@@ -3639,7 +4368,7 @@ import { SignInBlock } from './SignInBlock';
 interface Props {
   lang: Lang;
   readingId: string;
-  auth: Pick<Auth, 'sendLink' | 'google'> | null; // null while the sign-in library loads
+  auth: Pick<Auth, 'sendLink' | 'google'> | null; // null until the page's Auth is ready (the library loads at the first send)
   google: boolean;
   accountApi: Pick<AccountApi, 'claimToken'>;
   origin: string;
@@ -3656,10 +4385,15 @@ export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, o
 
   useEffect(() => title.current?.focus(), []);
 
-  // one token per open sheet, asked for at the first send; none (409 already saved, 429, offline) still saves it
-  // from this device: the claim without tokens moves this device's guest readings
+  // one token per open sheet, asked for at the first send; only a token that was made is kept, so "Send it again"
+  // after a failure asks once more (review M13). Without one (409 already saved, 429, offline) the link still saves
+  // the reading on this device: the sign-in started here, so the claim moves this device's guest readings
   const redirectTo = async () => {
-    token.current ??= accountApi.claimToken(readingId).then((r) => (r.ok && r.data ? r.data.token : null));
+    token.current ??= accountApi.claimToken(readingId).then((r) => {
+      if (r.ok && r.data) return r.data.token;
+      token.current = null;
+      return null;
+    });
     return returnUrl(origin, lang, { claim: await token.current, remind: remindNow.current });
   };
 
@@ -3704,6 +4438,154 @@ export function entryHref(lang: Lang, id: string): string {
 }
 ```
 
+Create `site/src/lib/sheetHistory.ts`:
+
+```ts
+// The save sheet's own entry in the browser history (spec 4.4b §4, owner decision 14). Opening the sheet adds one
+// entry above the night room's, so the phone's Back leaves only the sheet; closing it by × or Escape takes that entry
+// back exactly once; when the room closes with the sheet open, ReadingIsland steps back over both entries at once.
+// The entry keeps `arcanaNight: true`, so the room's own popstate handler (ReadingIsland) still sees a room entry.
+
+export interface HistoryLike {
+  readonly state: unknown;
+  pushState(data: unknown, unused: string): void;
+  back(): void;
+}
+
+export const SHEET_STATE = { arcanaNight: true, arcanaSheet: true } as const;
+
+function isSheetEntry(state: unknown): boolean {
+  return typeof state === 'object' && state !== null && (state as { arcanaSheet?: unknown }).arcanaSheet === true;
+}
+
+export class SheetHistory {
+  private readonly history: HistoryLike;
+  private onTop = false;
+
+  constructor(history: HistoryLike) {
+    this.history = history;
+  }
+
+  /** The sheet opened. */
+  push(): void {
+    if (this.onTop) return;
+    this.history.pushState(SHEET_STATE, '');
+    this.onTop = true;
+  }
+
+  /** popstate: true when Back left the sheet's entry (close the sheet, keep the room). */
+  popped(state: unknown): boolean {
+    if (!this.onTop || isSheetEntry(state)) return false;
+    this.onTop = false;
+    return true;
+  }
+
+  /** The sheet closes by ×, Escape or with the room: 1 when its entry is still on top (step back over it, once). */
+  consume(): number {
+    if (!this.onTop) return 0;
+    this.onTop = false;
+    return 1;
+  }
+}
+```
+
+Create `site/src/components/ui/useSaveToDiary.tsx`:
+
+```tsx
+// "Save to diary" in the night room (spec 4.4b §4): the button or "Saved to your diary ✓", the save sheet and its
+// own history entry (owner decision 14: the phone's Back closes only the sheet), and save_click. ReadingIsland keeps
+// the room and the room's history entry; this hook keeps the sheet's, so the wiring has a test of its own
+// (useSaveToDiary.test.tsx, Fable plan review M20). The sign-in settings are read once a reading exists, so the
+// button is there by the time the answer shows (review M14); the sign-in library loads only at the first send.
+import type { ComponentChildren } from 'preact';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { createAccountApi, type AccountApi } from '../../lib/accountApi';
+import { analyticsEvent, sendEvent, type AnalyticsEvent } from '../../lib/analytics';
+import { getAuth, type Auth } from '../../lib/auth';
+import { authConfig, type AuthConfig } from '../../lib/authConfig';
+import { entryHref } from '../../lib/diary';
+import { SheetHistory, type HistoryLike } from '../../lib/sheetHistory';
+import { siteFetch } from '../../lib/siteApi';
+import type { Lang, Tool } from '../../lib/types';
+import type { SaveSlot } from './NightRoom';
+import { SaveSheet } from './SaveSheet';
+
+export interface SaveToDiaryOptions {
+  lang: Lang;
+  tool: Tool;
+  /** The reading in the room, once it is created. */
+  readingId: string | null;
+  /** The create request carried the token: the reading is in the account already. */
+  signedIn: boolean;
+  /** Tests pass their own; the page uses the real ones. */
+  readConfig?: () => Promise<AuthConfig | null>;
+  loadAuth?: () => Promise<Auth | null>;
+  accountApi?: Pick<AccountApi, 'claimToken'>;
+  history?: HistoryLike;
+  send?: (event: AnalyticsEvent) => void;
+  origin?: string;
+}
+
+export interface SaveToDiary {
+  /** NightRoom `save`: null where sign-in is off or no reading is made yet. */
+  slot: SaveSlot | null;
+  /** NightRoom `sheet`. */
+  sheet: ComponentChildren;
+  /** NightRoom `onCloseSheet` (Escape inside the sheet). */
+  closeSheet: (() => void) | undefined;
+  /** The room is closing: the sheet goes too, without a step of its own; 1 when the sheet's history entry was still
+   * on top (ReadingIsland then steps back over it together with the room's entry), else 0. */
+  closeForRoom: () => number;
+}
+
+export function useSaveToDiary(options: SaveToDiaryOptions): SaveToDiary {
+  const { lang, tool, readingId, signedIn, readConfig = authConfig, loadAuth = getAuth, send = sendEvent } = options;
+  const [config, setConfig] = useState<AuthConfig | null>(null); // null: not read yet, or could not be read
+  const [open, setOpen] = useState(false);
+  const [auth, setAuth] = useState<Auth | null>(null);
+  const api = useMemo(() => options.accountApi ?? createAccountApi(siteFetch()), []);
+  const entry = useRef<SheetHistory | null>(null);
+  const browserHistory = (): HistoryLike => options.history ?? window.history; // not at build time: Astro renders this
+  const sheetEntry = () => (entry.current ??= new SheetHistory(browserHistory()));
+
+  useEffect(() => {
+    if (readingId && config === null) void readConfig().then(setConfig);
+  }, [readingId]);
+
+  useEffect(() => {
+    const onPop = () => {
+      if (sheetEntry().popped(browserHistory().state)) setOpen(false); // Back left the sheet's entry: the room stays
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  const openSheet = () => {
+    send(analyticsEvent('save_click', tool, lang));
+    sheetEntry().push();
+    setOpen(true);
+    void loadAuth().then(setAuth); // the page's Auth; the library itself loads at the first send
+  };
+
+  const closeSheet = () => {
+    if (sheetEntry().consume()) browserHistory().back(); // × and Escape: the sheet's entry goes, exactly once
+    setOpen(false);
+  };
+
+  const closeForRoom = () => {
+    setOpen(false);
+    return sheetEntry().consume();
+  };
+
+  const slot = config?.enabled && readingId ? { saved: signedIn, href: entryHref(lang, readingId), onSave: openSheet } : null;
+  const sheet = open && config && readingId ? (
+    <SaveSheet lang={lang} readingId={readingId} auth={auth} google={config.google} accountApi={api}
+      origin={options.origin ?? location.origin} onClose={closeSheet} />
+  ) : null;
+  return { slot, sheet, closeSheet: open ? closeSheet : undefined, closeForRoom };
+}
+```
+
 In `site/src/components/ui/NightRoom.tsx`:
 
 - replace
@@ -3717,8 +4599,8 @@ with
 
 ```tsx
 // §4): under each card its own vote (icon and word), the verdict and "why" large in the text column. Stage 4.4b §4:
-// under the answer "Save to diary" (a guest: opens the save sheet inside this dialog; Escape then closes the sheet
-// first) or "Saved to your diary ✓" with the link to the entry (signed in).
+// the last of the answer's actions is "Save to diary" (a guest: opens the save sheet inside this dialog; Escape then
+// closes the sheet first, and the room behind it is inert) or "Saved to your diary ✓" with the link to the entry.
 import type { ComponentChildren } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 ```
@@ -3800,23 +4682,25 @@ with
 - replace
 
 ```tsx
-              {readingShown(state) ? (
-                <div class="night__actions">
-                  {three ? (
+                  <button type="button" class="btn btn--text" onClick={props.onAskAnother}>{d.askAnother}</button>
+                </div>
+              ) : null}
 ```
 
-with
+with (last in the row: the settings may arrive after the answer, and a late button must not move the others — review M14)
 
 ```tsx
-              {readingShown(state) ? (
-                <div class="night__actions">
+                  <button type="button" class="btn btn--text" onClick={props.onAskAnother}>{d.askAnother}</button>
                   {props.save ? (props.save.saved ? (
                     <p class="saved-mark"><a href={props.save.href}>{d.savedToDiary}</a></p>
                   ) : (
                     <button type="button" class="btn btn--gold" ref={saveButton} onClick={props.save.onSave}>{d.saveToDiary}</button>
                   )) : null}
-                  {three ? (
+                </div>
+              ) : null}
 ```
+
+- replace `        <div class="night__top">` with `        <div class="night__top" inert={props.sheet ? true : undefined}>` and `          <div class="night__body">` with `          <div class="night__body" inert={props.sheet ? true : undefined}>` (the sheet is the dialog now; what is behind it takes no focus and no clicks — review M15)
 
 - replace `        {state.phase === 'crisis' && state.crisis ? <CrisisView payload={state.crisis} lang={lang} /> : null}` with
 
@@ -3832,44 +4716,33 @@ In `site/src/islands/ReadingIsland.tsx`:
 
 ```tsx
 // closes the room instead of leaving the page; × and Escape step back over that entry. Stage 4.4b §4: requests carry
-// the token of a signed-in person (siteApi.ts); under a shown answer "Save to diary" opens the save sheet (sign-in
-// settings are read only then, the sign-in library is loaded only when the sheet opens).
+// the token of a signed-in person (siteApi.ts); under a shown answer "Save to diary" opens the save sheet
+// (useSaveToDiary.tsx). The open sheet has a history entry of its own above the room's (owner decision 14): Back
+// closes only the sheet, and the room closing with the sheet open steps back over both entries at once.
 ```
 
 - replace `import { analyticsEvent, sendEvent } from '../lib/analytics';` with
 
 ```tsx
-import { createAccountApi } from '../lib/accountApi';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
-import { getAuth, type Auth } from '../lib/auth';
-import { authConfig, type AuthConfig } from '../lib/authConfig';
 import { isSignedIn } from '../lib/authState';
 ```
 
-- replace `import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, crisisPayloadOf, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';` with
-
-```tsx
-import { entryHref } from '../lib/diary';
-import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, crisisPayloadOf, nightReducer, readingShown, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
-```
-
-- replace `import { siteApi } from '../lib/siteApi';` (Task 8) with `import { siteApi, siteFetch } from '../lib/siteApi';`
 - replace `import { PlusCard } from '../components/ui/PlusCard';` with
 
 ```tsx
 import { PlusCard } from '../components/ui/PlusCard';
-import { SaveSheet } from '../components/ui/SaveSheet';
+import { useSaveToDiary } from '../components/ui/useSaveToDiary';
 ```
 
 - replace `    cards: cardsFor(config.kind) as CardCount });` with `    cards: cardsFor(config.kind) as CardCount, signedIn: false });`
+- in the function draw, replace `    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind), cards: cardsFor(kind, count) };` with `    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind), cards: cardsFor(kind, count), signedIn: false };` (the ref's type now has `signedIn`; without it here `astro check` reports TS2741 — review I10)
 - replace `  const api = useMemo(() => siteApi(), []);` with
 
 ```tsx
   const api = useMemo(() => siteApi(), []);
-  const accountApi = useMemo(() => createAccountApi(siteFetch()), []);
-  const [signIn, setSignIn] = useState<AuthConfig | null>(null); // read once an answer is shown (spec 4.4b §3)
-  const [sheetOpen, setSheetOpen] = useState(false);
-  const [auth, setAuth] = useState<Auth | null>(null);
+  const saving = useSaveToDiary({ lang, tool: drawn.current.tool, readingId: state.reading?.id ?? null,
+    signedIn: drawn.current.signedIn });
 ```
 
 - replace `        if (action.type === 'created') drawn.current.id = action.reading.id;` with
@@ -3879,24 +4752,6 @@ import { SaveSheet } from '../components/ui/SaveSheet';
           drawn.current.id = action.reading.id;
           drawn.current.signedIn = isSignedIn(); // the request carried the token: the reading is in the account
         }
-```
-
-- replace `  // the cards turn one after another (none of this with reduced motion: they arrive turned)` with
-
-```tsx
-  // "Save to diary" needs the sign-in settings: read them once, when the first answer is shown
-  const shown = readingShown(state);
-  useEffect(() => {
-    if (shown && signIn === null) void authConfig().then((config) => setSignIn(config));
-  }, [shown]);
-
-  const openSave = () => {
-    sendEvent(analyticsEvent('save_click', drawn.current.tool, lang));
-    setSheetOpen(true);
-    void getAuth().then(setAuth); // the sign-in library is loaded now, not with the page
-  };
-
-  // the cards turn one after another (none of this with reduced motion: they arrive turned)
 ```
 
 - in `closeNow`, replace
@@ -3911,7 +4766,28 @@ with
 ```tsx
   function closeNow() {
     run.current += 1;
-    setSheetOpen(false);
+    saving.closeForRoom(); // the sheet goes with the room; its history entry is handled in stepBack
+```
+
+- replace
+
+```tsx
+  function stepBack() {
+    if (!inHistory.current) return;
+    inHistory.current = false;
+    history.back();
+  }
+```
+
+with
+
+```tsx
+  function stepBack() {
+    const steps = (inHistory.current ? 1 : 0) + saving.closeForRoom(); // the sheet's entry sits above the room's
+    inHistory.current = false;
+    if (steps === 1) history.back();
+    else if (steps > 1) history.go(-steps);
+  }
 ```
 
 - replace
@@ -3925,16 +4801,13 @@ with
 
 ```tsx
           onAskAnother={askAnother}
-          save={signIn?.enabled && state.reading ? {
-            saved: drawn.current.signedIn, href: entryHref(lang, drawn.current.id), onSave: openSave,
-          } : null}
-          sheet={sheetOpen && signIn ? (
-            <SaveSheet lang={lang} readingId={drawn.current.id} auth={auth} google={signIn.google} accountApi={accountApi}
-              origin={location.origin} onClose={() => setSheetOpen(false)} />
-          ) : null}
-          onCloseSheet={sheetOpen ? () => setSheetOpen(false) : undefined}
+          save={saving.slot}
+          sheet={saving.sheet}
+          onCloseSheet={saving.closeSheet}
         />
 ```
+
+The room's own `popstate` handler stays as it is: Back from the sheet's entry lands on the room's entry (`arcanaNight: true`), so it keeps the room open, while the hook closes the sheet. The diary's `history.replaceState` after sign-in (Task 14) is on another page and is not touched.
 
 In `site/src/styles/global.css`, before `/* Simple card page */` add:
 
@@ -3946,39 +4819,44 @@ In `site/src/styles/global.css`, before `/* Simple card page */` add:
   border-radius: var(--radius-panel-large) var(--radius-panel-large) 0 0; background: var(--color-night-surface);
   border-top: 1px solid var(--color-night-line);
 }
+@media (min-width: 900px) { /* the room's side padding is wider there: the sheet still meets its edges (review I9) */
+  .sheet { margin-inline: calc(-1 * var(--space-7)); padding-inline: var(--space-7); }
+}
 .sheet__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .sheet__title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-2); }
 .check { display: flex; align-items: flex-start; gap: var(--space-3); min-height: 44px; cursor: pointer; }
 .check input { width: 20px; height: 20px; margin: var(--space-1) 0 0; flex: none; accent-color: var(--color-night-accent); }
-.check--day input { accent-color: var(--color-day-accent); }
 .signin { display: flex; flex-direction: column; gap: var(--space-3); }
 .signin__title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-h-2); }
 .signin__or { margin: 0; text-align: center; font-size: var(--font-size-small); }
-.saved-mark { margin: 0; min-height: 44px; display: flex; align-items: center; font-weight: 600; }
-.saved-mark a { color: var(--color-night-accent); }
+.signin--day .field label { color: var(--color-day-text-muted); } /* the night label colour is ≈1.8:1 on day (review I6) */
+.saved-mark { margin: 0; font-weight: 600; }
+.saved-mark a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-night-accent); } /* M16 */
 ```
 
 - [ ] **Step 4: Run the tests and the build**
 
-Run: the Vitest command of Step 2, then the same without files, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
-Expected: PASS — `19 passed` in 4 files; then `251 passed` in 28 files; then `OK: 167 pages`.
+Run: the Vitest command of Step 2, then the same without files, then the type check, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
+Expected: PASS — `25 passed` in 5 files; then `266 passed` in 29 files; `- 0 errors`; then `OK: 167 pages`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add site/src/components/ui/SignInBlock.tsx site/src/components/ui/SaveSheet.tsx site/src/components/ui/NightRoom.tsx site/src/islands/ReadingIsland.tsx site/src/lib/diary.ts site/src/i18n site/src/styles/global.css site/src/components/ui/SaveSheet.test.tsx site/src/components/ui/NightRoom.test.tsx site/src/lib/diary.test.ts
+git add site/src/components/ui/SignInBlock.tsx site/src/components/ui/SaveSheet.tsx site/src/components/ui/useSaveToDiary.tsx site/src/components/ui/NightRoom.tsx site/src/islands/ReadingIsland.tsx site/src/lib/diary.ts site/src/lib/sheetHistory.ts site/src/lib/testing/night.ts site/src/i18n site/src/styles/global.css site/src/components/ui/SaveSheet.test.tsx site/src/components/ui/NightRoom.test.tsx site/src/components/ui/useSaveToDiary.test.tsx site/src/lib/diary.test.ts
 git commit -m "feat(site): stage 4.4b — Save to diary, the save sheet and Check your e-mail
 
 A guest's sheet sends the e-mail link (or Google) back to the diary with the reading's
 claim token and the 7-day reminder flag; resend after 60 s; Supabase errors as one line.
-Signed in: Saved to your diary with the entry link. The answer stays on screen.
+Signed in: Saved to your diary with the entry link. The answer stays on screen; the
+sheet has its own history entry, so the phone's Back closes only the sheet (owner
+decision 14).
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
 
-### Task 12: Site — the diary page and its list (screen 4a), the Plus card in the diary
+### Task 14: Site — the diary page and its list (screen 4a), the Plus card in the diary
 
 **Files:**
 - Create: `site/src/islands/DiaryIsland.tsx`, `site/src/components/ui/DiaryList.tsx`, `site/src/views/DiaryView.astro`, `site/src/pages/diary.astro`, `site/src/pages/es/diario.astro`
@@ -3986,25 +4864,27 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 - Test: `site/src/lib/diary.test.ts` (whole file), `site/src/islands/DiaryIsland.test.tsx`
 
 **Interfaces:**
-- Consumes: `openSession`, `methodOf`, `SessionStatus` (Task 7), `browserStorage`, `clearSignedIn`, `SIGNED_IN_KEY` (Task 7), `createAccountApi`, `DiaryItem`, `Outcome` (Task 9), `siteFetch` (Task 8), `finishSignIn`, `linkFailed`, `readReturnParams`, `returnUrl` (Task 10), `SignInBlock` (Task 11), `entryHref`, `entryParam` (Task 11), `sendEvent` (analytics), `cardById`, `cardImage` (deck), `forgetAuth`, `forgetAuthConfig` (tests).
+- Consumes: `openSession`, `methodOf`, `SessionStatus` (Task 9), `browserStorage`, `clearSignedIn`, `SIGNED_IN_KEY` (Task 9), `createAccountApi`, `DiaryItem`, `Outcome` (Task 11), `siteFetch` (Task 10), `finishSignIn`, `linkFailed`, `readReturnParams`, `returnUrl` (Task 12), `SignInBlock` (Task 13), `entryHref`, `entryParam` (Task 13), `sendEvent` (analytics), `cardById`, `cardImage` (deck), `forgetAuth`, `forgetAuthConfig` (tests).
 - Produces:
-  - `diary.ts` adds: `OUTCOME_AFTER_DAYS = 7`, `DAY_MS`, `NOTE_MAX = 1000`, `DIARY_PAGE = 10`, `outcomeOpen(createdAt, now): boolean`, `outcomeOpensOn(createdAt): Date`, `afterDays(createdAt, now): 7 | 30`, `formatDate(iso | Date, lang, timeZone?): string`, `kindKey(kind, topic): DictKey`, `noteLeft(text): number`, `isCrisis(item): boolean`.
-  - `DiaryList` props `{ lang; api: Pick<AccountApi, 'diary'>; onSignedOut(): void }`; `OUTCOME_KEYS: Record<Outcome, DictKey>` (Task 13 uses it).
+  - `diary.ts` adds: `OUTCOME_AFTER_DAYS = 7`, `DAY_MS`, `NOTE_MAX = 1000`, `DIARY_PAGE = 10`, `outcomeOpensOn(createdAt): Date` — **00:00 local time of the day «local date of the reading + 7 days»** (owner decision 13), `outcomeOpen(createdAt, now): boolean` (`now >= outcomeOpensOn(createdAt)`: the "come back" line and the buttons use one rule — review I7), `afterDays(createdAt, now): 7 | 30`, `formatDate(iso | Date, lang, timeZone?): string`, `kindKey(kind, topic): DictKey`, `noteLeft(text): number`, `isCrisis(item): boolean`.
+  - `DiaryList` props `{ lang; api: Pick<AccountApi, 'diary'>; onSignedOut(): void }`; `OUTCOME_KEYS: Record<Outcome, DictKey>` (Task 15 uses it). One request (`limit=10`): the free diary is one page, so there is no "Show more" (review M19). Only `401 {"reason": "sign_in"}` calls `onSignedOut`; a `401` without JSON is the stage cookie — `errStage` and a button that reloads the page; any other error — its line, the help link where it belongs, and «Try again» (reviews I2, M18).
+  - `DiaryIsland`: re-opens the session after `onSignedOut` once per page; a second time it shows «Try again» instead (review I2: never a loop of requests).
   - `PlusCard` props `{ lang; tool: Tool | null; place?: 'limit' | 'diary'; focusOnShow? }` — `place: 'diary'` renders only the white card and sends `plus_view {place: 'diary'}`; both places show `plusBenefit3` and `plusDiaryNote`.
   - `Base.astro` prop `noindex?: boolean` → `<meta name="robots" content="noindex, nofollow">`.
   - `routeFetch(routes: Record<string, (call: Call) => Response>): { fetch: FetchFn; calls: Call[] }` in `testing/fakes.ts` — answers by `"METHOD /path?query"`, else `"METHOD /path"`, else throws.
   - Pages `/diary`, `/es/diario` (noindex, `current="diary"`); `DiaryIsland` props `{ lang }`.
-  - Dictionary keys: `diaryTitle`, `navDiary`, `navDiaryShort`, `diaryWhy`, `diarySignInSoon`, `signInLinkExpired`, `diaryEmpty`, `diaryNoQuestion`, `diaryKindThree`, `diaryHidden` (`{n}`), `diaryNoteMark`, `outcomeYes`, `outcomePartly`, `outcomeNo`, `diaryMore`, `diaryAccountLink`, `plusDiaryNote`.
+  - Dictionary keys: `diaryTitle`, `navDiary`, `navDiaryShort`, `diaryWhy`, `diarySignInSoon`, `signInLinkExpired`, `diaryEmpty`, `diaryNoQuestion`, `diaryKindThree`, `diaryHidden` (`{n}`), `diaryNoteMark`, `outcomeYes`, `outcomePartly`, `outcomeNo`, `diaryAccountLink`, `plusDiaryNote`.
 
 - [ ] **Step 1: Write the failing tests**
 
-Replace the whole `site/src/lib/diary.test.ts` with:
+Replace the whole `site/src/lib/diary.test.ts` with (the day rule is tested with local dates — `new Date(y, m, d, h)` — so it holds in any time zone; review I7, I11):
 
 ```ts
 import { describe, expect, it } from 'vitest';
 import { DAY_MS, afterDays, entryHref, entryParam, formatDate, isCrisis, kindKey, noteLeft, outcomeOpen, outcomeOpensOn } from './diary';
 
-const MADE = '2026-11-01T12:00:00+00:00';
+const MADE = new Date(2026, 10, 1, 22, 0).toISOString(); // 1 November 2026, 22:00 on this device's clock
+const local = (month: number, day: number, hour = 0, minute = 0) => new Date(2026, month, day, hour, minute);
 const at = (days: number) => new Date(new Date(MADE).getTime() + days * DAY_MS);
 
 describe('diary rules', () => {
@@ -4015,10 +4895,18 @@ describe('diary rules', () => {
     expect(entryHref('es', 'abc')).toBe('/es/diario?r=abc');
   });
 
-  it('opens "did it come true?" 7 days after the reading (owner decision 6)', () => {
-    expect(outcomeOpen(MADE, at(6.99))).toBe(false);
-    expect(outcomeOpen(MADE, at(7))).toBe(true);
-    expect(outcomeOpensOn(MADE).toISOString()).toBe('2026-11-08T12:00:00.000Z');
+  it('opens "did it come true?" at 00:00 local time of the 7th day after the reading\'s day (owner decision 13)', () => {
+    expect(outcomeOpensOn(MADE).getTime()).toBe(local(10, 8).getTime());
+    expect(outcomeOpen(MADE, local(10, 7, 23, 59))).toBe(false);
+    expect(outcomeOpen(MADE, local(10, 8, 0, 0))).toBe(true);
+    expect(outcomeOpen(MADE, local(10, 8, 9, 0))).toBe(true); // less than 7 × 24 h after 22:00, yet the named day
+  });
+
+  it('names in the "come back" line the very day the buttons open, also across a month end', () => {
+    const late = new Date(2026, 10, 30, 23, 59).toISOString();
+    expect(formatDate(outcomeOpensOn(late), 'en')).toBe('7 December 2026');
+    expect(outcomeOpen(late, local(11, 6, 23, 59))).toBe(false);
+    expect(outcomeOpen(late, local(11, 7))).toBe(true);
   });
 
   it('counts after_days 7 up to 30 days, then 30', () => {
@@ -4028,8 +4916,8 @@ describe('diary rules', () => {
   });
 
   it('formats a date in each language', () => {
-    expect(formatDate(MADE, 'en', 'UTC')).toBe('1 November 2026');
-    expect(formatDate(MADE, 'es', 'UTC')).toBe('1 de noviembre de 2026');
+    expect(formatDate('2026-11-01T12:00:00+00:00', 'en', 'UTC')).toBe('1 November 2026');
+    expect(formatDate('2026-11-01T12:00:00+00:00', 'es', 'UTC')).toBe('1 de noviembre de 2026');
   });
 
   it('names an entry by its tool', () => {
@@ -4076,17 +4964,17 @@ import { sendEvent } from '../lib/analytics';
 import { forgetAuth } from '../lib/auth';
 import { forgetAuthConfig } from '../lib/authConfig';
 import { SIGNED_IN_KEY } from '../lib/authState';
-import { byText, mount, settle } from '../lib/testing/dom';
+import { byText, cleanup, click, mount, settle, waitFor } from '../lib/testing/dom';
 import { jsonResponse, routeFetch, type Call } from '../lib/testing/fakes';
 import DiaryIsland from './DiaryIsland';
 
 type FakeSession = { access_token: string; user?: { email?: string; app_metadata?: { provider?: string } } };
-const h = vi.hoisted(() => ({ session: null as FakeSession | null }));
+const h = vi.hoisted(() => ({ session: null as FakeSession | null, sent: [] as unknown[] }));
 vi.mock('../lib/supabaseClient', () => ({ // the sign-in library is never loaded in tests
   createClient: () => ({
     getSession: async () => ({ data: { session: h.session }, error: null }),
     refreshSession: async () => ({ data: { session: null }, error: null }),
-    signInWithOtp: async () => ({ error: null }),
+    signInWithOtp: async (args: unknown) => { h.sent.push(args); return { error: null }; },
     signInWithOAuth: async () => ({ error: null }),
     signOut: async () => { h.session = null; return { error: null }; },
   }),
@@ -4112,19 +5000,22 @@ function serve(routes: Record<string, (call: Call) => Response>) {
   return served;
 }
 
-async function open() {
+/** Mounts the page and waits until `ready` passes: the settings, the library (mocked), the claim and the list come
+ * one after another (waitFor, not a count of rounds — review I11). */
+async function open(ready: (root: HTMLElement) => unknown) {
   const mounted = await mount(<DiaryIsland lang="en" />);
-  await settle(30); // settings, the library (mocked), the claim and the list
+  await waitFor(() => ready(mounted.root));
   return mounted;
 }
 
 beforeEach(() => history.replaceState(null, '', '/diary'));
 afterEach(() => {
-  document.body.replaceChildren();
+  cleanup();
   localStorage.clear();
   forgetAuthConfig();
   forgetAuth();
   h.session = null;
+  h.sent = [];
   vi.unstubAllGlobals();
   vi.mocked(sendEvent).mockClear();
 });
@@ -4132,19 +5023,17 @@ afterEach(() => {
 describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   it('says that signing in opens soon when sign-in is off', async () => {
     serve({ 'GET /api/auth-config': () => jsonResponse(200, { enabled: false, supabase_url: '', anon_key: '', google: false }) });
-    const { root } = await open();
-    expect(byText(root, 'Signing in opens soon.')).toBeTruthy();
+    await open((root) => byText(root, 'Signing in opens soon.'));
   });
 
   it('not signed in: one line why and the sign-in block, and no claim', async () => {
     const served = serve({});
-    const { root } = await open();
+    const { root } = await open((r) => expect(r.querySelector('input[type="email"]')).not.toBeNull());
     expect(root.textContent).toContain('Save your readings here and come back to see what came true.');
-    expect(root.querySelector('input[type="email"]')).not.toBeNull();
     expect(served.calls.map((c) => `${c.method} ${c.url}`)).toEqual(['GET /api/auth-config']);
   });
 
-  it('after the e-mail link: claims the token once, gives consent, counts signup_done and cleans the address', async () => {
+  it('after the e-mail link on another device: claims only the token once, gives consent, counts signup_done and cleans the address', async () => {
     history.replaceState(null, '', '/diary?claim=tok-1&remind=1');
     h.session = { access_token: 'tok-a', user: { app_metadata: { provider: 'email' } } };
     const served = serve({
@@ -4152,10 +5041,9 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
       'PATCH /api/account': () => jsonResponse(200, { email: 'ana@example.com', reminders_consent: true, consent_at: null }),
       'GET /api/diary': page([ITEM]),
     });
-    await open();
-    expect(served.calls.map((c) => `${c.method} ${c.url}`)).toEqual([
-      'GET /api/auth-config', 'POST /api/account/claim', 'PATCH /api/account', 'GET /api/diary?limit=10']);
-    expect(served.calls[1].body).toEqual({ tokens: ['tok-1'] });
+    await open(() => expect(served.calls.map((c) => `${c.method} ${c.url}`)).toEqual([
+      'GET /api/auth-config', 'POST /api/account/claim', 'PATCH /api/account', 'GET /api/diary?limit=10']));
+    expect(served.calls[1].body).toEqual({ tokens: ['tok-1'], device: false }); // no mark here: owner decision 12
     expect(served.calls[1].headers.authorization).toBe('Bearer tok-a');
     expect(served.calls[2].body).toEqual({ reminders_consent: true });
     expect(`${location.pathname}${location.search}`).toBe('/diary');
@@ -4166,7 +5054,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   it('an ordinary visit claims nothing and lists the entries as text, a crisis entry without text', async () => {
     h.session = { access_token: 'tok-a' };
     const served = serve({ 'GET /api/diary': page([ITEM, CRISIS]) });
-    const { root } = await open();
+    const { root } = await open((r) => expect(r.querySelectorAll('a.diary-item')).toHaveLength(2));
     expect(served.calls.some((c) => c.url === '/api/account/claim')).toBe(false);
     const links = Array.from(root.querySelectorAll<HTMLAnchorElement>('a.diary-item'));
     expect(links.map((a) => a.getAttribute('href'))).toEqual([`/diary?r=${ITEM.id}`, `/diary?r=${CRISIS.id}`]);
@@ -4183,8 +5071,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   it('more than ten: the hidden line and the Plus card with the whole-diary benefit', async () => {
     h.session = { access_token: 'tok-a' };
     serve({ 'GET /api/diary': page([ITEM], 3) });
-    const { root } = await open();
-    expect(byText(root, 'More readings in Plus: 3')).toBeTruthy();
+    const { root } = await open((r) => byText(r, 'More readings in Plus: 3'));
     expect(byText(root, 'What Plus gives you')).toBeTruthy();
     expect(byText(root, 'Your whole diary, with no limit')).toBeTruthy();
     expect(byText(root, 'Your diary keeps your last 10 readings. Plus keeps all of them.')).toBeTruthy();
@@ -4194,19 +5081,38 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   it('an empty diary offers a reading', async () => {
     h.session = { access_token: 'tok-a' };
     serve({ 'GET /api/diary': page([]) });
-    const { root } = await open();
-    expect(byText(root, 'Your saved readings will appear here.')).toBeTruthy();
+    const { root } = await open((r) => byText(r, 'Your saved readings will appear here.'));
     expect(byText<HTMLAnchorElement>(root, 'Get a free reading', 'a').getAttribute('href')).toBe('/');
+  });
+
+  it('a 401 without JSON (the stage cookie) is the stage line with a reload button — one request, no loop (review I2)', async () => {
+    h.session = { access_token: 'tok-a' };
+    const served = serve({ 'GET /api/diary': () => new Response('', { status: 401 }) });
+    const { root } = await open((r) => byText(r, 'Your session on this preview site has expired. Reload the page to continue.'));
+    await settle();
+    expect(served.calls.filter((c) => c.url.startsWith('/api/diary'))).toHaveLength(1);
+    expect(byText(root, 'Try again', 'button')).toBeTruthy(); // it reloads the page (spec §3)
+    expect(localStorage.getItem(SIGNED_IN_KEY)).toBe('1'); // not signed out: the token was never refused
+  });
+
+  it('a list that could not be read says so and "Try again" asks once more (review M18)', async () => {
+    h.session = { access_token: 'tok-a' };
+    let lists = 0;
+    serve({ 'GET /api/diary': () => (lists++ === 0 ? jsonResponse(503, { reason: 'db' }) : page([ITEM])()) });
+    const { root } = await open((r) => byText(r, 'The service is unavailable right now. Please try again in a few minutes.'));
+    await click(byText(root, 'Try again', 'button'));
+    await waitFor(() => expect(root.querySelectorAll('a.diary-item')).toHaveLength(1));
+    expect(lists).toBe(2);
   });
 });
 ```
 
-In `site/src/i18n/i18n.test.ts` replace `.toBe(176);` with `.toBe(193);`, `expect(DRAFTS.en.length).toBe(66);` with `expect(DRAFTS.en.length).toBe(77);` and `expect(DRAFTS.es.length).toBe(131);` with `expect(DRAFTS.es.length).toBe(147);`.
+In `site/src/i18n/i18n.test.ts` replace `.toBe(176);` with `.toBe(192);`, `expect(DRAFTS.en.length).toBe(66);` with `expect(DRAFTS.en.length).toBe(76);` and `expect(DRAFTS.es.length).toBe(131);` with `expect(DRAFTS.es.length).toBe(146);`.
 
 - [ ] **Step 2: Run them to see them fail**
 
 Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/lib/diary.test.ts src/islands/DiaryIsland.test.tsx src/i18n/i18n.test.ts`
-Expected: FAIL — `outcomeOpen is not a function` (and the other new diary exports), `Failed to resolve import "./DiaryIsland"`, `expected 176 to be 193`.
+Expected: FAIL — `outcomeOpen is not a function` (and the other new diary exports), `Failed to resolve import "./DiaryIsland"`, `expected 176 to be 192`.
 
 - [ ] **Step 3: Implement**
 
@@ -4228,7 +5134,6 @@ In `site/src/i18n/en.ts`, after the line `  checkEmailSent: 'Sent again.',` add:
   outcomeYes: 'Came true',
   outcomePartly: 'Partly',
   outcomeNo: 'No',
-  diaryMore: 'Show more',
   diaryAccountLink: 'Account',
   plusDiaryNote: 'Your diary keeps your last 10 readings. Plus keeps all of them.',
 ```
@@ -4237,7 +5142,7 @@ and in `enDrafts`, after the line `  'checkEmailOther', 'checkEmailSent',` add:
 
 ```ts
   'diaryTitle', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion', 'diaryKindThree',
-  'diaryHidden', 'diaryNoteMark', 'diaryMore', 'diaryAccountLink',
+  'diaryHidden', 'diaryNoteMark', 'diaryAccountLink',
 ```
 
 In `site/src/i18n/es.ts`, after the line `  checkEmailSent: 'Enviado de nuevo.',` add:
@@ -4258,7 +5163,6 @@ In `site/src/i18n/es.ts`, after the line `  checkEmailSent: 'Enviado de nuevo.',
   outcomeYes: 'Se cumplió',
   outcomePartly: 'En parte',
   outcomeNo: 'No',
-  diaryMore: 'Ver más',
   diaryAccountLink: 'Cuenta',
   plusDiaryNote: 'Tu diario guarda tus últimas 10 tiradas. Plus las guarda todas.',
 ```
@@ -4267,7 +5171,7 @@ and in `esDrafts`, after the line `  'signInTooOften', 'checkEmailTitle', 'check
 
 ```ts
   'diaryTitle', 'navDiaryShort', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion',
-  'diaryKindThree', 'diaryHidden', 'diaryNoteMark', 'outcomeYes', 'outcomePartly', 'outcomeNo', 'diaryMore', 'diaryAccountLink',
+  'diaryKindThree', 'diaryHidden', 'diaryNoteMark', 'outcomeYes', 'outcomePartly', 'outcomeNo', 'diaryAccountLink',
   'plusDiaryNote',
 ```
 
@@ -4275,7 +5179,8 @@ Replace the whole `site/src/lib/diary.ts` with:
 
 ```ts
 // The diary's rules for the screen (spec 4.4b §5): which entry the address opens, how an entry is named, when
-// "Came true / Partly / No" opens (7 days after the reading), the note's length, the outcome event's `after_days`.
+// "Came true / Partly / No" opens (00:00 local time of the 7th day after the reading's day — owner decision 13), the
+// note's length, the outcome event's `after_days`.
 import type { DictKey } from '../i18n';
 import type { DiaryItem } from './accountApi';
 import { pagePath } from './routes';
@@ -4284,7 +5189,7 @@ import type { Kind, Lang } from './types';
 export const OUTCOME_AFTER_DAYS = 7; // owner decision 6
 export const DAY_MS = 24 * 60 * 60 * 1000;
 export const NOTE_MAX = 1000; // spec 4.3 §6
-export const DIARY_PAGE = 10; // the free diary shows 10 (spec 4.4b §5): one page holds them all
+export const DIARY_PAGE = 10; // the free diary shows 10 (spec 4.4b §5): one request holds them all, no "Show more"
 
 const ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -4298,14 +5203,15 @@ export function entryHref(lang: Lang, id: string): string {
   return `${pagePath('diary', lang)}?r=${encodeURIComponent(id)}`;
 }
 
-/** The reading may be answered "did it come true?" once it is 7 days old. */
-export function outcomeOpen(createdAt: string, now: Date): boolean {
-  return now.getTime() - new Date(createdAt).getTime() >= OUTCOME_AFTER_DAYS * DAY_MS;
+/** The moment "did it come true?" opens (owner decision 13): 00:00 local time of the day «the reading's local date + 7
+ * days». The "Come back on {date}" line names this day, so the line and the buttons always agree (review I7). */
+export function outcomeOpensOn(createdAt: string): Date {
+  const made = new Date(createdAt);
+  return new Date(made.getFullYear(), made.getMonth(), made.getDate() + OUTCOME_AFTER_DAYS);
 }
 
-/** The day "did it come true?" opens. */
-export function outcomeOpensOn(createdAt: string): Date {
-  return new Date(new Date(createdAt).getTime() + OUTCOME_AFTER_DAYS * DAY_MS);
+export function outcomeOpen(createdAt: string, now: Date): boolean {
+  return now.getTime() >= outcomeOpensOn(createdAt).getTime();
 }
 
 /** `after_days` of `outcome_answered` (docs/design/analytics-events.md): 7 up to 30 days after, then 30. */
@@ -4351,7 +5257,7 @@ export function NoteIcon() {
 }
 ```
 
-Replace the whole `site/src/components/ui/PlusCard.tsx` with (Task 8's `siteApi` import kept; the callers `PlusCard lang={lang} tool={…} focusOnShow` in `ReadingIsland.tsx` and `NightRoom.tsx` stay as they are):
+Replace the whole `site/src/components/ui/PlusCard.tsx` with (Task 10's `siteApi` import kept; the callers `PlusCard lang={lang} tool={…} focusOnShow` in `ReadingIsland.tsx` and `NightRoom.tsx` stay as they are):
 
 ```tsx
 // Today's free readings are used (screen 11a, spec 4.4a §4): a day page block — the title, the lead, the help link,
@@ -4460,14 +5366,17 @@ Create `site/src/components/ui/DiaryList.tsx`:
 // The diary list (screen 4a; spec 4.4b §5): the newest readings first — date, kind, question (or "no question"),
 // small cards, the answer's headline, the "did it come true?" mark and a note mark; a crisis entry shows no text.
 // More than the free 10: a line and the Plus card (plus_view, place: diary). Every text from the API is a text node.
+// One request: the free diary is one page. Only 401 "sign_in" means the session went (review I2); a 401 without JSON
+// is the stage cookie — reload the page (spec §3); any other error — its line and "Try again" (review M18).
 import { useEffect, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
 import type { AccountApi, DiaryItem, Outcome } from '../../lib/accountApi';
 import { cardById, cardImage } from '../../lib/deck';
 import { DIARY_PAGE, entryHref, formatDate, isCrisis, kindKey } from '../../lib/diary';
-import { errorMessageKey, type ErrorKind } from '../../lib/errors';
+import { errorMessageKey, needsHelpLink, reasonOf, type ErrorKind } from '../../lib/errors';
 import { pagePath } from '../../lib/routes';
 import type { Lang } from '../../lib/types';
+import { HelpLine } from './HelpLine';
 import { NoteIcon } from './icons';
 import { PlusCard } from './PlusCard';
 
@@ -4504,20 +5413,18 @@ function Row({ item, lang }: { item: DiaryItem; lang: Lang }) {
 export function DiaryList({ lang, api, onSignedOut }: Props) {
   const d = t(lang);
   const [items, setItems] = useState<DiaryItem[]>([]);
-  const [next, setNext] = useState<string | null>(null);
   const [hidden, setHidden] = useState(0);
   const [status, setStatus] = useState<'loading' | 'ready' | ErrorKind>('loading');
 
-  const load = async (before?: string) => {
+  const load = async () => {
     setStatus('loading');
-    const result = await api.diary(before, DIARY_PAGE);
+    const result = await api.diary(undefined, DIARY_PAGE);
     if (!result.ok) {
-      if (result.status === 401) onSignedOut();
-      else setStatus(result.error);
+      if (result.status === 401 && reasonOf(result.body) === 'sign_in') onSignedOut();
+      else setStatus(result.error); // 'stage' for a 401 without JSON
       return;
     }
-    setItems((old) => (before ? [...old, ...result.data.items] : result.data.items));
-    setNext(result.data.next_before);
+    setItems(result.data.items);
     setHidden(result.data.hidden_count);
     setStatus('ready');
   };
@@ -4525,7 +5432,7 @@ export function DiaryList({ lang, api, onSignedOut }: Props) {
   useEffect(() => { void load(); }, []);
 
   return (
-    <section class="diary" aria-busy={status === 'loading'}>
+    <section class="diary__list" aria-busy={status === 'loading'}>
       {status === 'ready' && items.length === 0 ? (
         <div class="diary__empty">
           <p>{d.diaryEmpty}</p>
@@ -4537,9 +5444,14 @@ export function DiaryList({ lang, api, onSignedOut }: Props) {
           {items.map((item) => <li key={item.id}><Row item={item} lang={lang} /></li>)}
         </ul>
       ) : null}
-      {status !== 'loading' && status !== 'ready' ? <p role="alert">{d[errorMessageKey(status)]}</p> : null}
-      {next && status === 'ready' ? (
-        <button type="button" class="btn btn--outline" onClick={() => void load(next)}>{d.diaryMore}</button>
+      {status !== 'loading' && status !== 'ready' ? (
+        <div class="diary__error">
+          <p role="alert">{d[errorMessageKey(status)]}</p>
+          {needsHelpLink(status) ? <HelpLine lang={lang} /> : null}
+          <button type="button" class="btn btn--outline" onClick={() => (status === 'stage' ? location.reload() : void load())}>
+            {d.retry}
+          </button>
+        </div>
       ) : null}
       {hidden > 0 ? (
         <>
@@ -4559,7 +5471,7 @@ Create `site/src/islands/DiaryIsland.tsx`:
 // sign-in off — "signing in opens soon"; not signed in — a line and the sign-in block (the person who comes back
 // signs in right here, owner decision 3); signed in — once, the claim after sign-in (claim.ts), then the list. Nothing
 // here runs at build time.
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { t } from '../i18n';
 import { createAccountApi } from '../lib/accountApi';
 import { sendEvent } from '../lib/analytics';
@@ -4584,6 +5496,7 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
   const d = t(lang);
   const [view, setView] = useState<View>({ type: 'loading' });
   const api = useMemo(() => createAccountApi(siteFetch()), []);
+  const reopened = useRef(false);
 
   const open = async () => {
     setView({ type: 'loading' });
@@ -4604,12 +5517,17 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
 
   useEffect(() => { void open(); }, []);
 
-  const signedOut = async () => { // a 401 "sign_in" in the middle: the session went
+  const signedOut = async () => { // a 401 "sign_in" in the middle: the session went on this device
     clearSignedIn();
+    if (reopened.current) { // once per page: a second one shows "Try again", never a loop of requests (review I2)
+      setView({ type: 'failed', error: 'other' });
+      return;
+    }
+    reopened.current = true;
     await open();
   };
 
-  if (view.type === 'loading') return <p class="small" role="status" aria-live="polite" />;
+  if (view.type === 'loading') return <div class="diary" aria-busy="true" />; // no empty status line (review M18)
   if (view.type === 'failed') {
     return (
       <div class="diary">
@@ -4627,6 +5545,7 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
         <div class="diary">
           <p role="alert">{d.errUnavailable}</p>
           <HelpLine lang={lang} />
+          <button type="button" class="btn btn--outline" onClick={() => void open()}>{d.retry}</button>
         </div>
       );
     }
@@ -4644,7 +5563,7 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
   return (
     <div class="diary">
       <DiaryList lang={lang} api={api} onSignedOut={() => void signedOut()} />
-      <p><a href={pagePath('account', lang)}>{d.diaryAccountLink}</a></p>
+      <p><a class="diary__account" href={pagePath('account', lang)}>{d.diaryAccountLink}</a></p>
     </div>
   );
 }
@@ -4730,11 +5649,12 @@ import DiaryView from '../../views/DiaryView.astro';
 <DiaryView lang="es" />
 ```
 
-In `site/src/styles/global.css`, before `/* Simple card page */` add (the account and entry rules are used from Tasks 13–14):
+In `site/src/styles/global.css`, before `/* Simple card page */` add (the entry's rules come with Task 15, the account's with Task 16 — review M19):
 
 ```css
-/* Stage 4.4b: the diary (screens 4a, 4b) and the account */
-.diary, .account, .entry { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); max-width: 720px; }
+/* Stage 4.4b: the diary (screen 4a) */
+.diary { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); max-width: 720px; }
+.diary__list, .diary__error { display: flex; flex-direction: column; gap: var(--space-4); }
 .diary-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
 .diary-item {
   display: grid; gap: var(--space-1); padding: var(--space-4); border-radius: var(--radius-panel); text-decoration: none;
@@ -4749,35 +5669,14 @@ In `site/src/styles/global.css`, before `/* Simple card page */` add (the accoun
 .diary-item__marks { display: flex; gap: var(--space-3); align-items: center; font-size: var(--font-size-small); }
 .diary-item__outcome { font-weight: 600; color: var(--color-day-text); }
 .diary__hidden { margin: 0; font-weight: 600; }
-.entry__back { min-height: 44px; display: inline-flex; align-items: center; }
-.entry__cards { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.entry__cards .card-frame { width: 120px; }
-.entry__headline { margin: 0; font-family: var(--font-display); font-size: var(--font-size-h-2); }
-.entry__verdict { display: flex; align-items: center; gap: var(--space-3); margin: 0; font-weight: 600; }
-.entry .answer__label { color: var(--color-day-accent); }
-.entry .followup__q { color: var(--color-day-text-muted); }
-.entry__outcome h3 { margin: 0 0 var(--space-2); font-size: var(--font-size-h-3); }
-.chip--day { border-color: var(--color-day-control-border); background: transparent; color: var(--color-day-text); }
-.chip--day[aria-pressed='true'] { background: var(--color-brand-ink-button); color: var(--color-day-on-accent); }
-.entry__note textarea { resize: vertical; min-height: 120px; font: inherit; }
-.account__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.dialog-layer {
-  position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: var(--space-4);
-  background: color-mix(in srgb, var(--color-day-text) 40%, transparent);
-}
-.dialog {
-  width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-5);
-  border-radius: var(--radius-panel); background: var(--color-day-surface); color: var(--color-day-text);
-}
-.dialog p { margin: 0; }
-.dialog__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.dialog :focus-visible, .diary :focus-visible, .account :focus-visible, .entry :focus-visible { outline-color: var(--color-day-text); }
+.diary__account { display: inline-flex; align-items: center; min-height: 44px; } /* a touch target (review M16) */
+.diary :focus-visible { outline-color: var(--color-day-text); }
 ```
 
 - [ ] **Step 4: Run the tests and the build**
 
-Run: the Vitest command of Step 2, then the same without files, then `deploy/build-site.sh && python3 tools/site/check_dist.py && grep -c 'name="robots"' site/dist/diary.html site/dist/es/diario.html site/dist/index.html`
-Expected: PASS — `21 passed` in 3 files; then `262 passed` in 29 files; the build writes `169 page(s)`, `OK: 167 pages` (check_dist learns the new pages in Task 20), and the grep prints `site/dist/diary.html:1`, `site/dist/es/diario.html:1`, `site/dist/index.html:0`.
+Run: the Vitest command of Step 2, then the same without files, then the type check, then `deploy/build-site.sh && python3 tools/site/check_dist.py && grep -c 'name="robots"' site/dist/diary.html site/dist/es/diario.html site/dist/index.html`
+Expected: PASS — `24 passed` in 3 files; then `280 passed` in 30 files; `- 0 errors`; the build writes `169 page(s)`, `OK: 167 pages` (check_dist learns the new pages in Task 21), and the grep prints `site/dist/diary.html:1`, `site/dist/es/diario.html:1`, `site/dist/index.html:0`.
 
 - [ ] **Step 5: Commit**
 
@@ -4787,23 +5686,24 @@ git commit -m "feat(site): stage 4.4b — the diary page and its list, Plus in t
 
 /diary and /es/diario (noindex): sign-in off, sign-in block, the claim once after sign-in,
 the 10 newest readings as text (a crisis entry without text), the hidden count and the
-Plus card with the whole-diary benefit (plus_view place diary).
+Plus card with the whole-diary benefit (plus_view place diary). Only 401 sign_in signs
+out; the stage cookie's 401 reloads; errors have Try again (review I2, M18).
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
 
-### Task 13: Site — one diary entry (screen 4b): outcome after 7 days, the note, delete
+### Task 15: Site — one diary entry (screen 4b): outcome from the named day, the note, delete
 
 **Files:**
-- Create: `site/src/components/ui/DiaryEntry.tsx`
-- Modify: `site/src/islands/DiaryIsland.tsx` (the `?r=<id>` branch), `site/src/i18n/en.ts`, `es.ts`, `i18n.test.ts`
-- Test: `site/src/components/ui/DiaryEntry.test.tsx`
+- Create: `site/src/components/ui/DiaryEntry.tsx`, `site/src/lib/timeZone.ts`
+- Modify: `site/src/islands/DiaryIsland.tsx` (the `?r=<id>` branch; the sign-in block keeps `r`), `site/src/i18n/en.ts`, `es.ts`, `i18n.test.ts`, `site/src/styles/global.css` (the entry's rules, moved here from Task 14 — review M19)
+- Test: `site/src/components/ui/DiaryEntry.test.tsx`, `site/src/islands/DiaryIsland.test.tsx` (two more tests)
 
 **Interfaces:**
-- Consumes: `AccountApi.entry`, `patchEntry`, `deleteEntry`, `DiaryEntry` type, `Outcome` (Task 9); `outcomeOpen`, `outcomeOpensOn`, `afterDays`, `formatDate`, `kindKey`, `noteLeft`, `NOTE_MAX`, `entryParam` (Tasks 11–12); `OUTCOME_KEYS` (Task 12); `answerFromView`, `answerBlocks` (`answer.ts`); `analyticsEvent`, `sendEvent`; `CardFace`, `HelpLine`, `VerdictIcon`.
-- Produces: `DiaryEntry` props `{ lang; id; api: Pick<AccountApi, 'entry' | 'patchEntry' | 'deleteEntry'>; onSignedOut(): void; now?: () => Date; tz?: string; navigate?: (url: string) => void; send?: (event: AnalyticsEvent) => void }`. A reading that is not in the account (`in_diary: false`) or `404` shows `errGone`. Dictionary keys: `diaryBack`, `entryOutcomeQuestion`, `entryOutcomeLater` (`{date}`), `entryOutcomeClear`, `noteLabel`, `noteLeft` (`{n}`), `noteSave`, `noteSaved`, `entryDelete`, `entryDeleteConfirm`, `entryDeleteYes`, `cancel` (all drafts).
+- Consumes: `AccountApi.entry`, `patchEntry`, `deleteEntry`, `DiaryEntry` type, `Outcome` (Task 11); `outcomeOpen`, `outcomeOpensOn`, `afterDays`, `formatDate`, `kindKey`, `noteLeft`, `NOTE_MAX`, `entryParam` (Tasks 13–14); `OUTCOME_KEYS` (Task 14); `answerFromView`, `answerBlocks` (`answer.ts`); `analyticsEvent`, `sendEvent`; `CardFace`, `HelpLine`, `VerdictIcon`.
+- Produces: `DiaryEntry` props `{ lang; id; api: Pick<AccountApi, 'entry' | 'patchEntry' | 'deleteEntry'>; onSignedOut(): void; now?: () => Date; tz?: string; navigate?: (url: string) => void; send?: (event: AnalyticsEvent) => void }`. A reading that is not in the account (`in_diary: false`) or `404` shows `errGone`. «Came true / Partly / No» from `outcomeOpensOn` (00:00 local of the named day, owner decision 13), the same day the «Come back on {date}» line names. In every handler (load, mark, note, delete) only `401 {"reason": "sign_in"}` calls `onSignedOut`; a `401` without JSON shows `errStage` with a reload button; other errors their line (review I4). The outcome buttons are disabled while their PATCH runs; `outcome_answered` is sent for an answer given on an empty mark, not again for a change (yes → no) (review M21); the reading's and the follow-ups' `soft_line` are shown (review M21). Signing in from `/diary?r=<id>` comes back to the same entry (`r` kept in the return address; `cleanReturnUrl` keeps it). Dictionary keys: `diaryBack`, `entryOutcomeQuestion`, `entryOutcomeLater` (`{date}`), `entryOutcomeClear`, `noteLabel`, `noteLeft` (`{n}`), `noteSave`, `noteSaved`, `entryDelete`, `entryDeleteConfirm`, `entryDeleteYes`, `cancel` (all drafts).
 
 - [ ] **Step 1: Write the failing test**
 
@@ -4811,22 +5711,23 @@ Create `site/src/components/ui/DiaryEntry.test.tsx`:
 
 ```tsx
 // @vitest-environment happy-dom
+import { act } from 'preact/test-utils';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { AccountApi, DiaryEntry as Entry } from '../../lib/accountApi';
 import { DAY_MS } from '../../lib/diary';
-import { byText, click, mount, queryText, submit, typeInto } from '../../lib/testing/dom';
+import { byText, cleanup, click, mount, queryText, settle, submit, typeInto } from '../../lib/testing/dom';
 import { DiaryEntry } from './DiaryEntry';
 
-const MADE = '2026-11-01T12:00:00+00:00';
+const MADE = new Date(2026, 10, 1, 22, 0).toISOString(); // 1 November 2026, 22:00 on this device's clock (any zone)
 const at = (days: number) => () => new Date(new Date(MADE).getTime() + days * DAY_MS);
 const ENTRY: Entry = {
   id: 'e1', kind: 'three', topic: 'work', question: 'Will <i>the move</i> go well?', created_at: MADE,
   cards: [{ card_id: 'major-18-moon', position: 'past', reversed: false, name: 'The Moon' },
     { card_id: 'major-19-sun', position: 'present', reversed: false, name: 'The Sun' },
     { card_id: 'major-17-star', position: 'path', reversed: true, name: 'The Star' }],
-  verdict: null, soft_line: null, answer_shown: 'model', status: 'done', retries_left: 0,
+  verdict: null, soft_line: 'Take it gently.', answer_shown: 'model', status: 'done', retries_left: 0,
   answer: { headline: 'Slow and steady.', card1: 'The Moon asks for patience.', synthesis: 'Step by step.', step: 'Write one list.' },
-  followups: [{ n: 1, question: 'And then?', answer: 'Then rest.', soft_line: null }],
+  followups: [{ n: 1, question: 'And then?', answer: 'Then rest.', soft_line: 'One day at a time.' }],
   followups_left: 1, followup_attempts_left: 7, in_diary: true, outcome: null, note: null,
 };
 
@@ -4853,7 +5754,7 @@ function entry(f: ReturnType<typeof fakeApi>, now: () => Date, extra: { navigate
   return <DiaryEntry lang="en" id="e1" api={f.api} onSignedOut={vi.fn()} now={now} navigate={extra.navigate} send={extra.send ?? vi.fn()} />;
 }
 
-afterEach(() => document.body.replaceChildren());
+afterEach(() => cleanup());
 
 describe('a diary entry (screen 4b; spec 4.4b §5)', () => {
   it('shows the cards, the answer by sections and the follow-ups, all as text', async () => {
@@ -4861,7 +5762,8 @@ describe('a diary entry (screen 4b; spec 4.4b §5)', () => {
     expect(root.querySelector('h2')?.textContent).toBe('Will <i>the move</i> go well?');
     expect(root.querySelector('h2 i')).toBeNull();
     expect(root.textContent).toContain('1 November 2026 · Three cards');
-    for (const text of ['Slow and steady.', 'The Moon asks for patience.', 'Step by step.', 'Write one list.', 'Then rest.']) {
+    for (const text of ['Slow and steady.', 'Take it gently.', 'The Moon asks for patience.', 'Step by step.', 'Write one list.',
+      'Then rest.', 'One day at a time.']) { // the soft lines too (review M21)
       expect(root.textContent).toContain(text);
     }
     expect(root.querySelectorAll('.entry__cards .card-frame')).toHaveLength(3);
@@ -4873,14 +5775,25 @@ describe('a diary entry (screen 4b; spec 4.4b §5)', () => {
     expect(queryText(root, 'Came true', 'button')).toBeNull();
   });
 
-  it('from 7 days: Came true / Partly / No, change and clear; outcome_answered with after_days', async () => {
+  it('opens on the named day from 00:00 local time, before 7 × 24 hours (owner decision 13, review I7)', async () => {
+    const eve = await mount(entry(fakeApi(ENTRY), () => new Date(2026, 10, 7, 23, 59)));
+    expect(byText(eve.root, 'Come back on 8 November 2026 to mark whether it came true.')).toBeTruthy();
+    eve.unmount();
+    const { root } = await mount(entry(fakeApi(ENTRY), () => new Date(2026, 10, 8, 9, 0))); // 8 November, 09:00
+    expect(byText(root, 'Came true', 'button')).toBeTruthy();
+    expect(queryText(root, 'Come back on 8 November 2026 to mark whether it came true.')).toBeNull();
+  });
+
+  it('from 7 days: Came true / Partly / No, change and clear; outcome_answered once, for the first answer', async () => {
     const f = fakeApi(ENTRY);
     const send = vi.fn();
     const { root, unmount } = await mount(entry(f, at(8), { send }));
     await click(byText(root, 'Partly', 'button'));
     expect(byText(root, 'Partly', 'button').getAttribute('aria-pressed')).toBe('true');
+    await click(byText(root, 'No', 'button')); // a change, not a new answer (review M21)
     await click(byText(root, 'Clear', 'button'));
-    expect(f.calls.filter(([name]) => name === 'patch')).toEqual([['patch', { outcome: 'partly' }], ['patch', { outcome: null }]]);
+    expect(f.calls.filter(([name]) => name === 'patch')).toEqual([['patch', { outcome: 'partly' }], ['patch', { outcome: 'no' }],
+      ['patch', { outcome: null }]]);
     expect(send).toHaveBeenCalledTimes(1);
     expect(send).toHaveBeenCalledWith({ name: 'outcome_answered', tool: null, lang: 'en', params: { after_days: 7, answer: 'partly' } });
     unmount();
@@ -4927,15 +5840,80 @@ describe('a diary entry (screen 4b; spec 4.4b §5)', () => {
     expect(root.querySelector('textarea')).toBeNull();
     expect(queryText(root, 'Came true', 'button')).toBeNull();
   });
+
+  it('a refused change: 401 "sign_in" signs out here, a 401 without JSON is the stage line (review I4)', async () => {
+    const onSignedOut = vi.fn();
+    const answers = [{ ok: false as const, status: 401, error: 'other' as const, body: { reason: 'sign_in' } },
+      { ok: false as const, status: 401, error: 'stage' as const, body: null }];
+    const api: Pick<AccountApi, 'entry' | 'patchEntry' | 'deleteEntry'> = {
+      ...fakeApi(ENTRY).api, patchEntry: async () => answers.shift()!,
+    };
+    const { root } = await mount(<DiaryEntry lang="en" id="e1" api={api} onSignedOut={onSignedOut} now={at(8)} send={vi.fn()} />);
+    await click(byText(root, 'Partly', 'button'));
+    expect(onSignedOut).toHaveBeenCalledTimes(1);
+    await click(byText(root, 'Partly', 'button'));
+    expect(onSignedOut).toHaveBeenCalledTimes(1);
+    expect(byText(root, 'Your session on this preview site has expired. Reload the page to continue.')).toBeTruthy();
+    expect(byText(root, 'Try again', 'button')).toBeTruthy(); // it reloads the page
+    expect(queryText(root, 'Something went wrong. Please try again.')).toBeNull();
+  });
+
+  it('the outcome buttons wait while their change is saved (review M21)', async () => {
+    const pending: { resolve?: () => void } = {};
+    const api: Pick<AccountApi, 'entry' | 'patchEntry' | 'deleteEntry'> = {
+      ...fakeApi(ENTRY).api,
+      patchEntry: (id, patch) => new Promise((resolve) => {
+        pending.resolve = () => resolve({ ok: true, status: 200, data: { id, outcome: patch.outcome ?? null, note: null } });
+      }),
+    };
+    const { root } = await mount(<DiaryEntry lang="en" id="e1" api={api} onSignedOut={vi.fn()} now={at(8)} send={vi.fn()} />);
+    await click(byText(root, 'Came true', 'button'));
+    expect(byText<HTMLButtonElement>(root, 'No', 'button').disabled).toBe(true);
+    await act(() => {
+      pending.resolve?.();
+    });
+    await settle();
+    expect(byText<HTMLButtonElement>(root, 'No', 'button').disabled).toBe(false);
+    expect(byText(root, 'Came true', 'button').getAttribute('aria-pressed')).toBe('true');
+  });
 });
 ```
 
-In `site/src/i18n/i18n.test.ts` replace `.toBe(193);` with `.toBe(205);`, `expect(DRAFTS.en.length).toBe(77);` with `expect(DRAFTS.en.length).toBe(89);` and `expect(DRAFTS.es.length).toBe(147);` with `expect(DRAFTS.es.length).toBe(159);`.
+In `site/src/islands/DiaryIsland.test.tsx` (Task 14), inside `describe(…)`, after the last test add:
+
+```tsx
+  it('?r=<id> opens that entry of the account (screen 4b)', async () => {
+    history.replaceState(null, '', `/diary?r=${ITEM.id}`);
+    h.session = { access_token: 'tok-a' };
+    serve({ [`GET /api/readings/${ITEM.id}`]: () => jsonResponse(200, {
+      id: ITEM.id, kind: 'three', topic: 'work', question: 'Will the move go well?', created_at: ITEM.created_at,
+      cards: ITEM.cards, verdict: null, soft_line: null, answer_shown: 'model', status: 'done', retries_left: 0,
+      answer: { headline: 'Slow and steady.' }, followups: [], followups_left: 2, followup_attempts_left: 8,
+      in_diary: true, outcome: null, note: null,
+    }) });
+    const { root } = await open((r) => expect(r.querySelector('h2')?.textContent).toBe('Will the move go well?'));
+    expect(byText<HTMLAnchorElement>(root, '← Your diary', 'a').getAttribute('href')).toBe('/diary');
+  });
+
+  it('signing in from an entry\'s address comes back to that entry (review M21)', async () => {
+    history.replaceState(null, '', `/diary?r=${ITEM.id}`);
+    serve({});
+    const { root } = await open((r) => expect(r.querySelector('input[type="email"]')).not.toBeNull());
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    await waitFor(() => expect(h.sent).toHaveLength(1));
+    expect(h.sent[0]).toMatchObject({ options: { emailRedirectTo: `https://arcana.test/diary?r=${ITEM.id}` } });
+  });
+```
+
+and replace `import { byText, cleanup, click, mount, settle, waitFor } from '../lib/testing/dom';` with `import { byText, cleanup, click, mount, settle, submit, typeInto, waitFor } from '../lib/testing/dom';`.
+
+In `site/src/i18n/i18n.test.ts` replace `.toBe(192);` with `.toBe(204);`, `expect(DRAFTS.en.length).toBe(76);` with `expect(DRAFTS.en.length).toBe(88);` and `expect(DRAFTS.es.length).toBe(146);` with `expect(DRAFTS.es.length).toBe(158);`.
 
 - [ ] **Step 2: Run it to see it fail**
 
-Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/components/ui/DiaryEntry.test.tsx src/i18n/i18n.test.ts`
-Expected: FAIL — `Failed to resolve import "./DiaryEntry"`; `expected 193 to be 205`.
+Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/components/ui/DiaryEntry.test.tsx src/islands/DiaryIsland.test.tsx src/i18n/i18n.test.ts`
+Expected: FAIL — `Failed to resolve import "./DiaryEntry"`; DiaryIsland: the two new tests (the list instead of the entry; the return address without `r`); `expected 192 to be 204`.
 
 - [ ] **Step 3: Implement**
 
@@ -4957,7 +5935,7 @@ In `site/src/i18n/en.ts`, after the line `  plusDiaryNote: 'Your diary keeps you
   cancel: 'Cancel',
 ```
 
-and in `enDrafts`, after the line `  'diaryHidden', 'diaryNoteMark', 'diaryMore', 'diaryAccountLink',` add:
+and in `enDrafts`, after the line `  'diaryHidden', 'diaryNoteMark', 'diaryAccountLink',` add:
 
 ```ts
   'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
@@ -4995,14 +5973,16 @@ Create `site/src/components/ui/DiaryEntry.tsx`:
 // One diary entry (screen 4b; spec 4.4b §5) — /diary?r=<id>, GET /api/readings/{id}: the cards, the answer by
 // sections, the follow-ups; "Came true / Partly / No" from 7 days after the reading (change or clear it), before
 // that the day to come back; a private note (1000 characters, counter, "Save note"); delete with a confirmation.
-// A crisis entry shows only its date, the help line and "delete". Every text from the API is a text node.
+// A crisis entry shows only its date, the help line and "delete". Every text from the API is a text node. Only
+// 401 "sign_in" means the session went (review I4): a 401 without JSON is the stage cookie — reload the page.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../../i18n';
 import type { AccountApi, DiaryEntry as Entry, Outcome } from '../../lib/accountApi';
 import { analyticsEvent, sendEvent, type AnalyticsEvent } from '../../lib/analytics';
 import { answerBlocks, answerFromView } from '../../lib/answer';
 import { NOTE_MAX, afterDays, formatDate, kindKey, noteLeft, outcomeOpen, outcomeOpensOn } from '../../lib/diary';
-import { errorMessageKey, type ErrorKind } from '../../lib/errors';
+import type { ApiResult } from '../../lib/api';
+import { errorMessageKey, reasonOf, type ErrorKind } from '../../lib/errors';
 import { pagePath } from '../../lib/routes';
 import type { Lang } from '../../lib/types';
 import { CardFace } from './CardFace';
@@ -5011,6 +5991,13 @@ import { HelpLine } from './HelpLine';
 import { VerdictIcon } from './icons';
 
 const OUTCOMES: readonly Outcome[] = ['yes', 'partly', 'no'];
+
+type Refusal = Extract<ApiResult<unknown>, { ok: false }>;
+
+/** 401 {"reason": "sign_in"}: the session went on this device (spec 4.4b §3). */
+function sessionGone(result: Refusal): boolean {
+  return result.status === 401 && reasonOf(result.body) === 'sign_in';
+}
 
 interface Props {
   lang: Lang;
@@ -5032,6 +6019,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
   const [note, setNote] = useState('');
   const [noteState, setNoteState] = useState<'idle' | 'saving' | 'saved'>('idle');
   const [confirming, setConfirming] = useState(false);
+  const [busy, setBusy] = useState(false); // an outcome is being saved: its buttons wait (review M21)
   const deleteButton = useRef<HTMLButtonElement>(null);
   const confirmButton = useRef<HTMLButtonElement>(null);
   const wasConfirming = useRef(false);
@@ -5043,7 +6031,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
       if (result.ok && result.data.in_diary) {
         setEntry(result.data);
         setNote(result.data.note ?? '');
-      } else if (!result.ok && result.status === 401) onSignedOut();
+      } else if (!result.ok && sessionGone(result)) onSignedOut();
       else setError(result.ok ? 'gone' : result.error); // a reading of this device that is not in the account
     })();
   }, [id]);
@@ -5059,6 +6047,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
       <div class="entry">
         <a class="entry__back" href={diary}>{d.diaryBack}</a>
         <p role="alert">{d[errorMessageKey(error)]}</p>
+        {error === 'stage' ? <button type="button" class="btn btn--outline" onClick={() => location.reload()}>{d.retry}</button> : null}
       </div>
     );
   }
@@ -5068,12 +6057,22 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
   const answer = answerFromView(entry);
   const headline = answer.sections.headline?.trim();
 
+  const refused = (result: Refusal) => {
+    if (sessionGone(result)) onSignedOut();
+    else setFailed(result.error); // 'stage' for a 401 without JSON: the line and a reload button
+  };
+
   const mark = async (outcome: Outcome | null) => {
+    setBusy(true);
     const result = await api.patchEntry(id, { outcome });
-    if (!result.ok) return setFailed(result.error);
+    setBusy(false);
+    if (!result.ok) return refused(result);
     setFailed(null);
+    const first = entry.outcome === null; // an answer on an empty mark; a change (yes → no) is not counted again
     setEntry({ ...entry, outcome: result.data.outcome });
-    if (outcome) send(analyticsEvent('outcome_answered', null, lang, { after_days: afterDays(entry.created_at, now()), answer: outcome }));
+    if (outcome && first) {
+      send(analyticsEvent('outcome_answered', null, lang, { after_days: afterDays(entry.created_at, now()), answer: outcome }));
+    }
   };
 
   const saveNote = async (event: Event) => {
@@ -5082,7 +6081,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
     const result = await api.patchEntry(id, { note: note.trim() ? note : null });
     if (!result.ok) {
       setNoteState('idle');
-      return setFailed(result.error);
+      return refused(result);
     }
     setFailed(null);
     setNoteState('saved');
@@ -5090,7 +6089,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
 
   const remove = async () => {
     const result = await api.deleteEntry(id);
-    if (!result.ok) return setFailed(result.error);
+    if (!result.ok) return refused(result);
     navigate(diary);
   };
 
@@ -5107,6 +6106,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
             ))}
           </div>
           {headline ? <p class="entry__headline">{headline}</p> : null}
+          {entry.soft_line ? <p class="answer__soft">{entry.soft_line}</p> : null}
           {entry.verdict ? (
             <p class="entry__verdict"><VerdictIcon value={entry.verdict.value} size={28} />{entry.verdict.label}</p>
           ) : null}
@@ -5123,6 +6123,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
           {entry.followups.map((f) => (
             <div key={f.n}>
               <p class="followup__q">{d.followupYouAsked}: {f.question}</p>
+              {f.soft_line ? <p class="answer__soft">{f.soft_line}</p> : null}
               <p class="answer__text">{f.answer}</p>
             </div>
           ))}
@@ -5131,11 +6132,14 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
             {outcomeOpen(entry.created_at, now()) ? (
               <div class="chips" role="group" aria-labelledby="outcome-title">
                 {OUTCOMES.map((value) => (
-                  <button type="button" class="chip chip--day" aria-pressed={entry.outcome === value} onClick={() => void mark(value)}>
+                  <button type="button" class="chip chip--day" aria-pressed={entry.outcome === value} disabled={busy}
+                    onClick={() => void mark(value)}>
                     {d[OUTCOME_KEYS[value]]}
                   </button>
                 ))}
-                {entry.outcome ? <button type="button" class="btn btn--text" onClick={() => void mark(null)}>{d.entryOutcomeClear}</button> : null}
+                {entry.outcome ? (
+                  <button type="button" class="btn btn--text" disabled={busy} onClick={() => void mark(null)}>{d.entryOutcomeClear}</button>
+                ) : null}
               </div>
             ) : (
               <p class="small">{fill(d.entryOutcomeLater, { date: formatDate(outcomeOpensOn(entry.created_at), lang) })}</p>
@@ -5152,6 +6156,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
         </>
       )}
       {failed ? <p role="alert">{d[errorMessageKey(failed)]}</p> : null}
+      {failed === 'stage' ? <button type="button" class="btn btn--outline" onClick={() => location.reload()}>{d.retry}</button> : null}
       {confirming ? (
         <div class="notice notice--day" role="alert">
           <p>{d.entryDeleteConfirm}</p>
@@ -5165,6 +6170,19 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
       )}
     </article>
   );
+}
+```
+
+Create `site/src/lib/timeZone.ts` (one helper for the diary and the account pages, not a third and fourth copy of the 4.4a islands' private one — review M22):
+
+```ts
+// The device's time zone for the API's `tz` (the local day of the limits and of the account page).
+export function deviceTimeZone(): string | undefined {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || undefined;
+  } catch {
+    return undefined;
+  }
 }
 ```
 
@@ -5186,67 +6204,88 @@ with
 
 - after `import { finishSignIn, linkFailed, readReturnParams, returnUrl } from '../lib/claim';` add `import { entryParam } from '../lib/diary';`
 - after `import type { Lang } from '../lib/types';` add `import { DiaryEntry } from '../components/ui/DiaryEntry';`
-- replace `  | { type: 'ready' };` with
-
-```tsx
-  | { type: 'ready'; entry: string | null };
-
-function timeZone(): string | undefined {
-  try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone || undefined;
-  } catch {
-    return undefined;
-  }
-}
-```
+- replace `  | { type: 'ready' };` with `  | { type: 'ready'; entry: string | null };`
+- after `import { entryParam } from '../lib/diary';` add `import { deviceTimeZone } from '../lib/timeZone';`
 
 - replace `    else setView({ type: 'ready' });` with `    else setView({ type: 'ready', entry: entryParam(location.search) });`
+- replace `          redirectTo={async () => returnUrl(location.origin, lang, keep)} />` with
+
+```tsx
+          redirectTo={async () => {
+            const back = new URL(returnUrl(location.origin, lang, keep)); // an entry's address comes back to it (M21)
+            const entry = entryParam(location.search);
+            if (entry) back.searchParams.set('r', entry);
+            return back.toString();
+          }} />
+```
+
 - replace `      <DiaryList lang={lang} api={api} onSignedOut={() => void signedOut()} />` with
 
 ```tsx
       {view.entry ? (
-        <DiaryEntry lang={lang} id={view.entry} api={api} tz={timeZone()} onSignedOut={() => void signedOut()} />
+        <DiaryEntry lang={lang} id={view.entry} api={api} tz={deviceTimeZone()} onSignedOut={() => void signedOut()} />
       ) : (
         <DiaryList lang={lang} api={api} onSignedOut={() => void signedOut()} />
       )}
 ```
 
+In `site/src/styles/global.css`, before `/* Simple card page */` add:
+
+```css
+/* Stage 4.4b: a diary entry (screen 4b) */
+.entry { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); max-width: 720px; }
+.entry__back { min-height: 44px; display: inline-flex; align-items: center; }
+.entry__cards { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.entry__cards .card-frame { width: 120px; }
+.entry__headline { margin: 0; font-family: var(--font-display); font-size: var(--font-size-h-2); }
+.entry__verdict { display: flex; align-items: center; gap: var(--space-3); margin: 0; font-weight: 600; }
+.entry .answer__label { color: var(--color-day-accent); }
+.entry .answer__soft, .entry .followup__q { color: var(--color-day-text-muted); }
+.entry__outcome h3 { margin: 0 0 var(--space-2); font-size: var(--font-size-h-3); }
+.chip--day { border-color: var(--color-day-control-border); background: transparent; color: var(--color-day-text); }
+.chip--day[aria-pressed='true'] { background: var(--color-brand-ink-button); color: var(--color-day-on-accent); }
+.entry .field label { color: var(--color-day-text-muted); } /* the night label colour is ≈1.8:1 on day (review I6) */
+.entry__note textarea { resize: vertical; min-height: 120px; padding: var(--space-3) var(--space-4); font: inherit; }
+.entry :focus-visible { outline-color: var(--color-day-text); }
+```
+
 - [ ] **Step 4: Run the tests and the build**
 
-Run: the Vitest command of Step 2, then the same without files, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
-Expected: PASS — `15 passed` in 2 files; then `268 passed` in 30 files; `OK: 167 pages`.
+Run: the Vitest command of Step 2, then the same without files, then the type check, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
+Expected: PASS — `28 passed` in 3 files; then `291 passed` in 31 files; `- 0 errors`; `OK: 167 pages`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add site/src/components/ui/DiaryEntry.tsx site/src/components/ui/DiaryEntry.test.tsx site/src/islands/DiaryIsland.tsx site/src/i18n
+git add site/src/components/ui/DiaryEntry.tsx site/src/components/ui/DiaryEntry.test.tsx site/src/lib/timeZone.ts site/src/islands/DiaryIsland.tsx site/src/islands/DiaryIsland.test.tsx site/src/i18n site/src/styles/global.css
 git commit -m "feat(site): stage 4.4b — a diary entry: outcome after 7 days, the note, delete
 
 ?r=<id> opens the reading of the account: cards, answer, follow-ups as text; Came true /
-Partly / No from day 7 (outcome_answered, after_days 7 or 30), else the day to come back;
-the note with its counter; delete with a confirmation.
+Partly / No from 00:00 local of the named day (owner decision 13; outcome_answered once,
+after_days 7 or 30), else that day to come back; the note with its counter; delete with a
+confirmation. 401 sign_in signs out, the stage 401 reloads (review I4).
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
 
-### Task 14: Site — the account page, "Delete forever?", the home page notice
+### Task 16: Site — the account page, "Delete forever?", the home page notice
 
 **Files:**
 - Create: `site/src/islands/AccountIsland.tsx`, `site/src/components/ui/DeleteAccountDialog.tsx`, `site/src/islands/HomeNotice.tsx`, `site/src/lib/notice.ts`, `site/src/lib/download.ts`, `site/src/views/AccountView.astro`, `site/src/pages/account.astro`, `site/src/pages/es/cuenta.astro`
-- Modify: `site/src/views/HomeView.astro` (the notice island), `site/src/i18n/en.ts`, `es.ts`, `i18n.test.ts`
-- Test: `site/src/lib/notice.test.ts`, `site/src/islands/AccountIsland.test.tsx`, `site/src/islands/HomeNotice.test.tsx`
+- Modify: `site/src/views/HomeView.astro` (the notice island), `site/src/i18n/en.ts`, `es.ts`, `i18n.test.ts`, `site/src/styles/global.css` (the account's and the dialog's rules, moved here from Task 14 — review M19)
+- Test: `site/src/lib/notice.test.ts`, `site/src/lib/download.test.ts`, `site/src/islands/AccountIsland.test.tsx`, `site/src/islands/HomeNotice.test.tsx`
 
 **Interfaces:**
-- Consumes: `openSession`, `Auth`, `SessionStatus` (Task 7), `createAccountApi`, `Account`, `AccountApi` (Task 9), `siteFetch` (Task 8), `returnUrl` (Task 10), `SignInBlock` (Task 11), `handleDialogKey` (`focus.ts`), `pagePath('account' | 'diary' | 'home')`, `noindex` of `Base.astro` (Task 12), `navDiary`, `diarySignInSoon` (Task 12).
+- Consumes: `openSession`, `Auth`, `SessionStatus` (Task 9), `createAccountApi`, `Account`, `AccountApi` (Task 11), `siteFetch` (Task 10), `returnUrl` (Task 12), `SignInBlock` (Task 13), `handleDialogKey` (`focus.ts`), `pagePath('account' | 'diary' | 'home')`, `noindex` of `Base.astro` (Task 14), `navDiary`, `diarySignInSoon` (Task 14).
 - Produces:
-  - `download.ts`: `type SaveFile = (blob: Blob, filename: string) => void`, `saveFile` (Task 15 uses it for the calendar file).
-  - `notice.ts`: `type Notice = 'accountDeleted'`, `NOTICE_PARAM = 'account'`, `noticeHref(home): string` (`<home>?account=deleted`), `noticeOf(search): Notice | null`, `withoutNotice(href): string`.
-  - `AccountIsland` props `{ lang; api?: AccountApi; save?: SaveFile; navigate?: (url) => void; session?: () => Promise<SessionStatus> }` (the page passes only `lang`).
-  - `DeleteAccountDialog` props `{ lang; busy; onDownload(); onDelete(); onCancel() }` (`role="alertdialog"`, Escape = Cancel).
+  - `download.ts`: `type SaveFile = (blob: Blob, filename: string) => void`, `REVOKE_AFTER_MS = 60_000`, `saveFile` (Task 17 uses it for the calendar file). The object URL is freed a minute after the click, not a second: iOS Safari asks before it saves a blob and may read the URL late (review I8).
+  - `notice.ts`: `type Notice = 'accountDeleted'`, `NOTICE_PARAM = 'account'`, `NOTICE_KEY = 'ad_notice'`, `noticeHref(home): string` (`<home>?account=deleted`), `noticeOf(search): Notice | null`, `markNotice(notice, storage?)` (sessionStorage), `takeNotice(search, storage?): Notice | null` (the address's notice only when this browser left the mark; the mark goes — a shared link alone shows nothing, review M22), `withoutNotice(href): string`.
+  - `AccountIsland` props `{ lang; api?: AccountApi; save?: SaveFile; navigate?: (url) => void; session?: () => Promise<SessionStatus>; signOutWaitMs?: number }` (the page passes only `lang`); `SIGN_OUT_WAIT_MS = 3000` — a sign-out that hangs never holds the person on the page (auth-js 2.119 drops the local session before its network call, and `Auth.signOut` clears the flags first — Task 9, review M6). Only `401 {"reason": "sign_in"}` shows the sign-in block; a `401` without JSON is `errStage` with a reload button.
+  - `DeleteAccountDialog` props `{ lang; busy; error: string | null; onDownload(); onDelete(); onCancel() }` (`role="alertdialog"`, Escape = Cancel). A failed deletion or download says so **inside** the dialog (review I5); while `busy`, Escape does nothing and the three buttons are disabled (review M22).
   - `HomeNotice` props `{ lang }`.
-  - Pages `/account`, `/es/cuenta` (noindex). Dictionary keys `accountTitle`, `accountH1`, `accountEmail` (`{email}`), `accountLeft` (`{n}`, `{limit}`), `accountSignOut`, `accountConsent`, `accountConsentNote`, `accountExport`, `accountDelete`, `deleteTitle`, `deleteBody`, `deleteDownload`, `deleteForever`, `accountDeleted` (all drafts).
+  - Pages `/account`, `/es/cuenta` (noindex). Dictionary keys `accountTitle`, `accountH1`, `accountEmail` (`{email}`), `accountLeft` (`{n}`, `{limit}`), `accountSignOut`, `accountConsent`, `accountConsentNote`, `accountExport`, `accountDelete`, `deleteTitle`, `deleteBody`, `deleteDownload`, `deleteForever`, `accountDeleted` (all drafts). `deviceTimeZone()` (Task 15) for `GET /api/account?tz=`.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -5254,7 +6293,8 @@ Create `site/src/lib/notice.test.ts`:
 
 ```ts
 import { describe, expect, it } from 'vitest';
-import { noticeHref, noticeOf, withoutNotice } from './notice';
+import { NOTICE_KEY, markNotice, noticeHref, noticeOf, takeNotice, withoutNotice } from './notice';
+import { memoryStorage } from './testing/auth';
 
 describe('the home page notice', () => {
   it('says "account deleted" once and leaves a clean address', () => {
@@ -5263,6 +6303,55 @@ describe('the home page notice', () => {
     expect(noticeOf('?account=other')).toBeNull();
     expect(withoutNotice('https://arcana.test/es?account=deleted&utm_source=x')).toBe('/es?utm_source=x');
   });
+
+  it("shows the line only after this browser's own deletion, and only once (review M22)", () => {
+    const storage = memoryStorage();
+    expect(takeNotice('?account=deleted', storage)).toBeNull(); // a shared link alone
+    markNotice('accountDeleted', storage);
+    expect(storage.data[NOTICE_KEY]).toBe('accountDeleted');
+    expect(takeNotice('', storage)).toBeNull(); // the mark goes with any visit of the home page
+    markNotice('accountDeleted', storage);
+    expect(takeNotice('?account=deleted', storage)).toBe('accountDeleted');
+    expect(takeNotice('?account=deleted', storage)).toBeNull(); // once
+  });
+});
+```
+
+Create `site/src/lib/download.test.ts`:
+
+```ts
+// @vitest-environment happy-dom
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { REVOKE_AFTER_MS, saveFile } from './download';
+
+afterEach(() => {
+  vi.useRealTimers();
+  vi.restoreAllMocks();
+});
+
+describe('saveFile (the export of spec 4.3 §8, the calendar file of spec 4.4b §7)', () => {
+  it('clicks a download link with the name, removes it, and frees the address only after a minute (review I8)', () => {
+    vi.useFakeTimers({ toFake: ['setTimeout'] });
+    const create = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:https://arcana.test/1');
+    const revoke = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {});
+    const clicked: Array<[string, string]> = [];
+    const onClick = (event: MouseEvent) => {
+      const link = event.target as HTMLAnchorElement;
+      clicked.push([link.getAttribute('href') ?? '', link.download]);
+      event.preventDefault(); // no navigation in the test
+    };
+    document.addEventListener('click', onClick);
+    const blob = new Blob(['x'], { type: 'text/calendar;charset=utf-8' });
+    saveFile(blob, 'arcana-diary-card-of-the-day.ics');
+    document.removeEventListener('click', onClick);
+    expect(create).toHaveBeenCalledWith(blob);
+    expect(clicked).toEqual([['blob:https://arcana.test/1', 'arcana-diary-card-of-the-day.ics']]);
+    expect(document.querySelector('a[download]')).toBeNull();
+    vi.advanceTimersByTime(REVOKE_AFTER_MS - 1);
+    expect(revoke).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(1);
+    expect(revoke).toHaveBeenCalledWith('blob:https://arcana.test/1');
+  });
 });
 ```
 
@@ -5270,23 +6359,25 @@ Create `site/src/islands/AccountIsland.test.tsx`:
 
 ```tsx
 // @vitest-environment happy-dom
+import { act } from 'preact/test-utils';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Account, AccountApi } from '../lib/accountApi';
 import type { Auth, SessionStatus } from '../lib/auth';
-import { byText, click, mount } from '../lib/testing/dom';
+import { NOTICE_KEY } from '../lib/notice';
+import { byText, cleanup, click, mount, waitFor } from '../lib/testing/dom';
 import AccountIsland from './AccountIsland';
 
 const ACCOUNT: Account = { email: 'ana@example.com', created_at: '2026-11-20T18:00:00+00:00', reminders_consent: false,
   consent_at: null, limit: 3, used: 1, remaining: 2, day: '2026-11-22' };
 
-function fakes() {
+function fakes(over: { deleteAccount?: AccountApi['deleteAccount']; signOut?: () => Promise<void> } = {}) {
   const calls: string[] = [];
   const saved: Array<[Blob, string]> = [];
   const navigate = vi.fn();
   const auth = {
     session: async () => null, token: async () => 'tok', refresh: async () => null,
     sendLink: async () => ({ ok: true as const }), google: async () => ({ ok: true as const }),
-    signOut: vi.fn(async () => { calls.push('signOut'); }),
+    signOut: vi.fn(over.signOut ?? (async () => { calls.push('signOut'); })),
   } satisfies Auth;
   const api = {
     account: async () => { calls.push('account'); return { ok: true, status: 200, data: ACCOUNT }; },
@@ -5298,14 +6389,19 @@ function fakes() {
       calls.push('export');
       return { ok: true, blob: new Blob(['{"readings":[]}'], { type: 'application/json' }), filename: 'arcana-diary-2026-11-22.json' };
     },
-    deleteAccount: async () => { calls.push('delete'); return { ok: true, status: 200, data: { deleted: true } }; },
+    deleteAccount: over.deleteAccount
+      ?? (async () => { calls.push('delete'); return { ok: true, status: 200, data: { deleted: true } }; }),
   } as unknown as AccountApi;
   const signedIn = async (): Promise<SessionStatus> => ({ type: 'signedIn', auth, google: false, session: { access_token: 'tok' } });
-  const props = { api, navigate, save: (blob: Blob, name: string) => { saved.push([blob, name]); }, session: signedIn };
+  const props = { api, navigate, save: (blob: Blob, name: string) => { saved.push([blob, name]); }, session: signedIn,
+    signOutWaitMs: 20 };
   return { calls, saved, navigate, auth, props };
 }
 
-afterEach(() => document.body.replaceChildren());
+afterEach(() => {
+  cleanup();
+  sessionStorage.clear();
+});
 
 describe('the account page (spec 4.4b §6)', () => {
   it('shows the e-mail, the readings left today and the way back to the diary', async () => {
@@ -5355,8 +6451,9 @@ describe('the account page (spec 4.4b §6)', () => {
     const { root } = await mount(<AccountIsland lang="es" {...f.props} />);
     await click(byText(root, 'Eliminar cuenta', 'button'));
     await click(byText(root, 'Eliminar para siempre', 'button'));
+    await waitFor(() => expect(f.navigate).toHaveBeenCalledWith('/es?account=deleted'));
     expect(f.calls.slice(-2)).toEqual(['delete', 'signOut']);
-    expect(f.navigate).toHaveBeenCalledWith('/es?account=deleted');
+    expect(sessionStorage.getItem(NOTICE_KEY)).toBe('accountDeleted'); // the home page says it once (review M22)
   });
 
   it('"Sign out" goes home; not signed in shows the sign-in block', async () => {
@@ -5364,11 +6461,50 @@ describe('the account page (spec 4.4b §6)', () => {
     const { root, unmount } = await mount(<AccountIsland lang="en" {...f.props} />);
     await click(byText(root, 'Sign out', 'button'));
     expect(f.calls).toContain('signOut');
-    expect(f.navigate).toHaveBeenCalledWith('/');
+    await waitFor(() => expect(f.navigate).toHaveBeenCalledWith('/'));
     unmount();
     const out = await mount(<AccountIsland lang="en" {...f.props}
       session={async () => ({ type: 'signedOut', auth: f.auth, google: false })} />);
     expect(out.root.querySelector('input[type="email"]')).not.toBeNull();
+  });
+
+  it('a deletion that fails says so inside the dialog; nothing is signed out (review I5)', async () => {
+    const f = fakes({ deleteAccount: async () => ({ ok: false, status: 503, error: 'unavailable', body: { reason: 'db' } }) });
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    await click(byText(root, 'Delete account', 'button'));
+    await click(byText(root, 'Delete forever', 'button'));
+    const dialog = root.querySelector('[role="alertdialog"]')!;
+    expect(dialog.querySelector('[role="alert"]')?.textContent)
+      .toBe('The service is unavailable right now. Please try again in a few minutes.');
+    expect(f.auth.signOut).not.toHaveBeenCalled();
+    expect(f.navigate).not.toHaveBeenCalled();
+    expect(byText<HTMLButtonElement>(dialog, 'Delete forever', 'button').disabled).toBe(false);
+  });
+
+  it('a sign-out that hangs does not hold the person here: home after a short wait (review M6)', async () => {
+    const f = fakes({ signOut: () => new Promise<void>(() => {}) });
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    await click(byText(root, 'Sign out', 'button'));
+    await waitFor(() => expect(f.navigate).toHaveBeenCalledWith('/'));
+  });
+
+  it('while the account is being deleted, Escape and Cancel do nothing (review M22)', async () => {
+    const pending: { finish?: () => void } = {};
+    const f = fakes({ deleteAccount: () => new Promise((resolve) => {
+      pending.finish = () => resolve({ ok: true, status: 200, data: { deleted: true } });
+    }) });
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    await click(byText(root, 'Delete account', 'button'));
+    await click(byText(root, 'Delete forever', 'button'));
+    await act(() => {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    });
+    expect(root.querySelector('[role="alertdialog"]')).not.toBeNull();
+    expect(byText<HTMLButtonElement>(root, 'Cancel', 'button').disabled).toBe(true);
+    await act(() => {
+      pending.finish?.();
+    });
+    await waitFor(() => expect(f.navigate).toHaveBeenCalledWith('/?account=deleted'));
   });
 });
 ```
@@ -5377,27 +6513,41 @@ Create `site/src/islands/HomeNotice.test.tsx`:
 
 ```tsx
 // @vitest-environment happy-dom
-import { describe, expect, it } from 'vitest';
-import { byText, mount } from '../lib/testing/dom';
+import { afterEach, describe, expect, it } from 'vitest';
+import { NOTICE_KEY } from '../lib/notice';
+import { byText, cleanup, mount } from '../lib/testing/dom';
 import HomeNotice from './HomeNotice';
+
+afterEach(() => {
+  cleanup();
+  sessionStorage.clear();
+});
 
 describe('the home page notice (spec 4.4b §6)', () => {
   it('says once that the account was deleted and cleans the address', async () => {
+    sessionStorage.setItem(NOTICE_KEY, 'accountDeleted'); // left by the account page right before it came here
     history.replaceState(null, '', '/es?account=deleted&utm_source=x');
-    const { root, unmount } = await mount(<HomeNotice lang="es" />);
+    const { root } = await mount(<HomeNotice lang="es" />);
     expect(byText(root, 'Tu cuenta se eliminó.').getAttribute('role')).toBe('status');
     expect(`${location.pathname}${location.search}`).toBe('/es?utm_source=x');
-    unmount();
+    expect(sessionStorage.getItem(NOTICE_KEY)).toBeNull();
+  });
+
+  it('a link with ?account=deleted alone says nothing, and the address is cleaned (review M22)', async () => {
+    history.replaceState(null, '', '/?account=deleted');
+    const { root } = await mount(<HomeNotice lang="en" />);
+    expect(root.textContent).toBe('');
+    expect(`${location.pathname}${location.search}`).toBe('/');
   });
 });
 ```
 
-In `site/src/i18n/i18n.test.ts` replace `.toBe(205);` with `.toBe(219);`, `expect(DRAFTS.en.length).toBe(89);` with `expect(DRAFTS.en.length).toBe(103);` and `expect(DRAFTS.es.length).toBe(159);` with `expect(DRAFTS.es.length).toBe(173);`.
+In `site/src/i18n/i18n.test.ts` replace `.toBe(204);` with `.toBe(218);`, `expect(DRAFTS.en.length).toBe(88);` with `expect(DRAFTS.en.length).toBe(102);` and `expect(DRAFTS.es.length).toBe(158);` with `expect(DRAFTS.es.length).toBe(172);`.
 
 - [ ] **Step 2: Run them to see them fail**
 
-Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/lib/notice.test.ts src/islands/AccountIsland.test.tsx src/islands/HomeNotice.test.tsx src/i18n/i18n.test.ts`
-Expected: FAIL — `Failed to resolve import "./notice"`, `"./AccountIsland"`, `"./HomeNotice"`; `expected 205 to be 219`.
+Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/lib/notice.test.ts src/lib/download.test.ts src/islands/AccountIsland.test.tsx src/islands/HomeNotice.test.tsx src/i18n/i18n.test.ts`
+Expected: FAIL — `Failed to resolve import "./notice"`, `"./download"`, `"./AccountIsland"`, `"./HomeNotice"`; `expected 204 to be 218`.
 
 - [ ] **Step 3: Implement**
 
@@ -5458,10 +6608,23 @@ and in `esDrafts`, after the line `  'noteSaved', 'entryDelete', 'entryDeleteCon
 Create `site/src/lib/notice.ts`:
 
 ```ts
-// A one-time line on the home page after an action that left another page (spec 4.4b §6: "account deleted").
+// A one-time line on the home page after an action that left another page (spec 4.4b §6: "account deleted"). The
+// address names the line; a mark in sessionStorage, left by the account page right before it goes, says that this
+// browser really did it — a shared link with ?account=deleted alone shows nothing (review M22).
+import type { StorageLike } from './authState';
+
 export type Notice = 'accountDeleted';
 
 export const NOTICE_PARAM = 'account';
+export const NOTICE_KEY = 'ad_notice';
+
+function sessionStore(): StorageLike | null {
+  try {
+    return typeof sessionStorage === 'undefined' ? null : sessionStorage;
+  } catch {
+    return null;
+  }
+}
 
 export function noticeHref(home: string): string {
   return `${home}?${NOTICE_PARAM}=deleted`;
@@ -5469,6 +6632,26 @@ export function noticeHref(home: string): string {
 
 export function noticeOf(search: string): Notice | null {
   return new URLSearchParams(search).get(NOTICE_PARAM) === 'deleted' ? 'accountDeleted' : null;
+}
+
+export function markNotice(notice: Notice, storage: StorageLike | null = sessionStore()): void {
+  try {
+    storage?.setItem(NOTICE_KEY, notice);
+  } catch {
+    // without a storage the home page simply shows no line
+  }
+}
+
+/** The address's notice, once, only when this browser left the mark; the mark goes in any case. */
+export function takeNotice(search: string, storage: StorageLike | null = sessionStore()): Notice | null {
+  const asked = noticeOf(search);
+  try {
+    const mine = storage?.getItem(NOTICE_KEY) ?? null;
+    storage?.removeItem(NOTICE_KEY);
+    return asked !== null && mine === asked ? asked : null;
+  } catch {
+    return null;
+  }
 }
 
 /** The same address without the notice, for history.replaceState. */
@@ -5483,8 +6666,11 @@ Create `site/src/lib/download.ts`:
 
 ```ts
 // A file saved from the browser (the export of spec 4.3 §8, the calendar file of spec 4.4b §7): an object URL and a
-// download link, removed right after.
+// download link, removed right after. The URL is freed only after a minute: iOS Safari asks before it saves a blob
+// and may read the URL late (Fable plan review I8).
 export type SaveFile = (blob: Blob, filename: string) => void;
+
+export const REVOKE_AFTER_MS = 60_000;
 
 export const saveFile: SaveFile = (blob, filename) => {
   const url = URL.createObjectURL(blob);
@@ -5495,7 +6681,7 @@ export const saveFile: SaveFile = (blob, filename) => {
   document.body.appendChild(link);
   link.click();
   link.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  setTimeout(() => URL.revokeObjectURL(url), REVOKE_AFTER_MS);
 };
 ```
 
@@ -5503,7 +6689,8 @@ Create `site/src/components/ui/DeleteAccountDialog.tsx`:
 
 ```tsx
 // "Delete forever?" (owner decision 4, spec 4.4b §6): what goes and that it cannot be undone; "Download", "Delete
-// forever", "Cancel" — no word to type. A modal dialog: focus inside, Escape and "Cancel" close it.
+// forever", "Cancel" — no word to type. A modal dialog: focus inside, Escape and "Cancel" close it — not while the
+// account is being deleted (review M22). A failed deletion or download is said here, above the buttons (review I5).
 import { useEffect, useRef } from 'preact/hooks';
 import { t } from '../../i18n';
 import { handleDialogKey } from '../../lib/focus';
@@ -5512,17 +6699,18 @@ import type { Lang } from '../../lib/types';
 interface Props {
   lang: Lang;
   busy: boolean;
+  error: string | null; // the line of a failed deletion or download, shown inside the dialog
   onDownload: () => void;
   onDelete: () => void;
   onCancel: () => void;
 }
 
-export function DeleteAccountDialog({ lang, busy, onDownload, onDelete, onCancel }: Props) {
+export function DeleteAccountDialog({ lang, busy, error, onDownload, onDelete, onCancel }: Props) {
   const d = t(lang);
   const box = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLHeadingElement>(null);
   const cancel = useRef(onCancel);
-  cancel.current = onCancel;
+  cancel.current = busy ? () => {} : onCancel; // Escape waits for the deletion too
 
   useEffect(() => {
     title.current?.focus();
@@ -5536,10 +6724,11 @@ export function DeleteAccountDialog({ lang, busy, onDownload, onDelete, onCancel
       <div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="delete-title" aria-describedby="delete-body" ref={box}>
         <h2 id="delete-title" class="h2" tabIndex={-1} ref={title}>{d.deleteTitle}</h2>
         <p id="delete-body">{d.deleteBody}</p>
+        {error ? <p role="alert">{error}</p> : null}
         <div class="dialog__actions">
-          <button type="button" class="btn btn--outline" onClick={onDownload}>{d.deleteDownload}</button>
+          <button type="button" class="btn btn--outline" disabled={busy} onClick={onDownload}>{d.deleteDownload}</button>
           <button type="button" class="btn btn--ink" disabled={busy} onClick={onDelete}>{d.deleteForever}</button>
-          <button type="button" class="btn btn--text" onClick={onCancel}>{d.cancel}</button>
+          <button type="button" class="btn btn--text" disabled={busy} onClick={onCancel}>{d.cancel}</button>
         </div>
       </div>
     </div>
@@ -5553,21 +6742,26 @@ Create `site/src/islands/AccountIsland.tsx`:
 // The account page (spec 4.4b §6) on /account and /es/cuenta: not signed in — the sign-in block; signed in — the
 // e-mail, readings left today, "Sign out"; the consent to "did it come true?" e-mails (they start later); "Download
 // my readings"; "Delete account" with the "Delete forever?" dialog. After the deletion this device signs out at once
-// (api/README.md "Передача в 4.4") and goes to the home page, which says the account is deleted.
+// (api/README.md "Передача в 4.4") and goes to the home page, which says the account is deleted — once, by a mark
+// this page leaves in sessionStorage (review M22). A sign-out that hangs never holds the person here: after
+// SIGN_OUT_WAIT_MS the page goes on (auth-js drops the local session before its request — review M6).
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../i18n';
 import { createAccountApi, type Account, type AccountApi } from '../lib/accountApi';
 import { openSession, type Auth, type SessionStatus } from '../lib/auth';
 import { returnUrl } from '../lib/claim';
 import { saveFile, type SaveFile } from '../lib/download';
-import { errorMessageKey, type ErrorKind } from '../lib/errors';
-import { noticeHref } from '../lib/notice';
+import { errorMessageKey, reasonOf, type ErrorKind } from '../lib/errors';
+import { markNotice, noticeHref } from '../lib/notice';
 import { pagePath } from '../lib/routes';
 import { siteFetch } from '../lib/siteApi';
+import { deviceTimeZone } from '../lib/timeZone';
 import type { Lang } from '../lib/types';
 import { DeleteAccountDialog } from '../components/ui/DeleteAccountDialog';
 import { HelpLine } from '../components/ui/HelpLine';
 import { SignInBlock } from '../components/ui/SignInBlock';
+
+export const SIGN_OUT_WAIT_MS = 3000;
 
 interface Props {
   lang: Lang;
@@ -5576,18 +6770,11 @@ interface Props {
   save?: SaveFile;
   navigate?: (url: string) => void;
   session?: () => Promise<SessionStatus>;
-}
-
-function timeZone(): string | undefined {
-  try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone || undefined;
-  } catch {
-    return undefined;
-  }
+  signOutWaitMs?: number;
 }
 
 export default function AccountIsland({ lang, api: given, save = saveFile, navigate = (url) => location.assign(url),
-  session = openSession }: Props) {
+  session = openSession, signOutWaitMs = SIGN_OUT_WAIT_MS }: Props) {
   const d = t(lang);
   const api = useMemo(() => given ?? createAccountApi(siteFetch()), []);
   const [status, setStatus] = useState<SessionStatus | null>(null);
@@ -5602,10 +6789,11 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
     const opened = await session();
     setStatus(opened);
     if (opened.type !== 'signedIn') return;
-    const result = await api.account(timeZone());
+    const result = await api.account(deviceTimeZone());
     if (result.ok) setAccount(result.data);
-    else if (result.status === 401) setStatus({ type: 'signedOut', auth: opened.auth, google: opened.google });
-    else setError(result.error);
+    else if (result.status === 401 && reasonOf(result.body) === 'sign_in') {
+      setStatus({ type: 'signedOut', auth: opened.auth, google: opened.google });
+    } else setError(result.error); // 'stage' for a 401 without JSON: the line and a reload button
   };
 
   useEffect(() => { void load(); }, []);
@@ -5643,21 +6831,24 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
     else setError(file.error);
   };
 
-  const signOut = async () => {
-    await auth.signOut();
-    navigate(home);
+  const leave = async (url: string) => { // sign out on this device at once, then go; a hung sign-out waits at most
+    await Promise.race([auth.signOut(), new Promise<void>((resolve) => setTimeout(resolve, signOutWaitMs))]);
+    navigate(url);
   };
+
+  const signOut = () => leave(home);
 
   const remove = async () => {
     setBusy(true);
+    setError(null);
     const result = await api.deleteAccount();
     if (!result.ok) {
       setBusy(false);
-      setError(result.error);
+      setError(result.error); // said inside the dialog (review I5)
       return;
     }
-    await auth.signOut(); // at once: the token still lives until it expires
-    navigate(noticeHref(home));
+    markNotice('accountDeleted');
+    await leave(noticeHref(home)); // at once: the token still lives until it expires
   };
 
   return (
@@ -5674,7 +6865,10 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
           <p class="small muted">{d.accountConsentNote}</p>
         </>
       ) : null}
-      {error ? <p role="alert">{d[errorMessageKey(error)]}</p> : null}
+      {error && !dialog ? <p role="alert">{d[errorMessageKey(error)]}</p> : null}
+      {error === 'stage' && !dialog ? (
+        <button type="button" class="btn btn--outline" onClick={() => location.reload()}>{d.retry}</button>
+      ) : null}
       <div class="account__actions">
         <button type="button" class="btn btn--outline" onClick={() => void download()}>{d.accountExport}</button>
         <a class="btn btn--outline" href={pagePath('diary', lang)}>{d.navDiary}</a>
@@ -5682,8 +6876,9 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
         <button type="button" class="btn btn--text" ref={deleteButton} onClick={() => setDialog(true)}>{d.accountDelete}</button>
       </div>
       {dialog ? (
-        <DeleteAccountDialog lang={lang} busy={busy} onDownload={() => void download()} onDelete={() => void remove()}
-          onCancel={() => setDialog(false)} />
+        <DeleteAccountDialog lang={lang} busy={busy} error={error ? d[errorMessageKey(error)] : null}
+          onDownload={() => void download()} onDelete={() => void remove()}
+          onCancel={() => { setDialog(false); setError(null); }} />
       ) : null}
     </div>
   );
@@ -5694,17 +6889,18 @@ Create `site/src/islands/HomeNotice.tsx`:
 
 ```tsx
 // A one-time line on the home page (spec 4.4b §6): "Your account has been deleted." after the account page sent
-// the person here; the address loses its ?account=deleted at once.
+// the person here — only with the mark that page left in sessionStorage (review M22); the address loses its
+// ?account=deleted at once in any case.
 import { useEffect, useState } from 'preact/hooks';
 import { t } from '../i18n';
-import { noticeOf, withoutNotice } from '../lib/notice';
+import { noticeOf, takeNotice, withoutNotice } from '../lib/notice';
 import type { Lang } from '../lib/types';
 
 export default function HomeNotice({ lang }: { lang: Lang }) {
   const [shown, setShown] = useState(false);
   useEffect(() => {
     if (!noticeOf(location.search)) return;
-    setShown(true);
+    setShown(takeNotice(location.search) !== null);
     history.replaceState(history.state, '', withoutNotice(location.href));
   }, []);
   return shown ? <p class="notice notice--day" role="status">{t(lang).accountDeleted}</p> : null;
@@ -5786,36 +6982,58 @@ with
   <div class="tool-layout">
 ```
 
+In `site/src/styles/global.css`, before `/* Simple card page */` add:
+
+```css
+/* Stage 4.4b: the account page and "Delete forever?" */
+.account { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); max-width: 720px; }
+.account__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.check--day input { accent-color: var(--color-day-accent); }
+.dialog-layer {
+  position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-day-text) 40%, transparent);
+}
+.dialog {
+  width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-5);
+  border-radius: var(--radius-panel); background: var(--color-day-surface); color: var(--color-day-text);
+}
+.dialog p { margin: 0; }
+.dialog__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.dialog :focus-visible, .account :focus-visible { outline-color: var(--color-day-text); }
+```
+
 - [ ] **Step 4: Run the tests and the build**
 
-Run: the Vitest command of Step 2, then the same without files, then `deploy/build-site.sh && python3 tools/site/check_dist.py && grep -c 'name="robots"' site/dist/account.html site/dist/es/cuenta.html`
-Expected: PASS — `17 passed` in 4 files; then `276 passed` in 33 files; the build writes `171 page(s)`, `OK: 167 pages`, the grep prints `:1` for both pages.
+Run: the Vitest command of Step 2, then the same without files, then the type check, then `deploy/build-site.sh && python3 tools/site/check_dist.py && grep -c 'name="robots"' site/dist/account.html site/dist/es/cuenta.html`
+Expected: PASS — `23 passed` in 5 files; then `305 passed` in 35 files; `- 0 errors`; the build writes `171 page(s)`, `OK: 167 pages`, the grep prints `:1` for both pages.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add site/src/islands/AccountIsland.tsx site/src/islands/AccountIsland.test.tsx site/src/islands/HomeNotice.tsx site/src/islands/HomeNotice.test.tsx site/src/components/ui/DeleteAccountDialog.tsx site/src/lib/notice.ts site/src/lib/notice.test.ts site/src/lib/download.ts site/src/views/AccountView.astro site/src/views/HomeView.astro site/src/pages/account.astro site/src/pages/es/cuenta.astro site/src/i18n
+git add site/src/islands/AccountIsland.tsx site/src/islands/AccountIsland.test.tsx site/src/islands/HomeNotice.tsx site/src/islands/HomeNotice.test.tsx site/src/components/ui/DeleteAccountDialog.tsx site/src/lib/notice.ts site/src/lib/notice.test.ts site/src/lib/download.ts site/src/lib/download.test.ts site/src/views/AccountView.astro site/src/views/HomeView.astro site/src/pages/account.astro site/src/pages/es/cuenta.astro site/src/i18n site/src/styles/global.css
 git commit -m "feat(site): stage 4.4b — the account page and Delete forever?
 
 /account and /es/cuenta (noindex): e-mail, readings left today, sign-out, consent to the
 did-it-come-true e-mails (they start later), download, delete with Download / Delete
-forever / Cancel; after deleting, sign-out here at once and the home page says so.
+forever / Cancel; after deleting, sign-out here at once (never held by a hung sign-out) and
+the home page says so once. Errors show inside the dialog (review I5, M6, M22).
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
 
-### Task 15: Site — "Remind me tomorrow" under the Card of the Day (a calendar file)
+### Task 17: Site — "Remind me tomorrow" under the Card of the Day (a calendar file)
 
 **Files:**
 - Create: `site/src/lib/ics.ts`
-- Modify: `site/src/islands/DailyIsland.tsx`, `site/src/i18n/en.ts`, `es.ts`, `i18n.test.ts`
+- Modify: `site/src/islands/DailyIsland.tsx`, `site/src/i18n/en.ts`, `es.ts`, `i18n.test.ts`, `site/src/styles/global.css` (the outline button on the night surface of the card, review M12)
 - Test: `site/src/lib/ics.test.ts`, `site/src/islands/DailyIsland.test.tsx`
 
 **Interfaces:**
-- Consumes: `saveFile`, `SaveFile` (Task 14), `newRequestId` (`requestId.ts`), `analyticsEvent('remind_click', 'daily', lang)` (Task 10; the API accepts it from Task 4), `pagePath('daily', lang)`, `routeFetch` (Task 12).
-- Produces: `ics.ts`: `ICS_FILENAME = 'arcana-diary-card-of-the-day.ics'`, `tomorrowAtNine(now: Date): Date` (local), `icsTime(date, utc): string`, `icsText(text): string`, `dailyReminderIcs({ now, lang, origin, uid }): string` (CRLF lines, one `VEVENT`, `DTSTART` floating local 09:00 tomorrow, `DURATION:PT15M`, `SUMMARY` per language, `URL` and `DESCRIPTION` = the Card of the Day page). `DailyIsland` props `{ lang; save?: SaveFile }`. Dictionary keys `remindTomorrow` (prototype 7b in EN), `remindDone` (draft).
+- Consumes: `saveFile`, `SaveFile` (Task 16), `analyticsEvent('remind_click', 'daily', lang)` (Task 12; the API accepts it from Task 4), `pagePath('daily', lang)`, `routeFetch` (Task 14).
+- Produces: `ics.ts`: `ICS_FILENAME = 'arcana-diary-card-of-the-day.ics'`, `ICS_TYPE = 'text/calendar;charset=utf-8'` (without the charset some Android and Outlook readers break «—» and «í», review M11), `tomorrowAtNine(now: Date): Date` (local), `icsTime(date, utc): string`, `icsText(text): string` (RFC 5545: `\\`, `\;`, `\,`, `\n` — review M10), `dailyReminderIcs({ now, lang, origin }): string` (CRLF lines, no `METHOD`, one `VEVENT` with `UID:daily-<YYYYMMDD of the event>@arcanadiary.com` — two presses the same day give one event, review M11 —, `DTSTART` floating local 09:00 tomorrow, `DURATION:PT15M`, `SUMMARY` per language, `URL` and `DESCRIPTION` = the Card of the Day page, and a `VALARM` with `ACTION:DISPLAY`, `TRIGGER:PT0M`, `DESCRIPTION` = the title — owner decision 11). `DailyIsland` props `{ lang; save?: SaveFile }`. Dictionary keys `remindTomorrow` (prototype 7b in EN), `remindDone` (draft).
+- Known risk (review I8): the page cannot tell whether the phone saved or opened the file. iOS Safari asks before it saves a blob (hence `REVOKE_AFTER_MS`, Task 16); the in-app browsers of Instagram, Facebook and TikTok often ignore blob downloads while the page still says «Open the file to add it to your calendar.». The walk-through (item 11) checks a real iPhone Safari and Android Chrome; an in-app browser is a known limit of the closed stage (`navigator.share` with the file is not added: it needs a second, different flow per platform).
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -5827,6 +7045,7 @@ import { dailyReminderIcs, icsText, icsTime, tomorrowAtNine } from './ics';
 
 // the device's own clock: 22 November 2026, 23:40 local time
 const NOW = new Date(2026, 10, 22, 23, 40, 5);
+const ORIGIN = 'https://arcana.test';
 
 describe('the Card of the Day reminder', () => {
   it('is tomorrow at 9:00 local time, also late at night and at the end of a month', () => {
@@ -5835,7 +7054,7 @@ describe('the Card of the Day reminder', () => {
   });
 
   it('is one 15-minute event with the title and link of the page language', () => {
-    const text = dailyReminderIcs({ now: NOW, lang: 'es', origin: 'https://arcana.test', uid: 'u-1' });
+    const text = dailyReminderIcs({ now: NOW, lang: 'es', origin: ORIGIN });
     const lines = text.split('\r\n');
     expect(text.endsWith('\r\n')).toBe(true);
     expect(lines.filter((l) => l === 'BEGIN:VEVENT')).toHaveLength(1);
@@ -5843,19 +7062,35 @@ describe('the Card of the Day reminder', () => {
     expect(lines).toContain('DURATION:PT15M');
     expect(lines).toContain('SUMMARY:Carta del día — Arcana Diary');
     expect(lines).toContain('URL:https://arcana.test/es/carta-del-dia');
-    expect(lines).toContain('UID:u-1@arcanadiary.com');
+    expect(lines).toContain('UID:daily-20261123@arcanadiary.com');
+    expect(lines.some((l) => l.startsWith('METHOD:'))).toBe(false); // a file to add, not an invitation (review M11)
     expect(lines.find((l) => l.startsWith('DTSTAMP:'))).toMatch(/^DTSTAMP:\d{8}T\d{6}Z$/);
     for (const line of lines) expect(new TextEncoder().encode(line).length).toBeLessThanOrEqual(75);
   });
 
+  it('rings at the start: a display alarm at 9:00 (owner decision 11)', () => {
+    const lines = dailyReminderIcs({ now: NOW, lang: 'en', origin: ORIGIN }).split('\r\n');
+    const alarm = lines.slice(lines.indexOf('BEGIN:VALARM'), lines.indexOf('END:VALARM') + 1);
+    expect(alarm).toEqual(['BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Card of the Day — Arcana Diary', 'TRIGGER:PT0M',
+      'END:VALARM']);
+    expect(lines.indexOf('BEGIN:VALARM')).toBeGreaterThan(lines.indexOf('BEGIN:VEVENT'));
+    expect(lines.indexOf('END:VALARM')).toBeLessThan(lines.indexOf('END:VEVENT'));
+  });
+
+  it('pressed twice the same day it is the same event; the next day another (review M11)', () => {
+    const uid = (now: Date) => dailyReminderIcs({ now, lang: 'en', origin: ORIGIN }).split('\r\n').find((l) => l.startsWith('UID:'));
+    expect(uid(new Date(2026, 10, 22, 8, 0))).toBe(uid(NOW));
+    expect(uid(new Date(2026, 10, 23, 8, 0))).toBe('UID:daily-20261124@arcanadiary.com');
+  });
+
   it('in English links /daily', () => {
-    const text = dailyReminderIcs({ now: NOW, lang: 'en', origin: 'https://arcana.test', uid: 'u-1' });
+    const text = dailyReminderIcs({ now: NOW, lang: 'en', origin: ORIGIN });
     expect(text).toContain('SUMMARY:Card of the Day — Arcana Diary\r\n');
     expect(text).toContain('URL:https://arcana.test/daily\r\n');
   });
 
-  it('escapes calendar text', () => {
-    expect(icsText('a, b; c\\d\ne')).toBe('a\\, b\; c\\\\d\\ne');
+  it('escapes calendar text (RFC 5545 §3.3.11; review M10)', () => {
+    expect(icsText('a, b; c\\d\ne')).toBe('a\\, b\\; c\\\\d\\ne');
   });
 });
 ```
@@ -5866,8 +7101,8 @@ Create `site/src/islands/DailyIsland.test.tsx`:
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { sendEvent } from '../lib/analytics';
-import { ICS_FILENAME } from '../lib/ics';
-import { byText, click, mount } from '../lib/testing/dom';
+import { ICS_FILENAME, ICS_TYPE } from '../lib/ics';
+import { byText, cleanup, click, mount } from '../lib/testing/dom';
 import { jsonResponse, routeFetch } from '../lib/testing/fakes';
 import DailyIsland from './DailyIsland';
 
@@ -5876,7 +7111,7 @@ vi.mock('../lib/analytics', async (importOriginal) => ({
 }));
 
 afterEach(() => {
-  document.body.replaceChildren();
+  cleanup();
   vi.unstubAllGlobals();
 });
 
@@ -5890,9 +7125,10 @@ describe('the Card of the Day reminder (screen 7b; spec 4.4b §7)', () => {
     const { root } = await mount(<DailyIsland lang="en" save={(blob, name) => { saved.push([blob, name]); }} />);
     await click(byText(root, 'Tap to turn your card', 'span').closest('button')!);
     await click(byText(root, 'Remind me tomorrow', 'button'));
-    expect(saved.map(([blob, name]) => [blob.type, name])).toEqual([['text/calendar', ICS_FILENAME]]);
+    expect(saved.map(([blob, name]) => [blob.type, name])).toEqual([[ICS_TYPE, ICS_FILENAME]]);
     const text = await saved[0][0].text();
     expect(text).toContain('SUMMARY:Card of the Day — Arcana Diary\r\n');
+    expect(text).toContain('BEGIN:VALARM\r\n');
     expect(text).toContain('URL:https://arcana.test/daily\r\n');
     expect(text).toContain('DURATION:PT15M\r\n');
     expect(vi.mocked(sendEvent)).toHaveBeenCalledWith({ name: 'remind_click', tool: 'daily', lang: 'en', params: {} });
@@ -5902,12 +7138,12 @@ describe('the Card of the Day reminder (screen 7b; spec 4.4b §7)', () => {
 });
 ```
 
-In `site/src/i18n/i18n.test.ts` replace `.toBe(219);` with `.toBe(221);`, `expect(DRAFTS.en.length).toBe(103);` with `expect(DRAFTS.en.length).toBe(104);` and `expect(DRAFTS.es.length).toBe(173);` with `expect(DRAFTS.es.length).toBe(175);`.
+In `site/src/i18n/i18n.test.ts` replace `.toBe(218);` with `.toBe(220);`, `expect(DRAFTS.en.length).toBe(102);` with `expect(DRAFTS.en.length).toBe(103);` and `expect(DRAFTS.es.length).toBe(172);` with `expect(DRAFTS.es.length).toBe(174);`.
 
 - [ ] **Step 2: Run them to see them fail**
 
 Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/lib/ics.test.ts src/islands/DailyIsland.test.tsx src/i18n/i18n.test.ts`
-Expected: FAIL — `Failed to resolve import "./ics"` (both files); `expected 219 to be 221`.
+Expected: FAIL — `Failed to resolve import "./ics"` (both files); `expected 218 to be 220`.
 
 - [ ] **Step 3: Implement**
 
@@ -5944,11 +7180,13 @@ Create `site/src/lib/ics.ts`:
 ```ts
 // "Remind me tomorrow" under the Card of the Day (spec 4.4b §7): a calendar file made in the browser — one event
 // tomorrow at 9:00 local time (a floating time, so the calendar keeps 9:00 wherever the person is), 15 minutes,
-// with the link to the Card of the Day. No server, no personal data.
+// with the link to the Card of the Day and an alarm at its start (owner decision 11: on an iPhone an event without
+// one passes silently). No server, no personal data. The UID names the day: two presses give one event (M11).
 import { pagePath } from './routes';
 import type { Lang } from './types';
 
 export const ICS_FILENAME = 'arcana-diary-card-of-the-day.ics';
+export const ICS_TYPE = 'text/calendar;charset=utf-8';
 const TITLES: Record<Lang, string> = { en: 'Card of the Day — Arcana Diary', es: 'Carta del día — Arcana Diary' };
 
 const two = (n: number) => String(n).padStart(2, '0');
@@ -5968,25 +7206,31 @@ export function icsTime(date: Date, utc: boolean): string {
 
 /** RFC 5545 text: backslash, semicolon, comma and new lines escaped. */
 export function icsText(text: string): string {
-  return text.replace(/\\/g, '\\\\').replace(/;/g, '\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+  return text.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
 }
 
-export function dailyReminderIcs(input: { now: Date; lang: Lang; origin: string; uid: string }): string {
+export function dailyReminderIcs(input: { now: Date; lang: Lang; origin: string }): string {
+  const start = tomorrowAtNine(input.now);
   const link = `${input.origin}${pagePath('daily', input.lang)}`;
+  const title = icsText(TITLES[input.lang]);
   const lines = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//Arcana Diary//Card of the Day//EN',
     'CALSCALE:GREGORIAN',
-    'METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    `UID:${input.uid}@arcanadiary.com`,
+    `UID:daily-${icsTime(start, false).slice(0, 8)}@arcanadiary.com`,
     `DTSTAMP:${icsTime(input.now, true)}`,
-    `DTSTART:${icsTime(tomorrowAtNine(input.now), false)}`,
+    `DTSTART:${icsTime(start, false)}`,
     'DURATION:PT15M',
-    `SUMMARY:${icsText(TITLES[input.lang])}`,
+    `SUMMARY:${title}`,
     `DESCRIPTION:${icsText(link)}`,
     `URL:${link}`,
+    'BEGIN:VALARM',
+    'ACTION:DISPLAY',
+    `DESCRIPTION:${title}`,
+    'TRIGGER:PT0M',
+    'END:VALARM',
     'END:VEVENT',
     'END:VCALENDAR',
   ];
@@ -6007,8 +7251,7 @@ In `site/src/islands/DailyIsland.tsx`:
 - replace `import { cardPath } from '../lib/routes';` with
 
 ```tsx
-import { ICS_FILENAME, dailyReminderIcs } from '../lib/ics';
-import { newRequestId } from '../lib/requestId';
+import { ICS_FILENAME, ICS_TYPE, dailyReminderIcs } from '../lib/ics';
 import { cardPath } from '../lib/routes';
 ```
 
@@ -6041,8 +7284,8 @@ with
 ```tsx
   const remind = () => {
     sendEvent(analyticsEvent('remind_click', 'daily', lang));
-    const text = dailyReminderIcs({ now: new Date(), lang, origin: location.origin, uid: newRequestId() });
-    save(new Blob([text], { type: 'text/calendar' }), ICS_FILENAME);
+    const text = dailyReminderIcs({ now: new Date(), lang, origin: location.origin });
+    save(new Blob([text], { type: ICS_TYPE }), ICS_FILENAME);
     setReminded(true);
   };
 
@@ -6068,33 +7311,36 @@ with
       </section>
 ```
 
+In `site/src/styles/global.css` replace `.night .btn--outline, .night-panel .btn--outline { border-color: var(--color-night-control-border); }` with `.night .btn--outline, .night-panel .btn--outline, .daily .btn--outline { border-color: var(--color-night-control-border); }` (the card of the day is a night surface: the day border would not show — `00-design.md:85`, review M12).
+
 - [ ] **Step 4: Run the tests and the build**
 
-Run: the Vitest command of Step 2, then the same without files, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
-Expected: PASS — `14 passed` in 3 files; then `281 passed` in 35 files; `OK: 167 pages`.
+Run: the Vitest command of Step 2, then the same without files, then the type check, then `deploy/build-site.sh && python3 tools/site/check_dist.py`
+Expected: PASS — `16 passed` in 3 files; then `312 passed` in 37 files; `- 0 errors`; `OK: 167 pages`.
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add site/src/lib/ics.ts site/src/lib/ics.test.ts site/src/islands/DailyIsland.tsx site/src/islands/DailyIsland.test.tsx site/src/i18n
+git add site/src/lib/ics.ts site/src/lib/ics.test.ts site/src/islands/DailyIsland.tsx site/src/islands/DailyIsland.test.tsx site/src/i18n site/src/styles/global.css
 git commit -m "feat(site): stage 4.4b — Remind me tomorrow: a calendar file for the Card of the Day
 
-One event tomorrow 9:00 local time, 15 minutes, with the page link; made in the browser,
-no server, no personal data; remind_click.
+One event tomorrow 9:00 local time, 15 minutes, with the page link and an alarm at its
+start (owner decision 11); one UID per day, UTF-8, proper escaping (review M10, M11);
+made in the browser, no server, no personal data; remind_click.
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
 
-### Task 16: Site — the diary in the menu and the header, the deferred 4.4a copy
+### Task 18: Site — the diary in the menu and the header, the deferred 4.4a copy
 
 **Files:**
 - Modify: `site/src/lib/routes.ts` (`NAV_KEYS`), `site/src/lib/routes.test.ts`, `site/src/components/Header.astro`, `site/src/islands/ReadingIsland.tsx` (`freeSaveAfter`), `site/src/i18n/en.ts`, `es.ts`, `i18n.test.ts`
 
 **Interfaces:**
-- Consumes: `navDiary`, `navDiaryShort` (Task 12), `pagePath('diary', …)` (Task 10).
-- Produces: `NAV_KEYS = ['home', 'yes_no', 'love', 'daily', 'diary']`; the phone menu says «Your diary» / «Tu diario», the desktop header «Diary» / «Diario» (screens 11c, 11d, 13a). The key `freeNoSignup` is renamed `freeSaveAfter` («Free · save it to your diary after» / «Gratis · guárdala en tu diario después», prototypes 1, 12a, 13a); `howStep3` becomes «Save it, and check later what came true.» (prototype 1; the Spanish text stays a draft). `plusBenefit3` and `plusDiaryNote` are shown since Task 12.
+- Consumes: `navDiary`, `navDiaryShort` (Task 14), `pagePath('diary', …)` (Task 12).
+- Produces: `NAV_KEYS = ['home', 'yes_no', 'love', 'daily', 'diary']`; the phone menu says «Your diary» / «Tu diario», the desktop header «Diary» / «Diario» (screens 11c, 11d, 13a). The key `freeNoSignup` is renamed `freeSaveAfter` («Free · save it to your diary after» / «Gratis · guárdala en tu diario después», prototypes 1, 12a, 13a); `howStep3` becomes «Save it, and check later what came true.» (prototype 1; the Spanish text stays a draft). `plusBenefit3` and `plusDiaryNote` are shown since Task 14.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -6116,7 +7362,7 @@ with
   });
 ```
 
-In `site/src/i18n/i18n.test.ts` replace `expect(DRAFTS.en.length).toBe(104);` with `expect(DRAFTS.en.length).toBe(102);` and `expect(DRAFTS.es.length).toBe(175);` with `expect(DRAFTS.es.length).toBe(174);` (the key count stays 221), and before `  it('name the votes with the card base labels (content/cards/yes-no-rules.json)', () => {` add:
+In `site/src/i18n/i18n.test.ts` replace `expect(DRAFTS.en.length).toBe(103);` with `expect(DRAFTS.en.length).toBe(101);` and `expect(DRAFTS.es.length).toBe(174);` with `expect(DRAFTS.es.length).toBe(173);` (the key count stays 220), and before `  it('name the votes with the card base labels (content/cards/yes-no-rules.json)', () => {` add:
 
 ```ts
   it('keep the 4.4b copy of the prototypes and the spec (spec 4.4b §8)', () => {
@@ -6140,7 +7386,7 @@ In `site/src/i18n/i18n.test.ts` replace `expect(DRAFTS.en.length).toBe(104);` wi
 - [ ] **Step 2: Run them to see them fail**
 
 Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -v "$PWD/site:/app" -w /app node:22 npx vitest run src/lib/routes.test.ts src/i18n/i18n.test.ts`
-Expected: FAIL — the menu (`expected [ …4 items ] to deeply equal [ …5 items ]`), the drafts counts (`expected 104 to be 102`), the copy (`expected [ undefined, undefined ] to deeply equal …`).
+Expected: FAIL — the menu (`expected [ …4 items ] to deeply equal [ …5 items ]`), the drafts counts (`expected 103 to be 101`), the copy (`expected [ undefined, undefined ] to deeply equal …`).
 
 - [ ] **Step 3: Implement**
 
@@ -6212,8 +7458,8 @@ In `site/src/islands/ReadingIsland.tsx` replace `<p class="panel-hint">{d.freeNo
 
 - [ ] **Step 4: Run the tests and the build**
 
-Run: the Vitest command of Step 2, then the same without files, then `deploy/build-site.sh && grep -o '>Diary<' site/dist/index.html | head -1 && grep -c '>Your diary<' site/dist/index.html && grep -c 'Free · save it to your diary after' site/dist/index.html`
-Expected: PASS — `19 passed` in 2 files; then `282 passed` in 35 files; `>Diary<`, `1`, `1` (`grep -rn freeNoSignup site/src` prints nothing).
+Run: the Vitest command of Step 2, then the same without files, then the type check, then `deploy/build-site.sh && grep -o '>Diary<' site/dist/index.html | head -1 && grep -c '>Your diary<' site/dist/index.html && grep -c 'Free · save it to your diary after' site/dist/index.html`
+Expected: PASS — `19 passed` in 2 files; then `313 passed` in 37 files; `- 0 errors`; `>Diary<`, `1`, `1` (`grep -rn freeNoSignup site/src` prints nothing).
 
 - [ ] **Step 5: Commit**
 
@@ -6227,7 +7473,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
-### Task 17: Site — "Try again" on a follow-up lost more than an hour ago only reads back (GET)
+### Task 19: Site — "Try again" on a follow-up lost more than an hour ago only reads back (GET)
 
 **Files:**
 - Modify: `site/src/lib/readingFlow.ts` (`FlowDeps.now`, `LOST_REPOST_MAX_MS`, `restoreFollowup`, `retryFollowup`), `site/src/lib/nightRoom.ts` (`followupLost` keeps the first loss time), `site/src/lib/followups.ts` (`Followup.lost.at`), `site/src/islands/ReadingIsland.tsx` (`now` in `deps()`)
@@ -6389,8 +7635,8 @@ In `site/src/islands/ReadingIsland.tsx`, in `deps()`, replace `      newId: () =
 
 - [ ] **Step 4: Run the tests**
 
-Run: the Vitest command of Step 2 with `src/lib/nightRoom.test.ts src/lib/followups.test.ts` added, then the same without files.
-Expected: PASS — `92 passed` in 3 files; then `285 passed` in 35 files.
+Run: the Vitest command of Step 2 with `src/lib/nightRoom.test.ts src/lib/followups.test.ts` added, then the same without files, then the type check.
+Expected: PASS — `92 passed` in 3 files; then `316 passed` in 37 files; `- 0 errors`.
 
 - [ ] **Step 5: Commit**
 
@@ -6405,18 +7651,25 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ---
-### Task 18: Site — a DOM test of the three yes/no votes (and the 360 px check)
+### Task 20: Site — a DOM test of the three yes/no votes (and the 360 px check)
 
 **Files:**
 - Test: `site/src/components/ui/NightRoom.test.tsx` (one more test)
 
 **Interfaces:**
-- Consumes: `NightRoom`, `shown()` and `room()` of the same test file (Task 11), the 4.5 vote rendering (`cardVotes`, `.spread__vote`, `VerdictIcon`).
+- Consumes: `NightRoom`, `room()` of the same test file and `shown()` of `site/src/lib/testing/night.ts` (Task 13), the 4.5 vote rendering (`cardVotes`, `.spread__vote`, `VerdictIcon`).
 - Produces: nothing new in code. This closes the 4.5 review's "no DOM test" note for the votes (spec §9); the 360 px layout is checked by eye in the walk-through (item 12 below) — happy-dom does no layout.
 
 - [ ] **Step 1: Write the test**
 
-In `site/src/components/ui/NightRoom.test.tsx`, inside `describe(…)`, after the last test add:
+In `site/src/components/ui/NightRoom.test.tsx` replace `import { ONE, shown } from '../../lib/testing/night';` with
+
+```tsx
+import { ONE, shown } from '../../lib/testing/night';
+import type { ReadingCreated } from '../../lib/types';
+```
+
+and inside `describe(…)`, after the last test add:
 
 ```tsx
   it('shows each of three yes/no cards with its own vote, icon and word, and the verdict (spec 4.5 §4)', async () => {
@@ -6446,8 +7699,8 @@ Expected: PASS — `4 passed` (the behaviour exists since 4.5; this pins it). If
 
 - [ ] **Step 3: Run everything**
 
-Run: the same command without a file.
-Expected: `286 passed` in 35 files.
+Run: the same command without a file, then the type check.
+Expected: `317 passed` in 37 files; `- 0 errors`.
 
 - [ ] **Step 4: Commit**
 
@@ -6460,60 +7713,17 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ---
 
-### Task 19: Site — `astro check` with no errors
-
-**Files:**
-- Modify: `site/package.json` (`scripts.check`); then whatever files `astro check` reports (type-only changes)
-
-**Interfaces:**
-- Consumes: `@astrojs/check` 0.9.12 and `typescript` 5.9.3 (Task 6); `site/tsconfig.json` (`astro/tsconfigs/strict`, `jsxImportSource: preact`, unchanged).
-- Produces: `npm run check` (= `astro check`) → `0 errors`. Later stages run it with the build.
-
-- [ ] **Step 1: Add the script**
-
-In `site/package.json`, in `"scripts"`, after `"build": "astro build",` add `"check": "astro check",`.
-
-- [ ] **Step 2: Run the check**
-
-Run: `docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e npm_config_update_notifier=false -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 npx astro check`
-Expected: the last line `Result (N files): - X errors - Y warnings - Z hints`. Before 4.4b the site was never type-checked (4.4a/4.5 reviews, decision 20.11.2026), so X > 0 is possible. Copy the full list of errors into the task report.
-
-- [ ] **Step 3: Fix every error with a type-only change**
-
-Rules for each error (one at a time, re-running the check):
-- Fix the type, not the behaviour: a precise type, a narrowing (`if (!x) return`), a missing field in a test fixture, an `as` cast only where the value comes from JSON of the API. Never `any`, `// @ts-ignore`, `// @ts-expect-error`, and never weaken `tsconfig.json`.
-- If an error shows a real bug (a wrong field name, a possibly undefined value used at run time), stop and report it to the controller with the file and line: it becomes its own small fix with a test.
-- Warnings and hints may stay; list them in the report.
-
-- [ ] **Step 4: Run the check, the tests and the build**
-
-Run: the command of Step 2, then the Vitest command (no files), then `deploy/build-site.sh && python3 tools/site/check_dist.py`
-Expected: `- 0 errors`; `286 passed` in 35 files; `OK: 167 pages`.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add site/package.json site/src
-git commit -m "build(site): stage 4.4b — astro check with no errors
-
-Owner decision 20.11.2026. Type-only fixes; the list is in the task report.
-
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
-```
-
----
-
-### Task 20: Build and server checks — the four private pages, noindex, no sign-in library on reading pages
+### Task 21: Build and server checks — the four private pages, noindex, no sign-in library on reading pages
 
 **Files:**
 - Modify: `tools/site/check_dist.py` (whole file), `tools/site/test_sync_site_data.py` (171 pages), `deploy/Caddyfile` (`@private` header), `deploy/test-site-routes.sh` (new checks), `deploy/check-indexing.sh` (new checks; edited, not run)
 - Test: `tools/site/test_check_dist.py` (new)
 
 **Interfaces:**
-- Consumes: `site/src/data/pairs.json`; the build of Tasks 12 and 14 (the four pages with `<meta name="robots" content="noindex, nofollow">`); `site/src/lib/supabaseClient.ts` built as its own chunk (Task 7).
+- Consumes: `site/src/data/pairs.json`; the build of Tasks 14 and 16 (the four pages with `<meta name="robots" content="noindex, nofollow">`); `site/src/lib/supabaseClient.ts` built as its own chunk (Task 9).
 - Produces:
   - `check_dist.py`: `PRIVATE`, `READING_PAGES`, `AUTH_MARKERS`, `expected_pages()` (171), `robots_problems(dist)`, `static_chunks(dist, html) -> set[Path]` (islands, renderers and scripts of a page and their static imports; `import("…")` is not followed), `auth_problems(dist)`, `main(dist=None) -> int` printing `OK: 171 pages`.
-  - Caddy: `/diary`, `/es/diario`, `/account`, `/es/cuenta` answer with `X-Robots-Tag: noindex, nofollow` also when `LAUNCHED=true`; the strict-address and 404 rules already cover them (`try_files {path} {path}.html`, `/es/…` → Spanish 404).
+  - Caddy: `/diary`, `/es/diario`, `/account`, `/es/cuenta` answer with `X-Robots-Tag: noindex, nofollow` also when `LAUNCHED=true`, and with `Referrer-Policy: same-origin` (`/diary?claim=<token>` must not leave the site in a `Referer` — the page loads Google Fonts; modern browsers send only the origin anyway, the header covers old ones; review M8); the strict-address and 404 rules already cover them (`try_files {path} {path}.html`, `/es/…` → Spanish 404).
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -6718,9 +7928,11 @@ if __name__ == "__main__":
 In `deploy/Caddyfile`, after the line `	import /etc/caddy/parts/auth-{$LAUNCHED}.caddy` (tab-indented, like the file) add:
 
 ```
-	# stage 4.4b: the diary and the account are never indexed, also after the launch (the pages carry the meta too)
+	# stage 4.4b: the diary and the account are never indexed, also after the launch (the pages carry the meta too);
+	# their address (?claim=<token>) never leaves the site in a Referer (Fable plan review M8)
 	@private path /diary /es/diario /account /es/cuenta
 	header @private X-Robots-Tag "noindex, nofollow"
+	header @private Referrer-Policy "same-origin"
 ```
 
 In `deploy/test-site-routes.sh`:
@@ -6740,10 +7952,11 @@ for path in / /one-card /yes-no /love /daily /cards/the-moon /cards/ace-of-cups 
   /diary /es/diario /account /es/cuenta; do
 ```
 
-- after the line `location() { … }` add:
+- after the line `` location() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^location:/ { print }'; } `` add:
 
 ```bash
 robots() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^x-robots-tag:/ { sub(/^[^:]*: */, ""); print }'; }
+referrer() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^referrer-policy:/ { sub(/^[^:]*: */, ""); print }'; }
 ```
 
 - before the line `# /api/* идёт к API раньше этих правил, 404 API проходит без изменений` add:
@@ -6752,6 +7965,7 @@ robots() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($
 # stage 4.4b: дневник и аккаунт — noindex и в заголовке, и в HTML; строгие адреса и 404 по языку, как у остальных
 for path in /diary /es/diario /account /es/cuenta; do
   expect "$path — X-Robots-Tag" "$(robots "$path")" "noindex, nofollow"
+  expect "$path — Referrer-Policy" "$(referrer "$path")" "same-origin"
   expect "$path — meta robots" "$("${CURL[@]}" "$URL$path" | grep -c 'name="robots" content="noindex, nofollow"')" 1
 done
 expect "/ — без X-Robots-Tag (LAUNCHED=true)" "$(robots /)" ""
@@ -6788,11 +8002,12 @@ Run:
 ```bash
 cd ~/arcana-diary && api/.venv/bin/pytest -q tools/site tools/cards
 deploy/build-site.sh && python3 tools/site/check_dist.py
+grep -l GoTrueClient site/dist/_astro/*.js | wc -l
 deploy/test-site-routes.sh | tail -3
 bash -n deploy/check-indexing.sh && echo syntax-ok
 ```
 
-Expected: `86 passed` (`tools/site` 13, `tools/cards` 73 — the latter unchanged); `OK: 171 pages` (no `noindex` or sign-in-library problem); the route script ends with `OK: адреса страниц и 404`; `syntax-ok`. `test-site-routes.sh` starts only its own `arcana-routetest-<pid>` containers and removes them.
+Expected: `86 passed` (`tools/site` 13, `tools/cards` 73 — the latter unchanged); `OK: 171 pages` (no `noindex` or sign-in-library problem); `1` — exactly one chunk carries the library's marker, so `auth_problems` really looks at it (review M23: the markers are literals in auth-js 2.119.0 and survive minification; with none found the check fails loudly with «no chunk…»); the route script ends with `OK: адреса страниц и 404`; `syntax-ok`. (Measured while amending the plan on a scratch build of Tasks 7–20: `86 passed`, `OK: 171 pages`, `1`; the route script was not run there.) `test-site-routes.sh` starts only its own `arcana-routetest-<pid>` containers and removes them.
 
 - [ ] **Step 5: Commit**
 
@@ -6809,14 +8024,14 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 ---
 
-### Task 21: Final verification of the branch
+### Task 22: Final verification of the branch
 
 **Files:** none (a fix found here goes back to its task's files, with its own commit).
 
 - [ ] **Step 1: The API**
 
 Run: `cd ~/arcana-diary/api && .venv/bin/pytest -q`
-Expected: `1522 passed` (see the note on `test_two_followups_at_once_make_one` in Global Constraints).
+Expected: `1531 passed` (see the note on `test_two_followups_at_once_make_one` in Global Constraints; the new account race of Task 1 is timing-based in the same way).
 
 - [ ] **Step 2: The tools**
 
@@ -6826,7 +8041,7 @@ Expected: `86 passed`; `OK`; the sync check prints nothing and exits 0.
 - [ ] **Step 3: The site tests and the type check**
 
 Run: the Vitest command (no files), then the `astro check` command
-Expected: `286 passed` in 35 files; `- 0 errors`.
+Expected: `317 passed` in 37 files; `- 0 errors`.
 
 - [ ] **Step 4: The build and its checks**
 
@@ -6843,11 +8058,11 @@ grep -rln "@supabase/auth-js" site/src | grep -v "\.test\." ; echo
 grep -rn "account/claim" site/src --include=*.ts --include=*.tsx | grep -v "\.test\."
 ```
 
-Expected: `sinks: 1` (nothing found); only `site/src/lib/supabaseClient.ts` and the comment in `site/src/lib/auth.ts`; the claim request only in `site/src/lib/accountApi.ts` (called only from `site/src/lib/claim.ts`).
+Expected: `sinks: 1` (nothing found); only `site/src/lib/supabaseClient.ts` and the comment in `site/src/lib/auth.ts`; the claim request only in `site/src/lib/accountApi.ts` (called only from `site/src/lib/claim.ts`, with `device` true only after a sign-in started on this device).
 
 - [ ] **Step 6: Report**
 
-No commit. Report the numbers above, the `astro check` fixes of Task 19 and the package sizes of Task 6 to the controller; the branch then goes to the Fable 5.2 final review (spec §11), not to `main`.
+No commit. Report the numbers above, any `astro check` fix beyond the nine of Task 8 and the package sizes of Task 7 to the controller; the branch then goes to the Fable 5.2 final review (spec §11), not to `main`.
 
 ---
 ## After the tasks: the owner's steps and the stage walk-through (not a coding task)
@@ -6856,7 +8071,7 @@ From spec §10–§12. Nothing here is done by an implementer or a subagent.
 
 **Owner (spec §10):**
 
-1. «Да» на установку пакетов — before Task 6, with the table «Packages» above (versions, dates, sizes).
+1. «Да» на установку пакетов — before Task 7, with the table «Packages» above (versions, dates, sizes; five rows since the plan check — `@emnapi/runtime` 1.11.3 is new, the other four are unchanged).
 2. Google: OAuth client in Google Cloud and the provider in Supabase — `api/README.md` «Вход через Supabase», step 1.
 3. Supabase → Authentication → URL Configuration: Redirect URLs `https://arcanadiary.com/diary` and `https://arcanadiary.com/es/diario` (step 2; the `?claim=…&remind=1` addresses match them); the settings of step 5 (anonymous sign-in off, «Confirm email» on, JWT expiry 3600 s).
 4. In `deploy/.env`, by the owner (values never pasted into the chat): `SUPABASE_URL` (already there since 4.3), `SUPABASE_ANON_KEY` (Project Settings → API Keys → the public anon / publishable key), `GOOGLE_SIGNIN=true` once step 2 is done.
@@ -6867,18 +8082,18 @@ From spec §10–§12. Nothing here is done by an implementer or a subagent.
 
 **Walk-through on the stage, EN and ES, phone and desktop (spec §11, paths П6 and П7; mind the few e-mails an hour of the built-in Supabase mail):**
 
-1. Guest, `/love`: draw, wait for the answer → «Save to diary» under it → the sheet: the reminder box is off, «Continue with Google» only with `GOOGLE_SIGNIN=true`; tick the box, send to your e-mail → «Check your e-mail»; «Send it again» is disabled for 60 s; close the sheet — the answer is still there. Network tab: `POST /api/readings/{id}/claim-token` once; no `@supabase` chunk was loaded before the sheet opened.
-2. Open the e-mail link **on another device** (implicit flow): `/diary?claim=…&remind=1` → the address becomes `/diary`, the reading from step 1 is in the list, `POST /api/account/claim` once with the token, `PATCH /api/account` consent on (check on `/account`), `signup_done` (`method: email`) in `events`.
+1. Guest, `/love`: draw, wait for the answer → «Save to diary» under it → the sheet: the reminder box is off, «Continue with Google» only with `GOOGLE_SIGNIN=true`; tick the box, send to your e-mail → «Check your e-mail»; «Send it again» is disabled for 60 s; close the sheet — the answer is still there. Open the sheet again and press the phone's Back (Android Chrome, iPhone Safari swipe back): only the sheet closes, the answer stays; Back once more closes the room (owner decision 14). Network tab: `GET /api/auth-config` when the reading is made, `POST /api/readings/{id}/claim-token` once; no `@supabase` chunk was loaded before the first send. On a desktop (≥ 900 px) the sheet meets the room's left and right edges (review I9, screen 13d).
+2. Open the e-mail link **on another device** that has guest readings of its own (implicit flow): `/diary?claim=…&remind=1` → the address becomes `/diary`, the reading from step 1 is in the list and **none of that device's guest readings** (`POST /api/account/claim` once, body `{"tokens": […], "device": false}` — owner decision 12), `PATCH /api/account` consent on (check on `/account`), `signup_done` (`method: email`) in `events`. Then press Back until the address with `?claim=` shows again: no second consent, no second `signup_done` (review I1).
 3. Reload the diary: no second `POST /api/account/claim`.
 4. Google (when on): `/es/diario` → «Continuar con Google» → back on `/es/diario`, signed in; `signup_done` with `method: google`.
 5. Signed in, draw on `/yes-no`: no «Save to diary» button but «Saved to your diary ✓» linking to the entry; the request carries `Authorization: Bearer`.
 6. Diary list: date, kind, question or «No question», small cards (a reversed one turned), headline, outcome mark, note mark. With more than 10 readings (insert old ones in SQL if needed): «More readings in Plus: N» and the Plus card with «Your whole diary, with no limit»; an old hidden entry still opens by its `?r=` link; the export has all of them; deleting a listed entry brings the next older one in.
-7. Entry: a reading younger than 7 days shows «Come back on <date>…»; an older one (set `created_at` back in SQL) shows Came true / Partly / No — change it, clear it; `outcome_answered` with `after_days` 7 (and 30 for one older than 30 days). Note: 1000 characters, the counter, «Save note», reload — it stays. Delete with the confirmation.
+7. Entry: a reading younger than 7 days shows «Come back on <date>…» — the day of the reading's local date + 7; set `created_at` back in SQL to the evening 7 days ago and the buttons are there from 00:00 of that named day (owner decision 13); an older one shows Came true / Partly / No — change it, clear it; `outcome_answered` with `after_days` 7 (and 30 for one older than 30 days). Note: 1000 characters, the counter, «Save note», reload — it stays. Delete with the confirmation.
 8. Account: e-mail, «Readings left today: N of 3», the consent switch with the note that e-mails start later, «Download my readings» saves a JSON file; «Delete account» → «Delete forever?» → «Download», «Cancel» (focus back on the button), then «Delete forever» → the home page says «Your account has been deleted.»; the old session cannot write (a draw is a guest draw).
 9. Sign-out from the account: back on the home page as a guest; `ad_signed_in` gone from localStorage.
 10. Limits: a guest gets 2 readings a day, then only the Plus card (no sign-in offer there, decision 5); signed in — 3 per account on every device.
-11. Card of the Day: «Remind me tomorrow» saves `arcana-diary-card-of-the-day.ics`; opening it adds an event tomorrow 9:00 local time, 15 minutes, «Card of the Day — Arcana Diary» / «Carta del día — Arcana Diary», with the `/daily` / `/es/carta-del-dia` link; `remind_click` in `events`.
-12. Phone 360 px (Chrome device toolbar): the three yes/no votes under their cards fit, wrap inside their column, no horizontal scroll; the save sheet and the delete dialog fit; every button ≥ 44 px.
+11. Card of the Day, on a real iPhone (Safari) and a real Android phone (Chrome), not only the desktop device toolbar (review I8): «Remind me tomorrow» saves or offers `arcana-diary-card-of-the-day.ics`; opening it adds one event tomorrow 9:00 local time, 15 minutes, «Card of the Day — Arcana Diary» / «Carta del día — Arcana Diary», with the `/daily` / `/es/carta-del-dia` link and an alert at 9:00 (owner decision 11); pressing twice the same day adds no second event; `remind_click` in `events`. Note how an in-app browser (Instagram) behaves — a known limit, not a blocker.
+12. Phone 360 px (Chrome device toolbar): the three yes/no votes under their cards fit, wrap inside their column, no horizontal scroll; the save sheet (also with the on-screen keyboard open on the e-mail field) and the delete dialog fit; every button and link ≥ 44 px («Saved to your diary ✓», «Account» in the diary); the labels of the sign-in block on the diary and account pages and of the note are dark grey on the light surface (review I6).
 13. Menu: «Your diary» / «Tu diario» on the phone, «Diary» / «Diario» in the desktop header; EN | ES on `/diary` goes to `/es/diario`, on `/account` to `/es/cuenta`.
 14. Sign-in off (temporarily remove `SUPABASE_ANON_KEY` on a test deploy, or check before setting it): no «Save to diary» button, the diary says «Signing in opens soon.»; readings work as in 4.4a.
 15. Expired link: open an e-mail link a second time → the diary says the link expired and offers the sign-in block.
@@ -6892,33 +8107,80 @@ From spec §10–§12. Nothing here is done by an implementer or a subagent.
 
 | Spec section | Tasks |
 |---|---|
-| §1 goal and scope | 1–21 (out of scope untouched: reminder e-mails, payment, daily card in the diary, Apple, legal texts) |
-| §2 decisions 1–10 | 1 (7, 8), 2 (9), 11 (2), 12 (3, 9), 13 (6), 14 (4), 15 (1, 10); decision 5 — no change (the limit screen stays the Plus card) |
-| §3 sign-in in the browser | 3 (`/api/auth-config`), 6 (auth-js), 7 (state, settings, lazy client, implicit flow), 8 (Bearer, `401`, `503`), 14 (sign-out), 20 (no library on reading pages) |
-| §4 Save to diary | 10 (return address, claim once, `replaceState`, consent, `signup_done`), 11 (button, sheet, 3b, 60 s, errors, «Saved ✓», answer kept) |
-| §5 diary | 2 (cap 10, `hidden_count`, `created_at`), 12 (pages, list, hidden + Plus), 13 (entry, 7 days, note, delete), 20 (noindex) |
-| §6 account | 14 |
-| §7 Remind me tomorrow | 4 (`remind_click`, migration 007), 15 |
-| §8 small changes | 1 (limits), 4 (events), 12 (Plus line, third benefit), 16 (menu, header, copy), 10 + 16 (language pairs), 20 (Caddy, route test, check_dist) |
-| §9 debts | 6 (DOM library), 11–15, 18 (DOM tests), 17 (Try again GET-only), 5 (stream logs), 19 (`astro check`), walk-through 12 (360 px) |
+| §1 goal and scope | 1–22 (out of scope untouched: reminder e-mails, payment, daily card in the diary, Apple, legal texts) |
+| §2 decisions 1–14 | 1 (7, 8), 2 (9), 13 (2, 14), 14 (3, 9), 15 (6, 13), 14 (13: the rule), 16 (4), 17 (1, 10, 11), 6 + 12 (12); decision 5 — no change (the limit screen stays the Plus card) |
+| §3 sign-in in the browser | 3 (`/api/auth-config`; a secret key and `GOOGLE_SIGNIN` never stop the API), 7 (auth-js), 9 (state, settings, lazy client, implicit flow), 10 (Bearer, `401`, `503`), 14–16 (`401` rules on the screens), 16 (sign-out), 21 (no library on reading pages) |
+| §4 Save to diary | 6 (`"device": false`), 12 (return address, claim once, device only with the mark, consent and `signup_done` only with the mark or a moved reading, `replaceState`), 13 (button, sheet, 3b, 60 s, errors, «Saved ✓», answer kept, Back closes only the sheet) |
+| §5 diary | 2 (cap 10, `hidden_count`, `created_at`), 14 (pages, list, hidden + Plus, the local-day rule), 15 (entry, outcome from the named day, note, delete), 21 (noindex) |
+| §6 account | 16 |
+| §7 Remind me tomorrow | 4 (`remind_click`, migration 007), 17 (with its alarm) |
+| §8 small changes | 1 (limits), 4 (events), 6 (claim), 14 (Plus line, third benefit), 18 (menu, header, copy), 12 + 18 (language pairs), 21 (Caddy, route test, check_dist) |
+| §9 debts | 7 (DOM library), 13–17, 20 (DOM tests), 19 (Try again GET-only), 5 (stream logs), 8 (`astro check`), walk-through 12 (360 px) |
 | §10 owner | «After the tasks» |
-| §11 checks | 1–5 (API), 7–18 (Vitest), 20–21 (build, `astro check`, check_dist), walk-through |
-| §12 done when | 21 + walk-through |
+| §11 checks | 1–6 (API), 9–20 (Vitest; `astro check` from Task 8 on), 21–22 (build, check_dist), walk-through |
+| §12 done when | 22 + walk-through |
 
 **Found while planning — spec vs code, and open questions (each with the resolution used in this plan):**
 
-1. **`remind_click` needs a migration.** The spec puts the new event in `api/app/events.py` only, but `events.name` has a database `CHECK` (migration 004), so the insert fails with `CheckViolation`. Task 4 adds migration 007 (only the constraint; safe on the live table). Recommendation: accept; the owner's deploy applies it.
-2. **The entry has no date in the API.** «Сбылось» opens 7 days after the reading, but `GET /api/readings/{id}` did not return `created_at`. Task 2 adds it to the owner's view only. Recommendation: accept.
-3. **Prototype copy of screens 3, 3b, 4a, 4b and of the account is not in the repository** (the prototypes are a claude.ai artifact, which this planning did not open). English strings that exist in the repo (stage 3 plan, `docs/design/review-fable.md`, 4.4a spec §11, this spec) are used as prototype copy; every other string is a draft in `enDrafts`, every new Spanish string in `esDrafts`. Recommendation: the controller compares the drafts with the prototype artifact before the walk-through and replaces them in `en.ts` / `es.ts` (no code change).
+1. **`remind_click` needs a migration.** The spec puts the new event in `api/app/events.py` only, but `events.name` has a database `CHECK` (migration 004), so the insert fails with `CheckViolation`. Task 4 adds migration 007 (only the constraint; safe on the live table) and the README line that checks the constraint's name on the live database before the deploy (review M2). Recommendation: accept; the owner's deploy applies it.
+2. **The entry has no date in the API.** «Сбылось» opens on the named local day (decision 13), but `GET /api/readings/{id}` did not return `created_at`. Task 2 adds it to the owner's view only. Recommendation: accept.
+3. **Prototype copy of screens 3, 3b, 4a, 4b and of the account is not in the repository** (the prototypes are a claude.ai artifact, which this planning did not open). English strings that exist in the repo (stage 3 plan, `docs/design/review-fable.md`, 4.4a spec §11, this spec) are used as prototype copy; every other string is a draft in `enDrafts`, every new Spanish string in `esDrafts`. The controller **must** compare the drafts with the prototype artifact before the walk-through (Fable plan check: «обязательна») and replace them in `en.ts` / `es.ts` (no code change).
 4. **«Ещё N раскладов — в Plus» in English.** A literal «{n} more readings — in Plus» reads wrong for 1; the plan uses «More readings in Plus: {n}» / «Más tiradas en Plus: {n}» (drafts). Recommendation: the owner may reword at stage 5.
 5. **Copy that mentions the diary is static.** «Free · save it to your diary after» and step 3 show also while sign-in is off (no `SUPABASE_ANON_KEY`), although §12 says the site then works as in 4.4a. Recommendation: accept for the closed stage (the owner sets the key before the walk-through); the alternative — switching the panel hint by `/api/auth-config` — adds a request to every page and a text flicker.
-6. **«401 без JSON — перезагрузить страницу».** The plan keeps 4.4a's behaviour: the screen shows «Your session on this preview site has expired…» with a «Try again» button that reloads (`errStage`), not an automatic reload, which could loop on a stale stage cookie. Recommendation: accept.
+6. **«401 без JSON — перезагрузить страницу».** The plan keeps 4.4a's behaviour: the screen shows «Your session on this preview site has expired…» with a «Try again» button that reloads (`errStage`), not an automatic reload, which could loop on a stale stage cookie. The Fable check agreed but found the rule missing in the diary and the entry (I2, I4): now the list (Task 14), the entry's load and every change (Task 15) and the account (Task 16) call `onSignedOut` only on `401 {"reason": "sign_in"}` and show `errStage` with the reload button otherwise; the diary re-opens the session once per page at most. Recommendation: accept.
 7. **«Три обработчика потоков».** The 4.5 review named three line numbers that have moved; the code has three stream generators (`_reading_events`, `_followup_events`, `replay_followup`) with five `except DatabaseUnavailable` blocks. Task 5 logs all five. Recommendation: accept.
 8. **TypeScript version.** The registry's latest is 7.0.2, but `@astrojs/check` 0.9.12 accepts only `^5 || ^6`; 6.0.3 would fit it, yet Astro 5.18.2's own dependencies (`tsconfck` 3.1.6, `zod-to-ts` 1.2.0) declare TypeScript `^5`. The plan pins 5.9.3. Recommendation: accept 5.9.3.
 9. **Sign-in from the account page returns to the diary.** The spec's Supabase return addresses are only `/diary` and `/es/diario` (owner step 3), so signing in on `/account` lands on the diary. Recommendation: accept (one more Redirect URL would be needed otherwise).
 10. **No sitemap exists yet.** «Вне карты сайта» holds trivially; `tools/site/check_dist.py` `PRIVATE` is the list stage 7 must keep out of the sitemap and hreflang. Recommendation: note for stage 7.
-11. **The claim token is made at the first send, not when the sheet opens** (fewer of the 5 live tokens per reading; a token that cannot be made still saves the reading from this device). The diary's sign-in block keeps a `?claim=` that came back with an expired link. Additions within §4; recommendation: accept.
+11. **The claim token is made at the first send, not when the sheet opens** (fewer of the 5 live tokens per reading; a token that cannot be made still saves the reading from this device, where the sign-in was started). Only a token that was made is kept for the open sheet — a failure is asked again at the next send (review M13). The diary's sign-in block keeps a `?claim=` that came back with an expired link, and an entry's `?r=` (review M21). `?claim=` / `?remind=1` in the address alone switch nothing on: consent and `signup_done` need the "started here" mark or a reading that really moved (review I1), and this device's guest readings move only with the mark (owner decision 12). Recommendation: accept.
 12. **«Saved to your diary ✓» comes from `ad_signed_in` at the moment the reading was created** (the request carried the token). A person who signs in in another tab after drawing still sees «Save to diary»; the sheet then saves it through the device claim. Recommendation: accept.
-13. **DOM tests could not run while planning** (happy-dom is installed only in Task 6). The node-side code and tests of Tasks 1–5, 7–10, 16, 17 and 20 were run against a copy of the branch (counts in Global Constraints); the `.test.tsx` files of Tasks 6, 11–15 and 18 rely on happy-dom 21 behaviour (checkbox `click()` fires `change`, `KeyboardEvent`, `Blob.text()`, `history.replaceState`, `vi.mock` of the dynamic `import('./supabaseClient')`). If one fails for a harness reason, fix the test helper, never weaken the component or the assertion; report it.
+13. **DOM tests now ran before the plan went to the implementer.** The first version could not run them (happy-dom comes with Task 7); the Fable check asked for the harness to pin its assumptions first (I11). While amending the plan, Tasks 7–21 were applied to a scratch copy with the five packages installed there (`--no-save`), and every `.test.tsx` ran with happy-dom 21.0.4: all pass, the counts in Global Constraints are measured, and three plan defects were found that way and fixed in the text — `astro check` cannot load without the `@emnapi/runtime` peer (Task 7), `setup(null)` in `auth.test.ts` (TS2345, Task 9), and an anchor with «…» in it (Task 12). The smoke test of Task 7 pins the four happy-dom properties the screens rely on (checkbox `click()` → `change`, focus on `tabIndex=-1`, `pushState`/`replaceState`, `Response`); `cleanup()` and `waitFor()` replace `document.body.replaceChildren()` and counted `settle` rounds. If a test still fails for a harness reason, fix the test helper, never weaken the component or the assertion; report it.
 14. **Supabase error codes** (`over_email_send_rate_limit`, `email_address_invalid`, `validation_failed`, status 429/400/422) follow auth-js 2.x; the walk-through (built-in mail, a few e-mails an hour) will show «too often» for real. Recommendation: check in walk-through item 1.
-15. **360 px for the yes/no votes** cannot be tested in happy-dom (no layout): Task 18 pins the markup, walk-through item 12 checks the layout. If it breaks, the fix is a CSS rule in `global.css` (tokens only).
+15. **360 px for the yes/no votes** cannot be tested in happy-dom (no layout): Task 20 pins the markup, walk-through item 12 checks the layout. If it breaks, the fix is a CSS rule in `global.css` (tokens only).
+16. **Known risk: the calendar file on phones (review I8).** The page cannot tell whether a phone saved or opened the `.ics`: iOS Safari asks first (the object URL now lives 60 s), the in-app browsers of Instagram, Facebook and TikTok often ignore blob downloads, and «Open the file to add it to your calendar.» is shown in every case. Walk-through item 11 checks a real iPhone Safari and a real Android Chrome. `navigator.share({ files })` (the review's optional idea) is not added: it is a second flow with its own wording per platform. Recommendation: accept for the closed stage; revisit if the walk-through shows a phone that does nothing.
+17. **Known limit of the implicit flow (review M9).** After sign-in auth-js clears `#access_token=…` with `location.hash = ''`, which is a new history entry: Back shows the address with `?claim=…&remind=1` (and briefly the token entry) again. After I1 this has no effect — the token is used, there is no mark any more, so nothing is claimed, consented or counted twice — and the token in that entry expires with the session. Recommendation: accept; PKCE would need the same device (decision 14.11.2026).
+18. **A fifth package.** `@emnapi/runtime` 1.11.3 (peer of `@napi-rs/wasm-runtime`, which `@astrojs/check`'s language server loads) is needed because `legacy-peer-deps=true` skips peers; without it `astro check` cannot run (measured). The owner's yes of Task 7 has to cover it; the other four versions are unchanged.
+19. **A secret key is dropped, not refused (review I3, with I12's reasoning).** The review proposed refusing such a key; a refusal at start would turn into the same restart loop as I12. Task 3 drops it (sign-in stays off, «Signing in opens soon.»), logs an `ERROR` without the key, and never publishes it. Recommendation: accept.
+
+**Review triage (Fable plan check, `.superpowers/sdd/s44b-plan-fable-review.md`, 22.11.2026; numbers are the new task numbers):**
+
+| ID | Status | How |
+|---|---|---|
+| I1 | fixed | Task 12: consent and `signup_done` only with the "started here" mark or a non-empty `claimed`; the address is cleaned either way; a negative test (`claimed: []`, no mark). The device side is owner decision 12: Task 6 (server `"device"`), Tasks 11–12 (site sends `device` only with the mark). |
+| I2 | fixed | Task 14: `onSignedOut` only on `401 {"reason": "sign_in"}`; a `401` without JSON is `errStage` + reload button; one automatic re-open per page; DOM test: one list request, the stage line. |
+| I3 | fixed (differently) | Task 3: `sb_secret_…`, a JWT whose role is not `anon`, or an undecodable dotted value is dropped (sign-in off) with an `ERROR` log that does not print the key — not a refusal at start, which would be the I12 restart loop; five test cases; `.env.example` and README say «never service_role / sb_secret_». |
+| I4 | fixed | Task 15: the same rule in the entry's load, outcome, note and delete; stage line with reload; DOM test. |
+| I5 | fixed | Task 16: the error is shown inside `.dialog`; DOM test (`deleteAccount` → 503: the line in the dialog, no sign-out, no navigation). |
+| I6 | fixed | Task 13 `.signin--day .field label` (the sign-in block on the diary and account pages carries its surface), Task 15 `.entry .field label` and the textarea padding — day muted colour. |
+| I7 | fixed | Owner decision 13: `outcomeOpensOn` = 00:00 local of «local date + 7 days», `outcomeOpen` uses it (Task 14); tests with local dates (any zone) and `TZ=UTC` in `vitest.config.ts` (Task 7); the entry opens at 00:00 of the named day (Task 15 test). |
+| I8 | fixed | Task 16: the object URL lives 60 s (`REVOKE_AFTER_MS`, DOM test); walk-through item 11 on a real iPhone Safari and Android Chrome; known risk in item 16 above. The optional `navigator.share` is declined (item 16). |
+| I9 | fixed | Task 13 CSS: from 900 px the sheet takes `--space-7` side margins and padding; walk-through items 1 (desktop) and 12 (360 px with the keyboard). |
+| I10 | fixed | `astro check` is Task 8, right after the packages, with the nine measured errors and their exact fixes; every site task 9–20 runs it (`- 0 errors`, measured in the scratch copy after each). The `signedIn` of `draw()` (TS2741) is in Task 13; running the check also found `setup(null)` in Task 9's test (fixed). |
+| I11 | fixed | Task 7: the smoke test pins the four happy-dom properties (six tests, measured), `mount` remembers its roots and `cleanup()` unmounts them (every DOM test calls it), `waitFor()` replaces counted `settle(30)`, `TZ=UTC`. |
+| I12 | fixed | Task 3: only exactly `true` switches Google on; anything else is off with a `WARNING`; never an error at import; test. |
+| M1 | fixed | Task 5 uses `-k is_logged` (4 tests). |
+| M2 | fixed | Task 4: README line to check `events_name_check` on the live database before the deploy; «миграции 004, 007». |
+| M3 | fixed | Task 2: the `before` beyond the 10th entry case; the two-query race on `hidden_count` is accepted as the review says (noted in Step 4). |
+| M4 | fixed | Task 1: `docs/design/00-design.md` decision row 3 gets the 4.4b note. |
+| M5 | fixed | Task 1: `test_paid_followups_of_an_account_at_once_cannot_overspend_the_day` keeps the three-way race with the account's three. |
+| M6 | fixed | Task 9: `signOut` clears the flags first; tests for a library error and a throw. Task 16: a hung sign-out waits `SIGN_OUT_WAIT_MS` at most; test. |
+| M7 | fixed | Task 9: a failed library load is not cached; test. |
+| M8 | fixed | Task 21: `Referrer-Policy: same-origin` on the four private pages; route check. |
+| M9 | fixed (documented) | Item 17 above: no effect after I1. |
+| M10 | fixed | Task 17: `'\\;'` and the corrected expectation. |
+| M11 | fixed | Task 17: `text/calendar;charset=utf-8`, no `METHOD`, `UID:daily-<YYYYMMDD>@arcanadiary.com`; tests. |
+| M12 | fixed | Task 17: `.daily .btn--outline` takes the night control border. |
+| M13 | fixed | Task 13: only a made token is kept; test. |
+| M14 | fixed | Task 13: the settings are read when the reading is created (`useSaveToDiary`), and the button is the last of the actions; tests. |
+| M15 | fixed | Task 13: «Use another e-mail» focuses the e-mail field; `.night__top` and `.night__body` are `inert` while the sheet is open; tests. |
+| M16 | fixed | Tasks 13–14: `.saved-mark a` and the diary's «Account» link are 44 px targets. |
+| M17 | fixed | Task 14: the list is `.diary__list`, no `.diary` inside `.diary`. |
+| M18 | fixed | Task 14: «Try again» on list errors and on «unreachable»; no empty `role="status"` while loading; test. |
+| M19 | fixed | Task 14: no «Show more», no `next`, no `diaryMore` (dictionary counts follow: 220 keys, 101 / 173 drafts at the end); the entry's CSS moves to Task 15, the account's and the dialog's (with `.check--day`) to Task 16; the «library is loaded now» comments say «at the first send». |
+| M20 | fixed (differently) | Task 13: the island's wiring is the hook `useSaveToDiary` with its own DOM test in the real night room (a lib function could not hold the sheet, its history entry and `save_click` together). |
+| M21 | fixed | Task 15: the reading's and the follow-ups' `soft_line` are shown; `outcome_answered` only for an answer on an empty mark; outcome buttons disabled during the PATCH; `?r=` kept through sign-in; two DiaryIsland tests (`?r=` opens the entry, the return address keeps `r`). |
+| M22 | fixed (one part declined) | Task 16: a sessionStorage mark makes the home notice one-time and link-proof; Escape and the buttons wait while deleting; `download.test.ts`. Task 15 adds one `deviceTimeZone()` for the new pages. Declined: replacing the two 4.4a copies in `ReadingIsland.tsx` / `DailyIsland.tsx` — no behaviour change, and it would touch tested 4.4a islands for nothing. |
+| M23 | fixed | Task 21 Step 4: `grep -l GoTrueClient site/dist/_astro/*.js` piped to `wc -l` → `1` (measured on the scratch build). |
+| M24 | fixed | Global Constraints: the trailer names the implementer's own model; the steps keep `Claude Opus 5.5` (this stage's model). |
+
+Self-review items where the check disagreed: 1 (M2 added), 3 (the drafts check is now a must), 6 (I2, I4 implemented), 11 (M13, I1), 13 (I11 harness, DOM tests now measured) — all resolved above. The check's four questions to the owner are answered by decisions 11–14 (spec §2).
