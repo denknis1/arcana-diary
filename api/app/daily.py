@@ -7,6 +7,8 @@
 - The job runs at start and every DAILY_JOB_INTERVAL_S; it writes only missing texts, so a failed or rejected
   text is retried on the next run, not by a request. Over the daily budget, or after FAILURES_IN_A_ROW failed
   calls in a row (a dead key, an empty balance), it stops until the next run.
+- Stage 4.7: a Spanish text that speaks of the reader with a gendered form is rewritten once before it is cached
+  (flow.rewrite_section); a failed or rejected rewrite caches the text as written.
 - A request reads the cache; on a miss it gets the card's meaning and advice from the base (source "fallback").
 """
 import asyncio
@@ -16,9 +18,9 @@ from datetime import date, timedelta
 from app import repo
 from app.cards import LANGS
 from app.limits import utc_day
-from app.reader import check, compose, fallback
+from app.reader import check, compose, fallback, rewrite
 from app.reader.engine import Chunk, Finished, run_stream
-from app.reader.flow import log_call, over_budget
+from app.reader.flow import log_call, over_budget, rewrite_section
 
 log = logging.getLogger("arcana.daily")
 
@@ -49,8 +51,11 @@ def generate_one(ctx, card_id: str, reversed_: bool, lang: str, day: date) -> bo
         else:
             outcome = item
     text = "".join(parts).strip()
+    terms = check.live_terms(ctx.terms, lang)  # no group: strict
     usable = (bool(text) and isinstance(outcome, Finished) and outcome.result.stop_reason != "max_tokens"
-              and not check.banned_in(text, check.live_terms(ctx.terms, lang), lang))  # no group: strict
+              and not check.banned_in(text, terms, lang))
+    if usable and rewrite.gendered({"daily": text}, lang):  # stage 4.7: rewritten once before it is cached
+        text = rewrite_section(ctx, lang, "daily", text, terms=terms) or text
     with ctx.db.connect() as conn:
         log_call(conn, ctx, None, "daily", ctx.reader.model, prompt.version, outcome, DAILY_MAX_TOKENS)
         if usable:

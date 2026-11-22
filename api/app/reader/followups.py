@@ -4,6 +4,9 @@ question; plain text, 60–120 words. It runs Detached like the reading, so a di
 - A follow-up that fails without text (no text, refusal, budget spent) is deleted.
 - A cut answer or a live-dictionary hit: the card base line is shown, both texts are kept, and the follow-up does
   not use one of the two free slots (counted = false, §9.4). FOLLOWUP_ATTEMPTS bounds the retries (§9.2, §10.2).
+- Stage 4.7: a Spanish answer that speaks of the reader with a gendered form is rewritten once after the stream
+  (flow.rewrite_section); a rewrite that passes its checks is saved and sent as `replace` (reason "gender") before
+  done, which still says "model"; otherwise the text stays as streamed.
 - A paid follow-up (paid_day set, §10.1) that fails either way gives its reading back to the guest's day; the
   done event of a paid follow-up says whether the reading was used (used_reading).
 - The reader's safety net: an answer with [[crisis]] anywhere is never kept; the row stays as a tombstone (answer
@@ -21,10 +24,11 @@ from typing import Iterator
 from app import limits, repo
 from app.config import FOLLOWUP_ATTEMPTS
 from app.db import DatabaseUnavailable
-from app.reader import check, compose, fallback
+from app.reader import check, compose, fallback, rewrite
 from app.reader.engine import Chunk, Failed, run_stream
 from app.reader.flow import (Detached, crisis_answer, day_start, followup_text, followups_left, load_history,
-                             log_call, over_budget, shown_sections, soft_line, sse, verdict_label)
+                             log_call, over_budget, rewrite_section, shown_sections, soft_line, sse,
+                             verdict_label)
 
 log = logging.getLogger("arcana.reader")
 
@@ -87,11 +91,15 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
     failed = spent or not text or (isinstance(outcome, Failed) and outcome.reason == "refusal")
     cut = isinstance(outcome, Failed) or (outcome is not None and not isinstance(outcome, Failed)
                                           and outcome.result.stop_reason == "max_tokens")
-    answer, replace = None, False
+    answer, replace, rewritten = None, False, None
     if not crisis and not failed:
         # stage 4.6 (Fable I5): the stricter of the reading's and the follow-up's group
         terms = check.live_terms(ctx.terms, lang, group, reading["guard_group"])
         replace = cut or bool(check.banned_in(text, terms, lang))
+        if not replace and rewrite.gendered({"followup": text}, lang):
+            # stage 4.7: a Spanish answer that speaks of the reader with a gendered form is rewritten once
+            rewritten = rewrite_section(ctx, lang, "followup", text, terms=terms, reading_id=reading["id"])
+            text = rewritten or text
         answer = {"model": text, "fallback": fallback.followup_fallback(ctx.cards, reading) if replace else None}
         if not check.length_ok(text, check.FOLLOWUP_WORDS):
             log.info("follow-up length out of range: %s words", check.word_count(text))
@@ -132,6 +140,8 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
                               "retry": False})
         yield done("fallback", False)
         return
+    if rewritten:
+        yield sse("replace", {"sections": {"followup": rewritten}, "reason": "gender", "retry": False})
     yield done("model", not gone)
 
 

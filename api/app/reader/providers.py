@@ -3,7 +3,7 @@ settings. The live reader follows READER_PROVIDER; the question check stays on C
 max_retries=None keeps each SDK's own default (Claude and OpenAI: 1 retry; google-genai does not retry); the
 comparison passes 0 so every billed attempt is a metered call. The OpenAI and Gemini classes are imported only
 when such a model is built, so the live process with READER_PROVIDER=claude never loads their SDKs."""
-from app.config import Settings, provider_for_model
+from app.config import REWRITE_TIMEOUT_S, Settings, provider_for_model
 from app.reader.claude import ClaudeProvider
 from app.reader.provider import FakeProvider
 
@@ -25,4 +25,6 @@ def make_provider(model: str, settings: Settings, *, effort: str | None = None, 
 def make_reader(settings: Settings):
     if settings.reader_provider == "fake":
         return FakeProvider(model=f"fake-{settings.reader_model}")
-    return make_provider(settings.reader_model, settings, effort=settings.reader_effort)
+    # stage 4.7: the reader's only JSON call is the gender rewrite (rewrite.py), a short one
+    return make_provider(settings.reader_model, settings, effort=settings.reader_effort,
+                         json_timeout_s=REWRITE_TIMEOUT_S)

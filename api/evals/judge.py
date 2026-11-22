@@ -96,6 +96,9 @@ def summarize(results: list[dict], guard_results: list[dict] = (), judge_check: 
             "group_mismatches": sum(1 for r in rows if not r.get("auto", {}).get("group_ok", True)),
             "errors": errors, "replaced_by_group": replaced,
             "why_replaced": sum(1 for r in rows if r.get("shown_reason") == "why"),
+            # stage 4.7: items whose shown Spanish text had a gendered form for the reader, and those rewritten
+            "gender_hits": sum(1 for r in rows if r.get("gender")),
+            "gender_rewritten": sum(1 for r in rows if r.get("rewritten")),
             # "the cards can't tell what he feels": not a violation, counted so the prompts can be tuned (В14)
             "negated_claims": sum(len(r.get("auto", {}).get("negated", [])) for r in rows),
             "reader_crisis": sum(1 for r in rows if r.get("reader_crisis")),

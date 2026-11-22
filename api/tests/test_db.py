@@ -30,7 +30,7 @@ def test_split_sql():
 
 def test_migrate_creates_tables_with_rls_and_no_policies(fresh_db):
     assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source", "004_events",
-                                           "005_request_ids"]
+                                           "005_request_ids", "006_rewrite_purpose"]
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT relname, relrowsecurity FROM pg_class"
                             " WHERE relnamespace = 'public'::regnamespace AND relkind = 'r'").fetchall()
@@ -315,7 +315,8 @@ def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
     apply_up_to(fresh_db, "001_init")  # stage 4.2: 001 applied, a guest reading in it
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
-    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source", "004_events", "005_request_ids"]
+    assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source", "004_events", "005_request_ids",
+                                             "006_rewrite_purpose"]
     with fresh_db.connect() as conn:
         row = conn.execute("SELECT user_id, outcome, outcome_at, note, note_updated_at FROM readings WHERE id = %s",
                            (reading["id"],)).fetchone()
@@ -329,7 +330,7 @@ def test_003_applies_over_002_and_leaves_the_old_rows_without_a_source(fresh_db)
     apply_up_to(fresh_db, "001_init", "002_accounts")  # the live database after stage 4.3's first deploy
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
-    assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source", "004_events", "005_request_ids"]
+    assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source", "004_events", "005_request_ids", "006_rewrite_purpose"]
     with fresh_db.connect() as conn:
         column = conn.execute("SELECT is_nullable, column_default FROM information_schema.columns"
                               " WHERE table_name = 'readings' AND column_name = 'guard_source'").fetchone()
@@ -418,7 +419,7 @@ def test_the_tests_refuse_a_supabase_database():
 
 def test_004_applies_over_003(fresh_db):
     apply_up_to(fresh_db, "001_init", "002_accounts", "003_guard_source")  # the live database after stage 4.3
-    assert migrate(fresh_db, MIGRATIONS) == ["004_events", "005_request_ids"]
+    assert migrate(fresh_db, MIGRATIONS) == ["004_events", "005_request_ids", "006_rewrite_purpose"]
     with fresh_db.connect() as conn:
         security = conn.execute("SELECT relrowsecurity FROM pg_class WHERE relname = 'events'").fetchone()
         names = {r["indexname"] for r in conn.execute("SELECT indexname FROM pg_indexes WHERE tablename = 'events'")}
@@ -446,7 +447,7 @@ def test_005_applies_over_004_and_leaves_the_old_rows_without_a_number(fresh_db)
         insert_001_reading(conn, reading)
         conn.execute("INSERT INTO followups (id, reading_id, n, question, created_at) VALUES (%s, %s, 1, 'Q?', %s)",
                      (uuid.uuid4(), reading["id"], T0))
-    assert migrate(fresh_db, MIGRATIONS) == ["005_request_ids"]
+    assert migrate(fresh_db, MIGRATIONS) == ["005_request_ids", "006_rewrite_purpose"]
     with fresh_db.connect() as conn:
         columns = conn.execute("SELECT table_name, is_nullable, column_default FROM information_schema.columns"
                                " WHERE column_name = 'request_id' ORDER BY table_name").fetchall()

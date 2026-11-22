@@ -19,6 +19,7 @@ FOLLOWUP_ATTEMPTS = 8      # §10.2: follow-up requests per reading; reader [[cr
 IP_FOLLOWUP_LIMIT = 40     # §9.2: follow-up requests per address per UTC day
 IP_GUARD_LIMIT = 60        # §10.5 (В18): question checks by the model per address per UTC day on POST /api/readings
 RETRY_LIMIT = 2
+REWRITE_TIMEOUT_S = 5.0      # stage 4.7: the one call that rewrites a Spanish section without gender
 GUEST_RETENTION_DAYS = 7
 CLAIM_TOKEN_DAYS = 7           # stage 4.3 §4.2: a one-time token to save a guest reading from another device
 CLAIM_TOKENS_PER_READING = 5   # live tokens per reading at once ("Save to diary" may be pressed again, not forever)
