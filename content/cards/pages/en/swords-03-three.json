@@ -1,0 +1,234 @@
+{
+  "schema": 2,
+  "card_id": "swords-03-three",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Three of Swords",
+    "in_sentence": "the Three of Swords"
+  },
+  "title": "Three of Swords Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Three of Swords upright: heartache, sorrow, a painful truth; reversed: pain easing or held in. Love, work, advice and Waite's 1911 words. Ask your question.",
+  "h1": "Three of Swords Tarot Card Meaning",
+  "image_alt": "Three of Swords, 1909 Rider–Waite–Smith card: three swords pierce a red heart under gray clouds and slanting rain.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 3,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Three of Swords stands for heartache, sorrow and a painful truth. Reversed, the pain begins to ease or is held in. It is a hard card, not a verdict on you: it names the hurt so you can move through it. Asked as yes or no, upright leans no: a picture of hurt, not ease.",
+  "keywords": {
+    "upright": [
+      "heartache",
+      "sorrow",
+      "painful truth",
+      "release"
+    ],
+    "reversed": [
+      "pain easing",
+      "sorrow held in",
+      "replaying hurt",
+      "confusion"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Three of Swords card?",
+      "paragraphs": [
+        "Three swords pierce a red heart against a gray sky of cloud and rain. Waite's whole description is one line: \"Three swords piercing a heart; cloud and rain behind\" (p. 248). No people, no landscape: only the heart, the blades and the weather.",
+        "On the 1909 card one sword runs straight down through the heart, and the other two go in at an angle, their blades crossing below it; rain falls in long slanted lines, and III is printed at the top. Waite thought the picture explains itself, \"too simple and obvious to call for specific enumeration\" (p. 248)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Three of Swords?",
+      "paragraphs": [
+        "In plain words, the upright list is about separation: something taken away, people apart, a break, things scattered. The reversed list turns inward, toward a mind pulled off its course; on Arcana Diary that side of the card stands only for scattered, restless thoughts.",
+        "Modern readings put the heart first. Waite lists what happens, and the picture shows how it feels."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Three of Swords mean upright?",
+      "paragraphs": [
+        "Upright, the Three of Swords points to heartache, a painful truth or words that hurt, and it does not pretend these are small. It can come up when something hard has been said, found out or lost, and the feeling is still sharp.",
+        "Letting the hurt out is the release in this card: let yourself feel it and let the rain fall. Naming the pain honestly is how moving through it begins.",
+        "Waite's division and rupture describe the outer side, a break between people or plans. The card does not say who is to blame or how things turn out; it describes a moment you are in, not a judgment on you."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Three of Swords mean reversed?",
+      "paragraphs": [
+        "Reversed, the Three of Swords can point to pain easing, or to sorrow held in rather than let out. You may also catch yourself replaying hurt: the same words, again and again.",
+        "Waite's reversed list, with error, distraction and confusion, fits the second reading: when hurt is not faced, thoughts scatter. The first reading, easing, is a modern one. Either way the next step is the same: be kind to your heart, talk to someone you trust, or write the hurt down and let it rest."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Three of Swords mean in love?",
+      "paragraphs": [
+        "In love, this is the card of heartache: disappointment, a hard truth in a relationship or sadness about an ending. It asks you to honor what you feel rather than hide it, even if the rain has not stopped yet.",
+        "If you are single, it can point to an old hurt that still colors how you meet people; in a relationship, to a painful conversation or words that landed hard. It describes your side and does not decide how a relationship turns out. Reversed, the hurt may be softening, or kept quiet to avoid more pain."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Three of Swords mean for work and money?",
+      "paragraphs": [
+        "At work, the card can point to a disappointment: harsh feedback, a plan that falls apart, or tension that leaves a team divided. It asks you to name what went wrong plainly instead of carrying it in silence.",
+        "If a money matter is what hurts, the card turns you to the feeling, not the figures."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Three of Swords?",
+      "paragraphs": [
+        "Name what hurts in a few plain words, then do one comforting thing for yourself. The card's advice is honesty without harshness: do not pretend the pain is small, and do not let it fill the whole day either. Writing it down or telling a friend are both good places to start."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Three of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Three of Swords as a person and as a feeling",
+      "paragraphs": [
+        "When the Three of Swords describes someone in a spread, it is a person carrying a fresh hurt, or one who says a hard truth out loud. If that person is you, it marks the part of you that needs care right now. The feeling it names is sorrow, disappointment or the sting of hurtful words; reversed, that feeling may be softening, or pushed down and replayed."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Three of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "swords-04-four",
+          "text": "Hurt, then a needed pause. Rest comes before any decision."
+        },
+        {
+          "card_id": "swords-06-six",
+          "text": "Sorrow and a slow move toward calmer water."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Heartache next to friendship; the people who lift you up can help you carry it."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "A painful truth and a wish not to look at it. Take the blindfold off gently."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Three of Swords, Nine of Swords or Five of Cups?",
+      "paragraphs": [
+        "The Nine of Swords shows \"one seated on her couch in lamentation, with the swords over her\" (p. 236); today it is read as worry that grows at night. The Three is the hurt itself; the Nine is the worry circling it.",
+        "The Five of Cups shows three fallen cups and two still standing (p. 216). Waite calls it \"a card of loss, but something remains over\"; today it is read as disappointment and the moment you begin to see what is left. The Three of Swords comes before that, at the sharp moment of hurt."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Three of Swords",
+      "paragraphs": [
+        "What hurts right now, in one plain sentence?",
+        "Am I letting this feeling out, or holding it in?",
+        "What is one comforting thing I can do for myself today?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Three of Swords a good or bad card?",
+      "a": "It is a hard card, but not a bad sign about you or your future. Its use is honesty: it shows where something hurts, so that you can tend to it instead of hiding it. Reversed, it can even mark the start of relief. Nothing in it calls for fear."
+    },
+    {
+      "q": "Does the Three of Swords always mean heartbreak?",
+      "a": "No. Heartbreak is the most common reading, but the card also covers a hard truth or hurtful words at work or between friends. Waite's own list reaches beyond love: it is about separation in general (p. 248)."
+    },
+    {
+      "q": "What does the Three of Swords mean in a \"how do they see me\" reading?",
+      "a": "We do not read cards about what another person thinks. The Three of Swords can show your side of the connection: a hurt you carry, or a hard truth not yet spoken. A more useful question is what you need and what you want to say."
+    },
+    {
+      "q": "What does the Three of Swords mean for a friendship?",
+      "a": "Between friends it often marks words that stung. It speaks about your part: what hurt you, or what you said and would like to mend. If the friendship matters, say calmly how it was for you, without blaming anyone."
+    }
+  ],
+  "related": [
+    "swords-02-two",
+    "swords-04-four",
+    "cups-03-three",
+    "wands-03-three",
+    "pentacles-03-three"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-09-nine",
+      "text": "Nine of Swords"
+    },
+    {
+      "card_id": "cups-05-five",
+      "text": "Five of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "Removal, absence, delay, division, rupture, dispersion, and all that the design signifies naturally … Reversed: Mental alienation, error, loss, distraction, disorder, confusion.",
+    "quote_lang": "en",
+    "pages": [
+      248
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [248],
+      "text": "Three swords piercing a heart; cloud and rain behind"
+    },
+    {
+      "pages": [248],
+      "text": "being too simple and obvious to call for specific enumeration"
+    },
+    {
+      "pages": [236],
+      "text": "One seated on her couch in lamentation, with the swords over her"
+    },
+    {
+      "pages": [216],
+      "text": "three prone cups; two others stand upright behind him"
+    },
+    {
+      "pages": [216],
+      "text": "It is a card of loss, but something remains over"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 03.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_03.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [216, 236, 248],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}
