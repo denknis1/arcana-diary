@@ -32,7 +32,7 @@ class BudgetExceeded(Exception):
 @dataclass(frozen=True)
 class CallRecord:
     model: str
-    purpose: str          # "reader" | "followup" | "daily" | "guard" | "judge" | "json"
+    purpose: str          # "reader" | "followup" | "daily" | "guard" | "judge" | "rewrite" | "json"
     item: str | None      # the eval item (or blind judge id) the call belongs to
     tokens_in: int | None
     tokens_out: int | None

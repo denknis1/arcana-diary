@@ -1,6 +1,11 @@
 """Generation behind the SSE stream (§2, §5.1, §8): model call, section events, finalize (§2.5), saving and the
 call log. Events: meta, section, text, replace, fallback, crisis, done, error. No question text is logged.
 
+Stage 4.7: after finalize, a Spanish section that is still the model's text and speaks of the reader with a
+gendered form is rewritten once (rewrite.py, rewrite_section here: budget, llm_calls purpose "rewrite"); the
+rewritten answer is saved and sent as `replace` (reason "gender", or finalize's own reason when it had replaced a
+section too). A failed or rejected rewrite keeps the text as streamed.
+
 A generation runs in its own thread (Detached): the HTTP response only reads its events from a queue, so a
 client that disconnects (page reload, phone asleep) stops reading but the answer is still written and saved
 (§8.11); the site then restores it with GET /api/readings/{id}.
@@ -9,6 +14,7 @@ import json
 import logging
 import queue
 import threading
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, time, timezone
 from typing import Iterator
 
@@ -16,7 +22,7 @@ from app import repo
 from app.cards import label
 from app.config import FOLLOWUP_ATTEMPTS, FOLLOWUP_LIMIT, HISTORY_LIMIT, RETRY_LIMIT, cost_usd
 from app.db import DatabaseUnavailable
-from app.reader import compose
+from app.reader import check, compose, rewrite
 from app.reader.engine import Chunk, run_stream
 from app.reader.finalize import finalize
 from app.reader.sections import SECTION_ORDER, Event, SectionParser
@@ -250,6 +256,42 @@ def record_guard(conn, ctx, result, lang: str, day, reading_id) -> None:
         })
 
 
+def rewrite_section(ctx, lang: str, section_name: str, text: str, *, terms, reading_id=None) -> str | None:
+    """Stage 4.7: one call that rewrites a Spanish section without gendered forms for the reader (rewrite.py);
+    the rewritten text, or None to keep the original — English, the daily budget spent, a database or model
+    failure, or an answer that fails the checks. The call gets an llm_calls row (purpose "rewrite")."""
+    if lang not in rewrite.REWRITE_LANGS:
+        return None
+    try:
+        if over_budget(ctx):
+            return None
+    except DatabaseUnavailable:
+        return None
+    new, outcome, max_tokens = rewrite.call_rewrite(ctx.reader, lang, text, terms)
+    try:
+        with ctx.db.connect() as conn:
+            log_call(conn, ctx, reading_id, "rewrite", ctx.reader.model, rewrite.REWRITE_VERSION, outcome, max_tokens)
+    except Exception as exc:  # the database is down, or migration 006 has not run: the answer must not break
+        log.warning("rewrite call not logged: %s", type(exc).__name__)
+    log.info("gender rewrite of %s: %s", section_name, "taken" if new else "original kept")
+    return new
+
+
+def rewrite_sections(ctx, lang: str, sections: dict[str, str], terms, reading_id=None) -> dict[str, str]:
+    """rewrite_section for each section at once (one call each, in parallel): {section: new text} for those
+    rewritten."""
+    def one(name: str) -> str | None:
+        return rewrite_section(ctx, lang, name, sections[name], terms=terms, reading_id=reading_id)
+
+    names = list(sections)
+    if len(names) <= 1:
+        results = [one(name) for name in names]
+    else:
+        with ThreadPoolExecutor(max_workers=len(names), thread_name_prefix="rewrite") as pool:
+            results = list(pool.map(one, names))
+    return {name: new for name, new in zip(names, results) if new}
+
+
 def _meta(ctx, reading: dict, prompt_version: str | None, replay: bool) -> str:
     lang = reading["lang"]
     return sse("meta", {"reading_id": str(reading["id"]), "kind": reading["kind"], "lang": lang, "replay": replay,
@@ -321,8 +363,20 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
         for event in parser.finish():
             if "crisis" not in parser.seen:
                 yield _event(event)
-    final = finalize(reading, parser.sections(), parser.seen, outcome, ctx.cards, ctx.terms,
+    streamed = parser.sections()
+    final = finalize(reading, streamed, parser.seen, outcome, ctx.cards, ctx.terms,
                      ctx.texts[lang]["reader_unavailable"])
+    # stage 4.7: after finalize's own replacements, a Spanish section still written by the model that speaks of
+    # the reader with a gendered form is rewritten once; a failed rewrite keeps the text as it was
+    live = check.live_terms(ctx.terms, lang, reading["guard_group"])
+    try:
+        final, rewritten = rewrite.rewrite_answer(
+            final, streamed, lang, lambda todo: rewrite_sections(ctx, lang, todo, live, reading["id"]))
+    except Exception:  # Fable review I4: nothing after the stream may lose the finished answer
+        log.exception("gender rewrite failed: the answer stays as written")
+        rewritten = {}
+    if rewritten:
+        log.info("reader answer: %s rewritten without gender", ", ".join(sorted(rewritten)))
     try:
         with ctx.db.connect() as conn:
             if final.shown == "crisis":

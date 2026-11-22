@@ -7,7 +7,7 @@ from app.config import load_settings
 from app.reader import check
 from app.reader.check import load_reader_terms
 from app.reader.compose import SITUATIONS, load_prompts
-from app.reader.provider import FakeProvider, FakeReply, canned_answer, split_chunks
+from app.reader.provider import FakeProvider, FakeReply, ProviderTimeout, canned_answer, split_chunks
 from app.safety.content import load_all_texts
 from app.safety.guard import CrisisFilter, Guard
 from evals import run
@@ -466,3 +466,70 @@ def test_judge_v5_treats_the_unclear_verdict_wording_as_the_verdict_not_a_hint()
     text = (Path(__file__).resolve().parents[1] / "evals" / "judge.md").read_text(encoding="utf-8")
     assert "prompt-version: judge.v5" in text
     assert "la respuesta aún se está formando" in text and "that is the given verdict, not a forecast" in text
+
+
+# --- stage 4.7: the gender rewrite in the runner, as in the API ---
+
+ES_GENDERED = "La carta habla de una pausa. Hoy estás cansada de cargar con todo y está bien bajar el ritmo."
+ES_NEUTRAL = "La carta habla de una pausa. Hoy te sientes sin energía para cargar con todo y está bien bajar el ritmo."
+
+
+def es_three(card2: str) -> str:
+    one = "La carta pide mirar con calma lo que pasó y quedarte con lo que sirve."
+    return (f"[[headline]]\nHoy conviene ir con calma.\n[[card 1]]\n{one}\n[[card 2]]\n{card2}\n[[card 3]]\n{one}\n"
+            f"[[synthesis]]\nJuntas hablan de un paso tranquilo.\n[[step]]\nEscribe hoy una cosa pequeña.\n")
+
+
+def es_item_kwargs(reader, rewriter):
+    settings = load_settings({})
+    prompts = load_prompts()
+    guard_prompt = prompts[("guard", None)]
+    return {"cards": load_cards(settings.content_dir), "prompts": prompts,
+            "guard": Guard(FakeProvider(json_default=OK), guard_prompt.text, guard_prompt.version),
+            "reader": reader, "judge_provider": FakeProvider(json_default=FIVES), "judge_prompt": load_judge_prompt(),
+            "terms": TERMS, "texts": load_all_texts(), "first_token_timeout_s": 1.0, "rewriter": rewriter}
+
+
+def test_run_item_shows_the_rewritten_section_and_grades_the_raw_one():
+    item = run.load_items("es")[0]  # es-01, three cards, ok
+    reader = FakeProvider(replies=[FakeReply(chunks=split_chunks(es_three(ES_GENDERED)))])
+    rewriter = FakeProvider(json_replies=[{"text": ES_NEUTRAL}])
+    result = run.run_item(item, **es_item_kwargs(reader, rewriter))
+    assert result["gender"] == {"card2": ["estás cansada"]} and result["rewritten"] == ["card2"]
+    assert (result["shown"], result["shown_reason"]) == ("model", "gender")
+    assert result["shown_sections"]["card2"] == ES_NEUTRAL and result["sections"]["card2"] == ES_GENDERED
+    assert len(rewriter.json_calls()) == 1 and reader.json_calls() == []
+
+
+def test_run_item_without_a_rewriter_keeps_the_model_text():
+    item = run.load_items("es")[0]
+    reader = FakeProvider(replies=[FakeReply(chunks=split_chunks(es_three(ES_GENDERED)))])
+    result = run.run_item(item, **es_item_kwargs(reader, None))  # evals.compare passes no rewriter
+    assert result["gender"] == {"card2": ["estás cansada"]} and result["rewritten"] == []
+    assert result["shown_sections"]["card2"] == ES_GENDERED and result["shown_reason"] is None
+
+
+def test_followup_and_daily_items_record_the_rewrite():
+    kwargs = es_item_kwargs(None, None)
+    item = next(i for i in run.load_jsonl("followups.jsonl") if i["lang"] == "es" and i["expect_group"] == "ok")
+    followup = ("Es normal que hoy te sientas inquieta con esta pregunta. La carta pide una pausa antes de decidir: "
+                "mira qué parte depende de ti y escríbela en una línea.")
+    neutral = ("Es normal que hoy esta pregunta te quite la calma. La carta pide una pausa antes de decidir: "
+               "mira qué parte depende de ti y escríbela en una línea.")
+    reader = FakeProvider(replies=[FakeReply(chunks=split_chunks(es_three(ES_GENDERED))),
+                                   FakeReply(chunks=split_chunks(followup))])
+    rewriter = FakeProvider(json_replies=[{"text": ES_NEUTRAL}, {"text": neutral}])
+    result = run.run_followup_item(item, **{**kwargs, "reader": reader, "rewriter": rewriter})
+    first_answer = reader.stream_calls()[1]["messages"][1]["content"]
+    assert ES_NEUTRAL in first_answer and ES_GENDERED not in first_answer  # the saved first answer, as in the API
+    assert (result["answer"], result["shown_answer"]) == (followup, neutral)
+    assert result["gender"] == ["te sientas inquieta"] and result["rewritten"] == ["followup"]
+    daily_item = next(i for i in run.load_jsonl("daily.jsonl") if i["lang"] == "es")
+    daily = ("Hoy la carta pide calma. Si te sientes perdida, no hace falta correr: mira lo que ya sabes, deja lo "
+             "demás para después y da un paso pequeño que te deje respirar.")
+    daily_kwargs = {k: v for k, v in kwargs.items() if k not in ("guard", "texts")}
+    result = run.run_daily_item(daily_item, **{**daily_kwargs, "reader": FakeProvider(replies=[
+        FakeReply(chunks=[daily])]), "rewriter": FakeProvider(json_replies=[ProviderTimeout("APITimeoutError")])})
+    assert (result["shown"], result["shown_answer"], result["rewritten"]) == ("model", daily, [])
+    assert result["gender"] == ["te sientes perdida"]
+    assert summarize([result])["es"]["gender_hits"] == 1 and summarize([result])["es"]["gender_rewritten"] == 0

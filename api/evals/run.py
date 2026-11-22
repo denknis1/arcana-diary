@@ -13,7 +13,10 @@ Six sets, all written in full in this folder:
   stop-phrases that must not give a crisis answer;
 - judge_check.jsonl — 12 known-bad answers: the judge must give each one 2 or less on the named criterion,
   otherwise its averages are not trusted and the run fails.
-Every result records the guard's source and time, the raw answer and what a person would see after §2.5.
+Every result records the guard's source and time, the raw answer and what a person would see after §2.5 — and,
+as in the API (stage 4.7), after the gender rewrite of a Spanish section (rewrite.py: the same call and checks, on the
+reader's model, metered as "rewrite"; no daily budget here, the run's ceiling holds). The judge and the auto checks
+grade the raw answer, as before; "gender" lists the hits in what finalize showed, "rewritten" the sections replaced.
 A reader answer of [[crisis]] is recorded (reader_crisis) and not graded: for a crisis question it counts as caught.
 
 The controller runs it only after the owner's explicit yes to the printed cost, with the key from deploy/.env:
@@ -33,7 +36,8 @@ from pathlib import Path
 from app.cards import label, load_cards
 from app.config import PRICES_PER_MTOK, cost_usd, load_settings
 from app.draw import draw_spread
-from app.reader import check, compose
+from app.config import REWRITE_TIMEOUT_S
+from app.reader import check, compose, rewrite
 from app.reader.check import load_reader_terms
 from app.reader.claude import ClaudeProvider
 from app.reader.engine import Chunk, Finished, run_stream
@@ -49,6 +53,9 @@ EVALS_DIR = Path(__file__).resolve().parent
 # (in, out) tokens per call, upper estimate
 EST_TOKENS = {"guard": (700, 300), "reader": (1600, 1500), "judge": (2200, 900), "followup": (2200, 600),
               "daily": (700, 400), "judge_daily": (1200, 700)}
+# Stage 4.7: the gender rewrite (≈ 450/450 tokens on Haiku 5.5, $0.0003, only for a Spanish text with a hit: about
+# 6 of 85 in the 4.6 run) is left out of the estimate: it fits in the margin of these upper numbers, and the meter's
+# ceiling counts it like any call.
 READER_MAX_TOKENS = 4000
 DAILY_MAX_TOKENS = 2000
 NO_KEY = 3
@@ -118,8 +125,37 @@ def read_text(reader, prompt, messages: list[dict], max_tokens: int, first_token
     return "".join(parts).strip(), outcome
 
 
+def eval_rewrite(rewriter, lang: str, terms):
+    """The API's gender rewrite (flow.rewrite_sections) without the daily budget and llm_calls: one call per
+    section, in order. rewriter None (evals.compare: the raw answers of several models) — nothing is rewritten."""
+    def rewrite_all(todo: dict[str, str]) -> dict[str, str]:
+        if rewriter is None:
+            return {}
+        out = {}
+        for name, text in todo.items():
+            new, _, _ = rewrite.call_rewrite(rewriter, lang, text, terms)
+            if new:
+                out[name] = new
+        return out
+    return rewrite_all
+
+
+def shown_after_rewrite(final, sections: dict, lang: str, terms, rewriter):
+    """finalize's Final after the gender rewrite, as the API saves it; also the hits and the sections rewritten."""
+    hits = rewrite.gendered(rewrite.model_sections(final, sections), lang)
+    final, done = rewrite.rewrite_answer(final, sections, lang, eval_rewrite(rewriter, lang, terms))
+    return final, hits, sorted(done)
+
+
+def rewrite_text(text: str, lang: str, terms, rewriter) -> tuple[str, list[str], bool]:
+    """A follow-up or card-of-the-day text after the gender rewrite: (shown text, hits, rewritten)."""
+    hits = rewrite.gendered({"text": text}, lang).get("text", [])
+    new = eval_rewrite(rewriter, lang, terms)({"text": text}).get("text") if hits else None
+    return new or text, hits, new is not None
+
+
 def run_item(item: dict, *, cards, prompts, guard, reader, judge_provider, judge_prompt, terms, texts,
-             first_token_timeout_s: float) -> dict:
+             first_token_timeout_s: float, rewriter=None) -> dict:
     lang = item["lang"]
     result = {"id": item["id"], "lang": lang, "category": item["category"], "expect_group": item["expect_group"]}
     try:
@@ -138,8 +174,11 @@ def run_item(item: dict, *, cards, prompts, guard, reader, judge_provider, judge
         sections, seen, outcome = read_sections(reader, prompts[("reader", lang)], reading, user_input,
                                                 first_token_timeout_s)
         final = finalize(reading, sections, seen, outcome, cards, terms, texts[lang]["reader_unavailable"])
+        final, gender, rewritten = shown_after_rewrite(final, sections, lang, check.live_terms(terms, lang, group),
+                                                       rewriter)
         result.update({"sections": sections, "shown": final.shown, "shown_reason": final.reason,
-                       "shown_sections": final.sections, "reader_crisis": final.shown == "crisis"})
+                       "shown_sections": final.sections, "reader_crisis": final.shown == "crisis",
+                       "gender": gender, "rewritten": rewritten})
         if final.shown == "crisis":
             result["auto"] = auto_checks(item, group, None, terms[lang], False, reader_crisis=True)
             return result
@@ -152,7 +191,7 @@ def run_item(item: dict, *, cards, prompts, guard, reader, judge_provider, judge
 
 
 def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provider, judge_prompt, terms, texts,
-                      first_token_timeout_s: float) -> dict:
+                      first_token_timeout_s: float, rewriter=None) -> dict:
     """The reading's first answer, then the follow-up exactly as the API sends it (§2.3); the follow-up question
     goes through the guard, the reading question is an ok question."""
     lang = item["lang"]
@@ -169,6 +208,7 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
         sections, seen, outcome = read_sections(reader, prompts[("reader", lang)], reading, user_input,
                                                 first_token_timeout_s)
         first = finalize(reading, sections, seen, outcome, cards, terms, texts[lang]["reader_unavailable"])
+        first, _, _ = shown_after_rewrite(first, sections, lang, check.live_terms(terms, lang, "ok"), rewriter)
         if first.sections is None:
             raise RuntimeError("the first answer is a crisis answer")
         first_answer = compose.answer_text(first.sections)
@@ -177,10 +217,14 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
         text, outcome = read_text(reader, prompts[("followup", lang)], messages, FOLLOWUP_MAX_TOKENS,
                                   first_token_timeout_s)
         crisis = bool(CRISIS_MARK.search(text))
+        live = check.live_terms(terms, lang, group, reading["guard_group"])
         result.update({"answer": text, "reader_crisis": crisis})
-        result["auto"] = text_checks(item, group, None if crisis else text,
-                                     check.live_terms(terms, lang, group, reading["guard_group"]), check.FOLLOWUP_WORDS,
+        result["auto"] = text_checks(item, group, None if crisis else text, live, check.FOLLOWUP_WORDS,
                                      reader_crisis=crisis)
+        cut = not isinstance(outcome, Finished) or outcome.result.stop_reason == "max_tokens"
+        if not crisis and text and not cut and not result["auto"]["banned"]:  # as the API: never a cut answer
+            shown, gender, rewritten = rewrite_text(text, lang, live, rewriter)
+            result.update({"shown_answer": shown, "gender": gender, "rewritten": ["followup"] if rewritten else []})
         if not crisis:
             context = (f"{user_input}\n<first_answer>\n{first_answer}\n</first_answer>\n"
                        f"<followup>{item['followup']}</followup>")
@@ -191,7 +235,7 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
 
 
 def run_daily_item(item: dict, *, cards, prompts, reader, judge_provider, judge_prompt, terms,
-                   first_token_timeout_s: float) -> dict:
+                   first_token_timeout_s: float, rewriter=None) -> dict:
     """One card-of-the-day text as the background job writes it (§2.6); "shown" is what the cache would keep."""
     lang = item["lang"]
     result = {"id": item["id"], "lang": lang, "category": item["category"], "expect_group": "ok", "group": "ok"}
@@ -205,6 +249,9 @@ def run_daily_item(item: dict, *, cards, prompts, reader, judge_provider, judge_
         usable = (bool(text) and isinstance(outcome, Finished) and outcome.result.stop_reason != "max_tokens"
                   and not auto["banned"])
         result.update({"answer": text, "shown": "model" if usable else "fallback", "auto": auto})
+        if usable:
+            shown, gender, rewritten = rewrite_text(text, lang, check.live_terms(terms, lang), rewriter)
+            result.update({"shown_answer": shown, "gender": gender, "rewritten": ["daily"] if rewritten else []})
         result["scores"] = judge(judge_provider, judge_prompt, item, messages[0]["content"], text)
     except Exception as exc:
         result["error"] = type(exc).__name__
@@ -279,7 +326,8 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
         print("ANTHROPIC_API_KEY is empty: load it first (set -a && . deploy/.env && set +a). Nothing was called.",
               file=sys.stderr)
         return NO_KEY
-    reader = reader or ClaudeProvider(key, settings.reader_model, effort=settings.reader_effort)
+    reader = reader or ClaudeProvider(key, settings.reader_model, effort=settings.reader_effort,
+                                      json_timeout_s=REWRITE_TIMEOUT_S)
     guard_provider = guard_provider or ClaudeProvider(key, settings.guard_model,
                                                       json_timeout_s=settings.guard_timeout_s)
     judge_provider = judge_provider or ClaudeProvider(key, settings.judge_model, json_timeout_s=60.0, json_effort=None)
@@ -294,6 +342,7 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
     args.out.mkdir(parents=True, exist_ok=True)
     # every call is appended at once, so what a crashed run spent is not lost (stage 4.5, Fable re-check R2)
     meter = Meter(args.max_usd, sink=args.out / f"calls-{stamp}.jsonl")
+    rewriter = MeteredProvider(reader, meter, "rewrite")  # stage 4.7: the same model, its calls metered apart
     reader = MeteredProvider(reader, meter)
     guard_provider = MeteredProvider(guard_provider, meter, "guard")
     judge_provider = MeteredProvider(judge_provider, meter, "judge")
@@ -324,10 +373,11 @@ def main(argv=None, *, reader=None, guard_provider=None, judge_provider=None) ->
 
     judge_check = metered((item, lambda i: run_judge_check(i, cards=cards, judge_provider=judge_provider,
                                                            judge_prompt=judge_prompt)) for item in judge_items)
-    results = metered((item, lambda i: run_item(i, guard=guard, texts=texts, **common)) for item in items)
-    results += metered((item, lambda i: run_followup_item(i, guard=guard, texts=texts, **common))
+    results = metered((item, lambda i: run_item(i, guard=guard, texts=texts, rewriter=rewriter, **common))
+                      for item in items)
+    results += metered((item, lambda i: run_followup_item(i, guard=guard, texts=texts, rewriter=rewriter, **common))
                        for item in followup_items)
-    results += metered((item, lambda i: run_daily_item(i, **common)) for item in daily_items)
+    results += metered((item, lambda i: run_daily_item(i, rewriter=rewriter, **common)) for item in daily_items)
     guard_results = metered((item, lambda i: run_guard_item(i, guard)) for item in guard_items)
     summary = summarize(results, guard_results, judge_check)
     path = args.out / f"run-{stamp}.json"
