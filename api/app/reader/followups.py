@@ -96,10 +96,14 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
         # stage 4.6 (Fable I5): the stricter of the reading's and the follow-up's group
         terms = check.live_terms(ctx.terms, lang, group, reading["guard_group"])
         replace = cut or bool(check.banned_in(text, terms, lang))
-        if not replace and rewrite.gendered({"followup": text}, lang):
-            # stage 4.7: a Spanish answer that speaks of the reader with a gendered form is rewritten once
-            rewritten = rewrite_section(ctx, lang, "followup", text, terms=terms, reading_id=reading["id"])
-            text = rewritten or text
+        try:
+            if not replace and rewrite.gendered({"followup": text}, lang):
+                # stage 4.7: a Spanish answer that speaks of the reader with a gendered form is rewritten once
+                rewritten = rewrite_section(ctx, lang, "followup", text, terms=terms, reading_id=reading["id"])
+        except Exception:  # Fable review I4: nothing after the stream may lose the finished answer
+            log.exception("gender rewrite failed: the follow-up stays as written")
+            rewritten = None
+        text = rewritten or text
         answer = {"model": text, "fallback": fallback.followup_fallback(ctx.cards, reading) if replace else None}
         if not check.length_ok(text, check.FOLLOWUP_WORDS):
             log.info("follow-up length out of range: %s words", check.word_count(text))

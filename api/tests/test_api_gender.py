@@ -281,3 +281,62 @@ def test_a_rewrite_whose_log_fails_still_gives_the_answer(api, monkeypatch):
     events = stream(api, body["id"])
     assert events[-1] == ("done", {"answer_shown": "model"})
     assert saved(api, body["id"])["answer"]["model"]["card1"] == NEUTRAL
+
+
+# --- Fable review I4: an unexpected error in the rewrite step keeps the answer ---
+
+def boom(*args, **kwargs):
+    raise RuntimeError("can't start new thread")
+
+
+def test_an_error_in_the_reading_rewrite_keeps_and_saves_the_answer(api, monkeypatch):
+    monkeypatch.setattr(rewrite, "rewrite_answer", boom)
+    api.reader.replies.append(es_answer())
+    body = es_reading(api)
+    events = stream(api, body["id"])
+    assert events[-1] == ("done", {"answer_shown": "model"})
+    assert [e for e, _ in events if e in ("replace", "error")] == []
+    row = saved(api, body["id"])
+    assert row["answer_shown"] == "model" and row["answer"]["model"]["card1"] == GENDERED
+    assert row["stream_started_at"] is None  # the claim is released as usual
+
+
+def test_an_error_in_the_followup_rewrite_keeps_and_saves_the_answer(api, monkeypatch):
+    from app.reader import followups
+    reading_id = ready_es_reading(api)
+    monkeypatch.setattr(followups, "rewrite_section", boom)
+    api.reader.replies.append(FakeReply(chunks=split_chunks(FOLLOWUP)))
+    events = parse_sse(api.client.post(f"/api/readings/{reading_id}/followups",
+                                       json={"question": "¿Y cómo empiezo?"}).text)
+    assert events[-1][0] == "done" and events[-1][1]["answer_shown"] == "model"
+    assert [e for e, _ in events if e in ("replace", "error")] == []
+    with api.db.connect() as conn:
+        [row] = repo.list_followups(conn, uuid.UUID(reading_id))
+    assert row["answer"] == {"model": FOLLOWUP, "fallback": None}
+
+
+def test_an_error_in_the_daily_rewrite_still_caches_the_text(api, monkeypatch):
+    from app import daily
+    monkeypatch.setattr(daily, "rewrite_section", boom)
+    api.reader.replies.extend([FakeReply(), FakeReply(chunks=[DAILY])])
+    assert fill_daily_cache(api.ctx, DAY, ("major-18-moon",))["written"] == 4
+    assert daily_texts(api)[(False, "es")] == DAILY
+
+
+# --- Fable review I1 end to end: a yes/no headline keeps its verdict wording ---
+
+YES_HEADLINE = "Sí, y estás lista para empezar el curso."
+
+
+@pytest.mark.parametrize("reply, shown", [
+    ({"text": "Sí, y tienes lo necesario para empezar el curso."}, "Sí, y tienes lo necesario para empezar el curso."),
+    ({"text": "No, todavía falta para empezar el curso."}, YES_HEADLINE),
+])
+def test_a_yes_no_headline_is_rewritten_only_with_its_verdict(api, reply, shown):
+    text = (f"[[headline]]\n{YES_HEADLINE}\n[[card 1]]\nLa carta habla de un buen comienzo con calma.\n"
+            f"[[step]]\n{STEP}\n[[why]]\nLa carta muestra manos abiertas y un camino claro.\n")
+    api.reader.replies.append(FakeReply(chunks=split_chunks(text)))
+    api.reader.json_replies.append(reply)
+    body = create(api, lang="es", kind="yes_no", question="¿Debo empezar el curso?")
+    stream(api, body["id"])
+    assert saved(api, body["id"])["answer"]["model"]["headline"] == shown

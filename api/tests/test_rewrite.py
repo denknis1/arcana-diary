@@ -19,18 +19,22 @@ def test_a_neutral_rewrite_is_taken_and_the_call_is_short():
     assert new == NEUTRAL and isinstance(outcome, Finished) and outcome.result.tokens_in == 60
     [call] = provider.json_calls()
     assert call["system"] == rewrite.REWRITE_SYSTEM and call["schema"] == rewrite.REWRITE_SCHEMA
-    assert call["messages"] == [{"role": "user", "content": f"<parrafo>{ORIGINAL}</parrafo>"}]
-    assert call["max_tokens"] == max_tokens == rewrite.REWRITE_MIN_TOKENS
+    assert call["messages"] == [{"role": "user",
+                                 "content": f"<parrafo>{ORIGINAL}</parrafo>\n<formas>estás cansada</formas>"}]
+    assert call["max_tokens"] == max_tokens == rewrite.REWRITE_MIN_TOKENS == 1024
+    assert "Si no hay nada que corregir, devuelve el párrafo igual." in rewrite.REWRITE_SYSTEM
 
 
-def test_max_tokens_is_one_and_a_half_times_the_section_above_the_floor():
+def test_max_tokens_is_twice_the_section_plus_room_above_the_floor():
     long_text = "palabra " * 300  # 2400 characters ≈ 800 tokens
-    assert rewrite.rewrite_max_tokens(long_text) == 1200 + 64
+    assert rewrite.rewrite_max_tokens(long_text) == 1600 + 512
     assert rewrite.rewrite_max_tokens("Hola.") == rewrite.REWRITE_MIN_TOKENS
+    assert rewrite.rewrite_max_tokens("x" * 600) == 1024  # Fable review I3: 600 characters no longer get 400
 
 
 def test_the_section_is_escaped_inside_its_tag():
-    assert rewrite.rewrite_messages("a <b> & c")[0]["content"] == "<parrafo>a &lt;b&gt; &amp; c</parrafo>"
+    content = rewrite.rewrite_messages("a <b> & c")[0]["content"]
+    assert content == "<parrafo>a &lt;b&gt; &amp; c</parrafo>\n<formas></formas>"
 
 
 @pytest.mark.parametrize("reply, reason", [
@@ -76,7 +80,8 @@ def test_length_has_a_small_slack_for_a_short_headline():
 
 def test_the_redirect_list_is_used_when_given():
     strict = live_terms(TERMS, "es", "redirect_person")
-    text = "La carta habla de una pausa. Hoy te sientes sin energía y todo va a salir bien con calma."
+    text = ("La carta habla de una pausa. Hoy te sientes sin energía para cargar con todo y va a salir bien bajar el "
+            "ritmo.")
     assert rewrite.accepted(ORIGINAL, text, ES, "es") == text
     assert rewrite.accepted(ORIGINAL, text, strict, "es") is None
 
@@ -120,3 +125,67 @@ def test_nothing_changes_without_an_accepted_rewrite_english_or_a_fallback():
     crisis = Final("crisis", {"model": None, "fallback": None}, None, "crisis", "crisis")
     assert rewrite.rewrite_answer(crisis, streamed, "es", lambda todo: called.append(1) or {}) == (crisis, {})
     assert called == []
+
+
+# --- Fable review I1: the verdict wording stays as it was ---
+
+@pytest.mark.parametrize("original, candidate", [
+    ("Sí, y estás lista para empezar el curso.", "No, todavía falta para empezar el curso."),
+    ("Sí, estás lista para empezar.", "Quizá, hay lo necesario para empezar."),
+    ("Sí, estás lista para empezar.", "Tienes lo necesario para empezar ya."),  # verdict dropped
+    ("Probablemente no: estás cansada de insistir.", "Sí: te sobra energía para insistir."),
+])
+def test_a_flipped_hedged_or_dropped_verdict_is_not_taken(original, candidate):
+    assert rewrite.accepted(original, candidate, ES, "es") is None
+
+
+def test_the_same_verdict_wording_is_taken():
+    new = "Sí, y tienes lo necesario para empezar el curso."
+    assert rewrite.accepted("Sí, y estás lista para empezar el curso.", new, ES, "es") == new
+
+
+# --- Fable review I2: still the same paragraph ---
+
+EIGHT = ("El Ocho de Espadas habla de sentirte atada por tus propias ideas. Estás cansada de dar vueltas, pero la "
+         "salida está más cerca de lo que parece si das un paso pequeño.")
+EIGHT_NEUTRAL = ("El Ocho de Espadas habla de sentir que tus propias ideas te atan. Te pesa dar vueltas, pero la "
+                 "salida está más cerca de lo que parece si das un paso pequeño.")
+
+
+def test_a_reworded_paragraph_is_taken():
+    assert rewrite.accepted(EIGHT, EIGHT_NEUTRAL, ES, "es") == EIGHT_NEUTRAL
+
+
+@pytest.mark.parametrize("candidate", [
+    # another paragraph, about another card, with a date and a promise the dictionary does not list
+    "La Torre anuncia que en marzo recibirás una oferta de trabajo que cambiará tu forma de ver las cosas, y "
+    "conviene que la recibas con calma y sin miedo.",
+    # translated to English
+    "The Eight of Swords speaks of feeling bound by your own ideas. You are tired of going in circles, but the way "
+    "out is closer than it seems if you take a small step.",
+    f"<parrafo>{EIGHT_NEUTRAL}</parrafo>",
+    f"Aquí está el párrafo corregido: {EIGHT_NEUTRAL}",
+    "**El Ocho de Espadas** habla de sentir que tus propias ideas te atan. Te pesa dar vueltas, pero la salida "
+    "está más cerca de lo que parece si das un paso pequeño.",
+    "El Ocho de Espadas habla de sentir que tus propias ideas te atan.\n- Te pesa dar vueltas, pero la salida está "
+    "más cerca de lo que parece si das un paso pequeño.",
+    EIGHT_NEUTRAL.replace("pequeño", "pequeño &amp; claro"),
+    EIGHT_NEUTRAL.replace("un paso pequeño", "3 pasos pequeños"),
+])
+def test_a_reply_that_is_not_the_same_paragraph_is_not_taken(candidate):
+    assert rewrite.accepted(EIGHT, candidate, ES, "es") is None
+
+
+def test_a_short_headline_may_change_more_words():
+    original = "Hoy estás lista para bajar el ritmo."
+    assert rewrite.accepted(original, "Hoy tienes lo necesario para bajar el ritmo.", ES, "es") is not None
+    assert rewrite.accepted(original, "Mañana conviene pensar en otra cosa distinta.", ES, "es") is None
+
+
+def test_a_bug_in_the_checks_keeps_the_original(monkeypatch):
+    def broken(*args):
+        raise ValueError("bug")
+
+    monkeypatch.setattr(rewrite, "accepted", broken)
+    new, outcome, _ = rewrite.call_rewrite(FakeProvider(json_replies=[{"text": NEUTRAL}]), "es", ORIGINAL, ES)
+    assert new is None and isinstance(outcome, Finished)

@@ -369,8 +369,12 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
     # stage 4.7: after finalize's own replacements, a Spanish section still written by the model that speaks of
     # the reader with a gendered form is rewritten once; a failed rewrite keeps the text as it was
     live = check.live_terms(ctx.terms, lang, reading["guard_group"])
-    final, rewritten = rewrite.rewrite_answer(
-        final, streamed, lang, lambda todo: rewrite_sections(ctx, lang, todo, live, reading["id"]))
+    try:
+        final, rewritten = rewrite.rewrite_answer(
+            final, streamed, lang, lambda todo: rewrite_sections(ctx, lang, todo, live, reading["id"]))
+    except Exception:  # Fable review I4: nothing after the stream may lose the finished answer
+        log.exception("gender rewrite failed: the answer stays as written")
+        rewritten = {}
     if rewritten:
         log.info("reader answer: %s rewritten without gender", ", ".join(sorted(rewritten)))
     try:

@@ -221,7 +221,8 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
         result.update({"answer": text, "reader_crisis": crisis})
         result["auto"] = text_checks(item, group, None if crisis else text, live, check.FOLLOWUP_WORDS,
                                      reader_crisis=crisis)
-        if not crisis and text and not result["auto"]["banned"]:
+        cut = not isinstance(outcome, Finished) or outcome.result.stop_reason == "max_tokens"
+        if not crisis and text and not cut and not result["auto"]["banned"]:  # as the API: never a cut answer
             shown, gender, rewritten = rewrite_text(text, lang, live, rewriter)
             result.update({"shown_answer": shown, "gender": gender, "rewritten": ["followup"] if rewritten else []})
         if not crisis:
