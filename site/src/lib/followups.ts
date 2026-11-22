@@ -53,7 +53,7 @@ export interface Followup {
   softLine: string | null;
   usedReading: boolean | null;
   /** set when the answer could not be read back in time; `body` is the request as sent (its request_id too), so "Try again" repeats it unchanged */
-  lost?: { n?: number; answeredBefore: number; body?: FollowupBody };
+  lost?: { n?: number; answeredBefore: number; body?: FollowupBody; at?: number }; // at: ms of the first loss
 }
 
 export function newFollowup(question: string): Followup {

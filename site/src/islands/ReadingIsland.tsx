@@ -115,6 +115,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
       sleep: (ms) => new Promise((resolve) => setTimeout(() => { if (run.current === mine) resolve(); }, ms)), // a stale run never wakes
       reducedMotion: prefersReducedMotion(),
       newId: () => newRequestId(),
+      now: () => Date.now(),
     };
   };
 

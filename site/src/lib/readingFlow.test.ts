@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { createApi } from './api';
 import { CLOSED, nightReducer, type NightAction, type NightState } from './nightRoom';
 import {
-  DEFAULT_COUNTS, REPEAT_WAIT_MS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps,
+  DEFAULT_COUNTS, LOST_REPOST_MAX_MS, REPEAT_WAIT_MS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps,
 } from './readingFlow';
 import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText, type Call } from './testing/fakes';
 
@@ -288,6 +288,38 @@ describe('askFollowup', () => {
     expect(h.state().followups).toHaveLength(1);
     expect(h.state().followups[0]).toMatchObject({ status: 'failed', lost: { n: 2, answeredBefore: 1 } });
     expect(h.state().followups[0].lost?.body).toMatchObject({ request_id: 'id-1', use_reading: true });
+  });
+
+  it('Try again more than an hour after the loss only reads back with GET, never re-POSTs (spec 4.4b §9)', async () => {
+    const { h, lost } = await lostHarness(...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [] })),
+      jsonResponse(200, VIEW));
+    expect(lost.lost?.at).toEqual(expect.any(Number));
+    h.deps.now = () => lost.lost!.at! + LOST_REPOST_MAX_MS + 1;
+    const before = h.calls.length;
+    await retryFollowup(h.deps, 'r1', undefined, lost.lost!);
+    expect(posts(h)).toHaveLength(2); // the ask and its one A1 re-POST, nothing now
+    expect(h.calls.slice(before).every((c) => c.method === 'GET')).toBe(true);
+    expect(h.state().followups[0]).toMatchObject({ status: 'failed', lost: { n: 2, answeredBefore: 1 } });
+  });
+
+  it('Try again within the hour still re-POSTs the same body', async () => {
+    const { h, lost } = await lostHarness(
+      sseResponse(sseText([['meta', { followup: 2, replay: true }], ['text', { name: 'followup', text: 'A2' }],
+        ['done', { answer_shown: 'model', followups_left: 0, followup_attempts_left: 5, used_reading: true }]])));
+    h.deps.now = () => lost.lost!.at! + LOST_REPOST_MAX_MS - 1;
+    await retryFollowup(h.deps, 'r1', undefined, lost.lost!);
+    expect(posts(h)).toHaveLength(3);
+    expect(h.state().followups[0]).toMatchObject({ text: 'A2', status: 'done' });
+  });
+
+  it('keeps the time of the first loss when Try again loses it again', async () => {
+    const { h, lost } = await lostHarness(new TypeError('offline'),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [] })), jsonResponse(200, VIEW));
+    const first = lost.lost!.at!;
+    expect(first).toEqual(expect.any(Number));
+    h.deps.now = () => first + 5000;
+    await retryFollowup(h.deps, 'r1', undefined, lost.lost!);
+    expect(h.state().followups[0].lost?.at).toBe(first);
   });
 
   it('Try again answered 402 plus leaves followupPlus, 429 attempts leaves the refusal state', async () => {
