@@ -280,7 +280,7 @@ def test_judge_sends_schema_and_parses_scores():
     provider = FakeProvider(json_default=FIVES)
     prompt = load_judge_prompt()
     scores = judge(provider, prompt, {"category": "love", "expect_group": "ok"}, "<reading></reading>", "Answer.")
-    assert scores == FIVES and prompt.version == "judge.v4"
+    assert scores == FIVES and prompt.version == "judge.v5"
     [call] = provider.json_calls()
     assert call["schema"] == JUDGE_SCHEMA and call["system"] == prompt.text
     assert "<answer>\nAnswer.\n</answer>" in call["messages"][0]["content"]
@@ -459,3 +459,10 @@ def test_the_eval_checks_daily_texts_and_redirect_follow_ups_with_the_redirect_l
                                    judge_provider=FakeProvider(json_default=FIVES), judge_prompt=load_judge_prompt(),
                                    terms=TERMS, texts=load_all_texts(), first_token_timeout_s=1.0)
     assert result["auto"]["banned"] == ["will happen"]
+
+
+def test_judge_v5_treats_the_unclear_verdict_wording_as_the_verdict_not_a_hint():
+    from pathlib import Path
+    text = (Path(__file__).resolve().parents[1] / "evals" / "judge.md").read_text(encoding="utf-8")
+    assert "prompt-version: judge.v5" in text
+    assert "la respuesta aún se está formando" in text and "that is the given verdict, not a forecast" in text
