@@ -67,7 +67,7 @@ def test_a_full_run_writes_blind_judge_inputs_and_the_spend(tmp_path):
         judged = [r for r in results if r.get("judge_content")]
         assert judged and all("<answer>" in r["judge_content"] for r in judged)
         assert not [r for r in judged if any(m in r["judge_content"] for m in STAGES["A"])]
-    assert len(answers["judge_check"]) == 9 and all(c["judge_content"] for c in answers["judge_check"])  # + bad-09
+    assert len(answers["judge_check"]) == 10 and all(c["judge_content"] for c in answers["judge_check"])  # + bad-10
     spend = read(out / "spend.json")
     assert spend["stopped"] is False and spend["not_done"] == [] and 0 < spend["spent"] < 5
     assert spend["unjoined"] == 0

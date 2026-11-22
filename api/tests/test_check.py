@@ -1,8 +1,10 @@
+import json
+
 import pytest
 
 from app.config import load_settings
-from app.reader.check import (FOLLOWUP_WORDS, banned_in, check_answer, find_claims, length_ok, load_reader_terms,
-                              word_count)
+from app.reader.check import (FOLLOWUP_WORDS, READER_TERMS, banned_in, check_answer, find_claims, length_ok,
+                              load_reader_terms, word_count)
 from app.terms import find_banned, load_terms
 
 TERMS = load_reader_terms()
@@ -29,7 +31,7 @@ def test_clean_answer_passes():
 
 
 @pytest.mark.parametrize("lang, text, expected", [
-    ("en", "This will happen for sure.", ("for sure", "will happen")),
+    ("en", "This will happen for sure.", ("for sure",)),
     ("en", "He feels the same way about you.", ("feels the same", "he feels")),
     ("en", "Your ex still loves you and misses you.", ("misses you", "still loves you")),
     ("es", "Seguro que no es fácil, pero él siente lo mismo.", ("él siente",)),
@@ -165,7 +167,7 @@ def test_explicit_cannot_know_phrasing_is_negated(lang, text):
     ("en", "Someone misses you.", "misses you"),
     ("es", "Él te ama.", "te ama"), ("es", "Ella te quiere.", "ella te quiere"),
     ("es", "Él se arrepiente.", "él se arrepiente"), ("es", "Alguien te extraña.", "te extraña"),
-    ("es", "Pasará algo bueno.", "pasará algo"), ("es", "Llegará el amor.", "llegará el amor"),
+    ("es", "Pasará lo que tenga que pasar.", "pasará lo que"), ("es", "Llegará esa persona.", "llegará esa persona"),
 ])
 def test_live_dictionary_claims(lang, text, term):
     assert term in find_claims(text, TERMS[lang], lang)[0]
@@ -234,3 +236,51 @@ def test_three_yes_no_cards_use_the_three_card_length():
                 "step": "Write it down.", "why": "Two of the cards lean the same way."}
     assert check_answer(sections, "yes_no", "en", TERMS["en"], True, 3).length_ok is True
     assert check_answer(sections, "yes_no", "en", TERMS["en"], True).length_ok is False  # one card: 90–150
+
+
+# --- stage 4.6, owner decision 1: bolder about the person's own life, never dates, fate or other people ---
+
+READER_TERMS_RAW = json.loads(READER_TERMS.read_text(encoding="utf-8"))
+
+
+@pytest.mark.parametrize("lang, term", [
+    ("en", "will happen"), ("en", "is going to happen"), ("en", "is coming your way"),
+    ("es", "llegará el amor"), ("es", "llegará alguien"), ("es", "va a pasar"), ("es", "pasará algo"),
+])
+def test_arrivals_in_the_persons_own_life_are_no_longer_banned(lang, term):
+    assert term not in READER_TERMS_RAW[lang]
+
+
+@pytest.mark.parametrize("lang, text", [
+    ("en", "Someone new will come into your life, and this card is warm about it."),
+    ("en", "Something good is coming your way at work."),
+    ("en", "A change will happen in how you spend your evenings."),
+    ("en", "This new job is going to happen faster than you think, and it will ask a lot of you."),
+    ("es", "Llegará alguien a tu vida."), ("es", "Llegará el amor, y te encontrará con calma."),
+    ("es", "Va a pasar algo bueno en tu trabajo."), ("es", "Pasará algo nuevo en tu semana."),
+])
+def test_a_confident_line_about_the_persons_own_life_passes(lang, text):
+    result = check_answer(one_card(card1=text), "one", lang, TERMS[lang], with_why=False)
+    assert result.body_ok and result.banned == ()
+
+
+@pytest.mark.parametrize("lang, term", [
+    ("en", "will come back"), ("en", "will return to you"), ("en", "is bound to happen"), ("en", "guarantee*"),
+    ("en", "definitely"), ("en", "destined"), ("en", "misses you"), ("en", "you will win"), ("en", "will die"),
+    ("en", "you will get pregnant"),
+    ("es", "llegará esa persona"), ("es", "volverá"), ("es", "va a volver"), ("es", "regresará"),
+    ("es", "pasará lo que"), ("es", "garantiz*"), ("es", "está escrito"), ("es", "es tu destino"),
+    ("es", "te extraña"), ("es", "vas a ganar"), ("es", "vas a morir"), ("es", "vas a quedar embarazada"),
+])
+def test_other_peoples_actions_fate_guarantees_and_forbidden_topics_stay_banned(lang, term):
+    assert term in READER_TERMS_RAW[lang]
+
+
+@pytest.mark.parametrize("lang, text, term", [
+    ("en", "She will come back to you.", "will come back"), ("en", "It is bound to happen.", "is bound to happen"),
+    ("es", "Llegará esa persona que esperas.", "llegará esa persona"), ("es", "Él va a volver.", "va a volver"),
+    ("es", "Pasará lo que tenga que pasar.", "pasará lo que"),
+])
+def test_kept_claims_still_replace_an_answer(lang, text, term):
+    result = check_answer(one_card(card1=text), "one", lang, TERMS[lang], with_why=False)
+    assert not result.body_ok and term in result.banned

@@ -9,8 +9,8 @@ MARKERS = ["[[headline]]", "[[card 1]]", "[[card 2]]", "[[card 3]]", "[[synthesi
 def test_all_prompts_load_with_versions():
     assert {key: p.version for key, p in PROMPTS.items()} == {
         ("guard", None): "guard.v1",
-        ("reader", "en"): "reader.en.v6", ("reader", "es"): "reader.es.v6",
-        ("followup", "en"): "followup.en.v5", ("followup", "es"): "followup.es.v5",
+        ("reader", "en"): "reader.en.v7", ("reader", "es"): "reader.es.v7",
+        ("followup", "en"): "followup.en.v6", ("followup", "es"): "followup.es.v6",
         ("daily", "en"): "daily.en.v4", ("daily", "es"): "daily.es.v4",
     }
     assert all(len(p.text) > 500 for p in PROMPTS.values())
@@ -165,3 +165,93 @@ def test_reader_prompt_reads_yes_no_on_three_cards(lang, phrases):
     """Stage 4.5 §4: a paragraph per card with its vote, synthesis — what tipped the verdict, one step, one why."""
     text = PROMPTS[("reader", lang)].text
     assert all(phrase in text for phrase in phrases)
+
+
+# --- stage 4.6 (owner decisions 22.11.2026): reader v7, follow-up v6 ---
+
+@pytest.mark.parametrize("name, lang, phrases", [
+    ("reader", "en", ("In an ordinary question (guard group ok) you may say with confidence",
+                      '"someone new will come into your life"', '"this new job will ask a lot of you"',
+                      'without "may" or "might" on every line', "no dates or time frames", '"in March"',
+                      '"within two weeks"', "no guarantees or fate", '"guaranteed"', '"destined"', '"it is written"',
+                      "never about another person (rule 4) or the topics of rule 3", "give no date")),
+    ("followup", "en", ("In an ordinary follow-up (guard group ok) you may say with confidence",
+                        '"someone new will come into your life"', "no dates or time frames", '"in March"',
+                        "no guarantees or fate", "never about another person (rule 4) or the topics of rule 3")),
+    ("reader", "es", ("En una pregunta común (grupo ok) puedes decir con seguridad", "«llegará alguien a tu vida»",
+                      "«este trabajo nuevo te va a pedir mucho»", "sin «puede» ni «quizá» en cada línea",
+                      "sin fechas ni plazos", "«en marzo»", "«en dos semanas»", "«este año»",
+                      "sin garantías ni destino", "«está escrito»",
+                      "nunca sobre otra persona (regla 4) ni sobre los temas de la regla 3", "no des fechas")),
+    ("followup", "es", ("En una pregunta común (grupo ok) puedes decir con seguridad", "«llegará alguien a tu vida»",
+                        "sin fechas ni plazos", "«en marzo»", "sin garantías ni destino",
+                        "nunca sobre otra persona (regla 4) ni sobre los temas de la regla 3")),
+])
+def test_bolder_in_ordinary_questions_without_dates_fate_or_other_people(name, lang, phrases):
+    """Decision 1: confident about the person's own life in group ok; dates, fate, other people stay forbidden."""
+    text = PROMPTS[(name, lang)].text
+    assert all(phrase in text for phrase in phrases), [p for p in phrases if p not in text]
+    gone = ("Never say something will happen", "speak about the person now") if lang == "en" else (
+        "Nunca digas que algo pasará", "habla de la persona ahora")
+    assert not [g for g in gone if g in text]
+
+
+@pytest.mark.parametrize("name, lang, phrases", [
+    ("reader", "en", ("In redirect_money, redirect_topic and redirect_person, the confidence of rule 2 does not "
+                      "apply",
+                      "no line may hint at how it will turn out", '"the answer on her side is still forming"',
+                      '"the answer is taking shape"', "Talk about the person themself.")),
+    ("followup", "en", ("In redirect_money, redirect_topic and redirect_person, the confidence of rule 2 does not apply",
+                        "no line may hint at how it will turn out", '"the answer on her side is still forming"',
+                        "Talk about the person themself.")),
+    ("reader", "es", ("En redirect_money, redirect_topic y redirect_person no vale la seguridad de la regla 2",
+                      "ninguna línea puede insinuar cómo va a terminar",
+                      "«la respuesta de su lado todavía se está formando»", "«la respuesta está tomando forma»",
+                      "Habla de la persona misma.")),
+    ("followup", "es", ("En redirect_money, redirect_topic y redirect_person no vale la seguridad de la regla 2",
+                        "ninguna línea puede insinuar cómo va a terminar",
+                        "«la respuesta de su lado todavía se está formando»", "Habla de la persona misma.")),
+])
+def test_groups_without_an_outcome_get_no_hint_not_even_a_soft_one(name, lang, phrases):
+    """Decision 2 (en-45: "The answer on her side is still forming")."""
+    text = PROMPTS[(name, lang)].text
+    assert all(phrase in text for phrase in phrases), [p for p in phrases if p not in text]
+
+
+@pytest.mark.parametrize("name", ["reader", "followup"])
+def test_spanish_no_gender_examples_and_neutral_orientation_words(name):
+    """Decision 3 (es-52, fu-es-06): "a ti mismo", "demasiado duro contigo", doublets; "al derecho" / "al revés"."""
+    text = PROMPTS[(name, "es")].text
+    for phrase in ("«a ti mismo»", "«contigo mismo»", "di «a ti» o «contigo»", "«eres demasiado duro contigo»",
+                   "«te exiges demasiado»", "«abierta o abierto»", "«ti misma o mismo»", "«al derecho»", "«al revés»",
+                   "«El As de Copas»", "«El Emperador»"):
+        assert phrase in text, phrase
+    # "invertida" / "derecha" appear only in the one line that forbids them after a card name
+    assert text.count("invertida") == 1 and text.count("derecha") == 1
+    assert ("Nunca escribas «invertida» ni «derecha» después del nombre de una carta" in text) if name == "reader" else (
+        "nunca «derecha» ni «invertida» después del nombre de la carta" in text)
+
+
+def test_spanish_reader_describes_the_orientation_it_receives():
+    text = PROMPTS[("reader", "es")].text
+    assert "su orientación (al derecho o al revés)" in text
+    assert "Una carta al revés siempre da «todavía no está claro»" in text and "Una carta al revés vota" in text
+
+
+@pytest.mark.parametrize("lang, phrases", [
+    ("en", ('with three cards it says "the cards", in the plural ("The cards lean toward...")',
+            'with one card, "the card"', '"The cards lean toward yes for this choice, with care"',
+            'with three cards, "The cards lean toward yes, with care"',
+            'speaks of the cards in the plural ("The cards lean toward no, gently"), never "The card leans"')),
+    ("es", ("con tres cartas di «las cartas», en plural («Las cartas se inclinan…»)", "con una carta, «la carta»",
+            "«Las cartas se inclinan hacia el sí para esta decisión, con cuidado»",
+            "con tres cartas, «Las cartas se inclinan hacia el sí, con cuidado»",
+            "habla de las cartas en plural («Las cartas se inclinan hacia el no, con suavidad»), "
+            "nunca «La carta se inclina»")),
+])
+def test_three_card_headline_speaks_of_the_cards_in_the_plural(lang, phrases):
+    """Decision 4 (the stage: "The card leans toward yes" over three cards); one card stays singular."""
+    text = PROMPTS[("reader", lang)].text
+    assert all(phrase in text for phrase in phrases), [p for p in phrases if p not in text]
+    assert ('"The card leans toward yes, with care"' in text) if lang == "en" else (
+        "«La carta se inclina hacia el sí, con cuidado»" in text)
