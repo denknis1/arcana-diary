@@ -58,6 +58,12 @@ def test_unknown_rule_raises():
         spread_verdict([("sun", False)] * 3, DECK, dict(RULES, rule="two_of_three"))
 
 
+def test_missing_rule_raises_value_error():
+    without = {k: v for k, v in RULES.items() if k != "rule"}
+    with pytest.raises(ValueError):
+        spread_verdict([("sun", False)] * 3, DECK, without)
+
+
 @pytest.mark.parametrize("n", [0, 2, 4])
 def test_other_sizes_raise(n):
     with pytest.raises(ValueError):

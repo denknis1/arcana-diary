@@ -116,7 +116,8 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
         return
     if crisis:
         yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))
-        yield done("crisis", paid and not gone)  # §9.5: the reader's marker uses the paid reading (no row, nothing to refund)
+        # §9.5: the reader's marker uses the paid reading; the row stays as a tombstone (nothing to refund)
+        yield done("crisis", paid and not gone)
         return
     if answer is None:
         reason = "budget" if spent else (outcome.reason if isinstance(outcome, Failed) else "empty")

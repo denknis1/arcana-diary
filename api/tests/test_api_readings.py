@@ -735,6 +735,14 @@ def test_a_stop_phrase_at_the_daily_limit_gets_the_crisis_answer(api):
     assert guard_rows(api) == [{"lang": "en", "guard_group": "crisis", "source": "terms", "count": 1}]
 
 
+def test_the_crisis_answer_never_shows_a_negative_remaining(api):
+    use_up_the_day(api)
+    with api.db.connect() as conn:  # more used than the limit (a lowered limit, a repair)
+        conn.execute("UPDATE usage SET count = 5 WHERE subject LIKE 'guest:%'")
+    response = post_reading(api.client, kind="one", tz=MX, question="I want to die")
+    assert response.status_code == 200 and response.json()["remaining"] == 0
+
+
 def test_a_crisis_found_by_the_check_model_at_the_daily_limit_gets_the_crisis_answer(api):
     use_up_the_day(api)
     api.guard.json_replies.append(CRISIS)
@@ -841,6 +849,12 @@ def test_without_a_number_every_request_is_a_new_reading(api):
 def test_a_request_number_must_be_a_uuid(api):
     response = post_reading(api.client, kind="one", tz=MX, request_id="draw-1")
     assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["request_id"]}
+
+
+@pytest.mark.parametrize("count", [True, 1.0, 3.0, False, "1", 2])
+def test_count_must_be_the_integer_1_or_3(api, count):
+    response = api.client.post("/api/readings", json={"lang": "en", "kind": "yes_no", "tz": MX, "count": count})
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["count"]}
 
 
 def test_two_requests_with_one_number_at_once_make_one_reading(api):

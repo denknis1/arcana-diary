@@ -30,8 +30,8 @@ def spread_verdict(draws: list[tuple[str, bool]], deck: dict[str, dict], rules: 
     """
     if len(draws) not in rules["spread_sizes"]:
         raise ValueError(f"verdict needs {rules['spread_sizes']} cards, got {len(draws)}")
-    if rules["rule"] != "decisive_majority":
-        raise ValueError(f"unknown verdict rule: {rules['rule']}")
+    if rules.get("rule") != "decisive_majority":
+        raise ValueError(f"unknown verdict rule: {rules.get('rule')}")
     verdicts = [card_verdict(deck[cid]["yes_no"], rev, rules) for cid, rev in draws]
     if len(verdicts) == 1:
         return verdicts[0]

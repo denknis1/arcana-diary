@@ -790,6 +790,51 @@ def test_a_twin_that_took_the_last_attempt_is_replayed_not_429(api, monkeypatch)
     assert other.status_code == 429 and other.json() == {"reason": "attempts"}
 
 
+def test_a_twin_that_took_the_last_reading_is_replayed_not_402_plus(api, monkeypatch):
+    """Final review: twin_or on the 402 plus refusal shows the twin's follow-up; another number still gets 402."""
+    reading_id = ready_reading(api, kind="one")
+    free_used(api, reading_id)
+    number = uuid.uuid4()
+    day = limits.local_day(limits.resolve_tz(MX), api.clock())
+    check = api.guard.complete_json
+
+    def twin_takes_the_last_reading(*args, **kwargs):
+        with api.db.connect() as conn:
+            reading = repo.get_reading(conn, uuid.UUID(reading_id), api.clock())
+            fid = uuid.uuid4()
+            repo.insert_followup(conn, {"id": fid, "reading_id": reading["id"], "n": 3, "question": "Q?",
+                                        "paid_day": day, "request_id": number, "created_at": api.clock()})
+            repo.save_followup_answer(conn, fid, {"model": "Done.", "fallback": None}, "fake-reader")
+            while limits.take_slot(conn, limits.guest_subject(reading["guest_id"]), day, limits.DAILY_LIMIT):
+                pass
+        return check(*args, **kwargs)
+
+    monkeypatch.setattr(api.guard, "complete_json", twin_takes_the_last_reading)
+    response = ask(api.client, reading_id, "Q?", tz=MX, use_reading=True, request_id=str(number))
+    assert response.status_code == 200
+    events = parse_sse(response.text)
+    assert events[0][1]["replay"] is True and events[0][1]["followup"] == 3 and events[0][1]["paid"] is True
+    other = ask(api.client, reading_id, "Q?", tz=MX, use_reading=True, request_id=str(uuid.uuid4()))
+    assert other.status_code == 402 and other.json() == {"reason": "plus", "remaining": 0}
+
+
+def test_a_stop_phrase_gets_help_when_the_address_has_no_slot_left(api):
+    """Final review (Task 3): at the address cap a stop-phrase still answers with the crisis (no model call, no
+    attempt, no reading); any other question is 429 ip_limit."""
+    reading_id = ready_reading(api, kind="one")
+    ip_hash = api.ctx.salt.hash_ip("198.51.100.7", api.clock())
+    with api.db.connect() as conn:
+        conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, %s)",
+                     (limits.followup_ip_subject(ip_hash), limits.utc_day(api.clock()), IP_FOLLOWUP_LIMIT))
+    url = f"/api/readings/{reading_id}/followups"
+    crisis = api.client.post(url, json={"question": "I want to die"}, headers=from_ip("198.51.100.7"))
+    assert crisis.status_code == 200 and crisis.json()["group"] == "crisis" and crisis.json()["helplines"]
+    assert api.guard.json_calls() == [] and attempts_of(api, reading_id) == 0 and followups(api, reading_id) == []
+    plain = api.client.post(url, json={"question": "What next?"}, headers=from_ip("198.51.100.7"))
+    assert plain.status_code == 429 and plain.json() == {"reason": "ip_limit"}
+    assert api.guard.json_calls() == []
+
+
 def test_a_crisis_question_repeated_with_one_number_gets_the_crisis_both_times(api):
     reading_id = ready_reading(api, kind="one")
     number = str(uuid.uuid4())

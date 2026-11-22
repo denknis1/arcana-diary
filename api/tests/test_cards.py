@@ -60,6 +60,15 @@ def test_wrong_spread_size_raises():
         spread_verdict([("major-00-fool", False)] * 2, BASE.deck, BASE.rules)
 
 
+def test_unknown_or_missing_rule_raises():
+    draws = [("major-00-fool", False)] * 3
+    with pytest.raises(ValueError):
+        spread_verdict(draws, BASE.deck, {**BASE.rules, "rule": "two_of_three"})
+    without = {k: v for k, v in BASE.rules.items() if k != "rule"}  # an old v1 file: ValueError, never KeyError
+    with pytest.raises(ValueError):
+        spread_verdict(draws, BASE.deck, without)
+
+
 def test_labels():
     assert label("unclear", "en", BASE.rules) == "Not clear yet"
     assert label("yes", "es", BASE.rules) == "Sí"

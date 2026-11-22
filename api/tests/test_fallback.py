@@ -4,6 +4,7 @@ from app.cards import load_cards
 from app.config import load_settings
 from app.reader.fallback import (MAJORITY_WHY, REVERSED_VOTE, REVERSED_WHY, card_line, daily_fallback,
                                  fallback_answer, fill_missing, followup_fallback, reading_why, why_line)
+from app.reader.check import banned_in, load_reader_terms, why_ok
 from helpers import make_reading
 
 BASE = load_cards(load_settings({}).content_dir)
@@ -121,3 +122,15 @@ def test_fill_missing_on_three_yes_no_cards():
     filled = fill_missing({"headline": "H.", "card1": "Model card."}, BASE, reading)
     assert filled["card1"] == "Model card." and filled["card2"].startswith("The Star: Yes. ")
     assert filled["why"] == MAJORITY_WHY["en"]["two_of_three"] and "synthesis" not in filled
+
+
+def test_every_majority_why_and_reversed_vote_line_passes_the_check_and_has_no_banned_terms():
+    """Final review: the why lines sit right under the verdict the site shows; they must never be refused by the
+    why check the live answers pass, nor say a verdict or a banned claim (stage 5 rewrites the lines)."""
+    terms = load_reader_terms()
+    for lang in ("en", "es"):
+        lines = [*MAJORITY_WHY[lang].values(), REVERSED_VOTE[lang]]
+        assert len(MAJORITY_WHY[lang]) == 6
+        for line in lines:
+            assert why_ok(line, lang, terms[lang]), (lang, line)
+            assert banned_in(line, terms[lang], lang) == [], (lang, line)

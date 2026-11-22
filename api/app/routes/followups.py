@@ -3,7 +3,7 @@
 
 Order (stage 4.5 §3, owner decision 20.11.2026: help first, then the limits):
 - the address: every request that may call the question check takes a slot of IP_FOLLOWUP_LIMIT per UTC day
-  first (429 "ip_limit"); over the guard's budget a question that only the model can check is 503 and takes
+  first (429 "ip_limit", except that a stop-phrase question still gets the crisis answer, no model called); over the guard's budget a question that only the model can check is 503 and takes
   nothing (м1);
 - the question check: a crisis answer is 200 and takes no attempt and no reading;
 - then 429 "attempts" (FOLLOWUP_ATTEMPTS per reading, never a confirm for what cannot happen), then 402: free
@@ -13,10 +13,12 @@ Order (stage 4.5 §3, owner decision 20.11.2026: help first, then the limits):
   reading — and reads the follow-ups again: one still being written, or the free ones used meanwhile by another
   tab while this question was checked, is 409 "busy"; then it inserts the follow-up and, for a paid one, takes its
   reading. The reader gets that fresh list. A failed paid follow-up gives it back (reader/followups.py); the reader's [[crisis]] marker does
-  not (§9.5).
+  not (§9.5): the row stays as a tombstone ({"crisis": true}, not counted, no question) and the same request_id
+  again replays the crisis answer with no model call; the hourly cleanup deletes tombstones after one day.
 - request_id (stage 4.5 §5): the same number again in this reading gets that follow-up's stream — its saved
   answer, or "in_progress" while it is written — and takes nothing a second time; it is looked up in the list read
-  first and again under the lock (a parallel twin).
+  first and again under the lock (a parallel twin). A tombstone is replayed the same way. `twin_or` turns a
+  429 "attempts" / 402 "plus" that a parallel twin of the same request caused into the twin's stream.
 """
 import uuid
 
@@ -103,7 +105,18 @@ def create_followup(reading_id: uuid.UUID, body: FollowupIn, request: Request):
     with ctx.db.connect() as conn:  # §9.2: the address first — it bounds the question checks
         address_ok = limits.take_slot(conn, limits.followup_ip_subject(ip_hash), day, IP_FOLLOWUP_LIMIT) is not None
     if not address_ok:
-        return respond(429, {"reason": "ip_limit"})
+        # final review (Task 3): a stop-phrase needs no model, so help still comes when the address's slots are
+        # used (mobile carriers share addresses); any other question is 429
+        try:
+            guard = ctx.guard.classify(question, allow_model=False)
+        except GuardUnavailable:
+            return respond(429, {"reason": "ip_limit"})
+        if guard.group != "crisis":
+            return respond(429, {"reason": "ip_limit"})
+        with ctx.db.connect() as conn:
+            flow.record_guard(conn, ctx, guard, reading["lang"], day, None)
+        return respond(200, flow.crisis_answer(ctx, reading["lang"], country_hint(ctx, request), body.tz,
+                                               guard.violence))
     try:
         guard = ctx.guard.classify(question, allow_model=allow_model)
     except GuardUnavailable:

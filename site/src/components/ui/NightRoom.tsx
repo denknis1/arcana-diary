@@ -11,7 +11,7 @@ import { answerBlocks } from '../../lib/answer';
 import { CARD_BACK, cardById } from '../../lib/deck';
 import { errorMessageKey, needsHelpLink } from '../../lib/errors';
 import { handleDialogKey } from '../../lib/focus';
-import { answerVisible, cardVotes, followupNow, readingShown, statusKey, timedSpread, type NightState } from '../../lib/nightRoom';
+import { answerVisible, cardVotes, followupNow, lastFollowupLost, readingShown, statusKey, timedSpread, type NightState } from '../../lib/nightRoom';
 import type { PanelConfig } from '../../lib/panel';
 import { cardPath } from '../../lib/routes';
 import type { DrawnCard, Lang, Position, Vote } from '../../lib/types';
@@ -297,6 +297,7 @@ function Followups(props: FollowupProps) {
     }
     wasShown.current = formShown;
   }, [formShown]);
+  const lastIsLost = lastFollowupLost(state); // a lost follow-up always shows the help line
   return (
     <section class="followups" aria-label={d.followupLabel}>
       {state.followups.map((f, i) => (
@@ -310,10 +311,10 @@ function Followups(props: FollowupProps) {
           ) : null}
         </div>
       ))}
-      {state.followupError ? (
+      {state.followupError || lastIsLost ? (
         <>
-          <p role="alert">{d[errorMessageKey(state.followupError)]}</p>
-          {needsHelpLink(state.followupError) ? <HelpLine lang={lang} /> : null}
+          {state.followupError ? <p role="alert">{d[errorMessageKey(state.followupError)]}</p> : null}
+          {lastIsLost || (state.followupError && needsHelpLink(state.followupError)) ? <HelpLine lang={lang} /> : null}
         </>
       ) : null}
       {state.followupPlus ? <PlusCard lang={lang} tool={config.tool} focusOnShow /> : null}

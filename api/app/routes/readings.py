@@ -39,6 +39,13 @@ class ReadingIn(BaseModel):
 
     _no_nul = field_validator("question", "situation", "card_id", "tz", mode="after")(reject_nul)
 
+    @field_validator("count", mode="before")
+    @classmethod
+    def count_is_an_integer(cls, value):
+        if isinstance(value, (bool, float)):  # true and 1.0 must not pass as 1
+            raise ValueError("count must be 1 or 3")
+        return value
+
 
 def clean(text: str | None) -> str | None:
     if text is None:
@@ -125,7 +132,7 @@ def create_reading(body: ReadingIn, request: Request):
                               None if guard.group == "crisis" or at_limit else reading_id)
     if guard is not None and guard.group == "crisis":
         payload = flow.crisis_answer(ctx, body.lang, country_hint(ctx, request), body.tz, guard.violence)
-        return respond(200, {**payload, "remaining": quota.limit - quota_used}, new_guest)
+        return respond(200, {**payload, "remaining": max(quota.limit - quota_used, 0)}, new_guest)
     if at_limit:
         return respond(429, {"reason": "limit", "remaining": 0}, new_guest)
     group = guard.group if guard else "ok"

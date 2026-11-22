@@ -29,8 +29,8 @@ def spread_verdict(draws: list[tuple[str, bool]], deck: dict[str, dict], rules: 
     """
     if len(draws) not in rules["spread_sizes"]:
         raise ValueError(f"вердикт считается по {rules['spread_sizes']} картам, а не по {len(draws)}")
-    if rules["rule"] != "decisive_majority":
-        raise ValueError(f"неизвестное правило: {rules['rule']}")
+    if rules.get("rule") != "decisive_majority":
+        raise ValueError(f"неизвестное правило: {rules.get('rule')}")
     verdicts = [card_verdict(deck[cid]["yes_no"], rev, rules) for cid, rev in draws]
     if len(verdicts) == 1:
         return verdicts[0]

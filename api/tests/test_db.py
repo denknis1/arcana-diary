@@ -80,6 +80,13 @@ def test_unmigrated_table_is_unavailable(fresh_db):
             conn.execute("SELECT * FROM readings")
 
 
+def test_a_missing_column_is_unavailable_too(db):
+    """Final review Minor 2: new code on a database whose migration is not finished yet answers 503, not 500."""
+    with pytest.raises(DatabaseUnavailable):
+        with db.connect() as conn:
+            conn.execute("SELECT no_such_column FROM readings")
+
+
 def test_migrate_is_idempotent(fresh_db):
     migrate(fresh_db, MIGRATIONS)
     assert migrate(fresh_db, MIGRATIONS) == []
@@ -468,6 +475,14 @@ def test_a_request_number_is_unique_per_owner(db):
         assert repo.find_reading_by_request(conn, number, user, guest, T0)["user_id"] == user
         assert repo.find_reading_by_request(conn, number, uuid.uuid4(), guest, T0) is None
         assert repo.find_reading_by_request(conn, number, None, guest, T0 + timedelta(days=8)) is None  # expired
+
+
+def test_a_guest_lookup_never_finds_a_signed_in_reading_with_the_same_guest_id(db):
+    number, guest, user = uuid.uuid4(), uuid.uuid4(), uuid.uuid4()
+    with db.connect() as conn:  # the device drew while signed in: the reading belongs to the account
+        repo.insert_reading(conn, make_reading(guest_id=guest, user_id=user, request_id=number))
+        assert repo.find_reading_by_request(conn, number, None, guest, T0) is None
+        assert repo.find_reading_by_request(conn, number, user, guest, T0) is not None
 
 
 def test_a_follow_up_number_is_unique_per_reading(db):

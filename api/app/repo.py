@@ -127,6 +127,13 @@ def tombstone_followup(conn, followup_id) -> bool:
     return row is not None
 
 
+def delete_old_tombstones(conn, before) -> int:
+    """Owner decision 22.11.2026: a follow-up crisis tombstone is only needed for the repeat window; the hourly
+    cleanup deletes the ones made before `before` (a day ago). Its attempt stays counted (n is the counter)."""
+    return conn.execute("DELETE FROM followups WHERE answer = %s AND created_at < %s",
+                        (Jsonb({"crisis": True}), before)).rowcount
+
+
 def delete_followup(conn, followup_id) -> bool:
     """True when this call deleted the row; False when it was already gone (so nobody refunds twice)."""
     row = conn.execute("DELETE FROM followups WHERE id = %s RETURNING id", (followup_id,)).fetchone()
