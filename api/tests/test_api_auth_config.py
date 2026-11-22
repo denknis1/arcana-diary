@@ -62,7 +62,7 @@ def test_google_signin_other_than_true_is_off_with_a_log_line_never_a_crash(capl
         assert f"GOOGLE_SIGNIN={wrong.strip()!r} is not 'true': Continue with Google stays off" in caplog.text
 
 
-@pytest.mark.parametrize("key", [SECRET, jwt("service_role"), "not.a.jwt"])
+@pytest.mark.parametrize("key", [SECRET, jwt("service_role"), "not.a.jwt", "some-raw-secret-value"])
 def test_a_secret_key_is_never_published(key, caplog):
     """Fable plan review I3: GET /api/auth-config shows the key to every visitor, and a secret key passes row level
     security. It is dropped (sign-in stays off) with a log line that never prints the key; the API still starts."""

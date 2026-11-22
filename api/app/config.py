@@ -122,23 +122,24 @@ def _flag(name: str, value: str) -> bool:
 
 def _public_key(value: str) -> str:
     """Stage 4.4b §3: SUPABASE_ANON_KEY goes to every visitor (GET /api/auth-config), so only the project's public key
-    may be used. A secret key — sb_secret_…, or a legacy JWT key whose role is not "anon" (service_role) — passes row
-    level security: it is dropped, sign-in stays off and the log says so without printing the key; the API still
-    starts (Fable plan review I3). The JWT's signature is not checked: only the role it names matters here."""
+    may be used: a publishable key (sb_publishable_…) or a legacy JWT key whose role is "anon". Anything else — a
+    secret key (sb_secret_…, a service_role JWT) passes row level security, an unknown format may be one — is dropped,
+    sign-in stays off and the log says so without printing the key; the API still starts (Fable plan review I3; an
+    allow-list after the task review). The JWT's signature is not checked: only the role it names matters here."""
     value = value.strip()
-    secret = value.startswith("sb_secret_")
+    if not value or value.startswith("sb_publishable_"):
+        return value
     parts = value.split(".")
-    if not secret and len(parts) == 3:  # a legacy key: a JWT
+    if len(parts) == 3:  # a legacy key: a JWT
         try:
             payload = json.loads(base64.urlsafe_b64decode(parts[1] + "=" * (-len(parts[1]) % 4)))
         except ValueError:  # bad base64 (binascii.Error) and bad JSON are both ValueErrors
             payload = None
-        secret = not isinstance(payload, dict) or payload.get("role") != "anon"
-    if secret:
-        log.error("SUPABASE_ANON_KEY is not the public key (a secret key or a JWT whose role is not 'anon'): not used, "
-                  "sign-in stays off — set the anon / publishable key (api/README.md)")
-        return ""
-    return value
+        if isinstance(payload, dict) and payload.get("role") == "anon":
+            return value
+    log.error("SUPABASE_ANON_KEY is not the public key (not sb_publishable_… nor a JWT whose role is 'anon'): not used, "
+              "sign-in stays off — set the anon / publishable key (api/README.md)")
+    return ""
 
 
 def load_settings(env: Mapping[str, str] | None = None) -> Settings:
