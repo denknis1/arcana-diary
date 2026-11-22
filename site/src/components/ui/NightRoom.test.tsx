@@ -5,6 +5,7 @@ import type { NightState } from '../../lib/nightRoom';
 import { panelConfig } from '../../lib/panel';
 import { byText, cleanup, click, mount, queryText } from '../../lib/testing/dom';
 import { ONE, shown } from '../../lib/testing/night';
+import type { ReadingCreated } from '../../lib/types';
 import { NightRoom, type NightRoomProps } from './NightRoom';
 
 function room(state: NightState, extra: Partial<NightRoomProps> = {}) {
@@ -50,5 +51,24 @@ describe('the night room and the diary (spec 4.4b §4)', () => {
     });
     expect(onCloseSheet).toHaveBeenCalledTimes(1);
     expect(onClose).not.toHaveBeenCalled();
+  });
+
+  it('shows each of three yes/no cards with its own vote, icon and word, and the verdict (spec 4.5 §4)', async () => {
+    const yesNo: ReadingCreated = {
+      id: 'r3', lang: 'en', kind: 'yes_no', soft_line: null, remaining: 1, verdict: { value: 'yes', label: 'Yes' },
+      cards: [
+        { card_id: 'major-19-sun', position: 'card', reversed: false, name: 'The Sun', vote: 'yes' },
+        { card_id: 'major-16-tower', position: 'card', reversed: false, name: 'The Tower', vote: 'no' },
+        { card_id: 'major-17-star', position: 'card', reversed: true, name: 'The Star', vote: 'unclear' },
+      ],
+    };
+    const state = shown(yesNo, { headline: 'Leaning yes.', card1: 'Warm.', card2: 'A jolt.', card3: 'Wait.', why: 'Two decide.' });
+    const { root } = await mount(room(state, { threeCards: true, config: panelConfig('yes_no', 'en') }));
+    const votes = Array.from(root.querySelectorAll('.spread__vote'));
+    expect(votes.map((v) => v.textContent)).toEqual(['Yes', 'No', 'Not clear yet']);
+    expect(votes.every((v) => v.querySelector('svg[aria-hidden="true"]') !== null)).toBe(true);
+    expect(root.querySelector('.verdict__word')?.textContent).toBe('Yes');
+    expect(root.textContent).toContain('Why: Two decide.');
+    expect(root.querySelectorAll('.spread__pos')).toHaveLength(0); // no past · present · path on yes/no
   });
 });
