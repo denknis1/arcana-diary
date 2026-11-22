@@ -1,12 +1,15 @@
 // Card of the Day (screens 7a, 7b; spec 4.4a §5): tap the back → GET /api/daily → the card and its text. On 503
-// the card comes from the card base (src/lib/daily.ts). "Remind me tomorrow" and "Save to diary" are stage 4.4b.
+// the card comes from the card base (src/lib/daily.ts). Under the card "Remind me tomorrow" (spec 4.4b §7): a calendar
+// file made here, no server. The card of the day is not a reading: it is not saved to the diary (spec 4.4b §2.10).
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
 import { siteApi } from '../lib/siteApi';
 import { baseUrl, dailyNext, formatDay, localIsoDay, shownFromBase, type BaseMeaning, type DailyShown } from '../lib/daily';
 import { CARD_BACK } from '../lib/deck';
+import { saveFile, type SaveFile } from '../lib/download';
 import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
+import { ICS_FILENAME, ICS_TYPE, dailyReminderIcs } from '../lib/ics';
 import { cardPath } from '../lib/routes';
 import type { Lang } from '../lib/types';
 import { CardFace } from '../components/ui/CardFace';
@@ -32,9 +35,10 @@ async function fromBase(lang: Lang, tz: string | undefined): Promise<DailyShown 
   }
 }
 
-export default function DailyIsland({ lang }: { lang: Lang }) {
+export default function DailyIsland({ lang, save = saveFile }: { lang: Lang; save?: SaveFile }) {
   const d = t(lang);
   const [view, setView] = useState<View>({ type: 'back' });
+  const [reminded, setReminded] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const tappedAt = useRef(0);
 
@@ -59,6 +63,13 @@ export default function DailyIsland({ lang }: { lang: Lang }) {
     setView(shown ? { type: 'shown', shown } : { type: 'error', error: 'unavailable' });
   };
 
+  const remind = () => {
+    sendEvent(analyticsEvent('remind_click', 'daily', lang));
+    const text = dailyReminderIcs({ now: new Date(), lang, origin: location.origin });
+    save(new Blob([text], { type: ICS_TYPE }), ICS_FILENAME);
+    setReminded(true);
+  };
+
   if (view.type === 'shown') {
     const { shown } = view;
     return (
@@ -73,6 +84,8 @@ export default function DailyIsland({ lang }: { lang: Lang }) {
         <a href={cardPath(shown.card, lang)} onClick={() => sendEvent(analyticsEvent('more_about_cards', 'daily', lang))}>
           {fill(d.fullMeaning, { name: shown.name })}
         </a>
+        <button type="button" class="btn btn--outline" onClick={remind}>{d.remindTomorrow}</button>
+        <p class="small" role="status">{reminded ? d.remindDone : ''}</p>
       </section>
     );
   }

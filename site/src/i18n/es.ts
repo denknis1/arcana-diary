@@ -241,6 +241,9 @@ export const es: Dict = {
   deleteDownload: 'Descargar',
   deleteForever: 'Eliminar para siempre',
   accountDeleted: 'Tu cuenta se eliminó.',
+  // etapa 4.4b: la carta del día (pantalla 7b)
+  remindTomorrow: 'Recuérdamelo mañana',
+  remindDone: 'Abre el archivo para añadirlo a tu calendario.',
   diaryConsentFailed: 'El recordatorio no se activó. Puedes activarlo en tu cuenta.',
 };
 
@@ -273,4 +276,5 @@ export const esDrafts: readonly DictKey[] = [
   'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
   'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',
   'accountExport', 'accountDelete', 'deleteTitle', 'deleteBody', 'deleteDownload', 'deleteForever', 'accountDeleted',
+  'remindTomorrow', 'remindDone',
 ];

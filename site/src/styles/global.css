@@ -116,7 +116,7 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .btn--gold { background: var(--color-night-accent); color: var(--color-night-on-accent); }
 .btn--ink { background: var(--color-brand-ink-button); color: var(--color-day-on-accent); }
 .btn--outline { background: transparent; color: inherit; border-color: var(--color-day-control-border); font-weight: 600; }
-.night .btn--outline, .night-panel .btn--outline { border-color: var(--color-night-control-border); }
+.night .btn--outline, .night-panel .btn--outline, .daily .btn--outline { border-color: var(--color-night-control-border); }
 .btn--text { background: transparent; color: var(--color-day-accent); font-weight: 600; }
 .night .btn--text, .night-panel .btn--text { color: var(--color-night-accent); }
 .btn[disabled] { cursor: default; opacity: 0.6; }

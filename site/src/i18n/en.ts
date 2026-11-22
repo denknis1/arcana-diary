@@ -240,6 +240,9 @@ export const en = {
   deleteDownload: 'Download',
   deleteForever: 'Delete forever',
   accountDeleted: 'Your account has been deleted.',
+  // stage 4.4b: the Card of the Day (screen 7b)
+  remindTomorrow: 'Remind me tomorrow',
+  remindDone: 'Open the file to add it to your calendar.',
   diaryConsentFailed: 'The reminder was not switched on. You can switch it on in your account.',
 };
 
@@ -265,4 +268,5 @@ export const enDrafts: readonly DictKey[] = [
   'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
   'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',
   'accountExport', 'accountDelete', 'deleteTitle', 'deleteBody', 'deleteDownload', 'deleteForever', 'accountDeleted',
+  'remindDone',
 ];
