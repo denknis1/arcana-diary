@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import type { AnalyticsEvent } from './analytics';
 import { STARTED_KEY, markSignInStarted } from './authState';
-import { cleanReturnUrl, finishSignIn, linkFailed, readReturnParams, returnUrl, type FinishDeps } from './claim';
+import {
+  cleanReturnUrl, finishSignIn, linkFailed, readReturnParams, returnUrl, signInCallbackInUrl, type FinishDeps,
+} from './claim';
 import { memoryStorage } from './testing/auth';
 
 describe('the return address', () => {
@@ -33,7 +35,7 @@ function deps(href: string, overrides: Partial<FinishDeps> = {}) {
       },
       setConsent: async (on) => { calls.push(`consent ${on}`); return { ok: true, status: 200, data: { email: null, reminders_consent: on, consent_at: null } }; },
     },
-    storage, href, lang: 'en', now: 1000,
+    storage, href, lang: 'en', now: 1000, arrivedWithSession: false,
     method: (started) => started ?? 'email',
     replaceUrl: (url) => urls.push(url),
     send: (event) => events.push(event),
@@ -43,9 +45,9 @@ function deps(href: string, overrides: Partial<FinishDeps> = {}) {
 }
 
 describe('finishSignIn', () => {
-  it('with only a token in the address (the link opened on another device): claims that reading only, gives consent, counts signup_done and cleans the address', async () => {
-    const { d, calls, events, urls } = deps('https://arcana.test/diary?claim=tok&remind=1');
-    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: ['r1'] });
+  it('right after a sign-in by the link opened on another device (the session came in the address, no mark): claims that reading only, gives consent, counts signup_done and cleans the address', async () => {
+    const { d, calls, events, urls } = deps('https://arcana.test/diary?claim=tok&remind=1', { arrivedWithSession: true });
+    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: ['r1'], consent: 'set' });
     expect(calls).toEqual(['claim ["tok"] tokens only', 'consent true']); // owner decision 12: not this browser's readings
     expect(events).toEqual([{ name: 'signup_done', tool: null, lang: 'en', params: { method: 'email' } }]);
     expect(urls).toEqual(['/diary']);
@@ -61,7 +63,7 @@ describe('finishSignIn', () => {
   it('after a sign-in started here: claims this device with no token, with its method', async () => {
     const { d, calls, events, storage } = deps('https://arcana.test/diary');
     markSignInStarted('google', 900, storage);
-    expect(await finishSignIn(d)).toMatchObject({ type: 'claimed' });
+    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: ['r1'], consent: 'none' });
     expect(calls).toEqual(['claim [] device']);
     expect(events[0].params).toEqual({ method: 'google' });
     expect(storage.data[STARTED_KEY]).toBeUndefined(); // once: the next visit claims nothing
@@ -71,6 +73,7 @@ describe('finishSignIn', () => {
 
   it('a token that moves nothing, without the mark (made up, or the same link again after Back): no consent, no signup_done, a clean address (review I1)', async () => {
     const { d, calls, events, urls } = deps('https://arcana.test/diary?claim=used&remind=1', {
+      arrivedWithSession: true,
       api: {
         claim: async (tokens, device) => {
           calls.push(`claim ${JSON.stringify(tokens)} ${device ? 'device' : 'tokens only'}`);
@@ -79,7 +82,7 @@ describe('finishSignIn', () => {
         setConsent: async () => { throw new Error('must not be called'); },
       },
     });
-    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: [] });
+    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: [], consent: 'none' });
     expect(calls).toEqual(['claim ["used"] tokens only']);
     expect(events).toEqual([]);
     expect(urls).toEqual(['/diary']);
@@ -105,9 +108,73 @@ describe('finishSignIn', () => {
   });
 
   it('runs once when two parts of the page ask at the same time', async () => {
-    const { d, calls } = deps('https://arcana.test/diary?claim=tok');
+    const { d, calls } = deps('https://arcana.test/diary?claim=tok', { arrivedWithSession: true });
     await Promise.all([finishSignIn(d), finishSignIn(d)]);
     expect(calls).toEqual(['claim ["tok"] tokens only']);
+  });
+});
+
+describe('finishSignIn counts a claim link only right after a sign-in (owner decision 15)', () => {
+  it('someone else\'s link opened by a person already signed in (no mark, no session in the address): nothing is claimed, no consent, no event; only the address is cleaned', async () => {
+    const { d, calls, events, urls } = deps('https://arcana.test/diary?claim=valid-of-someone-else&remind=1&r=abc');
+    expect(await finishSignIn(d)).toEqual({ type: 'none' });
+    expect(calls).toEqual([]);
+    expect(events).toEqual([]);
+    expect(urls).toEqual(['/diary?r=abc']);
+  });
+
+  it('/diary?remind=1 without the mark or a session in the address: no calls, the address becomes /diary', async () => {
+    const { d, calls, events, urls } = deps('https://arcana.test/diary?remind=1');
+    expect(await finishSignIn(d)).toEqual({ type: 'none' });
+    expect(calls).toEqual([]);
+    expect(events).toEqual([]);
+    expect(urls).toEqual(['/diary']);
+  });
+
+  it('the session in the address with a token and no reminder: claims the token only, no consent, signup_done', async () => {
+    const { d, calls, events, urls } = deps('https://arcana.test/es/diario?claim=tok', { arrivedWithSession: true, lang: 'es' });
+    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: ['r1'], consent: 'none' });
+    expect(calls).toEqual(['claim ["tok"] tokens only']);
+    expect(events).toEqual([{ name: 'signup_done', tool: null, lang: 'es', params: { method: 'email' } }]);
+    expect(urls).toEqual(['/es/diario']);
+  });
+
+  it('the session in the address with no token and no mark (a returning person who signed in from an old e-mail): nothing to claim', async () => {
+    const { d, calls, events, urls } = deps('https://arcana.test/diary', { arrivedWithSession: true });
+    expect(await finishSignIn(d)).toEqual({ type: 'none' });
+    expect(calls).toEqual([]);
+    expect(events).toEqual([]);
+    expect(urls).toEqual([]);
+  });
+
+  it('a failed consent PATCH is reported, not swallowed (review Minor 2)', async () => {
+    const { d, calls, events, urls } = deps('https://arcana.test/diary?claim=tok&remind=1', {
+      arrivedWithSession: true,
+      api: {
+        claim: async () => { calls.push('claim'); return { ok: true, status: 200, data: { claimed: ['r1'] } }; },
+        setConsent: async () => { calls.push('consent'); return { ok: false, status: 503, error: 'unavailable', body: null }; },
+      },
+    });
+    expect(await finishSignIn(d)).toEqual({ type: 'claimed', claimed: ['r1'], consent: 'failed' });
+    expect(calls).toEqual(['claim', 'consent']);
+    expect(events.map((e) => e.name)).toEqual(['signup_done']); // the sign-up itself did happen
+    expect(urls).toEqual(['/diary']);
+  });
+});
+
+describe('signInCallbackInUrl', () => {
+  it('is true when the address carries the session of the implicit flow (the e-mail link and Google alike)', () => {
+    expect(signInCallbackInUrl('#access_token=x&expires_in=3600&refresh_token=y&token_type=bearer&type=magiclink')).toBe(true);
+    expect(signInCallbackInUrl('#access_token=x&expires_at=1&provider_token=g&refresh_token=y&token_type=bearer')).toBe(true);
+    expect(signInCallbackInUrl('access_token=x')).toBe(true);
+  });
+
+  it('is false for a failed link, an empty token, another anchor or no hash', () => {
+    expect(signInCallbackInUrl('#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid')).toBe(false);
+    expect(signInCallbackInUrl('#access_token=')).toBe(false);
+    expect(signInCallbackInUrl('#top')).toBe(false);
+    expect(signInCallbackInUrl('#')).toBe(false);
+    expect(signInCallbackInUrl('')).toBe(false);
   });
 });
 

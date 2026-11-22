@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EVENTS_URL, analyticsEvent, sendEvent } from './analytics';
+import { EVENTS_URL, analyticsEvent, sendEvent, type EventName } from './analytics';
 
 describe('analyticsEvent', () => {
   it('builds the whitelisted shape', () => {
@@ -21,6 +21,21 @@ describe('analyticsEvent', () => {
     });
     expect(analyticsEvent('outcome_answered', 'home', 'es', { after_days: 7, answer: 'partly' }).tool).toBeNull();
     expect(analyticsEvent('plus_view', null, 'en', { place: 'diary' }).params).toEqual({ place: 'diary' });
+  });
+
+  it('types: an event with a tool needs one, remind_click comes only from the daily card (review Minor 1; astro check verifies)', () => {
+    // @ts-expect-error draw_click names its tool
+    expect(analyticsEvent('draw_click', null, 'en').tool).toBeNull();
+    // @ts-expect-error save_click names its tool
+    expect(analyticsEvent('save_click', null, 'es').tool).toBeNull();
+    // @ts-expect-error remind_click is the daily card's only
+    expect(analyticsEvent('remind_click', 'love', 'en').tool).toBe('love');
+    const anyName = 'tool_view' as EventName;
+    // @ts-expect-error a name that may be a tool event needs a tool
+    expect(analyticsEvent(anyName, null, 'en').tool).toBeNull();
+    const roomEvent = 'reading_shown' as 'night_open' | 'cards_revealed' | 'reading_shown';
+    expect(analyticsEvent(roomEvent, 'home', 'en').tool).toBe('home');
+    expect(analyticsEvent('outcome_answered', null, 'en').tool).toBeNull();
   });
 });
 

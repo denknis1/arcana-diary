@@ -7,6 +7,9 @@
 // a sign-in started here: a link opened on another device moves the reading of its token only (owner decision 12).
 // The consent and signup_done need that mark or a reading actually moved: the same address opened again (Back after
 // the library cleared #access_token, or a made-up token) switches nothing on (Fable plan review I1).
+// `?claim=` and `remind=1` count only on the page load that itself finished a sign-in (the session came in the
+// address: the e-mail link or the Google redirect) or with the "started here" mark: someone else's link opened by a
+// person already signed in only has its address cleaned — nothing claimed, no consent, no event (owner decision 15).
 import type { AccountApi } from './accountApi';
 import { analyticsEvent, type AnalyticsEvent } from './analytics';
 import { clearSignInStarted, signInStarted, type SignInMethod, type StorageLike } from './authState';
@@ -43,9 +46,22 @@ export function cleanReturnUrl(href: string): string {
   return `${url.pathname}${url.search}`;
 }
 
+/** True when the address hash carries the session of the implicit flow (`#access_token=…`), which both the e-mail
+ * link and the Google redirect bring (auth-js 2.119.0 `_isImplicitGrantCallback`, GoTrueClient.js:3352–3357, reads
+ * `access_token` from the URL parameters). `#error=…` is a failed link, not a sign-in: false.
+ * Read `location.hash` BEFORE the sign-in library is opened (`openSession`/`getAuth`): on initialise it takes the
+ * session from the address and clears the hash (`window.location.hash = ''`, GoTrueClient.js:3334). */
+export function signInCallbackInUrl(hash: string): boolean {
+  return Boolean(new URLSearchParams(hash.replace(/^#/, '')).get('access_token'));
+}
+
 export interface FinishDeps {
   api: Pick<AccountApi, 'claim' | 'setConsent'>;
   storage: StorageLike | null;
+  /** This page load carried a sign-in callback in its address: `signInCallbackInUrl(location.hash)`, with the hash
+   * read before the sign-in library is opened (the library clears it). Without it or the "started here" mark,
+   * `?claim=` and `remind=1` are only removed from the address (owner decision 15). */
+  arrivedWithSession: boolean;
   href: string;
   lang: Lang;
   method: (started: SignInMethod | null) => SignInMethod;
@@ -56,8 +72,12 @@ export interface FinishDeps {
 
 export type FinishResult =
   | { type: 'none' } // nothing to finish: an ordinary visit of a signed-in person
-  | { type: 'claimed'; claimed: string[] }
+  // consent: 'set' — the reminder switched on; 'failed' — asked for and not saved (the diary can say so and point to
+  // the account page); 'none' — not asked for (no remind=1, or nothing moved without the mark)
+  | { type: 'claimed'; claimed: string[]; consent: ConsentOutcome }
   | { type: 'error'; error: ErrorKind }; // nothing changed: the address keeps its token, the mark stays
+
+export type ConsentOutcome = 'set' | 'failed' | 'none';
 
 let running: Promise<FinishResult> | null = null;
 
@@ -70,20 +90,21 @@ export function finishSignIn(deps: FinishDeps): Promise<FinishResult> {
 async function finish(deps: FinishDeps): Promise<FinishResult> {
   const params = readReturnParams(new URL(deps.href).search);
   const started = signInStarted(deps.now ?? Date.now(), deps.storage);
-  if (!params.claim && !started) {
-    if (params.remind) deps.replaceUrl(cleanReturnUrl(deps.href));
+  if (!started && (!params.claim || !deps.arrivedWithSession)) { // decision 15: no mark, no fresh sign-in → nothing
+    if (params.claim || params.remind) deps.replaceUrl(cleanReturnUrl(deps.href));
     return { type: 'none' };
   }
   const result = await deps.api.claim(params.claim ? [params.claim] : [], started !== null);
   if (!result.ok) return { type: 'error', error: result.error };
   const claimed = result.data?.claimed ?? [];
+  let consent: ConsentOutcome = 'none';
   if (started || claimed.length > 0) {
-    if (params.remind) await deps.api.setConsent(true); // a failure here leaves the switch on the account page
+    if (params.remind) consent = (await deps.api.setConsent(true)).ok ? 'set' : 'failed';
     deps.send(analyticsEvent('signup_done', null, deps.lang, { method: deps.method(started) }));
   }
   clearSignInStarted(deps.storage);
   deps.replaceUrl(cleanReturnUrl(deps.href));
-  return { type: 'claimed', claimed };
+  return { type: 'claimed', claimed, consent };
 }
 
 /** Supabase sends a failed or expired link back with #error=…&error_code=… in the address. */
