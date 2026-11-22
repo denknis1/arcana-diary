@@ -21,6 +21,13 @@ import { VerdictIcon } from './icons';
 
 const OUTCOMES: readonly Outcome[] = ['yes', 'partly', 'no'];
 
+/** The step the characters left have reached (100, 50, 0), or null above 100. */
+function noteStep(left: number): number | null {
+  return left <= 0 ? 0 : left <= 50 ? 50 : left <= 100 ? 100 : null;
+}
+
+type Action = 'outcome' | 'note' | 'delete';
+
 type Refusal = Extract<ApiResult<unknown>, { ok: false }>;
 
 /** 401 {"reason": "sign_in"}: the session went on this device (spec 4.4b §3). */
@@ -58,7 +65,12 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
   const d = t(lang);
   const [entry, setEntry] = useState<Entry | null>(null);
   const [error, setError] = useState<ErrorKind | null>(null); // the entry could not be read
-  const [failed, setFailed] = useState<ErrorKind | null>(null); // a change could not be saved
+  const [failed, setFailed] = useState<{ action: Action; error: ErrorKind } | null>(null); // a change could not be saved, and which
+  const [noteHeard, setNoteHeard] = useState(''); // the hidden status line: only at 100, 50 and 0 left
+  const heardStep = useRef<number | null>(null);
+  const busyNow = useRef(false);
+  const outcomeGroup = useRef<HTMLDivElement>(null);
+  const focusOutcome = useRef(false);
   const [note, setNote] = useState('');
   const [noteState, setNoteState] = useState<'idle' | 'saving' | 'saved'>('idle');
   const [confirming, setConfirming] = useState(false);
@@ -75,6 +87,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
     if (result.ok && result.data.in_diary) {
       setEntry(result.data);
       setNote(result.data.note ?? '');
+      heardStep.current = noteStep(noteLeft(result.data.note ?? ''));
     } else if (!result.ok && sessionGone(result)) onSignedOut();
     else setError(result.ok ? 'gone' : result.error); // a reading of this device that is not in the account: gone
   };
@@ -86,6 +99,11 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
     else if (wasConfirming.current) deleteButton.current?.focus();
     wasConfirming.current = confirming;
   }, [confirming]);
+
+  useEffect(() => { // after Clear its button is gone: focus goes to the first outcome button
+    if (focusOutcome.current && entry?.outcome === null) outcomeGroup.current?.querySelector('button')?.focus();
+    focusOutcome.current = false;
+  }, [entry?.outcome]);
 
   if (error) {
     return (
@@ -101,17 +119,21 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
   const answer = answerFromView(entry);
   const headline = answer.sections.headline?.trim();
 
-  const refused = (result: Refusal) => {
+  const refused = (result: Refusal, action: Action) => {
     if (sessionGone(result)) onSignedOut();
-    else setFailed(result.error); // 'stage' for a 401 without JSON: the line and a reload button
+    else setFailed({ action, error: result.error }); // 'stage' for a 401 without JSON: the line and a reload button
   };
 
   const mark = async (outcome: Outcome | null) => {
+    if (busyNow.current) return; // aria-disabled buttons stay focusable: the press is ignored here
+    busyNow.current = true;
     setBusy(true);
     const result = await api.patchEntry(id, { outcome });
+    busyNow.current = false;
     setBusy(false);
-    if (!result.ok) return refused(result);
+    if (!result.ok) return refused(result, 'outcome');
     setFailed(null);
+    if (outcome === null) focusOutcome.current = true;
     const first = entry.outcome === null; // an answer on an empty mark; a change (yes → no) is not counted again
     setEntry({ ...entry, outcome: result.data.outcome });
     if (outcome && first) {
@@ -125,7 +147,7 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
     const result = await api.patchEntry(id, { note: note.trim() ? note : null });
     if (!result.ok) {
       setNoteState('idle');
-      return refused(result);
+      return refused(result, 'note');
     }
     setFailed(null);
     setNoteState('saved');
@@ -134,12 +156,23 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
   const remove = async () => {
     setRemoving(true);
     const result = await api.deleteEntry(id);
-    if (!result.ok) {
+    if (!result.ok && result.error !== 'gone') { // 'gone': deleted elsewhere already — the goal state is reached
       setRemoving(false);
-      return refused(result);
+      return refused(result, 'delete');
     }
     navigate(diary);
   };
+
+  const onNoteInput = (value: string) => {
+    setNote(value);
+    setNoteState('idle');
+    const step = noteStep(noteLeft(value));
+    if (step !== null && step !== heardStep.current) setNoteHeard(fill(d.noteLeft, { n: noteLeft(value) }));
+    else if (step === null) setNoteHeard('');
+    heardStep.current = step;
+  };
+
+  const problem = (action: Action) => (failed?.action === action ? <Problem error={failed.error} lang={lang} /> : null);
 
   return (
     <article class="entry" aria-labelledby="entry-title">
@@ -178,45 +211,51 @@ export function DiaryEntry({ lang, id, api, onSignedOut, now = () => new Date(),
           <section class="entry__outcome" aria-labelledby="outcome-title">
             <h3 id="outcome-title">{d.entryOutcomeQuestion}</h3>
             {outcomeOpen(entry.created_at, now()) ? (
-              <div class="chips" role="group" aria-labelledby="outcome-title">
+              <div class="chips" role="group" aria-labelledby="outcome-title" ref={outcomeGroup}>
                 {OUTCOMES.map((value) => (
-                  <button key={value} type="button" class="chip chip--day" aria-pressed={entry.outcome === value} disabled={busy}
+                  <button key={value} type="button" class="chip chip--day" aria-pressed={entry.outcome === value} aria-disabled={busy}
                     onClick={() => void mark(value)}>
                     {d[OUTCOME_KEYS[value]]}
                   </button>
                 ))}
                 {entry.outcome ? (
-                  <button type="button" class="btn btn--text" disabled={busy} onClick={() => void mark(null)}>{d.entryOutcomeClear}</button>
+                  <button type="button" class="btn btn--text" aria-disabled={busy} onClick={() => void mark(null)}>{d.entryOutcomeClear}</button>
                 ) : null}
               </div>
             ) : (
               <p class="small">{fill(d.entryOutcomeLater, { date: formatDate(outcomeOpensOn(entry.created_at), lang) })}</p>
             )}
+            {problem('outcome')}
           </section>
           <form class="field entry__note" onSubmit={saveNote}>
             <label for="entry-note">{d.noteLabel}</label>
             <textarea id="entry-note" class="input input--day" rows={4} maxLength={NOTE_MAX} value={note}
-              onInput={(e) => { setNote((e.target as HTMLTextAreaElement).value); setNoteState('idle'); }} />
-            <p class="small" aria-live="polite">{fill(d.noteLeft, { n: noteLeft(note) })}</p>
+              aria-describedby="entry-note-left"
+              onInput={(e) => onNoteInput((e.target as HTMLTextAreaElement).value)} />
+            <p class="small" id="entry-note-left">{fill(d.noteLeft, { n: noteLeft(note) })}</p>
             <button type="submit" class="btn btn--ink" disabled={noteState === 'saving'}>{d.noteSave}</button>
+            <p class="visually-hidden" role="status">{noteHeard}</p>
             {noteState === 'saved' ? <p class="small" role="status">{d.noteSaved}</p> : null}
+            {problem('note')}
           </form>
         </>
       )}
-      {failed ? <Problem error={failed} lang={lang} /> : null}
-      {confirming ? (
-        <div class="notice notice--day" role="alert">
-          <p>{d.entryDeleteConfirm}</p>
-          <div class="plus__row">
-            <button type="button" class="btn btn--ink" ref={confirmButton} disabled={removing} onClick={() => void remove()}>
-              {d.entryDeleteYes}
-            </button>
-            <button type="button" class="btn btn--text" onClick={() => setConfirming(false)}>{d.cancel}</button>
+      <div class="entry__delete">
+        {problem('delete')}
+        {confirming ? (
+          <div class="notice notice--day" role="alert">
+            <p>{d.entryDeleteConfirm}</p>
+            <div class="plus__row">
+              <button type="button" class="btn btn--ink" ref={confirmButton} disabled={removing} onClick={() => void remove()}>
+                {d.entryDeleteYes}
+              </button>
+              <button type="button" class="btn btn--text" onClick={() => setConfirming(false)}>{d.cancel}</button>
+            </div>
           </div>
-        </div>
-      ) : (
-        <button type="button" class="btn btn--text" ref={deleteButton} onClick={() => setConfirming(true)}>{d.entryDelete}</button>
-      )}
+        ) : (
+          <button type="button" class="btn btn--text" ref={deleteButton} onClick={() => setConfirming(true)}>{d.entryDelete}</button>
+        )}
+      </div>
     </article>
   );
 }

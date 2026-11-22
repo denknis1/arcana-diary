@@ -171,12 +171,99 @@ describe('a diary entry (screen 4b; spec 4.4b §5)', () => {
     };
     const { root } = await mount(<DiaryEntry lang="en" id="e1" api={api} onSignedOut={vi.fn()} now={at(8)} send={vi.fn()} />);
     await click(byText(root, 'Came true', 'button'));
-    expect(byText<HTMLButtonElement>(root, 'No', 'button').disabled).toBe(true);
+    expect(byText<HTMLButtonElement>(root, 'No', 'button').getAttribute('aria-disabled')).toBe('true');
+    expect(byText<HTMLButtonElement>(root, 'No', 'button').disabled).toBe(false); // aria-disabled keeps focus where it is
     await act(() => {
       pending.resolve?.();
     });
     await settle();
-    expect(byText<HTMLButtonElement>(root, 'No', 'button').disabled).toBe(false);
+    expect(byText<HTMLButtonElement>(root, 'No', 'button').getAttribute('aria-disabled')).not.toBe('true');
     expect(byText(root, 'Came true', 'button').getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('a press while an outcome is saving does nothing, and the pressed button keeps focus', async () => {
+    const patches: unknown[] = [];
+    const pending: { resolve?: () => void } = {};
+    const api: Pick<AccountApi, 'entry' | 'patchEntry' | 'deleteEntry'> = {
+      ...fakeApi(ENTRY).api,
+      patchEntry: (id, patch) => new Promise((resolve) => {
+        patches.push(patch);
+        pending.resolve = () => resolve({ ok: true, status: 200, data: { id, outcome: patch.outcome ?? null, note: null } });
+      }),
+    };
+    const { root } = await mount(<DiaryEntry lang="en" id="e1" api={api} onSignedOut={vi.fn()} now={at(8)} send={vi.fn()} />);
+    const yes = byText<HTMLButtonElement>(root, 'Came true', 'button');
+    yes.focus();
+    await click(yes);
+    expect(document.activeElement).toBe(yes);
+    await click(byText(root, 'No', 'button'));
+    expect(patches).toEqual([{ outcome: 'yes' }]);
+    await act(() => {
+      pending.resolve?.();
+    });
+    await settle();
+    expect(document.activeElement).toBe(yes);
+  });
+
+  it('after Clear, focus moves to the first outcome button', async () => {
+    const { root } = await mount(entry(fakeApi({ ...ENTRY, outcome: 'no' }), at(8)));
+    const clear = byText(root, 'Clear', 'button');
+    clear.focus();
+    await click(clear);
+    expect(queryText(root, 'Clear', 'button')).toBeNull();
+    expect(document.activeElement).toBe(byText(root, 'Came true', 'button'));
+  });
+
+  it('the visible note counter is quiet; a hidden status speaks only when 100, 50 and 0 are crossed', async () => {
+    const { root } = await mount(entry(fakeApi(ENTRY), at(3)));
+    const note = root.querySelector<HTMLTextAreaElement>('textarea')!;
+    const counter = byText(root, '1000 characters left', 'p');
+    expect(counter.getAttribute('aria-live')).toBeNull();
+    expect(note.getAttribute('aria-describedby')).toBe(counter.id);
+    expect(counter.id).not.toBe('');
+    const status = root.querySelector<HTMLElement>('.visually-hidden[role="status"]')!;
+    expect(status.textContent).toBe('');
+    await typeInto(note, 'x'.repeat(800));
+    await typeInto(note, 'x'.repeat(899));
+    expect(status.textContent).toBe('');
+    await typeInto(note, 'x'.repeat(900));
+    expect(status.textContent).toBe('100 characters left');
+    await typeInto(note, 'x'.repeat(910));
+    expect(status.textContent).toBe('100 characters left'); // not re-spoken on every key
+    await typeInto(note, 'x'.repeat(950));
+    expect(status.textContent).toBe('50 characters left');
+    await typeInto(note, 'x'.repeat(1000));
+    expect(status.textContent).toBe('0 characters left');
+  });
+
+  it('a delete that answers "gone" (already deleted elsewhere) goes back to the diary like a success', async () => {
+    const navigate = vi.fn();
+    const api: Pick<AccountApi, 'entry' | 'patchEntry' | 'deleteEntry'> = {
+      ...fakeApi(ENTRY).api, deleteEntry: async () => ({ ok: false, status: 404, error: 'gone', body: null }),
+    };
+    const { root } = await mount(<DiaryEntry lang="en" id="e1" api={api} onSignedOut={vi.fn()} now={at(3)} navigate={navigate} send={vi.fn()} />);
+    await click(byText(root, 'Delete this entry', 'button'));
+    await click(byText(root, 'Delete', 'button'));
+    expect(navigate).toHaveBeenCalledWith('/diary');
+  });
+
+  it('a failure line sits next to the action that failed', async () => {
+    const fail = { ok: false as const, status: 503, error: 'unavailable' as const, body: { reason: 'db' } };
+    const api: Pick<AccountApi, 'entry' | 'patchEntry' | 'deleteEntry'> = {
+      ...fakeApi(ENTRY).api,
+      patchEntry: async (_id, patch) => (patch.outcome !== undefined ? fail : { ...fail, status: 503 }),
+      deleteEntry: async () => fail,
+    };
+    const { root } = await mount(<DiaryEntry lang="en" id="e1" api={api} onSignedOut={vi.fn()} now={at(8)} send={vi.fn()} />);
+    await click(byText(root, 'Partly', 'button'));
+    expect(root.querySelector('.entry__outcome .entry__error')).not.toBeNull();
+    expect(root.querySelector('.entry__note .entry__error')).toBeNull();
+    await submit(root.querySelector('form')!);
+    expect(root.querySelector('.entry__outcome .entry__error')).toBeNull(); // one line at a time
+    expect(root.querySelector('.entry__note .entry__error')).not.toBeNull();
+    await click(byText(root, 'Delete this entry', 'button'));
+    await click(byText(root, 'Delete', 'button'));
+    expect(root.querySelector('.entry__note .entry__error')).toBeNull();
+    expect(root.querySelector('.entry__delete .entry__error')).not.toBeNull();
   });
 });
