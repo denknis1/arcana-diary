@@ -191,6 +191,7 @@ export const es: Dict = {
   signInTooOften: 'Demasiados intentos por ahora. Espera unos minutos y vuelve a intentarlo.',
   checkEmailTitle: 'Revisa tu correo',
   checkEmailLead: 'Enviamos un enlace a {email}. Ábrelo en este u otro dispositivo para terminar.',
+  checkEmailLeadThisDevice: 'Enviamos un enlace a {email}. Abre el enlace en este dispositivo para guardar esta tirada.',
   checkEmailResend: 'Enviar de nuevo',
   checkEmailWait: 'Podrás enviarlo de nuevo en {n} s.',
   checkEmailOther: 'Usar otro correo',
@@ -218,5 +219,5 @@ export const esDrafts: readonly DictKey[] = [
   'plusDone', 'plusEmailError', 'plusDaily', 'crisisCall', 'crisisText', 'crisisHours', 'crisisWeb',
   'errDayCap', 'followupReady', 'plusNotNow', 'yesNoCountHint',
   'savedToDiary', 'saveTitle', 'saveLead', 'saveRemind', 'signInEmailLabel', 'signInSend', 'signInOr', 'signInGoogle',
-  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',
+  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',
 ];

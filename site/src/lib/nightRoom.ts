@@ -39,7 +39,7 @@ export const CLOSED: NightState = {
 
 export type NightAction =
   | { type: 'open' }
-  | { type: 'created'; reading: ReadingCreated; reducedMotion: boolean }
+  | { type: 'created'; reading: ReadingCreated; reducedMotion: boolean; authed?: boolean } // authed: the request carried the token (ReadingIsland)
   | { type: 'crisis'; payload: CrisisPayload }
   | { type: 'failed'; error: ErrorKind }
   | { type: 'flip' }

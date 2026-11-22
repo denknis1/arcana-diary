@@ -8,7 +8,6 @@
 import { useEffect, useMemo, useReducer, useRef, useState } from 'preact/hooks';
 import { t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
-import { isSignedIn } from '../lib/authState';
 import { siteApi } from '../lib/siteApi';
 import { CARD_BACK } from '../lib/deck';
 import { CLOSED, DEAL_MS, FLIP_INTERVAL_MS, crisisPayloadOf, nightReducer, transitionEvents, type NightAction, type NightState } from '../lib/nightRoom';
@@ -71,6 +70,10 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     const fromHash = () => setKind(initialKind(config, location.hash));
     fromHash();
     if (page !== 'card') sendEvent(analyticsEvent('tool_view', config.tool, lang));
+    // a reload keeps history.state: the night room's entry (and the sheet's) of the page before it is dead now, and a
+    // Back onto it would be swallowed by the room's own guard
+    const stale = history.state as { arcanaNight?: boolean } | null;
+    if (stale?.arcanaNight) history.replaceState(null, '');
     const onPop = () => {
       if (!inHistory.current) return; // our own step back: the flag dropped already
       // still on a room entry (a late step back of an earlier room landed there): the open room stays
@@ -101,7 +104,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         }
         if (action.type === 'created') {
           drawn.current.id = action.reading.id;
-          drawn.current.signedIn = isSignedIn(); // the request carried the token: the reading is in the account
+          drawn.current.signedIn = action.authed === true; // only a create request that carried the token saved it to the account
         }
         rawDispatch(action);
       },

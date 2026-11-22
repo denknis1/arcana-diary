@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createApi } from './api';
-import { authFetch, type AuthSource } from './authFetch';
+import { authFetch, carriedToken, type AuthSource } from './authFetch';
 import { SIGNED_IN_KEY } from './authState';
 import { memoryStorage } from './testing/auth';
 import { fakeFetch, jsonResponse } from './testing/fakes';
@@ -105,5 +105,36 @@ describe('authFetch', () => {
     const { fetch, calls } = fakeFetch(jsonResponse(200, { limit: 2 }));
     await authFetch(fetch, async () => null, SIGNED())('/api/limits');
     expect(calls[0].headers.authorization).toBeUndefined();
+  });
+});
+
+describe('authFetch: did this request carry the token (review: "Saved to your diary" must be real)', () => {
+  it('createReading reports authed only when the request carried the Authorization header', async () => {
+    const signed = fakeFetch(jsonResponse(201, { id: 'r1' }));
+    const a = await createApi(authFetch(signed.fetch, source({ token: 'tok-1' }).get, SIGNED())).createReading({ lang: 'en', kind: 'one' });
+    expect(a).toMatchObject({ type: 'reading', authed: true });
+    // the flag is set, but the library gave no token (a transient error): a guest request
+    const guest = fakeFetch(jsonResponse(201, { id: 'r2' }));
+    const b = await createApi(authFetch(guest.fetch, source({ token: null }).get, SIGNED())).createReading({ lang: 'en', kind: 'one' });
+    expect(b.type).toBe('reading');
+    expect(b).not.toHaveProperty('authed');
+    expect(guest.calls[0].headers.authorization).toBeUndefined();
+  });
+
+  it('is decided per call: the next request is judged on its own', async () => {
+    const tokens = { token: 'tok-1' as string | null };
+    const src = source(tokens);
+    const { fetch } = fakeFetch(jsonResponse(200, {}), jsonResponse(200, {}));
+    const wrapped = authFetch(fetch, src.get, SIGNED());
+    const first = await wrapped('/api/x');
+    tokens.token = null;
+    const second = await wrapped('/api/x');
+    expect([carriedToken(first), carriedToken(second)]).toEqual([true, false]);
+  });
+
+  it('a request repeated as a guest after a refused refresh did not carry the token', async () => {
+    const { fetch } = fakeFetch(jsonResponse(401, { reason: 'auth' }), jsonResponse(200, {}));
+    const response = await authFetch(fetch, source({ token: 'tok-1', refresh: null }).get, SIGNED())('/api/x');
+    expect(carriedToken(response)).toBe(false);
   });
 });

@@ -1,7 +1,7 @@
 // The account's requests (spec 2026-11-19 stage 4.3 §4, §6, §8; spec 4.4b §4–§6): claim tokens and the claim, the
 // diary list, one entry, its outcome and note, delete; the account, consent, export, delete. Everything that comes
 // back is shown as text only.
-import { callJson, jsonBody, readingPath, withQuery, type ApiResult, type FetchFn } from './api';
+import { callJson, CREATE_TIMEOUT_MS, jsonBody, readingPath, withQuery, type ApiResult, type FetchFn } from './api';
 import { classifyError, type ErrorKind } from './errors';
 import type { DrawnCard, Kind, Lang, ReadingView } from './types';
 
@@ -82,7 +82,8 @@ export function exportName(disposition: string | null, today: string): string {
 export function createAccountApi(fetchFn: FetchFn): AccountApi {
   const call = <T>(path: string, init?: RequestInit) => callJson<T>(fetchFn, path, init);
   return {
-    claimToken: (readingId) => call(readingPath(readingId, '/claim-token'), { method: 'POST' }),
+    // no answer in CREATE_TIMEOUT_MS counts as a network error: the save sheet sends the link without a token
+    claimToken: (readingId) => callJson(fetchFn, readingPath(readingId, '/claim-token'), { method: 'POST' }, CREATE_TIMEOUT_MS),
     claim: (tokens, device) => call('/api/account/claim', json('POST', { tokens, device })),
     diary: (before, limit) => call(withQuery('/api/diary', { before, limit: limit ? String(limit) : undefined })),
     entry: (id, tz) => call(withQuery(readingPath(id), { tz })),

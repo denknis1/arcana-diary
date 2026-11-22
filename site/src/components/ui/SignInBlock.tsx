@@ -16,6 +16,11 @@ const MESSAGES: Record<SendError | 'invalid', DictKey> = {
   tooOften: 'signInTooOften', badEmail: 'plusEmailError', unavailable: 'errUnavailable', invalid: 'plusEmailError',
 };
 
+async function resolveTarget(redirectTo: Props['redirectTo']): Promise<{ url: string; thisDeviceOnly: boolean }> {
+  const target = await redirectTo();
+  return typeof target === 'string' ? { url: target, thisDeviceOnly: false } : target;
+}
+
 /** "Started here" only from a signed-out device, never from a signed-in surface (owner decision 15). */
 function markStarted(method: SignInMethod): void {
   if (!isSignedIn()) markSignInStarted(method);
@@ -26,8 +31,9 @@ interface Props {
   auth: Pick<Auth, 'sendLink' | 'google'>;
   google: boolean;
   idBase: string;
-  /** Where the link and Google bring the person back (the save sheet adds the reading's claim token). */
-  redirectTo: () => Promise<string>;
+  /** Where the link and Google bring the person back (the save sheet adds the reading's claim token). `thisDeviceOnly`:
+   * no claim token could be made, so the link saves the reading only on the device that sent it. */
+  redirectTo: () => Promise<string | { url: string; thisDeviceOnly: boolean }>;
   /** 'night' inside the night room, 'day' on the diary and account pages. */
   surface: 'night' | 'day';
 }
@@ -39,6 +45,8 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
   const [error, setError] = useState<SendError | 'invalid' | null>(null);
   const [wait, setWait] = useState(0);
   const [resent, setResent] = useState(false);
+  const [thisDeviceOnly, setThisDeviceOnly] = useState(false); // the link carries no claim token (the sheet's request failed)
+  const [busy, setBusy] = useState(false); // waiting for the address (the claim token) before the browser leaves for Google
   const sentTitle = useRef<HTMLHeadingElement>(null);
   const emailInput = useRef<HTMLInputElement>(null);
   const backToForm = useRef(false); // "Use another e-mail" was pressed
@@ -66,12 +74,14 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
     setResent(false);
     if (!again) setPhase('sending');
     markStarted('email');
-    const result = await auth.sendLink(address, await redirectTo());
+    const target = await resolveTarget(redirectTo);
+    const result = await auth.sendLink(address, target.url);
     if (!result.ok) {
       setError(result.error);
       if (!again) setPhase('form');
       return;
     }
+    setThisDeviceOnly(target.thisDeviceOnly);
     setPhase('sent');
     setWait(RESEND_WAIT_S);
     setResent(again);
@@ -80,8 +90,10 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
   const withGoogle = async () => {
     setError(null);
     markStarted('google');
-    const result = await auth.google(await redirectTo()); // on success the browser leaves for Google
-    if (!result.ok) setError(result.error);
+    setBusy(true);
+    const target = await resolveTarget(redirectTo);
+    const result = await auth.google(target.url); // on success the browser leaves for Google
+    if (!result.ok) { setBusy(false); setError(result.error); }
   };
 
   const message = error ? d[MESSAGES[error]] : null;
@@ -91,7 +103,7 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
     return (
       <div class={`signin signin--${surface}`}>
         <h3 class="signin__title" tabIndex={-1} ref={sentTitle}>{d.checkEmailTitle}</h3>
-        <p>{fill(d.checkEmailLead, { email: email.trim() })}</p>
+        <p>{fill(thisDeviceOnly ? d.checkEmailLeadThisDevice : d.checkEmailLead, { email: email.trim() })}</p>
         <button type="button" class="btn btn--outline" disabled={counting} onClick={() => void send(true)}>
           {d.checkEmailResend}
         </button>
@@ -113,14 +125,14 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
           autocomplete="email" required maxLength={254} placeholder={d.plusEmailPlaceholder} value={email}
           aria-invalid={error ? 'true' : undefined} aria-describedby={message ? errorId : undefined}
           onInput={(e) => setEmail((e.target as HTMLInputElement).value)} />
-        <button type="submit" class={surface === 'day' ? 'btn btn--ink' : 'btn btn--gold'} disabled={phase === 'sending'}>
+        <button type="submit" class={surface === 'day' ? 'btn btn--ink' : 'btn btn--gold'} disabled={phase === 'sending' || busy}>
           {d.signInSend}
         </button>
       </form>
       {google ? (
         <>
           <p class="signin__or">{d.signInOr}</p>
-          <button type="button" class="btn btn--outline" onClick={() => void withGoogle()}>{d.signInGoogle}</button>
+          <button type="button" class="btn btn--outline" disabled={phase === 'sending' || busy} onClick={() => void withGoogle()}>{d.signInGoogle}</button>
         </>
       ) : null}
       {message ? <p role="alert" id={errorId}>{message}</p> : null}

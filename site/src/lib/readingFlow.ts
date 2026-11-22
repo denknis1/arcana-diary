@@ -55,7 +55,7 @@ export async function startReading(deps: FlowDeps, draw: CreateBody): Promise<vo
     deps.dispatch({ type: 'failed', error: result.error });
     return;
   }
-  deps.dispatch({ type: 'created', reading: result.reading, reducedMotion: deps.reducedMotion });
+  deps.dispatch({ type: 'created', reading: result.reading, reducedMotion: deps.reducedMotion, authed: result.authed === true });
   await streamReading(deps, result.reading.id, body.tz, 'stream');
 }
 

@@ -1,14 +1,15 @@
 // @vitest-environment happy-dom
 import { act } from 'preact/test-utils';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { AccountApi } from '../../lib/accountApi';
+import { createAccountApi, type AccountApi } from '../../lib/accountApi';
+import { CREATE_TIMEOUT_MS, type FetchFn } from '../../lib/api';
 import type { Auth, SendResult } from '../../lib/auth';
 import { SIGNED_IN_KEY, STARTED_KEY } from '../../lib/authState';
-import { byText, cleanup, click, mount, queryText, submit, typeInto } from '../../lib/testing/dom';
+import { byText, cleanup, click, mount, queryText, settle, submit, typeInto } from '../../lib/testing/dom';
 import { SaveSheet } from './SaveSheet';
 import { RESEND_WAIT_S } from './SignInBlock';
 
-function fakes(token: string | null = 'tok-1', answers: SendResult[] = []) {
+function fakes(token: string | null = 'tok-1', answers: SendResult[] = [], claim?: AccountApi['claimToken']) {
   const sent: Array<{ method: 'email' | 'google'; email?: string; redirectTo: string }> = [];
   const tokens: string[] = [];
   const auth: Pick<Auth, 'sendLink' | 'google'> = {
@@ -16,11 +17,11 @@ function fakes(token: string | null = 'tok-1', answers: SendResult[] = []) {
     google: async (redirectTo) => { sent.push({ method: 'google', redirectTo }); return { ok: true }; },
   };
   const accountApi: Pick<AccountApi, 'claimToken'> = {
-    claimToken: async (id) => {
+    claimToken: claim ?? (async (id) => {
       tokens.push(id);
       return token ? { ok: true, status: 201, data: { token, expires_at: '2026-11-29T00:00:00Z' } }
         : { ok: false, status: 409, error: 'other', body: { reason: 'in_diary' } };
-    },
+    }),
   };
   return { auth, accountApi, sent, tokens };
 }
@@ -148,5 +149,53 @@ describe('the save sheet (screens 3, 3b; spec 4.4b §4)', () => {
     await submit(root.querySelector('form')!);
     await click(byText(root, 'Use another e-mail', 'button'));
     expect(document.activeElement).toBe(root.querySelector('input[type="email"]'));
+  });
+
+  it('with a claim token the "Check your e-mail" lead says the link opens on any device', async () => {
+    const f = fakes();
+    const { root } = await mount(sheet(f));
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    expect(root.textContent).toContain('Open it on this or any other device to finish.');
+    expect(root.textContent).not.toContain('to save this reading');
+  });
+
+  it.each([
+    ['en', 'Open the link on this device to save this reading.'],
+    ['es', 'Abre el enlace en este dispositivo para guardar esta tirada.'],
+  ] as const)('without a claim token the lead (%s) says to open the link on this device', async (lang, line) => {
+    const f = fakes(null);
+    const { root } = await mount(sheet(f, { lang }));
+    await typeInto(root.querySelector('input[type="email"]')!, 'ana@example.com');
+    await submit(root.querySelector('form')!);
+    expect(root.textContent).toContain(line);
+    expect(root.textContent).not.toContain('any other device');
+    expect(root.textContent).not.toContain('otro dispositivo');
+  });
+
+  it('a claim token that never answers times out like a failure: the link goes out without it, Google is off meanwhile', async () => {
+    const hangs: FetchFn = (_url, init) => new Promise((_resolve, reject) => {
+      init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
+    });
+    const f = fakes('tok-1', [], createAccountApi(hangs).claimToken);
+    const { root } = await mount(sheet(f, { google: true }));
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] }); // after mount: settle() waits on real timers
+    await act(() => {
+      const input = root.querySelector('input[type="email"]') as HTMLInputElement;
+      input.value = 'ana@example.com';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await act(() => {
+      root.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    });
+    expect(f.sent).toEqual([]); // still waiting for the token
+    expect(byText<HTMLButtonElement>(root, 'Continue with Google', 'button').disabled).toBe(true);
+    await act(async () => {
+      vi.advanceTimersByTime(CREATE_TIMEOUT_MS);
+    });
+    vi.useRealTimers();
+    await settle();
+    expect(f.sent.map((s) => s.redirectTo)).toEqual(['https://arcana.test/diary']);
+    expect(root.textContent).toContain('Open the link on this device to save this reading.');
   });
 });

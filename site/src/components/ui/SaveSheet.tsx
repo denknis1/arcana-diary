@@ -40,7 +40,8 @@ export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, o
       token.current = null;
       return null;
     });
-    return returnUrl(origin, lang, { claim: await token.current, remind: remindNow.current });
+    const claim = await token.current;
+    return { url: returnUrl(origin, lang, { claim, remind: remindNow.current }), thisDeviceOnly: claim === null };
   };
 
   return (

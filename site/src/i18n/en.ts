@@ -190,6 +190,7 @@ export const en = {
   signInTooOften: 'Too many tries for now. Please wait a few minutes and try again.',
   checkEmailTitle: 'Check your e-mail',
   checkEmailLead: 'We sent a link to {email}. Open it on this or any other device to finish.',
+  checkEmailLeadThisDevice: 'We sent a link to {email}. Open the link on this device to save this reading.',
   checkEmailResend: 'Send it again',
   checkEmailWait: 'You can send it again in {n} s.',
   checkEmailOther: 'Use another e-mail',
@@ -210,6 +211,6 @@ export const enDrafts: readonly DictKey[] = [
   'errTurnstile', 'errUnavailable', 'errNetwork', 'errStage', 'errGone', 'errOther', 'plusEmailLabel',
   'plusEmailPlaceholder', 'plusNotify', 'plusDone', 'plusEmailError', 'crisisCall', 'crisisText', 'crisisHours',
   'crisisWeb', 'errDayCap', 'followupReady',
-  'signInEmailLabel', 'signInSend', 'signInOr', 'signInTooOften', 'checkEmailLead', 'checkEmailResend', 'checkEmailWait',
+  'signInEmailLabel', 'signInSend', 'signInOr', 'signInTooOften', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait',
   'checkEmailOther', 'checkEmailSent',
 ];
