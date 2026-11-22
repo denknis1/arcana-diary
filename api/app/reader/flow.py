@@ -143,7 +143,7 @@ def load_history(ctx, reading: dict) -> list[dict]:
 
 def followup_text(followup: dict) -> str | None:
     answer = followup.get("answer")
-    if not answer:
+    if not answer or answer.get("crisis"):  # a crisis tombstone has no answer to show (stage 4.5 review I1)
         return None
     return answer["fallback"] or answer["model"]
 
@@ -156,13 +156,21 @@ def stream_status(reading: dict, now: datetime) -> str:
     return "streaming" if started and now - started < repo.STREAM_CLAIM_STALE else "pending"
 
 
+def card_view(ctx, card: dict, lang: str, with_vote: bool) -> dict:
+    """A drawn card with its name; in a yes/no reading with a verdict also its own vote (stage 4.5 §4)."""
+    view = {**card, "name": ctx.cards.name(card["card_id"], lang)}
+    if with_vote:
+        view["vote"] = ctx.cards.vote(card)
+    return view
+
+
 def reading_view(ctx, reading: dict, owner: bool) -> dict:
     """§8.3: anyone with the link sees the cards and the answer; the question, topic and situation — the owner."""
     lang = reading["lang"]
     verdict = reading.get("verdict")
     view = {
         "id": str(reading["id"]), "lang": lang, "kind": reading["kind"], "owner": owner,
-        "cards": [{**c, "name": ctx.cards.name(c["card_id"], lang)} for c in reading["cards"]],
+        "cards": [card_view(ctx, c, lang, verdict is not None) for c in reading["cards"]],
         "verdict": {"value": verdict, "label": verdict_label(ctx, reading)} if verdict else None,
         "soft_line": soft_line(ctx, lang, reading["guard_group"]),
     }
@@ -177,7 +185,7 @@ def full_view(ctx, reading: dict, followups: list[dict], owner: bool, now: datet
     view = {**reading_view(ctx, reading, owner), "answer": shown_sections(reading), "answer_shown": shown,
             "status": stream_status(reading, now)}
     if owner:
-        answered = [f for f in followups if f.get("answer")]
+        answered = [f for f in followups if followup_text(f)]
         view.update({
             "retries_left": RETRY_LIMIT - reading["retries"] if shown == "fallback" else 0,
             "followups": [{"n": f["n"], "question": f["question"], "answer": followup_text(f),
@@ -300,7 +308,8 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
     parser, outcome = SectionParser(), None
     if not spent:
         excerpts = ctx.cards.excerpts(reading["cards"], lang, reading["topic"])
-        messages = compose.reader_messages(reading, excerpts, verdict_label(ctx, reading), history)
+        messages = compose.reader_messages(reading, excerpts, verdict_label(ctx, reading), history,
+                                           compose.card_votes(reading, ctx.cards))
         for item in run_stream(ctx.reader, prompt.text, messages, READER_MAX_TOKENS,
                                ctx.settings.first_token_timeout_s):
             if isinstance(item, Chunk):

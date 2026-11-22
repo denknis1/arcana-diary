@@ -24,8 +24,10 @@ def live_claim_tokens(conn, reading_id, now) -> int:
 
 
 def claim_device(conn, user_id, guest_id, now) -> list:
-    """§4.1: every unexpired reading of this device's guest cookie that has no account yet; returns their ids."""
-    rows = conn.execute("UPDATE readings SET user_id = %s, expires_at = NULL WHERE guest_id = %s AND user_id IS NULL"
+    """§4.1: every unexpired reading of this device's guest cookie that has no account yet; returns their ids.
+    The request number goes (stage 4.5 §5): it is unique per owner, and the account may hold the same one."""
+    rows = conn.execute("UPDATE readings SET user_id = %s, expires_at = NULL, request_id = NULL"
+                        " WHERE guest_id = %s AND user_id IS NULL"
                         " AND (expires_at IS NULL OR expires_at > %s) RETURNING id",
                         (user_id, guest_id, now)).fetchall()
     return [r["id"] for r in rows]
@@ -33,13 +35,15 @@ def claim_device(conn, user_id, guest_id, now) -> list:
 
 def claim_by_tokens(conn, user_id, hashes: list[str], now) -> list:
     """§4.2: every live token in the list is used up, once, even when its reading does not move; the reading moves
-    only while it has no account and has not expired. Unknown, used or expired tokens are skipped."""
+    only while it has no account and has not expired. Unknown, used or expired tokens are skipped. A moved reading
+    drops its request number, as in claim_device."""
     if not hashes:
         return []
     rows = conn.execute(
         "WITH used AS (UPDATE claim_tokens SET used_at = %(now)s WHERE token_hash = ANY(%(hashes)s)"
         " AND used_at IS NULL AND expires_at > %(now)s RETURNING reading_id)"
-        " UPDATE readings r SET user_id = %(user)s, expires_at = NULL FROM used WHERE r.id = used.reading_id"
+        " UPDATE readings r SET user_id = %(user)s, expires_at = NULL, request_id = NULL FROM used"
+        " WHERE r.id = used.reading_id"
         " AND r.user_id IS NULL AND (r.expires_at IS NULL OR r.expires_at > %(now)s) RETURNING r.id",
         {"now": now, "hashes": hashes, "user": user_id}).fetchall()
     return list(dict.fromkeys(r["id"] for r in rows))
@@ -59,7 +63,7 @@ def diary_page(conn, user_id, before, limit: int) -> list[dict]:
     """§6: the account's readings, newest first, older than `before` (None: from the newest), with the number of
     answered follow-ups."""
     return conn.execute(
-        "SELECT r.*, (SELECT count(*) FROM followups f WHERE f.reading_id = r.id AND f.answer IS NOT NULL)"
+        "SELECT r.*, (SELECT count(*) FROM followups f WHERE f.reading_id = r.id AND f.answer IS NOT NULL AND f.answer ->> 'crisis' IS NULL)"
         " AS followup_count FROM readings r WHERE r.user_id = %s"
         " AND (%s::timestamptz IS NULL OR r.created_at < %s) ORDER BY r.created_at DESC, r.id DESC LIMIT %s",
         (user_id, before, before, limit)).fetchall()

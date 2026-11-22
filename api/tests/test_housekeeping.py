@@ -54,9 +54,28 @@ def test_delete_stale_counters_caches_and_old_logs(db):
         repo.log_llm_call(conn, call(T0))
         repo.log_llm_call(conn, call(T0 - timedelta(days=91)))
     assert delete_expired(db, T0) == {"readings": 0, "usage": 1, "daily_cache": 1, "daily_draws": 1,
-                                      "llm_calls": 1, "guard_events": 1, "claim_tokens": 0, "deleted_accounts": 0}
+                                      "llm_calls": 1, "guard_events": 1, "claim_tokens": 0, "deleted_accounts": 0,
+                                      "followup_tombstones": 0}
     assert (count(db, "usage"), count(db, "daily_cache"), count(db, "daily_draws")) == (1, 1, 1)
     assert (count(db, "guard_events"), count(db, "llm_calls")) == (1, 1)
+
+
+def test_followup_crisis_tombstones_are_deleted_after_one_day(db):
+    reading = make_reading(now=T0)
+    with db.connect() as conn:
+        repo.insert_reading(conn, reading)
+        for n, age, answer in [(1, timedelta(days=1, minutes=1), {"crisis": True}),   # old tombstone: goes
+                               (2, timedelta(hours=23), {"crisis": True}),            # young tombstone: stays
+                               (3, timedelta(days=3), {"text": "A."}),                # old real answer: stays
+                               (4, timedelta(days=3), {"crisis": False})]:            # not a tombstone: stays
+            repo.insert_followup(conn, {"id": uuid.uuid4(), "reading_id": reading["id"], "n": n, "question": "",
+                                        "created_at": T0 - age})
+            conn.execute("UPDATE followups SET answer = %s WHERE reading_id = %s AND n = %s",
+                         (repo.Jsonb(answer), reading["id"], n))
+    assert delete_expired(db, T0)["followup_tombstones"] == 1
+    with db.connect() as conn:
+        left = sorted(r["n"] for r in conn.execute("SELECT n FROM followups").fetchall())
+    assert left == [2, 3, 4]
 
 
 def test_cleanup_loop_runs_now_and_repeats(db):

@@ -69,7 +69,7 @@ def export_reading(ctx, reading: dict, followups: list[dict]) -> dict:
         "outcome": reading["outcome"], "outcome_at": reading["outcome_at"],
         "note": reading["note"], "note_updated_at": reading["note_updated_at"],
         "followups": [{"n": f["n"], "question": f["question"], "answer": flow.followup_text(f),
-                       "created_at": f["created_at"]} for f in followups if f["answer"]],
+                       "created_at": f["created_at"]} for f in followups if flow.followup_text(f)],
     }
 
 

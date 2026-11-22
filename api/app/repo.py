@@ -10,16 +10,32 @@ STREAM_CLAIM_STALE = timedelta(seconds=180)
 EMPTY_ANSWER = {"model": None, "fallback": None}
 
 
-def insert_reading(conn, reading: dict) -> None:
+def insert_reading(conn, reading: dict) -> bool:
     """user_id: the account of a signed-in person (spec 4.3 §5); without it the reading is a guest's.
-    guard_source: GuardResult.source of the question check (migration 003); None without a question."""
-    conn.execute(
+    guard_source: GuardResult.source of the question check (migration 003); None without a question.
+    request_id: the site's request number (migration 005), or None. False when the owner already has a reading
+    with this request_id (a parallel repeat of the same request won): nothing is inserted."""
+    row = conn.execute(
         "INSERT INTO readings (id, guest_id, user_id, lang, kind, question, topic, situation, source_card_id, cards,"
-        " seed, verdict, guard_group, guard_source, created_at, expires_at)"
+        " seed, verdict, guard_group, guard_source, request_id, created_at, expires_at)"
         " VALUES (%(id)s, %(guest_id)s, %(user_id)s, %(lang)s, %(kind)s, %(question)s, %(topic)s, %(situation)s,"
-        " %(source_card_id)s, %(cards)s, %(seed)s, %(verdict)s, %(guard_group)s, %(guard_source)s, %(created_at)s,"
-        " %(expires_at)s)",
-        {"user_id": None, "guard_source": None, **reading, "cards": Jsonb(reading["cards"])})
+        " %(source_card_id)s, %(cards)s, %(seed)s, %(verdict)s, %(guard_group)s, %(guard_source)s, %(request_id)s,"
+        " %(created_at)s, %(expires_at)s) ON CONFLICT DO NOTHING RETURNING id",
+        {"user_id": None, "guard_source": None, "request_id": None, **reading,
+         "cards": Jsonb(reading["cards"])}).fetchone()
+    return row is not None
+
+
+def find_reading_by_request(conn, request_id, user_id, guest_id, now) -> dict | None:
+    """Spec 4.5 §5: the reading its owner already made with this request number — the account's when signed in,
+    otherwise the device's guest reading (stage 4.3 §6); another owner's number finds nothing, nor does an expired
+    reading."""
+    if user_id is not None:
+        owner, args = "user_id = %s", (request_id, user_id, now)
+    else:
+        owner, args = "user_id IS NULL AND guest_id = %s", (request_id, guest_id, now)
+    return conn.execute(f"SELECT * FROM readings WHERE request_id = %s AND {owner}"
+                        " AND (expires_at IS NULL OR expires_at > %s)", args).fetchone()
 
 
 def get_reading(conn, reading_id, now) -> dict | None:
@@ -84,10 +100,11 @@ def list_followups(conn, reading_id) -> list[dict]:
 
 
 def insert_followup(conn, followup: dict) -> bool:
-    row = conn.execute("INSERT INTO followups (id, reading_id, n, question, guard_group, paid_day, created_at)"
-                       " VALUES (%(id)s, %(reading_id)s, %(n)s, %(question)s, %(guard_group)s, %(paid_day)s,"
-                       " %(created_at)s) ON CONFLICT (reading_id, n) DO NOTHING RETURNING id",
-                       {"guard_group": "ok", "paid_day": None, **followup}).fetchone()
+    """False when the reading already has a follow-up with this n or this request_id (migration 005)."""
+    row = conn.execute("INSERT INTO followups (id, reading_id, n, question, guard_group, paid_day, request_id,"
+                       " created_at) VALUES (%(id)s, %(reading_id)s, %(n)s, %(question)s, %(guard_group)s,"
+                       " %(paid_day)s, %(request_id)s, %(created_at)s) ON CONFLICT DO NOTHING RETURNING id",
+                       {"guard_group": "ok", "paid_day": None, "request_id": None, **followup}).fetchone()
     return row is not None
 
 
@@ -99,6 +116,22 @@ def save_followup_answer(conn, followup_id, answer: dict, model: str | None, cou
     row = conn.execute("UPDATE followups SET answer = %s, model = %s, counted = %s WHERE id = %s RETURNING id",
                        (Jsonb(answer), model, counted, followup_id)).fetchone()
     return row is not None
+
+
+def tombstone_followup(conn, followup_id) -> bool:
+    """Stage 4.5 review I1: the reader's own [[crisis]] keeps the row as a mark — answer {"crisis": true}, not
+    counted, the question blanked (never stored) — so the same request_id again shows the crisis help instead of
+    asking the model again. False when the row is gone (freed as stale)."""
+    row = conn.execute("UPDATE followups SET answer = %s, question = '', counted = false WHERE id = %s RETURNING id",
+                       (Jsonb({"crisis": True}), followup_id)).fetchone()
+    return row is not None
+
+
+def delete_old_tombstones(conn, before) -> int:
+    """Owner decision 22.11.2026: a follow-up crisis tombstone is only needed for the repeat window; the hourly
+    cleanup deletes the ones made before `before` (a day ago). Its attempt stays counted (n is the counter)."""
+    return conn.execute("DELETE FROM followups WHERE answer = %s AND created_at < %s",
+                        (Jsonb({"crisis": True}), before)).rowcount
 
 
 def delete_followup(conn, followup_id) -> bool:

@@ -14,7 +14,8 @@ DAILY_LIMIT = 3
 USER_DAILY_LIMIT = 5       # signed in: per account, on every device (spec 2026-11-19 stage 4.3 §5)
 IP_HARD_LIMIT = 60
 FOLLOWUP_LIMIT = 2         # free follow-ups per reading; each next one uses a reading of DAILY_LIMIT (§10.1)
-FOLLOWUP_ATTEMPTS = 8      # §10.2: follow-up requests per reading, crisis answers, refusals and failures included
+FOLLOWUP_ATTEMPTS = 8      # §10.2: follow-up requests per reading; reader [[crisis]] marks, refusals and failures
+                           # included, a crisis answer of the question check not (stage 4.5 §3)
 IP_FOLLOWUP_LIMIT = 40     # §9.2: follow-up requests per address per UTC day
 IP_GUARD_LIMIT = 60        # §10.5 (В18): question checks by the model per address per UTC day on POST /api/readings
 RETRY_LIMIT = 2

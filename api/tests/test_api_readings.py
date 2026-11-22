@@ -14,7 +14,7 @@ from app.reader import fallback, flow
 from app.reader.engine import Failed
 from app.reader.provider import FakeReply, ProviderError, ProviderRefusal, ProviderTimeout, StreamResult, canned_answer, split_chunks
 from app.safety.guard import GuardResult
-from helpers import dump_tables, from_ip, guest_headers, parse_sse, post_reading, stream_sections
+from helpers import bearer, dump_tables, from_ip, guest_headers, parse_sse, post_reading, stream_sections
 
 MX = "America/Mexico_City"
 
@@ -125,21 +125,21 @@ def test_stream_sends_sections_and_saves_answer(api):
     body = create(api, kind="three", question="How can I settle into my new team?", topic="work")
     events = stream(api, body["id"])
     assert events[0][0] == "meta" and events[0][1]["replay"] is False
-    assert events[0][1]["prompt_version"] == "reader.en.v5"
+    assert events[0][1]["prompt_version"] == "reader.en.v6"
     assert [d["name"] for e, d in events if e == "section"] == ["headline", "card1", "card2", "card3", "synthesis",
                                                                  "step"]
     assert events[-1] == ("done", {"answer_shown": "model"})
     row = saved(api, body["id"])
     assert row["answer_shown"] == "model" and row["answer"]["fallback"] is None
     assert row["answer"]["model"] == stream_sections(events)
-    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v5")
+    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v6")
     [call] = api.reader.stream_calls()
     assert call["system"] == api.ctx.prompts[("reader", "en")].text
     assert '<cards count="3">' in call["messages"][0]["content"]
     with api.db.connect() as conn:
         log_row = conn.execute("SELECT * FROM llm_calls WHERE purpose = 'reader'").fetchone()
     assert log_row["reading_id"] == uuid.UUID(body["id"]) and log_row["tokens_in"] == 120
-    assert log_row["prompt_version"] == "reader.en.v5" and log_row["ms_first_token"] is not None
+    assert log_row["prompt_version"] == "reader.en.v6" and log_row["ms_first_token"] is not None
     assert log_row["created_at"] == api.clock()
 
 
@@ -711,3 +711,275 @@ def test_a_failed_save_frees_the_claim(api, monkeypatch):
     assert stream(api, body["id"])[-1] == ("error", {"reason": "db"})
     row = saved(api, body["id"])
     assert row["answer"] is None and row["stream_started_at"] is None
+
+
+# --- stage 4.5 §3: help first, then the limit ---
+
+def use_up_the_day(api, client=None, headers=None):
+    for _ in range(3):
+        assert post_reading(client or api.client, kind="one", tz=MX, headers=headers).status_code == 201
+
+
+def guard_calls_logged(api) -> int:
+    with api.db.connect() as conn:
+        return conn.execute("SELECT count(*) AS n FROM llm_calls WHERE purpose = 'guard'").fetchone()["n"]
+
+
+def test_a_stop_phrase_at_the_daily_limit_gets_the_crisis_answer(api):
+    use_up_the_day(api)
+    response = post_reading(api.client, kind="one", tz=MX, question="I want to die")
+    assert response.status_code == 200
+    body = response.json()
+    assert (body["group"], body["remaining"]) == ("crisis", 0)
+    assert api.guard.json_calls() == [] and guest_usage(api) == 3
+    assert guard_rows(api) == [{"lang": "en", "guard_group": "crisis", "source": "terms", "count": 1}]
+
+
+def test_the_crisis_answer_never_shows_a_negative_remaining(api):
+    use_up_the_day(api)
+    with api.db.connect() as conn:  # more used than the limit (a lowered limit, a repair)
+        conn.execute("UPDATE usage SET count = 5 WHERE subject LIKE 'guest:%'")
+    response = post_reading(api.client, kind="one", tz=MX, question="I want to die")
+    assert response.status_code == 200 and response.json()["remaining"] == 0
+
+
+def test_a_crisis_found_by_the_check_model_at_the_daily_limit_gets_the_crisis_answer(api):
+    use_up_the_day(api)
+    api.guard.json_replies.append(CRISIS)
+    response = post_reading(api.client, kind="three", tz=MX, question="Is there any way out of this?")
+    assert response.status_code == 200 and response.json()["group"] == "crisis"
+    assert len(api.guard.json_calls()) == 1 and guard_calls_logged(api) == 1
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 3
+
+
+def test_an_ordinary_question_at_the_daily_limit_is_checked_then_refused(api):
+    use_up_the_day(api)
+    response = post_reading(api.client, kind="one", tz=MX, question="Should I take the pottery class?")
+    assert response.status_code == 429 and response.json() == {"reason": "limit", "remaining": 0}
+    assert len(api.guard.json_calls()) == 1  # the check first; its call is logged for the guard budget
+    assert guard_calls_logged(api) == 1 and guest_usage(api) == 3
+    with api.db.connect() as conn:  # ...for no reading: none is made
+        assert conn.execute("SELECT reading_id FROM llm_calls WHERE purpose = 'guard'").fetchone()["reading_id"] is None
+    assert guard_rows(api) == [{"lang": "en", "guard_group": "ok", "source": "model", "count": 1}]
+    assert post_reading(api.client, kind="one", tz=MX).json() == {"reason": "limit", "remaining": 0}
+    assert len(api.guard.json_calls()) == 1  # no question: nothing to check
+
+
+def test_the_address_cap_still_comes_before_the_question_check(api):
+    ip = "198.51.100.123"
+    ip_hash = api.ctx.salt.hash_ip(ip, api.clock())
+    with api.db.connect() as conn:
+        conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, 60)",
+                     (limits.ip_subject(ip_hash), limits.utc_day(api.clock())))
+    response = post_reading(api.client, kind="one", tz=MX, question="I want to die", headers=from_ip(ip))
+    assert response.status_code == 429 and response.json() == {"reason": "ip_limit", "remaining": 0}
+    assert guard_rows(api) == []
+
+
+def test_at_the_daily_limit_a_question_nobody_can_check_is_429_limit(api):
+    """Fable plan review I6(b): over the guard's budget, or with the address's checks used, a question only the
+    model can check cannot get a reading anyway — the limit answers, not "unavailable" (below the limit: 503)."""
+    use_up_the_day(api)
+    with api.db.connect() as conn:
+        repo.log_llm_call(conn, {"reading_id": None, "purpose": "guard", "model": "claude-haiku-5-5",
+                                 "prompt_version": "guard.v1", "ms_first_token": None, "ms_total": 1,
+                                 "tokens_in": 1, "tokens_out": 1, "cost_usd": 1.0, "stop_reason": "end_turn",
+                                 "refusal_category": None, "created_at": api.clock()})
+    over_budget = post_reading(api.client, kind="one", tz=MX, question="Should I take the pottery class?")
+    assert over_budget.status_code == 429 and over_budget.json() == {"reason": "limit", "remaining": 0}
+    crisis = post_reading(api.client, kind="one", tz=MX, question="I want to die")  # a stop-phrase still helps
+    assert crisis.status_code == 200 and crisis.json()["group"] == "crisis"
+    below = post_reading(api.new_client(), kind="one", tz=MX, question="Should I take the pottery class?",
+                         headers=from_ip("198.51.100.150"))  # another device and address
+    assert below.status_code == 503 and below.json() == {"reason": "unavailable"}
+    assert api.guard.json_calls() == []
+
+
+# --- stage 4.5 §5: one request, one reading ---
+
+def reading_count(api) -> int:
+    with api.db.connect() as conn:
+        return conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"]
+
+
+def test_the_same_request_number_returns_the_same_reading(api):
+    number = str(uuid.uuid4())
+    ask = dict(kind="three", tz=MX, question="How can I settle into my new team?", request_id=number)
+    first = post_reading(api.client, **ask)
+    again = post_reading(api.client, **ask)
+    assert (first.status_code, again.status_code) == (201, 201)
+    assert again.json() == first.json() and first.json()["remaining"] == 2
+    assert (reading_count(api), guest_usage(api), len(api.guard.json_calls())) == (1, 1, 1)
+    assert saved(api, first.json()["id"])["request_id"] == uuid.UUID(number)
+
+
+def test_a_repeat_of_the_last_reading_of_the_day_is_not_refused(api):
+    use_up_the_day(api)
+    with api.db.connect() as conn:  # the third reading was made with a number
+        conn.execute("UPDATE readings SET request_id = %s WHERE id = (SELECT id FROM readings LIMIT 1)",
+                     (uuid.UUID("00000000-0000-4000-8000-000000000003"),))
+    again = post_reading(api.client, kind="one", tz=MX, request_id="00000000-0000-4000-8000-000000000003")
+    assert again.status_code == 201 and again.json()["remaining"] == 0
+    assert (reading_count(api), guest_usage(api)) == (3, 3)
+
+
+def test_another_owners_number_finds_nothing(api):
+    number = str(uuid.uuid4())
+    mine = create(api, kind="one", request_id=number)
+    other = create(api, client=api.new_client(), kind="one", request_id=number)
+    assert other["id"] != mine["id"] and reading_count(api) == 2
+
+
+def test_an_account_finds_its_reading_from_any_device(api):
+    user, number = uuid.uuid4(), str(uuid.uuid4())
+    phone, laptop = api.new_client(), api.new_client()
+    first = post_reading(phone, kind="one", tz=MX, request_id=number, headers=bearer(user))
+    again = post_reading(laptop, kind="one", tz=MX, request_id=number, headers=bearer(user))
+    as_guest = post_reading(phone, kind="one", tz=MX, request_id=number)
+    assert again.json()["id"] == first.json()["id"] and again.json()["remaining"] == 4
+    assert as_guest.json()["id"] != first.json()["id"]  # the device's guest is another owner
+
+
+def test_without_a_number_every_request_is_a_new_reading(api):
+    first, second = create(api, kind="one"), create(api, kind="one")
+    assert first["id"] != second["id"] and guest_usage(api) == 2
+
+
+def test_a_request_number_must_be_a_uuid(api):
+    response = post_reading(api.client, kind="one", tz=MX, request_id="draw-1")
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["request_id"]}
+
+
+@pytest.mark.parametrize("count", [True, 1.0, 3.0, False, "1", 2])
+def test_count_must_be_the_integer_1_or_3(api, count):
+    response = api.client.post("/api/readings", json={"lang": "en", "kind": "yes_no", "tz": MX, "count": count})
+    assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["count"]}
+
+
+def test_two_requests_with_one_number_at_once_make_one_reading(api):
+    api.guard.json_delay = 0.3  # both wait in the question check, then race to insert
+    guest, number = uuid.uuid4(), str(uuid.uuid4())
+    start = threading.Barrier(2)
+    answers = []
+
+    def worker():
+        client = api.new_client()
+        start.wait()
+        answers.append(post_reading(client, kind="one", tz=MX, question="What helps me focus?", request_id=number,
+                                    headers=guest_headers(guest)))
+
+    threads = [threading.Thread(target=worker) for _ in range(2)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert [a.status_code for a in answers] == [201, 201]
+    assert answers[0].json()["id"] == answers[1].json()["id"]
+    assert (reading_count(api), guest_usage(api)) == (1, 1)  # the loser's slot rolled back with its insert
+
+
+def test_a_repeat_is_found_before_the_address_cap_and_turnstile(api):
+    """Fable plan review I6(a): a repeat takes nothing, and a Turnstile token works once — so the lookup comes
+    before both (owner decision 21.11.2026)."""
+    ip = "198.51.100.160"
+    ip_hash = api.ctx.salt.hash_ip(ip, api.clock())
+    number = str(uuid.uuid4())
+    with api.db.connect() as conn:  # from here on the address needs Turnstile
+        conn.execute("INSERT INTO usage (subject, day, count) VALUES (%s, %s, %s)",
+                     (limits.ip_subject(ip_hash), limits.utc_day(api.clock()), limits.IP_DAILY_THRESHOLD))
+    ask = dict(kind="one", tz=MX, request_id=number, headers=from_ip(ip))
+    first = post_reading(api.client, turnstile_token="good-token", **ask)
+    assert first.status_code == 201
+    without_token = post_reading(api.client, **ask)
+    assert without_token.status_code == 201 and without_token.json()["id"] == first.json()["id"]
+    with api.db.connect() as conn:  # and now the address is at its hard cap
+        conn.execute("UPDATE usage SET count = 60 WHERE subject = %s", (limits.ip_subject(ip_hash),))
+    capped = post_reading(api.client, **ask)
+    assert capped.status_code == 201 and capped.json()["id"] == first.json()["id"]
+    assert post_reading(api.client, kind="one", tz=MX, headers=from_ip(ip)).json() == {"reason": "ip_limit",
+                                                                                         "remaining": 0}
+    assert api.turnstile.calls == ["good-token"] and reading_count(api) == 1
+
+
+def test_a_number_of_an_expired_reading_is_409(api):
+    number = uuid.uuid4()
+    create(api, kind="one")
+    with api.db.connect() as conn:  # expired, and not purged yet
+        conn.execute("UPDATE readings SET request_id = %s, expires_at = %s", (number, api.clock()))
+    response = post_reading(api.client, kind="one", tz=MX, request_id=str(number))
+    assert response.status_code == 409 and response.json() == {"reason": "request_id"}
+    assert guest_usage(api) == 1 and reading_count(api) == 1  # the new insert and its slot rolled back
+
+
+# --- stage 4.5 §4: yes/no on three cards ---
+
+def test_yes_no_on_three_cards_has_votes_and_the_majority(api):
+    body = create(api, kind="yes_no", count=3, question="Should I sign up for the pottery class?")
+    assert [c["position"] for c in body["cards"]] == ["card"] * 3
+    assert [c["vote"] for c in body["cards"]] == [api.ctx.cards.vote(c) for c in body["cards"]]
+    expected = api.ctx.cards.verdict(body["cards"])
+    assert body["verdict"] == {"value": expected, "label": api.ctx.cards.rules["labels"]["en"][expected]}
+    assert (body["remaining"], guest_usage(api)) == (2, 1)  # three cards are one reading
+    events = stream(api, body["id"])
+    assert [d["name"] for e, d in events if e == "section"] == ["headline", "card1", "card2", "card3", "synthesis",
+                                                                 "step", "why"]
+    assert events[-1] == ("done", {"answer_shown": "model"})
+    assert '<cards count="3">' in api.reader.stream_calls()[0]["messages"][0]["content"]
+    view = api.client.get(f"/api/readings/{body['id']}").json()
+    assert view["cards"] == body["cards"] and view["verdict"] == body["verdict"]
+
+
+def test_the_decisive_cards_decide_and_a_tie_is_unclear(api, monkeypatch):
+    cards = [{"card_id": "major-19-sun", "position": "card", "reversed": False},  # yes
+             {"card_id": "major-17-star", "position": "card", "reversed": False},  # yes
+             {"card_id": "major-16-tower", "position": "card", "reversed": False}]  # no
+    monkeypatch.setattr("app.routes.readings.draw_spread", lambda seed, kind, order, count=None: cards)
+    body = create(api, kind="yes_no", count=3)
+    assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["yes", "yes", "no"], "yes")
+    split = [cards[0], cards[2], {**cards[1], "reversed": True}]  # yes, no, unclear
+    monkeypatch.setattr("app.routes.readings.draw_spread", lambda seed, kind, order, count=None: split)
+    body = create(api, kind="yes_no", count=3)
+    assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["yes", "no", "unclear"], "unclear")
+    one_decides = [cards[2], {**cards[0], "reversed": True}, {**cards[1], "reversed": True}]  # no, unclear, unclear
+    monkeypatch.setattr("app.routes.readings.draw_spread", lambda seed, kind, order, count=None: one_decides)
+    body = create(api, kind="yes_no", count=3)
+    assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["no", "unclear", "unclear"], "no")
+
+
+@pytest.mark.parametrize("group", ["redirect_topic", "redirect_person"])
+def test_three_yes_no_cards_on_a_closed_topic_have_no_verdict_and_no_votes(api, group):
+    api.guard.json_replies.append({"group": group, "violence": False})
+    body = create(api, kind="yes_no", count=3, question="Will she text me back?")
+    assert body["verdict"] is None and len(body["cards"]) == 3
+    assert all("vote" not in c for c in body["cards"])
+    events = stream(api, body["id"])
+    assert "why" not in stream_sections(events) and "synthesis" in stream_sections(events)
+
+
+def test_count_is_for_yes_no_only(api):
+    assert create(api, kind="yes_no", count=1)["cards"][0]["position"] == "card"
+    assert len(create(api, kind="yes_no")["cards"]) == 1  # the default is one card
+    for body in ({"kind": "three", "count": 3}, {"kind": "one", "count": 1}, {"kind": "yes_no", "count": 2}):
+        response = post_reading(api.client, tz=MX, **body)
+        assert response.status_code == 422 and response.json() == {"reason": "invalid", "fields": ["count"]}
+
+
+def test_one_yes_no_card_carries_its_vote_too(api):
+    body = create(api, kind="yes_no", question="Should I sign up for the pottery class?")
+    assert body["cards"][0]["vote"] == body["verdict"]["value"]
+
+
+def test_the_reader_gets_each_cards_vote_and_the_base_answer_has_them_too(api):
+    api.reader.replies.append(FakeReply(fail_after=0))  # the reader fails before any text
+    body = create(api, kind="yes_no", count=3, lang="es", question="¿Me conviene tomar el curso?")
+    events = stream(api, body["id"])
+    content = api.reader.stream_calls()[0]["messages"][0]["content"]
+    labels = api.ctx.cards.rules["labels"]["es"]
+    assert content.count('position="una de tres"') == 3
+    assert [line for line in content.splitlines() if line.startswith("vote: ")] == [
+        f"vote: {labels[c['vote']]}" for c in body["cards"]]
+    fb = next(d for e, d in events if e == "fallback")
+    assert set(fb["sections"]) == {"headline", "card1", "card2", "card3", "step", "why"}
+    assert fb["sections"]["card1"].startswith(f"{body['cards'][0]['name']}")
+    assert f": {labels[body['cards'][0]['vote']]}. " in fb["sections"]["card1"]

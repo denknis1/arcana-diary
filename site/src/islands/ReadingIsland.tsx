@@ -12,8 +12,9 @@ import {
   ONE_CARD_ANCHOR, buildCreateBody, cardsFor, drawLabelKey, initialKind, panelConfig, situationKey, toolFor, type PanelPage,
 } from '../lib/panel';
 import { askFollowup, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps } from '../lib/readingFlow';
+import { newRequestId } from '../lib/requestId';
 import { turnstileToken } from '../lib/turnstile';
-import { SITUATIONS, type CrisisPayload, type Kind, type Lang, type Situation, type Tool } from '../lib/types';
+import { SITUATIONS, type CardCount, type CrisisPayload, type Kind, type Lang, type Situation, type Tool } from '../lib/types';
 import { NightRoom } from '../components/ui/NightRoom';
 import { PlusCard } from '../components/ui/PlusCard';
 import { CheckIcon } from '../components/ui/icons';
@@ -42,13 +43,15 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const d = t(lang);
   const config = useMemo(() => panelConfig(page, lang, cardId ?? null), [page, lang, cardId]);
   const [kind, setKind] = useState<Kind>(config.kind);
+  const [count, setCount] = useState<CardCount>(1); // yes/no: one card by default (spec 4.5 §4)
   const [situation, setSituation] = useState<Situation | null>(null);
   const [question, setQuestion] = useState('');
   const [state, rawDispatch] = useReducer<NightState, NightAction>(nightReducer, CLOSED);
   const drawButton = useRef<HTMLButtonElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const run = useRef(0); // each draw is a run; a closed room ignores the late answers of its run
-  const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool, kind: config.kind as Kind });
+  const drawn = useRef({ at: 0, tz: undefined as string | undefined, question: '', id: '', tool: config.tool as Tool,
+    cards: cardsFor(config.kind) as CardCount });
   const previous = useRef<NightState>(CLOSED);
   const inHistory = useRef(false); // the room's history entry is on top
   const shownFor = useRef(0); // the run that already sent reading_shown
@@ -98,6 +101,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
       },
       sleep: (ms) => new Promise((resolve) => setTimeout(() => { if (run.current === mine) resolve(); }, ms)), // a stale run never wakes
       reducedMotion: prefersReducedMotion(),
+      newId: () => newRequestId(),
     };
   };
 
@@ -152,8 +156,8 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
     if (roomIsOpen.current) return; // a bounced Enter or second click must not spend a second reading
     run.current += 1;
     const tz = timeZone();
-    const body = buildCreateBody(config, { kind, question, situation, tz });
-    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind), kind };
+    const body = buildCreateBody(config, { kind, question, situation, tz, count });
+    drawn.current = { at: Date.now(), tz, question: body.question ?? '', id: '', tool: toolFor(config, kind), cards: cardsFor(kind, count) };
     sendEvent(analyticsEvent('draw_click', drawn.current.tool, lang, { has_question: Boolean(body.question), entry: config.entry }));
     if (!inHistory.current) {
       history.pushState({ arcanaNight: true }, '');
@@ -215,6 +219,18 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
             ))}
           </div>
         ) : null}
+        {config.yesNoCount ? (
+          <>
+            <div class="chips" role="group" aria-label={d.countGroupLabel}>
+              {([1, 3] as const).map((n) => (
+                <button type="button" class="chip" aria-pressed={count === n} onClick={() => setCount(n)}>
+                  <CheckIcon />{n === 1 ? d.oneCardChip : d.threeCardsChip}
+                </button>
+              ))}
+            </div>
+            <p class="count-hint">{d.yesNoCountHint}</p>
+          </>
+        ) : null}
         {config.situations ? (
           <div class="field">
             <span id={`situation-${page}`} class="field__label">{d.situationLabel}</span>
@@ -234,10 +250,10 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
           onInput={(e) => setQuestion((e.target as HTMLInputElement).value)} />
         {showBacks ? (
           <div class="backs" aria-hidden="true">
-            {Array.from({ length: cardsFor(kind) }, () => <img src={CARD_BACK} alt="" />)}
+            {Array.from({ length: cardsFor(kind, count) }, () => <img src={CARD_BACK} alt="" />)}
           </div>
         ) : null}
-        <button type="submit" class="btn btn--gold btn--block" ref={drawButton}>{d[drawLabelKey(config, kind)]}</button>
+        <button type="submit" class="btn btn--gold btn--block" ref={drawButton}>{d[drawLabelKey(config, kind, count)]}</button>
         <p class="panel-hint">{d.freeNoSignup}</p>
       </form>
       {roomOpen ? (
@@ -245,7 +261,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
           state={state}
           lang={lang}
           config={config}
-          threeCards={cardsFor(drawn.current.kind) === 3}
+          threeCards={drawn.current.cards === 3}
           question={drawn.current.question}
           sourceName={cardName ?? null}
           onClose={close}

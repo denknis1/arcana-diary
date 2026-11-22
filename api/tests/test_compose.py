@@ -4,7 +4,7 @@ from app.cards import load_cards
 from app.config import load_settings
 from datetime import date
 
-from app.reader.compose import (NO_QUESTION, SITUATIONS, answer_text, daily_messages, followup_messages,
+from app.reader.compose import (NO_QUESTION, SITUATIONS, answer_text, card_votes, daily_messages, followup_messages,
                                 history_block, load_prompt, reader_messages, reading_input)
 from helpers import make_reading
 
@@ -137,3 +137,33 @@ def test_history_goes_before_the_reading_in_the_first_message():
     msgs = followup_messages(reading, ex, None, "First answer.", [], "And now?", "ok", HISTORY)
     assert msgs[0]["content"] == msg["content"] and msgs[1]["content"] == "First answer."
     assert followup_messages(reading, ex, None, "First answer.", [], "And now?", "ok")[0]["content"] == plain
+
+
+YES_NO_THREE = [{"card_id": "major-19-sun", "position": "card", "reversed": False},
+                {"card_id": "major-16-tower", "position": "card", "reversed": False},
+                {"card_id": "major-18-moon", "position": "card", "reversed": True}]
+
+
+@pytest.mark.parametrize("lang, position, votes", [
+    ("en", "one of three", ["Yes", "No", "Not clear yet"]),
+    ("es", "una de tres", ["Sí", "No", "Todavía no está claro"]),
+])
+def test_three_yes_no_cards_carry_their_votes(lang, position, votes):
+    reading = make_reading(kind="yes_no", lang=lang, verdict="unclear", cards=YES_NO_THREE)
+    assert card_votes(reading, BASE) == votes
+    text = reading_input(reading, BASE.excerpts(YES_NO_THREE, lang, None), "x", card_votes(reading, BASE))
+    assert text.count(f'position="{position}"') == 3
+    assert [line for line in text.splitlines() if line.startswith("vote: ")] == [f"vote: {v}" for v in votes]
+    first = reader_messages(reading, BASE.excerpts(YES_NO_THREE, lang, None), "x", None, card_votes(reading, BASE))
+    assert first[0]["content"] == text
+    follow = followup_messages(reading, BASE.excerpts(YES_NO_THREE, lang, None), "x", "Answer.", [], "And then?",
+                               "ok", None, card_votes(reading, BASE))
+    assert follow[0]["content"] == text
+
+
+def test_no_votes_for_one_card_or_without_a_verdict():
+    one = make_reading(kind="yes_no", verdict="yes", cards=YES_NO_THREE[:1])
+    closed = make_reading(kind="yes_no", verdict=None, guard_group="redirect_person", cards=YES_NO_THREE)
+    assert card_votes(one, BASE) is None and card_votes(closed, BASE) is None
+    text = reading_input(closed, BASE.excerpts(YES_NO_THREE, "en", None), None, card_votes(closed, BASE))
+    assert "vote:" not in text and text.count('position="one of three"') == 3

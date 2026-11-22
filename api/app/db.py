@@ -31,7 +31,7 @@ class Database:
         """One transaction: commit on success, rollback on error, then close.
 
         prepare_threshold=None: no server-side prepared statements (Supabase transaction pooler).
-        A missing table means the migrations have not run yet (the database was down at start): also 503.
+        A missing table or column means the migrations have not run (or not finished) yet: also 503.
         """
         if not self.url:
             raise DatabaseUnavailable("DATABASE_URL is not set")
@@ -43,7 +43,7 @@ class Database:
         try:
             with conn:
                 yield conn
-        except (psycopg.OperationalError, psycopg.errors.UndefinedTable) as exc:
+        except (psycopg.OperationalError, psycopg.errors.UndefinedTable, psycopg.errors.UndefinedColumn) as exc:
             raise DatabaseUnavailable(str(exc)) from exc
 
 

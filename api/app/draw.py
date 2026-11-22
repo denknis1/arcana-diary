@@ -10,6 +10,7 @@ from datetime import date
 from typing import Sequence
 
 KIND_COUNTS = {"one": 1, "three": 3, "yes_no": 1, "card_page": 1}
+YES_NO_COUNTS = (1, 3)  # stage 4.5 §4: yes/no on one card (the default) or on three, the yes and no cards decide
 THREE_POSITIONS = ("past", "present", "path")
 SINGLE_POSITION = "card"
 
@@ -30,13 +31,25 @@ def draw(seed: str, n: int, card_ids: Sequence[str]) -> list[tuple[str, bool]]:
     return [(deck[i], _reversed(seed, i)) for i in range(n)]
 
 
-def positions(kind: str) -> tuple[str, ...]:
-    return THREE_POSITIONS if KIND_COUNTS[kind] == 3 else (SINGLE_POSITION,)
+def card_count(kind: str, count: int | None = None) -> int:
+    """How many cards a reading draws: `count` only for yes_no (1 or 3), otherwise the kind's own number."""
+    if kind == "yes_no" and count is not None:
+        if count not in YES_NO_COUNTS:
+            raise ValueError(f"yes_no draws {YES_NO_COUNTS} cards, not {count}")
+        return count
+    return KIND_COUNTS[kind]
 
 
-def draw_spread(seed: str, kind: str, card_ids: Sequence[str]) -> list[dict]:
-    drawn = draw(seed, KIND_COUNTS[kind], card_ids)
-    return [{"card_id": cid, "position": pos, "reversed": rev} for (cid, rev), pos in zip(drawn, positions(kind))]
+def positions(kind: str, count: int | None = None) -> tuple[str, ...]:
+    """Past, present, path for the three-card reading; "card" for every card of the others — three yes/no cards
+    have no time (stage 4.5 §4)."""
+    return THREE_POSITIONS if kind == "three" else (SINGLE_POSITION,) * card_count(kind, count)
+
+
+def draw_spread(seed: str, kind: str, card_ids: Sequence[str], count: int | None = None) -> list[dict]:
+    drawn = draw(seed, card_count(kind, count), card_ids)
+    return [{"card_id": cid, "position": pos, "reversed": rev}
+            for (cid, rev), pos in zip(drawn, positions(kind, count))]
 
 
 def daily_seed(guest_id: str, day: date) -> str:

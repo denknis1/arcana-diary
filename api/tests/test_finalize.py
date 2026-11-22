@@ -122,3 +122,15 @@ def test_a_verdict_in_the_headline_without_a_verdict_is_replaced():
     final = run(reading, text)
     assert (final.shown, final.event, final.reason) == ("model", "replace", "headline")
     assert final.sections["headline"] == fallback.headline_line(BASE, reading)
+
+
+def test_a_bad_why_on_three_yes_no_cards_gets_the_majority_line():
+    cards = [{"card_id": cid, "position": "card", "reversed": False}
+             for cid in ("major-19-sun", "major-17-star", "major-16-tower")]
+    reading = make_reading(kind="yes_no", verdict="yes", cards=cards)
+    text = canned_answer(3, True).replace("The card shows open hands and a clear road, a sign of easy movement.",
+                                          "Yes, two of them say so.")
+    final = run(reading, text)
+    assert (final.shown, final.reason) == ("model", "why")
+    assert final.sections["why"] == fallback.MAJORITY_WHY["en"]["two_of_three"]
+    assert final.sections["card3"] and final.sections["synthesis"]

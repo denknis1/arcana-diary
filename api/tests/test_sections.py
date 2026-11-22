@@ -160,3 +160,11 @@ def test_bracket_at_line_end_before_a_marker():
 def test_bracket_then_crisis_on_the_next_line_is_not_crisis():
     parser, _ = feed_all(["[[headline]]\nSee [", "\n[crisis]]\n"])
     assert "crisis" not in parser.seen
+
+
+def test_three_yes_no_cards_need_three_card_sections():
+    assert required_sections("yes_no", True, 3) == ["headline", "card1", "card2", "card3", "synthesis", "step", "why"]
+    assert required_sections("yes_no", False, 3) == ["headline", "card1", "card2", "card3", "synthesis", "step"]
+    assert required_sections("yes_no", True) == required_sections("yes_no", True, 1) == [
+        "headline", "card1", "step", "why"]
+    assert required_sections("three", False) == required_sections("three", False, 3)

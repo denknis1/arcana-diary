@@ -6,7 +6,7 @@ const keys = (lang: 'en' | 'es') => Object.keys(DICTS[lang]).sort();
 describe('dictionaries', () => {
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(156);
+    expect(keys('en').length).toBe(160);
   });
 
   it('have no empty strings', () => {
@@ -28,7 +28,7 @@ describe('dictionaries', () => {
       for (const key of DRAFTS[lang]) expect(keys(lang)).toContain(key);
     }
     expect(DRAFTS.en.length).toBe(57);
-    expect(DRAFTS.es.length).toBe(115);
+    expect(DRAFTS.es.length).toBe(116);
   });
 
   it('keep the prototype copy', () => {
@@ -39,6 +39,17 @@ describe('dictionaries', () => {
     expect(t('en').disclaimer).toBe('Tarot is a way to think about your question, not a guarantee.');
     expect(t('es').disclaimer).toBe('El tarot es una forma de reflexionar, no una garantía.');
     expect(t('es').whyPrefix).toBe('Por qué:');
+    // spec 4.5 §4: the yes/no toggle of prototype 5a; the Spanish hint is a draft
+    expect(t('en').yesNoCountHint).toBe('1 card — a quick lean. 3 cards — the majority decides, and you see what tips it.');
+    expect([t('en').oneCardChip, t('en').threeCardsChip, t('en').countGroupLabel]).toEqual(['1 card', '3 cards', 'Number of cards']);
+    expect([t('es').oneCardChip, t('es').threeCardsChip]).toEqual(['1 carta', '3 cartas']);
+    expect(DRAFTS.es).toContain('yesNoCountHint');
+    expect(DRAFTS.en).not.toContain('yesNoCountHint');
+  });
+
+  it('name the votes with the card base labels (content/cards/yes-no-rules.json)', () => {
+    expect([t('en').voteYes, t('en').voteNo, t('en').voteUnclear]).toEqual(['Yes', 'No', 'Not clear yet']);
+    expect([t('es').voteYes, t('es').voteNo, t('es').voteUnclear]).toEqual(['Sí', 'No', 'Todavía no está claro']);
   });
 
   it('never call a reading a forecast (design decision 13.11.2026)', () => {

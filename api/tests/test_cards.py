@@ -60,6 +60,15 @@ def test_wrong_spread_size_raises():
         spread_verdict([("major-00-fool", False)] * 2, BASE.deck, BASE.rules)
 
 
+def test_unknown_or_missing_rule_raises():
+    draws = [("major-00-fool", False)] * 3
+    with pytest.raises(ValueError):
+        spread_verdict(draws, BASE.deck, {**BASE.rules, "rule": "two_of_three"})
+    without = {k: v for k, v in BASE.rules.items() if k != "rule"}  # an old v1 file: ValueError, never KeyError
+    with pytest.raises(ValueError):
+        spread_verdict(draws, BASE.deck, without)
+
+
 def test_labels():
     assert label("unclear", "en", BASE.rules) == "Not clear yet"
     assert label("yes", "es", BASE.rules) == "Sí"
@@ -93,3 +102,29 @@ def test_load_cards_rejects_missing_meaning(tmp_path):
     (tmp_path / "meanings.en.json").write_text(json.dumps(en[:-1]), encoding="utf-8")
     with pytest.raises(ValueError, match="meanings.en.json"):
         load_cards(tmp_path)
+
+
+def test_each_card_votes_by_its_base_and_a_reversed_card_is_unclear():
+    base = load_cards(load_settings({}).content_dir)
+    for card_id, record in base.deck.items():
+        assert base.vote({"card_id": card_id, "position": "card", "reversed": False}) == record["yes_no"]
+        assert base.vote({"card_id": card_id, "position": "card", "reversed": True}) == "unclear"
+
+
+@pytest.mark.parametrize("votes, verdict", [
+    (("yes", "yes", "no"), "yes"), (("no", "no", "yes"), "no"),
+    (("yes", "unclear", "unclear"), "yes"), (("unclear", "no", "unclear"), "no"),  # one decisive card decides
+    (("yes", "no", "unclear"), "unclear"), (("unclear", "unclear", "unclear"), "unclear"),  # a tie, or none
+])
+def test_three_cards_decisive_majority(votes, verdict):
+    """Stage 4.5 (owner decision 21.11.2026): "not clear" cards abstain, the yes and no cards decide."""
+    upright = {v: next(cid for cid in BASE.order if BASE.deck[cid]["yes_no"] == v) for v in VERDICTS}
+    cards = [{"card_id": upright[v], "reversed": False} for v in votes]
+    assert BASE.verdict(cards) == verdict
+    reversed_yes = [{"card_id": upright["yes"], "reversed": True}, *cards[1:]]  # a reversed card abstains too
+    assert BASE.verdict(reversed_yes) == BASE.verdict([{"card_id": upright["unclear"], "reversed": False}, *cards[1:]])
+
+
+def test_the_rule_is_named_and_versioned():
+    assert (BASE.rules["version"], BASE.rules["rule"]) == (2, "decisive_majority") and "majority" not in BASE.rules
+

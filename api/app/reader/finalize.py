@@ -34,11 +34,11 @@ class Final:
 def finalize(reading: dict, streamed: dict[str, str], seen: list[str], outcome, base, terms, notice: str) -> Final:
     """streamed — SectionParser.sections(); seen — SectionParser.seen; outcome — engine Finished / Failed, or
     None when the model was not called (the daily budget is spent)."""
-    lang, kind = reading["lang"], reading["kind"]
+    lang, kind, n = reading["lang"], reading["kind"], len(reading["cards"])
     with_why = reading.get("verdict") is not None
     if "crisis" in seen:
         return Final("crisis", EMPTY, None, "crisis", "crisis")
-    required = required_sections(kind, with_why)
+    required = required_sections(kind, with_why, n)
     written = {name: text for name, text in streamed.items() if name in required}
     failed = isinstance(outcome, Failed)
     cut = (failed and outcome.after_text) or (not failed and outcome is not None
@@ -57,7 +57,7 @@ def finalize(reading: dict, streamed: dict[str, str], seen: list[str], outcome, 
         sections = fallback.fallback_answer(base, reading, notice)
         return Final("fallback", {"model": None, "fallback": sections}, sections, "fallback", reason)
     filled = fallback.fill_missing(written, base, reading)
-    result = check.check_answer(filled, kind, lang, terms, with_why)
+    result = check.check_answer(filled, kind, lang, terms, with_why, n)
     if not result.body_ok:
         sections = fallback.fallback_answer(base, reading, notice)
         return Final("fallback", {"model": filled, "fallback": sections}, sections, "replace", "banned",
@@ -65,7 +65,7 @@ def finalize(reading: dict, streamed: dict[str, str], seen: list[str], outcome, 
     final = dict(filled)
     why_replaced = with_why and bool(written.get("why")) and not result.why_ok
     if why_replaced:
-        final["why"] = fallback.why_line(base, reading["cards"][0], lang)
+        final["why"] = fallback.reading_why(base, reading)
     headline_replaced = kind == "yes_no" and not with_why and check.verdict_in(final.get("headline", ""), lang)
     if headline_replaced:
         final["headline"] = fallback.headline_line(base, reading)

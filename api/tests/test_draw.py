@@ -5,7 +5,7 @@ import pytest
 
 from app.cards import load_cards
 from app.config import load_settings
-from app.draw import KIND_COUNTS, daily_draw, draw, draw_spread, new_seed, positions
+from app.draw import KIND_COUNTS, card_count, daily_draw, draw, draw_spread, new_seed, positions
 
 ORDER = load_cards(load_settings({}).content_dir).order
 
@@ -70,3 +70,16 @@ def test_daily_same_all_day_new_next_day():
 def test_daily_differs_between_guests():
     day = date(2026, 11, 20)
     assert len({daily_draw(f"guest-{i}", day, ORDER) for i in range(40)}) >= 25
+
+
+def test_yes_no_on_three_cards_has_no_time():
+    assert [card_count("yes_no"), card_count("yes_no", 1), card_count("yes_no", 3)] == [1, 1, 3]
+    assert card_count("three") == 3 and card_count("one") == 1
+    assert positions("yes_no", 3) == ("card", "card", "card")
+    assert positions("yes_no", 1) == positions("yes_no") == ("card",)
+    spread = draw_spread("abc", "yes_no", ORDER, 3)
+    assert [c["position"] for c in spread] == ["card"] * 3
+    assert [(c["card_id"], c["reversed"]) for c in spread] == draw("abc", 3, ORDER)
+    assert draw_spread("abc", "yes_no", ORDER) == spread[:1]  # one card: the same first card of the seed
+    with pytest.raises(ValueError):
+        card_count("yes_no", 2)

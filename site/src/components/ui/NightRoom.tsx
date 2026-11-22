@@ -3,17 +3,18 @@
 // While cards are dealt: the positions on top, the question as the large title, the cards. With the answer (2e, 5b):
 // the question small at top left, the headline as the large title; on a desktop cards left, text right (13d).
 // Close: × and Escape (listened on the document, so it works wherever focus is); Tab stays inside; after an action
-// whose button disappears, and on every change of phase, focus goes to the title.
+// whose button disappears, and on every change of phase, focus goes to the title. Yes/no on three cards (spec 4.5
+// §4): under each card its own vote (icon and word), the verdict and "why" large in the text column.
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
 import { answerBlocks } from '../../lib/answer';
 import { CARD_BACK, cardById } from '../../lib/deck';
 import { errorMessageKey, needsHelpLink } from '../../lib/errors';
 import { handleDialogKey } from '../../lib/focus';
-import { answerVisible, followupNow, readingShown, statusKey, type NightState } from '../../lib/nightRoom';
+import { answerVisible, cardVotes, followupNow, lastFollowupLost, readingShown, statusKey, timedSpread, type NightState } from '../../lib/nightRoom';
 import type { PanelConfig } from '../../lib/panel';
 import { cardPath } from '../../lib/routes';
-import type { DrawnCard, Lang, Position } from '../../lib/types';
+import type { DrawnCard, Lang, Position, Vote } from '../../lib/types';
 import { CardArt, CardName } from './CardFace';
 import { CrisisView } from './CrisisView';
 import { HelpLine } from './HelpLine';
@@ -39,6 +40,7 @@ export interface NightRoomProps {
 }
 
 const POSITION_KEYS: Record<Position, DictKey | null> = { past: 'posPast', present: 'posPresent', path: 'posPath', card: null };
+const VOTE_KEYS: Record<Vote, DictKey> = { yes: 'voteYes', no: 'voteNo', unclear: 'voteUnclear' };
 
 function cardHref(card: DrawnCard, lang: Lang): string | null {
   const deckCard = cardById(card.card_id);
@@ -65,6 +67,8 @@ export function NightRoom(props: NightRoomProps) {
   const reading = state.reading;
   const cards = reading?.cards ?? [];
   const three = cards.length === 3;
+  const timed = timedSpread(state); // past · present · path (not the three yes/no cards)
+  const votes = cardVotes(state);
   const withAnswer = state.phase === 'reading' && answerVisible(state);
 
   useEffect(() => {
@@ -90,7 +94,7 @@ export function NightRoom(props: NightRoomProps) {
   const status = statusKey(state);
   const quoted = props.question ? `“${props.question}”` : props.threeCards ? d.noQuestionThree : d.noQuestionOne;
   const closeLabel = props.sourceName ? fill(d.closeBackTo, { name: props.sourceName }) : d.close;
-  const top = withAnswer ? quoted : state.phase === 'reading' && three ? [d.posPast, d.posPresent, d.posPath].join(' · ') : '';
+  const top = withAnswer ? quoted : state.phase === 'reading' && timed ? [d.posPast, d.posPresent, d.posPath].join(' · ') : '';
   const heading = state.phase === 'crisis' && state.crisis ? state.crisis.crisis.title : quoted;
   const headline = state.answer.sections.headline?.trim();
 
@@ -118,7 +122,10 @@ export function NightRoom(props: NightRoomProps) {
             </div>
           </div>
           {i < state.revealed ? <CardName cardId={card.card_id} name={card.name} /> : null}
-          {three ? <span class="spread__pos">{d[POSITION_KEYS[card.position]!]}</span> : null}
+          {timed ? <span class="spread__pos">{d[POSITION_KEYS[card.position]!]}</span> : null}
+          {votes[i] ? (
+            <span class="spread__vote"><VerdictIcon value={votes[i]!} size={20} />{d[VOTE_KEYS[votes[i]!]]}</span>
+          ) : null}
         </div>
       ))}
     </div>
@@ -290,6 +297,7 @@ function Followups(props: FollowupProps) {
     }
     wasShown.current = formShown;
   }, [formShown]);
+  const lastIsLost = lastFollowupLost(state); // a lost follow-up always shows the help line
   return (
     <section class="followups" aria-label={d.followupLabel}>
       {state.followups.map((f, i) => (
@@ -303,10 +311,10 @@ function Followups(props: FollowupProps) {
           ) : null}
         </div>
       ))}
-      {state.followupError ? (
+      {state.followupError || lastIsLost ? (
         <>
-          <p role="alert">{d[errorMessageKey(state.followupError)]}</p>
-          {needsHelpLink(state.followupError) ? <HelpLine lang={lang} /> : null}
+          {state.followupError ? <p role="alert">{d[errorMessageKey(state.followupError)]}</p> : null}
+          {lastIsLost || (state.followupError && needsHelpLink(state.followupError)) ? <HelpLine lang={lang} /> : null}
         </>
       ) : null}
       {state.followupPlus ? <PlusCard lang={lang} tool={config.tool} focusOnShow /> : null}

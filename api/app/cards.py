@@ -23,15 +23,21 @@ def card_verdict(base: str, reversed_: bool, rules: dict) -> str:
 
 
 def spread_verdict(draws: list[tuple[str, bool]], deck: dict[str, dict], rules: dict) -> str:
-    """draws — (card_id, reversed) pairs; deck — card_id → deck.json record."""
+    """draws — (card_id, reversed) pairs; deck — card_id → deck.json record.
+
+    Three cards, rule "decisive_majority" (stage 4.5, owner decision 21.11.2026): "unclear" cards abstain; more
+    yes than no — yes, more no than yes — no; a tie or no yes/no card at all — the fallback ("unclear").
+    """
     if len(draws) not in rules["spread_sizes"]:
         raise ValueError(f"verdict needs {rules['spread_sizes']} cards, got {len(draws)}")
+    if rules.get("rule") != "decisive_majority":
+        raise ValueError(f"unknown verdict rule: {rules.get('rule')}")
     verdicts = [card_verdict(deck[cid]["yes_no"], rev, rules) for cid, rev in draws]
     if len(verdicts) == 1:
         return verdicts[0]
-    for v in VERDICTS:
-        if verdicts.count(v) >= rules["majority"]:
-            return v
+    yes, no = verdicts.count("yes"), verdicts.count("no")
+    if yes != no:
+        return "yes" if yes > no else "no"
     return rules["fallback"]
 
 
@@ -54,6 +60,10 @@ class CardBase:
 
     def verdict(self, cards: list[dict]) -> str:
         return spread_verdict([(c["card_id"], c["reversed"]) for c in cards], self.deck, self.rules)
+
+    def vote(self, card: dict) -> str:
+        """One card's own yes/no (stage 4.5 §4): its base verdict, "unclear" when reversed."""
+        return card_verdict(self.deck[card["card_id"]]["yes_no"], card["reversed"], self.rules)
 
     def excerpts(self, cards: list[dict], lang: str, topic: str | None) -> list[dict]:
         """What the reader may use (§2.1): keywords, the meaning for the orientation, love for topic love, advice."""

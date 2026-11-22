@@ -5,6 +5,7 @@ from datetime import timedelta
 
 import pytest
 
+from app.reader.provider import FakeReply
 from helpers import bearer, dump_tables, from_ip, parse_sse, post_reading
 
 MX = "America/Mexico_City"
@@ -80,6 +81,19 @@ def test_the_export_has_every_reading_followup_note_and_outcome(api):
     assert entry["answer"]["headline"] and entry["cards"][0]["name"] and entry["outcome_at"]
     assert [f["question"] for f in entry["followups"]] == ["And then?"] and entry["followups"][0]["answer"]
     assert "Not for Ana" not in response.text
+
+
+def test_a_crisis_tombstone_is_not_in_the_export_nor_the_diary_count(api):
+    first = ready(api, ANA)
+    api.reader.replies.append(FakeReply(chunks=["[[crisis]]"]))
+    assert api.client.post(f"/api/readings/{first}/followups", json={"question": "Nothing matters anymore, right?"},
+                           headers=bearer(ANA)).status_code == 200
+    assert count(api, "SELECT count(*) AS n FROM followups") == 1  # the tombstone is stored
+    entry = api.client.get("/api/account/export", headers=bearer(ANA)).json()["readings"][0]
+    assert entry["followups"] == []
+    [item] = api.client.get("/api/diary", headers=bearer(ANA)).json()["items"]
+    assert item["followups"] == 0
+    assert "Nothing matters" not in api.client.get("/api/account/export", headers=bearer(ANA)).text
 
 
 def test_deleting_the_account_removes_everything_at_once(api, caplog):

@@ -16,11 +16,14 @@ export interface FollowupBody {
   question: string;
   tz?: string;
   use_reading: boolean;
+  request_id?: string; // spec 4.5 §5: one number per follow-up sent, the same on its one automatic repeat
 }
 
 /** The same tz as the reading was created with (api/README.md: otherwise the day is UTC). */
-export function followupBody(question: string, tz: string | undefined, useReading: boolean): FollowupBody {
-  return tz ? { question: question.trim(), tz, use_reading: useReading } : { question: question.trim(), use_reading: useReading };
+export function followupBody(question: string, tz: string | undefined, useReading: boolean, requestId?: string): FollowupBody {
+  const body: FollowupBody = tz ? { question: question.trim(), tz, use_reading: useReading } : { question: question.trim(), use_reading: useReading };
+  if (requestId) body.request_id = requestId;
+  return body;
 }
 
 export type FollowupRefusal =
@@ -49,8 +52,8 @@ export interface Followup {
   status: 'streaming' | 'done' | 'replaced' | 'failed';
   softLine: string | null;
   usedReading: boolean | null;
-  /** set when the answer could not be read back in time: the GET-based restore may be run again (never a new POST) */
-  lost?: { n?: number; answeredBefore: number };
+  /** set when the answer could not be read back in time; `body` is the request as sent (its request_id too), so "Try again" repeats it unchanged */
+  lost?: { n?: number; answeredBefore: number; body?: FollowupBody };
 }
 
 export function newFollowup(question: string): Followup {
@@ -72,7 +75,8 @@ export function applyFollowupEvent(followup: Followup, event: SseEvent): Followu
   const data = (event.data && typeof event.data === 'object' ? event.data : {}) as Record<string, unknown>;
   switch (event.event) {
     case 'meta':
-      return { followup: { ...followup, softLine: typeof data.soft_line === 'string' ? data.soft_line : null } };
+      // a meta opens a stream (also the A1 re-POST's): whatever text an earlier, broken stream left is dropped
+      return { followup: { ...followup, text: '', softLine: typeof data.soft_line === 'string' ? data.soft_line : null } };
     case 'text':
       return typeof data.text === 'string' ? { followup: { ...followup, text: followup.text + data.text } } : { followup };
     case 'replace':
@@ -81,14 +85,15 @@ export function applyFollowupEvent(followup: Followup, event: SseEvent): Followu
       return { followup: { ...followup, text: sectionText(data), status: 'failed' } };
     case 'crisis': // the shown text is cleared; the room shows the crisis answer instead
       return { followup: { ...followup, text: '', status: 'failed' }, crisis: data as unknown as CrisisPayload };
-    case 'error':
-      return { followup: { ...followup, status: 'failed' } };
+    case 'error': // "in_progress": a repeat of a follow-up the API is still writing — it is read back, still streaming
+      return data.reason === 'in_progress' ? { followup } : { followup: { ...followup, status: 'failed' } };
     case 'done': {
       const update: FollowupUpdate = {
         followup: {
           ...followup,
           status: data.answer_shown === 'model' ? 'done' : followup.status === 'streaming' ? 'failed' : followup.status,
           usedReading: typeof data.used_reading === 'boolean' ? data.used_reading : null,
+          lost: undefined, // it got an answer (even a fallback one): nothing left to read back
         },
       };
       if (typeof data.followups_left === 'number' && typeof data.followup_attempts_left === 'number') {

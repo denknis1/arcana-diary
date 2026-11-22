@@ -19,6 +19,7 @@ describe('followupBody', () => {
   it('sends the same tz and use_reading only as asked', () => {
     expect(followupBody('  And work? ', 'Europe/Madrid', false)).toEqual({ question: 'And work?', tz: 'Europe/Madrid', use_reading: false });
     expect(followupBody('And work?', undefined, true)).toEqual({ question: 'And work?', use_reading: true });
+    expect(followupBody('And work?', 'UTC', false, 'n-1')).toEqual({ question: 'And work?', tz: 'UTC', use_reading: false, request_id: 'n-1' });
   });
 });
 
@@ -60,5 +61,10 @@ describe('applyFollowupEvent', () => {
     expect(update.crisis).toMatchObject({ group: 'crisis' });
     f = applyFollowupEvent(newFollowup('q'), { event: 'error', data: { reason: 'db' } }).followup;
     expect(f.status).toBe('failed');
+  });
+
+  it('keeps a repeated follow-up that the API is still writing as streaming (it is read back)', () => {
+    const f = applyFollowupEvent(newFollowup('q'), { event: 'meta', data: { followup: 2, replay: true, soft_line: null } }).followup;
+    expect(applyFollowupEvent(f, { event: 'error', data: { reason: 'in_progress' } }).followup.status).toBe('streaming');
   });
 });

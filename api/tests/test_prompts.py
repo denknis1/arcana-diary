@@ -9,7 +9,7 @@ MARKERS = ["[[headline]]", "[[card 1]]", "[[card 2]]", "[[card 3]]", "[[synthesi
 def test_all_prompts_load_with_versions():
     assert {key: p.version for key, p in PROMPTS.items()} == {
         ("guard", None): "guard.v1",
-        ("reader", "en"): "reader.en.v5", ("reader", "es"): "reader.es.v5",
+        ("reader", "en"): "reader.en.v6", ("reader", "es"): "reader.es.v6",
         ("followup", "en"): "followup.en.v5", ("followup", "es"): "followup.es.v5",
         ("daily", "en"): "daily.en.v4", ("daily", "es"): "daily.es.v4",
     }
@@ -151,3 +151,17 @@ def test_reader_and_followup_treat_history_as_background(name, lang, phrases):
     text = PROMPTS[(name, lang)].text
     assert all(phrase in text for phrase in phrases)
     assert ("conclusions about other people" in text) if lang == "en" else ("conclusiones sobre otras personas" in text)
+
+
+@pytest.mark.parametrize("lang, phrases", [
+    ("en", ("With three cards and a <verdict>, each card has a vote line", "a card that is not clear yet does not vote",
+            "never change a card's vote", "say what tipped it", "Read the card, or the three cards, about the person",
+            "Without a <verdict> there are no vote lines")),
+    ("es", ("Con tres cartas y <verdict>, cada carta trae una línea vote", "una carta que todavía no está clara no vota",
+            "nunca cambies el voto de una carta", "di qué inclinó la balanza",
+            "Lee la carta, o las tres cartas, sobre la persona", "Sin <verdict> no hay líneas vote")),
+])
+def test_reader_prompt_reads_yes_no_on_three_cards(lang, phrases):
+    """Stage 4.5 §4: a paragraph per card with its vote, synthesis — what tipped the verdict, one step, one why."""
+    text = PROMPTS[("reader", lang)].text
+    assert all(phrase in text for phrase in phrases)

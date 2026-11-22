@@ -22,7 +22,12 @@ export type StreamEnd =
   | { type: 'broken' }
   | { type: 'error'; error: ErrorKind; body: Record<string, unknown> | null };
 
-export type FollowupResult = { type: 'stream'; end: StreamEnd } | { type: 'refused'; refusal: FollowupRefusal };
+/** noResponse — the request got no answer at all (offline, or nothing before the idle time): it may be repeated
+ * with the same request_id (spec 4.5 §5). */
+export type FollowupResult =
+  | { type: 'stream'; end: StreamEnd }
+  | { type: 'refused'; refusal: FollowupRefusal }
+  | { type: 'noResponse' };
 
 export interface Api {
   createReading(body: CreateBody): Promise<CreateResult>;
@@ -35,6 +40,8 @@ export interface Api {
 }
 
 const JSON_HEADERS = { 'content-type': 'application/json' };
+/** POST /api/readings answers after its question check (a few seconds at most): no answer by then is "no answer". */
+export const CREATE_TIMEOUT_MS = 30_000;
 
 export function withQuery(path: string, params: Record<string, string | undefined>): string {
   const query = new URLSearchParams();
@@ -63,6 +70,8 @@ function isStream(response: Response): boolean {
 export interface ApiOptions {
   /** Silence on a stream, in ms, after which the request is aborted and counts as broken. */
   idleMs?: number;
+  /** How long POST /api/readings may take before it counts as unanswered (a network error). */
+  createTimeoutMs?: number;
 }
 
 /** An abort signal that fires when nothing happened for `idleMs`; `touch` re-arms it, `stop` ends it for good. */
@@ -79,13 +88,18 @@ function idleWatchdog(idleMs: number): { signal: AbortSignal; touch: () => void;
 
 export function createApi(fetchFn: FetchFn, options: ApiOptions = {}): Api {
   const idleMs = options.idleMs ?? STREAM_IDLE_MS;
+  const createTimeoutMs = options.createTimeoutMs ?? CREATE_TIMEOUT_MS;
 
-  async function call<T>(path: string, init?: RequestInit): Promise<ApiResult<T>> {
+  async function call<T>(path: string, init?: RequestInit, timeoutMs?: number): Promise<ApiResult<T>> {
     let response: Response;
+    const controller = timeoutMs ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : undefined;
     try {
-      response = await fetchFn(path, init);
+      response = await fetchFn(path, controller ? { ...init, signal: controller.signal } : init);
     } catch {
       return { ok: false, status: 0, error: 'network', body: null };
+    } finally {
+      clearTimeout(timer);
     }
     const body = await jsonBody(response);
     if (response.ok) return { ok: true, status: response.status, data: body as T };
@@ -122,7 +136,7 @@ export function createApi(fetchFn: FetchFn, options: ApiOptions = {}): Api {
     async createReading(body) {
       const result = await call<Record<string, unknown>>('/api/readings', {
         method: 'POST', headers: JSON_HEADERS, body: JSON.stringify(body),
-      });
+      }, createTimeoutMs);
       if (!result.ok) return { type: 'error', error: result.error, body: result.body };
       if (result.data?.group === 'crisis') return { type: 'crisis', payload: result.data as unknown as CrisisPayload };
       return { type: 'reading', reading: result.data as unknown as ReadingCreated };
@@ -138,7 +152,8 @@ export function createApi(fetchFn: FetchFn, options: ApiOptions = {}): Api {
     },
     async postFollowup(id, body, onEvent) {
       // The API sends headers only after its question check, so a request that breaks here may already have
-      // stored (and charged) the follow-up: report it as a broken stream and let the caller restore from GET.
+      // stored (and charged) the follow-up: the caller repeats it once with the same request_id, which the API
+      // answers with that follow-up's stream, then restores from GET (spec 4.5 §5).
       const watch = idleWatchdog(idleMs);
       try {
         let response: Response;
@@ -148,7 +163,7 @@ export function createApi(fetchFn: FetchFn, options: ApiOptions = {}): Api {
             signal: watch.signal,
           });
         } catch {
-          return { type: 'stream', end: { type: 'broken' } };
+          return { type: 'noResponse' };
         }
         if (!isStream(response)) return { type: 'refused', refusal: followupRefusal(response.status, await jsonBody(response)) };
         try {

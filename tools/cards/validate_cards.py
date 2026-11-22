@@ -134,8 +134,8 @@ def check_rules(rules: dict) -> list[str]:
     shift = rules.get("reversed_shift")
     if not (isinstance(shift, dict) and set(shift) == set(VERDICTS) and set(shift.values()) <= set(VERDICTS)):
         errors.append("yes-no-rules.json: reversed_shift — по одному вердикту на yes/no/unclear")
-    if rules.get("spread_sizes") != [1, 3] or rules.get("majority") != 2:
-        errors.append("yes-no-rules.json: spread_sizes [1, 3] и majority 2")
+    if rules.get("spread_sizes") != [1, 3] or rules.get("rule") != "decisive_majority":
+        errors.append("yes-no-rules.json: spread_sizes [1, 3] и rule decisive_majority")
     if rules.get("fallback") not in VERDICTS:
         errors.append("yes-no-rules.json: fallback не из yes/no/unclear")
     labels = rules.get("labels", {})

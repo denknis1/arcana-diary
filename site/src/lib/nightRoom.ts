@@ -4,9 +4,9 @@
 import { EMPTY_ANSWER, answerFromView, applyAnswerEvent, type Answer } from './answer';
 import type { DictKey } from '../i18n';
 import type { ErrorKind } from './errors';
-import { applyFollowupEvent, followupOffer, newFollowup, type Followup, type FollowupRefusal, type Offer } from './followups';
+import { applyFollowupEvent, followupOffer, newFollowup, type Followup, type FollowupBody, type FollowupRefusal, type Offer } from './followups';
 import type { SseEvent } from './sse';
-import type { CrisisPayload, FollowupCounts, ReadingCreated, ReadingView, SavedFollowup } from './types';
+import type { CrisisPayload, FollowupCounts, ReadingCreated, ReadingView, SavedFollowup, Vote } from './types';
 
 /** closed — not shown; limit — closed, the panel shows the Plus card (screen 11a) instead. */
 export type Phase = 'closed' | 'opening' | 'reading' | 'crisis' | 'limit' | 'error';
@@ -54,7 +54,7 @@ export type NightAction =
   | { type: 'followupEvent'; event: SseEvent }
   | { type: 'followupRefused'; question: string; refusal: FollowupRefusal }
   | { type: 'followupRestored'; followup: SavedFollowup }
-  | { type: 'followupLost'; n?: number; answeredBefore: number }
+  | { type: 'followupLost'; n?: number; answeredBefore: number; body?: FollowupBody }
   | { type: 'followupRetrying' }
   | { type: 'close' };
 
@@ -155,13 +155,19 @@ export function nightReducer(state: NightState, action: NightAction): NightState
     case 'followupLost': // the partial text goes: the API may have replaced it with a crisis answer we never got
       if (state.phase !== 'reading') return state;
       return lastFollowup({ ...state, followupError: 'network' }, (f) => (f.status === 'streaming'
-        ? { ...f, status: 'failed', text: '', lost: { n: action.n, answeredBefore: action.answeredBefore } } : f));
+        ? { ...f, status: 'failed', text: '', lost: { n: action.n, answeredBefore: action.answeredBefore, body: action.body } } : f));
     case 'followupRetrying': // "Try again" on a lost follow-up: the same read-back runs again
       if (state.phase !== 'reading') return state;
       return lastFollowup({ ...state, followupError: null }, (f) => (f.lost ? { ...f, status: 'streaming' } : f));
     case 'close':
       return CLOSED;
   }
+}
+
+/** The last follow-up was lost (no answer read back): the room offers "Try again" and always the help line. */
+export function lastFollowupLost(state: NightState): boolean {
+  const last = state.followups[state.followups.length - 1];
+  return !!last && !!last.lost && last.status === 'failed';
 }
 
 /** The crisis answer a late (stale-run) action would bring, or null for any other action. */
@@ -184,6 +190,19 @@ export function isCrisisAction(action: NightAction): boolean {
 
 export function cardsCount(state: NightState): number {
   return state.reading ? state.reading.cards.length : 0;
+}
+
+/** Past · present · path: only the three-card reading has positions in time; yes/no cards have none (spec 4.5 §4). */
+export function timedSpread(state: NightState): boolean {
+  const cards = state.reading?.cards ?? [];
+  return cards.length === 3 && cards.every((card) => card.position !== 'card');
+}
+
+/** Spec 4.5 §4: under each turned card of a three-card yes/no reading, its own vote; null where none is shown (one
+ * card shows only the verdict, and a reading without a verdict has no votes). */
+export function cardVotes(state: NightState): Array<Vote | null> {
+  const cards = state.reading?.cards ?? [];
+  return cards.map((card, i) => (cards.length === 3 && state.reading?.verdict && i < state.revealed && card.vote ? card.vote : null));
 }
 
 export function allRevealed(state: NightState): boolean {
