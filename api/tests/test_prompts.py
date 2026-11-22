@@ -10,7 +10,7 @@ def test_all_prompts_load_with_versions():
     assert {key: p.version for key, p in PROMPTS.items()} == {
         ("guard", None): "guard.v1",
         ("reader", "en"): "reader.en.v7", ("reader", "es"): "reader.es.v7",
-        ("followup", "en"): "followup.en.v6", ("followup", "es"): "followup.es.v6",
+        ("followup", "en"): "followup.en.v7", ("followup", "es"): "followup.es.v7",
         ("daily", "en"): "daily.en.v4", ("daily", "es"): "daily.es.v5",
     }
     assert all(len(p.text) > 500 for p in PROMPTS.values())
@@ -175,7 +175,8 @@ def test_reader_prompt_reads_yes_no_on_three_cards(lang, phrases):
                       'without "may" or "might" on every line', "no dates or time frames", '"in March"',
                       '"within two weeks"', "no guarantees or fate", '"guaranteed"', '"destined"', '"it is written"',
                       "never about another person (rule 4) or the topics of rule 3", "give no date")),
-    ("followup", "en", ("In an ordinary follow-up (guard group ok) you may say with confidence",
+    ("followup", "en", ("In an ordinary follow-up (guard group ok, on a reading whose own guard_group is ok) you may "
+                        "say with confidence",
                         '"someone new will come into your life"', "no dates or time frames", '"in March"',
                         "no guarantees or fate", "never about another person (rule 4) or the topics of rule 3")),
     ("reader", "es", ("En una pregunta común (grupo ok) puedes decir con seguridad", "«llegará alguien a tu vida»",
@@ -183,7 +184,8 @@ def test_reader_prompt_reads_yes_no_on_three_cards(lang, phrases):
                       "sin fechas ni plazos", "«en marzo»", "«en dos semanas»", "«este año»",
                       "sin garantías ni destino", "«está escrito»",
                       "nunca sobre otra persona (regla 4) ni sobre los temas de la regla 3", "no des fechas")),
-    ("followup", "es", ("En una pregunta común (grupo ok) puedes decir con seguridad", "«llegará alguien a tu vida»",
+    ("followup", "es", ("En una pregunta común (grupo ok, en una lectura cuyo guard_group también es ok) puedes decir "
+                        "con seguridad", "«llegará alguien a tu vida»",
                         "sin fechas ni plazos", "«en marzo»", "sin garantías ni destino",
                         "nunca sobre otra persona (regla 4) ni sobre los temas de la regla 3")),
 ])
@@ -203,14 +205,18 @@ def test_bolder_in_ordinary_questions_without_dates_fate_or_other_people(name, l
                       '"the answer is taking shape"', "Talk about the person themself.")),
     ("followup", "en", ("In redirect_money, redirect_topic and redirect_person, the confidence of rule 2 does not apply",
                         "no line may hint at how it will turn out", '"the answer on her side is still forming"',
-                        "Talk about the person themself.")),
+                        "Talk about the person themself.",
+                        "The same holds when the reading itself has one of these groups (the guard_group on <reading>), "
+                        "even if this follow-up is marked ok: the stricter group counts.")),
     ("reader", "es", ("En redirect_money, redirect_topic y redirect_person no vale la seguridad de la regla 2",
                       "ninguna línea puede insinuar cómo va a terminar",
                       "«la respuesta de su lado todavía se está formando»", "«la respuesta está tomando forma»",
                       "Habla de la persona misma.")),
     ("followup", "es", ("En redirect_money, redirect_topic y redirect_person no vale la seguridad de la regla 2",
                         "ninguna línea puede insinuar cómo va a terminar",
-                        "«la respuesta de su lado todavía se está formando»", "Habla de la persona misma.")),
+                        "«la respuesta de su lado todavía se está formando»", "Habla de la persona misma.",
+                        "Lo mismo vale cuando la lectura misma trae uno de estos grupos (el guard_group de <reading>), "
+                        "aunque esta pregunta venga marcada ok: cuenta el grupo más estricto.")),
 ])
 def test_groups_without_an_outcome_get_no_hint_not_even_a_soft_one(name, lang, phrases):
     """Decision 2 (en-45: "The answer on her side is still forming")."""
@@ -264,3 +270,39 @@ def test_spanish_daily_prompt_names_the_orientation_neutrally():
     assert "salió invertida" not in text
     assert text.count("invertida") == 1 and text.count("derecha") == 1  # only in the line that forbids them
     assert "saying whether it is reversed" in PROMPTS[("daily", "en")].text  # English unchanged
+
+
+# --- Fable review of 4.6: I2 (still-banned wordings), I4 (verdict wording stays), M1, M10 ---
+
+I2_PHRASES = {
+    "en": ('Even about the person\'s own life, do not use "will come back", "will return", "you will recover", '
+           '"you will win" or "you will lose": say "you will feel steady again", "you will find your confidence '
+           'again", "that fear will ease".'),
+    "es": ("Aun hablando de la propia vida de la persona, no uses «volverá», «va a volver», «regresará», «va a "
+           "regresar», «vas a ganar» ni «vas a perder»: di «vas a sentir calma otra vez», «vas a recuperar la "
+           "confianza», «ese miedo va a aflojar»."),
+}
+
+
+@pytest.mark.parametrize("name, lang", [("reader", "en"), ("reader", "es"), ("followup", "en"), ("followup", "es")])
+def test_rule_2_steers_around_the_still_banned_wordings(name, lang):
+    text = PROMPTS[(name, lang)].text
+    assert I2_PHRASES[lang] in text
+    assert ('"it is certain"' in text) if lang == "en" else ("«es seguro»" in text)  # M10
+
+
+@pytest.mark.parametrize("lang, phrase", [
+    ("en", 'with a <verdict>, the wording of "Yes/no readings" for a card or an answer that is "still forming" stays '
+           'as written there.'),
+    ("es", "cuando hay <verdict>, lo que dice «Lecturas de sí o no» sobre una carta o una respuesta que «todavía se "
+           "está formando» sigue igual."),
+])
+def test_the_no_hint_paragraph_keeps_the_verdict_wording(lang, phrase):
+    """I4: a money yes/no reading still says "still forming" for an unclear card or answer."""
+    assert phrase in PROMPTS[("reader", lang)].text
+
+
+def test_followup_rule_4_names_another_persons_return():
+    """M1: rule 2 no longer says "will come back", so rule 4 of the follow-up names it."""
+    assert '"he is thinking of you", "she will come back"' in PROMPTS[("followup", "en")].text
+    assert "«piensa en ti», «va a regresar»" in PROMPTS[("followup", "es")].text

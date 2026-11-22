@@ -34,7 +34,7 @@ class AppContext:
     prompts: dict
     texts: dict
     helplines: dict
-    terms: dict          # the live-answer dictionary (reader_banned_terms.json), language → patterns
+    terms: dict          # the live-answer dictionary (reader_banned_terms.json): en, es, en_redirect, es_redirect
     salt: DailySalt
     burst: BurstCounter        # POST /api/readings per address
     daily_burst: BurstCounter  # GET /api/daily per address

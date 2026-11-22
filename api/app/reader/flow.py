@@ -321,7 +321,7 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
         for event in parser.finish():
             if "crisis" not in parser.seen:
                 yield _event(event)
-    final = finalize(reading, parser.sections(), parser.seen, outcome, ctx.cards, ctx.terms[lang],
+    final = finalize(reading, parser.sections(), parser.seen, outcome, ctx.cards, ctx.terms,
                      ctx.texts[lang]["reader_unavailable"])
     try:
         with ctx.db.connect() as conn:

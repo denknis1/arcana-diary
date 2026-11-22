@@ -1,11 +1,15 @@
 """Answer check after the stream (§2.5, §8.10).
 
-- Live answers are checked with reader_banned_terms.json: claims and predictions ("will happen", "he feels",
+- Live answers are checked with reader_banned_terms.json: claims and predictions ("will come back", "he feels",
   "te extraña"), not the names of topics — the card base's dictionary (banned_terms.json) is for the base only,
   so "I can't speak to the pregnancy itself" or "No puedo hablar del embarazo" does not replace an answer.
 - A term in a clause that already says the cards cannot know ("The cards can't tell you what he feels",
   "No sé si piensa en ti", "Nadie puede asegurar que volverá") is not a claim: it is reported as `negated`,
   not as a hit. A clause ends at . , ! ? ; : — or at but / pero / aunque.
+- Stage 4.6 (owner decision 1, Fable I5): in group ok the reader may be confident about the person's own life,
+  so "will happen" / «llegará alguien» are not in the `en` / `es` lists. They stay in `en_redirect` /
+  `es_redirect`, which live_terms() adds for a question without an outcome (any group but ok; for a follow-up,
+  the stricter of the reading's and the follow-up's group) and for the card of the day (no group).
 - In `why`, verdict words used as the answer are forbidden ("Yes, …", "the answer is no", "sí", "quizá"),
   not every "no" ("There is no rush", "no hay prisa").
 - The length (§2.2) is logged only.
@@ -56,6 +60,13 @@ _WORD = re.compile(r"[\w’'-]+")
 
 def load_reader_terms(path: Path = READER_TERMS) -> dict:
     return load_terms(path)
+
+
+def live_terms(terms: dict, lang: str, *groups: str | None) -> list:
+    """The live dictionary for `lang`: the `lang` list, plus `<lang>_redirect` unless every group given is ok.
+    No group (the card of the day) is strict too."""
+    strict = not groups or any(group != "ok" for group in groups)
+    return terms[lang] + (terms.get(f"{lang}_redirect", []) if strict else [])
 
 
 def word_count(text: str) -> int:

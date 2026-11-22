@@ -77,3 +77,10 @@ def test_cached_keys_ignore_other_days(api):
     fill_daily_cache(api.ctx, DAY, TWO[:1])
     with api.db.connect() as conn:
         assert repo.cached_daily_keys(conn, date(2026, 11, 21)) == set()
+
+
+def test_the_card_of_the_day_keeps_the_redirect_phrases_banned(api):
+    """Stage 4.6, Fable I5: the card of the day has no bolder permission, so "will happen" is not cached."""
+    api.reader.replies.extend([FakeReply(chunks=["Something good will happen today. Take one slow breath."]),
+                               FakeReply(chunks=["Va a pasar algo bueno hoy. Respira con calma."])])
+    assert fill_daily_cache(api.ctx, DAY, TWO[:1]) == {"written": 2, "failed": 2, "budget": False, "stopped": False}

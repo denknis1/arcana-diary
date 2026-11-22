@@ -4,7 +4,7 @@ import pytest
 
 from app.config import load_settings
 from app.reader.check import (FOLLOWUP_WORDS, READER_TERMS, banned_in, check_answer, find_claims, length_ok,
-                              load_reader_terms, word_count)
+                              live_terms, load_reader_terms, word_count)
 from app.terms import find_banned, load_terms
 
 TERMS = load_reader_terms()
@@ -22,7 +22,7 @@ def one_card(**overrides) -> dict:
 
 
 def test_reader_terms_languages():
-    assert set(TERMS) == {"en", "es"}
+    assert set(TERMS) == {"en", "es", "en_redirect", "es_redirect"}  # stage 4.6: the redirect lists
 
 
 def test_clean_answer_passes():
@@ -284,3 +284,70 @@ def test_other_peoples_actions_fate_guarantees_and_forbidden_topics_stay_banned(
 def test_kept_claims_still_replace_an_answer(lang, text, term):
     result = check_answer(one_card(card1=text), "one", lang, TERMS[lang], with_why=False)
     assert not result.body_ok and term in result.banned
+
+
+# --- Fable review of 4.6: I5 (group-aware dictionary), I2 (confident lines that still hit kept terms), M2 ---
+
+REMOVED_IN_46 = {"en": ["will happen", "is going to happen", "is coming your way"],
+                 "es": ["llegará el amor", "llegará alguien", "va a pasar", "pasará algo"]}
+
+
+@pytest.mark.parametrize("lang", ["en", "es"])
+def test_the_seven_removed_terms_live_on_in_the_redirect_lists(lang):
+    assert set(REMOVED_IN_46[lang]) <= set(READER_TERMS_RAW[f"{lang}_redirect"])
+    assert not set(READER_TERMS_RAW[f"{lang}_redirect"]) & set(READER_TERMS_RAW[lang])
+
+
+@pytest.mark.parametrize("lang, text, term", [
+    ("en", "It will happen when the time is right.", "will happen"),
+    ("en", "Something good is going to happen soon.", "is going to happen"),
+    ("en", "Good news is coming your way.", "is coming your way"), ("en", "It will work out.", "it will work out"),
+    ("es", "Va a pasar cuando tenga que pasar.", "va a pasar"), ("es", "Pasará algo bueno.", "pasará algo"),
+    ("es", "Llegará el amor.", "llegará el amor"), ("es", "Llegará alguien.", "llegará alguien"),
+    ("es", "Todo va a salir bien.", "va a salir bien"),
+])
+def test_redirect_terms_hit_outside_group_ok_and_on_the_card_of_the_day(lang, text, term):
+    for groups in (("redirect_topic",), ("redirect_person",), ("redirect_money",), ("ok", "redirect_topic"),
+                   ("redirect_person", "ok"), ()):
+        assert term in find_claims(text, live_terms(TERMS, lang, *groups), lang)[0], groups
+    assert find_claims(text, live_terms(TERMS, lang, "ok"), lang)[0] == []
+    assert find_claims(text, live_terms(TERMS, lang, "ok", "ok"), lang)[0] == []
+
+
+def test_live_terms_for_ok_is_the_language_list():
+    assert live_terms(TERMS, "en", "ok") == TERMS["en"]
+    assert len(live_terms(TERMS, "es", "redirect_topic")) == len(TERMS["es"]) + len(TERMS["es_redirect"])
+
+
+@pytest.mark.parametrize("lang, text", [
+    ("en", "You will feel steady again."), ("en", "You will find your confidence again."),
+    ("en", "That fear will ease."), ("en", "This new job will ask a lot of you."),
+    ("en", "Someone new will come into your life."),
+    ("es", "Vas a sentir calma otra vez."), ("es", "Vas a recuperar la confianza."), ("es", "Ese miedo va a aflojar."),
+    ("es", "Este trabajo nuevo te va a pedir mucho."), ("es", "Llegará alguien a tu vida."),
+])
+def test_the_prompts_suggested_phrasings_pass_in_group_ok(lang, text):
+    """I2: the replacements the prompts give for still-banned wordings, and the allowed examples, give no hit."""
+    assert find_claims(text, live_terms(TERMS, lang, "ok"), lang)[0] == []
+
+
+@pytest.mark.parametrize("lang, text, term", [
+    ("en", "Your confidence will come back.", "will come back"), ("en", "Your energy will return to you.",
+                                                                  "will return to you"),
+    ("en", "You will recover your footing.", "you will recover"), ("en", "You will lose some of that fear.",
+                                                                   "you will lose"),
+    ("en", "You will win back your calm.", "you will win"),
+    ("es", "La calma volverá a ti.", "volverá"), ("es", "Regresará la calma.", "regresará"),
+    ("es", "La confianza va a volver.", "va a volver"), ("es", "Vas a ganar confianza poco a poco.", "vas a ganar"),
+    ("es", "Vas a perder el miedo.", "vas a perder"),
+])
+def test_confident_lines_that_the_prompts_tell_the_reader_to_avoid_still_hit(lang, text, term):
+    """I2: these kept terms are the net for other people, recovery and winnings; the prompts steer around them."""
+    assert term in find_claims(text, live_terms(TERMS, lang, "ok"), lang)[0]
+
+
+@pytest.mark.parametrize("text, term", [("It is written that you two belong together.", "it is written"),
+                                        ("This was written in the stars.", "written in the stars")])
+def test_it_is_written_is_banned_in_english_too(text, term):
+    """M2: the prompt forbids "it is written"; ES already had «está escrito»."""
+    assert term in find_claims(text, TERMS["en"], "en")[0]

@@ -9,7 +9,7 @@
     "still loves you", "is cheating", "cheating on you", "curse*", "hex", "bad energy", "evil eye",
     "you will die", "will die", "you are pregnant", "you're pregnant", "you will get pregnant",
     "you will recover", "you will win", "you will lose", "he loves you", "she loves you", "loves you back",
-    "wants you back", "he regrets", "she regrets"
+    "wants you back", "he regrets", "she regrets", "it is written", "written in the stars"
   ],
   "es": [
     "pasará lo que", "llegará esa persona",
@@ -23,5 +23,11 @@
     "mal de ojo", "vas a morir", "va a morir", "morirá", "estás embarazada", "vas a quedar embarazada",
     "vas a ganar", "vas a perder", "te ama", "él te quiere", "ella te quiere", "te quiere de verdad", "él se arrepiente",
     "ella se arrepiente", "se arrepiente de haberte"
+  ],
+  "en_redirect": [
+    "will happen", "is going to happen", "is coming your way", "it will work out"
+  ],
+  "es_redirect": [
+    "llegará el amor", "llegará alguien", "va a pasar", "pasará algo", "va a salir bien"
   ]
 }

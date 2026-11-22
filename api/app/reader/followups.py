@@ -89,7 +89,9 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
                                           and outcome.result.stop_reason == "max_tokens")
     answer, replace = None, False
     if not crisis and not failed:
-        replace = cut or bool(check.banned_in(text, ctx.terms[lang], lang))
+        # stage 4.6 (Fable I5): the stricter of the reading's and the follow-up's group
+        terms = check.live_terms(ctx.terms, lang, group, reading["guard_group"])
+        replace = cut or bool(check.banned_in(text, terms, lang))
         answer = {"model": text, "fallback": fallback.followup_fallback(ctx.cards, reading) if replace else None}
         if not check.length_ok(text, check.FOLLOWUP_WORDS):
             log.info("follow-up length out of range: %s words", check.word_count(text))
