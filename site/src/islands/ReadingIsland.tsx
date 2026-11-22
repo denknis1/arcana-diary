@@ -269,7 +269,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
           </div>
         ) : null}
         <button type="submit" class="btn btn--gold btn--block" ref={drawButton}>{d[drawLabelKey(config, kind, count)]}</button>
-        <p class="panel-hint">{d.freeNoSignup}</p>
+        <p class="panel-hint">{d.freeSaveAfter}</p>
       </form>
       {roomOpen ? (
         <NightRoom

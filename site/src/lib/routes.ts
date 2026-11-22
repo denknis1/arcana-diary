@@ -28,9 +28,9 @@ const PAGE_PATHS: Record<Lang, Record<PageKey, string>> = {
   },
 };
 
-/** The menu (stage 2 structure, design screens 11c/11d). "Card Meanings" and the diary arrive with stages 6 and
- * 4.4b; until then the menu has these four items. */
-export const NAV_KEYS: readonly PageKey[] = ['home', 'yes_no', 'love', 'daily'];
+/** The menu (stage 2 structure, design screens 11c/11d, 13a): the diary since 4.4b; "Card Meanings" arrives with
+ * stage 6. */
+export const NAV_KEYS: readonly PageKey[] = ['home', 'yes_no', 'love', 'daily', 'diary'];
 
 export function pagePath(key: PageKey, lang: Lang): string {
   return PAGE_PATHS[lang][key];

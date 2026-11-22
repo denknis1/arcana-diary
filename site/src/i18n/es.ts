@@ -23,7 +23,7 @@ export const es: Dict = {
   helpLink: 'Líneas de ayuda gratuitas y confidenciales',
 
   questionLabel: 'Tu pregunta — opcional',
-  freeNoSignup: 'Gratis · sin registro',
+  freeSaveAfter: 'Gratis · guárdala en tu diario después',
   countGroupLabel: 'Número de cartas',
   oneCardChip: '1 carta',
   threeCardsChip: '3 cartas',
@@ -52,7 +52,7 @@ export const es: Dict = {
   howTitle: 'Cómo funciona una lectura',
   howStep1: 'Pregunta lo que quieras sobre tu vida, o solo saca las cartas.',
   howStep2: 'Cada carta se explica con palabras sencillas.',
-  howStep3: 'Haz hasta dos preguntas de seguimiento, gratis.',
+  howStep3: 'Guárdala y revisa después qué se cumplió.',
 
   oneCardTitle: 'Una carta — Arcana Diary',
   oneCardEyebrow: 'Una carta',
@@ -249,7 +249,7 @@ export const es: Dict = {
 
 // draft — review with stage 5 texts
 export const esDrafts: readonly DictKey[] = [
-  'skipToContent', 'langLabel', 'footerLabel', 'footerOneCard', 'helpLead', 'helpLink', 'freeNoSignup',
+  'skipToContent', 'langLabel', 'footerLabel', 'footerOneCard', 'helpLead', 'helpLink',
   'countGroupLabel', 'homeTitle', 'fmtOneCard', 'fmtOneCardHint', 'dailyTileText', 'learnLead', 'howTitle',
   'howStep1', 'howStep2', 'howStep3', 'oneCardTitle', 'oneCardEyebrow', 'oneCardH1', 'oneCardLead',
   'oneCardPlaceholder', 'yesNoTitle', 'yesNoEyebrow', 'yesNoH1', 'yesNoLead', 'yesNoLabel', 'yesNoPlaceholder',

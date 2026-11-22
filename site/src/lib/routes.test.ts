@@ -55,9 +55,9 @@ describe('routes', () => {
     expect(langOf('/')).toBe('en');
   });
 
-  it('has the four menu items of 4.4a in both languages', () => {
-    expect(NAV_KEYS).toEqual(['home', 'yes_no', 'love', 'daily']);
-    expect(NAV_KEYS.map((k) => pagePath(k, 'es'))).toEqual(['/es', '/es/si-o-no', '/es/amor', '/es/carta-del-dia']);
+  it('has the menu items of 4.4b in both languages', () => {
+    expect(NAV_KEYS).toEqual(['home', 'yes_no', 'love', 'daily', 'diary']);
+    expect(NAV_KEYS.map((k) => pagePath(k, 'es'))).toEqual(['/es', '/es/si-o-no', '/es/amor', '/es/carta-del-dia', '/es/diario']);
   });
 
   it('keeps the diary and the account out of hreflang.csv (noindex pages)', () => {

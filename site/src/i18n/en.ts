@@ -22,7 +22,7 @@ export const en = {
   helpLink: 'Free, confidential help lines',
 
   questionLabel: 'Your question — optional',
-  freeNoSignup: 'Free · no sign-up',
+  freeSaveAfter: 'Free · save it to your diary after',
   countGroupLabel: 'Number of cards',
   oneCardChip: '1 card',
   threeCardsChip: '3 cards',
@@ -51,7 +51,7 @@ export const en = {
   howTitle: 'How a reading works',
   howStep1: 'Ask anything about your life — or just draw.',
   howStep2: 'The reader explains each card in plain words.',
-  howStep3: 'Ask up to two follow-up questions, free.',
+  howStep3: 'Save it, and check later what came true.',
 
   oneCardTitle: 'One card tarot — Arcana Diary',
   oneCardEyebrow: 'One card',
@@ -251,8 +251,8 @@ export type Dict = Record<DictKey, string>;
 
 // draft — review with stage 5 texts
 export const enDrafts: readonly DictKey[] = [
-  'skipToContent', 'langLabel', 'helpLead', 'helpLink', 'freeNoSignup', 'homeTitle', 'dailyTileText', 'learnLead',
-  'howStep3', 'oneCardTitle', 'oneCardEyebrow', 'oneCardH1', 'oneCardLead', 'oneCardPlaceholder', 'yesNoTitle',
+  'skipToContent', 'langLabel', 'helpLead', 'helpLink', 'homeTitle', 'dailyTileText', 'learnLead',
+  'oneCardTitle', 'oneCardEyebrow', 'oneCardH1', 'oneCardLead', 'oneCardPlaceholder', 'yesNoTitle',
   'loveTitle', 'dailyTitle', 'dailyLoading', 'dailyFallbackNote', 'dailyError', 'cardTitle', 'cardEyebrowMinor',
   'notFoundTitle', 'dealtOne', 'readingReady', 'noQuestionThree', 'stepLabel', 'restoring', 'streamLost',
   'followupLabel', 'followupPlaceholder', 'followupSend', 'followupFreeLeft', 'followupPaidWarning',
