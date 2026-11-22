@@ -41,7 +41,8 @@ def diary_item(ctx, row: dict) -> dict:
     return {
         "id": str(row["id"]), "created_at": row["created_at"], "lang": lang, "kind": row["kind"],
         "topic": None if crisis else row["topic"], "question": None if crisis else row["question"],
-        "headline": sections.get("headline"), "answer_shown": row["answer_shown"],
+        "headline": None if row["answer_shown"] == "fallback" else sections.get("headline"),  # the fallback's notice is no headline
+        "answer_shown": row["answer_shown"],
         "cards": [{**c, "name": ctx.cards.name(c["card_id"], lang)} for c in row["cards"]],
         "outcome": row["outcome"], "has_note": row["note"] is not None, "followups": row["followup_count"],
     }

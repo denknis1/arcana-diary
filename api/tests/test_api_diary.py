@@ -190,3 +190,16 @@ def test_the_view_of_someone_else_has_no_date_of_the_diary(api):
     reading_id = insert_entries(api, 1)[0]
     view = api.new_client().get(f"/api/readings/{reading_id}").json()
     assert "created_at" not in view and "in_diary" not in view
+
+
+def test_a_fallback_answer_lists_no_headline(api):
+    """Walk-through 22.11.2026: a fallback's first line is the site's notice ("The reader is unavailable…"), not a
+    headline of this reading; the list shows the question and the cards only. The entry itself is unchanged."""
+    reading = make_reading(user_id=ANA, expires_at=None, now=api.clock())
+    notice = {"headline": "The reader is unavailable right now.", "card1": "Meaning."}
+    with api.db.connect() as conn:
+        repo.insert_reading(conn, reading)
+        repo.save_answer(conn, reading["id"], {"model": {"headline": "Model line."}, "fallback": notice}, "fallback",
+                         "m", "reader.en.v7")
+    [item] = diary(api.client, ANA).json()["items"]
+    assert (item["headline"], item["answer_shown"]) == (None, "fallback")

@@ -135,7 +135,7 @@ def reader_history(conn, reading: dict) -> list[dict]:
     rows = repo.topic_history(conn, reading["user_id"], reading["topic"], reading["created_at"], reading["id"],
                               HISTORY_LIMIT)
     return [{"day": row["created_at"].astimezone(timezone.utc).date(), "question": row["question"],
-             "headline": (shown_sections(row) or {}).get("headline")} for row in rows]
+             "headline": None if row["answer_shown"] == "fallback" else (shown_sections(row) or {}).get("headline")} for row in rows]
 
 
 def load_history(ctx, reading: dict) -> list[dict]:

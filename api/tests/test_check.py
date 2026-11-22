@@ -34,6 +34,8 @@ def test_clean_answer_passes():
     ("en", "This will happen for sure.", ("for sure",)),
     ("en", "He feels the same way about you.", ("feels the same", "he feels")),
     ("en", "Your ex still loves you and misses you.", ("misses you", "still loves you")),
+    ("en", "Notice how they feel when you are not there.", ("how they feel",)),
+    ("en", "Maybe they feel the same way.", ("they feel the same",)),
     ("es", "Seguro que no es fácil, pero él siente lo mismo.", ("él siente",)),
     ("es", "Te extraña y volverá pronto.", ("te extraña", "volverá")),
 ])
@@ -351,3 +353,13 @@ def test_confident_lines_that_the_prompts_tell_the_reader_to_avoid_still_hit(lan
 def test_it_is_written_is_banned_in_english_too(text, term):
     """M2: the prompt forbids "it is written"; ES already had «está escrito»."""
     assert term in find_claims(text, TERMS["en"], "en")[0]
+
+
+@pytest.mark.parametrize("text", [
+    "The card suggests focusing on small moments of joy this week, even when they feel muted.",
+    "Your plans may move slowly, and that is fine if they feel right to you.",
+])
+def test_they_feel_about_things_is_not_a_claim(text):
+    """Walk-through 22.11.2026: "they feel" about moments or plans is not another person's feelings."""
+    result = check_answer(one_card(headline=text), "one", "en", TERMS["en"], with_why=False)
+    assert result.body_ok and result.banned == ()

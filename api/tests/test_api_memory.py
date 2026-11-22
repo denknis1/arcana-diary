@@ -60,7 +60,8 @@ def test_a_signed_in_reading_gets_its_topic_history_oldest_first(api):
     block = history_of(content)
     assert block.startswith("<history>\n") and block.endswith("</history>\n")
     assert block.count("<past ") == 2 and block.index("Question 300?") < block.index("Question 100?")
-    assert "<past_headline>Headline 300.</past_headline>" in block and "Headline 100." in block
+    assert "<past_headline>Headline 300.</past_headline>" in block
+    assert "Headline 100." not in block  # a fallback's first line is the site's notice, not the reader's headline
     assert "Question 200?" not in content and "Question 50?" not in content  # another topic, another account
     assert "What now at work?" not in block  # the current question is not its own history
     assert '<past date="2026-11-20">' in block
