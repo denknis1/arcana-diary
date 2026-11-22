@@ -74,6 +74,18 @@ describe('site sources', () => {
     for (const path of SOURCES) expect(code(path), rel(path)).not.toMatch(/\bEventSource\b/);
   });
 
+  it('import @supabase/auth-js only in src/lib/supabaseClient.ts (spec 4.4b §3: a chunk of its own)', () => {
+    const users = SOURCES.filter((p) => /from\s*['"]@supabase\/|import\(\s*['"]@supabase\//.test(read(p)));
+    expect(users.map(rel)).toEqual(['lib/supabaseClient.ts']);
+  });
+
+  it('load supabaseClient.ts only with import(), only from src/lib/auth.ts', () => {
+    const users = SOURCES.filter((p) => /['"]\.{1,2}\/(?:[\w/]*\/)?supabaseClient['"]/.test(read(p)));
+    expect(users.map(rel)).toEqual(['lib/auth.ts']);
+    expect(read(join(SRC, 'lib/auth.ts'))).toMatch(/import\(\s*['"]\.\/supabaseClient['"]\s*\)/);
+    expect(read(join(SRC, 'lib/auth.ts'))).not.toMatch(/from\s*['"]\.\/supabaseClient['"]/);
+  });
+
   it('load the Turnstile script only from src/lib/turnstile.ts', () => {
     const users = SOURCES.filter((p) => /challenges\.cloudflare\.com|turnstile\/v0|cloudflare\.com\/turnstile/.test(read(p)));
     expect(users.map(rel)).toEqual(['lib/turnstile.ts']);
