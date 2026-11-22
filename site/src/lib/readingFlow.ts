@@ -5,7 +5,7 @@
 // of Draw and every follow-up sent carries a new request_id; a request that got no answer at all is sent once more
 // with the same number (the API gives back what it already made), then the usual restore follows.
 import type { Api } from './api';
-import { followupBody, type FollowupBody } from './followups';
+import { followupBody, type FollowupBody, type FollowupRefusal } from './followups';
 import type { NightAction } from './nightRoom';
 import type { SseEvent } from './sse';
 import type { CreateBody, FollowupCounts } from './types';
@@ -165,6 +165,11 @@ export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore
   await loadCounts(deps, id, tz);
 }
 
+/** A 5xx refusal (unavailable / other): nothing is known about the follow-up, so it is not "refused". */
+function isServerError(refusal: FollowupRefusal): boolean {
+  return refusal.type === 'error' && (refusal.error === 'unavailable' || refusal.error === 'other');
+}
+
 /** "Try again" on a lost follow-up. With a request_id: the same body again (never a new number, never another
  * `use_reading`), so the API replays the saved answer or the crisis tombstone, says in_progress, or (if nothing was
  * saved) answers it as one ask; the result is handled as in `askFollowup`. in_progress or no answer: the GET
@@ -186,11 +191,12 @@ export async function retryFollowup(deps: FlowDeps, id: string, tz: string | und
       }
       deps.dispatch({ type: 'followupEvent', event });
     });
-    if (result.type === 'refused') { // crisis / 402 / 429 / 409 come back as JSON, as for a fresh ask
+    if (result.type === 'refused' && !isServerError(result.refusal)) { // crisis / 402 / 429 / 409 come back as JSON, as for a fresh ask
       deps.dispatch({ type: 'followupRefused', question: body.question, refusal: result.refusal });
       return;
     }
-    if (crisis || done) return;
+    // a 5xx refusal: the state under this number is unknown, so the follow-up stays lost with its body and its button
+    if (result.type !== 'refused' && (crisis || done)) return;
   }
   await restoreFollowup(deps, id, lost.answeredBefore, tz, n, undefined, body);
 }
@@ -229,11 +235,11 @@ export async function askFollowup(deps: FlowDeps, id: string, question: string, 
       done = false;
       crisis = false;
       const r = await deps.api.postFollowup(id, body, onEvent);
-      if (r.type === 'refused') { // a fresh ask to the API: crisis / 402 / 429 / 409 come back as JSON
+      if (r.type === 'refused' && !isServerError(r.refusal)) { // a fresh ask to the API: crisis / 402 / 429 / 409 come back as JSON
         deps.dispatch({ type: 'followupRefused', question, refusal: r.refusal });
         return { ended: true, n };
       }
-      return { ended: done || crisis, n };
+      return { ended: r.type !== 'refused' && (done || crisis), n }; // a 5xx refusal: stays lost, restorable
     };
     await restoreFollowup(deps, id, answeredBefore, tz, n, repost, body);
   }

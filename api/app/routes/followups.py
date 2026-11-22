@@ -3,8 +3,8 @@
 
 Order (stage 4.5 §3, owner decision 20.11.2026: help first, then the limits):
 - the address: every request that may call the question check takes a slot of IP_FOLLOWUP_LIMIT per UTC day
-  first (429 "ip_limit", except that a stop-phrase question still gets the crisis answer, no model called); over the guard's budget a question that only the model can check is 503 and takes
-  nothing (м1);
+  first (429 "ip_limit", except that a stop-phrase question still gets the crisis answer, no model called);
+  over the guard's budget a question that only the model can check is 503 and takes nothing (м1);
 - the question check: a crisis answer is 200 and takes no attempt and no reading;
 - then 429 "attempts" (FOLLOWUP_ATTEMPTS per reading, never a confirm for what cannot happen), then 402: free
   follow-ups used and no use_reading — {"reason": "confirm", "remaining": N}; no readings left — {"reason":
@@ -12,9 +12,10 @@ Order (stage 4.5 §3, owner decision 20.11.2026: help first, then the limits):
 - one transaction takes the attempt (its count is the follow-up's number n, never repeated) — which locks the
   reading — and reads the follow-ups again: one still being written, or the free ones used meanwhile by another
   tab while this question was checked, is 409 "busy"; then it inserts the follow-up and, for a paid one, takes its
-  reading. The reader gets that fresh list. A failed paid follow-up gives it back (reader/followups.py); the reader's [[crisis]] marker does
-  not (§9.5): the row stays as a tombstone ({"crisis": true}, not counted, no question) and the same request_id
-  again replays the crisis answer with no model call; the hourly cleanup deletes tombstones after one day.
+  reading. The reader gets that fresh list. A failed paid follow-up gives it back (reader/followups.py); the
+  reader's [[crisis]] marker does not (§9.5): the row stays as a tombstone ({"crisis": true}, not counted, no
+  question) and the same request_id again replays the crisis answer with no model call; the hourly cleanup
+  deletes tombstones after one day.
 - request_id (stage 4.5 §5): the same number again in this reading gets that follow-up's stream — its saved
   answer, or "in_progress" while it is written — and takes nothing a second time; it is looked up in the list read
   first and again under the lock (a parallel twin). A tombstone is replayed the same way. `twin_or` turns a

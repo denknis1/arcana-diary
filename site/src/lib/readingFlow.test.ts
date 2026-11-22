@@ -230,7 +230,6 @@ describe('askFollowup', () => {
   const posts = (h: { calls: Array<{ url: string }> }) => h.calls.filter((c) => c.url.endsWith('/followups'));
 
   it('Try again on a lost follow-up re-POSTs the same body (same request_id, use_reading) and shows the saved answer (I2)', async () => {
-    const f = (n: number) => ({ n, question: 'q', answer: `A${n}`, soft_line: null });
     const { h, lost } = await lostHarness(
       sseResponse(sseText([['meta', { followup: 2, replay: true }], ['text', { name: 'followup', text: 'A2' }],
         ['done', { answer_shown: 'model', followups_left: 0, followup_attempts_left: 5, used_reading: true }]])));
@@ -243,7 +242,6 @@ describe('askFollowup', () => {
     expect(sent[2].body).toMatchObject({ request_id: 'id-1', use_reading: true });
     expect(h.state().followups[0]).toMatchObject({ text: 'A2', status: 'done' });
     expect(h.state().followupError).toBeNull();
-    void f;
   });
 
   it('Try again reaches a crisis tombstone: the crisis event replaces the lost follow-up with the help screen (I2)', async () => {
@@ -278,6 +276,29 @@ describe('askFollowup', () => {
     expect(sent.every((c) => JSON.stringify(c.body) === JSON.stringify(sent[0].body))).toBe(true);
     expect(h.state().followups[0]).toMatchObject({ status: 'failed', lost: { n: 2, answeredBefore: 1 } });
     expect(h.state().followups[0].lost?.body).toMatchObject({ request_id: 'id-1', use_reading: true });
+  });
+
+  it('Try again that gets a 503 keeps the follow-up lost with its body and button: one POST, then the GET (Minor 1)', async () => {
+    const { h, lost } = await lostHarness(jsonResponse(503, {}),
+      ...Array.from({ length: RESTORE_TRIES }, () => jsonResponse(200, { ...VIEW, followups: [] })), jsonResponse(200, VIEW));
+    await retryFollowup(h.deps, 'r1', undefined, lost.lost!);
+    expect(posts(h)).toHaveLength(3); // the ask, its A1 re-POST, this one re-POST
+    expect(h.calls.at(-1)?.method).toBe('GET');
+    expect(h.actions.some((a, i) => i > 0 && a.type === 'followupRefused')).toBe(false);
+    expect(h.state().followups).toHaveLength(1);
+    expect(h.state().followups[0]).toMatchObject({ status: 'failed', lost: { n: 2, answeredBefore: 1 } });
+    expect(h.state().followups[0].lost?.body).toMatchObject({ request_id: 'id-1', use_reading: true });
+  });
+
+  it('Try again answered 402 plus leaves followupPlus, 429 attempts leaves the refusal state', async () => {
+    const plus = await lostHarness(jsonResponse(402, { reason: 'plus', remaining: 0 }));
+    await retryFollowup(plus.h.deps, 'r1', undefined, plus.lost.lost!);
+    expect(plus.h.state().followupPlus).toBe(true);
+    expect(plus.h.state().followups).toHaveLength(0);
+    const rate = await lostHarness(jsonResponse(429, { reason: 'attempts' }));
+    await retryFollowup(rate.h.deps, 'r1', undefined, rate.lost.lost!);
+    expect(rate.h.state().followupError).toBe('attempts');
+    expect(rate.h.state().followups).toHaveLength(0);
   });
 
   it('Try again on a follow-up without a number falls back to the GET read-back only', async () => {
@@ -459,6 +480,17 @@ describe('one request, one reading (spec 4.5 §5)', () => {
     expect(rate.state().followups).toHaveLength(0);
     expect(rate.state().followupError).not.toBeNull();
     expect(rate.state().followupError).not.toBe('network');
+  });
+
+  it('A1: the re-POST answered 503 leaves the follow-up lost with its body and button (Minor 1)', async () => {
+    const h = lostThen(jsonResponse(503, {}));
+    await askFollowup(h.deps, 'r1', 'q', undefined, false, 0);
+    expect(h.calls.filter((c) => c.method === 'POST')).toHaveLength(2);
+    expect(h.actions.some((a) => a.type === 'followupRefused')).toBe(false);
+    expect(h.state().followups).toHaveLength(1);
+    expect(h.state().followups[0]).toMatchObject({ status: 'failed', lost: { n: 1, answeredBefore: 0 } });
+    expect(h.state().followups[0].lost?.body).toMatchObject({ request_id: 'id-1' });
+    expect(h.state().followupError).toBe('network');
   });
 
   it('M1: the number from the re-POST meta (in_progress) is what Try again restores by', async () => {
