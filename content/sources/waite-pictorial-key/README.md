@@ -5,7 +5,7 @@
 
 Источник текста: Wikisource, «The Pictorial Key to the Tarot» (en.wikisource.org), вычитанная транскрипция скана
 издания 1910/1922 (`The Pictorial Key to the Tarot.pdf`). Скачано 22.11.2026 через API MediaWiki (`action=parse`),
-решение владельца 22.11.2026 (Project Gutenberg был закрыт на обслуживание). Ревизии: .
+решение владельца 22.11.2026 (Project Gutenberg был закрыт на обслуживание). Ревизии страниц-обёрток: Bibliography rev 15274513; Part 1 rev 15274505; Part 2 rev 15274517; Part 3 rev 15274510; Preface rev 15274477 (текст подставляется из страниц Page:…pdf).
 
 Файлы — текст страниц без разметки; `[p. N]` — номер страницы книги (для ссылок «Waite, p. N»):
 
