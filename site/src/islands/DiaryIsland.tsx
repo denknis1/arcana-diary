@@ -70,6 +70,13 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
   };
 
   useEffect(() => { void open(); }, []);
+  useEffect(() => { // Back after a sign-out must not show the e-mail or an old list from the bfcache
+    const onShow = (event: Event) => {
+      if ((event as PageTransitionEvent).persisted) location.reload();
+    };
+    window.addEventListener('pageshow', onShow);
+    return () => window.removeEventListener('pageshow', onShow);
+  }, []);
 
   const signedOut = async () => { // a 401 "sign_in" in the middle: the session went on this device
     clearSignedIn();

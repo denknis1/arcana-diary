@@ -12,12 +12,13 @@ interface Props {
   lang: Lang;
   busy: boolean;
   error: string | null; // the line of a failed deletion or download, shown inside the dialog
+  onReload?: () => void; // a 401 without JSON (the stage cookie): the line comes with a button that reloads the page
   onDownload: () => void;
   onDelete: () => void;
   onCancel: () => void;
 }
 
-export function DeleteAccountDialog({ lang, busy, error, onDownload, onDelete, onCancel }: Props) {
+export function DeleteAccountDialog({ lang, busy, error, onReload, onDownload, onDelete, onCancel }: Props) {
   const d = t(lang);
   const box = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLHeadingElement>(null);
@@ -31,7 +32,20 @@ export function DeleteAccountDialog({ lang, busy, error, onDownload, onDelete, o
     title.current?.focus();
     const onKey = (event: KeyboardEvent) => box.current && handleDialogKey(event, box.current, () => cancel.current());
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    // the page behind the dialog layer is inert (not reachable by Tab, pointer or screen reader), lifted on close
+    const inerted: Element[] = [];
+    for (let node: Element | null = box.current?.closest('.dialog-layer') ?? null; node && node !== document.body; node = node.parentElement) {
+      for (const sibling of Array.from(node.parentElement?.children ?? [])) {
+        if (sibling !== node && !sibling.hasAttribute('inert')) {
+          sibling.setAttribute('inert', '');
+          inerted.push(sibling);
+        }
+      }
+    }
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      for (const el of inerted) el.removeAttribute('inert');
+    };
   }, []);
 
   return (
@@ -41,6 +55,7 @@ export function DeleteAccountDialog({ lang, busy, error, onDownload, onDelete, o
         <h2 id="delete-title" class="h2" tabIndex={-1} ref={title}>{d.deleteTitle}</h2>
         <p id="delete-body">{d.deleteBody}</p>
         {error ? <p role="alert">{error}</p> : null}
+        {error && onReload ? <button type="button" class="btn btn--outline" onClick={onReload}>{d.retry}</button> : null}
         <div class="dialog__actions">
           <button type="button" class="btn btn--outline" aria-disabled={busy} onClick={unlessBusy(onDownload)}>{d.deleteDownload}</button>
           <button type="button" class="btn btn--ink" aria-disabled={busy} onClick={unlessBusy(onDelete)}>{d.deleteForever}</button>

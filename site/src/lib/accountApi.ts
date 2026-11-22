@@ -100,7 +100,11 @@ export function createAccountApi(fetchFn: FetchFn): AccountApi {
       }
       if (!response.ok) return { ok: false, status: response.status, error: classifyError(response.status, await jsonBody(response)) };
       const today = new Date().toISOString().slice(0, 10);
-      return { ok: true, blob: await response.blob(), filename: exportName(response.headers.get('content-disposition'), today) };
+      try {
+        return { ok: true, blob: await response.blob(), filename: exportName(response.headers.get('content-disposition'), today) };
+      } catch {
+        return { ok: false, status: 0, error: 'network' }; // the body broke off
+      }
     },
     deleteAccount: () => call('/api/account', json('DELETE', { confirm: 'DELETE' })),
   };

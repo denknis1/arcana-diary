@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { act } from 'preact/test-utils';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { Account, AccountApi } from '../lib/accountApi';
+import { createAccountApi, type Account, type AccountApi } from '../lib/accountApi';
 import type { Auth, SessionStatus } from '../lib/auth';
 import { NOTICE_KEY } from '../lib/notice';
 import { byText, cleanup, click, mount, queryText, waitFor } from '../lib/testing/dom';
@@ -16,6 +16,7 @@ function fakes(over: {
   account?: AccountApi['account'];
   setConsent?: AccountApi['setConsent'];
   deleteAccount?: AccountApi['deleteAccount'];
+  exportFile?: AccountApi['exportFile'];
   signOut?: () => Promise<void>;
 } = {}) {
   const calls: string[] = [];
@@ -33,10 +34,10 @@ function fakes(over: {
       calls.push(`consent ${on}`);
       return { ok: true, status: 200, data: { email: ACCOUNT.email, reminders_consent: on, consent_at: null } };
     }),
-    exportFile: async () => {
+    exportFile: over.exportFile ?? (async () => {
       calls.push('export');
       return { ok: true, blob: new Blob(['{"readings":[]}'], { type: 'application/json' }), filename: 'arcana-diary-2026-11-22.json' };
-    },
+    }),
     deleteAccount: over.deleteAccount
       ?? (async () => { calls.push('delete'); return { ok: true, status: 200, data: { deleted: true } }; }),
   } as unknown as AccountApi;
@@ -172,6 +173,19 @@ describe('the account page (spec 4.4b §6)', () => {
       .toBe('Your session on this preview site has expired. Reload the page to continue.');
     expect(queryText(root, 'Try again', 'button')).not.toBeNull();
     expect(queryText(root, 'Delete account', 'button')).toBeNull(); // nothing to act on without the account
+    expect(queryText(root, 'Download my readings', 'button')).toBeNull();
+    expect(queryText(root, 'Sign out', 'button')).not.toBeNull(); // leaving stays possible (review)
+  });
+
+  it('an account that does not load (503) still offers "Sign out", and it works offline; Download and Delete stay hidden', async () => {
+    const f = fakes({ account: async () => ({ ok: false, status: 503, error: 'unavailable', body: null }) });
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    expect(root.querySelector('[role="alert"]')?.textContent).toBe(UNAVAILABLE);
+    expect(queryText(root, 'Delete account', 'button')).toBeNull();
+    expect(queryText(root, 'Download my readings', 'button')).toBeNull();
+    await click(byText(root, 'Sign out', 'button'));
+    await waitFor(() => expect(f.navigate).toHaveBeenCalledWith('/'));
+    expect(f.auth.signOut).toHaveBeenCalled();
   });
 
   it('a deletion that fails says so inside the dialog; nothing is signed out (review I5)', async () => {
@@ -221,5 +235,89 @@ describe('the account page (spec 4.4b §6)', () => {
       pending.finish?.();
     });
     await waitFor(() => expect(f.navigate).toHaveBeenCalledWith('/?account=deleted'));
+  });
+
+  const rejectedBlob = () => createAccountApi((async () => ({
+    ok: true, status: 200, headers: new Headers(), blob: () => Promise.reject(new TypeError('body dropped')),
+  })) as unknown as typeof fetch).exportFile;
+
+  it('a download whose body fails says so next to Download, and the buttons work again (review I1)', async () => {
+    const f = fakes({ exportFile: rejectedBlob() });
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    await click(byText(root, 'Download my readings', 'button'));
+    expect(root.querySelector('.account__actions ~ .account__error [role="alert"]')).not.toBeNull();
+    expect(f.saved).toHaveLength(0);
+    for (const label of ['Download my readings', 'Sign out', 'Delete account']) {
+      expect(byText(root, label, 'button').getAttribute('aria-disabled')).not.toBe('true');
+    }
+    await click(byText(root, 'Delete account', 'button'));
+    expect(root.querySelector('[role="alertdialog"]')).not.toBeNull(); // not ignored as "busy"
+  });
+
+  it('a download whose body fails inside the dialog: the error is there, Cancel and Escape work (review I1)', async () => {
+    const f = fakes({ exportFile: rejectedBlob() });
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    await click(byText(root, 'Delete account', 'button'));
+    await click(byText(root, 'Download', 'button'));
+    const dialog = root.querySelector('[role="alertdialog"]')!;
+    expect(dialog.querySelector('[role="alert"]')).not.toBeNull();
+    expect(byText(dialog, 'Cancel', 'button').getAttribute('aria-disabled')).not.toBe('true');
+    await act(() => {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    });
+    expect(root.querySelector('[role="alertdialog"]')).toBeNull();
+    await click(byText(root, 'Delete account', 'button'));
+    await click(byText(dialog.ownerDocument.body, 'Cancel', 'button'));
+    expect(root.querySelector('[role="alertdialog"]')).toBeNull();
+  });
+
+  it('a 401 without JSON inside the dialog offers the reload button (review M3)', async () => {
+    const reload = vi.spyOn(location, 'reload').mockImplementation(() => {});
+    const f = fakes({ exportFile: async () => ({ ok: false, status: 401, error: 'stage' }) });
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    await click(byText(root, 'Delete account', 'button'));
+    await click(byText(root, 'Download', 'button'));
+    const dialog = root.querySelector<HTMLElement>('[role="alertdialog"]')!;
+    expect(dialog.querySelector('[role="alert"]')?.textContent)
+      .toBe('Your session on this preview site has expired. Reload the page to continue.');
+    await click(byText(dialog, 'Try again', 'button'));
+    expect(reload).toHaveBeenCalledTimes(1);
+    reload.mockRestore();
+  });
+
+  it('while the dialog is open the page behind it is inert; closing lifts it (review M4)', async () => {
+    const header = document.createElement('header');
+    header.innerHTML = '<button type="button">Menu</button>';
+    document.body.prepend(header);
+    const f = fakes();
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
+    expect(header.closest('[inert]')).toBeNull();
+    await click(byText(root, 'Delete account', 'button'));
+    const dialog = root.querySelector<HTMLElement>('[role="alertdialog"]')!;
+    expect(dialog.closest('[inert]')).toBeNull();
+    expect(header.closest('[inert]')).not.toBeNull();
+    expect(byText(root, 'Sign out', 'button').closest('[inert]')).not.toBeNull();
+    await click(byText(dialog, 'Cancel', 'button'));
+    expect(document.querySelector('[inert]')).toBeNull();
+    expect(byText(root, 'Sign out', 'button').closest('[inert]')).toBeNull();
+  });
+
+  it('a page restored from the back/forward cache reloads; the listener goes with the page (review M5)', async () => {
+    const reload = vi.spyOn(location, 'reload').mockImplementation(() => {});
+    const f = fakes();
+    const { unmount } = await mount(<AccountIsland lang="en" {...f.props} />);
+    const restored = (persisted: boolean) => {
+      const event = new Event('pageshow');
+      Object.defineProperty(event, 'persisted', { value: persisted });
+      window.dispatchEvent(event);
+    };
+    restored(false);
+    expect(reload).not.toHaveBeenCalled();
+    restored(true);
+    expect(reload).toHaveBeenCalledTimes(1);
+    unmount();
+    restored(true);
+    expect(reload).toHaveBeenCalledTimes(1);
+    reload.mockRestore();
   });
 });

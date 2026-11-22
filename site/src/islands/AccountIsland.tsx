@@ -34,7 +34,7 @@ type Action = 'consent' | 'export' | 'delete' | 'signOut';
 type View =
   | { type: 'loading' }
   | { type: 'status'; status: Exclude<SessionStatus, { type: 'signedIn' }> }
-  | { type: 'failed'; error: ErrorKind } // the account could not be read
+  | { type: 'failed'; error: ErrorKind; auth: Auth } // the account could not be read; signing out stays possible
   | { type: 'ready'; auth: Auth; google: boolean; account: Account };
 
 /** 401 {"reason": "sign_in"}: the session went on this device (spec 4.4b §3). */
@@ -95,18 +95,43 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
     const result = await api.account(deviceTimeZone());
     if (result.ok) setView({ type: 'ready', auth: opened.auth, google: opened.google, account: result.data });
     else if (sessionGone(result.status, result.body)) signedOut(opened.auth, opened.google);
-    else setView({ type: 'failed', error: result.error }); // 'stage' for a 401 without JSON: the line and a reload
+    else setView({ type: 'failed', error: result.error, auth: opened.auth }); // 'stage' for a 401 without JSON: the line and a reload
   };
 
   useEffect(() => { void load(); }, []);
+  useEffect(() => { // Back after a sign-out or a deletion must not show the e-mail or a frozen dialog from the bfcache
+    const onShow = (event: Event) => {
+      if ((event as PageTransitionEvent).persisted) location.reload();
+    };
+    window.addEventListener('pageshow', onShow);
+    return () => window.removeEventListener('pageshow', onShow);
+  }, []);
   useEffect(() => { // the dialog is gone: focus goes back to the button that opened it
     if (hadDialog.current && !dialog) deleteButton.current?.focus();
     hadDialog.current = dialog;
   }, [dialog]);
 
+  const leave = async (auth: Auth, url: string) => { // sign out on this device at once, then go; a hung sign-out waits at most
+    await Promise.race([auth.signOut().catch(() => {}), new Promise<void>((resolve) => setTimeout(resolve, signOutWaitMs))]);
+    navigate(url);
+  };
+
   if (view.type === 'loading') return <div class="account" aria-busy="true" />; // no empty status line (review M18)
   if (view.type === 'failed') {
-    return <div class="account"><Problem error={view.error} lang={lang} retry={() => void load()} /></div>;
+    const { auth } = view;
+    return (
+      <div class="account">
+        <Problem error={view.error} lang={lang} retry={() => void load()} />
+        <div class="account__actions">
+          <button type="button" class="btn btn--ink" aria-disabled={busy !== null} onClick={() => {
+            if (busyNow.current) return;
+            busyNow.current = 'signOut';
+            setBusy('signOut');
+            void leave(auth, home); // busy until the page goes
+          }}>{d.accountSignOut}</button>
+        </div>
+      </div>
+    );
   }
   if (view.type === 'status') {
     const { status } = view;
@@ -145,8 +170,12 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
     const wanted = box.checked;
     box.checked = account.reminders_consent; // no optimistic update: the switch moves when the API has saved it
     if (!start('consent')) return;
-    const result = await api.setConsent(wanted);
-    finish();
+    let result: Awaited<ReturnType<AccountApi['setConsent']>>;
+    try {
+      result = await api.setConsent(wanted);
+    } finally {
+      finish();
+    }
     if (!result.ok) {
       if (sessionGone(result.status, result.body)) return signedOut(auth, google);
       return setFailed({ action: 'consent', error: result.error });
@@ -158,8 +187,12 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
 
   const download = async () => {
     if (!start('export')) return;
-    const file = await api.exportFile();
-    finish();
+    let file: Awaited<ReturnType<AccountApi['exportFile']>>;
+    try {
+      file = await api.exportFile();
+    } finally {
+      finish();
+    }
     if (file.ok) {
       setFailed(null);
       save(file.blob, file.filename);
@@ -168,27 +201,28 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
     } else setFailed({ action: 'export', error: file.error });
   };
 
-  const leave = async (url: string) => { // sign out on this device at once, then go; a hung sign-out waits at most
-    await Promise.race([auth.signOut().catch(() => {}), new Promise<void>((resolve) => setTimeout(resolve, signOutWaitMs))]);
-    navigate(url);
-  };
-
   const signOut = async () => {
     if (!start('signOut')) return;
-    await leave(home); // busy until the page goes
+    await leave(auth, home); // busy until the page goes
   };
 
   const remove = async () => {
     if (!start('delete')) return;
     setFailed(null);
-    const result = await api.deleteAccount();
+    let result: Awaited<ReturnType<AccountApi['deleteAccount']>>;
+    try {
+      result = await api.deleteAccount();
+    } catch (error) {
+      finish();
+      throw error;
+    }
     if (!result.ok) {
       finish();
       if (sessionGone(result.status, result.body)) return signedOut(auth, google);
       return setFailed({ action: 'delete', error: result.error }); // said inside the dialog (review I5)
     }
     markNotice('accountDeleted');
-    await leave(noticeHref(home)); // at once: the token still lives until it expires; busy until the page goes
+    await leave(auth, noticeHref(home)); // at once: the token still lives until it expires; busy until the page goes
   };
 
   const openDialog = () => {
@@ -232,6 +266,7 @@ export default function AccountIsland({ lang, api: given, save = saveFile, navig
       {problem('export')}
       {dialog ? (
         <DeleteAccountDialog lang={lang} busy={busy !== null} error={inDialog && failed ? d[errorMessageKey(failed.error)] : null}
+          onReload={failed?.error === 'stage' ? () => location.reload() : undefined}
           onDownload={() => void download()} onDelete={() => void remove()} onCancel={closeDialog} />
       ) : null}
     </div>

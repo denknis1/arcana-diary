@@ -9,8 +9,12 @@ import type { Lang } from '../lib/types';
 export default function HomeNotice({ lang }: { lang: Lang }) {
   const [shown, setShown] = useState(false);
   useEffect(() => {
-    setShown(takeNotice(location.search) !== null); // the mark goes with any visit of the home page
+    // the live region is in the page empty from the start; its text comes a tick after mount, so it is announced
+    const wanted = takeNotice(location.search) !== null; // the mark goes with any visit of the home page
     if (noticeOf(location.search)) history.replaceState(history.state, '', withoutNotice(location.href));
+    if (!wanted) return;
+    const timer = setTimeout(() => setShown(true), 0);
+    return () => clearTimeout(timer);
   }, []);
-  return shown ? <p class="notice notice--day" role="status">{t(lang).accountDeleted}</p> : null;
+  return <div class={shown ? 'notice notice--day' : undefined} role="status">{shown ? t(lang).accountDeleted : ''}</div>;
 }

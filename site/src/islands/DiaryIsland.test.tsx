@@ -76,6 +76,24 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     await open((root) => byText(root, 'Signing in opens soon.'));
   });
 
+  it('a page restored from the back/forward cache reloads, and the listener goes with the page (review M5)', async () => {
+    serve({});
+    const reload = vi.spyOn(location, 'reload').mockImplementation(() => {});
+    const { unmount } = await open((r) => expect(r.querySelector('input[type="email"]')).not.toBeNull());
+    const restored = (persisted: boolean) => {
+      const event = new Event('pageshow');
+      Object.defineProperty(event, 'persisted', { value: persisted });
+      window.dispatchEvent(event);
+    };
+    restored(false);
+    expect(reload).not.toHaveBeenCalled();
+    restored(true);
+    expect(reload).toHaveBeenCalledTimes(1);
+    unmount();
+    restored(true);
+    expect(reload).toHaveBeenCalledTimes(1);
+  });
+
   it('not signed in: one line why and the sign-in block, and no claim', async () => {
     const served = serve({});
     const { root } = await open((r) => expect(r.querySelector('input[type="email"]')).not.toBeNull());
