@@ -983,3 +983,23 @@ def test_the_reader_gets_each_cards_vote_and_the_base_answer_has_them_too(api):
     assert set(fb["sections"]) == {"headline", "card1", "card2", "card3", "step", "why"}
     assert fb["sections"]["card1"].startswith(f"{body['cards'][0]['name']}")
     assert f": {labels[body['cards'][0]['vote']]}. " in fb["sections"]["card1"]
+
+
+# --- stage 4.4b §9: a database failure inside a stream is logged with its message ---
+
+def test_a_database_failure_in_the_reading_stream_is_logged(api, monkeypatch, caplog):
+    body = create(api, kind="one")
+
+    def down(*args, **kwargs):
+        raise DatabaseUnavailable("column readings.nope does not exist")
+
+    monkeypatch.setattr(flow, "over_budget", down)
+    with caplog.at_level("ERROR", logger="arcana.reader"):
+        assert stream(api, body["id"]) == [("error", {"reason": "db"})]
+    assert "reading stream: database unavailable before the answer: column readings.nope does not exist" in caplog.text
+    monkeypatch.undo()
+    caplog.clear()
+    monkeypatch.setattr(repo, "save_answer", down)
+    with caplog.at_level("ERROR", logger="arcana.reader"):
+        assert stream(api, body["id"])[-1] == ("error", {"reason": "db"})
+    assert "reading stream: the answer was not saved: column readings.nope does not exist" in caplog.text

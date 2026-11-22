@@ -9,7 +9,7 @@ from app import limits, repo
 from app.config import FOLLOWUP_ATTEMPTS, IP_FOLLOWUP_LIMIT
 from app.db import DatabaseUnavailable
 from app.reader import fallback
-from app.reader.followups import stream_followup
+from app.reader.followups import replay_followup, stream_followup
 from app.reader.provider import FakeReply
 from helpers import dump_tables, from_ip, parse_sse, post_reading
 
@@ -882,3 +882,41 @@ def test_the_same_number_of_a_paid_followup_still_written_says_in_progress(api):
     assert events[1][1] == {"reason": "in_progress"}
     assert (attempts_of(api, reading_id), guest_used(api, reading_id), len(api.guard.json_calls())) == (
         attempts, used, guard_calls)
+
+
+# --- stage 4.4b §9: a database failure inside a follow-up stream is logged with its message ---
+
+def down(*args, **kwargs):
+    raise DatabaseUnavailable("column followups.nope does not exist")
+
+
+def test_a_database_failure_before_a_followup_answer_is_logged(api, monkeypatch, caplog):
+    reading_id = ready_reading(api, kind="one")
+    monkeypatch.setattr("app.reader.followups.over_budget", down)
+    with caplog.at_level("ERROR", logger="arcana.reader"):
+        events = parse_sse(ask(api.client, reading_id, "What helps?", tz=MX).text)
+    assert events[-1] == ("error", {"reason": "db"})
+    assert "follow-up stream: database unavailable before the answer: column followups.nope does not exist" \
+        in caplog.text
+
+
+def test_a_followup_answer_that_could_not_be_saved_is_logged(api, monkeypatch, caplog):
+    reading_id = ready_reading(api, kind="one")
+    monkeypatch.setattr(repo, "save_followup_answer", down)
+    with caplog.at_level("ERROR", logger="arcana.reader"):
+        events = parse_sse(ask(api.client, reading_id, "What helps?", tz=MX).text)
+    assert events[-1] == ("error", {"reason": "db"})
+    assert "follow-up stream: the answer was not saved: column followups.nope does not exist" in caplog.text
+
+
+def test_a_database_failure_in_a_followup_replay_is_logged(api, monkeypatch, caplog):
+    reading_id = ready_reading(api, kind="one")
+    assert parse_sse(ask(api.client, reading_id, "What helps?", tz=MX).text)[-1][0] == "done"
+    with api.db.connect() as conn:
+        reading = repo.get_reading(conn, uuid.UUID(reading_id), api.clock())
+        [followup] = repo.list_followups(conn, reading["id"])
+    monkeypatch.setattr(repo, "get_reading", down)
+    with caplog.at_level("ERROR", logger="arcana.reader"):
+        events = parse_sse("".join(replay_followup(api.ctx, reading, followup)))
+    assert events[-1] == ("error", {"reason": "db"})
+    assert "follow-up replay: database unavailable: column followups.nope does not exist" in caplog.text
