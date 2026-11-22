@@ -128,3 +128,65 @@ def test_delete_removes_the_reading_its_followups_and_tokens(api):
     assert left == [0, 0, 0, calls] and calls >= 2  # the cost log keeps no text and stays
     assert api.client.get(f"/api/readings/{reading_id}").status_code == 404
     assert api.client.delete(f"/api/diary/{reading_id}", headers=bearer(ANA)).status_code == 404
+
+
+# --- stage 4.4b §5 (owner decision 9): the free diary lists the 10 newest readings ---
+
+def insert_entries(api, n: int, user=ANA) -> list[str]:
+    """n readings of the account, an hour apart; ids oldest first."""
+    ids = []
+    with api.db.connect() as conn:
+        for i in range(n):
+            reading = make_reading(user_id=user, expires_at=None, now=api.clock() - timedelta(hours=n - i))
+            repo.insert_reading(conn, reading)
+            ids.append(str(reading["id"]))
+    return ids
+
+
+def test_the_free_diary_lists_the_ten_newest_and_counts_the_hidden(api):
+    ids = insert_entries(api, 12)
+    body = diary(api.client, ANA).json()
+    assert [i["id"] for i in body["items"]] == ids[::-1][:10]
+    assert (body["hidden_count"], body["next_before"]) == (2, None)
+
+
+def test_pages_stop_at_the_tenth_entry(api):
+    newest = insert_entries(api, 12)[::-1]
+    first = diary(api.client, ANA, limit=4).json()
+    second = diary(api.client, ANA, limit=4, before=first["next_before"]).json()
+    third = diary(api.client, ANA, limit=4, before=second["next_before"]).json()
+    assert [i["id"] for i in first["items"] + second["items"] + third["items"]] == newest[:10]
+    assert third["next_before"] is None and len(third["items"]) == 2
+    assert [p["hidden_count"] for p in (first, second, third)] == [2, 2, 2]
+    beyond = diary(api.client, ANA, before=third["items"][-1]["created_at"]).json()  # older than the 10th: hidden
+    assert beyond == {"items": [], "next_before": None, "hidden_count": 2}
+
+
+def test_ten_or_fewer_hide_nothing(api):
+    insert_entries(api, 10)
+    body = diary(api.client, ANA).json()
+    assert (len(body["items"]), body["hidden_count"], body["next_before"]) == (10, 0, None)
+    assert diary(api.client, BEN).json() == {"items": [], "next_before": None, "hidden_count": 0}
+
+
+def test_a_hidden_entry_still_opens_by_its_link_and_is_exported(api):
+    oldest = insert_entries(api, 11)[0]
+    assert oldest not in [i["id"] for i in diary(api.client, ANA).json()["items"]]
+    view = api.client.get(f"/api/readings/{oldest}", headers=bearer(ANA))
+    assert view.status_code == 200 and view.json()["in_diary"] is True
+    assert view.json()["created_at"].startswith("2026-11-20T07:00:00")  # T_API − 11 h
+    assert len(api.client.get("/api/account/export", headers=bearer(ANA)).json()["readings"]) == 11
+
+
+def test_deleting_a_listed_entry_brings_the_next_older_one_in(api):
+    ids = insert_entries(api, 11)
+    assert api.client.delete(f"/api/diary/{ids[-1]}", headers=bearer(ANA)).status_code == 204
+    body = diary(api.client, ANA).json()
+    assert [i["id"] for i in body["items"]] == ids[:10][::-1]
+    assert body["hidden_count"] == 0
+
+
+def test_the_view_of_someone_else_has_no_date_of_the_diary(api):
+    reading_id = insert_entries(api, 1)[0]
+    view = api.new_client().get(f"/api/readings/{reading_id}").json()
+    assert "created_at" not in view and "in_diary" not in view

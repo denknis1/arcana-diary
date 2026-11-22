@@ -1,6 +1,7 @@
 ---
 // Header (design system: Header): wordmark; on a phone the menu button opens the menu (screens 11c, 11d);
-// on a desktop the menu items and EN | ES sit in the header (screen 13a).
+// on a desktop the menu items and EN | ES sit in the header (screen 13a). The diary: "Your diary" in the menu,
+// "Diary" in the desktop header (spec 4.4b §8).
 import MenuToggle from '../islands/MenuToggle';
 import LangSwitch from './LangSwitch.astro';
 import MoonMark from './MoonMark.astro';
@@ -16,8 +17,13 @@ interface Props {
 
 const { lang, path, current } = Astro.props;
 const d = t(lang);
-const LABELS: Record<string, DictKey> = { home: 'navHome', yes_no: 'navYesNo', love: 'navLove', daily: 'navDaily' };
-const items = NAV_KEYS.map((key) => ({ key, href: pagePath(key, lang), label: d[LABELS[key]] }));
+const LABELS: Record<string, DictKey> = {
+  home: 'navHome', yes_no: 'navYesNo', love: 'navLove', daily: 'navDaily', diary: 'navDiary',
+};
+const SHORT: Record<string, DictKey> = { diary: 'navDiaryShort' };
+const items = NAV_KEYS.map((key) => ({
+  key, href: pagePath(key, lang), label: d[LABELS[key]], short: d[SHORT[key] ?? LABELS[key]],
+}));
 ---
 <header class="site-header">
   <div class="container">
@@ -27,7 +33,7 @@ const items = NAV_KEYS.map((key) => ({ key, href: pagePath(key, lang), label: d[
         <nav aria-label={d.navLabel}>
           <ul>
             {items.map((item) => (
-              <li><a href={item.href} aria-current={item.key === current ? 'page' : undefined}>{item.label}</a></li>
+              <li><a href={item.href} aria-current={item.key === current ? 'page' : undefined}>{item.short}</a></li>
             ))}
           </ul>
         </nav>

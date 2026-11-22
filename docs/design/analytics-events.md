@@ -17,6 +17,7 @@
 | `more_about_cards` | «Подробнее о картах» | `tool` | интересны ли значения после ответа |
 | `outcome_answered` | ответ «сбылось?» | `after_days` (7, 30), `answer` (yes, partly, no) | возвращаются ли к дневнику |
 | `plus_view` | показана карточка Plus | `place` (limit, diary) | как часто видят предложение |
+| `remind_click` | «Remind me tomorrow» под картой дня (этап 4.4б) | `tool` (только daily), `lang` | нужна ли карта дня назавтра |
 
 ## Воронка
 

@@ -1,5 +1,5 @@
-"""Guest cookie, the visitor's local day, the daily limit (readings and paid follow-ups: 3 per guest, 5 per
-account, stage 4.3 §5), the IP counters, the follow-up attempts (§4.1, §4.2, §8.2, §8.4, §9.2, §10)."""
+"""Guest cookie, the visitor's local day, the daily limit (readings and paid follow-ups: 2 per guest, 3 per
+account, stage 4.3 §5 and 4.4b §2), the IP counters, the follow-up attempts (§4.1, §4.2, §8.2, §8.4, §9.2, §10)."""
 import hashlib
 import ipaddress
 import re
@@ -36,7 +36,7 @@ ZONE_ALIASES = {
 class LimitReached(Exception):
     """Raised inside the reading transaction, so the transaction rolls back and nothing is counted."""
 
-    def __init__(self, reason: str):  # "limit" (3 per guest) | "ip_limit" (per address) | "attempts" (per reading)
+    def __init__(self, reason: str):  # "limit" (the day's quota) | "ip_limit" (per address) | "attempts" (per reading)
         super().__init__(reason)
         self.reason = reason
 

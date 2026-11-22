@@ -17,12 +17,16 @@ export interface FlowDeps {
   sleep: (ms: number) => Promise<void>;
   reducedMotion: boolean;
   newId: () => string; // a request number (requestId.ts)
+  now?: () => number; // ms; Date.now by default (the time a follow-up was lost)
 }
 
 export const RESTORE_TRIES = 10;
 export const RESTORE_WAIT_MS = 2000;
 /** Before the one automatic repeat of a request that got no answer: an instant repeat would fail the same way. */
 export const REPEAT_WAIT_MS = 1000;
+/** Spec 4.4b §9: "Try again" on a follow-up lost longer ago than this only reads back (GET): after the hourly
+ * cleanup a crisis tombstone may be gone, and a re-POST would then be a fresh (for a paid body: charged) ask. */
+export const LOST_REPOST_MAX_MS = 60 * 60 * 1000;
 /** What a new reading allows (two free follow-ups, eight attempts); used only when the counts cannot be read —
  * the API still refuses what is not allowed (402 / 429). */
 export const DEFAULT_COUNTS: FollowupCounts = { followups_left: 2, followup_attempts_left: 8 };
@@ -55,7 +59,7 @@ export async function startReading(deps: FlowDeps, draw: CreateBody): Promise<vo
     deps.dispatch({ type: 'failed', error: result.error });
     return;
   }
-  deps.dispatch({ type: 'created', reading: result.reading, reducedMotion: deps.reducedMotion });
+  deps.dispatch({ type: 'created', reading: result.reading, reducedMotion: deps.reducedMotion, authed: result.authed === true });
   await streamReading(deps, result.reading.id, body.tz, 'stream');
 }
 
@@ -154,14 +158,15 @@ export async function restoreFollowup(deps: FlowDeps, id: string, answeredBefore
   }
   // Stage 4.5 A1: GET never lists a crisis tombstone, so ask once more with the same request_id and body; the API
   // replays the saved answer or the crisis, or says in_progress (then the follow-up stays lost, as before).
+  const at = (deps.now ?? Date.now)();
   if (repost && !gone) {
-    deps.dispatch({ type: 'followupLost', n, answeredBefore, body }); // clears the partial text, then shows it as streaming again
+    deps.dispatch({ type: 'followupLost', n, answeredBefore, body, at }); // clears the partial text, then shows it as streaming again
     deps.dispatch({ type: 'followupRetrying' });
     const got = await repost();
     if (got.ended) return;
     n = n ?? got.n; // no number from the first stream: the one the re-POST's meta named, for "Try again"
   }
-  deps.dispatch({ type: 'followupLost', n, answeredBefore, body });
+  deps.dispatch({ type: 'followupLost', n, answeredBefore, body, at });
   await loadCounts(deps, id, tz);
 }
 
@@ -173,13 +178,15 @@ function isServerError(refusal: FollowupRefusal): boolean {
 /** "Try again" on a lost follow-up. With a request_id: the same body again (never a new number, never another
  * `use_reading`), so the API replays the saved answer or the crisis tombstone, says in_progress, or (if nothing was
  * saved) answers it as one ask; the result is handled as in `askFollowup`. in_progress or no answer: the GET
- * read-back, with the same `n` and `answeredBefore`. A follow-up without a number: the GET read-back only. */
+ * read-back, with the same `n` and `answeredBefore`. A follow-up without a number, or one lost more than
+ * LOST_REPOST_MAX_MS ago (spec 4.4b §9): the GET read-back only. */
 export async function retryFollowup(deps: FlowDeps, id: string, tz: string | undefined,
-  lost: { n?: number; answeredBefore: number; body?: FollowupBody }): Promise<void> {
+  lost: { n?: number; answeredBefore: number; body?: FollowupBody; at?: number }): Promise<void> {
   deps.dispatch({ type: 'followupRetrying' });
   const body = lost.body;
   let n = lost.n;
-  if (body?.request_id) {
+  const stale = lost.at !== undefined && (deps.now ?? Date.now)() - lost.at > LOST_REPOST_MAX_MS;
+  if (body?.request_id && !stale) {
     let done = false;
     let crisis = false;
     const result = await deps.api.postFollowup(id, body, (event) => {

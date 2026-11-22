@@ -201,6 +201,7 @@ def full_view(ctx, reading: dict, followups: list[dict], owner: bool, now: datet
             # stage 4.3 §6: the owner (the account; for a guest reading, its device) also sees the diary fields
             "in_diary": reading.get("user_id") is not None,
             "outcome": reading.get("outcome"), "note": reading.get("note"),
+            "created_at": reading["created_at"],  # stage 4.4b §5: "did it come true?" opens 7 days after it
         })
     return view
 
@@ -337,7 +338,8 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
             claimed = repo.claim_stream(conn, reading["id"], ctx.clock())
             history = reader_history(conn, reading) if claimed else []
         spent = claimed and over_budget(ctx)
-    except DatabaseUnavailable:
+    except DatabaseUnavailable as exc:
+        log.error("reading stream: database unavailable before the answer: %s", exc)  # stage 4.4b §9
         if claimed:
             release_claim(ctx, reading["id"])
         yield sse("error", {"reason": "db"})
@@ -387,7 +389,8 @@ def _reading_events(ctx, reading: dict, cf_country: str | None, tz: str | None) 
             if outcome is not None:
                 log_call(conn, ctx, reading["id"], "reader", ctx.reader.model, prompt.version, outcome,
                          READER_MAX_TOKENS)
-    except DatabaseUnavailable:
+    except DatabaseUnavailable as exc:
+        log.error("reading stream: the answer was not saved: %s", exc)  # stage 4.4b §9
         release_claim(ctx, reading["id"])  # nothing was saved: the next stream may write the answer
         if final.shown == "crisis":  # the helplines need no database: the client gets them first
             yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))

@@ -2,17 +2,18 @@
 // with every request. Streams are read through fetch (spec 4.4a §4). Nothing here touches the page.
 import { classifyError, type ErrorKind } from './errors';
 import { followupRefusal, type FollowupBody, type FollowupRefusal } from './followups';
+import { carriedToken } from './tokenMark';
 import { readSse, STREAM_IDLE_MS, type SseEvent } from './sse';
 import type { CreateBody, CrisisPayload, DailyCard, Lang, ReadingCreated, ReadingView } from './types';
 
 export type FetchFn = (input: string, init?: RequestInit) => Promise<Response>;
 
 export type ApiResult<T> =
-  | { ok: true; status: number; data: T }
+  | { ok: true; status: number; data: T; authed?: true } // authed: the request carried the sign-in token
   | { ok: false; status: number; error: ErrorKind; body: Record<string, unknown> | null };
 
 export type CreateResult =
-  | { type: 'reading'; reading: ReadingCreated }
+  | { type: 'reading'; reading: ReadingCreated; authed?: true } // authed: the create request carried the token
   | { type: 'crisis'; payload: CrisisPayload }
   | { type: 'error'; error: ErrorKind; body: Record<string, unknown> | null };
 
@@ -50,11 +51,11 @@ export function withQuery(path: string, params: Record<string, string | undefine
   return text ? `${path}?${text}` : path;
 }
 
-function readingPath(id: string, tail = ''): string {
+export function readingPath(id: string, tail = ''): string {
   return `/api/readings/${encodeURIComponent(id)}${tail}`;
 }
 
-async function jsonBody(response: Response): Promise<Record<string, unknown> | null> {
+export async function jsonBody(response: Response): Promise<Record<string, unknown> | null> {
   try {
     const body = await response.json();
     return body && typeof body === 'object' ? (body as Record<string, unknown>) : null;
@@ -86,25 +87,29 @@ function idleWatchdog(idleMs: number): { signal: AbortSignal; touch: () => void;
   return { signal: controller.signal, touch, stop: () => clearTimeout(timer) };
 }
 
+/** One JSON request: the answer, its status and, for a refusal, what it means for the screen. */
+export async function callJson<T>(fetchFn: FetchFn, path: string, init?: RequestInit, timeoutMs?: number): Promise<ApiResult<T>> {
+  let response: Response;
+  const controller = timeoutMs ? new AbortController() : null;
+  const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : undefined;
+  try {
+    response = await fetchFn(path, controller ? { ...init, signal: controller.signal } : init);
+  } catch {
+    return { ok: false, status: 0, error: 'network', body: null };
+  } finally {
+    clearTimeout(timer);
+  }
+  const body = await jsonBody(response);
+  if (response.ok) {
+    return { ok: true, status: response.status, data: body as T, ...(carriedToken(response) ? { authed: true as const } : {}) };
+  }
+  return { ok: false, status: response.status, error: classifyError(response.status, body), body };
+}
+
 export function createApi(fetchFn: FetchFn, options: ApiOptions = {}): Api {
   const idleMs = options.idleMs ?? STREAM_IDLE_MS;
   const createTimeoutMs = options.createTimeoutMs ?? CREATE_TIMEOUT_MS;
-
-  async function call<T>(path: string, init?: RequestInit, timeoutMs?: number): Promise<ApiResult<T>> {
-    let response: Response;
-    const controller = timeoutMs ? new AbortController() : null;
-    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : undefined;
-    try {
-      response = await fetchFn(path, controller ? { ...init, signal: controller.signal } : init);
-    } catch {
-      return { ok: false, status: 0, error: 'network', body: null };
-    } finally {
-      clearTimeout(timer);
-    }
-    const body = await jsonBody(response);
-    if (response.ok) return { ok: true, status: response.status, data: body as T };
-    return { ok: false, status: response.status, error: classifyError(response.status, body), body };
-  }
+  const call = <T>(path: string, init?: RequestInit, timeoutMs?: number) => callJson<T>(fetchFn, path, init, timeoutMs);
 
   async function stream(path: string, init: RequestInit, onEvent: (event: SseEvent) => void): Promise<StreamEnd> {
     const watch = idleWatchdog(idleMs);
@@ -139,7 +144,7 @@ export function createApi(fetchFn: FetchFn, options: ApiOptions = {}): Api {
       }, createTimeoutMs);
       if (!result.ok) return { type: 'error', error: result.error, body: result.body };
       if (result.data?.group === 'crisis') return { type: 'crisis', payload: result.data as unknown as CrisisPayload };
-      return { type: 'reading', reading: result.data as unknown as ReadingCreated };
+      return { type: 'reading', reading: result.data as unknown as ReadingCreated, ...(result.authed ? { authed: true as const } : {}) };
     },
     streamReading(id, tz, onEvent) {
       return stream(withQuery(readingPath(id, '/stream'), { tz }), { method: 'GET' }, onEvent);

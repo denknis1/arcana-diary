@@ -1,8 +1,10 @@
 ---
 // Home EN / ES (screens 1, 12a, 13a): the question and three cards in the night panel; ES adds "1 carta / 3 cartas"
-// and is the one-card page at #una-carta. Hub links and diary steps wait for stages 6 and 4.4b.
+// and is the one-card page at #una-carta. Hub links wait for stage 6. Stage 4.4b: step 3 is about the diary; a line
+// after the account was deleted (HomeNotice).
 import Base from '../layouts/Base.astro';
 import CardFigure from '../components/CardFigure.astro';
+import HomeNotice from '../islands/HomeNotice';
 import ReadingIsland from '../islands/ReadingIsland';
 import { t } from '../i18n';
 import { CARD_BACK, cardById } from '../lib/deck';
@@ -25,6 +27,7 @@ const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => ca
 const steps = [d.howStep1, d.howStep2, d.howStep3];
 ---
 <Base lang={lang} title={d.homeTitle} path={pagePath('home', lang)} current="home">
+  <HomeNotice client:load lang={lang} />
   <div class="tool-layout">
     <section class="page-hero">
       <p class="eyebrow">{d.homeEyebrow}</p>

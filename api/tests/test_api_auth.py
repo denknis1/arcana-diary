@@ -19,7 +19,7 @@ def account_reading(api, **overrides) -> dict:
 
 
 def test_no_header_and_the_stage_password_are_guests(api):
-    assert api.client.get("/api/limits", params={"tz": MX}).json()["limit"] == 3
+    assert api.client.get("/api/limits", params={"tz": MX}).json()["limit"] == 2
     stage = {"Authorization": "Basic YXJjYW5hOnNlY3JldA=="}  # Caddy's stage password passes through to the API
     assert post_reading(api.client, headers=stage, kind="one", tz=MX).status_code == 201
     assert api.jwks.calls == 0

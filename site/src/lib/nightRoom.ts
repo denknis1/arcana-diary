@@ -39,7 +39,7 @@ export const CLOSED: NightState = {
 
 export type NightAction =
   | { type: 'open' }
-  | { type: 'created'; reading: ReadingCreated; reducedMotion: boolean }
+  | { type: 'created'; reading: ReadingCreated; reducedMotion: boolean; authed?: boolean } // authed: the request carried the token (ReadingIsland)
   | { type: 'crisis'; payload: CrisisPayload }
   | { type: 'failed'; error: ErrorKind }
   | { type: 'flip' }
@@ -54,7 +54,7 @@ export type NightAction =
   | { type: 'followupEvent'; event: SseEvent }
   | { type: 'followupRefused'; question: string; refusal: FollowupRefusal }
   | { type: 'followupRestored'; followup: SavedFollowup }
-  | { type: 'followupLost'; n?: number; answeredBefore: number; body?: FollowupBody }
+  | { type: 'followupLost'; n?: number; answeredBefore: number; body?: FollowupBody; at?: number }
   | { type: 'followupRetrying' }
   | { type: 'close' };
 
@@ -155,7 +155,9 @@ export function nightReducer(state: NightState, action: NightAction): NightState
     case 'followupLost': // the partial text goes: the API may have replaced it with a crisis answer we never got
       if (state.phase !== 'reading') return state;
       return lastFollowup({ ...state, followupError: 'network' }, (f) => (f.status === 'streaming'
-        ? { ...f, status: 'failed', text: '', lost: { n: action.n, answeredBefore: action.answeredBefore, body: action.body } } : f));
+        ? { ...f, status: 'failed', text: '', lost: {
+          n: action.n, answeredBefore: action.answeredBefore, body: action.body, at: f.lost?.at ?? action.at, // the first loss
+        } } : f));
     case 'followupRetrying': // "Try again" on a lost follow-up: the same read-back runs again
       if (state.phase !== 'reading') return state;
       return lastFollowup({ ...state, followupError: null }, (f) => (f.lost ? { ...f, status: 'streaming' } : f));

@@ -6,7 +6,7 @@ const keys = (lang: 'en' | 'es') => Object.keys(DICTS[lang]).sort();
 describe('dictionaries', () => {
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(160);
+    expect(keys('en').length).toBe(224);
   });
 
   it('have no empty strings', () => {
@@ -27,8 +27,8 @@ describe('dictionaries', () => {
       expect(new Set(DRAFTS[lang]).size).toBe(DRAFTS[lang].length);
       for (const key of DRAFTS[lang]) expect(keys(lang)).toContain(key);
     }
-    expect(DRAFTS.en.length).toBe(57);
-    expect(DRAFTS.es.length).toBe(116);
+    expect(DRAFTS.en.length).toBe(105);
+    expect(DRAFTS.es.length).toBe(177);
   });
 
   it('keep the prototype copy', () => {
@@ -45,6 +45,33 @@ describe('dictionaries', () => {
     expect([t('es').oneCardChip, t('es').threeCardsChip]).toEqual(['1 carta', '3 cartas']);
     expect(DRAFTS.es).toContain('yesNoCountHint');
     expect(DRAFTS.en).not.toContain('yesNoCountHint');
+  });
+
+  it('keep the 4.4b copy of the prototypes and the spec (spec 4.4b §8)', () => {
+    expect([t('en').freeSaveAfter, t('es').freeSaveAfter]).toEqual(['Free · save it to your diary after',
+      'Gratis · guárdala en tu diario después']);
+    expect(t('en').howStep3).toBe('Save it, and check later what came true.');
+    expect([t('en').navDiary, t('es').navDiary, t('en').navDiaryShort, t('es').navDiaryShort]).toEqual([
+      'Your diary', 'Tu diario', 'Diary', 'Diario']);
+    expect([t('en').plusBenefit3, t('es').plusBenefit3]).toEqual(['Your whole diary, with no limit', 'Todo tu diario, sin límite']);
+    expect([t('en').plusDiaryNote, t('es').plusDiaryNote]).toEqual(['Your diary keeps your last 10 readings. Plus keeps all of them.',
+      'Tu diario guarda tus últimas 10 tiradas. Plus las guarda todas.']);
+    expect([t('en').saveToDiary, t('es').saveToDiary, t('en').savedToDiary]).toEqual(['Save to diary', 'Guardar en el diario',
+      'Saved to your diary ✓']);
+    expect(DRAFTS.en).not.toContain('howStep3');
+    expect(DRAFTS.es).toContain('howStep3');
+    expect(DRAFTS.es).toContain('plusDiaryNote');
+  });
+
+  it('say that a sign-in switched the reminder on, as drafts (owner decision 16)', () => {
+    expect([fill(t('en').diaryReminderOn, { account: t('en').diaryReminderOnLink }),
+      fill(t('es').diaryReminderOn, { account: t('es').diaryReminderOnLink })]).toEqual([
+      'The reminder in 7 days is on — you can turn it off in your account.',
+      'El recordatorio en 7 días está activado — puedes desactivarlo en tu cuenta.']);
+    for (const lang of ['en', 'es'] as const) {
+      expect(DRAFTS[lang]).toContain('diaryReminderOn');
+      expect(DRAFTS[lang]).toContain('diaryReminderOnLink');
+    }
   });
 
   it('name the votes with the card base labels (content/cards/yes-no-rules.json)', () => {

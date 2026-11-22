@@ -46,7 +46,7 @@ class Viewer:
 
     @property
     def quota(self) -> limits.Quota:
-        """Stage 4.3 §5: signed in — the account's 5 a day on every device; otherwise this device's 3."""
+        """Stage 4.3 §5, 4.4b §2: signed in — the account's 3 a day on every device; otherwise this device's 2."""
         return limits.user_quota(self.user.id) if self.user else limits.guest_quota(self.guest_id)
 
 

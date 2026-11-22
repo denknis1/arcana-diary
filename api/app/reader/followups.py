@@ -57,7 +57,8 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
     try:
         spent = over_budget(ctx)
         history = load_history(ctx, reading)  # stage 4.3 §7: the same block as the reading had
-    except DatabaseUnavailable:
+    except DatabaseUnavailable as exc:
+        log.error("follow-up stream: database unavailable before the answer: %s", exc)  # stage 4.4b §9
         yield sse("error", {"reason": "db"})
         return
     yield sse("section", {"name": "followup"})
@@ -123,7 +124,8 @@ def _followup_events(ctx, reading: dict, followup: dict, previous: list[dict], g
             # §10.1: a failed paid follow-up gives back its reading, once: only the call that removed the row
             if paid and not crisis and not gone and (answer is None or replace):
                 limits.give_back_slot(conn, limits.owner_quota(reading).subject, followup["paid_day"])
-    except DatabaseUnavailable:
+    except DatabaseUnavailable as exc:
+        log.error("follow-up stream: the answer was not saved: %s", exc)  # stage 4.4b §9
         if crisis:  # the helplines need no database: the client gets them first (as in the reading flow)
             yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))
         yield sse("error", {"reason": "db"})
@@ -172,7 +174,8 @@ def replay_followup(ctx, reading: dict, followup: dict, cf_country: str | None =
         with ctx.db.connect() as conn:
             fresh = repo.get_reading(conn, reading["id"], ctx.clock()) or reading
             followups = repo.list_followups(conn, reading["id"])
-    except DatabaseUnavailable:
+    except DatabaseUnavailable as exc:
+        log.error("follow-up replay: database unavailable: %s", exc)  # stage 4.4b §9
         if crisis:
             yield sse("section", {"name": "followup"})
             yield sse("crisis", crisis_answer(ctx, lang, cf_country, tz, False))

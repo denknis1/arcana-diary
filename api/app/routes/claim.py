@@ -4,10 +4,12 @@
   token for it — random, only its sha256 is stored, valid CLAIM_TOKEN_DAYS, at most CLAIM_TOKENS_PER_READING live
   at once. The site puts it into the sign-in link (/diary?claim=<token>), so the reading can be saved from whatever
   device the person signs in on. A shared link to the reading is not enough to take it.
-- POST /api/account/claim {"tokens": [...]} (signed in): moves every unexpired guest reading of this device and the
-  readings of the tokens into the account. A reading that already belongs to an account never moves; an unknown,
-  used or expired token is skipped. A moved reading loses its expiry; the day slots the guest used stay with the
-  guest.
+- POST /api/account/claim {"tokens": [...], "device": true | false} (signed in): moves every unexpired guest reading
+  of this device and the readings of the tokens into the account. A reading that already belongs to an account never
+  moves; an unknown, used or expired token is skipped. A moved reading loses its expiry; the day slots the guest used
+  stay with the guest. Stage 4.4b §4 (owner decision 12): "device": false moves only the readings of the tokens — the
+  site sends it when the e-mail link is opened on a device where the sign-in was not started (someone else's guest
+  readings stay there); left out, it is true, as in 4.3.
 """
 import secrets
 import uuid
@@ -15,7 +17,7 @@ from datetime import timedelta
 from typing import Annotated
 
 from fastapi import APIRouter, Request
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StrictBool
 
 from app import account_repo, repo
 from app.config import CLAIM_TOKEN_DAYS, CLAIM_TOKENS_PER_READING
@@ -29,6 +31,7 @@ ClaimToken = Annotated[str, Field(min_length=1, max_length=100)]
 
 class ClaimIn(BaseModel):
     tokens: list[ClaimToken] = Field(default_factory=list, max_length=20)
+    device: StrictBool = True  # stage 4.4b §4: false — this device's guest readings stay where they are
 
 
 @router.post("/readings/{reading_id}/claim-token")
@@ -58,8 +61,10 @@ def claim(request: Request, body: ClaimIn | None = None):
         return sign_in_required()
     now = ctx.clock()
     hashes = [account_repo.token_hash(token) for token in (body.tokens if body else [])]
+    device = body.device if body else True
     with ctx.db.connect() as conn:
         account_repo.ensure_profile(conn, who.user.id, now)
-        moved = [] if who.new_guest is not None else account_repo.claim_device(conn, who.user.id, who.guest_id, now)
+        moved = account_repo.claim_device(conn, who.user.id, who.guest_id, now) \
+            if device and who.new_guest is None else []
         moved += [i for i in account_repo.claim_by_tokens(conn, who.user.id, hashes, now) if i not in moved]
     return respond(200, {"claimed": [str(i) for i in moved]})

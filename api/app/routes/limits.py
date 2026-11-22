@@ -1,5 +1,5 @@
-"""How many readings are left today: for the account when signed in (5), else for this guest (3) (§1.1, §4.1,
-stage 4.3 §5)."""
+"""How many readings are left today: for the account when signed in (3), else for this guest (2) (§1.1, §4.1,
+stage 4.3 §5, stage 4.4b §2)."""
 from fastapi import APIRouter, Request
 
 from app import limits

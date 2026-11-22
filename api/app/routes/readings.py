@@ -87,7 +87,7 @@ def create_reading(body: ReadingIn, request: Request):
     ip = limits.client_ip(request, ctx.settings.trust_cloudflare)
     ip_hash = ctx.salt.hash_ip(ip, now)
     hits = ctx.burst.hit(ip_hash, now)
-    quota = who.quota  # stage 4.3 §5: the account's 5 when signed in, else this device's 3
+    quota = who.quota  # stage 4.3 §5, 4.4b §2: the account's 3 when signed in, else this device's 2
     owner_id = who.user.id if who.user else None
     with ctx.db.connect() as conn:
         if who.user:  # stage 4.3 §8: a token that outlived its account — before any model call

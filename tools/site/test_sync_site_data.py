@@ -44,9 +44,9 @@ def test_tokens_css_is_the_design_copy():
     assert (SITE / "src/styles/tokens.css").read_text() == (ROOT / "docs/design/tokens.css").read_text()
 
 
-def test_the_build_check_expects_167_pages_with_their_files():
+def test_the_build_check_expects_171_pages_with_their_files():
     pages = expected_pages()
-    assert len(pages) == 167
-    assert {"/", "/es", "/404", "/es/404", "/one-card", "/es/cartas/la-luna"} <= set(pages)
+    assert len(pages) == 171  # stage 4.4b: + /diary, /es/diario, /account, /es/cuenta
+    assert {"/", "/es", "/404", "/es/404", "/one-card", "/es/cartas/la-luna", "/diary", "/es/cuenta"} <= set(pages)
     assert [dist_file(p) for p in ("/", "/es", "/es/404", "/cards/the-moon")] == [
         "index.html", "es.html", "es/404.html", "cards/the-moon.html"]

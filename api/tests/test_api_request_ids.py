@@ -26,7 +26,7 @@ def test_twins_at_the_last_slot_both_get_the_reading(api):
     """Pins "insert before slots": the winner takes the guest's last slot; the loser waits on the insert, then
     finds the winner's reading. With the slots taken first the loser would be refused with 429 limit."""
     guest, number = uuid.uuid4(), str(uuid.uuid4())
-    for _ in range(2):  # two of the three daily slots are used
+    for _ in range(1):  # one of the two daily slots is used
         assert post_reading(api.new_client(), kind="one", tz=MX, headers=guest_headers(guest)).status_code == 201
     api.guard.json_delay = 0.3  # both wait in the question check, then race to insert
     start = threading.Barrier(2)
@@ -46,7 +46,7 @@ def test_twins_at_the_last_slot_both_get_the_reading(api):
     assert [a.status_code for a in answers] == [201, 201]
     assert answers[0].json()["id"] == answers[1].json()["id"]
     assert [a.json()["remaining"] for a in answers] == [0, 0]
-    assert (guest_usage(api), reading_count(api)) == (3, 3)
+    assert (guest_usage(api), reading_count(api)) == (2, 2)
 
 
 def test_a_crisis_question_repeated_with_one_number_is_checked_again(api):

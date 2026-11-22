@@ -32,7 +32,10 @@ EVENTS = {
     "more_about_cards": (True, {}),
     "outcome_answered": (False, {"after_days": _one_of(7, 30), "answer": _one_of("yes", "partly", "no")}),
     "plus_view": (False, {"place": _one_of("limit", "diary")}),
+    "remind_click": (True, {}),  # stage 4.4b §7: "Remind me tomorrow" under the Card of the Day
 }
+# events that belong to one tool only
+ONLY_TOOL = {"remind_click": "daily"}
 
 
 class InvalidEvent(ValueError):
@@ -48,6 +51,8 @@ def check_event(name: str, tool: str | None, params: dict) -> None:
         raise InvalidEvent("name")
     with_tool, checks = EVENTS[name]
     if with_tool != (tool is not None) or (tool is not None and tool not in TOOLS):
+        raise InvalidEvent("tool")
+    if name in ONLY_TOOL and tool != ONLY_TOOL[name]:
         raise InvalidEvent("tool")
     for key in params:
         if key not in checks:

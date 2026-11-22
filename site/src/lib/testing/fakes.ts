@@ -12,7 +12,7 @@ export function sseText(events: ReadonlyArray<readonly [string, unknown]>): stri
   return events.map(([name, data]) => `event: ${name}\ndata: ${JSON.stringify(data)}\n\n`).join('');
 }
 
-function bytes(text: string): Uint8Array {
+function bytes(text: string): Uint8Array<ArrayBuffer> {
   return new TextEncoder().encode(text);
 }
 
@@ -102,4 +102,19 @@ export function fakeFetch(...queue: Array<Response | Error>): { fetch: FetchFn; 
     return next;
   };
   return { fetch: fetchFn, calls, signals };
+}
+
+/** Answers by "METHOD /path?query" or, failing that, "METHOD /path"; anything else throws (no network). For screens
+ * that make several requests at once (the diary: settings, claim, list). */
+export function routeFetch(routes: Record<string, (call: Call) => Response>): { fetch: FetchFn; calls: Call[] } {
+  const calls: Call[] = [];
+  const fetchFn: FetchFn = async (url, init) => {
+    const headers = (init?.headers ?? {}) as Record<string, string>;
+    const call: Call = { url, method: init?.method ?? 'GET', body: init?.body ? JSON.parse(String(init.body)) : undefined, headers };
+    calls.push(call);
+    const route = routes[`${call.method} ${url}`] ?? routes[`${call.method} ${url.split('?')[0]}`];
+    if (!route) throw new Error(`unexpected call ${call.method} ${url}`);
+    return route(call);
+  };
+  return { fetch: fetchFn, calls };
 }
