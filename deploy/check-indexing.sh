@@ -35,6 +35,7 @@ if [ "$LAUNCHED" = "false" ]; then
   expect "401 несёт noindex" "$(has_noindex "$(header X-Robots-Tag "https://$D/")")" yes
   expect "401 просит пароль" "$( [ -n "$(header WWW-Authenticate "https://$D/")" ] && echo yes || echo no)" yes
   expect "сайт с паролем" "$(status "${AUTH[@]}" "https://$D/")" 200
+  expect "/diary с паролем" "$(status "${AUTH[@]}" "https://$D/diary")" 200
   # stage 4.4a: the new Caddyfile is live — a page without .html opens, an unknown address is a 404 page
   expect "страница без .html с паролем" "$(status "${AUTH[@]}" "https://$D/one-card")" 200
   expect "неизвестный адрес с паролем" "$(status "${AUTH[@]}" "https://$D/no-such-page")" 404
@@ -56,6 +57,11 @@ else
   expect "сайт открыт" "$(status "https://$D/")" 200
   expect "нет noindex в заголовке" "$(has_noindex "$(header X-Robots-Tag "https://$D/")")" no
   expect "нет noindex в HTML" "$(has_noindex "$("${CURL[@]}" "https://$D/")")" no
+  for p in /diary /es/diario /account /es/cuenta; do  # stage 4.4b: never indexed, never cached
+    expect "$p noindex в заголовке" "$(has_noindex "$(header X-Robots-Tag "https://$D$p")")" yes
+    expect "$p noindex в HTML" "$(has_noindex "$("${CURL[@]}" "https://$D$p")")" yes
+    expect "$p Cache-Control" "$(header Cache-Control "https://$D$p")" no-store
+  done
   expect "robots.txt" "$(status "https://$D/robots.txt")" 200
   if "${CURL[@]}" "https://$D/robots.txt" | tr -d '\r' | grep -qiE '^Disallow:[[:space:]]*/[[:space:]]*$'; then
     fail "robots.txt содержит Disallow: /"

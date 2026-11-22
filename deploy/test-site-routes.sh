@@ -44,12 +44,18 @@ status() { "${CURL[@]}" -o /dev/null -w '%{http_code}' "$URL$1"; }
 html_lang() { "${CURL[@]}" "$URL$1" | grep -o '<html lang="[a-z]*"' | head -1; }
 moved_to() { "${CURL[@]}" -o /dev/null -w '%{http_code} %{redirect_url}' "$URL$1"; }
 location() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^location:/ { print }'; }
+robots() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^x-robots-tag:/ { sub(/^[^:]*: */, ""); print }'; }
+referrer() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^referrer-policy:/ { sub(/^[^:]*: */, ""); print }'; }
+cache() { "${CURL[@]}" -o /dev/null -D - "$URL$1" | tr -d '\r' | awk 'tolower($0) ~ /^cache-control:/ { sub(/^[^:]*: */, ""); print }'; }
+# переключатель языка: куда ведут все ссылки «EN»/«ES» страницы (одна строка — у всех один адрес)
+switch_to() { "${CURL[@]}" "$URL$1" | grep -o "<a href=\"[^\"]*\" lang=\"$2\">${2^^}</a>" | sort -u | sed 's/^<a href="\([^"]*\)".*/\1/'; }
 no_location() {  # ответ вообще без заголовка Location
   if [ -z "$(location "$1")" ]; then echo ok; else echo "has-location:$(location "$1")"; fi
 }
 
 for path in / /one-card /yes-no /love /daily /cards/the-moon /cards/ace-of-cups /es /es/si-o-no /es/amor \
-  /es/carta-del-dia /es/cartas/la-luna /data/daily-en.json /data/daily-es.json /cards/back.svg; do
+  /es/carta-del-dia /es/cartas/la-luna /data/daily-en.json /data/daily-es.json /cards/back.svg \
+  /diary /es/diario /account /es/cuenta; do
   expect "$path" "$(status "$path")" 200
 done
 expect "/es — испанская главная" "$(html_lang /es)" '<html lang="es"'
@@ -90,6 +96,36 @@ expect "/%2F%2Fexample.com/ не уходит на чужой адрес" "$(sta
 expect "//example.com/x.html без Location" "$(no_location //example.com/x.html)" ok
 expect "/%2F%2Fexample.com/x.html без Location" "$(no_location /%2F%2Fexample.com/x.html)" ok
 expect "/..%2F..%2Fexample.com/ без Location" "$(no_location /..%2F..%2Fexample.com/)" ok
+# stage 4.4b: дневник и аккаунт — noindex и в заголовке, и в HTML; no-store (кнопка «Назад» после выхода не
+# показывает почту из кэша); строгие адреса и 404 по языку, как у остальных
+for path in /diary /es/diario /account /es/cuenta; do
+  expect "$path — X-Robots-Tag" "$(robots "$path")" "noindex, nofollow"
+  expect "$path — Referrer-Policy" "$(referrer "$path")" "same-origin"
+  expect "$path — Cache-Control" "$(cache "$path")" "no-store"
+  expect "$path — meta robots" "$("${CURL[@]}" "$URL$path" | grep -c 'name="robots" content="noindex, nofollow"')" 1
+done
+expect "/ — без X-Robots-Tag (LAUNCHED=true)" "$(robots /)" ""
+expect "/ — без Referrer-Policy" "$(referrer /)" ""
+expect "/ — без Cache-Control: no-store" "$(cache /)" ""
+expect "/diary?claim=… — X-Robots-Tag" "$(robots '/diary?claim=abc_DEF-1&remind=1')" "noindex, nofollow"
+expect "/diary?claim=… — Cache-Control" "$(cache '/diary?claim=abc_DEF-1&remind=1')" "no-store"
+expect "/es/diario — страница ES" "$(html_lang /es/diario)" '<html lang="es"'
+expect "/es/cuenta — страница ES" "$(html_lang /es/cuenta)" '<html lang="es"'
+expect "/diary — страница EN" "$(html_lang /diary)" '<html lang="en"'
+expect "/account — страница EN" "$(html_lang /account)" '<html lang="en"'
+# пары языков в переключателе: /diary ↔ /es/diario, /account ↔ /es/cuenta
+expect "/diary — переключатель на /es/diario" "$(switch_to /diary es)" /es/diario
+expect "/es/diario — переключатель на /diary" "$(switch_to /es/diario en)" /diary
+expect "/account — переключатель на /es/cuenta" "$(switch_to /account es)" /es/cuenta
+expect "/es/cuenta — переключатель на /account" "$(switch_to /es/cuenta en)" /account
+expect "/diary?claim=…&remind=1" "$(status '/diary?claim=abc_DEF-1&remind=1')" 200
+expect "/diary/ → /diary" "$(moved_to /diary/)" "308 $URL/diary"
+expect "/es/cuenta.html → /es/cuenta" "$(moved_to /es/cuenta.html)" "308 $URL/es/cuenta"
+expect "/diary/?claim=x → /diary?claim=x" "$(moved_to '/diary/?claim=x')" "308 $URL/diary?claim=x"
+expect "/es/diario/nada" "$(status /es/diario/nada)" 404
+expect "/es/diario/nada — страница 404 ES" "$(html_lang /es/diario/nada)" '<html lang="es"'
+expect "/diary/nope" "$(status /diary/nope)" 404
+expect "/diary/nope — страница 404 EN" "$(html_lang /diary/nope)" '<html lang="en"'
 # /api/* идёт к API раньше этих правил, 404 API проходит без изменений
 expect "/api/ с заглушкой: 404 API без изменений" "$(status /api/limits)" 404
 expect "/api/ тело ответа API" "$("${CURL[@]}" "$URL/api/limits")" "api-404"
