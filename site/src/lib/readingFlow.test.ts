@@ -4,7 +4,7 @@ import { CLOSED, nightReducer, type NightAction, type NightState } from './night
 import {
   DEFAULT_COUNTS, REPEAT_WAIT_MS, RESTORE_TRIES, askFollowup, loadCounts, restoreReading, retryFollowup, startReading, streamReading, type FlowDeps,
 } from './readingFlow';
-import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText } from './testing/fakes';
+import { brokenSseResponse, fakeFetch, jsonResponse, sseResponse, sseText, type Call } from './testing/fakes';
 
 const CREATED = {
   id: 'r1', lang: 'en', kind: 'one', verdict: null, soft_line: null, remaining: 2,
@@ -227,7 +227,7 @@ describe('askFollowup', () => {
     await askFollowup(h.deps, 'r1', 'q', undefined, true, 1);
     return { h, f, lost: h.state().followups[0] };
   };
-  const posts = (h: { calls: Array<{ url: string }> }) => h.calls.filter((c) => c.url.endsWith('/followups'));
+  const posts = (h: { calls: Call[] }) => h.calls.filter((c) => c.url.endsWith('/followups'));
 
   it('Try again on a lost follow-up re-POSTs the same body (same request_id, use_reading) and shows the saved answer (I2)', async () => {
     const { h, lost } = await lostHarness(

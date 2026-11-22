@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "astro build",
+    "check": "astro check",
     "test": "vitest run"
   },
   "dependencies": {

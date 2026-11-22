@@ -112,7 +112,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         if (shownFor.current === run.current) continue;
         shownFor.current = run.current;
       }
-      const params = name === 'cards_revealed' ? { cards_count: state.reading?.cards.length ?? 1 }
+      const params: Record<string, number> = name === 'cards_revealed' ? { cards_count: state.reading?.cards.length ?? 1 }
         : name === 'reading_shown' ? { ms_from_draw: Math.min(Math.max(Date.now() - drawn.current.at, 0), 600000) } : {};
       sendEvent(analyticsEvent(name, drawn.current.tool, lang, params));
     }

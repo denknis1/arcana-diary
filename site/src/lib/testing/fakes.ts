@@ -12,7 +12,7 @@ export function sseText(events: ReadonlyArray<readonly [string, unknown]>): stri
   return events.map(([name, data]) => `event: ${name}\ndata: ${JSON.stringify(data)}\n\n`).join('');
 }
 
-function bytes(text: string): Uint8Array {
+function bytes(text: string): Uint8Array<ArrayBuffer> {
   return new TextEncoder().encode(text);
 }
 
