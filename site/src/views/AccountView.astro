@@ -1,0 +1,21 @@
+---
+// The account (spec 4.4b §6): a static page, noindex and outside hreflang; AccountIsland draws it after load.
+import Base from '../layouts/Base.astro';
+import AccountIsland from '../islands/AccountIsland';
+import { t } from '../i18n';
+import { pagePath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = t(lang);
+---
+<Base lang={lang} title={d.accountTitle} path={pagePath('account', lang)} noindex>
+  <section class="page-hero">
+    <h1 class="display">{d.accountH1}</h1>
+  </section>
+  <AccountIsland client:load lang={lang} />
+</Base>

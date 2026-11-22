@@ -225,6 +225,21 @@ export const en = {
   entryDeleteConfirm: 'Delete this reading from your diary? This cannot be undone.',
   entryDeleteYes: 'Delete',
   cancel: 'Cancel',
+  // stage 4.4b: the account page
+  accountTitle: 'Your account — Arcana Diary',
+  accountH1: 'Your account',
+  accountEmail: 'Signed in as {email}',
+  accountLeft: 'Readings left today: {n} of {limit}',
+  accountSignOut: 'Sign out',
+  accountConsent: 'E-mail me 7 and 30 days after a reading: did it come true?',
+  accountConsentNote: 'These e-mails start later. You can turn them off here at any time.',
+  accountExport: 'Download my readings',
+  accountDelete: 'Delete account',
+  deleteTitle: 'Delete forever?',
+  deleteBody: 'Your account and every reading, note and "did it come true?" answer are deleted at once. This cannot be undone. You can download your readings first.',
+  deleteDownload: 'Download',
+  deleteForever: 'Delete forever',
+  accountDeleted: 'Your account has been deleted.',
   diaryConsentFailed: 'The reminder was not switched on. You can switch it on in your account.',
 };
 
@@ -248,4 +263,6 @@ export const enDrafts: readonly DictKey[] = [
   'diaryHidden', 'diaryNoteMark', 'diaryAccountLink', 'diaryConsentFailed',
   'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
   'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
+  'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',
+  'accountExport', 'accountDelete', 'deleteTitle', 'deleteBody', 'deleteDownload', 'deleteForever', 'accountDeleted',
 ];

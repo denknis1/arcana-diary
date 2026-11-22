@@ -6,7 +6,7 @@ const keys = (lang: 'en' | 'es') => Object.keys(DICTS[lang]).sort();
 describe('dictionaries', () => {
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(206);
+    expect(keys('en').length).toBe(220);
   });
 
   it('have no empty strings', () => {
@@ -27,8 +27,8 @@ describe('dictionaries', () => {
       expect(new Set(DRAFTS[lang]).size).toBe(DRAFTS[lang].length);
       for (const key of DRAFTS[lang]) expect(keys(lang)).toContain(key);
     }
-    expect(DRAFTS.en.length).toBe(90);
-    expect(DRAFTS.es.length).toBe(160);
+    expect(DRAFTS.en.length).toBe(104);
+    expect(DRAFTS.es.length).toBe(174);
   });
 
   it('keep the prototype copy', () => {

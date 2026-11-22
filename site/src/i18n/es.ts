@@ -226,6 +226,21 @@ export const es: Dict = {
   entryDeleteConfirm: '¿Borrar esta tirada de tu diario? No se puede deshacer.',
   entryDeleteYes: 'Borrar',
   cancel: 'Cancelar',
+  // etapa 4.4b: la cuenta
+  accountTitle: 'Tu cuenta — Arcana Diary',
+  accountH1: 'Tu cuenta',
+  accountEmail: 'Sesión iniciada como {email}',
+  accountLeft: 'Tiradas que te quedan hoy: {n} de {limit}',
+  accountSignOut: 'Cerrar sesión',
+  accountConsent: 'Escríbeme 7 y 30 días después de una tirada: ¿se cumplió?',
+  accountConsentNote: 'Estos correos empezarán más adelante. Puedes desactivarlos aquí cuando quieras.',
+  accountExport: 'Descargar mis tiradas',
+  accountDelete: 'Eliminar cuenta',
+  deleteTitle: '¿Eliminar para siempre?',
+  deleteBody: 'Tu cuenta y cada tirada, nota y respuesta a «¿se cumplió?» se eliminan de inmediato. No se puede deshacer. Puedes descargar tus tiradas antes.',
+  deleteDownload: 'Descargar',
+  deleteForever: 'Eliminar para siempre',
+  accountDeleted: 'Tu cuenta se eliminó.',
   diaryConsentFailed: 'El recordatorio no se activó. Puedes activarlo en tu cuenta.',
 };
 
@@ -256,4 +271,6 @@ export const esDrafts: readonly DictKey[] = [
   'plusDiaryNote', 'diaryConsentFailed',
   'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
   'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
+  'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',
+  'accountExport', 'accountDelete', 'deleteTitle', 'deleteBody', 'deleteDownload', 'deleteForever', 'accountDeleted',
 ];

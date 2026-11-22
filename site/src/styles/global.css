@@ -370,6 +370,27 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .entry__note .btn, .entry > .btn { align-self: flex-start; }
 .entry :focus-visible { outline-color: var(--color-day-text); }
 
+/* Stage 4.4b: the account page and "Delete forever?" */
+.account { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); max-width: 720px; }
+.account p { margin: 0; }
+.account__consent, .account__error { display: flex; flex-direction: column; gap: var(--space-2); }
+.account__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.account__error .btn { align-self: flex-start; }
+.check--day input { accent-color: var(--color-day-accent); }
+.dialog-layer {
+  position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-day-text) 40%, transparent);
+}
+.dialog {
+  width: 100%; max-width: 480px; max-height: 100%; overflow-y: auto; display: flex; flex-direction: column; gap: var(--space-4);
+  padding: var(--space-5); border-radius: var(--radius-panel); background: var(--color-day-surface); color: var(--color-day-text);
+}
+.dialog h2 { margin: 0; }
+.dialog p { margin: 0; }
+.dialog__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.account .btn[aria-disabled="true"], .dialog .btn[aria-disabled="true"] { cursor: default; opacity: 0.6; }
+.dialog :focus-visible, .account :focus-visible { outline-color: var(--color-day-text); }
+
 /* Simple card page */
 .card-page { display: grid; gap: var(--space-6); padding-top: var(--space-6); }
 .card-page__art { max-width: 280px; }
