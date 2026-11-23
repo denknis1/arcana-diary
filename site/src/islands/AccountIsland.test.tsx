@@ -67,7 +67,7 @@ describe('the account page (spec 4.4b §6)', () => {
     const { root } = await mount(<AccountIsland lang="en" {...f.props} />);
     const box = root.querySelector<HTMLInputElement>('input[type="checkbox"]')!;
     expect(box.checked).toBe(false);
-    expect(root.textContent).toContain('These e-mails start later. You can turn them off here at any time.');
+    expect(root.textContent).toContain("We don't send these e-mails yet; they start later. You can turn them off here at any time.");
     await click(box);
     expect(f.calls).toContain('consent true');
     expect(root.querySelector<HTMLInputElement>('input[type="checkbox"]')!.checked).toBe(true);

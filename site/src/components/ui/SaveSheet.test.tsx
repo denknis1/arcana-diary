@@ -222,7 +222,7 @@ describe('the save sheet (screens 3, 3b; spec 4.4b §4)', () => {
 
   it.each([
     ['en', 'Open the link on this device to save this reading.'],
-    ['es', 'Abre el enlace en este dispositivo para guardar esta tirada.'],
+    ['es', 'Abre el enlace en este dispositivo para guardar esta lectura.'],
   ] as const)('without a claim token the lead (%s) says to open the link on this device', async (lang, line) => {
     const f = fakes(null);
     const { root } = await mount(sheet(f, { lang }));
