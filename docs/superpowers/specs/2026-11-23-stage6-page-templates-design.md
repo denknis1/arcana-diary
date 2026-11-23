@@ -3,7 +3,8 @@
 Дата: 23.11.2026. Основа: тексты этапа 5 (`content/cards/pages/{en,es}/*.json` схема 2 + `template-strings.json`;
 `content/pages/{en,es}/*.json`), правила `docs/research/stage5/30-card-page-rules.md` (§12 — что делает этап 6),
 план `docs/research/stage5/50-tools-page-plan.md`, прототипы этапа 3 (канвас https://claude.ai/artifact/6X29CmJr5dEU75KGcBBZuP:
-CardMoon, DeskCard, Hub, DeskHub, Major, YesNoList, TresCartas, LaLuna; копии — в задаче), дизайн-система
+CardMoon, DeskCard, Hub, DeskHub, Major, YesNoList, TresCartas, LaLuna; копии — `docs/design/prototypes/`;
+тексты прототипов устарели — берём из них только раскладку и стиль; «стихии» мастей и «Siguiente paso» не переносим), дизайн-система
 `docs/design/00-design.md` + `tokens.css`, структура этапа 2 (`docs/research/stage2/links-{en,es}.csv`,
 `hreflang.csv`, карты страниц этапа 1). Решения владельца 23.11.2026 — формами (34–36).
 
