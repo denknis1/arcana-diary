@@ -1,10 +1,13 @@
 ---
-// Card of the Day (screens 7a, 7b).
+// Card of the Day (screens 7a, 7b; spec stage 6 §5): the eyebrow from the dictionary, H1 and lead from the stage 5
+// text, the card; under it the text blocks and the FAQ of content/pages.
 import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import TextBlocks from '../components/TextBlocks.astro';
 import DailyIsland from '../islands/DailyIsland';
 import { t } from '../i18n';
+import { faqLd, webPageLd } from '../lib/jsonld';
 import { pagePath } from '../lib/routes';
-import { webPageLd } from '../lib/jsonld';
 import { filledPage, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
@@ -15,13 +18,16 @@ interface Props {
 const { lang } = Astro.props;
 const d = t(lang);
 const path = pagePath('daily', lang);
-const text = filledPage(textPage(path)); // title and description of the stage 5 text (spec stage 6 §5)
+const text = filledPage(textPage(path));
 ---
 <Base lang={lang} title={text.title} description={text.description} path={path} current="daily"
-  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang })]}>
+  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
   <section class="page-hero">
     <p class="eyebrow">{d.dailyEyebrow}</p>
-    <h1 class="display">{d.dailyH1}</h1>
+    <h1 class="display">{text.h1}</h1>
+    <p class="lead">{text.lead}</p>
   </section>
   <DailyIsland client:load lang={lang} />
+  <TextBlocks blocks={text.blocks} />
+  <Faq heading={d.faqTitle} items={text.faq} id="faq" />
 </Base>
