@@ -35,7 +35,7 @@ export function CardName({ cardId, name }: { cardId: string; name: string }) {
   const card = cardById(cardId);
   return (
     <span class="card-frame__name">
-      {card ? <b>{card.numeral}</b> : null} {name}
+      {card?.numeral ? <><b>{card.numeral}</b>{' '}</> : null}{name}
     </span>
   );
 }

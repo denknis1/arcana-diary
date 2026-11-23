@@ -20,9 +20,10 @@ const name = cardName(card, lang);
 <figure class="card-frame card-frame--day">
   <div class="card-frame__art">
     <img src={cardImage(card, 350)} srcset={cardSrcset(card)} sizes={sizes} width="350" height="600"
-      alt={alt ?? fill(t(lang).cardAlt, { name })} loading={eager ? 'eager' : 'lazy'} />
+      alt={alt ?? fill(t(lang).cardAlt, { name })} loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined} />
   </div>
   {caption
     ? <figcaption class="card-frame__caption">{caption}</figcaption>
-    : <figcaption class="card-frame__name"><b>{card.numeral}</b> {name}</figcaption>}
+    : <figcaption class="card-frame__name">{card.numeral ? <><b>{card.numeral}</b>{' '}</> : null}{name}</figcaption>}
 </figure>

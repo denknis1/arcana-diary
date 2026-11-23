@@ -16,7 +16,7 @@ const { heading, items, id } = Astro.props;
     <h2 class="h2" id={`${id}-title`}>{heading}</h2>
     {items.map((item, i) => (
       <details open={i === 0}>
-        <summary>{item.q}</summary>
+        <summary><h3 class="faq__q">{item.q}</h3></summary>
         <p>{item.a}</p>
       </details>
     ))}

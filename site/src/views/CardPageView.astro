@@ -1,9 +1,10 @@
 ---
-// The card page (spec stage 6 §4; prototypes CardMoon — phone, DeskCard — desktop: the scan and the draw panel on
-// the left, the text on the right). Order: breadcrumbs → 1909 scan with its caption → facts line, H1, capsule,
-// keyword table → "on this page" chips → the 12 blocks → the draw panel (ReadingIsland, unchanged) → FAQ (first
-// open) → related cards → previous and next card → About this page. Text: content/cards/pages (stage 5); template
-// strings: template-strings.json; nothing about elements or astrology (owner decision 10).
+// The card page (spec stage 6 §4; prototypes CardMoon — phone: a 150 px scan beside the facts line and the H1, the
+// capsule right below; DeskCard — desktop: the scan and the draw panel on the left, the text on the right). Order:
+// breadcrumbs → facts line, H1 → 1909 scan with its caption → capsule, keyword table → "on this page" chips → the
+// 12 blocks → the draw panel (ReadingIsland, unchanged) → FAQ (first open) → related cards → previous and next card
+// → About this page. Text: content/cards/pages (stage 5); template strings: template-strings.json; nothing about
+// elements or astrology (owner decision 10).
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CardFigure from '../components/CardFigure.astro';
@@ -13,7 +14,7 @@ import { t } from '../i18n';
 import { cardCrumbs } from '../lib/breadcrumbs';
 import {
   SECTION_IDS, aboutLines, ctaText, factsLine, faqHeading, imageCaption, keywordCaption, keywordRows, mentionSegments,
-  pairRows, relatedCards, segmentsOf, tocLinks, waiteCite, yesNoLines, yesNoReason,
+  pairRows, relatedCards, segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines, yesNoReason,
 } from '../lib/cardPage';
 import { TEMPLATE_STRINGS, cardPage } from '../lib/cardPages';
 import { cardImage, cardName, neighbors, type DeckCard } from '../lib/deck';
@@ -41,6 +42,7 @@ const yesNo = yesNoLines(card, yesNoReason(card, lang), s, lang);
 const pairs = pairRows(page, s, lang);
 const cta = ctaText(page, s);
 const about = aboutLines(page, s, lang, editorName);
+const cite = titleParts(waiteCite(page, s));
 const { prev, next } = neighbors(card);
 const ld = cardLd({ headline: page.h1, description: page.description, path, lang, image: cardImage(card, 700),
   reviewedAt: page.reviewed_at ?? '', editorName });
@@ -48,33 +50,37 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
 <Base lang={lang} title={page.title} description={page.description} path={path} current="cards"
   image={cardImage(card, 700)} ogType="article" jsonLd={[breadcrumbLd(crumbs), ld, faqLd(page.faq)]}>
   <Breadcrumbs lang={lang} crumbs={crumbs} />
-  <div class="card-page">
+  <article class="card-page" aria-labelledby="card-title">
+    <header class="card-page__head">
+      <p class="eyebrow">{facts.before}{facts.link ? <a href={facts.link.href}>{facts.link.text}</a> : null}{facts.after}</p>
+      <h1 class="display card-page__title" id="card-title">{page.h1}</h1>
+    </header>
+
     <div class="card-page__art">
-      <CardFigure card={card} lang={lang} sizes="(min-width: 900px) 320px, 70vw" eager alt={page.image_alt}
+      <CardFigure card={card} lang={lang} sizes="(min-width: 900px) 320px, 150px" eager alt={page.image_alt}
         caption={imageCaption(page, s)} />
     </div>
 
-    <article class="card-page__main" aria-labelledby="card-title">
-      <p class="eyebrow">{facts.before}{facts.link ? <a href={facts.link.href}>{facts.link.text}</a> : null}{facts.after}</p>
-      <h1 class="display" id="card-title">{page.h1}</h1>
+    <div class="card-page__main">
       <p class="capsule"><Segments segments={segmentsOf(mentions, 'capsule', page.capsule)} /></p>
       <table class="data-table">
         <caption>{keywordCaption(page, s)}</caption>
-        <thead><tr><th scope="col">{s.keywords.upright}</th><th scope="col">{s.keywords.reversed}</th></tr></thead>
-        <tbody>{keywordRows(page).map(([up, rev]) => <tr><td>{up}</td><td>{rev}</td></tr>)}</tbody>
+        <tbody>
+          {keywordRows(page, s).map((row) => <tr><th scope="row">{row.label}</th><td>{row.words}</td></tr>)}
+        </tbody>
       </table>
       <nav class="toc" aria-label={d.tocLabel}>
         <ul>{tocLinks(lang).map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul>
       </nav>
 
       {page.blocks.map((block) => (
-        <section class="card-block" id={ids[block.id]} aria-labelledby={`${ids[block.id]}-title`}>
+        <section class="card-block" id={ids[block.id]}>
           <h2 class="h2" id={`${ids[block.id]}-title`}>{block.heading}</h2>
           {block.id === 'waite' ? (
             <>
               <figure class="waite-quote">
                 <blockquote lang="en"><p>{page.waite.quote}</p></blockquote>
-                <figcaption><cite>{waiteCite(page, s)}</cite></figcaption>
+                <figcaption>{cite.before}{cite.title ? <cite lang="en">{cite.title}</cite> : null}{cite.after}</figcaption>
               </figure>
               {page.waite.translation && s.waite.translation_label ? (
                 <p><span class="waite-translation__label">{s.waite.translation_label}:</span> {page.waite.translation}</p>
@@ -92,7 +98,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
           {block.id === 'combinations' ? (
             <>
               <p>{s.combinations.intro}</p>
-              <table class="data-table">
+              <table class="data-table" aria-labelledby={`${ids[block.id]}-title`}>
                 <thead><tr><th scope="col">{s.combinations.col_pair}</th><th scope="col">{s.combinations.col_reading}</th></tr></thead>
                 <tbody>
                   {pairs.map((row) => (
@@ -120,7 +126,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
           ) : null}
         </section>
       ))}
-    </article>
+    </div>
 
     <section class="card-page__cta" id={ids.draw} aria-labelledby={`${ids.draw}-title`}>
       <h2 class="h2" id={`${ids.draw}-title`}>{cta.heading}</h2>
@@ -133,7 +139,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
         <h2 class="h2" id={`${ids.faq}-title`}>{faqHeading(page, s)}</h2>
         {page.faq.map((item, i) => (
           <details open={i === 0}>
-            <summary>{item.q}</summary>
+            <summary><h3 class="faq__q">{item.q}</h3></summary>
             <p><Segments segments={segmentsOf(mentions, `faq:${i}`, item.a)} /></p>
           </details>
         ))}
@@ -143,7 +149,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
         <h2 class="h2" id={`${ids.related}-title`}>{s.related.heading}</h2>
         <ul class="card-row">
           {relatedCards(page).map((other) => (
-            <li><a href={cardPath(other, lang)}><CardFigure card={other} lang={lang} sizes="100px" /></a></li>
+            <li><a href={cardPath(other, lang)}><CardFigure card={other} lang={lang} sizes="100px" alt="" /></a></li>
           ))}
         </ul>
       </section>
@@ -157,16 +163,20 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
         <h2 class="h2" id={`${ids.about}-title`}>{s.about.heading}</h2>
         <h3 class="h3">{s.about.sources_label}</h3>
         <ul class="sources">
-          {about.sources.map((src) => (
-            <li>
-              <span class="sources__what">{src.what}:</span> {src.url ? <a href={src.url} rel="noopener">{src.where}</a> : src.where}{src.pages ? `, ${src.pages}` : ''}
-            </li>
-          ))}
+          {about.sources.map((src) => {
+            const w = titleParts(src.where);
+            const where = <>{w.before}{w.title ? <cite lang="en">{w.title}</cite> : null}{w.after}</>;
+            return (
+              <li>
+                <span class="sources__what">{src.what}:</span> {src.url ? <a href={src.url} rel="noopener">{where}</a> : where}{src.pages ? `, ${src.pages}` : ''}
+              </li>
+            );
+          })}
         </ul>
         <p class="small muted">{about.pageNumbers}</p>
         <p class="small">{about.method}</p>
         <p class="small muted">{about.deckNote}</p>
       </section>
     </div>
-  </div>
+  </article>
 </Base>

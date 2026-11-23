@@ -91,9 +91,21 @@ export function keywordCaption(page: CardPageData, s: TemplateStrings): string {
   return fill(s.keywords.caption, names(page));
 }
 
-export function keywordRows(page: CardPageData): [string, string][] {
-  const { upright, reversed } = page.keywords;
-  return Array.from({ length: Math.max(upright.length, reversed.length) }, (_, i) => [upright[i] ?? '', reversed[i] ?? '']);
+/** One row per orientation (label, then all its keywords): no empty cells when the lists differ in length. */
+export function keywordRows(page: CardPageData, s: TemplateStrings): { label: string; words: string }[] {
+  return [
+    { label: s.keywords.upright, words: page.keywords.upright.join(', ') },
+    { label: s.keywords.reversed, words: page.keywords.reversed.join(', ') },
+  ];
+}
+
+/** The title of Waite's book, marked as an English <cite> inside the citation and the Sources line. */
+export const WAITE_TITLE = 'The Pictorial Key to the Tarot';
+
+export function titleParts(text: string): { before: string; title: string | null; after: string } {
+  const at = text.indexOf(WAITE_TITLE);
+  if (at < 0) return { before: text, title: null, after: '' };
+  return { before: text.slice(0, at), title: WAITE_TITLE, after: text.slice(at + WAITE_TITLE.length) };
 }
 
 export function waiteCite(page: CardPageData, s: TemplateStrings): string {
