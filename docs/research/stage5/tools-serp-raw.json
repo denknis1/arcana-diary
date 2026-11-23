@@ -1,0 +1,7187 @@
+{
+ "generated": "2026-11-23",
+ "source": "Ahrefs serp-overview (select position,url,title,type,domain_rating; top_positions=10) + keywords-explorer-matching-terms (terms=questions); page structure from direct HTML download parsed with stdlib parser (word count = all text outside nav/header/footer/script, +-20%, includes card texts on list pages; headings = h1-h4)",
+ "ahrefs_units": {
+  "api_key_usage_before": 257131,
+  "api_key_usage_after": 259882,
+  "used": 2751,
+  "ceiling": 3000,
+  "stop_at": 2800,
+  "calls": "serp-overview x15 (65-220 units each, 1 865 total); keywords-explorer-matching-terms x11 (50-132 each, 886 total); search-suggestions x1 (50, nothing useful)"
+ },
+ "not_run": [
+  "keywords-explorer-overview for choosing main query (not run: volumes taken from page-map CSV)",
+  "matching-terms questions for EN-093, ES-004, ES-009 (partially via sibling queries), ES-099, ES-001 (via \"tarot\")"
+ ],
+ "notes": "PAA questions come from Ahrefs SERP rows of type=question (only present in 6 of 15 SERPs). No archive/cache/scribd used. JS-rendered tool pages give <100 words server-side.",
+ "pages": {
+  "EN-001": {
+   "keyword": "free tarot reading",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.5)",
+    "видео-миниатюра (поз.7)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://www.free-tarot-reading.net/free",
+     "domain": "free-tarot-reading.net",
+     "dr": 40,
+     "type": "T",
+     "opened": true,
+     "words": 1509,
+     "h2": 4,
+     "h3": 18,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Tips to improve your readings"
+      ],
+      [
+       "h3",
+       "#1: Take a deep breath!"
+      ],
+      [
+       "h3",
+       "#2: Only the question!"
+      ],
+      [
+       "h3",
+       "#3: Maintain your focus!"
+      ],
+      [
+       "h3",
+       "#4: Be specific!"
+      ],
+      [
+       "h3",
+       "#5: Read between the lines!"
+      ],
+      [
+       "h3",
+       "#6: Accept the first reading!"
+      ],
+      [
+       "h3",
+       "#7: Beware of overuse!"
+      ],
+      [
+       "h3",
+       "#8: This is not an exact science!"
+      ],
+      [
+       "h3",
+       "#9: Don't fear the 'negative' cards!"
+      ],
+      [
+       "h2",
+       "LT's World Famous Universal 6 Card Spread"
+      ],
+      [
+       "h4",
+       "Reading description"
+      ],
+      [
+       "h2",
+       "LT's World Famous Universal 6 Card Spread"
+      ],
+      [
+       "h4",
+       "Tips to improve your readings"
+      ],
+      [
+       "h2",
+       "Tips to improve your readings"
+      ],
+      [
+       "h3",
+       "#1: Take a deep breath!"
+      ],
+      [
+       "h3",
+       "#2: Only the question!"
+      ],
+      [
+       "h3",
+       "#3: Maintain your focus!"
+      ],
+      [
+       "h3",
+       "#4: Be specific!"
+      ],
+      [
+       "h3",
+       "#5: Read between the lines!"
+      ],
+      [
+       "h3",
+       "#6: Accept the first reading!"
+      ],
+      [
+       "h3",
+       "#7: Beware of overuse!"
+      ],
+      [
+       "h3",
+       "#8: This is not an exact science!"
+      ],
+      [
+       "h3",
+       "#9: Don't fear the 'negative' cards!"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://www.reddit.com/r/TarotReading/comments/1ird80s/free_online_tarot_reading_website_just_launched/",
+     "domain": "reddit.com",
+     "dr": 95,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 3,
+     "url": "https://www.llewellyn.com/tarot_reading.php",
+     "domain": "llewellyn.com",
+     "dr": 73,
+     "type": "T",
+     "opened": true,
+     "words": 498,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Free Tarot Reading"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://www.evatarot.net/",
+     "domain": "evatarot.net",
+     "dr": 37,
+     "type": "T",
+     "opened": true,
+     "words": 514,
+     "h2": 2,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Choose 10 cards from the deck below"
+      ],
+      [
+       "h4",
+       "Dive into the fascinating world of the tarot reading"
+      ],
+      [
+       "h3",
+       "A unique divination experience"
+      ],
+      [
+       "h2",
+       "Free tarot readings:"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://www.dailyom.com/tarot/yes-no",
+     "domain": "dailyom.com",
+     "dr": 71,
+     "type": "T",
+     "opened": false,
+     "words": 28,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    },
+    {
+     "position": 7,
+     "url": "https://www.reddit.com/r/SideProject/comments/1es8zo3/we_made_a_free_tarot_reading_ai_website_with/",
+     "domain": "reddit.com",
+     "dr": 95,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 8,
+     "url": "https://tarotap.com/en",
+     "domain": "tarotap.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1117,
+     "h2": 2,
+     "h3": 30,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "AI Tarot Reading Online"
+      ],
+      [
+       "h2",
+       "More to Explore"
+      ],
+      [
+       "h3",
+       "Yes or No Tarot"
+      ],
+      [
+       "h3",
+       "Love Tarot"
+      ],
+      [
+       "h3",
+       "Career Tarot"
+      ],
+      [
+       "h3",
+       "Draw Tarot Cards"
+      ],
+      [
+       "h3",
+       "Draw an Oracle Card"
+      ],
+      [
+       "h3",
+       "Tarot Manifestation"
+      ],
+      [
+       "h3",
+       "Chat with Raven"
+      ],
+      [
+       "h3",
+       "Chat with Luna"
+      ],
+      [
+       "h3",
+       "What's My Arcana? Arcana Calculator by Birth Date"
+      ],
+      [
+       "h3",
+       "2027 Tarot Annual Fortune Reading"
+      ],
+      [
+       "h3",
+       "2027 Tarot Annual Fortune Reading"
+      ],
+      [
+       "h3",
+       "Year Ahead Reading"
+      ],
+      [
+       "h3",
+       "Seasonal Spread"
+      ],
+      [
+       "h3",
+       "Monthly Tarot"
+      ],
+      [
+       "h3",
+       "Daily Tarot Fortune"
+      ],
+      [
+       "h3",
+       "Horseshoe tarot spread"
+      ],
+      [
+       "h3",
+       "Celtic Cross Spread"
+      ],
+      [
+       "h3",
+       "Two Options Spread"
+      ],
+      [
+       "h3",
+       "Three Options Spread"
+      ],
+      [
+       "h2",
+       "Tarot Blog"
+      ],
+      [
+       "h3",
+       "Are Tarot Cards Real? An Honest Look at Tarot Accuracy"
+      ],
+      [
+       "h3",
+       "How to Shuffle Tarot Cards: Easy Methods for Beginners"
+      ],
+      [
+       "h3",
+       "Your Question Chooses the Spread"
+      ]
+     ]
+    },
+    {
+     "position": 9,
+     "url": "https://deckaura.com/pages/free-tarot-reading",
+     "domain": "deckaura.com",
+     "dr": 58,
+     "type": "T",
+     "opened": true,
+     "words": 4135,
+     "h2": 7,
+     "h3": 25,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h3",
+       "Search our store"
+      ],
+      [
+       "h3",
+       "What the written reading adds"
+      ],
+      [
+       "h1",
+       "Free Tarot Reading OnlineAsk one question. See the pattern inside it."
+      ],
+      [
+       "h2",
+       "A new free reading opens ."
+      ],
+      [
+       "h2",
+       "How it works"
+      ],
+      [
+       "h2",
+       "Free reading or written reading?"
+      ],
+      [
+       "h2",
+       "Take a breath. Hold your question in mind."
+      ],
+      [
+       "h3",
+       "What your cards show"
+      ],
+      [
+       "h3",
+       "Continue with your question and cards"
+      ],
+      [
+       "h3",
+       "Why your answer leans this way"
+      ],
+      [
+       "h4",
+       "Choose reading depth"
+      ],
+      [
+       "h3",
+       "Unlock Your Full Personalized Reading"
+      ],
+      [
+       "h2",
+       "How your free reading works"
+      ],
+      [
+       "h3",
+       "Ask your question"
+      ],
+      [
+       "h3",
+       "Draw your cards"
+      ],
+      [
+       "h3",
+       "Read the direction"
+      ],
+      [
+       "h2",
+       "How this free online tarot reading works"
+      ],
+      [
+       "h3",
+       "What you get in the free tarot card reading"
+      ],
+      [
+       "h3",
+       "Choosing a question"
+      ],
+      [
+       "h3",
+       "Questions that work well for an online tarot reading"
+      ],
+      [
+       "h3",
+       "Free tarot reading: yes or no, 3 cards, or Celtic Cross?"
+      ],
+      [
+       "h3",
+       "Upright and reversed cards"
+      ],
+      [
+       "h3",
+       "Are free online tarot readings accurate?"
+      ],
+      [
+       "h3",
+       "How to do a 3-card tarot reading"
+      ],
+      [
+       "h3",
+       "Love tarot"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://labyrinthos.co/pages/yes-no-tarot-reading",
+     "domain": "labyrinthos.co",
+     "dr": 67,
+     "type": "T",
+     "opened": true,
+     "words": 854,
+     "h2": 9,
+     "h3": 6,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Yes No Tarot Reading"
+      ],
+      [
+       "h2",
+       "Select Your Tarot Deck"
+      ],
+      [
+       "h3",
+       "Golden Thread Tarot"
+      ],
+      [
+       "h3",
+       "Luminous Spirit Tarot"
+      ],
+      [
+       "h3",
+       "Seventh Sphere Tarot"
+      ],
+      [
+       "h3",
+       "Arcana Iris Sacra"
+      ],
+      [
+       "h3",
+       "Tarot of the Velvet Moon"
+      ],
+      [
+       "h2",
+       "Get Your Personal Yes No Tarot Reading"
+      ],
+      [
+       "h3",
+       "Do you need more detailed advice?"
+      ],
+      [
+       "h1",
+       "More Online Tarot Card Readings"
+      ],
+      [
+       "h2",
+       "Get another tarot reading online free"
+      ],
+      [
+       "h2",
+       "Free Love Tarot Reading"
+      ],
+      [
+       "h2",
+       "One Card Tarot Reading"
+      ],
+      [
+       "h2",
+       "5 Card Tarot Card Reading: Relationship"
+      ],
+      [
+       "h2",
+       "Money Tarot Spread Reading"
+      ],
+      [
+       "h1",
+       "Take Tarot Classes with our Free App"
+      ],
+      [
+       "h2",
+       "Learn tarot, get free tarot readings, and more"
+      ],
+      [
+       "h1",
+       "Shop Tarot Decks"
+      ],
+      [
+       "h2",
+       "Purchases of our tarot decks help us keep our free resources running."
+      ],
+      [
+       "h1",
+       "Sign Up for Free Tarot Classes"
+      ]
+     ]
+    }
+   ],
+   "words_median": 985.5,
+   "n_opened": 6,
+   "n_usable": 6
+  },
+  "EN-005": {
+   "keyword": "one card tarot",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.3)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://labyrinthos.co/pages/one-card-tarot",
+     "domain": "labyrinthos.co",
+     "dr": 67,
+     "type": "T",
+     "opened": true,
+     "words": 749,
+     "h2": 10,
+     "h3": 6,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "One Card Tarot Reading"
+      ],
+      [
+       "h2",
+       "A Daily Tarot Meditation"
+      ],
+      [
+       "h2",
+       "Select Your Tarot Deck"
+      ],
+      [
+       "h3",
+       "Golden Thread Tarot"
+      ],
+      [
+       "h3",
+       "Luminous Spirit Tarot"
+      ],
+      [
+       "h3",
+       "Seventh Sphere Tarot"
+      ],
+      [
+       "h3",
+       "Arcana Iris Sacra"
+      ],
+      [
+       "h3",
+       "Tarot of the Velvet Moon"
+      ],
+      [
+       "h2",
+       "Get Your Personal One Card Tarot Reading"
+      ],
+      [
+       "h3",
+       "Do you need more detailed advice?"
+      ],
+      [
+       "h1",
+       "More Online Tarot Card Readings"
+      ],
+      [
+       "h2",
+       "Get another tarot reading online free"
+      ],
+      [
+       "h2",
+       "Yes No Tarot Reading"
+      ],
+      [
+       "h2",
+       "Free Love Tarot Reading"
+      ],
+      [
+       "h2",
+       "5 Card Tarot Card Reading: Relationship"
+      ],
+      [
+       "h2",
+       "Money Tarot Spread Reading"
+      ],
+      [
+       "h1",
+       "Take Tarot Classes with our Free App"
+      ],
+      [
+       "h2",
+       "Learn tarot, get free tarot readings, and more"
+      ],
+      [
+       "h1",
+       "Shop Tarot Decks"
+      ],
+      [
+       "h2",
+       "Purchases of our tarot decks help us keep our free resources running."
+      ],
+      [
+       "h1",
+       "Sign Up for Free Tarot Classes"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://www.tarot.com/readings-reports/tarot-readings/one-card",
+     "domain": "tarot.com",
+     "dr": 71,
+     "type": "T",
+     "opened": true,
+     "words": 56,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Set your intention and click your card below:"
+      ]
+     ],
+     "note": "страница почти целиком на JS: сервер отдаёт <100 слов, текст не посчитан",
+     "words_usable": false
+    },
+    {
+     "position": 4,
+     "url": "https://micheleknight.com/free-readings/single-card-tarot-reading/",
+     "domain": "micheleknight.com",
+     "dr": 33,
+     "type": "T",
+     "opened": false,
+     "note": "не открылась: error"
+    },
+    {
+     "position": 5,
+     "url": "https://www.dailyom.com/tarot/one-card-reading",
+     "domain": "dailyom.com",
+     "dr": 71,
+     "type": "T",
+     "opened": false,
+     "words": 26,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    },
+    {
+     "position": 6,
+     "url": "https://www.onecardtarot.online/",
+     "domain": "onecardtarot.online",
+     "dr": 1,
+     "type": "T",
+     "opened": true,
+     "words": 2394,
+     "h2": 10,
+     "h3": 22,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Free one card tarot online · No signupOne card.One honest question."
+      ],
+      [
+       "h2",
+       "Sample card: The Fool"
+      ],
+      [
+       "h3",
+       "Upright meaning"
+      ],
+      [
+       "h3",
+       "Reversed meaning"
+      ],
+      [
+       "h2",
+       "Start with the kind of answer you need."
+      ],
+      [
+       "h2",
+       "Real questions people bring to one card."
+      ],
+      [
+       "h2",
+       "One question. One card. One next step."
+      ],
+      [
+       "h2",
+       "Stay with the card when you want more."
+      ],
+      [
+       "h2",
+       "What people usually want after the first draw."
+      ],
+      [
+       "h2",
+       "Before you trust the message."
+      ],
+      [
+       "h3",
+       "What is a one card tarot reading?"
+      ],
+      [
+       "h3",
+       "What is a one card love reading?"
+      ],
+      [
+       "h3",
+       "Can one card tarot answer “does he love me?”"
+      ],
+      [
+       "h3",
+       "Can I use one card tarot for yes or no questions?"
+      ],
+      [
+       "h3",
+       "Is this one card tarot reading free?"
+      ],
+      [
+       "h3",
+       "Do I need an account for a free one card tarot draw?"
+      ],
+      [
+       "h3",
+       "Does the free draw use all 78 tarot cards?"
+      ],
+      [
+       "h3",
+       "What does one card tarot with reversals mean?"
+      ],
+      [
+       "h3",
+       "How do you use a one card tarot reading online?"
+      ],
+      [
+       "h2",
+       "How people use one card tarot"
+      ],
+      [
+       "h3",
+       "How to Use a One Card Tarot Reading"
+      ],
+      [
+       "h3",
+       "Does He Love Me Tarot"
+      ],
+      [
+       "h3",
+       "Does He Miss Me Tarot"
+      ],
+      [
+       "h3",
+       "Is He Thinking About Me Tarot"
+      ],
+      [
+       "h3",
+       "Love Tarot Reading"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://flipsimu.com/one-card-tarot/",
+     "domain": "flipsimu.com",
+     "dr": 43,
+     "type": "T",
+     "opened": true,
+     "words": 1215,
+     "h2": 9,
+     "h3": 14,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h4",
+       "Customizations"
+      ],
+      [
+       "h4",
+       "-"
+      ],
+      [
+       "h1",
+       "ONE CARD TAROT"
+      ],
+      [
+       "h3",
+       "Table of Contents"
+      ],
+      [
+       "h2",
+       "Meet One Card Tarot—Your Fast, Focused Reading Online"
+      ],
+      [
+       "h2",
+       "What Makes Our One Card Tarot Reading Different"
+      ],
+      [
+       "h2",
+       "How to Do a One Card Tarot Reading"
+      ],
+      [
+       "h4",
+       "Step 1: Ask Your Question"
+      ],
+      [
+       "h4",
+       "Step 2: Draw a Card"
+      ],
+      [
+       "h4",
+       "Step 3: Get Your AI-Powered Reading"
+      ],
+      [
+       "h4",
+       "Step 4: Draw Again Anytime"
+      ],
+      [
+       "h2",
+       "AI-Powered Guidance for Your Question (or No Question)"
+      ],
+      [
+       "h2",
+       "When to Use a One Tarot Card Reading"
+      ],
+      [
+       "h2",
+       "Tips for Better One Card Tarot Results"
+      ],
+      [
+       "h2",
+       "Privacy & Transparency You Can Trust"
+      ],
+      [
+       "h2",
+       "Gentle Reminder: Guidance, Not Gospel"
+      ],
+      [
+       "h2",
+       "Try One Card Tarot Now"
+      ],
+      [
+       "h3",
+       "About"
+      ],
+      [
+       "h3",
+       "Coin Flip Simulator"
+      ],
+      [
+       "h3",
+       "Dice Roller"
+      ],
+      [
+       "h3",
+       "Tarot Spread"
+      ],
+      [
+       "h3",
+       "Other Tools"
+      ],
+      [
+       "h3",
+       "Connect"
+      ],
+      [
+       "h3",
+       "About"
+      ],
+      [
+       "h3",
+       "Coin Flip Simulator"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.newagestore.com/free-tarot-readings/1-tarot-card/",
+     "domain": "newagestore.com",
+     "dr": 33,
+     "type": "T",
+     "opened": true,
+     "words": 188,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "1 Card Tarot"
+      ]
+     ]
+    },
+    {
+     "position": 9,
+     "url": "https://forum.thetarot.guru/t/how-to-do-one-card-tarot-readings-that-work/608",
+     "domain": "forum.thetarot.guru",
+     "dr": 9,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 10,
+     "url": "https://www.thatoracleguy.com/one-card-tarot",
+     "domain": "thatoracleguy.com",
+     "dr": 16,
+     "type": "T",
+     "opened": true,
+     "words": 738,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Get Your Personal One Card Tarot Reading"
+      ],
+      [
+       "h1",
+       "One Card Tarot Reading"
+      ]
+     ]
+    }
+   ],
+   "words_median": 749,
+   "n_opened": 6,
+   "n_usable": 5
+  },
+  "EN-006": {
+   "keyword": "daily tarot",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.5)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://www.dailytarotdraw.com/",
+     "domain": "dailytarotdraw.com",
+     "dr": 42,
+     "type": "T",
+     "opened": true,
+     "words": 2607,
+     "h2": 31,
+     "h3": 27,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Yes No Tarot\n3 Card\nLove Tarot\nAI Tarot\nCeltic Cross\nCard List One Card"
+      ],
+      [
+       "h1",
+       "Daily Tarot"
+      ],
+      [
+       "h1",
+       "Daily Tarot"
+      ],
+      [
+       "h3",
+       "Draw a Card"
+      ],
+      [
+       "h2",
+       "Free Daily Tarot Card Reading→"
+      ],
+      [
+       "h3",
+       "Learn to read Tarot cards→"
+      ],
+      [
+       "h3",
+       "The Daily Tarot Card is"
+      ],
+      [
+       "h2",
+       "TAROT READINGS"
+      ],
+      [
+       "h2",
+       "POPULAR TAROT READINGS"
+      ],
+      [
+       "h2",
+       "CLASSIC TAROT READINGS"
+      ],
+      [
+       "h2",
+       "ASTROLOGY & NUMEROLOGY TAROT"
+      ],
+      [
+       "h2",
+       "TAROT DECK REVIEWS"
+      ],
+      [
+       "h2",
+       "Tarot Readings Online"
+      ],
+      [
+       "h3",
+       "☆☆  One Card Tarot☆  3 Card Tarot☆  5 Card Tarot ☆  10 Card Tarot☆ AI Tarot☆ Celtic Cross☆"
+      ],
+      [
+       "h2",
+       "Learn Tarot Card Meaningsquickly & easily."
+      ],
+      [
+       "h3",
+       "☆ Tarot Card List☆ What are Tarot Cards?☆ Key to the Tarot"
+      ],
+      [
+       "h3",
+       "Draw 3 cards"
+      ],
+      [
+       "h2",
+       "Daily Tarot Practice"
+      ],
+      [
+       "h3",
+       "Tarot cards have long been associated with fortune-telling and predictions. However, they "
+      ],
+      [
+       "h3",
+       "Tarot can be a source of inspiration and self-discovery. This approach allows for a more p"
+      ],
+      [
+       "h2",
+       "Exploring Tarot is a deeply introspective experience. Remember to approach the cards with "
+      ],
+      [
+       "h2",
+       "Daily Tarot Card Pull: Setting an intention."
+      ],
+      [
+       "h3",
+       "What is Tarot?"
+      ],
+      [
+       "h2",
+       "The Origins of Tarot"
+      ],
+      [
+       "h3",
+       "Learn more about the history of the Rider Waite Smith Tarot Here:"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://labyrinthos.co/pages/one-card-tarot",
+     "domain": "labyrinthos.co",
+     "dr": 67,
+     "type": "T",
+     "opened": true,
+     "words": 749,
+     "h2": 10,
+     "h3": 6,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "One Card Tarot Reading"
+      ],
+      [
+       "h2",
+       "A Daily Tarot Meditation"
+      ],
+      [
+       "h2",
+       "Select Your Tarot Deck"
+      ],
+      [
+       "h3",
+       "Golden Thread Tarot"
+      ],
+      [
+       "h3",
+       "Luminous Spirit Tarot"
+      ],
+      [
+       "h3",
+       "Seventh Sphere Tarot"
+      ],
+      [
+       "h3",
+       "Arcana Iris Sacra"
+      ],
+      [
+       "h3",
+       "Tarot of the Velvet Moon"
+      ],
+      [
+       "h2",
+       "Get Your Personal One Card Tarot Reading"
+      ],
+      [
+       "h3",
+       "Do you need more detailed advice?"
+      ],
+      [
+       "h1",
+       "More Online Tarot Card Readings"
+      ],
+      [
+       "h2",
+       "Get another tarot reading online free"
+      ],
+      [
+       "h2",
+       "Yes No Tarot Reading"
+      ],
+      [
+       "h2",
+       "Free Love Tarot Reading"
+      ],
+      [
+       "h2",
+       "5 Card Tarot Card Reading: Relationship"
+      ],
+      [
+       "h2",
+       "Money Tarot Spread Reading"
+      ],
+      [
+       "h1",
+       "Take Tarot Classes with our Free App"
+      ],
+      [
+       "h2",
+       "Learn tarot, get free tarot readings, and more"
+      ],
+      [
+       "h1",
+       "Shop Tarot Decks"
+      ],
+      [
+       "h2",
+       "Purchases of our tarot decks help us keep our free resources running."
+      ],
+      [
+       "h1",
+       "Sign Up for Free Tarot Classes"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://www.tarot.com/daily-tarot-card",
+     "domain": "tarot.com",
+     "dr": 71,
+     "type": "T",
+     "opened": true,
+     "words": 486,
+     "h2": 2,
+     "h3": 4,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "More  Insight"
+      ],
+      [
+       "h2",
+       "More Weekly Tarot Horoscopes"
+      ],
+      [
+       "h3",
+       "Sun in Sagittarius: Optimistic, Adventurous, Open-Minded"
+      ],
+      [
+       "h3",
+       "2027 Astrology Guide: Major Transits, Tarot Cards & Forecast"
+      ],
+      [
+       "h3",
+       "Plan Ahead with Your Personal Astrology Forecast"
+      ],
+      [
+       "h3",
+       "Spark Powerful Change with Your Breakthrough Tarot Reading"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://www.free-tarot-reading.net/free",
+     "domain": "free-tarot-reading.net",
+     "dr": 40,
+     "type": "T",
+     "opened": true,
+     "words": 1509,
+     "h2": 4,
+     "h3": 18,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Tips to improve your readings"
+      ],
+      [
+       "h3",
+       "#1: Take a deep breath!"
+      ],
+      [
+       "h3",
+       "#2: Only the question!"
+      ],
+      [
+       "h3",
+       "#3: Maintain your focus!"
+      ],
+      [
+       "h3",
+       "#4: Be specific!"
+      ],
+      [
+       "h3",
+       "#5: Read between the lines!"
+      ],
+      [
+       "h3",
+       "#6: Accept the first reading!"
+      ],
+      [
+       "h3",
+       "#7: Beware of overuse!"
+      ],
+      [
+       "h3",
+       "#8: This is not an exact science!"
+      ],
+      [
+       "h3",
+       "#9: Don't fear the 'negative' cards!"
+      ],
+      [
+       "h2",
+       "LT's World Famous Universal 6 Card Spread"
+      ],
+      [
+       "h4",
+       "Reading description"
+      ],
+      [
+       "h2",
+       "LT's World Famous Universal 6 Card Spread"
+      ],
+      [
+       "h4",
+       "Tips to improve your readings"
+      ],
+      [
+       "h2",
+       "Tips to improve your readings"
+      ],
+      [
+       "h3",
+       "#1: Take a deep breath!"
+      ],
+      [
+       "h3",
+       "#2: Only the question!"
+      ],
+      [
+       "h3",
+       "#3: Maintain your focus!"
+      ],
+      [
+       "h3",
+       "#4: Be specific!"
+      ],
+      [
+       "h3",
+       "#5: Read between the lines!"
+      ],
+      [
+       "h3",
+       "#6: Accept the first reading!"
+      ],
+      [
+       "h3",
+       "#7: Beware of overuse!"
+      ],
+      [
+       "h3",
+       "#8: This is not an exact science!"
+      ],
+      [
+       "h3",
+       "#9: Don't fear the 'negative' cards!"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://mytarottoday.com/",
+     "domain": "mytarottoday.com",
+     "dr": 0,
+     "type": "T",
+     "opened": true,
+     "words": 45,
+     "h2": 0,
+     "h3": 3,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h3",
+       "Rider-Waite Classic"
+      ],
+      [
+       "h3",
+       "Artistic Tarot"
+      ],
+      [
+       "h3",
+       "Miró Surrealism"
+      ]
+     ],
+     "note": "страница почти целиком на JS: сервер отдаёт <100 слов, текст не посчитан",
+     "words_usable": false
+    },
+    {
+     "position": 7,
+     "url": "https://www.evatarot.net/",
+     "domain": "evatarot.net",
+     "dr": 37,
+     "type": "T",
+     "opened": true,
+     "words": 514,
+     "h2": 2,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Choose 10 cards from the deck below"
+      ],
+      [
+       "h4",
+       "Dive into the fascinating world of the tarot reading"
+      ],
+      [
+       "h3",
+       "A unique divination experience"
+      ],
+      [
+       "h2",
+       "Free tarot readings:"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.dailyom.com/tarot/one-card-reading",
+     "domain": "dailyom.com",
+     "dr": 71,
+     "type": "T",
+     "opened": false,
+     "words": 26,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    },
+    {
+     "position": 9,
+     "url": "https://tellmytarot.com/daily-tarot/",
+     "domain": "tellmytarot.com",
+     "dr": 12,
+     "type": "T",
+     "opened": true,
+     "words": 630,
+     "h2": 0,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Daily Tarot"
+      ],
+      [
+       "h3",
+       "The Daily Tarot allows you to explore current trends and find out about the opportunities "
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://www.horoscope.com/us/tarot/tarot-daily-love.aspx",
+     "domain": "horoscope.com",
+     "dr": 70,
+     "type": "T",
+     "opened": true,
+     "words": 141,
+     "h2": 2,
+     "h3": 3,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Daily Love Tarot Reading"
+      ],
+      [
+       "h3",
+       "Pick a card"
+      ],
+      [
+       "h4",
+       "Today's Tip: Weekly Horoscope, November 23–29, 2026: Shake It Up, Then Cut It Clean"
+      ],
+      [
+       "h2",
+       "More Tarot Readings"
+      ],
+      [
+       "h3",
+       "Card of the Day"
+      ],
+      [
+       "h4",
+       "The Chariot"
+      ],
+      [
+       "h3",
+       "Today's Reading"
+      ],
+      [
+       "h4",
+       "Choose your cards"
+      ],
+      [
+       "h2",
+       "Games"
+      ]
+     ]
+    }
+   ],
+   "words_median": 630,
+   "n_opened": 8,
+   "n_usable": 7
+  },
+  "EN-007": {
+   "keyword": "yes or no tarot",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.4)",
+    "видео (поз.8)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://www.horoscope.com/tarot/tarot-yes-no.aspx",
+     "domain": "horoscope.com",
+     "dr": 70,
+     "type": "T",
+     "opened": true,
+     "words": 141,
+     "h2": 2,
+     "h3": 3,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Yes or No Tarot"
+      ],
+      [
+       "h3",
+       "Pick a card"
+      ],
+      [
+       "h4",
+       "Today's Tip: Weekly Horoscope, November 23–29, 2026: Shake It Up, Then Cut It Clean"
+      ],
+      [
+       "h2",
+       "More Tarot Readings"
+      ],
+      [
+       "h3",
+       "Card of the Day"
+      ],
+      [
+       "h4",
+       "The Chariot"
+      ],
+      [
+       "h3",
+       "Today's Reading"
+      ],
+      [
+       "h4",
+       "Choose your cards"
+      ],
+      [
+       "h2",
+       "Games"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://labyrinthos.co/pages/yes-no-tarot-reading",
+     "domain": "labyrinthos.co",
+     "dr": 67,
+     "type": "T",
+     "opened": true,
+     "words": 854,
+     "h2": 9,
+     "h3": 6,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Yes No Tarot Reading"
+      ],
+      [
+       "h2",
+       "Select Your Tarot Deck"
+      ],
+      [
+       "h3",
+       "Golden Thread Tarot"
+      ],
+      [
+       "h3",
+       "Luminous Spirit Tarot"
+      ],
+      [
+       "h3",
+       "Seventh Sphere Tarot"
+      ],
+      [
+       "h3",
+       "Arcana Iris Sacra"
+      ],
+      [
+       "h3",
+       "Tarot of the Velvet Moon"
+      ],
+      [
+       "h2",
+       "Get Your Personal Yes No Tarot Reading"
+      ],
+      [
+       "h3",
+       "Do you need more detailed advice?"
+      ],
+      [
+       "h1",
+       "More Online Tarot Card Readings"
+      ],
+      [
+       "h2",
+       "Get another tarot reading online free"
+      ],
+      [
+       "h2",
+       "Free Love Tarot Reading"
+      ],
+      [
+       "h2",
+       "One Card Tarot Reading"
+      ],
+      [
+       "h2",
+       "5 Card Tarot Card Reading: Relationship"
+      ],
+      [
+       "h2",
+       "Money Tarot Spread Reading"
+      ],
+      [
+       "h1",
+       "Take Tarot Classes with our Free App"
+      ],
+      [
+       "h2",
+       "Learn tarot, get free tarot readings, and more"
+      ],
+      [
+       "h1",
+       "Shop Tarot Decks"
+      ],
+      [
+       "h2",
+       "Purchases of our tarot decks help us keep our free resources running."
+      ],
+      [
+       "h1",
+       "Sign Up for Free Tarot Classes"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://www.reddit.com/r/tarot/comments/9q0914/how_to_perform_a_yesno_tarot_reading/",
+     "domain": "reddit.com",
+     "dr": 95,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 5,
+     "url": "https://www.astrology.com/tarot/yes-no.html",
+     "domain": "astrology.com",
+     "dr": 74,
+     "type": "T",
+     "opened": true,
+     "words": 186,
+     "h2": 2,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Sign In"
+      ],
+      [
+       "h1",
+       "Yes / No Tarot Reading"
+      ],
+      [
+       "h4",
+       "Pick a card"
+      ],
+      [
+       "h2",
+       "Most Popular on Astrology.com"
+      ],
+      [
+       "h3",
+       "Check Out Your Daily Horoscope"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://www.psychicsource.com/article/other-psychic-topics/yes-or-no-tarot/29221",
+     "domain": "psychicsource.com",
+     "dr": 57,
+     "type": "A",
+     "opened": true,
+     "words": 2629,
+     "h2": 11,
+     "h3": 4,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Yes or No Tarot: Draw a Card for a Yes, No, or Maybe Answer"
+      ],
+      [
+       "h2",
+       "What Exactly Is a Yes or No Tarot Reading?"
+      ],
+      [
+       "h2",
+       "How Does the Reading Actually Work, Step by Step?"
+      ],
+      [
+       "h2",
+       "Upright or Reversed: Why Does the Card's Direction Change the Answer?"
+      ],
+      [
+       "h2",
+       "Which Tarot Cards Traditionally Lean Yes, No, or Maybe?"
+      ],
+      [
+       "h2",
+       "How Do You Read the Card You Pulled Above?"
+      ],
+      [
+       "h2",
+       "How Do You Phrase a Good Yes or No Question?"
+      ],
+      [
+       "h2",
+       "Is Yes or No Tarot Accurate? A Warm Word on Limits"
+      ],
+      [
+       "h2",
+       "Who Is a Yes or No Reading Really For?"
+      ],
+      [
+       "h2",
+       "How Do You Get the Most Out of the Reading Above?"
+      ],
+      [
+       "h2",
+       "Questions I Get Asked Most"
+      ],
+      [
+       "h3",
+       "How does yes or no tarot work?"
+      ],
+      [
+       "h3",
+       "Is yes or no tarot accurate?"
+      ],
+      [
+       "h3",
+       "Which tarot cards mean yes?"
+      ],
+      [
+       "h3",
+       "Can I ask the same question more than once?"
+      ],
+      [
+       "h2",
+       "The Last Card on the Table"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://jobcannon.io/tarot/yes-no",
+     "domain": "jobcannon.io",
+     "dr": 40,
+     "type": "T",
+     "opened": true,
+     "words": 661,
+     "h2": 5,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Which Tarot Cards Mean Yes, No, or It Depends? Quick-Reference Table"
+      ],
+      [
+       "h2",
+       "How accurate is a yes or no tarot reading?"
+      ],
+      [
+       "h2",
+       "How to ask a good yes or no question"
+      ],
+      [
+       "h2",
+       "One-card or three-card yes or no reading"
+      ],
+      [
+       "h2",
+       "Frequently asked"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.youtube.com/watch?v=E9hLDN5GIkk",
+     "domain": "youtube.com",
+     "dr": 99,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 9,
+     "url": "https://www.evatarot.net/tarot-yes-no/",
+     "domain": "evatarot.net",
+     "dr": 37,
+     "type": "T",
+     "opened": false
+    },
+    {
+     "position": 10,
+     "url": "https://www.zodiacsign.com/tarot/yes-no/",
+     "domain": "zodiacsign.com",
+     "dr": 66,
+     "type": "T",
+     "opened": true,
+     "words": 248,
+     "h2": 1,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Pick Sign"
+      ],
+      [
+       "h1",
+       "Yes or No Tarot Reading"
+      ],
+      [
+       "h3",
+       "You Might Also Like"
+      ]
+     ]
+    }
+   ],
+   "words_median": 454.5,
+   "n_opened": 6,
+   "n_usable": 6
+  },
+  "EN-009": {
+   "keyword": "yes or no tarot cards",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.1)",
+    "Похожие вопросы (поз.4, 4 шт.)",
+    "видео (поз.8)"
+   ],
+   "rows": [
+    {
+     "position": 2,
+     "url": "https://angelorum.co/uncategorized/yes-no-meanings-all-78-tarot-cards/",
+     "domain": "angelorum.co",
+     "dr": 34,
+     "type": "L",
+     "opened": true,
+     "words": 1216,
+     "h2": 2,
+     "h3": 3,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Yes/No Meanings Major Arcana, Wands and Cups"
+      ],
+      [
+       "h2",
+       "Yes/No Meanings Swords and Pentacles"
+      ],
+      [
+       "h3",
+       "Related"
+      ],
+      [
+       "h3",
+       "Discover more from Angelorum"
+      ],
+      [
+       "h3",
+       "Leave a Comment Cancel reply"
+      ],
+      [
+       "h4",
+       "Follow on These Platforms"
+      ],
+      [
+       "h4",
+       "Angelorum Blog Stats"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://www.reddit.com/r/tarot/comments/13eztbc/yes_vs_no_tarot_cards/",
+     "domain": "reddit.com",
+     "dr": 95,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 5,
+     "url": "https://www.dailyom.com/tarot/yes-no",
+     "domain": "dailyom.com",
+     "dr": 71,
+     "type": "T",
+     "opened": false,
+     "words": 28,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    },
+    {
+     "position": 6,
+     "url": "https://tarotelements.com/answering-yes-no-questions-using-tarot/",
+     "domain": "tarotelements.com",
+     "dr": 27,
+     "type": "A",
+     "opened": true,
+     "words": 3186,
+     "h2": 15,
+     "h3": 4,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "How to Determine Yes No Tarot Cards to Suit Yourself"
+      ],
+      [
+       "h2",
+       "Yes No Tarot Cards – My Own List"
+      ],
+      [
+       "h3",
+       "Being Deck-Specific When Creating Your Own Yes No Tarot List"
+      ],
+      [
+       "h3",
+       "Think About how You See Court Cards"
+      ],
+      [
+       "h2",
+       "Asking an Effective Yes No Tarot Question"
+      ],
+      [
+       "h2",
+       "Refining Your Yes or No Tarot Question"
+      ],
+      [
+       "h2",
+       "Including Time Frames in Your Yes No Tarot Questions"
+      ],
+      [
+       "h3",
+       "How to Turn Two Questions into One"
+      ],
+      [
+       "h2",
+       "Yes No Tarot Questions to Avoid"
+      ],
+      [
+       "h4",
+       "Shoulds, Actions & Permission to Act"
+      ],
+      [
+       "h2",
+       "How to Obtain a Yes or No Answer with Reversed Tarot Cards"
+      ],
+      [
+       "h3",
+       "A Word About the Sun and the 9 of Cups"
+      ],
+      [
+       "h2",
+       "Summary of Answering Yes No Questions Using Tarot"
+      ],
+      [
+       "h2",
+       "A Little About Me"
+      ],
+      [
+       "h2",
+       "Card Pairing Posts"
+      ],
+      [
+       "h2",
+       "Tarot Tutorials"
+      ],
+      [
+       "h2",
+       "Elemental Dignities Posts"
+      ],
+      [
+       "h2",
+       "Tips & Techniques Posts"
+      ],
+      [
+       "h2",
+       "Daily Tarot Oracle"
+      ],
+      [
+       "h2",
+       "Tarot Timing eBook"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://www.mysticmag.com/psychic-reading/which-tarot-cards-mean-yes-and-no/",
+     "domain": "mysticmag.com",
+     "dr": 77,
+     "type": "A",
+     "opened": true,
+     "words": 2969,
+     "h2": 6,
+     "h3": 11,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Which Tarot Cards Mean Yes or No? A Complete List"
+      ],
+      [
+       "h2",
+       "Major Arcana That Mean Yes, No, & Maybe"
+      ],
+      [
+       "h2",
+       "Minor Arcana That Mean Yes, No, & Maybe"
+      ],
+      [
+       "h2",
+       "Tips for More Accurate Yes / No Tarot Readings"
+      ],
+      [
+       "h3",
+       "1. Create clear yes / no questions"
+      ],
+      [
+       "h3",
+       "2. Pull your cards from a full, shuffled, and upright deck"
+      ],
+      [
+       "h3",
+       "3. Only ask one question at a time"
+      ],
+      [
+       "h3",
+       "4. Don’t keep asking to try to get the answer you want"
+      ],
+      [
+       "h3",
+       "5. Consider a more in-depth reading"
+      ],
+      [
+       "h2",
+       "Best Psychic Reading Sites for Accurate Tarot Readings"
+      ],
+      [
+       "h3",
+       "1. Purple Garden – Enjoy Tarot Readings Whenever and Wherever You Like"
+      ],
+      [
+       "h3",
+       "2. Keen – Find Your Clarity with Top Rated Psychics Available"
+      ],
+      [
+       "h2",
+       "FAQs on Getting a Yes or No Tarot Reading"
+      ],
+      [
+       "h3",
+       "What are yes/no tarot readings?"
+      ],
+      [
+       "h3",
+       "Can I get a free yes or no reading online?"
+      ],
+      [
+       "h3",
+       "What are the drawbacks to yes or no readings?"
+      ],
+      [
+       "h2",
+       "Bottom Line"
+      ],
+      [
+       "h3",
+       "To summarize, the best online tarot reading sites are…"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.youtube.com/watch?v=YMBzezN8dj4",
+     "domain": "youtube.com",
+     "dr": 99,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 9,
+     "url": "https://lightwands.org/blog/your-guide-to-yes-or-no-tarot-readings",
+     "domain": "lightwands.org",
+     "dr": 10,
+     "type": "A",
+     "opened": true,
+     "words": 1026,
+     "h2": 4,
+     "h3": 5,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Your Guide to Yes or No Tarot Readings"
+      ],
+      [
+       "h3",
+       "Can I Use Tarot for Yes or No Questions?"
+      ],
+      [
+       "h2",
+       "4 Yes or No Tarot Reading Methods"
+      ],
+      [
+       "h3",
+       "1. \"Positive\" and \"Negative\" Meanings"
+      ],
+      [
+       "h4",
+       "Example:"
+      ],
+      [
+       "h3",
+       "2. Upright and Reversed"
+      ],
+      [
+       "h3",
+       "3. First Tarot Card to Arrive"
+      ],
+      [
+       "h3",
+       "4. Messenger Pages"
+      ],
+      [
+       "h4",
+       "Example:"
+      ],
+      [
+       "h2",
+       "Next Up:"
+      ],
+      [
+       "h2",
+       "The Black Tarot Review: Haunting, Dark, & Enigmatic"
+      ],
+      [
+       "h2",
+       "Your Beginner's Guide to Learning Tarot"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://www.nostra-tarot.com/en/spread_types/yesno",
+     "domain": "nostra-tarot.com",
+     "dr": 8,
+     "type": "T",
+     "opened": true,
+     "words": 309,
+     "h2": 10,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Yes/No Reading"
+      ],
+      [
+       "h2",
+       "Relax and clear your head"
+      ],
+      [
+       "h2",
+       "Choose your cards with intention"
+      ],
+      [
+       "h2",
+       "This card gives you a first direction. Now ask your real question."
+      ],
+      [
+       "h2",
+       "Explore our other readings"
+      ],
+      [
+       "h2",
+       "Card of the day"
+      ],
+      [
+       "h2",
+       "Two Choices Reading"
+      ],
+      [
+       "h2",
+       "Love reading"
+      ],
+      [
+       "h2",
+       "Relationship Reading"
+      ],
+      [
+       "h2",
+       "Question Reading"
+      ],
+      [
+       "h2",
+       "Month-Ahead Reading"
+      ]
+     ]
+    }
+   ],
+   "words_median": 1216,
+   "n_opened": 5,
+   "n_usable": 5
+  },
+  "EN-011": {
+   "keyword": "love tarot reading",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.3)",
+    "видео (поз.8)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://labyrinthos.co/pages/free-love-tarot-reading",
+     "domain": "labyrinthos.co",
+     "dr": 67,
+     "type": "T",
+     "opened": true,
+     "words": 826,
+     "h2": 11,
+     "h3": 5,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Free Love Tarot Reading"
+      ],
+      [
+       "h2",
+       "Learn About Your Love Life and Where It's Heading"
+      ],
+      [
+       "h2",
+       "Select Your Tarot Deck"
+      ],
+      [
+       "h3",
+       "Golden Thread Tarot"
+      ],
+      [
+       "h3",
+       "Luminous Spirit Tarot"
+      ],
+      [
+       "h3",
+       "Seventh Sphere Tarot"
+      ],
+      [
+       "h3",
+       "Arcana Iris Sacra"
+      ],
+      [
+       "h3",
+       "Tarot of the Velvet Moon"
+      ],
+      [
+       "h2",
+       "Get Your Personal Free Love Tarot Reading"
+      ],
+      [
+       "h1",
+       "Your Free Love Tarot Reading Cards"
+      ],
+      [
+       "h2",
+       "Interpretation and Meaning"
+      ],
+      [
+       "h1",
+       "More Online Tarot Card Readings"
+      ],
+      [
+       "h2",
+       "Get another tarot reading online free"
+      ],
+      [
+       "h2",
+       "Yes No Tarot Reading"
+      ],
+      [
+       "h2",
+       "One Card Tarot Reading"
+      ],
+      [
+       "h2",
+       "5 Card Tarot Card Reading: Relationship"
+      ],
+      [
+       "h2",
+       "Money Tarot Spread Reading"
+      ],
+      [
+       "h1",
+       "Take Tarot Classes with our Free App"
+      ],
+      [
+       "h2",
+       "Learn tarot, get free tarot readings, and more"
+      ],
+      [
+       "h1",
+       "Shop Tarot Decks"
+      ],
+      [
+       "h2",
+       "Purchases of our tarot decks help us keep our free resources running."
+      ],
+      [
+       "h1",
+       "Sign Up for Free Tarot Classes"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://www.evatarot.net/love-tarot/",
+     "domain": "evatarot.net",
+     "dr": 37,
+     "type": "T",
+     "opened": true,
+     "words": 171,
+     "h2": 2,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h3",
+       "The Love Tarot"
+      ],
+      [
+       "h2",
+       "Please select eight cards from the deck below:"
+      ],
+      [
+       "h2",
+       "Free tarot readings:"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://www.onecardtarot.online/love-tarot",
+     "domain": "onecardtarot.online",
+     "dr": 1,
+     "type": "T",
+     "opened": true,
+     "words": 2441,
+     "h2": 13,
+     "h3": 31,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Sample card: The Lovers"
+      ],
+      [
+       "h3",
+       "Upright meaning"
+      ],
+      [
+       "h3",
+       "Reversed meaning"
+      ],
+      [
+       "h1",
+       "Free Love Tarot Reading — One Card Love Draw"
+      ],
+      [
+       "h2",
+       "Before you draw"
+      ],
+      [
+       "h2",
+       "Love situations this page is built for"
+      ],
+      [
+       "h3",
+       "What they're thinking and feeling"
+      ],
+      [
+       "h3",
+       "Mixed signals and uncertainty"
+      ],
+      [
+       "h3",
+       "Exes, distance, and unfinished feelings"
+      ],
+      [
+       "h3",
+       "Your next move in love"
+      ],
+      [
+       "h3",
+       "Seeing the emotional truth faster"
+      ],
+      [
+       "h2",
+       "What one card can clarify in love"
+      ],
+      [
+       "h3",
+       "Feelings"
+      ],
+      [
+       "h3",
+       "Mixed signals"
+      ],
+      [
+       "h3",
+       "Upright or reversed"
+      ],
+      [
+       "h3",
+       "Next step"
+      ],
+      [
+       "h2",
+       "When the question is about two people"
+      ],
+      [
+       "h2",
+       "How to read a one card love reading"
+      ],
+      [
+       "h3",
+       "Quick facts (free love draw)"
+      ],
+      [
+       "h3",
+       "How a one card love reading works"
+      ],
+      [
+       "h3",
+       "Upright meanings in a love draw"
+      ],
+      [
+       "h3",
+       "Reversed meanings in love"
+      ],
+      [
+       "h3",
+       "Does he like me?"
+      ],
+      [
+       "h3",
+       "Is he the one?"
+      ],
+      [
+       "h3",
+       "Will we get back together?"
+      ]
+     ]
+    },
+    {
+     "position": 5,
+     "url": "https://www.free-tarot-reading.net/",
+     "domain": "free-tarot-reading.net",
+     "dr": 40,
+     "type": "T",
+     "opened": false
+    },
+    {
+     "position": 6,
+     "url": "https://deckaura.com/pages/love-tarot-reading",
+     "domain": "deckaura.com",
+     "dr": 58,
+     "type": "T",
+     "opened": true,
+     "words": 2776,
+     "h2": 10,
+     "h3": 12,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h3",
+       "Search our store"
+      ],
+      [
+       "h3",
+       "What the written reading adds"
+      ],
+      [
+       "h1",
+       "Free Love Tarot Reading"
+      ],
+      [
+       "h2",
+       "What do you want to understand?"
+      ],
+      [
+       "h2",
+       "Where are things right now?"
+      ],
+      [
+       "h2",
+       "Ask your love question"
+      ],
+      [
+       "h2",
+       "Your three cards"
+      ],
+      [
+       "h2",
+       "Your love reading"
+      ],
+      [
+       "h2",
+       "Your next love question is still here."
+      ],
+      [
+       "h3",
+       "Why your answer leans this way"
+      ],
+      [
+       "h4",
+       "Choose reading depth"
+      ],
+      [
+       "h3",
+       "Unlock Your Full Personalized Reading"
+      ],
+      [
+       "h2",
+       "Why Deckaura reads differently"
+      ],
+      [
+       "h3",
+       "Context stays connected"
+      ],
+      [
+       "h3",
+       "Grounded language"
+      ],
+      [
+       "h3",
+       "Clear next steps"
+      ],
+      [
+       "h2",
+       "Love tarot horoscope or a personal love reading?"
+      ],
+      [
+       "h2",
+       "Common questions"
+      ],
+      [
+       "h2",
+       "Explore related free tools"
+      ],
+      [
+       "h3",
+       "Shop"
+      ],
+      [
+       "h3",
+       "Learn Tarot"
+      ],
+      [
+       "h3",
+       "Support"
+      ],
+      [
+       "h3",
+       "Join Our Community"
+      ],
+      [
+       "h3",
+       "Shopping Cart"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://www.reddit.com/r/spiritualitytalk/comments/1rx6ohf/love_tarot_readings_are_they_legit_and_who_does/",
+     "domain": "reddit.com",
+     "dr": 95,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 8,
+     "url": "https://www.youtube.com/watch?v=O_AiuCkmxJE",
+     "domain": "youtube.com",
+     "dr": 99,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 9,
+     "url": "https://solstarot.com/love-readings/",
+     "domain": "solstarot.com",
+     "dr": 0,
+     "type": "T",
+     "opened": true,
+     "words": 1264,
+     "h2": 4,
+     "h3": 6,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Love Tarot Reading"
+      ],
+      [
+       "h2",
+       "How the Love Tarot Spread Works"
+      ],
+      [
+       "h3",
+       "I · Past"
+      ],
+      [
+       "h3",
+       "II · Present"
+      ],
+      [
+       "h3",
+       "III · Future"
+      ],
+      [
+       "h2",
+       "How to Ask the Cards About Love"
+      ],
+      [
+       "h2",
+       "Love Tarot — Frequently Asked Questions"
+      ],
+      [
+       "h2",
+       "Continue Your Journey"
+      ],
+      [
+       "h3",
+       "All 78 cards, ready to print"
+      ],
+      [
+       "h3",
+       "Support SolsTarot"
+      ],
+      [
+       "h4",
+       "A little sprinkle of cookies"
+      ],
+      [
+       "h3",
+       "Have you drawn your birth chart yet?"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://tarotap.com/en",
+     "domain": "tarotap.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1117,
+     "h2": 2,
+     "h3": 30,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "AI Tarot Reading Online"
+      ],
+      [
+       "h2",
+       "More to Explore"
+      ],
+      [
+       "h3",
+       "Yes or No Tarot"
+      ],
+      [
+       "h3",
+       "Love Tarot"
+      ],
+      [
+       "h3",
+       "Career Tarot"
+      ],
+      [
+       "h3",
+       "Draw Tarot Cards"
+      ],
+      [
+       "h3",
+       "Draw an Oracle Card"
+      ],
+      [
+       "h3",
+       "Tarot Manifestation"
+      ],
+      [
+       "h3",
+       "Chat with Raven"
+      ],
+      [
+       "h3",
+       "Chat with Luna"
+      ],
+      [
+       "h3",
+       "What's My Arcana? Arcana Calculator by Birth Date"
+      ],
+      [
+       "h3",
+       "2027 Tarot Annual Fortune Reading"
+      ],
+      [
+       "h3",
+       "2027 Tarot Annual Fortune Reading"
+      ],
+      [
+       "h3",
+       "Year Ahead Reading"
+      ],
+      [
+       "h3",
+       "Seasonal Spread"
+      ],
+      [
+       "h3",
+       "Monthly Tarot"
+      ],
+      [
+       "h3",
+       "Daily Tarot Fortune"
+      ],
+      [
+       "h3",
+       "Horseshoe tarot spread"
+      ],
+      [
+       "h3",
+       "Celtic Cross Spread"
+      ],
+      [
+       "h3",
+       "Two Options Spread"
+      ],
+      [
+       "h3",
+       "Three Options Spread"
+      ],
+      [
+       "h2",
+       "Tarot Blog"
+      ],
+      [
+       "h3",
+       "Are Tarot Cards Real? An Honest Look at Tarot Accuracy"
+      ],
+      [
+       "h3",
+       "How to Shuffle Tarot Cards: Easy Methods for Beginners"
+      ],
+      [
+       "h3",
+       "Your Question Chooses the Spread"
+      ]
+     ]
+    }
+   ],
+   "words_median": 1190.5,
+   "n_opened": 6,
+   "n_usable": 6
+  },
+  "EN-014": {
+   "keyword": "tarot card meanings",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.2)",
+    "Похожие вопросы (поз.6, 4 шт.)",
+    "картинки (поз.9)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://labyrinthos.co/blogs/tarot-card-meanings-list",
+     "domain": "labyrinthos.co",
+     "dr": 67,
+     "type": "L",
+     "opened": true,
+     "words": 2150,
+     "h2": 5,
+     "h3": 53,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Major Arcana"
+      ],
+      [
+       "h3",
+       "The Fool's Journey"
+      ],
+      [
+       "h3",
+       "The Fool Meaning"
+      ],
+      [
+       "h3",
+       "The Magician Meaning"
+      ],
+      [
+       "h3",
+       "The High Priestess Meaning"
+      ],
+      [
+       "h3",
+       "The Empress Meaning"
+      ],
+      [
+       "h3",
+       "The Emperor Meaning"
+      ],
+      [
+       "h3",
+       "The Hierophant Meaning"
+      ],
+      [
+       "h3",
+       "The Lovers Meaning"
+      ],
+      [
+       "h3",
+       "The Chariot Meaning"
+      ],
+      [
+       "h3",
+       "Strength Meaning"
+      ],
+      [
+       "h3",
+       "The Hermit Meaning"
+      ],
+      [
+       "h3",
+       "The Wheel of Fortune Meaning"
+      ],
+      [
+       "h3",
+       "Justice Meaning"
+      ],
+      [
+       "h3",
+       "The Hanged Man Meaning"
+      ],
+      [
+       "h3",
+       "Death Meaning"
+      ],
+      [
+       "h3",
+       "Temperance Meaning"
+      ],
+      [
+       "h3",
+       "The Devil Meaning"
+      ],
+      [
+       "h3",
+       "The Tower Meaning"
+      ],
+      [
+       "h3",
+       "The Star Meaning"
+      ],
+      [
+       "h3",
+       "The Moon Meaning"
+      ],
+      [
+       "h3",
+       "The Sun Meaning"
+      ],
+      [
+       "h3",
+       "Judgement Meaning"
+      ],
+      [
+       "h3",
+       "The World Meaning"
+      ],
+      [
+       "h1",
+       "Learn How to Read Tarot"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://www.thetarotlady.com/tarot-card-meanings/",
+     "domain": "thetarotlady.com",
+     "dr": 52,
+     "type": "L",
+     "opened": true,
+     "words": 832,
+     "h2": 54,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Want to learn the tarot card meanings?"
+      ],
+      [
+       "h2",
+       "Tarot Card by Card will help you master the cards in a hip, modern, and fun way!"
+      ],
+      [
+       "h4",
+       "The Major Arcana symbolizes the big picture, fate, or major lessons. These are the things "
+      ],
+      [
+       "h2",
+       "The Fool"
+      ],
+      [
+       "h2",
+       "The Magician"
+      ],
+      [
+       "h2",
+       "The High Priestess"
+      ],
+      [
+       "h2",
+       "The Empress"
+      ],
+      [
+       "h2",
+       "The Emperor"
+      ],
+      [
+       "h2",
+       "The Hierophant"
+      ],
+      [
+       "h2",
+       "The Lovers"
+      ],
+      [
+       "h2",
+       "The Chariot"
+      ],
+      [
+       "h2",
+       "Strength"
+      ],
+      [
+       "h2",
+       "The Hermit"
+      ],
+      [
+       "h2",
+       "The Wheel of Fortune"
+      ],
+      [
+       "h2",
+       "Justice"
+      ],
+      [
+       "h2",
+       "The Hanged Man"
+      ],
+      [
+       "h2",
+       "Death"
+      ],
+      [
+       "h2",
+       "Temperance"
+      ],
+      [
+       "h2",
+       "The Devil"
+      ],
+      [
+       "h2",
+       "The Tower"
+      ],
+      [
+       "h2",
+       "The Star"
+      ],
+      [
+       "h2",
+       "The Moon"
+      ],
+      [
+       "h2",
+       "The Sun"
+      ],
+      [
+       "h2",
+       "Judgement"
+      ],
+      [
+       "h2",
+       "The World"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://www.reddit.com/r/NonTheisticPaganism/comments/kzba6e/tarot_card_meanings/",
+     "domain": "reddit.com",
+     "dr": 95,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 5,
+     "url": "https://lunafactory.com/blogs/tarot-card-meanings/tarot-complete-guide",
+     "domain": "lunafactory.com",
+     "dr": 11,
+     "type": "A",
+     "opened": true,
+     "words": 2412,
+     "h2": 10,
+     "h3": 13,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot Card Meanings"
+      ],
+      [
+       "h2",
+       "What the 78 cards actually are"
+      ],
+      [
+       "h3",
+       "Major Arcana: the chapters of the story"
+      ],
+      [
+       "h3",
+       "Minor Arcana: the texture of ordinary days"
+      ],
+      [
+       "h2",
+       "The four suits, and what each one governs"
+      ],
+      [
+       "h3",
+       "The numbers repeat across all four suits"
+      ],
+      [
+       "h2",
+       "Court cards: the part beginners get stuck on"
+      ],
+      [
+       "h2",
+       "How to read a card you have never seen before"
+      ],
+      [
+       "h2",
+       "Upright and reversed"
+      ],
+      [
+       "h2",
+       "How to use this library"
+      ],
+      [
+       "h3",
+       "Major ArcanaLife's spiritual lessons & turning points"
+      ],
+      [
+       "h3",
+       "Suit of CupsEmotion, love, intuition & relationships"
+      ],
+      [
+       "h3",
+       "Suit of SwordsThought, truth, conflict & clarity"
+      ],
+      [
+       "h3",
+       "Suit of WandsPassion, energy, ambition & action"
+      ],
+      [
+       "h3",
+       "Suit of PentaclesMoney, work, home & the material world"
+      ],
+      [
+       "h2",
+       "Five mistakes that stall beginners"
+      ],
+      [
+       "h3",
+       "1. Memorising before understanding"
+      ],
+      [
+       "h3",
+       "2. Asking a question the cards cannot answer"
+      ],
+      [
+       "h3",
+       "3. Re-drawing until you like the answer"
+      ],
+      [
+       "h3",
+       "4. Reading each card in isolation"
+      ],
+      [
+       "h3",
+       "5. Predicting instead of advising"
+      ],
+      [
+       "h2",
+       "Choosing your first deck"
+      ],
+      [
+       "h2",
+       "Frequently asked questions"
+      ],
+      [
+       "h2",
+       "Read more"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://biddytarot.com/tarot-card-meanings/",
+     "domain": "biddytarot.com",
+     "dr": 71,
+     "type": "L",
+     "opened": false,
+     "words": 11,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    },
+    {
+     "position": 8,
+     "url": "https://www.tarot.com/tarot/cards",
+     "domain": "tarot.com",
+     "dr": 71,
+     "type": "L",
+     "opened": true,
+     "words": 451,
+     "h2": 5,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot Card Meanings"
+      ],
+      [
+       "h2",
+       "Major Arcana"
+      ],
+      [
+       "h2",
+       "The Wands"
+      ],
+      [
+       "h2",
+       "The Cups"
+      ],
+      [
+       "h2",
+       "The Swords"
+      ],
+      [
+       "h2",
+       "The Pentacles"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://tarotcake.com/tarot-card-meanings-the-major-arcana/",
+     "domain": "tarotcake.com",
+     "dr": 11,
+     "type": "L",
+     "opened": true,
+     "words": 1210,
+     "h2": 3,
+     "h3": 23,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Recent Posts"
+      ],
+      [
+       "h3",
+       "🌸 The Fool (0) – New Beginnings, Wild Trust, Curiosity"
+      ],
+      [
+       "h3",
+       "🌟The Magician (I) – Power, Focus, Manifestation"
+      ],
+      [
+       "h3",
+       "🔮 The High Priestess (II) – Intuition, Mystery, Inner Knowing"
+      ],
+      [
+       "h3",
+       "🌾 The Empress (III) – Creation, Nurture, Abundance"
+      ],
+      [
+       "h3",
+       "📜 The Emperor (IV) – Structure, Discipline, Responsibility"
+      ],
+      [
+       "h3",
+       "✨ The Hierophant (V) – Tradition, Wisdom, Sacred Teaching"
+      ],
+      [
+       "h3",
+       "💖 The Lovers (VI) – Choice, Connection, Commitment"
+      ],
+      [
+       "h3",
+       "🏎️ The Chariot (VII) – Willpower, Direction, Determination"
+      ],
+      [
+       "h3",
+       "🦁 Strength (VIII) – Inner Fire, Compassion, Wild Gentleness"
+      ],
+      [
+       "h3",
+       "🧙🏻 The Hermit (IX) – Solitude, Truth-Seeking, Inner Light"
+      ],
+      [
+       "h3",
+       "⏳ The Wheel of Fortune (X) – Change, Cycles, Luck"
+      ],
+      [
+       "h3",
+       "⚖️ Justice (XI) – Accountability, Balance, Repair"
+      ],
+      [
+       "h3",
+       "🪶 The Hanged Man (XII) – Perspective, Sacrifice, Becoming"
+      ],
+      [
+       "h3",
+       "☠️ Death (XIII) – Endings, Transformation, Release"
+      ],
+      [
+       "h3",
+       "🌈 Temperance (XIV) – Integration, Modulation, Alchemy"
+      ],
+      [
+       "h3",
+       "🐐 The Devil (XV) – Shadow, Addiction, Liberation"
+      ],
+      [
+       "h3",
+       "💥 The Tower (XVI) – Upheaval, Revelation, Radical Change"
+      ],
+      [
+       "h3",
+       "🌠 The Star (XVII) – Healing, Hope, Renewal"
+      ],
+      [
+       "h3",
+       "🌒 The Moon (XVIII) – Illusion, Intuition, Adventure"
+      ],
+      [
+       "h3",
+       "☀️ The Sun (XIX) – Joy, Clarity, Embodiment"
+      ],
+      [
+       "h3",
+       "⏹️ Judgement (XX) – Awakening, Reckoning, Rebirth"
+      ],
+      [
+       "h3",
+       "🌍 The World (XXI) – [Coming soon]"
+      ],
+      [
+       "h3",
+       "Share this:"
+      ],
+      [
+       "h2",
+       "Instagram"
+      ]
+     ]
+    }
+   ],
+   "words_median": 1210,
+   "n_opened": 5,
+   "n_usable": 5
+  },
+  "EN-093": {
+   "keyword": "tarot cards major arcana",
+   "market": "us",
+   "features": [
+    "AI Overview (поз.1)",
+    "Похожие вопросы (поз.4, 4 шт.)",
+    "картинки (поз.9)",
+    "видео (поз.8)"
+   ],
+   "rows": [
+    {
+     "position": 2,
+     "url": "https://www.tarot.com/tarot/cards/major-arcana",
+     "domain": "tarot.com",
+     "dr": 71,
+     "type": "L",
+     "opened": true,
+     "words": 1669,
+     "h2": 24,
+     "h3": 4,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "The Major Arcana: Tarot’s Big Mood Moments"
+      ],
+      [
+       "h2",
+       "#0 -- The Fool"
+      ],
+      [
+       "h2",
+       "#1 -- The Magician"
+      ],
+      [
+       "h2",
+       "#2 -- The High Priestess"
+      ],
+      [
+       "h2",
+       "#3 -- The Empress"
+      ],
+      [
+       "h2",
+       "#4 -- The Emperor"
+      ],
+      [
+       "h2",
+       "#5 -- The Hierophant"
+      ],
+      [
+       "h2",
+       "#6 -- The Lovers"
+      ],
+      [
+       "h2",
+       "#7 -- The Chariot"
+      ],
+      [
+       "h2",
+       "#8 -- Strength"
+      ],
+      [
+       "h2",
+       "#9 -- The Hermit"
+      ],
+      [
+       "h2",
+       "#10 -- Wheel of Fortune"
+      ],
+      [
+       "h2",
+       "#11 -- Justice"
+      ],
+      [
+       "h4",
+       "Does the Major Arcana have a message for you? Find out now with a FREE Tarot reading!Find "
+      ],
+      [
+       "h2",
+       "#12 -- The Hanged Man"
+      ],
+      [
+       "h2",
+       "#13 -- Death"
+      ],
+      [
+       "h2",
+       "#14 -- Temperance"
+      ],
+      [
+       "h2",
+       "#15 -- The Devil"
+      ],
+      [
+       "h2",
+       "#16 -- The Tower"
+      ],
+      [
+       "h2",
+       "#17 -- The Star"
+      ],
+      [
+       "h2",
+       "#18 -- The Moon"
+      ],
+      [
+       "h2",
+       "#19 -- The Sun"
+      ],
+      [
+       "h2",
+       "#20 -- Judgement"
+      ],
+      [
+       "h2",
+       "#21 -- The World"
+      ],
+      [
+       "h4",
+       "Does the Major Arcana have a message for you? Find out now with a FREE Tarot reading!Find "
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://en.wikipedia.org/wiki/Major_Arcana",
+     "domain": "en.wikipedia.org",
+     "dr": 97,
+     "type": "W",
+     "opened": true,
+     "words": 3622,
+     "h2": 8,
+     "h3": 2,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "History"
+      ],
+      [
+       "h2",
+       "List of the Major Arcana"
+      ],
+      [
+       "h2",
+       "Esotericism"
+      ],
+      [
+       "h2",
+       "Fortune telling"
+      ],
+      [
+       "h3",
+       "Mysticism"
+      ],
+      [
+       "h2",
+       "See also"
+      ],
+      [
+       "h2",
+       "Notes"
+      ],
+      [
+       "h2",
+       "References"
+      ],
+      [
+       "h3",
+       "Works cited"
+      ],
+      [
+       "h2",
+       "External links"
+      ]
+     ]
+    },
+    {
+     "position": 5,
+     "url": "https://tarotcake.com/tarot-card-meanings-the-major-arcana/",
+     "domain": "tarotcake.com",
+     "dr": 11,
+     "type": "L",
+     "opened": true,
+     "words": 1210,
+     "h2": 3,
+     "h3": 23,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Recent Posts"
+      ],
+      [
+       "h3",
+       "🌸 The Fool (0) – New Beginnings, Wild Trust, Curiosity"
+      ],
+      [
+       "h3",
+       "🌟The Magician (I) – Power, Focus, Manifestation"
+      ],
+      [
+       "h3",
+       "🔮 The High Priestess (II) – Intuition, Mystery, Inner Knowing"
+      ],
+      [
+       "h3",
+       "🌾 The Empress (III) – Creation, Nurture, Abundance"
+      ],
+      [
+       "h3",
+       "📜 The Emperor (IV) – Structure, Discipline, Responsibility"
+      ],
+      [
+       "h3",
+       "✨ The Hierophant (V) – Tradition, Wisdom, Sacred Teaching"
+      ],
+      [
+       "h3",
+       "💖 The Lovers (VI) – Choice, Connection, Commitment"
+      ],
+      [
+       "h3",
+       "🏎️ The Chariot (VII) – Willpower, Direction, Determination"
+      ],
+      [
+       "h3",
+       "🦁 Strength (VIII) – Inner Fire, Compassion, Wild Gentleness"
+      ],
+      [
+       "h3",
+       "🧙🏻 The Hermit (IX) – Solitude, Truth-Seeking, Inner Light"
+      ],
+      [
+       "h3",
+       "⏳ The Wheel of Fortune (X) – Change, Cycles, Luck"
+      ],
+      [
+       "h3",
+       "⚖️ Justice (XI) – Accountability, Balance, Repair"
+      ],
+      [
+       "h3",
+       "🪶 The Hanged Man (XII) – Perspective, Sacrifice, Becoming"
+      ],
+      [
+       "h3",
+       "☠️ Death (XIII) – Endings, Transformation, Release"
+      ],
+      [
+       "h3",
+       "🌈 Temperance (XIV) – Integration, Modulation, Alchemy"
+      ],
+      [
+       "h3",
+       "🐐 The Devil (XV) – Shadow, Addiction, Liberation"
+      ],
+      [
+       "h3",
+       "💥 The Tower (XVI) – Upheaval, Revelation, Radical Change"
+      ],
+      [
+       "h3",
+       "🌠 The Star (XVII) – Healing, Hope, Renewal"
+      ],
+      [
+       "h3",
+       "🌒 The Moon (XVIII) – Illusion, Intuition, Adventure"
+      ],
+      [
+       "h3",
+       "☀️ The Sun (XIX) – Joy, Clarity, Embodiment"
+      ],
+      [
+       "h3",
+       "⏹️ Judgement (XX) – Awakening, Reckoning, Rebirth"
+      ],
+      [
+       "h3",
+       "🌍 The World (XXI) – [Coming soon]"
+      ],
+      [
+       "h3",
+       "Share this:"
+      ],
+      [
+       "h2",
+       "Instagram"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://www.reddit.com/r/Tarotpractices/comments/1dlkn7l/tarot_challenge_describe_each_major_arcana_card/",
+     "domain": "reddit.com",
+     "dr": 95,
+     "type": "F",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 7,
+     "url": "https://labyrinthos.co/blogs/tarot-card-meanings-list/tagged/major-arcana",
+     "domain": "labyrinthos.co",
+     "dr": 67,
+     "type": "L",
+     "opened": true,
+     "words": 759,
+     "h2": 3,
+     "h3": 23,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Major Arcana"
+      ],
+      [
+       "h3",
+       "The Fool's Journey"
+      ],
+      [
+       "h3",
+       "The Fool Meaning"
+      ],
+      [
+       "h3",
+       "The Magician Meaning"
+      ],
+      [
+       "h3",
+       "The High Priestess Meaning"
+      ],
+      [
+       "h3",
+       "The Empress Meaning"
+      ],
+      [
+       "h3",
+       "The Emperor Meaning"
+      ],
+      [
+       "h3",
+       "The Hierophant Meaning"
+      ],
+      [
+       "h3",
+       "The Lovers Meaning"
+      ],
+      [
+       "h3",
+       "The Chariot Meaning"
+      ],
+      [
+       "h3",
+       "Strength Meaning"
+      ],
+      [
+       "h3",
+       "The Hermit Meaning"
+      ],
+      [
+       "h3",
+       "The Wheel of Fortune Meaning"
+      ],
+      [
+       "h3",
+       "Justice Meaning"
+      ],
+      [
+       "h3",
+       "The Hanged Man Meaning"
+      ],
+      [
+       "h3",
+       "Death Meaning"
+      ],
+      [
+       "h3",
+       "Temperance Meaning"
+      ],
+      [
+       "h3",
+       "The Devil Meaning"
+      ],
+      [
+       "h3",
+       "The Tower Meaning"
+      ],
+      [
+       "h3",
+       "The Star Meaning"
+      ],
+      [
+       "h3",
+       "The Moon Meaning"
+      ],
+      [
+       "h3",
+       "The Sun Meaning"
+      ],
+      [
+       "h3",
+       "Judgement Meaning"
+      ],
+      [
+       "h3",
+       "The World Meaning"
+      ],
+      [
+       "h1",
+       "Learn How to Read Tarot"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.youtube.com/watch?v=aH1QrriaKGo",
+     "domain": "youtube.com",
+     "dr": 99,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 10,
+     "url": "https://www.thetarotguide.com/major-arcana/",
+     "domain": "thetarotguide.com",
+     "dr": 44,
+     "type": "L",
+     "opened": false,
+     "words": 11,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    }
+   ],
+   "words_median": 1439.5,
+   "n_opened": 4,
+   "n_usable": 4
+  },
+  "ES-001": {
+   "keyword": "tarot gratis",
+   "market": "mx",
+   "features": [
+    "AI Overview (поз.6)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://tarot.run/es/reading/setup",
+     "domain": "tarot.run",
+     "dr": 0,
+     "type": "T",
+     "opened": true,
+     "words": 481,
+     "h2": 5,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "¿Qué Orientación Buscas?"
+      ],
+      [
+       "h4",
+       "☽Ejemplos"
+      ],
+      [
+       "h4",
+       "☽Ejemplos"
+      ],
+      [
+       "h2",
+       "Cómo funciona una lectura en Tarot Run"
+      ],
+      [
+       "h2",
+       "De la pregunta a la interpretación"
+      ],
+      [
+       "h2",
+       "Cómo hacer una buena pregunta de tarot"
+      ],
+      [
+       "h2",
+       "Cómo elegir una tirada"
+      ],
+      [
+       "h2",
+       "Preguntas frecuentes"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://www.nostra-tarot.com/es/spread_types/day",
+     "domain": "nostra-tarot.com",
+     "dr": 9,
+     "type": "T",
+     "opened": true,
+     "words": 239,
+     "h2": 10,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Carta del día"
+      ],
+      [
+       "h2",
+       "Relájate"
+      ],
+      [
+       "h2",
+       "Elige tus cartas escuchando tu intuición"
+      ],
+      [
+       "h2",
+       "Tu carta marca el tono del día. Descubre ahora todo tu mes."
+      ],
+      [
+       "h2",
+       "Explora nuestras otras tiradas"
+      ],
+      [
+       "h2",
+       "Tirada Sí o No"
+      ],
+      [
+       "h2",
+       "Tirada de Elección"
+      ],
+      [
+       "h2",
+       "Tirada del Amor"
+      ],
+      [
+       "h2",
+       "Tirada de Relaciones"
+      ],
+      [
+       "h2",
+       "Tirada de Pregunta"
+      ],
+      [
+       "h2",
+       "Tirada Mensual"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://tarotap.com/es",
+     "domain": "tarotap.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1414,
+     "h2": 2,
+     "h3": 29,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Lectura de Tarot con IA en Línea"
+      ],
+      [
+       "h2",
+       "Más por Descubrir"
+      ],
+      [
+       "h3",
+       "Tarot Sí o No"
+      ],
+      [
+       "h3",
+       "Tarot del Amor"
+      ],
+      [
+       "h3",
+       "Tarot del trabajo"
+      ],
+      [
+       "h3",
+       "Sacar Cartas de Tarot"
+      ],
+      [
+       "h3",
+       "Saca una carta oráculo"
+      ],
+      [
+       "h3",
+       "Tarot Manifestación"
+      ],
+      [
+       "h3",
+       "Hablar con Rin"
+      ],
+      [
+       "h3",
+       "Hablar con Luna"
+      ],
+      [
+       "h3",
+       "Vidente Gratis Online"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura anual"
+      ],
+      [
+       "h3",
+       "Tirada Estacional"
+      ],
+      [
+       "h3",
+       "Tarot Mensual"
+      ],
+      [
+       "h3",
+       "Tarot de hoy"
+      ],
+      [
+       "h3",
+       "Tirada de la Cruz Celta"
+      ],
+      [
+       "h3",
+       "Tirada de Dos Opciones"
+      ],
+      [
+       "h3",
+       "Tirada de Tres Opciones"
+      ],
+      [
+       "h2",
+       "Blog de Tarot"
+      ],
+      [
+       "h3",
+       "Gemini para Adivinar: 10 Prompts Listos para Copiar y Pegar"
+      ],
+      [
+       "h3",
+       "ChatGPT Tarot Gratis: Lectura con los Mejores Prompts"
+      ],
+      [
+       "h3",
+       "Tu pregunta elige la tirada"
+      ],
+      [
+       "h3",
+       "La lectura no termina con las cartas"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://tarotoo.com/es/tarot-gratis",
+     "domain": "tarotoo.com",
+     "dr": 49,
+     "type": "T",
+     "opened": true,
+     "words": 1530,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Configuración"
+      ],
+      [
+       "h1",
+       "Tarot Gratis – Lectura de Cartas del Tarot Online"
+      ]
+     ]
+    },
+    {
+     "position": 5,
+     "url": "https://espirituale.com/es/tarot",
+     "domain": "espirituale.com",
+     "dr": 0,
+     "type": "T",
+     "opened": true,
+     "words": 140,
+     "h2": 5,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Elige tu lectura de tarot"
+      ],
+      [
+       "h2",
+       "Tarot Lenormand"
+      ],
+      [
+       "h2",
+       "Cruz celta"
+      ],
+      [
+       "h2",
+       "Tu carta de tarot hoy"
+      ],
+      [
+       "h2",
+       "Sí o no"
+      ],
+      [
+       "h2",
+       "Lectura de tarot online"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://ia.gratis/vida/tarot/",
+     "domain": "ia.gratis",
+     "dr": 19,
+     "type": "T",
+     "opened": true,
+     "words": 1644,
+     "h2": 3,
+     "h3": 3,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "AI tarot reading"
+      ],
+      [
+       "h2",
+       "About this tool"
+      ],
+      [
+       "h2",
+       "How to use AI tarot reading"
+      ],
+      [
+       "h3",
+       "Type or upload"
+      ],
+      [
+       "h3",
+       "Generate"
+      ],
+      [
+       "h3",
+       "Download or share"
+      ],
+      [
+       "h2",
+       "Frequently asked questions"
+      ],
+      [
+       "h4",
+       "Start free. No card."
+      ],
+      [
+       "h4",
+       "Features"
+      ],
+      [
+       "h4",
+       "Also useful"
+      ],
+      [
+       "h4",
+       "Via API"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.losarcanos.com/",
+     "domain": "losarcanos.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 2720,
+     "h2": 3,
+     "h3": 2,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "TAROT gratis Los Arcanos"
+      ],
+      [
+       "h2",
+       "Tarot y horóscopos más requeridos"
+      ],
+      [
+       "h3",
+       "últimos artículos"
+      ],
+      [
+       "h3",
+       "artículos más vistos"
+      ],
+      [
+       "h2",
+       "Tiradas de Tarot Gratis"
+      ],
+      [
+       "h2",
+       "Astrología y Horóscopos gratis"
+      ]
+     ]
+    },
+    {
+     "position": 9,
+     "url": "https://www.tarotamigo.com/tarot/destino-completa/",
+     "domain": "tarotamigo.com",
+     "dr": 26,
+     "type": "T",
+     "opened": true,
+     "words": 1263,
+     "h2": 7,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tirada Completa de 28 Cartas del Tarot del Destino Gratis"
+      ],
+      [
+       "h2",
+       "Haz tu tirada de cartas gratis completa"
+      ],
+      [
+       "h2",
+       "Tirada de cartas gratis con el tarot del destino: una visión global"
+      ],
+      [
+       "h2",
+       "Qué aporta una tirada completa frente a una tirada de pocas cartas"
+      ],
+      [
+       "h2",
+       "Cómo funciona la tirada completa de 28 cartas"
+      ],
+      [
+       "h2",
+       "La tirada se hace con las cartas del tarot de Marsella"
+      ],
+      [
+       "h2",
+       "Qué puede revelar el tarot del destino sobre tu vida"
+      ],
+      [
+       "h2",
+       "Cuándo hacer una tirada de cartas gratis completa"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://www.tarot-josnell.com/",
+     "domain": "tarot-josnell.com",
+     "dr": 10,
+     "type": "T",
+     "opened": false,
+     "words": 11,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    }
+   ],
+   "words_median": 1338.5,
+   "n_opened": 8,
+   "n_usable": 8
+  },
+  "ES-004": {
+   "keyword": "tarot del dia",
+   "market": "mx",
+   "features": [
+    "нет AI Overview, нет PAA, нет видео"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://www.aliciagalvan.com/tarot/tarot-gratis/la-carta-del-dia/",
+     "domain": "aliciagalvan.com",
+     "dr": 35,
+     "type": "T",
+     "opened": true,
+     "words": 776,
+     "h2": 1,
+     "h3": 1,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "La carta del Día"
+      ],
+      [
+       "h2",
+       "DescubreCómo será tu día gracias al tarot"
+      ],
+      [
+       "h3",
+       "Tu carta del día es: La Escalera"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://tarot.euroresidentes.es/carta_hoy",
+     "domain": "tarot.euroresidentes.es",
+     "dr": 29,
+     "type": "T",
+     "opened": true,
+     "words": 405,
+     "h2": 2,
+     "h3": 13,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "¿Cuál es tu carta del Tarot para hoy?"
+      ],
+      [
+       "h2",
+       "También te puede interesar"
+      ],
+      [
+       "h3",
+       "Numerología"
+      ],
+      [
+       "h3",
+       "Horóscopo del día"
+      ],
+      [
+       "h3",
+       "Grafología"
+      ],
+      [
+       "h3",
+       "Leer la mano"
+      ],
+      [
+       "h3",
+       "Te recomendamos\n\n\n\nHoróscopo del día\n\n\nHoróscopos mensuales\n\n\nHoróscopos 2021\n\n\nLibros eso"
+      ],
+      [
+       "h3",
+       "Amor\n\n\n\n¿Sabes cómo interpretar la escritura de una carta de amor con la grafología?\n\n\nCom"
+      ],
+      [
+       "h3",
+       "Numerología"
+      ],
+      [
+       "h3",
+       "Horóscopo del día"
+      ],
+      [
+       "h3",
+       "Grafología"
+      ],
+      [
+       "h3",
+       "Leer la mano"
+      ],
+      [
+       "h3",
+       "Te recomendamos\n\n\n\nHoróscopo del día\n\n\nHoróscopos mensuales\n\n\nHoróscopos 2021\n\n\nLibros eso"
+      ],
+      [
+       "h3",
+       "Amor\n\n\n\n¿Sabes cómo interpretar la escritura de una carta de amor con la grafología?\n\n\nCom"
+      ],
+      [
+       "h2",
+       "Suscríbete al Newsletter"
+      ],
+      [
+       "h3",
+       "Recibe todas las novedades\n\ny promociones en tu correo"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://www.tarot.eu/tarot/tarot-del-dia.php",
+     "domain": "tarot.eu",
+     "dr": 35,
+     "type": "T",
+     "opened": true,
+     "words": 1358,
+     "h2": 6,
+     "h3": 6,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "TAROT DEL DÍA"
+      ],
+      [
+       "h2",
+       "La Templanza"
+      ],
+      [
+       "h3",
+       "Tiradas de Tarot"
+      ],
+      [
+       "h4",
+       "Tarot Egipcio"
+      ],
+      [
+       "h4",
+       "Tarot Gratis"
+      ],
+      [
+       "h4",
+       "Tarot de la Amistad"
+      ],
+      [
+       "h4",
+       "Tarot del Amor"
+      ],
+      [
+       "h4",
+       "Tarot Semanal"
+      ],
+      [
+       "h4",
+       "Tarot Si o No"
+      ],
+      [
+       "h3",
+       "HORÓSCOPO DE HOY"
+      ],
+      [
+       "h3",
+       "NOVEDADES"
+      ],
+      [
+       "h4",
+       "Significado de los Sueños"
+      ],
+      [
+       "h4",
+       "Quiromancia - Lectura de la Mano"
+      ],
+      [
+       "h4",
+       "Hechizos y Rituales"
+      ],
+      [
+       "h4",
+       "Compatibilidad de Signos Chinos"
+      ],
+      [
+       "h3",
+       "NUMEROLOGÍA"
+      ],
+      [
+       "h4",
+       "Personalidad según el nombre"
+      ],
+      [
+       "h4",
+       "Cómo será para ti el 2027"
+      ],
+      [
+       "h4",
+       "Compatibilidad de nombres en el amor"
+      ],
+      [
+       "h4",
+       "Tus números de la suerte"
+      ],
+      [
+       "h2",
+       "Consulta el Tarot del Día"
+      ],
+      [
+       "h2",
+       "El Tarot y el presente"
+      ],
+      [
+       "h2",
+       "Las 24 horas del día y el hilo de la existencia"
+      ],
+      [
+       "h2",
+       "¿Qué puedes preguntar al Tarot sobre tu día por venir?"
+      ],
+      [
+       "h2",
+       "¿Cómo funciona el Tarot Diario?"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://mi.astrocentro.com/tarot/",
+     "domain": "mi.astrocentro.com",
+     "dr": 42,
+     "type": "T",
+     "opened": true,
+     "words": 1810,
+     "h2": 8,
+     "h3": 19,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot del día: ¡Tu tirada de tarot en 3 cartas totalmente gratis!"
+      ],
+      [
+       "h2",
+       "Tarot del día: 3 cartas para conocer mi futuro"
+      ],
+      [
+       "h2",
+       "💫 ¿Por qué elegir el tarot gratis de Astrocentro?"
+      ],
+      [
+       "h2",
+       "Conecta y haz tus preguntas a nuestros redactores: 1€/1US$ ✨"
+      ],
+      [
+       "h2",
+       "🎁 Nuestras tiradas gratis"
+      ],
+      [
+       "h3",
+       "Tarot de los Ángeles Gratis: Una guía exelente para tu día a día"
+      ],
+      [
+       "h3",
+       "Reina de Corazones: Tu futuro en una carta de tarot gratis"
+      ],
+      [
+       "h3",
+       "Videncia gratuita: tu futuro con el tarot de Marsella"
+      ],
+      [
+       "h2",
+       "Contacta a nuestros tarotistas"
+      ],
+      [
+       "h2",
+       "Nuestros últimos artículos sobre tarot"
+      ],
+      [
+       "h3",
+       "Elige tu carta del tarot para 2027: lo que te depara el año"
+      ],
+      [
+       "h3",
+       "Tarot del amor gratis: todas las tiradas que hablan de amor"
+      ],
+      [
+       "h3",
+       "Cruz Celta del amor: 10 cartas para leer tu historia"
+      ],
+      [
+       "h3",
+       "La Justicia en el Tarot: equilibrio, verdad y decisiones"
+      ],
+      [
+       "h3",
+       "El Mago en el Tarot de Marsella: el poder del primer arcano"
+      ],
+      [
+       "h3",
+       "El Sol en el Tarot de Marsella: éxito y buena fortuna"
+      ],
+      [
+       "h3",
+       "La Sacerdotisa en el Tarot: significado e intuición"
+      ],
+      [
+       "h3",
+       "El Juicio en el Tarot: el viaje del autodescubrimiento"
+      ],
+      [
+       "h3",
+       "Tarot de Marsella: cartas, significados y tirada gratis"
+      ],
+      [
+       "h3",
+       "Cómo echar las cartas: la guía paso a paso del principiante"
+      ],
+      [
+       "h3",
+       "Tarot sí o no: 3 cartas para una respuesta clara e inmediata"
+      ],
+      [
+       "h2",
+       "Nuestros tarotistas tienen una historia"
+      ],
+      [
+       "h3",
+       "Entrevista con Alda: el poder de las limpiezas energéticas"
+      ],
+      [
+       "h3",
+       "Conoce a nuestra experta Stella"
+      ],
+      [
+       "h3",
+       "Conoce a Marta: Mediumnidad, clarividencia y tarot revelador"
+      ]
+     ]
+    },
+    {
+     "position": 5,
+     "url": "https://www.losarcanos.com/arcano_dia.php",
+     "domain": "losarcanos.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1202,
+     "h2": 2,
+     "h3": 7,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Horóscopo Diario"
+      ],
+      [
+       "h2",
+       "Horóscopo de hoy gratis"
+      ],
+      [
+       "h3",
+       "Descubre tu destino diario con nuestro horóscopo personalizado."
+      ],
+      [
+       "h3",
+       "Sintoniza con las Estrellas: Descubre lo que el Día Tiene para Ti"
+      ],
+      [
+       "h3",
+       "Amor, Trabajo y Salud: Una Mirada Completa a Tu Día"
+      ],
+      [
+       "h3",
+       "Números de la Suerte y Conexión Interior"
+      ],
+      [
+       "h3",
+       "Por favor ingresa tu día, mes y año de tu nacimiento"
+      ],
+      [
+       "h2",
+       "Recibe un impulso diario de energía cósmica directamente en tu bandeja de entrada con nues"
+      ],
+      [
+       "h3",
+       "Empieza cada día con una dosis de inspiración celestial entregada directamente en tu email"
+      ],
+      [
+       "h3",
+       "Tu horóscopo Semanal aquí"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://astralgossip.com/es/carta-tarot-hoy/",
+     "domain": "astralgossip.com",
+     "dr": 0,
+     "type": "T",
+     "opened": false,
+     "note": "не открылась: error"
+    },
+    {
+     "position": 7,
+     "url": "https://www.horoscopo.com/tarot/hoy-manana",
+     "domain": "horoscopo.com",
+     "dr": 31,
+     "type": "T",
+     "opened": true,
+     "words": 523,
+     "h2": 3,
+     "h3": 9,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Tarot hoy/mañana"
+      ],
+      [
+       "h2",
+       "Más tarot"
+      ],
+      [
+       "h4",
+       "Tarot de ángeles"
+      ],
+      [
+       "h3",
+       "¿A veces desearías que alguien estuviera velando por ti en cada momento? Deseo concedido, "
+      ],
+      [
+       "h4",
+       "Tarot de magia blanca"
+      ],
+      [
+       "h3",
+       "Utiliza el poder del tarot de magia blanca para sanar aquellos problemas que te estén afec"
+      ],
+      [
+       "h4",
+       "Tarot de los Sueños"
+      ],
+      [
+       "h3",
+       "¿Tuviste un sueño intrigante? Averigua su significado con el tarot de los sueños."
+      ],
+      [
+       "h4",
+       "Tarot potencial amoroso"
+      ],
+      [
+       "h3",
+       "Esta carta capta la energía que inicialmente te une con tu interés amoroso o pretendiente."
+      ],
+      [
+       "h1",
+       "Más Horóscopos"
+      ],
+      [
+       "h2",
+       "Cómo ganarte a tu jefe"
+      ],
+      [
+       "h3",
+       "12 maneras de hacer feliz a tu supervisor y al mismo tiempo avanzar en tu carrera."
+      ],
+      [
+       "h4",
+       "Leer artículo"
+      ],
+      [
+       "h2",
+       "Carta del día"
+      ],
+      [
+       "h3",
+       "El Mundo"
+      ],
+      [
+       "h4",
+       "Leer más"
+      ],
+      [
+       "h3",
+       "Tu tarot diario"
+      ],
+      [
+       "h4",
+       "Amor"
+      ],
+      [
+       "h4",
+       "Profesión"
+      ],
+      [
+       "h4",
+       "Humor"
+      ],
+      [
+       "h3",
+       "Las estrellas hoy"
+      ],
+      [
+       "h4",
+       "Energía planetaria del día: 5/5"
+      ],
+      [
+       "h4",
+       "Leer más"
+      ],
+      [
+       "h3",
+       "Cita del día"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.horoscopo.com/tarot/amor-diario",
+     "domain": "horoscopo.com",
+     "dr": 31,
+     "type": "T",
+     "opened": true,
+     "words": 516,
+     "h2": 3,
+     "h3": 9,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Tarot de amor diario"
+      ],
+      [
+       "h2",
+       "Más tarot"
+      ],
+      [
+       "h4",
+       "Tarot de magia blanca"
+      ],
+      [
+       "h3",
+       "Utiliza el poder del tarot de magia blanca para sanar aquellos problemas que te estén afec"
+      ],
+      [
+       "h4",
+       "Tarot triángulo amoroso"
+      ],
+      [
+       "h3",
+       "Si estas teniendo dificultad para decidir entre dos amores, es tiempo de consultar al taro"
+      ],
+      [
+       "h4",
+       "Tarot ruptura amorosa"
+      ],
+      [
+       "h3",
+       "Se ha acabado. ¿Y ahora qué? Cura tu corazón roto..."
+      ],
+      [
+       "h4",
+       "Tarot duda persistente"
+      ],
+      [
+       "h3",
+       "¿Cuál es esa insistente pregunta para la que necesitas una respuesta a este mismo momento?"
+      ],
+      [
+       "h1",
+       "Más Horóscopos"
+      ],
+      [
+       "h2",
+       "Orbita hacia la zona del placer"
+      ],
+      [
+       "h3",
+       "Cada signo zodiacal tiene una parte sensible—¿cual es la tuya?"
+      ],
+      [
+       "h4",
+       "Leer artículo"
+      ],
+      [
+       "h2",
+       "Carta del día"
+      ],
+      [
+       "h3",
+       "El Mundo"
+      ],
+      [
+       "h4",
+       "Leer más"
+      ],
+      [
+       "h3",
+       "Tu tarot diario"
+      ],
+      [
+       "h4",
+       "Amor"
+      ],
+      [
+       "h4",
+       "Profesión"
+      ],
+      [
+       "h4",
+       "Humor"
+      ],
+      [
+       "h3",
+       "Las estrellas hoy"
+      ],
+      [
+       "h4",
+       "Energía planetaria del día: 5/5"
+      ],
+      [
+       "h4",
+       "Leer más"
+      ],
+      [
+       "h3",
+       "Cita del día"
+      ]
+     ]
+    },
+    {
+     "position": 9,
+     "url": "https://www.cadizdirecto.com/tarot/carta-dia-gratis/",
+     "domain": "cadizdirecto.com",
+     "dr": 44,
+     "type": "T",
+     "opened": true,
+     "words": 3022,
+     "h2": 7,
+     "h3": 25,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Carta del Día"
+      ],
+      [
+       "h2",
+       "Qué significa tu carta del día"
+      ],
+      [
+       "h3",
+       "El Loco"
+      ],
+      [
+       "h3",
+       "El Mago"
+      ],
+      [
+       "h3",
+       "La Papisa (La Suma Sacerdotisa)"
+      ],
+      [
+       "h3",
+       "La Emperatriz"
+      ],
+      [
+       "h3",
+       "El Emperador"
+      ],
+      [
+       "h3",
+       "El Papa (El Sumo Sacerdote)"
+      ],
+      [
+       "h3",
+       "Los Enamorados"
+      ],
+      [
+       "h3",
+       "El Carro"
+      ],
+      [
+       "h3",
+       "La Justicia"
+      ],
+      [
+       "h3",
+       "El Ermitaño"
+      ],
+      [
+       "h3",
+       "La Rueda de la Fortuna"
+      ],
+      [
+       "h3",
+       "La Fuerza"
+      ],
+      [
+       "h3",
+       "El Colgado"
+      ],
+      [
+       "h3",
+       "La Muerte"
+      ],
+      [
+       "h3",
+       "La Templanza"
+      ],
+      [
+       "h3",
+       "El Diablo"
+      ],
+      [
+       "h3",
+       "La Torre"
+      ],
+      [
+       "h3",
+       "La Estrella"
+      ],
+      [
+       "h3",
+       "La Luna"
+      ],
+      [
+       "h3",
+       "El Sol"
+      ],
+      [
+       "h3",
+       "El Juicio"
+      ],
+      [
+       "h3",
+       "El Mundo"
+      ],
+      [
+       "h2",
+       "Qué significa la Carta del Día gratis en el tarot"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://www.marmaratarot.com/tarot-diario-gratuito",
+     "domain": "marmaratarot.com",
+     "dr": 29,
+     "type": "T",
+     "opened": false,
+     "note": "не открылась: error"
+    }
+   ],
+   "words_median": 989.0,
+   "n_opened": 8,
+   "n_usable": 8
+  },
+  "ES-005": {
+   "keyword": "tarot si o no",
+   "market": "mx",
+   "features": [
+    "AI Overview (поз.2)",
+    "видео (поз.10)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://www.losarcanos.com/tarot-si-o-no.php",
+     "domain": "losarcanos.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1217,
+     "h2": 1,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "TAROT SI O NO"
+      ],
+      [
+       "h2",
+       "El TAROT puede ayudarte a tomar una importante decisión."
+      ],
+      [
+       "h3",
+       "Preguntas al Tarot:"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://www.nostra-tarot.com/es/spread_types/yesno",
+     "domain": "nostra-tarot.com",
+     "dr": 8,
+     "type": "T",
+     "opened": true,
+     "words": 260,
+     "h2": 10,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tirada Sí o No"
+      ],
+      [
+       "h2",
+       "Relájate"
+      ],
+      [
+       "h2",
+       "Elige tus cartas escuchando tu intuición"
+      ],
+      [
+       "h2",
+       "Esta carta te da una primera dirección. Ahora haz tu verdadera pregunta."
+      ],
+      [
+       "h2",
+       "Explora nuestras otras tiradas"
+      ],
+      [
+       "h2",
+       "Carta del día"
+      ],
+      [
+       "h2",
+       "Tirada de Elección"
+      ],
+      [
+       "h2",
+       "Tirada del Amor"
+      ],
+      [
+       "h2",
+       "Tirada de Relaciones"
+      ],
+      [
+       "h2",
+       "Tirada de Pregunta"
+      ],
+      [
+       "h2",
+       "Tirada Mensual"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://tarotoo.com/es/tarot-si-no",
+     "domain": "tarotoo.com",
+     "dr": 49,
+     "type": "T",
+     "opened": true,
+     "words": 1601,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Configuración"
+      ],
+      [
+       "h1",
+       "Oráculo de Tarot Sí o No Gratis"
+      ]
+     ]
+    },
+    {
+     "position": 5,
+     "url": "https://jobcannon.io/es/tarot/yes-no",
+     "domain": "jobcannon.io",
+     "dr": 40,
+     "type": "T",
+     "opened": true,
+     "words": 533,
+     "h2": 2,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "¿Qué cartas del tarot significan Sí, No o Depende? Tabla rápida"
+      ],
+      [
+       "h2",
+       "Preguntas frecuentes"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://www.aitarot.pro/es/tools/tarot/yes-no",
+     "domain": "aitarot.pro",
+     "dr": 27,
+     "type": "T",
+     "opened": true,
+     "words": 522,
+     "h2": 3,
+     "h3": 11,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Lectura gratuita de tarot Sí o No"
+      ],
+      [
+       "h2",
+       "Cómo funciona"
+      ],
+      [
+       "h3",
+       "Haz una pregunta cerrada"
+      ],
+      [
+       "h3",
+       "Saca una o tres cartas"
+      ],
+      [
+       "h3",
+       "Lee el veredicto"
+      ],
+      [
+       "h2",
+       "Preguntas frecuentes"
+      ],
+      [
+       "h3",
+       "¿Qué tan precisa es una lectura de tarot sí/no?"
+      ],
+      [
+       "h3",
+       "¿Qué significan «todavía no» y «poco claro»?"
+      ],
+      [
+       "h3",
+       "¿Puedo preguntar por otra persona?"
+      ],
+      [
+       "h3",
+       "¿Es gratis y necesito una cuenta?"
+      ],
+      [
+       "h2",
+       "Más para explorar"
+      ],
+      [
+       "h3",
+       "Lectura general"
+      ],
+      [
+       "h3",
+       "cruz celta"
+      ],
+      [
+       "h3",
+       "sus sentimientos"
+      ],
+      [
+       "h3",
+       "Perspectiva de la relación"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://play.google.com/store/apps/details?id=org.tiradadecartasgratis.tarotsiono&hl=es_MX",
+     "domain": "play.google.com",
+     "dr": 100,
+     "type": "APP",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 8,
+     "url": "https://juliantarot.com/es-419/tarot/yes-or-no",
+     "domain": "juliantarot.com",
+     "dr": 18,
+     "type": "T",
+     "opened": true,
+     "words": 1479,
+     "h2": 6,
+     "h3": 8,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot sí o no"
+      ],
+      [
+       "h2",
+       "Cómo funciona el tarot sí o no"
+      ],
+      [
+       "h3",
+       "Haz una pregunta clara"
+      ],
+      [
+       "h3",
+       "Saca una carta"
+      ],
+      [
+       "h3",
+       "Lee la dirección, no un veredicto"
+      ],
+      [
+       "h2",
+       "¿Qué cartas significan sí, no o quizá?"
+      ],
+      [
+       "h3",
+       "Sí48"
+      ],
+      [
+       "h3",
+       "Quizás16"
+      ],
+      [
+       "h3",
+       "No14"
+      ],
+      [
+       "h2",
+       "Tarot de Marsella sí o no: los 22 arcanos"
+      ],
+      [
+       "h3",
+       "Los 22 arcanos del tarot de Marsella: sí, no o quizás"
+      ],
+      [
+       "h2",
+       "Cómo se decide sí, no o quizás"
+      ],
+      [
+       "h3",
+       "Arcanos sí o no: los 22 arcanos mayores"
+      ],
+      [
+       "h2",
+       "Preguntas de tarot sí o no"
+      ],
+      [
+       "h2",
+       "Más herramientas gratis"
+      ]
+     ]
+    },
+    {
+     "position": 9,
+     "url": "https://tarotap.com/es/yes-or-no-tarot",
+     "domain": "tarotap.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1178,
+     "h2": 5,
+     "h3": 27,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot Sí o No Respuesta Inmediata con 1 o 3 Cartas Gratis"
+      ],
+      [
+       "h2",
+       "Cómo Hacer el Tarot Sí o No Gratis"
+      ],
+      [
+       "h3",
+       "Aquieta tu mente"
+      ],
+      [
+       "h3",
+       "Elige tu Tirada"
+      ],
+      [
+       "h3",
+       "Haz una Pregunta Clara"
+      ],
+      [
+       "h2",
+       "Tirada Sí o No: 1 Carta o 3 Cartas Gratis"
+      ],
+      [
+       "h3",
+       "Tarot Sí o No 1 Carta"
+      ],
+      [
+       "h3",
+       "Tarot Sí o No 3 Cartas"
+      ],
+      [
+       "h2",
+       "Preguntas Frecuentes del Tarot Sí o No Gratis"
+      ],
+      [
+       "h3",
+       "¿Puedo repetir el tarot sí o no gratis para la misma pregunta?"
+      ],
+      [
+       "h3",
+       "¿El tarot sí o no gratis fiable es realmente preciso?"
+      ],
+      [
+       "h3",
+       "¿Cómo pregunto al tarot sí no para que funcione bien?"
+      ],
+      [
+       "h3",
+       "¿Pueden las lecturas de Tarot de Sí o No predecir el futuro?"
+      ],
+      [
+       "h3",
+       "¿Qué debo recordar al hacer el tarot gratis eligiendo solo 1 carta o 3 cartas?"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura anual"
+      ],
+      [
+       "h3",
+       "Tirada Estacional"
+      ],
+      [
+       "h3",
+       "Tarot Mensual"
+      ],
+      [
+       "h3",
+       "Tarot de hoy"
+      ],
+      [
+       "h3",
+       "Tirada de la Cruz Celta"
+      ],
+      [
+       "h3",
+       "Tirada de Dos Opciones"
+      ],
+      [
+       "h3",
+       "Tirada de Tres Opciones"
+      ],
+      [
+       "h2",
+       "Más por Descubrir"
+      ],
+      [
+       "h3",
+       "Lectura Gratuita de Tarot con IA"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://www.youtube.com/watch?v=0ILOWizWUQI",
+     "domain": "youtube.com",
+     "dr": 99,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    }
+   ],
+   "words_median": 1178,
+   "n_opened": 7,
+   "n_usable": 7
+  },
+  "ES-009": {
+   "keyword": "tarot del amor",
+   "market": "mx",
+   "features": [
+    "AI Overview (поз.5)",
+    "видео (поз.8)",
+    "картинки-книги (поз.9)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://www.trustedtarot.com/es/tarot-del-amor/",
+     "domain": "trustedtarot.com",
+     "dr": 50,
+     "type": "T",
+     "opened": false,
+     "note": "не открылась: blocked"
+    },
+    {
+     "position": 2,
+     "url": "https://play.google.com/store/apps/details?id=planetevoyance.tarot_amour&hl=es_MX",
+     "domain": "play.google.com",
+     "dr": 100,
+     "type": "APP",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 3,
+     "url": "https://www.losarcanos.com/amor.php",
+     "domain": "losarcanos.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1456,
+     "h2": 1,
+     "h3": 6,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Tarot del Amor"
+      ],
+      [
+       "h3",
+       "Las revelaciones del Tarot del Amor te ayudaran a conseguir el amor verdadero, podrás anal"
+      ],
+      [
+       "h2",
+       "Lecturas de Tarot del Amor de LosArcanos.com"
+      ],
+      [
+       "h3",
+       "Tarot del Amor: Tirada de 7 cartas"
+      ],
+      [
+       "h3",
+       "¿Qué siente por mí?: Tirada de 3 Cartas"
+      ],
+      [
+       "h3",
+       "Encontrar el Amor: Tirada de 7 Cartas"
+      ],
+      [
+       "h3",
+       "Preguntas acerca del Tarot:"
+      ],
+      [
+       "h3",
+       "Preguntas al Tarot:"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://tarotoo.com/es/tarot-del-amor",
+     "domain": "tarotoo.com",
+     "dr": 49,
+     "type": "T",
+     "opened": true,
+     "words": 1513,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Configuración"
+      ],
+      [
+       "h1",
+       "Lectura de tarot del amor gratis – tirada de 5 cartas"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://www.horoscopo.com/tarot/amor-diario",
+     "domain": "horoscopo.com",
+     "dr": 31,
+     "type": "T",
+     "opened": true,
+     "words": 516,
+     "h2": 3,
+     "h3": 9,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Tarot de amor diario"
+      ],
+      [
+       "h2",
+       "Más tarot"
+      ],
+      [
+       "h4",
+       "Tarot de magia blanca"
+      ],
+      [
+       "h3",
+       "Utiliza el poder del tarot de magia blanca para sanar aquellos problemas que te estén afec"
+      ],
+      [
+       "h4",
+       "Tarot triángulo amoroso"
+      ],
+      [
+       "h3",
+       "Si estas teniendo dificultad para decidir entre dos amores, es tiempo de consultar al taro"
+      ],
+      [
+       "h4",
+       "Tarot ruptura amorosa"
+      ],
+      [
+       "h3",
+       "Se ha acabado. ¿Y ahora qué? Cura tu corazón roto..."
+      ],
+      [
+       "h4",
+       "Tarot duda persistente"
+      ],
+      [
+       "h3",
+       "¿Cuál es esa insistente pregunta para la que necesitas una respuesta a este mismo momento?"
+      ],
+      [
+       "h1",
+       "Más Horóscopos"
+      ],
+      [
+       "h2",
+       "Orbita hacia la zona del placer"
+      ],
+      [
+       "h3",
+       "Cada signo zodiacal tiene una parte sensible—¿cual es la tuya?"
+      ],
+      [
+       "h4",
+       "Leer artículo"
+      ],
+      [
+       "h2",
+       "Carta del día"
+      ],
+      [
+       "h3",
+       "El Mundo"
+      ],
+      [
+       "h4",
+       "Leer más"
+      ],
+      [
+       "h3",
+       "Tu tarot diario"
+      ],
+      [
+       "h4",
+       "Amor"
+      ],
+      [
+       "h4",
+       "Profesión"
+      ],
+      [
+       "h4",
+       "Humor"
+      ],
+      [
+       "h3",
+       "Las estrellas hoy"
+      ],
+      [
+       "h4",
+       "Energía planetaria del día: 5/5"
+      ],
+      [
+       "h4",
+       "Leer más"
+      ],
+      [
+       "h3",
+       "Cita del día"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://www.esotarot.es/tarot-amor/",
+     "domain": "esotarot.es",
+     "dr": 39,
+     "type": "T",
+     "opened": true,
+     "words": 178,
+     "h2": 2,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Tarot del Amor Gratis"
+      ],
+      [
+       "h2",
+       "Escoja ocho cartas en el siguiente juego:"
+      ],
+      [
+       "h2",
+       "Tarot gratis:"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.youtube.com/watch?v=QamI8LYsmr4",
+     "domain": "youtube.com",
+     "dr": 99,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 10,
+     "url": "https://www.tarotamigo.com/tarot/amor/",
+     "domain": "tarotamigo.com",
+     "dr": 26,
+     "type": "T",
+     "opened": true,
+     "words": 1924,
+     "h2": 9,
+     "h3": 7,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot del Amor Gratis"
+      ],
+      [
+       "h2",
+       "Haz tu tirada gratuita"
+      ],
+      [
+       "h2",
+       "Cómo el tarot del amor analiza tu situación sentimental"
+      ],
+      [
+       "h3",
+       "Tirada de tarot de cartas gratis para consultar sobre el amor"
+      ],
+      [
+       "h2",
+       "Tarot del amor con nombres: cómo funciona la tirada gratis"
+      ],
+      [
+       "h3",
+       "¿Es necesario escribir el nombre de la persona amada?"
+      ],
+      [
+       "h2",
+       "Qué siente por ti ahora mismo según las cartas"
+      ],
+      [
+       "h2",
+       "Qué puedes preguntar en una tirada del tarot del amor"
+      ],
+      [
+       "h3",
+       "Preguntas sobre una relación o una persona concreta"
+      ],
+      [
+       "h3",
+       "Preguntas sobre tu futuro sentimental"
+      ],
+      [
+       "h3",
+       "Una tirada de tres cartas para cuestiones de amor"
+      ],
+      [
+       "h2",
+       "Tarot del amor: tu futuro inmediato gratis"
+      ],
+      [
+       "h3",
+       "Qué puede ocurrir en el amor en las próximas semanas"
+      ],
+      [
+       "h3",
+       "Tarot del amor gratis con respuesta inmediata"
+      ],
+      [
+       "h2",
+       "Cuando el amor no llega, qué puede revelarte esta consulta gratis del tarot del amor"
+      ],
+      [
+       "h2",
+       "Una tarotista del amor que te lea las cartas de verdad"
+      ],
+      [
+       "h2",
+       "¿Tu duda de amor necesita una respuesta más personal?"
+      ]
+     ]
+    }
+   ],
+   "words_median": 1456,
+   "n_opened": 5,
+   "n_usable": 5
+  },
+  "ES-099": {
+   "keyword": "tarot gratis 3 cartas",
+   "market": "mx",
+   "features": [
+    "AI Overview (поз.3)",
+    "Похожие вопросы (поз.10, 4 шт.)",
+    "видео TikTok (поз.8)"
+   ],
+   "rows": [
+    {
+     "position": 1,
+     "url": "https://tarotoo.com/es/tarot-3-cartas",
+     "domain": "tarotoo.com",
+     "dr": 49,
+     "type": "T",
+     "opened": true,
+     "words": 1245,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "Configuración"
+      ],
+      [
+       "h1",
+       "Tarot 3 Cartas de Marsella"
+      ]
+     ]
+    },
+    {
+     "position": 2,
+     "url": "https://tarotfiable.es/tarot-gratis-3-cartas/",
+     "domain": "tarotfiable.es",
+     "dr": 11,
+     "type": "T",
+     "opened": true,
+     "words": 5069,
+     "h2": 12,
+     "h3": 17,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Tirada de Tarot Gratis 3 Cartas"
+      ],
+      [
+       "h2",
+       "Consulta la Tirada de Cartas Gratis"
+      ],
+      [
+       "h4",
+       "Consulta Ahora"
+      ],
+      [
+       "h2",
+       "¿Qué es el tarot?"
+      ],
+      [
+       "h3",
+       "¿Cuales son los mensajes que nos da el tarot?"
+      ],
+      [
+       "h2",
+       "Obtén el máximo provecho de tu tirada de tarot gratis 3 cartas"
+      ],
+      [
+       "h2",
+       "Consejos que te serán útiles para tener una consulta de tarot certera y adecuada:"
+      ],
+      [
+       "h3",
+       "Primer consejo:"
+      ],
+      [
+       "h3",
+       "Segundo consejo:"
+      ],
+      [
+       "h3",
+       "Tercer consejo:"
+      ],
+      [
+       "h3",
+       "Cuarto consejo:"
+      ],
+      [
+       "h3",
+       "Quinto consejo:"
+      ],
+      [
+       "h3",
+       "Sexto consejo:"
+      ],
+      [
+       "h3",
+       "Séptimo consejo:"
+      ],
+      [
+       "h3",
+       "Octavo consejo:"
+      ],
+      [
+       "h3",
+       "Noveno consejo:"
+      ],
+      [
+       "h3",
+       "Decimo consejo:"
+      ],
+      [
+       "h3",
+       "Onceavo consejo:"
+      ],
+      [
+       "h3",
+       "Doceavo consejo:"
+      ],
+      [
+       "h2",
+       "El Método de la Intuición"
+      ],
+      [
+       "h3",
+       "El tarot, en general, busca la predicción del futuro de las personas."
+      ],
+      [
+       "h2",
+       "¿Cuáles son los métodos de lecturas que existen en la adivinación?"
+      ],
+      [
+       "h2",
+       "La Concentración es muy importante en la Cartomancia"
+      ],
+      [
+       "h3",
+       "inconvenientes de este método de adivinación"
+      ],
+      [
+       "h2",
+       "El vaticinio mediante la tirada y lectura de la Baraja Española."
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://tarotime.net/es/tirada-tarot-3-cartas-gratis/",
+     "domain": "tarotime.net",
+     "dr": 3,
+     "type": "T",
+     "opened": false,
+     "note": "не открылась: error"
+    },
+    {
+     "position": 5,
+     "url": "https://www.tarot.com/readings-reports/tarot-readings/free/love",
+     "domain": "tarot.com",
+     "dr": 71,
+     "type": "T",
+     "opened": false,
+     "words": 12,
+     "h2": 0,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [],
+     "note": "не открылась: защита от ботов / пустой ответ (11 слов)"
+    },
+    {
+     "position": 6,
+     "url": "https://tarotap.com/es/yes-or-no-tarot",
+     "domain": "tarotap.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1178,
+     "h2": 5,
+     "h3": 27,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot Sí o No Respuesta Inmediata con 1 o 3 Cartas Gratis"
+      ],
+      [
+       "h2",
+       "Cómo Hacer el Tarot Sí o No Gratis"
+      ],
+      [
+       "h3",
+       "Aquieta tu mente"
+      ],
+      [
+       "h3",
+       "Elige tu Tirada"
+      ],
+      [
+       "h3",
+       "Haz una Pregunta Clara"
+      ],
+      [
+       "h2",
+       "Tirada Sí o No: 1 Carta o 3 Cartas Gratis"
+      ],
+      [
+       "h3",
+       "Tarot Sí o No 1 Carta"
+      ],
+      [
+       "h3",
+       "Tarot Sí o No 3 Cartas"
+      ],
+      [
+       "h2",
+       "Preguntas Frecuentes del Tarot Sí o No Gratis"
+      ],
+      [
+       "h3",
+       "¿Puedo repetir el tarot sí o no gratis para la misma pregunta?"
+      ],
+      [
+       "h3",
+       "¿El tarot sí o no gratis fiable es realmente preciso?"
+      ],
+      [
+       "h3",
+       "¿Cómo pregunto al tarot sí no para que funcione bien?"
+      ],
+      [
+       "h3",
+       "¿Pueden las lecturas de Tarot de Sí o No predecir el futuro?"
+      ],
+      [
+       "h3",
+       "¿Qué debo recordar al hacer el tarot gratis eligiendo solo 1 carta o 3 cartas?"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura anual"
+      ],
+      [
+       "h3",
+       "Tirada Estacional"
+      ],
+      [
+       "h3",
+       "Tarot Mensual"
+      ],
+      [
+       "h3",
+       "Tarot de hoy"
+      ],
+      [
+       "h3",
+       "Tirada de la Cruz Celta"
+      ],
+      [
+       "h3",
+       "Tirada de Dos Opciones"
+      ],
+      [
+       "h3",
+       "Tirada de Tres Opciones"
+      ],
+      [
+       "h2",
+       "Más por Descubrir"
+      ],
+      [
+       "h3",
+       "Lectura Gratuita de Tarot con IA"
+      ]
+     ]
+    },
+    {
+     "position": 7,
+     "url": "https://www.tarotamigo.com/tarot/tres-cartas/",
+     "domain": "tarotamigo.com",
+     "dr": 26,
+     "type": "T",
+     "opened": true,
+     "words": 1126,
+     "h2": 8,
+     "h3": 6,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Tarot Gratis de 3 Cartas Españolas"
+      ],
+      [
+       "h2",
+       "Tirada de 3 Cartas"
+      ],
+      [
+       "h2",
+       "Qué es y cómo interpretar la tirada de cartas gratis de 3 cartas españolas"
+      ],
+      [
+       "h2",
+       "Qué representa cada carta en la tirada de 3 cartas"
+      ],
+      [
+       "h3",
+       "La primera carta, tu pasado"
+      ],
+      [
+       "h3",
+       "La segunda carta, tu presente"
+      ],
+      [
+       "h3",
+       "La tercera carta, tu futuro inmediato"
+      ],
+      [
+       "h2",
+       "Por qué la baraja española para una tirada de 3 cartas"
+      ],
+      [
+       "h2",
+       "Para qué sirve el tarot gratis de 3 cartas"
+      ],
+      [
+       "h2",
+       "Cómo hacer tu consulta ahora mismo"
+      ],
+      [
+       "h2",
+       "Preguntas frecuentes sobre la tirada de 3 cartas"
+      ],
+      [
+       "h3",
+       "¿Puedo repetir la tirada si no me gusta la respuesta?"
+      ],
+      [
+       "h3",
+       "¿Funciona para cualquier tipo de pregunta?"
+      ],
+      [
+       "h3",
+       "¿La baraja española es tan válida como otros tipos de tarot para una tirada de 3 cartas?"
+      ],
+      [
+       "h2",
+       "¿Prefieres que una persona mire tu caso?"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.tiktok.com/@veralmakeup/video/7641304740474653966",
+     "domain": "tiktok.com",
+     "dr": 97,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 9,
+     "url": "https://tiradastarotgratis.net/tiradas-tarot-gratis-tarot-de-marsella-tres-cartas/",
+     "domain": "tiradastarotgratis.net",
+     "dr": 6,
+     "type": "T",
+     "opened": true,
+     "words": 632,
+     "h2": 2,
+     "h3": 2,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h3",
+       "Mensaje de los Angeles"
+      ],
+      [
+       "h3",
+       "Tarot del amor 💕"
+      ],
+      [
+       "h2",
+       "Como se debe interpretar la lectura de Tarot"
+      ],
+      [
+       "h2",
+       "Oración a San Gabriel antes de hacer tu lectura de cartas."
+      ]
+     ]
+    }
+   ],
+   "words_median": 1178,
+   "n_opened": 5,
+   "n_usable": 5
+  },
+  "ES-012": {
+   "keyword": "cartas del tarot",
+   "market": "mx",
+   "features": [
+    "AI Overview (поз.1)",
+    "Похожие вопросы (поз.6, 4 шт.)",
+    "картинки"
+   ],
+   "rows": [
+    {
+     "position": 2,
+     "url": "https://www.thetarotlady.com/tarot-card-meanings/",
+     "domain": "thetarotlady.com",
+     "dr": 52,
+     "type": "L",
+     "opened": true,
+     "words": 832,
+     "h2": 54,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h1",
+       "Want to learn the tarot card meanings?"
+      ],
+      [
+       "h2",
+       "Tarot Card by Card will help you master the cards in a hip, modern, and fun way!"
+      ],
+      [
+       "h4",
+       "The Major Arcana symbolizes the big picture, fate, or major lessons. These are the things "
+      ],
+      [
+       "h2",
+       "The Fool"
+      ],
+      [
+       "h2",
+       "The Magician"
+      ],
+      [
+       "h2",
+       "The High Priestess"
+      ],
+      [
+       "h2",
+       "The Empress"
+      ],
+      [
+       "h2",
+       "The Emperor"
+      ],
+      [
+       "h2",
+       "The Hierophant"
+      ],
+      [
+       "h2",
+       "The Lovers"
+      ],
+      [
+       "h2",
+       "The Chariot"
+      ],
+      [
+       "h2",
+       "Strength"
+      ],
+      [
+       "h2",
+       "The Hermit"
+      ],
+      [
+       "h2",
+       "The Wheel of Fortune"
+      ],
+      [
+       "h2",
+       "Justice"
+      ],
+      [
+       "h2",
+       "The Hanged Man"
+      ],
+      [
+       "h2",
+       "Death"
+      ],
+      [
+       "h2",
+       "Temperance"
+      ],
+      [
+       "h2",
+       "The Devil"
+      ],
+      [
+       "h2",
+       "The Tower"
+      ],
+      [
+       "h2",
+       "The Star"
+      ],
+      [
+       "h2",
+       "The Moon"
+      ],
+      [
+       "h2",
+       "The Sun"
+      ],
+      [
+       "h2",
+       "Judgement"
+      ],
+      [
+       "h2",
+       "The World"
+      ]
+     ]
+    },
+    {
+     "position": 3,
+     "url": "https://es.wikipedia.org/wiki/Tarot_(adivinaci%C3%B3n)",
+     "domain": "es.wikipedia.org",
+     "dr": 97,
+     "type": "W",
+     "opened": true,
+     "words": 5141,
+     "h2": 9,
+     "h3": 18,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Historia"
+      ],
+      [
+       "h3",
+       "Introducción de las barajas ordinarias de naipes"
+      ],
+      [
+       "h3",
+       "Aparición de la baraja de tarot"
+      ],
+      [
+       "h3",
+       "Ludus triumphorum"
+      ],
+      [
+       "h3",
+       "Vinculación con la adivinación"
+      ],
+      [
+       "h3",
+       "Debates sobre el significado original del tarot"
+      ],
+      [
+       "h2",
+       "Composición de la baraja"
+      ],
+      [
+       "h3",
+       "Número de cartas"
+      ],
+      [
+       "h3",
+       "Diseño"
+      ],
+      [
+       "h3",
+       "Tipología y nombre de las cartas"
+      ],
+      [
+       "h4",
+       "Triunfos o arcanos mayores"
+      ],
+      [
+       "h4",
+       "Arcanos menores"
+      ],
+      [
+       "h2",
+       "Uso adivinatorio de las cartas de tarot"
+      ],
+      [
+       "h3",
+       "Tipos de lectura de tarot"
+      ],
+      [
+       "h3",
+       "Tiradas"
+      ],
+      [
+       "h2",
+       "Otros usos"
+      ],
+      [
+       "h3",
+       "Juego del tarot"
+      ],
+      [
+       "h3",
+       "Psicología"
+      ],
+      [
+       "h3",
+       "El tarot como instrumento mnemotécnico"
+      ],
+      [
+       "h2",
+       "Elementos de un tarot genérico"
+      ],
+      [
+       "h3",
+       "Un conjunto de cartas con significados"
+      ],
+      [
+       "h3",
+       "Ilustración de las cartas"
+      ],
+      [
+       "h3",
+       "Interpretación numerológica"
+      ],
+      [
+       "h3",
+       "Categorías básicas"
+      ],
+      [
+       "h3",
+       "Liga con la tradición"
+      ]
+     ]
+    },
+    {
+     "position": 4,
+     "url": "https://listado.mercadolibre.com.mx/otras-categorias/esoterismo/cartas-tarot/",
+     "domain": "listado.mercadolibre.com.mx",
+     "dr": 87,
+     "type": "SHOP",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 5,
+     "url": "https://darkforesttarotcards.com/es-es/blogs/news/tarot-card-meanings-complete-guide",
+     "domain": "darkforesttarotcards.com",
+     "dr": 5,
+     "type": "A",
+     "opened": true,
+     "words": 9067,
+     "h2": 6,
+     "h3": 53,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Significados de las Cartas del Tarot: Guía Completa de las 78 Cartas"
+      ],
+      [
+       "h2",
+       "Significados de los Arcanos Mayores: las 22 cartas"
+      ],
+      [
+       "h2",
+       "Significados de los Arcanos Menores: las 56 cartas"
+      ],
+      [
+       "h3",
+       "Palo de Bastos: fuego, acción, ambición"
+      ],
+      [
+       "h3",
+       "Palo de Copas: agua, emoción, relaciones"
+      ],
+      [
+       "h3",
+       "Palo de Espadas: aire, intelecto, conflicto"
+      ],
+      [
+       "h3",
+       "Palo de Pentáculos: tierra, trabajo, abundancia"
+      ],
+      [
+       "h2",
+       "Cómo leer las cartas de tarot con esta guía"
+      ],
+      [
+       "h2",
+       "Tu mazo importa"
+      ],
+      [
+       "h2",
+       "Cartas desde el Bosque"
+      ],
+      [
+       "h2",
+       "Preguntas frecuentes"
+      ],
+      [
+       "h3",
+       "¿Qué representan las cartas de tarot?"
+      ],
+      [
+       "h3",
+       "¿Cuáles son las 22 cartas de los Arcanos Mayores?"
+      ],
+      [
+       "h3",
+       "¿Cuáles son las 78 cartas del tarot?"
+      ],
+      [
+       "h3",
+       "¿Cuál es la carta más fuerte del tarot?"
+      ],
+      [
+       "h3",
+       "¿Cuál es la diferencia entre los significados verticales e invertidos del tarot?"
+      ],
+      [
+       "h3",
+       "¿Puedes leerte las cartas de tarot a ti misma?"
+      ],
+      [
+       "h3",
+       "¿Necesitas un mazo especial para leer el tarot?"
+      ],
+      [
+       "h3",
+       "El Loco"
+      ],
+      [
+       "h3",
+       "El Mago"
+      ],
+      [
+       "h3",
+       "La Sacerdotisa"
+      ],
+      [
+       "h3",
+       "La Emperatriz"
+      ],
+      [
+       "h3",
+       "El Emperador"
+      ],
+      [
+       "h3",
+       "El Hierofante"
+      ],
+      [
+       "h3",
+       "Los Enamorados"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.lecturas.com/horoscopo/astrologia/tarot-significado-78-cartas-arcanos-mayores-menores-como-interpretarlas_139488",
+     "domain": "lecturas.com",
+     "dr": 69,
+     "type": "A",
+     "opened": false,
+     "note": "не открылась: error"
+    },
+    {
+     "position": 9,
+     "url": "https://tarotap.com/es/draw-cards",
+     "domain": "tarotap.com",
+     "dr": 52,
+     "type": "T",
+     "opened": true,
+     "words": 1190,
+     "h2": 5,
+     "h3": 33,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Cartas de Tarot al Azar Online Gratis"
+      ],
+      [
+       "h2",
+       "Qué puedes hacer con esta herramienta de tarot"
+      ],
+      [
+       "h3",
+       "Solo sacar cartas, sin pregunta"
+      ],
+      [
+       "h3",
+       "Cartas invertidas, sí o no"
+      ],
+      [
+       "h3",
+       "Solo Arcanos Mayores"
+      ],
+      [
+       "h3",
+       "De 1 a 8 cartas, elegidas por ti"
+      ],
+      [
+       "h3",
+       "Girar al momento o todas a la vez"
+      ],
+      [
+       "h3",
+       "Pregunta sobre las cartas que acabas de sacar"
+      ],
+      [
+       "h2",
+       "Barajar y Sacar Cartas de Tarot al Azar: 3 Pasos"
+      ],
+      [
+       "h3",
+       "Elige cuántas cartas"
+      ],
+      [
+       "h3",
+       "Baraja y escoge del abanico"
+      ],
+      [
+       "h3",
+       "Gira las cartas y pregunta, o vuelve a sacar"
+      ],
+      [
+       "h2",
+       "Tarot al Azar Online: Preguntas Frecuentes"
+      ],
+      [
+       "h3",
+       "¿Qué preparación se necesita antes de extraer las cartas de Tarot?"
+      ],
+      [
+       "h3",
+       "¿Cuántas cartas es apropiado extraer en una sola tirada?"
+      ],
+      [
+       "h3",
+       "¿Es confiable el algoritmo aleatorio del sistema?"
+      ],
+      [
+       "h3",
+       "¿Extraer una carta invertida es un mal presagio?"
+      ],
+      [
+       "h3",
+       "¿Se pueden cambiar los resultados de la extracción de cartas de Tarot?"
+      ],
+      [
+       "h3",
+       "¿Me dice qué significan las cartas que saco?"
+      ],
+      [
+       "h3",
+       "¿Las cartas las elijo yo o las saca el sistema?"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura del Tarot para el año 2027"
+      ],
+      [
+       "h3",
+       "Lectura anual"
+      ],
+      [
+       "h3",
+       "Tirada Estacional"
+      ],
+      [
+       "h3",
+       "Tarot Mensual"
+      ]
+     ]
+    },
+    {
+     "position": 10,
+     "url": "https://www.astrolink.com/es/tarot",
+     "domain": "astrolink.com",
+     "dr": 43,
+     "type": "L",
+     "opened": true,
+     "words": 1501,
+     "h2": 4,
+     "h3": 3,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Arcanos Mayores (22)  Más detalles"
+      ],
+      [
+       "h2",
+       "Arcanos Menores (56)  Más detalles"
+      ],
+      [
+       "h2",
+       "¿Qué es el Tarot?"
+      ],
+      [
+       "h3",
+       "Usando el Tarot como un Oráculo"
+      ],
+      [
+       "h3",
+       "Los Arcanos del Tarot"
+      ],
+      [
+       "h3",
+       "Profundizando en la información..."
+      ],
+      [
+       "h2",
+       "¿Cómo consultar correctamente el Tarot?"
+      ]
+     ]
+    }
+   ],
+   "words_median": 1501,
+   "n_opened": 5,
+   "n_usable": 5
+  },
+  "ES-091": {
+   "keyword": "arcanos mayores",
+   "market": "mx",
+   "features": [
+    "AI Overview (поз.1)",
+    "Похожие вопросы (поз.3, 4 шт.)",
+    "картинки",
+    "видео (поз.8, 9)"
+   ],
+   "rows": [
+    {
+     "position": 2,
+     "url": "https://www.astrolink.com/es/tarot/arcanos-mayores",
+     "domain": "astrolink.com",
+     "dr": 43,
+     "type": "L",
+     "opened": true,
+     "words": 87,
+     "h2": 1,
+     "h3": 0,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Los 22 Arcanos Mayores"
+      ]
+     ],
+     "note": "страница почти целиком на JS: сервер отдаёт <100 слов, текст не посчитан",
+     "words_usable": false
+    },
+    {
+     "position": 4,
+     "url": "https://es.wikipedia.org/wiki/Triunfos_(tarot)",
+     "domain": "es.wikipedia.org",
+     "dr": 97,
+     "type": "W",
+     "opened": true,
+     "words": 3071,
+     "h2": 7,
+     "h3": 1,
+     "faq_in_html": false,
+     "headings": [
+      [
+       "h2",
+       "Historia"
+      ],
+      [
+       "h3",
+       "Uso adivinatorio"
+      ],
+      [
+       "h2",
+       "Triunfos o Arcanos Mayores en las barajas de tarot"
+      ],
+      [
+       "h2",
+       "En la cultura popular"
+      ],
+      [
+       "h2",
+       "Véase también"
+      ],
+      [
+       "h2",
+       "Notas"
+      ],
+      [
+       "h2",
+       "Referencias"
+      ],
+      [
+       "h2",
+       "Enlaces externos"
+      ]
+     ]
+    },
+    {
+     "position": 5,
+     "url": "https://www.vogue.mx/articulo/arcanos-mayores-del-tarot",
+     "domain": "vogue.mx",
+     "dr": 76,
+     "type": "A",
+     "opened": true,
+     "words": 5774,
+     "h2": 7,
+     "h3": 0,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "¿Qué es el Tarot?"
+      ],
+      [
+       "h2",
+       "¿Cómo se lee el Tarot?"
+      ],
+      [
+       "h2",
+       "¿Cuáles son los 22 arcanos mayores del Tarot?"
+      ],
+      [
+       "h2",
+       "El significado de los 22 arcanos mayores del tarot"
+      ],
+      [
+       "h2",
+       "¿Cómo saber cuál es tu carta del tarot?"
+      ],
+      [
+       "h2",
+       "¿Cuál es el tarot más efectivo?"
+      ],
+      [
+       "h2",
+       "¿Qué cosas se pueden preguntar en el tarot?"
+      ]
+     ]
+    },
+    {
+     "position": 6,
+     "url": "https://universodeletras.unam.mx/2021/09/arcanos-mayores/",
+     "domain": "universodeletras.unam.mx",
+     "dr": 88,
+     "type": "A",
+     "opened": true,
+     "words": 420,
+     "h2": 0,
+     "h3": 1,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h1",
+       "Arcanos Mayores"
+      ],
+      [
+       "h3",
+       "Dejar un comentario Cancelar la respuesta"
+      ],
+      [
+       "h4",
+       "Buscar"
+      ],
+      [
+       "h4",
+       "Recent Posts"
+      ]
+     ]
+    },
+    {
+     "position": 8,
+     "url": "https://www.youtube.com/watch?v=I4TCUSp_xDE",
+     "domain": "youtube.com",
+     "dr": 99,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 9,
+     "url": "https://www.facebook.com/glucmx/videos/los-arcanos-mayores-son-las-22-cartas-principales-del-tarot-que-representan-arqu/870874952307596/",
+     "domain": "facebook.com",
+     "dr": 100,
+     "type": "V",
+     "opened": false,
+     "note": "не статья/не открывалась (форум, видео, приложение, магазин)"
+    },
+    {
+     "position": 10,
+     "url": "https://www.tarotnova.app/es/blog/22-arcanos-mayores-tarot-de-marsella",
+     "domain": "tarotnova.app",
+     "dr": 16,
+     "type": "A",
+     "opened": true,
+     "words": 1966,
+     "h2": 8,
+     "h3": 30,
+     "faq_in_html": true,
+     "headings": [
+      [
+       "h2",
+       "¿Qué son los arcanos mayores?"
+      ],
+      [
+       "h2",
+       "Cómo leer los arcanos mayores"
+      ],
+      [
+       "h2",
+       "Los 22 arcanos mayores, carta por carta"
+      ],
+      [
+       "h3",
+       "El Mago"
+      ],
+      [
+       "h3",
+       "La Papisa"
+      ],
+      [
+       "h3",
+       "La Emperatriz"
+      ],
+      [
+       "h3",
+       "El Emperador"
+      ],
+      [
+       "h3",
+       "El Papa"
+      ],
+      [
+       "h3",
+       "Los Enamorados"
+      ],
+      [
+       "h3",
+       "El Carro"
+      ],
+      [
+       "h3",
+       "La Justicia"
+      ],
+      [
+       "h3",
+       "El Ermitaño"
+      ],
+      [
+       "h3",
+       "La Rueda de la Fortuna"
+      ],
+      [
+       "h3",
+       "La Fuerza"
+      ],
+      [
+       "h3",
+       "El Colgado"
+      ],
+      [
+       "h3",
+       "El Arcano sin Nombre"
+      ],
+      [
+       "h3",
+       "Templanza"
+      ],
+      [
+       "h3",
+       "El Diablo"
+      ],
+      [
+       "h3",
+       "La Casa Dios"
+      ],
+      [
+       "h3",
+       "La Estrella"
+      ],
+      [
+       "h3",
+       "La Luna"
+      ],
+      [
+       "h3",
+       "El Sol"
+      ],
+      [
+       "h3",
+       "El Juicio"
+      ],
+      [
+       "h3",
+       "El Mundo"
+      ],
+      [
+       "h3",
+       "El Loco"
+      ]
+     ]
+    }
+   ],
+   "words_median": 2518.5,
+   "n_opened": 5,
+   "n_usable": 4
+  }
+ },
+ "intents": {
+  "EN-001": [
+   "free tarot reading yes or no (600)",
+   "free love tarot reading yes or no (300)",
+   "free tarot card reading yes or no (250)",
+   "who will i marry tarot free reading (150)",
+   "ai tarot reading free yes or no (100)",
+   "free 3 card tarot reading yes or no (90)",
+   "is he thinking about me tarot reading free (50)",
+   "free tarot reading what is he thinking (40)",
+   "how does tarot work (350) [Ahrefs, тема сайта]",
+   "what are tarot cards (3 400) [Ahrefs, тема]",
+   "are tarot cards evil (2 300) [Ahrefs, тема]",
+   "free reading or written reading? [H2 deckaura]",
+   "how this free online tarot reading works [H2 deckaura]",
+   "is a free online tarot reading accurate? [H2-типовой у jobcannon/psychicsource]",
+   "7 card tarot reading free [запрос из карты страниц]",
+   "free 3 card tarot reading [запрос из карты страниц]"
+  ],
+  "EN-005": [
+   "one card tarot yes no (350)",
+   "one card tarot reading yes or no (200)",
+   "one card tarot yes or no (150)",
+   "tarot one card yes or no (70)",
+   "one tarot card reading yes or no (30)",
+   "one card tarot pull yes or no (30)",
+   "pull a tarot card for me [карта страниц]",
+   "pull a random tarot card [карта страниц]",
+   "one card tarot with reversals [карта страниц]",
+   "how to shuffle tarot cards (2 200) [Ahrefs, тема]",
+   "how to do a one card tarot reading [H2 flipsimu]",
+   "when to use a one tarot card reading [H2 flipsimu]",
+   "tips for better one card tarot results [H2 flipsimu]",
+   "how people use one card tarot [H2 onecardtarot.online]"
+  ],
+  "EN-006": [
+   "what is my tarot card of the day (0) [Ahrefs]",
+   "how to find the tarot card of the day (0) [Ahrefs]",
+   "what does tarot card of the day mean (0) [Ahrefs]",
+   "what is tarot card of the day (0) [Ahrefs]",
+   "what is the tarot card for each day of the week? (0) [Ahrefs]",
+   "how does tarot work (350) [Ahrefs, тема]",
+   "daily tarot draw [карта страниц]",
+   "tarot card of the day [карта страниц, ядро 3 100]",
+   "how do you interpret a daily tarot card? [reddit r/witchcraft, источник AI Overview]",
+   "daily tarot reading lesson [learntarot.com lesson 5, источник AI Overview]",
+   "daily tarot: setting an intention [H2 dailytarotdraw]",
+   "daily love tarot reading [horoscope.com, поз.10]"
+  ],
+  "EN-007": [
+   "tarot yes or no (10 000)",
+   "online tarot reading yes or no (2 000)",
+   "tarot card yes or no (1 500)",
+   "tarot reading yes or no (1 000)",
+   "7 tarot yes or no (800)",
+   "tarot cards yes or no (800)",
+   "free tarot reading yes or no (600)",
+   "one card tarot yes no (350)",
+   "should i do it yes or no tarot? [PAA]",
+   "what cards mean yes or no in tarot? [PAA]",
+   "can you use tarot for yes or no? [PAA]",
+   "are tarot cards accurate, yes or no? [PAA]",
+   "yes or no tarot accurate 100 percent [карта страниц]",
+   "how accurate is a yes or no tarot reading? [H2 jobcannon]",
+   "how to ask a good yes or no question [H2 jobcannon/psychicsource]",
+   "one-card or three-card yes or no reading [H2 jobcannon]"
+  ],
+  "EN-009": [
+   "what cards mean yes or no in tarot? [PAA]",
+   "should i do it yes or no tarot? [PAA]",
+   "can you use tarot for yes or no? [PAA]",
+   "are tarot cards accurate, yes or no? [PAA]",
+   "tarot cards yes or no (800) [Ahrefs]",
+   "yes or no tarot list [карта страниц]",
+   "yes or no tarot cards list [карта страниц]",
+   "yes no meanings of all 78 tarot cards [title angelorum]",
+   "which tarot cards mean yes, no, or maybe? [H2 mysticmag]",
+   "major arcana that mean yes, no and maybe [H2 mysticmag]",
+   "minor arcana that mean yes, no and maybe [H2 mysticmag]",
+   "how to obtain a yes or no answer with reversals [H2 tarotelements]",
+   "yes no tarot questions to avoid [H2 tarotelements]",
+   "including time frames in yes no tarot questions [H2 tarotelements]",
+   "yes vs no tarot cards [reddit r/tarot, поз.3]",
+   "thoughts on yes/no tarots? [reddit sitelink]"
+  ],
+  "EN-011": [
+   "free love tarot what is he thinking (700)",
+   "free love tarot reading yes or no (300)",
+   "does he love me tarot spread (100)",
+   "does he love me tarot (80)",
+   "does he love me tarot yes or no (80)",
+   "does he love me tarot free (60)",
+   "free tarot card reading love [карта страниц]",
+   "love tarot readings: are they legit? [reddit, поз.7]",
+   "has your love reading ever been accurate? [reddit sitelink]",
+   "thoughts on love readings? dos and don'ts [reddit sitelink]",
+   "how to ask the cards about love [H2 solstarot]",
+   "love tarot horoscope or a personal love reading? [H2 deckaura]",
+   "what one card can clarify in love [H2 onecardtarot.online]",
+   "when the question is about two people [H2 onecardtarot.online]"
+  ],
+  "EN-014": [
+   "how to read tarot cards (6 000) [Ahrefs]",
+   "how many cards in a tarot deck (4 900) [Ahrefs]",
+   "what are tarot cards (3 400) [Ahrefs]",
+   "how many tarot cards are there (2 500) [Ahrefs]",
+   "are tarot cards evil (2 300) [Ahrefs]",
+   "how to shuffle tarot cards (2 200) [Ahrefs]",
+   "how to use tarot cards (1 800) [Ahrefs]",
+   "how many cards are in a tarot deck (1 300) [Ahrefs]",
+   "what do the tarot cards represent? [PAA]",
+   "what are the 12 main tarot cards? [PAA]",
+   "which is the strongest card in tarot? [PAA]",
+   "what are the 78 tarot cards and their meanings? [PAA]",
+   "tarot card meanings pdf [карта страниц]",
+   "tarot cards meaning list with pictures [карта страниц]",
+   "are there any websites with accurate meanings for each card? [reddit sitelink]",
+   "found a high quality, concise tarot card meanings [reddit sitelink]"
+  ],
+  "EN-093": [
+   "what are the 22 major arcana cards? [PAA]",
+   "how do i find my major arcana? [PAA]",
+   "what's the most powerful tarot card? [PAA]",
+   "what is 22 in the major arcana? [PAA]",
+   "tarot card meanings major arcana [карта страниц]",
+   "describe each major arcana card with one single keyword [reddit, поз.6]",
+   "how would you describe each of the major arcana? [reddit sitelink]",
+   "story of the major arcana [reddit sitelink]",
+   "history of the major arcana [Википедия, sitelink]",
+   "the fool's journey [тема tarotcake]"
+  ],
+  "ES-001": [
+   "que es el tarot (1 300) [Ahrefs MX]",
+   "cuantas cartas tiene el tarot (1 000)",
+   "como leer el tarot (700)",
+   "tarot que es (600)",
+   "que es el tarot y para que sirve (500)",
+   "tarot si o no (4 000, соседний интент)",
+   "¿cuál es el mejor tarot gratis? [PAA по «tarot gratis 3 cartas»]",
+   "¿cuál es la mejor aplicación gratuita de tarot? [PAA]",
+   "¿dónde puedo encontrar ChatGPT para leer tarot gratis en español? [PAA]",
+   "tirada completa gratis [карта страниц]",
+   "tarot online [карта страниц]",
+   "cómo hacer una buena pregunta de tarot [H2 tarot.run]",
+   "cómo elegir una tirada [H2 tarot.run]",
+   "qué aporta una tirada completa frente a una corta [H2 tarotamigo]",
+   "cuándo hacer una tirada de cartas gratis completa [H2 tarotamigo]"
+  ],
+  "ES-004": [
+   "tarot del dia de hoy [карта страниц]",
+   "tarot diario gratis [карта страниц]",
+   "carta del día tarot [карта страниц]",
+   "carta del tarot para hoy [title astralgossip]",
+   "tarot hoy/mañana [title horoscopo.com]",
+   "tarot de amor diario [title horoscopo.com]",
+   "qué significa tu carta del día [H2 cadizdirecto]",
+   "cómo hacer tu tirada de tarot diario gratis [H2 cadizdirecto]",
+   "cuando una carta se repite en tu consulta diaria [H2 cadizdirecto]",
+   "qué hacer cuando una carta del día no gusta [H2 cadizdirecto, обрезано]",
+   "cómo aplicar el mensaje de la carta a tu día [H2 cadizdirecto]",
+   "cómo funciona el tarot diario [H2 tarot.eu]",
+   "qué puedes preguntar al tarot sobre tu día [H2 tarot.eu]",
+   "tarot del día en 3 cartas [title astrocentro]"
+  ],
+  "ES-005": [
+   "tarot si o no (4 000)",
+   "tarot si o no gratis (1 300)",
+   "tarot del si o no (500)",
+   "tarot gratis si o no (400)",
+   "tarot si o no 1 carta (350)",
+   "tarot si o no 1 carta gratis (200)",
+   "tarot si o no del amor (80)",
+   "tarot sí o no certero [title nostra]",
+   "tarot sí o no respuesta inmediata [title tarotap]",
+   "qué cartas del tarot significan sí, no o depende [H2 jobcannon, juliantarot]",
+   "cómo se decide sí, no o quizás [H2 juliantarot]",
+   "tarot de marsella sí o no: los 22 arcanos [H2 juliantarot]",
+   "cómo hacer el tarot sí o no gratis [H2 tarotap]",
+   "1 carta o 3 cartas [H2 tarotap, juliantarot]",
+   "tarot si o no con 5 cartas gratis [tiradastarotgratis, источник AIO]"
+  ],
+  "ES-009": [
+   "tarot del amor gratis [карта страниц]",
+   "tarot certero gratis futuro inmediato amor [карта страниц]",
+   "tarot gratis 3 cartas amor [карта страниц]",
+   "tarot si o no del amor (80)",
+   "tarot del amor si o no (30)",
+   "cual es la carta del amor en el tarot (10)",
+   "tarot del amor gratis que siente por mi (0)",
+   "que significa el colgado en el tarot del amor (0)",
+   "qué siente por ti ahora mismo según las cartas [H2 tarotamigo]",
+   "tarot del amor con nombres [H2 tarotamigo]",
+   "qué puedes preguntar en una tirada del tarot del amor [H2 tarotamigo]",
+   "cuando el amor no llega, qué puede revelarte [H2 tarotamigo]",
+   "tarot y amor: los 22 arcanos mayores [tarotnova, источник AIO]"
+  ],
+  "ES-099": [
+   "¿cuál es el mejor tarot gratis? [PAA]",
+   "¿cuál es la mejor aplicación gratuita de tarot? [PAA]",
+   "¿dónde puedo encontrar chatgpt para leer tarot gratis en español? [PAA]",
+   "¿cómo leer el tarot con 3 cartas? [PAA]",
+   "tarot gratis 3 cartas (2 400) [карта страниц]",
+   "tirada de 3 cartas gratis [карта страниц]",
+   "tarot 3 cartas gratis [карта страниц]",
+   "pasado, presente y futuro [title tarotime, tarotia]",
+   "tarot gratis 3 cartas: amor, dinero y salud [TikTok, поз.8]",
+   "qué representa cada carta en la tirada de 3 cartas [H2 tarotamigo]",
+   "preguntas para una tirada de 3 cartas [H2 tarotia]",
+   "para qué sirve el tarot gratis de 3 cartas [H2 tarotamigo]",
+   "por qué la baraja española para una tirada de 3 cartas [H2 tarotamigo]",
+   "tarot de marsella con tres cartas [title tiradastarotgratis]"
+  ],
+  "ES-012": [
+   "¿cuáles son las 22 cartas del tarot? [PAA]",
+   "¿cuáles son las 12 cartas del tarot? [PAA]",
+   "¿cómo se llaman las 78 cartas del tarot? [PAA]",
+   "¿qué significa cada una de las cartas del tarot? [PAA]",
+   "cuantas cartas tiene el tarot (1 000)",
+   "cuantas cartas del tarot son (200)",
+   "como leer las cartas del tarot (150)",
+   "como se leen las cartas del tarot (80)",
+   "cuales son las cartas del tarot (60)",
+   "como interpretar las cartas del tarot (60)",
+   "significado de las 78 cartas del tarot de marsella [карта страниц]",
+   "cuántos tipos de cartas hay en el tarot [Instagram, источник AIO]",
+   "cómo leer las cartas con esta guía [H2 darkforest]",
+   "tu mazo importa [H2 darkforest]"
+  ],
+  "ES-091": [
+   "¿cuáles son los 22 arcanos mayores del tarot? [PAA]",
+   "¿cuáles son los 11 arcanos mayores? [PAA]",
+   "¿cómo saber cuál es mi arcano mayor? [PAA]",
+   "¿cuáles son los 9 arcanos mayores? [PAA]",
+   "cuantos arcanos mayores hay (300)",
+   "cuántos arcanos mayores hay (90)",
+   "cuales son los arcanos mayores del tarot (80)",
+   "cuales son los arcanos mayores (70)",
+   "cuantos arcanos mayores hay en el tarot (60)",
+   "cuáles son los 22 arcanos mayores del tarot (50)",
+   "22 arcanos mayores [карта страниц]",
+   "cómo saber cuál es tu carta del tarot [H2 vogue]",
+   "qué significa que salgan varios arcanos mayores [H2 velvetastral]",
+   "cómo leer los arcanos mayores invertidos [H2 velvetastral]",
+   "el viaje del loco [H2 arcanojoyeria]"
+  ]
+ }
+}
