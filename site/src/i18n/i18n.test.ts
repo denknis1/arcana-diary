@@ -21,6 +21,9 @@ describe('dictionaries', () => {
     expect([t('en').drawForQuestion, t('es').drawForQuestion, t('en').allCardsLink, t('es').allCardsLink,
       t('en').yesNoListAsk]).toEqual(['Draw a card for your question', 'Saca una carta para tu pregunta', 'All 78 cards',
       'Las 78 cartas', 'Ask your question']);
+    // L-EN-26 (love block of the card page) and the hints of the hub link (context terms of L-EN-21 / L-ES-21)
+    expect([t('en').cardLoveLink, t('en').fmtCardsHint, t('es').fmtCardsHint]).toEqual([
+      'Do a love reading', 'What each of the 78 tarot cards means', 'Qué significa cada una de las 78 cartas del tarot']);
   });
 
   it('have the same keys in English and Spanish', () => {

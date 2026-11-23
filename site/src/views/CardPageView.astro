@@ -158,7 +158,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
         </ul>
       </section>
 
-      <nav class="card-nav" aria-label={d.cardNav}>
+      <nav class="card-nav" id="card-nav" aria-label={d.cardNav}>
         <a href={cardPath(prev, lang)}><small>{d.prevCard}</small>{prev.numeral} {cardName(prev, lang)}</a>
         <a href={cardPath(next, lang)}><small>{d.nextCard}</small>{next.numeral} {cardName(next, lang)}</a>
       </nav>

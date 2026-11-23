@@ -280,7 +280,7 @@ export const es: Dict = {
   privacyLink: 'Aviso de privacidad',
   // etapa 6: textos de enlace de la matriz de la etapa 2 (links-es.csv, ola «запуск»)
   fmtCards: 'Significados de las cartas',
-  fmtCardsHint: 'Qué significa cada una de las 78 cartas',
+  fmtCardsHint: 'Qué significa cada una de las 78 cartas del tarot',
   fmtThree: 'Tirada de 3 cartas',
   fmtThreeHint: 'Pasado, presente y hacia dónde va',
   yesNoMethodLink: 'Cómo leemos el sí o no',

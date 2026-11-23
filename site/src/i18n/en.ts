@@ -279,11 +279,11 @@ export const en = {
   privacyLink: 'Privacy policy',
   // stage 6: anchors of the stage 2 link matrix (links-en.csv, links-es.csv, wave "запуск")
   fmtCards: 'Card meanings',
-  fmtCardsHint: 'What each of the 78 cards means',
+  fmtCardsHint: 'What each of the 78 tarot cards means',
   fmtThree: 'Three cards',
   fmtThreeHint: "Past, present and where it's heading",
   yesNoMethodLink: 'How we read yes and no',
-  cardLoveLink: 'Try a love reading',
+  cardLoveLink: 'Do a love reading',
   cardYesNoLink: 'Ask a yes or no question',
 };
 
