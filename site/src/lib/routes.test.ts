@@ -1,17 +1,37 @@
 import { describe, expect, it } from 'vitest';
 import pairs from '../data/pairs.json';
 import { DECK } from './deck';
-import { NAV_KEYS, PRIVATE_PAIRS, allPagePaths, cardPath, distFile, langOf, pagePath, switchPath } from './routes';
+import { NAV_KEYS, PRIVATE_PAIRS, allPagePaths, cardPath, distFile, hreflangPair, langOf, pagePath, switchPath } from './routes';
 
 describe('routes', () => {
-  it('lists every page of spec §3 for both languages', () => {
+  it('lists every page of the site for both languages (stage 6 part 1)', () => {
     const paths = allPagePaths();
-    expect(paths).toHaveLength(8 + 78 + 7 + 78);
+    expect(paths).toHaveLength(11 + 78 + 10 + 78);
     for (const p of ['/', '/one-card', '/yes-no', '/love', '/daily', '/diary', '/account', '/404', '/es', '/es/si-o-no',
-      '/es/amor', '/es/carta-del-dia', '/es/diario', '/es/cuenta', '/es/404', '/cards/the-moon', '/es/cartas/la-luna']) {
+      '/es/amor', '/es/carta-del-dia', '/es/diario', '/es/cuenta', '/es/404', '/cards/the-moon', '/es/cartas/la-luna',
+      '/cards', '/cards/major-arcana', '/yes-no/cards', '/es/cartas', '/es/cartas/arcanos-mayores',
+      '/es/tiradas/3-cartas']) {
       expect(paths).toContain(p);
     }
     expect(new Set(paths).size).toBe(paths.length);
+  });
+
+  it('maps the pages that exist in one language only onto the nearest page of the other', () => {
+    expect(pagePath('three_cards', 'es')).toBe('/es/tiradas/3-cartas');
+    expect(pagePath('three_cards', 'en')).toBe('/'); // the English home is the three-card reading
+    expect(pagePath('yes_no_cards', 'en')).toBe('/yes-no/cards');
+    expect(pagePath('yes_no_cards', 'es')).toBe('/es/si-o-no'); // no Spanish card list: the yes/no tool
+  });
+
+  it('pairs a page for hreflang only when its pair points back at it', () => {
+    expect(hreflangPair('/yes-no')).toBe('/es/si-o-no');
+    expect(hreflangPair('/es/si-o-no')).toBe('/yes-no');
+    expect(hreflangPair('/cards')).toBe('/es/cartas');
+    expect(hreflangPair('/cards/the-moon')).toBe('/es/cartas/la-luna');
+    expect(hreflangPair('/one-card')).toBeNull();
+    expect(hreflangPair('/yes-no/cards')).toBeNull();
+    expect(hreflangPair('/es/tiradas/3-cartas')).toBeNull();
+    expect(hreflangPair('/diary')).toBeNull();
   });
 
   it('puts the Spanish one-card mode on the home page section #una-carta', () => {
@@ -27,6 +47,9 @@ describe('routes', () => {
     expect(switchPath('/daily')).toBe('/es/carta-del-dia');
     expect(switchPath('/cards/the-moon')).toBe('/es/cartas/la-luna');
     expect(switchPath('/es/cartas/el-loco')).toBe('/cards/the-fool');
+    expect(switchPath('/cards')).toBe('/es/cartas');
+    expect(switchPath('/yes-no/cards')).toBe('/es/si-o-no');
+    expect(switchPath('/es/tiradas/3-cartas')).toBe('/');
     expect(switchPath('/404')).toBe('/es/404');
     expect(switchPath('/es/404')).toBe('/404');
     expect([switchPath('/diary'), switchPath('/es/diario'), switchPath('/account'), switchPath('/es/cuenta')])

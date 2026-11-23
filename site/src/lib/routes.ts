@@ -1,10 +1,11 @@
-// Addresses of the 4.4a pages (spec 2026-11-19 stage 4.4a §3) and their language pairs
+// Addresses of the site's pages (spec 4.4a §3, stage 6 §3) and their language pairs
 // (site/src/data/pairs.json, from docs/research/stage2/hreflang.csv via tools/site/sync_site_data.py).
 import pairsData from '../data/pairs.json';
 import { DECK, cardSlug, type DeckCard } from './deck';
 import type { Lang } from './types';
 
-export type PageKey = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily' | 'diary' | 'account' | 'not_found';
+export type PageKey = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily' | 'diary' | 'account' | 'not_found'
+  | 'cards' | 'major_arcana' | 'yes_no_cards' | 'three_cards';
 
 /** Where the 429 / 403 / 503 messages and the footer send people who need help now (§10.8 of spec 4.2). */
 export const HELP_URL = 'https://findahelpline.com';
@@ -19,12 +20,17 @@ export const PRIVATE_PAIRS: Readonly<Record<string, string>> = {
 const PAGE_PATHS: Record<Lang, Record<PageKey, string>> = {
   en: {
     home: '/', one_card: '/one-card', yes_no: '/yes-no', love: '/love', daily: '/daily', diary: '/diary',
-    account: '/account', not_found: '/404',
+    account: '/account', not_found: '/404', cards: '/cards', major_arcana: '/cards/major-arcana',
+    yes_no_cards: '/yes-no/cards',
+    three_cards: '/', // English has no three-card page: the home page is the three-card reading
   },
   // Spanish has no one-card page: the one-card mode is the #una-carta section of the home page (stage 2 map)
   es: {
     home: '/es', one_card: '/es#una-carta', yes_no: '/es/si-o-no', love: '/es/amor', daily: '/es/carta-del-dia',
-    diary: '/es/diario', account: '/es/cuenta', not_found: '/es/404',
+    diary: '/es/diario', account: '/es/cuenta', not_found: '/es/404', cards: '/es/cartas',
+    major_arcana: '/es/cartas/arcanos-mayores',
+    yes_no_cards: '/es/si-o-no', // no Spanish card list: the yes/no tool
+    three_cards: '/es/tiradas/3-cartas',
   },
 };
 
@@ -51,10 +57,17 @@ export function switchPath(path: string): string {
   return langOf(path) === 'en' ? '/es' : '/';
 }
 
-/** Every page the build must produce, both languages: tools, the diary and the account, 78 card pages each, 404. */
+/** The pair for hreflang (spec stage 6 §3): only a pair that points back — /one-card → /es is a switch, not a pair. */
+export function hreflangPair(path: string): string | null {
+  const pair = PAIRS[path];
+  return pair !== undefined && PAIRS[pair] === path ? pair : null;
+}
+
+/** Every page the build must produce, both languages: tools, hubs, the diary and the account, 78 card pages each,
+ * 404. A key that points at another page of its language (three_cards in English) is listed once. */
 export function allPagePaths(): string[] {
-  const tools = (lang: Lang) =>
-    (Object.keys(PAGE_PATHS[lang]) as PageKey[]).map((key) => PAGE_PATHS[lang][key]).filter((p) => !p.includes('#'));
+  const tools = (lang: Lang) => [...new Set((Object.keys(PAGE_PATHS[lang]) as PageKey[])
+    .map((key) => PAGE_PATHS[lang][key]).filter((p) => !p.includes('#')))];
   return [...tools('en'), ...DECK.map((c) => cardPath(c, 'en')), ...tools('es'), ...DECK.map((c) => cardPath(c, 'es'))];
 }
 
