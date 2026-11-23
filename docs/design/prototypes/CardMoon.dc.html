@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Moon — card page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;overflow:hidden}
+a,button{min-height:44px}
+a{display:inline-flex;align-items:center}
+:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+a{color:#8E4A62}
+input::placeholder{color:#B9B4CC}
+</style>
+</helmet>
+<div style="width: 390px; height: 2140px; box-sizing: border-box; background: #F7F2EC; color: #241E36; font-family: Manrope, system-ui, sans-serif; display: flex; flex-direction: column">
+<header style="display: flex; justify-content: space-between; align-items: center; height: 60px; padding: 0 16px 0 20px; border-bottom: 1px solid #E6DDD2">
+<span style="display: flex; align-items: center; gap: 8px; font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600"><svg width="24" height="24" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" stroke="#8E4A62" stroke-width="2.5"/><path d="M39 14a19 19 0 1 0 0 36A15 15 0 1 1 39 14Z" stroke="#8E4A62" stroke-width="3"/></svg>Arcana Diary</span>
+<button aria-label="Open menu" style="width: 44px; height: 44px; border: none; background: transparent; color: #241E36; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 7h16M3 15h16"/></svg></button>
+</header>
+<nav aria-label="Breadcrumb" style="padding: 16px 20px 0; font-size: 14px; color: #5B5470; display: flex; gap: 8px; flex-wrap: wrap">
+<a href="#">Home</a><span aria-hidden="true">›</span><a href="Hub.dc.html">Cards</a><span aria-hidden="true">›</span><a href="Major.dc.html">Major Arcana</a><span aria-hidden="true">›</span><span aria-current="page" style="color: #241E36">The Moon</span>
+</nav>
+<section style="padding: 24px 20px 0; display: flex; gap: 20px; align-items: flex-end">
+<div style="width: 150px; height: 258px; flex-shrink: 0; box-sizing: border-box; border-radius: 12px; border: 1px solid #C9A45C; background: #10163A; padding: 4px; display: flex; flex-direction: column; gap: 4px">
+<img src="/_blob/b753b1cfdfcef61bfee265fb8850d497" alt="The Moon tarot card" style="width: 100%; height: 218px; object-fit: cover; object-position: center top; border-radius: 6px; display: block">
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; text-align: center; color: #F1ECE2"><span style="color: #C9A45C">XVIII</span> The Moon</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-bottom: 4px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7E6022"><span style="width: 8px; height: 8px; border-radius: 50%; background: #7E6022"></span>Major Arcana · XVIII</span>
+<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 44px; line-height: 1.02; font-weight: 500">The Moon</h1>
+<span style="font-size: 14px; line-height: 20px; color: #5B5470">Intuition · uncertainty · dreams · things not yet clear</span>
+</div>
+</section>
+<section style="padding: 28px 20px 0; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.1; font-weight: 500">Upright meaning</h2>
+<p style="margin: 0; font-size: 16px; line-height: 26px">The Moon shows a path lit only by moonlight: you can see the way, but not every detail. It speaks of strong feelings, dreams and worries that make a situation look bigger or stranger than it is.</p>
+<p style="margin: 0; font-size: 16px; line-height: 26px">In a reading it asks you to slow down. Notice what you feel, then check the facts before you decide. Not everything is clear yet — and that is fine.</p>
+</section>
+<section aria-label="Draw a card" style="margin: 28px 12px 0; border-radius: 28px; background: #10163A; color: #F1ECE2; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.15">Have a question of your own?</span>
+<span style="font-size: 16px; line-height: 22px; color: #B9B4CC">The night room opens right here — free, no sign-up.</span>
+<label for="q-card" style="font-size: 14px; color: #B9B4CC">Your question — optional</label>
+<input id="q-card" type="text" placeholder="e.g. What should I pay attention to?" style="height: 52px; box-sizing: border-box; border-radius: 12px; border: 1px solid #C9A45C; background: #161E48; color: #F1ECE2; font: 16px Manrope, sans-serif; padding: 0 16px">
+<a href="CardNight.dc.html" style="height: 52px; border-radius: 999px; background: #C9A45C; color: #10163A; font: 700 16px Manrope, sans-serif; display: flex; align-items: center; justify-content: center; text-decoration: none">Draw a card for your question</a>
+</section>
+<section id="reversed" style="padding: 32px 20px 0; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.1; font-weight: 500">The Moon reversed</h2>
+<p style="margin: 0; font-size: 16px; line-height: 26px">Reversed, the fog starts to lift. A fear loses its grip, a confusing situation becomes easier to read, or you finally say out loud what has been bothering you.</p>
+<p style="margin: 0; font-size: 16px; line-height: 26px">It can also mean ignoring your intuition for too long. The advice: trust the clearer picture you now have.</p>
+</section>
+<section style="margin: 32px 12px 0; padding: 20px; border-radius: 18px; border: 1px dashed #B9B4CC; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.1; font-weight: 500; color: #5B5470">The Moon in love</h2>
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.1; font-weight: 500; color: #5B5470">The Moon as advice</h2>
+<span style="font-size: 16px; font-weight: 600; color: #5B5470">The Moon: yes or no?</span>
+</section>
+<section style="padding: 32px 20px 0; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.1; font-weight: 500">Keep exploring</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 12px; background: #FFFFFF; color: #241E36; text-decoration: none"><span style="font-size: 14px; color: #5B5470">← Previous</span><span style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600">XVII The Star</span></a>
+<a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 12px; background: #FFFFFF; color: #241E36; text-decoration: none; text-align: right"><span style="font-size: 14px; color: #5B5470">Next →</span><span style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600">XIX The Sun</span></a>
+</div>
+<a href="Major.dc.html" style="font-size: 16px; font-weight: 600">All 22 Major Arcana</a>
+</section>
+<footer style="margin-top: auto; padding: 24px 20px 28px; border-top: 1px solid #E6DDD2; font-size: 14px; line-height: 20px; color: #5B5470">Tarot is a way to think about your question, not a guarantee. Card art: Rider–Waite–Smith deck, 1909 (public domain).</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2140}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

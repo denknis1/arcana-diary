@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>All 78 cards — desktop</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a,button{min-height:44px}
+a{display:inline-flex;align-items:center}
+:focus-visible{outline:2px solid currentColor;outline-offset:2px}
+a{color:#8E4A62}
+</style>
+</helmet>
+<div style="background: #F7F2EC; color: #241E36; font-family: Manrope, system-ui, sans-serif; min-height: 1380px">
+<header style="border-bottom: 1px solid #E6DDD2">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; min-height: 72px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<a href="#" style="display: flex; align-items: center; gap: 12px; font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; color: #241E36; text-decoration: none"><svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="30" stroke="#8E4A62" stroke-width="2.5"/><path d="M39 14a19 19 0 1 0 0 36A15 15 0 1 1 39 14Z" stroke="#8E4A62" stroke-width="3"/></svg>Arcana Diary</a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 16px; font-weight: 500">
+<a href="#" style="color: #241E36; text-decoration: none; padding: 24px 0">Reading</a>
+<a href="#" style="color: #241E36; text-decoration: none; padding: 24px 0">Yes or No</a>
+<a href="#" style="color: #241E36; text-decoration: none; padding: 24px 0">Love</a>
+<a href="#" style="color: #241E36; text-decoration: none; padding: 24px 0">Card of the Day</a>
+<a href="#" aria-current="page" style="color: #241E36; text-decoration: none; padding: 24px 0; box-shadow: inset 0 -2px 0 #8E4A62">Card Meanings</a>
+</nav>
+<span style="font-size: 14px; color: #5B5470"><b style="color: #241E36">EN</b> | <a href="#" style="color: #5B5470">ES</a> · <a href="#">Diary</a></span>
+</div>
+</header>
+<main style="max-width: 1200px; margin: 0 auto; padding: 48px 24px 0; display: flex; flex-direction: column; gap: 48px">
+<section style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-end; justify-content: space-between">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<span style="font-size: 14px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8E4A62">Card meanings</span>
+<h1 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 72px; line-height: 1; font-weight: 500">All 78 tarot cards</h1>
+<p style="margin: 0; font-size: 20px; line-height: 30px; color: #5B5470; max-width: 40rem">What each card means upright and reversed, in plain words. 22 Major Arcana and four suits of 14.</p>
+</div>
+<button style="height: 52px; padding: 0 28px; border: none; border-radius: 999px; background: #241E36; color: #FFFFFF; font: 600 16px Manrope, sans-serif">Draw a card for your question</button>
+</section>
+<section style="display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 500">Major Arcana</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px">
+<sc-for list="{{featured}}" as="c" hint-placeholder-count="6">
+<a href="DeskCard.dc.html" style="display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #241E36">
+<sc-if value="{{c.hasArt}}" hint-placeholder-val="{{true}}">
+<img src="{{c.src}}" alt="" style="width: 100%; aspect-ratio: 7 / 11; object-fit: cover; object-position: center top; border-radius: 10px; border: 1px solid #C9A45C; display: block">
+</sc-if>
+<sc-if value="{{c.noArt}}" hint-placeholder-val="{{false}}">
+<span style="width: 100%; aspect-ratio: 7 / 11; box-sizing: border-box; border-radius: 10px; border: 1px solid #C9A45C; background: #10163A; display: flex; align-items: center; justify-content: center; color: #C9A45C; font-family: 'Cormorant Garamond', serif; font-size: 32px">{{c.n}}</span>
+</sc-if>
+<span style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; text-align: center">{{c.name}}</span>
+</a>
+</sc-for>
+</div>
+</section>
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<sc-for list="{{suits}}" as="s" hint-placeholder-count="4">
+<div style="padding: 24px; border-radius: 18px; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: {{s.color}}"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{s.color}}"></span>{{s.name}}</span>
+<span style="font-size: 16px; line-height: 22px; color: #5B5470">{{s.theme}}</span>
+<a href="#" style="font-size: 16px; font-weight: 600">See all 14 {{s.name}}</a>
+</div>
+</sc-for>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1380}}'>
+class Component extends DCLogic {
+renderVals() {
+const art = { 'The Moon': '/_blob/b753b1cfdfcef61bfee265fb8850d497', 'The Sun': '/_blob/7e20d47af2a4613c5cdcebec3855357b', 'The Tower': '/_blob/0f2df4bf3265acff79d5ac6c360200ec' };
+const list = [['0','The Fool'],['I','The Magician'],['II','The High Priestess'],['III','The Empress'],['IV','The Emperor'],['V','The Hierophant'],['XVI','The Tower'],['XVIII','The Moon'],['XIX','The Sun'],['XXI','The World']];
+return {
+featured: list.map(([n, name]) => ({ n, name, src: art[name] || '', hasArt: !!art[name], noArt: !art[name] })),
+suits: [
+{ name: 'Wands', color: '#9A5B12', theme: 'Fire: energy, drive, new projects.' },
+{ name: 'Cups', color: '#1E6E6A', theme: 'Water: feelings, love, relationships.' },
+{ name: 'Swords', color: '#3B5D85', theme: 'Air: thoughts, decisions, conflict.' },
+{ name: 'Pentacles', color: '#4D6A2C', theme: 'Earth: money, work, home.' }
+]
+};
+}
+}
+</script>
+</body>
+</html>
