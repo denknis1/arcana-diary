@@ -59,6 +59,30 @@ for path in / /one-card /yes-no /love /daily /cards/the-moon /cards/ace-of-cups 
   expect "$path" "$(status "$path")" 200
 done
 expect "/es — испанская главная" "$(html_lang /es)" '<html lang="es"'
+# stage 6: новые адреса, sitemap.xml и robots.txt
+for path in /cards /cards/major-arcana /yes-no/cards /es/cartas /es/cartas/arcanos-mayores /es/tiradas/3-cartas \
+  /sitemap.xml /robots.txt; do
+  expect "$path" "$(status "$path")" 200
+done
+canonical() { "${CURL[@]}" "$URL$1" | grep -o '<link rel="canonical" href="[^"]*"' | head -1 | sed 's/.*href="\([^"]*\)"/\1/'; }
+# файл и папка с одним именем (cards.html и cards/, yes-no.html и yes-no/, es/cartas.html и es/cartas/): Caddy
+# отдаёт файл, адреса внутри папки — свои страницы, слэш в конце уводит на адрес без слэша
+expect "/cards — хаб, не папка" "$(canonical /cards)" "https://arcanadiary.com/cards"
+expect "/cards/the-moon — страница карты" "$(canonical /cards/the-moon)" "https://arcanadiary.com/cards/the-moon"
+expect "/cards/major-arcana — старшие арканы" "$(canonical /cards/major-arcana)" "https://arcanadiary.com/cards/major-arcana"
+expect "/yes-no — инструмент" "$(canonical /yes-no)" "https://arcanadiary.com/yes-no"
+expect "/yes-no/cards — справочник" "$(canonical /yes-no/cards)" "https://arcanadiary.com/yes-no/cards"
+expect "/es/cartas — хаб ES" "$(canonical /es/cartas)" "https://arcanadiary.com/es/cartas"
+expect "/es/cartas/la-luna — карта ES" "$(canonical /es/cartas/la-luna)" "https://arcanadiary.com/es/cartas/la-luna"
+expect "/cards/ → /cards" "$(moved_to /cards/)" "308 $URL/cards"
+expect "/yes-no/cards/ → /yes-no/cards" "$(moved_to /yes-no/cards/)" "308 $URL/yes-no/cards"
+expect "/es/cartas/ → /es/cartas" "$(moved_to /es/cartas/)" "308 $URL/es/cartas"
+expect "/es/tiradas/3-cartas.html → без .html" "$(moved_to /es/tiradas/3-cartas.html)" "308 $URL/es/tiradas/3-cartas"
+# папка без своей страницы — 404 на своём языке, без перенаправления
+expect "/es/tiradas — только папка" "$(status /es/tiradas)" 404
+expect "/es/tiradas — страница 404 ES" "$(html_lang /es/tiradas)" '<html lang="es"'
+expect "robots.txt называет sitemap" "$("${CURL[@]}" "$URL/robots.txt" | grep -c '^Sitemap: https://arcanadiary.com/sitemap.xml$')" 1
+expect "sitemap.xml без дневника" "$("${CURL[@]}" "$URL/sitemap.xml" | grep -c '/diary<')" 0
 expect "/nope" "$(status /nope)" 404
 expect "/nope — страница 404 EN" "$(html_lang /nope)" '<html lang="en"'
 expect "/es/nope" "$(status /es/nope)" 404
