@@ -264,6 +264,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         <input id={inputId} ref={input} class="input" type="text" maxLength={500} autocomplete="off"
           placeholder={d[config.placeholderKey]} value={question}
           onInput={(e) => setQuestion((e.target as HTMLInputElement).value)} />
+        <p class="provider-line">{d.providerLine}</p>
         {showBacks ? (
           <div class="backs" aria-hidden="true">
             {Array.from({ length: cardsFor(kind, count) }, () => <img src={CARD_BACK} alt="" />)}

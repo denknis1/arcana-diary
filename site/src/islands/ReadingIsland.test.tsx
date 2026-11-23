@@ -33,6 +33,7 @@ vi.mock('../lib/authConfig', () => ({
 vi.mock('../lib/auth', () => ({ getAuth: async () => null }));
 vi.mock('../lib/analytics', async (original) => ({ ...(await original<typeof import('../lib/analytics')>()), sendEvent: () => {} }));
 
+import { t } from '../i18n';
 import ReadingIsland from './ReadingIsland';
 
 const island = () => <ReadingIsland lang="en" page="love" />;
@@ -99,5 +100,18 @@ describe('ReadingIsland: "Saved to your diary ✓" reflects the request', () => 
     const { root } = await mount(island());
     await draw(root);
     await waitFor(() => byText(root, 'Saved to your diary ✓', 'a'));
+  });
+});
+
+describe('ReadingIsland: the AI provider line under the question field (spec 4.9 §1)', () => {
+  it.each([
+    ['en', 'home'], ['en', 'one_card'], ['en', 'yes_no'], ['en', 'love'],
+    ['es', 'home'], ['es', 'one_card'], ['es', 'yes_no'], ['es', 'love'],
+  ] as const)('%s %s shows the line right after the question field', async (lang, page) => {
+    const { root } = await mount(<ReadingIsland lang={lang} page={page} />);
+    const line = root.querySelector('.provider-line')!;
+    expect(line.textContent).toBe(t(lang).providerLine);
+    expect(line.previousElementSibling).toBe(root.querySelector('input[type="text"]'));
+    expect(line.querySelector('a')).toBeNull(); // no link until the privacy page is published (stage 6)
   });
 });
