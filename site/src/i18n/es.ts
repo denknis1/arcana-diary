@@ -267,6 +267,9 @@ export const es: Dict = {
   tocFaq: 'Preguntas',
   // etapa 6: la página de 3 cartas (consulta · dato)
   threeCardsEyebrow: 'Tarot de 3 cartas · Gratis, sin registro',
+  // etapa 6: enlaces de las listas (matriz de la etapa 2, L-ES-14 «Las 78 cartas»)
+  allCardsLink: 'Las 78 cartas',
+  yesNoListAsk: 'Haz tu pregunta',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

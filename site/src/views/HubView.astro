@@ -1,0 +1,40 @@
+---
+// The hub of 78 cards (spec stage 6 §5; prototypes Hub, DeskHub — without the suit elements, owner decision 10):
+// capsule, the 22 Major Arcana as pictures under a link to their page, the four suits as name lists with anchors
+// (#wands… / #bastos…, links L-EN-10, L-ES-10), the draw button, then the stage 5 blocks and FAQ.
+import CardFigure from '../components/CardFigure.astro';
+import TextPageView from './TextPageView.astro';
+import { t } from '../i18n';
+import { SUITS, ldItems, majorCards, suitCards } from '../lib/cardLists';
+import { TEMPLATE_STRINGS } from '../lib/cardPages';
+import { SUIT_IDS, pagePath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const d = t(lang);
+const suitNames = TEMPLATE_STRINGS[lang].facts.suits;
+const majors = majorCards(lang);
+const suits = SUITS.map((suit) => ({ suit, id: SUIT_IDS[lang][suit], name: suitNames[suit], cards: suitCards(suit, lang) }));
+---
+<TextPageView lang={lang} pageKey="cards" current="cards" items={ldItems([...majors, ...suits.flatMap((s) => s.cards)])}>
+  <section class="page-section" aria-labelledby="major-list">
+    <h2 class="h2" id="major-list"><a href={pagePath('major_arcana', lang)}>{d.crumbMajor}</a></h2>
+    <ul class="major-grid">
+      {majors.map((c) => <li><a href={c.href}><CardFigure card={c.card} lang={lang} sizes="100px" /></a></li>)}
+    </ul>
+  </section>
+  <section class="page-section" aria-labelledby="minor-list">
+    <h2 class="h2" id="minor-list">{d.cardEyebrowMinor}</h2>
+    {suits.map((s) => (
+      <div class="suit" id={s.id}>
+        <h3 class="h3"><span class={`suit-dot suit-dot--${s.suit}`} aria-hidden="true"></span>{s.name}</h3>
+        <ul class="name-list">{s.cards.map((c) => <li><a href={c.href}>{c.name}</a></li>)}</ul>
+      </div>
+    ))}
+    <p><a class="btn btn--ink" href={pagePath('home', lang)}>{d.drawForQuestion}</a></p>
+  </section>
+</TextPageView>

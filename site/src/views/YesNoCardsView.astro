@@ -1,0 +1,47 @@
+---
+// Yes or no card list, English only (spec stage 6 §5; prototype YesNoList): capsule, the rule block, then the blocks
+// "Cards that lean yes / no / Not clear yet" each with its list from deck.json (links to the cards, L-EN-05), the
+// other blocks, "Ask your question" (L-EN-06) and the FAQ.
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import { t } from '../i18n';
+import { crumbsFor } from '../lib/breadcrumbs';
+import { ldItems, verdictCards } from '../lib/cardLists';
+import { breadcrumbLd, collectionLd, faqLd } from '../lib/jsonld';
+import { pagePath } from '../lib/routes';
+import { filledPage, textPage } from '../lib/textPages';
+import type { Vote } from '../lib/types';
+
+const lang = 'en';
+const d = t(lang);
+const path = pagePath('yes_no_cards', lang);
+const page = filledPage(textPage(path));
+const crumbs = crumbsFor('yes_no_cards', lang);
+// the blocks of content/pages/en/yes-no-cards.json that describe one verdict
+const VERDICT_OF: Readonly<Record<string, Vote>> = { 'lean-yes': 'yes', 'lean-no': 'no', 'not-clear-yet': 'unclear' };
+const all = (['yes', 'no', 'unclear'] as const).flatMap((v) => verdictCards(v, lang));
+---
+<Base lang={lang} title={page.title} description={page.description} path={path} current="yes_no"
+  jsonLd={[breadcrumbLd(crumbs), collectionLd({ name: page.h1, description: page.description, path, lang, items: ldItems(all) }),
+    faqLd(page.faq)]}>
+  <Breadcrumbs lang={lang} crumbs={crumbs} />
+  <section class="page-hero">
+    <h1 class="display">{page.h1}</h1>
+    <p class="lead">{page.lead}</p>
+    {page.capsule ? <p class="capsule">{page.capsule}</p> : null}
+  </section>
+  {page.blocks.map((block) => (
+    <section class="page-section prose" id={block.id} aria-labelledby={`${block.id}-title`}>
+      <h2 class="h2" id={`${block.id}-title`}>{block.heading}</h2>
+      {block.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      {VERDICT_OF[block.id] ? (
+        <ul class="name-list">
+          {verdictCards(VERDICT_OF[block.id], lang).map((c) => <li><a href={c.href}>{c.name}</a></li>)}
+        </ul>
+      ) : null}
+    </section>
+  ))}
+  <p class="page-section"><a class="btn btn--ink" href={pagePath('yes_no', lang)}>{d.yesNoListAsk}</a></p>
+  <Faq heading={d.faqTitle} items={page.faq} id="faq" />
+</Base>

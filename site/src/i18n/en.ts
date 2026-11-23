@@ -266,6 +266,9 @@ export const en = {
   tocFaq: 'FAQ',
   // stage 6: the Spanish three-card page (query · fact); English has no such page, the key keeps both files equal
   threeCardsEyebrow: 'Three-card tarot · Free, no sign-up',
+  // stage 6: links of the card lists (stage 2 matrix L-EN-14 "All 78 cards", L-EN-06 "Ask your question")
+  allCardsLink: 'All 78 cards',
+  yesNoListAsk: 'Ask your question',
 };
 
 export type DictKey = keyof typeof en;
