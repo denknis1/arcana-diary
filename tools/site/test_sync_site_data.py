@@ -82,7 +82,7 @@ def test_card_pages_are_copied_without_the_reviewers_excerpts():
 
 def test_pairs_are_every_launch_page_of_hreflang_csv():
     table = pairs()
-    assert len(table) == 15 + 78 * 2
+    assert len(table) == 25 + 78 * 2
     assert table["/"] == "/es" and table["/es"] == "/"
     assert table["/one-card"] == "/es"
     assert table["/yes-no"] == "/es/si-o-no" and table["/es/si-o-no"] == "/yes-no"
@@ -90,6 +90,10 @@ def test_pairs_are_every_launch_page_of_hreflang_csv():
     assert table["/cards"] == "/es/cartas" and table["/es/cartas"] == "/cards"
     assert table["/cards/major-arcana"] == "/es/cartas/arcanos-mayores"
     assert table["/yes-no/cards"] == "/es/si-o-no" and table["/es/tiradas/3-cartas"] == "/"
+    # stage 6 part 4: the service pages and their Spanish pairs (owner decision 8 of 14.11.2026)
+    for en, es in (("/about", "/es/sobre-nosotros"), ("/how-readings-work", "/es/como-funcionan-las-lecturas"),
+                   ("/contact", "/es/contacto"), ("/privacy", "/es/privacidad"), ("/terms", "/es/terminos")):
+        assert table[en] == es and table[es] == en
     for card in deck():
         en, es = f"/cards/{card['slug_en']}", f"/es/cartas/{card['slug_es']}"
         assert table[en] == es and table[es] == en
@@ -99,10 +103,10 @@ def test_tokens_css_is_the_design_copy():
     assert (SITE / "src/styles/tokens.css").read_text() == (ROOT / "docs/design/tokens.css").read_text()
 
 
-def test_the_build_check_expects_177_pages_with_their_files():
+def test_the_build_check_expects_187_pages_with_their_files():
     pages = expected_pages()
-    assert len(pages) == 177  # stage 6 part 1: + /cards, /cards/major-arcana, /yes-no/cards and three ES pages
+    assert len(pages) == 187  # stage 6 part 4: + 10 service pages
     assert {"/", "/es", "/404", "/es/404", "/one-card", "/es/cartas/la-luna", "/diary", "/es/cuenta", "/cards",
-            "/es/tiradas/3-cartas"} <= set(pages)
+            "/es/tiradas/3-cartas", "/about", "/es/terminos"} <= set(pages)
     assert [dist_file(p) for p in ("/", "/es", "/es/404", "/cards/the-moon", "/cards")] == [
         "index.html", "es.html", "es/404.html", "cards/the-moon.html", "cards.html"]

@@ -75,10 +75,17 @@ def site(tmp_path, reading_island='import{x}from"./api.d4.js";'):
     return dist
 
 
-def test_every_page_of_stage_6_part_1_is_expected():
+def test_every_page_of_stage_6_is_expected():
     pages = expected_pages()
-    assert len(pages) == 177
-    assert {"/diary", "/es/diario", "/account", "/es/cuenta", "/cards", "/yes-no/cards", "/es/tiradas/3-cartas"} <= set(pages)
+    assert len(pages) == 187
+    assert {"/diary", "/es/diario", "/account", "/es/cuenta", "/cards", "/yes-no/cards", "/es/tiradas/3-cartas",
+            "/about", "/how-readings-work", "/es/privacidad"} <= set(pages)
+
+
+def test_today_the_open_site_would_refuse_the_eight_hidden_service_pages():
+    assert launched_problems() == [f"hidden page on the open site: {p} (an operator placeholder has no value)" for p in
+                                   ("/about", "/contact", "/es/contacto", "/es/privacidad", "/es/sobre-nosotros",
+                                    "/es/terminos", "/privacy", "/terms")]
 
 
 def test_hreflang_follows_mutual_pairs_only():
@@ -275,4 +282,4 @@ def test_main_reports_every_problem_and_passes_a_good_build(tmp_path, capsys):
     out = capsys.readouterr().out
     assert "missing: site/dist/diary.html" in out and "missing: site/dist/sitemap.xml" in out
     assert check_dist.main(site(tmp_path)) == 0
-    assert capsys.readouterr().out == "OK: 177 pages\n"
+    assert capsys.readouterr().out == "OK: 187 pages\n"

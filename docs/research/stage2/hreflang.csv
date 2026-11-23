@@ -260,6 +260,11 @@ horoscope:capricorn,horoscope,en,EN-115,/horoscope/capricorn,V1.1,planned,no,/es
 horoscope:aquarius,horoscope,en,EN-116,/horoscope/aquarius,V1.1,planned,no,/es
 horoscope:pisces,horoscope,en,EN-117,/horoscope/pisces,V1.1,planned,no,/es
 ref:zodiac-cards,horoscope,en,EN-118,/horoscope/zodiac-cards,V1.1,planned,no,/es/cartas
+page:about,service,en,EN-125,/about,запуск,planned,no,/es/sobre-nosotros
+page:how-readings-work,service,en,EN-126,/how-readings-work,запуск,planned,no,/es/como-funcionan-las-lecturas
+page:contact,service,en,EN-127,/contact,запуск,planned,no,/es/contacto
+page:privacy,service,en,EN-128,/privacy,запуск,planned,no,/es/privacidad
+page:terms,service,en,EN-129,/terms,запуск,planned,no,/es/terminos
 page:home,home,es,ES-001,/es,запуск,planned,no,/
 tool:daily,one-card,es,ES-004,/es/carta-del-dia,запуск,planned,no,/daily
 tool:yes-no,yes-no,es,ES-005,/es/si-o-no,запуск,planned,no,/yes-no
@@ -348,3 +353,8 @@ spread:index,spreads,es,ES-097,/es/tiradas,V1.1,planned,no,/spreads
 spread:celtic-cross,spreads,es,ES-098,/es/tiradas/cruz-celta,V1.1,planned,no,/spreads/celtic-cross
 spread:three-card,spreads,es,ES-099,/es/tiradas/3-cartas,запуск,planned,no,/
 tool:birth-card,birth-card,es,ES-100,/es/arcano-de-nacimiento,V1.1,planned,no,/birth-card
+page:about,service,es,ES-108,/es/sobre-nosotros,запуск,planned,no,/about
+page:how-readings-work,service,es,ES-109,/es/como-funcionan-las-lecturas,запуск,planned,no,/how-readings-work
+page:contact,service,es,ES-110,/es/contacto,запуск,planned,no,/contact
+page:privacy,service,es,ES-111,/es/privacidad,запуск,planned,no,/privacy
+page:terms,service,es,ES-112,/es/terminos,запуск,planned,no,/terms
