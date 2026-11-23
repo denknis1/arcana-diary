@@ -18,25 +18,40 @@ ROOT = cp.ROOT
 PAGES = ROOT / "content/pages"
 CARD_PAGES = cp.PAGES
 
-# page_id → (url, слов min, max, нужна ли капсула)
+# page_id → (url, слов min, max, нужна ли капсула; None — служебная страница: капсула, FAQ и интенты не обязательны,
+# заголовки ES — не обязательно вопросы)
 PLAN = {
     "en": {
         "home": ("/", 800, 1000, False), "one-card": ("/one-card", 600, 800, False),
         "daily": ("/daily", 500, 700, False), "yes-no": ("/yes-no", 600, 800, False),
         "yes-no-cards": ("/yes-no/cards", 900, 1200, True), "love": ("/love", 1000, 1300, False),
         "cards": ("/cards", 1000, 1300, True), "major-arcana": ("/cards/major-arcana", 1200, 1500, True),
+        "about": ("/about", 400, 900, None), "how-readings-work": ("/how-readings-work", 800, 1500, None),
+        "contact": ("/contact", 80, 400, None), "privacy": ("/privacy", 1200, 3000, None),
+        "terms": ("/terms", 1000, 2500, None),
     },
     "es": {
         "home": ("/es", 1200, 1400, False), "carta-del-dia": ("/es/carta-del-dia", 800, 1000, False),
         "si-o-no": ("/es/si-o-no", 1000, 1300, False), "amor": ("/es/amor", 1200, 1500, False),
         "tres-cartas": ("/es/tiradas/3-cartas", 1000, 1300, False), "cartas": ("/es/cartas", 1300, 1600, True),
         "arcanos-mayores": ("/es/cartas/arcanos-mayores", 1800, 2200, True),
+        "sobre-nosotros": ("/es/sobre-nosotros", 400, 900, None),
+        "como-funcionan-las-lecturas": ("/es/como-funcionan-las-lecturas", 800, 1500, None),
+        "contacto": ("/es/contacto", 80, 400, None), "privacidad": ("/es/privacidad", 1200, 3000, None),
+        "terminos": ("/es/terminos", 1000, 2500, None),
     },
 }
 FIELDS = {"schema", "page_id", "lang", "url", "status", "title", "description", "h1", "lead", "capsule", "blocks",
           "faq", "intents"}
-PLACEHOLDERS = {"guest_limit", "user_limit", "followups", "diary_free", "yes_count", "no_count", "unclear_count"}
+PLACEHOLDERS = {"guest_limit", "user_limit", "followups", "diary_free", "yes_count", "no_count", "unclear_count",
+                # служебные страницы: пока оператор не выбран (решение 3), публиковать нельзя
+                "operator_name", "operator_address", "contact_email", "jurisdiction", "effective_date",
+                "hosting_provider", "email_provider", "editor_name"}
 INTENTS_MIN = 10
+# Правовые страницы: оговорки о гарантиях и суде нужны по сути («no guarantee», «courts of …»).
+LEGAL = {"privacy", "terms", "privacidad", "terminos"}
+LEGAL_OK = {"guarantee*", "court", "lawsuit", "garantiz*", "tribunal*", "demanda judicial"}
+LEGAL_HARSH_OK = {r"lawsuits?", r"pleitos?", r"demanda judicial"}
 FAQ_COUNT = (3, 8)
 SLACK = 0.10  # допуск по объёму сверх плана (±10 %)
 
@@ -63,6 +78,7 @@ def check(page: dict, path: str, ctx, others: dict) -> tuple[list[str], list[str
     if lang not in PLAN or pid not in PLAN[lang]:
         return [f"page_id {pid!r} / lang {lang!r} нет в плане"], [], ""
     url, lo, hi, need_capsule = PLAN[lang][pid]
+    service = need_capsule is None
     if Path(path).stem != pid or Path(path).parent.name != lang:
         err("имя файла = page_id, папка = lang")
     if page.get("url") != url:
@@ -80,7 +96,7 @@ def check(page: dict, path: str, ctx, others: dict) -> tuple[list[str], list[str
     if need_capsule:
         if not cap or not cp.CAPSULE_WORDS[0] <= cp.word_count(cap) <= cp.CAPSULE_WORDS[1]:
             err(f"capsule: {cp.word_count(cap or '')} слов ({cp.CAPSULE_WORDS[0]}–{cp.CAPSULE_WORDS[1]})")
-    elif cap is not None:
+    elif cap is not None and not service:
         err("capsule: на этой странице — null (инструмент сверху)")
     blocks = page.get("blocks", [])
     ids = [b.get("id") for b in blocks]
@@ -89,14 +105,14 @@ def check(page: dict, path: str, ctx, others: dict) -> tuple[list[str], list[str
     for b in blocks:
         if not b.get("heading") or not b.get("paragraphs"):
             err(f"blocks[{b.get('id')}]: нужны heading и paragraphs")
-        if lang == "es" and not re.match(r"^¿.+\?$", b.get("heading", "").strip()):
+        if lang == "es" and not service and not re.match(r"^¿.+\?$", b.get("heading", "").strip()):
             err(f"ES-заголовок — вопрос «¿…?»: {b.get('heading')!r}")
     faq = page.get("faq", [])
-    if not FAQ_COUNT[0] <= len(faq) <= FAQ_COUNT[1]:
+    if not (0 if service else FAQ_COUNT[0]) <= len(faq) <= FAQ_COUNT[1]:
         err(f"faq: {len(faq)} вопросов ({FAQ_COUNT[0]}–{FAQ_COUNT[1]})")
     # --- интенты (ворота «≥ 10 интентов», решение 25) ---
     intents = page.get("intents", [])
-    if len(intents) < INTENTS_MIN:
+    if not service and len(intents) < INTENTS_MIN:
         err(f"intents: {len(intents)} < {INTENTS_MIN}")
     targets = set(ids) | {f"faq:{i}" for i in range(len(faq))} | ({"capsule"} if cap else set())
     for it in intents:
@@ -122,6 +138,8 @@ def check(page: dict, path: str, ctx, others: dict) -> tuple[list[str], list[str
         hits, _ = cp.find_claims(t, terms, lang)
         clean = re.sub(r"\bcourt cards?\b", " ", t, flags=re.I)
         hits += [w for w, rx in ctx.base_terms[lang] if rx.search(clean)]
+        if pid in LEGAL:
+            hits = [h for h in hits if h not in LEGAL_OK]
         if hits:
             err(f"запрещённые слова {sorted(set(hits))}: «{t[:70]}»")
         if re.search(cp.NO_CORRESPONDENCE[lang], t, re.I):
@@ -129,7 +147,8 @@ def check(page: dict, path: str, ctx, others: dict) -> tuple[list[str], list[str
         plain = t
         for rx in names:
             plain = rx.sub(" ", plain)
-        found = [h.pattern for h in harsh_rx if h.search(plain)]
+        found = [h.pattern for h in harsh_rx if h.search(plain)
+                 and not (pid in LEGAL and h.pattern.replace("(?<!\\w)", "").replace("(?!\\w)", "") in LEGAL_HARSH_OK)]
         if found:
             err(f"тяжёлые слова {found}: «{t[:60]}»")
         if re.search(r"\b(100 ?%|100 percent|100 por ciento|accurate reading|certer[oa] al 100)", t, re.I):
