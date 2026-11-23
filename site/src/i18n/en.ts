@@ -275,6 +275,8 @@ export const en = {
   footerContact: 'Contact',
   footerPrivacy: 'Privacy',
   footerTerms: 'Terms',
+  // stage 6: next to the AI provider line and the e-mail consents, once the privacy page is open
+  privacyLink: 'Privacy policy',
 };
 
 export type DictKey = keyof typeof en;

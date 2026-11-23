@@ -3,6 +3,7 @@
 // hidden — noindex, outside the menu, the footer and the sitemap (owner decision 35); any other page with such a
 // placeholder stops the build.
 import { FACTS, fillFacts, missingFacts, type Facts } from './facts';
+import { pagePath, type PageKey } from './routes';
 import type { Lang } from './types';
 
 export interface TextBlock {
@@ -73,4 +74,10 @@ export function filledPage(page: TextPage, facts: Facts = FACTS): TextPage {
 
 export function hiddenPaths(facts: Facts = FACTS): Set<string> {
   return new Set(TEXT_PAGES.filter((page) => isHidden(page, facts)).map((page) => page.url));
+}
+
+/** The address of a page, or null while it is hidden: links to it appear together with the page (spec stage 6 §6). */
+export function openPagePath(key: PageKey, lang: Lang): string | null {
+  const path = pagePath(key, lang);
+  return hiddenPaths().has(path) ? null : path;
 }

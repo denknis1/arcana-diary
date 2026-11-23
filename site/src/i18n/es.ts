@@ -276,6 +276,8 @@ export const es: Dict = {
   footerContact: 'Contacto',
   footerPrivacy: 'Privacidad',
   footerTerms: 'Términos',
+  // etapa 6: junto a la línea del proveedor de IA y a los consentimientos, cuando la página de privacidad se abre
+  privacyLink: 'Aviso de privacidad',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

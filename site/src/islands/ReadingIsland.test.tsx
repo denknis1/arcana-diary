@@ -115,3 +115,15 @@ describe('ReadingIsland: the AI provider line under the question field (spec 4.9
     expect(line.querySelector('a')).toBeNull(); // no link until the privacy page is published (stage 6)
   });
 });
+
+describe('ReadingIsland: the privacy link at the AI provider line (spec stage 6 §6)', () => {
+  it('links the policy when the page is open', async () => {
+    const { root } = await mount(<ReadingIsland lang="en" page="love" privacyHref="/privacy" />);
+    expect(byText<HTMLAnchorElement>(root, t('en').privacyLink, 'a').getAttribute('href')).toBe('/privacy');
+  });
+
+  it('shows no link while the page is hidden', async () => {
+    const { root } = await mount(island());
+    expect(queryText(root, t('en').privacyLink, 'a')).toBeNull();
+  });
+});

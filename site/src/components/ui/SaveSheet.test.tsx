@@ -259,3 +259,17 @@ describe('the save sheet (screens 3, 3b; spec 4.4b §4)', () => {
     expect(root.textContent).toContain('Open the link on this device to save this reading.');
   });
 });
+
+describe('the save sheet: privacy link next to the reminder consent (spec stage 6 §6)', () => {
+  it('links the policy only when it is given', async () => {
+    const f = fakes();
+    const { root } = await mount(
+      <SaveSheet lang="en" readingId="r1" auth={f.auth} google={false} accountApi={f.accountApi}
+        origin="https://arcana.test" onClose={() => {}} privacyHref="/privacy" />,
+    );
+    expect(byText<HTMLAnchorElement>(root, 'Privacy policy', 'a').getAttribute('href')).toBe('/privacy');
+    cleanup();
+    const again = await mount(sheet(fakes()));
+    expect(queryText(again.root, 'Privacy policy', 'a')).toBeNull();
+  });
+});

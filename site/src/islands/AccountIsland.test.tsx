@@ -54,6 +54,12 @@ afterEach(() => {
 });
 
 describe('the account page (spec 4.4b §6)', () => {
+  it('links the privacy policy under the consent once the policy page is open (stage 6 §6)', async () => {
+    const f = fakes();
+    const { root } = await mount(<AccountIsland lang="en" {...f.props} privacyHref="/privacy" />);
+    expect(byText<HTMLAnchorElement>(root, 'Privacy policy', 'a').getAttribute('href')).toBe('/privacy');
+  });
+
   it('shows the e-mail, the readings left today and the way back to the diary', async () => {
     const f = fakes();
     const { root } = await mount(<AccountIsland lang="en" {...f.props} />);

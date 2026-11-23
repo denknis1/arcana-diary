@@ -29,6 +29,8 @@ interface Props {
   cardId?: string;
   cardName?: string;
   showBacks?: boolean;
+  /** The privacy page, once it is open (spec stage 6 §6); no link while it is hidden. */
+  privacyHref?: string;
 }
 
 function timeZone(): string | undefined {
@@ -43,7 +45,7 @@ function prefersReducedMotion(): boolean {
   return typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export default function ReadingIsland({ lang, page, cardId, cardName, showBacks = false }: Props) {
+export default function ReadingIsland({ lang, page, cardId, cardName, showBacks = false, privacyHref }: Props) {
   const d = t(lang);
   const config = useMemo(() => panelConfig(page, lang, cardId ?? null), [page, lang, cardId]);
   const [kind, setKind] = useState<Kind>(config.kind);
@@ -63,7 +65,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const focusQuestion = useRef(false); // "Ask another question": focus the question field once the room is closed
   const api = useMemo(() => siteApi(), []);
   const saving = useSaveToDiary({ lang, tool: drawn.current.tool, readingId: state.reading?.id ?? null,
-    signedIn: drawn.current.signedIn });
+    signedIn: drawn.current.signedIn, privacyHref });
   const inputId = `question-${page}`;
 
   useEffect(() => {
@@ -264,7 +266,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         <input id={inputId} ref={input} class="input" type="text" maxLength={500} autocomplete="off"
           placeholder={d[config.placeholderKey]} value={question}
           onInput={(e) => setQuestion((e.target as HTMLInputElement).value)} />
-        <p class="provider-line">{d.providerLine}</p>
+        <p class="provider-line">{d.providerLine}{privacyHref ? <> <a href={privacyHref}>{d.privacyLink}</a></> : null}</p>
         {showBacks ? (
           <div class="backs" aria-hidden="true">
             {Array.from({ length: cardsFor(kind, count) }, () => <img src={CARD_BACK} alt="" />)}
