@@ -1,0 +1,200 @@
+{
+ "schema": 2,
+ "card_id": "pentacles-08-eight",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Ocho de Oros",
+  "in_sentence": "el Ocho de Oros",
+  "de": "del Ocho de Oros"
+ },
+ "title": "Ocho de Oros en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Ocho de Oros al derecho y al revés (carta invertida): dedicación, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Ocho de Oros en el tarot: significado",
+ "image_alt": "Ocho de Oros, carta de 1909 de la baraja Rider-Waite-Smith: un joven artesano en su banco talla un oro con martillo y cincel junto a un poste con monedas terminadas.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 8,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Ocho de Oros es la carta del oficio: dedicación, práctica, aprender algo y hacerlo bien con constancia. Al revés, puede hablar de perfeccionismo, aburrimiento o trabajo a la carrera. Es una carta trabajadora y alentadora que solo pide esfuerzo. Si preguntas sí o no, al derecho dice sí: el aprendiz talla moneda tras moneda con cuidado.",
+ "keywords": {
+  "upright": [
+   "dedicación",
+   "habilidad",
+   "práctica",
+   "constancia"
+  ],
+  "reversed": [
+   "perfeccionismo",
+   "aburrimiento",
+   "trabajo a la carrera",
+   "talento mal usado"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Ocho de Oros?",
+   "paragraphs": [
+    "Un joven trabajador, sentado en su banco, se ocupa ya de la siguiente moneda. Waite lo describe como un artista de la piedra en su trabajo, que exhibe sus obras como trofeos (p. 266). Esos trofeos son lo más grande de la carta: una columna de oros terminados que baja por un poste de madera a la derecha.",
+    "En la carta de 1909 sostiene un martillo en una mano y un cincel en la otra, apoyado sobre el oro que está labrando. Tiene el pelo rizado y lleva túnica azul, mandil negro y calzas rojas. Otra moneda descansa en el suelo, junto a sus pies. A lo lejos, a la izquierda, se ve un pueblo con una torre, y arriba se lee el VIII."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Ocho de Oros?",
+   "paragraphs": [
+    "La lista de Waite trata del trabajo mismo: empleo, encargos, oficio y destreza, quizá todavía en la etapa de preparación (p. 266), es decir, mientras se aprende. Al revés, las palabras de Waite (p. 266) hablan de una ambición que no llega a nada, de vanidad y de codicia con el dinero. Waite añade que la carta puede mostrar también la habilidad mal empleada, una mente ingeniosa que se vuelve astucia e intriga (p. 266)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Ocho de Oros al derecho?",
+   "paragraphs": [
+    "La dedicación está en el centro de esta carta: hacer algo con cuidado y luego hacerlo otra vez, un poco mejor. El Ocho es la carta del aprendiz, de la capacitación, de un empleo nuevo, de un curso o de las horas que le dedicas a una habilidad que te importa. Su actitud es la constancia, callada y repetida, sin drama.",
+    "La otra mitad es la atención. El artesano del dibujo solo mira la moneda que tiene en las manos, no el pueblo a lo lejos. La práctica que nadie aplaude es la que más rinde. ¿Qué habilidad crecería más rápido si le dieras toda tu atención, pieza por pieza?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Ocho de Oros al revés?",
+   "paragraphs": [
+    "Al revés, el Ocho de Oros puede hablar de perfeccionismo que no deja terminar nada, o de aburrimiento con un trabajo que se volvió pura repetición. También puede señalar trabajo a la carrera: cantidad antes que calidad, esfuerzo sin cuidado o habilidades que se oxidan.",
+    "El talento mal usado es el lado más antiguo de esta carta, cerca de la astucia y la intriga que menciona Waite (p. 266); lo demás es lectura moderna. Pregúntate qué disfrutabas del oficio y ponte una meta pequeña que te lo devuelva."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Ocho de Oros en el amor?",
+   "paragraphs": [
+    "Con esta carta, el amor se construye con detalles pequeños y repetidos: acordarte de lo que le importa a la otra persona, estar presente, cuidar la relación como quien cuida un oficio. Va bien con parejas que ponen esfuerzo y quieren aprender a estar mejor juntas. Sin pareja, suele invitar a trabajar primero en ti, o habla de un vínculo que nace despacio en la escuela o el trabajo.",
+    "Al revés, el trabajo puede llevarse toda la energía, o la relación vive de la rutina sin atención. Fíjate dónde tu cariño se volvió automático."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Ocho de Oros en el trabajo y el dinero?",
+   "paragraphs": [
+    "Moneda tras moneda en el poste: ante todo es una carta de trabajo, de aprendizaje, capacitación, un puesto nuevo, labor cuidadosa y orgullo por el resultado. Con el dinero, significa ingresos ganados con habilidad y esfuerzo constante, un sueldo sólido gracias a un oficio y dinero que crece despacio, al ritmo de tu destreza. Al revés, puede mostrar un trabajo mal pagado para lo que exige o un talento que se vende barato."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Ocho de Oros como consejo?",
+   "paragraphs": [
+    "Practica media hora algo que quieres dominar, sin distracciones y con el celular lejos, como el artesano en su banco. Al terminar, anota una cosa que te salió mejor que la vez pasada."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Ocho de Oros es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Ocho de Oros como persona y como sentimiento?",
+   "paragraphs": [
+    "Inclinado sobre su banco, el artesano del Ocho de Oros es alguien trabajador, un estudiante o un aprendiz: cuidadoso, confiable y con orgullo por hacer bien las cosas, a veces tan metido en su tarea que no levanta la vista. En el plano emocional, significa un interés constante y comprometido: ganas de esforzarse, de mostrar cariño con hechos más que con palabras y de construir algo real con el tiempo. Al revés, el sentimiento puede ser cumplido pero plano, con un esfuerzo que se hace por inercia, o una atención que se lleva el trabajo."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Ocho de Oros junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "major-01-magician",
+     "text": "Habilidad y voluntad juntas. Convierte la práctica en un resultado terminado que se vea."
+    },
+    {
+     "card_id": "pentacles-09-nine",
+     "text": "Autonomía ganada con tu propio oficio y con trabajo paciente."
+    },
+    {
+     "card_id": "swords-04-four",
+     "text": "El trabajo duro también pide pausa. Suelta el martillo antes de quedarte sin fuerzas."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Ocho de Oros del Tres de Oros?",
+   "paragraphs": [
+    "Waite relaciona las dos cartas (p. 276): en el Tres de Oros un escultor labra la piedra dentro de un monasterio, y el principiante del Ocho, ya premiado, se dedica de lleno al oficio. Hoy el Tres se lee como trabajo en equipo y talento reconocido; el Ocho es práctica en solitario: una persona, un banco y mucha repetición."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Ocho de Oros?",
+   "paragraphs": [
+    "¿Qué habilidad quiero dominar, y para qué?",
+    "¿Dónde estoy apurando un trabajo que merece más cuidado?",
+    "¿Todavía disfruto el oficio o solo lo repito?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Ocho de Oros es una carta buena o mala?",
+   "a": "Buena. Premia el esfuerzo y dice que tu trabajo cuenta, aunque nadie lo esté viendo. Solo pide constancia, y su sombra, al revés, es el trabajo sin gusto por perfeccionismo o aburrimiento. Para quien está aprendiendo algo nuevo, es de las cartas que más animan."
+  },
+  {
+   "q": "¿El Ocho de Oros es una carta de trabajo?",
+   "a": "Sobre todo, sí. Una capacitación, un puesto de aprendiz o un empleo donde aprendes sobre la marcha son lecturas comunes. Pero casi siempre describe cómo trabajas más que dónde: con paciencia, con cuidado, mejorando cada vez. El reconocimiento por la habilidad también entra en la lectura moderna, aunque la carta habla más del trabajo que del premio."
+  },
+  {
+   "q": "¿El Ocho de Oros significa que esa persona no tiene tiempo para mí?",
+   "a": "A veces se lee así: la figura de la carta está absorta en su tarea. Pero su sentimiento es compromiso que se demuestra con esfuerzo, no frialdad. Si sientes poca atención, platícalo con calma; la carta no puede decirte qué pasa por la cabeza de otra persona."
+  }
+ ],
+ "related": [
+  "pentacles-07-seven",
+  "pentacles-09-nine",
+  "cups-08-eight",
+  "wands-08-eight",
+  "swords-08-eight"
+ ],
+ "mentions": [
+  {
+   "card_id": "pentacles-03-three",
+   "text": "Tres de Oros"
+  }
+ ],
+ "waite": {
+  "quote": "Work, employment, commission, craftsmanship, skill in craft and business, perhaps in the preparatory stage. Reversed: Voided ambition, vanity, cupidity, exaction, usury.",
+  "quote_lang": "en",
+  "pages": [
+   266
+  ],
+  "translation": "Trabajo, empleo, encargo, oficio, destreza en el oficio y en los negocios, quizá en la etapa preparatoria. Al revés: ambición frustrada, vanidad, codicia, exacción, usura.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 08.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_08.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    266,
+    276
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

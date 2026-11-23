@@ -248,6 +248,14 @@ export const en = {
   // owner decision 16: {account} is the link to the account page (diaryReminderOnLink)
   diaryReminderOn: 'The reminder in 7 days is on — you can turn it off in {account}.',
   diaryReminderOnLink: 'your account',
+  // stage 6: menu (stage 2 menu table), breadcrumbs (prototypes CardMoon, Major, YesNoList), FAQ heading
+  navCards: 'Card Meanings',
+  breadcrumbLabel: 'Breadcrumb',
+  crumbHome: 'Home',
+  crumbCards: 'Cards',
+  crumbMajor: 'Major Arcana',
+  crumbYesNoCards: 'Card list',
+  faqTitle: 'Frequently asked questions',
 };
 
 export type DictKey = keyof typeof en;

@@ -1,0 +1,206 @@
+{
+ "schema": 2,
+ "card_id": "swords-05-five",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Five of Swords",
+  "in_sentence": "the Five of Swords"
+ },
+ "title": "Five of Swords Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "Five of Swords upright: conflict, hollow victory, tension; reversed: making peace. Love, work, advice, Waite's 1911 text and the 1909 card. Ask your question.",
+ "h1": "Five of Swords Tarot Card Meaning",
+ "image_alt": "Five of Swords, 1909 Rider–Waite–Smith card: a smiling red-haired man holds three swords while two figures walk away toward the water; two more swords lie on the ground under torn clouds.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "swords",
+  "number": 5,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "The Five of Swords means conflict and a hollow victory: winning the argument and losing the people around you, with tension and pride left over. Reversed: making peace, or lingering resentment. It is a hard card about how you win, not about your worth. To a yes-or-no question it says no: the winner ends up alone.",
+ "keywords": {
+  "upright": [
+   "conflict",
+   "hollow victory",
+   "tension",
+   "pride"
+  ],
+  "reversed": [
+   "making peace",
+   "lingering resentment",
+   "moving on",
+   "regret"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Five of Swords card?",
+   "paragraphs": [
+    "One man gathers swords while two others walk away from him. Waite describes \"a disdainful man\" who \"looks after two retreating and dejected figures\" and calls him \"the master in possession of the field\" (p. 244). In Waite's account the losers' swords lie on the ground, while the winner carries two on his left shoulder and a third in his right hand, point to earth (p. 244).",
+    "On the 1909 card the red-haired man in a green tunic with red sleeves is the largest figure, glancing back with a small smile. Two swords lie at his feet. The others head toward a gray-blue sea, the nearer one with a red cloth over the shoulder, and long ragged clouds streak across the sky; V is marked at the top."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Five of Swords?",
+   "paragraphs": [
+    "Waite's list for this card is blunt, and the reversed side repeats it, adding only burial rites (p. 244). What Waite does describe clearly is the scene: one man holding the field while the others leave beaten (p. 244). Today's reading starts from that picture of a win that empties the room."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Five of Swords mean upright?",
+   "paragraphs": [
+    "Conflict sits at the center of this card: an argument, a rivalry or a power struggle where someone insists on winning at all costs, with sharp tactics or words meant to wound. This is the card of the hollow victory, when you get your way and lose goodwill, trust or closeness in the process. Tension hangs in the air afterwards, and pride makes it hard for anyone to step back.",
+    "It can also describe the other side: walking away from a fight you could not win, or one that was not worth it. Sometimes leaving is the wiser choice.",
+    "Is being right worth the distance it creates here?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Five of Swords mean reversed?",
+   "paragraphs": [
+    "Reversed, the Five of Swords can point to making peace after a clash: an apology, a truce, a wish to repair what the fight damaged. It can also mean lingering resentment, an old argument replayed in your head, or regret over what was said. Sometimes it is simply moving on, letting go of a conflict that has run its course.",
+    "Waite gives the reversed card the same list as the upright one (p. 244); reconciliation is a modern reading, not Waite's. Decide what you can let go of, and offer one gesture of repair if it feels right."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Five of Swords mean in love?",
+   "paragraphs": [
+    "Two people walking off while one keeps the swords: in love, that is the fight won and the closeness lost. Partners may find themselves in a power struggle, arguing about who is right, scoring points with words that leave a mark; the card asks whether winning matters more than the bond. Unattached, it can reflect wariness after a bitter ending.",
+    "Reversed, the card can mean a wish to make up after a quarrel, or tension still sitting between two people. Reconciliation starts with dropping the need for the last word."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Five of Swords mean for work and money?",
+   "paragraphs": [
+    "Open rivalry is the career face of this card: a colleague who has to win every meeting, competition that turns sour, a win for you that leaves the team resentful. The card asks how you win, not only whether you do.",
+    "Swords carried off by one person: with finances, the card stands for disputes and gains that cost something, an argument over who owes what or a deal where one side wins at the other's expense. Reversed, it can mean settling a money quarrel and moving on."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Five of Swords?",
+   "paragraphs": [
+    "Let go of one argument you do not need to win. Say what you need calmly, once, and then stop pressing; the relationship that remains matters more than the point scored."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Five of Swords a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Five of Swords as a person and as feelings",
+   "paragraphs": [
+    "Someone competitive who needs to win, sometimes sharp-tongued or proud, is the Five of Swords as a person; so is someone who has just walked away from a fight. In your own case it is pride taking over. Asked how someone feels, the card answers with tension and resentment: hurt pride, defensiveness, a sense of having been wronged, or of having won and still feeling empty. Reversed, the edge softens into regret and a wish to make peace, or the resentment stays under the surface."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Five of Swords with other cards",
+   "pairs": [
+    {
+     "card_id": "swords-07-seven",
+     "text": "A win by sharp tactics. Check whether the method is honest."
+    },
+    {
+     "card_id": "major-14-temperance",
+     "text": "A way back to calm after a quarrel, through patience and compromise."
+    },
+    {
+     "card_id": "cups-02-two",
+     "text": "Repair after a clash: the bond is worth more than the argument."
+    },
+    {
+     "card_id": "swords-06-six",
+     "text": "After the fight, leaving rough water behind."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Five of Swords or Five of Wands?",
+   "paragraphs": [
+    "Waite's Five of Wands shows \"a posse of youths, who are brandishing staves, as if in sport or strife\" and calls it \"mimic warfare\" (p. 188). Today it means competition and friction with no clear winner.",
+    "The Five of Wands is the scramble while it lasts, with everyone still in it; the Five of Swords comes after, when one side has won and the others have gone."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Five of Swords",
+   "paragraphs": [
+    "What am I trying to win, and what could it cost?",
+    "Is there someone I need to make peace with?",
+    "Which argument can I let go of today?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Five of Swords a good or bad card?",
+   "a": "It is a difficult card, though it says nothing fixed about your future. It shows a conflict and its price, so you can choose differently: step back, repair, or walk away. Reversed, it often marks the turn toward making peace, which is a good moment to take the first step yourself."
+  },
+  {
+   "q": "Does the Five of Swords mean betrayal?",
+   "a": "It can, in the sense of someone winning by unfair means or putting their own victory before loyalty. More often it means a fight with a cost: words that went too far, pride on both sides. The card describes the pattern, not who is to blame."
+  },
+  {
+   "q": "Am I the winner or the loser in the Five of Swords?",
+   "a": "Either one, and that is the point of the card. It can describe you as the one holding the swords, or as one of the figures walking away. Ask which role you are playing right now; both lose something in this scene."
+  }
+ ],
+ "related": [
+  "swords-04-four",
+  "swords-06-six",
+  "wands-05-five",
+  "cups-05-five",
+  "pentacles-05-five"
+ ],
+ "mentions": [
+  {
+   "card_id": "wands-05-five",
+   "text": "Five of Wands"
+  }
+ ],
+ "waite": {
+  "quote": "Degradation, destruction, revocation, infamy, dishonour, loss, with the variants and analogues of these. Reversed: The same; burial and obsequies.",
+  "quote_lang": "en",
+  "pages": [
+   244
+  ],
+  "translation": null,
+  "harsh": true
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 05.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_05.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    188,
+    244
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

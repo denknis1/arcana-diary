@@ -1,0 +1,164 @@
+{
+ "version": 1,
+ "description": "Strings that stage 6 renders on every card page, the same for all 78 cards of a language. Card JSON files must not repeat them. Placeholders: {Card} = name_forms.name, {card} = name_forms.in_sentence, {card_de} = name_forms.de (es), {Other} = the paired card's name, {numeral}, {suit}, {rank}, {label}, {label_reversed} (yes-no-rules.json labels), {reason} (meanings.<lang>.json yes_no_why), {pages} (formatted page list), {editor_name}, {reviewed_at} (formatted date). Rules: docs/research/stage5/30-card-page-rules.md.",
+ "en": {
+  "facts": {
+   "major": "Major Arcana · card {numeral}",
+   "minor": "Minor Arcana · {suit} · {rank}",
+   "suits": {
+    "wands": "Wands",
+    "cups": "Cups",
+    "swords": "Swords",
+    "pentacles": "Pentacles"
+   },
+   "ranks": {
+    "1": "Ace",
+    "2": "Two",
+    "3": "Three",
+    "4": "Four",
+    "5": "Five",
+    "6": "Six",
+    "7": "Seven",
+    "8": "Eight",
+    "9": "Nine",
+    "10": "Ten",
+    "11": "Page",
+    "12": "Knight",
+    "13": "Queen",
+    "14": "King"
+   }
+  },
+  "image_caption": "{Card}, 1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), drawn by Pamela Colman Smith. Public-domain scan, Wikimedia Commons.",
+  "keywords": {
+   "caption": "{Card}: keywords",
+   "upright": "Upright",
+   "reversed": "Reversed"
+  },
+  "waite": {
+   "cite": "A. E. Waite, The Pictorial Key to the Tarot (1911), {pages}",
+   "translation_label": null,
+   "harsh_context": "This is how cards were read in 1911; we don't read the card this way today.",
+   "boundary": "Everything below is the modern reading used on Arcana Diary. Where a line comes from Waite, we name him and give the page."
+  },
+  "work_money": {
+   "money_line": "This is what the card means for money, not a forecast or financial advice."
+  },
+  "yes_no": {
+   "upright": "Upright: {label}. {reason}",
+   "reversed": "Reversed: {label_reversed}.",
+   "rule": "On Arcana Diary an upright card gives its base answer, and every reversed card moves it to \"Not clear yet\". That is not a bad sign: the answer is still forming."
+  },
+  "in_a_reading": {
+   "note": "The card describes a role, not a real person. What it says about feelings is the card's traditional meaning, not a statement about someone in your life."
+  },
+  "combinations": {
+   "intro": "These pairs are modern readings, built on Arcana Diary's meanings for each card.",
+   "pair": "{Card} + {Other}",
+   "col_pair": "Pair",
+   "col_reading": "Reading"
+  },
+  "ask_yourself": {
+   "diary_button": "Write it in your diary"
+  },
+  "cta": {
+   "heading": "Draw {card} for your question",
+   "text": "Ask your own question and get a reading with {card} in it.",
+   "button": "Ask your question"
+  },
+  "faq": {
+   "heading": "Questions about {card}"
+  },
+  "related": {
+   "heading": "Related cards"
+  },
+  "about": {
+   "heading": "About this page",
+   "sources_label": "Sources",
+   "page_one": "p. {pages}",
+   "page_many": "pp. {pages}",
+   "page_numbers": "Page numbers follow the edition transcribed on Wikisource.",
+   "method": "Written with AI from Waite's book and Arcana Diary's card meanings. Reviewed by {editor_name} on {reviewed_at}.",
+   "deck_note": "These are the meanings of the 1909 Rider–Waite–Smith deck; the Marseille tradition reads the cards differently."
+  }
+ },
+ "es": {
+  "facts": {
+   "major": "Arcanos mayores · carta {numeral}",
+   "minor": "Arcanos menores · {suit} · {rank}",
+   "suits": {
+    "wands": "Bastos",
+    "cups": "Copas",
+    "swords": "Espadas",
+    "pentacles": "Oros"
+   },
+   "ranks": {
+    "1": "As",
+    "2": "Dos",
+    "3": "Tres",
+    "4": "Cuatro",
+    "5": "Cinco",
+    "6": "Seis",
+    "7": "Siete",
+    "8": "Ocho",
+    "9": "Nueve",
+    "10": "Diez",
+    "11": "Sota",
+    "12": "Caballero",
+    "13": "Reina",
+    "14": "Rey"
+   }
+  },
+  "image_caption": "{Card}, baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), dibujo de Pamela Colman Smith. Escaneo de dominio público, Wikimedia Commons.",
+  "keywords": {
+   "caption": "{Card}: palabras clave",
+   "upright": "Al derecho",
+   "reversed": "Al revés"
+  },
+  "waite": {
+   "cite": "A. E. Waite, The Pictorial Key to the Tarot (1911), {pages}",
+   "translation_label": "Traducción nuestra",
+   "harsh_context": "Así se leían las cartas en 1911; hoy no la leemos así.",
+   "boundary": "Todo lo que sigue es la lectura moderna que usamos en Arcana Diary. Cuando algo viene de Waite, lo decimos y damos la página."
+  },
+  "work_money": {
+   "money_line": "Esto es lo que la carta significa para el dinero, no un pronóstico ni un consejo financiero."
+  },
+  "yes_no": {
+   "upright": "Al derecho: {label}. {reason}",
+   "reversed": "Al revés: {label_reversed}.",
+   "rule": "En Arcana Diary, una carta al derecho da su respuesta base, y toda carta al revés la cambia a «Todavía no está claro». No es mala señal: la respuesta todavía se está formando."
+  },
+  "in_a_reading": {
+   "note": "La carta describe un papel, no a una persona real. Lo que dice sobre los sentimientos es su significado tradicional, no una afirmación sobre alguien de tu vida."
+  },
+  "combinations": {
+   "intro": "Estas parejas son lecturas modernas, basadas en los significados de cada carta en Arcana Diary.",
+   "pair": "{Card} + {Other}",
+   "col_pair": "Pareja",
+   "col_reading": "Lectura"
+  },
+  "ask_yourself": {
+   "diary_button": "Escríbelo en tu diario"
+  },
+  "cta": {
+   "heading": "¿Qué dice {card} de tu pregunta?",
+   "text": "Escribe tu pregunta y recibe una lectura con {card}.",
+   "button": "Haz tu pregunta"
+  },
+  "faq": {
+   "heading": "Preguntas frecuentes sobre {card}"
+  },
+  "related": {
+   "heading": "Cartas relacionadas"
+  },
+  "about": {
+   "heading": "¿De dónde sale esta página?",
+   "sources_label": "Fuentes",
+   "page_one": "p. {pages}",
+   "page_many": "pp. {pages}",
+   "page_numbers": "Citamos a Waite en el inglés original; las páginas siguen la edición transcrita en Wikisource.",
+   "method": "Esta página se escribió con IA a partir del libro de Waite y de los significados de cartas de Arcana Diary. La revisó {editor_name} el {reviewed_at}.",
+   "deck_note": "Son los significados de la baraja Rider-Waite-Smith de 1909, no los de la baraja española ni los del tarot de Marsella."
+  }
+ }
+}

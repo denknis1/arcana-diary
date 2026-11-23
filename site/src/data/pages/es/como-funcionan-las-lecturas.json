@@ -1,0 +1,104 @@
+{
+ "schema": 1,
+ "page_id": "como-funcionan-las-lecturas",
+ "lang": "es",
+ "url": "/es/como-funcionan-las-lecturas",
+ "status": "reviewed",
+ "title": "Cómo funcionan nuestras lecturas de tarot con IA",
+ "description": "Cómo saca las cartas Arcana Diary, qué recibe el modelo de IA, la regla del sí o no, los límites de seguridad, las preguntas de seguimiento y el diario.",
+ "h1": "Cómo funcionan las lecturas: el método, paso a paso",
+ "lead": "Aquí está todo el proceso detrás de una lectura en Arcana Diary: desde que tocas el botón para sacar cartas hasta el texto que lees y lo que ocurre con él después. Las reglas son las mismas para todas las personas.",
+ "capsule": null,
+ "blocks": [
+  {
+   "id": "sorteo",
+   "heading": "1. ¿Cómo se sacan las cartas?",
+   "paragraphs": [
+    "El servidor revuelve las 78 cartas con una semilla aleatoria que sale de un generador criptográfico y luego reparte las que pide cada herramienta: una para la carta sola, tres para la tirada principal y la del amor, una o tres para el sí o no. La orientación se decide aparte para cada carta, que tiene una posibilidad entre dos de salir al revés. El modelo de IA no interviene aquí; solo recibe el resultado.",
+    "La semilla se guarda junto con la lectura, así que cuando la vuelves a abrir aparecen las mismas cartas con la misma orientación. En la tirada de tres, los lugares son pasado (lo que ha ido dando forma a la situación), presente (lo que está en marcha ahora) y hacia dónde va (adónde puede ir la cosa a partir de aquí si nada cambia; una posibilidad, nunca un destino). Igual en la tirada del amor.",
+    "La Carta del día es distinta. Es la misma durante todo el día, cambia después de la medianoche de tu zona horaria y no cuenta entre tus lecturas diarias. Su texto se prepara con anticipación para cada carta y orientación, así que habla del tema de la carta para hoy, no de una pregunta tuya."
+   ]
+  },
+  {
+   "id": "revision",
+   "heading": "2. ¿Qué se revisa antes de sacar cartas?",
+   "paragraphs": [
+    "Si escribes una pregunta, primero se revisa con una lista de frases en español y en inglés, y con una consulta breve a un modelo de inteligencia artificial que solo la clasifica. Hay cinco resultados posibles. La mayoría de las preguntas son comunes. Algunas tratan de dinero. Otras piden un pronóstico que las cartas no dan, sobre salud, la muerte de alguien, un asunto legal o la seguridad de una persona. Otras preguntan qué piensa o siente alguien más. Y unas pocas muestran que quien pregunta podría estar en peligro.",
+    "Cada resultado cambia la lectura de modo fijo. Tu pregunta nunca se escribe en los registros del servidor."
+   ]
+  },
+  {
+   "id": "entrada",
+   "heading": "3. ¿Qué recibe el modelo de IA?",
+   "paragraphs": [
+    "El modelo recibe un mensaje corto y ordenado. Lleva tu pregunta (marcada como texto tuyo, para que se ignore cualquier instrucción escrita ahí), el tema y la situación que elegiste, y de cada carta su lugar, si está al derecho o al revés, su nombre, sus palabras clave, su significado y su consejo; en la tirada del amor, también su línea de amor. En el sí o no recibe además la inclinación que el sitio ya calculó.",
+    "Con sesión iniciada, el mensaje puede incluir hasta cinco de tus lecturas anteriores sobre el mismo tema: la fecha, la pregunta y el titular que recibiste. Nunca se envían tus notas ni tus marcas de «se cumplió», ni las preguntas anteriores sobre salud, seguridad, dinero u otra persona. Sin sesión no hay historial. El modelo no recibe tu correo ni otros datos de tu cuenta."
+   ]
+  },
+  {
+   "id": "escritura",
+   "heading": "4. ¿Cómo se escribe la lectura?",
+   "paragraphs": [
+    "Hay una sola voz, tranquila, que te habla de tú con frases cortas. La respuesta tiene una forma fija. Un titular de una línea contesta tu pregunta. Luego vienen dos o tres frases sobre cada carta; con tres cartas, una línea sobre lo que dicen juntas; un paso concreto para hoy o para esta semana, sacado del consejo de las cartas; y en el sí o no, una línea que explica por qué la carta se inclina hacia ese lado. Con una carta son entre 90 y 150 palabras; con tres, entre 180 y 250.",
+    "El texto aparece mientras el modelo lo escribe. Al terminar, el servidor lo compara con una lista de frases prohibidas. Si se coló alguna, la respuesta se sustituye por los significados de tus cartas de la base, con un aviso de que el lector no está disponible; lo mismo ocurre si el modelo no contesta o si ya se alcanzó el límite de gasto del día.",
+    "En español hay un paso más. El lector no sabe tu género, así que no debe hablarte en masculino ni en femenino; si en alguna parte se le escapa, el servidor manda reescribir esa parte con palabras neutras."
+   ]
+  },
+  {
+   "id": "fuentes",
+   "heading": "5. ¿De dónde salen los significados?",
+   "paragraphs": [
+    "El lector trabaja solo con la base de significados del sitio, que se guarda en archivos con control de versiones: de tres a cinco palabras clave, un significado al derecho y otro al revés, una línea para el amor, una de consejo y una inclinación para el sí o no, para cada una de las 78 cartas, en español y en inglés. Tiene prohibido agregar significados, símbolos, numerología o tradiciones de otras barajas.",
+    "Las páginas de cartas van más allá: se apoyan en The Pictorial Key to the Tarot (1911), de Arthur Edward Waite, citado con número de página, y dicen con claridad dónde la lectura del sitio se aparta de la suya."
+   ]
+  },
+  {
+   "id": "si-o-no",
+   "heading": "6. ¿Cómo funciona la regla del sí o no?",
+   "paragraphs": [
+    "La inclinación la calcula el código del sitio, no el modelo, que no puede cambiarla. Cada carta de la base tiene una sola inclinación cuando sale al derecho: sí, no o todavía no está claro. Al revés, cualquier carta da «todavía no está claro». Con tres cartas se hace una pequeña votación en la que solo participan las cartas de sí y de no: gana el lado que tenga más, y un empate, o una tirada sin ninguna carta de sí ni de no, queda en «todavía no está claro».",
+    "Hay preguntas que reciben lectura, pero sin inclinación: las que piden un pronóstico sobre salud, una muerte, un asunto legal o la seguridad, y las que tratan de lo que pasa por la mente de otra persona. Las preguntas de dinero sí la conservan, leída como tu propia disposición para esa decisión; arriba de la respuesta aparece la línea «Esto no es un consejo financiero.» y el paso que se propone es prudente."
+   ]
+  },
+  {
+   "id": "limites",
+   "heading": "7. ¿Qué reglas no se rompen nunca?",
+   "paragraphs": [
+    "En una pregunta común, el lector puede decir hacia dónde apuntan las cartas en tu propia vida. Pero hay límites que valen siempre, aunque la pregunta se formule de otro modo o se repita. Nada de fechas ni plazos. Nada de promesas, destino o afirmaciones de que una lectura es exacta. Ningún pronóstico ni indicación sobre salud, una muerte, asuntos legales, seguridad, dinero, inversiones o deudas.",
+    "Nada sobre lo que otra persona piensa, quiere o hará; la lectura regresa a ti y a lo que está en tus manos. Nada de miedo: ni presagios ni advertencias de desgracia, y una carta difícil se lee como presión, un cierre o un llamado a cuidarte. Tampoco se afirman hechos de tu vida; cada significado se ofrece como algo para considerar."
+   ]
+  },
+  {
+   "id": "crisis",
+   "heading": "8. ¿Qué pasa si una pregunta indica peligro?",
+   "paragraphs": [
+    "Si la revisión detecta señales de pensamientos suicidas, de autolesión o de violencia, no se sacan cartas. Ves un mensaje breve y cálido con líneas de ayuda gratuitas y confidenciales para llamar y, en algunos países, para escribir: para México, Estados Unidos, España, Argentina y Colombia; para otros países, un directorio de líneas de ayuda y la indicación de llamar al número local de emergencias. Tu país solo se usa para elegir las líneas y no se guarda.",
+    "Lo que escribiste no se guarda, y esta respuesta no gasta ninguna de tus lecturas. El lector tiene además su propia red de seguridad: si ve esas señales en una pregunta que pasó la revisión, se detiene y aparece el mismo mensaje."
+   ]
+  },
+  {
+   "id": "seguimiento",
+   "heading": "9. ¿Cómo funcionan las preguntas de seguimiento?",
+   "paragraphs": [
+    "Después de una lectura tienes {followups} preguntas de seguimiento gratis. El modelo ve la lectura, su primera respuesta y tus preguntas anteriores, y contesta en unas 60 a 120 palabras sobre las mismas cartas; no se saca ninguna nueva. Cada pregunta pasa por la misma revisión que la primera. Una más allá de las gratuitas cuesta una de tus lecturas de hoy, y antes se te pide confirmar."
+   ]
+  },
+  {
+   "id": "diario",
+   "heading": "10. ¿Qué guarda el diario?",
+   "paragraphs": [
+    "Una lectura sin sesión se conserva 7 días y luego se borra. Para quedártela, guárdala en tu diario e inicia sesión con un enlace que te llega al correo o con Google. Cada entrada guarda la pregunta, las cartas, la respuesta y las preguntas de seguimiento, una nota privada de hasta 1000 caracteres que nunca se envía al modelo y, a partir del séptimo día, una marca para indicar si se cumplió, en parte o no.",
+    "El diario gratis muestra tus {diary_free} lecturas más recientes; las anteriores quedan ocultas, no borradas. Puedes eliminar cualquier entrada, descargar todas tus lecturas en un archivo o borrar tu cuenta, lo que elimina de inmediato tus lecturas y los datos de la cuenta. Si compartes el enlace de una lectura, se ven las cartas y la respuesta, nunca tu pregunta ni tu nota."
+   ]
+  },
+  {
+   "id": "no-afirmamos",
+   "heading": "11. ¿Qué no afirmamos?",
+   "paragraphs": [
+    "El tarot no ve lo que viene, y ninguna lectura de aquí es un pronóstico. Es para reflexionar y para entretenerte. Las cartas salen por azar, los significados de una base fija y las palabras de un modelo de inteligencia artificial; nada de eso equivale a saber qué sigue. La marca de «se cumplió» existe para que tú juzgues si la lectura te sirvió, no como prueba. Las decisiones siguen siendo tuyas."
+   ]
+  }
+ ],
+ "faq": [],
+ "intents": []
+}

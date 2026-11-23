@@ -1,0 +1,207 @@
+{
+ "schema": 2,
+ "card_id": "pentacles-07-seven",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Siete de Oros",
+  "in_sentence": "el Siete de Oros",
+  "de": "del Siete de Oros"
+ },
+ "title": "Siete de Oros en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Siete de Oros al derecho y al revés (carta invertida): paciencia, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Siete de Oros en el tarot: significado",
+ "image_alt": "Siete de Oros, carta de 1909 de la baraja Rider-Waite-Smith: un joven apoya la barbilla en las manos sobre un bastón y mira siete oros que crecen en una mata verde.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 7,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Siete de Oros habla de paciencia y evaluación: crecimiento lento, esfuerzo a largo plazo, una pausa para ver qué ha dado tu trabajo. Al revés, señala impaciencia o energía puesta donde nada crece. Es una carta serena que pide mirar antes de seguir empujando. Como sí o no, todavía no está claro: la cosecha aún madura.",
+ "keywords": {
+  "upright": [
+   "paciencia",
+   "evaluación",
+   "crecimiento lento",
+   "esfuerzo"
+  ],
+  "reversed": [
+   "impaciencia",
+   "esfuerzo perdido",
+   "duda",
+   "prisa"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Siete de Oros?",
+   "paragraphs": [
+    "Un joven campesino deja de trabajar para mirar lo que ha crecido. Waite lo describe apoyado en su bastón, mirando con atención siete oros sujetos a una mata verde a su derecha (p. 268). Waite añade que se diría que son su tesoro y que ahí está su corazón (p. 268).",
+    "En la carta de 1909 la forma más grande es la mata de hojas verdes a la izquierda, con seis monedas entre las hojas; la séptima está en el suelo, junto a su bota. Lleva una túnica naranja sobre mangas y calzas azules, cruza las manos sobre el bastón y apoya en ellas la barbilla. Detrás hay colinas bajas y arriba se lee el VII."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Siete de Oros?",
+   "paragraphs": [
+    "Waite reconoce que los significados de esta carta se contradicen mucho (p. 268): sobre todo dinero y comercio, pero en otras lecturas una pelea, o inocencia e ingenio. El lado al revés de la lista de Waite (p. 268) es concreto: inquietud por un dinero que alguien piensa prestar. En su lista posterior de significados adicionales, Waite da para la carta al revés impaciencia, aprensión y sospecha (p. 293), muy cerca de como se lee hoy."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Siete de Oros al derecho?",
+   "paragraphs": [
+    "Paciencia es la primera palabra de esta carta: sembraste algo, le pusiste trabajo de verdad y ahora necesita tiempo. El Siete describe la mitad de un camino largo, unos estudios, un negocio, una huerta, una relación, cuando ya se ven resultados pero todavía no están listos para cosechar.",
+    "La pausa del dibujo importa igual. La evaluación consiste en dar un paso atrás, ver qué crece y qué no, y ajustar. El crecimiento lento también es crecimiento, y el esfuerzo que sigue después de revisar ya no es terquedad: sabes que la planta está viva. ¿Qué ha dado tu trabajo hasta ahora y qué falta cuidar?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Siete de Oros al revés?",
+   "paragraphs": [
+    "Al revés, el Siete de Oros puede hablar de impaciencia porque los resultados tardan, o de esfuerzo perdido: horas metidas en algo que no da fruto. Puede aparecer la duda sobre si vale la pena seguir, o las ganas de rendirte justo antes de que algo se note. Cosechar con prisa es otra cara de la misma carta.",
+    "La lista adicional de Waite ya nombra la impaciencia (p. 293). La pregunta es la misma que al derecho, con más urgencia: ¿qué funciona y dónde rendiría más tu energía?"
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Siete de Oros en el amor?",
+   "paragraphs": [
+    "Esta carta va con un amor que crece despacio, con esfuerzo de las dos partes: no es un torbellino, es una huerta. Invita a mirar con honestidad lo que han construido y si todavía vale el trabajo que cuesta. Si estás conociendo a alguien, sugiere dejar que el vínculo tome su ritmo en lugar de exigir respuestas.",
+    "Al revés, la espera puede sentirse eterna, o quizá pones más de lo que recibes; distingue cuál de las dos es antes de cambiar algo."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Siete de Oros en el trabajo y el dinero?",
+   "paragraphs": [
+    "Siete monedas que maduran en una mata resumen la carta en el trabajo: un proyecto a medio camino, una carrera que se construye paso a paso, un balance de lo avanzado. La misma imagen, leída para el dinero: crecimiento lento y constante gracias al esfuerzo, ahorros que se juntan poco a poco y un momento para revisar si un compromiso largo de tiempo o dinero está rindiendo. No dice cuándo llega la cosecha."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Siete de Oros como consejo?",
+   "paragraphs": [
+    "Mira un proyecto en curso como el campesino mira su mata y anota qué sí está creciendo, qué conviene cambiar y qué puedes dejar. A lo que sí crece, dale un poco más de tiempo."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Siete de Oros es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Siete de Oros como persona y como sentimiento?",
+   "paragraphs": [
+    "El joven campesino del Siete de Oros retrata a alguien paciente y trabajador, que piensa en temporadas y no en días y prefiere ver resultados antes de decidir. En asuntos del corazón, su significado tradicional es un interés que crece despacio: cariño real pero cauteloso, ganas de dedicarle tiempo a alguien para ver a dónde lleva, y la costumbre de sopesar el vínculo antes de decir mucho. Al revés, habla de impaciencia, de dudas sobre si el esfuerzo es mutuo o de ganas de dejar de intentarlo."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Siete de Oros junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "wands-09-nine",
+     "text": "Un tramo largo: hay cansancio y la meta está cerca. Sigue, pero revisa qué defensas todavía hacen falta."
+    },
+    {
+     "card_id": "major-09-hermit",
+     "text": "Retírate un poco a pensar con calma hacia dónde va tu esfuerzo."
+    },
+    {
+     "card_id": "pentacles-10-ten",
+     "text": "Trabajo paciente pensado para algo que dure: una casa, una familia, un legado."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Siete de Oros del Cuatro de Copas y del Ocho de Oros?",
+   "paragraphs": [
+    "El Cuatro de Copas también muestra a un joven que mira lo que tiene delante: Waite lo describe sentado bajo un árbol, contemplando tres copas, con gesto de descontento (p. 218). Esa carta es desgano y oportunidades que no se ven. El joven del Siete no está aburrido: hace balance de algo que le importa.",
+    "El Ocho de Oros muestra, según Waite, a un artista de la piedra en pleno trabajo (p. 266). El Siete es la pausa; el Ocho, la práctica."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Siete de Oros?",
+   "paragraphs": [
+    "¿Qué sembré que está creciendo despacio?",
+    "¿Dónde pongo esfuerzo que no me devuelve nada?",
+    "¿Cómo se vería la paciencia en esta situación?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Siete de Oros es una carta buena o mala?",
+   "a": "Buena y sobria. Reconoce el trabajo que ya hiciste y te pide juzgarlo con justicia antes de poner más. Aquí no se pierde nada: la cosecha simplemente no está lista. Al revés, marca frustración con el ritmo, que se resuelve mejor cuando le pones nombre."
+  },
+  {
+   "q": "¿El Siete de Oros significa esperar?",
+   "a": "En parte. Es una espera activa: cuidas, revisas y ajustas mientras los resultados se forman, en vez de quedarte sin hacer nada. Esperar con las herramientas en la mano no es lo mismo que esperar de brazos cruzados, y esta carta es lo primero."
+  },
+  {
+   "q": "¿El Siete de Oros me dice que me rinda?",
+   "a": "No por sí solo. La carta pide una revisión, no un veredicto. A veces esa revisión muestra que una parte no funciona y se puede soltar, y que el resto merece más paciencia. Decide por lo que ves en tu situación, no solo por la carta."
+  }
+ ],
+ "related": [
+  "pentacles-06-six",
+  "pentacles-08-eight",
+  "cups-07-seven",
+  "wands-07-seven",
+  "swords-07-seven"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-04-four",
+   "text": "Cuatro de Copas"
+  },
+  {
+   "card_id": "pentacles-08-eight",
+   "text": "Ocho de Oros"
+  }
+ ],
+ "waite": {
+  "quote": "In the main, it is a card of money, business, barter … Reversed: Cause for anxiety regarding money which it may be proposed to lend.",
+  "quote_lang": "en",
+  "pages": [
+   268
+  ],
+  "translation": "Principalmente, es una carta de dinero, negocios, trueque … Al revés: motivo de inquietud respecto a un dinero que se propone prestar.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 07.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_07.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    218,
+    266,
+    268,
+    293
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

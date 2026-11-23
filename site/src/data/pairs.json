@@ -3,7 +3,9 @@
  "/one-card": "/es",
  "/daily": "/es/carta-del-dia",
  "/yes-no": "/es/si-o-no",
+ "/yes-no/cards": "/es/si-o-no",
  "/love": "/es/amor",
+ "/cards": "/es/cartas",
  "/cards/the-fool": "/es/cartas/el-loco",
  "/cards/the-magician": "/es/cartas/el-mago",
  "/cards/the-high-priestess": "/es/cartas/la-sacerdotisa",
@@ -82,10 +84,12 @@
  "/cards/knight-of-pentacles": "/es/cartas/caballero-de-oros",
  "/cards/queen-of-pentacles": "/es/cartas/reina-de-oros",
  "/cards/king-of-pentacles": "/es/cartas/rey-de-oros",
+ "/cards/major-arcana": "/es/cartas/arcanos-mayores",
  "/es": "/",
  "/es/carta-del-dia": "/daily",
  "/es/si-o-no": "/yes-no",
  "/es/amor": "/love",
+ "/es/cartas": "/cards",
  "/es/cartas/el-loco": "/cards/the-fool",
  "/es/cartas/el-mago": "/cards/the-magician",
  "/es/cartas/la-sacerdotisa": "/cards/the-high-priestess",
@@ -163,5 +167,7 @@
  "/es/cartas/sota-de-oros": "/cards/page-of-pentacles",
  "/es/cartas/caballero-de-oros": "/cards/knight-of-pentacles",
  "/es/cartas/reina-de-oros": "/cards/queen-of-pentacles",
- "/es/cartas/rey-de-oros": "/cards/king-of-pentacles"
+ "/es/cartas/rey-de-oros": "/cards/king-of-pentacles",
+ "/es/cartas/arcanos-mayores": "/cards/major-arcana",
+ "/es/tiradas/3-cartas": "/"
 }

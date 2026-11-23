@@ -1,0 +1,204 @@
+{
+ "schema": 2,
+ "card_id": "pentacles-03-three",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Tres de Oros",
+  "in_sentence": "el Tres de Oros",
+  "de": "del Tres de Oros"
+ },
+ "title": "Tres de Oros en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Tres de Oros al derecho y al revés (carta invertida): trabajo en equipo, amor, dinero y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Tres de Oros en el tarot: significado",
+ "image_alt": "Tres de Oros, carta de 1909 de la baraja Rider-Waite-Smith: bajo un arco de piedra con tres pentáculos, un artesano trabaja sobre una banca junto a un monje y una figura con manto que sostienen un plano.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 3,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Tres de Oros es la carta del trabajo en equipo: colaboración, oficio y el gusto de construir algo bien hecho con otros. Al revés, falta coordinación o tu esfuerzo no se ve. Es una carta favorable que pide escuchar tanto como aportar. Responde que sí: quien talla la piedra y quienes revisan los planos trabajan en la misma obra.",
+ "keywords": {
+  "upright": [
+   "colaboración",
+   "oficio",
+   "trabajo en equipo",
+   "aprendizaje"
+  ],
+  "reversed": [
+   "falta de coordinación",
+   "esfuerzo que no se ve",
+   "trabajar por tu cuenta",
+   "trabajo descuidado"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Tres de Oros?",
+   "paragraphs": [
+    "Un arco de piedra tallada enmarca la escena, con tres pentáculos en triángulo cerca de lo alto; el arco y sus tres monedas son lo más grande de la carta. Waite la resume en una frase: un escultor trabajando en un monasterio (p. 276).",
+    "En la carta de 1909 el artesano, con túnica gris azulada y mandil amarillo, está de pie sobre una banca de madera, medio de espaldas, con una herramienta en la mano alzada. A la derecha hay un monje con hábito oscuro y capucha y una figura con un manto largo de puntos rojos; entre los dos sostienen una hoja con un dibujo."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Tres de Oros?",
+   "paragraphs": [
+    "Waite le da dos lecturas: el oficio mismo, el trabajo calificado, y otra que según él es la más común, la de una carta de nobleza, aristocracia, renombre y gloria (p. 276). Al revés, la lista de Waite habla de quedarse corto: mediocridad en el trabajo y fuera de él, mezquindad (p. 276)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Tres de Oros al derecho?",
+   "paragraphs": [
+    "El trabajo en equipo es el centro: personas con habilidades distintas que buscan un mismo resultado, cada una en lo que mejor hace. La colaboración aquí es práctica: planos sobre la mesa, preguntas, comentarios que se toman en serio. El oficio también cuenta; la carta honra el trabajo hecho con cuidado y la habilidad que otros empiezan a reconocer.",
+    "Suele marcar una etapa temprana pero real: un proyecto que toma forma, un aprendizaje, la primera vez que gente que sabe del tema ve lo que haces. Pregúntate qué ayuda mejoraría tu obra y qué aportas que nadie más aporta."
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Tres de Oros al revés?",
+   "paragraphs": [
+    "Al revés, puede hablar de falta de coordinación: una persona que carga con todo, metas que no coinciden, juntas que no llevan a nada. También de un esfuerzo que no se ve, una habilidad que nadie a tu alrededor nota, o de trabajar por tu cuenta por orgullo o costumbre cuando la ayuda está cerca. Y de trabajo descuidado, hecho a la carrera para terminar.",
+    "La palabra de Waite para este lado, mediocridad (p. 276), encaja con ese último caso. El remedio es claro: repartan quién hace qué, pide una opinión honesta y di lo que aportas."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Tres de Oros en el amor?",
+   "paragraphs": [
+    "Constructores con un mismo plano: en el amor, esta carta habla de una relación que crece con esfuerzo compartido, metas en común, acuerdos pequeños y un hogar o un futuro armado pieza por pieza. Valora el respeto por lo que cada quien sabe hacer más que los gestos grandes.",
+    "Cuando no hay pareja, los vínculos tienden a nacer del trabajo, del estudio o de un proyecto común, y la cercanía llega haciendo cosas lado a lado. Al revés, el esfuerzo está disparejo: alguien planea y alguien se deja llevar, o cada quien construye algo distinto sin decirlo."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Tres de Oros en el trabajo y el dinero?",
+   "paragraphs": [
+    "La habilidad es lo que rinde con esta carta: trabajo bien hecho y notado, un lugar en un buen equipo, un cliente que regresa porque quedó contento. Favorece aprender en la práctica y avanzar con constancia en un proyecto común. Su sentido económico es ganar por lo que sabes hacer: un pago justo por buen trabajo, un aumento ligado a tu capacidad, ingresos de un oficio. Al revés, puede hablar de cobrar poco por el esfuerzo o de un proyecto conjunto detenido porque nadie sabe quién hace qué."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Tres de Oros como consejo?",
+   "paragraphs": [
+    "Propón a alguien colaborar en una tarea concreta y repartan los papeles con claridad desde el principio. Después pídele una opinión honesta sobre tu parte: el buen trabajo crece más rápido cuando lo miran varios ojos."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Tres de Oros es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Tres de Oros como persona y como sentimiento?",
+   "paragraphs": [
+    "Aquí la carta retrata a alguien capaz y con ganas de colaborar: una persona que domina su oficio, que enseña, que escucha antes de decidir; también puede reflejar tu propia habilidad. En una pregunta sobre sentimientos, el Tres de Oros es respeto y aprecio: un interés que nace del esfuerzo compartido y el deseo de construir algo real, paso a paso. Al revés, los sentimientos van desfasados: esfuerzo desigual, la sensación de que no se valora lo que se da, dos personas que no van al mismo ritmo."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Tres de Oros junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "cups-03-three",
+     "text": "Trabajo y amistad se juntan; celebren un logro común con quienes lo hicieron posible."
+    },
+    {
+     "card_id": "major-05-hierophant",
+     "text": "Aprender de alguien con experiencia: un maestro, un método, una tradición de buen oficio."
+    },
+    {
+     "card_id": "swords-05-five",
+     "text": "Tensión dentro del equipo. Ganar una discusión cuesta más que terminar la obra en conjunto."
+    },
+    {
+     "card_id": "wands-06-six",
+     "text": "Habilidad que se nota: el buen trabajo trae reconocimiento."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Tres de Oros del Ocho de Oros?",
+   "paragraphs": [
+    "El Ocho de Oros de Waite muestra a un artista de la piedra en su trabajo (p. 266), y Waite une las dos cartas: el aprendiz del Ocho ya recibió su recompensa y en el Tres trabaja en serio (p. 276). Hoy el Ocho se lee como práctica y constancia, casi siempre a solas en el banco de trabajo. El Tres suma a otras personas: la habilidad se comparte, se revisa y se valora."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Tres de Oros?",
+   "paragraphs": [
+    "¿Qué opinión haría mejor mi trabajo?",
+    "¿Qué aporto a este proyecto que sea realmente mío?",
+    "¿Dónde trabajo por mi cuenta cuando podría pedir ayuda?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Tres de Oros es una carta buena o mala?",
+   "a": "Buena. Es una carta de capacidad y cooperación: el trabajo avanza y hay gente que puede ayudar. Incluso al revés señala problemas con arreglo, como papeles poco claros, falta de opiniones o un esfuerzo que nadie ha notado todavía. La lista de Waite llega hasta el renombre y la gloria (p. 276)."
+  },
+  {
+   "q": "¿Quiénes son las personas del Tres de Oros?",
+   "a": "Waite solo nombra a una: el escultor que trabaja en un monasterio (p. 276). En la carta de 1909 un monje y una figura con manto están junto a él con un plano dibujado, así que hoy la escena se lee como un artesano que compara su obra con el plano junto a la gente con la que trabaja. Esa lectura es moderna, no de Waite."
+  },
+  {
+   "q": "¿El Tres de Oros significa reconocimiento?",
+   "a": "Muchas veces. Un trabajo bien hecho que nota gente que sabe del tema es uno de sus significados típicos, ya sea un elogio, un mejor puesto o la confianza de un cliente. Habla de un reconocimiento ganado con habilidad y esfuerzo compartido, no de un golpe de suerte."
+  }
+ ],
+ "related": [
+  "pentacles-02-two",
+  "pentacles-04-four",
+  "wands-03-three",
+  "cups-03-three",
+  "swords-03-three"
+ ],
+ "mentions": [
+  {
+   "card_id": "pentacles-08-eight",
+   "text": "Ocho de Oros"
+  }
+ ],
+ "waite": {
+  "quote": "Métier, trade, skilled labour; … regarded as a card of nobility, aristocracy, renown, glory. Reversed: Mediocrity, in work and otherwise, puerility, pettiness, weakness.",
+  "quote_lang": "en",
+  "pages": [
+   276
+  ],
+  "translation": "Oficio, profesión, trabajo calificado; … considerada una carta de nobleza, aristocracia, renombre, gloria. Al revés: mediocridad, en el trabajo y en lo demás, puerilidad, mezquindad, debilidad.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 03.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_03.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    266,
+    276
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

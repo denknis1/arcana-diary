@@ -1,0 +1,214 @@
+{
+ "schema": 2,
+ "card_id": "cups-04-four",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Cuatro de Copas",
+  "in_sentence": "el Cuatro de Copas",
+  "de": "del Cuatro de Copas"
+ },
+ "title": "Cuatro de Copas en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Cuatro de Copas al derecho y al revés (carta invertida): apatía, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Cuatro de Copas en el tarot: significado",
+ "image_alt": "Cuatro de Copas, carta de 1909 de la baraja Rider-Waite-Smith: un joven sentado bajo un árbol, cruzado de brazos, frente a tres copas; desde una nube, una mano le ofrece una cuarta.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 4,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Cuatro de Copas habla de apatía y desinterés: lo que tienes no te llena y no ves lo que se te ofrece. Al revés, regresan las ganas y por fin levantas la vista. Es una carta quieta, no mala: una pausa que pesa solo si se alarga. Al derecho no está claro: la cuarta copa espera, ignorada.",
+ "keywords": {
+  "upright": [
+   "apatía",
+   "introspección",
+   "desinterés",
+   "oportunidad ignorada"
+  ],
+  "reversed": [
+   "ganas que regresan",
+   "curiosidad",
+   "decir que sí",
+   "levantar la vista"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Cuatro de Copas?",
+   "paragraphs": [
+    "Un joven se sienta bajo un árbol con tres copas sobre el pasto, frente a él, mientras desde una nube un brazo le ofrece una cuarta. Waite añade que, aun así, su gesto es de descontento con lo que lo rodea (p. 218).",
+    "En la carta de 1909 el tronco del árbol es lo más alto y se pierde por arriba del borde. El joven está sentado con las piernas cruzadas, de brazos cruzados y con la mirada baja, con mangas rojas y mallas azules, y las tres copas forman una fila abajo. La copa ofrecida sale de una nubecita a la izquierda."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Cuatro de Copas?",
+   "paragraphs": [
+    "Los significados de Waite giran en torno al hartazgo: cansancio, asco, aversión y molestias imaginarias, como si el vino de este mundo solo hubiera dejado saciedad (p. 218). Según Waite, ahora se le ofrece otro vino, como un regalo de hadas, pero el joven no encuentra consuelo en él (p. 218).",
+    "Waite también la llama una carta de placer mezclado (p. 218): incluso al derecho, el ánimo es más revuelto que simplemente bajo."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Cuatro de Copas al derecho?",
+   "paragraphs": [
+    "La apatía es el primer significado del Cuatro de Copas: nada termina de llenarte y lo que ya tienes se siente plano. Puede aparecer después de una racha agotadora o decepcionante, cuando encerrarte se siente más cómodo que intentarlo otra vez.",
+    "La introspección es el lado amable de la misma carta: hacer una pausa para pensar puede ser justo lo que toca. El riesgo es que la pausa se vuelva no ver. El detalle clásico es la oportunidad ignorada: una invitación, una ocasión, una palabra amable que pasan mientras miras el suelo.",
+    "¿Qué se te está ofreciendo ahora que todavía no miras de verdad?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Cuatro de Copas al revés?",
+   "paragraphs": [
+    "Al revés, el bajón empieza a ceder: ganas que regresan, curiosidad, disposición a decir que sí a algo que llevabas rato ignorando. A veces también significa soltar lo que ya no te llena y levantar la vista hacia lo nuevo.",
+    "Los significados al revés que da Waite van en esa dirección: novedad, nueva instrucción y nuevas relaciones (p. 218). Sigue esas ganas paso a paso, sin presionarte. Con un solo sí basta para empezar."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Cuatro de Copas en el amor?",
+   "paragraphs": [
+    "Cuando el amor se vuelve rutina, aparece esta carta: una relación que se da por hecha, un interés que se apagó sin ruido. Habla menos de falta de amor que de no ver lo que ya está ahí.",
+    "A solas, puede mostrar que descartas el interés de otras personas porque no se parece a lo que imaginabas, o que de verdad necesitas tiempo para ti antes de conocer a alguien.",
+    "Al revés trae ojos nuevos: interés renovado por la pareja o ganas de aceptar una cita que antes habrías rechazado. ¿Le das la espalda a algo solo porque no se ve como esperabas?"
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Cuatro de Copas en el trabajo y el dinero?",
+   "paragraphs": [
+    "Aburrimiento en el trabajo, un puesto que ya no te interesa, la sensación de ir en automático: ese es su significado laboral. También incluye oportunidades que se pasan porque no estabas mirando, así que revisa lo que tienes enfrente antes de decidir que no hay nada.",
+    "En el dinero, no es una carta de carencia. Significa insatisfacción con lo que tienes, o una oportunidad que dejas pasar porque parece poca cosa; al revés, muestra ganas de aprovechar algo nuevo."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Cuatro de Copas como consejo?",
+   "paragraphs": [
+    "Descruza los brazos: anota tres cosas buenas que tienes al alcance y que sueles dar por hecho, una persona, una invitación, un gusto pequeño. Elige una y acéptala hoy, antes de que vuelva la costumbre de mirar hacia otro lado."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Cuatro de Copas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Cuatro de Copas como persona y como sentimiento?",
+   "paragraphs": [
+    "El joven pensativo bajo el árbol del Cuatro de Copas es alguien retraído o difícil de impresionar, amable pero distante, metido en sus pensamientos; también puede retratarte a ti cuando necesitas tiempo para pensar. Si se pregunta por lo que se siente, significa indiferencia, sentimientos encontrados o distancia emocional: un interés bajo o dudoso y muestras de cariño que pasan sin notarse. Al revés, el sentimiento despierta: curiosidad, calidez que vuelve y ganas de mirar otra vez a alguien que siempre estuvo ahí."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Cuatro de Copas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "cups-01-ace",
+     "text": "Llega una emoción nueva; la pregunta es si levantas la mirada para tomarla."
+    },
+    {
+     "card_id": "major-09-hermit",
+     "text": "Un paso atrás a propósito. Usa la calma para descubrir qué quieres de verdad."
+    },
+    {
+     "card_id": "swords-04-four",
+     "text": "Descanso y retiro juntos. Una pausa está bien mientras siga siendo pausa."
+    },
+    {
+     "card_id": "wands-08-eight",
+     "text": "Después del bajón, todo se acelera. Prepárate para responder."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Cuatro de Copas del Cinco de Copas y del Ocho de Copas?",
+   "paragraphs": [
+    "Waite describe el Cinco de Copas como una figura con capa que mira de reojo tres copas tiradas, y otras dos todavía de pie a su espalda, y dice que es una carta de pérdida, aunque algo queda (p. 216). Hoy se lee como decepción y arrepentimiento; el Cuatro no es duelo, sino hastío.",
+    "El Ocho de Copas de Waite muestra a un hombre desanimado que deja atrás las copas que fueron su dicha (p. 210); la lectura actual es partir para buscar otra cosa. El Cuatro se queda sentado y le da la espalda a lo que le ofrecen; el Ocho se pone de pie y emprende el camino."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Cuatro de Copas?",
+   "paragraphs": [
+    "¿Qué dejé de notar porque ya me acostumbré?",
+    "¿Mi retiro es un descanso que necesito o un hábito en el que caí?",
+    "¿A qué le diría que sí si lo mirara con ojos nuevos?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Cuatro de Copas es una carta buena o mala?",
+   "a": "Ni una ni otra, en general: es una carta neutra y quieta. Muestra una pausa, a veces necesaria, y su punto débil es la oportunidad que se va sin que la veas. Al revés es más bien alentadora, porque describe que vuelven el interés y la energía."
+  },
+  {
+   "q": "¿El Cuatro de Copas significa que no le intereso?",
+   "a": "Como significado de carta, describe un interés bajo o dudoso y distancia emocional, muchas veces más por cansancio que por la otra persona. No dice qué piensa ninguna persona de tu vida; lo que alguien hace con el tiempo dice más que una sola carta."
+  },
+  {
+   "q": "¿Qué es la mano que sale de la nube en el Cuatro de Copas?",
+   "a": "Es la mano que sostiene la cuarta copa, el ofrecimiento central de la carta. Waite lo describe con otro vino, casi un obsequio de hadas, que aun así no le sirve de consuelo al joven (p. 218). En Arcana Diary la leemos sencillamente como una oferta que está ahí para notarse, si levantas los ojos."
+  }
+ ],
+ "related": [
+  "cups-03-three",
+  "cups-05-five",
+  "wands-04-four",
+  "swords-04-four",
+  "pentacles-04-four"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-05-five",
+   "text": "Cinco de Copas"
+  },
+  {
+   "card_id": "cups-08-eight",
+   "text": "Ocho de Copas"
+  }
+ ],
+ "waite": {
+  "quote": "Weariness, disgust, aversion, imaginary vexations … This is also a card of blended pleasure. Reversed: Novelty, presage, new instruction, new relations.",
+  "quote_lang": "en",
+  "pages": [
+   218
+  ],
+  "translation": "Cansancio, asco, aversión, molestias imaginarias … Esta es también una carta de placer mezclado. Al revés: novedad, presagio, nueva instrucción, nuevas relaciones.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 04.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_04.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    210,
+    216,
+    218
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

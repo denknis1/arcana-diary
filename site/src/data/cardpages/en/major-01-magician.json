@@ -1,0 +1,220 @@
+{
+ "schema": 2,
+ "card_id": "major-01-magician",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "The Magician",
+  "in_sentence": "The Magician"
+ },
+ "title": "The Magician Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "The Magician upright: willpower, skill, focus; reversed: scattered talent. Love, work, advice, Waite's 1911 text and the 1909 card. Ask your question.",
+ "h1": "The Magician Tarot Card Meaning",
+ "image_alt": "The Magician, 1909 Rider–Waite–Smith card: a young man in a red robe raises a white wand behind a table with a cup, a sword and a coin, a sideways figure eight above his head and roses around him.",
+ "facts": {
+  "arcana": "major",
+  "suit": null,
+  "number": 1,
+  "numeral": "I",
+  "also_called": []
+ },
+ "capsule": "The Magician is card I of the Major Arcana: willpower, skill and manifestation, the click when an aim finally meets the means to reach it. Reversed, the talent scatters or turns into show and manipulation. A strong, encouraging card, it also asks what your power serves. His tools already lie within reach on the table, so upright he answers yes.",
+ "keywords": {
+  "upright": [
+   "willpower",
+   "skill",
+   "focus",
+   "resources"
+  ],
+  "reversed": [
+   "scattered talent",
+   "self-doubt",
+   "playing to impress",
+   "unused potential"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on The Magician card?",
+   "paragraphs": [
+    "A young man in a red robe over a white tunic stands behind a table under a yellow sky. Waite gives him \"the countenance of divine Apollo, with smile of confidence and shining eyes\" (p. 72). One hand lifts a wand \"raised towards heaven, while the left hand is pointing to the earth\" (p. 72), and Waite reads the double gesture as \"the descent of grace, virtue and light, drawn from things above and derived to things below\" (pp. 72–75). On the 1909 card the raised wand is white, and the standing figure is the largest shape in the picture.",
+    "Over his head floats a sideways figure eight, which Waite calls \"the sign of life, like an endless cord\" (p. 72). Around the waist he places a serpent belt, \"the serpent appearing to devour its own tail\" (p. 72). On the 1909 card the eight is a plain dark loop, and the numeral I stands at the top.",
+    "The table holds the signs of the four suits. Waite writes that they \"lie like counters before the adept, and he adapts them as he wills\" (p. 75). On the 1909 card a tall cup, a sword laid flat and a coin marked with a five-pointed star are easy to pick out.",
+    "Flowers frame the scene: red roses hang from leafy stems along the top edge of the 1909 card, and more roses grow with white lilies in front of the table. Waite says these were \"changed into garden flowers, to shew the culture of aspiration\" (p. 75)."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about The Magician?",
+   "paragraphs": [
+    "Waite's upright list runs on two tracks. One is skill and tact with people; \"address\" here is an old word for deftness, not a place. The other is a string of troubles. After both come self-confidence and will. The reversed list even names the card itself, \"Magus\", among words of unease and disgrace.",
+    "For Waite the picture mattered more than the list. He saw in it \"the possession and communication of the Powers and Gifts of the Spirit\" (p. 75), and he counted the Magician among the cards that, for him, show the real subject matter of the tarot (pp. 64–65)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does The Magician mean upright?",
+   "paragraphs": [
+    "Willpower meeting skill is the heart of The Magician upright. You have an aim, you have resources, and for once the two line up: cup, sword, wand and coin are out on the table, not stored in a drawer. The card often turns up when a plan is ready to move from talk to action, the step modern readings call manifestation: making an idea real with what is at hand.",
+    "Its emphasis is focus. The figure does not juggle everything at once; he raises one wand and points one way. In daily life that means choosing a single goal and putting your tools to work on it instead of spreading your energy thin.",
+    "Waite's list sets self-confidence and will beside skill, so the card also asks you to trust what you can already do. If that sounds like where you stand, the question is direct: what could you start now with only what is within reach?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does The Magician mean reversed?",
+   "paragraphs": [
+    "Reversed, The Magician usually shows ability that is present but not used well. It can be scattered talent, with many projects and none finished, or effort spent playing to impress rather than to build. At its hardest the reversed card means manipulation: skill used to trick or persuade, an illusion sold as substance. Sometimes the trouble runs the other way: self-doubt, a quiet sense that you cannot do what you clearly can.",
+    "Waite's reversed list leans toward unease and disquiet, the words that best match the self-doubt case; scattered effort, showing off and manipulation are modern readings, not Waite's.",
+    "Either way, the card points to unused potential, not a lack of it. Bring your attention back to one honest aim and let your skills serve that aim rather than an image."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does The Magician mean in love?",
+   "paragraphs": [
+    "Saying plainly what you want, instead of hinting and waiting, is what The Magician favors in love. Your words and actions shape more of your love life than you may think, and the card asks you to use them on purpose.",
+    "For someone still looking, this can mean taking an active part: starting the conversation and showing who you are rather than a polished version. Within a couple, it may mean naming a wish out loud or putting real effort into something you both said you wanted.",
+    "Reversed, the love meaning turns to games and manipulation: charm used as a tool, promises bigger than anyone plans to keep, or doubt that keeps you from speaking at all."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does The Magician mean for work and money?",
+   "paragraphs": [
+    "Starting a project, pitching an idea, finally using a skill you have been sitting on: on the job, The Magician is a strong card for all three. It favors initiative and practical focus: one clear goal, the right tools gathered, the first step taken.",
+    "In money terms the card means resourcefulness: earning through your own skills and making what you already have work for one plan instead of scattering it. Reversed, its money side is plans that stay talk, promises bigger than results, or offers that look better than they are; notice too where doubt keeps a good idea in a drawer."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is The Magician's advice?",
+   "paragraphs": [
+    "Gather everything one plan needs in a single place and look at it the way the figure on the card looks at his table. Then pick up one tool and use it. Having more is not the point; putting what is already there to work on purpose is."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is The Magician a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Magician as a person and as feelings",
+   "paragraphs": [
+    "Picture a capable doer: confident, persuasive, quick with words and tools, the friend who turns an idea into a working draft, or the part of you that knows how to make things happen. That is The Magician as a person. Read as feelings, this card is active interest: attraction backed by intention, charm with a plan behind it, a wish to make a connection real rather than only imagine it. Reversed, the same energy can mean games or manipulation: charm used to impress, words that run ahead of actions, interest that is more show than substance, or insecurity behind a confident front."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Magician with other cards",
+   "pairs": [
+    {
+     "card_id": "wands-01-ace",
+     "text": "A fresh spark meets the hands that can shape it. Turn the idea into something concrete while the energy is high."
+    },
+    {
+     "card_id": "pentacles-08-eight",
+     "text": "Talent plus practice. Steady repetition is what turns ability into real craft."
+    },
+    {
+     "card_id": "major-02-high-priestess",
+     "text": "Action beside inner knowing. Check your plan against your quiet hunch before you push it forward."
+    },
+    {
+     "card_id": "cups-07-seven",
+     "text": "Many options and one pair of hands. Pick the one you can actually work on and set the rest aside."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "The Magician or The Chariot?",
+   "paragraphs": [
+    "Both cards are about will. Waite describes the driver of The Chariot as \"an erect and princely figure carrying a drawn sword\" and calls him \"above all things triumph in the mind\" (p. 96); today it is read as determination and momentum on a chosen road. The Magician stands at the start, gathering tools and choosing the aim. The Chariot comes later, when the journey is under way and the task is holding the course."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about The Magician",
+   "paragraphs": [
+    "What one goal deserves my full attention right now?",
+    "Which of my skills or resources am I leaving unused?",
+    "Am I acting to build something, or to look impressive?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is The Magician a good or bad card?",
+   "a": "Mostly a good one: few cards are more encouraging when you want to begin something, since it backs initiative, ability and a clear aim. Where it turns tricky is in how power gets used: talent spent on appearances, or a plan pushed without asking whether it is honest. Reversed, that side moves to the front."
+  },
+  {
+   "q": "Is The Magician a trickster card?",
+   "a": "Older decks leaned that way. Waite lists the card as \"The Magus, Magician, or Juggler, the caster of the dice and mountebank, in the world of vulgar trickery\" (p. 12) and calls this \"the colportage interpretation\", the cheap popular reading. The 1909 picture has no dice: a robed figure raises a wand over the signs of the four suits. Today trickery belongs to the reversed card: manipulation and illusion."
+  },
+  {
+   "q": "Is The Magician about magic?",
+   "a": "Not about spells. Waite gave the card a spiritual sense and described the four signs on the table as \"the elements of natural life\" (p. 75), arranged by the figure at will. In a modern reading the magic is practical: the moment when what you know, what you have and what you want finally pull in one direction."
+  },
+  {
+   "q": "Does The Magician always represent a man?",
+   "a": "No. Waite's list says the card can stand for \"the Querent, if male\" (p. 283), and in one of his spreads a man who asks the question is represented by this card (p. 308). That was a convention of 1911. On Arcana Diary the card describes a way of acting, focused and resourceful, that belongs to anyone."
+  }
+ ],
+ "related": [
+  "major-00-fool",
+  "major-02-high-priestess",
+  "major-07-chariot",
+  "wands-01-ace",
+  "pentacles-08-eight"
+ ],
+ "mentions": [
+  {
+   "card_id": "major-07-chariot",
+   "text": "The Chariot"
+  }
+ ],
+ "waite": {
+  "quote": "Skill, diplomacy, address, subtlety; sickness, pain, loss, disaster, snares of enemies; self-confidence, will; the Querent, if male. Reversed: Physician, Magus, mental disease, disgrace, disquiet.",
+  "quote_lang": "en",
+  "pages": [
+   283
+  ],
+  "translation": null,
+  "harsh": true
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - 01 Magician.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_01_Magician.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    12,
+    64,
+    65,
+    72,
+    75,
+    96,
+    283,
+    308
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

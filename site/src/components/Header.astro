@@ -18,7 +18,7 @@ interface Props {
 const { lang, path, current } = Astro.props;
 const d = t(lang);
 const LABELS: Record<string, DictKey> = {
-  home: 'navHome', yes_no: 'navYesNo', love: 'navLove', daily: 'navDaily', diary: 'navDiary',
+  home: 'navHome', yes_no: 'navYesNo', love: 'navLove', daily: 'navDaily', cards: 'navCards', diary: 'navDiary',
 };
 const SHORT: Record<string, DictKey> = { diary: 'navDiaryShort' };
 const items = NAV_KEYS.map((key) => ({

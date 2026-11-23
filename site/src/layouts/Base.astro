@@ -1,13 +1,19 @@
 ---
-// Every page: language, title, fonts (our own, /fonts: Cormorant Garamond 500/600, Manrope 400–700; @font-face in global.css), tokens, the
-// header with the menu and the language switch, the footer. The stage is closed by Caddy (password, X-Robots-Tag).
-// `noindex`: the diary and the account (spec 4.4b §5, §6) — never indexed, also after the launch.
+// Every page: language, title, description, fonts (our own, /fonts: Cormorant Garamond 500/600, Manrope 400–700;
+// @font-face in global.css), tokens, the header with the menu and the language switch, the footer. Stage 6 (spec §3):
+// an indexable page — one with a description and without noindex — also gets its canonical address, hreflang by its
+// language pair (src/lib/seo.ts), Open Graph and Twitter tags and its JSON-LD. The stage is closed by Caddy
+// (password, X-Robots-Tag). `noindex`: the diary and the account (spec 4.4b §5, §6) — never indexed, also after the
+// launch — and the hidden service pages (stage 6 decision 35).
 import '../styles/tokens.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import JsonLdScript from '../components/JsonLd.astro';
 import { t } from '../i18n';
+import type { JsonLd } from '../lib/jsonld';
 import type { PageKey } from '../lib/routes';
+import { DEFAULT_IMAGE, absoluteUrl, alternates } from '../lib/seo';
 import type { Lang } from '../lib/types';
 
 interface Props {
@@ -16,10 +22,19 @@ interface Props {
   path: string;
   current?: PageKey;
   noindex?: boolean;
+  description?: string;
+  image?: string;
+  ogType?: 'website' | 'article';
+  jsonLd?: readonly (JsonLd | null)[];
 }
 
-const { lang, title, path, current, noindex = false } = Astro.props;
+const { lang, title, path, current, noindex = false, description, image = DEFAULT_IMAGE, ogType = 'website',
+  jsonLd = [] } = Astro.props;
 const d = t(lang);
+const indexable = !noindex && description !== undefined;
+const url = absoluteUrl(path);
+const imageUrl = absoluteUrl(image);
+const ld = jsonLd.filter((item): item is JsonLd => item !== null);
 ---
 <!doctype html>
 <html lang={lang}>
@@ -27,7 +42,26 @@ const d = t(lang);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {description !== undefined ? <meta name="description" content={description} /> : null}
     {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+    {indexable ? (
+      <>
+        <link rel="canonical" href={url} />
+        {alternates(path).map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+        <meta property="og:type" content={ogType} />
+        <meta property="og:site_name" content={d.siteName} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'es_MX'} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageUrl} />
+        {ld.map((data) => <JsonLdScript data={data} />)}
+      </>
+    ) : null}
     <noscript><style>@media (max-width: 899px) { .site-nav { display: block; } .menu-button { display: none; } }</style></noscript>
   </head>
   <body>

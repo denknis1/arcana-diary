@@ -249,6 +249,14 @@ export const es: Dict = {
   // decisión 16 del dueño: {account} es el enlace a la cuenta (diaryReminderOnLink)
   diaryReminderOn: 'El recordatorio en 7 días está activado; puedes desactivarlo en {account}.',
   diaryReminderOnLink: 'tu cuenta',
+  // etapa 6: menú (tabla del menú de la etapa 2), migas (prototipos LaLuna, TresCartas), título de las preguntas
+  navCards: 'Significados',
+  breadcrumbLabel: 'Ruta',
+  crumbHome: 'Inicio',
+  crumbCards: 'Cartas',
+  crumbMajor: 'Arcanos mayores',
+  crumbYesNoCards: 'Lista de cartas',
+  faqTitle: 'Preguntas frecuentes',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

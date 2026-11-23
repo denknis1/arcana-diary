@@ -1,0 +1,208 @@
+{
+ "schema": 2,
+ "card_id": "wands-05-five",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Five of Wands",
+  "in_sentence": "the Five of Wands"
+ },
+ "title": "Five of Wands Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "Five of Wands upright: competition, friction, rivalry; reversed: avoiding conflict, a truce. Love, work, advice and Waite's 1911 words. Ask your question.",
+ "h1": "Five of Wands Tarot Card Meaning",
+ "image_alt": "Five of Wands, 1909 Rider–Waite–Smith card: five young men in mixed clothes swing long staves that cross above their heads under a pale blue sky.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 5,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "The Five of Wands stands for competition, friction and clashing ideas: many voices, no clear leader. Reversed, it can mean avoiding a needed argument or tension finally easing. It is a lively card more than a bad one, though the scramble wastes energy. With every staff swinging and no winner in sight, the answer stays not clear yet.",
+ "keywords": {
+  "upright": [
+   "competition",
+   "friction",
+   "rivalry",
+   "clashing ideas"
+  ],
+  "reversed": [
+   "avoiding conflict",
+   "inner conflict",
+   "tension easing",
+   "truce"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Five of Wands card?",
+   "paragraphs": [
+    "Five young men swing long staves at one another. Waite describes \"a posse of youths, who are brandishing staves, as if in sport or strife\" and calls the scene \"mimic warfare\" (p. 188): a play fight rather than a battle. The knot of crossed staves in the middle is the largest thing on the card.",
+    "On the 1909 card each youth is dressed differently: one in yellow, one in red with a small brown hat, one in a dark patterned tunic, one in green, one in white with blue spots. They stand on rough, uneven ground under a pale blue sky, every staff held at its own angle, and V is printed at the top. Nobody stands above the rest, and nobody has fallen."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Five of Wands?",
+   "paragraphs": [
+    "Waite reads the play fight as imitation, and also as \"the strenuous competition and struggle of the search after riches and fortune\" (p. 188), which he ties to the battle of life; hence, he notes, some call it a card of gold, gain and opulence (p. 188). In a later list of extra meanings, Waite says of the reversed card that \"quarrels may be turned to advantage\" (p. 289).",
+    "The first reversed word in the quote above belongs to the law, and Arcana Diary does not read the card that way. The disputes, trickery and contradiction stay."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Five of Wands mean upright?",
+   "paragraphs": [
+    "Competition is the heart of this card: rivalry at work or in a group, several people pushing for the same thing, clashing ideas in a meeting where everyone talks and few listen. It is friction more than hostility, a contest of wills and opinions rather than a real fight.",
+    "That friction can be useful. A good debate sharpens a plan, and healthy competition can bring out your best effort. The trouble starts when the contest becomes the point and nobody remembers what the argument was for.",
+    "Which of these contests do you actually care about, and what do you want from it?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Five of Wands mean reversed?",
+   "paragraphs": [
+    "Turned upside down, the card can describe avoiding conflict: keeping quiet to keep the peace while the disagreement goes on underneath. It can also show inner conflict, two wishes of your own pulling against each other.",
+    "Its gentler side is tension easing. People stop talking over each other, a truce is reached, or everyone agrees to differ. Waite's reversed words, disputes, trickery and contradiction (p. 188), show the darker side, an argument that turns unfair. Easing and truce are modern readings, not Waite's. Either way, one calm, honest conversation does more than letting the friction simmer."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Five of Wands mean in love?",
+   "paragraphs": [
+    "Five staves swinging in one small space is a fair picture of bickering: small arguments, competing for attention, a contest about who is right. Love under this card can feel lively and tense at once, attraction mixed with friction.",
+    "Dating may feel like a competition, with rivalry for the same person or too many voices offering opinions. Between partners, it often shows different needs colliding over everyday things. Say what you need without turning it into a contest.",
+    "Upside down, it may be a talk that keeps being put off, or tension softening because someone chose to listen first."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Five of Wands mean for work and money?",
+   "paragraphs": [
+    "Office rivalry, a race for the same promotion, a team with clashing ideas and no clear lead: this is a common card for a competitive workplace. Choose the debates that improve the work and skip the ones that only prove a point.",
+    "For money, the card means competition for resources: a crowded market, several hands on one budget, or disagreements at home about spending. It describes effort and friction around money, a struggle to get ahead."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Five of Wands?",
+   "paragraphs": [
+    "Pick the one disagreement that matters most and let the smaller ones go. For that one, say plainly what you want and listen to the whole answer before you reply. Being heard does not require shouting louder than everyone else."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Five of Wands a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Five of Wands as a person and as feelings",
+   "paragraphs": [
+    "The Five of Wands in human form is someone who loves a debate: competitive, quick to argue, full of energy, sometimes more interested in winning than in agreeing. As feelings, the Five of Wands stands for restless, mixed emotions: attraction with friction, playful rivalry, a push and pull where neither side wants to give way first. Reversed, the feeling can be a wish to keep the peace at any cost, frustration left unspoken, or tension slowly settling into something calmer."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Five of Wands with other cards",
+   "pairs": [
+    {
+     "card_id": "wands-07-seven",
+     "text": "From the scramble to a stand: pick the position that is yours and hold it."
+    },
+    {
+     "card_id": "cups-02-two",
+     "text": "Friction that turns into understanding once both sides listen."
+    },
+    {
+     "card_id": "major-14-temperance",
+     "text": "Many voices, one middle path. Look for what each side can accept."
+    },
+    {
+     "card_id": "wands-06-six",
+     "text": "Competition that ends in recognition; the effort gets noticed."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Five of Wands or Five of Swords?",
+   "paragraphs": [
+    "In Waite's words, the Five of Swords shows \"a disdainful man\" who looks after \"two retreating and dejected figures\" (p. 244); today it is read as conflict with a winner and losers, a hollow victory. The Five of Wands has no winner yet. Everyone is still in the scramble, and the fight is closer to a contest than to a defeat."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Five of Wands",
+   "paragraphs": [
+    "Which disagreement in my life is worth my energy right now?",
+    "Am I arguing for what I want, or only to be right?",
+    "What would I say if I knew I would be heard?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Five of Wands a good or bad card?",
+   "a": "Neither, mostly: it is a busy, noisy card. Friction and competition can drain you or help you, depending on how you handle them. Healthy rivalry pushes you to improve; constant bickering only tires everyone out. The card asks which of the two you are in."
+  },
+  {
+   "q": "Is the Five of Wands about a real fight?",
+   "a": "Usually not. Waite describes the scene as a sham fight, an imitation of battle (p. 188), and modern readings follow him: rivalry, debate and competition, not anyone getting hurt. Think of a heated meeting or a game played too seriously."
+  },
+  {
+   "q": "What does the Five of Wands mean for a team or group of friends?",
+   "a": "A group where everyone pushes a different idea at the same time. There is plenty of energy, but without some order it goes off in five directions. Agreeing on one shared goal, and on who makes the final call, usually turns the scramble into teamwork."
+  }
+ ],
+ "related": [
+  "wands-04-four",
+  "wands-06-six",
+  "cups-05-five",
+  "swords-05-five",
+  "pentacles-05-five"
+ ],
+ "mentions": [
+  {
+   "card_id": "swords-05-five",
+   "text": "Five of Swords"
+  }
+ ],
+ "waite": {
+  "quote": "Imitation, as, for example, sham fight, but also the strenuous competition and struggle of the search after riches and fortune … Reversed: Litigation, disputes, trickery, contradiction.",
+  "quote_lang": "en",
+  "pages": [
+   188
+  ],
+  "translation": null,
+  "harsh": true
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 05.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_05.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    188,
+    244,
+    289
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

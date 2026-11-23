@@ -1,0 +1,10 @@
+{
+ "guest_limit": 2,
+ "user_limit": 3,
+ "followups": 2,
+ "diary_free": 10,
+ "yes_count": 45,
+ "no_count": 13,
+ "unclear_count": 20,
+ "editor_name": "Adrian Solenne"
+}

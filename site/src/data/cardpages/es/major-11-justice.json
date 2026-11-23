@@ -1,0 +1,227 @@
+{
+ "schema": 2,
+ "card_id": "major-11-justice",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "La Justicia",
+  "in_sentence": "La Justicia",
+  "de": "de La Justicia"
+ },
+ "title": "La Justicia en el tarot: significado, invertida y amor",
+ "description": "Qué significa La Justicia al derecho y al revés (carta invertida): equilibrio, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "La Justicia en el tarot: significado",
+ "image_alt": "La Justicia, carta de 1909 de la baraja Rider-Waite-Smith: una figura coronada, con túnica roja y capa verde, sentada entre dos columnas grises frente a una cortina morada, con una espada en alto y una balanza.",
+ "facts": {
+  "arcana": "major",
+  "suit": null,
+  "number": 11,
+  "numeral": "XI",
+  "also_called": []
+ },
+ "capsule": "La Justicia es la carta XI de los arcanos mayores: equilibrio, verdad, causa y efecto, y hacerte cargo de tus decisiones. Al revés, habla de injusticia, falta de honestidad o evadir tu parte. Es una carta justa, no dura: lo que pide es honestidad. Mientras la balanza siga pesando, no está claro si la respuesta es sí o no.",
+ "keywords": {
+  "upright": [
+   "equilibrio",
+   "verdad",
+   "responsabilidad",
+   "causa y efecto"
+  ],
+  "reversed": [
+   "desequilibrio",
+   "sensación de injusticia",
+   "evadir tu parte",
+   "juzgarte con dureza"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta de La Justicia?",
+   "paragraphs": [
+    "Una figura coronada se sienta entre dos columnas de piedra gris, con una cortina morada detrás. En la mano derecha sostiene una espada en alto; de la izquierda cuelga una balanza. Waite comenta poco el dibujo, porque la carta sigue el simbolismo tradicional y sus significados están a la vista (p. 112).",
+    "La espada es lo que más resalta: su hoja azul sube casi hasta el borde. En la carta de 1909 la túnica es roja, una capa verde se cierra con un broche al cuello, la corona lleva una piedra cuadrada al frente, la franja de fondo arriba de la cortina es amarilla y se lee el XI. La balanza cuelga a un costado, a la altura de la rodilla, y bajo la túnica asoma un zapato blanco.",
+    "Waite sí señala un detalle: la figura está sentada entre columnas, como La Sacerdotisa (p. 112). Y cierra con un contraste entre las dos cartas: las columnas de La Justicia se abren a un mundo y las de La Sacerdotisa, a otro (p. 115)."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre La Justicia?",
+   "paragraphs": [
+    "La primera lista empieza con palabras de justicia cotidiana: equidad, rectitud, probidad. Su último término y los dos primeros de la segunda lista usan el lenguaje de la ley; lo demás de esa lista nombra fallas de criterio: intolerancia, parcialidad, severidad de más. En Arcana Diary, La Justicia nunca se lee sobre asuntos legales ni sobre cómo terminan: solo habla de honestidad y equilibrio en tus propias decisiones.",
+    "Waite también separa dos ideas: el principio moral, que da a cada quien según sus obras, y una justicia espiritual que, según él, ninguna regla alcanza a explicar (p. 112)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa La Justicia al derecho?",
+   "paragraphs": [
+    "Al derecho, La Justicia pide mirar con verdad lo que pasa, incluida tu parte. Suele salir cuando tienes una decisión enfrente y quieres tomarla de forma limpia.",
+    "La responsabilidad está en el centro de la carta. No se trata de culpas, sino de hacerte cargo de lo que eliges y de sus efectos, los buenos y los incómodos. Lo que decides hoy deja huella: es la idea de causa y efecto que acompaña a esta carta, y por eso suele leerse como un resultado que corresponde a lo que se puso en la balanza.",
+    "El otro tema es el equilibrio: pesar los hechos y no solo lo que sientes por ellos, y preguntarte si un arreglo es justo para todas las partes, contándote a ti. Si esto te hace sentido, la pregunta es: ¿cómo se vería la versión honesta de esta decisión? La lectura de hoy también la liga con asuntos legales y contratos: acuerdos leídos con cuidado y condiciones claras y justas."
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa La Justicia al revés?",
+   "paragraphs": [
+    "Al revés, La Justicia puede hablar de desequilibrio: un acuerdo que se siente disparejo, una sensación de injusticia, falta de honestidad o la costumbre de evadir tu parte en lo que salió mal.",
+    "También puede voltearse hacia adentro: juzgarte con dureza, con una vara más estricta de lo que los hechos piden. Esa lectura es moderna, no de Waite; lo más cercano en su segunda lista es la severidad excesiva.",
+    "En los dos casos, el arreglo empieza separando con honestidad lo que sí te toca y lo que no. Hazte cargo de lo primero y suelta lo segundo."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa La Justicia en el amor?",
+   "paragraphs": [
+    "La balanza pesa el dar y el recibir, también en el amor: al derecho, la carta habla de un vínculo honesto y equilibrado, donde cada quien carga su parte. Cuando compartes la vida con alguien, invita a revisar el equilibrio: quién carga con qué, qué necesidades se dicen en voz alta y qué acuerdos ya no funcionan.",
+    "Sin una relación por ahora, puede preguntarte si lo que esperas de alguien nuevo coincide con lo que tú puedes ofrecer, y si tus exigencias también son justas contigo.",
+    "Con la balanza al revés, se lee como un vínculo desigual o injusto, o como falta de honestidad en el amor. Fíjate dónde la relación se siente dispareja o dónde evitas mirar tu parte de un problema que se repite. ¿Cómo se vería un acuerdo más justo para ti?"
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa La Justicia en el trabajo y el dinero?",
+   "paragraphs": [
+    "Acuerdos claros, retroalimentación honesta y decisiones que puedes explicar: ese es el terreno de La Justicia en el trabajo. Puede ser buen momento para revisar cómo se reparten las tareas o una promesa que hiciste, y ver si es justa para todos.",
+    "En el dinero, La Justicia significa trato justo: un pago que corresponde al trabajo, acuerdos que se cumplen de los dos lados y cuentas claras, con decisiones basadas en hechos y no en suposiciones que nunca revisaste.",
+    "Si aparece al revés, puede hablar de un trato injusto, dinero que se debe o poca claridad en los gastos. Busca un acuerdo que perdió el equilibrio o un error que prefieres no nombrar."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa La Justicia como consejo?",
+   "paragraphs": [
+    "Compara en una balanza imaginaria lo que das y lo que recibes en un asunto, y ajusta lo que esté cargado de más. Después, decide con los hechos a la vista, sin castigarte ni castigar a nadie por lo que salga en la cuenta."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿La Justicia es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa La Justicia como persona y como sentimiento?",
+   "paragraphs": [
+    "La Justicia suele describir a alguien de criterio parejo, que escucha a las dos partes y dice la verdad aunque incomode. En tu caso, refleja tus ganas de hacer lo correcto y de responder por ello. Cuando la pregunta es por los sentimientos, la carta habla de respeto e intenciones serias: un cariño pensado, que pesa las cosas antes de comprometerse y quiere que la relación sea justa para los dos. Al revés, los sentimientos se desbalancean: una parte da más que la otra, hay resentimiento por algo injusto, una culpa más grande que los hechos, o sentimientos que no se dicen con honestidad."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa La Justicia junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "major-14-temperance",
+     "text": "La equidad se une a la moderación. Busca el punto medio y dale tiempo en lugar de forzar una decisión rápida."
+    },
+    {
+     "card_id": "major-20-judgement",
+     "text": "Una revisión honesta que abre algo nuevo. Mira con claridad tus decisiones pasadas y responde a lo que hoy te llama."
+    },
+    {
+     "card_id": "cups-02-two",
+     "text": "Equilibrio en un vínculo entre iguales. Revisa si el dar y el recibir todavía se sienten parejos para ti."
+    },
+    {
+     "card_id": "wands-10-ten",
+     "text": "Cargar más de lo que te toca. Separa lo que de verdad es tuyo y devuelve el resto."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir La Justicia del Dos de Espadas?",
+   "paragraphs": [
+    "Las dos cartas muestran una figura con espadas y una cuestión de equilibrio. En el Dos de Espadas, Waite describe a una mujer con los ojos vendados que equilibra dos espadas sobre los hombros (p. 250): no ve, y el equilibrio se sostiene solo porque nada se decide. La Justicia mira de frente y pesa con los ojos abiertos antes de elegir. Si estás evitando una decisión, es el Dos; si la enfrentas, es La Justicia."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale La Justicia?",
+   "paragraphs": [
+    "¿Qué parte de esta situación me toca a mí y cuál no?",
+    "¿Estoy decidiendo con hechos o con suposiciones?",
+    "¿Me estoy juzgando con más dureza de la que los hechos piden?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿La Justicia es una carta buena o mala?",
+   "a": "Ni una ni otra: es una carta equilibrada. Premia la honestidad y te pide responder por lo tuyo, algo que a veces incomoda antes de aliviar. Lo que puede señalar como problema es el desequilibrio o la severidad de más, con otros o contigo. Justa no quiere decir dura: pide honestidad, no castigo."
+  },
+  {
+   "q": "¿La Justicia es la carta 8 o la 11?",
+   "a": "En la baraja de 1909 es la XI. Waite cuenta que antes solía llevar el número ocho y que la intercambió con La Fuerza por razones que a él le bastaban; añade que el cambio no tiene importancia para el lector (p. 100). En Arcana Diary también es la once."
+  },
+  {
+   "q": "¿Quién es la mujer de la carta de La Justicia?",
+   "a": "Waite no le da un nombre propio. Cuenta que se dice que es Astrea, la diosa que representaba esa misma virtud con los mismos símbolos, y aclara que aun así el tarot no viene de la mitología romana ni de la griega (pp. 21–22). Para leer la carta, basta verla como la equidad con forma humana."
+  },
+  {
+   "q": "¿La Justicia significa que te están juzgando?",
+   "a": "No es eso lo que dice la carta. Te invita a mirar la situación con ojos justos, y eso incluye mirarte sin crueldad. Si al verla sientes que te acusan, lee su lado al revés: la severidad que va más allá de los hechos es justo lo que la carta señala como exceso."
+  }
+ ],
+ "related": [
+  "major-10-wheel-of-fortune",
+  "major-12-hanged-man",
+  "major-08-strength",
+  "swords-02-two"
+ ],
+ "mentions": [
+  {
+   "card_id": "major-02-high-priestess",
+   "text": "La Sacerdotisa"
+  },
+  {
+   "card_id": "swords-02-two",
+   "text": "Dos de Espadas"
+  },
+  {
+   "card_id": "major-08-strength",
+   "text": "La Fuerza"
+  }
+ ],
+ "waite": {
+  "quote": "Equity, rightness, probity, executive; triumph of the deserving side in law. Reversed: Law in all its departments, legal complications, bigotry, bias, excessive severity.",
+  "quote_lang": "en",
+  "pages": [
+   285
+  ],
+  "translation": "Equidad, rectitud, probidad, lo ejecutivo; triunfo, ante la ley, de la parte que lo merece. Al revés: la ley en todas sus ramas, complicaciones legales, intolerancia, parcialidad, severidad excesiva.",
+  "harsh": true
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 11 Justice.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_11_Justice.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    21,
+    22,
+    100,
+    112,
+    115,
+    250,
+    285
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

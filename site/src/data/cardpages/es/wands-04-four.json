@@ -1,0 +1,213 @@
+{
+ "schema": 2,
+ "card_id": "wands-04-four",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Cuatro de Bastos",
+  "in_sentence": "el Cuatro de Bastos",
+  "de": "del Cuatro de Bastos"
+ },
+ "title": "Cuatro de Bastos en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Cuatro de Bastos al derecho y al revés (carta invertida): celebración, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Cuatro de Bastos en el tarot: significado",
+ "image_alt": "Cuatro de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: una guirnalda cuelga entre cuatro bastones altos; dos mujeres alzan ramos frente a una muralla y una torre de techo rojo.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 4,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Cuatro de Bastos es celebración, hogar y estabilidad: alegría compartida con tu comunidad. Al revés, puede mostrar tensión en casa, una fiesta a medias o una etapa de transición. Es una carta feliz que te invita a disfrutar lo bueno que ya hay. Su respuesta es sí, con fiesta bajo un arco de flores sobre bases firmes.",
+ "keywords": {
+  "upright": [
+   "celebración",
+   "hogar",
+   "estabilidad",
+   "comunidad"
+  ],
+  "reversed": [
+   "tensión en casa",
+   "fiesta a medias",
+   "transición",
+   "no sentirte en casa"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Cuatro de Bastos?",
+   "paragraphs": [
+    "Según Waite, de cuatro grandes bastones clavados al frente cuelga una gran guirnalda, y dos figuras femeninas levantan ramilletes de flores (p. 190). A su lado, agrega, hay un puente sobre un foso que lleva a una vieja casa señorial (p. 190).",
+    "En la carta de 1909 el fondo es amarillo brillante. Lo más grande del dibujo son los cuatro bastones altos con su guirnalda de hojas y flores rojizas; en los dos de las orillas hay listones amarrados. Las dos mujeres alzan sus ramos, una vestida de blanco y azul, la otra de rojo oscuro. Detrás se levanta una muralla gris con una torre de techo rojo y puntiagudo. A la izquierda se junta un grupito de gente, y a la derecha asoma un arco de piedra."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Cuatro de Bastos?",
+   "paragraphs": [
+    "Waite dice que aquí, por una vez, los significados están casi a la vista (p. 190): la carta quiere decir lo que muestra. En su lista aparece también la fiesta de la cosecha en casa (p. 190), la celebración de cuando se termina de levantar la cosecha.",
+    "Lo raro está en la lista al revés: para Waite el significado no cambia y siguen la prosperidad y la belleza (p. 190). La lectura al revés que damos abajo es menos luminosa y es propia de Arcana Diary."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Cuatro de Bastos al derecho?",
+   "paragraphs": [
+    "Al derecho, lo primero es la celebración: un logro, una reunión, una boda, cualquier momento en que la gente se junta para festejar algo bueno. Lo segundo es el hogar: llegar a donde te reciben con gusto, volver con tu gente o hacer tuyo un lugar.",
+    "Bajo la guirnalda también hay estabilidad. La alegría descansa sobre algo que se construyó, por eso la carta suele llegar después de terminar una etapa, cuando una casa o una comunidad ya está firme y se puede disfrutar.",
+    "¿Qué merece festejarse hoy en tu vida, y con quién te gustaría compartirlo?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Cuatro de Bastos al revés?",
+   "paragraphs": [
+    "Al revés, el Cuatro de Bastos puede hablar de tensión en casa, de una fiesta a medias o de no sentirte en casa donde estás. También encaja con una transición: una mudanza, un cambio en la familia, un grupo que dejas o al que todavía no perteneces.",
+    "A veces lo que estorba es esperar a que todo sea perfecto para disfrutarlo. Una celebración más chica y sencilla, hoy y con quien esté cerca, puede bastar."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Cuatro de Bastos en el amor?",
+   "paragraphs": [
+    "Al derecho, celebra el compromiso, la vida en pareja y el hogar emocional que construyes: irse a vivir juntos, un compromiso, una boda o simplemente una relación que se siente como casa. Es una de las cartas clásicas de los momentos felices en pareja.",
+    "Cuando no hay pareja de por medio, la carta habla de pertenencia: amistades, familia y lugares donde te reciben tal como eres, una base cálida desde la que es fácil abrirse a gente nueva.",
+    "Al revés, en el amor puede reflejar un ambiente tenso en casa, un festejo que se siente forzado o el paso entre dos etapas de la relación."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Cuatro de Bastos en el trabajo y el dinero?",
+   "paragraphs": [
+    "Un proyecto que llega a una meta, un lanzamiento, un equipo que se lleva bien, el festejo por un trabajo terminado: así se ve esta carta en la oficina. Favorece los lugares de trabajo que se sienten como comunidad.",
+    "En dinero, significa estabilidad y una base segura, muchas veces ligada al hogar: una temporada tranquila, ahorros para un lugar propio, gastos en algo compartido y festivo. Al revés, puede indicar aprietos durante un cambio, como los gastos de una mudanza, o roces por dinero en casa."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Cuatro de Bastos como consejo?",
+   "paragraphs": [
+    "Organiza un rato especial con tu gente, aunque sea sencillo, y adórnalo con flores. Brindar por una etapa terminada también cuenta: la alegría compartida crece y te recuerda lo que ya lograste."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Cuatro de Bastos es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Cuatro de Bastos como persona y como sentimiento?",
+   "paragraphs": [
+    "Si el Cuatro de Bastos señala a alguien, es a quien recibe en su casa: alguien cálido que junta a la gente y hace que cualquier lugar se sienta como hogar. Como sentimiento, significa felicidad y seguridad en una relación, ganas de celebrarla y de formar un hogar o un futuro en común. Al revés, el cariño está ahí, pero algo de la pertenencia o de la estabilidad todavía no se acomoda."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Cuatro de Bastos junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "wands-06-six",
+     "text": "Un éxito que se festeja. Comparte el triunfo con quienes ayudaron."
+    },
+    {
+     "card_id": "pentacles-10-ten",
+     "text": "Un hogar estable y lazos familiares duraderos; raíces que dan gusto celebrar."
+    },
+    {
+     "card_id": "major-19-sun",
+     "text": "Alegría sin reservas: una fiesta luminosa y abierta."
+    },
+    {
+     "card_id": "wands-05-five",
+     "text": "Roces antes de la reunión. Resuelve las pequeñas diferencias para que todos estén a gusto."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Cuatro de Bastos del Tres de Copas y del Diez de Copas?",
+   "paragraphs": [
+    "El Tres de Copas también festeja, pero Waite lo describe como doncellas en un jardín con las copas en alto (p. 220); hoy se lee como amistad y alegría compartida. En el Diez de Copas, según Waite, las copas aparecen en un arcoíris y al fondo se ve una escena de hogar (p. 206); su sentido moderno es la plenitud emocional que dura. El Cuatro de Bastos marca la llegada misma: un logro, una bienvenida, una base que ya está en pie."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Cuatro de Bastos?",
+   "paragraphs": [
+    "¿Qué de mi vida merece festejarse ahora?",
+    "¿Dónde me siento de verdad en casa?",
+    "¿Con quién me gustaría compartir un buen momento?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Cuatro de Bastos es una carta buena o mala?",
+   "a": "Buena, de las más alegres de los arcanos menores. Trae gusto, pertenencia y una base firme. Al revés no se vuelve mala: muestra algo sin acomodar en casa o en un grupo, que se puede platicar. Waite incluso dejó su significado al revés igual de luminoso (p. 190)."
+  },
+  {
+   "q": "¿El Cuatro de Bastos significa boda?",
+   "a": "Muchas veces, sí: bodas, compromisos e irse a vivir juntos están entre sus significados modernos más típicos. Aun así, describe un momento de fiesta y un compromiso compartido, no promete una propuesta de matrimonio. También puede ser una reunión familiar, el estreno de una casa o el cierre de un gran proyecto."
+  },
+  {
+   "q": "¿El Cuatro de Bastos significa casa nueva?",
+   "a": "Puede ser. Un lugar al que volver y echar raíces es central en la carta, así que una mudanza o el estreno de una casa salen seguido. La lista de Waite empieza justamente con la vida en el campo y un puerto de refugio (p. 190)."
+  }
+ ],
+ "related": [
+  "wands-03-three",
+  "wands-05-five",
+  "cups-04-four",
+  "swords-04-four",
+  "pentacles-04-four"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-03-three",
+   "text": "Tres de Copas"
+  },
+  {
+   "card_id": "cups-10-ten",
+   "text": "Diez de Copas"
+  }
+ ],
+ "waite": {
+  "quote": "Country life, haven of refuge, … repose, concord, harmony, prosperity, peace … Reversed: The meaning remains unaltered; it is prosperity, increase, felicity, beauty, embellishment.",
+  "quote_lang": "en",
+  "pages": [
+   190
+  ],
+  "translation": "Vida en el campo, puerto de refugio, … reposo, concordia, armonía, prosperidad, paz … Al revés: el significado no cambia; es prosperidad, aumento, felicidad, belleza, adorno.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 04.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_04.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    190,
+    206,
+    220
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

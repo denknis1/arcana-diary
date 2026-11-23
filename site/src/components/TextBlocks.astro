@@ -1,0 +1,16 @@
+---
+// The blocks of a stage 5 text (content/pages): a section per block, its id the block id, an H2 and the paragraphs.
+import type { TextBlock } from '../lib/textPages';
+
+interface Props {
+  blocks: readonly TextBlock[];
+}
+
+const { blocks } = Astro.props;
+---
+{blocks.map((block) => (
+  <section class="page-section prose" id={block.id} aria-labelledby={`${block.id}-title`}>
+    <h2 class="h2" id={`${block.id}-title`}>{block.heading}</h2>
+    {block.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+  </section>
+))}

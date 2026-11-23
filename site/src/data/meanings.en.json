@@ -8,7 +8,8 @@
    "a leap"
   ],
   "upright": "A new path may be opening, and The Fool steps toward it with a light bag, a white rose and a dog at his heels, right at the cliff's edge. This can feel like excitement mixed with not knowing enough yet. Say yes to the first small step, and keep one eye on the ground in front of you.",
-  "reversed": "Reversed, The Fool can point to a leap you want to take but keep holding back from, or to rushing ahead without looking. The fresh start is still possible; it is only tangled with doubt or haste. Ask what would make the first step feel safe enough, then take that smaller version of it."
+  "reversed": "Reversed, The Fool can point to a leap you want to take but keep holding back from, or to rushing ahead without looking. The fresh start is still possible; it is only tangled with doubt or haste. Ask what would make the first step feel safe enough, then take that smaller version of it.",
+  "yes_no_why": "The Fool steps forward with a light bag and an open face, ready for what is new."
  },
  {
   "card_id": "major-01-magician",
@@ -19,7 +20,8 @@
    "resources"
   ],
   "upright": "Everything you need may already be on the table, as it is for The Magician: cup, sword, wand and coin within reach. This card can feel like a click of focus, when intention and ability line up. Choose one goal and put your tools to work on it instead of spreading your energy thin.",
-  "reversed": "Skills that are present but scattered, or used to impress rather than to build, are the shadow side of this card. You may also be doubting what you are able to do. Bring your attention back to one honest aim, and let your abilities serve that aim instead of an image."
+  "reversed": "Skills that are present but scattered, or used to impress rather than to build, are the shadow side of this card. You may also be doubting what you are able to do. Bring your attention back to one honest aim, and let your abilities serve that aim instead of an image.",
+  "yes_no_why": "Cup, sword, wand and coin all lie within the Magician's reach, ready to be used."
  },
  {
   "card_id": "major-02-high-priestess",
@@ -30,7 +32,8 @@
    "stillness"
   ],
   "upright": "Seated between a dark pillar and a light one, The High Priestess keeps a scroll half-hidden in her lap. She speaks of knowing that comes through quiet rather than effort: a hunch, a dream, a feeling that keeps returning. Give yourself some silence and listen before you speak or decide.",
-  "reversed": "Reversed, The High Priestess may suggest that your inner voice is being drowned out by noise, advice or busyness. Sometimes she points to things you sense but have not yet named, even to yourself. Step back from outside opinions for a while and notice what you know underneath them."
+  "reversed": "Reversed, The High Priestess may suggest that your inner voice is being drowned out by noise, advice or busyness. Sometimes she points to things you sense but have not yet named, even to yourself. Step back from outside opinions for a while and notice what you know underneath them.",
+  "yes_no_why": "The High Priestess keeps her scroll half-hidden behind her robe."
  },
  {
   "card_id": "major-03-empress",
@@ -41,7 +44,8 @@
    "comfort"
   ],
   "upright": "Ripe wheat, a flowing stream and soft cushions surround The Empress, who embodies growth that comes from care rather than force. Her card can point to a rich time for ideas, projects and pleasure in simple things. Tend what you have started the way you would tend a garden, and let yourself enjoy it.",
-  "reversed": "Creativity that feels dry, or pleasure postponed until everything else is done, can mark the reversed Empress. Growth slows when nothing feeds it. Give yourself one unhurried, sensory pleasure, such as music, color or good food, and let ideas come back from there."
+  "reversed": "Creativity that feels dry, or pleasure postponed until everything else is done, can mark the reversed Empress. Growth slows when nothing feeds it. Give yourself one unhurried, sensory pleasure, such as music, color or good food, and let ideas come back from there.",
+  "yes_no_why": "Ripe wheat and a flowing stream surround The Empress: things are growing."
  },
  {
   "card_id": "major-04-emperor",
@@ -52,7 +56,8 @@
    "boundaries"
   ],
   "upright": "On a stone throne set among bare mountains, The Emperor stands for order you build yourself. He can point to a moment that calls for clear rules, firm decisions and taking charge of your part. Put structure around what matters to you: a plan, a schedule, a boundary you are willing to keep.",
-  "reversed": "Structure turned rigid, or control slipping just when it is needed, shows the Emperor's reversed side. You may feel pressed by someone else's rules or by your own strictness. Look at which rules still protect you and which only hold you in place, and loosen the second kind."
+  "reversed": "Structure turned rigid, or control slipping just when it is needed, shows the Emperor's reversed side. You may feel pressed by someone else's rules or by your own strictness. Look at which rules still protect you and which only hold you in place, and loosen the second kind.",
+  "yes_no_why": "The Emperor sits on a stone throne: firm ground, clear rules, a decision made."
  },
  {
   "card_id": "major-05-hierophant",
@@ -63,7 +68,8 @@
    "shared values"
   ],
   "upright": "Two followers kneel before The Hierophant, who raises his hand in blessing between the pillars of a temple. This may be a time to learn from tradition, a teacher, or a community whose values you share. Tried paths hold wisdom right now, so ask someone experienced before reinventing everything.",
-  "reversed": "Rules that no longer fit you, or customs followed out of habit rather than belief, can surface with the reversed Hierophant. It can feel like quiet rebellion, or like living inside someone else's expectations. Ask which beliefs are truly yours, and keep the ones you would choose again."
+  "reversed": "Rules that no longer fit you, or customs followed out of habit rather than belief, can surface with the reversed Hierophant. It can feel like quiet rebellion, or like living inside someone else's expectations. Ask which beliefs are truly yours, and keep the ones you would choose again.",
+  "yes_no_why": "Two followers kneel for the Hierophant's blessing, trusting a tried path and good counsel."
  },
  {
   "card_id": "major-06-lovers",
@@ -74,7 +80,8 @@
    "harmony"
   ],
   "upright": "Beneath an angel's open wings, two figures stand in a garden, honest and unguarded. The Lovers can point to a deep connection, and also to a choice that shows what you value most. Let your decision come from your heart and your principles together, not from fear of missing out.",
-  "reversed": "Feeling torn between what you want and what you believe is right sits at the center of the reversed Lovers. Often the split is inside you more than between you and someone else. Get honest with yourself first; a choice made in line with your values can feel lighter afterward."
+  "reversed": "Feeling torn between what you want and what you believe is right sits at the center of the reversed Lovers. Often the split is inside you more than between you and someone else. Get honest with yourself first; a choice made in line with your values can feel lighter afterward.",
+  "yes_no_why": "Under the angel's open wings, two figures stand together openly, in harmony."
  },
  {
   "card_id": "major-07-chariot",
@@ -85,7 +92,8 @@
    "self-control"
   ],
   "upright": "With no reins in hand, the driver of The Chariot steers two sphinxes, one black and one white, by will alone. The card can point to forward motion that comes from focus and self-discipline. Decide where you are heading, and get your opposing impulses pulling in the same direction.",
-  "reversed": "Upside down, The Chariot may show momentum stalling because your energy pulls two ways at once. Sometimes it points to pushing so hard that you lose sight of the destination. Pause to check your direction before adding more force; steering matters more than speed right now."
+  "reversed": "Upside down, The Chariot may show momentum stalling because your energy pulls two ways at once. Sometimes it points to pushing so hard that you lose sight of the destination. Pause to check your direction before adding more force; steering matters more than speed right now.",
+  "yes_no_why": "Even without reins, the charioteer drives forward by focus and will."
  },
  {
   "card_id": "major-08-strength",
@@ -96,7 +104,8 @@
    "inner strength"
   ],
   "upright": "A woman calmly holds a lion's jaws with her bare hands, an infinity sign floating above her head. Strength speaks of power that is soft rather than loud: patience, compassion, steady nerves. Meet what feels wild in you or around you with kindness and persistence instead of force.",
-  "reversed": "Self-doubt, or a gentle nature worn thin by holding everything together, can come up with Strength reversed. Old fears or frustrations may feel louder than usual. Be patient with yourself first; courage often comes back through small acts rather than big ones."
+  "reversed": "Self-doubt, or a gentle nature worn thin by holding everything together, can come up with Strength reversed. Old fears or frustrations may feel louder than usual. Be patient with yourself first; courage often comes back through small acts rather than big ones.",
+  "yes_no_why": "Strength closes the lion's jaws gently, with calm courage equal to the task."
  },
  {
   "card_id": "major-09-hermit",
@@ -107,7 +116,8 @@
    "wisdom"
   ],
   "upright": "Alone on a snowy peak, The Hermit holds up a lantern with a star inside, lighting only the next step. It may be a time to step back from noise and find your own answers. Solitude here is not loneliness but focus, so give yourself space to think before you choose.",
-  "reversed": "Isolation that has stopped helping, or constant busyness that keeps reflection away: either can dim the Hermit's lantern. Both extremes leave you without a clear inner signal. Ask whether you need more quiet or more company, and give yourself a little of that."
+  "reversed": "Isolation that has stopped helping, or constant busyness that keeps reflection away: either can dim the Hermit's lantern. Both extremes leave you without a clear inner signal. Ask whether you need more quiet or more company, and give yourself a little of that.",
+  "yes_no_why": "The Hermit's lantern lights only the next step, not the whole road."
  },
  {
   "card_id": "major-10-wheel-of-fortune",
@@ -118,7 +128,8 @@
    "luck"
   ],
   "upright": "The great wheel turns, with a sphinx seated on top and a serpent sliding down one side. The Wheel of Fortune can point to a shift in circumstances, a moment when stuck things begin to move. Notice where the momentum is and lean into the change rather than clinging to how things were.",
-  "reversed": "Upside down, the Wheel may point to resisting a change that seems to be underway, or to feeling that luck has turned away. Cycles keep moving even when you feel stuck at the bottom of one. Focus on what you can influence, and stop trying to control the timing."
+  "reversed": "Upside down, the Wheel may point to resisting a change that seems to be underway, or to feeling that luck has turned away. Cycles keep moving even when you feel stuck at the bottom of one. Focus on what you can influence, and stop trying to control the timing.",
+  "yes_no_why": "The Wheel of Fortune is turning, and things that were stuck begin to move."
  },
  {
   "card_id": "major-11-justice",
@@ -129,7 +140,8 @@
    "accountability"
   ],
   "upright": "Justice sits with an upright sword in one hand and level scales in the other, looking straight ahead. This card can point to moments that ask for honesty, fairness and owning your choices. Weigh the facts carefully, then act in a way you could explain to yourself later without flinching.",
-  "reversed": "Something feeling unbalanced or unfair, or a reluctance to look at your own part, can show up with Justice reversed. Self-judgment harsher than the facts support belongs here too. Look at things as an honest friend would, and take ownership only of what is truly yours."
+  "reversed": "Something feeling unbalanced or unfair, or a reluctance to look at your own part, can show up with Justice reversed. Self-judgment harsher than the facts support belongs here too. Look at things as an honest friend would, and take ownership only of what is truly yours.",
+  "yes_no_why": "Justice is still weighing both sides on her scales before anything is decided."
  },
  {
   "card_id": "major-12-hanged-man",
@@ -140,7 +152,8 @@
    "waiting"
   ],
   "upright": "Hanging calmly by one foot from a living tree, a glow around his head, The Hanged Man is seeing the world upside down on purpose. His card can point to a pause that offers a new angle on an old problem. Stop pushing for a moment and let the situation show you another side.",
-  "reversed": "Waiting that has turned into stalling, or a sacrifice that no longer makes sense to you, marks the reversed Hanged Man. You may feel restless yet unwilling to let go of the old view. Ask what you are holding on to, and whether the pause still serves you."
+  "reversed": "Waiting that has turned into stalling, or a sacrifice that no longer makes sense to you, marks the reversed Hanged Man. You may feel restless yet unwilling to let go of the old view. Ask what you are holding on to, and whether the pause still serves you.",
+  "yes_no_why": "The Hanged Man hangs in a deliberate pause, and his new view is still forming."
  },
  {
   "card_id": "major-13-death",
@@ -151,7 +164,8 @@
    "transition"
   ],
   "upright": "A dark rider carries a banner with a white rose, while the sun rises between two towers on the horizon. In tarot, Death is the card of transformation: one chapter closing so another can begin. Let go of what has run its course, and make room for what is ready to grow.",
-  "reversed": "Upside down, Death may point to resisting a change you can feel is needed, or holding on to a phase that may have run its course. This can feel like being stuck between old and new. Ask what you are afraid to release, and let go of one small piece of it."
+  "reversed": "Upside down, Death may point to resisting a change you can feel is needed, or holding on to a phase that may have run its course. This can feel like being stuck between old and new. Ask what you are afraid to release, and let go of one small piece of it.",
+  "yes_no_why": "Death is about a chapter closing rather than going on as it was."
  },
  {
   "card_id": "major-14-temperance",
@@ -162,7 +176,8 @@
    "blending"
   ],
   "upright": "One foot on land and one in water, an angel pours liquid between two cups in a steady stream. Temperance can point to finding balance through patience and the blending of opposites. Go gently, combine what works, and trust a pace that is steady rather than dramatic.",
-  "reversed": "Too much of one thing and too little of another, or impatience with a slow process, shows Temperance out of balance. You may notice yourself swinging from one extreme to the other. Bring things back toward the middle with one small adjustment rather than a big overhaul."
+  "reversed": "Too much of one thing and too little of another, or impatience with a slow process, shows Temperance out of balance. You may notice yourself swinging from one extreme to the other. Bring things back toward the middle with one small adjustment rather than a big overhaul.",
+  "yes_no_why": "The angel pours between two cups without spilling, blending opposites with patience."
  },
  {
   "card_id": "major-15-devil",
@@ -173,7 +188,8 @@
    "restriction"
   ],
   "upright": "Two figures stand chained to a pedestal beneath The Devil, yet the chains around their necks are loose enough to lift off. The card can point to habits, attachments or patterns that hold you more than you would like. Name what has a grip on you; seeing it clearly is the first step to slipping free.",
-  "reversed": "A pattern losing its hold as you begin to see it for what it is: that is one side of The Devil reversed. It can also point to a private struggle with a habit you would rather not look at. Freedom grows from honesty here: admit the pull, then make one choice against it."
+  "reversed": "A pattern losing its hold as you begin to see it for what it is: that is one side of The Devil reversed. It can also point to a private struggle with a habit you would rather not look at. Freedom grows from honesty here: admit the pull, then make one choice against it.",
+  "yes_no_why": "The chains in The Devil keep the figures in place, even though they could be lifted off."
  },
  {
   "card_id": "major-16-tower",
@@ -184,7 +200,8 @@
    "release"
   ],
   "upright": "Lightning strikes The Tower and knocks off its crown, a picture of change that shakes whatever was built on weak ground. The card can point to a sudden realization or disruption that clears away illusions. Unsettling as it can feel, what falls may make room for something truer, so steady yourself and look at what remains.",
-  "reversed": "A shake-up you are trying to hold off, or change unfolding quietly inside you, can be the reversed Tower. Sometimes it brings relief at an upheaval avoided, sometimes the tension of one delayed. Ask what in your life no longer feels stable, and start reshaping it gently on your own terms."
+  "reversed": "A shake-up you are trying to hold off, or change unfolding quietly inside you, can be the reversed Tower. Sometimes it brings relief at an upheaval avoided, sometimes the tension of one delayed. Ask what in your life no longer feels stable, and start reshaping it gently on your own terms.",
+  "yes_no_why": "Lightning strikes The Tower and knocks its crown loose, shaking existing plans."
  },
  {
   "card_id": "major-17-star",
@@ -195,7 +212,8 @@
    "inspiration"
   ],
   "upright": "Under a large eight-pointed star, a woman kneels by a pool, pouring water onto the land and back into the pool. The Star can point to quiet hope and a sense of renewal, the feeling of breathing more easily. Let yourself believe in something good again, and take one small, honest step toward it.",
-  "reversed": "Your hope may be running low, or you may feel cut off from what usually inspires you. That light can still be there even when it is hard to see. Reconnect with one small thing that has brought you calm before, and let that be enough for now."
+  "reversed": "Your hope may be running low, or you may feel cut off from what usually inspires you. That light can still be there even when it is hard to see. Reconnect with one small thing that has brought you calm before, and let that be enough for now.",
+  "yes_no_why": "Under the great star, the woman pours water freely, a picture of hope and renewal."
  },
  {
   "card_id": "major-18-moon",
@@ -206,7 +224,8 @@
    "hidden feelings"
   ],
   "upright": "A path winds between two towers under a full moon, where a dog and a wolf howl and a crayfish climbs from the water. The Moon points to a stretch where things are not fully visible yet, and feelings, hints and half-formed fears can blur together. Move slowly, check what is real before you act, and let your intuition shape your questions, not your conclusions.",
-  "reversed": "Reversed, The Moon may suggest that confusion is starting to lift, or that something you avoided looking at is becoming easier to see. It can also point to worry running ahead of the facts. Name what you actually know, and let the rest wait for clearer light."
+  "reversed": "Reversed, The Moon may suggest that confusion is starting to lift, or that something you avoided looking at is becoming easier to see. It can also point to worry running ahead of the facts. Name what you actually know, and let the rest wait for clearer light.",
+  "yes_no_why": "Under the Moon's light the path is only half visible, and shapes are hard to read."
  },
  {
   "card_id": "major-19-sun",
@@ -217,7 +236,8 @@
    "confidence"
   ],
   "upright": "A child rides a white horse beneath a bright sun, sunflowers rising behind a garden wall. Few cards feel as open: The Sun can point to joy, clarity and confidence, a time when things feel simple and warm. Let yourself be seen and enjoy what is going well, without waiting for something to spoil it.",
-  "reversed": "You may feel joy that is present but muted, perhaps by tiredness or self-doubt. It can feel like clouds passing over a sunny day rather than a storm. Look for one bright thing in your day and let yourself enjoy it fully, without downplaying it."
+  "reversed": "You may feel joy that is present but muted, perhaps by tiredness or self-doubt. It can feel like clouds passing over a sunny day rather than a storm. Look for one bright thing in your day and let yourself enjoy it fully, without downplaying it.",
+  "yes_no_why": "The child rides under a bright sun, open and unafraid, with nothing hidden."
  },
  {
   "card_id": "major-20-judgement",
@@ -228,7 +248,8 @@
    "self-reflection"
   ],
   "upright": "An angel sounds a trumpet, and figures below rise with open arms, answering a call. Judgement can point to a moment of awakening, when you see your life more clearly and feel drawn toward something. Listen to what is asking for your attention, and answer it honestly, as the person you are becoming.",
-  "reversed": "Upside down, Judgement may point to self-criticism that drowns out the call, or to hesitation before a choice you sense you need to make. You might be replaying old mistakes instead of learning from them. Offer yourself the fairness you would give a friend, then decide what comes next."
+  "reversed": "Upside down, Judgement may point to self-criticism that drowns out the call, or to hesitation before a choice you sense you need to make. You might be replaying old mistakes instead of learning from them. Offer yourself the fairness you would give a friend, then decide what comes next.",
+  "yes_no_why": "The angel's trumpet sounds, and the figures rise with open arms to answer the call."
  },
  {
   "card_id": "major-21-world",
@@ -239,7 +260,8 @@
    "accomplishment"
   ],
   "upright": "Wrapped in a sash and dancing inside a laurel wreath, the figure of The World shows a cycle coming together. The card can point to completion, wholeness and the quiet satisfaction of growing through something. Take a moment to honor your growth, and enjoy that sense of fit before you begin the next chapter.",
-  "reversed": "Something almost finished but not quite closed, a last step that keeps getting postponed, often shows with the World reversed. It can feel like hovering at the edge of a new beginning. Find the loose end and tie it off, so you can move forward lighter."
+  "reversed": "Something almost finished but not quite closed, a last step that keeps getting postponed, often shows with the World reversed. It can feel like hovering at the edge of a new beginning. Find the loose end and tie it off, so you can move forward lighter.",
+  "yes_no_why": "The dancer moves freely inside the laurel wreath as a cycle comes together."
  },
  {
   "card_id": "wands-01-ace",
@@ -250,7 +272,8 @@
    "potential"
   ],
   "upright": "A hand reaches out of a cloud holding a living branch, new leaves sprouting from the wood. The Ace of Wands can point to a spark: an idea, a wish to create, a burst of energy for something new. Catch it while it is warm and give it a first concrete form, however small.",
-  "reversed": "An idea may keep flickering without quite catching, or your energy may be spent before it finds a direction. You might feel eager and stuck at once. Choose the one spark that excites you most and give it protected time instead of chasing every flame."
+  "reversed": "An idea may keep flickering without quite catching, or your energy may be spent before it finds a direction. You might feel eager and stuck at once. Choose the one spark that excites you most and give it protected time instead of chasing every flame.",
+  "yes_no_why": "A living branch sprouts in the hand from the cloud, full of fresh energy."
  },
  {
   "card_id": "wands-02-two",
@@ -261,7 +284,8 @@
    "wider horizons"
   ],
   "upright": "Standing on a castle wall, a man holds a small globe and looks out past the land he knows. The Two of Wands speaks of planning a bigger move, weighing the familiar against a wider horizon. Let your ambitions take shape on paper and sketch where you want to go before you step off the wall.",
-  "reversed": "You may be staying somewhere comfortable while part of you keeps looking outward. Fear of the unknown can turn planning into endless postponing. Pick one piece of the bigger plan and test it in a small, low-risk way."
+  "reversed": "You may be staying somewhere comfortable while part of you keeps looking outward. Fear of the unknown can turn planning into endless postponing. Pick one piece of the bigger plan and test it in a small, low-risk way.",
+  "yes_no_why": "The figure holds a small globe in his hand and looks out at a wider horizon."
  },
  {
   "card_id": "wands-03-three",
@@ -272,7 +296,8 @@
    "looking ahead"
   ],
   "upright": "From a high cliff, a figure watches ships cross a golden sea, three wands planted firmly beside the figure. This may be the stage after the first step, when efforts are underway and the view opens up. Keep your eyes on the horizon and stay ready for what your work makes possible.",
-  "reversed": "Progress may feel slower than you hoped, and impatience can creep in. Plans might need a wider view, or you may be holding back from opportunities further from home. Check what is still in your hands, and adjust your course rather than abandoning it."
+  "reversed": "Progress may feel slower than you hoped, and impatience can creep in. Plans might need a wider view, or you may be holding back from opportunities further from home. Check what is still in your hands, and adjust your course rather than abandoning it.",
+  "yes_no_why": "Ships are out on the sea, and the figure on the cliff watches them make headway."
  },
  {
   "card_id": "wands-04-four",
@@ -283,7 +308,8 @@
    "community"
   ],
   "upright": "Four wands hold up a garland of flowers, and figures wave bouquets in front of a castle as if welcoming someone home. Celebration, belonging and a stable base to stand on are the heart of this card. Mark the good moments in your life, and share them with people who feel like home.",
-  "reversed": "Reversed, the Four of Wands may point to a celebration that feels hollow, or to not quite feeling at home where you are. It can also show joy held back while you wait for everything to be perfect. Let yourself enjoy a smaller, simpler version of what you hoped for."
+  "reversed": "Reversed, the Four of Wands may point to a celebration that feels hollow, or to not quite feeling at home where you are. It can also show joy held back while you wait for everything to be perfect. Let yourself enjoy a smaller, simpler version of what you hoped for.",
+  "yes_no_why": "A garland hangs over four wands, and people come out to celebrate."
  },
  {
   "card_id": "wands-05-five",
@@ -294,7 +320,8 @@
    "clashing ideas"
   ],
   "upright": "Five young men wave wands at one another, more scramble than battle, with no one clearly winning. Friction, competition or too many voices pulling in different directions may be in the air. Decide which contests are worth your energy, and say clearly what you want instead of shouting louder.",
-  "reversed": "Conflict turning inward, or a disagreement avoided that could actually clear the air, can come with the reversed Five of Wands. Sometimes it points to tension easing as people start to listen. Choose one honest conversation and have it calmly rather than letting friction simmer."
+  "reversed": "Conflict turning inward, or a disagreement avoided that could actually clear the air, can come with the reversed Five of Wands. Sometimes it points to tension easing as people start to listen. Choose one honest conversation and have it calmly rather than letting friction simmer.",
+  "yes_no_why": "Five wands clash in a scramble, and no one has the upper hand."
  },
  {
   "card_id": "wands-06-six",
@@ -305,7 +332,8 @@
    "progress"
   ],
   "upright": "A rider on a white horse wears a laurel wreath, and a second wreath crowns the wand he carries through a cheering crowd. The Six of Wands may reflect recognition, a win, or simply the confidence of being seen for good work. Accept credit where it is due and let it fuel the next step.",
-  "reversed": "You may be working hard without feeling seen, or leaning too much on other people's approval. It can also be hard to accept praise when it does come. Remind yourself what you are proud of, whether or not anyone is cheering yet."
+  "reversed": "You may be working hard without feeling seen, or leaning too much on other people's approval. It can also be hard to accept praise when it does come. Remind yourself what you are proud of, whether or not anyone is cheering yet.",
+  "yes_no_why": "The rider's wand is crowned with a laurel wreath as the crowd cheers."
  },
  {
   "card_id": "wands-07-seven",
@@ -316,7 +344,8 @@
    "boundaries"
   ],
   "upright": "On higher ground, a man holds off six wands rising from below, his shoes mismatched as if he dressed in a hurry. The Seven of Wands can point to defending your position, your boundaries or your ideas under pressure. Stand firm where it matters to you, and stop defending what you no longer care about.",
-  "reversed": "Reversed, the Seven of Wands may show tiredness from constantly defending yourself, or doubt about whether your position is worth holding. You might be tempted to give in just to end the pressure. Ask which ground is truly yours, and protect that with calm rather than exhaustion."
+  "reversed": "Reversed, the Seven of Wands may show tiredness from constantly defending yourself, or doubt about whether your position is worth holding. You might be tempted to give in just to end the pressure. Ask which ground is truly yours, and protect that with calm rather than exhaustion.",
+  "yes_no_why": "On the hill, one figure is still holding off six wands, and the contest goes on."
  },
  {
   "card_id": "wands-08-eight",
@@ -327,7 +356,8 @@
    "momentum"
   ],
   "upright": "Eight wands fly through a clear sky over open country, all angled in the same direction. Things may be moving quickly now: messages, decisions, plans picking up speed. Act while the path is clear, and keep your replies simple so the momentum keeps going.",
-  "reversed": "Delays, crossed messages, or rushing so fast that details get lost may show up with the Eight of Wands reversed. It can feel like energy with nowhere to land. Slow down enough to aim, then send one clear message or take one clear action."
+  "reversed": "Delays, crossed messages, or rushing so fast that details get lost may show up with the Eight of Wands reversed. It can feel like energy with nowhere to land. Slow down enough to aim, then send one clear message or take one clear action.",
+  "yes_no_why": "Eight wands fly through a clear sky with nothing in their way."
  },
  {
   "card_id": "wands-09-nine",
@@ -338,7 +368,8 @@
    "last stretch"
   ],
   "upright": "Leaning on his staff with a bandaged head, a watchful man stands before a row of eight wands like a fence. The Nine of Wands speaks of persistence near the end of a long effort, and of the guardedness that comes with it. Keep going, but check whether every defense you hold is still needed.",
-  "reversed": "Defenses stretched thin, or a sense that you cannot face one more challenge, can mark the reversed Nine of Wands. So can guarding so much that support cannot reach you. Let someone help with part of the load, and rest your guard where it is safe."
+  "reversed": "Defenses stretched thin, or a sense that you cannot face one more challenge, can mark the reversed Nine of Wands. So can guarding so much that support cannot reach you. Let someone help with part of the load, and rest your guard where it is safe.",
+  "yes_no_why": "Behind his fence of wands, the guarded figure is still holding the line."
  },
  {
   "card_id": "wands-10-ten",
@@ -349,7 +380,8 @@
    "effort"
   ],
   "upright": "Bent forward, a figure carries ten heavy wands toward a distant town, arms wrapped around a load that blocks the view ahead. The Ten of Wands may reflect taking on too much and losing sight of why. Look at what you are carrying, and set down what is not truly yours to hold.",
-  "reversed": "Reversed, the Ten of Wands may point to starting to put burdens down, or to refusing help when the load is already too much. You might be carrying responsibilities out of habit or guilt. Choose one task to hand off, postpone or drop, and notice how that feels."
+  "reversed": "Reversed, the Ten of Wands may point to starting to put burdens down, or to refusing help when the load is already too much. You might be carrying responsibilities out of habit or guilt. Choose one task to hand off, postpone or drop, and notice how that feels.",
+  "yes_no_why": "Ten wands bend the figure forward, more than can comfortably be held."
  },
  {
   "card_id": "wands-11-page",
@@ -360,7 +392,8 @@
    "new ideas"
   ],
   "upright": "In an open desert, a young messenger studies the tip of his sprouting wand as if it holds a secret. The Page of Wands can point to curiosity, fresh enthusiasm and the urge to explore an idea for its own sake. Follow your interest with a playful first try, and treat it as discovery rather than a test.",
-  "reversed": "Your enthusiasm may flare and fade, or you may hesitate to share your ideas. Restlessness can set in when you do not yet know what you want to try. Choose one small experiment and finish it, even if it is imperfect."
+  "reversed": "Your enthusiasm may flare and fade, or you may hesitate to share your ideas. Restlessness can set in when you do not yet know what you want to try. Choose one small experiment and finish it, even if it is imperfect.",
+  "yes_no_why": "The Page studies his sprouting wand with eager curiosity, ready to explore."
  },
  {
   "card_id": "wands-12-knight",
@@ -371,7 +404,8 @@
    "passion"
   ],
   "upright": "His horse rearing, the Knight of Wands charges forward with pyramids in the distance and salamanders on his tunic. This card speaks of bold action, passion and a hunger for adventure. Move toward what lights you up, but give your energy a direction so it does not burn out halfway.",
-  "reversed": "Impatience, scattered energy, or many things started and few finished can show the Knight of Wands reversed. Frustration grows when action has no clear aim. Pick one goal and put your fire into it, letting the rest wait."
+  "reversed": "Impatience, scattered energy, or many things started and few finished can show the Knight of Wands reversed. Frustration grows when action has no clear aim. Pick one goal and put your fire into it, letting the rest wait.",
+  "yes_no_why": "The Knight's horse rears and charges forward, full of drive."
  },
  {
   "card_id": "wands-13-queen",
@@ -382,7 +416,8 @@
    "independence"
   ],
   "upright": "Flanked by lions and holding a sunflower, the Queen of Wands has a black cat at her feet and an easy, open gaze. She stands for confidence, warmth and the courage to be fully yourself. Take up space today: speak in your own voice and let your energy draw others in.",
-  "reversed": "Confidence dimming, or warmth turning into impatience when you feel overstretched, can describe the reversed Queen of Wands. You may be hiding your light to avoid attention. Reconnect with one thing that makes you feel bold, and let yourself be seen doing it."
+  "reversed": "Confidence dimming, or warmth turning into impatience when you feel overstretched, can describe the reversed Queen of Wands. You may be hiding your light to avoid attention. Reconnect with one thing that makes you feel bold, and let yourself be seen doing it.",
+  "yes_no_why": "The Queen sits open and at ease between her lions, sunflower in hand."
  },
  {
   "card_id": "wands-14-king",
@@ -393,7 +428,8 @@
    "boldness"
   ],
   "upright": "Leaning forward on his throne, wand in hand, the King of Wands looks ready to rise at any moment, a salamander resting at his feet. He can point to leadership, vision and the ability to turn ideas into action. Take charge of your direction, and inspire others by acting on what you believe.",
-  "reversed": "Pushing too hard, impatience with others, or a vision without follow-through may mark the reversed King of Wands. Doubt about your right to lead can also appear. Lead by example in one small area, and leave room for others to contribute."
+  "reversed": "Pushing too hard, impatience with others, or a vision without follow-through may mark the reversed King of Wands. Doubt about your right to lead can also appear. Lead by example in one small area, and leave room for others to contribute.",
+  "yes_no_why": "The King leans forward on his throne, ready to turn vision into action."
  },
  {
   "card_id": "cups-01-ace",
@@ -404,7 +440,8 @@
    "emotional renewal"
   ],
   "upright": "Five streams pour from a cup held out of a cloud, while a dove descends toward a pond of lilies. The Ace of Cups speaks of an open heart: new feelings, tenderness, a wish to give and receive love. Let yourself feel fully, and offer some of that warmth to yourself as well.",
-  "reversed": "Feelings held in, or a heart kept carefully guarded, can come with the reversed Ace of Cups. Emotion may be there but not flowing. Let one feeling out in a safe way, through tears, music or words, and let the rest follow at its own pace."
+  "reversed": "Feelings held in, or a heart kept carefully guarded, can come with the reversed Ace of Cups. Emotion may be there but not flowing. Let one feeling out in a safe way, through tears, music or words, and let the rest follow at its own pace.",
+  "yes_no_why": "The cup overflows in five streams, and feeling moves freely."
  },
  {
   "card_id": "cups-02-two",
@@ -415,7 +452,8 @@
    "harmony"
   ],
   "upright": "Two people face each other and exchange cups, a winged lion's head rising above them on a staff. A meaningful connection based on mutual respect may be at the center here: a friendship, a partnership, a meeting of equals. Show up openly and honestly, and value the bond for what it is.",
-  "reversed": "A connection may feel out of balance, or it may be hard to feel close even to yourself. Misunderstandings, or giving more than feels good, can add to that. Ask what you need in order to feel equal, and say it kindly."
+  "reversed": "A connection may feel out of balance, or it may be hard to feel close even to yourself. Misunderstandings, or giving more than feels good, can add to that. Ask what you need in order to feel equal, and say it kindly.",
+  "yes_no_why": "Two figures exchange cups as equals beneath the winged lion's sign."
  },
  {
   "card_id": "cups-03-three",
@@ -426,7 +464,8 @@
    "joy"
   ],
   "upright": "Three women raise their cups together in a dance, fruit and flowers at their feet. The Three of Cups may reflect friendship, shared joy and the support of people who lift you up. Make time to celebrate with others, even over something small, and let yourself be part of the circle.",
-  "reversed": "Upside down, the Three of Cups may show feeling left out, or giving so much social energy that little is left for you. Sometimes it points to gossip or friendships that feel uneven. Spend time with one person who truly feels good to be around."
+  "reversed": "Upside down, the Three of Cups may show feeling left out, or giving so much social energy that little is left for you. Sometimes it points to gossip or friendships that feel uneven. Spend time with one person who truly feels good to be around.",
+  "yes_no_why": "Three friends raise their cups together in a dance of shared joy."
  },
  {
   "card_id": "cups-04-four",
@@ -437,7 +476,8 @@
    "overlooked offers"
   ],
   "upright": "Arms crossed beneath a tree, a young man sits before three cups, not noticing a fourth offered by a hand from a cloud. Boredom, withdrawal or a flat mood can make new chances hard to see. Take time to reflect, then look up and ask what might be on offer for you right now.",
-  "reversed": "Waking up from a slump and becoming curious again is one side of the reversed Four of Cups. A readiness to say yes to something you have been ignoring may come with it. Follow that returning interest gently, one small step at a time."
+  "reversed": "Waking up from a slump and becoming curious again is one side of the reversed Four of Cups. A readiness to say yes to something you have been ignoring may come with it. Follow that returning interest gently, one small step at a time.",
+  "yes_no_why": "The fourth cup is still being offered, and the seated figure has not looked up."
  },
  {
   "card_id": "cups-05-five",
@@ -448,7 +488,8 @@
    "what remains"
   ],
   "upright": "A figure in a dark cloak looks down at three spilled cups, while two more still stand upright behind them. The Five of Cups can point to disappointment and regret, when attention stays fixed on what feels lost. Let yourself feel the sadness, then slowly turn around to see what is still standing.",
-  "reversed": "Sadness may be beginning to soften, and you may be ready to look at what remains. Sorrow may also be kept hidden instead of felt. Give yourself a moment to acknowledge what hurts, and then name one thing that still supports you."
+  "reversed": "Sadness may be beginning to soften, and you may be ready to look at what remains. Sorrow may also be kept hidden instead of felt. Give yourself a moment to acknowledge what hurts, and then name one thing that still supports you.",
+  "yes_no_why": "The cloaked figure's eyes stay on the three spilled cups, not on the two still standing."
  },
  {
   "card_id": "cups-06-six",
@@ -459,7 +500,8 @@
    "memories"
   ],
   "upright": "In a sunny garden, a child offers a cup filled with white flowers to a smaller child. Sweetness, simple kindness and memories that bring comfort may come forward with this card. Let something from your earlier years remind you what you enjoy, and bring that lightness into today.",
-  "reversed": "Being stuck in the past, or idealizing a time that was not as simple as memory suggests, can show the Six of Cups reversed. Sometimes it shows a need to move forward instead of looking back. Honor what was good, and choose one thing to enjoy that belongs to the present."
+  "reversed": "Being stuck in the past, or idealizing a time that was not as simple as memory suggests, can show the Six of Cups reversed. Sometimes it shows a need to move forward instead of looking back. Honor what was good, and choose one thing to enjoy that belongs to the present.",
+  "yes_no_why": "A child offers a cup of white flowers, a picture of simple kindness and welcome."
  },
  {
   "card_id": "cups-07-seven",
@@ -470,7 +512,8 @@
    "options"
   ],
   "upright": "Seven cups float in a cloud, each holding a different vision: a castle, jewels, a wreath, a dragon, a veiled figure. The Seven of Cups speaks of many options or daydreams, not all of them real or right for you. Enjoy imagining, then pick one possibility and test it against the facts.",
-  "reversed": "The fog beginning to clear as you see which options are realistic: that is one face of the reversed Seven of Cups. It may also reflect feeling so overwhelmed by choices that you choose nothing. Narrow your list to two and make a small decision between them."
+  "reversed": "The fog beginning to clear as you see which options are realistic: that is one face of the reversed Seven of Cups. It may also reflect feeling so overwhelmed by choices that you choose nothing. Narrow your list to two and make a small decision between them.",
+  "yes_no_why": "Seven visions float in the clouds, and it is hard to tell which of them are real."
  },
  {
   "card_id": "cups-08-eight",
@@ -481,7 +524,8 @@
    "search for meaning"
   ],
   "upright": "By the light of a watchful moon, a figure with a staff walks away from eight neatly stacked cups toward the mountains. The Eight of Cups may reflect leaving behind something that no longer satisfies, even when it still looks fine from the outside. Ask what is missing for you, and give yourself permission to look for it.",
-  "reversed": "You may want to leave but feel unable to, or find yourself drifting away from something that still has value. Fear of what lies beyond the familiar can hold you in place. Get clear on what you truly want before you decide whether to stay or go."
+  "reversed": "You may want to leave but feel unable to, or find yourself drifting away from something that still has value. Fear of what lies beyond the familiar can hold you in place. Get clear on what you truly want before you decide whether to stay or go.",
+  "yes_no_why": "The figure turns its back on the cups that are here and walks away from them."
  },
  {
   "card_id": "cups-09-nine",
@@ -492,7 +536,8 @@
    "gratitude"
   ],
   "upright": "Seated in front of nine cups on a curved shelf, a man folds his arms with a satisfied smile. Often called the wish card, the Nine of Cups can point to contentment and the pleasure of having what you need. Enjoy what is good right now, and let yourself name a wish without embarrassment.",
-  "reversed": "Upside down, the Nine of Cups may point to a wish that feels less satisfying than you expected, or to contentment that depends on outer things. Sometimes it shows difficulty enjoying what you have. Notice what truly brings you contentment, rather than what only looks like it should."
+  "reversed": "Upside down, the Nine of Cups may point to a wish that feels less satisfying than you expected, or to contentment that depends on outer things. Sometimes it shows difficulty enjoying what you have. Notice what truly brings you contentment, rather than what only looks like it should.",
+  "yes_no_why": "Nine cups stand in a row behind a satisfied host: this is the wish card."
  },
  {
   "card_id": "cups-10-ten",
@@ -503,7 +548,8 @@
    "belonging"
   ],
   "upright": "A couple raises their arms toward a rainbow of ten cups, while two children dance beside them near a small house. Emotional fulfillment, belonging and a sense of home, whatever home looks like for you, are at the heart of this card. Notice where you feel peaceful and connected, and invest your time there.",
-  "reversed": "A gap between the picture of happiness you hold and the life in front of you may show with the Ten of Cups reversed. Tension at home or with people close to you can belong here as well. Set the ideal image aside for a moment and look for the small moments of warmth that are real."
+  "reversed": "A gap between the picture of happiness you hold and the life in front of you may show with the Ten of Cups reversed. Tension at home or with people close to you can belong here as well. Set the ideal image aside for a moment and look for the small moments of warmth that are real.",
+  "yes_no_why": "A rainbow of cups arches over the family and the house, full of belonging."
  },
  {
   "card_id": "cups-11-page",
@@ -514,7 +560,8 @@
    "sensitivity"
   ],
   "upright": "A young page in a flowered tunic looks at a fish peeking out of his cup, delighted rather than startled. The Page of Cups can point to a sweet surprise, creative imagination, or a new feeling you are only starting to explore. Stay open to the unexpected and let yourself be gently playful.",
-  "reversed": "Feelings you are too shy to express, or moods that are hard to make sense of, can show the Page of Cups reversed. Creativity may be blocked by self-consciousness. Give your feelings a safe outlet, such as a journal or a creative project, before sharing them."
+  "reversed": "Feelings you are too shy to express, or moods that are hard to make sense of, can show the Page of Cups reversed. Creativity may be blocked by self-consciousness. Give your feelings a safe outlet, such as a journal or a creative project, before sharing them.",
+  "yes_no_why": "A fish pops out of the Page's cup, a sweet surprise met with delight."
  },
  {
   "card_id": "cups-12-knight",
@@ -525,7 +572,8 @@
    "following the heart"
   ],
   "upright": "Riding a calm white horse beside a river, the Knight of Cups holds his cup out before him like an offering. He speaks of an invitation, a romantic gesture, or the urge to follow your heart. Move toward what moves you, while keeping your feet on the ground.",
-  "reversed": "Moods can shift quickly here, and dreams may stay in the imagination. Sometimes it shows unrealistic expectations of yourself or others. Keep the dream, but ask what one real step toward it would look like."
+  "reversed": "Moods can shift quickly here, and dreams may stay in the imagination. Sometimes it shows unrealistic expectations of yourself or others. Keep the dream, but ask what one real step toward it would look like.",
+  "yes_no_why": "The Knight rides calmly forward, holding out his cup like an offering."
  },
  {
   "card_id": "cups-13-queen",
@@ -536,7 +584,8 @@
    "care"
   ],
   "upright": "At the water's edge, the Queen of Cups gazes into an ornate, closed cup, as if listening to what it holds. She stands for empathy, emotional depth and intuition you can trust. Trust what you sense, and let your feelings run deep without letting them pull you under.",
-  "reversed": "Absorbing other people's moods until you lose track of your own can mark the reversed Queen of Cups. Feelings may be bottled up rather than understood. Set a gentle boundary, and listen to your own emotions before tending anyone else's."
+  "reversed": "Absorbing other people's moods until you lose track of your own can mark the reversed Queen of Cups. Feelings may be bottled up rather than understood. Set a gentle boundary, and listen to your own emotions before tending anyone else's.",
+  "yes_no_why": "The Queen gazes into her cup with calm, trusting intuition."
  },
  {
   "card_id": "cups-14-king",
@@ -547,7 +596,8 @@
    "diplomacy"
   ],
   "upright": "The King of Cups sits on a throne floating in a choppy sea, holding his cup steady while waves rise around him. He can point to emotional maturity: feeling deeply without being swept away. Stay calm under pressure, listen well, and answer from a centered place.",
-  "reversed": "Reversed, the King of Cups may point to emotions pushed down rather than handled, or calm worn as a mask. Moods can then leak out in unexpected ways. Acknowledge what you feel beneath the composure, and let it be there without needing to control it."
+  "reversed": "Reversed, the King of Cups may point to emotions pushed down rather than handled, or calm worn as a mask. Moods can then leak out in unexpected ways. Acknowledge what you feel beneath the composure, and let it be there without needing to control it.",
+  "yes_no_why": "The King holds his cup steady on a rough sea without being swept away."
  },
  {
   "card_id": "swords-01-ace",
@@ -558,7 +608,8 @@
    "decision"
   ],
   "upright": "A hand grips an upright sword that pierces a crown, olive and palm branches hanging from it above jagged mountains. The Ace of Swords speaks of a moment of clarity: an insight, a truth spoken, a decision that cuts through confusion. Say what you see plainly, and let the clear thought guide your next move.",
-  "reversed": "Thoughts that feel foggy, or a truth you sense but are not ready to say, may describe the Ace of Swords reversed. Sharp words used too quickly can also belong here. Sort what you think from what you fear, then speak once you can say it clearly and kindly."
+  "reversed": "Thoughts that feel foggy, or a truth you sense but are not ready to say, may describe the Ace of Swords reversed. Sharp words used too quickly can also belong here. Sort what you think from what you fear, then speak once you can say it clearly and kindly.",
+  "yes_no_why": "The upright sword pierces a crown, cutting through the clouds with clear, decisive thought."
  },
  {
   "card_id": "swords-02-two",
@@ -569,7 +620,8 @@
    "weighing options"
   ],
   "upright": "Blindfolded, a woman sits with two swords crossed over her chest, a calm sea and scattered rocks behind her. The Two of Swords may reflect a choice held at arm's length, kept in balance by not looking at it. Take the blindfold off gently: gather what you need to know, then let yourself lean one way.",
-  "reversed": "When reversed, the Two of Swords may point to a decision becoming hard to ignore, or to feeling overloaded by information. Sometimes it shows the relief of admitting what you want. Pick the option you would choose if no one else were watching, and start from there."
+  "reversed": "When reversed, the Two of Swords may point to a decision becoming hard to ignore, or to feeling overloaded by information. Sometimes it shows the relief of admitting what you want. Pick the option you would choose if no one else were watching, and start from there.",
+  "yes_no_why": "The blindfolded woman holds both swords in balance and has not chosen a side."
  },
  {
   "card_id": "swords-03-three",
@@ -580,7 +632,8 @@
    "release"
   ],
   "upright": "Three swords pierce a red heart against a gray, rainy sky. This card can point to heartache, a painful truth or words that hurt, and it does not pretend these are small. Let yourself feel it and let the rain fall; naming the hurt honestly is how moving through it begins.",
-  "reversed": "Pain beginning to ease, or sorrow held in rather than let out, can come with the Three of Swords reversed. You may also find yourself replaying hurtful words again and again. Be kind to your heart: talk to someone you trust, or write the hurt down and let it rest."
+  "reversed": "Pain beginning to ease, or sorrow held in rather than let out, can come with the Three of Swords reversed. You may also find yourself replaying hurtful words again and again. Be kind to your heart: talk to someone you trust, or write the hurt down and let it rest.",
+  "yes_no_why": "Three swords pierce the heart under a rainy sky, a picture of hurt rather than ease."
  },
  {
   "card_id": "swords-04-four",
@@ -591,7 +644,8 @@
    "pause"
   ],
   "upright": "A figure lies still beneath a stained-glass window, hands folded, three swords hanging above and one resting below. The Four of Swords speaks of a needed pause: rest, quiet and space to let your mind settle. Step back from the noise for a while; clarity often returns once you stop forcing it.",
-  "reversed": "Restlessness when you need rest, or pushing on while your mind is tired, can mark the reversed Four of Swords. It may also be a pause that has lasted longer than is helpful. Give yourself a real break, or, if you have rested a long time, take one small step back into motion."
+  "reversed": "Restlessness when you need rest, or pushing on while your mind is tired, can mark the reversed Four of Swords. It may also be a pause that has lasted longer than is helpful. Give yourself a real break, or, if you have rested a long time, take one small step back into motion.",
+  "yes_no_why": "Lying in stillness, the figure rests, and the next move has not begun."
  },
  {
   "card_id": "swords-05-five",
@@ -602,7 +656,8 @@
    "pride"
   ],
   "upright": "A man gathers up swords with a thin smile as two others walk away under a windswept sky. The Five of Swords may reflect a conflict where winning costs more than it gives, or tension that leaves everyone a little alone. Ask whether being right is worth the distance, and choose peace where you can.",
-  "reversed": "When reversed, the Five of Swords may show a wish to make peace after a clash, or tension that keeps lingering in the air. Sometimes it points to holding on to resentment. Decide what you can let go of, and offer one gesture of repair if it feels right to you."
+  "reversed": "When reversed, the Five of Swords may show a wish to make peace after a clash, or tension that keeps lingering in the air. Sometimes it points to holding on to resentment. Decide what you can let go of, and offer one gesture of repair if it feels right to you.",
+  "yes_no_why": "One figure collects the swords while the others walk away, and the win leaves people apart."
  },
  {
   "card_id": "swords-06-six",
@@ -613,7 +668,8 @@
    "journey"
   ],
   "upright": "A ferryman poles a small boat carrying a cloaked woman and a child toward a calmer shore, six swords standing upright in the boat. The Six of Swords can point to a transition: leaving rough water behind, slowly and quietly. Carry what you need, let go of the rest, and focus on the next shore rather than the last.",
-  "reversed": "Feeling unable to move on, or carrying old worries into a new place, can describe the Six of Swords reversed. A transition can feel stuck halfway across. Look at what you keep bringing along that you could set down before you continue."
+  "reversed": "Feeling unable to move on, or carrying old worries into a new place, can describe the Six of Swords reversed. A transition can feel stuck halfway across. Look at what you keep bringing along that you could set down before you continue.",
+  "yes_no_why": "The boat is still mid-crossing, and the far shore has not been reached."
  },
  {
   "card_id": "swords-07-seven",
@@ -624,7 +680,8 @@
    "half-truths"
   ],
   "upright": "Tiptoeing away from a camp, a man carries five swords and glances back at the two he leaves behind. The Seven of Swords speaks of secrecy, strategy, or trying to get away with something, including dodging a hard truth with yourself. Ask what you are holding back, and choose the honest path even if it is less clever.",
-  "reversed": "A wish to come clean, or a plan that feels heavy to carry alone, may come with the reversed Seven of Swords. Self-deception can also slowly come into view. Tell the truth where you can, starting with yourself."
+  "reversed": "A wish to come clean, or a plan that feels heavy to carry alone, may come with the reversed Seven of Swords. Self-deception can also slowly come into view. Tell the truth where you can, starting with yourself.",
+  "yes_no_why": "The figure sneaks off with the swords, a picture of deception and half-truths."
  },
  {
   "card_id": "swords-08-eight",
@@ -635,7 +692,8 @@
    "self-doubt"
   ],
   "upright": "Blindfolded and loosely bound, a woman stands among eight swords, yet the path in front of her is open. The Eight of Swords may reflect feeling trapped by circumstances or by your own thoughts. Look at which limits are real and which are beliefs, and loosen one knot at a time.",
-  "reversed": "A way out coming into view, or fears beginning to loosen their hold, can show with the Eight of Swords reversed. Inner pressure may feel heavier than the situation itself. Take one small step that shows you there is more room than you thought."
+  "reversed": "A way out coming into view, or fears beginning to loosen their hold, can show with the Eight of Swords reversed. Inner pressure may feel heavier than the situation itself. Take one small step that shows you there is more room than you thought.",
+  "yes_no_why": "Bound and blindfolded among the swords, the figure feels hemmed in."
  },
  {
   "card_id": "swords-09-nine",
@@ -646,7 +704,8 @@
    "inner pressure"
   ],
   "upright": "Sitting up in bed in the dark, a woman covers her face with her hands while nine swords line the wall behind her. The Nine of Swords can point to anxiety and night-time worries that grow larger in the mind than in life. You do not have to face them alone: share them with someone you trust and let daylight help you see them more clearly.",
-  "reversed": "Worry may be starting to ease, or you may be keeping fears so private that they grow heavier. This card can also point to a readiness to ask for support. Speak your worry out loud to someone kind, and notice how it changes once it is shared."
+  "reversed": "Worry may be starting to ease, or you may be keeping fears so private that they grow heavier. This card can also point to a readiness to ask for support. Speak your worry out loud to someone kind, and notice how it changes once it is shared.",
+  "yes_no_why": "Nine swords line the dark wall while the figure sits awake with worry."
  },
  {
   "card_id": "swords-10-ten",
@@ -657,7 +716,8 @@
    "new dawn"
   ],
   "upright": "Beside a still lake, a figure lies under ten swords while a yellow dawn breaks along the horizon. The Ten of Swords speaks of the end of a painful pattern, or the feeling of having had enough. Let what has run its course rest, and notice the light at the edge of the picture: this card leaves room for a new day.",
-  "reversed": "You may be in the slow work of getting back up, or holding on to a painful story longer than it serves you. You may also be dwelling on the worst possible outcome. Turn your attention to one small sign of the new day, and take care of yourself as you rise."
+  "reversed": "You may be in the slow work of getting back up, or holding on to a painful story longer than it serves you. You may also be dwelling on the worst possible outcome. Turn your attention to one small sign of the new day, and take care of yourself as you rise.",
+  "yes_no_why": "Ten swords mark the lowest point of a painful pattern, and their weight fills almost the whole picture."
  },
  {
   "card_id": "swords-11-page",
@@ -668,7 +728,8 @@
    "vigilance"
   ],
   "upright": "On a windy hill, a young page holds his sword high, glancing over his shoulder as clouds rush past. The Page of Swords may reflect sharp curiosity, a hunger for information and a mind eager to learn. Ask questions, gather facts, and keep your words honest while your ideas take shape.",
-  "reversed": "When reversed, the Page of Swords may point to scattered thoughts, gossip, or speaking before thinking. It can also show defensiveness when you feel unsure. Slow down, check your sources, and say only what you can stand behind."
+  "reversed": "When reversed, the Page of Swords may point to scattered thoughts, gossip, or speaking before thinking. It can also show defensiveness when you feel unsure. Slow down, check your sources, and say only what you can stand behind.",
+  "yes_no_why": "The Page stands alert in the wind, still scanning for information."
  },
  {
   "card_id": "swords-12-knight",
@@ -679,7 +740,8 @@
    "directness"
   ],
   "upright": "Charging at full speed, the Knight of Swords leans into the wind with his sword raised, trees bending behind him. He can point to fast thinking, bold words and a strong drive to act on an idea right away. Use that energy, but aim it: check your facts before you rush in.",
-  "reversed": "Haste that creates confusion, or words that land harder than you meant, can mark the Knight of Swords reversed. Sometimes it points to scattered energy with no clear target. Slow down long enough to see where you are heading, and soften how you say things."
+  "reversed": "Haste that creates confusion, or words that land harder than you meant, can mark the Knight of Swords reversed. Sometimes it points to scattered energy with no clear target. Slow down long enough to see where you are heading, and soften how you say things.",
+  "yes_no_why": "The Knight charges in before the whole picture is visible."
  },
  {
   "card_id": "swords-13-queen",
@@ -690,7 +752,8 @@
    "discernment"
   ],
   "upright": "Seated in profile, the Queen of Swords holds her sword upright and raises one hand as if inviting the truth. She speaks of clear judgment, independence and the kind of honesty that comes from experience. Speak plainly and fairly, and trust your ability to see a situation as it is.",
-  "reversed": "Clarity turning cold, or guardedness sharpening your words, may show the Queen of Swords reversed. Doubting your own judgment can belong here too. Be honest and kind at the same time, and listen for your own clear voice."
+  "reversed": "Clarity turning cold, or guardedness sharpening your words, may show the Queen of Swords reversed. Doubting your own judgment can belong here too. Be honest and kind at the same time, and listen for your own clear voice.",
+  "yes_no_why": "The Queen raises her hand and waits for the truth before she judges."
  },
  {
   "card_id": "swords-14-king",
@@ -701,7 +764,8 @@
    "clear thinking"
   ],
   "upright": "Facing forward on a throne carved with butterflies, the King of Swords holds his blade steady, tilted slightly to one side. He stands for clear reasoning, fair decisions and the authority that comes from thinking things through. Use your logic and integrity to make the call that is yours to make.",
-  "reversed": "Thinking may turn rigid, or logic may become a way to avoid feelings. You might also hesitate to use the authority that is yours. Balance reason with compassion, listen to what your feelings add, and make a decision you can explain honestly."
+  "reversed": "Thinking may turn rigid, or logic may become a way to avoid feelings. You might also hesitate to use the authority that is yours. Balance reason with compassion, listen to what your feelings add, and make a decision you can explain honestly.",
+  "yes_no_why": "The King sits facing forward and holds his blade steady, deciding with clear reasoning."
  },
  {
   "card_id": "pentacles-01-ace",
@@ -712,7 +776,8 @@
    "groundedness"
   ],
   "upright": "Held out from a cloud, a golden coin hangs above a flowering garden, where a path leads through a hedge arch toward the mountains. The Ace of Pentacles can point to a practical opportunity: work, a project, or a chance to build something solid. Plant the seed with a concrete first step you can see and touch.",
-  "reversed": "An opportunity you hesitate to take, or a plan that needs firmer ground before it grows, may come with the reversed Ace of Pentacles. Sometimes it points to worry about resources slowing you down. Look for the most practical, low-pressure way to begin, and start there."
+  "reversed": "An opportunity you hesitate to take, or a plan that needs firmer ground before it grows, may come with the reversed Ace of Pentacles. Sometimes it points to worry about resources slowing you down. Look for the most practical, low-pressure way to begin, and start there.",
+  "yes_no_why": "A golden coin is held out above a flowering garden, offered and within reach."
  },
  {
   "card_id": "pentacles-02-two",
@@ -723,7 +788,8 @@
    "priorities"
   ],
   "upright": "A young man dances while juggling two coins inside an endless loop, ships rising and falling on the waves behind him. The Two of Pentacles speaks of balancing several demands at once: work, money, home and time. Stay light on your feet, and decide what truly needs your attention first.",
-  "reversed": "Upside down, the Two of Pentacles may show juggling too much and dropping a few things along the way. It may also reflect feeling stretched between priorities that pull in opposite directions. Put down one thing you do not need to carry today, and let the rest steady itself."
+  "reversed": "Upside down, the Two of Pentacles may show juggling too much and dropping a few things along the way. It may also reflect feeling stretched between priorities that pull in opposite directions. Put down one thing you do not need to carry today, and let the rest steady itself.",
+  "yes_no_why": "The juggler keeps both coins in motion, and neither has landed yet."
  },
  {
   "card_id": "pentacles-03-three",
@@ -734,7 +800,8 @@
    "skill"
   ],
   "upright": "Inside a cathedral, a stonemason stands on a bench while two others hold up the plans and discuss the work. Collaboration, skill and the satisfaction of building something together are at the heart of this card. Share your expertise, listen to others, and value the different strengths each person brings.",
-  "reversed": "Teamwork may feel uneven, or your skills may go unseen by the people around you. You might be working alone when help would make things easier. Clarify who does what, ask for honest feedback, and say plainly what you bring to the work."
+  "reversed": "Teamwork may feel uneven, or your skills may go unseen by the people around you. You might be working alone when help would make things easier. Clarify who does what, ask for honest feedback, and say plainly what you bring to the work.",
+  "yes_no_why": "The mason and the planners work together on something built to last."
  },
  {
   "card_id": "pentacles-04-four",
@@ -745,7 +812,8 @@
    "saving"
   ],
   "upright": "A crowned man sits holding one coin tight to his chest, another balanced on his head and two under his feet, a city behind him. The Four of Pentacles may reflect the wish for security and the habit of holding on tightly. Protect what matters, and notice whether your grip leaves room for anything new.",
-  "reversed": "Loosening your grip, or anxiety about losing control of money or comfort, can come with the reversed Four of Pentacles. You might also swing between holding tight and letting go too much. Look for a middle path where you feel safe and still open."
+  "reversed": "Loosening your grip, or anxiety about losing control of money or comfort, can come with the reversed Four of Pentacles. You might also swing between holding tight and letting go too much. Look for a middle path where you feel safe and still open.",
+  "yes_no_why": "The figure clutches his coins and waits, holding everything still."
  },
  {
   "card_id": "pentacles-05-five",
@@ -756,7 +824,8 @@
    "seeking support"
   ],
   "upright": "Two figures trudge through falling snow past a glowing church window, not looking up at the light. The Five of Pentacles can point to a hard stretch with money or support, or to feeling left out in the cold. Help may be closer than it seems, so look up and ask for the warmth that is available.",
-  "reversed": "A hard time beginning to ease, or accepting help instead of coping alone, may describe the reversed Five of Pentacles. Feeling isolated even when support is near can be part of it. Reach out for practical help, and accept it without shame."
+  "reversed": "A hard time beginning to ease, or accepting help instead of coping alone, may describe the reversed Five of Pentacles. Feeling isolated even when support is near can be part of it. Reach out for practical help, and accept it without shame.",
+  "yes_no_why": "Two figures pass through the snow without seeing the lit window, out in the cold."
  },
  {
   "card_id": "pentacles-06-six",
@@ -767,7 +836,8 @@
    "support"
   ],
   "upright": "A merchant holds a pair of scales in one hand and drops coins into the open hands of two kneeling figures with the other. The Six of Pentacles speaks of generosity and a fair flow of giving and receiving. Share what you can, accept what is offered, and keep the exchange balanced.",
-  "reversed": "Help that comes with strings attached, or giving that leaves you depleted, can show the Six of Pentacles reversed. Difficulty receiving may be part of it too. Look honestly at the balance of what you give and take, and adjust one part of it."
+  "reversed": "Help that comes with strings attached, or giving that leaves you depleted, can show the Six of Pentacles reversed. Difficulty receiving may be part of it too. Look honestly at the balance of what you give and take, and adjust one part of it.",
+  "yes_no_why": "The merchant balances his scales and gives freely, so resources flow fairly."
  },
  {
   "card_id": "pentacles-07-seven",
@@ -778,7 +848,8 @@
    "perseverance"
   ],
   "upright": "Resting on his hoe, a farmer looks at seven coins growing on a leafy bush, pausing to see what his work has produced so far. The Seven of Pentacles may reflect patience and an honest look at long-term effort. Take stock of what is growing, adjust where needed, and give the rest time.",
-  "reversed": "Reversed, the Seven of Pentacles may show impatience with slow results, or effort spent where it does not bear fruit. Sometimes it points to doubt about whether to keep going. Look at what is actually working, and decide where your energy is best spent."
+  "reversed": "Reversed, the Seven of Pentacles may show impatience with slow results, or effort spent where it does not bear fruit. Sometimes it points to doubt about whether to keep going. Look at what is actually working, and decide where your energy is best spent.",
+  "yes_no_why": "The farmer leans on his hoe, waiting for the harvest to ripen."
  },
  {
   "card_id": "pentacles-08-eight",
@@ -789,7 +860,8 @@
    "focus"
   ],
   "upright": "At a workbench, an apprentice carves one coin after another, the finished pieces displayed beside him. The Eight of Pentacles can point to dedication, practice and the quiet pride of getting better at something. Give your full attention to one task, and let steady effort do its work.",
-  "reversed": "Work may feel repetitive, or perfectionism may slow your progress. Skills can be left undeveloped because of boredom or doubt. Return to what you enjoy about the craft, and set one small, achievable goal."
+  "reversed": "Work may feel repetitive, or perfectionism may slow your progress. Skills can be left undeveloped because of boredom or doubt. Return to what you enjoy about the craft, and set one small, achievable goal.",
+  "yes_no_why": "The apprentice carves coin after coin with steady, skilled attention."
  },
  {
   "card_id": "pentacles-09-nine",
@@ -800,7 +872,8 @@
    "refinement"
   ],
   "upright": "In a garden heavy with grapes, an elegantly dressed woman stands alone with a falcon resting on her gloved hand. The Nine of Pentacles speaks of independence, comfort and enjoying the fruits of your own effort. Treat yourself well, and appreciate what your own work makes possible.",
-  "reversed": "Depending on others more than feels right, or struggling to enjoy what you have, can describe the reversed Nine of Pentacles. Self-worth may be tied too closely to possessions. Find one way to feel at home in your own life, as it is right now."
+  "reversed": "Depending on others more than feels right, or struggling to enjoy what you have, can describe the reversed Nine of Pentacles. Self-worth may be tied too closely to possessions. Find one way to feel at home in your own life, as it is right now.",
+  "yes_no_why": "The woman stands at ease in her own ripe garden, a falcon on her glove."
  },
  {
   "card_id": "pentacles-10-ten",
@@ -811,7 +884,8 @@
    "long-term security"
   ],
   "upright": "Under a stone archway, an old man sits with his dogs while a family gathers nearby, ten coins arranged around them in the shape of a tree. The Ten of Pentacles may reflect lasting stability, family ties and things built to last. Think about what you want to create that will still matter years from now, and take a step toward it.",
-  "reversed": "Tension around family, money or tradition, or a sense that stability feels shaky, may come with the Ten of Pentacles reversed. Pressure to follow a path set by others can also show. Ask what security means to you, and build it in your own way."
+  "reversed": "Tension around family, money or tradition, or a sense that stability feels shaky, may come with the Ten of Pentacles reversed. Pressure to follow a path set by others can also show. Ask what security means to you, and build it in your own way.",
+  "yes_no_why": "Ten coins form a tree over three generations, foundations meant to last."
  },
  {
   "card_id": "pentacles-11-page",
@@ -822,7 +896,8 @@
    "ambition"
   ],
   "upright": "Standing in a green field, a young page holds a single coin up in both hands, studying it with full attention. The Page of Pentacles can point to a new practical interest: a course, a job, a skill, a plan to grow. Learn with patience, and treat each small step as part of something real.",
-  "reversed": "Plans may stay on paper, or your focus may slip before learning takes root. Doubts about whether you can succeed can slow you down before you have really begun. Choose one practical step, keep it small enough to finish, and complete it."
+  "reversed": "Plans may stay on paper, or your focus may slip before learning takes root. Doubts about whether you can succeed can slow you down before you have really begun. Choose one practical step, keep it small enough to finish, and complete it.",
+  "yes_no_why": "The Page studies his coin with patient focus, ready to learn."
  },
  {
   "card_id": "pentacles-12-knight",
@@ -833,7 +908,8 @@
    "slow progress"
   ],
   "upright": "Unlike the other knights, the Knight of Pentacles sits still on a heavy horse, holding up the coin in his hand above a plowed field. He speaks of steady, reliable work and progress that comes step by step. Keep your routine, finish what you start, and trust slow and careful effort.",
-  "reversed": "Your routine may have turned into a rut, or caution may keep you from moving at all. Steady work can start to feel like boredom rather than progress. Change one small thing in your routine to bring back a sense of purpose and a little fresh air."
+  "reversed": "Your routine may have turned into a rut, or caution may keep you from moving at all. Steady work can start to feel like boredom rather than progress. Change one small thing in your routine to bring back a sense of purpose and a little fresh air.",
+  "yes_no_why": "The Knight's horse stands still in the plowed field, and progress comes slowly."
  },
  {
   "card_id": "pentacles-13-queen",
@@ -844,7 +920,8 @@
    "security"
   ],
   "upright": "Roses and greenery surround the Queen of Pentacles, who sits with a coin cradled in her lap, a small rabbit at her feet. She stands for warm, practical care: a well-run home, resources handled wisely, comfort shared. Look after your home and your everyday comfort in simple ways: a warm meal, a tidy room, rest when your body asks for it.",
-  "reversed": "Worries about money or home taking up too much space, or losing touch with simple physical comforts, can show the Queen of Pentacles reversed. Practical care may be going everywhere but into your own daily life. Do one grounding, practical thing for your own everyday comfort."
+  "reversed": "Worries about money or home taking up too much space, or losing touch with simple physical comforts, can show the Queen of Pentacles reversed. Practical care may be going everywhere but into your own daily life. Do one grounding, practical thing for your own everyday comfort.",
+  "yes_no_why": "The Queen sits in a blooming garden with her coin, at home and well provided for."
  },
  {
   "card_id": "pentacles-14-king",
@@ -855,6 +932,7 @@
    "success"
   ],
   "upright": "Surrounded by grapevines, with bulls carved into his throne and a castle behind him, the King of Pentacles rests one hand on a golden coin. He can point to security, generosity and the confidence that comes from steady effort. Make decisions that build lasting value, for yourself and those around you.",
-  "reversed": "Upside down, the King of Pentacles may point to valuing security so much that it becomes rigid, or to measuring worth only through money. It may also reflect doubt about your ability to provide. Remember what truly matters to you, and let that guide your practical choices."
+  "reversed": "Upside down, the King of Pentacles may point to valuing security so much that it becomes rigid, or to measuring worth only through money. It may also reflect doubt about your ability to provide. Remember what truly matters to you, and let that guide your practical choices.",
+  "yes_no_why": "Surrounded by vines, with a castle behind him, the King rests a hand on solid, prosperous ground."
  }
 ]

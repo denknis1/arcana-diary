@@ -1,0 +1,139 @@
+{
+ "schema": 1,
+ "page_id": "terminos",
+ "lang": "es",
+ "url": "/es/terminos",
+ "status": "reviewed",
+ "title": "Términos y condiciones de uso",
+ "description": "Las reglas para usar Arcana Diary: solo mayores de 18, lecturas para reflexionar y no para predecir ni aconsejar, límites gratis, cuentas, textos de IA.",
+ "h1": "Términos y condiciones de uso",
+ "lead": "Estos términos son el acuerdo entre tú y {operator_name} para usar Arcana Diary en arcanadiary.com. Léelos antes de usar el sitio. Vigentes desde: {effective_date}.",
+ "capsule": null,
+ "blocks": [
+  {
+   "id": "acuerdo",
+   "heading": "Aceptación",
+   "paragraphs": [
+    "{operator_name}, con domicilio en {operator_address} (“nosotros”), está a cargo de Arcana Diary. Al sacar cartas, crear una cuenta o usar el sitio de cualquier otra forma, aceptas estos términos y confirmas que leíste nuestro aviso de privacidad en /es/privacidad, donde explicamos qué pasa con tus datos. Si no estás de acuerdo, por favor no uses el sitio."
+   ]
+  },
+  {
+   "id": "servicio",
+   "heading": "Qué ofrece Arcana Diary",
+   "paragraphs": [
+    "Arcana Diary ofrece lecturas de tarot en español y en inglés. Puedes hacer una pregunta, o ninguna, y sacar una carta, tres cartas (pasado, presente y hacia dónde va), una tirada de sí o no con una o tres cartas, una lectura de amor o una carta desde la página de cada carta. La carta del día es gratis, sale una por dispositivo y no cambia durante tu día.",
+    "Nuestro servidor baraja al azar las 78 cartas Rider-Waite-Smith, y cada carta tiene la misma probabilidad de quedar al derecho que al revés. Después, un modelo de IA escribe la lectura a partir de los significados de la base de cartas del sitio. Puedes hacer preguntas de seguimiento sobre esas mismas cartas y, con una cuenta, guardar tus lecturas en un diario, marcar si se cumplieron y añadir una nota privada.",
+    "El sitio también publica significados de cartas y guías. Esos textos se preparan con ayuda de IA a partir del libro de A. E. Waite de 1911 y de la base de cartas del sitio, y {editor_name}, editor de Arcana Diary, los lee antes de publicarlos."
+   ]
+  },
+  {
+   "id": "edad",
+   "heading": "Solo para personas de 18 años o más",
+   "paragraphs": [
+    "Para usar Arcana Diary necesitas tener 18 años o más; al usarlo, confirmas que los tienes. Si nos enteramos de que una cuenta es de alguien menor, la eliminaremos."
+   ]
+  },
+  {
+   "id": "no-consejo",
+   "heading": "Las lecturas sirven para reflexionar, no para predecir ni aconsejar",
+   "paragraphs": [
+    "El tarot no predice el futuro, y ninguna lectura de este sitio te dice qué ocurrirá o qué no. Una lectura es un punto de partida para pensar en tu situación y en tu siguiente paso; la ofrecemos para la reflexión y el entretenimiento.",
+    "Nada de lo que hay en el sitio es consejo médico, psicológico, legal, financiero ni de seguridad, ni sustituye a un médico, terapeuta, abogado, asesor financiero o a los servicios de emergencia. El lector no da fechas, no promete resultados, no te dice lo que piensa o siente otra persona, y no hace pronósticos sobre la salud, juicios o tu seguridad; en esos temas, la tirada de sí o no no da veredicto. Una respuesta de sí o no sobre dinero o compras siempre llega con el aviso de que no es un consejo financiero. Toma las decisiones importantes con ayuda de personas calificadas y con tu propio criterio, no a partir de una lectura."
+   ]
+  },
+  {
+   "id": "crisis",
+   "heading": "Si estás pasando por una crisis",
+   "paragraphs": [
+    "Cuando una pregunta parece venir de alguien en riesgo o con ideas de lastimarse, no damos lectura: aparecen teléfonos de ayuda gratuitos. Arcana Diary no es un servicio de emergencias ni de orientación psicológica. Si tú o alguien más está en peligro inmediato, llama al número de emergencias de tu país."
+   ]
+  },
+  {
+   "id": "textos-ia",
+   "heading": "Lecturas generadas por IA",
+   "paragraphs": [
+    "Las lecturas y las respuestas a tus preguntas de seguimiento las genera un modelo de IA, no una persona, y nadie las revisa antes de que las veas. Unas revisiones automáticas buscan lo que el sitio no hace, como promesas, fechas o afirmaciones sobre los sentimientos de otra persona, y cambian ese texto por los significados de las cartas de la base; en español, un fragmento puede reescribirse para no dar por hecho tu género. Aun así, un texto de IA puede tener errores, repetirse, sonar raro o no encajar con tu situación. Si el lector no está disponible, recibes los significados de tus cartas tomados de la base.",
+    "Tu pregunta, junto con los datos que detalla el aviso de privacidad, viaja a nuestro proveedor de IA para que redacte la lectura. Evita poner en ella información que permita reconocerte a ti o a otras personas."
+   ]
+  },
+  {
+   "id": "limites",
+   "heading": "Lecturas gratis y límites",
+   "paragraphs": [
+    "Usar Arcana Diary es gratis. Sin cuenta, cada dispositivo tiene {guest_limit} lecturas al día; con cuenta tienes {user_limit} al día, contadas en todos tus dispositivos. Tu día sigue la zona horaria de tu navegador. La carta del día no cuenta. Cada lectura incluye {followups} preguntas de seguimiento gratis; otra pregunta más sobre la misma lectura usa una de tus lecturas del día, y el número de preguntas de seguimiento por lectura tiene un tope. Si el lector falla, puedes intentarlo de nuevo unas cuantas veces sin gastar una lectura.",
+    "Para que el servicio funcione para todas las personas, limitamos cuántas solicitudes puede hacer una misma dirección IP al día, podemos pedirle a tu navegador que pase una verificación automática y, cuando se agota la capacidad de IA del día, podemos mostrarte los significados de las cartas en vez de una lectura escrita. Estos límites pueden cambiar; los números vigentes aparecen en el sitio.",
+    "El plan de pago Plus todavía no está a la venta. Anotarte en su lista de espera solo significa que podemos escribirte cuando abra; no te obliga a nada, ni a nosotros tampoco."
+   ]
+  },
+  {
+   "id": "cuenta",
+   "heading": "Tu cuenta y tu diario",
+   "paragraphs": [
+    "La cuenta se crea al iniciar sesión, ya sea con el enlace que mandamos a tu correo o con Google. Cada cuenta es para una sola persona. Cuida el acceso a tu correo y a tu cuenta de Google, porque quien los controle podrá entrar como tú. Una lectura hecha sin cuenta puede pasar a tu cuenta durante 7 días; después se borra.",
+    "En la versión gratis, la lista del diario enseña las {diary_free} últimas; las más viejas siguen en tu cuenta y en el archivo que descargas. Puedes borrar entradas sueltas o tu cuenta completa cuando quieras, desde la página de tu cuenta. Eliminar la cuenta es inmediato y no tiene vuelta atrás. Podemos suspender o cerrar una cuenta que no respete estos términos."
+   ]
+  },
+  {
+   "id": "uso",
+   "heading": "Uso permitido",
+   "paragraphs": [
+    "Usa Arcana Diary solo para fines personales, no comerciales, y conforme a la ley. No uses bots, scripts ni otros medios automáticos para pedir lecturas o copiar el sitio en masa; no intentes saltarte los límites diarios ni la verificación contra bots; no intentes que el lector produzca textos dañinos, de odio o ilegales, ni que revele sus instrucciones, y no afectes la seguridad ni el funcionamiento del sitio.",
+    "No escribas nombres ni información privada de otras personas, y no uses las lecturas ni los enlaces para compartirlas con el fin de acosar, amenazar o engañar a nadie. No presentes las lecturas del sitio como asesoría profesional, ni revendas el servicio ni lo ofrezcas como tuyo."
+   ]
+  },
+  {
+   "id": "contenido",
+   "heading": "Tu contenido y el nuestro",
+   "paragraphs": [
+    "Tus preguntas y tus notas siguen siendo tuyas. Nos permites guardarlas y procesarlas solo para darte el servicio, como explica el aviso de privacidad. Tú respondes por lo que escribes.",
+    "Los textos propios del sitio, la base de cartas, el diseño y el software pertenecen a {operator_name} o a quienes le otorgan licencia. Las citas de The Pictorial Key to the Tarot (1911), de A. E. Waite, y las imágenes de las cartas, que son escaneos de los dibujos de Pamela Colman Smith en la primera impresión de 1909, son de dominio público. Puedes guardar, imprimir, compartir y citar tus propias lecturas con fines personales y no comerciales. Como las lecturas se generan de forma automática, no podemos prometer que un texto sea único.",
+    "La dirección de una lectura muestra sus cartas y su respuesta a cualquiera que la tenga, pero no tu pregunta, tus preguntas de seguimiento ni tu nota. Tú decides si la compartes."
+   ]
+  },
+  {
+   "id": "disponibilidad",
+   "heading": "Disponibilidad y cambios en el servicio",
+   "paragraphs": [
+    "Ofrecemos Arcana Diary tal como está y según esté disponible. No garantizamos que funcione siempre, sin errores o en tu país, y podemos cambiar, pausar o cerrar cualquier parte del servicio, incluidos los límites gratis. Si algún día cerramos el servicio, no podemos prometer un plazo de aviso, así que puedes descargar tu diario desde la página de tu cuenta cuando quieras."
+   ]
+  },
+  {
+   "id": "responsabilidad",
+   "heading": "Límites de nuestra responsabilidad",
+   "paragraphs": [
+    "En la medida en que la ley lo permita, no respondemos por las decisiones que tomes ni por lo que hagas a partir de una lectura, por el contenido de los textos generados por IA, ni por daños indirectos o consecuentes. Como el servicio es gratuito, y en la medida en que la ley lo permita, nuestra responsabilidad total frente a ti se limita a lo que nos hayas pagado, que es nada mientras no exista un plan de pago.",
+    "Nada de estos términos excluye ni limita la responsabilidad que la ley no permite excluir o limitar, ni te quita los derechos que te da la ley de protección al consumidor del lugar donde vives."
+   ]
+  },
+  {
+   "id": "terminacion",
+   "heading": "Fin del uso",
+   "paragraphs": [
+    "Puedes dejar de usar el sitio cuando quieras y eliminar tu cuenta desde la página de tu cuenta. Podemos suspender o terminar tu acceso si no respetas estos términos o si usas el sitio de un modo que pueda dañar a otras personas o al servicio. Los apartados sobre contenido, responsabilidad y ley aplicable siguen vigentes después."
+   ]
+  },
+  {
+   "id": "ley",
+   "heading": "Ley aplicable y controversias",
+   "paragraphs": [
+    "Estos términos se rigen por las leyes de {jurisdiction}. Cualquier controversia se resolverá ante los tribunales de {jurisdiction}, salvo que la ley del lugar donde vives te permita presentar tu reclamación allí. Antes de acudir a un tribunal, escríbenos a {contact_email} para intentar resolverlo contigo."
+   ]
+  },
+  {
+   "id": "cambios",
+   "heading": "Cambios a estos términos",
+   "paragraphs": [
+    "Podemos actualizar estos términos cuando cambien el servicio o la ley. Publicaremos la nueva versión aquí con una nueva fecha de vigencia. Si sigues usando el sitio después de esa fecha, se aplican los nuevos términos; si no estás de acuerdo, puedes dejar de usarlo y eliminar tu cuenta."
+   ]
+  },
+  {
+   "id": "contacto",
+   "heading": "Contacto",
+   "paragraphs": [
+    "{operator_name}, {operator_address}. Correo: {contact_email}."
+   ]
+  }
+ ],
+ "faq": [],
+ "intents": []
+}

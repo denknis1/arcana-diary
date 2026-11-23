@@ -1,0 +1,12 @@
+---
+// One JSON-LD script. The only raw-markup sink of the site (guards.test.ts allows exactly this one expression):
+// Astro prints script text only this way, and ldScript escapes every character that could close the script.
+import { ldScript, type JsonLd } from '../lib/jsonld';
+
+interface Props {
+  data: JsonLd;
+}
+
+const { data } = Astro.props;
+---
+<script type="application/ld+json" is:inline set:html={ldScript(data)} />

@@ -446,3 +446,22 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
   .night__body, .daily .card-frame { animation: fade-in var(--motion-night-open) linear; }
   .backs img:nth-child(1), .backs img:nth-child(3) { transform: none; }
 }
+
+/* Breadcrumbs (stage 6; prototypes CardMoon, Major, YesNoList, TresCartas) */
+.breadcrumbs { padding-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-day-text-muted); }
+.breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-2); list-style: none; margin: 0; padding: 0; }
+.breadcrumbs li { display: inline-flex; align-items: center; gap: var(--space-2); }
+.breadcrumbs li + li::before { content: '›'; content: '›' / ''; }
+.breadcrumbs a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-day-text-muted); }
+.breadcrumbs [aria-current='page'] { color: var(--color-day-text); }
+
+/* Stage 5 text: capsule, blocks, FAQ (stage 6) */
+.capsule { margin: 0; font-size: var(--font-size-h-3); line-height: 1.45; max-width: 68ch; }
+.prose { max-width: 72ch; }
+.prose p { margin: 0; }
+.h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: var(--font-size-h-3); line-height: 1.2; }
+.faq details { max-width: 72ch; border-bottom: 1px solid var(--color-day-line); }
+.faq summary { display: flex; align-items: center; min-height: 44px; padding: var(--space-3) 0; cursor: pointer; font-weight: 600; }
+.faq details p { margin: 0 0 var(--space-4); }
+.block-link { margin: 0; }
+.block-link a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }

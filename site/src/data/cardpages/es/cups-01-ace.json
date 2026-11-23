@@ -1,0 +1,208 @@
+{
+ "schema": 2,
+ "card_id": "cups-01-ace",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "As de Copas",
+  "in_sentence": "el As de Copas",
+  "de": "del As de Copas"
+ },
+ "title": "As de Copas en el tarot: significado, invertida y amor",
+ "description": "Qué significa el As de Copas al derecho y al revés (carta invertida): amor nuevo, emoción, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "As de Copas en el tarot: significado",
+ "image_alt": "As de Copas, carta de 1909 de la baraja Rider-Waite-Smith: una mano sale de una nube con una copa dorada que vierte cinco chorros en un estanque de nenúfares.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 1,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El As de Copas habla de amor nuevo, emoción que despierta y compasión: un corazón que se abre. Al revés, lo que sientes sigue ahí, pero se queda guardado. Pocas cartas son tan tiernas, y solo te pide no cerrarle el paso a lo que sientes. Como la copa se desborda, al derecho dice que sí.",
+ "keywords": {
+  "upright": [
+   "amor nuevo",
+   "emoción",
+   "apertura",
+   "compasión"
+  ],
+  "reversed": [
+   "emociones guardadas",
+   "corazón a la defensiva",
+   "vacío emocional",
+   "amor propio"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del As de Copas?",
+   "paragraphs": [
+    "Desde una nube, una mano abierta ofrece una copa sobre aguas tranquilas. Waite describe la escena de abajo hacia arriba: el agua con nenúfares, la mano con la copa y una paloma que baja con una hostia marcada con una cruz en el pico para ponerla dentro de la copa, mientras el rocío cae por todos lados (p. 224).",
+    "En la carta de 1909 la copa dorada domina el dibujo; la paloma baja de cabeza hacia ella y del borde caen chorros a un estanque con hojas verdes y florecitas rojas. Waite habla de cuatro chorros (p. 224), pero en la carta de 1909 se ven cinco. Waite no explica la paloma ni el agua: dice que la carta deja entrever lo que puede haber detrás de los Arcanos Menores (p. 224)."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el As de Copas?",
+   "paragraphs": [
+    "Con su lista, Waite arma una casa para el corazón: corazón verdadero, alegría, contento, morada, alimento, abundancia y una Mesa Santa (p. 224). Al revés, Waite conserva la casa, pero con un corazón falso, y suma cambio, inestabilidad y revolución (p. 224).",
+    "En Arcana Diary preferimos leerlo como un sentimiento que se contiene."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el As de Copas al derecho?",
+   "paragraphs": [
+    "Al derecho, el As de Copas es un nuevo comienzo emocional y habla de apertura: ternura, amor, ganas de cuidar y de dejarte cuidar. Suele salir cuando algo empieza: una relación, una amistad que se vuelve más honda, una alegría que regresa tras una temporada seca.",
+    "La compasión también cuenta, y no solo hacia afuera: el cariño que das a otras personas también te toca a ti. Muchas lecturas actuales suman a esta carta la creatividad y la intuición.",
+    "¿Qué emoción te está pidiendo más espacio y qué cambiaría si la dejaras desbordarse un poco?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el As de Copas al revés?",
+   "paragraphs": [
+    "Al revés, la copa parece tapada. Hay emociones guardadas que no encuentran salida, un corazón a la defensiva que deja entrar poco o, a veces, una sensación de vacío emocional. También puede mostrar que cuidas a los demás y te olvidas de ti, y que lo que falta es amor propio.",
+    "Waite usa palabras más duras, corazón falso e inestabilidad (p. 224); leer aquí un corazón cerrado es una lectura moderna, no de Waite. Para abrir basta poco: una canción, una frase sincera, unas lágrimas que no detienes."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el As de Copas en el amor?",
+   "paragraphs": [
+    "Señala sin rodeos el amor nuevo: la primera chispa, una atracción con ternura, una relación que se abre a sentir más o la reconciliación tras una distancia.",
+    "Dentro de una relación, trae una ola de cariño, palabras más suaves y ganas de mostrar lo que sientes. Cuando no hay nadie a tu lado, el corazón puede estar abriéndose otra vez, a alguien nuevo o a la idea misma del amor.",
+    "El lado al revés es un cariño cercano que cuesta recibir, o lo que sientes guardado por miedo a ser demasiado. Recibir también es parte de esta carta, igual que dar."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el As de Copas en el trabajo y el dinero?",
+   "paragraphs": [
+    "En lo laboral apunta a un trabajo que te importa: un proyecto que te mueve, un inicio creativo, un equipo donde la gente se trata con cariño. Va bien con los oficios de cuidado, arte o escucha.",
+    "El dinero no es su tema principal, aunque su tono es generoso: suficiente para compartir, un regalo que das o recibes; la abundancia está en la propia lista de Waite (p. 224). Al revés, aparece el gasto que intenta tapar un hueco emocional."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el As de Copas como consejo?",
+   "paragraphs": [
+    "Haz hoy un gesto de cariño sin esperar nada a cambio: un mensaje, un abrazo, una ayuda pequeña. Después regálate lo mismo: que tu copa se desborde hacia afuera y hacia adentro."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El As de Copas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el As de Copas como persona y como sentimiento?",
+   "paragraphs": [
+    "Cálido y abierto, que consuela con facilidad y se deja querer: así se ve el As de Copas como persona; también puedes ser tú en un momento tierno y lleno de esperanza. En el terreno de los sentimientos, señala con claridad un cariño que nace o que crece: ternura, una atracción con calidez, ganas de cuidar y de que te cuiden. Al revés, el sentimiento existe, pero se contiene por timidez, por una herida vieja o por miedo a mostrar demasiado."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el As de Copas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "major-06-lovers",
+     "text": "Una emoción nueva frente a una elección de verdad. Que el corazón y tus valores vayan de acuerdo."
+    },
+    {
+     "card_id": "cups-02-two",
+     "text": "El corazón se abre y encuentra respuesta: un vínculo donde el cariño va y viene."
+    },
+    {
+     "card_id": "major-17-star",
+     "text": "Esperanza después de una mala racha; la confianza y la ternura regresan juntas."
+    },
+    {
+     "card_id": "cups-05-five",
+     "text": "La desilusión sigue cerca, pero ya se asoma algo nuevo. Mira lo que queda y lo que empieza."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el As de Copas del Diez de Copas?",
+   "paragraphs": [
+    "Waite describe el Diez de Copas como copas en un arcoíris que una pareja contempla con asombro, con dos niños que bailan cerca (p. 206), y abre sus significados con el contento y el reposo de todo el corazón (p. 206). Su lectura actual: plenitud emocional y sentido de familia.",
+    "El As es la primera emoción; el Diez, esa emoción convertida en una vida compartida. Uno empieza a llenar la copa; el otro muestra un arco entero de copas llenas."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el As de Copas?",
+   "paragraphs": [
+    "¿Qué emoción me está pidiendo más espacio últimamente?",
+    "¿Dónde me resulta más fácil dar cariño que recibirlo?",
+    "¿Qué gesto tierno puedo tener conmigo hoy?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿Qué es el As de Copas?",
+   "a": "Es la primera carta del palo de Copas en los Arcanos Menores. Representa el comienzo de lo emocional: el momento en que un sentimiento nace y empieza a correr, sea amor, amistad o inspiración."
+  },
+  {
+   "q": "¿El As de Copas es una carta buena o mala?",
+   "a": "Buena: es de las más cariñosas de toda la baraja. Habla de afecto que fluye, de bondad y de un comienzo tierno. Al revés muestra un sentimiento detrás de una puerta cerrada, y eso es algo que se abre con calma, poco a poco, no una mala señal."
+  },
+  {
+   "q": "¿El As de Copas significa que me quiere?",
+   "a": "Por sí sola, la carta no responde eso sobre nadie en particular. Cuando preguntas por amor, su significado tradicional es ternura y cariño que empiezan o crecen; para saber qué pasa en tu historia, fíjate en cómo te trata esa persona y en cómo te sientes con ella."
+  }
+ ],
+ "related": [
+  "cups-02-two",
+  "wands-01-ace",
+  "swords-01-ace",
+  "pentacles-01-ace"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-10-ten",
+   "text": "Diez de Copas"
+  }
+ ],
+ "waite": {
+  "quote": "House of the true heart, joy, content, abode, nourishment, abundance, fertility; Holy Table, felicity hereof. Reversed: House of the false heart, mutation, instability, revolution.",
+  "quote_lang": "en",
+  "pages": [
+   224
+  ],
+  "translation": "Casa del corazón verdadero, alegría, contento, morada, alimento, abundancia, fertilidad; Mesa Santa, la dicha que de ella viene. Al revés: casa del corazón falso, mutación, inestabilidad, revolución.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 01.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_01.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    206,
+    224
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

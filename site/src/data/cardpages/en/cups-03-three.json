@@ -1,0 +1,207 @@
+{
+ "schema": 2,
+ "card_id": "cups-03-three",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Three of Cups",
+  "in_sentence": "the Three of Cups"
+ },
+ "title": "Three of Cups Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "Three of Cups upright: friendship, celebration, community; reversed: feeling left out. Love, work, advice, Waite's 1911 text and the 1909 card.",
+ "h1": "Three of Cups Tarot Card Meaning",
+ "image_alt": "Three of Cups, 1909 Rider–Waite–Smith card: three women raise gold cups high in a close circle, with grapes, round fruit and a pumpkin at their feet.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 3,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "Friendship, celebration and joy shared with the people who lift you up: that is the Three of Cups. Reversed, the circle breaks: feeling left out, gossip or too much partying. Hardly anything about it is heavy; it simply asks you to keep your friendships honest. Three cups raised together give a yes.",
+ "keywords": {
+  "upright": [
+   "friendship",
+   "celebration",
+   "community",
+   "joy"
+  ],
+  "reversed": [
+   "feeling left out",
+   "gossip",
+   "overindulgence",
+   "uneven friendships"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Three of Cups card?",
+   "paragraphs": [
+    "Three women stand close together and lift their cups above their heads. Waite's description is brief: \"Maidens in a garden-ground with cups uplifted, as if pledging one another\" (p. 220).",
+    "On the 1909 card the middle figure has her back to us, wrapped in a long orange-red cloak, and her cup is the highest point of the picture. The woman on the left wears white; the one on the right, in light brown, holds a bunch of grapes in her lowered hand. Grapes, a pumpkin and a bush of round orange fruit lie at their feet, under a clear blue sky."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Three of Cups?",
+   "paragraphs": [
+    "Waite reads the card as the happy close of a matter: plenty, perfection and merriment, a good outcome, victory, fulfilment and comfort (p. 220). For the reversed card Waite turns to speed and completion, with dispatch, achievement and an end (p. 220)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Three of Cups mean upright?",
+   "paragraphs": [
+    "Friendship comes first with the Three of Cups: the people who know you, laugh with you and show up when it counts. Gatherings are its natural setting, a birthday, a reunion, a toast to good news, any moment when joy is shared instead of kept private.",
+    "Community belongs here as well: a team, a group or a circle where you feel you belong and where good news is celebrated together. Small wins count; the card does not wait for something grand before it raises a glass.",
+    "Which people make you feel most like yourself, and when did you last celebrate something with them?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Three of Cups mean reversed?",
+   "paragraphs": [
+    "Upside down, the Three of Cups can show feeling left out, watching the dance from the edge, or uneven friendships, where one person always makes the plans. Gossip, and a third person stepping between two friends, also belong to this side.",
+    "Overindulgence is the other reversed meaning: too much partying, too much of a good thing, social energy spent until little is left for you. Waite's reversed list has a line for this too, \"the side of excess in physical enjoyment\" (p. 220). A quiet evening with one friend who feels easy to be around can restore the balance."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Three of Cups mean in love?",
+   "paragraphs": [
+    "Love under the Three of Cups is light and sociable: a romance that grows out of friendship, meeting someone through your circle, a relationship where you also have fun together. Joy is the point here, not drama.",
+    "With a partner, it favors shared celebrations and time with friends as a couple, while reminding you to keep your own friendships alive too.",
+    "A crowded heart is the reversed shade: a third person complicating things, gossip around a couple, or friends and partner pulling in different directions."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Three of Cups mean for work and money?",
+   "paragraphs": [
+    "Teamwork that feels good is the career side: colleagues who cheer each other on, a project finished together, a network that opens doors. It is a strong card for collaboration, events and anything that depends on people.",
+    "Money under this card means plenty shared: spending on gatherings, gifts between friends, a sense of having enough to be generous. Reversed, it can describe overspending on nights out."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Three of Cups?",
+   "paragraphs": [
+    "Send a friend a message today and suggest a simple plan: coffee, a walk, a call. Then keep it, and when you meet, toast to something small that went well."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Three of Cups a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Three of Cups as a person and as feelings",
+   "paragraphs": [
+    "Among people, the Three of Cups is a good friend, the host who brings people together, or someone whose company makes everything lighter; you may recognize your own most sociable side in it. As feelings, the card speaks of fondness, fun and ease: enjoying someone's company, a warmth that may be friendly or the start of something more. Reversed, it describes mixed feelings in a group: someone left on the outside, or affection spread thin across too many people."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Three of Cups with other cards",
+   "pairs": [
+    {
+     "card_id": "swords-03-three",
+     "text": "Friends stand close at a hard moment, and shared sorrow weighs less."
+    },
+    {
+     "card_id": "major-19-sun",
+     "text": "Joy with nothing to hide: a bright, open celebration."
+    },
+    {
+     "card_id": "pentacles-03-three",
+     "text": "A team that works well and enjoys it. Mark the finished job together."
+    },
+    {
+     "card_id": "major-09-hermit",
+     "text": "Between the party and time alone. Both have their place; notice which one you need."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Three of Cups or Four of Wands?",
+   "paragraphs": [
+    "Waite describes the Four of Wands as four staves holding up a great garland, with two women raising bunches of flowers beside a bridge that leads to an old manor house (p. 190); its meanings begin with country life, a haven of refuge, repose and harmony (p. 190). Modern readings call it celebration, homecoming and a stable base.",
+    "The Three of Cups celebrates people; the Four of Wands celebrates a place and a milestone."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Three of Cups",
+   "paragraphs": [
+    "Who in my life makes me feel most like myself?",
+    "What small thing could I celebrate with someone soon?",
+    "Do my friendships feel balanced, or do I carry most of them?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Three of Cups a good or bad card?",
+   "a": "Good: few minor cards are this cheerful, all friendship, community and shared delight. Reversed, it asks you to look at which friendships give back and where a good time has turned into too much, which is worth noticing rather than a bad sign."
+  },
+  {
+   "q": "Does the Three of Cups mean a love triangle?",
+   "a": "Only sometimes, and only reversed. Upright, the three figures are friends celebrating together. In a love question the reversed card can describe a third person or outside opinions crowding a relationship, but it remains a picture of the situation, not proof of anything."
+  },
+  {
+   "q": "What does the Three of Cups mean for friendship?",
+   "a": "It is the friendship card of the whole deck. It describes friends who celebrate your wins, a group where you belong, or a reunion with people you have missed. Waite's maidens pledging one another (p. 220) are a toast between equals, and that is the spirit of it."
+  }
+ ],
+ "related": [
+  "cups-02-two",
+  "cups-04-four",
+  "wands-03-three",
+  "swords-03-three",
+  "pentacles-03-three"
+ ],
+ "mentions": [
+  {
+   "card_id": "wands-04-four",
+   "text": "Four of Wands"
+  }
+ ],
+ "waite": {
+  "quote": "The conclusion of any matter in plenty, perfection and merriment; happy issue, victory, fulfilment, solace … Reversed: Expedition, dispatch, achievement, end.",
+  "quote_lang": "en",
+  "pages": [
+   220
+  ],
+  "translation": null,
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 03.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_03.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    190,
+    220
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

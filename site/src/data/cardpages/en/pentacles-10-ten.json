@@ -1,0 +1,207 @@
+{
+ "schema": 2,
+ "card_id": "pentacles-10-ten",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Ten of Pentacles",
+  "in_sentence": "the Ten of Pentacles"
+ },
+ "title": "Ten of Pentacles Tarot Meaning: Upright & Reversed",
+ "description": "Ten of Pentacles upright: legacy, family, long-term security; reversed: family tension. Love, work, money and Waite's 1911 text. Ask your question.",
+ "h1": "Ten of Pentacles Tarot Card Meaning",
+ "image_alt": "Ten of Pentacles, 1909 Rider–Waite–Smith card: a white-haired old man sits with two white dogs under a stone archway while a couple and a child stand nearby, ten pentacles across the scene.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 10,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "The Ten of Pentacles stands for legacy, family and long-term security: a home, wealth or values built to last and shared across generations. Reversed, it can mean family tension, money disputes or foundations that feel shaky. Solid and generous, the card also asks whose idea of security you live by. The verdict is yes: these roots hold three generations.",
+ "keywords": {
+  "upright": [
+   "legacy",
+   "family",
+   "stability",
+   "long-term security"
+  ],
+  "reversed": [
+   "family tension",
+   "shaky foundations",
+   "money disputes",
+   "breaking tradition"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Ten of Pentacles card?",
+   "paragraphs": [
+    "Three generations meet at the gate of a family estate. In Waite's scene a couple stands under the arch that leads into the house and its lands, and the child with them \"looks curiously at two dogs accosting an ancient personage seated in the foreground\" (p. 262). Waite adds one small touch: \"the child's hand is on one of them\" (p. 262).",
+    "On the 1909 card the old man has white hair and a long robe patterned with bunches of grapes and other designs. The younger man stands with his back to us, and the woman in red turns her head toward him. Ten pentacles are spread over the whole scene, from the top of the arch to the ground, and a shield with a castle hangs on the wall at the upper left. Through the arch you can see a tower, a red-roofed house and a pale blue sky; the great stone arch frames the top of the card."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Ten of Pentacles?",
+   "paragraphs": [
+    "Waite's upright list (p. 262) is about wealth that belongs to a family: gain and riches, family matters and archives, extraction (that is, descent) and the family home. Waite's reversed list (p. 262) is blunt, and that is not how this card is read on Arcana Diary; the same list ends with gift, dowry and pension.",
+    "Waite's additional meanings make the Ten a card that \"represents house or dwelling, and derives its value from other cards\" (pp. 292–293)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Ten of Pentacles mean upright?",
+   "paragraphs": [
+    "Long-term security is what this card describes best: a home, a business, savings or traditions that hold steady and can be handed on. It is the card of family in the wide sense, the people you come from and the people you build for, and of the ease that comes when life rests on firm ground.",
+    "Legacy here is more than money. It can be a family recipe, a trade learned from a grandparent, a house everyone returns to, or the values you hope to pass on. Stability is the reward of patience, not luck. What are you building now that you would like to still stand years from now?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Ten of Pentacles mean reversed?",
+   "paragraphs": [
+    "Reversed, the Ten of Pentacles can point to family tension: money disputes, quarrels over property or over who decides, or expectations handed down that no longer fit. Shaky foundations belong here too, the sense that something that looked permanent is less solid than it seemed.",
+    "Sometimes the reversed card is about breaking tradition on purpose, choosing a path different from the one your family laid out. Waite's reversed list includes loss and games of hazard (p. 262); the reading of a path chosen freely is a modern one. Ask what security means to you, apart from what you were taught."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Ten of Pentacles mean in love?",
+   "paragraphs": [
+    "Commitment meant to last is the love side of this card: a shared home, merging lives and finances, meeting each other's families, plans for the long run. For a couple it describes a bond with solid roots and shared values. On your own, it can reflect a wish for that kind of stability and for someone who wants the same foundations.",
+    "Reversed, family pressure or money matters may weigh on love, or a shared life may feel more like duty than choice. Think about the home you want to build with someone, and let your choices reflect your values."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Ten of Pentacles mean for work and money?",
+   "paragraphs": [
+    "Ten coins over one household: this is wealth built over time, financial security, property, savings and family resources. At work the card suits family businesses, long careers, established companies and work that leaves something lasting behind. Upside down, the same coins can stand for arguments about money in a family, an unstable financial base, or a risky shortcut that puts at stake what took years to build."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Ten of Pentacles?",
+   "paragraphs": [
+    "Name three concrete things that lasting security means to you: a place, a sum set aside, a habit, a person. Then choose the one you can strengthen first and do one small thing for it."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Ten of Pentacles a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Ten of Pentacles as a person and as feelings",
+   "paragraphs": [
+    "An elder whose experience holds a family together, or anyone rooted and dependable who puts family first, values tradition and plans for the long term: that is the Ten of Pentacles as a person. Its feeling is serious, committed affection: a wish to share a life, a home, a future and two families brought together. Turned upside down, the heart is pulled between love and duty, weighed down by family expectations, money worries or a fear of commitment."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Ten of Pentacles with other cards",
+   "pairs": [
+    {
+     "card_id": "major-05-hierophant",
+     "text": "Tradition handed down: a family custom or shared belief worth keeping."
+    },
+    {
+     "card_id": "pentacles-04-four",
+     "text": "Guarding what a family owns. Protect it, but leave room to share."
+    },
+    {
+     "card_id": "pentacles-06-six",
+     "text": "Wealth that circulates; what you have built can support others too."
+    },
+    {
+     "card_id": "major-04-emperor",
+     "text": "Structure and legacy together: rules and plans that protect a family's future."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Ten of Pentacles or Ten of Cups?",
+   "paragraphs": [
+    "The Ten of Cups also shows a family: Waite describes a rainbow of cups \"contemplated in wonder and ecstacy by a man and woman below\", while two children dance near them (p. 206). Its modern reading is emotional fulfillment and harmony at home.",
+    "The Ten of Cups is the happiness of a family; the Ten of Pentacles is its foundation: the house, the resources and the customs it rests on."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Ten of Pentacles",
+   "paragraphs": [
+    "What have I received from my family that I want to keep?",
+    "What does security mean to me, apart from what I was taught?",
+    "What am I building now that I would like to hand on?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Ten of Pentacles a good or bad card?",
+   "a": "Good. Few cards in the deck are as steady, about lasting foundations, family and shared wealth. Reversed, it shows tension around money or tradition that can be talked through and rebuilt on your own terms."
+  },
+  {
+   "q": "Does the Ten of Pentacles mean an inheritance?",
+   "a": "Not as a forecast. Inheritance is one of the card's common modern meanings, as part of what passes between generations: values, skills, a home and sometimes money. Waite's list gives gain, riches and family matters (p. 262) and does not use the word. Read it as a question about what you have received and what you want to pass on."
+  },
+  {
+   "q": "Is the Ten of Pentacles only about family?",
+   "a": "No. Family comes first in most readings, but the card also covers any community or institution built to last: a long-standing company, a neighborhood, a tradition you belong to. What links them is security that outlives one person's effort."
+  }
+ ],
+ "related": [
+  "pentacles-09-nine",
+  "pentacles-11-page",
+  "cups-10-ten",
+  "wands-10-ten",
+  "swords-10-ten"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-10-ten",
+   "text": "Ten of Cups"
+  }
+ ],
+ "waite": {
+  "quote": "Gain, riches; family matters, archives, extraction, the abode of a family. Reversed: Chance, fatality, loss, robbery, games of hazard; sometimes gift, dowry, pension.",
+  "quote_lang": "en",
+  "pages": [
+   262
+  ],
+  "translation": null,
+  "harsh": true
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 10.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_10.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    206,
+    262,
+    292,
+    293
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

@@ -47,9 +47,12 @@ describe('site sources', () => {
     }
   });
 
-  it('never put text in as markup', () => {
+  it('never put text in as markup (one exception: the JSON-LD script, escaped by ldScript)', () => {
     const sink = /innerHTML|dangerouslySetInnerHTML|set:html|insertAdjacentHTML|outerHTML\s*=|document\.write|createContextualFragment|srcdoc|new Function\(|\beval\(/;
-    for (const path of SOURCES) expect(read(path), rel(path)).not.toMatch(sink);
+    const allowed = (path: string) => (rel(path) === 'components/JsonLd.astro'
+      ? read(path).replace('set:html={ldScript(data)}', '') : read(path));
+    for (const path of SOURCES) expect(allowed(path), rel(path)).not.toMatch(sink);
+    expect(read(join(SRC, 'components/JsonLd.astro'))).toContain('set:html={ldScript(data)}');
   });
 
   it('take colours only from the tokens', () => {

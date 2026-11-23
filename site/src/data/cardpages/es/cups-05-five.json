@@ -1,0 +1,207 @@
+{
+ "schema": 2,
+ "card_id": "cups-05-five",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Cinco de Copas",
+  "in_sentence": "el Cinco de Copas",
+  "de": "del Cinco de Copas"
+ },
+ "title": "Cinco de Copas en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Cinco de Copas al derecho y al revés (carta invertida): pérdida, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Cinco de Copas en el tarot: significado",
+ "image_alt": "Cinco de Copas, carta de 1909 de la baraja Rider-Waite-Smith: una figura con capa negra inclina la cabeza ante tres copas derramadas; detrás, dos copas en pie, un río y un castillo pequeño.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 5,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Cinco de Copas habla de pérdida, tristeza y desilusión, y de lo que queda. Al revés, trae aceptación y ganas de seguir adelante, o una tristeza escondida. No es cruel: le da su lugar al duelo y deja dos copas en pie. Ante un sí o no, responde que no, porque la figura sigue mirando lo derramado.",
+ "keywords": {
+  "upright": [
+   "pérdida",
+   "tristeza",
+   "desilusión",
+   "lo que queda"
+  ],
+  "reversed": [
+   "aceptación",
+   "seguir adelante",
+   "tristeza escondida"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Cinco de Copas?",
+   "paragraphs": [
+    "Una figura con una capa negra larga inclina la cabeza. Waite la describe mirando de lado tres copas tumbadas, con otras dos en pie detrás, y al fondo un puente que lleva a un pequeño torreón o propiedad (p. 216).",
+    "En la carta de 1909 la capa negra es lo más grande del dibujo y ocupa el centro, contra un cielo gris. A la izquierda quedan las tres copas caídas, con líquido rojo y verde derramado; a la derecha, las dos que siguen de pie. Un río cruza el paisaje, con un castillo pequeño sobre una loma a la izquierda y un puente a la derecha. Arriba está el número V."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Cinco de Copas?",
+   "paragraphs": [
+    "Para Waite es una pérdida que no es total: se llevaron tres copas y quedan dos (p. 216). Waite también la lee como una herencia que no está a la altura de lo esperado, y anota que algunos ven en ella un matrimonio, aunque no sin amargura ni frustración (p. 216)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Cinco de Copas al derecho?",
+   "paragraphs": [
+    "Las copas tiradas se roban la atención, y ahí vive el sentido de la carta: la desilusión cuando algo no salió como esperabas, la tristeza por un final, el arrepentimiento por una decisión. No te pide fingir que no dolió; nombra la pérdida tal cual es.",
+    "Pero el dibujo tiene otra mitad. Detrás de la figura siguen en pie dos copas, y un puente cruza el río. Lo que queda también es parte del mensaje: personas, apoyos o fuerzas que la pérdida no se llevó. Suele salir cuando la mirada todavía está clavada en lo derramado, antes de que voltear parezca posible. ¿Cuáles son las dos copas que siguen en pie en tu situación?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Cinco de Copas al revés?",
+   "paragraphs": [
+    "Al revés, el Cinco de Copas suele hablar de aceptación: la tristeza afloja y empiezas a seguir adelante, con la vista en lo que permanece. También cabe el perdón, hacia otras personas o hacia ti, por lo que se derramó.",
+    "La otra cara es una tristeza escondida, que se guarda para que nadie la vea y por eso tarda más en irse. La lista al revés de Waite, con noticias, alianzas, parentesco, regreso y proyectos falsos (p. 216), va por otro camino; la aceptación es una lectura moderna."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Cinco de Copas en el amor?",
+   "paragraphs": [
+    "Una relación que no llegó a ser lo que esperabas, una ruptura que todavía duele o el arrepentimiento por algo que se dijo: en el amor, esta carta trae desilusión y te pide darle espacio.",
+    "En pareja, puede hablar de una herida que no se ha platicado, con más atención en lo que falló que en lo que sigue funcionando. Sin pareja, una pérdida antigua puede mantener tu mirada en el pasado.",
+    "Al revés, el corazón empieza a soltar lo que pasó y a mirar a quienes siguen cerca."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Cinco de Copas en el trabajo y el dinero?",
+   "paragraphs": [
+    "Un proyecto que no se dio, un puesto que no funcionó, una oportunidad que se fue: en lo laboral, la carta nombra la decepción y pregunta qué se puede rescatar. Las dos copas en pie son tus habilidades, tus contactos y lo aprendido.",
+    "En el dinero significa una pérdida o un tropiezo que duele, y arrepentimiento por una decisión pasada; al revés, recuperarte y hacer las paces con lo que pasó."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Cinco de Copas como consejo?",
+   "paragraphs": [
+    "Dale su lugar a la pérdida y después voltea. Escribe en una línea qué te decepcionó y, junto a eso, dos cosas que siguen firmes en tu vida: una persona, una habilidad, un lugar o un hábito que te sostiene. Llora las tres copas, pero no olvides las dos."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Cinco de Copas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Cinco de Copas como persona y como sentimiento?",
+   "paragraphs": [
+    "Si es una persona, el Cinco de Copas es alguien que carga con una pérdida: vive la tristeza o el arrepentimiento y se cierra un poco mientras la herida está fresca. También puedes ser tú, en una etapa de mirar atrás. Como sentimiento, la carta habla de tristeza y desilusión, y muchas veces de arrepentimiento por lo que salió mal entre dos personas. Al revés, esos sentimientos se suavizan hacia la aceptación, el perdón y las ganas de seguir adelante."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Cinco de Copas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "major-17-star",
+     "text": "El duelo empieza a aligerarse; la esperanza aparece cuando levantas la vista de lo derramado."
+    },
+    {
+     "card_id": "cups-03-three",
+     "text": "Tristeza compartida con amistades: tu gente está entre las copas que siguen en pie."
+    },
+    {
+     "card_id": "cups-08-eight",
+     "text": "La desilusión se convierte en la decisión de irte en busca de algo con más sentido."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Cinco de Copas del Cuatro de Copas y del Tres de Espadas?",
+   "paragraphs": [
+    "El Cuatro de Copas también muestra a alguien que no mira unas copas: según Waite, un joven sentado bajo un árbol al que un brazo que sale de una nube le ofrece otra copa (p. 218). Hoy se lee como apatía y retraimiento, no como duelo. En el Cinco algo se perdió; en el Cuatro, lo que hay aburre.",
+    "El Tres de Espadas, que Waite describe como tres espadas que atraviesan un corazón (p. 248), es el momento agudo de la herida. El Cinco de Copas llega después, cuando el dolor se asienta y la pregunta es qué queda."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Cinco de Copas?",
+   "paragraphs": [
+    "¿Qué es lo que lamento, en pocas palabras?",
+    "¿Cuáles copas siguen en pie para mí?",
+    "¿Qué me ayudaría a voltear, aunque sea un poco?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Cinco de Copas es una carta buena o mala?",
+   "a": "Es triste, pero no es un mal augurio. Reconoce que algo dolió o se perdió y, aun así, deja dos copas de pie en el dibujo: la historia no termina en la pérdida. Al revés es incluso una de las señales más claras de que la aceptación ya empezó."
+  },
+  {
+   "q": "¿El Cinco de Copas significa ruptura?",
+   "a": "No necesariamente. Puede reflejar la tristeza después de terminar una relación, pero habla de cualquier pérdida o expectativa que no se cumplió: un plan, una amistad, una ilusión de mucho tiempo. Describe tu duelo, no el futuro de una relación."
+  },
+  {
+   "q": "¿Qué significan las dos copas en pie del Cinco de Copas?",
+   "a": "Representan lo que sobrevivió al golpe. Waite lo dice sin rodeos: se llevaron tres y quedan dos (p. 216). Hoy se leen como el apoyo, la esperanza y los recursos que siguen a tu alcance, esperando a que tengas ánimo para voltear."
+  }
+ ],
+ "related": [
+  "cups-04-four",
+  "cups-06-six",
+  "wands-05-five",
+  "swords-05-five",
+  "pentacles-05-five"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-04-four",
+   "text": "Cuatro de Copas"
+  },
+  {
+   "card_id": "swords-03-three",
+   "text": "Tres de Espadas"
+  }
+ ],
+ "waite": {
+  "quote": "A card of loss, but something remains over; three have been taken, but two are left … Reversed: News, alliances, affinity, consanguinity, ancestry, return, false projects.",
+  "quote_lang": "en",
+  "pages": [
+   216
+  ],
+  "translation": "Una carta de pérdida, pero algo queda; se llevaron tres, pero quedan dos … Al revés: noticias, alianzas, afinidad, consanguinidad, ascendencia, regreso, proyectos falsos.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 05.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_05.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    216,
+    218,
+    248
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

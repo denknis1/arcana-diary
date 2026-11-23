@@ -5,9 +5,17 @@ import { DICTS, DRAFTS, fill, placeholders, t } from './index';
 const keys = (lang: 'en' | 'es') => Object.keys(DICTS[lang]).sort();
 
 describe('dictionaries', () => {
+  it('keep the stage 6 menu and breadcrumb words (stage 2 menu table, prototypes)', () => {
+    expect([t('en').navCards, t('es').navCards]).toEqual(['Card Meanings', 'Significados']);
+    expect([t('en').crumbHome, t('es').crumbHome, t('en').crumbCards, t('es').crumbCards]).toEqual(['Home', 'Inicio',
+      'Cards', 'Cartas']);
+    expect([t('en').crumbMajor, t('es').crumbMajor]).toEqual(['Major Arcana', 'Arcanos mayores']);
+    expect([t('en').breadcrumbLabel, t('es').breadcrumbLabel]).toEqual(['Breadcrumb', 'Ruta']);
+  });
+
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(225);
+    expect(keys('en').length).toBe(232);
   });
 
   it('have no empty strings', () => {

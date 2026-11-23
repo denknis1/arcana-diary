@@ -5,8 +5,12 @@
 import Base from '../layouts/Base.astro';
 import CardFigure from '../components/CardFigure.astro';
 import ReadingIsland from '../islands/ReadingIsland';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { cardCrumbs } from '../lib/breadcrumbs';
+import { cardPage } from '../lib/cardPages';
+import { breadcrumbLd } from '../lib/jsonld';
 import { fill, t } from '../i18n';
-import { cardName, neighbors, type DeckCard } from '../lib/deck';
+import { cardImage, cardName, neighbors, type DeckCard } from '../lib/deck';
 import { cardPath } from '../lib/routes';
 import type { Lang } from '../lib/types';
 
@@ -28,8 +32,12 @@ const d = t(lang);
 const name = cardName(card, lang);
 const { prev, next } = neighbors(card);
 const eyebrow = card.arcana === 'major' ? fill(d.cardEyebrowMajor, { numeral: card.numeral }) : d.cardEyebrowMinor;
+const text = cardPage(card, lang); // title and description of the stage 5 card page
+const crumbs = cardCrumbs(card, lang);
 ---
-<Base lang={lang} title={fill(d.cardTitle, { name })} path={cardPath(card, lang)}>
+<Base lang={lang} title={text.title} description={text.description} path={cardPath(card, lang)} current="cards"
+  image={cardImage(card, 700)} jsonLd={[breadcrumbLd(crumbs)]}>
+  <Breadcrumbs lang={lang} crumbs={crumbs} />
   <div class="card-page">
     <div class="card-page__art">
       <CardFigure card={card} lang={lang} sizes="(min-width: 900px) 280px, 70vw" eager />

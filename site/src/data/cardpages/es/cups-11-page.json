@@ -1,0 +1,206 @@
+{
+ "schema": 2,
+ "card_id": "cups-11-page",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Sota de Copas",
+  "in_sentence": "la Sota de Copas",
+  "de": "de la Sota de Copas"
+ },
+ "title": "Sota de Copas en el tarot: significado, invertida y amor",
+ "description": "Qué significa la Sota de Copas al derecho y al revés (carta invertida): sorpresa, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Sota de Copas en el tarot: significado",
+ "image_alt": "Sota de Copas, carta de 1909 de la baraja Rider-Waite-Smith: un joven paje con túnica azul de flores rosas sostiene una copa dorada de la que asoma un pez, con olas detrás.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 11,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "La Sota de Copas es sensibilidad y creatividad: un sentimiento nuevo, un mensaje afectivo o una sorpresa. Al revés, la timidez o los cambios de humor frenan lo que sientes y la inspiración se atora. Es una carta tierna; lo difícil es animarte a mostrarte. La respuesta al derecho es sí: el pececito que asoma se recibe con gusto.",
+ "keywords": {
+  "upright": [
+   "sensibilidad",
+   "creatividad",
+   "mensaje afectivo",
+   "sorpresa"
+  ],
+  "reversed": [
+   "timidez",
+   "bloqueo creativo",
+   "cambios de humor",
+   "inmadurez emocional"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta de la Sota de Copas?",
+   "paragraphs": [
+    "Un joven paje, a la orilla del mar, sostiene una copa dorada de la que un pececito asoma para mirarlo. Waite lo describe contemplando a un pez que sube de la copa para verlo, y dice que son las imágenes de la mente que toman forma (p. 204). El mar también tiene explicación en Waite: la copa se refiere al agua, que aparece en todas las figuras de este palo (p. 198).",
+    "En la carta de 1909 lleva un gorro azul con una larga banda, una túnica azul con flores rosas, mangas rosas y botas amarillas; apoya la otra mano en la cadera. Detrás corren olas bajas y abajo se lee PAGE of CUPS. La figura ocupa toda la carta, y la copa con su pez, extendida hacia un lado, es lo primero que atrapa la mirada."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre la Sota de Copas?",
+   "paragraphs": [
+    "La Sota de Waite es una persona joven con ganas de servir, estudiosa y reflexiva, y la carta también significa noticias o un mensaje (p. 204). La lista de Waite al revés va del gusto y el apego hacia la seducción y el engaño (p. 204). En Arcana Diary la Sota al revés se lee de forma más suave, como emociones tímidas o revueltas y creatividad bloqueada; esa es una lectura moderna, no de Waite."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa la Sota de Copas al derecho?",
+   "paragraphs": [
+    "Esta sota es sensibilidad e imaginación. Puede traer una sorpresa dulce, un mensaje afectivo, una invitación o un sentimiento que apenas empiezas a notar. Las ideas y las corazonadas llegan como el pez, sin aviso, y la carta te pide recibirlas con curiosidad en lugar de descartarlas por tontas.",
+    "Muchas veces marca el inicio de algo emotivo o de pura creatividad: una amistad nueva, alguien que te late, un poema, un pasatiempo que retomas. Su fuerza es la ternura, con los demás y contigo. ¿Qué cosa pequeña e inesperada te llamó la atención estos días?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa la Sota de Copas al revés?",
+   "paragraphs": [
+    "Al revés, la Sota de Copas puede hablar de timidez: sentimientos que te guardas por miedo a hacer el ridículo, o cambios de humor difíciles de explicar incluso para ti. También cabe un bloqueo creativo: la idea está ahí, pero la pena la frena en la puerta.",
+    "A veces muestra inmadurez emocional, como reaccionar desde el orgullo herido o perderte en fantasías en vez de actuar. Trátalo con cariño: un diario, un dibujo o una nota corta y honesta pueden ser una primera salida segura."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa la Sota de Copas en el amor?",
+   "paragraphs": [
+    "Al derecho es de las cartas más dulces en el amor: un mensaje tierno, una primera cita, una confesión con nervios. Describe esa etapa temprana y curiosa de empezar a sentir algo, o una chispa juguetona que vuelve a una relación larga.",
+    "Por tu cuenta, invita a dejarte sorprender con calma. Al revés, puede hablar de cariño que se calla por timidez, o de señales confusas porque todavía no sabes bien qué sientes. Prueba decir una cosa sencilla y sincera."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa la Sota de Copas en el trabajo y el dinero?",
+   "paragraphs": [
+    "Lo suyo son los trabajos creativos: diseño, escritura, cuidado de otros, todo lo que pide imaginación y empatía. Waite incluso dice que el estudio, la reflexión y los mensajes de esta carta pueden aplicarse a los negocios (p. 204). En el dinero significa noticias pequeñas y agradables y formas creativas de ganar, no grandes sumas; al revés, gastos por antojo o por estado de ánimo."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa la Sota de Copas como consejo?",
+   "paragraphs": [
+    "Juega hoy con una idea sin buscarle utilidad y mira qué pez sale de tu copa. Luego dale a ese sentimiento o a esa ocurrencia un lugar seguro: una línea en tu diario, un dibujo rápido o unas palabras a alguien de confianza."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿La Sota de Copas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa la Sota de Copas como persona y como sentimiento?",
+   "paragraphs": [
+    "Corazón joven a cualquier edad: así es la Sota de Copas como persona, alguien sensible, con mucha imaginación, amable y a veces con algo de ingenuidad. El sentimiento que nombra es un cariño tierno y sincero que apenas comienza, con curiosidad por saber a dónde va y ganas de expresarlo con un detalle o un mensaje. Con la carta al revés, el cariño no se dice, el ánimo cambia de pronto, o una inmadurez emocional hace difícil leer las señales."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa la Sota de Copas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "cups-01-ace",
+     "text": "Una emoción nueva y su primer mensaje tierno. Que se quede sencillo."
+    },
+    {
+     "card_id": "cups-07-seven",
+     "text": "La imaginación va más rápido que la realidad: disfruta el sueño y luego elige uno para hacerlo."
+    },
+    {
+     "card_id": "major-18-moon",
+     "text": "Sentimientos tímidos con poca luz; dales tiempo antes de decidir qué significan."
+    },
+    {
+     "card_id": "wands-11-page",
+     "text": "Dos mensajeros curiosos: una idea creativa con chispa suficiente para empezar."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir la Sota de Copas del Caballero de Copas?",
+   "paragraphs": [
+    "El Caballero de Copas de Waite es elegante pero nada guerrero, cabalga tranquilo y lleva un casco con alas (p. 202); la lista de Waite para él empieza con llegada y acercamiento e incluye la invitación (p. 202). Hoy se lee como romance y seguir al corazón.",
+    "La diferencia está en el movimiento. La Sota se queda quieta y se asombra ante un sentimiento que acaba de salir; el Caballero sale a cabalgar y lleva su copa hacia alguien, como una propuesta."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale la Sota de Copas?",
+   "paragraphs": [
+    "¿Qué sorpresa pequeña me alegró últimamente?",
+    "¿Qué siento y me da pena decir en voz alta?",
+    "¿Qué idea probaría si nadie me estuviera viendo?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿La Sota de Copas es una carta buena o mala?",
+   "a": "Buena. Es una carta suave y esperanzadora sobre emociones nuevas, mensajes cariñosos e ideas juguetonas. Ni siquiera al revés es mala señal: muestra sentimientos o talentos que necesitan más valor y un lugar más seguro para salir."
+  },
+  {
+   "q": "¿La Sota de Copas significa que le gusto a alguien?",
+   "a": "Es la carta del enamoramiento que empieza, pero no puede confirmar lo que siente una persona concreta. Como sentimiento, es cariño tierno y ganas de mostrarlo con un detalle o un mensaje; por eso sale tanto en preguntas de amor. Lo que mejor puede decirte es qué sientes tú y qué te gustaría expresar."
+  },
+  {
+   "q": "¿La Sota de Copas siempre es un hombre joven?",
+   "a": "No. Waite habla de un joven de tez clara y estudioso (p. 204), pero en Arcana Diary la Sota puede ser cualquier persona, de cualquier edad o género, que vive con curiosidad y corazón abierto. También puede representar un mensaje o un estado de ánimo en lugar de una persona."
+  }
+ ],
+ "related": [
+  "cups-10-ten",
+  "cups-12-knight",
+  "wands-11-page",
+  "swords-11-page",
+  "pentacles-11-page"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-12-knight",
+   "text": "Caballero de Copas"
+  }
+ ],
+ "waite": {
+  "quote": "Fair young man, one impelled to render service … a studious youth; news, message; application, reflection, meditation … Reversed: Taste, inclination, attachment, seduction, deception, artifice.",
+  "quote_lang": "en",
+  "pages": [
+   204
+  ],
+  "translation": "Joven de tez clara, alguien movido a prestar un servicio … un joven estudioso; noticias, mensaje; aplicación, reflexión, meditación … Al revés: gusto, inclinación, apego, seducción, engaño, artificio.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 11.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_11.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    198,
+    202,
+    204
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

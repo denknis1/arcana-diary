@@ -1,0 +1,209 @@
+{
+ "schema": 2,
+ "card_id": "wands-03-three",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Tres de Bastos",
+  "in_sentence": "el Tres de Bastos",
+  "de": "del Tres de Bastos"
+ },
+ "title": "Tres de Bastos en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Tres de Bastos al derecho y al revés (carta invertida): expansión, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Tres de Bastos en el tarot: significado",
+ "image_alt": "Tres de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: un hombre de espaldas, entre tres bastones, mira desde un acantilado barcos pequeños en un mar amarillo dorado.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 3,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Tres de Bastos es expansión y perspectiva: lo que pusiste en marcha avanza y se abren oportunidades más lejos. Al revés, trae retrasos inesperados y algo de frustración. Es una carta buena; su reto es la paciencia, una espera activa. Para una pregunta de sí o no, dice sí: los barcos ya navegan y lo sembrado se expande.",
+ "keywords": {
+  "upright": [
+   "expansión",
+   "perspectiva",
+   "espera activa",
+   "oportunidades"
+  ],
+  "reversed": [
+   "retrasos inesperados",
+   "frustración",
+   "pensar en pequeño",
+   "falta de previsión"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Tres de Bastos?",
+   "paragraphs": [
+    "Waite describe a un personaje sereno y majestuoso, de espaldas, que mira desde el borde de un acantilado los barcos que cruzan el mar (p. 192). Hay tres bastones clavados en el suelo, y él se apoya un poco en uno de ellos (p. 192).",
+    "En la carta de 1909 el cielo y el mar son de un amarillo intenso, casi dorado. El hombre, la figura más grande del dibujo, lleva una túnica roja, un manto verde echado sobre un hombro, una banda a cuadros en la espalda y una cinta blanca en la cabeza. Con la mano derecha agarra el bastón de su lado. A lo lejos flotan barcos pequeños, y arriba se lee el III."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Tres de Bastos?",
+   "paragraphs": [
+    "Para Waite, el hombre es un comerciante y los barcos que pasan llevan su mercancía (p. 192). Según él, la carta también habla de buena cooperación en los negocios, como si un mercader próspero mirara hacia ti con ganas de ayudarte (p. 192). En sus notas finales, Waite la llama una carta muy buena, en la que la colaboración favorece los emprendimientos (p. 289).",
+    "La lista al revés de Waite (p. 192) trae buena noticia: se acaban los problemas y se detiene la mala racha. Hoy la carta al revés se lee de otro modo."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Tres de Bastos al derecho?",
+   "paragraphs": [
+    "Al derecho, es la carta de la expansión. Lo que planeaste ya salió del puerto: hay movimiento, primeros resultados y un horizonte que se ensancha. Todavía no es la meta; los barcos van en camino.",
+    "La perspectiva cuenta mucho aquí. Favorece pensar a largo plazo, trabajar con gente de otras ciudades o países, tomar un curso o un viaje que amplíe tu mundo, llevar un proyecto a un escenario más grande. La actitud es tranquila y atenta, como la del hombre del acantilado.",
+    "¿Qué ya echaste a andar, y qué le ayudaría a llegar más lejos?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Tres de Bastos al revés?",
+   "paragraphs": [
+    "Al revés, suele leerse como retrasos inesperados: los barcos tardan y crece la frustración. También puede señalar pensar en pequeño, quedarte cerca del puerto cuando el plan pide más espacio, o una falta de previsión que te deja sin margen ante los obstáculos.",
+    "Es una lectura moderna, contraria a la de Waite (p. 192). En cualquier caso, revisa qué sigue en tus manos y ajusta el rumbo en vez de abandonarlo."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Tres de Bastos en el amor?",
+   "paragraphs": [
+    "Con el Tres de Bastos, la vida amorosa mira hacia horizontes nuevos. En pareja, apoya los planes compartidos: un viaje, una mudanza, un futuro que se construye paso a paso. Es también una carta frecuente en las relaciones a distancia.",
+    "Para quien no tiene pareja, la carta invita a ampliar el círculo, conocer otros lugares y otra gente; una historia podría empezar lejos de lo de siempre.",
+    "Al revés, la espera se puede hacer larga, o quizá te cuesta dar un paso más grande. Ayuda decir con claridad qué esperas."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Tres de Bastos en el trabajo y el dinero?",
+   "paragraphs": [
+    "Habla de un trabajo que crece: un proyecto que se amplía, clientes o socios en otros lugares, un puesto con más alcance. El mercader de Waite que mira sus barcos encaja bien aquí (p. 192).",
+    "En dinero, significa que el esfuerzo de antes empieza a dar frutos y que hay espacio para crecer, sobre todo con ventas, comercio o colaboraciones. Al revés, los pagos o el crecimiento llegan más lento de lo previsto: toca paciencia y revisar el plan."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Tres de Bastos como consejo?",
+   "paragraphs": [
+    "Infórmate sobre un curso, un viaje o un proyecto que te lleve más allá de tu orilla de siempre. Manda el primer mensaje y luego dale tiempo a que la respuesta llegue."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Tres de Bastos es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Tres de Bastos como persona y como sentimiento?",
+   "paragraphs": [
+    "Mirando los barcos desde lo alto, el Tres de Bastos es alguien que piensa a lo grande y a largo plazo: quien organiza, quien comercia, quien planea por años y no por días; a veces, alguien que vive o trabaja lejos. Cuando el tema es el cariño, la carta significa un interés con esperanza y visión de futuro: imaginar hasta dónde puede llegar una relación y darle espacio para crecer. Al revés, se vuelve impaciencia o duda, la sensación de que todo va lento o el freno de comprometerse más allá de lo conocido."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Tres de Bastos junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "pentacles-03-three",
+     "text": "Crecer en equipo: el plan se amplía porque se suma gente con oficio."
+    },
+    {
+     "card_id": "swords-06-six",
+     "text": "Un viaje o una mudanza hacia aguas tranquilas, con más horizonte por delante."
+    },
+    {
+     "card_id": "wands-06-six",
+     "text": "El avance se convierte en reconocimiento: lo que mandaste lejos empieza a notarse."
+    },
+    {
+     "card_id": "cups-04-four",
+     "text": "Una oferta que viene de lejos y es fácil pasar por alto. Levanta la vista."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Tres de Bastos del Dos de Bastos?",
+   "paragraphs": [
+    "En el Dos de Bastos el hombre sigue en casa: Waite lo pone en la azotea almenada de un castillo, con un globo en la mano (p. 194). Esa carta se lee hoy como planear y elegir. La diferencia es el momento: en el Dos la decisión se toma dentro de las murallas; en el Tres el hombre ya salió a campo abierto y sus barcos están en el agua."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Tres de Bastos?",
+   "paragraphs": [
+    "¿Qué puse en marcha que ya está avanzando?",
+    "¿En qué estoy pensando en pequeño?",
+    "¿A quién fuera de mi círculo de siempre podría escribirle?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Tres de Bastos es una carta buena o mala?",
+   "a": "Buena. Es de los Bastos más esperanzadores: esfuerzo en marcha, horizonte abierto y apoyo para crecer. Lo difícil es la impaciencia cuando los resultados tardan. Hasta el viejo significado al revés del libro de Waite es amable: el fin de los problemas (p. 192)."
+  },
+  {
+   "q": "¿El Tres de Bastos significa esperar?",
+   "a": "En parte. Es una espera con los ojos abiertos: ya hiciste lo tuyo y ahora estás pendiente de los resultados, con disposición para moverte cuando lleguen. El hombre no está sentado; está de pie al borde del acantilado. La carta pide atención, no angustia."
+  },
+  {
+   "q": "¿El Tres de Bastos habla de viajes?",
+   "a": "Con frecuencia, en la lectura actual: viajes, trabajo en el extranjero, estudios lejos de casa o simplemente un mundo más amplio. No pone fechas ni promete un viaje. Muestra ganas de mirar más lejos de lo conocido y que lo planeado empieza a moverse."
+  }
+ ],
+ "related": [
+  "wands-02-two",
+  "wands-04-four",
+  "cups-03-three",
+  "swords-03-three",
+  "pentacles-03-three"
+ ],
+ "mentions": [
+  {
+   "card_id": "wands-02-two",
+   "text": "Dos de Bastos"
+  }
+ ],
+ "waite": {
+  "quote": "Established strength, enterprise, effort, trade, commerce, discovery … Reversed: The end of troubles, suspension or cessation of adversity, toil and disappointment.",
+  "quote_lang": "en",
+  "pages": [
+   192
+  ],
+  "translation": "Fuerza consolidada, emprendimiento, esfuerzo, negocio, comercio, descubrimiento … Al revés: el fin de los problemas, la suspensión o el cese de la adversidad, del trabajo penoso y de la decepción.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 03.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_03.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    192,
+    194,
+    289
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}
