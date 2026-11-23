@@ -6,6 +6,8 @@ import { CREATE_TIMEOUT_MS, type FetchFn } from '../../lib/api';
 import type { Auth, SendResult } from '../../lib/auth';
 import { SIGNED_IN_KEY, STARTED_KEY } from '../../lib/authState';
 import { byText, cleanup, click, mount, queryText, settle, submit, typeInto } from '../../lib/testing/dom';
+import { t } from '../../i18n';
+import { openPagePath } from '../../lib/textPages';
 import { SaveSheet } from './SaveSheet';
 import { RESEND_WAIT_S } from './SignInBlock';
 
@@ -271,5 +273,18 @@ describe('the save sheet: privacy link next to the reminder consent (spec stage 
     cleanup();
     const again = await mount(sheet(fakes()));
     expect(queryText(again.root, 'Privacy policy', 'a')).toBeNull();
+  });
+
+  it('follows the page: the Spanish link appears once /es/privacidad is not hidden', async () => {
+    const f = fakes();
+    const view = (hidden: Set<string>) => (
+      <SaveSheet lang="es" readingId="r1" auth={f.auth} google={false} accountApi={f.accountApi}
+        origin="https://arcana.test" onClose={() => {}} privacyHref={openPagePath('privacy', 'es', hidden) ?? undefined} />
+    );
+    const closed = await mount(view(new Set(['/es/privacidad'])));
+    expect(queryText(closed.root, t('es').privacyLink, 'a')).toBeNull();
+    cleanup();
+    const open = await mount(view(new Set()));
+    expect(byText<HTMLAnchorElement>(open.root, t('es').privacyLink, 'a').getAttribute('href')).toBe('/es/privacidad');
   });
 });

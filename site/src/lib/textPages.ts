@@ -77,7 +77,7 @@ export function hiddenPaths(facts: Facts = FACTS): Set<string> {
 }
 
 /** The address of a page, or null while it is hidden: links to it appear together with the page (spec stage 6 §6). */
-export function openPagePath(key: PageKey, lang: Lang): string | null {
+export function openPagePath(key: PageKey, lang: Lang, hidden: ReadonlySet<string> = hiddenPaths()): string | null {
   const path = pagePath(key, lang);
-  return hiddenPaths().has(path) ? null : path;
+  return hidden.has(path) ? null : path;
 }

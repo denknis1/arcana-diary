@@ -342,6 +342,21 @@ class Links(HTMLParser):
             self.hrefs.append(dict(attrs)["href"])
 
 
+def hidden_link_problems(dist: Path) -> list[str]:
+    """No page links to a hidden service page (decision 35): not the footer, the menu, the language switch or a text."""
+    hidden = hidden_pages()
+    problems = []
+    for path in expected_pages():
+        file = dist / dist_file(path)
+        if not file.is_file():
+            continue
+        found = Links()
+        found.feed(file.read_text(encoding="utf-8"))
+        for href in sorted({h.split("#")[0].split("?")[0].removeprefix(SITE_URL).rstrip("/") or "/" for h in found.hrefs} & hidden):
+            problems.append(f"link to the hidden page {href}: site/dist/{dist_file(path)}")
+    return problems
+
+
 def card_link_sets(html: str, lang: str) -> set[str]:
     links = Links()
     links.feed(html)
@@ -379,7 +394,7 @@ def main(dist: Path | None = None, launched: bool = False) -> int:
     problems = ([f"missing: site/dist/{name}" for name in missing(dist)] + unexpected_pages(dist)
                 + robots_problems(dist) + head_problems(dist) + hreflang_target_problems(dist)
                 + placeholder_problems(dist) + sitemap_problems(dist) + robots_txt_problems(dist)
-                + list_problems(dist) + auth_problems(dist) + (launched_problems(dist) if launched else []))
+                + list_problems(dist) + auth_problems(dist) + hidden_link_problems(dist) + (launched_problems(dist) if launched else []))
     for problem in problems:
         print(problem)
     if problems:

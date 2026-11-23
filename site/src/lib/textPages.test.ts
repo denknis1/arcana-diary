@@ -46,6 +46,12 @@ describe('stage 5 text pages', () => {
     }
   });
 
+  it('give the address of a hidden page once the set no longer holds it (injected)', () => {
+    expect(openPagePath('privacy', 'en', new Set())).toBe('/privacy');
+    expect(openPagePath('privacy', 'es', new Set(['/privacy']))).toBe('/es/privacidad');
+    expect(openPagePath('privacy', 'en', new Set(['/privacy']))).toBeNull();
+  });
+
   it('give the address of a page only while it is open', () => {
     expect(openPagePath('privacy', 'en')).toBeNull();
     expect(openPagePath('how_readings_work', 'es')).toBe('/es/como-funcionan-las-lecturas');

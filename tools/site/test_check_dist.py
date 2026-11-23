@@ -5,7 +5,7 @@ import json
 
 import check_dist
 from check_dist import (EXTRA, READING_PAGES, auth_problems, canonical, dist_file, expected_alternates, expected_pages,
-                        head_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
+                        head_problems, hidden_link_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
                         hreflang_target_problems, list_problems, placeholder_problems, robots_problems, robots_txt_problems,
                         sitemap_problems, static_chunks, unexpected_pages)
 
@@ -299,6 +299,14 @@ def test_a_shrunk_card_list_is_reported(tmp_path):
     problems = list_problems(dist)
     assert "77 distinct card links instead of 78: site/dist/cards.html" in problems
     assert "0 distinct card links instead of 22: site/dist/es/cartas/arcanos-mayores.html" in problems
+
+
+def test_a_link_to_a_hidden_page_is_reported(tmp_path):
+    dist = site(tmp_path)
+    assert hidden_link_problems(dist) == []
+    write(dist, "es.html", head("/es") + '<a href="/privacy">p</a><a href="https://arcanadiary.com/es/terminos#x">t</a>')
+    assert hidden_link_problems(dist) == ["link to the hidden page /es/terminos: site/dist/es.html",
+                                          "link to the hidden page /privacy: site/dist/es.html"]
 
 
 def test_main_reports_every_problem_and_passes_a_good_build(tmp_path, capsys):

@@ -5,6 +5,7 @@ import { createAccountApi, type Account, type AccountApi } from '../lib/accountA
 import type { Auth, SessionStatus } from '../lib/auth';
 import { NOTICE_KEY } from '../lib/notice';
 import { byText, cleanup, click, mount, queryText, waitFor } from '../lib/testing/dom';
+import { openPagePath } from '../lib/textPages';
 import AccountIsland from './AccountIsland';
 
 const ACCOUNT: Account = { email: 'ana@example.com', created_at: '2026-11-20T18:00:00+00:00', reminders_consent: false,
@@ -58,6 +59,18 @@ describe('the account page (spec 4.4b §6)', () => {
     const f = fakes();
     const { root } = await mount(<AccountIsland lang="en" {...f.props} privacyHref="/privacy" />);
     expect(byText<HTMLAnchorElement>(root, 'Privacy policy', 'a').getAttribute('href')).toBe('/privacy');
+  });
+
+  it('follows the page: no link while /privacy is hidden, the link once it is not', async () => {
+    const f = fakes();
+    const view = (hidden: Set<string>) => (
+      <AccountIsland lang="en" {...f.props} privacyHref={openPagePath('privacy', 'en', hidden) ?? undefined} />
+    );
+    const closed = await mount(view(new Set(['/privacy'])));
+    expect(queryText(closed.root, 'Privacy policy', 'a')).toBeNull();
+    cleanup();
+    const open = await mount(view(new Set()));
+    expect(byText<HTMLAnchorElement>(open.root, 'Privacy policy', 'a').getAttribute('href')).toBe('/privacy');
   });
 
   it('shows the e-mail, the readings left today and the way back to the diary', async () => {

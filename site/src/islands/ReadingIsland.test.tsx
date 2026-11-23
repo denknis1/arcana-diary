@@ -34,6 +34,7 @@ vi.mock('../lib/auth', () => ({ getAuth: async () => null }));
 vi.mock('../lib/analytics', async (original) => ({ ...(await original<typeof import('../lib/analytics')>()), sendEvent: () => {} }));
 
 import { t } from '../i18n';
+import { openPagePath } from '../lib/textPages';
 import ReadingIsland from './ReadingIsland';
 
 const island = () => <ReadingIsland lang="en" page="love" />;
@@ -125,5 +126,14 @@ describe('ReadingIsland: the privacy link at the AI provider line (spec stage 6 
   it('shows no link while the page is hidden', async () => {
     const { root } = await mount(island());
     expect(queryText(root, t('en').privacyLink, 'a')).toBeNull();
+  });
+
+  it('follows the page: hidden set — no link, set without it — the link (the views pass openPagePath)', async () => {
+    const hrefOf = (hidden: Set<string>) => openPagePath('privacy', 'en', hidden) ?? undefined;
+    const closed = await mount(<ReadingIsland lang="en" page="love" privacyHref={hrefOf(new Set(['/privacy']))} />);
+    expect(queryText(closed.root, t('en').privacyLink, 'a')).toBeNull();
+    cleanup();
+    const open = await mount(<ReadingIsland lang="en" page="love" privacyHref={hrefOf(new Set())} />);
+    expect(byText<HTMLAnchorElement>(open.root, t('en').privacyLink, 'a').getAttribute('href')).toBe('/privacy');
   });
 });
