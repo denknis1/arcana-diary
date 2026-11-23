@@ -84,7 +84,7 @@
       "paragraphs": [
         "Compartimos datos con estos proveedores solo para que Arcana Diary funcione, no para hacer publicidad.",
         "Supabase opera nuestra base de datos y el servicio de acceso. Ahí se guardan todas las tablas que menciona este aviso (lecturas, preguntas de seguimiento, diario, cuentas, contadores y registros), en su región de la Unión Europea, en Fráncfort, Alemania. Los navegadores no tienen acceso a la base: solo nuestro servidor puede leerla.",
-        "Google recibe datos en dos casos. Si decides entrar con Google, Google confirma tu identidad y le pasa tu correo a nuestro servicio de acceso; nosotros solo usamos el correo. Aparte, nuestras páginas cargan sus tipografías desde Google Fonts, así que tu navegador se conecta a los servidores de Google, que reciben tu dirección IP y datos comunes del navegador.",
+        "Google recibe datos solo si decides entrar con Google: Google confirma tu identidad y le pasa tu correo a nuestro servicio de acceso; nosotros solo usamos el correo.",
         "Cloudflare ofrece una verificación contra bots, Turnstile, que solo se activa cuando desde una misma dirección llegan demasiadas solicitudes: tu navegador carga entonces un script de Cloudflare, y nuestro servidor le manda a Cloudflare solo el token resultante, no tu dirección. Cloudflare también transporta el tráfico del sitio cuando su red está activada delante de nuestro servidor.",
         "{hosting_provider} aloja el servidor donde funcionan el sitio y el servicio de lecturas. {email_provider} envía los enlaces de acceso y, si los aceptas, los correos de recordatorio. Además, podemos revelar datos cuando la ley lo exija, por ejemplo ante un requerimiento válido de una autoridad. Algunos de estos proveedores pueden tratar datos fuera del país donde vives."
       ]
@@ -103,7 +103,7 @@
         "ad_guest (cookie, un año): el número al azar del dispositivo que explicamos arriba. Los scripts de la página no pueden leerla y solo viaja por conexiones seguras.",
         "ad-auth, ad-auth-user y ad-auth-code-verifier (almacenamiento local): tu sesión, que la biblioteca de acceso guarda solo después de que entras. ad_signed_in (almacenamiento local): una señal de que este dispositivo tiene sesión. ad_signin_started (almacenamiento local): el método de acceso y la hora en que tocaste un botón para entrar en este dispositivo; se usa durante 24 horas para pasar a tu cuenta las lecturas que hiciste aquí sin cuenta. Al cerrar sesión se borran.",
         "ad_notice (almacenamiento de sesión): una nota de un solo uso para que la página de inicio diga “cuenta eliminada” después de que la borras. El botón “Recuérdamelo mañana” de la carta del día arma un archivo de calendario dentro de tu navegador; a nosotros solo nos llega el conteo de que se tocó el botón.",
-        "No usamos cookies de publicidad ni de analítica. La verificación de Cloudflare y Google pueden manejar sus propios datos técnicos, conforme a sus políticas, cuando se cargan sus scripts o tipografías."
+        "No usamos cookies de publicidad ni de analítica. La verificación de Cloudflare y Google pueden manejar sus propios datos técnicos, conforme a sus políticas, cuando se cargan sus scripts."
       ]
     },
     {

@@ -15,7 +15,7 @@
       "heading": "1. ¿Cómo se sacan las cartas?",
       "paragraphs": [
         "El servidor revuelve las 78 cartas con una semilla aleatoria que sale de un generador criptográfico y luego reparte las que pide cada herramienta: una para la carta sola, tres para la tirada principal y la del amor, una o tres para el sí o no. La orientación se decide aparte para cada carta, que tiene una posibilidad entre dos de salir al revés. El modelo de IA no interviene aquí; solo recibe el resultado.",
-        "La semilla se guarda junto con la lectura, así que cuando la vuelves a abrir aparecen las mismas cartas con la misma orientación. En la tirada de tres, los lugares son pasado (lo que ha ido dando forma a la situación), presente (lo que está en marcha ahora) y siguiente paso (hacia dónde puede ir la cosa a partir de aquí si nada cambia; una posibilidad, nunca un destino). Igual en la tirada del amor.",
+        "La semilla se guarda junto con la lectura, así que cuando la vuelves a abrir aparecen las mismas cartas con la misma orientación. En la tirada de tres, los lugares son pasado (lo que ha ido dando forma a la situación), presente (lo que está en marcha ahora) y hacia dónde va (adónde puede ir la cosa a partir de aquí si nada cambia; una posibilidad, nunca un destino). Igual en la tirada del amor.",
         "La Carta del día es distinta. Es la misma durante todo el día, cambia después de la medianoche de tu zona horaria y no cuenta entre tus lecturas diarias. Su texto se prepara con anticipación para cada carta y orientación, así que habla del tema de la carta para hoy, no de una pregunta tuya."
       ]
     },

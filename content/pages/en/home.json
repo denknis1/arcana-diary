@@ -5,7 +5,7 @@
   "url": "/",
   "status": "draft",
   "title": "Free Tarot Reading: Ask a Question, Draw Three Cards",
-  "description": "Three Rider–Waite–Smith cards for your question: past, present, next step, read in plain words with one step to take. No sign-up. Ask the cards now.",
+  "description": "Three Rider–Waite–Smith cards for your question: past, present, where it's heading, read in plain words with one step to take. No sign-up. Ask the cards now.",
   "h1": "Free tarot reading: ask the cards",
   "lead": "Type a question, or leave the box empty, and draw three cards. The reader explains each one plainly and ends with one small step.",
   "capsule": null,
@@ -14,7 +14,7 @@
       "id": "how-it-works",
       "heading": "How the reading works",
       "paragraphs": [
-        "Write your question in the box above, or skip it and just draw. The site shuffles all 78 cards and lays out three of them: Past, for what has shaped the situation; Present, for what is going on now; and Next step, for where things may go if nothing changes. Each card has an even chance of landing upright or reversed.",
+        "Write your question in the box above, or skip it and draw. The site shuffles all 78 cards and lays out three of them: Past, for what has shaped the situation; Present, for what is going on now; and Where it's heading, for where things may go if nothing changes; a possibility, not a fate. Each card has an even chance of landing upright or reversed.",
         "The cards turn over one by one while an AI reader writes your reading. It works only from our card base, the meanings and advice written for every card in both orientations, with no outside systems or symbols from other decks. You get a one-line answer, a few sentences on each card, a note on how the three fit together and one concrete thing to do.",
         "Without signing in you can draw {guest_limit} readings a day; after signing in, {user_limit}. The Card of the Day is free on top of that and never counts toward the limit."
       ]

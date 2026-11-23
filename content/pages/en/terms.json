@@ -21,7 +21,7 @@
       "id": "service",
       "heading": "What Arcana Diary is",
       "paragraphs": [
-        "Arcana Diary offers tarot readings in English and Spanish. You can ask a question, or none, and draw one card, three cards (past, present and next step), a yes or no reading on one or three cards, a love reading, or a card from a card's own page. A free Card of the Day is drawn for each device and stays the same for that local day.",
+        "Arcana Diary offers tarot readings in English and Spanish. You can ask a question, or none, and draw one card, three cards (past, present and where it's heading), a yes or no reading on one or three cards, a love reading, or a card from a card's own page. A free Card of the Day is drawn for each device and stays the same for that local day.",
         "Cards are drawn at random by our server from all 78 Rider–Waite–Smith cards, and each card has an even chance of coming up reversed. An AI model then writes the reading from the meanings in the site's card base. Follow-up questions about the same cards are possible, and with an account you can keep your readings in a diary, mark whether a reading came true and add a private note.",
         "The site also publishes card meanings and guides. These texts are prepared with the help of AI from A. E. Waite's 1911 book and the site's card base, and read by {editor_name}, the editor of Arcana Diary, before publication."
       ]

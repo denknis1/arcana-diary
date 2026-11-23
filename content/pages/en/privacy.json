@@ -82,7 +82,7 @@
       "heading": "Who else receives data",
       "paragraphs": [
         "Supabase runs our database and our sign-in service. Every table described in this policy (readings, follow-ups, diary, accounts, counters and logs) is stored there, in its EU region in Frankfurt, Germany. The database is closed to browsers: only our server can read it.",
-        "Google receives data in two cases. If you choose to sign in with Google, Google confirms your identity and passes your e-mail address to our sign-in service; we use only the e-mail address. Separately, our pages load their fonts from Google Fonts, so your browser connects to Google's servers, which receive your network address and ordinary browser details.",
+        "Google receives data only if you choose to sign in with Google: Google confirms your identity and passes your e-mail address to our sign-in service; we use only the e-mail address.",
         "Cloudflare provides a bot check, Turnstile. It runs only when a network address sends unusually many requests: your browser then loads a Cloudflare script, and our server sends Cloudflare only the resulting token, not your address. Cloudflare also carries traffic to the site when its network is switched on in front of our server.",
         "{hosting_provider} hosts the server that runs the site and the reading service. {email_provider} sends sign-in links and, if you agree to them, reminder e-mails. We may also disclose data when the law requires it, for example to answer a valid request from a court or authority.",
         "Some of these providers may process data outside the country where you live. We share data with them only to run Arcana Diary, not for our own marketing."
@@ -102,7 +102,7 @@
         "ad_guest (cookie, one year): the random device number described above. Your browser does not let page scripts read it, and it is sent only over secure connections.",
         "ad-auth, ad-auth-user and ad-auth-code-verifier (local storage): your sign-in session, kept by the sign-in library only after you sign in. ad_signed_in (local storage): a flag that tells the site this device is signed in. ad_signin_started (local storage): the sign-in method and the time you pressed a sign-in button on this device, used within 24 hours so that this device's guest readings can be moved into your account. Signing out removes these.",
         "ad_notice (session storage): a one-time note that shows “account deleted” on the home page after you delete your account. “Remind me tomorrow” under the Card of the Day makes a calendar file inside your browser; nothing is sent to us except the count that the button was pressed.",
-        "We use no advertising or analytics cookies. Cloudflare's bot check and Google may handle their own technical data under their own policies when their scripts or fonts load."
+        "We use no advertising or analytics cookies. Cloudflare's bot check and Google may handle their own technical data under their own policies when their scripts load."
       ]
     },
     {

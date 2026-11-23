@@ -15,7 +15,7 @@
       "heading": "1. How the cards are drawn",
       "paragraphs": [
         "The server shuffles the full deck of 78 cards using a random seed from a cryptographic generator, then deals the number of cards the tool needs: one for a single card, three for the main reading and the love spread, one or three for yes or no. Each card's orientation is decided separately, with a one in two chance of coming up reversed. The AI model plays no part in this; it only sees the result.",
-        "The seed is stored with the reading, so the same reading always shows the same cards in the same orientation when you open it again. In a three-card reading the positions are past (the forces behind the situation so far), present (what is under way now) and next step (where things may go from here if nothing shifts, a possibility and never a fate). The love spread uses the same three positions.",
+        "The seed is stored with the reading, so the same reading always shows the same cards in the same orientation when you open it again. In a three-card reading the positions are past (the forces behind the situation so far), present (what is under way now) and where it's heading (where things may go from here if nothing shifts, a possibility and never a fate). The love spread uses the same three positions.",
         "Your Card of the Day works differently. It stays the same all day and changes after your local midnight, and it does not count toward your daily readings. Its text is prepared in advance for each card and orientation, so it speaks about the card's theme for today, not about a question."
       ]
     },

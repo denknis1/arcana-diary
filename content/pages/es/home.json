@@ -15,7 +15,7 @@
       "heading": "¿Cómo funciona la lectura?",
       "paragraphs": [
         "Primero escribes tu pregunta, si quieres; también puedes dejar el espacio en blanco y sacar las cartas para ver el momento que vives. Luego eliges entre tres cartas, la tirada de siempre, o una sola, para algo rápido. El sitio baraja las 78 cartas al azar y las pone boca abajo sobre la mesa. Se voltean una por una, y cada una puede salir al derecho o al revés con la misma probabilidad.",
-        "Con tres cartas, cada una ocupa un lugar. El pasado muestra lo que ha ido formando la situación; el presente, lo que pasa ahora; el siguiente paso, hacia dónde podría ir la cosa si nada cambia. Es una posibilidad, no un destino. Con una carta, la lectura se concentra en tu pregunta tal como está hoy.",
+        "Con tres cartas, cada una ocupa un lugar. El pasado muestra lo que ha ido formando la situación; el presente, lo que pasa ahora; hacia dónde va, adónde podría ir la cosa si nada cambia. Es una posibilidad, no un destino. Con una carta, la lectura se concentra en tu pregunta tal como está hoy.",
         "La lectura la escribe una inteligencia artificial que trabaja solo con nuestra base de significados: qué quiere decir cada carta al derecho y al revés, cómo se lee en el amor y qué consejo da. No agrega símbolos de su cosecha ni trae ideas de otras barajas. Recibes un titular corto, unas líneas sobre cada carta, lo que dicen juntas y una acción pequeña para hoy o esta semana.",
         "Si algo no te quedó claro, tienes {followups} preguntas de seguimiento gratis sobre la misma tirada; a partir de ahí, cada pregunta extra usa una de tus lecturas del día. Puedes hacer {guest_limit} lecturas diarias sin registrarte y {user_limit} si entras con tu correo. Con sesión iniciada guardas la tirada en tu diario y después marcas si se cumplió, en parte o no; el diario gratis muestra tus {diary_free} tiradas más recientes."
       ]
@@ -69,7 +69,7 @@
     },
     {
       "q": "¿Cómo leer el tarot si apenas empiezo?",
-      "a": "Empieza con una sola carta y una pregunta sencilla. Mira primero la ilustración: qué hace la figura, hacia dónde mira, qué tiene en las manos. Luego lee su significado y busca dónde aparece eso en tu semana. Cuando te sientas con confianza, pasa a tres cartas y fíjate en lo que cambia del pasado al siguiente paso."
+      "a": "Empieza con una sola carta y una pregunta sencilla. Mira primero la ilustración: qué hace la figura, hacia dónde mira, qué tiene en las manos. Luego lee su significado y busca dónde aparece eso en tu semana. Cuando te sientas con confianza, pasa a tres cartas y fíjate en lo que cambia del pasado a «Hacia dónde va»."
     },
     {
       "q": "¿Cuál es el mejor tarot gratis?",
