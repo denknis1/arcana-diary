@@ -275,3 +275,14 @@ def test_overlap_between_cards_is_flagged(tmp_path):
     path.write_text(cp.json.dumps(clone), encoding="utf-8")
     res = cp.run([path], CTX)[0]
     assert has(res.errors, "совпадение пятисловных цепочек с major-00-fool")
+
+
+def test_feminine_article_and_court_cards():
+    p = page("es", "swords-03-three")
+    p["name_forms"]["in_sentence"] = "la Tres de Espadas"
+    assert not has(errors(p), "name_forms.in_sentence")
+    q = page("en", "swords-03-three")
+    blk(q, "upright")["paragraphs"][0] += " Waite treats the court cards apart."
+    assert not has(errors(q), "запрещённые слова")
+    blk(q, "upright")["paragraphs"][0] += " It says nothing about court."
+    assert has(errors(q), "запрещённые слова")

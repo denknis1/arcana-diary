@@ -20,7 +20,7 @@
     "numeral": "XVIII",
     "also_called": []
   },
-  "capsule": "The Moon is card XVIII of the Major Arcana: uncertainty, intuition and dreams. Reversed, the haze starts to lift, or worry runs ahead of the facts. It is a dim card, not a dark one, and it asks for patience. With the path only half lit, the yes-or-no answer is not clear yet.",
+  "capsule": "The Moon is card XVIII of the Major Arcana: uncertainty, intuition, dreams, and also illusion and fear. Reversed, the haze starts to lift, or worry runs ahead of the facts. It is a dim card, not a dark one, and it asks for patience. With the path only half lit, the yes-or-no answer is not clear yet.",
   "keywords": {
     "upright": [
       "uncertainty",
@@ -57,6 +57,7 @@
       "heading": "What does The Moon mean upright?",
       "paragraphs": [
         "A path under moonlight can stand for uncertainty: a stretch when things are not fully visible yet, and feelings, hints and half-formed worries blur together. It often shows up while you are waiting for information, or when your mind fills the gaps with guesses.",
+        "Its harder side is named just as plainly today: illusion, fear and anxiety, and the chance that something is not what it seems, whether a secret, a half-truth or a story you tell yourself. The card does not say who is mistaken; it says the light is poor.",
         "The card also honors intuition and dreams. They are good at shaping questions (what am I sensing? what keeps coming back?) and less reliable as conclusions. The path on the card is real; it is just lit by a softer light than you would like.",
         "Move slowly and check what is real before acting. Hidden feelings, your own included, may be part of the picture. What are you feeling that you have not named yet?"
       ]
@@ -65,7 +66,7 @@
       "id": "reversed",
       "heading": "What does The Moon mean reversed?",
       "paragraphs": [
-        "Reversed, The Moon can point to confusion lifting: something you avoided looking at becomes easier to see, and the fog thins. It can also mean worry running ahead of the facts, when the mind fills the dark with more than is there.",
+        "Reversed, The Moon can point to confusion lifting: something you avoided looking at becomes easier to see, a secret or half-truth comes into the open, fears ease and the fog thins. It can also mean worry running ahead of the facts, when the mind fills the dark with more than is there.",
         "Waite's reversed list speaks of instability and \"lesser degrees of deception and error\" (p. 286), which is near the first reading: the haze is still there, only thinner. Worry outrunning the facts is today's reading rather than Waite's.",
         "Either way, clearer sight comes from separating two lists: what you know and what you only imagine. Let the second list wait for better light."
       ]
@@ -74,8 +75,8 @@
       "id": "love",
       "heading": "What does The Moon mean in love?",
       "paragraphs": [
-        "Mixed signals call for patience under The Moon. Notice what you feel, ask openly instead of guessing, and give trust time to grow; inside a relationship, the card can describe a stretch when things feel unclear between you.",
-        "Single for now? Then it can point to attraction mixed with uncertainty, or to daydreams about someone that are still mostly your own imagining, more hope than knowledge.",
+        "Mixed signals call for patience under The Moon. Notice what you feel, ask openly instead of guessing, and give trust time to grow; inside a relationship, the card can describe a stretch when things feel unclear between you, with insecurity, jealousy or the sense that something is being left unsaid.",
+        "Single for now? Then it can point to attraction mixed with uncertainty, or to daydreams about someone that are still mostly your own imagining, an idealized picture that may not match the real person.",
         "A misunderstanding clearing, or worry building stories faster than facts: either can be the reversed Moon. What do you actually know, and what have you only assumed?"
       ]
     },
@@ -84,7 +85,7 @@
       "heading": "What does The Moon mean for work and money?",
       "paragraphs": [
         "Work under The Moon tends to come with unclear information: plans still taking shape, instructions open to interpretation, a situation you cannot quite read yet. Asking questions and writing things down beat acting on assumptions.",
-        "Before a money decision, examine where it comes from: facts, or a vague hope or a vague worry? Clarity first, choices second.",
+        "As a money card, The Moon means unclear terms and hidden details: fine print, costs nobody mentioned, a deal that looks better in dim light than in daylight, or money worries that grow bigger in the dark. Clarity first, choices second.",
         "When the card is reversed, a confusing matter at work may be starting to clear; use that moment to confirm the details."
       ]
     },
@@ -102,9 +103,9 @@
     },
     {
       "id": "in_a_reading",
-      "heading": "The Moon as a person and as a feeling",
+      "heading": "The Moon as a person and as feelings",
       "paragraphs": [
-        "Emotionally, The Moon is like walking at night, unease mixed with intuition; reversed, it is the relief of first light, or a worry that keeps circling. The figure it draws is someone hard to read, or a role that is still forming and keeps changing shape, and also the dreamer in you, the part that senses more than it can explain."
+        "Mixed feelings are The Moon's answer when the question turns to love: attraction tangled with uncertainty, insecurity, emotions kept hidden or not yet understood even by the one who has them. It can also mean an idealized picture, someone seen through a romantic haze rather than as they are. Emotionally, it is like walking at night, unease mixed with intuition. Reversed, the haze clears: hidden feelings come into the open, fears ease, or a confusing situation finally makes sense; at times it is a worry that keeps circling. The figure the card draws is someone hard to read, mysterious or changeable, and also the dreamer in you, the part that senses more than it can explain."
       ]
     },
     {
@@ -153,7 +154,7 @@
     },
     {
       "q": "Does The Moon mean someone is lying to me?",
-      "a": "Cards on this site are not read for another person's intentions. Waite's old list does include deception (p. 286), but here the card points to your side: information you are missing, or an assumption you are leaning on. A calm, direct question usually helps more than suspicion."
+      "a": "Not necessarily. The card can carry that meaning: Waite's old list does include deception (p. 286), and modern readings link The Moon to illusion and secrets. More often, though, it points to information you are missing or an assumption you are leaning on, and it never says who is mistaken. A calm, direct question usually helps more than suspicion."
     },
     {
       "q": "What are the drops falling from the moon?",
@@ -162,6 +163,10 @@
     {
       "q": "Is The Moon a sign to trust my intuition?",
       "a": "Partly. The card values intuition, but it also shows how easily shapes are misread at night. Use your hunches to choose what to look into, then compare them with what you can confirm in daylight. Intuition is the lantern here, not the map."
+    },
+    {
+      "q": "Does The Moon mean he loves me?",
+      "a": "It is an uncertain answer rather than a no. The Moon describes feelings that are real but unclear: attraction mixed with doubt, emotions not yet spoken, a picture of the other person colored by imagination. Reversed, the card means such feelings moving into daylight. Patience and honest questions serve better here than conclusions."
     }
   ],
   "related": [

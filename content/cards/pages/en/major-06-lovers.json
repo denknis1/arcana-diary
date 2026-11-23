@@ -20,7 +20,7 @@
     "numeral": "VI",
     "also_called": []
   },
-  "capsule": "The Lovers, card VI of the Major Arcana, joins connection and choice: a bond, or a decision that shows what you value. Reversed, you may feel torn between what you want and what you believe. Mostly a warm card, it asks for honesty with yourself. On yes-or-no questions, upright means yes: two figures stand openly under the angel's blessing.",
+  "capsule": "The Lovers, card VI of the Major Arcana, stands for love, harmony and choice: a deep bond, or a decision that shows what you value. Reversed, it means disharmony, values out of line or feeling torn. A warm card, it asks for honesty with yourself. On yes-or-no questions, upright means yes: two figures stand openly under the angel's blessing.",
   "keywords": {
     "upright": [
       "choice",
@@ -58,7 +58,7 @@
       "id": "upright",
       "heading": "What does The Lovers mean upright?",
       "paragraphs": [
-        "Connection that is honest and unguarded sits at the center of The Lovers upright, along with a choice that shows what you value most. The two often arrive together: a bond asks something of you, or a decision asks you to stay true to yourself.",
+        "Love in its fullest sense sits at the center of The Lovers upright: romantic love, a connection that is honest and unguarded, a partnership where attraction and shared values line up. With it often comes a choice that shows what you value most: a bond asks something of you, or a decision asks you to stay true to yourself.",
         "Harmony here does not mean the absence of choices. It is the feeling of your heart and your values pointing the same way, so that a decision sits right on the inside and not only on paper.",
         "Waite's list gives attraction and beauty, and the picture shows two people with nothing hidden from each other. If this is close to what you are living, ask: what would you choose if you were not afraid of missing out?"
       ]
@@ -67,7 +67,7 @@
       "id": "reversed",
       "heading": "What does The Lovers mean reversed?",
       "paragraphs": [
-        "Reversed, The Lovers often points to feeling torn: between what you want and what you think is right, or between two paths that both pull at you. Usually it is an inner conflict more than a quarrel with anyone else. It can also show avoiding a choice, or an imbalance in which you give much more than feels good.",
+        "Reversed, The Lovers means disharmony: values that no longer line up, distance or conflict inside a bond, a connection that has lost its balance. Often it shows feeling torn, between what you want and what you think is right, or between two paths that both pull at you, and then it is an inner conflict more than a quarrel with anyone else. It can also show avoiding a choice, or an imbalance in which you give much more than feels good.",
         "Waite's reversed words, failure and foolish designs, are about plans that fall through. The inner split is a modern reading, not Waite's.",
         "Start by getting honest with yourself. A decision that matches what you care about tends to feel lighter once it is made."
       ]
@@ -76,9 +76,9 @@
       "id": "love",
       "heading": "What does The Lovers mean in love?",
       "paragraphs": [
-        "No card is more tied to romance, and in love it asks for your heart and your principles to agree. When there is no partner, the card may mark an attraction that matters, or the work of getting clear about what you truly want before choosing anyone.",
+        "No card is more tied to romance. Upright in a love reading, it means a strong romantic bond: attraction, closeness and a union where hearts and principles agree, the kind of relationship many people hope for. When there is no partner, the card may mark an attraction that matters, or the work of getting clear about what you truly want before choosing anyone.",
         "Already committed, you may hear it speak about honesty and deeper commitment: choosing the bond again, openly, as your own decision. It describes what you bring and does not predict where the relationship goes.",
-        "Upside down, the card asks you to notice where you feel pulled two ways, or where your choices drift from what you say you want. What would an honest next step look like for you?"
+        "Upside down, it can mean a relationship out of balance: disconnection, arguments rooted in different values, or a commitment that feels uneven. For your part, notice where you feel pulled two ways, or where your choices drift from what you say you want. What would an honest next step look like for you?"
       ]
     },
     {
@@ -86,7 +86,7 @@
       "heading": "What does The Lovers mean for work and money?",
       "paragraphs": [
         "A decision about direction that rests on what matters to you can be the work theme here: a role, a partnership, a project that fits who you are. It also favors good collaboration, where people pull the same way.",
-        "Spending and saving are worth checking against what you care about. Reversed, check for choices made only to please others, or for a decision you keep leaving to chance."
+        "Money under The Lovers is about choices guided by values: spending and saving that match what you care about, and often a shared decision, such as a joint budget or a business partnership. Reversed, it points to money tension between partners, or to choices made only to please others or left to chance."
       ]
     },
     {
@@ -103,9 +103,9 @@
     },
     {
       "id": "in_a_reading",
-      "heading": "The Lovers as a person and as a feeling",
+      "heading": "The Lovers as a person and as feelings",
       "paragraphs": [
-        "Taken as a person, The Lovers can be a partner, a close ally, anyone with whom you share a real bond; it can also be you, standing at a crossroads. The emotion behind it is attraction and closeness, the warmth of choosing with your whole heart. Turned upside down, that warmth gives way to doubt, or to the pull of two directions at once."
+        "Few cards answer a feelings question as directly as The Lovers. Upright, its traditional meaning is love itself: strong attraction, deep affection and the wish to be together, the sense of a true match in heart and values, and a wish for the bond to grow into commitment. Reversed, the same feelings are read as mixed or out of balance: attraction held back by doubt, love that does not feel equal, or a heart pulled between two loyalties. As a person, the card can be a partner or a close ally, anyone with whom you share a real bond; it can also be you, standing at a crossroads."
       ]
     },
     {
@@ -163,6 +163,10 @@
     {
       "q": "Is The Lovers about choosing between two people?",
       "a": "Rarely in such a literal way. Some later versions did show a man standing \"between vice and virtue\", but Waite says his card replaces them, going back to \"first principles\" (p. 92). On Arcana Diary the choice usually lies inside you, between a wish and a principle, or between two paths of your own."
+    },
+    {
+      "q": "Does The Lovers mean he or she loves me?",
+      "a": "It is the strongest love meaning in the deck, not a verdict on one person. Upright, The Lovers is traditionally read as love returned: mutual attraction, warmth and the hope of commitment. Reversed, that reading turns to uncertain or uneven emotions. What a particular person feels only they can tell you, and the way they act over time says more than any single card."
     }
   ],
   "related": [

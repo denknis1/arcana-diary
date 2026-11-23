@@ -21,7 +21,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "El Tres de Espadas habla de dolor, decepción y una verdad difícil. Al revés, el dolor empieza a aflojar o se guarda en silencio. Es una carta dura, pero no una condena: nombra la herida para que puedas atravesarla. Como respuesta de sí o no, al derecho es no: la herida está abierta.",
+  "capsule": "El Tres de Espadas es la carta del corazón roto: dolor, duelo, traición y una verdad difícil. Al revés, el dolor empieza a aflojar o se guarda en silencio. Es una carta dura, pero no una condena: nombra la herida para que puedas atravesarla. Como respuesta de sí o no, al derecho es no: la herida está abierta.",
   "keywords": {
     "upright": [
       "dolor",
@@ -57,7 +57,7 @@
       "id": "upright",
       "heading": "¿Qué significa el Tres de Espadas al derecho?",
       "paragraphs": [
-        "Al derecho, el Tres de Espadas es la imagen del dolor emocional, la decepción o las palabras que hieren, y no finge que sean cosa menor. Puede salir cuando algo difícil se dijo, se descubrió o se perdió, y la herida todavía arde.",
+        "Esta carta significa, sin rodeos, un corazón roto: el dolor de una ruptura, de una pérdida o de palabras que hieren. También habla de duelo, la tristeza por algo que terminó, y de traición: la herida de que alguien en quien confiabas te falle. Puede salir cuando algo difícil se dijo, se descubrió o se perdió, y la herida todavía arde.",
         "Su mensaje es no esconder la tristeza: reconocerla es parte de atravesarla.",
         "La división y la ruptura de Waite describen el lado de afuera: una distancia entre personas o planes. La carta no dice de quién es la culpa ni cómo termina la historia; describe un momento, no un juicio sobre ti."
       ]
@@ -66,7 +66,7 @@
       "id": "reversed",
       "heading": "¿Qué significa el Tres de Espadas al revés?",
       "paragraphs": [
-        "Al revés, puede hablar de un dolor que afloja, aunque cueste soltar la herida. O de una tristeza guardada en silencio, que te hace darle vueltas a unas palabras que dolieron.",
+        "Al revés, puede hablar de un dolor que afloja y de los primeros pasos hacia el perdón, aunque cueste soltar la herida. O de una tristeza guardada en silencio, que te hace darle vueltas a unas palabras que dolieron.",
         "Los significados al revés de Waite, error, distracción y confusión, encajan con esa segunda lectura: cuando la herida no se mira, los pensamientos se dispersan. El dolor que afloja es una lectura moderna. En los dos casos, habla de lo que sientes con alguien de confianza, o escríbelo para sacarlo de la cabeza."
       ]
     },
@@ -74,7 +74,7 @@
       "id": "love",
       "heading": "¿Qué significa el Tres de Espadas en el amor?",
       "paragraphs": [
-        "En el amor, el Tres de Espadas es la carta del corazón herido: desilusión, una verdad difícil en la relación o tristeza por algo que termina. Te pide no tragarte lo que sientes y tratarte con suavidad mientras recuperas la calma.",
+        "En el amor, el Tres de Espadas es la carta del corazón herido: una ruptura o una separación, una traición, una verdad difícil o el duelo por algo que termina. Te pide no tragarte lo que sientes y tratarte con suavidad mientras recuperas la calma.",
         "Sin pareja, puede señalar una herida vieja que todavía pesa al conocer a alguien; con pareja, una conversación dolorosa o palabras que pegaron fuerte. Habla de tu lado y no decide cómo termina una relación. Al revés, el dolor puede estar suavizándose, o quizá lo guardas para no sufrir más."
       ]
     },
@@ -83,7 +83,7 @@
       "heading": "¿Qué significa el Tres de Espadas en el trabajo y el dinero?",
       "paragraphs": [
         "En el trabajo, la carta puede hablar de una decepción: una crítica dura, un plan que se viene abajo o una tensión que divide al equipo. Te pide nombrar con claridad lo que salió mal en lugar de cargarlo en silencio.",
-        "Si te duele un tema de dinero, la carta te lleva a mirar lo que sientes, no las cifras."
+        "En el dinero, la carta significa un tropiezo que duele, una pérdida o la angustia de un presupuesto apretado."
       ]
     },
     {
@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Tres de Espadas como persona y como sentimiento?",
       "paragraphs": [
-        "Cuando el Tres de Espadas describe a alguien en una tirada, es quien carga con una herida reciente o quien dice en voz alta una verdad difícil. Si eres tú, señala lo que en ti necesita cuidado ahora. El sentimiento que nombra es tristeza, desilusión o lo que todavía arde después de unas palabras que dolieron; al revés, ese dolor puede estar aflojando o quedarse guardado."
+        "Cuando el Tres de Espadas describe a alguien en una tirada, es quien carga con una herida reciente o quien dice en voz alta una verdad difícil; si eres tú, señala lo que en ti necesita cuidado ahora. Leído como sentimiento, es un corazón roto: tristeza, desilusión, el golpe de una traición o de unas palabras que dolieron. Al revés, ese dolor se va calmando y abre espacio al perdón, o se guarda sin decirse."
       ]
     },
     {
@@ -159,8 +159,8 @@
       "a": "No. Puede hablar de una ruptura, pero también de una verdad que cuesta escuchar o de palabras que lastimaron, en el trabajo o entre amistades. La lista de Waite va más allá del amor: habla de separación en general (p. 248)."
     },
     {
-      "q": "¿Qué significa el Tres de Espadas en la amistad?",
-      "a": "Entre amistades suele marcar palabras que lastimaron. Habla de tu parte: lo que te dolió, o lo que dijiste y te gustaría arreglar. Si esa amistad te importa, cuenta con calma cómo lo viviste, sin culpar a nadie."
+      "q": "¿El Tres de Espadas significa que me quiere?",
+      "a": "No en el sentido que uno espera. En el amor, su significado tradicional es un vínculo que sufre: una ruptura, distancia tras un engaño o tristeza de uno o de ambos lados. La carta no dice cómo acaba la historia; muestra dónde duele hoy."
     }
   ],
   "related": [

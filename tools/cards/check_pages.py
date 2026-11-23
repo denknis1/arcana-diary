@@ -339,8 +339,9 @@ def check_page(page: dict, ctx: Context, path: str = "") -> Result:
         names = {"name": meaning["name"], "in_sentence": meaning["name"], "de": meaning["name"]}
     if names["name"] != meaning["name"]:
         err(f"name_forms.name {names['name']!r} ≠ имени в meanings.{lang}.json {meaning['name']!r}")
-    if names["in_sentence"].lower() not in (meaning["name"].lower(), ("the " if lang == "en" else "el ")
-                                           + meaning["name"].lower()):
+    articles = ("the ",) if lang == "en" else ("el ", "la ")  # «la Sota de Copas», «la Reina de Oros»
+    if names["in_sentence"].lower() not in (meaning["name"].lower(),
+                                           *(a + meaning["name"].lower() for a in articles)):
         err(f"name_forms.in_sentence: {names['in_sentence']!r}")
     name_tokens = set(words(" ".join(names.values())))
     facts = page["facts"]
@@ -532,7 +533,8 @@ def check_page(page: dict, ctx: Context, path: str = "") -> Result:
     terms = live_terms(ctx.reader_terms, lang)
     for text in all_units(page):
         hits, _ = find_claims(text, terms, lang)
-        hits += [t for t, rx in ctx.base_terms[lang] if rx.search(text)]
+        no_cards = re.sub(r"\bcourt cards?\b", " ", text, flags=re.I)  # «court cards» — термин таро, не суд
+        hits += [t for t, rx in ctx.base_terms[lang] if rx.search(no_cards)]
         if hits:
             err(f"запрещённые слова {sorted(set(hits))}: «{text[:70]}»")
         if re.search(NO_CORRESPONDENCE[lang], text, re.I):

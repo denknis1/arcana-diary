@@ -20,7 +20,7 @@
     "numeral": "XIII",
     "also_called": []
   },
-  "capsule": "Death is card XIII of the Major Arcana: endings, transformation and the release of a chapter that has run its course. Reversed, it shows a change you keep holding off. It is not a card to fear, though it does ask you not to cling. Its yes-or-no verdict is no when upright: something is finishing, not continuing.",
+  "capsule": "Death is card XIII of the Major Arcana: endings, loss and transformation, the close of a chapter that has run its course. Reversed, it shows a change you keep holding off. It is not a card to fear, though it does ask you not to cling. Its yes-or-no verdict is no when upright: something is finishing, not continuing.",
   "keywords": {
     "upright": [
       "endings",
@@ -59,7 +59,7 @@
       "heading": "What does Death mean upright?",
       "paragraphs": [
         "Drawn upright, Death can point to endings that make room: a job, a role, a habit, a way of seeing yourself, a phase of a relationship that has done its work. The card names a transition, the stretch between what is finishing and what has not started yet. That stretch can feel strange or sad, and the card does not ask you to pretend otherwise.",
-        "Its point is transformation rather than loss. The rider's banner carries the rose that Waite reads as life, and on the horizon the sun is shining. Release is part of the meaning too: letting go of what has run its course, ideally with some thanks for what it gave you, is what clears the ground for the next stage.",
+        "Loss can be part of it, and the card names that plainly: an ending can bring grief even when it was needed. Still, its main point is transformation. The rider's banner carries the rose that Waite reads as life, and on the horizon the sun is shining. Release is part of the meaning too: letting go of what has run its course, ideally with some thanks for what it gave you, is what clears the ground for the next stage.",
         "The card's question is a quiet one: what in your life has already ended, even if you have not said so out loud?"
       ]
     },
@@ -67,7 +67,7 @@
       "id": "reversed",
       "heading": "What does Death mean reversed?",
       "paragraphs": [
-        "Reversed, Death usually describes resisting change: holding on to something that has already run its course, because the familiar feels safer than the unknown. The ending still moves forward, only slower, and you may feel stuck between phases, no longer in the old one and not yet in the new.",
+        "Reversed, Death usually describes resisting change, often out of fear of it: holding on to something that has already run its course, because the familiar feels safer than the unknown. The ending still moves forward, only slower, and you may feel stuck between phases, no longer in the old one and not yet in the new.",
         "Waite's reversed list, with inertia, sleep and lethargy, is close to this reading: a standstill, life on pause. The reluctance to let go that sits behind it is a modern reading, not Waite's.",
         "This side of the card is not a bad sign either. Ask what you are protecting by keeping things as they are, then release one small piece on purpose: an object, a routine, a commitment you no longer believe in."
       ]
@@ -76,7 +76,7 @@
       "id": "love",
       "heading": "What does Death mean in love?",
       "paragraphs": [
-        "Change inside your own feelings and patterns is what this card brings to love. For a couple, the card can describe a phase ending: roles, routines or expectations the two of you have outgrown. It does not decide whether a relationship goes on; it describes what is changing on your side.",
+        "Endings come first when this card turns to love: the end of a relationship, or of a stage within one, and the sadness that can come with it. For a couple, it is just as often read as transformation: roles, routines or expectations the two of you have outgrown, giving way to a new shape. The card does not decide whether a relationship goes on; it names what is changing.",
         "Before someone new, it can point to closing the door on an old story: a past relationship you still measure everyone against, or a way of dating that no longer suits you. Clearing it out gives something more honest room to grow.",
         "Upside down, the card turns to what you keep carrying: a hope, a habit, an old argument. Which of these could you set down?"
       ]
@@ -86,8 +86,8 @@
       "heading": "What does Death mean for work and money?",
       "paragraphs": [
         "Under this card, work questions can point to the end of a role, a project or a way of working that has given what it had to give. Its question is practical: what are you still doing only out of habit, and what would change if you stopped?",
-        "Turn the same question on money: which spending or saving habit belongs to a chapter you have already left?",
-        "In reverse, the question is whether there is a work change you keep postponing."
+        "Death's money meaning is the end of a financial chapter: an income that stops, a budget that has to change shape, a way of spending that no longer fits. A fresh start belongs to it as well, so ask which spending or saving habit belongs to a chapter you have already left.",
+        "In reverse, the question is whether there is a change at work or with money that you keep postponing."
       ]
     },
     {
@@ -104,9 +104,9 @@
     },
     {
       "id": "in_a_reading",
-      "heading": "Death as a person and as a feeling",
+      "heading": "Death as a person and as feelings",
       "paragraphs": [
-        "When Death turns up to describe someone in a spread, it usually shows a person in the middle of a big change, closing one chapter before the next is clear. Applied to you, it marks the part of you that already knows something is over. The emotion behind it is a quiet mix of sadness and relief; reversed, it becomes reluctance, the wish to keep everything as it was."
+        "When Death turns up to describe someone in a spread, it usually shows a person in the middle of a big change, closing one chapter before the next is clear. Applied to you, it marks the part of you that already knows something is over. Read as feelings, the card means deep change: emotions that are transforming, a sense that the old way of being together has run its course, sometimes the wish to end it and sometimes the wish to begin again on new terms. Reversed, the feelings are stuck: fear of change, an old attachment held on to, or trouble letting go of something already over."
       ]
     },
     {
@@ -155,7 +155,7 @@
     },
     {
       "q": "Does the Death card mean death?",
-      "a": "No. The name is old and the picture is symbolic: Arcana Diary reads it as a chapter of your life closing, never as a forecast about anyone's life. That is our rule; Waite's 1911 list is blunter. Yet he found rebirth and renewal \"better than usual\" as explanations (p. 123), and his design swaps the old scythe for a slow rider and a shining sun."
+      "a": "No. It rarely means physical death; it marks the end of a stage. Arcana Diary reads it as a chapter of your life closing, never as a forecast about anyone's life. That is our rule; Waite's 1911 list is blunter. Yet he found rebirth and renewal \"better than usual\" as explanations (p. 123), and his design swaps the old scythe for a slow rider and a shining sun."
     },
     {
       "q": "Can the Death card be positive?",
@@ -194,47 +194,70 @@
   },
   "citations": [
     {
-      "pages": [120],
+      "pages": [
+        120
+      ],
       "text": "The mysterious horseman moves slowly, bearing a black banner emblazoned with the Mystic Rose, which signifies life"
     },
     {
-      "pages": [120],
+      "pages": [
+        120
+      ],
       "text": "The horseman carries no visible weapon"
     },
     {
-      "pages": [120],
+      "pages": [
+        120
+      ],
       "text": "king and child and maiden fall before him, while a prelate with clasped hands awaits his end"
     },
     {
-      "pages": [120],
+      "pages": [
+        120
+      ],
       "text": "Between two pillars on the verge of the horizon there shines the sun of immortality"
     },
     {
-      "pages": [120],
+      "pages": [
+        120
+      ],
       "text": "The veil or mask of life is perpetuated in change, transformation and passage from lower to higher, and this is more fitly represented in the rectified Tarot by one of the apocalyptic visions than by the crude notion of the reaping skeleton"
     },
     {
-      "pages": [285],
+      "pages": [
+        285
+      ],
       "text": "also, for a man, the loss of a benefactor; for a woman, many contrarieties; for a maid, failure of marriage projects"
     },
     {
-      "pages": [123],
+      "pages": [
+        123
+      ],
       "text": "The existing occult explanations of the 13th card are, on the whole, better than usual, rebirth, creation, destination, renewal, and the rest"
     },
     {
-      "pages": [23, 24],
+      "pages": [
+        23,
+        24
+      ],
       "text": "the alternatives allocated to the symbol are change and transformation"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "The Tower struck by Lightning"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "In yet a deeper sense, it may signify also the end of a dispensation"
     },
     {
-      "pages": [23],
+      "pages": [
+        23
+      ],
       "text": "a skeleton with a great scythe"
     }
   ],
@@ -249,7 +272,15 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [23, 24, 25, 120, 123, 135, 285],
+      "pages": [
+        23,
+        24,
+        25,
+        120,
+        123,
+        135,
+        285
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

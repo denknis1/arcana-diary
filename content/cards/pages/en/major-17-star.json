@@ -20,7 +20,7 @@
     "numeral": "XVII",
     "also_called": []
   },
-  "capsule": "The Star is card XVII of the Major Arcana: hope, renewal and calm once a difficult stretch is over. Reversed, that hope runs low or feels out of reach. It is one of the gentlest cards, asking only that you keep the light in view. Water poured freely under a great star makes the upright answer a yes.",
+  "capsule": "The Star is card XVII of the Major Arcana: hope, renewal and calm once a difficult stretch is over. Reversed, that hope runs low and can turn into discouragement or despair. It is one of the gentlest cards, asking only that you keep the light in view. Water poured freely under a great star makes the upright answer a yes.",
   "keywords": {
     "upright": [
       "hope",
@@ -57,7 +57,7 @@
       "id": "upright",
       "heading": "What does The Star mean upright?",
       "paragraphs": [
-        "Hope and renewal sit at the center of this card: the feeling of breathing more easily after a difficult time, or a quiet sense that things can be good again. It often turns up once the heaviest pressure has passed and there is room to look up.",
+        "Hope and renewal sit at the center of this card: the feeling of breathing more easily after a difficult time, or a quiet sense that things can be good again. It often turns up once the heaviest pressure has passed and there is room to look up. Faith and a renewed sense of purpose belong here too; modern readings often call it the calm after the storm.",
         "Calm, not excitement, sets the tone. The woman on the card is not hurrying; she kneels, pours and takes her time. That is the kind of inspiration this card brings: steady and generous, with no need for anything spectacular to happen first.",
         "Let yourself believe in something good again and take one small, honest step toward it. A useful question to sit with: what would I hope for if I stopped bracing for disappointment?"
       ]
@@ -66,7 +66,7 @@
       "id": "reversed",
       "heading": "What does The Star mean reversed?",
       "paragraphs": [
-        "Reversed, The Star can describe hope running low: discouragement after a long effort, or a sense of disconnection from what usually inspires you. It may also point to self-doubt, a quiet voice saying that good things are meant for other people.",
+        "Reversed, The Star can describe hope running low: discouragement after a long effort, a loss of faith, or a sense of disconnection from what usually inspires you. At its heaviest it means despair, the feeling that nothing good lies ahead. It may also point to self-doubt, a quiet voice saying that good things are meant for other people.",
         "Waite's reversed list goes another way, toward pride and lack of strength (p. 286); low hope and self-doubt belong to the modern reading, not to Waite. The light in the picture is still there when the card is turned around; it is only harder to see.",
         "The remedy is usually small. Go back to one thing that has brought you calm before, and let that be enough for now."
       ]
@@ -75,9 +75,9 @@
       "id": "love",
       "heading": "What does The Star mean in love?",
       "paragraphs": [
-        "Openness and gentle optimism are what The Star brings to love, starting with the kindness you offer yourself. Inside a relationship, the card favors calm, sincere moments: saying what you hope for together, renewing small gestures of care.",
+        "Openness and gentle optimism are what The Star brings to love, starting with the kindness you offer yourself. Inside a relationship, the card favors calm, sincere moments: saying what you hope for together, renewing small gestures of care, a bond that feels both hopeful and deep.",
         "After a disappointment, and with no partner for now, it can mean feeling ready to hope again and wishing for a connection that feels kind and honest.",
-        "Discouragement, or a doubt that you deserve something good, is what the reversed card can show here. Where could you be a little kinder to yourself today?"
+        "Discouragement, a doubt that you deserve something good, or a lost faith in love itself is what the reversed card can show here. Where could you be a little kinder to yourself today?"
       ]
     },
     {
@@ -85,8 +85,8 @@
       "heading": "What does The Star mean for work and money?",
       "paragraphs": [
         "Renewed inspiration is the work side of The Star: interest coming back after a draining period, a project that feels meaningful, a direction that is calm rather than driven. Steady effort and work that fits your values do well under it.",
-        "On the money side, the card turns you to your own habits: is your hope backed by small, realistic steps? It supports patience and generosity, not big leaps.",
-        "Turned around, it asks where discouragement makes you give up before you have really started."
+        "Money under The Star means recovery and steadier ground after a lean period: bills that weigh less, a budget that can finally breathe, room to be generous. It promises no windfall; it favors patience and small, realistic steps over big leaps.",
+        "Turned around, it can mean money worries that drain your hope, or discouragement that makes you give up before you have really started."
       ]
     },
     {
@@ -103,9 +103,9 @@
     },
     {
       "id": "in_a_reading",
-      "heading": "The Star as a person and as a feeling",
+      "heading": "The Star as a person and as feelings",
       "paragraphs": [
-        "Someone who brings calm and encouragement, a presence people breathe easier around, is the kind of figure The Star portrays. In you, it is whatever still believes in good things, even after a hard time. Relief and soft optimism come with it; reversed, they turn into tiredness, a light dimmed but not gone."
+        "Admiration and tender hope are what The Star stands for as a feelings card: genuine affection, a sense that the bond is good and worth believing in, often with a touch of idealism, as if the other person were a source of inspiration. Feelings under this card are sincere and calm rather than fiery. Reversed, the hope fades into disappointment, doubt that the connection can work, or affection that is still there but tired. As a person, The Star portrays someone kind, generous and optimistic, a presence people breathe easier around; in you, it is whatever still believes in good things after a hard time."
       ]
     },
     {
@@ -163,6 +163,10 @@
     {
       "q": "Does The Star mean a wish will come true?",
       "a": "No card can promise that. The Star describes the state of hoping, not a result: it shows that you can believe in something good again. What follows depends on many things no card controls, and on the small steps you choose to take."
+    },
+    {
+      "q": "Does The Star mean he loves me?",
+      "a": "It is one of the warmest answers a card can give to that question. The Star means sincere, hopeful affection: trust, admiration and the wish for something lasting and kind, with no drama in it. Reversed, the warmth is there but discouraged. Feelings of this kind tend to grow slowly, through small and steady gestures."
     }
   ],
   "related": [
