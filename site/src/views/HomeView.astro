@@ -9,6 +9,8 @@ import ReadingIsland from '../islands/ReadingIsland';
 import { t } from '../i18n';
 import { CARD_BACK, cardById } from '../lib/deck';
 import { cardPath, pagePath } from '../lib/routes';
+import { webPageLd } from '../lib/jsonld';
+import { filledPage, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
 interface Props {
@@ -17,6 +19,8 @@ interface Props {
 
 const { lang } = Astro.props;
 const d = t(lang);
+const path = pagePath('home', lang);
+const text = filledPage(textPage(path)); // title and description of the stage 5 text (spec stage 6 §5)
 const formats = [
   ...(lang === 'en' ? [{ href: pagePath('one_card', lang), name: d.fmtOneCard, hint: d.fmtOneCardHint }] : []),
   { href: pagePath('yes_no', lang), name: d.fmtYesNo, hint: d.fmtYesNoHint },
@@ -26,7 +30,8 @@ const formats = [
 const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => cardById(id)!);
 const steps = [d.howStep1, d.howStep2, d.howStep3];
 ---
-<Base lang={lang} title={d.homeTitle} path={pagePath('home', lang)} current="home">
+<Base lang={lang} title={text.title} description={text.description} path={path} current="home"
+  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang })]}>
   <HomeNotice client:load lang={lang} />
   <div class="tool-layout">
     <section class="page-hero">

@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import ReadingIsland from '../islands/ReadingIsland';
 import { t, type DictKey } from '../i18n';
 import { pagePath } from '../lib/routes';
+import { webPageLd } from '../lib/jsonld';
+import { filledPage, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
 type ToolPage = 'one_card' | 'yes_no' | 'love';
@@ -21,8 +23,12 @@ const COPY: Record<ToolPage, { title: DictKey; eyebrow: DictKey; h1: DictKey; le
   love: { title: 'loveTitle', eyebrow: 'loveEyebrow', h1: 'loveH1', lead: 'loveLead', note: 'loveNote' },
 };
 const copy = COPY[page];
+const path = pagePath(page, lang);
+const text = filledPage(textPage(path)); // title and description of the stage 5 text (spec stage 6 §5)
 ---
-<Base lang={lang} title={d[copy.title]} path={pagePath(page, lang)} current={page === 'one_card' ? undefined : page}>
+<Base lang={lang} title={text.title} description={text.description} path={path}
+  current={page === 'one_card' ? undefined : page}
+  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang })]}>
   <div class="tool-layout">
     <section class="page-hero">
       <p class="eyebrow">{d[copy.eyebrow]}</p>
