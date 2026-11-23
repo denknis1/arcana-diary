@@ -116,6 +116,7 @@ def test_deleting_the_account_removes_everything_at_once(api, caplog):
         response = delete_account(api, confirm="DELETE")
     assert response.status_code == 200 and response.json() == {"deleted": True}
     assert "Supabase user was not deleted" in caplog.text  # SUPABASE_URL is set, the test database has no auth
+    assert str(ANA) not in caplog.text  # stage 4.9: the error line carries no account id
     assert count(api, "SELECT count(*) AS n FROM deleted_accounts WHERE user_id = %s", ANA) == 1
     assert count(api, "SELECT count(*) AS n FROM readings WHERE user_id = %s", ANA) == 0
     for table in ("followups", "claim_tokens", "plus_waitlist"):

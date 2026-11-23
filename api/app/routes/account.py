@@ -102,6 +102,6 @@ def delete_account(body: AccountDelete, request: Request):
         counts = account_repo.delete_account(conn, who.user.id, who.user.email, ctx.clock())
     log.info("account deleted: %s", counts)  # counts only: no id, no e-mail
     if ctx.settings.supabase_url and counts.get("auth_users") != 1:  # Fable M2: never a silent half-deletion
-        log.error("account %s deleted here, but its Supabase user was not deleted (auth.users: %s): delete it in"
-                  " Supabase → Authentication → Users", who.user.id, counts.get("auth_users"))
+        log.error("an account was deleted here, but its Supabase user was not deleted (auth.users: %s): find it in"
+                  " Supabase → Authentication → Users by the time of this line", counts.get("auth_users"))
     return respond(200, {"deleted": True})
