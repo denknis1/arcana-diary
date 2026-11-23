@@ -2,7 +2,7 @@
 
 - migrations at start, retried every 30 s while the database is unreachable (requests meanwhile get 503);
 - the hourly cleanup (CLEANUP_INTERVAL_S): expired guest readings with their follow-ups, expired claim tokens,
-  old deleted-account marks, follow-up crisis tombstones older than a day, stale counters and caches, old logs;
+  old deleted-account marks, follow-up crisis tombstones older than a day, stale counters and caches, old logs, events older than 13 months, Plus waitlist requests older than 12;
 - freeing follow-ups cut by a restart (no answer, stale) and giving paid ones back to their owner;
 - the card-of-the-day job (app.daily.daily_loop).
 """
@@ -21,6 +21,8 @@ KEEP_DAILY_CACHE_DAYS = 2
 KEEP_DAILY_DRAWS_DAYS = 7
 KEEP_LLM_CALLS_DAYS = 90      # no texts; enough for cost and latency reviews
 KEEP_GUARD_EVENTS_DAYS = 365  # counts only
+KEEP_EVENTS_DAYS = 396        # 13 months: owner decision 23.11.2026 (stage 4.9)
+KEEP_WAITLIST_DAYS = 365      # Plus waitlist requests: 12 months (stage 4.9)
 KEEP_TOMBSTONE_DAYS = 1       # follow-up crisis tombstones: owner decision 22.11.2026
 KEEP_DELETED_ACCOUNTS_DAYS = 8  # longer than the longest Supabase access token (7 days): stage 4.3 §8
 MIGRATE_RETRY_S = 30.0
@@ -45,6 +47,10 @@ def delete_expired(db: Database, now: datetime) -> dict[str, int]:
                                       (now - timedelta(days=KEEP_LLM_CALLS_DAYS),)).rowcount,
             "guard_events": conn.execute("DELETE FROM guard_events WHERE day < %s",
                                          (before(KEEP_GUARD_EVENTS_DAYS),)).rowcount,
+            "events": conn.execute("DELETE FROM events WHERE created_at < %s",
+                                   (now - timedelta(days=KEEP_EVENTS_DAYS),)).rowcount,
+            "plus_waitlist": conn.execute("DELETE FROM plus_waitlist WHERE created_at < %s",
+                                          (now - timedelta(days=KEEP_WAITLIST_DAYS),)).rowcount,
             "claim_tokens": conn.execute("DELETE FROM claim_tokens WHERE expires_at <= %s", (now,)).rowcount,
             "deleted_accounts": conn.execute("DELETE FROM deleted_accounts WHERE deleted_at < %s",
                                              (now - timedelta(days=KEEP_DELETED_ACCOUNTS_DAYS),)).rowcount,

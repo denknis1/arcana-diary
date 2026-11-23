@@ -1,5 +1,5 @@
 ---
-// Every page: language, title, fonts (Google Fonts: Cormorant Garamond 500/600, Manrope 400–700), tokens, the
+// Every page: language, title, fonts (our own, /fonts: Cormorant Garamond 500/600, Manrope 400–700; @font-face in global.css), tokens, the
 // header with the menu and the language switch, the footer. The stage is closed by Caddy (password, X-Robots-Tag).
 // `noindex`: the diary and the account (spec 4.4b §5, §6) — never indexed, also after the launch.
 import '../styles/tokens.css';
@@ -28,12 +28,6 @@ const d = t(lang);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap"
-    />
     <noscript><style>@media (max-width: 899px) { .site-nav { display: block; } .menu-button { display: none; } }</style></noscript>
   </head>
   <body>

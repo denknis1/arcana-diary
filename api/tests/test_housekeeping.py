@@ -54,7 +54,7 @@ def test_delete_stale_counters_caches_and_old_logs(db):
         repo.log_llm_call(conn, call(T0))
         repo.log_llm_call(conn, call(T0 - timedelta(days=91)))
     assert delete_expired(db, T0) == {"readings": 0, "usage": 1, "daily_cache": 1, "daily_draws": 1,
-                                      "llm_calls": 1, "guard_events": 1, "claim_tokens": 0, "deleted_accounts": 0,
+                                      "llm_calls": 1, "guard_events": 1, "events": 0, "plus_waitlist": 0, "claim_tokens": 0, "deleted_accounts": 0,
                                       "followup_tombstones": 0}
     assert (count(db, "usage"), count(db, "daily_cache"), count(db, "daily_draws")) == (1, 1, 1)
     assert (count(db, "guard_events"), count(db, "llm_calls")) == (1, 1)
@@ -296,3 +296,15 @@ def test_a_crashed_background_job_is_logged_at_once(db, monkeypatch, caplog):
 
     with caplog.at_level("ERROR", logger="arcana.housekeeping"):
         assert asyncio.run(scenario()) == (True, True)
+
+
+def test_delete_old_events_and_waitlist(db):
+    with db.connect() as conn:
+        for created in (T0, T0 - timedelta(days=400)):
+            conn.execute("INSERT INTO events (day, name, tool, lang, created_at) VALUES (%s, 'tool_view', 'home', 'en', %s)",
+                         (created.date(), created))
+        for email, created in (("new@example.com", T0 - timedelta(days=300)), ("old@example.com", T0 - timedelta(days=370))):
+            conn.execute("INSERT INTO plus_waitlist (email, lang, created_at) VALUES (%s, 'en', %s)", (email, created))
+    counts = delete_expired(db, T0)
+    assert (counts["events"], counts["plus_waitlist"]) == (1, 1)
+    assert (count(db, "events"), count(db, "plus_waitlist")) == (1, 1)
