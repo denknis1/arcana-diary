@@ -8,7 +8,7 @@
   "description": "Los 22 arcanos mayores del tarot, de El Loco (0) a El Mundo (XXI): qué significan, en qué orden van, el viaje del Loco y cómo leerlos en tu tirada. Abre una.",
   "h1": "Arcanos mayores: 22 cartas, un mismo camino",
   "lead": "Las cartas grandes del tarot, de El Loco a El Mundo. Cada una tiene su página con el dibujo de 1909, las palabras de Waite y el significado de hoy, al derecho y al revés.",
-  "capsule": "Los arcanos mayores son las 22 cartas del tarot que no pertenecen a ningún palo. Van del 0, El Loco, al XXI, El Mundo; en la baraja Rider-Waite-Smith La Fuerza es la VIII y La Justicia la XI. Hablan de los grandes temas y cambios de una etapa, y los 56 arcanos menores, de lo cotidiano.",
+  "capsule": "Los arcanos mayores son las 22 cartas del tarot que no pertenecen a ningún palo. Van del 0, El Loco, al XXI, El Mundo; en la baraja Rider–Waite–Smith La Fuerza es la VIII y La Justicia la XI. Hablan de los grandes temas y cambios de una etapa, y los 56 arcanos menores, de lo cotidiano.",
   "blocks": [
     {
       "id": "que-son",
@@ -32,7 +32,7 @@
       "id": "fuerza-y-justicia",
       "heading": "¿Por qué La Fuerza es la VIII y La Justicia la XI?",
       "paragraphs": [
-        "Si en tu baraja La Justicia lleva el VIII y La Fuerza el XI, tu baraja está bien. Waite escribe que él cambió una carta por la otra, que La Justicia por lo común llevaba el ocho y que no da explicaciones porque el cambio no le aporta nada a quien lee (p. 100).",
+        "Si en tu baraja La Justicia lleva el VIII y La Fuerza el XI, tu baraja está bien. Waite señala que esta carta se intercambió con la de La Justicia, que por lo común llevaba el ocho, y que no da explicaciones porque el cambio no le aporta nada a quien lee (p. 100).",
         "Los significados no se mueven con los números. La Fuerza sigue siendo fuerza interior, paciencia y valor sereno; La Justicia sigue siendo verdad, equilibrio y causa y efecto, lleve el número que lleve. En Arcana Diary respetamos el orden de las cartas de 1909: en la lista, La Fuerza va justo después de El Carro, y La Justicia, después de La Rueda de la Fortuna."
       ]
     },
@@ -48,7 +48,7 @@
       "id": "viaje-del-loco",
       "heading": "¿Qué es el viaje del Loco?",
       "paragraphs": [
-        "Es una forma moderna y muy popular de leer los arcanos mayores como una sola historia: El Loco, el viajero del 0, se va encontrando con cada una de las otras cartas. No es un esquema de Waite, que solo dejó dicho que el Loco significa el viaje hacia fuera (p. 161), pero ayuda a recordar el orden y a entender por qué cada carta está donde está.",
+        "Es una forma moderna y muy popular de leer los arcanos mayores como una sola historia: El Loco, el viajero del 0, se va encontrando con cada una de las otras cartas. No es un esquema de Waite, quien dice del Loco que significa el viaje hacia fuera (p. 161), pero ayuda a recordar el orden y a entender por qué cada carta está donde está.",
         "La primera fila, del I al VII, trata de salir al mundo. Con El Mago el viajero descubre que tiene recursos y habilidad; con Los Enamorados tiene que elegir según sus valores, y con El Carro arranca con voluntad propia, decidido a avanzar.",
         "La segunda fila, del VIII al XIV, mira hacia adentro. La Fuerza enseña que la paciencia puede más que la fuerza bruta, El Ermitaño se aparta para escucharse, La Rueda de la Fortuna recuerda que todo gira, La Muerte cierra una etapa para que otra empiece y La Templanza mezcla lo que quedó hasta encontrar equilibrio.",
         "La tercera fila, del XV al XXI, junta las cartas más duras y las más luminosas. El Diablo muestra los apegos que amarran, La Torre tira lo que estaba mal construido, y después vienen la calma de La Estrella, la alegría de El Sol y, al final, El Mundo, donde el ciclo se cierra y todo encaja.",
@@ -68,7 +68,7 @@
       "id": "varios-mayores",
       "heading": "¿Qué significa que salgan varios arcanos mayores?",
       "paragraphs": [
-        "Cuando en una tirada salen dos o tres arcanos mayores, el momento se siente más grande que una sola decisión: una mudanza de etapa, un cambio de rumbo, algo que te toca por dentro. No es una alarma; es una invitación a mirar el tema de fondo y no solo el detalle de esta semana.",
+        "Cuando en una tirada salen dos o tres arcanos mayores, muchos lectores sienten el momento más grande que una sola decisión: un cambio de etapa, un cambio de rumbo, algo que te toca por dentro. No es una alarma; es una invitación a mirar el tema de fondo y no solo el detalle de esta semana.",
         "Una tirada sin ninguna carta mayor tampoco es menos valiosa. Suele decir que la pregunta va de decisiones diarias que puedes acomodar tú, y muchas veces es la lectura más práctica de todas."
       ]
     },
@@ -84,7 +84,7 @@
       "id": "si-o-no",
       "heading": "¿Qué arcanos mayores dicen sí y cuáles dicen no?",
       "paragraphs": [
-        "Al derecho, la mayoría de los arcanos mayores se inclinan por el sí en Arcana Diary. La Muerte, El Diablo y La Torre se inclinan por el no, y unos cuantos responden «Todavía no está claro», entre ellos La Sacerdotisa, La Justicia y La Luna. Cualquier carta al revés, mayor o menor, se lee como «Todavía no está claro». En la página de sí o no puedes hacer tu pregunta y ver qué carta inclinó la respuesta."
+        "Al derecho, la mayoría de los arcanos mayores se inclinan por el sí en Arcana Diary; unos cuantos, por el no, y otros responden «Todavía no está claro». La página de cada carta dice hacia dónde se inclina y por qué. Cualquier carta al revés, mayor o menor, se lee como «Todavía no está claro». En la página de sí o no puedes hacer tu pregunta y ver qué carta inclinó la respuesta."
       ]
     },
     {
@@ -119,26 +119,94 @@
     },
     {
       "q": "¿Existe el arcano 22?",
-      "a": "No hay ninguna carta con el número 22. Los arcanos mayores suman 22 porque la cuenta empieza en el 0, con El Loco, y termina en el XXI, con El Mundo. Si ves a El Loco con un 22 en otro lado, es otra forma de contar la misma carta."
+      "a": "No hay ninguna carta con el número 22. Los arcanos mayores suman 22 porque la cuenta empieza en el 0, con El Loco, y termina en el XXI, con El Mundo. Si ves un 22 en otra fuente, es otra manera de numerar las mismas cartas, no una carta más."
     }
   ],
   "intents": [
-    {"q": "¿cuáles son los 22 arcanos mayores del tarot?", "source": "[PAA]", "answered_in": "faq:0"},
-    {"q": "cuáles son los 22 arcanos mayores del tarot", "source": "[Ahrefs] 50", "answered_in": "faq:0"},
-    {"q": "¿cuáles son los 11 arcanos mayores?", "source": "[PAA]", "answered_in": "faq:1"},
-    {"q": "¿cuáles son los 9 arcanos mayores?", "source": "[PAA]", "answered_in": "faq:2"},
-    {"q": "¿cómo saber cuál es mi arcano mayor?", "source": "[PAA]", "answered_in": "mi-arcano"},
-    {"q": "cómo saber cuál es tu carta del tarot", "source": "[H2 vogue]", "answered_in": "mi-arcano"},
-    {"q": "cuantos arcanos mayores hay", "source": "[Ahrefs] 300", "answered_in": "capsule"},
-    {"q": "cuántos arcanos mayores hay", "source": "[Ahrefs] 90", "answered_in": "cuantos-y-orden"},
-    {"q": "cuantos arcanos mayores hay en el tarot", "source": "[Ahrefs] 60", "answered_in": "cuantos-y-orden"},
-    {"q": "cuales son los arcanos mayores del tarot", "source": "[Ahrefs] 80", "answered_in": "que-son"},
-    {"q": "cuales son los arcanos mayores", "source": "[Ahrefs] 70", "answered_in": "que-son"},
-    {"q": "22 arcanos mayores", "source": "[карта страниц]", "answered_in": "cuantos-y-orden"},
-    {"q": "qué significa que salgan varios arcanos mayores", "source": "[H2 velvetastral]", "answered_in": "varios-mayores"},
-    {"q": "cómo leer los arcanos mayores invertidos", "source": "[H2 velvetastral]", "answered_in": "al-reves"},
-    {"q": "el viaje del loco", "source": "[H2 arcanojoyeria]", "answered_in": "viaje-del-loco"},
-    {"q": "por qué la fuerza es la 8 y la justicia la 11", "source": "[план, блок numbering]", "answered_in": "fuerza-y-justicia"},
-    {"q": "cuál es la carta más poderosa del tarot", "source": "[PAA EN-093, по образцу]", "answered_in": "faq:3"}
+    {
+      "q": "¿cuáles son los 22 arcanos mayores del tarot?",
+      "source": "[PAA]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "cuáles son los 22 arcanos mayores del tarot",
+      "source": "[Ahrefs] 50",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "¿cuáles son los 11 arcanos mayores?",
+      "source": "[PAA]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "¿cuáles son los 9 arcanos mayores?",
+      "source": "[PAA]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "¿cómo saber cuál es mi arcano mayor?",
+      "source": "[PAA]",
+      "answered_in": "mi-arcano"
+    },
+    {
+      "q": "cómo saber cuál es tu carta del tarot",
+      "source": "[H2 vogue]",
+      "answered_in": "mi-arcano"
+    },
+    {
+      "q": "cuantos arcanos mayores hay",
+      "source": "[Ahrefs] 300",
+      "answered_in": "capsule"
+    },
+    {
+      "q": "cuántos arcanos mayores hay",
+      "source": "[Ahrefs] 90",
+      "answered_in": "cuantos-y-orden"
+    },
+    {
+      "q": "cuantos arcanos mayores hay en el tarot",
+      "source": "[Ahrefs] 60",
+      "answered_in": "cuantos-y-orden"
+    },
+    {
+      "q": "cuales son los arcanos mayores del tarot",
+      "source": "[Ahrefs] 80",
+      "answered_in": "que-son"
+    },
+    {
+      "q": "cuales son los arcanos mayores",
+      "source": "[Ahrefs] 70",
+      "answered_in": "que-son"
+    },
+    {
+      "q": "22 arcanos mayores",
+      "source": "[карта страниц]",
+      "answered_in": "cuantos-y-orden"
+    },
+    {
+      "q": "qué significa que salgan varios arcanos mayores",
+      "source": "[H2 velvetastral]",
+      "answered_in": "varios-mayores"
+    },
+    {
+      "q": "cómo leer los arcanos mayores invertidos",
+      "source": "[H2 velvetastral]",
+      "answered_in": "al-reves"
+    },
+    {
+      "q": "el viaje del loco",
+      "source": "[H2 arcanojoyeria]",
+      "answered_in": "viaje-del-loco"
+    },
+    {
+      "q": "por qué la fuerza es la 8 y la justicia la 11",
+      "source": "[план, блок numbering]",
+      "answered_in": "fuerza-y-justicia"
+    },
+    {
+      "q": "cuál es la carta más poderosa del tarot",
+      "source": "[PAA EN-093, по образцу]",
+      "answered_in": "faq:3"
+    }
   ]
 }

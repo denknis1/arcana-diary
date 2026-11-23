@@ -5,7 +5,7 @@
   "url": "/love",
   "status": "draft",
   "title": "Love Tarot Reading: Free Three-Card Spread for Your Heart",
-  "description": "Three cards on your love life: past, present and next step, read with each card's love meaning. Pick single, together or after a breakup. Draw for love.",
+  "description": "Three cards on your love life: past, present and next step, read with each card's love meaning. Pick your situation, or leave it open. Draw for love.",
   "h1": "Love tarot reading: what does your heart need?",
   "lead": "Three cards about you and your relationship, read with each card's love meaning. Pick your situation if you like, and ask about what you can feel, say or do.",
   "capsule": null,
@@ -30,12 +30,13 @@
     },
     {
       "id": "situations",
-      "heading": "Single, together, after a breakup, or it's complicated",
+      "heading": "Single, in a relationship, after a breakup, or it's complicated",
       "paragraphs": [
-        "Pick “single” and the cards are read around what you want, what holds you back and how you can meet people in a way that feels like you. The reading won't name a person or a time, but it can show what you are ready for. Questions that suit it: “What am I looking for now?”, “Which pattern do I keep repeating?”",
-        "With “in a relationship” the reading looks at what you bring, what is strained or growing between the two of you, and one step you can take toward your partner. Cards such as the Ten of Cups or the Two of Cups read as warmth and partnership; the Five of Wands as competing to be heard or to be right; the Three of Swords as words that hurt and need talking through.",
-        "“After a breakup” turns the reading toward what you carry out of it and how you find your footing again, not toward whether the other person returns. Hard cards here, like the Three of Swords or the Five of Cups, name heartache and sorrow plainly. They describe a stage you are in, not one that has to last; reversed, both are often read as pain that is starting to ease.",
-        "“It's complicated” covers the rest: a crush, someone who isn't free, an on-and-off connection. The reader then keeps to what is in your hands: what you want, what you are willing to accept, and what you would say if you were being fully honest."
+        "The chip tells the reader where you stand and shapes the advice; nothing else about your life is assumed. Here is what each one suits.",
+        "“Single” suits questions about what you want and what holds you back: “What am I looking for now?”, “Which pattern do I keep repeating?” The reading won't name a person or a time.",
+        "With “in a relationship”, ask about what you bring and what is strained or growing between you: “How can I feel closer to my partner?” Cards such as the Ten of Cups or the Two of Cups read as warmth and partnership; the Five of Wands as competing to be heard or to be right; the Three of Swords as words that hurt and need talking through.",
+        "“After a breakup” suits questions about what you carry out of it and how you find your footing again, not whether the other person returns. Hard cards here, like the Three of Swords or the Five of Cups, name heartache and sorrow plainly. They describe a stage you are in, not one that has to last; reversed, both are often read as pain that is starting to ease.",
+        "“It's complicated” covers the rest: a crush, someone who isn't free, an on-and-off connection. Questions that keep to what is in your hands work best: what you want, what you are willing to accept, and what you would say if you were being fully honest."
       ]
     },
     {
@@ -44,7 +45,7 @@
       "paragraphs": [
         "It won't read another person's mind, promise a reunion or set a date for anything. A confident claim about someone else's heart is a guess, and acting on a guess about a real person can lead to choices you wouldn't make with a clear head. That is why the reader stays on your side of the story, even when you ask about theirs.",
         "What a love reading can do is make your own side clearer: what you want, what you fear, what you have been avoiding saying. That is the part of a relationship you can change, and it is usually where the next step is.",
-        "Keep the reading in your diary and return to it once things have moved, to note how they went. People ask about love more than anything else, and often the same question in new words. A record of what you asked, what the cards said and what happened is the clearest way to see your own pattern."
+        "Keep the reading in your diary and return to it once things have moved, to note how they went. Love questions often come back in new words. A record of what you asked, what the cards said and what happened is the clearest way to see your own pattern."
       ]
     }
   ],
@@ -55,7 +56,7 @@
     },
     {
       "q": "What is he thinking about me?",
-      "a": "The love reading won't guess another person's thoughts. It reads your side instead, and the step it suggests is often the simplest one: asking him directly, in your own words."
+      "a": "The love reading won't guess another person's thoughts. It reads your side instead, and the step it suggests is often the simplest one: asking the person directly, in your own words."
     },
     {
       "q": "Can I ask a yes or no love question?",
@@ -139,11 +140,6 @@
       "q": "when the question is about two people",
       "source": "[H2 onecardtarot.online]",
       "answered_in": "questions"
-    },
-    {
-      "q": "love tarot after a breakup",
-      "source": "[разбор EN-011: чего никто не делает]",
-      "answered_in": "situations"
     },
     {
       "q": "what the love tarot spread positions mean",

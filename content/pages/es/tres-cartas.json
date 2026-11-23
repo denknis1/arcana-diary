@@ -25,7 +25,7 @@
       "heading": "¿Cómo leer las tres cartas juntas?",
       "paragraphs": [
         "Leer carta por carta es el primer paso, pero la tirada cobra sentido cuando la ves como una historia. Fíjate en qué cambia de la primera a la tercera: ¿la escena se aligera o se carga?, ¿hay movimiento o todo está quieto?, ¿la carta del presente frena lo que traía el pasado o lo continúa?",
-        "Mira también lo que se repite. En las lecturas modernas, cada palo tiene su terreno: las Copas, las emociones y los vínculos; los Bastos, el impulso y los proyectos; las Espadas, las ideas y los conflictos; los Oros, el trabajo, el dinero y lo concreto. Si dos cartas comparten palo, ese terreno pesa más en tu pregunta. Si salen dos o tres arcanos mayores, el tema toca algo grande para ti.",
+        "Mira también lo que se repite. En las lecturas modernas, cada palo tiene su terreno: las Copas, las emociones y los vínculos; los Bastos, el impulso y los proyectos; las Espadas, las ideas y los conflictos; los Oros, el trabajo, el dinero y lo concreto. Si dos cartas comparten palo, ese terreno pesa más en tu pregunta. Si salen dos o tres arcanos mayores, muchos lectores lo toman como señal de que el tema pesa mucho para ti.",
         "Una carta al revés no arruina a las otras dos. Suele marcar dónde se atora la historia: si el pasado sale de cabeza, algo de atrás no terminó de cerrarse; si es el siguiente paso, el camino pide primero quitar un estorbo. Léela como parte del relato, no como mala noticia.",
         "Al final, busca la carta que da la clave. A veces es la del presente; a veces la tercera, que pone en palabras lo que la tirada te pide. En la lectura que recibes, después de las tres cartas vienen una o dos frases que las unen y luego una acción pequeña para los próximos días."
       ]
@@ -55,8 +55,8 @@
       "a": "Las que tienen historia: algo que viene de atrás y todavía no se resuelve. «¿Qué necesito entender de esta etapa en mi trabajo?», «¿Cómo llevo mejor la relación con mi familia?», «¿Qué me frena con este cambio?». Si lo que buscas es una inclinación hacia un lado, mejor usa el sí o no."
     },
     {
-      "q": "¿Sirve para amor, dinero y salud?",
-      "a": "Para el amor, sí, y existe una tirada del amor que lee la parte amorosa de cada carta. Con el dinero, las cartas hablan de cómo vives la decisión, no de ganancias, y no son un consejo financiero. Sobre salud la lectura no pronostica nada: habla de cómo cargas la situación."
+      "q": "¿Sirve para preguntas de amor, dinero o trabajo?",
+      "a": "Para el amor, sí, y existe una tirada del amor que lee la parte amorosa de cada carta. Con el trabajo, la lectura mira cómo vives la situación y qué paso sí depende de ti. Con el dinero, las cartas hablan de cómo vives la decisión, no de ganancias, y no son un consejo financiero."
     },
     {
       "q": "¿Por qué no usan la baraja española ni el tarot de Marsella?",
@@ -72,19 +72,75 @@
     }
   ],
   "intents": [
-    {"q": "¿cómo leer el tarot con 3 cartas?", "source": "[PAA]", "answered_in": "faq:0"},
-    {"q": "tarot gratis 3 cartas", "source": "[карта страниц] 2 400", "answered_in": "faq:1"},
-    {"q": "tirada de 3 cartas gratis", "source": "[карта страниц]", "answered_in": "posiciones"},
-    {"q": "tarot 3 cartas gratis", "source": "[карта страниц]", "answered_in": "faq:1"},
-    {"q": "pasado, presente y futuro", "source": "[title tarotime, tarotia]", "answered_in": "posiciones"},
-    {"q": "qué representa cada carta en la tirada de 3 cartas", "source": "[H2 tarotamigo]", "answered_in": "posiciones"},
-    {"q": "cómo leer las tres cartas juntas", "source": "[40-tools-serp-study] ES-099, «чего никто не делает»", "answered_in": "juntas"},
-    {"q": "para qué sirve el tarot gratis de 3 cartas", "source": "[H2 tarotamigo]", "answered_in": "ejemplo"},
-    {"q": "preguntas para una tirada de 3 cartas", "source": "[H2 tarotia]", "answered_in": "faq:2"},
-    {"q": "tarot gratis 3 cartas: amor, dinero y salud", "source": "[TikTok, поз.8]", "answered_in": "faq:3"},
-    {"q": "por qué la baraja española para una tirada de 3 cartas", "source": "[H2 tarotamigo]", "answered_in": "faq:4"},
-    {"q": "tarot de marsella con tres cartas", "source": "[title tiradastarotgratis]", "answered_in": "faq:4"},
-    {"q": "¿cuál es el mejor tarot gratis?", "source": "[PAA]", "answered_in": "faq:5"},
-    {"q": "¿dónde puedo encontrar chatgpt para leer tarot gratis en español?", "source": "[PAA]", "answered_in": "faq:6"}
+    {
+      "q": "¿cómo leer el tarot con 3 cartas?",
+      "source": "[PAA]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "tarot gratis 3 cartas",
+      "source": "[карта страниц] 2 400",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "tirada de 3 cartas gratis",
+      "source": "[карта страниц]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "tarot 3 cartas gratis",
+      "source": "[карта страниц]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "pasado, presente y futuro",
+      "source": "[title tarotime, tarotia]",
+      "answered_in": "posiciones"
+    },
+    {
+      "q": "qué representa cada carta en la tirada de 3 cartas",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "posiciones"
+    },
+    {
+      "q": "cómo leer las tres cartas juntas",
+      "source": "[40-tools-serp-study] ES-099, «чего никто не делает»",
+      "answered_in": "juntas"
+    },
+    {
+      "q": "para qué sirve el tarot gratis de 3 cartas",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "ejemplo"
+    },
+    {
+      "q": "preguntas para una tirada de 3 cartas",
+      "source": "[H2 tarotia]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "tarot gratis 3 cartas: amor, dinero y salud",
+      "source": "[TikTok, поз.8]",
+      "answered_in": "faq:3"
+    },
+    {
+      "q": "por qué la baraja española para una tirada de 3 cartas",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "tarot de marsella con tres cartas",
+      "source": "[title tiradastarotgratis]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "¿cuál es el mejor tarot gratis?",
+      "source": "[PAA]",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "¿dónde puedo encontrar chatgpt para leer tarot gratis en español?",
+      "source": "[PAA]",
+      "answered_in": "faq:6"
+    }
   ]
 }

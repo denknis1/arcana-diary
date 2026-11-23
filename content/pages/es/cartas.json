@@ -7,7 +7,7 @@
   "title": "Cartas del tarot: las 78 y su significado, una por una",
   "description": "Las 78 cartas del tarot: 22 arcanos mayores (0 a XXI) y 56 menores en cuatro palos. Significado al derecho, carta invertida, amor y trabajo. Elige tu carta.",
   "h1": "Cartas del tarot: toda la baraja, carta por carta",
-  "lead": "Cada una de las 78 cartas de la baraja Rider-Waite-Smith de 1909 tiene aquí su propia página: lo que muestra el dibujo, lo que escribió Waite en 1911 y cómo se lee hoy, al derecho y al revés.",
+  "lead": "Cada una de las 78 cartas de la baraja Rider–Waite–Smith de 1909 tiene aquí su propia página: lo que muestra el dibujo, lo que escribió Waite en 1911 y cómo se lee hoy, al derecho y al revés.",
   "capsule": "Una baraja de tarot completa trae 78 cartas. Hay 22 arcanos mayores, que llevan números romanos desde el 0 (El Loco) hasta el XXI (El Mundo), y 56 arcanos menores en cuatro palos —Bastos, Copas, Espadas, Oros—, cada uno con cartas del As al Diez más Sota, Caballero, Reina y Rey.",
   "blocks": [
     {
@@ -64,10 +64,10 @@
     },
     {
       "id": "que-baraja",
-      "heading": "¿Qué baraja usamos: Rider-Waite o Marsella?",
+      "heading": "¿Qué baraja usamos: Rider–Waite o Marsella?",
       "paragraphs": [
-        "Las cartas de este sitio son escaneos de una impresión de 1909 de la baraja Rider-Waite-Smith, dibujada por Pamela Colman Smith. Arthur Edward Waite explicó sus significados en The Pictorial Key to the Tarot, publicado en 1911. No es el Tarot de Marsella.",
-        "Si estudias con una baraja de Marsella, muchos nombres te van a sonar, pero los dibujos no son los mismos, y los significados de estas páginas están pensados para la Rider-Waite-Smith. Lo más útil es leer cada baraja con su propia guía y no mezclar las dos en una misma tirada."
+        "Las cartas de este sitio son escaneos de una impresión de 1909 de la baraja Rider–Waite–Smith, dibujada por Pamela Colman Smith. Arthur Edward Waite explicó sus significados en The Pictorial Key to the Tarot, publicado en 1911. No es el Tarot de Marsella.",
+        "Si estudias con una baraja de Marsella, muchos nombres te van a sonar, pero los dibujos no son los mismos, y los significados de estas páginas están pensados para la Rider–Waite–Smith. Lo más útil es leer cada baraja con su propia guía y no mezclar las dos en una misma tirada."
       ]
     },
     {
@@ -102,25 +102,79 @@
     },
     {
       "q": "¿Necesito mi propia baraja para leer el tarot?",
-      "a": "No para empezar: aquí la tirada se hace en línea con la baraja de 1909, y puedes hacer {guest_limit} tiradas al día sin registrarte. Si después quieres una baraja física, elige una Rider-Waite-Smith para que los dibujos coincidan con estas páginas."
+      "a": "No para empezar: aquí la tirada se hace en línea con la baraja de 1909, y puedes hacer {guest_limit} tiradas al día sin registrarte. Si después quieres una baraja física, elige una Rider–Waite–Smith para que los dibujos coincidan con estas páginas."
     }
   ],
   "intents": [
-    {"q": "cuantas cartas tiene el tarot", "source": "[Ahrefs] 1 000", "answered_in": "capsule"},
-    {"q": "cuantas cartas del tarot son", "source": "[Ahrefs] 200", "answered_in": "faq:0"},
-    {"q": "¿cuáles son las 22 cartas del tarot?", "source": "[PAA]", "answered_in": "faq:2"},
-    {"q": "¿cuáles son las 12 cartas del tarot?", "source": "[PAA]", "answered_in": "faq:1"},
-    {"q": "¿cómo se llaman las 78 cartas del tarot?", "source": "[PAA]", "answered_in": "faq:4"},
-    {"q": "¿qué significa cada una de las cartas del tarot?", "source": "[PAA]", "answered_in": "pagina-de-cada-carta"},
-    {"q": "cuales son las cartas del tarot", "source": "[Ahrefs] 60", "answered_in": "que-son"},
-    {"q": "como leer las cartas del tarot", "source": "[Ahrefs] 150", "answered_in": "para-una-pregunta"},
-    {"q": "como se leen las cartas del tarot", "source": "[Ahrefs] 80", "answered_in": "para-una-pregunta"},
-    {"q": "como interpretar las cartas del tarot", "source": "[Ahrefs] 60", "answered_in": "como-leer"},
-    {"q": "significado de las 78 cartas del tarot de marsella", "source": "[карта страниц]", "answered_in": "que-baraja"},
-    {"q": "cuántos tipos de cartas hay en el tarot", "source": "[Instagram, источник AIO]", "answered_in": "faq:3"},
-    {"q": "cómo leer las cartas con esta guía", "source": "[H2 darkforest]", "answered_in": "para-una-pregunta"},
-    {"q": "tu mazo importa", "source": "[H2 darkforest]", "answered_in": "faq:5"},
-    {"q": "palos del tarot y su significado", "source": "[план, блок «Arcanos menores y sus palos»]", "answered_in": "arcanos-menores"},
-    {"q": "figuras de la corte en el tarot", "source": "[план, блок «Figuras de la corte»]", "answered_in": "figuras-de-la-corte"}
+    {
+      "q": "cuantas cartas tiene el tarot",
+      "source": "[Ahrefs] 1 000",
+      "answered_in": "capsule"
+    },
+    {
+      "q": "cuantas cartas del tarot son",
+      "source": "[Ahrefs] 200",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "¿cuáles son las 22 cartas del tarot?",
+      "source": "[PAA]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "¿cuáles son las 12 cartas del tarot?",
+      "source": "[PAA]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "¿cómo se llaman las 78 cartas del tarot?",
+      "source": "[PAA]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "¿qué significa cada una de las cartas del tarot?",
+      "source": "[PAA]",
+      "answered_in": "pagina-de-cada-carta"
+    },
+    {
+      "q": "cuales son las cartas del tarot",
+      "source": "[Ahrefs] 60",
+      "answered_in": "que-son"
+    },
+    {
+      "q": "como leer las cartas del tarot",
+      "source": "[Ahrefs] 150",
+      "answered_in": "para-una-pregunta"
+    },
+    {
+      "q": "como se leen las cartas del tarot",
+      "source": "[Ahrefs] 80",
+      "answered_in": "para-una-pregunta"
+    },
+    {
+      "q": "como interpretar las cartas del tarot",
+      "source": "[Ahrefs] 60",
+      "answered_in": "como-leer"
+    },
+    {
+      "q": "significado de las 78 cartas del tarot de marsella",
+      "source": "[карта страниц]",
+      "answered_in": "que-baraja"
+    },
+    {
+      "q": "cuántos tipos de cartas hay en el tarot",
+      "source": "[Instagram, источник AIO]",
+      "answered_in": "faq:3"
+    },
+    {
+      "q": "palos del tarot y su significado",
+      "source": "[план, блок «Arcanos menores y sus palos»]",
+      "answered_in": "arcanos-menores"
+    },
+    {
+      "q": "figuras de la corte en el tarot",
+      "source": "[план, блок «Figuras de la corte»]",
+      "answered_in": "figuras-de-la-corte"
+    }
   ]
 }

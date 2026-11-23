@@ -58,7 +58,7 @@
   "faq": [
     {
       "q": "Is this tarot reading really free?",
-      "a": "Yes. You can draw {guest_limit} readings a day without signing in and {user_limit} after you sign in, each with {followups} free follow-up questions. The Card of the Day is free every day, and nothing asks for payment details."
+      "a": "Yes. You can draw {guest_limit} readings a day without signing in and {user_limit} after you sign in, each with {followups} free follow-up questions. The Card of the Day is free every day and does not count toward those readings."
     },
     {
       "q": "Is a free online tarot reading accurate?",
@@ -73,12 +73,12 @@
       "a": "Tarot is 78 pictures, each with an agreed meaning. You draw at random, and the meaning of each card you get becomes a prompt to see your situation from its angle. Its practical value is simple: it slows you down and gives you words for what you feel."
     },
     {
-      "q": "Are tarot cards evil?",
-      "a": "No. Tarot cards are printed pictures with traditional meanings, and nothing in a deck can harm you. No card is a bad omen: even the hardest ones speak of pressure, an ending or a change."
+      "q": "Do I need to sign up to get a reading?",
+      "a": "No. You can draw {guest_limit} readings a day without an account. Signing in raises the limit to {user_limit} a day and lets you save your readings to a diary."
     },
     {
       "q": "Can I get a free yes or no or love reading here?",
-      "a": "Yes. The yes or no tool gives a lean from one or three cards and shows which card tipped it. The love spread looks at your relationship or your search for one, using each card's love meaning. Both share the same deck and daily readings."
+      "a": "Yes. The yes or no tool gives a lean from one or three cards and shows which card tipped it. The love spread looks at your relationship or your search for one, using each card's love meaning. Both use the same 78-card deck and count toward the same daily readings."
     }
   ],
   "intents": [
@@ -113,16 +113,6 @@
       "answered_in": "faq:3"
     },
     {
-      "q": "are tarot cards evil",
-      "source": "[Ahrefs, тема]",
-      "answered_in": "faq:4"
-    },
-    {
-      "q": "what are tarot cards",
-      "source": "[Ahrefs, тема]",
-      "answered_in": "deck"
-    },
-    {
       "q": "free tarot reading yes or no",
       "source": "[Ahrefs]",
       "answered_in": "faq:5"
@@ -146,16 +136,6 @@
       "q": "who will i marry tarot free reading",
       "source": "[Ahrefs]",
       "answered_in": "limits"
-    },
-    {
-      "q": "what to ask in a tarot reading (beginner)",
-      "source": "[разбор EN-001: чего никто не делает]",
-      "answered_in": "ask"
-    },
-    {
-      "q": "who reads the cards: a person, an AI or random",
-      "source": "[разбор EN-001: чего никто не делает]",
-      "answered_in": "faq:2"
     }
   ]
 }

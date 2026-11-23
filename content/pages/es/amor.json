@@ -80,19 +80,70 @@
     }
   ],
   "intents": [
-    {"q": "tarot del amor gratis", "source": "[карта страниц]", "answered_in": "faq:0"},
-    {"q": "tarot certero gratis futuro inmediato amor", "source": "[карта страниц]", "answered_in": "faq:6"},
-    {"q": "tarot gratis 3 cartas amor", "source": "[карта страниц]", "answered_in": "que-muestra"},
-    {"q": "tarot si o no del amor", "source": "[Ahrefs MX] 80", "answered_in": "faq:5"},
-    {"q": "tarot del amor si o no", "source": "[Ahrefs MX] 30", "answered_in": "faq:5"},
-    {"q": "cual es la carta del amor en el tarot", "source": "[Ahrefs MX] 10", "answered_in": "faq:1"},
-    {"q": "tarot del amor gratis que siente por mi", "source": "[Ahrefs MX] 0", "answered_in": "faq:2"},
-    {"q": "que significa el colgado en el tarot del amor", "source": "[Ahrefs MX] 0", "answered_in": "faq:3"},
-    {"q": "qué siente por ti ahora mismo según las cartas", "source": "[H2 tarotamigo]", "answered_in": "que-no-dice"},
-    {"q": "tarot del amor con nombres", "source": "[H2 tarotamigo]", "answered_in": "faq:4"},
-    {"q": "qué puedes preguntar en una tirada del tarot del amor", "source": "[H2 tarotamigo]", "answered_in": "que-preguntar"},
-    {"q": "cuando el amor no llega, qué puede revelarte", "source": "[H2 tarotamigo]", "answered_in": "situaciones"},
-    {"q": "tarot y amor: los 22 arcanos mayores", "source": "[tarotnova, источник AIO]", "answered_in": "faq:1"},
-    {"q": "tarot del amor después de una ruptura", "source": "[ES-009, «Situations» в плане 50]", "answered_in": "situaciones"}
+    {
+      "q": "tarot del amor gratis",
+      "source": "[карта страниц]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "tarot certero gratis futuro inmediato amor",
+      "source": "[карта страниц]",
+      "answered_in": "faq:6"
+    },
+    {
+      "q": "tarot gratis 3 cartas amor",
+      "source": "[карта страниц]",
+      "answered_in": "que-muestra"
+    },
+    {
+      "q": "tarot si o no del amor",
+      "source": "[Ahrefs MX] 80",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "tarot del amor si o no",
+      "source": "[Ahrefs MX] 30",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "cual es la carta del amor en el tarot",
+      "source": "[Ahrefs MX] 10",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "tarot del amor gratis que siente por mi",
+      "source": "[Ahrefs MX] 0",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "que significa el colgado en el tarot del amor",
+      "source": "[Ahrefs MX] 0",
+      "answered_in": "faq:3"
+    },
+    {
+      "q": "qué siente por ti ahora mismo según las cartas",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "que-no-dice"
+    },
+    {
+      "q": "tarot del amor con nombres",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "qué puedes preguntar en una tirada del tarot del amor",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "que-preguntar"
+    },
+    {
+      "q": "cuando el amor no llega, qué puede revelarte",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "situaciones"
+    },
+    {
+      "q": "tarot del amor después de una ruptura",
+      "source": "[ES-009, «Situations» в плане 50]",
+      "answered_in": "situaciones"
+    }
   ]
 }

@@ -114,16 +114,6 @@
       "q": "daily love tarot reading",
       "source": "[horoscope.com, поз.10]",
       "answered_in": "faq:4"
-    },
-    {
-      "q": "same tarot card of the day again",
-      "source": "[разбор EN-006: чего никто не делает]",
-      "answered_in": "repeat"
-    },
-    {
-      "q": "how to check the daily card in the evening",
-      "source": "[разбор EN-006: чего никто не делает]",
-      "answered_in": "use"
     }
   ]
 }

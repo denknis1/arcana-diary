@@ -17,7 +17,7 @@
         "Primero escribes tu pregunta, si quieres; también puedes dejar el espacio en blanco y sacar las cartas para ver el momento que vives. Luego eliges entre tres cartas, la tirada de siempre, o una sola, para algo rápido. El sitio baraja las 78 cartas al azar y las pone boca abajo sobre la mesa. Se voltean una por una, y cada una puede salir al derecho o al revés con la misma probabilidad.",
         "Con tres cartas, cada una ocupa un lugar. El pasado muestra lo que ha ido formando la situación; el presente, lo que pasa ahora; el siguiente paso, hacia dónde podría ir la cosa si nada cambia. Es una posibilidad, no un destino. Con una carta, la lectura se concentra en tu pregunta tal como está hoy.",
         "La lectura la escribe una inteligencia artificial que trabaja solo con nuestra base de significados: qué quiere decir cada carta al derecho y al revés, cómo se lee en el amor y qué consejo da. No agrega símbolos de su cosecha ni trae ideas de otras barajas. Recibes un titular corto, unas líneas sobre cada carta, lo que dicen juntas y una acción pequeña para hoy o esta semana.",
-        "Si algo no te quedó claro, tienes {followups} preguntas de seguimiento gratis sobre la misma tirada; a partir de ahí, cada pregunta extra usa una de tus lecturas del día. Puedes hacer {guest_limit} lecturas diarias sin registrarte y {user_limit} si entras con tu correo o con Google. Con sesión iniciada guardas la tirada en tu diario y después marcas si se cumplió, en parte o no; el diario gratis muestra tus {diary_free} tiradas más recientes."
+        "Si algo no te quedó claro, tienes {followups} preguntas de seguimiento gratis sobre la misma tirada; a partir de ahí, cada pregunta extra usa una de tus lecturas del día. Puedes hacer {guest_limit} lecturas diarias sin registrarte y {user_limit} si entras con tu correo. Con sesión iniciada guardas la tirada en tu diario y después marcas si se cumplió, en parte o no; el diario gratis muestra tus {diary_free} tiradas más recientes."
       ]
     },
     {
@@ -85,20 +85,80 @@
     }
   ],
   "intents": [
-    {"q": "tarot gratis", "source": "[карта страниц] ES-001, главный запрос", "answered_in": "faq:0"},
-    {"q": "tarot online", "source": "[карта страниц]", "answered_in": "como-funciona"},
-    {"q": "que es el tarot", "source": "[Ahrefs MX] 1 300", "answered_in": "faq:1"},
-    {"q": "que es el tarot y para que sirve", "source": "[Ahrefs MX] 500", "answered_in": "faq:1"},
-    {"q": "cuantas cartas tiene el tarot", "source": "[Ahrefs MX] 1 000", "answered_in": "baraja"},
-    {"q": "como leer el tarot", "source": "[Ahrefs MX] 700", "answered_in": "faq:2"},
-    {"q": "¿cuál es el mejor tarot gratis?", "source": "[PAA]", "answered_in": "faq:3"},
-    {"q": "¿cuál es la mejor aplicación gratuita de tarot?", "source": "[PAA]", "answered_in": "faq:4"},
-    {"q": "¿dónde puedo encontrar ChatGPT para leer tarot gratis en español?", "source": "[PAA]", "answered_in": "chatgpt"},
-    {"q": "tirada completa gratis", "source": "[карта страниц]", "answered_in": "faq:5"},
-    {"q": "cómo hacer una buena pregunta de tarot", "source": "[H2 tarot.run]", "answered_in": "buena-pregunta"},
-    {"q": "cómo elegir una tirada", "source": "[H2 tarot.run]", "answered_in": "faq:5"},
-    {"q": "qué aporta una tirada completa frente a una corta", "source": "[H2 tarotamigo]", "answered_in": "faq:5"},
-    {"q": "tarot si o no", "source": "[Ahrefs MX] 4 000, соседний интент", "answered_in": "faq:5"},
-    {"q": "rider waite o marsella", "source": "[40-tools-serp-study] ES-001, «чего никто не делает»", "answered_in": "baraja"}
+    {
+      "q": "tarot gratis",
+      "source": "[карта страниц] ES-001, главный запрос",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "tarot online",
+      "source": "[карта страниц]",
+      "answered_in": "como-funciona"
+    },
+    {
+      "q": "que es el tarot",
+      "source": "[Ahrefs MX] 1 300",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "que es el tarot y para que sirve",
+      "source": "[Ahrefs MX] 500",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "cuantas cartas tiene el tarot",
+      "source": "[Ahrefs MX] 1 000",
+      "answered_in": "baraja"
+    },
+    {
+      "q": "como leer el tarot",
+      "source": "[Ahrefs MX] 700",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "¿cuál es el mejor tarot gratis?",
+      "source": "[PAA]",
+      "answered_in": "faq:3"
+    },
+    {
+      "q": "¿cuál es la mejor aplicación gratuita de tarot?",
+      "source": "[PAA]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "¿dónde puedo encontrar ChatGPT para leer tarot gratis en español?",
+      "source": "[PAA]",
+      "answered_in": "chatgpt"
+    },
+    {
+      "q": "tirada completa gratis",
+      "source": "[карта страниц]",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "cómo hacer una buena pregunta de tarot",
+      "source": "[H2 tarot.run]",
+      "answered_in": "buena-pregunta"
+    },
+    {
+      "q": "cómo elegir una tirada",
+      "source": "[H2 tarot.run]",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "qué aporta una tirada completa frente a una corta",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "tarot si o no",
+      "source": "[Ahrefs MX] 4 000, соседний интент",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "rider waite o marsella",
+      "source": "[40-tools-serp-study] ES-001, «чего никто не делает»",
+      "answered_in": "baraja"
+    }
   ]
 }

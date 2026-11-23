@@ -15,8 +15,8 @@
       "heading": "What the Major Arcana are",
       "paragraphs": [
         "Arcana means secrets, and these are the deck's 22 big ones. They have no suit and no court cards: each card is a single figure or scene with a name — The Magician, The Lovers, Death, The Moon — and a Roman numeral at the top. Waite calls them the Greater Arcana (p. 79) and also the Trumps Major (p. 287).",
-        "The difference from the rest of the deck fits in two lines. A Minor card describes a situation: a quarrel, a payday, a gift, a long night of worry. A Major card describes the force behind it: a stretch of discipline, a loss of illusions, the hope that returns after a hard season. Minor cards are what fills your week; Major cards are what your season is about.",
-        "In the modern reading every Major card has a clear core. The Fool is a beginning taken on trust, The Emperor structure and authority, The Hermit solitude and reflection, Justice fairness and accountability, The Star hope and renewal. Each card's page gives its full meaning, upright and reversed, in love and work, and as advice."
+        "In the modern reading, the difference from the rest of the deck fits in two lines. A Minor card describes a situation: a quarrel, a payday, a gift, a long night of worry. A Major card describes the force behind it: a stretch of discipline, a loss of illusions, the hope that returns after a hard season. Minor cards are what fills your week; Major cards are what your season is about.",
+        "Every Major card also has a clear core. The Fool is a beginning taken on trust, The Emperor structure and authority, The Hermit solitude and reflection, Justice fairness and accountability, The Star hope and renewal. Each card's page gives its full meaning, upright and reversed, in love and work, and as advice."
       ]
     },
     {
@@ -59,7 +59,7 @@
       "id": "yes-or-no",
       "heading": "Major Arcana in a yes-or-no reading",
       "paragraphs": [
-        "Upright, most of the Majors lean yes on Arcana Diary. Death, The Devil and The Tower lean no, and a handful say not clear yet, among them The High Priestess, Justice and The Moon. Any reversed card, Major or Minor, reads as not clear yet. The yes or no card list explains the rule and gives every card's lean."
+        "Upright, most of the Majors lean yes on Arcana Diary, a few lean no and a handful say not clear yet. The Tower leans no and The High Priestess says not clear yet, for example. Any reversed card, Major or Minor, reads as not clear yet. The yes or no card list explains the rule and gives every card's lean."
       ]
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "q": "What is 22 in the Major Arcana?",
-      "a": "There is no card numbered 22. The count reaches 22 because it starts at zero with The Fool, so the last numeral is XXI, The World. If you see a 22 attached to The Fool somewhere, it is a different way of counting the same card."
+      "a": "There is no card numbered 22. The count reaches 22 because it starts at zero with The Fool, so the last numeral is XXI, The World. If you see a 22 beside The Fool somewhere, that source counts the deck differently; this site follows the 1909 card, which shows a 0."
     },
     {
       "q": "Are the Major Arcana bad cards?",
@@ -94,20 +94,75 @@
     }
   ],
   "intents": [
-    {"q": "what are the 22 major arcana cards?", "source": "[PAA]", "answered_in": "faq:0"},
-    {"q": "how many major arcana cards are there", "source": "[карта страниц]", "answered_in": "capsule"},
-    {"q": "how do i find my major arcana?", "source": "[PAA]", "answered_in": "your-card"},
-    {"q": "what's the most powerful tarot card?", "source": "[PAA]", "answered_in": "faq:1"},
-    {"q": "what is 22 in the major arcana?", "source": "[PAA]", "answered_in": "faq:2"},
-    {"q": "tarot card meanings major arcana", "source": "[карта страниц]", "answered_in": "what-they-are"},
-    {"q": "how would you describe each of the major arcana?", "source": "[reddit sitelink]", "answered_in": "what-they-are"},
-    {"q": "story of the major arcana", "source": "[reddit sitelink]", "answered_in": "fools-journey"},
-    {"q": "the fool's journey", "source": "[тема tarotcake]", "answered_in": "fools-journey"},
-    {"q": "history of the major arcana", "source": "[Википедия, sitelink]", "answered_in": "names-and-numbers"},
-    {"q": "why is strength 8 and justice 11 in tarot", "source": "[план, блок Strength and Justice numbering]", "answered_in": "strength-and-justice"},
-    {"q": "major arcana vs minor arcana", "source": "[разбор: «сравнение старших и младших в двух строчках»]", "answered_in": "what-they-are"},
-    {"q": "what does it mean when you get a lot of major arcana", "source": "[H2 velvetastral, ES-091]", "answered_in": "in-a-spread"},
-    {"q": "major arcana reversed meanings", "source": "[H2 velvetastral, ES-091]", "answered_in": "in-a-spread"},
-    {"q": "major arcana that mean yes, no and maybe", "source": "[H2 mysticmag, EN-009]", "answered_in": "yes-or-no"}
+    {
+      "q": "what are the 22 major arcana cards?",
+      "source": "[PAA]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "how many major arcana cards are there",
+      "source": "[карта страниц]",
+      "answered_in": "capsule"
+    },
+    {
+      "q": "how do i find my major arcana?",
+      "source": "[PAA]",
+      "answered_in": "your-card"
+    },
+    {
+      "q": "what's the most powerful tarot card?",
+      "source": "[PAA]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "what is 22 in the major arcana?",
+      "source": "[PAA]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "tarot card meanings major arcana",
+      "source": "[карта страниц]",
+      "answered_in": "what-they-are"
+    },
+    {
+      "q": "how would you describe each of the major arcana?",
+      "source": "[reddit sitelink]",
+      "answered_in": "what-they-are"
+    },
+    {
+      "q": "story of the major arcana",
+      "source": "[reddit sitelink]",
+      "answered_in": "fools-journey"
+    },
+    {
+      "q": "the fool's journey",
+      "source": "[тема tarotcake]",
+      "answered_in": "fools-journey"
+    },
+    {
+      "q": "history of the major arcana",
+      "source": "[Википедия, sitelink]",
+      "answered_in": "names-and-numbers"
+    },
+    {
+      "q": "why is strength 8 and justice 11 in tarot",
+      "source": "[план, блок Strength and Justice numbering]",
+      "answered_in": "strength-and-justice"
+    },
+    {
+      "q": "what does it mean when you get a lot of major arcana",
+      "source": "[H2 velvetastral, ES-091]",
+      "answered_in": "in-a-spread"
+    },
+    {
+      "q": "major arcana reversed meanings",
+      "source": "[H2 velvetastral, ES-091]",
+      "answered_in": "in-a-spread"
+    },
+    {
+      "q": "major arcana that mean yes, no and maybe",
+      "source": "[H2 mysticmag, EN-009]",
+      "answered_in": "yes-or-no"
+    }
   ]
 }
