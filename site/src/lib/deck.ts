@@ -2,13 +2,14 @@
 // tools/site/sync_site_data.py from content/cards). Pictures: site/public/cards/<image>.webp (700 × 1200),
 // <image>@350.webp, <image>@160.webp; the back is back.svg.
 import deckData from '../data/deck.json';
-import type { Lang } from './types';
+import type { Lang, Vote } from './types';
 
 export interface DeckCard {
   card_id: string;
   numeral: string;
   arcana: 'major' | 'minor';
   suit: string | null;
+  yes_no: Vote; // base yes/no verdict of the card upright (content/cards/deck.json)
   image: string;
   slug_en: string;
   slug_es: string;

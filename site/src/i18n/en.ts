@@ -256,6 +256,14 @@ export const en = {
   crumbMajor: 'Major Arcana',
   crumbYesNoCards: 'Card list',
   faqTitle: 'Frequently asked questions',
+  // stage 6: the "on this page" chips of the card page (prototype DeskCard)
+  tocLabel: 'On this page',
+  tocUpright: 'Upright',
+  tocReversed: 'Reversed',
+  tocLove: 'Love',
+  tocWorkMoney: 'Work and money',
+  tocYesNo: 'Yes or no',
+  tocFaq: 'FAQ',
 };
 
 export type DictKey = keyof typeof en;
