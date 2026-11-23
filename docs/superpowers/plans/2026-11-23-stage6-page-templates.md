@@ -5580,6 +5580,33 @@ and the deploy happen only on the owner's word.
 
 ---
 
+### Task 19: Island links under the matrix (owner decision 38, 23.11.2026)
+
+The owner chose "the screen follows the matrix": the links the islands draw under drawn cards must match the
+launch rows of `docs/research/stage2/links-{en,es}.csv` that Task 17 only lists (L-EN-01/02/03/15/16/31,
+L-ES-01/02/03/04/15/16/23) — target, anchor text by `anchor_pattern`, and the section anchor where the row names one
+(love reading → the card page's love section, `#amor` in ES; yes/no → the card page's yes/no section, `#si-o-no` in ES;
+Card of the Day → "Today's card: {card_name}" / the ES pattern, plus "Save to diary" where the row names it).
+
+**Files:**
+- Modify: the islands and ui components that render drawn-card links (`site/src/islands/ReadingIsland.tsx`,
+  `site/src/islands/DailyIsland.tsx`, `site/src/components/ui/NightRoom.tsx`, `site/src/components/ui/CardFace.tsx`
+  or wherever the link is built — grep `fullMeaning` / the current anchor keys), `site/src/i18n/{en,es}.ts` (new or
+  changed anchor strings; placeholders tested by `i18n.test.ts`).
+- Test: the islands' existing `*.test.tsx` (assert href and text per tool and language).
+- Modify: `tools/site/check_links.py` list of island-only rows → each listed row now has a vitest assertion; the
+  script prints which test covers it.
+
+- [ ] **Step 1:** For each listed row, write a failing vitest case in the island's test file: render the tool with a
+  fixed draw, find the link under each drawn card, assert `href` (card path + section hash from the row) and the
+  visible text (the row's `anchor_pattern` with `{card_name}`, `{verdict}` filled).
+- [ ] **Step 2:** Run `docker run --rm -u "$(id -u):$(id -g)" -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 sh -c 'npx vitest run'` — the new cases fail.
+- [ ] **Step 3:** Change the link building (one helper `drawnCardLink(card, tool, lang)` in `site/src/lib/routes.ts`
+  returning `{href, text}` from a small table keyed by tool, mirroring the rows) and use it in every island.
+- [ ] **Step 4:** Run vitest and `npx astro check` — all pass.
+- [ ] **Step 5:** Commit: `git commit -m "Stage 6: drawn-card links follow the stage 2 matrix (owner decision 38)"` with the
+  Co-Authored-By line.
+
 ## Self-review
 
 **Spec coverage**
