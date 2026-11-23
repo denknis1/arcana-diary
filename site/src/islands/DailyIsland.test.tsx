@@ -1,5 +1,6 @@
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { t } from '../i18n';
 import { sendEvent } from '../lib/analytics';
 import { ICS_FILENAME, ICS_TYPE } from '../lib/ics';
 import { byText, cleanup, click, mount } from '../lib/testing/dom';
@@ -34,5 +35,24 @@ describe('the Card of the Day reminder (screen 7b; spec 4.4b §7)', () => {
     expect(vi.mocked(sendEvent)).toHaveBeenCalledWith({ name: 'remind_click', tool: 'daily', lang: 'en', params: {} });
     expect(byText(root, 'Open the file to add it to your calendar.')).toBeTruthy();
     expect(served.calls.map((c) => c.url.split('?')[0])).toEqual(['/api/daily']); // no server for the reminder
+  });
+});
+
+// Owner decision 38: the link under the Card of the Day follows rows L-EN-15 / L-ES-15 of the stage 2 matrix
+// (tools/site/check_links.py names this file for them). "Save to diary" (L-EN-16, L-ES-16) is not built: the Card
+// of the Day is not a reading and is not saved (spec 4.4b §2.10).
+describe('the link under the Card of the Day (stage 2 matrix, owner decision 38)', () => {
+  it.each([
+    ['L-EN-15', 'en', 'The Moon', '/cards/the-moon', "Today's card: The Moon"],
+    ['L-ES-15', 'es', 'La Luna', '/es/cartas/la-luna', 'Carta de hoy: La Luna'],
+  ] as const)('%s: %s — the card page with "%s" filled in', async (_row, lang, name, href, text) => {
+    vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': () => jsonResponse(200, {
+      day: '2026-11-22', card: { card_id: 'major-18-moon', name, reversed: true }, text: 'Rest tonight.', source: 'cache',
+    }) }).fetch);
+    const { root } = await mount(<DailyIsland lang={lang} />);
+    await click(byText(root, t(lang).dailyTap, 'span').closest('button')!);
+    const link = byText<HTMLAnchorElement>(root, text, 'a');
+    expect(link.getAttribute('href')).toBe(href);
+    expect(root.querySelectorAll('.daily a')).toHaveLength(1);
   });
 });

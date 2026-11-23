@@ -24,11 +24,15 @@ describe('dictionaries', () => {
     // L-EN-26 (love block of the card page) and the hints of the hub link (context terms of L-EN-21 / L-ES-21)
     expect([t('en').cardLoveLink, t('en').fmtCardsHint, t('es').fmtCardsHint]).toEqual([
       'Do a love reading', 'What each of the 78 tarot cards means', 'Qué significa cada una de las 78 cartas del tarot']);
+    // under a drawn card (owner decision 38): L-EN-01…03/31, L-ES-01/02/23; L-EN-15, L-ES-15; L-ES-03; L-ES-04
+    expect([t('en').fullMeaning, t('es').fullMeaning, t('en').dailyCardLink, t('es').dailyCardLink, t('es').drawnLoveLink,
+      t('es').drawnWhyLink]).toEqual(['{name} — full meaning', '{name} — significado completo', "Today's card: {name}",
+      'Carta de hoy: {name}', '{name} en el amor', 'Por qué {name} dice {verdict}']);
   });
 
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(255);
+    expect(keys('en').length).toBe(258);
   });
 
   it('have no empty strings', () => {

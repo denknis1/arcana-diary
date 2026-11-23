@@ -5,9 +5,9 @@
 import { fill, t, type DictKey } from '../i18n';
 import meaningsEn from '../data/meanings.en.json';
 import meaningsEs from '../data/meanings.es.json';
-import type { CardBlockId, CardPageData, TemplateStrings } from './cardPages';
+import type { CardPageData, TemplateStrings } from './cardPages';
 import { cardById, cardName, type DeckCard } from './deck';
-import { cardPath, suitPath } from './routes';
+import { SECTION_IDS, cardPath, suitPath, type SectionKey } from './routes';
 import type { Lang, Vote } from './types';
 
 export type Segment = string | { text: string; href: string };
@@ -22,23 +22,7 @@ export interface PairRow extends LinkSlot {
   reading: string;
 }
 
-type SectionKey = CardBlockId | 'draw' | 'faq' | 'related' | 'about';
-
-/** Section anchors; EN #reversed, ES #invertida, #amor, #si-o-no are rows EN-095, ES-092…094 of the page maps. */
-export const SECTION_IDS: Readonly<Record<Lang, Readonly<Record<SectionKey, string>>>> = {
-  en: {
-    on_the_card: 'on-the-card', waite: 'waite', upright: 'upright', reversed: 'reversed', love: 'love',
-    work_money: 'work-and-money', advice: 'advice', yes_no: 'yes-or-no', in_a_reading: 'as-a-person',
-    combinations: 'combinations', not_to_confuse: 'not-to-confuse', ask_yourself: 'ask-yourself',
-    draw: 'draw', faq: 'faq', related: 'related', about: 'about',
-  },
-  es: {
-    on_the_card: 'en-la-carta', waite: 'waite', upright: 'al-derecho', reversed: 'invertida', love: 'amor',
-    work_money: 'trabajo-y-dinero', advice: 'consejo', yes_no: 'si-o-no', in_a_reading: 'como-persona',
-    combinations: 'combinaciones', not_to_confuse: 'no-confundir', ask_yourself: 'preguntas-para-ti',
-    draw: 'tu-pregunta', faq: 'preguntas', related: 'relacionadas', about: 'sobre-esta-pagina',
-  },
-};
+export { SECTION_IDS };
 
 const TOC: readonly [SectionKey, DictKey][] = [['upright', 'tocUpright'], ['reversed', 'tocReversed'], ['love', 'tocLove'],
   ['work_money', 'tocWorkMoney'], ['yes_no', 'tocYesNo'], ['faq', 'tocFaq']];

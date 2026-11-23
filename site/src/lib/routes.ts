@@ -1,8 +1,10 @@
 // Addresses of the site's pages (spec 4.4a §3, stage 6 §3) and their language pairs
 // (site/src/data/pairs.json, from docs/research/stage2/hreflang.csv via tools/site/sync_site_data.py).
 import pairsData from '../data/pairs.json';
-import { DECK, cardSlug, type DeckCard } from './deck';
-import type { Lang } from './types';
+import { fill, t, type DictKey } from '../i18n';
+import type { CardBlockId } from './cardPages';
+import { DECK, cardById, cardName, cardSlug, type DeckCard } from './deck';
+import type { DrawnCard, Lang, Tool, Vote } from './types';
 
 /** The service pages of spec stage 6 §6 (EN and ES pairs, owner decision 8 of 14.11.2026). */
 export type ServiceKey = 'about' | 'how_readings_work' | 'contact' | 'privacy' | 'terms';
@@ -51,6 +53,77 @@ export function pagePath(key: PageKey, lang: Lang): string {
 
 export function cardPath(card: DeckCard, lang: Lang): string {
   return lang === 'en' ? `/cards/${cardSlug(card, 'en')}` : `/es/cartas/${cardSlug(card, 'es')}`;
+}
+
+export type SectionKey = CardBlockId | 'draw' | 'faq' | 'related' | 'about';
+
+/** Section anchors of the card page; EN #reversed, ES #invertida, #amor, #si-o-no are rows EN-095, ES-092…094 of the
+ * page maps. */
+export const SECTION_IDS: Readonly<Record<Lang, Readonly<Record<SectionKey, string>>>> = {
+  en: {
+    on_the_card: 'on-the-card', waite: 'waite', upright: 'upright', reversed: 'reversed', love: 'love',
+    work_money: 'work-and-money', advice: 'advice', yes_no: 'yes-or-no', in_a_reading: 'as-a-person',
+    combinations: 'combinations', not_to_confuse: 'not-to-confuse', ask_yourself: 'ask-yourself',
+    draw: 'draw', faq: 'faq', related: 'related', about: 'about',
+  },
+  es: {
+    on_the_card: 'en-la-carta', waite: 'waite', upright: 'al-derecho', reversed: 'invertida', love: 'amor',
+    work_money: 'trabajo-y-dinero', advice: 'consejo', yes_no: 'si-o-no', in_a_reading: 'como-persona',
+    combinations: 'combinaciones', not_to_confuse: 'no-confundir', ask_yourself: 'preguntas-para-ti',
+    draw: 'tu-pregunta', faq: 'preguntas', related: 'relacionadas', about: 'sobre-esta-pagina',
+  },
+};
+
+/** One link under a drawn card: a launch row of docs/research/stage2/links-{en,es}.csv (owner decision 38). */
+export interface DrawnLink {
+  row: string;
+  href: string;
+  text: string;
+}
+
+interface DrawnRule {
+  row: string;
+  text: DictKey; // the row's anchor_pattern: {name} is {card_name}, {verdict} the card's own yes/no
+  section?: SectionKey; // the row's to_id is a section of the card page (ES-093 #amor, ES-094 #si-o-no)
+}
+
+const full = (row: string): DrawnRule => ({ row, text: 'fullMeaning' });
+
+/** The launch rows from each tool to the drawn card ("@drawn", ES-093, ES-094), in the order they are shown.
+ * Spanish one-card readings are the #una-carta mode of the home page (ES-001) and the card page's own draw. */
+const DRAWN_RULES: Readonly<Record<Lang, Readonly<Record<Tool, readonly DrawnRule[]>>>> = {
+  en: {
+    home: [full('L-EN-01')], three_cards: [full('L-EN-01')], one_card: [full('L-EN-02')],
+    love: [full('L-EN-03')], yes_no: [full('L-EN-31')], daily: [{ row: 'L-EN-15', text: 'dailyCardLink' }],
+  },
+  es: {
+    home: [full('L-ES-01')], one_card: [full('L-ES-01')], three_cards: [full('L-ES-02')],
+    love: [{ row: 'L-ES-03', text: 'drawnLoveLink', section: 'love' }, full('L-ES-23')],
+    yes_no: [{ row: 'L-ES-04', text: 'drawnWhyLink', section: 'yes_no' }],
+    daily: [{ row: 'L-ES-15', text: 'dailyCardLink' }],
+  },
+};
+
+const VOTE_KEYS: Readonly<Record<Vote, DictKey>> = { yes: 'voteYes', no: 'voteNo', unclear: 'voteUnclear' };
+
+/** The card's own yes/no: the API's vote, else the rule of content/cards/yes-no-rules.json (reversed: not clear). */
+function ownVote(card: Pick<DrawnCard, 'reversed' | 'vote'>, deckCard: DeckCard): Vote {
+  return card.vote ?? (card.reversed ? 'unclear' : deckCard.yes_no);
+}
+
+/** The links under one drawn card for a tool (owner decision 38: the screen follows the stage 2 matrix); the card
+ * name is the card base's, the verdict the yes/no label in lower case, mid-sentence. No links for an unknown card. */
+export function drawnCardLink(card: Pick<DrawnCard, 'card_id' | 'reversed' | 'vote'>, tool: Tool, lang: Lang): DrawnLink[] {
+  const deckCard = cardById(card.card_id);
+  if (!deckCard) return [];
+  const d = t(lang);
+  const name = cardName(deckCard, lang);
+  const verdict = d[VOTE_KEYS[ownVote(card, deckCard)]].toLocaleLowerCase(lang);
+  return DRAWN_RULES[lang][tool].map((rule) => ({
+    row: rule.row,
+    href: rule.section ? `${cardPath(deckCard, lang)}#${SECTION_IDS[lang][rule.section]}` : cardPath(deckCard, lang),
+    text: fill(d[rule.text], { name, verdict }),
+  }));
 }
 
 export type Suit = 'wands' | 'cups' | 'swords' | 'pentacles';

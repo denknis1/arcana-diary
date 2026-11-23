@@ -137,3 +137,17 @@ describe('ReadingIsland: the privacy link at the AI provider line (spec stage 6 
     expect(byText<HTMLAnchorElement>(open.root, t('en').privacyLink, 'a').getAttribute('href')).toBe('/privacy');
   });
 });
+
+// Owner decision 38: the island hands its tool to the night room, so the links under the drawn card follow the stage 2
+// matrix rows of that tool (L-ES-03 and L-ES-23 here; every row is in components/ui/NightRoom.test.tsx).
+describe('ReadingIsland: the links under the drawn card follow the tool (stage 2 matrix)', () => {
+  it('L-ES-03, L-ES-23: the Spanish love page links the drawn card\'s #amor and its full meaning', async () => {
+    history.replaceState(null, '', '/es/amor');
+    const { root } = await mount(<ReadingIsland lang="es" page="love" />);
+    await typeInto(root.querySelector('input[type="text"]')!, '¿Funcionará?');
+    await click(byText(root, t('es').drawLove, 'button'));
+    await waitFor(() => byText(root, 'La Luna en el amor', 'a'));
+    expect(Array.from(root.querySelectorAll<HTMLAnchorElement>('.night__actions a.btn')).map((a) => [a.getAttribute('href'), a.textContent]))
+      .toEqual([['/es/cartas/la-luna#amor', 'La Luna en el amor'], ['/es/cartas/la-luna', 'La Luna — significado completo']]);
+  });
+});

@@ -9,11 +9,15 @@ live (no 404, no query, no trailing slash, the #fragment is an id of the target)
 enforced: "terms: L-EN-21 1/2" lists the rows whose links have fewer than 2 of their terms in a 350-character window.
 
 Listed, not checked: rows whose links an island draws after a reading or on the Card of the Day — to "@drawn",
-"@diary" or to a section of the drawn card (ES-093, ES-094) — are never in site/dist. L-EN-07 and L-ES-05 ("Draw a
+"@diary" or to a section of the drawn card (ES-093, ES-094) — are never in site/dist. Owner decision 38 (23.11.2026):
+the islands follow these rows (drawnCardLink in site/src/lib/routes.ts), and each row is asserted, href and text, by a
+vitest case whose title names the row id: ISLAND_TESTS says which file, and the script fails when the file does not
+name the row or a runtime row has neither a test nor a NOT_BUILT reason. L-EN-07 and L-ES-05 ("Draw a
 card for your question" from every card page) are the card page's own draw button: the reading panel is on the page,
 so a <button> with that text counts for these two rows.
 
-  python3 tools/site/check_links.py   — prints "OK: N rows, M links" and the rows drawn by islands, or the problems
+  python3 tools/site/check_links.py   — prints "OK: N rows, M links" and the rows drawn by islands with the test
+                                        that covers each, or the problems
 """
 import csv
 import json
@@ -33,6 +37,12 @@ IN_PLACE = {"L-EN-07", "L-ES-05"}
 CARD_SETS = {"@cards", "@major", "@minor"}
 PINNED = {"L-EN-04": "rule"}
 NEIGHBORS_SECTION = "card-nav"
+NIGHT_TEST = "site/src/components/ui/NightRoom.test.tsx"
+DAILY_TEST = "site/src/islands/DailyIsland.test.tsx"
+ISLAND_TESTS = {row: NIGHT_TEST for row in ("L-EN-01", "L-EN-02", "L-EN-03", "L-EN-31", "L-ES-01", "L-ES-02", "L-ES-03",
+                                            "L-ES-04", "L-ES-23")} | {"L-EN-15": DAILY_TEST, "L-ES-15": DAILY_TEST}
+NOT_BUILT = {row: "the Card of the Day is not a reading and is not saved to the diary (spec 4.4b §2.10); owner decision"
+             for row in ("L-EN-16", "L-ES-16")}
 WINDOW = 350
 ZONES = {"main", "header", "footer"}
 SKIP_TEXT = {"script", "style"}
@@ -343,6 +353,28 @@ def all_href_problems(site: Site) -> list[str]:
     return problems
 
 
+def island_coverage(rows: list[str], root: Path = ROOT) -> tuple[list[str], list[str]]:
+    """(one line per runtime row: the vitest file that asserts it or why it is not built, problems)."""
+    lines: list[str] = []
+    problems: list[str] = []
+    texts: dict[str, str] = {}
+    for row in rows:
+        if row in ISLAND_TESTS:
+            test = ISLAND_TESTS[row]
+            if test not in texts:
+                file = root / test
+                texts[test] = file.read_text(encoding="utf-8") if file.is_file() else ""
+            if re.search(rf"\b{re.escape(row)}\b", texts[test]):
+                lines.append(f"  {row}: {test}")
+            else:
+                problems.append(f"{row}: drawn by an island, but {test} has no vitest case that names it")
+        elif row in NOT_BUILT:
+            lines.append(f"  {row}: not built — {NOT_BUILT[row]}")
+        else:
+            problems.append(f"{row}: drawn by an island, but no vitest case covers it (ISLAND_TESTS)")
+    return lines, problems
+
+
 def launch_rows() -> list[tuple[str, dict]]:
     return [(lang, r) for lang in ("en", "es") for r in read_csv(STAGE2 / f"links-{lang}.csv") if r["wave"] == LAUNCH]
 
@@ -367,6 +399,8 @@ def main(dist: Path | None = None) -> int:
         links += checked
     if rows + len(runtime) == 0:
         problems.append("no launch rows in docs/research/stage2/links-{en,es}.csv (did the wave label change?)")
+    covered, uncovered = island_coverage(runtime)
+    problems += uncovered
     problems += all_href_problems(site)
     for problem in problems:
         print(problem)
@@ -374,6 +408,8 @@ def main(dist: Path | None = None) -> int:
         return 1
     print(f"OK: {rows} rows, {links} links")
     print(f"drawn by islands, not in site/dist: {', '.join(runtime)}")
+    for line in covered:
+        print(line)
     for row_id, (found, of) in sorted(terms.items()):
         if found < min(2, of):
             print(f"terms: {row_id} {found}/{of}")

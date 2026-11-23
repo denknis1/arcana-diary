@@ -7,16 +7,18 @@
 // §4): under each card its own vote (icon and word), the verdict and "why" large in the text column. Stage 4.4b §4:
 // the last of the answer's actions is "Save to diary" (a guest: opens the save sheet inside this dialog; Escape then
 // closes the sheet first, and the room behind it is inert) or "Saved to your diary ✓" with the link to the entry.
+// The links under the drawn cards follow the launch rows of the stage 2 matrix for the tool (owner decision 38,
+// drawnCardLink in src/lib/routes.ts).
 import type { ComponentChildren } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
 import { answerBlocks } from '../../lib/answer';
-import { CARD_BACK, cardById } from '../../lib/deck';
+import { CARD_BACK } from '../../lib/deck';
 import { errorMessageKey, needsHelpLink } from '../../lib/errors';
 import { handleDialogKey } from '../../lib/focus';
 import { answerVisible, cardVotes, followupNow, lastFollowupLost, readingShown, statusKey, timedSpread, type NightState } from '../../lib/nightRoom';
 import type { PanelConfig } from '../../lib/panel';
-import { cardPath } from '../../lib/routes';
+import { drawnCardLink } from '../../lib/routes';
 import type { DrawnCard, Lang, Position, Vote } from '../../lib/types';
 import { CardArt, CardName } from './CardFace';
 import { CrisisView } from './CrisisView';
@@ -55,11 +57,6 @@ export interface SaveSlot {
 
 const POSITION_KEYS: Record<Position, DictKey | null> = { past: 'posPast', present: 'posPresent', path: 'posPath', card: null };
 const VOTE_KEYS: Record<Vote, DictKey> = { yes: 'voteYes', no: 'voteNo', unclear: 'voteUnclear' };
-
-function cardHref(card: DrawnCard, lang: Lang): string | null {
-  const deckCard = cardById(card.card_id);
-  return deckCard ? cardPath(deckCard, lang) : null;
-}
 
 function cardLabel(card: DrawnCard, lang: Lang): string {
   const d = t(lang);
@@ -228,24 +225,10 @@ export function NightRoom(props: NightRoomProps) {
               ) : null}
               {readingShown(state) ? (
                 <div class="night__actions">
-                  {three ? (
-                    <>
-                      <span class="answer__label">{d.moreAbout}</span>
-                      <div class="more-cards">
-                        {cards.map((card) => {
-                          const href = cardHref(card, lang);
-                          return href ? <a class="btn btn--outline" href={href} onClick={props.onMoreAbout}>{card.name}</a> : null;
-                        })}
-                      </div>
-                    </>
-                  ) : (
-                    cards.map((card) => {
-                      const href = cardHref(card, lang);
-                      return href ? (
-                        <a class="btn btn--outline" href={href} onClick={props.onMoreAbout}>{fill(d.fullMeaning, { name: card.name })}</a>
-                      ) : null;
-                    })
-                  )}
+                  {three ? <span class="answer__label">{d.moreAbout}</span> : null}
+                  {cards.flatMap((card) => drawnCardLink(card, config.tool, lang)).map((link) => (
+                    <a key={link.href} class="btn btn--outline" href={link.href} onClick={props.onMoreAbout}>{link.text}</a>
+                  ))}
                   {props.sourceName ? (
                     <button type="button" class="btn btn--gold" onClick={props.onClose}>{fill(d.backTo, { name: props.sourceName })}</button>
                   ) : null}

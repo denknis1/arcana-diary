@@ -1,7 +1,7 @@
 """tools/site/check_links.py on hand-made pages (spec stage 6 §7)."""
 import check_links
-from check_links import (Site, all_href_problems, check_row, href_path, is_runtime, launch_rows, main, parse_links,
-                         parse_page)
+from check_links import (ISLAND_TESTS, NOT_BUILT, Site, all_href_problems, check_row, href_path, is_runtime,
+                         island_coverage, launch_rows, main, parse_links, parse_page)
 
 LAUNCH = "запуск"
 
@@ -181,3 +181,24 @@ def test_links_drawn_by_islands_are_listed_not_checked(tmp_path, capsys):
         "L-ES-01", "L-ES-02", "L-ES-03", "L-ES-04", "L-ES-15", "L-ES-16", "L-ES-23"]
     assert main(tmp_path) == 1
     assert "L-EN-04: no page /yes-no in site/dist" in capsys.readouterr().out
+
+
+def test_every_row_drawn_by_an_island_has_a_vitest_case_or_a_reason(tmp_path):
+    site = Site(tmp_path)
+    runtime = [r["link_id"] for lang, r in launch_rows() if is_runtime(site, r, lang)]
+    assert sorted(runtime) == sorted([*ISLAND_TESTS, *NOT_BUILT])
+    lines, problems = island_coverage(runtime)
+    assert problems == []
+    assert "  L-ES-03: site/src/components/ui/NightRoom.test.tsx" in lines
+    assert "  L-EN-15: site/src/islands/DailyIsland.test.tsx" in lines
+    assert any(line.startswith("  L-EN-16: not built — ") for line in lines)
+
+
+def test_a_row_its_test_does_not_name_or_an_unknown_row_is_a_problem(tmp_path):
+    test = tmp_path / ISLAND_TESTS["L-EN-01"]
+    test.parent.mkdir(parents=True)
+    test.write_text("it('L-EN-010: not this row', () => {});\nit('L-EN-02: one card', () => {});\n", encoding="utf-8")
+    lines, problems = island_coverage(["L-EN-01", "L-EN-02", "L-EN-99"], tmp_path)
+    assert lines == ["  L-EN-02: site/src/components/ui/NightRoom.test.tsx"]
+    assert problems == ["L-EN-01: drawn by an island, but site/src/components/ui/NightRoom.test.tsx has no vitest case "
+                        "that names it", "L-EN-99: drawn by an island, but no vitest case covers it (ISLAND_TESTS)"]

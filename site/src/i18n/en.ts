@@ -93,6 +93,11 @@ export const en = {
   dailyFallbackNote: "Your card didn't load, so here is today's card from our card base.",
   dailyError: "We can't turn over your card right now. Please try again in a moment.",
   fullMeaning: '{name} — full meaning',
+  // links under a drawn card (stage 2 matrix, owner decision 38): L-EN-15; the next two have no English launch row
+  // (drawnLoveLink is the pattern of L-EN-22, V1.1) and are kept for the same keys in both languages
+  dailyCardLink: "Today's card: {name}",
+  drawnLoveLink: '{name} in love',
+  drawnWhyLink: 'Why {name} says {verdict}',
   reversedTag: 'Reversed',
 
   cardTitle: '{name} tarot card meaning — Arcana Diary',
