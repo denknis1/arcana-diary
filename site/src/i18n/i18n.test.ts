@@ -13,9 +13,19 @@ describe('dictionaries', () => {
     expect([t('en').breadcrumbLabel, t('es').breadcrumbLabel]).toEqual(['Breadcrumb', 'Ruta']);
   });
 
+  it('use the anchors of the stage 2 link matrix (docs/research/stage2/links-{en,es}.csv)', () => {
+    expect([t('en').fmtLove, t('en').fmtCards, t('en').yesNoMethodLink]).toEqual([
+      'Love reading', 'Card meanings', 'How we read yes and no']);
+    expect([t('es').fmtThree, t('es').fmtCards, t('es').cardLoveLink, t('es').cardYesNoLink]).toEqual([
+      'Tirada de 3 cartas', 'Significados de las cartas', 'Haz una tirada de amor', 'Pregunta sí o no']);
+    expect([t('en').drawForQuestion, t('es').drawForQuestion, t('en').allCardsLink, t('es').allCardsLink,
+      t('en').yesNoListAsk]).toEqual(['Draw a card for your question', 'Saca una carta para tu pregunta', 'All 78 cards',
+      'Las 78 cartas', 'Ask your question']);
+  });
+
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(248);
+    expect(keys('en').length).toBe(255);
   });
 
   it('have no empty strings', () => {

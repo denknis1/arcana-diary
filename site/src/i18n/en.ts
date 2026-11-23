@@ -40,7 +40,7 @@ export const en = {
   fmtOneCardHint: 'A single card for right now',
   fmtYesNo: 'Yes or No',
   fmtYesNoHint: 'A clear answer, and why',
-  fmtLove: 'Love',
+  fmtLove: 'Love reading', // anchor of L-EN-19
   fmtLoveHint: 'For your relationship or your heart',
   fmtDaily: 'Card of the Day',
   fmtDailyHint: 'One card for today, a new one each day',
@@ -277,6 +277,14 @@ export const en = {
   footerTerms: 'Terms',
   // stage 6: next to the AI provider line and the e-mail consents, once the privacy page is open
   privacyLink: 'Privacy policy',
+  // stage 6: anchors of the stage 2 link matrix (links-en.csv, links-es.csv, wave "запуск")
+  fmtCards: 'Card meanings',
+  fmtCardsHint: 'What each of the 78 cards means',
+  fmtThree: 'Three cards',
+  fmtThreeHint: "Past, present and where it's heading",
+  yesNoMethodLink: 'How we read yes and no',
+  cardLoveLink: 'Try a love reading',
+  cardYesNoLink: 'Ask a yes or no question',
 };
 
 export type DictKey = keyof typeof en;

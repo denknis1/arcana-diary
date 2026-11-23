@@ -122,6 +122,8 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
           )}
           {block.id === 'waite' ? <p class="waite-boundary">{s.waite.boundary}</p> : null}
           {block.id === 'work_money' ? <p class="block-note">{s.work_money.money_line}</p> : null}
+          {block.id === 'love' ? <p class="block-link"><a href={pagePath('love', lang)}>{d.cardLoveLink}</a></p> : null}
+          {block.id === 'yes_no' ? <p class="block-link"><a href={pagePath('yes_no', lang)}>{d.cardYesNoLink}</a></p> : null}
           {block.id === 'in_a_reading' ? <p class="block-note">{s.in_a_reading.note}</p> : null}
           {block.id === 'ask_yourself' ? (
             <p><a class="btn btn--outline" href={pagePath('diary', lang)}>{s.ask_yourself.diary_button}</a></p>

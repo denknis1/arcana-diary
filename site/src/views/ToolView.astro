@@ -33,6 +33,9 @@ const path = pagePath(page, lang);
 const text = filledPage(textPage(path));
 const privacyHref = openPagePath('privacy', lang) ?? undefined;
 const crumbs = crumbsFor(page, lang);
+// L-EN-04: the yes/no tool links the card list that explains its rule (Spanish has no such list)
+const links: Record<string, { href: string; text: string }> = page === 'yes_no' && lang === 'en'
+  ? { rule: { href: pagePath('yes_no_cards', lang), text: d.yesNoMethodLink } } : {};
 ---
 <Base lang={lang} title={text.title} description={text.description} path={path} current={CURRENT[page]}
   jsonLd={[...(crumbs.length ? [breadcrumbLd(crumbs)] : []), webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
@@ -48,6 +51,6 @@ const crumbs = crumbsFor(page, lang);
       {page === 'love' ? <p class="small muted">{d.loveNote}</p> : null}
     </div>
   </div>
-  <TextBlocks blocks={text.blocks} />
+  <TextBlocks blocks={text.blocks} links={links} />
   <Faq heading={d.faqTitle} items={text.faq} id="faq" />
 </Base>

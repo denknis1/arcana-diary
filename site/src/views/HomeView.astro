@@ -26,11 +26,14 @@ const d = t(lang);
 const path = pagePath('home', lang);
 const text = filledPage(textPage(path));
 const privacyHref = openPagePath('privacy', lang) ?? undefined;
+// the format switch (stage 2 matrix L-EN-17…21, L-ES-17…21)
 const formats = [
   ...(lang === 'en' ? [{ href: pagePath('one_card', lang), name: d.fmtOneCard, hint: d.fmtOneCardHint }] : []),
   { href: pagePath('yes_no', lang), name: d.fmtYesNo, hint: d.fmtYesNoHint },
   { href: pagePath('love', lang), name: d.fmtLove, hint: d.fmtLoveHint },
   { href: pagePath('daily', lang), name: d.fmtDaily, hint: d.fmtDailyHint },
+  ...(lang === 'es' ? [{ href: pagePath('three_cards', lang), name: d.fmtThree, hint: d.fmtThreeHint }] : []),
+  { href: pagePath('cards', lang), name: d.fmtCards, hint: d.fmtCardsHint },
 ];
 const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => cardById(id)!);
 ---
