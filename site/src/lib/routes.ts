@@ -45,6 +45,18 @@ export function cardPath(card: DeckCard, lang: Lang): string {
   return lang === 'en' ? `/cards/${cardSlug(card, 'en')}` : `/es/cartas/${cardSlug(card, 'es')}`;
 }
 
+export type Suit = 'wands' | 'cups' | 'swords' | 'pentacles';
+
+/** The suit blocks of the hub (/cards#wands, /es/cartas#bastos): links L-EN-10, L-ES-10 of the stage 2 matrix. */
+export const SUIT_IDS: Readonly<Record<Lang, Readonly<Record<Suit, string>>>> = {
+  en: { wands: 'wands', cups: 'cups', swords: 'swords', pentacles: 'pentacles' },
+  es: { wands: 'bastos', cups: 'copas', swords: 'espadas', pentacles: 'oros' },
+};
+
+export function suitPath(suit: Suit, lang: Lang): string {
+  return `${pagePath('cards', lang)}#${SUIT_IDS[lang][suit]}`;
+}
+
 export function langOf(path: string): Lang {
   return path === '/es' || path.startsWith('/es/') || path.startsWith('/es#') ? 'es' : 'en';
 }

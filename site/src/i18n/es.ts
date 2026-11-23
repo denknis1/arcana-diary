@@ -257,6 +257,14 @@ export const es: Dict = {
   crumbMajor: 'Arcanos mayores',
   crumbYesNoCards: 'Lista de cartas',
   faqTitle: 'Preguntas frecuentes',
+  // etapa 6: accesos «en esta página» de la página de carta (prototipo DeskCard)
+  tocLabel: 'En esta página',
+  tocUpright: 'Al derecho',
+  tocReversed: 'Al revés',
+  tocLove: 'Amor',
+  tocWorkMoney: 'Trabajo y dinero',
+  tocYesNo: 'Sí o no',
+  tocFaq: 'Preguntas',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

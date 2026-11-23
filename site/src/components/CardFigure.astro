@@ -1,5 +1,6 @@
 ---
-// A card face on a day page: the printed card in a gold frame (three sizes, srcset) and its name as text.
+// A card face on a day page: the printed card in a gold frame (three sizes, srcset) and its name as text. The card
+// page gives its own alt (image_alt of the stage 5 text) and the scan's caption (template-strings.json).
 import { fill, t } from '../i18n';
 import { cardImage, cardName, cardSrcset, type DeckCard } from '../lib/deck';
 import type { Lang } from '../lib/types';
@@ -9,15 +10,20 @@ interface Props {
   lang: Lang;
   sizes: string;
   eager?: boolean;
+  alt?: string;
+  caption?: string;
 }
 
-const { card, lang, sizes, eager = false } = Astro.props;
+const { card, lang, sizes, eager = false, alt, caption } = Astro.props;
 const name = cardName(card, lang);
 ---
 <figure class="card-frame card-frame--day">
   <div class="card-frame__art">
     <img src={cardImage(card, 350)} srcset={cardSrcset(card)} sizes={sizes} width="350" height="600"
-      alt={fill(t(lang).cardAlt, { name })} loading={eager ? 'eager' : 'lazy'} />
+      alt={alt ?? fill(t(lang).cardAlt, { name })} loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined} />
   </div>
-  <figcaption class="card-frame__name"><b>{card.numeral}</b> {name}</figcaption>
+  {caption
+    ? <figcaption class="card-frame__caption">{caption}</figcaption>
+    : <figcaption class="card-frame__name">{card.numeral ? <><b>{card.numeral}</b>{' '}</> : null}{name}</figcaption>}
 </figure>
