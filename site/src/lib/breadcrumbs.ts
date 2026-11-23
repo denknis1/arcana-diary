@@ -30,9 +30,11 @@ export function crumbsFor(key: PageKey, lang: Lang): Crumb[] {
     case 'major_arcana':
       return [home, cards, major];
     case 'yes_no_cards':
+      if (lang !== 'en') return []; // no Spanish card list: the key is an alias of the yes/no tool
       return [home, { name: d.navYesNo, path: pagePath('yes_no', lang) },
         { name: d.crumbYesNoCards, path: pagePath('yes_no_cards', lang) }];
     case 'three_cards':
+      if (lang !== 'es') return []; // no English three-card page: the key is an alias of the home page
       return [home, { name: d.threeCardsChip, path: pagePath('three_cards', lang) }];
     default:
       return [];

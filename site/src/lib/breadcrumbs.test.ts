@@ -24,4 +24,9 @@ describe('breadcrumbs (spec stage 6 §3)', () => {
     expect(cardCrumbs(cardById('swords-03-three')!, 'es')).toEqual([{ name: 'Inicio', path: '/es' },
       { name: 'Cartas', path: '/es/cartas' }, { name: 'Tres de Espadas', path: '/es/cartas/tres-de-espadas' }]);
   });
+
+  it('gives no trail for an alias key (the page does not exist in that language)', () => {
+    expect(crumbsFor('three_cards', 'en')).toEqual([]);
+    expect(crumbsFor('yes_no_cards', 'es')).toEqual([]);
+  });
 });
