@@ -14,9 +14,11 @@ same rule as site/src/lib/textPages.ts).
   python3 tools/site/check_dist.py             — prints "OK: N pages" or the problems (exit 1)
   python3 tools/site/check_dist.py --launched  — the same for the open site: a hidden page is a problem too
 """
+import functools
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -38,10 +40,12 @@ ENTRY = re.compile(r'(?:component-url|renderer-url|src)="(/_astro/[^"]+\.js)"')
 # static imports and re-exports only: import("…") (a chunk loaded later) is not followed
 STATIC_IMPORT = re.compile(r'\b(?:import|export)\s*(?:[\w$*\s{},]*?\bfrom\s*)?["\'](\.{1,2}/[^"\']+|/_astro/[^"\']+)["\']')
 PLACEHOLDER = re.compile(r"\{(\w+)\}")
-LEFT_PLACEHOLDER = re.compile(r"\{[A-Za-z_]+\}")
+LEFT_PLACEHOLDER = re.compile(r"\{\w+\}")
+SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 SCRIPT_STYLE = re.compile(r"<(script|style)\b[^>]*>.*?</\1>", re.S | re.I)
 
 
+@functools.lru_cache(maxsize=None)
 def pairs() -> dict[str, str]:
     return json.loads((SITE / "src/data/pairs.json").read_text(encoding="utf-8"))
 
@@ -78,6 +82,7 @@ def page_texts(page: dict) -> list[str]:
             *[t for f in page["faq"] for t in (f["q"], f["a"])]]
 
 
+@functools.lru_cache(maxsize=None)
 def hidden_pages() -> set[str]:
     known = set(json.loads((SITE / "src/data/facts.json").read_text(encoding="utf-8")))
     hidden = set()
@@ -93,8 +98,19 @@ def noindex_pages() -> set[str]:
     return set(PRIVATE) | hidden_pages()
 
 
-def indexable_pages() -> list[str]:
-    noindex = noindex_pages()
+def built_noindex(dist: Path) -> set[str]:
+    """Pages whose built file carries a robots meta with "noindex" in any spelling."""
+    found = set()
+    for path in expected_pages():
+        file = dist / dist_file(path)
+        if file.is_file() and "noindex" in parse_head(file).robots:
+            found.add(path)
+    return found
+
+
+def indexable_pages(dist: Path | None = None) -> list[str]:
+    """Pages that must be indexable; with a build, also without the pages that say noindex in any spelling."""
+    noindex = noindex_pages() | (built_noindex(dist) if dist else set())
     return [p for p in expected_pages() if p not in EXTRA and p not in noindex]
 
 
@@ -103,17 +119,26 @@ def missing(dist: Path) -> list[str]:
     return [f for f in files if not (dist / f).is_file()]
 
 
+def unexpected_pages(dist: Path) -> list[str]:
+    """A *.html file in the build that is not one of the expected pages is neither checked nor in the sitemap."""
+    known = {dist_file(p) for p in expected_pages()}
+    found = {f.relative_to(dist).as_posix() for f in dist.rglob("*.html")} if dist.is_dir() else set()
+    return [f"unexpected page: site/dist/{name}" for name in sorted(found - known)]
+
+
 def robots_problems(dist: Path) -> list[str]:
-    """The private and the hidden pages carry the noindex meta; no other page does."""
+    """The private and the hidden pages carry the exact noindex meta; no other page says noindex in any spelling."""
     problems = []
     noindex = noindex_pages()
     for path in expected_pages():
         file = dist / dist_file(path)
         if not file.is_file():
             continue  # missing() reports it
-        has = bool(ROBOTS.search(file.read_text(encoding="utf-8")))
-        if has != (path in noindex):
-            problems.append(f"{'no' if path in noindex else 'unexpected'} noindex meta: site/dist/{dist_file(path)}")
+        if path in noindex:
+            if not ROBOTS.search(file.read_text(encoding="utf-8")):
+                problems.append(f"no noindex meta: site/dist/{dist_file(path)}")
+        elif "noindex" in parse_head(file).robots:
+            problems.append(f"unexpected noindex meta: site/dist/{dist_file(path)}")
     return problems
 
 
@@ -124,7 +149,9 @@ class Head(HTMLParser):
         super().__init__()
         self.title = ""
         self.description: str | None = None
-        self.canonical: str | None = None
+        self.canonicals: list[str | None] = []
+        self.robots = ""
+        self._in_head = True
         self.alternates: set[tuple[str, str]] = set()
         self.ld: list[str] = []
         self._in_title = False
@@ -132,18 +159,22 @@ class Head(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
-        if tag == "title":
+        if tag == "title" and self._in_head:
             self._in_title = True
         elif tag == "meta" and a.get("name") == "description":
             self.description = a.get("content") or ""
-        elif tag == "link" and a.get("rel") == "canonical":
-            self.canonical = a.get("href")
+        elif tag == "meta" and (a.get("name") or "").lower() == "robots":
+            self.robots += " " + (a.get("content") or "").lower()
+        elif tag == "link" and a.get("rel") == "canonical" and self._in_head:
+            self.canonicals.append(a.get("href"))
         elif tag == "link" and a.get("rel") == "alternate" and a.get("hreflang"):
             self.alternates.add((a["hreflang"], a.get("href") or ""))
         elif tag == "script" and a.get("type") == "application/ld+json":
             self._ld = []
 
     def handle_endtag(self, tag):
+        if tag == "head":
+            self._in_head = False
         if tag == "title":
             self._in_title = False
         elif tag == "script" and self._ld is not None:
@@ -157,22 +188,27 @@ class Head(HTMLParser):
             self._ld.append(data)
 
 
+def parse_head(file: Path) -> Head:
+    head = Head()
+    head.feed(file.read_text(encoding="utf-8"))
+    return head
+
+
 def head_problems(dist: Path) -> list[str]:
     problems = []
-    for path in indexable_pages():
+    for path in indexable_pages(dist):
         file = dist / dist_file(path)
         if not file.is_file():
             continue
-        head = Head()
-        head.feed(file.read_text(encoding="utf-8"))
+        head = parse_head(file)
         name = f"site/dist/{dist_file(path)}"
         want = expected_alternates(path)
         if not head.title.strip():
             problems.append(f"no title: {name}")
         if not (head.description or "").strip():
             problems.append(f"no description: {name}")
-        if head.canonical != canonical(path):
-            problems.append(f"canonical {head.canonical} instead of {canonical(path)}: {name}")
+        if head.canonicals != [canonical(path)]:
+            problems.append(f"canonical {head.canonicals or None} instead of one {canonical(path)}: {name}")
         if head.alternates != want:
             problems.append(f"hreflang {sorted(head.alternates)} instead of {sorted(want)}: {name}")
         if not head.ld:
@@ -188,28 +224,31 @@ def head_problems(dist: Path) -> list[str]:
 def hreflang_target_problems(dist: Path) -> list[str]:
     """No hreflang link of any page points at a page that is not indexable (noindex, hidden, 404 or unknown)."""
     problems = []
-    indexable = {canonical(p) for p in indexable_pages()}
+    indexable = {canonical(p) for p in indexable_pages(dist)}
     for path in expected_pages():
         file = dist / dist_file(path)
         if not file.is_file():
             continue
-        head = Head()
-        head.feed(file.read_text(encoding="utf-8"))
+        head = parse_head(file)
         problems += [f"hreflang {href} is not an indexable page: site/dist/{dist_file(path)}"
                      for href in sorted({href for _, href in head.alternates} - indexable)]
     return problems
 
 
 def placeholder_problems(dist: Path) -> list[str]:
-    """A {placeholder} left in the text of a page that is not hidden (scripts and styles are not text)."""
+    """A {placeholder} left in the text or the JSON-LD of a page that is not hidden (other scripts and styles are not)."""
     problems = []
     hidden = hidden_pages()
     for path in expected_pages():
         file = dist / dist_file(path)
         if path in hidden or not file.is_file():
             continue
-        text = SCRIPT_STYLE.sub("", file.read_text(encoding="utf-8"))
-        problems += [f"placeholder {mark} left: site/dist/{dist_file(path)}" for mark in sorted(set(LEFT_PLACEHOLDER.findall(text)))]
+        html = file.read_text(encoding="utf-8")
+        name = f"site/dist/{dist_file(path)}"
+        text = SCRIPT_STYLE.sub("", html)
+        problems += [f"placeholder {mark} left: {name}" for mark in sorted(set(LEFT_PLACEHOLDER.findall(text)))]
+        ld = {mark for chunk in parse_head(file).ld for mark in LEFT_PLACEHOLDER.findall(chunk)}
+        problems += [f"placeholder {mark} left in JSON-LD: {name}" for mark in sorted(ld)]
     return problems
 
 
@@ -217,10 +256,26 @@ def sitemap_problems(dist: Path) -> list[str]:
     file = dist / "sitemap.xml"
     if not file.is_file():
         return []  # missing() reports it
-    locs = set(re.findall(r"<loc>([^<]+)</loc>", file.read_text(encoding="utf-8")))
-    want = {canonical(p) for p in indexable_pages()}
-    return ([f"sitemap.xml lacks {url}" for url in sorted(want - locs)]
-            + [f"sitemap.xml lists {url}, not an indexable page" for url in sorted(locs - want)])
+    try:
+        root = ET.parse(file).getroot()
+    except ET.ParseError as error:
+        return [f"sitemap.xml is not well-formed XML: {error}"]
+    if root.tag != f"{{{SITEMAP_NS}}}urlset":
+        return [f"sitemap.xml root is {root.tag}, not {{{SITEMAP_NS}}}urlset"]
+    problems = []
+    locs: list[str] = []
+    for entry in root:
+        children = [child.tag for child in entry]
+        if entry.tag != f"{{{SITEMAP_NS}}}url" or children != [f"{{{SITEMAP_NS}}}loc"]:
+            problems.append(f"sitemap.xml entry is not a <url> with exactly one <loc>: {entry.tag} {children}")
+            continue
+        locs.append((entry[0].text or "").strip())
+    if any("}" in el.tag and el.tag.split("}")[0] != "{" + SITEMAP_NS for el in root.iter()):
+        problems.append("sitemap.xml has elements outside the sitemaps.org namespace (no xhtml links, hreflang is in the head)")
+    problems += [f"sitemap.xml lists {url} twice" for url in sorted({u for u in locs if locs.count(u) > 1})]
+    want = {canonical(p) for p in indexable_pages(dist)}
+    return (problems + [f"sitemap.xml lacks {url}" for url in sorted(want - set(locs))]
+            + [f"sitemap.xml lists {url}, not an indexable page" for url in sorted(set(locs) - want)])
 
 
 def robots_txt_problems(dist: Path) -> list[str]:
@@ -264,9 +319,10 @@ def auth_problems(dist: Path) -> list[str]:
 
 def main(dist: Path | None = None, launched: bool = False) -> int:
     dist = dist or SITE / "dist"
-    problems = ([f"missing: site/dist/{name}" for name in missing(dist)] + robots_problems(dist) + head_problems(dist)
-                + hreflang_target_problems(dist) + placeholder_problems(dist) + sitemap_problems(dist) + robots_txt_problems(dist) + auth_problems(dist)
-                + (launched_problems() if launched else []))
+    problems = ([f"missing: site/dist/{name}" for name in missing(dist)] + unexpected_pages(dist)
+                + robots_problems(dist) + head_problems(dist) + hreflang_target_problems(dist)
+                + placeholder_problems(dist) + sitemap_problems(dist) + robots_txt_problems(dist)
+                + auth_problems(dist) + (launched_problems() if launched else []))
     for problem in problems:
         print(problem)
     if problems:

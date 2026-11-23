@@ -82,7 +82,7 @@ expect "/es/tiradas/3-cartas.html → без .html" "$(moved_to /es/tiradas/3-ca
 expect "/es/tiradas — только папка" "$(status /es/tiradas)" 404
 expect "/es/tiradas — страница 404 ES" "$(html_lang /es/tiradas)" '<html lang="es"'
 expect "robots.txt называет sitemap" "$("${CURL[@]}" "$URL/robots.txt" | grep -c '^Sitemap: https://arcanadiary.com/sitemap.xml$')" 1
-expect "sitemap.xml без дневника" "$("${CURL[@]}" "$URL/sitemap.xml" | grep -c '/diary<')" 0
+expect "sitemap.xml без дневника и кабинета" "$("${CURL[@]}" "$URL/sitemap.xml" | grep -cE '/(diary|es/diario|account|es/cuenta)<')" 0
 expect "/nope" "$(status /nope)" 404
 expect "/nope — страница 404 EN" "$(html_lang /nope)" '<html lang="en"'
 expect "/es/nope" "$(status /es/nope)" 404

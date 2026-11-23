@@ -5,11 +5,12 @@ import check_dist
 from check_dist import (EXTRA, READING_PAGES, auth_problems, canonical, dist_file, expected_alternates, expected_pages,
                         head_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
                         hreflang_target_problems, placeholder_problems, robots_problems, robots_txt_problems,
-                        sitemap_problems, static_chunks)
+                        sitemap_problems, static_chunks, unexpected_pages)
 
 ISLAND = '<astro-island component-url="/_astro/ReadingIsland.a1.js" renderer-url="/_astro/client.b2.js"></astro-island>'
 NOINDEX = '<meta name="robots" content="noindex, nofollow">'
 LD = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage"}</script>'
+SITE_OTHER = "https://arcanadiary.com/other"
 ROBOTS_TXT = "User-agent: *\nDisallow:\nSitemap: https://arcanadiary.com/sitemap.xml\n"
 
 
@@ -30,7 +31,7 @@ def head(path):
 
 
 def sitemap(paths):
-    return ('<?xml version="1.0" encoding="UTF-8"?><urlset>'
+    return ('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
             + "".join(f"<url><loc>{canonical(p)}</loc></url>" for p in paths) + "</urlset>")
 
 
@@ -84,6 +85,17 @@ def test_only_the_private_and_hidden_pages_say_noindex(tmp_path):
     assert robots_problems(dist) == ["no noindex meta: site/dist/diary.html", "unexpected noindex meta: site/dist/yes-no.html"]
 
 
+def test_a_noindex_meta_in_any_spelling_is_unexpected_and_leaves_the_indexable_set(tmp_path):
+    dist = site(tmp_path)
+    write(dist, "love.html", head("/love") + '<meta name="robots" content="NoIndex">' + ISLAND)
+    assert robots_problems(dist) == ["unexpected noindex meta: site/dist/love.html"]
+    assert "/love" not in indexable_pages(dist)
+    assert sitemap_problems(dist) == ["sitemap.xml lists https://arcanadiary.com/love, not an indexable page"]
+    # a private page needs the exact string
+    write(dist, "diary.html", '<meta name="robots" content="noindex">' + ISLAND)
+    assert "no noindex meta: site/dist/diary.html" in robots_problems(dist)
+
+
 def test_a_good_build_has_every_head_part(tmp_path):
     assert head_problems(site(tmp_path)) == []
 
@@ -96,15 +108,33 @@ def test_each_missing_or_wrong_head_part_is_named(tmp_path):
     write(dist, "love.html", "<title> </title>")
     assert head_problems(dist) == [
         "no description: site/dist/cards.html",
-        "canonical https://arcanadiary.com/cards/ instead of https://arcanadiary.com/cards: site/dist/cards.html",
+        "canonical ['https://arcanadiary.com/cards/'] instead of one https://arcanadiary.com/cards: site/dist/cards.html",
         "JSON-LD does not parse: site/dist/cards.html",
         "no title: site/dist/love.html",
         "no description: site/dist/love.html",
-        "canonical None instead of https://arcanadiary.com/love: site/dist/love.html",
+        "canonical None instead of one https://arcanadiary.com/love: site/dist/love.html",
         "hreflang [] instead of [('en', 'https://arcanadiary.com/love'), ('es', 'https://arcanadiary.com/es/amor'), "
         "('x-default', 'https://arcanadiary.com/love')]: site/dist/love.html",
         "no JSON-LD: site/dist/love.html",
     ]
+
+
+def test_two_canonicals_and_a_body_title_are_reported(tmp_path):
+    dist = site(tmp_path)
+    page = head("/love")
+    write(dist, "love.html", page.replace("<title>Title</title>", f'<link rel="canonical" href="{SITE_OTHER}">')
+          + "</head><body><svg><title>x</title></svg>")
+    assert head_problems(dist) == [
+        "no title: site/dist/love.html",
+        f"canonical ['{SITE_OTHER}', 'https://arcanadiary.com/love'] instead of one https://arcanadiary.com/love: site/dist/love.html"]
+
+
+def test_an_html_file_that_is_not_an_expected_page_is_reported(tmp_path):
+    dist = site(tmp_path)
+    assert unexpected_pages(dist) == []
+    write(dist, "secret.html", "x")
+    write(dist, "cards/new.html", "x")
+    assert unexpected_pages(dist) == ["unexpected page: site/dist/cards/new.html", "unexpected page: site/dist/secret.html"]
 
 
 def test_an_hreflang_link_to_a_noindex_or_hidden_page_is_reported(tmp_path):
@@ -126,6 +156,35 @@ def test_a_placeholder_left_in_the_text_is_reported_but_not_one_inside_a_script(
     assert placeholder_problems(dist) == []
     write(dist, "love.html", head("/love") + "<p>Draw {guest_limit} a day</p><script>const a = {x};</script>")
     assert placeholder_problems(dist) == ["placeholder {guest_limit} left: site/dist/love.html"]
+
+
+def test_a_placeholder_inside_json_ld_is_reported(tmp_path):
+    dist = site(tmp_path)
+    ld = '<script type="application/ld+json">{"description":"{guest_limit} a day"}</script>'
+    write(dist, "love.html", head("/love").replace(LD, ld) + ISLAND)
+    assert placeholder_problems(dist) == ["placeholder {guest_limit} left in JSON-LD: site/dist/love.html"]
+    write(dist, "love.html", head("/love").replace(LD, LD + "<p>{limit_2}</p>") + ISLAND)
+    assert placeholder_problems(dist) == ["placeholder {limit_2} left: site/dist/love.html"]
+
+
+def test_a_malformed_sitemap_is_reported(tmp_path):
+    dist = site(tmp_path)
+    ns = "http://www.sitemaps.org/schemas/sitemap/0.9"
+    good = [canonical(p) for p in indexable_pages()]
+    url = lambda u: f"<url><loc>{u}</loc></url>"
+    body = "".join(url(u) for u in good)
+    write(dist, "sitemap.xml", "<urlset")
+    assert sitemap_problems(dist)[0].startswith("sitemap.xml is not well-formed XML")
+    write(dist, "sitemap.xml", f"<urlset>{body}</urlset>")
+    assert sitemap_problems(dist)[0].startswith("sitemap.xml root is urlset")
+    write(dist, "sitemap.xml", f'<urlset xmlns="{ns}">{body}{url(good[0])}</urlset>')
+    assert sitemap_problems(dist) == [f"sitemap.xml lists {good[0]} twice"]
+    link = '<xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="es" href="x"/>'
+    write(dist, "sitemap.xml", f'<urlset xmlns="{ns}">{body}<url><loc>{canonical("/love")}</loc>{link}</url></urlset>'
+          .replace(url(canonical("/love")), "", 1))
+    assert any("exactly one <loc>" in p for p in sitemap_problems(dist))
+    write(dist, "sitemap.xml", f'<urlset xmlns="{ns}">{body}<url><loc>{good[0]}</loc><loc>{good[1]}</loc></url></urlset>')
+    assert any("exactly one <loc>" in p for p in sitemap_problems(dist))
 
 
 def test_the_sitemap_lists_exactly_the_indexable_pages(tmp_path):
