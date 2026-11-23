@@ -28,24 +28,23 @@ describe('dictionaries', () => {
       expect(new Set(DRAFTS[lang]).size).toBe(DRAFTS[lang].length);
       for (const key of DRAFTS[lang]) expect(keys(lang)).toContain(key);
     }
-    expect(DRAFTS.en.length).toBe(105);
-    expect(DRAFTS.es.length).toBe(177);
+    // stage 5: every key is reviewed
+    expect(DRAFTS.en).toEqual([]);
+    expect(DRAFTS.es).toEqual([]);
   });
 
   it('keep the prototype copy', () => {
-    expect(t('en').homeH1).toBe('Ask the cards.');
+    expect(t('en').homeH1).toBe('Free tarot reading: ask the cards');
     expect(t('en').drawThree).toBe('Draw three cards');
     expect(t('es').drawThree).toBe('Saca tres cartas');
-    expect(t('es').homeH1).toBe('Pregunta a las cartas.');
+    expect(t('es').homeH1).toBe('Tarot gratis: pregunta a las cartas');
     expect(t('en').disclaimer).toBe('Tarot is a way to think about your question, not a guarantee.');
     expect(t('es').disclaimer).toBe('El tarot es una forma de reflexionar, no una garantía.');
     expect(t('es').whyPrefix).toBe('Por qué:');
-    // spec 4.5 §4: the yes/no toggle of prototype 5a; the Spanish hint is a draft
+    // spec 4.5 §4: the yes/no toggle of prototype 5a
     expect(t('en').yesNoCountHint).toBe('1 card — a quick lean. 3 cards — the majority decides, and you see what tips it.');
     expect([t('en').oneCardChip, t('en').threeCardsChip, t('en').countGroupLabel]).toEqual(['1 card', '3 cards', 'Number of cards']);
     expect([t('es').oneCardChip, t('es').threeCardsChip]).toEqual(['1 carta', '3 cartas']);
-    expect(DRAFTS.es).toContain('yesNoCountHint');
-    expect(DRAFTS.en).not.toContain('yesNoCountHint');
   });
 
   it('keep the 4.4b copy of the prototypes and the spec (spec 4.4b §8)', () => {
@@ -59,20 +58,13 @@ describe('dictionaries', () => {
       'Tu diario guarda tus últimas 10 tiradas. Plus las guarda todas.']);
     expect([t('en').saveToDiary, t('es').saveToDiary, t('en').savedToDiary]).toEqual(['Save to diary', 'Guardar en el diario',
       'Saved to your diary ✓']);
-    expect(DRAFTS.en).not.toContain('howStep3');
-    expect(DRAFTS.es).toContain('howStep3');
-    expect(DRAFTS.es).toContain('plusDiaryNote');
   });
 
-  it('say that a sign-in switched the reminder on, as drafts (owner decision 16)', () => {
+  it('say that a sign-in switched the reminder on (owner decision 16)', () => {
     expect([fill(t('en').diaryReminderOn, { account: t('en').diaryReminderOnLink }),
       fill(t('es').diaryReminderOn, { account: t('es').diaryReminderOnLink })]).toEqual([
       'The reminder in 7 days is on — you can turn it off in your account.',
       'El recordatorio en 7 días está activado — puedes desactivarlo en tu cuenta.']);
-    for (const lang of ['en', 'es'] as const) {
-      expect(DRAFTS[lang]).toContain('diaryReminderOn');
-      expect(DRAFTS[lang]).toContain('diaryReminderOnLink');
-    }
   });
 
   it('name the votes with the card base labels (content/cards/yes-no-rules.json)', () => {

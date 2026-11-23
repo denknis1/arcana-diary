@@ -1,5 +1,5 @@
 // English interface strings. Source: the stage 3 prototypes (design canvas, screens 1–13) and the design system.
-// Keys in `enDrafts` are not in the prototypes: draft — review with stage 5 texts.
+// Stage 5: every key is reviewed; `enDrafts` is empty. Tool page titles and H1s follow the stage 5 content pages.
 // Every answer, card name and verdict label comes from the API or the card base, not from here; the vote words
 // under three yes/no cards (voteYes…) are the card base's labels (content/cards/yes-no-rules.json), kept equal.
 
@@ -30,11 +30,11 @@ export const en = {
   drawThree: 'Draw three cards',
   drawOne: 'Draw a card',
 
-  homeTitle: 'Free tarot reading — Arcana Diary',
+  homeTitle: 'Free Tarot Reading: Ask a Question, Draw Three Cards',
   homeEyebrow: 'Free tarot reading',
-  homeH1: 'Ask the cards.',
+  homeH1: 'Free tarot reading: ask the cards',
   homeLead: 'One question, three cards and an honest reading. No sign-up.',
-  homePlaceholder: 'e.g. Will this move be good for me?',
+  homePlaceholder: 'e.g. What should I keep in mind about this move?',
   otherWays: 'Other ways to ask',
   fmtOneCard: 'One card',
   fmtOneCardHint: 'A single card for right now',
@@ -43,7 +43,7 @@ export const en = {
   fmtLove: 'Love',
   fmtLoveHint: 'For your relationship or crush',
   fmtDaily: 'Card of the Day',
-  fmtDailyHint: 'One card for today, every morning',
+  fmtDailyHint: 'One card for today, a new one each day',
   dailyTileEyebrow: 'Card of the day',
   dailyTileText: 'Your card for today is waiting',
   dailyTileLink: 'Turn it over',
@@ -54,15 +54,15 @@ export const en = {
   howStep2: 'The reader explains each card in plain words.',
   howStep3: 'Save it, and check later what came true.',
 
-  oneCardTitle: 'One card tarot — Arcana Diary',
-  oneCardEyebrow: 'One card',
-  oneCardH1: 'A single card for right now.',
+  oneCardTitle: 'One Card Tarot Reading: Pull a Card for Your Question',
+  oneCardEyebrow: 'One card tarot',
+  oneCardH1: 'One card tarot: a single card for right now',
   oneCardLead: 'One card, read for your question — a quick look when you need it.',
   oneCardPlaceholder: 'e.g. What should I focus on today?',
 
-  yesNoTitle: 'Yes or No tarot — Arcana Diary',
-  yesNoEyebrow: 'Yes or No tarot',
-  yesNoH1: 'A clear answer, and why.',
+  yesNoTitle: 'Yes or No Tarot: One or Three Cards and the Rule Behind It',
+  yesNoEyebrow: 'Yes or no tarot',
+  yesNoH1: 'Yes or no tarot: a clear answer, and why',
   yesNoLead: 'Ask a question that can be answered yes or no. The card gives a lean — the choice stays yours.',
   yesNoLabel: 'Your yes-or-no question — optional',
   yesNoPlaceholder: 'e.g. Should I apply for this job?',
@@ -71,9 +71,9 @@ export const en = {
   voteNo: 'No',
   voteUnclear: 'Not clear yet',
 
-  loveTitle: 'Love tarot — Arcana Diary',
-  loveEyebrow: 'Love tarot',
-  loveH1: 'What does your heart need?',
+  loveTitle: 'Love Tarot Reading: Free Three-Card Spread for Your Heart',
+  loveEyebrow: 'Love tarot reading',
+  loveH1: 'Love tarot reading: what does your heart need?',
   loveLead: 'Three cards about you and your relationship: the past, the present and where it\'s heading.',
   situationLabel: 'Your situation — optional',
   sitSingle: 'Single',
@@ -84,14 +84,14 @@ export const en = {
   drawLove: 'Draw for love',
   loveNote: 'The cards talk about you and what you can do — never what another person thinks or feels.',
 
-  dailyTitle: 'Card of the Day — Arcana Diary',
-  dailyEyebrow: 'Card of the Day',
-  dailyH1: 'Your card for today',
+  dailyTitle: 'Daily Tarot: Your Free Tarot Card of the Day',
+  dailyEyebrow: 'Daily tarot',
+  dailyH1: 'Daily tarot: your card for today',
   dailyTap: 'Tap to turn your card',
-  dailyNote: 'One card a day · a new one tomorrow morning',
+  dailyNote: 'One card a day · a new one tomorrow',
   dailyLoading: 'Turning your card…',
-  dailyFallbackNote: "We couldn't reach your own card right now, so here is today's card from our card base.",
-  dailyError: "Your card can't be turned right now. Please try again in a moment.",
+  dailyFallbackNote: "Your card didn't load, so here is today's card from our card base.",
+  dailyError: "We can't turn your card right now. Please try again in a moment.",
   fullMeaning: '{name} — full meaning',
   reversedTag: 'Reversed',
 
@@ -101,7 +101,7 @@ export const en = {
   uprightTitle: 'Upright meaning',
   reversedTitle: '{name} reversed',
   cardDrawHeading: 'Have a question of your own?',
-  cardDrawLead: 'The night room opens right here — free, no sign-up.',
+  cardDrawLead: 'Draw a card right here — free, no sign-up.',
   cardPlaceholder: 'e.g. What should I pay attention to?',
   drawForQuestion: 'Draw a card for your question',
   prevCard: '← Previous',
@@ -144,7 +144,7 @@ export const en = {
   followupSend: 'Ask',
   followupFreeLeft: 'Free follow-up questions left: {n}',
   followupPaidWarning: 'This question will use 1 of your readings for today ({n} left).',
-  followupConfirm: 'Use 1 reading and ask',
+  followupConfirm: 'Use 1 reading',
   followupCancel: 'Not now',
   followupUsedReading: 'This question used 1 of your readings for today.',
   followupNone: "You've asked all the follow-up questions this reading can take.",
@@ -168,7 +168,7 @@ export const en = {
   plusBenefit3: 'Your whole diary, with no limit',
   plusEmailLabel: "Your e-mail — we'll write once, when Plus opens",
   plusEmailPlaceholder: 'e.g. you@example.com',
-  plusNotify: 'Tell me when it opens',
+  plusNotify: 'Notify me',
   plusDone: "Thank you — we'll write when Plus opens.",
   plusNotNow: 'Not now',
   plusEmailError: 'Please check the e-mail address and try again.',
@@ -253,24 +253,5 @@ export const en = {
 export type DictKey = keyof typeof en;
 export type Dict = Record<DictKey, string>;
 
-// draft — review with stage 5 texts
-export const enDrafts: readonly DictKey[] = [
-  'skipToContent', 'langLabel', 'helpLead', 'helpLink', 'homeTitle', 'dailyTileText', 'learnLead',
-  'oneCardTitle', 'oneCardEyebrow', 'oneCardH1', 'oneCardLead', 'oneCardPlaceholder', 'yesNoTitle',
-  'loveTitle', 'dailyTitle', 'dailyLoading', 'dailyFallbackNote', 'dailyError', 'cardTitle', 'cardEyebrowMinor',
-  'notFoundTitle', 'dealtOne', 'readingReady', 'noQuestionThree', 'stepLabel', 'restoring', 'streamLost',
-  'followupLabel', 'followupPlaceholder', 'followupSend', 'followupFreeLeft', 'followupPaidWarning',
-  'followupConfirm', 'followupCancel', 'followupUsedReading', 'followupNone', 'followupYouAsked', 'errBusy',
-  'errTurnstile', 'errUnavailable', 'errNetwork', 'errStage', 'errGone', 'errOther', 'plusEmailLabel',
-  'plusEmailPlaceholder', 'plusNotify', 'plusDone', 'plusEmailError', 'crisisCall', 'crisisText', 'crisisHours',
-  'crisisWeb', 'errDayCap', 'followupReady',
-  'signInEmailLabel', 'signInSend', 'signInOr', 'signInTooOften', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait',
-  'checkEmailOther', 'checkEmailSent',
-  'diaryTitle', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion', 'diaryKindThree',
-  'diaryHidden', 'diaryNoteMark', 'diaryAccountLink', 'diaryConsentFailed', 'diaryReminderOn', 'diaryReminderOnLink',
-  'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
-  'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
-  'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',
-  'accountExport', 'accountDelete', 'deleteTitle', 'deleteBody', 'deleteDownload', 'deleteForever', 'accountDeleted',
-  'remindDone',
-];
+// Every key is reviewed (stage 5): the list stays for the test and for later drafts.
+export const enDrafts: readonly DictKey[] = [];

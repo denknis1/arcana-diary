@@ -1,5 +1,5 @@
 // Spanish (Mexico, tú) interface strings. Source: the stage 3 prototypes (screens 11d, 12a–12d) and the design
-// system. Keys in `esDrafts` are not in the prototypes: draft — review with stage 5 texts. No gendered forms for
+// system. Stage 5: every key is reviewed; `esDrafts` is empty. No gendered forms for
 // the person (design review); a card name is followed by "carta invertida" or "al revés" (never a bare "invertida"
 // or "derecha", which clash with masculine names such as "El Emperador"; stage 4.6), which agree with every card.
 import type { Dict, DictKey } from './en';
@@ -31,9 +31,9 @@ export const es: Dict = {
   drawThree: 'Saca tres cartas',
   drawOne: 'Saca una carta',
 
-  homeTitle: 'Tarot gratis — Arcana Diary',
+  homeTitle: 'Tarot gratis: tirada de 3 cartas o de 1, sin registro',
   homeEyebrow: 'Tarot gratis',
-  homeH1: 'Pregunta a las cartas.',
+  homeH1: 'Tarot gratis: pregunta a las cartas',
   homeLead: 'Una pregunta, tres cartas y una lectura honesta. Sin registro.',
   homePlaceholder: 'p. ej. ¿Me conviene este cambio?',
   otherWays: 'Otras formas de preguntar',
@@ -44,7 +44,7 @@ export const es: Dict = {
   fmtLove: 'Tarot del amor',
   fmtLoveHint: 'Para tu relación o tu corazón',
   fmtDaily: 'Carta del día',
-  fmtDailyHint: 'Una carta para hoy, cada mañana',
+  fmtDailyHint: 'Una carta para hoy, nueva cada día',
   dailyTileEyebrow: 'Carta del día',
   dailyTileText: 'Tu carta de hoy te espera',
   dailyTileLink: 'Dale la vuelta',
@@ -61,9 +61,9 @@ export const es: Dict = {
   oneCardLead: 'Una carta, leída para tu pregunta: una mirada rápida cuando la necesitas.',
   oneCardPlaceholder: 'p. ej. ¿En qué me conviene enfocarme hoy?',
 
-  yesNoTitle: 'Tarot sí o no — Arcana Diary',
+  yesNoTitle: 'Tarot sí o no gratis: 1 o 3 cartas, y el porqué',
   yesNoEyebrow: 'Tarot sí o no',
-  yesNoH1: 'Una respuesta clara, y por qué.',
+  yesNoH1: 'Tarot sí o no: una respuesta clara, y por qué',
   yesNoLead: 'Haz una pregunta que se pueda responder con sí o no. La carta muestra una inclinación; la decisión sigue siendo tuya.',
   yesNoLabel: 'Tu pregunta de sí o no — opcional',
   yesNoPlaceholder: 'p. ej. ¿Debo aceptar esta oferta?',
@@ -72,9 +72,9 @@ export const es: Dict = {
   voteNo: 'No',
   voteUnclear: 'Todavía no está claro',
 
-  loveTitle: 'Tarot del amor — Arcana Diary',
+  loveTitle: 'Tarot del amor gratis: 3 cartas para tu corazón',
   loveEyebrow: 'Tarot del amor',
-  loveH1: '¿Qué necesita tu corazón?',
+  loveH1: 'Tarot del amor: ¿qué necesita tu corazón?',
   loveLead: 'Tres cartas sobre ti y tu relación: el pasado, el presente y hacia dónde va.',
   situationLabel: 'Tu situación — opcional',
   sitSingle: 'Sin pareja',
@@ -82,17 +82,17 @@ export const es: Dict = {
   sitAfterBreakup: 'Después de una ruptura',
   sitComplicated: 'Es complicado',
   lovePlaceholder: 'p. ej. ¿Cómo puedo sentir más cercanía en mi relación?',
-  drawLove: 'Saca tus cartas del amor',
+  drawLove: 'Saca cartas de amor',
   loveNote: 'Las cartas hablan de ti y de lo que puedes hacer, nunca de lo que otra persona piensa o siente.',
 
-  dailyTitle: 'Carta del día — Arcana Diary',
-  dailyEyebrow: 'Carta del día',
-  dailyH1: 'Tu carta de hoy',
+  dailyTitle: 'Carta del día del tarot: tu carta de hoy, gratis',
+  dailyEyebrow: 'Tarot del día',
+  dailyH1: 'Tarot del día: tu carta para hoy',
   dailyTap: 'Toca para voltear tu carta',
-  dailyNote: 'Una carta al día · otra nueva mañana',
+  dailyNote: 'Una carta al día · una nueva mañana',
   dailyLoading: 'Volteando tu carta…',
-  dailyFallbackNote: 'Ahora mismo no pudimos traer tu carta personal; aquí tienes la carta de hoy según nuestra base.',
-  dailyError: 'Ahora mismo no se puede voltear tu carta. Inténtalo de nuevo en un momento.',
+  dailyFallbackNote: 'No pudimos cargar tu carta, así que aquí tienes la carta de hoy de nuestra base.',
+  dailyError: 'No pudimos voltear tu carta ahora mismo. Inténtalo de nuevo en un momento.',
   fullMeaning: '{name} — significado completo',
   reversedTag: 'Al revés',
 
@@ -102,7 +102,7 @@ export const es: Dict = {
   uprightTitle: 'Significado',
   reversedTitle: '{name}, carta invertida',
   cardDrawHeading: '¿Tienes tu propia pregunta?',
-  cardDrawLead: 'La sala nocturna se abre aquí mismo, gratis y sin registro.',
+  cardDrawLead: 'Saca una carta aquí mismo, gratis y sin registro.',
   cardPlaceholder: 'p. ej. ¿A qué debo prestar atención?',
   drawForQuestion: 'Saca una carta para tu pregunta',
   prevCard: '← Anterior',
@@ -130,7 +130,7 @@ export const es: Dict = {
   posPath: 'Hacia dónde va',
   cardAlt: '{name}, al derecho',
   cardAltReversed: '{name}, carta invertida',
-  stepLabel: 'Siguiente paso',
+  stepLabel: 'Un paso a dar',
   whyPrefix: 'Por qué:',
   moreAbout: 'Más sobre estas cartas',
   askAnother: 'Hacer otra pregunta',
@@ -145,7 +145,7 @@ export const es: Dict = {
   followupSend: 'Preguntar',
   followupFreeLeft: 'Preguntas de seguimiento gratis que te quedan: {n}',
   followupPaidWarning: 'Esta pregunta usará 1 de tus lecturas de hoy (te quedan {n}).',
-  followupConfirm: 'Usar 1 lectura y preguntar',
+  followupConfirm: 'Usar 1 lectura',
   followupCancel: 'Ahora no',
   followupUsedReading: 'Esta pregunta usó 1 de tus lecturas de hoy.',
   followupNone: 'Ya hiciste todas las preguntas de seguimiento que admite esta lectura.',
@@ -169,14 +169,14 @@ export const es: Dict = {
   plusBenefit3: 'Todo tu diario, sin límite',
   plusEmailLabel: 'Tu correo: te escribimos una sola vez, cuando abra Plus',
   plusEmailPlaceholder: 'p. ej. tu@ejemplo.com',
-  plusNotify: 'Avísame cuando abra',
+  plusNotify: 'Avísame',
   plusDone: 'Gracias: te escribiremos cuando abra Plus.',
   plusNotNow: 'Ahora no',
   plusEmailError: 'Revisa la dirección de correo e inténtalo de nuevo.',
   plusDaily: 'Abre tu Carta del día gratis',
 
   crisisCall: 'Llama al {number}',
-  crisisText: 'Envía {sms}',
+  crisisText: 'Envía un mensaje al {sms}',
   crisisHours: 'Horario: {hours}',
   crisisWeb: 'Abrir {name}',
   // etapa 4.4b: guardar en el diario y acceso (pantallas 3, 3b)
@@ -251,34 +251,5 @@ export const es: Dict = {
   diaryReminderOnLink: 'tu cuenta',
 };
 
-// draft — review with stage 5 texts
-export const esDrafts: readonly DictKey[] = [
-  'skipToContent', 'langLabel', 'footerLabel', 'footerOneCard', 'helpLead', 'helpLink',
-  'countGroupLabel', 'homeTitle', 'fmtOneCard', 'fmtOneCardHint', 'dailyTileText', 'learnLead', 'howTitle',
-  'howStep1', 'howStep2', 'howStep3', 'oneCardTitle', 'oneCardEyebrow', 'oneCardH1', 'oneCardLead',
-  'oneCardPlaceholder', 'yesNoTitle', 'yesNoEyebrow', 'yesNoH1', 'yesNoLead', 'yesNoLabel', 'yesNoPlaceholder',
-  'loveTitle', 'loveEyebrow', 'loveH1', 'loveLead', 'situationLabel', 'sitSingle', 'sitRelationship',
-  'sitAfterBreakup', 'sitComplicated', 'lovePlaceholder', 'drawLove', 'loveNote', 'dailyTitle', 'dailyEyebrow',
-  'dailyH1', 'dailyTap', 'dailyNote', 'dailyLoading', 'dailyFallbackNote', 'dailyError',
-  'reversedTag', 'cardTitle', 'cardEyebrowMajor', 'cardEyebrowMinor', 'reversedTitle', 'cardDrawLead',
-  'cardPlaceholder', 'prevCard', 'nextCard', 'cardNav', 'notFoundTitle', 'notFoundH1', 'notFoundLead',
-  'notFoundNav', 'notFoundReading', 'closeBackTo', 'shuffling', 'dealtThree',
-  'dealtOne', 'writing', 'readingReady', 'noQuestionOne', 'noQuestionThree', 'cardAlt', 'cardAltReversed',
-  'moreAbout', 'backTo', 'notGuarantee', 'retry', 'restoring', 'streamLost', 'followupLabel',
-  'followupPlaceholder', 'followupSend', 'followupFreeLeft', 'followupPaidWarning', 'followupConfirm',
-  'followupCancel', 'followupUsedReading', 'followupNone', 'followupYouAsked', 'errBusy', 'errTurnstile',
-  'errUnavailable', 'errNetwork', 'errStage', 'errGone', 'errOther', 'plusTitle', 'plusLead', 'plusGives',
-  'plusBenefit1', 'plusBenefit2', 'plusBenefit3', 'plusEmailLabel', 'plusEmailPlaceholder', 'plusNotify',
-  'plusDone', 'plusEmailError', 'plusDaily', 'crisisCall', 'crisisText', 'crisisHours', 'crisisWeb',
-  'errDayCap', 'followupReady', 'plusNotNow', 'yesNoCountHint',
-  'savedToDiary', 'saveTitle', 'saveLead', 'saveRemind', 'signInEmailLabel', 'signInSend', 'signInOr', 'signInGoogle',
-  'signInTooOften', 'checkEmailTitle', 'checkEmailLead', 'checkEmailLeadThisDevice', 'checkEmailResend', 'checkEmailWait', 'checkEmailOther', 'checkEmailSent',
-  'diaryTitle', 'navDiaryShort', 'diaryWhy', 'diarySignInSoon', 'signInLinkExpired', 'diaryEmpty', 'diaryNoQuestion',
-  'diaryKindThree', 'diaryHidden', 'diaryNoteMark', 'outcomeYes', 'outcomePartly', 'outcomeNo', 'diaryAccountLink',
-  'plusDiaryNote', 'diaryConsentFailed', 'diaryReminderOn', 'diaryReminderOnLink',
-  'diaryBack', 'entryOutcomeQuestion', 'entryOutcomeLater', 'entryOutcomeClear', 'noteLabel', 'noteLeft', 'noteSave',
-  'noteSaved', 'entryDelete', 'entryDeleteConfirm', 'entryDeleteYes', 'cancel',
-  'accountTitle', 'accountH1', 'accountEmail', 'accountLeft', 'accountSignOut', 'accountConsent', 'accountConsentNote',
-  'accountExport', 'accountDelete', 'deleteTitle', 'deleteBody', 'deleteDownload', 'deleteForever', 'accountDeleted',
-  'remindTomorrow', 'remindDone',
-];
+// Every key is reviewed (stage 5): the list stays for the test and for later drafts.
+export const esDrafts: readonly DictKey[] = [];
