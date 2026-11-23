@@ -57,7 +57,7 @@
       "id": "upright",
       "heading": "¿Qué significa el Nueve de Bastos al derecho?",
       "paragraphs": [
-        "La resiliencia es el corazón de esta carta: ya recibiste golpes, el camino fue largo y sigues de pie. Suele salir en el último tramo, cuando la meta está cerca y las fuerzas parecen pocas. Es la carta del último esfuerzo, y la perseverancia que pide no tiene nada de espectacular: se trata de seguir un día más.",
+        "La resiliencia es el corazón de esta carta: hubo golpes, el camino fue largo y la figura sigue de pie. Suele salir en el último tramo, cuando la meta está cerca y las fuerzas parecen pocas. Es la carta del último esfuerzo, y la perseverancia que pide no tiene nada de espectacular: se trata de seguir un día más.",
         "También trae cautela. Después de una racha pesada es normal vigilar el horizonte y esperar el siguiente golpe, como hace el hombre del dibujo.",
         "La fuerza en la oposición de la que habla Waite (p. 180) encaja con la lectura moderna: la lucha quizá no terminó, pero todavía tienes con qué terminarla. ¿Qué defensas te siguen cuidando y cuáles mantienes solo por costumbre?"
       ]
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Nueve de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Nueve de Bastos es alguien que ha pasado por mucho y siguió adelante: leal, con mucho aguante, de confianza lenta y con un ojo siempre atento. Si eres tú, es esa parte de ti que no se rinde.",
+        "Hecho persona, el Nueve de Bastos es alguien que ha pasado por mucho y siguió adelante: leal, con mucho aguante, que tarda en confiar y siempre tiene un ojo atento. Si eres tú, es esa parte de ti que no se rinde.",
         "Como sentimiento, la carta significa un cariño con reservas: interés real detrás de una guardia, ganas de proteger lo que importa y el temor a otra herida, que vuelve lento abrirse. Al revés, habla de sentimientos desgastados por una lucha larga, o de una defensa tan alta que el cariño casi no logra pasar."
       ]
     },
@@ -153,7 +153,7 @@
     },
     {
       "q": "¿El Nueve de Bastos significa que debo rendirme?",
-      "a": "No. Su mensaje va en sentido contrario: estás cerca del final de un esfuerzo largo, y soltar ahora sería tirar lo que ya construiste. Lo que sí puede pedirte que sueltes es una defensa que ya no necesitas, no la meta."
+      "a": "No. Su mensaje va en sentido contrario: habla del último tramo de un esfuerzo largo y de la fuerza para terminarlo. Si esto te hace sentido, lo que puede pedirte que sueltes es una defensa que ya no necesitas, no la meta."
     },
     {
       "q": "¿El Nueve de Bastos significa que me quiere?",
@@ -176,9 +176,7 @@
   "waite": {
     "quote": "The card signifies strength in opposition … delay, suspension, adjournment. Reversed: Obstacles, adversity, calamity.",
     "quote_lang": "en",
-    "pages": [
-      180
-    ],
+    "pages": [180],
     "translation": "La carta significa fuerza en la oposición … demora, suspensión, aplazamiento. Al revés: obstáculos, adversidad, calamidad.",
     "harsh": true
   },

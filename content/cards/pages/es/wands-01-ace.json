@@ -42,15 +42,15 @@
       "heading": "¿Qué hay en la carta del As de Bastos?",
       "paragraphs": [
         "Una mano sale de una nube y aprieta un bastón grueso y vivo. Waite resume el dibujo en una frase: una mano que sale de una nube sujeta un bastón o garrote robusto (p. 196). No agrega más detalles, así que lo demás viene de la imagen.",
-        "En la carta de 1909 el bastón es lo más grande del cuadro y ocupa casi todo el alto de la carta. Le brotan ramitas verdes y varias hojas sueltas flotan a los lados. La mano entra por la derecha desde una nube gris de rizos, rodeada de líneas finas como rayos. Abajo, un río cruza colinas verdes; a la izquierda hay un castillo en lo alto de un cerro y a la derecha, unos árboles."
+        "En la carta de 1909 el bastón es lo más grande del cuadro y ocupa casi todo el alto de la carta. Le brotan ramitas verdes y varias hojas sueltas flotan a los lados. La mano entra por la derecha desde una nube gris y rizada, rodeada de líneas finas como rayos. Abajo, un río cruza colinas verdes; a la izquierda hay un castillo en lo alto de un cerro y a la derecha, unos árboles."
       ]
     },
     {
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el As de Bastos?",
       "paragraphs": [
-        "La primera lista gira en torno al comienzo: crear, inventar, emprender, el origen del que algo nace. Waite menciona además otra versión que lee el As como dinero y fortuna (p. 196).",
-        "La lista al revés de Waite es dura y termina con «cierta alegría nublada» (p. 196). En Arcana Diary la carta al revés se lee solo desde esa última frase: una chispa que por ahora brilla menos."
+        "La primera lista gira en torno al comienzo: crear, inventar, emprender, la fuente de la que algo nace. La lista de Waite sigue con la familia y el origen, y recoge otra versión que lee el As como dinero, fortuna y herencia (p. 196).",
+        "La lista al revés de Waite es dura y termina en una cierta alegría nublada (p. 196). En Arcana Diary la carta al revés se lee solo desde esa última frase: una chispa que por ahora brilla menos."
       ]
     },
     {
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el As de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el As de Bastos es alguien lleno de ideas y de arranque: quien propone el viaje, quien lanza el proyecto en la oficina. También puedes ser tú, justo cuando algo nuevo te atrapa. Como sentimiento, la carta significa atracción, entusiasmo y deseo recién encendido, esa etapa en la que alguien se siente con curiosidad y ganas de acercarse. Al revés, el interés existe pero es inestable: se prende y se enfría, o se queda a medias por timidez."
+        "Como persona, el As de Bastos es alguien lleno de ideas y de arranque: quien propone el viaje, quien lanza el proyecto en la oficina. También puedes ser tú, justo cuando algo nuevo te atrapa. Como sentimiento, la carta significa atracción, entusiasmo y deseo recién encendido, esa etapa en la que alguien siente curiosidad y ganas de acercarse. Al revés, el interés existe pero es inestable: se prende y se enfría, o se queda a medias por timidez."
       ]
     },
     {
@@ -153,7 +153,7 @@
     },
     {
       "q": "¿Por qué el bastón del As de Bastos tiene hojas?",
-      "a": "Waite lo explica para todo el palo: los bastos siempre aparecen con hojas porque es un palo de vida y movimiento (p. 172). En el As se notan más que en ninguna otra, unas pegadas a la rama y otras sueltas en el aire, y por eso la carta se lee como energía que crece."
+      "a": "Waite lo explica para todo el palo: los bastos siempre aparecen con hojas porque es un palo de vida y animación (p. 172). En el As se ven con claridad, unas pegadas a la rama y otras sueltas en el aire, y por eso la carta se lee como energía que crece."
     },
     {
       "q": "¿El As de Bastos significa que le gusto a alguien?",
@@ -179,9 +179,7 @@
   "waite": {
     "quote": "Creation, invention, enterprise, the powers which result in these; principle, beginning, source … Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy.",
     "quote_lang": "en",
-    "pages": [
-      196
-    ],
+    "pages": [196],
     "translation": "Creación, invención, emprendimiento, los poderes que dan lugar a todo esto; principio, comienzo, fuente … Al revés: caída, decadencia, ruina, perdición, perecer; también cierta alegría nublada.",
     "harsh": true
   },

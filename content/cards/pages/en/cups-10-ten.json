@@ -10,7 +10,7 @@
     "in_sentence": "the Ten of Cups"
   },
   "title": "Ten of Cups Tarot Card Meaning: Upright, Reversed & Love",
-  "description": "Ten of Cups upright: emotional fulfillment, family, harmony; reversed: tension at home. Love, work, advice, Waite's 1911 text and the 1909 card. Ask away.",
+  "description": "Ten of Cups upright: emotional fulfillment, family, harmony; reversed: tension at home. Love, work, advice and Waite's 1911 text. Ask your question.",
   "h1": "Ten of Cups Tarot Card Meaning",
   "image_alt": "Ten of Cups, 1909 Rider–Waite–Smith card: a couple seen from behind raise their arms to a rainbow of ten cups while two children dance near a red-roofed house.",
   "facts": {
@@ -49,7 +49,7 @@
       "heading": "What did Waite write about the Ten of Cups?",
       "paragraphs": [
         "Waite gives this card the full heart: contentment, rest and the perfection of love and friendship (p. 206). Waite adds two unusual readings, a person taking charge of the interests of the one asking when picture cards surround it, and the town, village or country where that person lives (p. 206).",
-        "Waite's reversed list is blunt (p. 206), and Arcana Diary does not read the card that way; here the reversed side stands for strain at home and a gap between an ideal and everyday life."
+        "Waite's reversed list is blunt (p. 206). On Arcana Diary the reversed side stands for strain at home and a gap between an ideal and everyday life, a modern reading, not Waite's."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "The Ten of Cups as a person and as feelings",
       "paragraphs": [
-        "In the role of a person, the Ten of Cups is someone devoted to home and to the people they love: warm, loyal, happiest when everyone is gathered together. As feelings, the card stands for deep emotional fulfillment and the wish for a lasting future, the sense of having found a home in the other person. Reversed, those feelings meet friction: distance inside a close bond, an ideal that daily life has not matched, or hopes for the future that point in different directions."
+        "When the question is how someone feels, the Ten of Cups means deep emotional fulfillment and the wish for a lasting future, the sense of having found a home in the other person. Upside down, the same card speaks of distance inside a close bond, an ideal that daily life has not matched, or hopes for the future that point in different directions. As a person, it is the one devoted to home and loved ones: warm, loyal, happiest when everyone is gathered together."
       ]
     },
     {
@@ -172,9 +172,7 @@
   "waite": {
     "quote": "Contentment, repose of the entire heart … also perfection of human love and friendship … Reversed: Repose of the false heart, indignation, violence.",
     "quote_lang": "en",
-    "pages": [
-      206
-    ],
+    "pages": [206],
     "translation": null,
     "harsh": true
   },

@@ -21,7 +21,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "La Sota de Bastos trae entusiasmo, curiosidad y ganas de exploración: ideas nuevas que piden probarse. Al revés, la chispa se apaga por impaciencia, indecisión o planes a medias. Es una carta alegre; su riesgo es que el impulso se acabe antes de construir algo. Es un sí: el joven mensajero mira su bastón, con ganas de salir.",
+  "capsule": "La Sota de Bastos trae entusiasmo, curiosidad y ganas de explorar: ideas nuevas que piden probarse. Al revés, la chispa se apaga por impaciencia, indecisión o planes a medias. Es una carta alegre; su riesgo es que el impulso se acabe antes de construir algo. Es un sí: el joven mensajero mira su bastón, con ganas de salir.",
   "keywords": {
     "upright": [
       "entusiasmo",
@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre la Sota de Bastos?",
       "paragraphs": [
         "En la lista de Waite, la Sota es quien trae noticias, enviado y cartero, y también un enamorado fiel (p. 176). Waite añade que tiene las cualidades principales de su palo y que puede anunciar noticias de la familia (p. 176).",
-        "Waite da además una combinación: si la sigue la Sota de Copas, se vuelve un rival peligroso (p. 176). Arcana Diary conserva de esa lista al mensajero y la indecisión."
+        "Waite da además una combinación: si la sigue la Sota de Copas, se vuelve un rival peligroso (p. 176). Arcana Diary conserva de esa lista al mensajero, sus noticias y la indecisión."
       ]
     },
     {
@@ -67,7 +67,7 @@
       "heading": "¿Qué significa la Sota de Bastos al revés?",
       "paragraphs": [
         "Cuando sale al revés, puede tratarse de un entusiasmo que se apaga: una emoción que se enfría antes de empezar, o diez proyectos abiertos y ninguno terminado. También puede mostrar indecisión, guardarte una idea por miedo a que no sea suficiente, o impaciencia cuando los resultados tardan.",
-        "Waite anota para este lado la indecisión y la inestabilidad que la acompaña (p. 176), y eso coincide con la lectura moderna. Las ideas a medias no son fracasos: escoge una, dale un siguiente paso pequeño y concreto, y termínalo."
+        "Waite anota para este lado malas noticias, indecisión y la inestabilidad que la acompaña (p. 176); todo eso sigue en la lectura moderna, las noticias como un mensaje que desilusiona. Las ideas a medias no son fracasos: escoge una, dale un siguiente paso pequeño y concreto, y termínalo."
       ]
     },
     {
@@ -121,11 +121,11 @@
         },
         {
           "card_id": "major-00-fool",
-          "text": "Energía de principiante por partes iguales. Disfruta la espontaneidad y fíjate dónde pisas."
+          "text": "Doble energía de principiante. Disfruta la espontaneidad y fíjate dónde pisas."
         },
         {
           "card_id": "pentacles-08-eight",
-          "text": "La curiosidad se junta con la práctica. El interés se vuelve habilidad si sigues presentándote."
+          "text": "La curiosidad se junta con la práctica. El interés se vuelve habilidad con práctica constante."
         }
       ]
     },
@@ -184,9 +184,7 @@
   "waite": {
     "quote": "Dark young man, faithful, a lover, an envoy, a postman … Reversed: Anecdotes, announcements, evil news. Also indecision and the instability which accompanies it.",
     "quote_lang": "en",
-    "pages": [
-      176
-    ],
+    "pages": [176],
     "translation": "Joven moreno, fiel, un enamorado, un enviado, un cartero … Al revés: anécdotas, anuncios, malas noticias. También indecisión y la inestabilidad que la acompaña.",
     "harsh": false
   },

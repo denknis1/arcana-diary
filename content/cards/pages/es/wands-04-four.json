@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre el Cuatro de Bastos?",
       "paragraphs": [
         "Waite dice que aquí, por una vez, los significados están casi a la vista (p. 190): la carta quiere decir lo que muestra. En su lista aparece también la fiesta de la cosecha en casa (p. 190), la celebración de cuando se termina de levantar la cosecha.",
-        "Lo raro está en la lista al revés: para Waite el significado no cambia y siguen la prosperidad y la belleza (p. 190). La lectura al revés que damos abajo es más sobria y es propia de Arcana Diary."
+        "Lo raro está en la lista al revés: para Waite el significado no cambia y siguen la prosperidad y la belleza (p. 190). La lectura al revés que damos abajo es menos luminosa y es propia de Arcana Diary."
       ]
     },
     {
@@ -74,9 +74,9 @@
       "id": "love",
       "heading": "¿Qué significa el Cuatro de Bastos en el amor?",
       "paragraphs": [
-        "Al revés, en el amor puede reflejar un ambiente tenso en casa, un festejo que se siente forzado o el paso entre dos etapas de la relación.",
         "Al derecho, celebra el compromiso, la vida en pareja y el hogar emocional que construyes: irse a vivir juntos, un compromiso, una boda o simplemente una relación que se siente como casa. Es una de las cartas clásicas de los momentos felices en pareja.",
-        "Cuando no hay pareja de por medio, la carta habla de pertenencia: amistades, familia y lugares donde te reciben tal como eres, una base cálida desde la que es fácil abrirse a gente nueva."
+        "Cuando no hay pareja de por medio, la carta habla de pertenencia: amistades, familia y lugares donde te reciben tal como eres, una base cálida desde la que es fácil abrirse a gente nueva.",
+        "Al revés, en el amor puede reflejar un ambiente tenso en casa, un festejo que se siente forzado o el paso entre dos etapas de la relación."
       ]
     },
     {
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Cuatro de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Cuatro de Bastos es quien recibe en su casa: alguien cálido que junta a la gente y hace que cualquier lugar se sienta como hogar. Como sentimiento, significa felicidad y seguridad en una relación, ganas de celebrarla y de construir una casa o un futuro en común. Al revés, el cariño está ahí, pero algo de la pertenencia o de la estabilidad todavía no se acomoda."
+        "Si el Cuatro de Bastos señala a alguien, es a quien recibe en su casa: alguien cálido que junta a la gente y hace que cualquier lugar se sienta como hogar. Como sentimiento, significa felicidad y seguridad en una relación, ganas de celebrarla y de formar un hogar o un futuro en común. Al revés, el cariño está ahí, pero algo de la pertenencia o de la estabilidad todavía no se acomoda."
       ]
     },
     {
@@ -152,7 +152,7 @@
     },
     {
       "q": "¿El Cuatro de Bastos significa boda?",
-      "a": "Muchas veces, sí: bodas, compromisos e irse a vivir juntos están entre sus significados modernos más típicos. Aun así, describe un momento de fiesta y un compromiso compartido, no promete una propuesta. También puede ser una reunión familiar, el estreno de una casa o el cierre de un gran proyecto."
+      "a": "Muchas veces, sí: bodas, compromisos e irse a vivir juntos están entre sus significados modernos más típicos. Aun así, describe un momento de fiesta y un compromiso compartido, no promete una propuesta de matrimonio. También puede ser una reunión familiar, el estreno de una casa o el cierre de un gran proyecto."
     },
     {
       "q": "¿El Cuatro de Bastos significa casa nueva?",
@@ -179,9 +179,7 @@
   "waite": {
     "quote": "Country life, haven of refuge, … repose, concord, harmony, prosperity, peace … Reversed: The meaning remains unaltered; it is prosperity, increase, felicity, beauty, embellishment.",
     "quote_lang": "en",
-    "pages": [
-      190
-    ],
+    "pages": [190],
     "translation": "Vida en el campo, puerto de refugio, … reposo, concordia, armonía, prosperidad, paz … Al revés: el significado no cambia; es prosperidad, aumento, felicidad, belleza, adorno.",
     "harsh": false
   },

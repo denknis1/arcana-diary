@@ -74,7 +74,7 @@
       "heading": "¿Qué significa el Caballero de Copas en el amor?",
       "paragraphs": [
         "Pocas cartas son tan románticas: cortejo, detalles, una invitación a salir, palabras bonitas dichas con el corazón. Te invita a expresar tu cariño a tu manera, sin esperar una respuesta inmediata.",
-        "Cuando sale al revés, fíjate si las promesas van más rápido que los hechos, las tuyas también, y si el entusiasmo cambia según el día.",
+        "Al revés, las promesas pueden ir más rápido que los hechos, también las tuyas, y el entusiasmo puede cambiar según el día.",
         "Si estás conociendo a alguien, la carta pide ver a la persona real y no solo la imagen que te hiciste. En una relación ya formada, invita a recuperar el romance: una sorpresa, una carta escrita a mano, una cena con detalle."
       ]
     },
@@ -148,7 +148,7 @@
   "faq": [
     {
       "q": "¿El Caballero de Copas es una carta buena o mala?",
-      "a": "Buena en casi todas las lecturas. Trae calidez, romance y algo que se ofrece, a ti o desde ti. Su lado difícil es la distancia entre sentir y cumplir: palabras lindas, un plan sin suelo, un ánimo que cambia de un día a otro. Notarlo a tiempo basta para acortar esa distancia."
+      "a": "Buena en casi todas las lecturas. Trae calidez, romance y algo que se ofrece, a ti o desde ti. Su lado difícil es la distancia entre sentir y cumplir: palabras lindas, un plan sin sustento, un ánimo que cambia de un día a otro. Notarlo a tiempo basta para acortar esa distancia."
     },
     {
       "q": "¿El Caballero de Copas significa que me quiere?",
@@ -183,47 +183,33 @@
   "waite": {
     "quote": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement. Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud.",
     "quote_lang": "en",
-    "pages": [
-      202
-    ],
-    "translation": "Llegada, acercamiento —a veces el de un mensajero—; avances, propuesta, porte, invitación, incitación. Al revés: trampa, artificio, sutileza, estafa, duplicidad, fraude.",
+    "pages": [202],
+    "translation": "Llegada, acercamiento —a veces el de un mensajero—; insinuaciones, propuesta, porte, invitación, incitación. Al revés: trampa, artificio, sutileza, estafa, duplicidad, fraude.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        202
-      ],
+      "pages": [202],
       "text": "Graceful, but not warlike; riding quietly, wearing a winged helmet, referring to those higher graces of the imagination which sometimes characterize this card"
     },
     {
-      "pages": [
-        202
-      ],
+      "pages": [202],
       "text": "He too is a dreamer, but the images of the side of sense haunt him in his vision"
     },
     {
-      "pages": [
-        202
-      ],
+      "pages": [202],
       "text": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement"
     },
     {
-      "pages": [
-        202
-      ],
+      "pages": [202],
       "text": "Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud"
     },
     {
-      "pages": [
-        174
-      ],
+      "pages": [174],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     },
     {
-      "pages": [
-        204
-      ],
+      "pages": [204],
       "text": "It is the pictures of the mind taking form"
     }
   ],
@@ -238,11 +224,7 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [
-        174,
-        202,
-        204
-      ],
+      "pages": [174, 202, 204],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

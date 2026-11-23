@@ -41,7 +41,7 @@
       "heading": "What is on the Queen of Wands card?",
       "paragraphs": [
         "A queen sits facing us on a throne with carved lion heads on its arms, a tall leafy wand in one hand and a sunflower in the other. Waite's note for this card is short: the wands of this suit \"are always in leaf, as it is a suit of life and animation\" (p. 172). He adds that the Queen's personality matches the King's \"but is more magnetic\" (p. 172).",
-        "On the 1909 card she wears a yellow robe under a white cloak and a crown wreathed in green leaves. Two red lions stand upright on the tall back of the throne among painted sunflowers, pale pyramids rise at the far left, and a black cat sits right in front of her feet, looking out at us. Waite's note (p. 172) says nothing about the cat or the sunflower, so they are described here, not explained."
+        "On the 1909 card she wears a yellow robe under a white cloak and a crown wreathed in green leaves. Two red lions stand upright on the tall back of the throne among painted sunflowers, yellow pyramid shapes rise at the far left, and a black cat sits right in front of her feet, looking out at us. Waite's note (p. 172) says nothing about the cat or the sunflower, so they are described here, not explained."
       ]
     },
     {
@@ -64,7 +64,7 @@
       "id": "reversed",
       "heading": "What does the Queen of Wands mean reversed?",
       "paragraphs": [
-        "Reversed, the Queen of Wands can describe a dimmed light: self-doubt, staying small to avoid attention, or warmth that has turned into impatience because you feel overstretched. Jealousy and comparison belong to this side as well, the sense that someone else is shining in your place.",
+        "Reversed, the Queen of Wands can describe a dimmed light: self-doubt, staying small to avoid attention, or warmth that has turned into impatience because you feel overstretched. Jealousy and comparison belong to this side as well, the sense that someone else is shining in your place. Jealousy is in Waite's reversed list too (p. 172); the self-doubt and the dimmed light are a modern reading, not Waite's.",
         "The way back is small and concrete. Do one thing that makes you feel like yourself again where others can see it, and hand one task back so your fire is not spent entirely on everyone else."
       ]
     },
@@ -177,59 +177,41 @@
   "waite": {
     "quote": "A dark woman, countrywoman, friendly, chaste, loving, honourable … Also, love of money, or a certain success in business. Reversed: Good, economical, obliging, serviceable.",
     "quote_lang": "en",
-    "pages": [
-      172
-    ],
+    "pages": [172],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        172
-      ],
+      "pages": [172],
       "text": "The Wands throughout this suit are always in leaf, as it is a suit of life and animation"
     },
     {
-      "pages": [
-        172
-      ],
+      "pages": [172],
       "text": "the Queen's personality corresponds to that of the King, but is more magnetic"
     },
     {
-      "pages": [
-        172
-      ],
+      "pages": [172],
       "text": "Also, love of money, or a certain success in business"
     },
     {
-      "pages": [
-        172
-      ],
+      "pages": [172],
       "text": "opposition, jealousy, even deceit and infidelity"
     },
     {
-      "pages": [
-        172
-      ],
+      "pages": [172],
       "text": "A dark woman, countrywoman, friendly, chaste, loving, honourable"
     },
     {
-      "pages": [
-        288
-      ],
+      "pages": [288],
       "text": "A good harvest, which may be taken in several senses"
     },
     {
-      "pages": [
-        100
-      ],
+      "pages": [100],
       "text": "is closing the jaws of a lion"
     },
     {
-      "pages": [
-        256
-      ],
+      "pages": [256],
       "text": "she contemplates her symbol and may see worlds therein"
     }
   ],
@@ -244,12 +226,7 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [
-        100,
-        172,
-        256,
-        288
-      ],
+      "pages": [100, 172, 256, 288],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

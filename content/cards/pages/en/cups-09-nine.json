@@ -10,7 +10,7 @@
     "in_sentence": "the Nine of Cups"
   },
   "title": "Nine of Cups Tarot Card Meaning: Upright, Reversed & Love",
-  "description": "Nine of Cups upright: contentment, a wish within reach; reversed: hollow satisfaction. Love, work, advice, Waite's 1911 text and the 1909 card. Ask away.",
+  "description": "Nine of Cups upright: contentment, a wish within reach; reversed: hollow satisfaction. Love, work, advice and Waite's 1911 text. Ask your question.",
   "h1": "Nine of Cups Tarot Card Meaning",
   "image_alt": "Nine of Cups, 1909 Rider–Waite–Smith card: a smiling man in a red hat sits with arms crossed before nine gold cups on a curved, blue-draped counter.",
   "facts": {
@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Nine of Cups?",
       "paragraphs": [
-        "Waite's list for this card is almost all good news: concord, contentment, victory, success and satisfaction for the person asking (p. 208). Even his reversed side is kind, truth, loyalty and liberty, though Waite admits that the readings vary and include mistakes and imperfections (p. 208).",
+        "Waite's list for this card is almost all good news: concord, contentment, victory, success and satisfaction for the person asking (p. 208). Even his reversed side is kind (truth, loyalty and liberty), though Waite admits that the readings vary and include mistakes and imperfections (p. 208).",
         "The reversed meanings used on Arcana Diary, a wish that disappoints or pleasure that turns into excess, are a modern reading, not Waite's."
       ]
     },
@@ -65,7 +65,7 @@
       "heading": "What does the Nine of Cups mean reversed?",
       "paragraphs": [
         "Upside down, the cups look fuller than they feel. The reversed Nine of Cups can point to unmet wishes, or to a wish that came true and still left you flat. It can also mean hollow satisfaction that rests on outer things alone, or excess: more of a good thing than actually feels good.",
-        "Sometimes the reversed card shows smugness, a contented face kept up for others while something inside wants more. It asks a simple question: what would truly satisfy you, as opposed to what is supposed to?"
+        "Sometimes the reversed card shows smugness: being so pleased with yourself that you stop noticing what is missing, or keeping up a contented face for others. It asks a simple question: what would truly satisfy you, as opposed to what is supposed to?"
       ]
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "q": "Why is the Nine of Cups called the wish card?",
-      "a": "Because the picture shows someone who seems to have everything he wanted: a full row of cups and a satisfied grin. Waite never uses that name; his meanings start with harmony and contentment and go on to success (p. 208). The nickname comes from the mood of the picture."
+      "a": "It is the card's popular modern name: readers treat it as the sign of a wish close to coming true. The picture suits the name, with its full row of cups and a satisfied grin. Waite never uses that name; his meanings start with harmony and contentment and go on to success (p. 208)."
     },
     {
       "q": "Does the Nine of Cups mean my wish will come true?",
@@ -176,9 +176,7 @@
   "waite": {
     "quote": "Concord, contentment … also victory, success, advantage; satisfaction for the Querent … Reversed: Truth, loyalty, liberty; but the readings vary and include mistakes, imperfections, etc.",
     "quote_lang": "en",
-    "pages": [
-      208
-    ],
+    "pages": [208],
     "translation": null,
     "harsh": false
   },

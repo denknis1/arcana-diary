@@ -41,14 +41,14 @@
       "heading": "What is on the Four of Cups card?",
       "paragraphs": [
         "A young man sits under a tree with three cups on the grass in front of him, while an arm reaches out of a cloud with a fourth. Waite adds that \"his expression notwithstanding is one of discontent with his environment\" (p. 218).",
-        "On the 1909 card the tree trunk is the tallest shape, running up past the top edge. The young man sits cross-legged, arms folded and eyes cast down, in red sleeves and blue leggings, and the three cups stand in a row along the bottom. The offered cup comes from a small cloud on the left; his eyes stay on the ground."
+        "On the 1909 card the tree trunk is the tallest shape, running up past the top edge. The young man sits cross-legged, arms folded and eyes cast down, in red sleeves and blue leggings, and the three cups stand in a row along the bottom. The offered cup comes from a small cloud on the left."
       ]
     },
     {
       "id": "waite",
       "heading": "What did Waite write about the Four of Cups?",
       "paragraphs": [
-        "Waite's meanings are about having had enough: weariness, disgust, aversion and imaginary vexations, \"as if the wine of this world had caused satiety only\" (p. 218). Waite calls the new cup another wine, offered \"as if a fairy gift\", in which the young man \"sees no consolation therein\" (p. 218).",
+        "Waite's meanings are about having had enough: weariness, disgust, aversion and imaginary vexations, \"as if the wine of this world had caused satiety only\" (p. 218). Waite calls the new cup another wine, offered \"as if a fairy gift\", but the seated man \"sees no consolation therein\" (p. 218).",
         "Waite also calls it \"a card of blended pleasure\" (p. 218), so even upright the mood is mixed rather than simply low."
       ]
     },
@@ -156,7 +156,7 @@
     },
     {
       "q": "What is the hand from the cloud on the Four of Cups?",
-      "a": "It holds out the fourth cup, the offer at the center of the card. Waite gives the hand no separate meaning of its own (p. 218), so Arcana Diary reads it simply as an offer that is there to be noticed, if you lift your eyes."
+      "a": "It holds out the fourth cup, the offer at the center of the card. Waite calls what it brings \"another wine, as if a fairy gift\", in which the seated figure finds no consolation (p. 218). Arcana Diary reads it simply as an offer that is there to be noticed, if you lift your eyes."
     }
   ],
   "related": [
@@ -179,65 +179,45 @@
   "waite": {
     "quote": "Weariness, disgust, aversion, imaginary vexations … This is also a card of blended pleasure. Reversed: Novelty, presage, new instruction, new relations.",
     "quote_lang": "en",
-    "pages": [
-      218
-    ],
+    "pages": [218],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "His expression notwithstanding is one of discontent with his environment"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "Weariness, disgust, aversion, imaginary vexations, as if the wine of this world had caused satiety only"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "another wine, as if a fairy gift, is now offered the wastrel, but he sees no consolation therein"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "This is also a card of blended pleasure"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "Reversed: Novelty, presage, new instruction, new relations"
     },
     {
-      "pages": [
-        216
-      ],
+      "pages": [216],
       "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him"
     },
     {
-      "pages": [
-        216
-      ],
+      "pages": [216],
       "text": "It is a card of loss, but something remains over"
     },
     {
-      "pages": [
-        210
-      ],
+      "pages": [210],
       "text": "A man of dejected aspect is deserting the cups of his felicity"
     }
   ],
@@ -252,11 +232,7 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [
-        210,
-        216,
-        218
-      ],
+      "pages": [210, 216, 218],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

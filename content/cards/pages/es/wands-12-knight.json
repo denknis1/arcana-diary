@@ -42,14 +42,14 @@
       "heading": "¿Qué hay en la carta del Caballero de Bastos?",
       "paragraphs": [
         "Un jinete con armadura monta un caballo que se encabrita sobre las patas traseras, y el caballo es lo más grande de la imagen. Waite describe al Caballero como si fuera de viaje, armado con un bastón corto, y aclara que, aunque lleva cota de malla, no va a la guerra (p. 174). Según Waite, pasa junto a montículos o pirámides (p. 174).",
-        "En la carta de 1909 el caballo es color arena claro y tiene las patas delanteras en alto; el bastón que el jinete levanta echa pequeñas hojas verdes. Lleva penachos anaranjados, una túnica amarilla con figuras negras enroscadas y, abajo a la izquierda, se ven tres pirámides. Para Waite, el movimiento del caballo es la clave del carácter de quien lo monta y sugiere un ánimo precipitado (p. 174)."
+        "En la carta de 1909 el caballo es color arena claro y tiene las patas delanteras en alto; el bastón que el jinete levanta echa pequeñas hojas verdes. El jinete lleva penachos anaranjados y una túnica amarilla con figuras negras enroscadas; abajo a la izquierda se ven tres pirámides. Para Waite, el movimiento del caballo es la clave del carácter de quien lo monta y sugiere un ánimo precipitado (p. 174)."
       ]
     },
     {
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el Caballero de Bastos?",
       "paragraphs": [
-        "La lista al derecho de Waite (p. 174) gira alrededor de irse: salir, ausentarse, emigrar, cambiar de casa, con un joven amistoso como figura. En la lista al revés de Waite (p. 174), el viaje se convierte en corte: rupturas, interrupciones, desacuerdos.",
+        "La lista al derecho de Waite (p. 174) gira alrededor de irse: salir, ausentarse, huir, emigrar, cambiar de casa, con un joven amistoso como figura. En la lista al revés de Waite (p. 174), el viaje se convierte en corte: rupturas, interrupciones, desacuerdos.",
         "En sus significados adicionales, Waite es más tajante y la llama sin más una mala carta (p. 288); Arcana Diary no lee así al Caballero. Hoy la carta conserva el movimiento y le suma fuego: arrojo, deseo y gusto por lo desconocido."
       ]
     },
@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Caballero de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Caballero de Bastos es quien vive en movimiento: con encanto, inquietud y prisa por actuar, quien propone el viaje y ya tiene la maleta hecha. Cualquiera puede ocupar ese papel, también tú cuando sientes ganas de arrancar. Como sentimiento, la carta significa pasión y emoción: una atracción fuerte, un interés que llega de golpe y las ganas de actuar en ese mismo momento. Al revés, ese sentimiento va y viene: impaciencia, señales confusas, un interés que arde mucho y luego se enfría."
+        "Si lo piensas como persona, el Caballero de Bastos es quien vive en movimiento: con encanto, inquietud y prisa por actuar, quien propone el viaje y ya tiene la maleta hecha. También puedes ser tú, cuando sientes ganas de arrancar. Como sentimiento, la carta significa pasión y emoción: una atracción fuerte, un interés que llega de golpe y las ganas de actuar en ese mismo momento. Al revés, ese sentimiento va y viene: impaciencia, señales confusas, un interés que arde mucho y luego se enfría."
       ]
     },
     {
@@ -178,53 +178,37 @@
   "waite": {
     "quote": "Departure, absence, flight, emigration. A dark young man, friendly. Change of residence. Reversed: Rupture, division, interruption, discord.",
     "quote_lang": "en",
-    "pages": [
-      174
-    ],
+    "pages": [174],
     "translation": "Partida, ausencia, huida, emigración. Un joven moreno, amistoso. Cambio de residencia. Al revés: ruptura, división, interrupción, discordia.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        174
-      ],
+      "pages": [174],
       "text": "He is shewn as if upon a journey, armed with a short wand, and although mailed is not on a warlike errand"
     },
     {
-      "pages": [
-        174
-      ],
+      "pages": [174],
       "text": "He is passing mounds or pyramids"
     },
     {
-      "pages": [
-        174
-      ],
+      "pages": [174],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     },
     {
-      "pages": [
-        174
-      ],
+      "pages": [174],
       "text": "Departure, absence, flight, emigration. A dark young man, friendly. Change of residence. Reversed: Rupture, division, interruption, discord."
     },
     {
-      "pages": [
-        288
-      ],
+      "pages": [288],
       "text": "Knight.—A bad card"
     },
     {
-      "pages": [
-        230
-      ],
+      "pages": [230],
       "text": "He is riding in full course, as if scattering his enemies"
     },
     {
-      "pages": [
-        182
-      ],
+      "pages": [182],
       "text": "a flight of wands through an open country"
     }
   ],
@@ -239,12 +223,7 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [
-        174,
-        182,
-        230,
-        288
-      ],
+      "pages": [174, 182, 230, 288],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

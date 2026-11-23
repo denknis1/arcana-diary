@@ -42,7 +42,7 @@
       "heading": "¿Qué hay en la carta del Cuatro de Copas?",
       "paragraphs": [
         "Un joven se sienta bajo un árbol con tres copas sobre el pasto, frente a él, mientras desde una nube un brazo le ofrece una cuarta. Waite añade que, aun así, su gesto es de descontento con lo que lo rodea (p. 218).",
-        "En la carta de 1909 el tronco del árbol es lo más alto y se pierde por arriba del borde. El joven está sentado con las piernas cruzadas, los brazos doblados y la mirada baja, con mangas rojas y mallas azules, y las tres copas forman una fila abajo. La copa ofrecida sale de una nubecita a la izquierda; sus ojos siguen en el suelo."
+        "En la carta de 1909 el tronco del árbol es lo más alto y se pierde por arriba del borde. El joven está sentado con las piernas cruzadas, de brazos cruzados y con la mirada baja, con mangas rojas y mallas azules, y las tres copas forman una fila abajo. La copa ofrecida sale de una nubecita a la izquierda."
       ]
     },
     {
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Cuatro de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Cuatro de Copas es alguien retraído o difícil de impresionar, amable pero distante, metido en sus pensamientos; también puede ser tu propia figura cuando necesitas tiempo para pensar. Como sentimiento, significa indiferencia, sentimientos encontrados o distancia emocional: un interés bajo o dudoso y muestras de cariño que pasan sin notarse. Al revés, el sentimiento despierta: curiosidad, calidez que vuelve y ganas de mirar otra vez a alguien que siempre estuvo ahí."
+        "Como persona, el Cuatro de Copas es alguien retraído o difícil de impresionar, amable pero distante, metido en sus pensamientos; también puede retratarte a ti cuando necesitas tiempo para pensar. Como sentimiento, significa indiferencia, sentimientos encontrados o distancia emocional: un interés bajo o dudoso y muestras de cariño que pasan sin notarse. Al revés, el sentimiento despierta: curiosidad, calidez que vuelve y ganas de mirar otra vez a alguien que siempre estuvo ahí."
       ]
     },
     {
@@ -153,11 +153,11 @@
     },
     {
       "q": "¿El Cuatro de Copas significa que no le intereso?",
-      "a": "Como significado de carta, describe un interés bajo o dudoso y distancia emocional, muchas veces más por cansancio que por la otra persona. No informa lo que piensa nadie de tu vida; lo que alguien hace con el tiempo dice más que una sola carta."
+      "a": "Como significado de carta, describe un interés bajo o dudoso y distancia emocional, muchas veces más por cansancio que por la otra persona. No dice qué piensa ninguna persona de tu vida; lo que alguien hace con el tiempo dice más que una sola carta."
     },
     {
       "q": "¿Qué es la mano que sale de la nube en el Cuatro de Copas?",
-      "a": "Es la mano que ofrece la cuarta copa, la oferta en el centro de la carta. Waite no le da a la mano un significado propio (p. 218), así que en Arcana Diary la leemos sencillamente como una oferta que está ahí para notarse, si levantas los ojos."
+      "a": "Es la mano que sostiene la cuarta copa, el ofrecimiento central de la carta. Waite lo describe con otro vino, casi un obsequio de hadas, que aun así no le sirve de consuelo al joven (p. 218). En Arcana Diary la leemos sencillamente como una oferta que está ahí para notarse, si levantas los ojos."
     }
   ],
   "related": [
@@ -180,65 +180,45 @@
   "waite": {
     "quote": "Weariness, disgust, aversion, imaginary vexations … This is also a card of blended pleasure. Reversed: Novelty, presage, new instruction, new relations.",
     "quote_lang": "en",
-    "pages": [
-      218
-    ],
+    "pages": [218],
     "translation": "Cansancio, asco, aversión, molestias imaginarias … Esta es también una carta de placer mezclado. Al revés: novedad, presagio, nueva instrucción, nuevas relaciones.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "His expression notwithstanding is one of discontent with his environment"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "Weariness, disgust, aversion, imaginary vexations, as if the wine of this world had caused satiety only"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "another wine, as if a fairy gift, is now offered the wastrel, but he sees no consolation therein"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "This is also a card of blended pleasure"
     },
     {
-      "pages": [
-        218
-      ],
+      "pages": [218],
       "text": "Reversed: Novelty, presage, new instruction, new relations"
     },
     {
-      "pages": [
-        216
-      ],
+      "pages": [216],
       "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him"
     },
     {
-      "pages": [
-        216
-      ],
+      "pages": [216],
       "text": "It is a card of loss, but something remains over"
     },
     {
-      "pages": [
-        210
-      ],
+      "pages": [210],
       "text": "A man of dejected aspect is deserting the cups of his felicity"
     }
   ],
@@ -253,11 +233,7 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [
-        210,
-        216,
-        218
-      ],
+      "pages": [210, 216, 218],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

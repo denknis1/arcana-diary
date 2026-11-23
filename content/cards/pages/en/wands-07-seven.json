@@ -41,7 +41,7 @@
       "heading": "What is on the Seven of Wands card?",
       "paragraphs": [
         "A young man stands on high ground and swings a staff while six others rise toward him from below. Waite's description: \"A young man on a craggy eminence brandishing a staff; six other staves are raised towards him from below\" (p. 184). His own staff, held across his body with both hands, is the largest thing on the card.",
-        "On the 1909 card he wears a green tunic and stands with his feet wide apart on a green rise edged with rock. The six staves stand upright in front of him, their tips below his waist. His feet do not match: a low red shoe on one, a brown boot on the other. VII is printed at the top."
+        "On the 1909 card he wears a green tunic and stands with his feet wide apart on a green rise edged with rock. The six staves rise from the bottom edge in front of him, none of them higher than his waist. His feet do not match: a low shoe on one, an ankle boot on the other. VII is printed at the top."
       ]
     },
     {
@@ -82,7 +82,7 @@
       "id": "work_money",
       "heading": "What does the Seven of Wands mean for work and money?",
       "paragraphs": [
-        "Other candidates for the same role, a crowded market, a decision you have to defend in front of colleagues: competition runs through this card's work meaning. Waite himself lists negotiations, barter and competition for business (p. 184). Your position is strong if you prepare well and keep your arguments short.",
+        "Other candidates for the same role, a crowded market, a decision you have to defend in front of colleagues: competition runs through this card's work meaning. Waite himself lists negotiations, trade rivalry, barter and competition for business (p. 184). Your position is strong if you prepare well and keep your arguments short.",
         "Money-wise, the Seven of Wands means protecting what you have earned: guarding a budget against pressure to spend, holding your price, defending your share in a competitive field."
       ]
     },
@@ -174,9 +174,7 @@
   "waite": {
     "quote": "It is a card of valour … It is further a card of success … Reversed: Perplexity, embarrassments, anxiety. It is also a caution against indecision.",
     "quote_lang": "en",
-    "pages": [
-      184
-    ],
+    "pages": [184],
     "translation": null,
     "harsh": false
   },

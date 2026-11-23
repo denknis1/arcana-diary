@@ -10,7 +10,7 @@
     "in_sentence": "the Page of Cups"
   },
   "title": "Page of Cups Tarot Card Meaning: Upright, Reversed & Love",
-  "description": "Page of Cups upright: tenderness, imagination, a sweet surprise; reversed: shy feelings. Love, work, advice, Waite's 1911 text and the 1909 card. Ask away.",
+  "description": "Page of Cups upright: tenderness, imagination, a sweet surprise; reversed: shy feelings. Love, work, advice and Waite's 1911 text. Ask your question.",
   "h1": "Page of Cups Tarot Card Meaning",
   "image_alt": "Page of Cups, 1909 Rider–Waite–Smith card: a young page in a blue tunic with pink flowers holds out a gold cup with a fish peeking out, low waves behind him.",
   "facts": {
@@ -20,7 +20,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "The Page of Cups brings tenderness, imagination and sweet surprises: a new feeling, a kind message or a sudden idea. Reversed, feelings stay shy or moody and creativity gets blocked. A gentle, hopeful card, it needs only a little courage to show what you feel. Upright, the answer is yes, as delight greets the fish in the cup.",
+  "capsule": "The Page of Cups brings tenderness, imagination and sweet surprises: a new feeling, a kind message or a sudden idea. Reversed, feelings stay shy or moody and creativity gets blocked. A gentle, hopeful card; what it takes is a little courage to show what you feel. Upright, the answer is yes, as delight greets the fish in the cup.",
   "keywords": {
     "upright": [
       "tenderness",
@@ -55,7 +55,7 @@
       "id": "upright",
       "heading": "What does the Page of Cups mean upright?",
       "paragraphs": [
-        "Sensitivity and imagination lead here. The Page of Cups can point to a sweet surprise, a tender message, an invitation, or a feeling you are only beginning to notice. Ideas may arrive the way the fish does, out of nowhere, and the card asks you to meet them with curiosity rather than dismiss them as silly.",
+        "Sensitivity and imagination lead here. The Page of Cups can point to a sweet surprise, a tender message, an invitation, or a feeling you are only beginning to notice. Ideas and intuitive nudges may arrive the way the fish does, out of nowhere, and the card asks you to meet them with curiosity rather than dismiss them as silly.",
         "It often marks the start of something emotional or creative: a new friendship, a crush, a poem, a hobby picked up again. Tenderness is its strength, toward others and toward yourself. What small, unexpected thing has caught your attention lately?"
       ]
     },
@@ -98,7 +98,7 @@
       "id": "in_a_reading",
       "heading": "The Page of Cups as a person and as feelings",
       "paragraphs": [
-        "As a person, the Page of Cups is someone young at heart, of any age: sensitive, dreamy, creative and kind, sometimes a little naive. As feelings, the card stands for tender, sincere affection in its early stage, curiosity about where it might lead and a wish to express it with a sweet gesture or message. Reversed, the same feelings turn shy or unsure: affection that stays unspoken, sudden moods, or an emotional immaturity that makes the signals hard to read."
+        "Young at heart at any age: that is the Page of Cups as a person, sensitive, dreamy, creative and kind, sometimes a little naive. The feelings it names are tender and new: sincere affection in its early stage, curiosity about where it might lead and a wish to express it with a sweet gesture or message. With the card reversed, affection stays unspoken, moods come suddenly, or an emotional immaturity makes the signals hard to read."
       ]
     },
     {
@@ -148,7 +148,7 @@
     },
     {
       "q": "Does the Page of Cups mean someone likes me?",
-      "a": "As feelings, this card is the classic picture of a crush: early, tender affection and a wish to show it, often through a small gesture or message. That is why it comes up so often in love questions. What it can tell you best is what you feel and would like to say."
+      "a": "It is the card of a crush, but it cannot confirm what a particular person feels. As feelings, it stands for early, tender affection and a wish to show it, often through a small gesture or message; that is why it comes up so often in love questions. What it can tell you best is what you feel and would like to say."
     },
     {
       "q": "Is the Page of Cups always a young man?",
@@ -171,9 +171,7 @@
   "waite": {
     "quote": "Fair young man, one impelled to render service … a studious youth; news, message; application, reflection, meditation … Reversed: Taste, inclination, attachment, seduction, deception, artifice.",
     "quote_lang": "en",
-    "pages": [
-      204
-    ],
+    "pages": [204],
     "translation": null,
     "harsh": false
   },

@@ -21,7 +21,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "El Diez de Copas es la carta de la plenitud emocional: armonía, familia y felicidad compartida. Al revés, puede mostrar tensión en casa o la distancia entre un ideal y la vida real. Pocas cartas son tan cálidas; solo pide no comparar tu vida con una postal. Al derecho responde que sí: un arcoíris cubre a la familia.",
+  "capsule": "El Diez de Copas es la carta de la plenitud emocional: armonía, familia y felicidad compartida. Al revés, puede mostrar tensión en casa o la distancia entre un ideal y la vida real. Pocas cartas son tan cálidas; su riesgo es comparar tu vida con una postal. Al derecho responde que sí: un arcoíris cubre a la familia.",
   "keywords": {
     "upright": [
       "armonía",
@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre el Diez de Copas?",
       "paragraphs": [
         "Para Waite esta es la carta del corazón en paz: contento, descanso y un amor y una amistad que llegan a su plenitud (p. 206). Waite suma dos lecturas curiosas: rodeada de figuras, una persona que se hace cargo de los intereses de quien consulta, y también la ciudad, el pueblo o el país donde esa persona vive (p. 206).",
-        "La lista de Waite para la carta al revés es dura (p. 206); en Arcana Diary no la leemos así, y ese lado habla de tensión en casa y de la distancia entre el ideal y el día a día."
+        "La lista de Waite para la carta al revés es dura (p. 206). En Arcana Diary ese lado habla de tensión en casa y de la distancia entre el ideal y el día a día: una lectura moderna, no de Waite."
       ]
     },
     {
@@ -73,7 +73,7 @@
       "id": "love",
       "heading": "¿Qué significa el Diez de Copas en el amor?",
       "paragraphs": [
-        "Si hoy estás sin pareja, la carta te invita a imaginar el hogar y el amor que quieres, y a acercarte a eso a tu ritmo. En pareja, celebra el compromiso, la estabilidad emocional y las ganas de construir una casa juntos: una relación que se siente como familia, tranquila y de acuerdo sobre el futuro.",
+        "Si hoy estás sin pareja, la carta te invita a imaginar el hogar y el amor que quieres, y a acercarte a eso a tu ritmo. En pareja, celebra el compromiso, la estabilidad emocional y las ganas de construir un hogar juntos: una relación que se siente como familia, tranquila y de acuerdo sobre el futuro.",
         "Al revés, puede mostrar valores que jalan hacia lados distintos, o la desilusión de que la relación no se parece a la imagen que tenías en la cabeza."
       ]
     },
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Diez de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Si representa a alguien, el Diez de Copas es una persona entregada a su hogar y a la gente que quiere: cálida, leal, en su mejor momento cuando todos están reunidos. Como sentimiento, significa plenitud emocional y deseo de un futuro duradero, la sensación de haber encontrado un hogar en la otra persona. Al revés, esos sentimientos se topan con fricciones: distancia dentro de un vínculo cercano, un ideal que la vida diaria no alcanza o planes de futuro que van por caminos distintos."
+        "Cuando la pregunta es qué siente alguien, el Diez de Copas significa plenitud emocional y deseo de un futuro duradero: la sensación de haber encontrado un hogar en la otra persona. Con la carta al revés aparecen las fricciones: distancia dentro de un vínculo cercano, un ideal que la vida diaria no alcanza o planes de futuro que van por caminos distintos. Y si representa a alguien, es una persona entregada a su hogar y a la gente que quiere: cálida, leal, en su mejor momento cuando todos están reunidos."
       ]
     },
     {
@@ -173,9 +173,7 @@
   "waite": {
     "quote": "Contentment, repose of the entire heart … also perfection of human love and friendship … Reversed: Repose of the false heart, indignation, violence.",
     "quote_lang": "en",
-    "pages": [
-      206
-    ],
+    "pages": [206],
     "translation": "Contento, reposo de todo el corazón … también perfección del amor humano y de la amistad … Al revés: reposo del corazón falso, indignación, violencia.",
     "harsh": true
   },

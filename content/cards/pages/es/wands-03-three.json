@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre el Tres de Bastos?",
       "paragraphs": [
         "Para Waite, el hombre es un comerciante y los barcos que pasan llevan su mercancía (p. 192). Según él, la carta también habla de buena cooperación en los negocios, como si un mercader próspero mirara hacia ti con ganas de ayudarte (p. 192). En sus notas finales, Waite la llama una carta muy buena, en la que la colaboración favorece los emprendimientos (p. 289).",
-        "Su lista al revés, dice Waite (p. 192), es buena noticia: se acaban los problemas y se detiene la mala racha. Hoy la carta al revés se lee de otro modo."
+        "La lista al revés de Waite (p. 192) trae buena noticia: se acaban los problemas y se detiene la mala racha. Hoy la carta al revés se lee de otro modo."
       ]
     },
     {
@@ -76,7 +76,7 @@
       "paragraphs": [
         "Con el Tres de Bastos, la vida amorosa mira hacia horizontes nuevos. En pareja, apoya los planes compartidos: un viaje, una mudanza, un futuro que se construye paso a paso. Es también una carta frecuente en las relaciones a distancia.",
         "Para quien no tiene pareja, la carta invita a ampliar el círculo, conocer otros lugares y otra gente; una historia podría empezar lejos de lo de siempre.",
-        "Al revés, la espera se puede hacer larga, o quizá te frena dar un paso más grande. Ayuda decir con claridad qué esperas."
+        "Al revés, la espera se puede hacer larga, o quizá te cuesta dar un paso más grande. Ayuda decir con claridad qué esperas."
       ]
     },
     {
@@ -152,11 +152,11 @@
     },
     {
       "q": "¿El Tres de Bastos significa esperar?",
-      "a": "En parte. Es una espera con los ojos abiertos: ya hiciste lo tuyo y ahora estás pendiente de los resultados, con disposición para moverte cuando lleguen. El hombre no está sentado; está de pie en la orilla. La carta pide atención, no angustia."
+      "a": "En parte. Es una espera con los ojos abiertos: ya hiciste lo tuyo y ahora estás pendiente de los resultados, con disposición para moverte cuando lleguen. El hombre no está sentado; está de pie al borde del acantilado. La carta pide atención, no angustia."
     },
     {
       "q": "¿El Tres de Bastos habla de viajes?",
-      "a": "Con frecuencia, en la lectura actual: viajes, trabajo en el extranjero, estudios lejos de casa o simplemente un mundo más amplio. No pone fechas ni promete un viaje. Muestra que mirar más allá de tu costa está en el aire y que lo planeado empieza a moverse."
+      "a": "Con frecuencia, en la lectura actual: viajes, trabajo en el extranjero, estudios lejos de casa o simplemente un mundo más amplio. No pone fechas ni promete un viaje. Muestra ganas de mirar más lejos de lo conocido y que lo planeado empieza a moverse."
     }
   ],
   "related": [
@@ -175,10 +175,8 @@
   "waite": {
     "quote": "Established strength, enterprise, effort, trade, commerce, discovery … Reversed: The end of troubles, suspension or cessation of adversity, toil and disappointment.",
     "quote_lang": "en",
-    "pages": [
-      192
-    ],
-    "translation": "Fuerza consolidada, emprendimiento, esfuerzo, negocio, comercio, descubrimiento … Al revés: el fin de los problemas, la suspensión o el cese de la adversidad, de la fatiga y de la decepción.",
+    "pages": [192],
+    "translation": "Fuerza consolidada, emprendimiento, esfuerzo, negocio, comercio, descubrimiento … Al revés: el fin de los problemas, la suspensión o el cese de la adversidad, del trabajo penoso y de la decepción.",
     "harsh": false
   },
   "citations": [

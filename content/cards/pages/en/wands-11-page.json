@@ -49,7 +49,7 @@
       "heading": "What did Waite write about the Page of Wands?",
       "paragraphs": [
         "Waite's list makes the Page a bringer of tidings, both envoy and postman, and also a faithful lover (p. 176). Waite adds that he \"has the chief qualities of his suit\" and \"may signify family intelligence\", that is, family news (p. 176).",
-        "Waite gives one pairing too: \"a dangerous rival, if followed by the Page of Cups\" (p. 176). Arcana Diary keeps the messenger and the indecision from his list and leaves the rest aside."
+        "Waite gives one pairing too: \"a dangerous rival, if followed by the Page of Cups\" (p. 176). Arcana Diary keeps the messenger, his news and the indecision from that list, and leaves the rival aside."
       ]
     },
     {
@@ -66,7 +66,7 @@
       "heading": "What does the Page of Wands mean reversed?",
       "paragraphs": [
         "When the card appears reversed, it can point to fading enthusiasm: a burst of excitement that cools before anything starts, or ten projects begun and none carried through. It can also show hesitation, holding an idea back for fear it is not good enough, or impatience when results are slow.",
-        "Waite lists \"indecision and the instability which accompanies it\" for this side (p. 176), and that matches the modern reading closely. Unfinished ideas are not failures; pick one, give it a small, concrete next step, and complete that step."
+        "Waite's reversed list has bad news and \"indecision and the instability which accompanies it\" (p. 176); both carry into the modern reading, the news as a message that disappoints. Unfinished ideas are not failures; pick one, give it a small, concrete next step, and complete that step."
       ]
     },
     {
@@ -183,9 +183,7 @@
   "waite": {
     "quote": "Dark young man, faithful, a lover, an envoy, a postman … Reversed: Anecdotes, announcements, evil news. Also indecision and the instability which accompanies it.",
     "quote_lang": "en",
-    "pages": [
-      176
-    ],
+    "pages": [176],
     "translation": null,
     "harsh": false
   },

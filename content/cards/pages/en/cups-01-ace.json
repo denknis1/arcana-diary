@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "The Ace of Cups as a person and as feelings",
       "paragraphs": [
-        "As a person, the Ace of Cups is someone warm and emotionally open, quick to comfort and easy to love; drawn for yourself, it marks a tender, hopeful moment in you. As feelings, it is one of the clearest cards of new or growing affection: tenderness, attraction with real warmth in it, a wish to care for someone and be cared for in return. Reversed, the feeling exists but is held back, out of shyness, an old hurt or fear of showing too much."
+        "As a person, the Ace of Cups is someone warm and emotionally open, quick to comfort and easy to love; drawn for yourself, it marks a tender, hopeful moment in you. As feelings, it points straight to new or growing affection: tenderness, attraction with real warmth in it, a wish to care for someone and be cared for in return. Reversed, the feeling exists but is held back, out of shyness, an old hurt or fear of showing too much."
       ]
     },
     {
@@ -132,7 +132,7 @@
       "heading": "Ace of Cups or Ten of Cups?",
       "paragraphs": [
         "Waite describes the Ten of Cups as cups in a rainbow, watched in wonder by a man and woman, with two children dancing near them (p. 206), and he opens its meanings with \"contentment, repose of the entire heart\" (p. 206). Its modern meaning is emotional fulfillment and belonging.",
-        "The Ace is the first feeling; the Ten is that feeling grown into a shared life. One starts to fill the cup, the other shows a whole row of them full."
+        "The Ace is the first feeling; the Ten is that feeling grown into a shared life. One starts to fill the cup, the other shows a whole arc of them full."
       ]
     },
     {
@@ -148,7 +148,7 @@
   "faq": [
     {
       "q": "Is the Ace of Cups a good or bad card?",
-      "a": "Good. Hardly any card in the deck carries more affection. It speaks of affection, kindness and a fresh emotional start. Reversed, it shows feeling that stays behind a closed door, which is something you can open gently, step by step, not a bad omen."
+      "a": "Good. Hardly any card in the deck is warmer. It speaks of affection, kindness and a fresh emotional start. Reversed, it shows feeling that stays behind a closed door, which is something you can open gently, step by step, not a bad omen."
     },
     {
       "q": "What does the Ace of Cups mean when you ask how someone sees you?",
@@ -174,71 +174,49 @@
   "waite": {
     "quote": "House of the true heart, joy, content, abode, nourishment, abundance, fertility; Holy Table, felicity hereof. Reversed: House of the false heart, mutation, instability, revolution.",
     "quote_lang": "en",
-    "pages": [
-      224
-    ],
+    "pages": [224],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "The waters are beneath, and thereon are water-lilies"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "a dove, bearing in its bill a cross-marked Host, descends to place the Wafer in the Cup"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "holding in its palm the cup, from which four streams are pouring"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "It is an intimation of that which may lie behind the Lesser Arcana"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "the dew of water is falling on all sides"
     },
     {
-      "pages": [
-        206
-      ],
+      "pages": [206],
       "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below"
     },
     {
-      "pages": [
-        206
-      ],
+      "pages": [206],
       "text": "The two children dancing near them"
     },
     {
-      "pages": [
-        206
-      ],
+      "pages": [206],
       "text": "Contentment, repose of the entire heart"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "House of the true heart, joy, content, abode, nourishment, abundance"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "Reversed: House of the false heart, mutation, instability, revolution"
     }
   ],
@@ -253,10 +231,7 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [
-        206,
-        224
-      ],
+      "pages": [206, 224],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

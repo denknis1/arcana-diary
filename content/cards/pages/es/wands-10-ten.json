@@ -42,7 +42,7 @@
       "heading": "¿Qué hay en la carta del Diez de Bastos?",
       "paragraphs": [
         "Un hombre y diez bastones. Waite lo resume como un hombre oprimido por el peso de los diez bastones que carga (p. 178). El manojo de madera es lo más grande del dibujo: lo abraza contra el pecho y se abre en abanico por encima de él.",
-        "En la carta de 1909 lo vemos de espaldas, doblado casi por la mitad, y los bastones le tapan la cabeza y el camino. A la derecha hay una casa de techo rojo entre árboles, y arriba se lee el X. Waite añade que el lugar al que se acerca podría sufrir por las varas que lleva (p. 178)."
+        "En la carta de 1909 lo vemos de espaldas, inclinado hacia adelante, con la cara hundida en el manojo, y los bastones le tapan el camino. A la derecha hay una casa de techo rojo entre árboles, y arriba se lee el X. Waite añade que el lugar al que se acerca podría sufrir por las varas que lleva (p. 178)."
       ]
     },
     {
@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre el Diez de Bastos?",
       "paragraphs": [
         "Waite reconoce que la carta tiene muchos significados y que algunos no se pueden conciliar (p. 178). Su idea central une las dos mitades de la lista: primero la fortuna y el éxito, y después la opresión de esas mismas cosas, según Waite (p. 178).",
-        "En la misma página, Waite menciona también la falsa apariencia y el disfraz, y deja de lado un vínculo antiguo con el honor y la buena fe (p. 178). Arcana Diary la lee sobre todo como el peso del éxito."
+        "En la misma página, Waite la llama también carta de falsa apariencia, disfraz y perfidia, y deja de lado la lectura que la une con el honor y la buena fe (p. 178). Arcana Diary la lee sobre todo como el peso del éxito."
       ]
     },
     {
@@ -149,11 +149,11 @@
   "faq": [
     {
       "q": "¿El Diez de Bastos es una carta buena o mala?",
-      "a": "Es pesada, pero no mala. Reconoce todo lo que haces y lo confiable que has sido; su aviso es sobre el costo. Waite incluso la liga con la fortuna, la ganancia y cualquier tipo de éxito antes de que llegue el peso (p. 178), así que muchas veces hay un logro detrás."
+      "a": "Es pesada, pero no mala. Reconoce el trabajo duro y la constancia de quien sostiene mucho; su aviso es sobre el costo. Waite incluso la liga con la fortuna, la ganancia y cualquier tipo de éxito antes de que llegue el peso (p. 178), así que muchas veces hay un logro detrás."
     },
     {
       "q": "¿El Diez de Bastos significa que estoy cargando demasiado?",
-      "a": "Muchas veces, sí: es su lectura moderna más común. No te juzga por eso, porque mucho de lo que llevas lo tomaste por cariño o lealtad. Solo te pide ver qué sigue teniendo sentido hoy."
+      "a": "Muchas veces, sí: es su lectura moderna más común. No te juzga por eso, porque muchas cargas se toman por cariño o lealtad. Solo te pide ver qué sigue teniendo sentido hoy."
     },
     {
       "q": "¿El Diez de Bastos significa el fin de una relación?",
@@ -176,9 +176,7 @@
   "waite": {
     "quote": "The chief meaning is oppression simply, but it is also fortune, gain, any kind of success … Reversed: Contrarieties, difficulties, intrigues, and their analogies.",
     "quote_lang": "en",
-    "pages": [
-      178
-    ],
+    "pages": [178],
     "translation": "El significado principal es simplemente opresión, pero también es fortuna, ganancia, cualquier tipo de éxito … Al revés: contrariedades, dificultades, intrigas y sus análogos.",
     "harsh": false
   },

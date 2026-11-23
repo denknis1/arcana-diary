@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el Siete de Copas?",
       "paragraphs": [
-        "La lista de Waite se queda en la mente: favores de hadas, reflexión, sentimiento, imaginación, cosas vistas en el cristal de la contemplación (p. 212). Waite admite algún logro en ese terreno, pero aclara que no sugiere nada permanente ni sólido (p. 212). En la lista breve del final del libro, Waite le da idea, plan, resolución y movimiento (p. 290)."
+        "La lista de Waite no sale del terreno de la mente: favores de hadas, reflexión, sentimiento, imaginación, cosas vistas en el espejo de la contemplación (p. 212). Waite admite algún logro en ese terreno, pero aclara que no sugiere nada permanente ni sólido (p. 212). En la lista breve del final del libro, Waite le da idea, plan, resolución y movimiento (p. 290)."
       ]
     },
     {
@@ -63,7 +63,7 @@
       "id": "reversed",
       "heading": "¿Qué significa el Siete de Copas al revés?",
       "paragraphs": [
-        "Al revés, las nubes se abren. Muchas veces marca claridad: ver qué opciones reales quedan cuando dejas a un lado lo que solo existe en sueños, y elegir una. Su otra cara es tener demasiadas opciones y no decidir ninguna. A veces también es bajar a tierra después de un sueño que no se sostuvo, algo que duele un poco pero te deja elegir.",
+        "Al revés, las nubes se abren. Muchas veces marca claridad: ver qué opciones reales quedan cuando dejas a un lado lo que solo existe en sueños, y elegir una. Su otra cara es tener demasiadas opciones y no decidirte por ninguna. A veces también es bajar a tierra después de un sueño que no se sostuvo, algo que duele un poco pero te deja elegir.",
         "Para la carta al revés, Waite anota deseo, voluntad, determinación y proyecto (p. 212), lo que se inclina hacia el primer lado: un anhelo que se vuelve plan."
       ]
     },
@@ -81,7 +81,7 @@
       "heading": "¿Qué significa el Siete de Copas en el trabajo y el dinero?",
       "paragraphs": [
         "Varias ofertas, proyectos paralelos o caminos profesionales al mismo tiempo: el Siete de Copas es un menú lleno y sin orden claro. Quédate con la opción que resiste cuando escribes los hechos.",
-        "En lo económico significa ilusiones sobre el dinero, planes que se ven mejor que los números y promesas de ganancias fáciles que merecen una segunda mirada."
+        "En lo económico significa ilusiones sobre el dinero, planes que se ven mejor que los números y promesas de ganancias fáciles que conviene revisar antes de creerlas."
       ]
     },
     {
@@ -117,7 +117,7 @@
         },
         {
           "card_id": "major-11-justice",
-          "text": "Pesa las opciones con honestidad y elige la que puedas sostener."
+          "text": "Sopesa las opciones con honestidad y elige la que puedas sostener."
         }
       ]
     },
@@ -168,10 +168,8 @@
   "waite": {
     "quote": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation … Reversed: Desire, will, determination, project.",
     "quote_lang": "en",
-    "pages": [
-      212
-    ],
-    "translation": "Favores de hadas, imágenes de reflexión, sentimiento, imaginación, cosas vistas en el cristal de la contemplación … Al revés: deseo, voluntad, determinación, proyecto.",
+    "pages": [212],
+    "translation": "Favores de hadas, imágenes de reflexión, sentimiento, imaginación, cosas vistas en el espejo de la contemplación … Al revés: deseo, voluntad, determinación, proyecto.",
     "harsh": false
   },
   "citations": [

@@ -42,7 +42,7 @@
       "heading": "¿Qué hay en la carta del Dos de Copas?",
       "paragraphs": [
         "Una joven y un joven, frente a frente, juntan sus copas. Waite los describe brindando el uno por el otro, con el caduceo de Hermes alzándose sobre las copas y una cabeza de león entre sus grandes alas (p. 222).",
-        "Según Waite, ese signo es una variante que aparece en algunos ejemplares antiguos de esta carta, y sus curiosos significados simbólicos no le interesan en ese lugar (p. 222).",
+        "Según Waite, ese signo es una variante que aparece en algunos ejemplares antiguos de esta carta, y deja de lado sus curiosos significados simbólicos porque ahí no vienen al caso (p. 222).",
         "En la carta de 1909 domina la cabeza de león alada, de tono rojizo, sobre una vara con dos serpientes enroscadas. Ella lleva una corona de hojas verdes y un manto azul claro sobre un vestido blanco; él, una corona de flores rojas y una túnica estampada. Al fondo, una casa de techo rojo se asoma en una loma verde."
       ]
     },
@@ -66,7 +66,7 @@
       "id": "reversed",
       "heading": "¿Qué significa el Dos de Copas al revés?",
       "paragraphs": [
-        "Al revés, hay desequilibrio: malentendidos, distancia emocional o una relación en la que te toca dar de más mientras la otra copa ofrece poco. También puede señalar la tensión que queda después de una discusión, o que te cuesta estar en paz contigo.",
+        "Al revés, hay desequilibrio: malentendidos, distancia emocional o una relación en la que te toca dar de más mientras la otra copa ofrece poco. También puede señalar la tensión que queda después de una discusión, una ruptura, o que te cuesta estar en paz contigo.",
         "Waite no da una lista al revés para esta carta en su propia página (p. 222), y en su lista adicional solo anota pasión (p. 290); leer aquí desequilibrio y distancia es una lectura moderna, no de Waite. Di con calma qué necesitas para volver a sentirte en igualdad."
       ]
     },
@@ -74,9 +74,9 @@
       "id": "love",
       "heading": "¿Qué significa el Dos de Copas en el amor?",
       "paragraphs": [
-        "Pocas cartas menores son tan románticas: atracción mutua, una cita que fluye, un noviazgo que se va formando con respeto. En una relación que ya existe, marca cercanía, un compromiso que se renueva o hacer las paces después de una discusión.",
+        "Es una carta muy romántica: atracción mutua, una cita que fluye, un noviazgo que se va formando con respeto. En una relación que ya existe, marca cercanía, un compromiso que se renueva o hacer las paces después de una discusión.",
         "Cuando no hay nadie a tu lado, la carta puede hablar de un encuentro con alguien con quien todo se siente parejo, o de aprender cómo se ve un vínculo entre iguales antes de elegir.",
-        "El desequilibrio es su lado al revés en el amor: una persona que busca más que la otra, palabras que no llegan, cierta frialdad. Una plática tranquila y honesta suele ser el primer paso de regreso."
+        "El desequilibrio es su lado al revés en el amor: una persona que busca más que la otra, palabras que no llegan, cierta frialdad y, a veces, una separación. Una plática tranquila y honesta suele ser el primer paso de regreso."
       ]
     },
     {
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Dos de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Dos de Copas es una pareja en el sentido amplio: alguien que te trata de igual a igual y cumple lo que promete, sea amor, amistad o socio. También puede describirte en tu lado que sabe compartir. Como sentimiento, es de las cartas más claras de atracción mutua y afecto: ganas de estar cerca y de construir algo en común. Al revés, el sentimiento sigue ahí, pero inseguro: distancia, señales confusas o un cariño que no parece correspondido."
+        "Como persona, el Dos de Copas es una pareja en el sentido amplio: alguien que te trata de igual a igual y cumple lo que promete, sea en el amor, en la amistad o en los negocios. También puede hablar de esa parte de ti que sabe compartir. Como sentimiento, es de las cartas más claras de atracción mutua y afecto: ganas de estar cerca y de construir algo en común. Al revés, el sentimiento sigue ahí, pero inseguro: distancia, señales confusas o un cariño que no parece correspondido."
       ]
     },
     {
@@ -174,62 +174,43 @@
     }
   ],
   "waite": {
-    "quote": "Love, passion, friendship, affinity, union, concord, sympathy, the interrelation of the sexes … Reversed: Passion.",
+    "quote": "Love, passion, friendship, affinity, union, concord, sympathy, the interrelation of the sexes",
     "quote_lang": "en",
-    "pages": [
-      222,
-      290
-    ],
-    "translation": "Amor, pasión, amistad, afinidad, unión, concordia, simpatía, la relación entre los sexos … Al revés: pasión.",
+    "pages": [222],
+    "translation": "Amor, pasión, amistad, afinidad, unión, concordia, simpatía, la relación entre los sexos.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head"
     },
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "It is a variant of a sign which is found in a few old examples of this card"
     },
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "Some curious emblematical meanings are attached to it, but they do not concern us in this place"
     },
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "Love, passion, friendship, affinity, union, concord, sympathy"
     },
     {
-      "pages": [
-        290
-      ],
+      "pages": [290],
       "text": "Two.—Favourable in things of pleasure and business, as well as love; also wealth and honour. Reversed: Passion."
     },
     {
-      "pages": [
-        92
-      ],
+      "pages": [92],
       "text": "beneath is a great winged figure with arms extended"
     },
     {
-      "pages": [
-        92
-      ],
+      "pages": [92],
       "text": "two human figures, male and female, unveiled before each other"
     },
     {
-      "pages": [
-        92
-      ],
+      "pages": [92],
       "text": "This is in all simplicity the card of human love"
     }
   ],
@@ -244,11 +225,7 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [
-        92,
-        222,
-        290
-      ],
+      "pages": [92, 222, 290],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

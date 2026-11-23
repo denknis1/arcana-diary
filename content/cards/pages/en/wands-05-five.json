@@ -40,7 +40,7 @@
       "id": "on_the_card",
       "heading": "What is on the Five of Wands card?",
       "paragraphs": [
-        "Five young men swing long staves at one another. Waite describes \"a posse of youths, who are brandishing staves, as if in sport or strife\" (p. 188), and Waite calls the scene \"mimic warfare\" (p. 188): a play fight rather than a battle. The knot of crossed staves in the middle is the largest thing on the card.",
+        "Five young men swing long staves at one another. Waite describes \"a posse of youths, who are brandishing staves, as if in sport or strife\" and calls the scene \"mimic warfare\" (p. 188): a play fight rather than a battle. The knot of crossed staves in the middle is the largest thing on the card.",
         "On the 1909 card each youth is dressed differently: one in yellow, one in red with a small brown hat, one in a dark patterned tunic, one in green, one in white with blue spots. They stand on rough, uneven ground under a pale blue sky, every staff held at its own angle, and V is printed at the top. Nobody stands above the rest, and nobody has fallen."
       ]
     },
@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Five of Wands?",
       "paragraphs": [
-        "Waite reads the play fight as imitation, and also as \"the strenuous competition and struggle of the search after riches and fortune\" (p. 188), which he ties to the battle of life. In a later list of extra meanings, Waite says of the reversed card that \"quarrels may be turned to advantage\" (p. 289).",
+        "Waite reads the play fight as imitation, and also as \"the strenuous competition and struggle of the search after riches and fortune\" (p. 188), which he ties to the battle of life; hence, he notes, some call it a card of gold, gain and opulence (p. 188). In a later list of extra meanings, Waite says of the reversed card that \"quarrels may be turned to advantage\" (p. 289).",
         "The first reversed word in the quote above belongs to the law, and Arcana Diary does not read the card that way. The disputes, trickery and contradiction stay."
       ]
     },
@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "The Five of Wands as a person and as feelings",
       "paragraphs": [
-        "As a person, the Five of Wands is someone who loves a debate: competitive, quick to argue, full of energy, sometimes more interested in winning than in agreeing. As feelings, the Five of Wands stands for restless, mixed emotions: attraction with friction, playful rivalry, a push and pull where neither side wants to give way first. Reversed, the feeling can be a wish to keep the peace at any cost, frustration left unspoken, or tension slowly settling into something calmer."
+        "The Five of Wands in human form is someone who loves a debate: competitive, quick to argue, full of energy, sometimes more interested in winning than in agreeing. As feelings, the Five of Wands stands for restless, mixed emotions: attraction with friction, playful rivalry, a push and pull where neither side wants to give way first. Reversed, the feeling can be a wish to keep the peace at any cost, frustration left unspoken, or tension slowly settling into something calmer."
       ]
     },
     {
@@ -174,9 +174,7 @@
   "waite": {
     "quote": "Imitation, as, for example, sham fight, but also the strenuous competition and struggle of the search after riches and fortune … Reversed: Litigation, disputes, trickery, contradiction.",
     "quote_lang": "en",
-    "pages": [
-      188
-    ],
+    "pages": [188],
     "translation": null,
     "harsh": true
   },
@@ -188,6 +186,10 @@
     {
       "pages": [188],
       "text": "but also the strenuous competition and struggle of the search after riches and fortune. In this sense it connects with the battle of life."
+    },
+    {
+      "pages": [188],
+      "text": "Hence some attributions say that it is a card of gold, gain, opulence"
     },
     {
       "pages": [188],

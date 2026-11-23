@@ -74,7 +74,7 @@
       "id": "love",
       "heading": "¿Qué significa el As de Copas en el amor?",
       "paragraphs": [
-        "Es una de las cartas más claras del amor nuevo: la primera chispa, una atracción con ternura, una relación que se abre a sentir más o la reconciliación tras una distancia.",
+        "Señala sin rodeos el amor nuevo: la primera chispa, una atracción con ternura, una relación que se abre a sentir más o la reconciliación tras una distancia.",
         "Dentro de una relación, trae una ola de cariño, palabras más suaves y ganas de mostrar lo que sientes. Cuando no hay nadie a tu lado, el corazón puede estar abriéndose otra vez, a alguien nuevo o a la idea misma del amor.",
         "El lado al revés es un cariño cercano que cuesta recibir, o lo que sientes guardado por miedo a ser demasiado. Recibir también es parte de esta carta, igual que dar."
       ]
@@ -83,7 +83,7 @@
       "id": "work_money",
       "heading": "¿Qué significa el As de Copas en el trabajo y el dinero?",
       "paragraphs": [
-        "En lo laboral apunta a un trabajo que te importa: un proyecto que te mueve, un inicio creativo, un equipo donde la gente se trata con cariño. Le va bien a los oficios de cuidado, arte o escucha.",
+        "En lo laboral apunta a un trabajo que te importa: un proyecto que te mueve, un inicio creativo, un equipo donde la gente se trata con cariño. Va bien con los oficios de cuidado, arte o escucha.",
         "El dinero no es su tema principal, aunque su tono es generoso: suficiente para compartir, un regalo que das o recibes; la abundancia está en la propia lista de Waite (p. 224). Al revés, aparece el gasto que intenta tapar un hueco emocional."
       ]
     },
@@ -133,7 +133,7 @@
       "heading": "¿Cómo distinguir el As de Copas del Diez de Copas?",
       "paragraphs": [
         "Waite describe el Diez de Copas como copas en un arcoíris que una pareja contempla con asombro, con dos niños que bailan cerca (p. 206), y abre sus significados con el contento y el reposo de todo el corazón (p. 206). Su lectura actual: plenitud emocional y sentido de familia.",
-        "El As es la primera emoción; el Diez, esa emoción convertida en una vida compartida. Uno empieza a llenar la copa; el otro muestra una fila entera de copas llenas."
+        "El As es la primera emoción; el Diez, esa emoción convertida en una vida compartida. Uno empieza a llenar la copa; el otro muestra un arco entero de copas llenas."
       ]
     },
     {
@@ -175,71 +175,49 @@
   "waite": {
     "quote": "House of the true heart, joy, content, abode, nourishment, abundance, fertility; Holy Table, felicity hereof. Reversed: House of the false heart, mutation, instability, revolution.",
     "quote_lang": "en",
-    "pages": [
-      224
-    ],
+    "pages": [224],
     "translation": "Casa del corazón verdadero, alegría, contento, morada, alimento, abundancia, fertilidad; Mesa Santa, la dicha que de ella viene. Al revés: casa del corazón falso, mutación, inestabilidad, revolución.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "The waters are beneath, and thereon are water-lilies"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "a dove, bearing in its bill a cross-marked Host, descends to place the Wafer in the Cup"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "holding in its palm the cup, from which four streams are pouring"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "It is an intimation of that which may lie behind the Lesser Arcana"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "the dew of water is falling on all sides"
     },
     {
-      "pages": [
-        206
-      ],
+      "pages": [206],
       "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below"
     },
     {
-      "pages": [
-        206
-      ],
+      "pages": [206],
       "text": "The two children dancing near them"
     },
     {
-      "pages": [
-        206
-      ],
+      "pages": [206],
       "text": "Contentment, repose of the entire heart"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "House of the true heart, joy, content, abode, nourishment, abundance"
     },
     {
-      "pages": [
-        224
-      ],
+      "pages": [224],
       "text": "Reversed: House of the false heart, mutation, instability, revolution"
     }
   ],
@@ -254,10 +232,7 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [
-        206,
-        224
-      ],
+      "pages": [206, 224],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

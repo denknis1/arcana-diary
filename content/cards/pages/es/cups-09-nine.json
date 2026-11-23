@@ -49,7 +49,7 @@
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el Nueve de Copas?",
       "paragraphs": [
-        "Casi todo en la lista de Waite es buena noticia: concordia, contento, victoria, éxito y satisfacción para quien consulta (p. 208). Incluso al revés Waite da significados amables, verdad, lealtad y libertad, aunque reconoce que las lecturas varían y que también incluyen errores e imperfecciones (p. 208).",
+        "Casi todo en la lista de Waite es buena noticia: concordia, contento, victoria, éxito y satisfacción para quien consulta (p. 208). Incluso al revés Waite da significados amables (verdad, lealtad y libertad), aunque reconoce que las lecturas varían y que también incluyen errores e imperfecciones (p. 208).",
         "El deseo que no llena y el gusto que se pasa de la raya, que usamos en Arcana Diary para la carta al revés, son una lectura moderna, no de Waite."
       ]
     },
@@ -81,7 +81,7 @@
       "id": "work_money",
       "heading": "¿Qué significa el Nueve de Copas en el trabajo y el dinero?",
       "paragraphs": [
-        "Una meta cumplida, un reconocimiento merecido, un empleo que te gusta: así se vive el trabajo bajo esta carta. En el dinero significa comodidad y tener lo suficiente para disfrutar, con espacio para darte un gusto. Al revés, puede hablar de gastar para llenar un hueco que el dinero no alcanza."
+        "Una meta cumplida, un reconocimiento merecido, un empleo que te gusta: así se vive el trabajo bajo esta carta. En el dinero significa comodidad y tener lo suficiente para disfrutar, con espacio para darte un gusto. Al revés, puede hablar de gastar para llenar un hueco que el dinero no llena."
       ]
     },
     {
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Nueve de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Nueve de Copas describe a alguien a gusto con la vida: generoso con su tiempo, amante de la buena mesa y la buena compañía, satisfecho con lo que tiene y a veces un poco presumido. Como sentimiento, significa contento y felicidad con el vínculo: la sensación de que esta relación es lo que se deseaba y se disfruta tal como es. Al revés, ese sentimiento pierde fuerza: un gusto que no dura, un interés más puesto en el placer que en la profundidad, o la impresión de que el ideal no alcanza."
+        "Como persona, el Nueve de Copas describe a alguien a gusto con la vida: generoso con su tiempo, amante de la buena mesa y la buena compañía, satisfecho con lo que tiene y a veces un poco presumido. Como sentimiento, significa alegría y satisfacción con el vínculo: la sensación de que esta relación es lo que se deseaba y se disfruta tal como es. Al revés, ese sentimiento pierde fuerza: un gusto que no dura, un interés más puesto en el placer que en la profundidad, o la impresión de que el ideal no alcanza."
       ]
     },
     {
@@ -129,8 +129,8 @@
       "id": "not_to_confuse",
       "heading": "¿Cómo distinguir el Nueve de Copas del Diez de Copas y del Nueve de Oros?",
       "paragraphs": [
-        "En el Diez de Copas que describe Waite, un hombre y una mujer contemplan maravillados un arcoíris de copas mientras dos niños bailan cerca (p. 206). Hoy se lee como felicidad compartida y familia; el Nueve es tu propio contento, a tu manera.",
-        "El Nueve de Oros muestra, según Waite, a una mujer con un ave en la muñeca entre parras (p. 264); hoy se lee como independencia y bienestar ganado con tu trabajo. Las dos cartas están contentas, pero el Nueve de Copas habla de placer y deseos, y el de Oros, de valerte por tu cuenta."
+        "En el Diez de Copas que describe Waite, un hombre y una mujer contemplan maravillados un arcoíris de copas mientras dos niños bailan cerca (p. 206). Hoy se lee como felicidad compartida y familia; el Nueve es tu propia satisfacción, a tu manera.",
+        "El Nueve de Oros muestra, según Waite, a una mujer con un ave en la muñeca entre parras (p. 264); hoy se lee como independencia y bienestar ganado con tu trabajo. Las dos son cartas de satisfacción, pero el Nueve de Copas habla de placer y deseos, y el de Oros, de valerte por tu cuenta."
       ]
     },
     {
@@ -146,11 +146,11 @@
   "faq": [
     {
       "q": "¿El Nueve de Copas es una carta buena o mala?",
-      "a": "Buena, de las más alegres de los arcanos menores. Habla de contento y de un deseo al alcance. Su lado oscuro aparece sobre todo al revés: cuando el placer se pasa de la raya o la sonrisa es solo para quedar bien."
+      "a": "Buena, de las más alegres de los arcanos menores. Habla de satisfacción y de un deseo al alcance. Su lado oscuro aparece sobre todo al revés: cuando el placer se pasa de la raya o la sonrisa es solo para quedar bien."
     },
     {
       "q": "¿Por qué el Nueve de Copas es la carta de los deseos?",
-      "a": "Por el dibujo: alguien que parece tenerlo todo, con una fila completa de copas y una sonrisa satisfecha. Waite no le da ese nombre; sus significados empiezan por la concordia y el contento y siguen con el éxito (p. 208). El apodo nace del ambiente de la imagen."
+      "a": "Es su nombre popular en el tarot de hoy: se lee como la señal de un deseo a punto de cumplirse. El dibujo le queda bien, con su fila completa de copas y una sonrisa satisfecha. Waite no le da ese nombre; sus significados empiezan por la concordia y el contento y siguen con el éxito (p. 208)."
     },
     {
       "q": "¿Si me sale el Nueve de Copas se cumple mi deseo?",
@@ -177,9 +177,7 @@
   "waite": {
     "quote": "Concord, contentment … also victory, success, advantage; satisfaction for the Querent … Reversed: Truth, loyalty, liberty; but the readings vary and include mistakes, imperfections, etc.",
     "quote_lang": "en",
-    "pages": [
-      208
-    ],
+    "pages": [208],
     "translation": "Concordia, contento … también victoria, éxito, ventaja; satisfacción para quien consulta … Al revés: verdad, lealtad, libertad; pero las lecturas varían e incluyen errores, imperfecciones, etc.",
     "harsh": false
   },

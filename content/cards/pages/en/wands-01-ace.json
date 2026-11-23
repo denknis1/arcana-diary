@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Ace of Wands?",
       "paragraphs": [
-        "The upright list is all about starting: making and inventing something, setting out on an enterprise, the source a thing grows from. Waite also reports another account that reads the Ace as money and fortune (p. 196).",
+        "The upright list is about starting: making and inventing something, setting out on an enterprise, the source a thing grows from. Waite's list goes on to family and origin, and he reports another account that reads the Ace as money, fortune and inheritance (p. 196).",
         "Waite's reversed list is blunt and ends on \"a certain clouded joy\" (p. 196); Arcana Diary reads the reversed Ace through that last phrase only, as a spark dimmed for now."
       ]
     },
@@ -178,9 +178,7 @@
   "waite": {
     "quote": "Creation, invention, enterprise, the powers which result in these; principle, beginning, source … Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy.",
     "quote_lang": "en",
-    "pages": [
-      196
-    ],
+    "pages": [196],
     "translation": null,
     "harsh": true
   },

@@ -41,8 +41,8 @@
       "id": "on_the_card",
       "heading": "¿Qué hay en la carta del Rey de Bastos?",
       "paragraphs": [
-        "Un rey de perfil ocupa un trono de respaldo alto y sostiene un bastón largo que echa hojas verdes. Waite escribe que el Rey alza un bastón florecido y lleva bajo la corona una gorra de ceremonia (p. 170). El león, dice Waite, aparece blasonado en el respaldo del trono (p. 170).",
-        "En la carta de 1909 el rey mira a la izquierda y se sienta en la orilla del asiento, como si fuera a levantarse. Una corona amarilla de puntas descansa sobre una gorra roja; viste una túnica rojo anaranjado con una capa verde sobre los hombros. Leones negros y salamandras enroscadas en círculo cubren el respaldo naranja, y una pequeña salamandra negra está en el escalón, a sus pies. Waite atribuye a esta carta una naturaleza ardiente, ágil, animada, apasionada y noble (p. 170)."
+        "Un rey de perfil ocupa un trono de respaldo alto y sostiene un bastón largo que echa hojas verdes. Waite escribe que el Rey alza un bastón florecido y lleva bajo la corona un gorro ceremonial (p. 170). El león, dice Waite, aparece blasonado en el respaldo del trono (p. 170).",
+        "En la carta de 1909 el rey mira a la izquierda y se sienta erguido, separado del respaldo. Una corona amarilla de puntas descansa sobre un gorro rojo; viste una túnica rojo anaranjado con una capa verde sobre los hombros. Leones negros y salamandras enroscadas en círculo cubren el respaldo naranja, y una pequeña salamandra negra está en el escalón, a sus pies. Waite atribuye a esta carta una naturaleza física y emocional morena, ardiente, ágil, animada, apasionada y noble (p. 170)."
       ]
     },
     {
@@ -58,7 +58,7 @@
       "heading": "¿Qué significa el Rey de Bastos al derecho?",
       "paragraphs": [
         "Inclinado hacia adelante, como si estuviera por ponerse de pie, el Rey de Bastos es la visión puesta a trabajar. Representa liderazgo, iniciativa y audacia: ver hacia dónde pueden ir las cosas, tomar la decisión y sumar a otros con el ejemplo, no con órdenes. Suele leerse como la carta de quien emprende, funda algo o lidera por naturaleza.",
-        "Cuando sale, te pide tomar el mando de tu propio rumbo. ¿Qué decisión le estás dejando a otros? La honestidad que Waite le atribuye (p. 170) también cuenta hoy: este Rey dirige a la vista, dice lo que cree y actúa en consecuencia."
+        "Cuando sale, te pide tomar el mando de tu propio rumbo. ¿Qué decisión le estás dejando a otros? La honestidad que Waite le atribuye (p. 170) también cuenta hoy: este Rey dirige de frente, dice lo que cree y actúa en consecuencia."
       ]
     },
     {
@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Rey de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Rey de Bastos es quien lidera por naturaleza: con carisma, honestidad y audacia, rápido para tomar la iniciativa y a veces también para perder la paciencia. Puede ser un jefe, una mentora, una pareja o tú cuando tomas el mando. Como sentimiento, la carta significa un interés seguro y comprometido: atracción fuerte unida a las ganas de construir algo serio y decirlo abiertamente. Al revés, el sentimiento sigue siendo intenso, pero puede volverse orgulloso o controlador, o enfriarse por impaciencia."
+        "Cuando toma forma de persona, el Rey de Bastos es quien lidera por naturaleza: con carisma, honestidad y audacia, rápido para tomar la iniciativa y a veces también para perder la paciencia. Puede ser un jefe, una mentora, una pareja o tú cuando tomas el mando. Como sentimiento, la carta significa un interés seguro y comprometido: atracción fuerte unida a las ganas de construir algo serio y decirlo abiertamente. Al revés, el sentimiento sigue siendo intenso, pero puede volverse orgulloso o controlador, o enfriarse por impaciencia."
       ]
     },
     {
@@ -151,7 +151,7 @@
     },
     {
       "q": "¿El Rey de Bastos es un jefe o una figura paterna?",
-      "a": "Puede ser cualquiera de los dos, o ninguno. La carta describe un papel: alguien que dirige, una madre o un padre, una amistad con más experiencia, una pareja o tú. Lo que la define es el estilo: audaz, cálido, decidido y con ganas de ir primero."
+      "a": "Puede ser cualquiera de los dos, o ninguno. Quizá sea alguien que dirige, una madre o un padre, una amistad con más experiencia, una pareja o tú. Lo que la define es el estilo: audaz, cálido, decidido y con ganas de ir primero."
     },
     {
       "q": "¿El Rey de Bastos significa que me quiere?",
@@ -178,9 +178,7 @@
   "waite": {
     "quote": "Dark man, friendly, countryman, generally married, honest and conscientious. The card always signifies honesty … Reversed: Good, but severe; austere, yet tolerant.",
     "quote_lang": "en",
-    "pages": [
-      170
-    ],
+    "pages": [170],
     "translation": "Hombre moreno, amistoso, del campo, por lo general casado, honesto y concienzudo. La carta siempre significa honestidad … Al revés: bueno, pero severo; austero, aunque tolerante.",
     "harsh": false
   },

@@ -42,14 +42,14 @@
       "heading": "¿Qué hay en la carta del Cinco de Bastos?",
       "paragraphs": [
         "Cinco jóvenes agitan bastos largos unos contra otros. Waite los describe como un grupo de muchachos que blanden bastones, como en juego o en pelea, y llama a la escena una guerra fingida (p. 188). Lo más grande de la carta es el nudo de bastos cruzados en el centro.",
-        "En la carta de 1909 cada uno viste distinto: de amarillo, de rojo con un sombrerito café, con una túnica oscura de dibujo menudo, de verde y de blanco con puntos azules. Pisan un terreno disparejo bajo un cielo azul pálido, cada quien sostiene su basto en otro ángulo y arriba se lee el V. Ninguno queda por encima de los demás."
+        "En la carta de 1909 cada uno viste distinto: de amarillo, de rojo con un sombrerito café, con una túnica oscura estampada, de verde y de blanco con puntos azules. Pisan un terreno disparejo bajo un cielo azul pálido, cada quien sostiene su basto en otro ángulo y arriba se lee el V. Ninguno queda por encima de los demás."
       ]
     },
     {
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el Cinco de Bastos?",
       "paragraphs": [
-        "Para Waite la escena es imitación, un simulacro de pelea, y también la competencia dura de quien busca riqueza y fortuna, lo que él relaciona con la batalla de la vida (p. 188). En la lista de significados adicionales de Waite, la carta al revés dice que las riñas pueden volverse una ventaja (p. 289).",
+        "Para Waite la escena es imitación, un simulacro de pelea, y también la competencia dura de quien busca riqueza y fortuna, lo que él relaciona con la batalla de la vida (p. 188). De ahí, anota Waite, que algunos la llamen carta de oro, ganancia y opulencia (p. 188). En la lista de significados adicionales de Waite, la carta al revés dice que las riñas pueden volverse una ventaja (p. 289).",
         "La primera palabra de la lista al revés pertenece al terreno de las leyes, y en Arcana Diary no leemos la carta así. Las disputas, el engaño y la contradicción sí se quedan."
       ]
     },
@@ -67,7 +67,7 @@
       "heading": "¿Qué significa el Cinco de Bastos al revés?",
       "paragraphs": [
         "Al revés, la carta puede hablar de evitar el conflicto: callarte para no pelear mientras el desacuerdo sigue por debajo. También puede mostrar un conflicto interno, dos deseos tuyos que jalan para lados distintos.",
-        "Su cara más amable es una tensión que baja: la gente deja de hablar encima de los demás, se llega a una tregua o cada quien acepta que piensan distinto. Las palabras de Waite al revés, disputas, engaño y contradicción (p. 188), muestran el lado turbio, una discusión que se vuelve tramposa. La tregua y la calma son lectura moderna, no de Waite. Una plática honesta y tranquila ayuda más que dejar hervir el roce."
+        "Su cara más amable es una tensión que baja: la gente deja de hablar encima de los demás, se llega a una tregua o cada quien acepta que piensan distinto. Las palabras de Waite al revés, disputas, engaño y contradicción (p. 188), muestran el lado turbio, una discusión que se vuelve tramposa. La tregua y la calma son lectura moderna, no de Waite. Una plática honesta y tranquila ayuda más que dejar crecer el roce."
       ]
     },
     {
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Cinco de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Cinco de Bastos es alguien que disfruta una buena discusión: mucha energía, ganas de competir y, a veces, más interés en ganar que en ponerse de acuerdo. Como sentimiento, habla de emociones revueltas: atracción con roce, una rivalidad juguetona, un estira y afloja donde nadie quiere ceder primero. Al revés, el sentimiento puede ser el deseo de tener paz a cualquier precio, una frustración que no se dice o un enojo que se va calmando poco a poco."
+        "Cuando representa a alguien, el Cinco de Bastos es quien disfruta una buena discusión: mucha energía, ganas de competir y, a veces, más interés en ganar que en ponerse de acuerdo. Como sentimiento, habla de emociones revueltas: atracción con roce, una rivalidad juguetona, un estira y afloja donde nadie quiere ceder primero. Al revés, el sentimiento puede ser el deseo de tener paz a cualquier precio, una frustración que no se dice o un enojo que se va calmando poco a poco."
       ]
     },
     {
@@ -175,10 +175,8 @@
   "waite": {
     "quote": "Imitation, as, for example, sham fight, but also the strenuous competition and struggle of the search after riches and fortune … Reversed: Litigation, disputes, trickery, contradiction.",
     "quote_lang": "en",
-    "pages": [
-      188
-    ],
-    "translation": "Imitación, como, por ejemplo, una pelea fingida, pero también la competencia y la lucha esforzadas de quien busca riquezas y fortuna … Al revés: litigio, disputas, engaño, contradicción.",
+    "pages": [188],
+    "translation": "Imitación, como, por ejemplo, una pelea fingida, pero también la ardua competencia y la lucha de la búsqueda de riquezas y fortuna … Al revés: litigio, disputas, engaño, contradicción.",
     "harsh": true
   },
   "citations": [
@@ -189,6 +187,10 @@
     {
       "pages": [188],
       "text": "but also the strenuous competition and struggle of the search after riches and fortune. In this sense it connects with the battle of life."
+    },
+    {
+      "pages": [188],
+      "text": "Hence some attributions say that it is a card of gold, gain, opulence"
     },
     {
       "pages": [188],

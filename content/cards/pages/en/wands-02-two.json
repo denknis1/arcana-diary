@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Two of Wands?",
       "paragraphs": [
-        "Waite admits the two halves of his list cannot be reconciled: \"Between the alternative readings there is no marriage possible\" (p. 194). The first half is wealth and grandeur; the second is blunt, and Arcana Diary does not read the card that way.",
+        "Waite admits the two halves of his list cannot be reconciled: \"Between the alternative readings there is no marriage possible\" (p. 194). The first half is wealth and grandeur; the second is sadness and mortification, joined to words about the body that Arcana Diary does not read.",
         "Waite reads the picture as \"a lord overlooking his dominion and alternately contemplating a globe\", which reminds him of \"the sadness of Alexander amidst the grandeur of this world's wealth\" (p. 194). Having much and still looking past it is close to how the card is read today."
       ]
     },
@@ -66,7 +66,7 @@
       "heading": "What does the Two of Wands mean reversed?",
       "paragraphs": [
         "Upside down, the plan stalls. Fear of the unknown can make playing it safe look like wisdom, and postponing turns into a habit: next month, next year. Sometimes the trouble runs the other way, a lack of planning, with big wishes and no map for reaching them.",
-        "This reading is modern; the reversed words in Waite's list (p. 194), from surprise and wonder to trouble, go in another direction. Test one small piece of the bigger plan in a low-risk way and see how it feels."
+        "This reading is modern; the reversed words in Waite's list (p. 194), from surprise and wonder to trouble and fear, go in another direction. Test one small piece of the bigger plan in a low-risk way and see how it feels."
       ]
     },
     {
@@ -82,7 +82,7 @@
       "heading": "What does the Two of Wands mean for work and money?",
       "paragraphs": [
         "Career plans are the strongest theme: a bigger role, work abroad, a new market, a choice between a secure job and a wider opportunity.",
-        "For money, the card means planning: long-term goals, a budget for something bigger, comparing options before committing. Reversed, it can mean savings held back only out of fear of change, or a plan that has no numbers behind it yet."
+        "For money, the card means planning: long-term goals, a budget for something bigger, comparing options before committing. Reversed, it can mean a bigger step put off only out of fear of change, or a plan that has no numbers behind it yet."
       ]
     },
     {
@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "The Two of Wands as a person and as feelings",
       "paragraphs": [
-        "As a person, the Two of Wands is a planner with ambition: secure enough to think big, always looking past the present situation, sometimes a little restless or distant while deciding. As feelings, it stands for serious interest with an eye on the future: weighing a connection, imagining where it could lead, not yet acting on it. Reversed, the feeling is hesitation, interest held back by fear of change or by comfort with what is familiar."
+        "When it stands for someone, the Two of Wands shows a planner with ambition: secure enough to think big, always looking past the present situation, sometimes a little restless or distant while deciding. As feelings, it stands for serious interest with an eye on the future: weighing a connection, imagining where it could lead, not yet acting on it. Reversed, the feeling is hesitation, interest held back by fear of change or by comfort with what is familiar."
       ]
     },
     {
@@ -146,7 +146,7 @@
   "faq": [
     {
       "q": "Is the Two of Wands a good or bad card?",
-      "a": "Mostly good. It speaks of ambition, a secure base and the freedom to pick a wider path. The harder side is hesitation, when comfort or worry keeps a good plan waiting. Even then, the next step is treated as yours to choose."
+      "a": "Mostly good. It speaks of ambition, a secure base and the freedom to pick a wider path. The harder side is hesitation, when comfort or worry keeps a good plan waiting. Even then, the next step stays yours to choose."
     },
     {
       "q": "What does the globe in the Two of Wands mean?",
@@ -173,47 +173,33 @@
   "waite": {
     "quote": "On the one hand, riches, fortune, magnificence; on the other, physical suffering, disease, chagrin, sadness, mortification … Reversed: Surprise, wonder, enchantment, emotion, trouble, fear.",
     "quote_lang": "en",
-    "pages": [
-      194
-    ],
+    "pages": [194],
     "translation": null,
     "harsh": true
   },
   "citations": [
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "A tall man looks from a battlemented roof over sea and shore"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "The Rose and Cross and Lily should be noticed on the left side"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "Between the alternative readings there is no marriage possible"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "here is a lord overlooking his dominion and alternately contemplating a globe; it looks like the malady, the mortification, the sadness of Alexander amidst the grandeur of this world's wealth"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "Reversed: Surprise, wonder, enchantment, emotion, trouble, fear"
     },
     {
-      "pages": [
-        192
-      ],
+      "pages": [192],
       "text": "looking from a cliff's edge at ships passing over the sea"
     }
   ],
@@ -228,10 +214,7 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [
-        192,
-        194
-      ],
+      "pages": [192, 194],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

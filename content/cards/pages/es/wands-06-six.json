@@ -41,7 +41,7 @@
       "id": "on_the_card",
       "heading": "¿Qué hay en la carta del Seis de Bastos?",
       "paragraphs": [
-        "Un jinete con corona de laurel lleva un basto adornado con otra corona igual, y a su lado caminan hombres a pie con sus bastos. Así lo describe Waite: un jinete laureado que sostiene un basto con una corona de laurel, con gente de a pie a su lado (p. 186). El caballo y el jinete ocupan casi toda la carta, y la corona del basto resalta contra el cielo.",
+        "Un jinete con corona de laurel lleva un basto adornado con otra corona igual, y a su lado caminan hombres a pie con sus bastos. Así lo describe Waite: un jinete laureado que sostiene un basto con una corona de laurel, con hombres a pie que llevan bastos a su lado (p. 186). El caballo y el jinete ocupan casi toda la carta, y la corona del basto resalta contra el cielo.",
         "En la carta de 1909 el caballo es blanco y lleva una manta verde larga que casi toca el suelo; la capa del jinete es rojo oscuro y un listón rojo amarra la corona al basto. Los otros cinco bastos se alzan entre la gente, a la izquierda y detrás de la cabeza del caballo. Arriba se lee el VI."
       ]
     },
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Seis de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Seis de Bastos es alguien con seguridad y buena imagen, a quien otros admiran y siguen, y a quien no le molesta un poco de aplauso. Como sentimiento, habla de admiración y orgullo: sentirse bien con el vínculo, querer mostrarlo, notar que las cosas van por buen camino. Al revés, esos sentimientos se vuelven inseguros: necesidad de confirmación, preocupación por cómo se ve la relación desde afuera o un orgullo que estorba la cercanía."
+        "El Seis de Bastos retrata a alguien con seguridad y buena imagen, a quien otros admiran y siguen, y a quien no le molesta un poco de aplauso. Como sentimiento, habla de admiración y orgullo: sentirse bien con el vínculo, querer mostrarlo, notar que las cosas van por buen camino. Al revés, esos sentimientos se vuelven inseguros: necesidad de confirmación, preocupación por cómo se ve la relación desde afuera o un orgullo que estorba la cercanía."
       ]
     },
     {
@@ -148,7 +148,7 @@
   "faq": [
     {
       "q": "¿El Seis de Bastos es una carta buena o mala?",
-      "a": "Buena, en casi todas las lecturas. El éxito y el reconocimiento la vuelven una de las cartas más animadoras para el trabajo o las metas personales. Su lado flaco es el orgullo, o que importe más el aplauso que el esfuerzo. Al revés marca un elogio que no ha llegado: frustra, pero no es mal presagio."
+      "a": "Buena, en casi todas las lecturas. El éxito y el reconocimiento la vuelven una de las cartas más alentadoras para el trabajo o las metas personales. Su lado flaco es el orgullo, o que importe más el aplauso que el esfuerzo. Al revés marca un elogio que no ha llegado: frustra, pero no es mal presagio."
     },
     {
       "q": "¿El Seis de Bastos significa que voy a ganar?",
@@ -175,9 +175,7 @@
   "waite": {
     "quote": "A victor triumphing, but it is also great news … expectation crowned with its own desire … Reversed: Apprehension, fear … treachery, disloyalty … also indefinite delay.",
     "quote_lang": "en",
-    "pages": [
-      186
-    ],
+    "pages": [186],
     "translation": "Un vencedor que triunfa, pero también es una gran noticia … la expectativa coronada con su propio deseo … Al revés: aprensión, miedo … traición, deslealtad … también demora indefinida.",
     "harsh": true
   },

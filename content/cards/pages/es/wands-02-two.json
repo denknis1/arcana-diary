@@ -42,14 +42,14 @@
       "heading": "¿Qué hay en la carta del Dos de Bastos?",
       "paragraphs": [
         "Un hombre alto mira desde la azotea almenada de un castillo hacia el mar y la costa, según la describe Waite (p. 194). Sostiene un globo en una mano; un bastón se apoya en la almena y otro está sujeto con una argolla. Waite pide fijarse en la rosa, la cruz y el lirio del lado izquierdo (p. 194), pero no explica qué significan.",
-        "En la carta de 1909 el hombre ocupa el centro del dibujo, de perfil, con gorro rojo y una capa larga color vino. Su globo tiene manchas verdes y rojas. En el tablero de piedra de la izquierda se cruzan rosas rojas y lirios blancos en forma de X. Detrás de la muralla se ven agua, campos verdes, una casa de techo rojo y montañas grises."
+        "En la carta de 1909 el hombre ocupa el centro del dibujo, de perfil, con gorro rojo y una capa larga color vino. Su globo tiene manchas verdes y rojas. En el bloque de piedra de la izquierda se cruzan rosas rojas y lirios blancos en forma de X. Detrás de la muralla se ven agua, campos verdes, una casa de techo rojo y montañas grises."
       ]
     },
     {
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el Dos de Bastos?",
       "paragraphs": [
-        "Waite reconoce que las dos mitades de su lista no se pueden conciliar (p. 194). La primera es riqueza y grandeza; la segunda es dura, y en Arcana Diary no leemos la carta así.",
+        "Waite reconoce que las dos mitades de su lista no se pueden conciliar (p. 194). La primera es riqueza y grandeza; la segunda es tristeza y mortificación, junto con palabras sobre el cuerpo que en Arcana Diary no leemos.",
         "Para explicar el dibujo, Waite propone ver a un señor que contempla sus dominios y, a ratos, el globo que tiene en la mano, y lo compara con la tristeza de Alejandro en medio de toda la riqueza del mundo (p. 194). Tenerlo casi todo y aun así mirar más lejos: por ahí va también la lectura de hoy."
       ]
     },
@@ -67,7 +67,7 @@
       "heading": "¿Qué significa el Dos de Bastos al revés?",
       "paragraphs": [
         "Al revés, el plan se queda en pausa. El miedo a lo desconocido hace que quedarte en lo seguro parezca lo más sensato, y posponer se vuelve costumbre. A veces pasa lo contrario: falta de planeación, muchas ganas de cambio y ningún mapa.",
-        "Esta lectura es moderna; las palabras al revés de la lista de Waite (p. 194), de la sorpresa al asombro y la inquietud, van por otro lado. Prueba una parte pequeña del plan, con poco riesgo, y mira cómo te sientes."
+        "Esta lectura es moderna; las palabras al revés de la lista de Waite (p. 194), de la sorpresa y el asombro a la turbación y el miedo, van por otro lado. Prueba una parte pequeña del plan, con poco riesgo, y mira cómo te sientes."
       ]
     },
     {
@@ -84,7 +84,7 @@
       "heading": "¿Qué significa el Dos de Bastos en el trabajo y el dinero?",
       "paragraphs": [
         "En lo laboral habla de planes de carrera: un puesto con más alcance, trabajar en otro país, un mercado nuevo, elegir entre un empleo seguro y una oportunidad más amplia.",
-        "En dinero, significa planeación: metas a largo plazo, un presupuesto para algo grande, comparar opciones antes de comprometerte. Al revés, apunta a ahorros que se quedan quietos solo por miedo al cambio, o a un plan que todavía no tiene números."
+        "En dinero, significa planeación: metas a largo plazo, un presupuesto para algo grande, comparar opciones antes de comprometerte. Al revés, apunta a un paso grande que se queda en pausa solo por miedo al cambio, o a un plan que todavía no tiene números."
       ]
     },
     {
@@ -175,47 +175,33 @@
   "waite": {
     "quote": "On the one hand, riches, fortune, magnificence; on the other, physical suffering, disease, chagrin, sadness, mortification … Reversed: Surprise, wonder, enchantment, emotion, trouble, fear.",
     "quote_lang": "en",
-    "pages": [
-      194
-    ],
+    "pages": [194],
     "translation": "Por un lado, riqueza, fortuna, magnificencia; por el otro, sufrimiento físico, enfermedad, pesadumbre, tristeza, mortificación … Al revés: sorpresa, asombro, encantamiento, emoción, turbación, miedo.",
     "harsh": true
   },
   "citations": [
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "A tall man looks from a battlemented roof over sea and shore"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "The Rose and Cross and Lily should be noticed on the left side"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "Between the alternative readings there is no marriage possible"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "here is a lord overlooking his dominion and alternately contemplating a globe; it looks like the malady, the mortification, the sadness of Alexander amidst the grandeur of this world's wealth"
     },
     {
-      "pages": [
-        194
-      ],
+      "pages": [194],
       "text": "Reversed: Surprise, wonder, enchantment, emotion, trouble, fear"
     },
     {
-      "pages": [
-        192
-      ],
+      "pages": [192],
       "text": "looking from a cliff's edge at ships passing over the sea"
     }
   ],
@@ -230,10 +216,7 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [
-        192,
-        194
-      ],
+      "pages": [192, 194],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

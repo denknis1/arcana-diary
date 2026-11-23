@@ -56,7 +56,7 @@
       "id": "upright",
       "heading": "What does the Two of Cups mean upright?",
       "paragraphs": [
-        "Partnership is the heart of the Two of Cups: two people who meet as equals, with mutual respect and real attraction. Few cards mark so clearly a budding romance, a friendship sealed, a reconciliation, or any bond in which both sides choose each other.",
+        "Partnership is the heart of the Two of Cups: two people who meet as equals, with mutual respect and real attraction. It marks a budding romance, a friendship sealed, a reconciliation, or any bond in which both sides choose each other.",
         "The connection can be practical too: a good business partner, an agreement that is fair to both, someone who understands you without long explanations. What makes it this card is balance; nobody stands above the other.",
         "Harmony here is active, built by listening as much as by speaking. Which of your bonds feels most equal right now, and what keeps it that way?"
       ]
@@ -65,7 +65,7 @@
       "id": "reversed",
       "heading": "What does the Two of Cups mean reversed?",
       "paragraphs": [
-        "Turned upside down, the card shows a bond out of balance: misunderstanding, distance, or uneven giving, where one cup offers more than the other. It can also mark the strain after a quarrel, or a time when it is hard to feel close even to yourself.",
+        "Turned upside down, the card shows a bond out of balance: misunderstanding, distance, or uneven giving, where one cup offers more than the other. It can also mark the strain after a quarrel, a break between two people, or a time when it is hard to feel close even to yourself.",
         "Waite gives no reversed list for this card on its own page (p. 222), and his short additional list names only passion (p. 290); imbalance and distance are a modern reading, not Waite's. Say calmly what you need in order to feel equal again."
       ]
     },
@@ -75,7 +75,7 @@
       "paragraphs": [
         "Two cups raised to the same height make this one of the most romantic minor cards: mutual attraction, a first date that feels easy, a bond growing into a partnership. Inside an existing relationship it marks closeness, a commitment renewed, or making peace after an argument.",
         "Without a partner, the card may describe a meeting of minds that feels promising, or simply learning what an equal bond looks like before you choose anyone.",
-        "Imbalance is the reversed side in love: one person reaching more than the other, words that miss, a coolness that has crept in. A calm, honest talk is usually the first step back."
+        "Imbalance is the reversed side in love: one person reaching more than the other, words that miss, a coolness that has crept in, sometimes a separation. A calm, honest talk is usually the first step back."
       ]
     },
     {
@@ -173,62 +173,43 @@
     }
   ],
   "waite": {
-    "quote": "Love, passion, friendship, affinity, union, concord, sympathy, the interrelation of the sexes … Reversed: Passion.",
+    "quote": "Love, passion, friendship, affinity, union, concord, sympathy, the interrelation of the sexes",
     "quote_lang": "en",
-    "pages": [
-      222,
-      290
-    ],
+    "pages": [222],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head"
     },
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "It is a variant of a sign which is found in a few old examples of this card"
     },
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "Some curious emblematical meanings are attached to it, but they do not concern us in this place"
     },
     {
-      "pages": [
-        222
-      ],
+      "pages": [222],
       "text": "Love, passion, friendship, affinity, union, concord, sympathy"
     },
     {
-      "pages": [
-        290
-      ],
+      "pages": [290],
       "text": "Two.—Favourable in things of pleasure and business, as well as love; also wealth and honour. Reversed: Passion."
     },
     {
-      "pages": [
-        92
-      ],
+      "pages": [92],
       "text": "beneath is a great winged figure with arms extended"
     },
     {
-      "pages": [
-        92
-      ],
+      "pages": [92],
       "text": "two human figures, male and female, unveiled before each other"
     },
     {
-      "pages": [
-        92
-      ],
+      "pages": [92],
       "text": "This is in all simplicity the card of human love"
     }
   ],
@@ -243,11 +224,7 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [
-        92,
-        222,
-        290
-      ],
+      "pages": [92, 222, 290],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

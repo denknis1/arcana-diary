@@ -63,7 +63,7 @@
       "heading": "What does the Five of Cups mean reversed?",
       "paragraphs": [
         "Reversed, the Five of Cups often marks acceptance: the sadness softens and you begin moving on, turning toward what is left. Self-forgiveness belongs here too, letting go of blame for what spilled.",
-        "The other face is hidden sadness, sorrow pushed down so that nobody sees it, which tends to linger longer. Waite's reversed list, with news, alliances, kin and return (p. 216), goes in a different direction; acceptance is the modern reading."
+        "The other face is hidden sadness, sorrow pushed down so that nobody sees it, which tends to linger longer. Waite's reversed list, with news, alliances, kin, return and false projects (p. 216), goes in a different direction; acceptance is the modern reading."
       ]
     },
     {
@@ -79,7 +79,7 @@
       "id": "work_money",
       "heading": "What does the Five of Cups mean for work and money?",
       "paragraphs": [
-        "A project that fell through, a job that did not work out, a missed chance: this card names the professional disappointment and asks what can still be used. The two standing cups are your skills, contacts and lessons.",
+        "A project that fell through, a job that did not work out, a missed chance: this card names the professional disappointment and asks what can still be used. The two standing cups can stand for the skills, contacts and lessons you still have.",
         "For money it means a loss or setback that stings, and regret over a past decision; reversed, recovering and making peace with it."
       ]
     },
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "The Five of Cups as a person and as feelings",
       "paragraphs": [
-        "As a person, the Five of Cups is someone dwelling on a loss: grieving, full of regret, a little closed off while the hurt is fresh. It can also be you, in a stretch of looking back. As feelings, the card stands for sadness and disappointment, and often for regret about what went wrong between two people. Reversed, those feelings are softening into acceptance, forgiveness and a readiness to move on."
+        "Pictured as a person, the Five of Cups is someone dwelling on a loss: grieving, full of regret, a little closed off while the hurt is fresh. It can also be you, in a stretch of looking back. As feelings, the card stands for sadness and disappointment, and often for regret about what went wrong between two people. Reversed, those feelings are softening into acceptance, forgiveness and a readiness to move on."
       ]
     },
     {
@@ -172,9 +172,7 @@
   "waite": {
     "quote": "A card of loss, but something remains over; three have been taken, but two are left … Reversed: News, alliances, affinity, consanguinity, ancestry, return, false projects.",
     "quote_lang": "en",
-    "pages": [
-      216
-    ],
+    "pages": [216],
     "translation": null,
     "harsh": false
   },

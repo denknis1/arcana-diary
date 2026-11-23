@@ -41,7 +41,7 @@
       "heading": "¿Qué hay en la carta del Cinco de Copas?",
       "paragraphs": [
         "Una figura con una capa negra larga inclina la cabeza. Waite la describe mirando de lado tres copas tumbadas, con otras dos en pie detrás, y al fondo un puente que lleva a un pequeño torreón o propiedad (p. 216).",
-        "En la carta de 1909 la capa negra es lo más grande del dibujo y ocupa el centro, contra un cielo gris. A la izquierda quedan las tres copas caídas, con líquido rojo y verde derramado; a la derecha, las dos que siguen de pie. Un río cruza el paisaje, con un castillo pequeño sobre una loma a la izquierda y un puente a la derecha. Arriba se lee el V."
+        "En la carta de 1909 la capa negra es lo más grande del dibujo y ocupa el centro, contra un cielo gris. A la izquierda quedan las tres copas caídas, con líquido rojo y verde derramado; a la derecha, las dos que siguen de pie. Un río cruza el paisaje, con un castillo pequeño sobre una loma a la izquierda y un puente a la derecha. Arriba está el número V."
       ]
     },
     {
@@ -64,7 +64,7 @@
       "heading": "¿Qué significa el Cinco de Copas al revés?",
       "paragraphs": [
         "Al revés, el Cinco de Copas suele hablar de aceptación: la tristeza afloja y empiezas a seguir adelante, con la vista en lo que permanece. También cabe el perdón, hacia otras personas o hacia ti, por lo que se derramó.",
-        "La otra cara es una tristeza escondida, que se guarda para que nadie la vea y por eso tarda más en irse. La lista al revés de Waite, con noticias, alianzas, parentesco y regreso (p. 216), va por otro camino; la aceptación es una lectura moderna."
+        "La otra cara es una tristeza escondida, que se guarda para que nadie la vea y por eso tarda más en irse. La lista al revés de Waite, con noticias, alianzas, parentesco, regreso y proyectos falsos (p. 216), va por otro camino; la aceptación es una lectura moderna."
       ]
     },
     {
@@ -72,8 +72,8 @@
       "heading": "¿Qué significa el Cinco de Copas en el amor?",
       "paragraphs": [
         "Una relación que no llegó a ser lo que esperabas, una ruptura que todavía duele o el arrepentimiento por algo que se dijo: en el amor, esta carta trae desilusión y te pide darle espacio.",
-        "Al revés, el corazón empieza a soltar lo que pasó y a mirar a quienes siguen cerca.",
-        "En pareja, puede hablar de una herida que no se ha platicado, con más atención en lo que falló que en lo que sigue funcionando. Sin pareja, una pérdida antigua puede mantener tu mirada en el pasado."
+        "En pareja, puede hablar de una herida que no se ha platicado, con más atención en lo que falló que en lo que sigue funcionando. Sin pareja, una pérdida antigua puede mantener tu mirada en el pasado.",
+        "Al revés, el corazón empieza a soltar lo que pasó y a mirar a quienes siguen cerca."
       ]
     },
     {
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Cinco de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Cinco de Copas es alguien que carga con una pérdida: vive la tristeza o el arrepentimiento y se cierra un poco mientras la herida está fresca. También puedes ser tú, en una etapa de mirar atrás. Como sentimiento, la carta habla de tristeza y desilusión, y muchas veces de arrepentimiento por lo que salió mal entre dos personas. Al revés, esos sentimientos se suavizan hacia la aceptación, el perdón y las ganas de seguir adelante."
+        "Si es una persona, el Cinco de Copas es alguien que carga con una pérdida: vive la tristeza o el arrepentimiento y se cierra un poco mientras la herida está fresca. También puedes ser tú, en una etapa de mirar atrás. Como sentimiento, la carta habla de tristeza y desilusión, y muchas veces de arrepentimiento por lo que salió mal entre dos personas. Al revés, esos sentimientos se suavizan hacia la aceptación, el perdón y las ganas de seguir adelante."
       ]
     },
     {
@@ -173,9 +173,7 @@
   "waite": {
     "quote": "A card of loss, but something remains over; three have been taken, but two are left … Reversed: News, alliances, affinity, consanguinity, ancestry, return, false projects.",
     "quote_lang": "en",
-    "pages": [
-      216
-    ],
+    "pages": [216],
     "translation": "Una carta de pérdida, pero algo queda; se llevaron tres, pero quedan dos … Al revés: noticias, alianzas, afinidad, consanguinidad, ascendencia, regreso, proyectos falsos.",
     "harsh": false
   },

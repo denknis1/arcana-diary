@@ -47,7 +47,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Seven of Cups?",
       "paragraphs": [
-        "Waite's list stays in the mind: fairy favours, reflection, sentiment, imagination, things seen \"in the glass of contemplation\" (p. 212). Waite allows \"some attainment in these degrees\" but adds that \"nothing permanent or substantial is suggested\" (p. 212). In the short list near the end of his book, Waite gives the card \"idea, design, resolve, movement\" (p. 290)."
+        "Waite's list never leaves the world of the mind: fairy favours, reflection, sentiment, imagination, things seen \"in the glass of contemplation\" (p. 212). Waite allows \"some attainment in these degrees\" but adds that \"nothing permanent or substantial is suggested\" (p. 212). In the short list near the end of his book, Waite gives the card \"idea, design, resolve, movement\" (p. 290)."
       ]
     },
     {
@@ -80,7 +80,7 @@
       "heading": "What does the Seven of Cups mean for work and money?",
       "paragraphs": [
         "Several job offers, side projects or career paths at once: the Seven of Cups is a full menu with no clear order. Keep the option that still holds up once you write down the facts.",
-        "In money terms it means wishful thinking, plans that look better than the numbers, and promises of easy gains that deserve a second look."
+        "In money terms it means wishful thinking, plans that look better than the numbers, and promises of easy gains that call for checking before you believe them."
       ]
     },
     {
@@ -167,9 +167,7 @@
   "waite": {
     "quote": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation … Reversed: Desire, will, determination, project.",
     "quote_lang": "en",
-    "pages": [
-      212
-    ],
+    "pages": [212],
     "translation": null,
     "harsh": false
   },

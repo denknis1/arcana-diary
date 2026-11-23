@@ -67,7 +67,7 @@
       "heading": "¿Qué significa el Ocho de Bastos al revés?",
       "paragraphs": [
         "Al revés, el vuelo se frena o se dispersa: retrasos, planes en pausa, mensajes cruzados que confunden a todos. También puede hablar de prisa: ir tan rápido que se pierden detalles y la energía no tiene dónde aterrizar.",
-        "Waite lee la carta al revés por el lado oscuro del amor: flechas de celos, disputas internas y punzadas de conciencia (p. 182). Los retrasos y los mensajes cruzados son lectura moderna. Baja el ritmo lo suficiente para apuntar y luego manda un solo mensaje claro."
+        "En la lista al revés de Waite las flechas cambian de signo: flechas de celos, disputa interna, punzadas de conciencia y riñas (p. 182). Los retrasos y los mensajes cruzados son lectura moderna. Baja el ritmo lo suficiente para apuntar y luego manda un solo mensaje claro."
       ]
     },
     {
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Ocho de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Ocho de Bastos es alguien de reacciones rápidas y mucho ánimo: contesta al momento, hace planes sobre la marcha y le gusta que las cosas se muevan. Como sentimiento, habla de una atracción fuerte y veloz, de emoción y de ganas de ver a dónde llega todo: las flechas del amor de Waite (p. 182), en versión moderna. Al revés, los sentimientos se enredan: celos, señales confusas, dudas o un interés que perdió velocidad."
+        "En una persona, el Ocho de Bastos es alguien de reacciones rápidas y mucho ánimo: contesta al momento, hace planes sobre la marcha y le gusta que las cosas se muevan. Como sentimiento, habla de una atracción fuerte y veloz, de emoción y de ganas de ver a dónde llega todo: las flechas del amor de Waite (p. 182), en versión moderna. Al revés, los sentimientos se enredan: celos, señales confusas, dudas o un interés que perdió velocidad."
       ]
     },
     {
@@ -156,7 +156,7 @@
     },
     {
       "q": "¿El Ocho de Bastos significa que me quiere?",
-      "a": "Ninguna carta puede decirte lo que hay en el corazón de otra persona. Como significado, el Ocho habla de atracción rápida y emoción, y Waite la relaciona con el amor (p. 182). En tu pregunta describe el ritmo y la energía del vínculo; lo demás solo lo puede decir la otra persona."
+      "a": "Ninguna carta puede decirte lo que hay en el corazón de otra persona. Como significado, el Ocho habla de atracción rápida y emoción, y Waite lo relaciona con el amor (p. 182). En tu pregunta describe el ritmo y la energía del vínculo; lo demás solo lo puede decir la otra persona."
     }
   ],
   "related": [
@@ -175,9 +175,7 @@
   "waite": {
     "quote": "Activity in undertakings … swiftness … great haste, great hope … the arrows of love. Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels",
     "quote_lang": "en",
-    "pages": [
-      182
-    ],
+    "pages": [182],
     "translation": "Actividad en lo que se emprende … rapidez … mucha prisa, mucha esperanza … las flechas del amor. Al revés: flechas de celos, disputa interna, punzadas de conciencia, riñas.",
     "harsh": false
   },

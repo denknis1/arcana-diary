@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the King of Cups?",
       "paragraphs": [
-        "Waite's King of Cups is a responsible man of business or a profession, \"disposed to oblige the Querent\", with a sense of equity and creative intelligence (p. 198). Waite's reversed list is blunt: dishonesty, double-dealing, scandal and loss (p. 198). On Arcana Diary the reversed King accuses no one; it speaks about feelings kept under too tight a lid."
+        "Waite's King of Cups is a responsible man of business or a profession, \"disposed to oblige the Querent\", with a sense of equity and creative intelligence (p. 198). Reversed, Waite turns severe: dishonesty, double-dealing, scandal and loss (p. 198). Arcana Diary reads that side differently, as feelings kept under too tight a lid."
       ]
     },
     {
@@ -64,7 +64,7 @@
       "id": "reversed",
       "heading": "What does the King of Cups mean reversed?",
       "paragraphs": [
-        "Upside down, the King of Cups can mean suppressed emotions: feelings handled by pushing them down, calm as a mask. Moods may then leak out sideways, as irritability, moodiness or sudden coldness. It can also describe composure used to keep others at a distance.",
+        "Upside down, the King of Cups can mean suppressed emotions: feelings handled by pushing them down, calm as a mask. Moods may then leak out sideways, as irritability, moodiness or sudden coldness. It can also describe composure used to keep others at a distance or, at its hardest, emotional manipulation: feelings used to steer other people.",
         "This reading is modern, not Waite's. The way through is easy to name: admit what you feel beneath the composure and let it be there, without needing to control it."
       ]
     },
@@ -72,8 +72,8 @@
       "id": "love",
       "heading": "What does the King of Cups mean in love?",
       "paragraphs": [
-        "Reversed, the card asks whether calm has turned into distance, or whether something important is left unsaid to avoid a scene.",
-        "Right side up, the card describes care that does not panic: steady affection, honest talks held calmly, patience through a hard week, and commitment that shows in everyday kindness. You can stay calm and still let your feelings show.",
+        "In love, this King describes care that does not panic: steady affection, honest talks held calmly, patience through a hard week, and commitment that shows in everyday kindness. You can stay calm and still let your feelings show.",
+        "With the card reversed, the question is whether calm has turned into distance, or whether something important is left unsaid to avoid a scene.",
         "For anyone dating, it values emotional maturity: choosing someone with whom you can feel without fear and speak without drama, and being that kind of person too."
       ]
     },
@@ -182,47 +182,33 @@
   "waite": {
     "quote": "Fair man, man of business, law, or divinity; responsible … creative intelligence. Reversed: Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss.",
     "quote_lang": "en",
-    "pages": [
-      198
-    ],
+    "pages": [198],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [
-        198
-      ],
+      "pages": [198],
       "text": "He holds a short sceptre in his left hand and a great cup in his right; his throne is set upon the sea; on one side a ship is riding and on the other a dolphin is leaping"
     },
     {
-      "pages": [
-        198
-      ],
+      "pages": [198],
       "text": "The implicit is that the Sign of the Cup naturally refers to water"
     },
     {
-      "pages": [
-        198
-      ],
+      "pages": [198],
       "text": "Fair man, man of business, law, or divinity; responsible, disposed to oblige the Querent; also equity, art and science, including those who profess science, law and art; creative intelligence"
     },
     {
-      "pages": [
-        198
-      ],
+      "pages": [198],
       "text": "Reversed: Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss"
     },
     {
-      "pages": [
-        84
-      ],
+      "pages": [84],
       "text": "He is a crowned monarch—commanding, stately, seated on a throne, the arms of which are fronted by rams' heads"
     },
     {
-      "pages": [
-        254
-      ],
+      "pages": [254],
       "text": "The bull's head should be noted as a recurrent symbol on the throne"
     }
   ],
@@ -237,11 +223,7 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [
-        84,
-        198,
-        254
-      ],
+      "pages": [84, 198, 254],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

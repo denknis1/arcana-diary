@@ -42,7 +42,7 @@
       "heading": "¿Qué hay en la carta del Siete de Bastos?",
       "paragraphs": [
         "Un joven en lo alto de una peña blande un basto mientras otros seis se levantan hacia él desde abajo. Así lo describe Waite: un joven sobre una altura rocosa, con un basto en alto y seis bastos alzados contra él desde abajo (p. 184). El basto que sostiene atravesado con las dos manos es lo más grande de la carta.",
-        "En la carta de 1909 viste una túnica verde y planta los pies bien abiertos sobre un montículo verde con roca en la orilla. Los seis bastos se alzan derechos frente a él y sus puntas no le pasan de la cintura. Sus zapatos no hacen juego: en un pie lleva un zapato bajo rojizo y en el otro una bota café. Arriba se lee el VII."
+        "En la carta de 1909 viste una túnica verde y planta los pies bien abiertos sobre un montículo verde con roca en la orilla. Los seis bastos se alzan derechos frente a él y sus puntas no le pasan de la cintura. Sus zapatos no hacen juego: en un pie lleva un zapato bajo y en el otro una bota corta. Arriba se lee el VII."
       ]
     },
     {
@@ -67,7 +67,7 @@
       "heading": "¿Qué significa el Siete de Bastos al revés?",
       "paragraphs": [
         "Al revés, la carta puede mostrar agotamiento por defenderte todo el tiempo y la tentación de ceder solo para que se acabe la presión. Ceder no siempre está mal, pero conviene ver si lo eliges o si ya no te quedan fuerzas para elegir.",
-        "El otro lado es una actitud a la defensiva: tomar cada comentario como un ataque y pelear batallas que nadie empezó. La advertencia de Waite contra la indecisión (p. 184) sirve para los dos casos; el cansancio y la defensiva son lectura moderna. Pregúntate qué terreno es de verdad tuyo y cuídalo con calma, no a fuerza de desgaste."
+        "El otro lado es una actitud a la defensiva: tomar cada comentario como un ataque y dar batallas que nadie empezó. La advertencia de Waite contra la indecisión (p. 184) sirve para los dos casos; el cansancio y la defensiva son lectura moderna. Pregúntate qué terreno es de verdad tuyo y cuídalo con calma, no a fuerza de desgaste."
       ]
     },
     {
@@ -83,7 +83,7 @@
       "id": "work_money",
       "heading": "¿Qué significa el Siete de Bastos en el trabajo y el dinero?",
       "paragraphs": [
-        "Varios candidatos para el mismo puesto, un mercado lleno de competencia, una decisión que tienes que defender ante tus colegas: así se ve esta carta en el trabajo. Waite incluye en ella negociaciones, trueque y competencia en los negocios (p. 184). Tu posición es fuerte si te preparas y das argumentos cortos.",
+        "Varios candidatos para el mismo puesto, un mercado lleno de competencia, una decisión que tienes que defender ante tus colegas: así se ve esta carta en el trabajo. Waite incluye en ella negociaciones, rivalidad comercial, trueque y competencia en los negocios (p. 184). Tu posición es fuerte si te preparas y das argumentos cortos.",
         "Respecto al dinero, la carta significa proteger lo que ganaste: cuidar tu presupuesto cuando te presionan para gastar, sostener tu precio, defender tu parte en un campo competido."
       ]
     },
@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Siete de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Siete de Bastos es alguien con principios, que protege lo suyo, dice lo que piensa y no cede fácilmente cuando le insisten. Como sentimiento, habla de una postura protectora y decidida: ganas de cuidar el vínculo y de defenderlo, junto con cierta guardia, una reserva que espera a sentir confianza. Al revés, el sentimiento puede ser cansancio, duda sobre si vale la pena el esfuerzo o una actitud defensiva que aleja a la otra persona."
+        "Visto en una persona, el Siete de Bastos es alguien con principios, que protege lo suyo, dice lo que piensa y no cede fácilmente cuando le insisten. Como sentimiento, habla de una postura protectora y decidida: ganas de cuidar el vínculo y de defenderlo, junto con cierta guardia, una reserva que espera a sentir confianza. Al revés, el sentimiento puede ser cansancio, duda sobre si vale la pena el esfuerzo o una actitud defensiva que aleja a la otra persona."
       ]
     },
     {
@@ -175,9 +175,7 @@
   "waite": {
     "quote": "It is a card of valour … It is further a card of success … Reversed: Perplexity, embarrassments, anxiety. It is also a caution against indecision.",
     "quote_lang": "en",
-    "pages": [
-      184
-    ],
+    "pages": [184],
     "translation": "Es una carta de valor … Es además una carta de éxito … Al revés: perplejidad, apuros, ansiedad. También es una advertencia contra la indecisión.",
     "harsh": false
   },

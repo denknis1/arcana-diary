@@ -21,7 +21,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "El Seis de Copas habla de nostalgia, recuerdos, ternura e inocencia. Al revés, habla de anclarse al pasado o de un pasado idealizado. Es una carta amable: consuela y solo pide que el recuerdo no ocupe el lugar del presente. La respuesta es sí, porque un niño ofrece flores con buena voluntad.",
+  "capsule": "El Seis de Copas habla de nostalgia, recuerdos, ternura e inocencia. Al revés, advierte de anclarse al pasado o de un pasado idealizado. Es una carta amable: consuela y solo pide que el recuerdo no ocupe el lugar del presente. La respuesta es sí, porque un niño ofrece flores con buena voluntad.",
   "keywords": {
     "upright": [
       "nostalgia",
@@ -72,8 +72,8 @@
       "heading": "¿Qué significa el Seis de Copas en el amor?",
       "paragraphs": [
         "La ternura, el afecto juguetón y la sensación de estar en confianza son el terreno de esta carta en el amor.",
-        "Al revés, conviene preguntarte si el cariño por un recuerdo te impide ver a quien tienes enfrente.",
-        "En pareja, puede devolver la dulzura del principio: bromas compartidas, detalles pequeños, una cita que se siente como la primera. Muchas lecturas la relacionan además con alguien del pasado, una amistad o una expareja que vuelve a tu mente; la carta muestra el recuerdo y su calidez, no lo que viene después."
+        "En pareja, puede devolver la dulzura del principio: bromas compartidas, detalles pequeños, una cita que se siente como la primera. Muchas lecturas la relacionan además con alguien del pasado, una amistad o una expareja que vuelve a tu mente; la carta muestra el recuerdo y su calidez, no lo que viene después.",
+        "Al revés, conviene preguntarte si el cariño por un recuerdo te impide ver a quien tienes enfrente."
       ]
     },
     {
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Seis de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Una persona amable y cercana es el Seis de Copas en este papel: una amistad de la infancia, alguien con quien compartes historia o que te hace sentir en casa; también puede ser tu lado juguetón y confiado. Como sentimiento, habla de ternura, recuerdos bonitos y un cariño sencillo, sin complicaciones, muchas veces ligado a un pasado en común. Al revés, ese sentimiento se apoya más en la nostalgia: apego a cómo eran las cosas más que a cómo son."
+        "Visto como persona, el Seis de Copas es alguien amable y cercano: una amistad de la infancia, alguien con quien compartes historia o que te hace sentir en casa; también puede ser tu lado juguetón y confiado. Como sentimiento, habla de ternura, recuerdos bonitos y un cariño sencillo, sin complicaciones, muchas veces ligado a un pasado en común. Al revés, ese sentimiento se apoya más en la nostalgia: apego a cómo eran las cosas más que a cómo son."
       ]
     },
     {
@@ -166,12 +166,10 @@
     }
   ],
   "waite": {
-    "quote": "A card of the past and of memories, looking back, as—for example—on childhood … Reversed: The future, renewal.",
+    "quote": "A card of the past and of memories, looking back, as—for example—on childhood … Reversed: The future, renewal …",
     "quote_lang": "en",
-    "pages": [
-      214
-    ],
-    "translation": "Una carta del pasado y de los recuerdos, de mirar atrás, por ejemplo, a la infancia … Al revés: el futuro, la renovación.",
+    "pages": [214],
+    "translation": "Una carta del pasado y de los recuerdos, de mirar atrás, por ejemplo, a la infancia … Al revés: el futuro, la renovación …",
     "harsh": false
   },
   "citations": [
