@@ -1,15 +1,11 @@
 ---
-import CardView from '../../views/CardView.astro';
-import meanings from '../../data/meanings.en.json';
+import CardPageView from '../../views/CardPageView.astro';
 import { DECK } from '../../lib/deck';
 
 export function getStaticPaths() {
-  return DECK.map((card) => ({
-    params: { slug: card.slug_en },
-    props: { card, meaning: meanings.find((m) => m.card_id === card.card_id)! },
-  }));
+  return DECK.map((card) => ({ params: { slug: card.slug_en }, props: { card } }));
 }
 
-const { card, meaning } = Astro.props;
+const { card } = Astro.props;
 ---
-<CardView lang="en" card={card} meaning={meaning} />
+<CardPageView lang="en" card={card} />

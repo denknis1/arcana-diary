@@ -1,0 +1,172 @@
+---
+// The card page (spec stage 6 §4; prototypes CardMoon — phone, DeskCard — desktop: the scan and the draw panel on
+// the left, the text on the right). Order: breadcrumbs → 1909 scan with its caption → facts line, H1, capsule,
+// keyword table → "on this page" chips → the 12 blocks → the draw panel (ReadingIsland, unchanged) → FAQ (first
+// open) → related cards → previous and next card → About this page. Text: content/cards/pages (stage 5); template
+// strings: template-strings.json; nothing about elements or astrology (owner decision 10).
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CardFigure from '../components/CardFigure.astro';
+import Segments from '../components/Segments.astro';
+import ReadingIsland from '../islands/ReadingIsland';
+import { t } from '../i18n';
+import { cardCrumbs } from '../lib/breadcrumbs';
+import {
+  SECTION_IDS, aboutLines, ctaText, factsLine, faqHeading, imageCaption, keywordCaption, keywordRows, mentionSegments,
+  pairRows, relatedCards, segmentsOf, tocLinks, waiteCite, yesNoLines, yesNoReason,
+} from '../lib/cardPage';
+import { TEMPLATE_STRINGS, cardPage } from '../lib/cardPages';
+import { cardImage, cardName, neighbors, type DeckCard } from '../lib/deck';
+import { FACTS } from '../lib/facts';
+import { breadcrumbLd, cardLd, faqLd } from '../lib/jsonld';
+import { cardPath, pagePath } from '../lib/routes';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+  card: DeckCard;
+}
+
+const { lang, card } = Astro.props;
+const d = t(lang);
+const s = TEMPLATE_STRINGS[lang];
+const page = cardPage(card, lang);
+const path = cardPath(card, lang);
+const ids = SECTION_IDS[lang];
+const crumbs = cardCrumbs(card, lang);
+const editorName = String(FACTS.editor_name);
+const facts = factsLine(page, s, lang);
+const mentions = mentionSegments(page, lang);
+const yesNo = yesNoLines(card, yesNoReason(card, lang), s, lang);
+const pairs = pairRows(page, s, lang);
+const cta = ctaText(page, s);
+const about = aboutLines(page, s, lang, editorName);
+const { prev, next } = neighbors(card);
+const ld = cardLd({ headline: page.h1, description: page.description, path, lang, image: cardImage(card, 700),
+  reviewedAt: page.reviewed_at ?? '', editorName });
+---
+<Base lang={lang} title={page.title} description={page.description} path={path} current="cards"
+  image={cardImage(card, 700)} ogType="article" jsonLd={[breadcrumbLd(crumbs), ld, faqLd(page.faq)]}>
+  <Breadcrumbs lang={lang} crumbs={crumbs} />
+  <div class="card-page">
+    <div class="card-page__art">
+      <CardFigure card={card} lang={lang} sizes="(min-width: 900px) 320px, 70vw" eager alt={page.image_alt}
+        caption={imageCaption(page, s)} />
+    </div>
+
+    <article class="card-page__main" aria-labelledby="card-title">
+      <p class="eyebrow">{facts.before}{facts.link ? <a href={facts.link.href}>{facts.link.text}</a> : null}{facts.after}</p>
+      <h1 class="display" id="card-title">{page.h1}</h1>
+      <p class="capsule"><Segments segments={segmentsOf(mentions, 'capsule', page.capsule)} /></p>
+      <table class="data-table">
+        <caption>{keywordCaption(page, s)}</caption>
+        <thead><tr><th scope="col">{s.keywords.upright}</th><th scope="col">{s.keywords.reversed}</th></tr></thead>
+        <tbody>{keywordRows(page).map(([up, rev]) => <tr><td>{up}</td><td>{rev}</td></tr>)}</tbody>
+      </table>
+      <nav class="toc" aria-label={d.tocLabel}>
+        <ul>{tocLinks(lang).map((link) => <li><a href={link.href}>{link.label}</a></li>)}</ul>
+      </nav>
+
+      {page.blocks.map((block) => (
+        <section class="card-block" id={ids[block.id]} aria-labelledby={`${ids[block.id]}-title`}>
+          <h2 class="h2" id={`${ids[block.id]}-title`}>{block.heading}</h2>
+          {block.id === 'waite' ? (
+            <>
+              <figure class="waite-quote">
+                <blockquote lang="en"><p>{page.waite.quote}</p></blockquote>
+                <figcaption><cite>{waiteCite(page, s)}</cite></figcaption>
+              </figure>
+              {page.waite.translation && s.waite.translation_label ? (
+                <p><span class="waite-translation__label">{s.waite.translation_label}:</span> {page.waite.translation}</p>
+              ) : null}
+              {page.waite.harsh ? <p class="block-note">{s.waite.harsh_context}</p> : null}
+            </>
+          ) : null}
+          {block.id === 'yes_no' ? (
+            <>
+              <p>{yesNo.upright}</p>
+              <p>{yesNo.reversed}</p>
+              <p class="block-note">{yesNo.rule}</p>
+            </>
+          ) : null}
+          {block.id === 'combinations' ? (
+            <>
+              <p>{s.combinations.intro}</p>
+              <table class="data-table">
+                <thead><tr><th scope="col">{s.combinations.col_pair}</th><th scope="col">{s.combinations.col_reading}</th></tr></thead>
+                <tbody>
+                  {pairs.map((row) => (
+                    <tr>
+                      <th scope="row">{row.before}{row.link ? <a href={row.link.href}>{row.link.text}</a> : null}{row.after}</th>
+                      <td>{row.reading}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : null}
+          {block.id === 'ask_yourself' ? (
+            <ul class="ask-list">
+              {(block.paragraphs ?? []).map((p, j) => <li><Segments segments={segmentsOf(mentions, `${block.id}:${j}`, p)} /></li>)}
+            </ul>
+          ) : (
+            (block.paragraphs ?? []).map((p, j) => <p><Segments segments={segmentsOf(mentions, `${block.id}:${j}`, p)} /></p>)
+          )}
+          {block.id === 'waite' ? <p class="waite-boundary">{s.waite.boundary}</p> : null}
+          {block.id === 'work_money' ? <p class="block-note">{s.work_money.money_line}</p> : null}
+          {block.id === 'in_a_reading' ? <p class="block-note">{s.in_a_reading.note}</p> : null}
+          {block.id === 'ask_yourself' ? (
+            <p><a class="btn btn--outline" href={pagePath('diary', lang)}>{s.ask_yourself.diary_button}</a></p>
+          ) : null}
+        </section>
+      ))}
+    </article>
+
+    <section class="card-page__cta" id={ids.draw} aria-labelledby={`${ids.draw}-title`}>
+      <h2 class="h2" id={`${ids.draw}-title`}>{cta.heading}</h2>
+      <p class="muted">{cta.text}</p>
+      <ReadingIsland client:visible lang={lang} page="card" cardId={card.card_id} cardName={cardName(card, lang)} />
+    </section>
+
+    <div class="card-page__more">
+      <section class="page-section faq" id={ids.faq} aria-labelledby={`${ids.faq}-title`}>
+        <h2 class="h2" id={`${ids.faq}-title`}>{faqHeading(page, s)}</h2>
+        {page.faq.map((item, i) => (
+          <details open={i === 0}>
+            <summary>{item.q}</summary>
+            <p><Segments segments={segmentsOf(mentions, `faq:${i}`, item.a)} /></p>
+          </details>
+        ))}
+      </section>
+
+      <section class="page-section" id={ids.related} aria-labelledby={`${ids.related}-title`}>
+        <h2 class="h2" id={`${ids.related}-title`}>{s.related.heading}</h2>
+        <ul class="card-row">
+          {relatedCards(page).map((other) => (
+            <li><a href={cardPath(other, lang)}><CardFigure card={other} lang={lang} sizes="100px" /></a></li>
+          ))}
+        </ul>
+      </section>
+
+      <nav class="card-nav" aria-label={d.cardNav}>
+        <a href={cardPath(prev, lang)}><small>{d.prevCard}</small>{prev.numeral} {cardName(prev, lang)}</a>
+        <a href={cardPath(next, lang)}><small>{d.nextCard}</small>{next.numeral} {cardName(next, lang)}</a>
+      </nav>
+
+      <section class="page-section about-page" id={ids.about} aria-labelledby={`${ids.about}-title`}>
+        <h2 class="h2" id={`${ids.about}-title`}>{s.about.heading}</h2>
+        <h3 class="h3">{s.about.sources_label}</h3>
+        <ul class="sources">
+          {about.sources.map((src) => (
+            <li>
+              <span class="sources__what">{src.what}:</span> {src.url ? <a href={src.url} rel="noopener">{src.where}</a> : src.where}{src.pages ? `, ${src.pages}` : ''}
+            </li>
+          ))}
+        </ul>
+        <p class="small muted">{about.pageNumbers}</p>
+        <p class="small">{about.method}</p>
+        <p class="small muted">{about.deckNote}</p>
+      </section>
+    </div>
+  </div>
+</Base>

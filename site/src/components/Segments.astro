@@ -1,0 +1,11 @@
+---
+// Running text with links on the first mention of another card (src/lib/cardPage.ts mentionSegments).
+import type { Segment } from '../lib/cardPage';
+
+interface Props {
+  segments: readonly Segment[];
+}
+
+const { segments } = Astro.props;
+---
+{segments.map((seg) => (typeof seg === 'string' ? seg : <a href={seg.href}>{seg.text}</a>))}
