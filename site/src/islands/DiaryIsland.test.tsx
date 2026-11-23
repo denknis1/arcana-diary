@@ -73,7 +73,7 @@ afterEach(() => {
 describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   it('says that signing in opens soon when sign-in is off', async () => {
     serve({ 'GET /api/auth-config': () => jsonResponse(200, { enabled: false, supabase_url: '', anon_key: '', google: false }) });
-    await open((root) => byText(root, 'Signing in opens soon.'));
+    await open((root) => byText(root, "Signing in isn't available right now."));
   });
 
   it('a page restored from the back/forward cache reloads, and the listener goes with the page (review M5)', async () => {

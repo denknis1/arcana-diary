@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { DICTS, DRAFTS, fill, placeholders, t } from './index';
 
@@ -6,7 +7,7 @@ const keys = (lang: 'en' | 'es') => Object.keys(DICTS[lang]).sort();
 describe('dictionaries', () => {
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(224);
+    expect(keys('en').length).toBe(225);
   });
 
   it('have no empty strings', () => {
@@ -103,5 +104,20 @@ describe('fill', () => {
     expect(fill('{name} — full meaning', { name: 'The Moon' })).toBe('The Moon — full meaning');
     expect(fill('{n} left of {m}', { n: 2 })).toBe('2 left of {m}');
     expect(placeholders('{a} {b} {a}')).toEqual(['a', 'b']);
+  });
+
+  it('keep the stage 4.9 copy: the third position, the love caption, the sign-in line (spec 4.9 §1)', () => {
+    expect([t('en').posPath, t('es').posPath]).toEqual(["Where it's heading", 'Hacia dónde va']);
+    expect(t('en').loveLead).toBe("Three cards about you and your relationship: the past, the present and where it's heading.");
+    expect(t('es').loveLead).toBe('Tres cartas sobre ti y tu relación: el pasado, el presente y hacia dónde va.');
+    expect([t('en').diarySignInSoon, t('es').diarySignInSoon]).toEqual([
+      "Signing in isn't available right now.", 'El acceso no está disponible en este momento.']);
+  });
+
+  it.runIf(existsSync('../api/app/safety'))('carry the AI provider line word for word from the API safety texts', () => {
+    for (const lang of ['en', 'es'] as const) {
+      const api = JSON.parse(readFileSync(`../api/app/safety/texts.${lang}.json`, 'utf8'));
+      expect(t(lang).providerLine).toBe(api.provider_disclosure);
+    }
   });
 });
