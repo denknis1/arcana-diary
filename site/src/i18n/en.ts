@@ -31,7 +31,7 @@ export const en = {
   drawOne: 'Draw a card',
 
   homeTitle: 'Free Tarot Reading: Ask a Question, Draw Three Cards',
-  homeEyebrow: 'Three-card reading',
+  homeEyebrow: 'Free tarot reading · Three cards',
   homeH1: 'Free tarot reading: ask the cards',
   homeLead: 'One question, three cards and an honest reading. No sign-up.',
   homePlaceholder: 'e.g. What should I keep in mind about this move?',
@@ -55,13 +55,13 @@ export const en = {
   howStep3: 'Save it, and check later what came true.',
 
   oneCardTitle: 'One Card Tarot Reading: Pull a Card for Your Question',
-  oneCardEyebrow: 'Free · no sign-up',
+  oneCardEyebrow: 'One card tarot · Free, no sign-up',
   oneCardH1: 'One card tarot: a single card for right now',
   oneCardLead: 'One card, read for your question — a quick look when you need it.',
   oneCardPlaceholder: 'e.g. What should I focus on today?',
 
   yesNoTitle: 'Yes or No Tarot: One or Three Cards and the Rule Behind It',
-  yesNoEyebrow: 'One or three cards',
+  yesNoEyebrow: 'Yes or no tarot · One or three cards',
   yesNoH1: 'Yes or no tarot: a clear answer, and why',
   yesNoLead: 'Ask a question that can be answered yes or no. The cards give a lean — the choice stays yours.',
   yesNoLabel: 'Your yes-or-no question — optional',
@@ -72,7 +72,7 @@ export const en = {
   voteUnclear: 'Not clear yet',
 
   loveTitle: 'Love Tarot Reading: Free Three-Card Spread for Your Heart',
-  loveEyebrow: 'Free · no sign-up',
+  loveEyebrow: 'Love tarot · Free, no sign-up',
   loveH1: 'Love tarot reading: what does your heart need?',
   loveLead: 'Three cards about you and your relationship: the past, the present and where it\'s heading.',
   situationLabel: 'Your situation — optional',
@@ -85,7 +85,7 @@ export const en = {
   loveNote: 'The cards talk about you and what you can do — never what another person thinks or feels.',
 
   dailyTitle: 'Daily Tarot: Your Free Tarot Card of the Day',
-  dailyEyebrow: 'Card of the Day',
+  dailyEyebrow: 'Daily tarot · Card of the Day',
   dailyH1: 'Daily tarot: your card for today',
   dailyTap: 'Tap to turn over your card',
   dailyNote: 'One card a day · a new one tomorrow',
@@ -183,7 +183,7 @@ export const en = {
   savedToDiary: 'Saved to your diary ✓',
   saveTitle: 'Save to your diary',
   saveLead: 'Your reading stays here — nothing is lost.',
-  saveRemind: 'Remind me in 7 days: did it come true?',
+  saveRemind: 'E-mail me in 7 days: did it come true? (e-mails start later)',
   signInEmailLabel: 'Your e-mail',
   signInSend: 'Send me a link',
   signInOr: 'or',

@@ -32,7 +32,7 @@ export const es: Dict = {
   drawOne: 'Saca una carta',
 
   homeTitle: 'Tarot gratis: tirada de 3 cartas o de 1, sin registro',
-  homeEyebrow: 'Una o tres cartas',
+  homeEyebrow: 'Tarot gratis · Una o tres cartas',
   homeH1: 'Tarot gratis: pregunta a las cartas',
   homeLead: 'Tu pregunta, las cartas y una lectura honesta. Sin registro.',
   homePlaceholder: 'p. ej. ¿Qué me frena con este cambio?',
@@ -56,13 +56,13 @@ export const es: Dict = {
   howStep3: 'Guárdala y revisa después qué se cumplió.',
 
   oneCardTitle: 'Una carta — Arcana Diary',
-  oneCardEyebrow: 'Gratis · sin registro',
+  oneCardEyebrow: 'Una carta · Gratis, sin registro',
   oneCardH1: 'Una sola carta para este momento',
   oneCardLead: 'Una carta, leída para tu pregunta: una mirada rápida cuando la necesitas.',
   oneCardPlaceholder: 'p. ej. ¿En qué me conviene enfocarme hoy?',
 
   yesNoTitle: 'Tarot sí o no gratis: 1 o 3 cartas, y el porqué',
-  yesNoEyebrow: 'Una o tres cartas',
+  yesNoEyebrow: 'Tarot sí o no · Una o tres cartas',
   yesNoH1: 'Tarot sí o no: una respuesta clara, y por qué',
   yesNoLead: 'Haz una pregunta que se pueda responder con sí o no. Las cartas muestran una inclinación; la decisión sigue siendo tuya.',
   yesNoLabel: 'Tu pregunta de sí o no (opcional)',
@@ -73,7 +73,7 @@ export const es: Dict = {
   voteUnclear: 'Todavía no está claro',
 
   loveTitle: 'Tarot del amor gratis: 3 cartas para tu corazón',
-  loveEyebrow: 'Gratis · sin registro',
+  loveEyebrow: 'Tarot del amor · Gratis, sin registro',
   loveH1: 'Tarot del amor: ¿qué necesita tu corazón?',
   loveLead: 'Tres cartas sobre ti y tu relación: el pasado, el presente y hacia dónde va.',
   situationLabel: 'Tu situación (opcional)',
@@ -86,7 +86,7 @@ export const es: Dict = {
   loveNote: 'Las cartas hablan de ti y de lo que puedes hacer, nunca de lo que otra persona piensa o siente.',
 
   dailyTitle: 'Carta del día del tarot: tu carta de hoy, gratis',
-  dailyEyebrow: 'Carta del día',
+  dailyEyebrow: 'Tarot del día · Carta del día',
   dailyH1: 'Tarot del día: tu carta para hoy',
   dailyTap: 'Toca para voltear tu carta',
   dailyNote: 'Una carta al día · mañana te espera otra',
@@ -184,7 +184,7 @@ export const es: Dict = {
   savedToDiary: 'Guardada en tu diario ✓',
   saveTitle: 'Guárdala en tu diario',
   saveLead: 'Tu lectura se queda aquí: no se pierde nada.',
-  saveRemind: 'Recuérdamelo en 7 días: ¿se cumplió?',
+  saveRemind: 'Escríbeme en 7 días: ¿se cumplió? (los correos empiezan más adelante)',
   signInEmailLabel: 'Tu correo',
   signInSend: 'Envíame un enlace',
   signInOr: 'o',
