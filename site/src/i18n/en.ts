@@ -269,6 +269,14 @@ export const en = {
   // stage 6: links of the card lists (stage 2 matrix L-EN-14 "All 78 cards", L-EN-06 "Ask your question")
   allCardsLink: 'All 78 cards',
   yesNoListAsk: 'Ask your question',
+  // stage 6: the service pages in the footer and their breadcrumbs (spec §3)
+  footerAbout: 'About',
+  footerHowReadings: 'How our readings work',
+  footerContact: 'Contact',
+  footerPrivacy: 'Privacy',
+  footerTerms: 'Terms',
+  // stage 6: next to the AI provider line and the e-mail consents, once the privacy page is open
+  privacyLink: 'Privacy policy',
 };
 
 export type DictKey = keyof typeof en;

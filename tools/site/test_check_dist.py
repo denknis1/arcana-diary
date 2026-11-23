@@ -5,7 +5,7 @@ import json
 
 import check_dist
 from check_dist import (EXTRA, READING_PAGES, auth_problems, canonical, dist_file, expected_alternates, expected_pages,
-                        head_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
+                        head_problems, hidden_link_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
                         hreflang_target_problems, list_problems, placeholder_problems, robots_problems, robots_txt_problems,
                         sitemap_problems, static_chunks, unexpected_pages)
 
@@ -75,10 +75,17 @@ def site(tmp_path, reading_island='import{x}from"./api.d4.js";'):
     return dist
 
 
-def test_every_page_of_stage_6_part_1_is_expected():
+def test_every_page_of_stage_6_is_expected():
     pages = expected_pages()
-    assert len(pages) == 177
-    assert {"/diary", "/es/diario", "/account", "/es/cuenta", "/cards", "/yes-no/cards", "/es/tiradas/3-cartas"} <= set(pages)
+    assert len(pages) == 187
+    assert {"/diary", "/es/diario", "/account", "/es/cuenta", "/cards", "/yes-no/cards", "/es/tiradas/3-cartas",
+            "/about", "/how-readings-work", "/es/privacidad"} <= set(pages)
+
+
+def test_today_the_open_site_would_refuse_the_eight_hidden_service_pages(tmp_path):
+    assert launched_problems(site(tmp_path)) == [f"hidden page on the open site: {p} (an operator placeholder has no value)" for p in
+                                   ("/about", "/contact", "/es/contacto", "/es/privacidad", "/es/sobre-nosotros",
+                                    "/es/terminos", "/privacy", "/terms")]
 
 
 def test_hreflang_follows_mutual_pairs_only():
@@ -227,9 +234,33 @@ def test_robots_txt_names_the_sitemap(tmp_path):
     assert robots_txt_problems(dist) == ["robots.txt does not name the sitemap"]
 
 
-def test_the_open_site_refuses_a_hidden_page(monkeypatch):
+def test_the_open_site_refuses_a_hidden_page(tmp_path, monkeypatch):
+    dist = site(tmp_path)
     monkeypatch.setattr(check_dist, "expected_pages", lambda: ["/", "/about"])
-    assert launched_problems() == ["hidden page on the open site: /about (an operator placeholder has no value)"]
+    assert launched_problems(dist) == ["hidden page on the open site: /about (an operator placeholder has no value)"]
+    monkeypatch.setattr(check_dist, "hidden_pages", lambda: set())
+    assert launched_problems(dist) == []
+
+
+def test_the_open_site_refuses_a_robots_txt_that_closes_the_whole_site(tmp_path, monkeypatch):
+    dist = site(tmp_path)
+    monkeypatch.setattr(check_dist, "hidden_pages", lambda: set())
+    for closed in ("User-agent: *\nDisallow: /\nSitemap: https://arcanadiary.com/sitemap.xml\n",
+                   "User-agent: *\ndisallow:/ \nSitemap: https://arcanadiary.com/sitemap.xml\n",
+                   "User-agent: *\nDisallow: /*\nSitemap: https://arcanadiary.com/sitemap.xml\n"):
+        write(dist, "robots.txt", closed)
+        assert launched_problems(dist) == ["robots.txt closes the whole site (Disallow: /) on the open site"]
+        assert robots_txt_problems(dist) == []  # the stage site may close itself
+    write(dist, "robots.txt", "User-agent: *\nDisallow: /api/\nSitemap: https://arcanadiary.com/sitemap.xml\n")
+    assert launched_problems(dist) == []
+
+
+def test_main_launched_fails_on_the_hidden_pages_of_today(tmp_path, capsys):
+    dist = site(tmp_path)
+    assert check_dist.main(dist) == 0
+    capsys.readouterr()
+    assert check_dist.main(dist, launched=True) == 1
+    assert capsys.readouterr().out.count("hidden page on the open site") == 8
 
 
 def test_a_dynamic_import_of_the_library_is_fine(tmp_path):
@@ -270,9 +301,17 @@ def test_a_shrunk_card_list_is_reported(tmp_path):
     assert "0 distinct card links instead of 22: site/dist/es/cartas/arcanos-mayores.html" in problems
 
 
+def test_a_link_to_a_hidden_page_is_reported(tmp_path):
+    dist = site(tmp_path)
+    assert hidden_link_problems(dist) == []
+    write(dist, "es.html", head("/es") + '<a href="/privacy">p</a><a href="https://arcanadiary.com/es/terminos#x">t</a>')
+    assert hidden_link_problems(dist) == ["link to the hidden page /es/terminos: site/dist/es.html",
+                                          "link to the hidden page /privacy: site/dist/es.html"]
+
+
 def test_main_reports_every_problem_and_passes_a_good_build(tmp_path, capsys):
     assert check_dist.main(tmp_path / "nothing") == 1
     out = capsys.readouterr().out
     assert "missing: site/dist/diary.html" in out and "missing: site/dist/sitemap.xml" in out
     assert check_dist.main(site(tmp_path)) == 0
-    assert capsys.readouterr().out == "OK: 177 pages\n"
+    assert capsys.readouterr().out == "OK: 187 pages\n"

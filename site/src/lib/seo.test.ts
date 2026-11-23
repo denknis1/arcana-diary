@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { allPagePaths, hreflangPair, langOf } from './routes';
 import { DEFAULT_IMAGE, SITE_URL, absoluteUrl, alternates } from './seo';
+import { hiddenPaths } from './textPages';
 
 describe('canonical and hreflang (spec stage 6 §3)', () => {
   it('builds absolute addresses on the production domain', () => {
@@ -29,6 +30,15 @@ describe('canonical and hreflang (spec stage 6 §3)', () => {
     expect(alternates('/diary')).toEqual([]);
   });
 
+  it('gives no hreflang to a hidden page or to the pair of one (a pair only when both sides are indexable)', () => {
+    expect(alternates('/about')).toEqual([]);
+    expect(alternates('/es/sobre-nosotros')).toEqual([]);
+    expect(alternates('/how-readings-work').map((a) => a.href)).toEqual(['https://arcanadiary.com/how-readings-work',
+      'https://arcanadiary.com/es/como-funcionan-las-lecturas', 'https://arcanadiary.com/how-readings-work']);
+    expect(alternates('/how-readings-work', new Set(['/es/como-funcionan-las-lecturas']))).toEqual([]);
+    expect(alternates('/es/como-funcionan-las-lecturas', new Set(['/es/como-funcionan-las-lecturas']))).toEqual([]);
+  });
+
   it('rejects a non-canonical path', () => {
     for (const bad of ['yes-no', '/yes-no/', '/yes-no.html', '/es#una-carta', '']) {
       expect(() => absoluteUrl(bad)).toThrow();
@@ -39,10 +49,11 @@ describe('canonical and hreflang (spec stage 6 §3)', () => {
     const all = allPagePaths();
     const known = new Set(all.map(absoluteUrl));
     const hrefRe = /^https:\/\/arcanadiary\.com(\/|(\/[a-z0-9-]+)+)$/;
+    const hidden = hiddenPaths();
     let paired = 0;
     for (const p of all) {
       const pair = hreflangPair(p);
-      if (pair === null) { expect(alternates(p), p).toEqual([]); continue; }
+      if (pair === null || hidden.has(p) || hidden.has(pair)) { expect(alternates(p), p).toEqual([]); continue; }
       paired++;
       const set = alternates(p);
       expect(set, p).toEqual(alternates(pair));
@@ -55,6 +66,6 @@ describe('canonical and hreflang (spec stage 6 §3)', () => {
         expect(known.has(a.href), `${p} -> ${a.href}`).toBe(true);
       }
     }
-    expect(paired).toBe(168);
+    expect(paired).toBe(168 + 2); // + how-readings-work ↔ como-funcionan-las-lecturas
   });
 });

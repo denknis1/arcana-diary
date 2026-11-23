@@ -9,4 +9,8 @@ docker run --rm -u "$(id -u):$(id -g)" \
   -e npm_config_cache=/tmp/.npm -e ASTRO_TELEMETRY_DISABLED=1 \
   -v "$ROOT/site:/app" -w /app node:22 \
   sh -c 'if [ -f package-lock.json ]; then npm ci; else npm install; fi && npm run build'
-python3 "$ROOT/tools/site/check_dist.py"
+# открытый сайт (LAUNCHED=true в deploy/.env; grep -qx ничего не печатает): скрытая служебная страница и robots.txt
+# с «Disallow: /» — ошибка сборки (решения 13 и 35)
+LAUNCHED_FLAG=""
+if [ -f "$ROOT/deploy/.env" ] && grep -qx 'LAUNCHED=true' "$ROOT/deploy/.env"; then LAUNCHED_FLAG="--launched"; fi
+python3 "$ROOT/tools/site/check_dist.py" $LAUNCHED_FLAG

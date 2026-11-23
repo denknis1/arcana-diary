@@ -85,6 +85,11 @@
  "/cards/queen-of-pentacles": "/es/cartas/reina-de-oros",
  "/cards/king-of-pentacles": "/es/cartas/rey-de-oros",
  "/cards/major-arcana": "/es/cartas/arcanos-mayores",
+ "/about": "/es/sobre-nosotros",
+ "/how-readings-work": "/es/como-funcionan-las-lecturas",
+ "/contact": "/es/contacto",
+ "/privacy": "/es/privacidad",
+ "/terms": "/es/terminos",
  "/es": "/",
  "/es/carta-del-dia": "/daily",
  "/es/si-o-no": "/yes-no",
@@ -169,5 +174,10 @@
  "/es/cartas/reina-de-oros": "/cards/queen-of-pentacles",
  "/es/cartas/rey-de-oros": "/cards/king-of-pentacles",
  "/es/cartas/arcanos-mayores": "/cards/major-arcana",
- "/es/tiradas/3-cartas": "/"
+ "/es/tiradas/3-cartas": "/",
+ "/es/sobre-nosotros": "/about",
+ "/es/como-funcionan-las-lecturas": "/how-readings-work",
+ "/es/contacto": "/contact",
+ "/es/privacidad": "/privacy",
+ "/es/terminos": "/terms"
 }

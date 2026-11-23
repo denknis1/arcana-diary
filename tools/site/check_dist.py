@@ -12,7 +12,8 @@ page is hidden while its text has a placeholder without a value in site/src/data
 same rule as site/src/lib/textPages.ts).
 
   python3 tools/site/check_dist.py             — prints "OK: N pages" or the problems (exit 1)
-  python3 tools/site/check_dist.py --launched  — the same for the open site: a hidden page is a problem too
+  python3 tools/site/check_dist.py --launched  — the same for the open site (plan decision 13): a hidden page and a
+                                               robots.txt with "Disallow: /" are problems too
 """
 import functools
 import json
@@ -25,6 +26,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SITE = ROOT / "site"
 SITE_URL = "https://arcanadiary.com"
+# a robots.txt rule that closes the whole site: "Disallow: /" (or "/*"), any case and spacing
+DISALLOW_ALL = re.compile(r"^\s*disallow\s*:\s*/\*?\s*$", re.I | re.M)
 EXTRA = ("/404", "/es/404")
 PRIVATE = ("/diary", "/es/diario", "/account", "/es/cuenta")  # noindex, outside hreflang.csv
 DATA_FILES = ("data/daily-en.json", "data/daily-es.json", "sitemap.xml", "robots.txt")
@@ -285,9 +288,14 @@ def robots_txt_problems(dist: Path) -> list[str]:
     return []
 
 
-def launched_problems() -> list[str]:
-    return [f"hidden page on the open site: {path} (an operator placeholder has no value)"
-            for path in sorted(hidden_pages() & set(expected_pages()))]
+def launched_problems(dist: Path) -> list[str]:
+    """The open site (--launched): no hidden service page, and robots.txt does not close the whole site."""
+    problems = [f"hidden page on the open site: {path} (an operator placeholder has no value)"
+                for path in sorted(hidden_pages() & set(expected_pages()))]
+    file = dist / "robots.txt"
+    if file.is_file() and DISALLOW_ALL.search(file.read_text(encoding="utf-8")):
+        problems.append("robots.txt closes the whole site (Disallow: /) on the open site")
+    return problems
 
 
 def static_chunks(dist: Path, html: str) -> set[Path]:
@@ -334,6 +342,21 @@ class Links(HTMLParser):
             self.hrefs.append(dict(attrs)["href"])
 
 
+def hidden_link_problems(dist: Path) -> list[str]:
+    """No page links to a hidden service page (decision 35): not the footer, the menu, the language switch or a text."""
+    hidden = hidden_pages()
+    problems = []
+    for path in expected_pages():
+        file = dist / dist_file(path)
+        if not file.is_file():
+            continue
+        found = Links()
+        found.feed(file.read_text(encoding="utf-8"))
+        for href in sorted({h.split("#")[0].split("?")[0].removeprefix(SITE_URL).rstrip("/") or "/" for h in found.hrefs} & hidden):
+            problems.append(f"link to the hidden page {href}: site/dist/{dist_file(path)}")
+    return problems
+
+
 def card_link_sets(html: str, lang: str) -> set[str]:
     links = Links()
     links.feed(html)
@@ -371,7 +394,7 @@ def main(dist: Path | None = None, launched: bool = False) -> int:
     problems = ([f"missing: site/dist/{name}" for name in missing(dist)] + unexpected_pages(dist)
                 + robots_problems(dist) + head_problems(dist) + hreflang_target_problems(dist)
                 + placeholder_problems(dist) + sitemap_problems(dist) + robots_txt_problems(dist)
-                + list_problems(dist) + auth_problems(dist) + (launched_problems() if launched else []))
+                + list_problems(dist) + auth_problems(dist) + hidden_link_problems(dist) + (launched_problems(dist) if launched else []))
     for problem in problems:
         print(problem)
     if problems:

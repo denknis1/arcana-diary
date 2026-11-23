@@ -6,11 +6,12 @@ import { NAV_KEYS, PRIVATE_PAIRS, allPagePaths, cardPath, distFile, hreflangPair
 describe('routes', () => {
   it('lists every page of the site for both languages (stage 6 part 1)', () => {
     const paths = allPagePaths();
-    expect(paths).toHaveLength(11 + 78 + 10 + 78);
+    expect(paths).toHaveLength(16 + 78 + 15 + 78);
     for (const p of ['/', '/one-card', '/yes-no', '/love', '/daily', '/diary', '/account', '/404', '/es', '/es/si-o-no',
       '/es/amor', '/es/carta-del-dia', '/es/diario', '/es/cuenta', '/es/404', '/cards/the-moon', '/es/cartas/la-luna',
       '/cards', '/cards/major-arcana', '/yes-no/cards', '/es/cartas', '/es/cartas/arcanos-mayores',
-      '/es/tiradas/3-cartas']) {
+      '/es/tiradas/3-cartas', '/about', '/how-readings-work', '/contact', '/privacy', '/terms', '/es/sobre-nosotros',
+      '/es/como-funcionan-las-lecturas', '/es/contacto', '/es/privacidad', '/es/terminos']) {
       expect(paths).toContain(p);
     }
     expect(new Set(paths).size).toBe(paths.length);
@@ -52,6 +53,8 @@ describe('routes', () => {
     expect(switchPath('/es/tiradas/3-cartas')).toBe('/');
     expect(switchPath('/404')).toBe('/es/404');
     expect(switchPath('/es/404')).toBe('/404');
+    expect(switchPath('/about')).toBe('/es/sobre-nosotros');
+    expect(switchPath('/es/terminos')).toBe('/terms');
     expect([switchPath('/diary'), switchPath('/es/diario'), switchPath('/account'), switchPath('/es/cuenta')])
       .toEqual(['/es/diario', '/diary', '/es/cuenta', '/account']);
   });

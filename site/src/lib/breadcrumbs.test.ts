@@ -13,6 +13,12 @@ describe('breadcrumbs (spec stage 6 §3)', () => {
       { name: '3 cartas', path: '/es/tiradas/3-cartas' }]);
   });
 
+  it('put a service page right under Home / Inicio', () => {
+    expect(crumbsFor('how_readings_work', 'en')).toEqual([{ name: 'Home', path: '/' },
+      { name: 'How our readings work', path: '/how-readings-work' }]);
+    expect(crumbsFor('privacy', 'es')).toEqual([{ name: 'Inicio', path: '/es' }, { name: 'Privacidad', path: '/es/privacidad' }]);
+  });
+
   it('give the tools on the home level no breadcrumbs', () => {
     for (const key of ['home', 'one_card', 'yes_no', 'love', 'daily'] as const) expect(crumbsFor(key, 'en')).toEqual([]);
   });

@@ -23,9 +23,10 @@ interface Props {
   accountApi: Pick<AccountApi, 'claimToken'>;
   origin: string;
   onClose: () => void;
+  privacyHref?: string; // the privacy page, once it is open (spec stage 6 §6)
 }
 
-export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, onClose }: Props) {
+export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, onClose, privacyHref }: Props) {
   const d = t(lang);
   const [remind, setRemind] = useState(false);
   const remindNow = useRef(remind);
@@ -69,6 +70,7 @@ export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, o
         <input type="checkbox" checked={remind} onChange={(e) => setRemind((e.target as HTMLInputElement).checked)} />
         <span>{d.saveRemind}</span>
       </label>
+      {privacyHref ? <p class="small"><a href={privacyHref}>{d.privacyLink}</a></p> : null}
       {stage ? (
         <>
           <p role="alert">{d[errorMessageKey('stage')]}</p>

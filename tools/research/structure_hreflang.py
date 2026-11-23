@@ -3,7 +3,7 @@ from structure_map import WAVE_ORDER, card_url, is_page, url_errors
 
 HREFLANG_COLUMNS = ["entity_id", "template", "lang", "page_id", "url", "wave", "status", "in_hreflang",
                     "switch_to"]
-LAUNCH_CLUSTERS = 84
+LAUNCH_CLUSTERS = 89  # stage 6: + about, how-readings-work, contact, privacy, terms
 
 
 def check_hreflang(header: list[str], hl: list[dict], maps: dict[str, list[dict]], cards: list[dict],

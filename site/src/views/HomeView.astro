@@ -14,7 +14,7 @@ import { t } from '../i18n';
 import { CARD_BACK, cardById } from '../lib/deck';
 import { faqLd, webPageLd } from '../lib/jsonld';
 import { cardPath, pagePath } from '../lib/routes';
-import { filledPage, textPage } from '../lib/textPages';
+import { filledPage, openPagePath, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
 interface Props {
@@ -25,6 +25,7 @@ const { lang } = Astro.props;
 const d = t(lang);
 const path = pagePath('home', lang);
 const text = filledPage(textPage(path));
+const privacyHref = openPagePath('privacy', lang) ?? undefined;
 const formats = [
   ...(lang === 'en' ? [{ href: pagePath('one_card', lang), name: d.fmtOneCard, hint: d.fmtOneCardHint }] : []),
   { href: pagePath('yes_no', lang), name: d.fmtYesNo, hint: d.fmtYesNoHint },
@@ -42,7 +43,7 @@ const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => ca
       <h1 class="display display--home">{text.h1}</h1>
       <p class="lead">{text.lead}</p>
     </section>
-    <ReadingIsland client:load lang={lang} page="home" showBacks />
+    <ReadingIsland client:load lang={lang} page="home" showBacks privacyHref={privacyHref} />
   </div>
 
   <section class="page-section" aria-labelledby="other-ways">

@@ -6,6 +6,8 @@ import { CREATE_TIMEOUT_MS, type FetchFn } from '../../lib/api';
 import type { Auth, SendResult } from '../../lib/auth';
 import { SIGNED_IN_KEY, STARTED_KEY } from '../../lib/authState';
 import { byText, cleanup, click, mount, queryText, settle, submit, typeInto } from '../../lib/testing/dom';
+import { t } from '../../i18n';
+import { openPagePath } from '../../lib/textPages';
 import { SaveSheet } from './SaveSheet';
 import { RESEND_WAIT_S } from './SignInBlock';
 
@@ -257,5 +259,32 @@ describe('the save sheet (screens 3, 3b; spec 4.4b §4)', () => {
     await settle();
     expect(f.sent.map((s) => s.redirectTo)).toEqual(['https://arcana.test/diary']);
     expect(root.textContent).toContain('Open the link on this device to save this reading.');
+  });
+});
+
+describe('the save sheet: privacy link next to the reminder consent (spec stage 6 §6)', () => {
+  it('links the policy only when it is given', async () => {
+    const f = fakes();
+    const { root } = await mount(
+      <SaveSheet lang="en" readingId="r1" auth={f.auth} google={false} accountApi={f.accountApi}
+        origin="https://arcana.test" onClose={() => {}} privacyHref="/privacy" />,
+    );
+    expect(byText<HTMLAnchorElement>(root, 'Privacy policy', 'a').getAttribute('href')).toBe('/privacy');
+    cleanup();
+    const again = await mount(sheet(fakes()));
+    expect(queryText(again.root, 'Privacy policy', 'a')).toBeNull();
+  });
+
+  it('follows the page: the Spanish link appears once /es/privacidad is not hidden', async () => {
+    const f = fakes();
+    const view = (hidden: Set<string>) => (
+      <SaveSheet lang="es" readingId="r1" auth={f.auth} google={false} accountApi={f.accountApi}
+        origin="https://arcana.test" onClose={() => {}} privacyHref={openPagePath('privacy', 'es', hidden) ?? undefined} />
+    );
+    const closed = await mount(view(new Set(['/es/privacidad'])));
+    expect(queryText(closed.root, t('es').privacyLink, 'a')).toBeNull();
+    cleanup();
+    const open = await mount(view(new Set()));
+    expect(byText<HTMLAnchorElement>(open.root, t('es').privacyLink, 'a').getAttribute('href')).toBe('/es/privacidad');
   });
 });

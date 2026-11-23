@@ -11,7 +11,7 @@ import { t, type DictKey } from '../i18n';
 import { crumbsFor } from '../lib/breadcrumbs';
 import { breadcrumbLd, faqLd, webPageLd } from '../lib/jsonld';
 import { pagePath, type PageKey } from '../lib/routes';
-import { filledPage, textPage } from '../lib/textPages';
+import { filledPage, openPagePath, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
 type ToolPage = 'one_card' | 'yes_no' | 'love' | 'three_cards';
@@ -31,6 +31,7 @@ const CURRENT: Record<ToolPage, PageKey | undefined> = {
 };
 const path = pagePath(page, lang);
 const text = filledPage(textPage(path));
+const privacyHref = openPagePath('privacy', lang) ?? undefined;
 const crumbs = crumbsFor(page, lang);
 ---
 <Base lang={lang} title={text.title} description={text.description} path={path} current={CURRENT[page]}
@@ -43,7 +44,7 @@ const crumbs = crumbsFor(page, lang);
       <p class="lead">{text.lead}</p>
     </section>
     <div>
-      <ReadingIsland client:load lang={lang} page={page} />
+      <ReadingIsland client:load lang={lang} page={page} privacyHref={privacyHref} />
       {page === 'love' ? <p class="small muted">{d.loveNote}</p> : null}
     </div>
   </div>

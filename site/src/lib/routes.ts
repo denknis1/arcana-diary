@@ -4,8 +4,13 @@ import pairsData from '../data/pairs.json';
 import { DECK, cardSlug, type DeckCard } from './deck';
 import type { Lang } from './types';
 
+/** The service pages of spec stage 6 §6 (EN and ES pairs, owner decision 8 of 14.11.2026). */
+export type ServiceKey = 'about' | 'how_readings_work' | 'contact' | 'privacy' | 'terms';
+
 export type PageKey = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily' | 'diary' | 'account' | 'not_found'
-  | 'cards' | 'major_arcana' | 'yes_no_cards' | 'three_cards';
+  | 'cards' | 'major_arcana' | 'yes_no_cards' | 'three_cards' | ServiceKey;
+
+export const SERVICE_KEYS: readonly ServiceKey[] = ['about', 'how_readings_work', 'contact', 'privacy', 'terms'];
 
 /** Where the 429 / 403 / 503 messages and the footer send people who need help now (§10.8 of spec 4.2). */
 export const HELP_URL = 'https://findahelpline.com';
@@ -22,6 +27,7 @@ const PAGE_PATHS: Record<Lang, Record<PageKey, string>> = {
     home: '/', one_card: '/one-card', yes_no: '/yes-no', love: '/love', daily: '/daily', diary: '/diary',
     account: '/account', not_found: '/404', cards: '/cards', major_arcana: '/cards/major-arcana',
     yes_no_cards: '/yes-no/cards',
+    about: '/about', how_readings_work: '/how-readings-work', contact: '/contact', privacy: '/privacy', terms: '/terms',
     three_cards: '/', // English has no three-card page: the home page is the three-card reading
   },
   // Spanish has no one-card page: the one-card mode is the #una-carta section of the home page (stage 2 map)
@@ -31,6 +37,8 @@ const PAGE_PATHS: Record<Lang, Record<PageKey, string>> = {
     major_arcana: '/es/cartas/arcanos-mayores',
     yes_no_cards: '/es/si-o-no', // no Spanish card list: the yes/no tool
     three_cards: '/es/tiradas/3-cartas',
+    about: '/es/sobre-nosotros', how_readings_work: '/es/como-funcionan-las-lecturas', contact: '/es/contacto',
+    privacy: '/es/privacidad', terms: '/es/terminos',
   },
 };
 

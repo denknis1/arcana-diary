@@ -13,7 +13,7 @@ COLUMNS_EN = COLUMNS_EN_V12 + STRUCTURE_COLUMNS
 COLUMNS_ES = COLUMNS_ES_V12 + STRUCTURE_COLUMNS
 
 PAGE_TYPES = {"home", "one-card", "yes-no", "love", "cards", "card-context", "spreads",
-              "birth-card", "horoscope", "quiz", "pairs", "learn"}
+              "birth-card", "horoscope", "quiz", "pairs", "learn", "service"}
 DECISIONS = {"доработать", "раздел", "имеющийся ответ", "самостоятельная страница", "отклонить", "получить данные"}
 WAVES = {"запуск", "V1.1", "V2", "V3"}
 LANGS = {"en", "es"}
