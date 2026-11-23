@@ -49,7 +49,7 @@
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el Tres de Oros?",
       "paragraphs": [
-        "Waite le da dos lecturas: el oficio mismo, el trabajo calificado, y otra más alta, la de una carta de nobleza, aristocracia, renombre y gloria (p. 276). Al revés, la lista de Waite habla de quedarse corto: mediocridad en el trabajo y fuera de él, mezquindad (p. 276)."
+        "Waite le da dos lecturas: el oficio mismo, el trabajo calificado, y otra que según él es la más común, la de una carta de nobleza, aristocracia, renombre y gloria (p. 276). Al revés, la lista de Waite habla de quedarse corto: mediocridad en el trabajo y fuera de él, mezquindad (p. 276)."
       ]
     },
     {
@@ -87,7 +87,7 @@
       "id": "advice",
       "heading": "¿Qué significa el Tres de Oros como consejo?",
       "paragraphs": [
-        "Pide a alguien de tu trabajo o a una amistad una opinión honesta sobre algo que estés haciendo, y aplica al menos un punto. El buen trabajo crece más rápido cuando lo miran varios ojos."
+        "Propón a alguien colaborar en una tarea concreta y repartan los papeles con claridad desde el principio. Después pídele una opinión honesta sobre tu parte: el buen trabajo crece más rápido cuando lo miran varios ojos."
       ]
     },
     {
@@ -148,7 +148,7 @@
     },
     {
       "q": "¿Quiénes son las personas del Tres de Oros?",
-      "a": "Waite solo nombra a una: el escultor que trabaja en un monasterio (p. 276). En la carta de 1909 un monje y una figura con manto están junto a él con un plano dibujado, así que hoy la escena se lee como un artesano que revisa su obra contra el plan con la gente con quien trabaja. Esa lectura es moderna, no de Waite."
+      "a": "Waite solo nombra a una: el escultor que trabaja en un monasterio (p. 276). En la carta de 1909 un monje y una figura con manto están junto a él con un plano dibujado, así que hoy la escena se lee como un artesano que compara su obra con el plano junto a la gente con la que trabaja. Esa lectura es moderna, no de Waite."
     },
     {
       "q": "¿El Tres de Oros significa reconocimiento?",
@@ -179,19 +179,27 @@
   },
   "citations": [
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "A sculptor at his work in a monastery"
     },
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "regarded as a card of nobility, aristocracy, renown, glory. Reversed: Mediocrity, in work and otherwise, puerility, pettiness"
     },
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "The apprentice or amateur therein has received his reward and is now at work in earnest"
     },
     {
-      "pages": [266],
+      "pages": [
+        266
+      ],
       "text": "An artist in stone at his work"
     }
   ],
@@ -206,7 +214,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [266, 276],
+      "pages": [
+        266,
+        276
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

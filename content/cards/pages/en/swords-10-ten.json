@@ -41,7 +41,7 @@
       "heading": "What is on the Ten of Swords card?",
       "paragraphs": [
         "A figure lies face down at the water's edge with ten swords standing in its back. Waite's description is a single line: \"A prostrate figure, pierced by all the swords belonging to the card\" (p. 234). The swords are the biggest shape on the card, a row of upright blades that fills most of the picture.",
-        "On the 1909 card the sky is solid black, but along the horizon runs a band of yellow light over a pale blue lake and low hills. A red cloth lies over the figure's back, one arm stretches out on the ground, and X is printed at the top. Waite says nothing about that light (p. 234); reading it as dawn is a modern reading, not Waite's."
+        "On the 1909 card the sky is solid black, but along the horizon runs a band of yellow light over a pale blue lake and low hills. A red cloth covers the figure's legs, one arm stretches out on the ground, and X is printed at the top. Waite says nothing about that light (p. 234); reading it as dawn is a modern reading, not Waite's."
       ]
     },
     {
@@ -98,7 +98,7 @@
       "id": "in_a_reading",
       "heading": "The Ten of Swords as a person and as feelings",
       "paragraphs": [
-        "As a person, the Ten of Swords is someone at the end of their strength: worn out, hurt, done with a situation that drained them. If it stands for you, it marks a moment to stop and recover. As feelings, the card traditionally means pain and exhaustion: feeling hurt or betrayed, having had enough, wanting a hard chapter to be over. Reversed, the feelings are of slow recovery and cautious hope, or of holding on to an old wound and going over it again and again."
+        "Worn out, hurt and done with a situation that drained them: that is the person the Ten of Swords describes, someone at the end of their strength. If it stands for you, it marks a moment to stop and recover. Asked about feelings, the card traditionally means pain and exhaustion: feeling hurt or betrayed, having had enough, wanting a hard chapter to be over. Reversed, the feelings are of slow recovery and cautious hope, or of holding on to an old wound and going over it again and again."
       ]
     },
     {
@@ -148,7 +148,7 @@
     },
     {
       "q": "Does the Ten of Swords mean death?",
-      "a": "No. On Arcana Diary it stands for the end of a painful situation, never for anyone's life ending. Waite's own list for this card speaks of pain, tears and sadness (p. 234), and today it is read as rock bottom and a closed chapter, with light already showing at the edge of the sky."
+      "a": "No. On Arcana Diary it stands for the end of a painful situation, never for anyone's life ending. Waite's own list speaks of pain, tears and sadness, and he adds that it \"is not especially a card of violent death\" (p. 234). Today it is read as rock bottom and a closed chapter, with light already showing at the edge of the sky."
     },
     {
       "q": "Does the Ten of Swords mean betrayal?",
@@ -183,24 +183,40 @@
   },
   "citations": [
     {
-      "pages": [234],
+      "pages": [
+        234
+      ],
       "text": "A prostrate figure, pierced by all the swords belonging to the card"
     },
     {
-      "pages": [234],
+      "pages": [
+        234
+      ],
       "text": "Whatsoever is intimated by the design; also pain, affliction, tears, sadness, desolation"
     },
     {
-      "pages": [234],
+      "pages": [
+        234
+      ],
       "text": "Reversed: Advantage, profit, success, favour, but none of these are permanent; also power and authority"
     },
     {
-      "pages": [236],
+      "pages": [
+        236
+      ],
       "text": "It is a card of utter desolation"
     },
     {
-      "pages": [178],
+      "pages": [
+        178
+      ],
       "text": "A man oppressed by the weight of the ten staves which he is carrying"
+    },
+    {
+      "pages": [
+        234
+      ],
+      "text": "It is not especially a card of violent death"
     }
   ],
   "sources": [
@@ -214,7 +230,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [178, 234, 236],
+      "pages": [
+        178,
+        234,
+        236
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

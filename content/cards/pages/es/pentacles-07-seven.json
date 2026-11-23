@@ -80,7 +80,7 @@
       "id": "work_money",
       "heading": "¿Qué significa el Siete de Oros en el trabajo y el dinero?",
       "paragraphs": [
-        "Siete monedas que maduran en una mata resumen la carta en el trabajo: un proyecto a medio camino, una carrera que se construye paso a paso, un balance de lo avanzado. Con el dinero, habla de crecimiento lento y constante gracias al esfuerzo, de ahorros que se juntan poco a poco y de un momento para revisar si un compromiso largo de tiempo o dinero está rindiendo. No dice cuándo llega la cosecha."
+        "Siete monedas que maduran en una mata resumen la carta en el trabajo: un proyecto a medio camino, una carrera que se construye paso a paso, un balance de lo avanzado. La misma imagen, leída para el dinero: crecimiento lento y constante gracias al esfuerzo, ahorros que se juntan poco a poco y un momento para revisar si un compromiso largo de tiempo o dinero está rindiendo. No dice cuándo llega la cosecha."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Siete de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Siete de Oros es alguien paciente y trabajador, que piensa en temporadas y no en días y prefiere ver resultados antes de decidir. Como sentimiento, su significado tradicional es un interés que crece despacio: cariño real pero cauteloso, ganas de dedicarle tiempo a alguien para ver a dónde lleva, y la costumbre de sopesar el vínculo antes de decir mucho. Al revés, habla de impaciencia, de dudas sobre si el esfuerzo es mutuo o de ganas de dejar de intentarlo."
+        "El joven campesino del Siete de Oros retrata a alguien paciente y trabajador, que piensa en temporadas y no en días y prefiere ver resultados antes de decidir. En asuntos del corazón, su significado tradicional es un interés que crece despacio: cariño real pero cauteloso, ganas de dedicarle tiempo a alguien para ver a dónde lleva, y la costumbre de sopesar el vínculo antes de decir mucho. Al revés, habla de impaciencia, de dudas sobre si el esfuerzo es mutuo o de ganas de dejar de intentarlo."
       ]
     },
     {
@@ -124,8 +124,8 @@
       "id": "not_to_confuse",
       "heading": "¿Cómo distinguir el Siete de Oros del Cuatro de Copas y del Ocho de Oros?",
       "paragraphs": [
-        "El Cuatro de Copas también muestra a un joven que mira lo que tiene delante: Waite lo describe sentado bajo un árbol, contemplando tres copas, con gesto de descontento (p. 218). Esa carta es desgano y oportunidades que no se ven. El joven del Siete no está aburrido: hace cuentas de algo que le importa.",
-        "El Ocho de Oros muestra, según Waite, a un artista de la piedra en pleno trabajo (p. 266), con la cabeza baja. El Siete es la pausa; el Ocho, la práctica."
+        "El Cuatro de Copas también muestra a un joven que mira lo que tiene delante: Waite lo describe sentado bajo un árbol, contemplando tres copas, con gesto de descontento (p. 218). Esa carta es desgano y oportunidades que no se ven. El joven del Siete no está aburrido: hace balance de algo que le importa.",
+        "El Ocho de Oros muestra, según Waite, a un artista de la piedra en pleno trabajo (p. 266). El Siete es la pausa; el Ocho, la práctica."
       ]
     },
     {
@@ -175,40 +175,56 @@
     "pages": [
       268
     ],
-    "translation": "En lo principal, es una carta de dinero, negocios, trueque … Al revés: motivo de inquietud respecto a un dinero que se propone prestar.",
+    "translation": "Principalmente, es una carta de dinero, negocios, trueque … Al revés: motivo de inquietud respecto a un dinero que se propone prestar.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [268],
+      "pages": [
+        268
+      ],
       "text": "A young man, leaning on his staff, looks intently at seven pentacles attached to a clump of greenery on his right"
     },
     {
-      "pages": [268],
+      "pages": [
+        268
+      ],
       "text": "one would say that these were his treasures and that his heart was there"
     },
     {
-      "pages": [268],
+      "pages": [
+        268
+      ],
       "text": "These are exceedingly contradictory; in the main, it is a card of money, business, barter; but one reading gives altercation, quarrel—and another innocence, ingenuity, purgation"
     },
     {
-      "pages": [268],
+      "pages": [
+        268
+      ],
       "text": "Reversed: Cause for anxiety regarding money which it may be proposed to lend"
     },
     {
-      "pages": [293],
+      "pages": [
+        293
+      ],
       "text": "Reversed: Impatience, apprehension, suspicion"
     },
     {
-      "pages": [218],
+      "pages": [
+        218
+      ],
       "text": "A young man is seated under a tree and contemplates three cups set on the grass before him"
     },
     {
-      "pages": [218],
+      "pages": [
+        218
+      ],
       "text": "His expression notwithstanding is one of discontent with his environment"
     },
     {
-      "pages": [266],
+      "pages": [
+        266
+      ],
       "text": "An artist in stone at his work"
     }
   ],
@@ -223,7 +239,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [218, 266, 268, 293],
+      "pages": [
+        218,
+        266,
+        268,
+        293
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

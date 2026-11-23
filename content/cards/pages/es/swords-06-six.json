@@ -13,7 +13,7 @@
   "title": "Seis de Espadas en el tarot: significado, invertida y amor",
   "description": "Qué significa el Seis de Espadas al derecho y al revés (carta invertida): transición, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
   "h1": "Seis de Espadas en el tarot: significado",
-  "image_alt": "Seis de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: un barquero empuja con una pértiga una barca con seis espadas de pie y dos pasajeros encapuchados.",
+  "image_alt": "Seis de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: un barquero empuja con una pértiga una barca con seis espadas de pie y dos pasajeros, uno de ellos encapuchado.",
   "facts": {
     "arcana": "minor",
     "suit": "swords",
@@ -21,7 +21,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "El Seis de Espadas es la carta de la transición: alejarse de lo turbulento y avanzar despacio hacia la calma. Al revés, el cruce se queda a medias o las cargas viejas viajan contigo. Es amable: prefiere el avance lento a la solución rápida. Para una pregunta cerrada, todavía no está claro: la barca sigue a mitad del agua.",
+  "capsule": "El Seis de Espadas es la carta de la transición: alejarse de lo turbulento y avanzar despacio hacia la calma. Al revés, el cruce se queda a medias o las cargas viejas viajan contigo. Es bondadosa: prefiere el avance lento a la solución rápida. Si preguntas sí o no, todavía no está claro: la barca sigue a mitad del agua.",
   "keywords": {
     "upright": [
       "transición",
@@ -49,7 +49,7 @@
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre el Seis de Espadas?",
       "paragraphs": [
-        "Waite lee esta carta de forma práctica (p. 242): viaje por agua, ruta, camino, un enviado o comisionado, un recurso para resolver algo. En sus notas adicionales dice que el viaje será agradable (p. 291). Al revés, su lista trata de decir las cosas en voz alta: declaración, confesión, algo que se hace público y, según una versión, una propuesta de amor (p. 242).",
+        "Waite lee esta carta de forma práctica (p. 242): viaje por agua, ruta, camino, un enviado o comisionado, un recurso para resolver algo. Entre sus significados adicionales, Waite conserva una frase de la adivinación antigua, que el viaje será agradable (p. 291); en Arcana Diary no la leemos como pronóstico de ningún viaje. Al revés, su lista trata de decir las cosas en voz alta: declaración, confesión, algo que se hace público y, según una versión, una propuesta de amor (p. 242).",
         "Leer el cruce como un paso interior, dejar atrás una etapa difícil, es la lectura moderna, no la de Waite."
       ]
     },
@@ -58,7 +58,7 @@
       "heading": "¿Qué significa el Seis de Espadas al derecho?",
       "paragraphs": [
         "Alejarse de lo que dolió es el centro de esta carta. Una ruptura, una mudanza, un trabajo nuevo o el final de una racha agotadora: algo queda atrás y el lugar que sigue promete más paz. El tono es callado, no de fiesta; puede que todavía sientas la pérdida mientras ya notas el alivio.",
-        "Este cambio de rumbo va despacio. Cruzar no borra lo que pasó; pone distancia entre tú y lo más duro, un empujón de pértiga a la vez. También puede hablar de un viaje real, sobre todo por agua, como en la lista de Waite (p. 242).",
+        "Este cambio de rumbo va despacio. Cruzar no borra lo que pasó; pone distancia entre tú y lo más duro, empujón tras empujón de la pértiga. También puede hablar de un viaje real, sobre todo por agua, como en la lista de Waite (p. 242).",
         "¿Hacia qué orilla voy y qué puedo dejar aquí?"
       ]
     },
@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Seis de Espadas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Seis de Espadas es alguien en plena transición: callado, con algo de cansancio, alejándose de una época dura. También puede ser quien ayuda a otros a cruzar, con la calma del barquero. Como sentimiento, habla de alivio mezclado con tristeza y de ganas de paz después de un problema; a veces eso se vive en pareja y a veces lleva a separarse. Al revés, lo que se siente está atorado: dolor sin resolver, nostalgia de lo que fue o falta de fuerzas para seguir."
+        "El barco que cruza el agua en el Seis de Espadas lleva a alguien en plena transición: callado, con algo de cansancio, alejándose de una época dura. También puede ser quien ayuda a otros a cruzar, con la calma del barquero. El lado emocional es de alivio mezclado con tristeza y de ganas de paz después de un problema; a veces eso se vive en pareja y a veces lleva a separarse. Al revés, lo que se siente está atorado: dolor sin resolver, nostalgia de lo que fue o falta de fuerzas para seguir."
       ]
     },
     {
@@ -147,7 +147,7 @@
   "faq": [
     {
       "q": "¿El Seis de Espadas es una carta buena o mala?",
-      "a": "Más buena que mala, de forma tranquila. Marca un giro para salir de una dificultad, así que muchas veces sale cuando lo peor ya quedó atrás. No trae alegría inmediata: pide paciencia mientras todo se acomoda. Al revés, muestra dónde te aferras, y eso también sirve."
+      "a": "Más buena que mala, sin hacer ruido. Marca un giro para salir de una dificultad, así que muchas veces sale cuando lo peor ya quedó atrás. No trae alegría inmediata: pide paciencia mientras todo se acomoda. Al revés, muestra dónde te aferras, y eso también sirve."
     },
     {
       "q": "¿El Seis de Espadas significa un viaje?",
@@ -182,15 +182,21 @@
   },
   "citations": [
     {
-      "pages": [242],
+      "pages": [
+        242
+      ],
       "text": "A ferryman carrying passengers in his punt to the further shore. The course is smooth, and seeing that the freight is light, it may be noted that the work is not beyond his strength."
     },
     {
-      "pages": [291],
+      "pages": [
+        291
+      ],
       "text": "Six.—The voyage will be pleasant."
     },
     {
-      "pages": [210],
+      "pages": [
+        210
+      ],
       "text": "A man of dejected aspect is deserting the cups of his felicity"
     }
   ],
@@ -205,7 +211,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [210, 242, 291],
+      "pages": [
+        210,
+        242,
+        291
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

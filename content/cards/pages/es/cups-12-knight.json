@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Caballero de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Caballero de Copas es alguien con alma romántica y mucho encanto, que se guía por lo que siente: quien corteja, quien propone un plan, quien llega con una idea creativa. También puedes ser tú, si te animas a seguir al corazón. Como sentimiento, la carta significa interés romántico, admiración y ganas de demostrar cariño con un detalle. Al revés, esos sentimientos se vuelven cambiantes: atracción con altibajos, idealizar desde lejos o palabras cálidas que todavía no se traducen en hechos."
+        "Montado en su caballo blanco, el Caballero de Copas es alguien con alma romántica y mucho encanto, que se guía por lo que siente: quien corteja, quien propone un plan, quien llega con una idea creativa. También puedes ser tú, si te animas a seguir al corazón. Cuando se trata de sentimientos, la carta significa interés romántico, admiración y ganas de demostrar cariño con un detalle. Al revés, esos sentimientos se vuelven cambiantes: atracción con altibajos, idealizar desde lejos o palabras cálidas que todavía no se traducen en hechos."
       ]
     },
     {
@@ -183,33 +183,47 @@
   "waite": {
     "quote": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement. Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud.",
     "quote_lang": "en",
-    "pages": [202],
+    "pages": [
+      202
+    ],
     "translation": "Llegada, acercamiento —a veces el de un mensajero—; insinuaciones, propuesta, porte, invitación, incitación. Al revés: trampa, artificio, sutileza, estafa, duplicidad, fraude.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Graceful, but not warlike; riding quietly, wearing a winged helmet, referring to those higher graces of the imagination which sometimes characterize this card"
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "He too is a dreamer, but the images of the side of sense haunt him in his vision"
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement"
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     },
     {
-      "pages": [204],
+      "pages": [
+        204
+      ],
       "text": "It is the pictures of the mind taking form"
     }
   ],
@@ -224,7 +238,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [174, 202, 204],
+      "pages": [
+        174,
+        202,
+        204
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

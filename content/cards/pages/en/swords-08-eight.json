@@ -40,7 +40,7 @@
       "id": "on_the_card",
       "heading": "What is on the Eight of Swords card?",
       "paragraphs": [
-        "Waite draws \"a woman, bound and hoodwinked, with the swords of the card about her\" (p. 238); hoodwinked means blindfolded. The swords are the largest shape on the card, planted in the ground around her like a fence.",
+        "Waite describes \"a woman, bound and hoodwinked, with the swords of the card about her\" (p. 238); hoodwinked means blindfolded. The swords are the largest shape on the card, planted in the ground around her like a fence.",
         "On the 1909 card she wears a long red-orange robe, with a gray band over her eyes and more gray bands wound around her arms and body. Three swords stand to her left and five to her right, and the ground in front of her is open. Puddles of water lie at her feet, a castle sits on a rocky height behind her, and VIII is printed at the top."
       ]
     },
@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "The Eight of Swords as a person and as feelings",
       "paragraphs": [
-        "As a person, the Eight of Swords is someone who feels hemmed in and doubts their own options: capable, but held back by fear or overthinking, waiting for permission that never quite arrives. In you, it is the voice that insists there is no exit. As feelings, the card means feeling stuck or powerless: wanting to come closer or to leave, yet held back by fear, guilt or circumstances. Reversed, those feelings free up: courage returns, doubts ease, and there is more readiness to act on what is felt."
+        "Bound and blindfolded among the swords, the figure on the Eight of Swords is someone who feels hemmed in and doubts their own options: capable, but held back by fear or overthinking, waiting for permission that never quite arrives. In you, it is the voice that insists there is no exit. Emotionally, the card means feeling stuck or powerless: wanting to come closer or to leave, yet held back by fear, guilt or circumstances. Reversed, those feelings free up: courage returns, doubts ease, and there is more readiness to act on what is felt."
       ]
     },
     {
@@ -130,7 +130,7 @@
       "id": "not_to_confuse",
       "heading": "Eight of Swords or Two of Swords?",
       "paragraphs": [
-        "Waite's Two of Swords also shows \"a hoodwinked female figure\", but she sits and balances two swords upon her shoulders (p. 250). The Two of Swords is a choice put off, a balance kept by not looking; the Eight is the feeling of being hemmed in. In the Two she holds the swords herself; in the Eight they surround her."
+        "Waite's Two of Swords also shows \"a hoodwinked female figure\", who balances two swords upon her shoulders (p. 250). The Two of Swords is a choice put off, a balance kept by not looking; the Eight is the feeling of being hemmed in. In the Two she holds the swords herself; in the Eight they surround her."
       ]
     },
     {
@@ -181,23 +181,33 @@
   },
   "citations": [
     {
-      "pages": [238],
+      "pages": [
+        238
+      ],
       "text": "A woman, bound and hoodwinked, with the swords of the card about her."
     },
     {
-      "pages": [238],
+      "pages": [
+        238
+      ],
       "text": "Yet it is rather a card of temporary durance than of irretrievable bondage."
     },
     {
-      "pages": [238],
+      "pages": [
+        238
+      ],
       "text": "Bad news, violent chagrin, crisis"
     },
     {
-      "pages": [238],
+      "pages": [
+        238
+      ],
       "text": "Reversed: Disquiet, difficulty, opposition, accident, treachery"
     },
     {
-      "pages": [250],
+      "pages": [
+        250
+      ],
       "text": "A hoodwinked female figure balances two swords upon her shoulders."
     }
   ],
@@ -212,7 +222,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [238, 250],
+      "pages": [
+        238,
+        250
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

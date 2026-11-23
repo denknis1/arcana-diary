@@ -72,7 +72,7 @@
       "id": "love",
       "heading": "¿Qué significa el Cinco de Oros en el amor?",
       "paragraphs": [
-        "Sin pareja, esta carta suele hablar de soledad o del golpe de un rechazo. Con pareja, puede describir una temporada difícil que se vive en conjunto, a veces con apuros de dinero, o un frío entre los dos que te hace sentir fuera de la vida del otro.",
+        "Sin pareja, esta carta suele hablar de soledad o del golpe de un rechazo. Con pareja, puede describir una temporada difícil que se vive en conjunto, a veces con apuros de dinero, o un frío entre los dos que te hace sentir fuera de su vida.",
         "Al revés, el calor puede volver: dejas que alguien se acerque o encuentras compañía después de un tramo de soledad. La carta describe una mala temporada, no el final de un vínculo."
       ]
     },
@@ -80,14 +80,14 @@
       "id": "work_money",
       "heading": "¿Qué significa el Cinco de Oros en el trabajo y el dinero?",
       "paragraphs": [
-        "La dificultad económica es el lado de dinero de esta carta: deudas, un presupuesto que no alcanza, ingresos que se pierden o el miedo a perderlos. En el trabajo puede hablar de sentir que te hacen a un lado, de un empleo inestable o de un equipo donde no encuentras tu lugar. Su ventana encendida apunta a recursos cercanos que quizá no has usado."
+        "La dificultad económica es el lado de dinero de esta carta: deudas, un presupuesto que no alcanza, ingresos que se pierden o el miedo a perderlos. En un empleo puede hablar de sentir que te hacen a un lado, de un puesto inestable o de un equipo donde no encuentras tu lugar. Su ventana encendida apunta a recursos cercanos que quizá no has usado."
       ]
     },
     {
       "id": "advice",
       "heading": "¿Qué significa el Cinco de Oros como consejo?",
       "paragraphs": [
-        "Busca una puerta iluminada: averigua por un apoyo práctico cerca de ti, como una red de vecinos o un servicio de tu municipio, y da un primer paso para contactarlo. Pedir una mano es una decisión práctica, no una derrota."
+        "Acércate a una puerta iluminada: busca a alguien que pueda apoyarte, una amistad, alguien de tu familia o una red de vecinos, y cuéntale cómo estás de verdad. Pedir una mano es una decisión práctica, no una derrota."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Cinco de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Cinco de Oros es alguien que atraviesa una racha dura, con poco dinero o poca compañía, y a quien le cuesta pedir algo; si eres tú, la carta te invita a dejar entrar a alguien. Como sentimiento, significa soledad e inseguridad: sentir que sobras, que no te toman en cuenta, o un cariño que se enfrió por un tiempo. Al revés, esos sentimientos se van descongelando: ganas de volver a buscar al otro, alivio de volver a formar parte y confianza que regresa poco a poco."
+        "Las dos figuras que cruzan la nieve en el Cinco de Oros son personas que atraviesan una racha dura, con poco dinero o poca compañía, y a quienes les cuesta pedir algo; si eres tú, la carta te invita a dejar entrar a alguien. Visto desde el afecto, significa soledad e inseguridad: sentir que sobras, que no te toman en cuenta, o un cariño que se enfrió por un tiempo. Al revés, esos sentimientos se van descongelando: ganas de volver a acercarse, alivio de volver a formar parte y confianza que regresa poco a poco."
       ]
     },
     {
@@ -141,11 +141,11 @@
   "faq": [
     {
       "q": "¿El Cinco de Oros es una carta buena o mala?",
-      "a": "Es de las más duras de su palo, pero no es una sentencia sobre ti. Nombra una época de escasez o de sentirte fuera, y deja en el dibujo una ventana encendida: la ayuda también forma parte de la carta. Al revés, se suele leer como el giro hacia el alivio."
+      "a": "Es de las más duras de su palo, pero no dice nada en tu contra. Nombra una época de escasez o de sentirte fuera, y deja en el dibujo una ventana encendida: la ayuda también forma parte de la carta. Al revés, se suele leer como el giro hacia el alivio."
     },
     {
       "q": "¿El Cinco de Oros siempre habla de dinero?",
-      "a": "No. El dinero es su lectura más común, pero también habla de soledad, de exclusión o de una etapa en la que nadie parece notar tu esfuerzo, aunque tengas un ingreso estable. Léelo según tu pregunta: una cuenta, una amistad, un equipo, una casa."
+      "a": "No. El dinero es su lectura más común, pero también habla de soledad, de exclusión o de una etapa en la que nadie parece notar tu esfuerzo, aunque tengas un ingreso estable. Léelo según tu pregunta: un presupuesto, una amistad, un equipo, una casa."
     },
     {
       "q": "¿El Cinco de Oros significa que me quiere?",
@@ -180,31 +180,45 @@
   },
   "citations": [
     {
-      "pages": [272],
+      "pages": [
+        272
+      ],
       "text": "Two mendicants in a snow-storm pass a lighted casement"
     },
     {
-      "pages": [272],
+      "pages": [
+        272
+      ],
       "text": "The card foretells material trouble above all, whether in the form illustrated—that is, destitution—or otherwise"
     },
     {
-      "pages": [272],
+      "pages": [
+        272
+      ],
       "text": "For some cartomancists, it is a card of love and lovers"
     },
     {
-      "pages": [272],
+      "pages": [
+        272
+      ],
       "text": "These alternatives cannot be harmonized"
     },
     {
-      "pages": [272],
+      "pages": [
+        272
+      ],
       "text": "Reversed: Disorder, chaos, ruin, discord, profligacy"
     },
     {
-      "pages": [270],
+      "pages": [
+        270
+      ],
       "text": "weighs money in a pair of scales and distributes it to the needy and distressed"
     },
     {
-      "pages": [216],
+      "pages": [
+        216
+      ],
       "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him"
     }
   ],
@@ -219,7 +233,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [216, 270, 272],
+      "pages": [
+        216,
+        270,
+        272
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

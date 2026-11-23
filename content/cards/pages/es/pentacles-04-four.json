@@ -41,7 +41,7 @@
       "heading": "¿Qué hay en la carta del Cuatro de Oros?",
       "paragraphs": [
         "Un hombre coronado aprieta una moneda contra el pecho, otra descansa sobre su corona y dos más quedan bajo sus pies; la moneda abrazada es el centro del dibujo. Waite lo describe casi igual: una figura coronada con un pentáculo sobre la corona, que sujeta otro con manos y brazos, y dos pentáculos bajo los pies (p. 274). Y Waite lo resume en una frase: se aferra a lo que tiene (p. 274).",
-        "En la carta de 1909 se envuelve en un manto oscuro con borde de piel sobre una túnica café rojiza y mira de frente. Detrás, una ciudad de torres y techos rojos ocupa el horizonte a los dos lados. Arriba se lee el IV."
+        "En la carta de 1909 se envuelve en un manto oscuro sobre una túnica café rojiza y mira de frente. Detrás, una ciudad de torres y techos rojos ocupa el horizonte a los dos lados. Arriba se lee el IV."
       ]
     },
     {
@@ -86,7 +86,7 @@
       "id": "advice",
       "heading": "¿Qué significa el Cuatro de Oros como consejo?",
       "paragraphs": [
-        "Busca algo que estés apretando demasiado, sea dinero, un plan o un sentimiento, y afloja un poco: compártelo, usa una parte pequeña en algo que importe o simplemente platícalo con alguien de confianza."
+        "Regala algo que guardas sin usar y observa cómo se siente aflojar las manos. Si lo que aprietas es dinero, un plan o un sentimiento, suelta una parte pequeña: compártela o simplemente platícalo con alguien de confianza."
       ]
     },
     {
@@ -178,19 +178,27 @@
   },
   "citations": [
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet"
     },
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "He holds to that which he has"
     },
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "The surety of possessions, cleaving to that which one has, gift, legacy, inheritance. Reversed; Suspense, delay, opposition"
     },
     {
-      "pages": [270],
+      "pages": [
+        270
+      ],
       "text": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed"
     }
   ],
@@ -205,7 +213,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [270, 274],
+      "pages": [
+        270,
+        274
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Knight of Pentacles?",
       "paragraphs": [
-        "Waite's list is about being of use: service, interest in the work, responsibility and honesty, kept to practical, everyday matters (p. 258). His reversed list (p. 258) is the same quality gone still, from idleness and stagnation to discouragement and carelessness.",
+        "Waite's list is about being of use: service, interest, responsibility and honesty, kept to practical, everyday matters (p. 258). Waite's reversed list (p. 258) is the same quality gone still, from idleness and stagnation to discouragement and carelessness.",
         "In a shorter list of extra meanings, Waite calls the card \"an useful man; useful discoveries\" and, reversed, \"a brave man out of employment\" (p. 292)."
       ]
     },
@@ -81,7 +81,7 @@
       "heading": "What does the Knight of Pentacles mean for work and money?",
       "paragraphs": [
         "Work under this card is methodical and dependable: a long project done step by step, a job where consistency gets noticed, a craft learned through repetition. It is less about quick promotion than about solid work every day.",
-        "Steady handling is the Knight's way with money too: a budget kept, bills paid on time, savings that grow slowly. Reversed, it can mean money stuck through too much caution, or bills and paperwork left for later."
+        "Steady handling is the Knight's way with money too: a budget kept, bills paid on time, savings that grow slowly. The reversed Knight can leave money stuck through too much caution, or bills and paperwork waiting for later."
       ]
     },
     {
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "The Knight of Pentacles as a person and as feelings",
       "paragraphs": [
-        "As a person, the Knight of Pentacles is dependable and hardworking: patient, somewhat reserved, more at ease with a plan than with surprises; it may also be you, in a season of steady effort. As feelings, the card stands for serious, loyal interest that grows slowly: care proven through actions, reliability, a wish to build something lasting rather than rush. Reversed, those feelings can seem stuck or cautious to the point of distance: affection that is there but goes unspoken, or interest worn down by routine."
+        "Dependable and hardworking, patient, somewhat reserved, more at ease with a plan than with surprises: this is the Knight of Pentacles as a person, and it may also be you, in a season of steady effort. The feeling he carries is serious, loyal interest that grows slowly: care proven through actions, reliability, a wish to build something lasting rather than rush. With the card reversed, that interest can seem stuck or cautious to the point of distance: affection that is there but goes unspoken, or worn down by routine."
       ]
     },
     {
@@ -189,23 +189,33 @@
   },
   "citations": [
     {
-      "pages": [258],
+      "pages": [
+        258
+      ],
       "text": "He rides a slow, enduring, heavy horse, to which his own aspect corresponds"
     },
     {
-      "pages": [258],
+      "pages": [
+        258
+      ],
       "text": "He exhibits his symbol, but does not look therein"
     },
     {
-      "pages": [292],
+      "pages": [
+        292
+      ],
       "text": "An useful man; useful discoveries. Reversed: A brave man out of employment."
     },
     {
-      "pages": [260],
+      "pages": [
+        260
+      ],
       "text": "looking intently at the pentacle which hovers over his raised hands"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     }
   ],
@@ -220,7 +230,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [174, 258, 260, 292],
+      "pages": [
+        174,
+        258,
+        260,
+        292
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

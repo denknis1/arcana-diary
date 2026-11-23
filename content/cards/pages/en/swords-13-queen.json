@@ -12,7 +12,7 @@
   "title": "Queen of Swords Tarot Card Meaning: Upright, Reversed & Love",
   "description": "Queen of Swords upright: clarity, independence, honesty; reversed: coldness, bitterness. Love, work, advice and Waite's 1911 words. Ask your question.",
   "h1": "Queen of Swords Tarot Card Meaning",
-  "image_alt": "Queen of Swords, 1909 Rider–Waite–Smith card: a crowned queen sits in profile on a stone throne above the clouds, sword held straight up, her other hand raised and open.",
+  "image_alt": "Queen of Swords, 1909 Rider–Waite–Smith card: a crowned queen sits in profile on a stone throne with clouds banked behind her, sword held straight up, her other hand raised and open.",
   "facts": {
     "arcana": "minor",
     "suit": "swords",
@@ -41,14 +41,14 @@
       "heading": "What is on the Queen of Swords card?",
       "paragraphs": [
         "A crowned queen sits in profile on a high stone throne, her sword raised straight up, her left hand lifted and open. Waite says her face \"suggests familiarity with sorrow\" and that she \"does not represent mercy\" (p. 228). The upright sword, taller than the queen herself, is the largest thing on the card.",
-        "On the 1909 card her crown is made of yellow butterflies, more butterflies and a small carved face decorate the throne, and her blue cloak is patterned with clouds. Real clouds bank up below her, a single bird flies high in the sky, and dark trees stand at the left edge."
+        "On the 1909 card her crown is made of yellow butterflies, more butterflies and a small carved face decorate the throne, and her blue cloak is patterned with clouds. Real clouds bank up behind her, low on the horizon, a single bird flies high in the sky, and dark trees stand at the left edge."
       ]
     },
     {
       "id": "waite",
       "heading": "What did Waite write about the Queen of Swords?",
       "paragraphs": [
-        "Waite's lists for this card are harsh on both sides (p. 228). The sorrow in her face is his reading of the picture; on Arcana Diary the Queen is read for what such experience leaves behind: a clear head, honest speech and firm boundaries."
+        "Waite's lists for this card are harsh on both sides; upright he names sadness, absence, mourning and separation (p. 228). The sorrow in her face is his reading of the picture; on Arcana Diary the Queen is read for what such experience leaves behind: a clear head, honest speech and firm boundaries."
       ]
     },
     {
@@ -79,7 +79,7 @@
       "heading": "What does the Queen of Swords mean for work and money?",
       "paragraphs": [
         "Analysis, editing, negotiation, any role where honest judgment counts: these suit the Queen at work. She can also be a demanding but fair manager or mentor.",
-        "Her sword held upright stands, in money matters, for independence and clear-headed management: a budget you understand, choices based on numbers rather than hopes, self-reliance. Reversed, it can mean being too strict with yourself or spending decisions made without listening to anyone."
+        "Money, with this Queen, means independence and clear-headed management: a budget you understand, choices based on numbers rather than hopes, self-reliance. Reversed, it can mean being too strict with yourself or spending decisions made without listening to anyone."
       ]
     },
     {
@@ -98,7 +98,7 @@
       "id": "in_a_reading",
       "heading": "The Queen of Swords as a person and as feelings",
       "paragraphs": [
-        "Read as a person, the Queen of Swords is perceptive, independent and direct: someone who says what she sees, values the truth and has little patience for flattery, often after hard experience. She can be a mentor, a sharp-eyed friend, or you when you trust your own judgment. As feelings, the card traditionally means respect and clear-headed interest held with caution: feelings that are honest but guarded, wanting the truth before opening up. Reversed, it stands for coolness, distance, or hurt that has hardened into criticism."
+        "Read as a person, the Queen of Swords is perceptive, independent and direct: someone who says what she sees, values the truth and has little patience for flattery, often after hard experience. She can be a mentor, a sharp-eyed friend, or you when you trust your own judgment. Respect and clear-headed interest, held with caution, are the card's traditional meaning as feelings: honest but guarded, wanting the truth before opening up. Reversed, it stands for coolness, distance, or hurt that has hardened into criticism."
       ]
     },
     {
@@ -183,23 +183,33 @@
   },
   "citations": [
     {
-      "pages": [228],
+      "pages": [
+        228
+      ],
       "text": "her countenance is severe but chastened; it suggests familiarity with sorrow. It does not represent mercy"
     },
     {
-      "pages": [228],
+      "pages": [
+        228
+      ],
       "text": "her sword notwithstanding, she is scarcely a symbol of power"
     },
     {
-      "pages": [228],
+      "pages": [
+        228
+      ],
       "text": "Widowhood, female sadness and embarrassment, absence, sterility, mourning, privation, separation. Reversed: Malice, bigotry, artifice, prudery, bale, deceit."
     },
     {
-      "pages": [200],
+      "pages": [
+        200
+      ],
       "text": "as one who sees visions in a cup"
     },
     {
-      "pages": [226],
+      "pages": [
+        226
+      ],
       "text": "He sits in judgment"
     }
   ],
@@ -214,7 +224,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [200, 226, 228],
+      "pages": [
+        200,
+        226,
+        228
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

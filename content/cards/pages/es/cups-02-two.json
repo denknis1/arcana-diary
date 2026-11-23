@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Dos de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Dos de Copas es una pareja en el sentido amplio: alguien que te trata de igual a igual y cumple lo que promete, sea en el amor, en la amistad o en los negocios. También puede hablar de esa parte de ti que sabe compartir. Como sentimiento, es de las cartas más claras de atracción mutua y afecto: ganas de estar cerca y de construir algo en común. Al revés, el sentimiento sigue ahí, pero inseguro: distancia, señales confusas o un cariño que no parece correspondido."
+        "Dos copas que se ofrecen entre sí: el Dos de Copas es una pareja en el sentido amplio: alguien que te trata de igual a igual y cumple lo que promete, sea en el amor, en la amistad o en los negocios. También puede hablar de esa parte de ti que sabe compartir. En lo afectivo, es de las cartas más claras de atracción mutua y afecto: ganas de estar cerca y de construir algo en común. Al revés, el sentimiento sigue ahí, pero inseguro: distancia, señales confusas o un cariño que no parece correspondido."
       ]
     },
     {
@@ -176,41 +176,59 @@
   "waite": {
     "quote": "Love, passion, friendship, affinity, union, concord, sympathy, the interrelation of the sexes",
     "quote_lang": "en",
-    "pages": [222],
+    "pages": [
+      222
+    ],
     "translation": "Amor, pasión, amistad, afinidad, unión, concordia, simpatía, la relación entre los sexos.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [222],
+      "pages": [
+        222
+      ],
       "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head"
     },
     {
-      "pages": [222],
+      "pages": [
+        222
+      ],
       "text": "It is a variant of a sign which is found in a few old examples of this card"
     },
     {
-      "pages": [222],
+      "pages": [
+        222
+      ],
       "text": "Some curious emblematical meanings are attached to it, but they do not concern us in this place"
     },
     {
-      "pages": [222],
+      "pages": [
+        222
+      ],
       "text": "Love, passion, friendship, affinity, union, concord, sympathy"
     },
     {
-      "pages": [290],
+      "pages": [
+        290
+      ],
       "text": "Two.—Favourable in things of pleasure and business, as well as love; also wealth and honour. Reversed: Passion."
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "beneath is a great winged figure with arms extended"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "two human figures, male and female, unveiled before each other"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "This is in all simplicity the card of human love"
     }
   ],
@@ -225,7 +243,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [92, 222, 290],
+      "pages": [
+        92,
+        222,
+        290
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

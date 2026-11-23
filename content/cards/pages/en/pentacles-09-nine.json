@@ -10,7 +10,7 @@
     "in_sentence": "the Nine of Pentacles"
   },
   "title": "Nine of Pentacles Tarot Meaning: Upright & Reversed",
-  "description": "Nine of Pentacles upright: independence, abundance, self-sufficiency; reversed: dependence. Love, work, money, advice and Waite's 1911 text. Ask away.",
+  "description": "Nine of Pentacles upright: independence, abundance, self-sufficiency; reversed: dependence. Love, work, money, advice and Waite's 1911 text. Ask your question.",
   "h1": "Nine of Pentacles Tarot Card Meaning",
   "image_alt": "Nine of Pentacles, 1909 Rider–Waite–Smith card: a woman in a long flowered robe stands among grapevines with a hooded bird on her gloved hand and nine pentacles beside her.",
   "facts": {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "The Nine of Pentacles as a person and as feelings",
       "paragraphs": [
-        "As a person, the Nine of Pentacles is someone self-made and composed, of any gender: independent, refined, good with money and happy in their own company. As feelings, the card stands for admiration and calm, secure affection: enjoying a connection without needing it to feel whole, and valuing respect and quality time over drama. Reversed, those feelings turn guarded or distant, with independence kept up like a wall, or an interest that looks more at status than at the person."
+        "The poised figure in the vineyard on the Nine of Pentacles is someone self-made and composed, of any gender: independent, refined, good with money and happy in their own company. In matters of feeling, the card stands for admiration and calm, secure affection: enjoying a connection without needing it to feel whole, and valuing respect and quality time over drama. Reversed, those feelings turn guarded or distant, with independence kept up like a wall, or an interest that looks more at status than at the person."
       ]
     },
     {
@@ -180,19 +180,27 @@
   },
   "citations": [
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "stands amidst a great abundance of grapevines in the garden of a manorial house"
     },
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "It is a wide domain, suggesting plenty in all things. Possibly it is her own possession and testifies to material well-being."
     },
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "Reversed: Roguery, deception, voided project, bad faith."
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein"
     }
   ],
@@ -207,7 +215,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [256, 264],
+      "pages": [
+        256,
+        264
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

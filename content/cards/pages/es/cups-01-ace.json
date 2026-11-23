@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el As de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el As de Copas es alguien cálido y abierto, que consuela con facilidad y se deja querer; también puedes ser tú en un momento tierno y lleno de esperanza. Como sentimiento, señala con claridad un cariño que nace o que crece: ternura, una atracción con calidez, ganas de cuidar y de que te cuiden. Al revés, el sentimiento existe, pero se contiene por timidez, por una herida vieja o por miedo a mostrar demasiado."
+        "Cálido y abierto, que consuela con facilidad y se deja querer: así se ve el As de Copas como persona; también puedes ser tú en un momento tierno y lleno de esperanza. En el terreno de los sentimientos, señala con claridad un cariño que nace o que crece: ternura, una atracción con calidez, ganas de cuidar y de que te cuiden. Al revés, el sentimiento existe, pero se contiene por timidez, por una herida vieja o por miedo a mostrar demasiado."
       ]
     },
     {
@@ -175,49 +175,71 @@
   "waite": {
     "quote": "House of the true heart, joy, content, abode, nourishment, abundance, fertility; Holy Table, felicity hereof. Reversed: House of the false heart, mutation, instability, revolution.",
     "quote_lang": "en",
-    "pages": [224],
+    "pages": [
+      224
+    ],
     "translation": "Casa del corazón verdadero, alegría, contento, morada, alimento, abundancia, fertilidad; Mesa Santa, la dicha que de ella viene. Al revés: casa del corazón falso, mutación, inestabilidad, revolución.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "The waters are beneath, and thereon are water-lilies"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "a dove, bearing in its bill a cross-marked Host, descends to place the Wafer in the Cup"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "holding in its palm the cup, from which four streams are pouring"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "It is an intimation of that which may lie behind the Lesser Arcana"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "the dew of water is falling on all sides"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "The two children dancing near them"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "Contentment, repose of the entire heart"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "House of the true heart, joy, content, abode, nourishment, abundance"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "Reversed: House of the false heart, mutation, instability, revolution"
     }
   ],
@@ -232,7 +254,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [206, 224],
+      "pages": [
+        206,
+        224
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

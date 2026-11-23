@@ -81,14 +81,14 @@
       "id": "work_money",
       "heading": "¿Qué significa el Dos de Oros en el trabajo y el dinero?",
       "paragraphs": [
-        "Dos monedas, dos manos: en el trabajo es la carta de hacer varias cosas a la vez, dos puestos o un trabajo extra, fechas que se mueven y aun así salen. Con las cuentas, significa malabares con el dinero: mover fondos para cubrir pagos, un presupuesto que funciona pero hay que ajustar todo el tiempo, ingresos y gastos parejos semana a semana. Al revés, el presupuesto se desacomoda: pagos atrasados, estrés por dinero, más gastos de los que alcanzas a seguir."
+        "Dos monedas, dos manos: en el trabajo es la carta de hacer varias cosas a la vez, dos puestos o un trabajo extra, fechas que se mueven y aun así salen. Las cuentas piden el mismo malabar: mover fondos para cubrir pagos, un presupuesto que funciona pero hay que ajustar todo el tiempo, ingresos y gastos parejos semana a semana. Al revés, el presupuesto se desacomoda: pagos atrasados, estrés por dinero, gastos a los que ya les perdiste la pista."
       ]
     },
     {
       "id": "advice",
       "heading": "¿Qué significa el Dos de Oros como consejo?",
       "paragraphs": [
-        "Elige las dos tareas que más importan hoy y dales toda tu atención; lo demás puede esperar sin culpa. Una lista corta en papel ayuda más al malabar que una larga en la cabeza."
+        "Acomoda tus pendientes por importancia y resuelve primero el que más pesa; lo demás puede esperar sin culpa. Una lista corta en papel ayuda más al malabar que una larga en la cabeza."
       ]
     },
     {
@@ -149,7 +149,7 @@
     },
     {
       "q": "¿Qué es el lazo del Dos de Oros?",
-      "a": "Un cordón verde con forma de ocho acostado que une las dos monedas. Waite lo llama cordón sin fin y lo compara con el número 8 (p. 278), pero no le da otro significado. Aquí la carta se lee por la escena completa: un baile que mantiene dos cosas en marcha."
+      "a": "Un cordón verde con forma de ocho acostado que une las dos monedas. Waite lo llama cordón sin fin y la ve como un 8 acostado al revés (p. 278), pero no le da otro significado. Aquí la carta se lee por la escena completa: un baile que mantiene dos cosas en marcha."
     },
     {
       "q": "¿El Dos de Oros significa que tengo que elegir?",
@@ -180,23 +180,33 @@
   },
   "citations": [
     {
-      "pages": [278],
+      "pages": [
+        278
+      ],
       "text": "A young man, in the act of dancing, has a pentacle in either hand, and they are joined by that endless cord which is like the number 8 reversed"
     },
     {
-      "pages": [278],
+      "pages": [
+        278
+      ],
       "text": "it is represented as a card of gaiety, recreation and its connexions, which is the subject of the design; but it is read also as news and messages in writing, as obstacles, agitation, trouble, embroilment"
     },
     {
-      "pages": [278],
+      "pages": [
+        278
+      ],
       "text": "Reversed: Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange"
     },
     {
-      "pages": [293],
+      "pages": [
+        293
+      ],
       "text": "Two.—Troubles are more imaginary than real"
     },
     {
-      "pages": [250],
+      "pages": [
+        250
+      ],
       "text": "A hoodwinked female figure balances two swords upon her shoulders"
     }
   ],
@@ -211,7 +221,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [250, 278, 293],
+      "pages": [
+        250,
+        278,
+        293
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Nueve de Copas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Nueve de Copas describe a alguien a gusto con la vida: generoso con su tiempo, amante de la buena mesa y la buena compañía, satisfecho con lo que tiene y a veces un poco presumido. Como sentimiento, significa alegría y satisfacción con el vínculo: la sensación de que esta relación es lo que se deseaba y se disfruta tal como es. Al revés, ese sentimiento pierde fuerza: un gusto que no dura, un interés más puesto en el placer que en la profundidad, o la impresión de que el ideal no alcanza."
+        "Con sus nueve copas a la espalda, el Nueve de Copas describe a alguien a gusto con la vida: generoso con su tiempo, amante de la buena mesa y la buena compañía, satisfecho con lo que tiene y a veces un poco presumido. Del lado del corazón, significa alegría y satisfacción con el vínculo: la sensación de que esta relación es lo que se deseaba y se disfruta tal como es. Al revés, ese sentimiento pierde fuerza: un gusto que no dura, un interés más puesto en el placer que en la profundidad, o la impresión de que el ideal no alcanza."
       ]
     },
     {
@@ -177,33 +177,47 @@
   "waite": {
     "quote": "Concord, contentment … also victory, success, advantage; satisfaction for the Querent … Reversed: Truth, loyalty, liberty; but the readings vary and include mistakes, imperfections, etc.",
     "quote_lang": "en",
-    "pages": [208],
+    "pages": [
+      208
+    ],
     "translation": "Concordia, contento … también victoria, éxito, ventaja; satisfacción para quien consulta … Al revés: verdad, lealtad, libertad; pero las lecturas varían e incluyen errores, imperfecciones, etc.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [208],
+      "pages": [
+        208
+      ],
       "text": "A goodly personage has feasted to his heart's content, and abundant refreshment of wine is on the arched counter behind him"
     },
     {
-      "pages": [208],
+      "pages": [
+        208
+      ],
       "text": "The picture offers the material side only, but there are other aspects"
     },
     {
-      "pages": [208],
+      "pages": [
+        208
+      ],
       "text": "Concord, contentment, physical bien-être; also victory, success, advantage; satisfaction for the Querent or person for whom the consultation is made. Reversed: Truth, loyalty, liberty; but the readings vary and include mistakes, imperfections, etc."
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "it is contemplated in wonder and ecstacy by a man and woman below"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "The two children dancing near them"
     },
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines"
     }
   ],
@@ -218,7 +232,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [206, 208, 264],
+      "pages": [
+        206,
+        208,
+        264
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

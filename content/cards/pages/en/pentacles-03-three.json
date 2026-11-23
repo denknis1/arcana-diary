@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Three of Pentacles?",
       "paragraphs": [
-        "Waite gives the card two readings: the trade itself, skilled labour, and a grander one, \"a card of nobility, aristocracy, renown, glory\" (p. 276). Waite's reversed list is about falling short: mediocrity and pettiness, \"in work and otherwise\" (p. 276)."
+        "Waite gives the card two readings: the trade itself, skilled labour, and the more usual one, \"a card of nobility, aristocracy, renown, glory\" (p. 276). Waite's reversed list is about falling short: mediocrity and pettiness, \"in work and otherwise\" (p. 276)."
       ]
     },
     {
@@ -178,19 +178,27 @@
   },
   "citations": [
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "A sculptor at his work in a monastery"
     },
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "regarded as a card of nobility, aristocracy, renown, glory. Reversed: Mediocrity, in work and otherwise, puerility, pettiness"
     },
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "The apprentice or amateur therein has received his reward and is now at work in earnest"
     },
     {
-      "pages": [266],
+      "pages": [
+        266
+      ],
       "text": "An artist in stone at his work"
     }
   ],
@@ -205,7 +213,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [266, 276],
+      "pages": [
+        266,
+        276
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

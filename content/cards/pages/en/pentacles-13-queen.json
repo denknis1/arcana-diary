@@ -48,8 +48,8 @@
       "id": "waite",
       "heading": "What did Waite write about the Queen of Pentacles?",
       "paragraphs": [
-        "Waite's list (p. 256) is wealth and ease: plenty, generosity, splendor, security and freedom. His reversed list (p. 256) is blunt, with evil and fear next to suspicion and mistrust; on Arcana Diary that side of the card reads as worry and insecurity around money and home.",
-        "Besides warmth, Waite gives her \"the serious cast of intelligence\" (p. 256)."
+        "Waite's list (p. 256) is wealth and ease: plenty, generosity, splendor, security and freedom. Waite's reversed list (p. 256) is blunt, with evil and fear next to suspicion and mistrust; on Arcana Diary that side of the card reads as worry and insecurity around money and home.",
+        "Besides greatness of soul, Waite gives her \"the serious cast of intelligence\" (p. 256)."
       ]
     },
     {
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "The Queen of Pentacles as a person and as feelings",
       "paragraphs": [
-        "As a person, the Queen of Pentacles is warm, practical and generous: someone who makes others feel at home, manages resources well and helps in concrete ways; it can be a parent figure, a friend, a colleague or you. As feelings, the card stands for devoted, caring affection: feeling safe with someone, wanting to look after them and to build a comfortable life together. Reversed, the same care can feel smothering or one-sided, or worry and insecurity crowd out the warmth."
+        "Seated in her garden with a coin in her lap, the Queen of Pentacles is warm, practical and generous: someone who makes others feel at home, manages resources well and helps in concrete ways; it can be a parent figure, a friend, a colleague or you. Feeling-wise, the card stands for devoted, caring affection: feeling safe with someone, wanting to look after them and to build a comfortable life together. Reversed, the same care can feel smothering or one-sided, or worry and insecurity crowd out the warmth."
       ]
     },
     {
@@ -189,27 +189,39 @@
   },
   "citations": [
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "whose qualities might be summed up in the idea of greatness of soul"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she contemplates her symbol and may see worlds therein"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she has also the serious cast of intelligence"
     },
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines in the garden of a manorial house"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "A field of corn is ripening in front of her, and beyond there is a fall of water"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "because the cards do not happen to deal especially with questions of money"
     }
   ],
@@ -224,7 +236,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [80, 254, 256, 264],
+      "pages": [
+        80,
+        254,
+        256,
+        264
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

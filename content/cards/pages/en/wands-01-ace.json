@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "The Ace of Wands as a person and as feelings",
       "paragraphs": [
-        "As a person, the Ace of Wands is someone full of ideas and starting energy: the friend who proposes the trip, the colleague who launches the project. It can also be you, at the moment a new interest takes hold. As feelings, the card stands for attraction, excitement and a fresh spark of desire, the early stage when someone feels drawn and curious. Reversed, those feelings are present but unsteady: interest that flares and cools, or excitement held back."
+        "The hand holding up a budding wand on the Ace of Wands stands for someone full of ideas and starting energy: the friend who proposes the trip, the colleague who launches the project. It can also be you, at the moment a new interest takes hold. Matters of the heart start with a flare here: attraction, excitement and fresh desire, the early stage when someone feels drawn and curious. Reversed, those feelings are present but unsteady: interest that flares and cools, or excitement held back."
       ]
     },
     {
@@ -178,37 +178,53 @@
   "waite": {
     "quote": "Creation, invention, enterprise, the powers which result in these; principle, beginning, source … Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy.",
     "quote_lang": "en",
-    "pages": [196],
+    "pages": [
+      196
+    ],
     "translation": null,
     "harsh": true
   },
   "citations": [
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "A hand issuing from a cloud grasps a stout wand or club"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "according to another account, money, fortune, inheritance"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "Creation, invention, enterprise, the powers which result in these"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "a young man stands in the act of proclamation"
     },
     {
-      "pages": [252],
+      "pages": [
+        252
+      ],
       "text": "A hand issues from a cloud, grasping a sword"
     },
     {
-      "pages": [172],
+      "pages": [
+        172
+      ],
       "text": "The Wands throughout this suit are always in leaf, as it is a suit of life and animation"
     }
   ],
@@ -223,7 +239,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [172, 176, 196, 252],
+      "pages": [
+        172,
+        176,
+        196,
+        252
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

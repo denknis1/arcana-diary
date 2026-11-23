@@ -49,14 +49,14 @@
       "heading": "What did Waite write about the Nine of Swords?",
       "paragraphs": [
         "Waite's upright list is among the bleakest in his book, running from failure and deception to despair (p. 236), and Arcana Diary does not read it as a forecast.",
-        "His reversed side lists suspicion, doubt, shame and \"reasonable fear\" (p. 236). That last phrase is the closest to how the card is read now: worry with a real cause. The idea that such worry swells at night is the modern reading, not Waite's."
+        "His reversed side lists suspicion, doubt, shame and \"reasonable fear\" (p. 236). Fear is the word that carries over into how the card is read now. The idea that such worry swells at night and outgrows its cause is the modern reading, not Waite's."
       ]
     },
     {
       "id": "upright",
       "heading": "What does the Nine of Swords mean upright?",
       "paragraphs": [
-        "Anxiety is the plain meaning of the Nine of Swords. It is the card of lying awake in the small hours, replaying a conversation, running through everything that could go wrong and feeling the weight of it all at once.",
+        "Anxiety is the plain meaning of the Nine of Swords, and at its darkest, despair. It is the card of nightmares and of lying awake in the small hours, replaying a conversation, running through everything that could go wrong and feeling the weight of it all at once.",
         "Worry here tends to be bigger than the problem behind it. The pressure is real, but much of it lives in sleepless thoughts rather than in what is happening now. Guilt and regret can feed it too: something you blame yourself for, or a load carried in silence.",
         "Is this happening now, or only in my head at night?"
       ]
@@ -151,7 +151,7 @@
     },
     {
       "q": "Does the Nine of Swords mean my fears are real?",
-      "a": "Not necessarily. The card's classic message is that worry tends to grow larger than its cause, especially at night. Some fears point to something that needs attention; others fade once they are said aloud. The card asks you to tell the two apart in daylight."
+      "a": "Not necessarily. The card's usual modern message is that worry tends to grow larger than its cause, especially at night. Some fears point to something that needs attention; others fade once they are said aloud. The card asks you to tell the two apart in daylight."
     },
     {
       "q": "Is the Nine of Swords about guilt?",
@@ -186,23 +186,33 @@
   },
   "citations": [
     {
-      "pages": [236],
+      "pages": [
+        236
+      ],
       "text": "One seated on her couch in lamentation, with the swords over her."
     },
     {
-      "pages": [236],
+      "pages": [
+        236
+      ],
       "text": "It is a card of utter desolation."
     },
     {
-      "pages": [236],
+      "pages": [
+        236
+      ],
       "text": "suspicion, doubt, reasonable fear, shame"
     },
     {
-      "pages": [234],
+      "pages": [
+        234
+      ],
       "text": "A prostrate figure, pierced by all the swords belonging to the card."
     },
     {
-      "pages": [248],
+      "pages": [
+        248
+      ],
       "text": "Three swords piercing a heart; cloud and rain behind."
     }
   ],
@@ -217,7 +227,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [234, 236, 248],
+      "pages": [
+        234,
+        236,
+        248
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -41,7 +41,7 @@
       "id": "on_the_card",
       "heading": "¿Qué hay en la carta del Nueve de Espadas?",
       "paragraphs": [
-        "Una mujer se sienta en la cama, a oscuras, con la cara entre las manos, y nueve espadas cuelgan en hileras sobre la pared negra. Waite la pinta en su lecho, en pleno lamento, y dice que la carta es pura desolación (p. 236).",
+        "Una mujer se sienta en la cama, a oscuras, con la cara entre las manos, y nueve espadas cuelgan en hileras sobre la pared negra. Waite la describe en su lecho, en pleno lamento, y dice que la carta es pura desolación (p. 236).",
         "En la carta de 1909 las espadas están acostadas, una encima de otra, y llenan casi todo el fondo; ninguna la toca. Lleva un camisón blanco, y la colcha sobre sus rodillas es un tablero de cuadros azules y amarillos con rosas rojas. Un panel tallado recorre el costado de la cama, y arriba se lee el IX."
       ]
     },
@@ -50,14 +50,14 @@
       "heading": "¿Qué escribió Waite sobre el Nueve de Espadas?",
       "paragraphs": [
         "La lista al derecho de Waite está entre las más sombrías de su libro, del fracaso y el engaño a la desesperación (p. 236), y en Arcana Diary no la leemos como un pronóstico.",
-        "Al revés, Waite anota sospecha, duda, vergüenza y un temor razonable (p. 236). Esa última idea es la más cercana a la lectura de hoy: una preocupación con causa real. Que esa preocupación crezca de noche es lectura moderna, no de Waite."
+        "Al revés, Waite anota sospecha, duda, vergüenza y un temor razonable (p. 236). El miedo es lo que pasa de su lista a la lectura de hoy. Que ese miedo crezca de noche y se haga más grande que su causa es lectura moderna, no de Waite."
       ]
     },
     {
       "id": "upright",
       "heading": "¿Qué significa el Nueve de Espadas al derecho?",
       "paragraphs": [
-        "La ansiedad es el significado directo del Nueve de Espadas. Es la carta de despertar de madrugada y no volver a dormir, de repasar una conversación, de imaginar todo lo que podría salir mal y sentir el peso de todo junto.",
+        "La ansiedad es el significado directo del Nueve de Espadas y, en su punto más oscuro, la desesperación. Es la carta de las pesadillas, de despertar de madrugada y no volver a dormir, de repasar una conversación, de imaginar todo lo que podría salir mal y sentir el peso de todo junto.",
         "Aquí la preocupación suele ser más grande que el problema que la causa. La presión es real, pero gran parte vive en los pensamientos en círculo y no en lo que pasa ahora. La culpa y el arrepentimiento también la alimentan: algo que te reprochas o una carga que llevas en silencio.",
         "¿Esto está pasando ahora o solo en mi cabeza, de noche?"
       ]
@@ -152,7 +152,7 @@
     },
     {
       "q": "¿El Nueve de Espadas significa que mis miedos son reales?",
-      "a": "No necesariamente. Su mensaje clásico es que la preocupación suele crecer más que su causa, sobre todo de noche. Algunos miedos señalan algo que merece atención; otros se deshacen al decirlos en voz alta. La carta te pide distinguirlos con la luz del día."
+      "a": "No necesariamente. Su mensaje moderno más común es que la preocupación suele crecer más que su causa, sobre todo de noche. Algunos miedos señalan algo que merece atención; otros se deshacen al decirlos en voz alta. La carta te pide distinguirlos con la luz del día."
     },
     {
       "q": "¿El Nueve de Espadas habla de culpa?",
@@ -187,15 +187,21 @@
   },
   "citations": [
     {
-      "pages": [236],
+      "pages": [
+        236
+      ],
       "text": "One seated on her couch in lamentation, with the swords over her. She is as one who knows no sorrow which is like unto hers. It is a card of utter desolation."
     },
     {
-      "pages": [234],
+      "pages": [
+        234
+      ],
       "text": "A prostrate figure, pierced by all the swords belonging to the card."
     },
     {
-      "pages": [248],
+      "pages": [
+        248
+      ],
       "text": "Three swords piercing a heart; cloud and rain behind."
     }
   ],
@@ -210,7 +216,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [234, 236, 248],
+      "pages": [
+        234,
+        236,
+        248
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

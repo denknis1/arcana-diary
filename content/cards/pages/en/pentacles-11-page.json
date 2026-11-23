@@ -48,8 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Page of Pentacles?",
       "paragraphs": [
-        "Waite's list for the Page (p. 260) puts study first: application, scholarship and reflection, then news and the person who brings it, then rule and management. Waite's reversed side (p. 260) leans toward spending too freely: prodigality, dissipation, luxury, and unfavourable news.",
-        "About the suit as a whole, Waite notes that in many old packs it \"stood for current coin, money, deniers\", but that the cards \"do not happen to deal especially with questions of money\" (p. 254)."
+        "Waite's list for the Page (p. 260) puts study first: application, scholarship and reflection, then news and the person who brings it, then rule and management. Waite's reversed side (p. 260) leans toward spending too freely: prodigality, dissipation, luxury, and unfavourable news."
       ]
     },
     {
@@ -80,7 +79,7 @@
       "id": "work_money",
       "heading": "What does the Page of Pentacles mean for work and money?",
       "paragraphs": [
-        "A coin held up for study fits the early stage of a career: training, an internship, a new job, a certificate, learning a trade. Money comes in modest beginnings with this Page: a first income, a new savings habit, learning to budget, or a small opportunity that needs patience to grow. Reversed, it can mean careless spending or a money plan that never gets started."
+        "A coin held up for study fits the early stage of a career: training, an internship, a new job, a certificate, learning a trade. Money shows up as modest beginnings with this Page: a first income, a new savings habit, learning to budget, or a small opportunity that needs patience to grow. Reversed, it can mean careless spending or a money plan that never gets started."
       ]
     },
     {
@@ -99,7 +98,7 @@
       "id": "in_a_reading",
       "heading": "The Page of Pentacles as a person and as feelings",
       "paragraphs": [
-        "As a person, the Page of Pentacles is a student or beginner of any age: diligent, curious, grounded and a little serious, someone who learns by doing and keeps promises. As feelings, the card means sincere but careful interest: steady affection, the wish to go slowly and to show care through actions rather than grand words, sometimes with shyness about saying it. Reversed, those feelings are unsure or slow to grow, with interest that does not turn into action, or attention pulled away by other priorities."
+        "The young figure studying a single coin on the Page of Pentacles is a student or beginner of any age: diligent, curious, grounded and a little serious, someone who learns by doing and keeps promises. Put in terms of feelings, the card means sincere but careful interest: steady affection, the wish to go slowly and to show care through actions rather than grand words, sometimes with shyness about saying it. Reversed, those feelings are unsure or slow to grow, with interest that does not turn into action, or attention pulled away by other priorities."
       ]
     },
     {
@@ -153,7 +152,7 @@
     },
     {
       "q": "Is the Page of Pentacles a man or a woman?",
-      "a": "Either. Waite's description says only \"a youthful figure\" (p. 260), so nothing in his text fixes a gender. In a reading this Page is a role: a learner, a newcomer to a field or a beginner in a new job, whoever that is. Sometimes it is not a person at all but a piece of news or a practical chance."
+      "a": "Either. Waite writes of \"a youthful figure\" and calls the Page \"he\" (p. 260), but in a reading this Page is a role: a learner, a newcomer to a field or a beginner in a new job, whoever that is. Sometimes it is not a person at all but a piece of news or a practical chance."
     }
   ],
   "related": [
@@ -180,19 +179,15 @@
   },
   "citations": [
     {
-      "pages": [260],
+      "pages": [
+        260
+      ],
       "text": "A youthful figure, looking intently at the pentacle which hovers over his raised hands. He moves slowly, insensible of that which is about him."
     },
     {
-      "pages": [254],
-      "text": "In many old Tarot packs this suit stood for current coin, money, deniers."
-    },
-    {
-      "pages": [254],
-      "text": "because the cards do not happen to deal especially with questions of money"
-    },
-    {
-      "pages": [258],
+      "pages": [
+        258
+      ],
       "text": "He rides a slow, enduring, heavy horse, to which his own aspect corresponds. He exhibits his symbol, but does not look therein."
     }
   ],
@@ -207,7 +202,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [254, 258, 260],
+      "pages": [
+        258,
+        260
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

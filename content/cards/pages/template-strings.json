@@ -77,7 +77,7 @@
       "page_one": "p. {pages}",
       "page_many": "pp. {pages}",
       "page_numbers": "Page numbers follow the edition transcribed on Wikisource.",
-      "method": "Written with AI from Waite's book and Arcana Diary's card meanings. A second AI model checked every quote and page number against the book. Reviewed by {editor_name} on {reviewed_at}.",
+      "method": "Written with AI from Waite's book and Arcana Diary's card meanings. Reviewed by {editor_name} on {reviewed_at}.",
       "deck_note": "These are the meanings of the 1909 Rider–Waite–Smith deck; the Marseille tradition reads the cards differently."
     }
   },
@@ -157,7 +157,7 @@
       "page_one": "p. {pages}",
       "page_many": "pp. {pages}",
       "page_numbers": "Citamos a Waite en el inglés original; las páginas siguen la edición transcrita en Wikisource.",
-      "method": "Esta página se escribió con IA a partir del libro de Waite y de los significados de cartas de Arcana Diary. Un segundo modelo de IA revisó cada cita y cada número de página contra el libro. La revisó {editor_name} el {reviewed_at}.",
+      "method": "Esta página se escribió con IA a partir del libro de Waite y de los significados de cartas de Arcana Diary. La revisó {editor_name} el {reviewed_at}.",
       "deck_note": "Son los significados de la baraja Rider-Waite-Smith de 1909, no los de la baraja española ni los del tarot de Marsella."
     }
   }

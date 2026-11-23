@@ -20,7 +20,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "The Four of Pentacles means security and control: holding on to what you have, saving, guarding your resources, sometimes too tightly. Reversed, the grip loosens, or fear of loss tightens it further. It is a card of stability that asks whether you are protecting or clinging. The answer is not clear yet: his coins sit still.",
+  "capsule": "The Four of Pentacles means security and control: holding on to what you have, saving, guarding your resources, sometimes too tightly. Reversed, the grip loosens, or fear of loss tightens it further. It is a card of stability that asks whether you are protecting or clinging. The answer is not clear yet: the coins sit still.",
   "keywords": {
     "upright": [
       "security",
@@ -39,8 +39,8 @@
       "id": "on_the_card",
       "heading": "What is on the Four of Pentacles card?",
       "paragraphs": [
-        "A crowned man holds one coin tight against his chest, a second sits on top of his crown and two more lie under his feet; the clasped coin at his heart is the center of the picture. Waite describes him almost the same way: \"A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet\" (p. 274). Then Waite sums him up in six words: \"He holds to that which he has\" (p. 274).",
-        "On the 1909 card he is wrapped in a dark fur-edged cloak over a reddish-brown robe and looks straight out at the viewer. Behind him a town of towers and red roofs fills the horizon on both sides. IV is printed at the top."
+        "A crowned man holds one coin tight against his chest, a second sits on top of his crown and two more lie under his feet; the clasped coin at his heart is the center of the picture. Waite describes him almost the same way: \"A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet\" (p. 274). Then Waite sums him up in one short sentence: \"He holds to that which he has\" (p. 274).",
+        "On the 1909 card he is wrapped in a dark cloak over a reddish-brown robe and looks straight out at the viewer. Behind him a town of towers and red roofs fills the horizon on both sides. IV is printed at the top."
       ]
     },
     {
@@ -177,19 +177,27 @@
   },
   "citations": [
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet"
     },
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "He holds to that which he has"
     },
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "The surety of possessions, cleaving to that which one has, gift, legacy, inheritance. Reversed; Suspense, delay, opposition"
     },
     {
-      "pages": [270],
+      "pages": [
+        270
+      ],
       "text": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed"
     }
   ],
@@ -204,7 +212,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [270, 274],
+      "pages": [
+        270,
+        274
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

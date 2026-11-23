@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre el As de Oros?",
       "paragraphs": [
         "La lista al derecho de Waite suena a pura buena suerte: satisfacción, dicha y oro (p. 280). Al revés, Waite conserva el dinero, pero lo vuelve amargo: el lado malo de la riqueza (p. 280). Waite añade que, de un modo u otro, la carta muestra prosperidad y comodidad material, y que si eso le sirve o no a quien lo tiene depende de cómo caiga la carta (p. 280).",
-        "En su lista de significados adicionales, Waite llama a este As la más favorable de todas las cartas (p. 293)."
+        "La lista de significados adicionales de Waite llama a este As la más favorable de todas las cartas (p. 293)."
       ]
     },
     {
@@ -73,7 +73,7 @@
       "id": "love",
       "heading": "¿Qué significa el As de Oros en el amor?",
       "paragraphs": [
-        "Es un amor práctico y cálido. Para una pareja puede marcar una etapa firme: vivir juntos, unas cuentas compartidas, la decisión de construir algo que dure.",
+        "Es un amor práctico y cálido. Para una pareja puede marcar una etapa firme: vivir bajo el mismo techo, unas cuentas compartidas, la decisión de construir algo que dure.",
         "Sin pareja, la carta puede hablar de un comienzo nacido de la vida diaria: conocer a alguien en el trabajo, en un curso o en la rutina, sin ninguna prisa. Al revés, la semilla está, pero nadie la siembra: interés sin seguimiento, o el trabajo y el dinero comiéndose el tiempo para el amor."
       ]
     },
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el As de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, es alguien confiable y con los pies en la tierra: cumple lo que promete, le gusta tener un plan y demuestra cariño con ayuda concreta. Como sentimiento, el As de Oros habla de un interés serio y constante: atracción que mira hacia el futuro y deseo de construir algo estable y seguro. Al revés, el interés existe pero avanza con cautela, frenado por dudas sobre la seguridad, o puesto más en lo práctico que en la cercanía."
+        "Con la moneda ofrecida sobre la palma, el As de Oros es alguien confiable y con los pies en la tierra: cumple lo que promete, le gusta tener un plan y demuestra cariño con ayuda concreta. En cuestiones del corazón, la carta habla de un interés serio y constante: atracción que mira hacia el futuro y deseo de construir algo estable y seguro. Al revés, el interés existe pero avanza con cautela, frenado por dudas sobre la seguridad, o puesto más en lo práctico que en la cercanía."
       ]
     },
     {
@@ -150,11 +150,11 @@
     },
     {
       "q": "¿El As de Oros significa dinero?",
-      "a": "Muchas veces, sí: hoy se lee como la carta de dinero más clara entre los cuatro Ases, con ingresos y una base material mejor. El propio Waite anotó que las cartas de este palo no tratan especialmente de dinero (p. 254). La carta da un significado, no una cifra con la que contar."
+      "a": "Muchas veces, sí: hoy se lee como la carta de dinero más clara entre los cuatro Ases, con ingresos y una base material mejor. Eso sí, el propio Waite anotó que las cartas de este palo no tratan especialmente de dinero (p. 254). La carta da un significado, no una cifra con la que contar."
     },
     {
       "q": "¿El As de Oros significa un trabajo nuevo?",
-      "a": "Puede. Un puesto nuevo, un primer cliente, una capacitación que lleva a un empleo o un pequeño negocio que toma forma son lecturas típicas. Describe una puerta con suelo firme, no el resultado de una solicitud concreta."
+      "a": "Puede ser. Un puesto nuevo, un primer cliente, una capacitación que lleva a un empleo o un pequeño negocio que toma forma son lecturas típicas. Describe una puerta con suelo firme, no el resultado de una solicitud concreta."
     }
   ],
   "related": [
@@ -184,39 +184,57 @@
   },
   "citations": [
     {
-      "pages": [280],
+      "pages": [
+        280
+      ],
       "text": "A hand—issuing, as usual, from a cloud—holds up a pentacle"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "typifying the correspondence of the four elements in human nature"
     },
     {
-      "pages": [280],
+      "pages": [
+        280
+      ],
       "text": "Perfect contentment, felicity, ecstasy; also speedy intelligence; gold. Reversed: The evil side of wealth"
     },
     {
-      "pages": [280],
+      "pages": [
+        280
+      ],
       "text": "In any case it shews prosperity, comfortable material conditions, but whether these are of advantage to the possessor will depend on whether the card is reversed or not"
     },
     {
-      "pages": [293],
+      "pages": [
+        293
+      ],
       "text": "Ace.—The most favourable of all cards"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "because the cards do not happen to deal especially with questions of money"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "A hand issuing from a cloud grasps a stout wand or club"
     },
     {
-      "pages": [262],
+      "pages": [
+        262
+      ],
       "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child"
     },
     {
-      "pages": [262],
+      "pages": [
+        262
+      ],
       "text": "Gain, riches; family matters"
     }
   ],
@@ -231,7 +249,13 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [196, 254, 262, 280, 293],
+      "pages": [
+        196,
+        254,
+        262,
+        280,
+        293
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

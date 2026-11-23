@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el As de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el As de Bastos es alguien lleno de ideas y de arranque: quien propone el viaje, quien lanza el proyecto en la oficina. También puedes ser tú, justo cuando algo nuevo te atrapa. Como sentimiento, la carta significa atracción, entusiasmo y deseo recién encendido, esa etapa en la que alguien siente curiosidad y ganas de acercarse. Al revés, el interés existe pero es inestable: se prende y se enfría, o se queda a medias por timidez."
+        "El bastón en flor del As de Bastos retrata a alguien lleno de ideas y de arranque: quien propone el viaje, quien lanza el proyecto en la oficina. También puedes ser tú, justo cuando algo nuevo te atrapa. En los primeros afectos, la carta significa atracción, entusiasmo y deseo recién encendido, esa etapa en la que alguien siente curiosidad y ganas de acercarse. Al revés, el interés existe pero es inestable: se prende y se enfría, o se queda a medias por timidez."
       ]
     },
     {
@@ -179,37 +179,53 @@
   "waite": {
     "quote": "Creation, invention, enterprise, the powers which result in these; principle, beginning, source … Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy.",
     "quote_lang": "en",
-    "pages": [196],
+    "pages": [
+      196
+    ],
     "translation": "Creación, invención, emprendimiento, los poderes que dan lugar a todo esto; principio, comienzo, fuente … Al revés: caída, decadencia, ruina, perdición, perecer; también cierta alegría nublada.",
     "harsh": true
   },
   "citations": [
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "A hand issuing from a cloud grasps a stout wand or club"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "according to another account, money, fortune, inheritance"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "Creation, invention, enterprise, the powers which result in these"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "a young man stands in the act of proclamation"
     },
     {
-      "pages": [252],
+      "pages": [
+        252
+      ],
       "text": "A hand issues from a cloud, grasping a sword"
     },
     {
-      "pages": [172],
+      "pages": [
+        172
+      ],
       "text": "The Wands throughout this suit are always in leaf, as it is a suit of life and animation"
     }
   ],
@@ -224,7 +240,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [172, 176, 196, 252],
+      "pages": [
+        172,
+        176,
+        196,
+        252
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

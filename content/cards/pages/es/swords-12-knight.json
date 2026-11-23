@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Caballero de Espadas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Caballero de Espadas es alguien rápido, audaz y directo, movido por sus ideas y con poca paciencia para esperar: quien debate, quien se lanza primero, quien sale disparado delante del grupo. Si eres tú, marca una etapa de avanzar a toda marcha. Como sentimiento, su significado tradicional es un interés fuerte y veloz: atracción que quiere actuar ya y lo dice de frente. Al revés, los sentimientos se vuelven impulsivos y cambiantes, de mucho a nada, o salen como comentarios descuidados que cortan."
+        "Lanzado a todo galope, el Caballero de Espadas es alguien rápido, audaz y directo, movido por sus ideas y con poca paciencia para esperar: quien debate, quien se lanza primero, quien sale disparado delante del grupo. Si eres tú, marca una etapa de avanzar a toda marcha. Un interés fuerte y veloz es lo que la carta significa tradicionalmente como sentimiento: atracción que quiere actuar ya y lo dice de frente. Al revés, los sentimientos se vuelven impulsivos y cambiantes, de mucho a nada, o salen como comentarios descuidados que cortan."
       ]
     },
     {
@@ -128,7 +128,7 @@
       "id": "not_to_confuse",
       "heading": "¿Cómo distinguir el Caballero de Espadas del Caballero de Bastos y de la Sota de Espadas?",
       "paragraphs": [
-        "El Caballero de Bastos también va de camino, pero Waite aclara que, aunque lleva cota de malla, no va a la guerra (p. 174); hoy se lee como aventura y pasión. El de Espadas va tras una idea y carga contra ella; el de Bastos sigue su entusiasmo.",
+        "El Caballero de Bastos también va de camino, pero Waite aclara que, aunque lleva cota de malla, no va a la guerra (p. 174); hoy se lee como aventura y pasión. El de Espadas va tras una idea y se lanza por ella; el de Bastos sigue su entusiasmo.",
         "La Sota de Espadas, según Waite, camina deprisa con la espada vertical entre las dos manos (p. 232), y se lee como curiosidad y vigilancia. La Sota reúne información; el Caballero actúa con ella."
       ]
     },
@@ -153,7 +153,7 @@
     },
     {
       "q": "¿El Caballero de Espadas significa que me quiere?",
-      "a": "En el amor, esta carta habla de un interés que se muestra con prisa y de frente, más que de un cariño tranquilo y asentado. Es conquista e intensidad; si eso se convierte en algo duradero ya queda fuera de lo que esta carta describe."
+      "a": "No como un cariño tranquilo y asentado. En el amor, esta carta habla de un interés que se muestra con prisa y de frente. Es conquista e intensidad; si eso se convierte en algo duradero ya queda fuera de lo que esta carta describe."
     }
   ],
   "related": [
@@ -184,27 +184,39 @@
   },
   "citations": [
     {
-      "pages": [230],
+      "pages": [
+        230
+      ],
       "text": "He is riding in full course, as if scattering his enemies"
     },
     {
-      "pages": [230],
+      "pages": [
+        230
+      ],
       "text": "He might almost be Galahad, whose sword is swift and sure because he is clean of heart"
     },
     {
-      "pages": [230],
+      "pages": [
+        230
+      ],
       "text": "Skill, bravery, capacity, defence, address, enmity, wrath, war, destruction, opposition, resistance, ruin"
     },
     {
-      "pages": [230],
+      "pages": [
+        230
+      ],
       "text": "Reversed: Imprudence, incapacity, extravagance"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "although mailed is not on a warlike errand"
     },
     {
-      "pages": [232],
+      "pages": [
+        232
+      ],
       "text": "A lithe, active figure holds a sword upright in both hands, while in the act of swift walking"
     }
   ],
@@ -219,7 +231,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [174, 230, 232],
+      "pages": [
+        174,
+        230,
+        232
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

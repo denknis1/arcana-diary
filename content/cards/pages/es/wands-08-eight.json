@@ -103,7 +103,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Ocho de Bastos como persona y como sentimiento?",
       "paragraphs": [
-        "En una persona, el Ocho de Bastos es alguien de reacciones rápidas y mucho ánimo: contesta al momento, hace planes sobre la marcha y le gusta que las cosas se muevan. Como sentimiento, habla de una atracción fuerte y veloz, de emoción y de ganas de ver a dónde llega todo: las flechas del amor de Waite (p. 182), en versión moderna. Al revés, los sentimientos se enredan: celos, señales confusas, dudas o un interés que perdió velocidad."
+        "Ocho bastones cruzando el aire: el Ocho de Bastos es alguien de reacciones rápidas y mucho ánimo: contesta al momento, hace planes sobre la marcha y le gusta que las cosas se muevan. Como sentimiento, habla de una atracción fuerte y veloz, de emoción y de ganas de ver a dónde llega todo: las flechas del amor de Waite (p. 182), en versión moderna. Al revés, los sentimientos se enredan: celos, señales confusas, dudas o un interés que perdió velocidad."
       ]
     },
     {
@@ -175,29 +175,41 @@
   "waite": {
     "quote": "Activity in undertakings … swiftness … great haste, great hope … the arrows of love. Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels",
     "quote_lang": "en",
-    "pages": [182],
+    "pages": [
+      182
+    ],
     "translation": "Actividad en lo que se emprende … rapidez … mucha prisa, mucha esperanza … las flechas del amor. Al revés: flechas de celos, disputa interna, punzadas de conciencia, riñas.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [182],
+      "pages": [
+        182
+      ],
       "text": "The card represents motion through the immovable—a flight of wands through an open country; but they draw to the term of their course."
     },
     {
-      "pages": [182],
+      "pages": [
+        182
+      ],
       "text": "Activity in undertakings, the path of such activity, swiftness, as that of an express messenger; great haste, great hope, speed towards an end which promises assured felicity; generally, that which is on the move; also the arrows of love."
     },
     {
-      "pages": [182],
+      "pages": [
+        182
+      ],
       "text": "Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels; and domestic disputes for persons who are married."
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "He is shewn as if upon a journey, armed with a short wand"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     }
   ],
@@ -212,7 +224,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [174, 182],
+      "pages": [
+        174,
+        182
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

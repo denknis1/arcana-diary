@@ -10,7 +10,7 @@
     "in_sentence": "the Ten of Pentacles"
   },
   "title": "Ten of Pentacles Tarot Meaning: Upright & Reversed",
-  "description": "Ten of Pentacles upright: legacy, family, long-term security; reversed: family tension. Love, work, money, Waite's 1911 text and the 1909 card. Ask away.",
+  "description": "Ten of Pentacles upright: legacy, family, long-term security; reversed: family tension. Love, work, money and Waite's 1911 text. Ask your question.",
   "h1": "Ten of Pentacles Tarot Card Meaning",
   "image_alt": "Ten of Pentacles, 1909 Rider–Waite–Smith card: a white-haired old man sits with two white dogs under a stone archway while a couple and a child stand nearby, ten pentacles across the scene.",
   "facts": {
@@ -40,7 +40,7 @@
       "id": "on_the_card",
       "heading": "What is on the Ten of Pentacles card?",
       "paragraphs": [
-        "Three generations meet at the gate of a family estate. In Waite's scene a couple stands under the arch that leads into the house and its lands, and their child \"looks curiously at two dogs accosting an ancient personage seated in the foreground\" (p. 262). Waite adds one small touch: \"the child's hand is on one of them\" (p. 262).",
+        "Three generations meet at the gate of a family estate. In Waite's scene a couple stands under the arch that leads into the house and its lands, and the child with them \"looks curiously at two dogs accosting an ancient personage seated in the foreground\" (p. 262). Waite adds one small touch: \"the child's hand is on one of them\" (p. 262).",
         "On the 1909 card the old man has white hair and a long robe patterned with bunches of grapes and other designs. The younger man stands with his back to us, and the woman in red turns her head toward him. Ten pentacles are spread over the whole scene, from the top of the arch to the ground, and a shield with a castle hangs on the wall at the upper left. Through the arch you can see a tower, a red-roofed house and a pale blue sky; the great stone arch frames the top of the card."
       ]
     },
@@ -80,7 +80,7 @@
       "id": "work_money",
       "heading": "What does the Ten of Pentacles mean for work and money?",
       "paragraphs": [
-        "Ten coins over one household: this is wealth built over time, financial security, property, savings and family resources. At work the card suits family businesses, long careers, established companies and work that leaves something lasting behind. Reversed, it can mean arguments about money in a family, an unstable financial base, or a risky shortcut that puts at stake what took years to build."
+        "Ten coins over one household: this is wealth built over time, financial security, property, savings and family resources. At work the card suits family businesses, long careers, established companies and work that leaves something lasting behind. Upside down, the same coins can stand for arguments about money in a family, an unstable financial base, or a risky shortcut that puts at stake what took years to build."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "The Ten of Pentacles as a person and as feelings",
       "paragraphs": [
-        "As a person, the Ten of Pentacles is someone rooted and dependable who puts family first, values tradition and plans for the long term; it can also be an elder whose experience holds a family together. As feelings, the card means serious, committed affection: a wish to share a life, a home, a future and two families brought together. Reversed, those feelings are pulled between love and duty, weighed down by family expectations, money worries or a fear of commitment."
+        "An elder whose experience holds a family together, or anyone rooted and dependable who puts family first, values tradition and plans for the long term: that is the Ten of Pentacles as a person. Its feeling is serious, committed affection: a wish to share a life, a home, a future and two families brought together. Turned upside down, the heart is pulled between love and duty, weighed down by family expectations, money worries or a fear of commitment."
       ]
     },
     {
@@ -145,11 +145,11 @@
   "faq": [
     {
       "q": "Is the Ten of Pentacles a good or bad card?",
-      "a": "Good. Few cards in the deck are as steady, about lasting foundations, family and shared wealth. Reversed, it is not a bad sign either; it shows tension around money or tradition that can be talked through and rebuilt on your own terms."
+      "a": "Good. Few cards in the deck are as steady, about lasting foundations, family and shared wealth. Reversed, it shows tension around money or tradition that can be talked through and rebuilt on your own terms."
     },
     {
       "q": "Does the Ten of Pentacles mean an inheritance?",
-      "a": "Not as a forecast. Legacy in this card is the broad idea of what passes between generations: values, skills, a home and sometimes money. Waite's list names family matters and archives (p. 262), not a sum on its way to you. Read it as a question about what you have received and what you want to pass on."
+      "a": "Not as a forecast. Inheritance is one of the card's common modern meanings, as part of what passes between generations: values, skills, a home and sometimes money. Waite's list gives gain, riches and family matters (p. 262) and does not use the word. Read it as a question about what you have received and what you want to pass on."
     },
     {
       "q": "Is the Ten of Pentacles only about family?",
@@ -180,19 +180,28 @@
   },
   "citations": [
     {
-      "pages": [262],
+      "pages": [
+        262
+      ],
       "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground. The child's hand is on one of them."
     },
     {
-      "pages": [292, 293],
+      "pages": [
+        292,
+        293
+      ],
       "text": "Represents house or dwelling, and derives its value from other cards."
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "it is contemplated in wonder and ecstacy by a man and woman below"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "The two children dancing near them"
     }
   ],
@@ -207,7 +216,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [206, 262, 292, 293],
+      "pages": [
+        206,
+        262,
+        292,
+        293
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

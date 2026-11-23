@@ -80,7 +80,7 @@
       "id": "work_money",
       "heading": "¿Qué significa el Seis de Oros en el trabajo y el dinero?",
       "paragraphs": [
-        "Monedas que caen en manos abiertas: así se ve el lado económico de la carta, que habla de generosidad e intercambio justo, dinero compartido, un sueldo justo, un préstamo que se da o se paga, donativos y regalos. Puedes estar en posición de dar o recibiendo apoyo por un tiempo. En el trabajo, señala mentoría, reconocimiento repartido con justicia y jefes que respaldan a su gente."
+        "Monedas que caen en manos abiertas: así se ve el lado económico de la carta, que habla de generosidad e intercambio justo, dinero compartido, un sueldo justo, un préstamo que se da o se paga, donativos y regalos. Puedes estar en posición de dar o recibiendo apoyo por un tiempo. En la oficina o el taller se nota como mentoría, reconocimiento repartido con justicia y jefes que respaldan a su gente. Al revés, puede hablar de deudas que pesan, de un préstamo con condiciones incómodas o de una generosidad que va en un solo sentido."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Seis de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, es alguien generoso y justo: una mentora, un mecenas, esa amistad que ayuda sin hacer alarde. También puede ser alguien que por ahora está del lado de quien recibe. Como sentimiento, el Seis de Oros significa cariño y ganas de cuidar, deseo de dar y gratitud por lo recibido. Al revés, el sentimiento se desbalancea: dar para ganarse aprobación, la sensación de deber algo o una parte con más poder que la otra."
+        "El mercader de esta carta es alguien generoso y justo: una mentora, un mecenas, esa amistad que ayuda sin hacer alarde. Las figuras arrodilladas también cuentan: alguien que por ahora está del lado de quien recibe. El sentimiento del Seis de Oros es de cariño y ganas de cuidar: deseo de dar y gratitud por lo recibido. Al revés, el sentimiento se desbalancea: dar para ganarse aprobación, la sensación de deber algo o una parte con más poder que la otra."
       ]
     },
     {
@@ -124,7 +124,7 @@
       "id": "not_to_confuse",
       "heading": "¿Cómo distinguir el Seis de Oros del Cuatro de Oros?",
       "paragraphs": [
-        "Las dos cartas tratan de qué haces con lo que tienes. En el Cuatro de Oros una figura coronada abraza un oro con manos y brazos, y Waite la resume diciendo que se aferra a lo que tiene (p. 274); hoy se lee como seguridad y control. El Seis abre la mano: el Cuatro guarda los recursos cerca, el Seis los pone a circular."
+        "Las dos cartas tratan de qué haces con lo que tienes. En el Cuatro de Oros una figura coronada abraza un oro con manos y brazos, y Waite la resume diciendo que se aferra a lo que tiene (p. 274); hoy se lee como seguridad y control. El Seis abre la mano: lo que el Cuatro aprieta contra el pecho, el Seis lo reparte."
       ]
     },
     {
@@ -170,36 +170,50 @@
     "pages": [
       270
     ],
-    "translation": "Regalos, dones, gratificación; otra versión dice atención, vigilancia; ahora es el momento propicio, prosperidad presente, etc. Al revés: deseo, codicia, envidia, celos, ilusión.",
+    "translation": "Regalos, dones, gratificación; otra versión dice atención, vigilancia; ahora es el momento propicio, prosperidad presente, etc. Al revés: deseo, codicia, envidia, celos, espejismo.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [270],
+      "pages": [
+        270
+      ],
       "text": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed"
     },
     {
-      "pages": [270],
+      "pages": [
+        270
+      ],
       "text": "It is a testimony to his own success in life, as well as to his goodness of heart"
     },
     {
-      "pages": [270],
+      "pages": [
+        270
+      ],
       "text": "Presents, gifts, gratification; another account says attention, vigilance; now is the accepted time, present prosperity"
     },
     {
-      "pages": [293],
+      "pages": [
+        293
+      ],
       "text": "The present must not be relied on"
     },
     {
-      "pages": [270],
+      "pages": [
+        270
+      ],
       "text": "Reversed: Desire, cupidity, envy, jealousy, illusion"
     },
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms"
     },
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "He holds to that which he has"
     }
   ],
@@ -214,7 +228,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [270, 274, 293],
+      "pages": [
+        270,
+        274,
+        293
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

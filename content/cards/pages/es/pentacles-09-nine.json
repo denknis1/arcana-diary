@@ -21,7 +21,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "El Nueve de Oros habla de autonomía, disfrute y logro propio: la comodidad que te ganaste con tu trabajo y la libertad de gozarla. Al revés, puede ser depender de otros más de lo que quisieras o no poder disfrutar lo que tienes. Es una carta serena y generosa. Responde que sí: el jardín ya dio fruto.",
+  "capsule": "El Nueve de Oros habla de autonomía, disfrute y logro propio: la comodidad que te ganaste con tu trabajo y la libertad de gozarla. Al revés, puede ser depender de otros más de lo que quisieras o no poder disfrutar lo que tienes. Serena, solo pide no medirte por lo que tienes. Responde que sí: el jardín ya dio fruto.",
   "keywords": {
     "upright": [
       "autonomía",
@@ -66,7 +66,7 @@
       "heading": "¿Qué significa el Nueve de Oros al revés?",
       "paragraphs": [
         "Al revés, la carta puede hablar de dependencia: apoyarte en el dinero o en la aprobación de alguien más de lo que te gustaría. También de exceso de trabajo, cuando persigues la comodidad con tanta prisa que no queda tiempo para gozarla, o de un lujo vacío que tapa la preocupación. Debajo suele haber una autoestima frágil, como si lo que tienes decidiera lo que vales.",
-        "La bribonería y la mala fe que Waite pone al revés (p. 264) miran hacia afuera, al trato deshonesto; la lectura moderna mira primero el suelo que pisas. Date un momento para apreciar lo que has logrado, tal como está hoy."
+        "La bribonería y la mala fe que Waite pone al revés (p. 264) miran hacia afuera, al trato deshonesto; la lectura moderna mira primero el suelo que pisas. Date un momento para apreciar lo que has logrado."
       ]
     },
     {
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Nueve de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Nueve de Oros es alguien que salió adelante a pulso: independiente, con buen gusto, con orden en el dinero y a gusto con su propia compañía. Como sentimiento, la carta significa admiración y un cariño tranquilo y seguro: disfrutar un vínculo sin necesitarlo para sentirse en plenitud, y valorar el respeto y el tiempo de calidad más que el drama. Al revés, ese sentimiento se vuelve reservado o distante: una independencia que funciona como muro, o un interés que mira más el estatus que a la persona."
+        "Entre las vides, el Nueve de Oros es alguien que salió adelante a pulso: independiente, con buen gusto, con orden en el dinero y a gusto con su propia compañía. Para el corazón, la carta significa admiración y un cariño tranquilo y seguro: disfrutar un vínculo sin necesitarlo para sentirse en plenitud, y valorar el respeto y el tiempo de calidad más que el drama. Al revés, ese sentimiento se vuelve reservado o distante: una independencia que funciona como muro, o un interés que mira más el estatus que a la persona."
       ]
     },
     {
@@ -181,15 +181,21 @@
   },
   "citations": [
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "stands amidst a great abundance of grapevines in the garden of a manorial house. It is a wide domain, suggesting plenty in all things. Possibly it is her own possession and testifies to material well-being."
     },
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "Reversed: Roguery, deception, voided project, bad faith."
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein"
     }
   ],
@@ -204,7 +210,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [256, 264],
+      "pages": [
+        256,
+        264
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

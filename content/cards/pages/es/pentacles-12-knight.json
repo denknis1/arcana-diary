@@ -41,7 +41,7 @@
       "id": "on_the_card",
       "heading": "¿Qué hay en la carta del Caballero de Oros?",
       "paragraphs": [
-        "Un caballero con armadura monta un caballo negro y pesado que no se mueve, y sostiene una moneda frente a sí. Waite lo resume en pocas palabras: cabalga un caballo lento, resistente y pesado, y su propio aspecto se le parece (p. 258). También dice Waite que el Caballero muestra su símbolo, pero no lo mira (p. 258).",
+        "Un caballero con armadura monta un caballo negro y pesado que no se mueve, y sostiene una moneda frente a sí. Waite lo resume en pocas palabras: cabalga un caballo lento, resistente y pesado, y el jinete tiene ese mismo aire (p. 258). También dice Waite que el Caballero muestra su símbolo, pero no lo mira (p. 258).",
         "En la carta de 1909 el caballo lleva brida roja, y del casco del jinete y de la cabeza del animal salen ramitas verdes. Detrás se extiende un campo café, con surcos de arado, bajo un cielo amarillo, y a la derecha asoman unos arbolitos. Lo más grande de la carta es el caballo negro: ocupa casi todo el espacio."
       ]
     },
@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre el Caballero de Oros?",
       "paragraphs": [
         "La lista de Waite gira en torno a ser útil: servicio, interés, responsabilidad y rectitud, todo en el terreno práctico de cada día (p. 258). En la lista al revés, Waite pone esa misma cualidad detenida, de la ociosidad y el estancamiento al desánimo y el descuido (p. 258).",
-        "En su lista breve de significados adicionales, Waite lo llama un hombre útil, de descubrimientos útiles, y al revés, un hombre valiente sin empleo (p. 292)."
+        "En su lista breve de significados adicionales, Waite anota un hombre útil y descubrimientos útiles, y al revés, un hombre valiente sin empleo (p. 292)."
       ]
     },
     {
@@ -82,7 +82,7 @@
       "heading": "¿Qué significa el Caballero de Oros en el trabajo y el dinero?",
       "paragraphs": [
         "Es una carta de trabajo bien hecho: un proyecto largo que avanza por etapas, un puesto donde la constancia se nota, un oficio que se aprende repitiendo. Más que un ascenso rápido, habla de cumplir todos los días.",
-        "El mismo método ordena el dinero: un presupuesto que se respeta, cuentas al día, un ahorro que crece despacio. Al revés, puede hablar de dinero detenido por exceso de cautela, o de pagos y trámites que se dejan para después."
+        "El mismo método ordena el dinero: un presupuesto que se respeta, cuentas al día, un ahorro que crece despacio. Con el Caballero al revés, el dinero puede detenerse por exceso de cautela, o los pagos y trámites se dejan para después."
       ]
     },
     {
@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Caballero de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Caballero de Oros es alguien confiable que trabaja duro: paciente, algo reservado, más a gusto con un plan que con las sorpresas; también puedes ser tú, en una etapa de esfuerzo constante. Como sentimiento, habla de un interés serio y leal que crece despacio: cariño que se demuestra con hechos, compromiso, ganas de construir algo duradero sin apurarse. Al revés, ese sentimiento puede quedarse quieto o parecer distante: hay afecto, pero no se dice, o la rutina lo va apagando."
+        "Confiable, paciente, algo reservado, más a gusto con un plan que con las sorpresas: así se ve el Caballero de Oros como persona, alguien que trabaja duro; también puedes ser tú, en una etapa de esfuerzo constante. Trae un interés serio y leal que crece despacio: cariño que se demuestra con hechos, compromiso, ganas de construir algo duradero sin apurarse. Cuando sale al revés, ese interés puede quedarse quieto o parecer distante: hay afecto, pero no se dice, o la rutina lo va apagando."
       ]
     },
     {
@@ -190,23 +190,33 @@
   },
   "citations": [
     {
-      "pages": [258],
+      "pages": [
+        258
+      ],
       "text": "He rides a slow, enduring, heavy horse, to which his own aspect corresponds"
     },
     {
-      "pages": [258],
+      "pages": [
+        258
+      ],
       "text": "He exhibits his symbol, but does not look therein"
     },
     {
-      "pages": [292],
+      "pages": [
+        292
+      ],
       "text": "An useful man; useful discoveries. Reversed: A brave man out of employment."
     },
     {
-      "pages": [260],
+      "pages": [
+        260
+      ],
       "text": "looking intently at the pentacle which hovers over his raised hands"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     }
   ],
@@ -221,7 +231,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [174, 258, 260, 292],
+      "pages": [
+        174,
+        258,
+        260,
+        292
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

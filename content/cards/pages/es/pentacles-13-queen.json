@@ -41,7 +41,7 @@
       "id": "on_the_card",
       "heading": "¿Qué hay en la carta de la Reina de Oros?",
       "paragraphs": [
-        "Una reina coronada está sentada en un trono de piedra tallada, en medio de un jardín; sostiene con las dos manos una moneda grande en el regazo y la mira. Waite describe su rostro como el de una mujer morena cuyas cualidades se resumen en la grandeza de alma (p. 256). Según Waite, contempla su símbolo y quizá ve mundos en él (p. 256).",
+        "Una reina coronada está sentada en un trono de piedra tallada, en un jardín; sostiene con las dos manos una moneda grande en el regazo y la mira. Waite describe su rostro como el de una mujer morena cuyas cualidades se resumen en la grandeza de alma (p. 256). Según Waite, contempla su símbolo y quizá ve mundos en él (p. 256).",
         "En la carta de 1909 un arco de rosas y hojas cruza la parte de arriba, y hay flores junto al trono. Ella lleva un vestido rojo y un velo verde; al fondo se ven montañas azules y agua. En la esquina de abajo, a la derecha, aparece un conejito en el pasto. Lo más grande es la moneda del regazo, hacia la que se inclina toda la figura."
       ]
     },
@@ -50,7 +50,7 @@
       "heading": "¿Qué escribió Waite sobre la Reina de Oros?",
       "paragraphs": [
         "La lista de Waite habla de riqueza y bienestar: opulencia, generosidad, esplendor, seguridad y libertad (p. 256). La lista al revés de Waite es dura, con el mal y el miedo junto a la sospecha y la desconfianza (p. 256); en Arcana Diary ese lado se lee como inseguridad y preocupación por la casa y el dinero.",
-        "Además de calidez, Waite le atribuye una inteligencia seria (p. 256)."
+        "Además de grandeza de alma, Waite le atribuye una inteligencia seria (p. 256)."
       ]
     },
     {
@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa la Reina de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, la Reina de Oros es alguien cálido, práctico y generoso, que hace sentir en casa a los demás, administra bien y ayuda con hechos; puede ser una figura materna, una amistad, alguien del trabajo o tú. Como sentimiento, es un cariño entregado y protector: la tranquilidad de estar con alguien, las ganas de cuidar a esa persona y de construir juntos una vida cómoda. Al revés, ese cuidado puede sentirse asfixiante o de un solo lado, o la preocupación y la inseguridad le ganan al cariño."
+        "Sentada en su jardín, la Reina de Oros es alguien cálido, práctico y generoso, que hace sentir en casa a los demás, administra bien y ayuda con hechos; puede ser una figura materna, una amistad, alguien del trabajo o tú. En lo emocional, es un cariño entregado y protector: la tranquilidad de estar con alguien, las ganas de cuidarla y de construir juntos una vida cómoda. Al revés, ese cuidado puede sentirse asfixiante o de un solo lado, o la preocupación y la inseguridad le ganan al cariño."
       ]
     },
     {
@@ -190,27 +190,39 @@
   },
   "citations": [
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "whose qualities might be summed up in the idea of greatness of soul"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she contemplates her symbol and may see worlds therein"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she has also the serious cast of intelligence"
     },
     {
-      "pages": [264],
+      "pages": [
+        264
+      ],
       "text": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines in the garden of a manorial house"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "A field of corn is ripening in front of her, and beyond there is a fall of water"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "because the cards do not happen to deal especially with questions of money"
     }
   ],
@@ -225,7 +237,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [80, 254, 256, 264],
+      "pages": [
+        80,
+        254,
+        256,
+        264
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

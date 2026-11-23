@@ -41,7 +41,7 @@
       "id": "on_the_card",
       "heading": "¿Qué hay en la carta de la Sota de Espadas?",
       "paragraphs": [
-        "Un joven camina sobre una colina áspera con la espada levantada entre las dos manos y voltea a ver por encima del hombro. Waite lo describe ágil y alerta, mirando para un lado y para otro, como si esperara que apareciera un enemigo en cualquier momento (p. 232). La espada en alto es lo más grande del dibujo.",
+        "Un joven camina sobre una colina áspera con la espada levantada entre las dos manos y voltea a ver por encima del hombro. Waite lo describe ágil y alerta, mirando para un lado y para otro, como si esperara que apareciera un enemigo en cualquier momento (p. 232). La espada en alto, que se sale por el borde de arriba, es el símbolo principal del dibujo.",
         "En la carta de 1909 el viento le revuelve el pelo y dobla un arbolito abajo a la izquierda, y una parvada de pájaros pequeños cruza el cielo azul. Lleva una túnica rosada con mangas y mallas amarillas y botas rojizas; detrás se amontonan nubes blancas. Waite añade que el terreno es accidentado y que las nubes se juntan de forma revuelta (p. 232)."
       ]
     },
@@ -80,7 +80,7 @@
       "heading": "¿Qué significa la Sota de Espadas en el trabajo y el dinero?",
       "paragraphs": [
         "Investigar, estudiar, aprender una habilidad nueva: esos son los temas de trabajo de la Sota, junto con ideas frescas para la junta y puestos donde cuentan el análisis o la comunicación.",
-        "Ojo atento también con la cartera: leer la letra pequeña, comparar precios, preguntar antes de pagar. Al revés, puede ser decidir por rumores o con información a medias."
+        "Ojo atento también con la cartera: leer la letra chiquita, comparar precios, preguntar antes de pagar. Al revés, puede ser decidir por rumores o con información a medias."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa la Sota de Espadas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, la Sota de Espadas es una mente joven o de espíritu joven: curiosa, rápida, platicadora, a veces inquieta o demasiado directa. Puede ser alguien que estudia, alguien que acaba de llegar, quien hace muchas preguntas, o tú en una etapa de aprendizaje. Como sentimiento, su significado tradicional es interés con cautela: curiosidad por alguien, ganas de platicar y saber más antes de confiar. Al revés, habla de sentimientos reservados o encontrados: señales que se contradicen, o distancia marcada con palabras a la defensiva."
+        "Con la espada en alto, la Sota de Espadas es una mente joven o de espíritu joven: curiosa, rápida, platicadora, a veces inquieta o demasiado directa. Puede ser alguien que estudia, alguien que acaba de llegar, quien hace muchas preguntas, o tú en una etapa de aprendizaje. Sobre el afecto, su significado tradicional es interés con cautela: curiosidad por alguien, ganas de platicar y saber más antes de confiar. Al revés, habla de sentimientos reservados o encontrados: señales que se contradicen, o distancia marcada con palabras a la defensiva."
       ]
     },
     {
@@ -153,7 +153,7 @@
     },
     {
       "q": "¿La Sota de Espadas es un hombre o una mujer?",
-      "a": "Cualquiera de los dos. Waite dibuja a un muchacho y habla de él en masculino (p. 232), pero en una tirada la Sota describe una forma de pensar que cualquiera puede tener, a cualquier edad: curiosa, rápida, atenta. También puede describirte a ti."
+      "a": "Cualquiera de los dos. Waite describe una figura ágil y habla de ella en masculino (p. 232), pero en una tirada la Sota describe una forma de pensar que cualquiera puede tener, a cualquier edad: curiosa, rápida, atenta. También puede describirte a ti."
     }
   ],
   "related": [
@@ -179,32 +179,44 @@
     "pages": [
       232
     ],
-    "translation": "Autoridad, supervisión, servicio secreto, vigilancia, espionaje, examen … Al revés: el lado más malo de estas cualidades; lo imprevisto, la falta de preparación; también se insinúa enfermedad.",
+    "translation": "Autoridad, supervisión, servicio secreto, vigilancia, espionaje, examen … Al revés: el lado más maligno de estas cualidades; lo imprevisto, la falta de preparación; también se insinúa enfermedad.",
     "harsh": true
   },
   "citations": [
     {
-      "pages": [232],
+      "pages": [
+        232
+      ],
       "text": "He is alert and lithe, looking this way and that, as if an expected enemy might appear at any moment"
     },
     {
-      "pages": [232],
+      "pages": [
+        232
+      ],
       "text": "He is passing over rugged land, and about his way the clouds are collocated wildly"
     },
     {
-      "pages": [232],
+      "pages": [
+        232
+      ],
       "text": "Authority, overseeing, secret service, vigilance, spying, examination, and the qualities thereto belonging. Reversed: More evil side of these qualities; what is unforeseen, unprepared state"
     },
     {
-      "pages": [291],
+      "pages": [
+        291
+      ],
       "text": "Page.—An indiscreet person will pry into the Querent's secrets. Reversed: Astonishing news."
     },
     {
-      "pages": [230],
+      "pages": [
+        230
+      ],
       "text": "He is riding in full course, as if scattering his enemies"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "a young man stands in the act of proclamation"
     }
   ],
@@ -219,7 +231,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [176, 230, 232, 291],
+      "pages": [
+        176,
+        230,
+        232,
+        291
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

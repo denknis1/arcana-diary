@@ -82,7 +82,7 @@
       "id": "work_money",
       "heading": "¿Qué significa el Siete de Espadas en el trabajo y el dinero?",
       "paragraphs": [
-        "Pensar con anticipación, proteger una idea, leer el ambiente antes de moverte: esa es la estrategia útil de esta carta en el trabajo. Su otra cara es la grilla de oficina, el mérito que alguien se lleva callado o las reglas que se doblan para avanzar.",
+        "Pensar con anticipación, proteger una idea, tantear el terreno antes de moverte: esa es la estrategia útil de esta carta en el trabajo. Su otra cara es la grilla de oficina, el mérito que alguien se lleva callado o las reglas que se doblan para avanzar.",
         "Costos escondidos, letras chiquitas y tratos que parecen mejores de lo que son: eso dice la carta del dinero, así que lleva tus cuentas en orden. Al revés, un asunto de dinero que has evitado puede pedir que lo enfrentes."
       ]
     },
@@ -182,19 +182,27 @@
   },
   "citations": [
     {
-      "pages": [240],
+      "pages": [
+        240
+      ],
       "text": "A man in the act of carrying away five swords rapidly; the two others of the card remain stuck in the ground. A camp is close at hand."
     },
     {
-      "pages": [240],
+      "pages": [
+        240
+      ],
       "text": "The design is uncertain in its import, because the significations are widely at variance with each other."
     },
     {
-      "pages": [244],
+      "pages": [
+        244
+      ],
       "text": "A disdainful man looks after two retreating and dejected figures."
     },
     {
-      "pages": [244],
+      "pages": [
+        244
+      ],
       "text": "He is the master in possession of the field."
     }
   ],
@@ -209,7 +217,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [240, 244],
+      "pages": [
+        240,
+        244
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

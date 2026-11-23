@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "The Knight of Cups as a person and as feelings",
       "paragraphs": [
-        "Taken as a person, the Knight of Cups is a romantic, a charmer, someone who leads with feeling: an artist, a suitor, a friend who arrives with an invitation. It can also be you, ready to act on what your heart says. As feelings, the card traditionally stands for romantic interest, admiration and the wish to show affection with a gesture. Reversed, those same feelings turn changeable: attraction mixed with moodiness, idealizing from a distance, or warm words not yet matched by steps."
+        "Riding slowly with his cup held out, the Knight of Cups is a romantic, a charmer, someone who leads with feeling: an artist, a suitor, a friend who arrives with an invitation. It can also be you, ready to act on what your heart says. As feelings, the card traditionally stands for romantic interest, admiration and the wish to show affection with a gesture. Reversed, those same feelings turn changeable: attraction mixed with moodiness, idealizing from a distance, or warm words not yet matched by steps."
       ]
     },
     {
@@ -182,33 +182,47 @@
   "waite": {
     "quote": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement. Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud.",
     "quote_lang": "en",
-    "pages": [202],
+    "pages": [
+      202
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Graceful, but not warlike; riding quietly, wearing a winged helmet, referring to those higher graces of the imagination which sometimes characterize this card"
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "He too is a dreamer, but the images of the side of sense haunt him in his vision"
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement"
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     },
     {
-      "pages": [204],
+      "pages": [
+        204
+      ],
       "text": "It is the pictures of the mind taking form"
     }
   ],
@@ -223,7 +237,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [174, 202, 204],
+      "pages": [
+        174,
+        202,
+        204
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

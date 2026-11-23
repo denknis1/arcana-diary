@@ -12,7 +12,7 @@
   "title": "Six of Swords Tarot Card Meaning: Upright, Reversed & Love",
   "description": "Six of Swords upright: transition, moving on, calmer waters; reversed: stuck halfway. Love, work, advice and Waite's 1911 text. Ask your question.",
   "h1": "Six of Swords Tarot Card Meaning",
-  "image_alt": "Six of Swords, 1909 Rider–Waite–Smith card: a ferryman poles a boat with six upright swords and two hooded passengers toward a far shore.",
+  "image_alt": "Six of Swords, 1909 Rider–Waite–Smith card: a ferryman poles a boat with six upright swords and two passengers, one hooded, toward a far shore.",
   "facts": {
     "arcana": "minor",
     "suit": "swords",
@@ -20,7 +20,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "The Six of Swords means transition and moving on: a quiet journey away from trouble toward calmer waters. Reversed, the crossing stalls halfway, or old worries come along. It is a gentle card that backs slow progress over a quick fix. As a yes or no answer it is not clear yet, since the boat is still mid-crossing.",
+  "capsule": "The Six of Swords means transition and moving on: a quiet journey away from trouble toward calmer waters. Reversed, the crossing stalls halfway, or old worries come along. It is a kind card that favors slow progress over a quick fix. As a yes or no answer it is not clear yet, since the boat is still mid-crossing.",
   "keywords": {
     "upright": [
       "transition",
@@ -48,7 +48,7 @@
       "id": "waite",
       "heading": "What did Waite write about the Six of Swords?",
       "paragraphs": [
-        "Waite keeps this card practical (p. 242): a trip by water, a route, an envoy or agent sent on an errand, an expedient that gets a thing done. His extra notes promise that \"the voyage will be pleasant\" (p. 291). His reversed list turns to speaking out, with a declaration, a confession, something made public, and in one account a proposal of love (p. 242).",
+        "Waite keeps this card practical (p. 242): a trip by water, a route, an envoy or agent sent on an errand, an expedient that gets a thing done. Among his additional meanings Waite keeps one old fortune-telling line, \"the voyage will be pleasant\" (p. 291); Arcana Diary does not read it as a forecast about any trip. His reversed list turns to speaking out, with a declaration, a confession, something made public, and in one account a proposal of love (p. 242).",
         "Reading the crossing as an inner one, leaving a hard time behind, is the modern meaning, not Waite's."
       ]
     },
@@ -73,7 +73,7 @@
       "id": "love",
       "heading": "What does the Six of Swords mean in love?",
       "paragraphs": [
-        "Waite records one account that reads the reversed card as a proposal of love (p. 242), a rare romantic note in this suit. The modern love meaning is about distance from pain: leaving a hard relationship or a painful chapter and heading toward something calmer.",
+        "Distance from pain is the modern love meaning: leaving a hard relationship or a painful chapter and heading toward something calmer. Waite records one account that reads the reversed card as a proposal of love (p. 242).",
         "Couples meet this card when they get through a rough patch side by side, or move to a new home together. Unattached, you may be letting an old heartbreak fall behind before looking ahead. Reversed, the past keeps pulling: a former bond that is hard to leave, or old hurt carried into something new."
       ]
     },
@@ -101,7 +101,7 @@
       "id": "in_a_reading",
       "heading": "The Six of Swords as a person and as feelings",
       "paragraphs": [
-        "As a person, the Six of Swords is someone in the middle of a change: quiet, a little worn, moving away from a hard time. It can also be the helper who carries others across, steady and calm like the ferryman. As feelings, the card means relief mixed with sadness, a longing for peace after trouble, sometimes shared and sometimes leading apart. Reversed, the feelings are stuck: unresolved hurt, a pull toward what was, or not being ready to move on."
+        "A crossing under way is the picture of the Six of Swords: it stands for someone in the middle of a change, quiet, a little worn, moving away from a hard time. It can also be the helper who carries others across, steady and calm like the ferryman. The feeling side is relief mixed with sadness, a longing for peace after trouble, sometimes shared and sometimes leading apart. Reversed, the feelings are stuck: unresolved hurt, a pull toward what was, or not being ready to move on."
       ]
     },
     {
@@ -146,7 +146,7 @@
   "faq": [
     {
       "q": "Is the Six of Swords a good or bad card?",
-      "a": "Mostly good, in a quiet way. It marks a turn away from difficulty, so it often appears once the worst has passed. It is not a card of instant joy: it asks for patience while things settle. Reversed, it shows where you are holding on, which is useful to know."
+      "a": "Mostly good, though never loudly so. It marks a turn away from difficulty, so it often appears once the worst has passed. It is not a card of instant joy: it asks for patience while things settle. Reversed, it shows where you are holding on, which is useful to know."
     },
     {
       "q": "Does the Six of Swords mean travel?",
@@ -181,19 +181,27 @@
   },
   "citations": [
     {
-      "pages": [242],
+      "pages": [
+        242
+      ],
       "text": "A ferryman carrying passengers in his punt to the further shore"
     },
     {
-      "pages": [242],
+      "pages": [
+        242
+      ],
       "text": "it may be noted that the work is not beyond his strength"
     },
     {
-      "pages": [291],
+      "pages": [
+        291
+      ],
       "text": "Six.—The voyage will be pleasant."
     },
     {
-      "pages": [210],
+      "pages": [
+        210
+      ],
       "text": "A man of dejected aspect is deserting the cups of his felicity"
     }
   ],
@@ -208,7 +216,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [210, 242, 291],
+      "pages": [
+        210,
+        242,
+        291
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

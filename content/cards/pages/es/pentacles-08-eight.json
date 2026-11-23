@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Ocho de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Ocho de Oros es alguien trabajador, un estudiante o un aprendiz: cuidadoso, confiable y con orgullo por hacer bien las cosas, a veces tan metido en su tarea que no levanta la vista. Como sentimiento, significa un interés constante y comprometido: ganas de esforzarse, de mostrar cariño con hechos más que con palabras y de construir algo real con el tiempo. Al revés, el sentimiento puede ser cumplido pero plano, con un esfuerzo que se hace por inercia, o una atención que se lleva el trabajo."
+        "Inclinado sobre su banco, el artesano del Ocho de Oros es alguien trabajador, un estudiante o un aprendiz: cuidadoso, confiable y con orgullo por hacer bien las cosas, a veces tan metido en su tarea que no levanta la vista. En el plano emocional, significa un interés constante y comprometido: ganas de esforzarse, de mostrar cariño con hechos más que con palabras y de construir algo real con el tiempo. Al revés, el sentimiento puede ser cumplido pero plano, con un esfuerzo que se hace por inercia, o una atención que se lleva el trabajo."
       ]
     },
     {
@@ -143,8 +143,8 @@
       "a": "Buena. Premia el esfuerzo y dice que tu trabajo cuenta, aunque nadie lo esté viendo. Solo pide constancia, y su sombra, al revés, es el trabajo sin gusto por perfeccionismo o aburrimiento. Para quien está aprendiendo algo nuevo, es de las cartas que más animan."
     },
     {
-      "q": "¿El Ocho de Oros significa un trabajo nuevo?",
-      "a": "Puede. Una capacitación, un puesto de aprendiz o un empleo donde aprendes sobre la marcha son lecturas comunes. Pero casi siempre describe cómo trabajas más que dónde: con paciencia, con cuidado, mejorando cada vez. El reconocimiento por la habilidad también entra en la lectura moderna, aunque la carta habla más del trabajo que del premio."
+      "q": "¿El Ocho de Oros es una carta de trabajo?",
+      "a": "Sobre todo, sí. Una capacitación, un puesto de aprendiz o un empleo donde aprendes sobre la marcha son lecturas comunes. Pero casi siempre describe cómo trabajas más que dónde: con paciencia, con cuidado, mejorando cada vez. El reconocimiento por la habilidad también entra en la lectura moderna, aunque la carta habla más del trabajo que del premio."
     },
     {
       "q": "¿El Ocho de Oros significa que esa persona no tiene tiempo para mí?",
@@ -175,27 +175,39 @@
   },
   "citations": [
     {
-      "pages": [266],
+      "pages": [
+        266
+      ],
       "text": "An artist in stone at his work, which he exhibits in the form of trophies"
     },
     {
-      "pages": [266],
+      "pages": [
+        266
+      ],
       "text": "Work, employment, commission, craftsmanship, skill in craft and business, perhaps in the preparatory stage"
     },
     {
-      "pages": [266],
+      "pages": [
+        266
+      ],
       "text": "Reversed: Voided ambition, vanity, cupidity, exaction, usury"
     },
     {
-      "pages": [266],
+      "pages": [
+        266
+      ],
       "text": "It may also signify the possession of skill, in the sense of the ingenious mind turned to cunning and intrigue"
     },
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "A sculptor at his work in a monastery"
     },
     {
-      "pages": [276],
+      "pages": [
+        276
+      ],
       "text": "The apprentice or amateur therein has received his reward and is now at work in earnest"
     }
   ],
@@ -210,7 +222,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [266, 276],
+      "pages": [
+        266,
+        276
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

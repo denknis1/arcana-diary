@@ -47,7 +47,7 @@
       "id": "waite",
       "heading": "What did Waite write about the King of Pentacles?",
       "paragraphs": [
-        "Waite's list (p. 254) gives valour and a practical, \"realizing\" intelligence: a head for business, sometimes for numbers, and success along those lines. His reversed list (p. 254) is blunt, with vice and corruption among its words; Arcana Diary does not read the card that way.",
+        "Waite's list (p. 254) gives valour and a practical, \"realizing\" intelligence: a head for business, sometimes for numbers, and success along those lines. Waite's reversed list (p. 254) is blunt, with vice and corruption among its words; Arcana Diary does not read the card that way.",
         "On the same page Waite notes that in many old packs this suit stood for coin and money, and that the meanings favor the change of name \"because the cards do not happen to deal especially with questions of money\" (p. 254). Among his extra meanings, Waite calls the King \"a rather dark man, a merchant, master, professor\" (p. 292)."
       ]
     },
@@ -56,7 +56,7 @@
       "heading": "What does the King of Pentacles mean upright?",
       "paragraphs": [
         "Abundance and security are this card's plain meaning: a life, a household or a business on firm ground because it was built with patience. The King is success that lasts rather than a lucky windfall, and leadership that looks after people as well as results.",
-        "The card can appear when you are in charge of something practical, or when years of steady work have given you something solid. It also describes generosity: the King shares what he has built. Waite's \"success in these paths\" (p. 254) fits this side well. What foundation are you building, and who does it hold up besides you?"
+        "The card can appear when you are in charge of something practical, or when years of steady work have given you something solid; Waite's \"success in these paths\" (p. 254) fits that side well. It also describes generosity: the King shares what he has built. What foundation are you building, and who does it hold up besides you?"
       ]
     },
     {
@@ -79,7 +79,7 @@
       "id": "work_money",
       "heading": "What does the King of Pentacles mean for work and money?",
       "paragraphs": [
-        "Grapes, a castle and a coin under his hand: abundance in its plain sense belongs to this King. It means financial security, wealth built slowly through work and sensible choices, a business that runs well. Reversed, it can mean greed, being rigid or anxious about money, or poor financial decisions made to protect status.",
+        "Grapes, a castle and a coin under his hand: abundance in its plain sense belongs to this King. It means financial security, wealth built slowly through work and sensible choices, a business that runs well. When the King is reversed, greed can take over, or rigidity and anxiety about money, or poor financial decisions made to protect status.",
         "In a career, the card is the experienced leader, owner or manager: practical, trusted and able to turn plans into results."
       ]
     },
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "The King of Pentacles as a person and as feelings",
       "paragraphs": [
-        "As a person, the King of Pentacles is successful, reliable and generous: a provider and protector, often good with money and business, calm under pressure; a boss, a mentor, a parent figure, or you in charge of something solid. As feelings, the card stands for loyal, serious commitment: a wish to provide, to protect and to build a stable life together. Reversed, those feelings can turn possessive or controlling, love tied to status or money, or care that stays practical but closed."
+        "A provider and protector is how the King of Pentacles shows up as a person: successful, reliable and generous, often good with money and business, calm under pressure; a boss, a mentor, a parent figure, or you in charge of something solid. In matters of feeling, the King means loyal, serious commitment: a wish to provide, to protect and to build a stable life together. Its reversed side can be possessive or controlling: love tied to status or money, or care that stays practical but closed."
       ]
     },
     {
@@ -188,35 +188,51 @@
   },
   "citations": [
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "The figure calls for no special description; the face is rather dark, suggesting also courage, but somewhat lethargic in tendency"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "The bull's head should be noted as a recurrent symbol on the throne"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "In many old Tarot packs this suit stood for current coin, money, deniers"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "because the cards do not happen to deal especially with questions of money"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "success in these paths"
     },
     {
-      "pages": [292],
+      "pages": [
+        292
+      ],
       "text": "A rather dark man, a merchant, master, professor"
     },
     {
-      "pages": [274],
+      "pages": [
+        274
+      ],
       "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet. He holds to that which he has"
     },
     {
-      "pages": [84],
+      "pages": [
+        84
+      ],
       "text": "seated on a throne, the arms of which are fronted by rams' heads"
     }
   ],
@@ -231,7 +247,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [84, 254, 274, 292],
+      "pages": [
+        84,
+        254,
+        274,
+        292
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

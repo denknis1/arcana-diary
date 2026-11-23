@@ -21,7 +21,7 @@
     "numeral": null,
     "also_called": []
   },
-  "capsule": "El Diez de Oros es la carta del legado, la familia y la estabilidad: un hogar, un patrimonio o unos valores que pasan de una generación a otra. Al revés, habla de tensión familiar, roces por dinero o raíces flojas. Es una carta sólida y generosa. Responde que sí, con bases firmes para tres generaciones.",
+  "capsule": "El Diez de Oros es la carta del legado, la familia y la estabilidad: un hogar, un patrimonio o unos valores que pasan de una generación a otra. Al revés, habla de tensión familiar, roces por dinero o raíces flojas. Es sólida, y pregunta si esa seguridad es idea tuya. Responde que sí, con bases firmes para tres generaciones.",
   "keywords": {
     "upright": [
       "legado",
@@ -81,7 +81,7 @@
       "id": "work_money",
       "heading": "¿Qué significa el Diez de Oros en el trabajo y el dinero?",
       "paragraphs": [
-        "Diez monedas sobre una sola casa: es riqueza construida con el tiempo, seguridad financiera, patrimonio, ahorros y recursos de familia. En lo laboral le van bien los negocios familiares, las carreras largas y el trabajo que deja algo duradero. Al revés, puede significar discusiones de familia por dinero o una base económica inestable."
+        "Diez monedas sobre una sola casa: es riqueza construida con el tiempo, seguridad financiera, patrimonio, ahorros y recursos de familia. En lo laboral le van bien los negocios familiares, las carreras largas y el trabajo que deja algo duradero. Su lado difícil son las discusiones de familia por dinero o una base económica inestable."
       ]
     },
     {
@@ -100,7 +100,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Diez de Oros como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Diez de Oros es alguien con raíces y de fiar, que pone a la familia primero, cuida las tradiciones y piensa a largo plazo; también puede ser una persona mayor cuya experiencia sostiene a la familia. Como sentimiento, la carta significa un cariño serio y comprometido: ganas de compartir la vida, un hogar, un futuro y dos familias que se unen. Al revés, ese sentimiento se debate entre el amor y el deber, con expectativas familiares, preocupaciones de dinero o miedo al compromiso."
+        "Alguien confiable y con raíces, que pone a la familia primero, cuida las tradiciones y piensa a largo plazo: así es el Diez de Oros como persona; también puede ser una persona mayor cuya experiencia sostiene a la familia. Su sentimiento es un cariño serio y comprometido: ganas de compartir la vida, un hogar, un futuro y dos familias que se unen. Con la carta al revés, el corazón se debate entre el amor y el deber, con expectativas familiares, preocupaciones de dinero o miedo al compromiso."
       ]
     },
     {
@@ -146,11 +146,11 @@
   "faq": [
     {
       "q": "¿El Diez de Oros es una carta buena o mala?",
-      "a": "Buena. Pocas cartas de la baraja son tan estables: habla de bases duraderas, de familia y de bienestar compartido. Al revés tampoco es mala señal; muestra tensiones por dinero o por tradición que se pueden platicar y reconstruir a tu manera."
+      "a": "Buena. Pocas cartas de la baraja son tan estables: habla de bases duraderas, de familia y de bienestar compartido. Al revés muestra tensiones por dinero o por tradición que se pueden platicar y reconstruir a tu manera."
     },
     {
       "q": "¿El Diez de Oros significa herencia?",
-      "a": "No como pronóstico. El legado de esta carta es lo que pasa de una generación a otra en sentido amplio: valores, oficios, una casa y a veces dinero. La lista de Waite habla de asuntos de familia y de archivos (p. 262), no de una suma que vaya a llegarte. Tómala como una pregunta sobre lo que recibiste y lo que quieres dejar."
+      "a": "No como pronóstico. La herencia es uno de los sentidos modernos más comunes de la carta, dentro de lo que pasa de una generación a otra: valores, oficios, una casa y a veces dinero. La lista de Waite da ganancia, riquezas y asuntos de familia (p. 262), sin usar esa palabra. Tómala como una pregunta sobre lo que recibiste y lo que quieres dejar."
     },
     {
       "q": "¿El Diez de Oros habla solo de familia?",
@@ -181,19 +181,28 @@
   },
   "citations": [
     {
-      "pages": [262],
+      "pages": [
+        262
+      ],
       "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground. The child's hand is on one of them."
     },
     {
-      "pages": [292, 293],
+      "pages": [
+        292,
+        293
+      ],
       "text": "Represents house or dwelling, and derives its value from other cards."
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "it is contemplated in wonder and ecstacy by a man and woman below"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "The two children dancing near them"
     }
   ],
@@ -208,7 +217,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [206, 262, 292, 293],
+      "pages": [
+        206,
+        262,
+        292,
+        293
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

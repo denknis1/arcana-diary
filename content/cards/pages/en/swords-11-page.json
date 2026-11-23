@@ -40,7 +40,7 @@
       "id": "on_the_card",
       "heading": "What is on the Page of Swords card?",
       "paragraphs": [
-        "A young figure strides across a rough hilltop, gripping a raised sword in both hands and glancing back over one shoulder. Waite pictures him \"looking this way and that, as if an expected enemy might appear at any moment\" (p. 232), walking over rugged ground while the clouds gather wildly around him (p. 232). The raised sword is the largest shape on the card.",
+        "A young figure strides across a rough hilltop, gripping a raised sword in both hands and glancing back over one shoulder. Waite pictures him \"looking this way and that, as if an expected enemy might appear at any moment\" (p. 232), walking over rugged ground while the clouds gather wildly around him (p. 232). The raised sword, cut off by the top edge of the card, is its main symbol.",
         "On the 1909 card his hair and the small tree at the lower left are blown by the same wind, and a flock of tiny birds crosses the blue sky. He wears a rose tunic with yellow sleeves and leggings and red boots, and white clouds pile up on both sides of him."
       ]
     },
@@ -98,7 +98,7 @@
       "id": "in_a_reading",
       "heading": "The Page of Swords as a person and as feelings",
       "paragraphs": [
-        "Seen as a person, the Page of Swords is a young or young-at-heart mind: curious, quick, talkative, sometimes restless or blunt. It can be a student, a newcomer, someone who asks a lot of questions, or you in a learning phase. As feelings, the card traditionally means interest mixed with caution: curiosity about someone, a wish to talk and find out more before trusting. Reversed, it stands for guarded or mixed feelings: signals that contradict each other, or distance kept through prickly, defensive words."
+        "With sword raised against the wind, the Page of Swords is a young or young-at-heart mind: curious, quick, talkative, sometimes restless or blunt. It can be a student, a newcomer, someone who asks a lot of questions, or you in a learning phase. Interest mixed with caution is what the card traditionally means as feelings: curiosity about someone, a wish to talk and find out more before trusting. Reversed, it stands for guarded or mixed feelings: signals that contradict each other, or distance kept through prickly, defensive words."
       ]
     },
     {
@@ -152,7 +152,7 @@
     },
     {
       "q": "Is the Page of Swords a man or a woman?",
-      "a": "Either. Waite draws a young figure and calls him he: \"He is alert and lithe\" (p. 232). In a spread, though, the Page describes a way of thinking that anyone can have, at any age: curious, quick and watchful. It can just as well describe you."
+      "a": "Either. Waite describes a lithe, active figure and writes of it as he: \"He is alert and lithe\" (p. 232). In a spread, though, the Page describes a way of thinking that anyone can have, at any age: curious, quick and watchful. It can just as well describe you."
     }
   ],
   "related": [
@@ -183,27 +183,39 @@
   },
   "citations": [
     {
-      "pages": [232],
+      "pages": [
+        232
+      ],
       "text": "He is alert and lithe, looking this way and that, as if an expected enemy might appear at any moment"
     },
     {
-      "pages": [232],
+      "pages": [
+        232
+      ],
       "text": "He is passing over rugged land, and about his way the clouds are collocated wildly"
     },
     {
-      "pages": [232],
+      "pages": [
+        232
+      ],
       "text": "Authority, overseeing, secret service, vigilance, spying, examination, and the qualities thereto belonging. Reversed: More evil side of these qualities; what is unforeseen, unprepared state"
     },
     {
-      "pages": [291],
+      "pages": [
+        291
+      ],
       "text": "Page.—An indiscreet person will pry into the Querent's secrets. Reversed: Astonishing news."
     },
     {
-      "pages": [230],
+      "pages": [
+        230
+      ],
       "text": "He is riding in full course, as if scattering his enemies"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "a young man stands in the act of proclamation"
     }
   ],
@@ -218,7 +230,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [176, 230, 232, 291],
+      "pages": [
+        176,
+        230,
+        232,
+        291
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

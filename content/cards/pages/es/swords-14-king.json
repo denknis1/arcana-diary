@@ -42,7 +42,7 @@
       "heading": "¿Qué hay en la carta del Rey de Espadas?",
       "paragraphs": [
         "Un rey está sentado de frente en un trono alto y sostiene en la mano derecha la espada desenvainada, recta y apenas inclinada. Waite dice que está sentado para juzgar, con el signo de su palo fuera de la vaina, y que recuerda a la figura de la Justicia entre los arcanos mayores (p. 226). La espada, que sube por encima de la corona, es lo más grande del dibujo.",
-        "En la carta de 1909 hay mariposas talladas en lo alto del respaldo, el rey viste una túnica azul claro con capa y capucha naranjas, y dos pájaros pequeños vuelan arriba a la derecha. Nubes bajas y árboles oscuros ocupan los bordes; su cara se ve tranquila y seria."
+        "En la carta de 1909 hay mariposas talladas en lo alto del respaldo, el rey viste una túnica azul claro, una capa gris con forro naranja y una capucha naranja, y dos pájaros pequeños vuelan arriba a la derecha. Nubes bajas y árboles oscuros ocupan los bordes; su cara se ve tranquila y seria."
       ]
     },
     {
@@ -57,7 +57,7 @@
       "heading": "¿Qué significa el Rey de Espadas al derecho?",
       "paragraphs": [
         "Al derecho, el Rey de Espadas es la razón puesta al servicio de una responsabilidad. Representa la autoridad que se gana con conocimiento, el criterio firme y la imparcialidad de aplicar la misma regla a todos. Para él la verdad pesa más que la comodidad, y la dice sin adornos.",
-        "Suele aparecer cuando una decisión pide cabeza fría: pesar los hechos, fijar una regla, dar o pedir un consejo experto. Te invita a usar tu lógica y tu integridad y a asumir la decisión que te toca. La emoción no está prohibida aquí; solo no decide sola."
+        "Suele aparecer cuando una decisión pide cabeza fría: pesar los hechos, fijar una regla, dar una opinión honesta o pedirla. Te invita a usar tu lógica y tu integridad y a asumir la decisión que te toca. La emoción no está prohibida aquí; solo no decide sola."
       ]
     },
     {
@@ -99,7 +99,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Rey de Espadas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Rey de Espadas es una figura de autoridad que dirige con la cabeza: con experiencia, justa, que sabe expresarse, a veces distante. Puede ser alguien experto, quien te asesora, un jefe exigente, o tú cuando te toca decidir. Como sentimiento, su significado tradicional es respeto e intenciones serias y pensadas, expresadas con más razón que calidez: sentimientos reales pero contenidos. Al revés, habla de frialdad emocional, de control o de juzgar en vez de escuchar."
+        "Sentado en su trono con la espada en la mano, el Rey de Espadas es una figura de autoridad que dirige con la cabeza: con experiencia, justa, que sabe expresarse, a veces distante. Puede ser alguien experto, quien te asesora, un jefe exigente, o tú cuando te toca decidir. Ya en lo sentimental, su significado tradicional es respeto e intenciones serias y pensadas, expresadas con más razón que calidez: sentimientos reales pero contenidos. Al revés, habla de frialdad emocional, de control o de juzgar en vez de escuchar."
       ]
     },
     {
@@ -138,7 +138,7 @@
       "paragraphs": [
         "¿Qué dicen los hechos, aparte de lo que temo o deseo?",
         "¿Qué decisión me toca a mí y la estoy evitando?",
-        "¿Puedo explicar mis razones con justicia a quienes afectan?"
+        "¿Puedo explicar mis razones con justicia a quienes les afectan?"
       ]
     }
   ],
@@ -184,23 +184,33 @@
   },
   "citations": [
     {
-      "pages": [226],
+      "pages": [
+        226
+      ],
       "text": "He sits in judgment, holding the unsheathed sign of his suit. He recalls, of course, the conventional Symbol of Justice in the Trumps Major"
     },
     {
-      "pages": [226],
+      "pages": [
+        226
+      ],
       "text": "Whatsoever arises out of the idea of judgment and all its connexions—power, command, authority, militant intelligence, law, offices of the crown"
     },
     {
-      "pages": [226],
+      "pages": [
+        226
+      ],
       "text": "Reversed: Cruelty, perversity, barbarity, perfidy, evil intention"
     },
     {
-      "pages": [285],
+      "pages": [
+        285
+      ],
       "text": "Justice.—Equity, rightness, probity, executive"
     },
     {
-      "pages": [228],
+      "pages": [
+        228
+      ],
       "text": "Her right hand raises the weapon vertically and the hilt rests on an arm of her royal chair; the left hand is extended"
     }
   ],
@@ -215,7 +225,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [226, 228, 285],
+      "pages": [
+        226,
+        228,
+        285
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

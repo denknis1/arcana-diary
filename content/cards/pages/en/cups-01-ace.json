@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "The Ace of Cups as a person and as feelings",
       "paragraphs": [
-        "As a person, the Ace of Cups is someone warm and emotionally open, quick to comfort and easy to love; drawn for yourself, it marks a tender, hopeful moment in you. As feelings, it points straight to new or growing affection: tenderness, attraction with real warmth in it, a wish to care for someone and be cared for in return. Reversed, the feeling exists but is held back, out of shyness, an old hurt or fear of showing too much."
+        "Warm, emotionally open, quick to comfort and easy to love: that is the Ace of Cups as a person, and drawn for yourself, it marks a tender, hopeful moment in you. Where feelings are concerned, it points straight to new or growing affection: tenderness, attraction with real warmth in it, a wish to care for someone and be cared for in return. Reversed, the feeling exists but is held back, out of shyness, an old hurt or fear of showing too much."
       ]
     },
     {
@@ -174,49 +174,71 @@
   "waite": {
     "quote": "House of the true heart, joy, content, abode, nourishment, abundance, fertility; Holy Table, felicity hereof. Reversed: House of the false heart, mutation, instability, revolution.",
     "quote_lang": "en",
-    "pages": [224],
+    "pages": [
+      224
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "The waters are beneath, and thereon are water-lilies"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "a dove, bearing in its bill a cross-marked Host, descends to place the Wafer in the Cup"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "holding in its palm the cup, from which four streams are pouring"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "It is an intimation of that which may lie behind the Lesser Arcana"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "the dew of water is falling on all sides"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "The two children dancing near them"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "Contentment, repose of the entire heart"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "House of the true heart, joy, content, abode, nourishment, abundance"
     },
     {
-      "pages": [224],
+      "pages": [
+        224
+      ],
       "text": "Reversed: House of the false heart, mutation, instability, revolution"
     }
   ],
@@ -231,7 +253,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [206, 224],
+      "pages": [
+        206,
+        224
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

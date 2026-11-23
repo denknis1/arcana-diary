@@ -148,7 +148,7 @@
     },
     {
       "q": "What is the loop on the Two of Pentacles?",
-      "a": "A green cord shaped like an eight on its side, joining the two coins. Waite calls it the endless cord and compares it to the number 8 (p. 278), but gives it no further meaning. On this page the card is read from the whole scene: a dance that keeps two things going."
+      "a": "A green cord shaped like an eight on its side, joining the two coins. Waite calls it the endless cord and likens it to \"the number 8 reversed\" (p. 278), but gives it no further meaning. On this page the card is read from the whole scene: a dance that keeps two things going."
     },
     {
       "q": "Does the Two of Pentacles mean I have to choose?",
@@ -179,23 +179,33 @@
   },
   "citations": [
     {
-      "pages": [278],
+      "pages": [
+        278
+      ],
       "text": "A young man, in the act of dancing, has a pentacle in either hand, and they are joined by that endless cord which is like the number 8 reversed"
     },
     {
-      "pages": [278],
+      "pages": [
+        278
+      ],
       "text": "it is represented as a card of gaiety, recreation and its connexions, which is the subject of the design; but it is read also as news and messages in writing, as obstacles, agitation, trouble, embroilment"
     },
     {
-      "pages": [278],
+      "pages": [
+        278
+      ],
       "text": "Reversed: Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange"
     },
     {
-      "pages": [293],
+      "pages": [
+        293
+      ],
       "text": "Two.—Troubles are more imaginary than real"
     },
     {
-      "pages": [250],
+      "pages": [
+        250
+      ],
       "text": "A hoodwinked female figure balances two swords upon her shoulders"
     }
   ],
@@ -210,7 +220,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [250, 278, 293],
+      "pages": [
+        250,
+        278,
+        293
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

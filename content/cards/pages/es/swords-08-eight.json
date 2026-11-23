@@ -102,7 +102,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa el Ocho de Espadas como persona y como sentimiento?",
       "paragraphs": [
-        "Como persona, el Ocho de Espadas es alguien que se siente acorralado y duda de sus opciones: con capacidad, pero frenado por el miedo o por pensar de más, esperando un permiso que nunca llega del todo. En ti, es la voz que insiste en que no hay salida. Como sentimiento, significa sentirse sin fuerza: querer acercarse o irse, pero con el freno del miedo, la culpa o las circunstancias. Al revés, eso se destraba: vuelve el valor, las dudas bajan y hay más ánimo para actuar según lo que se siente."
+        "Con los ojos vendados entre las espadas, el Ocho de Espadas es alguien que se siente acorralado y duda de sus opciones: con capacidad, pero frenado por el miedo o por pensar de más, esperando un permiso que nunca llega del todo. En ti, es la voz que insiste en que no hay salida. Por dentro, significa sentirse sin fuerza: querer acercarse o irse, pero con el freno del miedo, la culpa o las circunstancias. Al revés, eso se destraba: vuelve el valor, las dudas bajan y hay más ánimo para actuar según lo que se siente."
       ]
     },
     {
@@ -131,7 +131,7 @@
       "id": "not_to_confuse",
       "heading": "¿Cómo distinguir el Ocho de Espadas del Dos de Espadas?",
       "paragraphs": [
-        "El Dos de Espadas también trae, según Waite, una figura femenina con venda, pero sentada y con dos espadas en equilibrio sobre los hombros (p. 250). El Dos es una decisión que se aplaza, un equilibrio que se sostiene sin mirar; el Ocho es la sensación de encierro. En el Dos ella carga sus espadas; en el Ocho, la encierran."
+        "El Dos de Espadas también trae, según Waite, una figura femenina con venda, que sostiene dos espadas en equilibrio sobre los hombros (p. 250). El Dos es una decisión que se aplaza, un equilibrio que se sostiene sin mirar; el Ocho es la sensación de encierro. En el Dos ella carga sus espadas; en el Ocho, la encierran."
       ]
     },
     {
@@ -182,11 +182,15 @@
   },
   "citations": [
     {
-      "pages": [238],
+      "pages": [
+        238
+      ],
       "text": "A woman, bound and hoodwinked, with the swords of the card about her. Yet it is rather a card of temporary durance than of irretrievable bondage."
     },
     {
-      "pages": [250],
+      "pages": [
+        250
+      ],
       "text": "A hoodwinked female figure balances two swords upon her shoulders."
     }
   ],
@@ -201,7 +205,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [238, 250],
+      "pages": [
+        238,
+        250
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {
