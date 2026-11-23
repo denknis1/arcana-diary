@@ -1,0 +1,44 @@
+---
+// A page of stage 5 text without a tool (spec stage 6 §3, §5, §6): breadcrumbs, H1, lead, capsule, then the default
+// slot (the card lists of the hubs, part 3), the blocks and the FAQ of content/pages. A service page whose text still
+// has an operator placeholder is built but hidden: noindex, and the footer and the sitemap leave it out (decision 35).
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import TextBlocks from '../components/TextBlocks.astro';
+import { t } from '../i18n';
+import { crumbsFor } from '../lib/breadcrumbs';
+import { breadcrumbLd, collectionLd, faqLd, webPageLd, type LdItem } from '../lib/jsonld';
+import { pagePath, type PageKey } from '../lib/routes';
+import { filledPage, isHidden, textPage } from '../lib/textPages';
+import type { Lang } from '../lib/types';
+
+interface Props {
+  lang: Lang;
+  pageKey: PageKey;
+  current?: PageKey;
+  items?: readonly LdItem[];
+}
+
+const { lang, pageKey, current, items } = Astro.props;
+const d = t(lang);
+const path = pagePath(pageKey, lang);
+const source = textPage(path);
+const hidden = isHidden(source);
+const page = filledPage(source);
+const crumbs = crumbsFor(pageKey, lang);
+const info = { name: page.h1, description: page.description, path, lang };
+const main = items ? collectionLd({ ...info, items }) : webPageLd(info);
+---
+<Base lang={lang} title={page.title} description={page.description} path={path} current={current} noindex={hidden}
+  jsonLd={[breadcrumbLd(crumbs), main, faqLd(page.faq)]}>
+  <Breadcrumbs lang={lang} crumbs={crumbs} />
+  <section class="page-hero">
+    <h1 class="display">{page.h1}</h1>
+    <p class="lead">{page.lead}</p>
+    {page.capsule ? <p class="capsule">{page.capsule}</p> : null}
+  </section>
+  <slot />
+  <TextBlocks blocks={page.blocks} />
+  <Faq heading={d.faqTitle} items={page.faq} id="faq" />
+</Base>

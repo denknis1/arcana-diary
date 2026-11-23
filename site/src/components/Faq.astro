@@ -1,0 +1,24 @@
+---
+// FAQ of a page (spec stage 6 §4–§5): one <details> per question, the first one open. The same questions go to the
+// FAQPage JSON-LD (src/lib/jsonld.ts).
+import type { FaqItem } from '../lib/textPages';
+
+interface Props {
+  heading: string;
+  items: readonly FaqItem[];
+  id: string;
+}
+
+const { heading, items, id } = Astro.props;
+---
+{items.length > 0 ? (
+  <section class="page-section faq" id={id} aria-labelledby={`${id}-title`}>
+    <h2 class="h2" id={`${id}-title`}>{heading}</h2>
+    {items.map((item, i) => (
+      <details open={i === 0}>
+        <summary>{item.q}</summary>
+        <p>{item.a}</p>
+      </details>
+    ))}
+  </section>
+) : null}

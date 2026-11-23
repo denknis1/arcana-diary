@@ -34,9 +34,8 @@ const PAGE_PATHS: Record<Lang, Record<PageKey, string>> = {
   },
 };
 
-/** The menu (stage 2 structure, design screens 11c/11d, 13a): the diary since 4.4b; the "Card Meanings" (`cards`)
- * item joins when the stage 6 menu task adds it. */
-export const NAV_KEYS: readonly PageKey[] = ['home', 'yes_no', 'love', 'daily', 'diary'];
+/** The menu (stage 2 structure, design screens 11c/11d, 13a): the diary since 4.4b, "Card Meanings" since stage 6. */
+export const NAV_KEYS: readonly PageKey[] = ['home', 'yes_no', 'love', 'daily', 'cards', 'diary'];
 
 export function pagePath(key: PageKey, lang: Lang): string {
   return PAGE_PATHS[lang][key];
