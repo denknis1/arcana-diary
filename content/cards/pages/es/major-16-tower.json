@@ -19,7 +19,9 @@
     "suit": null,
     "number": 16,
     "numeral": "XVI",
-    "also_called": ["Casa de Dios"]
+    "also_called": [
+      "Casa de Dios"
+    ]
   },
   "capsule": "La Torre, carta XVI, habla de sacudida, cambio repentino, revelación y el derrumbe de lo que no era firme. Al revés, el cambio se frena o se vive por dentro. Es de las más duras: nombra pérdida y caos, pero también trae liberación. El rayo tumba lo que estaba en pie, así que al derecho la respuesta es no.",
   "keywords": {
@@ -58,7 +60,7 @@
       "id": "upright",
       "heading": "¿Qué significa La Torre al derecho?",
       "paragraphs": [
-        "Al derecho, La Torre puede hablar de un cambio repentino: un plan, una creencia, una relación o un acuerdo que parecía firme cede, muchas veces más rápido de lo que esperabas. La lectura de hoy la llama de frente la carta del derrumbe y el caos, del susto, la pérdida y el orgullo que cae. Puede llegar desde afuera o como una revelación, ese momento en que por fin ves con claridad algo que tenías enfrente.",
+        "Al derecho, La Torre puede hablar de un cambio repentino: un plan, una creencia, una relación o un acuerdo que parecía firme cede, muchas veces más rápido de lo que esperabas. En la lectura moderna es la carta del derrumbe y el caos, del impacto, la pérdida y el orgullo que cae. Puede llegar desde afuera o como una revelación, ese momento en que por fin ves con claridad algo que tenías enfrente.",
         "Es una carta exigente, no cruel. Lo que se cae ya estaba sobre bases flojas, y al irse deja espacio para algo más verdadero. Ahí está la liberación: ya no tienes que cargar con tus fuerzas lo que no se sostenía solo.",
         "Cuando sale, primero toma aire y luego mira qué quedó en pie: la corona que salta de la cima se lleva lo que remataba la construcción. Si te identificas con esto, pregúntate qué estabas cuidando con más esfuerzo para que no se viniera abajo."
       ]
@@ -155,11 +157,11 @@
     },
     {
       "q": "¿La Torre siempre es negativa?",
-      "a": "No. Un cambio rápido también puede ser bienvenido: una verdad que te quita un peso de encima o un arreglo que ya te cansaba y por fin se deshace. El tono depende de tu pregunta y de las cartas que la acompañan."
+      "a": "No. Un cambio rápido también puede ser bienvenido: una verdad que te quita un peso de encima o un arreglo que ya te cansaba y por fin se deshace. El tono depende de tu pregunta."
     },
     {
       "q": "¿La Torre significa que me quiere?",
-      "a": "No es la imagen de un cariño tranquilo ni asentado. Leída como sentimiento, La Torre es intensidad y turbulencia: emociones que irrumpen, un vuelco en la forma en que dos personas se miran o una ilusión que termina. Al revés, esas emociones se contienen. Sea cual sea el lazo, la carta habla de cambio, no de calma."
+      "a": "No es la imagen de un cariño tranquilo ni asentado. Leída como sentimiento, La Torre es intensidad y turbulencia: emociones que irrumpen, un vuelco en la forma en que dos personas se miran o una fantasía que termina. Al revés, esas emociones se contienen. Sea cual sea el lazo, la carta habla de cambio, no de calma."
     },
     {
       "q": "¿Qué número es La Torre en el tarot?",
@@ -193,47 +195,69 @@
   },
   "citations": [
     {
-      "pages": [26],
+      "pages": [
+        26
+      ],
       "text": "alternative titles are: Castle of Plutus, God's House and the Tower of Babel"
     },
     {
-      "pages": [26],
+      "pages": [
+        26
+      ],
       "text": "It is assuredly a card of confusion"
     },
     {
-      "pages": [132],
+      "pages": [
+        132
+      ],
       "text": "I understand that the reference is, however, to a House of Falsehood"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "The one is the literal word made void and the other its false interpretation"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "except the Lord build the house, they labour in vain that build it"
     },
     {
-      "pages": [286],
+      "pages": [
+        286
+      ],
       "text": "It is a card in particular of unforeseen catastrophe"
     },
     {
-      "pages": [286],
+      "pages": [
+        286
+      ],
       "text": "Reversed: According to one account, the same in a lesser degree; also oppression, imprisonment, tyranny"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "one is concerned with the fall into the material and animal state, while the other signifies destruction on the intellectual side"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "In yet a deeper sense, it may signify also the end of a dispensation"
     },
     {
-      "pages": [120],
+      "pages": [
+        120
+      ],
       "text": "The mysterious horseman moves slowly, bearing a black banner emblazoned with the Mystic Rose"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "16. The Tower struck by Lightning."
     }
   ],
@@ -248,7 +272,14 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [25, 26, 120, 132, 135, 286],
+      "pages": [
+        25,
+        26,
+        120,
+        132,
+        135,
+        286
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

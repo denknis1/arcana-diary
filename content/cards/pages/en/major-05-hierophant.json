@@ -18,7 +18,9 @@
     "suit": null,
     "number": 5,
     "numeral": "V",
-    "also_called": ["The Pope"]
+    "also_called": [
+      "The Pope"
+    ]
   },
   "capsule": "The Hierophant, card V of the Major Arcana, stands for tradition, learning, spiritual guidance and shared institutions. Reversed, it means rebellion against rules that no longer fit, or a wish to find your own way. It is a supportive card, though its shadow is conformity. Backed by a tried path and good counsel, its upright answer is yes.",
   "keywords": {
@@ -86,7 +88,7 @@
       "heading": "What does The Hierophant mean for work and money?",
       "paragraphs": [
         "Career questions with The Hierophant turn toward learning from people who know the field: a mentor, formal training, an established method, the standards of a profession. It can also point to working inside an institution and finding your place in it.",
-        "In money terms the card means a conservative, steady approach: tested habits, a budget with clear rules, security built slowly instead of through shortcuts. Reversed, it stands for breaking with how money was always handled, which can bring welcome freedom or careless risk."
+        "Handled the Hierophant's way, money gets a conservative, steady approach: tested habits, a budget with clear rules, security built slowly instead of through shortcuts. Reversed, it stands for breaking with how money was always handled, which can bring welcome freedom or careless risk."
       ]
     },
     {
@@ -188,59 +190,87 @@
   },
   "citations": [
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "He wears the triple crown and is seated between two pillars, but they are not those of the Temple which is guarded by the High Priestess"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "In his left hand he holds a sceptre terminating in the triple cross, and with his right hand he gives the well-known ecclesiastical sign which is called that of esotericism, distinguishing between the manifest and concealed part of doctrine"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "At his feet are the crossed keys, and two priestly ministers in albs kneel before him"
     },
     {
-      "pages": [91],
+      "pages": [
+        91
+      ],
       "text": "He is the order and the head of the recognized hierarchy"
     },
     {
-      "pages": [91],
+      "pages": [
+        91
+      ],
       "text": "he is the channel of grace belonging to the world of institution as distinct from that of Nature"
     },
     {
-      "pages": [91],
+      "pages": [
+        91
+      ],
       "text": "he is not inspiration"
     },
     {
-      "pages": [91],
+      "pages": [
+        91
+      ],
       "text": "it may so happen that the pontiff forgets the significance of this his symbolic state"
     },
     {
-      "pages": [91],
+      "pages": [
+        91
+      ],
       "text": "the outer side of the life which leads to the doctrine"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "He is the ruling power of external religion, as the High Priestess is the prevailing genius of the esoteric, withdrawn power"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "It is noticeable in this connexion that the High Priestess makes no sign"
     },
     {
-      "pages": [14],
+      "pages": [
+        14
+      ],
       "text": "The High Priest or Hierophant, called also Spiritual Father, and more commonly and obviously the Pope. It seems even to have been named the Abbot"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "He has been usually called the Pope, which is a particular application of the more general office that he symbolizes"
     },
     {
-      "pages": [91],
+      "pages": [
+        91
+      ],
       "text": "he is not religion, although he is a mode of its expression"
     },
     {
-      "pages": [284],
+      "pages": [
+        284
+      ],
       "text": "The Hierophant.—Marriage, alliance, captivity, servitude"
     }
   ],
@@ -255,7 +285,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [14, 88, 91, 284],
+      "pages": [
+        14,
+        88,
+        91,
+        284
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -79,7 +79,7 @@
       "paragraphs": [
         "Paciencia y ternura sin perder tu centro: así sostiene la mujer al león, y así ama esta carta. Habla de un vínculo fuerte que atraviesa los momentos difíciles con paciencia, calidez y una pasión vivida con suavidad. Con pareja, favorece la honestidad suave: decir con calma lo que necesitas y poner límites con cariño. Puedes mostrar lo que sientes sin miedo a parecer vulnerable.",
         "Sin pareja, la carta sugiere dejar que la cercanía crezca a un ritmo que te dé paz, sin esconder quién eres.",
-        "Cuando sale al revés, puede hablar de inseguridad en el amor, de una lucha de poder en la que alguien quiere imponerse o del cansancio de cuidar la paz durante demasiado tiempo. Las dudas pueden hacerte ocupar menos espacio. ¿Cómo sonaría una frase tranquila y honesta sobre lo que necesitas?"
+        "Cuando sale al revés, puede hablar de inseguridad en el amor, de enojos que estallan donde antes había paciencia o del cansancio de cuidar la paz durante demasiado tiempo. Las dudas pueden hacerte ocupar menos espacio. ¿Cómo sonaría una frase tranquila y honesta sobre lo que necesitas?"
       ]
     },
     {
@@ -87,7 +87,7 @@
       "heading": "¿Qué significa La Fuerza en el trabajo y el dinero?",
       "paragraphs": [
         "La influencia tranquila rinde más que la presión cuando La Fuerza aparece en temas de trabajo: manejar con calma un momento tenso, tener paciencia con un avance lento, guiar con el ejemplo. Sirve donde la fuerza bruta empeoraría las cosas.",
-        "En el dinero, La Fuerza significa autocontrol y paciencia: gastos bajo control, calma en un mes apretado, una estabilidad que se construye con disciplina y no a la fuerza. Al revés, habla de gastos por impulso o de preocupaciones de dinero que te quitan seguridad.",
+        "Con las finanzas, La Fuerza pone autocontrol y paciencia: gastos bajo control, calma en un mes apretado, una estabilidad que se construye con disciplina y no a la fuerza. Al revés, habla de gastos por impulso o de preocupaciones de dinero que te quitan seguridad.",
         "Si la carta sale al revés en el trabajo, fíjate si dudar de ti te frena para hablar, o si empujas demasiado algo que necesita tiempo."
       ]
     },
@@ -107,7 +107,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa La Fuerza como persona y como sentimiento?",
       "paragraphs": [
-        "La mujer que calma al león puede retratar a alguien que transmite calma y bondad y sostiene las cosas sin hacer ruido cuando se ponen difíciles; sobre ti, muestra tu lado paciente y valiente, el que no necesita demostrar nada. En una pregunta sobre sentimientos, La Fuerza se lee tradicionalmente como un cariño hondo y paciente: protector y leal, con una pasión intensa vivida con ternura, capaz de trabajar las dificultades. Al revés, se lee como inseguridad y dudas: sentimientos guardados por miedo a que duela, frustración a flor de piel o unos nervios a punto de romperse."
+        "La mujer que calma al león puede retratar a alguien que transmite calma y bondad y sostiene las cosas sin hacer ruido cuando se ponen difíciles; sobre ti, muestra tu lado paciente y valiente, el que no necesita demostrar nada. En una pregunta sobre sentimientos, La Fuerza es un cariño hondo y paciente: protector y leal, con una pasión intensa vivida con ternura, capaz de salir adelante en las dificultades. Al revés, se lee como inseguridad y dudas: sentimientos guardados por miedo a que duela, frustración a flor de piel o unos nervios a punto de romperse."
       ]
     },
     {
@@ -194,59 +194,87 @@
   },
   "citations": [
     {
-      "pages": [100],
+      "pages": [
+        100
+      ],
       "text": "is closing the jaws of a lion"
     },
     {
-      "pages": [100],
+      "pages": [
+        100
+      ],
       "text": "The only point in which this design differs from the conventional presentations is that her beneficent fortitude has already subdued the lion, which is being led by a chain of flowers"
     },
     {
-      "pages": [100],
+      "pages": [
+        100
+      ],
       "text": "there broods the same symbol of life"
     },
     {
-      "pages": [16],
+      "pages": [
+        16
+      ],
       "text": "The female figure is usually represented as closing the mouth of a lion. In the earlier form which is printed by Court de Gebelin, she is obviously opening it"
     },
     {
-      "pages": [16],
+      "pages": [
+        16
+      ],
       "text": "conveys the idea of mastery"
     },
     {
-      "pages": [103],
+      "pages": [
+        103
+      ],
       "text": "The card has nothing to do with self-confidence in the ordinary sense"
     },
     {
-      "pages": [100],
+      "pages": [
+        100
+      ],
       "text": "the strength which resides in contemplation"
     },
     {
-      "pages": [103],
+      "pages": [
+        103
+      ],
       "text": "There is one aspect in which the lion signifies the passions"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "He is above all things triumph in the mind"
     },
     {
-      "pages": [100],
+      "pages": [
+        100
+      ],
       "text": "For reasons which satisfy myself, this card has been interchanged with that of Justice, which is usually numbered eight. As the variation carries nothing with it which will signify to the reader, there is no cause for explanation"
     },
     {
-      "pages": [16],
+      "pages": [
+        16
+      ],
       "text": "8. Fortitude. This is one of the cardinal virtues"
     },
     {
-      "pages": [284],
+      "pages": [
+        284
+      ],
       "text": "8. Fortitude.—Power, energy"
     },
     {
-      "pages": [16],
+      "pages": [
+        16
+      ],
       "text": "It has been said that the figure represents organic force, moral force and the principle of all force"
     },
     {
-      "pages": [103],
+      "pages": [
+        103
+      ],
       "text": "it concerns the confidence of those whose strength is God"
     }
   ],
@@ -261,7 +289,13 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [16, 96, 100, 103, 284],
+      "pages": [
+        16,
+        96,
+        100,
+        103,
+        284
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

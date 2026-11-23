@@ -58,7 +58,7 @@
       "id": "upright",
       "heading": "What does The Empress mean upright?",
       "paragraphs": [
-        "Abundance in a broad sense is The Empress's upright theme: a rich season for ideas, projects, friendships and simple pleasures. It is the kind of growth that comes from nurturing, from care and attention given steadily, rather than from pushing harder. Modern readings add femininity, beauty and nature to her meaning, and often see in her a mother figure.",
+        "Abundance in a broad sense is The Empress's upright theme: a rich season for ideas, projects, friendships and simple pleasures. It is the kind of growth that comes from nurturing, from care and attention given steadily, rather than from pushing harder. Modern readings add femininity, beauty, nature and fertility in the broad sense, whatever is ready to bear fruit, and often see in her a mother figure.",
         "Creativity sits at the center. The card can appear when something you began is ready to grow, whether a project, a skill, a home or a real garden, and it asks you to tend it like a living thing: water, light, patience.",
         "It also values comfort without guilt. Good food, beauty, rest and time outdoors are not prizes for finishing everything; they are part of what keeps growth going. If you recognize this in your own days, ask which part of your life is quietly ripening and what it needs from you."
       ]
@@ -86,7 +86,7 @@
       "heading": "What does The Empress mean for work and money?",
       "paragraphs": [
         "Creative projects and anything that grows with steady care suit The Empress at work: building a good atmosphere in a team, developing a product, keeping in touch with clients over time. It suits work you can shape with your hands or your taste.",
-        "For money, The Empress means abundance and material comfort: enough to enjoy, a home that feels well provided for, generosity that comes easily. Reversed, its money meaning is overspending on comfort, buying to fill a gap or relying on someone else's money; notice too where overwork leaves no room to enjoy anything."
+        "Abundance and material comfort are The Empress's money meaning: enough to enjoy, a home that feels well provided for, generosity that comes easily. Reversed, its money meaning is overspending on comfort, buying to fill a gap or relying on someone else's money; notice too where overwork leaves no room to enjoy anything."
       ]
     },
     {
@@ -185,57 +185,83 @@
   "waite": {
     "quote": "Fruitfulness, action, initiative, length of days; the unknown, clandestine; also difficulty, doubt, ignorance. Reversed: Light, truth, the unravelling of involved matters, public rejoicings … vacillation.",
     "quote_lang": "en",
-    "pages": [283],
+    "pages": [
+      283
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "A stately figure, seated, having rich vestments and royal aspect, as of a daughter of heaven and earth"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "Her diadem is of twelve stars, gathered in a cluster"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "The sceptre which she bears is surmounted by the globe of this world"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "The symbol of Venus is on the shield which rests near her"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "A field of corn is ripening in front of her, and beyond there is a fall of water"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "She is the inferior Garden of Eden, the Earthly Paradise, all that is symbolized by the visible house of man"
     },
     {
-      "pages": [283],
+      "pages": [
+        283
+      ],
       "text": "Fruitfulness, action, initiative, length of days"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The Empress has been connected with the ideas of universal fecundity and in a general sense with activity"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The Emperor, by imputation the spouse of the former"
     },
     {
-      "pages": [84],
+      "pages": [
+        84
+      ],
       "text": "this card and that of the Empress do not precisely represent the condition of married life, though this state is implied"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The Empress, who is sometimes represented with full face, while her correspondence, the Emperor, is in profile. As there has been some tendency to ascribe a symbolical significance to this distinction, it seems desirable to say that it carries no inner meaning"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein. Divinatory Meanings: Opulence, generosity, magnificence, security, liberty"
     }
   ],
@@ -250,7 +276,13 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [13, 80, 84, 256, 283],
+      "pages": [
+        13,
+        80,
+        84,
+        256,
+        283
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

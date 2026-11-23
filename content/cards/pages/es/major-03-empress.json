@@ -60,7 +60,7 @@
       "id": "upright",
       "heading": "¿Qué significa La Emperatriz al derecho?",
       "paragraphs": [
-        "Al derecho, La Emperatriz habla de abundancia en sentido amplio: una buena temporada para las ideas, los proyectos, los afectos y el placer de las cosas sencillas. Es un crecimiento que nace del cuidado constante, no de apretar más. La lectura moderna suma la feminidad y la belleza, y muchas veces ve en ella a una figura materna.",
+        "Al derecho, La Emperatriz habla de abundancia en sentido amplio: una buena temporada para las ideas, los proyectos, los afectos y el placer de las cosas sencillas. Es un crecimiento que nace del cuidado constante, no de apretar más. La lectura moderna suma la feminidad, la belleza y la fertilidad en sentido amplio, todo lo que está por dar fruto, y muchas veces ve en ella a una figura materna.",
         "La creatividad está en el centro. La carta puede salir cuando algo que empezaste ya puede crecer, sea un proyecto, un oficio, tu casa o un jardín de verdad, y te pide cuidarlo como a un ser vivo: con agua, luz y paciencia. La naturaleza es su lenguaje: lo que se siembra y se riega a tiempo madura.",
         "También defiende el gusto sin culpa. La buena comida, la belleza, el descanso o un rato al aire libre no son premios para cuando termines todo; son parte de lo que mantiene vivo el crecimiento. Si esto te hace sentido, revisa qué está madurando en tu vida y qué te pide ahora."
       ]
@@ -88,7 +88,7 @@
       "heading": "¿Qué significa La Emperatriz en el trabajo y el dinero?",
       "paragraphs": [
         "Los proyectos creativos y todo lo que crece con cuidado constante van con La Emperatriz en el trabajo: un buen ambiente en el equipo, un producto que se desarrolla poco a poco, la relación con tus clientes a lo largo del tiempo.",
-        "En lo económico, La Emperatriz significa abundancia y comodidad material: lo suficiente para disfrutar, una casa bien provista, una generosidad que sale sin esfuerzo. Al revés, se lee como gastar de más en comodidades, comprar para tapar un hueco o depender del dinero de otra persona; fíjate también dónde el exceso de trabajo no deja lugar para disfrutar."
+        "Abundancia y comodidad material es lo que La Emperatriz trae al dinero: lo suficiente para disfrutar, una casa bien provista, una generosidad que sale sin esfuerzo. Al revés, se lee como gastar de más en comodidades, comprar para tapar un hueco o depender del dinero de otra persona; fíjate también dónde el exceso de trabajo no deja lugar para disfrutar."
       ]
     },
     {
@@ -187,57 +187,83 @@
   "waite": {
     "quote": "Fruitfulness, action, initiative, length of days; the unknown, clandestine; also difficulty, doubt, ignorance. Reversed: Light, truth, the unravelling of involved matters, public rejoicings … vacillation.",
     "quote_lang": "en",
-    "pages": [283],
+    "pages": [
+      283
+    ],
     "translation": "Fecundidad, acción, iniciativa, larga vida; lo desconocido, lo clandestino; también dificultad, duda, ignorancia. Al revés: luz, verdad, el desenredo de asuntos complicados, regocijo público … vacilación.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "A stately figure, seated, having rich vestments and royal aspect, as of a daughter of heaven and earth"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "Her diadem is of twelve stars, gathered in a cluster"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "The sceptre which she bears is surmounted by the globe of this world"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "The symbol of Venus is on the shield which rests near her"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "A field of corn is ripening in front of her, and beyond there is a fall of water"
     },
     {
-      "pages": [80],
+      "pages": [
+        80
+      ],
       "text": "She is the inferior Garden of Eden, the Earthly Paradise, all that is symbolized by the visible house of man"
     },
     {
-      "pages": [283],
+      "pages": [
+        283
+      ],
       "text": "Fruitfulness, action, initiative, length of days"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The Empress has been connected with the ideas of universal fecundity and in a general sense with activity"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The Emperor, by imputation the spouse of the former"
     },
     {
-      "pages": [84],
+      "pages": [
+        84
+      ],
       "text": "this card and that of the Empress do not precisely represent the condition of married life, though this state is implied"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The Empress, who is sometimes represented with full face, while her correspondence, the Emperor, is in profile. As there has been some tendency to ascribe a symbolical significance to this distinction, it seems desirable to say that it carries no inner meaning"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein. Divinatory Meanings: Opulence, generosity, magnificence, security, liberty"
     }
   ],
@@ -252,7 +278,13 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [13, 80, 84, 256, 283],
+      "pages": [
+        13,
+        80,
+        84,
+        256,
+        283
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

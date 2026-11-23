@@ -78,7 +78,7 @@
       "paragraphs": [
         "Trusting what you sense before looking for answers outside yourself is where The High Priestess starts in matters of the heart. Some feelings need quiet time before they become clear, and the card gives you permission not to name them yet.",
         "Without a partner, the card may ask you to keep your own pace rather than hurry toward someone because it seems expected. With a partner, it may mean paying attention to what you feel in calm moments, not only in loud ones, and keeping an inner space that belongs to you.",
-        "Reversed, the love meaning turns to secrets, distance and silence: feelings kept hidden, a hunch brushed aside, something that weighs on you and stays unsaid. Is any of that yours to name?"
+        "Secrets, distance and silence mark the reversed card in love: feelings kept hidden, a hunch brushed aside, something that weighs on you and stays unsaid. Is any of that yours to name?"
       ]
     },
     {
@@ -181,57 +181,83 @@
   "waite": {
     "quote": "Secrets, mystery, the future as yet unrevealed … silence, tenacity; mystery, wisdom, science. Reversed: Passion, moral or physical ardour, conceit, surface knowledge.",
     "quote_lang": "en",
-    "pages": [283],
+    "pages": [
+      283
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "She is seated between the white and black pillars—J. and B.—of the mystic Temple and the veil of the Temple is behind her: it is embroidered with palms and pomegranates"
     },
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "She has the lunar crescent at her feet, a horned diadem on her head, with a globe in the middle place, and a large solar cross on her breast"
     },
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "The scroll in her hands is inscribed with the word Tora … It is partly covered by her mantle, to shew that some things are implied and some spoken"
     },
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "The vestments are flowing and gauzy, and the mantle suggests light—a shimmering radiance"
     },
     {
-      "pages": [79],
+      "pages": [
+        79
+      ],
       "text": "There are some respects in which this card is the highest and holiest of the Greater Arcana"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "She is the Secret Tradition and the higher sense of the instituted Mysteries"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The High Priestess, the Pope Joan, or Female Pontiff; early expositors have sought to term this card the Mother, or Pope's Wife, which is opposed to the symbolism"
     },
     {
-      "pages": [283],
+      "pages": [
+        283
+      ],
       "text": "Secrets, mystery, the future as yet unrevealed; the woman who interests the Querent, if male; the Querent herself, if female"
     },
     {
-      "pages": [308],
+      "pages": [
+        308
+      ],
       "text": "the Querent—if of the male sex—is represented by the Magician, and if female by the High Priestess"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "seated between two pillars, but they are not those of the Temple which is guarded by the High Priestess"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "with his right hand he gives the well-known ecclesiastical sign"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "It is noticeable in this connexion that the High Priestess makes no sign"
     }
   ],
@@ -246,7 +272,14 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [13, 76, 79, 88, 283, 308],
+      "pages": [
+        13,
+        76,
+        79,
+        88,
+        283,
+        308
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

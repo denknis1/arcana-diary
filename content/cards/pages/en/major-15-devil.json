@@ -20,7 +20,7 @@
     "numeral": "XV",
     "also_called": []
   },
-  "capsule": "The Devil, card XV, can point to attachment, temptation, materialism and the feeling of being trapped by habits. Reversed, that grip loosens, or the struggle goes private. A hard card about restriction, not a threat: the chains in the picture are loose. Upright, the answer is no while the chains still hold the two figures where they stand.",
+  "capsule": "The Devil, card XV, can point to attachment, temptation, materialism and the feeling of being trapped by habits. Reversed, that grip loosens, or the struggle goes private. It is a hard card about restriction, not a threat: the chains in the picture are loose. Upright, the answer is no while the chains still hold the two figures where they stand.",
   "keywords": {
     "upright": [
       "attachment",
@@ -58,7 +58,7 @@
       "id": "upright",
       "heading": "What does The Devil mean upright?",
       "paragraphs": [
-        "Attachment is the first thing this card can show: a habit, a pattern, a craving or a dependence that has more say in your life than you would like. Temptation belongs here too, the pull toward what feels good now and costs you later.",
+        "Attachment is the first thing this card can show: a habit, a pattern, a craving or an addiction, whether to a habit, a person or money, that has more say in your life than you would like. Temptation belongs here too, the pull toward what feels good now and costs you later.",
         "Today's readings also give the card its shadow side, named plainly: materialism, lust, a fixation on money or status, and ties in which one person holds power over another. It is the classic card of feeling trapped, whether by a person, a debt, a craving or the fear of change.",
         "The picture is the key to reading it calmly. The chains run to the necks of the two figures, yet the loops are loose, and nothing in the card says they cannot step out. The restriction is real, and it is not complete.",
         "Naming what has a grip on you is where change starts. Should that sound familiar, ask: what do I keep going back to even when part of me would rather not?"
@@ -87,7 +87,7 @@
       "heading": "What does The Devil mean for work and money?",
       "paragraphs": [
         "A job or routine kept only out of habit, overwork that has turned compulsive, a tempting shortcut: these are the shapes the chain takes at work. The card asks what keeps you in place and whether that chain is really locked.",
-        "Money is one of this card's core themes: materialism, debt, spending beyond your means, or a salary that keeps you in a job you would otherwise leave. The card names that hold plainly so you can see how much money is allowed to decide for you.",
+        "Money is one of this card's core themes: materialism, debt, spending beyond your means, or a salary that keeps you in a job you would otherwise leave. Seeing that hold lets you ask how much money is allowed to decide for you.",
         "Upside down, the card asks where you are already beginning to step out of an old routine or loosen a money habit."
       ]
     },
@@ -196,43 +196,65 @@
   },
   "citations": [
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "The Horned Goat of Mendes, with wings like those of a bat, is standing on an altar"
     },
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "The right hand is upraised and extended, being the reverse of that benediction which is given by the Hierophant in the fifth card. In the left hand there is a great flaming torch, inverted towards the earth. A reversed pentagram is on the forehead"
     },
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "There is a ring in front of the altar, from which two chains are carried to the necks of two figures, male and female. These are analogous with those of the fifth card, as if Adam and Eve after the Fall. Hereof is the chain and fatality of the material life"
     },
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "The figures are tailed, to signify the animal nature, but there is human intelligence in the faces"
     },
     {
-      "pages": [128, 131],
+      "pages": [
+        128,
+        131
+      ],
       "text": "he who is exalted above them is not to be their master for ever"
     },
     {
-      "pages": [285, 286],
+      "pages": [
+        285,
+        286
+      ],
       "text": "that which is predestined but is not for this reason evil"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "Attached, by a cord depending from their collars, to the pedestal on which the figure is mounted, are two small demons"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "In Le Tarot Divinatoire of Papus the small demons are replaced by naked human beings, male and female, who are yoked only to each other. The author may be felicitated on this improved symbolism"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "The figure as a whole is not particularly evil"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "beneath is a great winged figure with arms extended, pouring down influences. In the foreground are two human figures, male and female, unveiled before each other"
     }
   ],
@@ -247,7 +269,14 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [25, 92, 128, 131, 285, 286],
+      "pages": [
+        25,
+        92,
+        128,
+        131,
+        285,
+        286
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -18,7 +18,9 @@
     "suit": null,
     "number": 16,
     "numeral": "XVI",
-    "also_called": ["Maison Dieu"]
+    "also_called": [
+      "Maison Dieu"
+    ]
   },
   "capsule": "The Tower is card XVI of the Major Arcana: sudden change, upheaval, revelation, the collapse of what stood on weak ground. Reversed, the shake-up is held off or happens quietly inside you. One of the hardest cards, it names disruption and loss, yet it also brings release. Lightning shakes the plans already in place, so upright the answer is no.",
   "keywords": {
@@ -57,7 +59,7 @@
       "id": "upright",
       "heading": "What does The Tower mean upright?",
       "paragraphs": [
-        "Lightning on a tall tower is a picture of sudden change: a plan, a belief, a relationship or an arrangement that looked steady gives way, often faster than you expected. Today's readings name it directly as the card of collapse and chaos, of shock, loss and pride brought down. It can arrive as an outside event or as a revelation, the moment you see plainly something that was hidden from you.",
+        "Lightning on a tall tower is a picture of sudden change: a plan, a belief, a relationship or an arrangement that looked steady gives way, often faster than you expected. In modern readings it is the card of collapse and chaos, of shock, loss and pride brought down. It can arrive as an outside event or as a revelation, the moment you see plainly something that was hidden from you.",
         "The card is demanding, but it is not cruel. What falls was already standing on weak ground, and its going leaves room for something truer. That is the release inside the upheaval: you no longer have to prop up what could not stand on its own.",
         "When the card appears, steady yourself first, then look at what remains. The crown coming off the top is part of the picture: what capped the structure is gone, and the question is what is left standing. Ask yourself what you were working hardest to keep standing, and why."
       ]
@@ -192,47 +194,71 @@
   },
   "citations": [
     {
-      "pages": [26],
+      "pages": [
+        26
+      ],
       "text": "It is assuredly a card of confusion"
     },
     {
-      "pages": [132],
+      "pages": [
+        132
+      ],
       "text": "I understand that the reference is, however, to a House of Falsehood"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "The one is the literal word made void and the other its false interpretation"
     },
     {
-      "pages": [132, 135],
+      "pages": [
+        132,
+        135
+      ],
       "text": "It illustrates also in the most comprehensive way the old truth that \"except the Lord build the house, they labour in vain that build it.\""
     },
     {
-      "pages": [286],
+      "pages": [
+        286
+      ],
       "text": "It is a card in particular of unforeseen catastrophe"
     },
     {
-      "pages": [286],
+      "pages": [
+        286
+      ],
       "text": "Reversed: According to one account, the same in a lesser degree; also oppression, imprisonment, tyranny"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "one is concerned with the fall into the material and animal state, while the other signifies destruction on the intellectual side"
     },
     {
-      "pages": [135],
+      "pages": [
+        135
+      ],
       "text": "In yet a deeper sense, it may signify also the end of a dispensation"
     },
     {
-      "pages": [120],
+      "pages": [
+        120
+      ],
       "text": "The mysterious horseman moves slowly, bearing a black banner emblazoned with the Mystic Rose"
     },
     {
-      "pages": [25, 26],
+      "pages": [
+        25,
+        26
+      ],
       "text": "The Tower struck by Lightning. Its alternative titles are: Castle of Plutus, God's House and the Tower of Babel"
     },
     {
-      "pages": [64],
+      "pages": [
+        64
+      ],
       "text": "the Hanged Man, the Tower or Maison Dieu"
     }
   ],
@@ -247,7 +273,15 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [25, 26, 64, 120, 132, 135, 286],
+      "pages": [
+        25,
+        26,
+        64,
+        120,
+        132,
+        135,
+        286
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

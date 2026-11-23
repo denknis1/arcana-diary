@@ -20,7 +20,7 @@
     "numeral": "VI",
     "also_called": []
   },
-  "capsule": "The Lovers, card VI of the Major Arcana, stands for love, harmony and choice: a deep bond, or a decision that shows what you value. Reversed, it means disharmony, values out of line or feeling torn. A warm card, it asks for honesty with yourself. On yes-or-no questions, upright means yes: two figures stand openly under the angel's blessing.",
+  "capsule": "The Lovers, card VI of the Major Arcana, stands for love, harmony and choice: a deep bond, or a decision that shows what you value. Reversed, disharmony takes over: values out of line or feeling torn. A warm card, it asks for honesty with yourself. On yes-or-no questions, upright means yes: two figures stand openly under the angel's blessing.",
   "keywords": {
     "upright": [
       "choice",
@@ -76,7 +76,7 @@
       "id": "love",
       "heading": "What does The Lovers mean in love?",
       "paragraphs": [
-        "No card is more tied to romance. Upright in a love reading, it means a strong romantic bond: attraction, closeness and a union where hearts and principles agree, the kind of relationship many people hope for. When there is no partner, the card may mark an attraction that matters, or the work of getting clear about what you truly want before choosing anyone.",
+        "No card is more tied to romance. Upright in a love reading, it means a strong romantic bond: attraction, closeness and a union where hearts and principles agree. When there is no partner, the card may mark an attraction that matters, or the work of getting clear about what you truly want before choosing anyone.",
         "Already committed, you may hear it speak about honesty and deeper commitment: choosing the bond again, openly, as your own decision. It describes what you bring and does not predict where the relationship goes.",
         "Upside down, it can mean a relationship out of balance: disconnection, arguments rooted in different values, or a commitment that feels uneven. For your part, notice where you feel pulled two ways, or where your choices drift from what you say you want. What would an honest next step look like for you?"
       ]
@@ -154,7 +154,7 @@
     },
     {
       "q": "Is The Lovers a soulmate card?",
-      "a": "No card can name a soulmate or promise that a bond lasts. Waite reads it as a card about human love (p. 92). On Arcana Diary it speaks about your side of a connection: whether what you feel matches what you believe in, and whether you choose openly. That part is in your hands."
+      "a": "It is often called one, because love and deep connection are its core meaning; still, no card can name a soulmate or promise that a bond lasts. Waite reads it as a card about human love (p. 92). What it can show is your side of a connection: whether what you feel matches what you believe in, and whether you choose openly."
     },
     {
       "q": "Does The Lovers always mean romance?",
@@ -166,7 +166,7 @@
     },
     {
       "q": "Does The Lovers mean he or she loves me?",
-      "a": "It is the strongest love meaning in the deck, not a verdict on one person. Upright, The Lovers is traditionally read as love returned: mutual attraction, warmth and the hope of commitment. Reversed, that reading turns to uncertain or uneven emotions. What a particular person feels only they can tell you, and the way they act over time says more than any single card."
+      "a": "It is one of the strongest love meanings in the deck, not a verdict on one person. Upright, The Lovers is traditionally read as love returned: mutual attraction, warmth and the hope of commitment. Reversed, that reading turns to uncertain or uneven emotions. What a particular person feels only they can tell you, and the way they act over time says more than any single card."
     }
   ],
   "related": [
@@ -192,39 +192,58 @@
   },
   "citations": [
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "The sun shines in the zenith, and beneath is a great winged figure with arms extended, pouring down influences"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "In the foreground are two human figures, male and female, unveiled before each other, as if Adam and Eve when they first occupied the paradise of the earthly body"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "Behind the man is the Tree of Life, bearing twelve fruits, and the Tree of the Knowledge of Good and Evil is behind the woman; the serpent is twining round it"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "This is in all simplicity the card of human love"
     },
     {
-      "pages": [95],
+      "pages": [
+        95
+      ],
       "text": "The old meanings fall to pieces of necessity with the old pictures, but even as interpretations of the latter, some of them were of the order of commonplace and others were false in symbolism"
     },
     {
-      "pages": [222],
+      "pages": [
+        222
+      ],
       "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head"
     },
     {
-      "pages": [14, 15],
+      "pages": [
+        14,
+        15
+      ],
       "text": "it is really a card of married life, shewing father and mother, with their child placed between them"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "It replaces, by recourse to first principles, the old card of marriage, which I have described previously, and the later follies which depicted man between vice and virtue"
     },
     {
-      "pages": [284],
+      "pages": [
+        284
+      ],
       "text": "The Lovers.—Attraction, love, beauty, trials overcome"
     }
   ],
@@ -239,7 +258,14 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [14, 15, 92, 95, 222, 284],
+      "pages": [
+        14,
+        15,
+        92,
+        95,
+        222,
+        284
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

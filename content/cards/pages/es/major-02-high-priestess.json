@@ -87,7 +87,7 @@
       "heading": "¿Qué significa La Sacerdotisa en el trabajo y el dinero?",
       "paragraphs": [
         "Observar antes de actuar es lo que La Sacerdotisa favorece en el trabajo: escucha, mira, toma nota de lo que no se dice en las juntas y deja que tu juicio se asiente antes de comprometerte. La investigación, el estudio y el saber callado también son su terreno.",
-        "En cuestiones de dinero, la carta significa lo que todavía no se ve completo: información que falta, finanzas que conviene llevar en privado, decisiones que se toman con intuición además de números. Al revés, apunta a información oculta o leída a medias: un dato que quedó fuera o ruido que tapa lo importante."
+        "En cuestiones de dinero, la carta significa lo que todavía no se ve completo: información que falta, finanzas que se llevan en privado, decisiones que se toman con intuición además de números. Al revés, apunta a información oculta o leída a medias: un dato que quedó fuera o ruido que tapa lo importante."
       ]
     },
     {
@@ -182,57 +182,83 @@
   "waite": {
     "quote": "Secrets, mystery, the future as yet unrevealed … silence, tenacity; mystery, wisdom, science. Reversed: Passion, moral or physical ardour, conceit, surface knowledge.",
     "quote_lang": "en",
-    "pages": [283],
+    "pages": [
+      283
+    ],
     "translation": "Secretos, misterio, el futuro todavía no revelado … silencio, tenacidad; misterio, sabiduría, ciencia. Al revés: pasión, ardor moral o físico, presunción, conocimiento superficial.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "She is seated between the white and black pillars—J. and B.—of the mystic Temple and the veil of the Temple is behind her: it is embroidered with palms and pomegranates"
     },
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "She has the lunar crescent at her feet, a horned diadem on her head, with a globe in the middle place, and a large solar cross on her breast"
     },
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "The scroll in her hands is inscribed with the word Tora … It is partly covered by her mantle, to shew that some things are implied and some spoken"
     },
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "The vestments are flowing and gauzy, and the mantle suggests light—a shimmering radiance"
     },
     {
-      "pages": [79],
+      "pages": [
+        79
+      ],
       "text": "There are some respects in which this card is the highest and holiest of the Greater Arcana"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "She is the Secret Tradition and the higher sense of the instituted Mysteries"
     },
     {
-      "pages": [13],
+      "pages": [
+        13
+      ],
       "text": "The High Priestess, the Pope Joan, or Female Pontiff; early expositors have sought to term this card the Mother, or Pope's Wife, which is opposed to the symbolism"
     },
     {
-      "pages": [283],
+      "pages": [
+        283
+      ],
       "text": "Secrets, mystery, the future as yet unrevealed; the woman who interests the Querent, if male; the Querent herself, if female"
     },
     {
-      "pages": [308],
+      "pages": [
+        308
+      ],
       "text": "the Querent—if of the male sex—is represented by the Magician, and if female by the High Priestess"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "seated between two pillars, but they are not those of the Temple which is guarded by the High Priestess"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "with his right hand he gives the well-known ecclesiastical sign"
     },
     {
-      "pages": [88],
+      "pages": [
+        88
+      ],
       "text": "It is noticeable in this connexion that the High Priestess makes no sign"
     }
   ],
@@ -247,7 +273,14 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [13, 76, 79, 88, 283, 308],
+      "pages": [
+        13,
+        76,
+        79,
+        88,
+        283,
+        308
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

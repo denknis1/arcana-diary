@@ -19,9 +19,11 @@
     "suit": null,
     "number": 6,
     "numeral": "VI",
-    "also_called": ["Los Amantes"]
+    "also_called": [
+      "Los Amantes"
+    ]
   },
-  "capsule": "Los Enamorados, carta VI de los arcanos mayores, son la carta del amor, la armonía y la elección: un vínculo o una decisión que muestra tus valores. Al revés, significan falta de armonía, valores que no coinciden o dudas entre dos caminos. Es una carta cálida que pide honestidad. Hay encuentro y bendición, así que al derecho dan un sí.",
+  "capsule": "Los Enamorados, carta VI de los arcanos mayores, son la carta del amor, la armonía y la elección: un vínculo o una decisión que muestra tus valores. Al revés, falta armonía: valores que no coinciden o dudas entre dos caminos. Es una carta cálida que pide honestidad. Hay encuentro y bendición, así que al derecho dan un sí.",
   "keywords": {
     "upright": [
       "elección",
@@ -167,7 +169,7 @@
     },
     {
       "q": "¿Los Enamorados significan que me quiere?",
-      "a": "Es el significado de amor más fuerte de la baraja, no un veredicto sobre una persona. Al derecho, la carta se lee tradicionalmente como amor correspondido: atracción mutua, calidez y la esperanza de un compromiso. Al revés, esa lectura pasa a emociones inciertas o disparejas. Lo que siente una persona concreta solo te lo puede decir ella, y su manera de tratarte con el tiempo dice más que cualquier carta."
+      "a": "Es de los significados de amor más fuertes de la baraja, no un veredicto sobre una persona. Al derecho, la carta se lee tradicionalmente como amor correspondido: atracción mutua, calidez y la esperanza de un compromiso. Al revés, esa lectura pasa a emociones inciertas o disparejas. Lo que siente una persona concreta solo te lo puede decir ella, y su manera de tratarte con el tiempo dice más que cualquier carta."
     }
   ],
   "related": [
@@ -201,43 +203,64 @@
   },
   "citations": [
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "The sun shines in the zenith, and beneath is a great winged figure with arms extended, pouring down influences"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "In the foreground are two human figures, male and female, unveiled before each other, as if Adam and Eve when they first occupied the paradise of the earthly body"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "Behind the man is the Tree of Life, bearing twelve fruits, and the Tree of the Knowledge of Good and Evil is behind the woman; the serpent is twining round it"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "This is in all simplicity the card of human love"
     },
     {
-      "pages": [95],
+      "pages": [
+        95
+      ],
       "text": "The old meanings fall to pieces of necessity with the old pictures, but even as interpretations of the latter, some of them were of the order of commonplace and others were false in symbolism"
     },
     {
-      "pages": [222],
+      "pages": [
+        222
+      ],
       "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head"
     },
     {
-      "pages": [14],
+      "pages": [
+        14
+      ],
       "text": "6. The Lovers or Marriage"
     },
     {
-      "pages": [14, 15],
+      "pages": [
+        14,
+        15
+      ],
       "text": "it is really a card of married life, shewing father and mother, with their child placed between them"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "It replaces, by recourse to first principles, the old card of marriage, which I have described previously, and the later follies which depicted man between vice and virtue"
     },
     {
-      "pages": [284],
+      "pages": [
+        284
+      ],
       "text": "The Lovers.—Attraction, love, beauty, trials overcome"
     }
   ],
@@ -252,7 +275,14 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [14, 15, 92, 95, 222, 284],
+      "pages": [
+        14,
+        15,
+        92,
+        95,
+        222,
+        284
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

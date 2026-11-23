@@ -21,7 +21,7 @@
     "numeral": "VII",
     "also_called": []
   },
-  "capsule": "El Carro es la carta VII de los arcanos mayores: triunfo por determinación, dirección y avance guiados por la voluntad. Al revés, significa pérdida de control, freno o agresividad. Es una carta de ánimo, siempre que sepas a dónde vas. En preguntas de sí o no, al derecho responde que sí: el carro avanza con rumbo claro.",
+  "capsule": "El Carro es la carta VII de los arcanos mayores: triunfo por determinación, dirección y avance guiados por la voluntad. Al revés, el avance se vuelve descontrol, freno o agresividad. Es una carta de ánimo, siempre que sepas a dónde vas. En preguntas de sí o no, al derecho responde que sí: el carro avanza con rumbo claro.",
   "keywords": {
     "upright": [
       "determinación",
@@ -79,7 +79,7 @@
       "paragraphs": [
         "Saber qué quieres e ir por eso con intención, sin esperar a que las dudas se acomoden solas: eso es lo que El Carro te pide en el amor. Si estás sin pareja, la carta puede ayudarte a tener más claro lo que buscas en alguien y a animarte a dar el paso.",
         "Para una pareja, la carta significa determinación para que la relación funcione: superar obstáculos en conjunto y llevarla hacia adelante a propósito. La pregunta es de rumbo: hacia dónde va la relación y si tus propios deseos caben en ese camino. Equilibrar tus ganas con lo que la relación necesita también es parte de la carta.",
-        "Al revés, puede hablar de una relación que jala hacia dos lados, de una lucha de poder o de alguien que quiere controlarlo todo. De tu lado, quizá notes que jalas entre la cercanía y la libertad, o que aceleras algo más de lo que te sienta bien. ¿Qué cambiaría si bajas la velocidad y tomas el volante?"
+        "Al revés, puede hablar de una relación que jala hacia dos lados, de una lucha de poder o de alguien que quiere controlarlo todo. De tu lado, quizá notes que te debates entre la cercanía y la libertad, o que aceleras algo más de lo que te sienta bien. ¿Qué cambiaría si bajas la velocidad y tomas el volante?"
       ]
     },
     {
@@ -87,7 +87,7 @@
       "heading": "¿Qué significa El Carro en el trabajo y el dinero?",
       "paragraphs": [
         "Una meta clara y un esfuerzo constante son lo que respalda El Carro en el trabajo: un proyecto que sacas adelante hasta el final, un empujón para que algo arranque, una decisión sobre tu rumbo profesional. Te pide decirle que no a lo que te desvía.",
-        "En lo económico, El Carro significa disciplina al servicio de una meta: el dinero bajo control, un objetivo claro, avances que se ganan con esfuerzo constante y no con suerte.",
+        "Con El Carro, la disciplina sirve a una meta: el dinero bajo control, un objetivo claro, avances que se ganan con esfuerzo constante y no con suerte.",
         "Al revés, fíjate en algún plan que se detuvo por querer abarcarlo todo, o en gastos que van sin rumbo."
       ]
     },
@@ -107,7 +107,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa El Carro como persona y como sentimiento?",
       "paragraphs": [
-        "Alguien con empuje, que fija un rumbo y lo sostiene, es el retrato más común de El Carro; cuando te describe a ti, señala tus ganas de tomar las riendas, justo lo que el conductor del dibujo no necesita. Como respuesta sobre sentimientos, la carta se lee tradicionalmente como determinación e intención clara: un interés que se vuelve acción, ganas de que la relación avance y de superar lo que se interponga, a veces con las emociones muy controladas. Al revés, habla de sentimientos en conflicto: querer cercanía y libertad a la vez, frustración porque el vínculo no se mueve, como pisar el acelerador sin avanzar, o ganas de controlar el ritmo."
+        "Alguien con empuje, que fija un rumbo y lo sostiene, es el retrato más común de El Carro; cuando te describe a ti, señala tus ganas de tomar las riendas, justo lo que el conductor del dibujo no necesita. Como respuesta sobre sentimientos, la carta habla de determinación e intención clara: un interés que se vuelve acción, ganas de que la relación avance y de superar lo que se interponga, a veces con las emociones muy controladas. Al revés, habla de sentimientos en conflicto: querer cercanía y libertad a la vez, frustración porque el vínculo no se mueve, como pisar el acelerador sin avanzar, o ganas de controlar el ritmo."
       ]
     },
     {
@@ -190,59 +190,88 @@
   },
   "citations": [
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "An erect and princely figure carrying a drawn sword"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "two sphinxes thus draw his chariot"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "On the shoulders of the victorious hero are supposed to be the Urim and Thummim"
     },
     {
-      "pages": [15],
+      "pages": [
+        15
+      ],
       "text": "In the eighteenth century white horses were yoked to the car"
     },
     {
-      "pages": [16],
+      "pages": [
+        16
+      ],
       "text": "Other animals than horses have also been used to draw the currus triumphalis, as, for example, a lion and a leopard"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "He is above all things triumph in the mind"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "that the planes of his conquest are manifest or external and not within himself"
     },
     {
-      "pages": [15],
+      "pages": [
+        15
+      ],
       "text": "it is really the King in his triumph"
     },
     {
-      "pages": [186],
+      "pages": [
+        186
+      ],
       "text": "A laurelled horseman bears one staff adorned with a laurel crown; footmen with staves are at his side"
     },
     {
-      "pages": [186],
+      "pages": [
+        186
+      ],
       "text": "on the surface, it is a victor triumphing"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "He has thus replied to the sphinx, and it is on this account that I have accepted the variation of Éliphas Lévi"
     },
     {
-      "pages": [15],
+      "pages": [
+        15
+      ],
       "text": "it must not be supposed that such was its original form"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "he is conquest on all planes"
     },
     {
-      "pages": [96, 99],
+      "pages": [
+        96,
+        99
+      ],
       "text": "that the liberation which he effects may leave himself in the bondage of the logical understanding"
     }
   ],
@@ -257,7 +286,14 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [15, 16, 96, 99, 186, 284],
+      "pages": [
+        15,
+        16,
+        96,
+        99,
+        186,
+        284
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -21,7 +21,7 @@
     "numeral": "IX",
     "also_called": []
   },
-  "capsule": "El Ermitaño es la carta IX de los arcanos mayores: introspección, soledad elegida, pausa y la sabiduría que llega sin ruido. Al revés, significa aislamiento y soledad que pesa, o un ajetreo que no deja pensar. Es una carta serena que pide tiempo. Aún no está claro si es sí o no: su farol alumbra apenas un tramo.",
+  "capsule": "El Ermitaño es la carta IX de los arcanos mayores: introspección, soledad elegida, pausa y la sabiduría que llega sin ruido. Al revés, pesan el aislamiento y la soledad, o un ajetreo que no deja pensar. Es una carta serena que pide tiempo. Aún no está claro si es sí o no: su farol alumbra apenas un tramo.",
   "keywords": {
     "upright": [
       "introspección",
@@ -189,47 +189,69 @@
   },
   "citations": [
     {
-      "pages": [104],
+      "pages": [
+        104
+      ],
       "text": "It is a star which shines in the lantern"
     },
     {
-      "pages": [104],
+      "pages": [
+        104
+      ],
       "text": "the figure is seen holding up his beacon on an eminence"
     },
     {
-      "pages": [104],
+      "pages": [
+        104
+      ],
       "text": "His beacon intimates that \"where I am, you also may be.\""
     },
     {
-      "pages": [17],
+      "pages": [
+        17
+      ],
       "text": "But this is a card of attainment, as we shall see later, rather than a card of quest"
     },
     {
-      "pages": [16],
+      "pages": [
+        16
+      ],
       "text": "he is also the Capuchin, and in more philosophical language the Sage"
     },
     {
-      "pages": [22],
+      "pages": [
+        22
+      ],
       "text": "the isolation of the Hermit, pursuing a solitary path by the light of his own lamp, gives, to those who can receive it, a certain high counsel in respect of the via prudentiæ"
     },
     {
-      "pages": [104],
+      "pages": [
+        104
+      ],
       "text": "It is further a card which is understood quite incorrectly when it is connected with the idea of occult isolation, as the protection of personal magnetism against admixture"
     },
     {
-      "pages": [210],
+      "pages": [
+        210
+      ],
       "text": "A man of dejected aspect is deserting the cups of his felicity, enterprise, under-taking or previous concern"
     },
     {
-      "pages": [104],
+      "pages": [
+        104
+      ],
       "text": "the lamp is not enveloped partially in the mantle of its bearer"
     },
     {
-      "pages": [17],
+      "pages": [
+        17
+      ],
       "text": "It is said also that his lantern contains the Light of Occult Science"
     },
     {
-      "pages": [17],
+      "pages": [
+        17
+      ],
       "text": "they are true after their own manner, but that they miss all the high things to which the Greater Arcana should be allocated"
     }
   ],
@@ -244,7 +266,14 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [16, 17, 22, 104, 210, 284],
+      "pages": [
+        16,
+        17,
+        22,
+        104,
+        210,
+        284
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

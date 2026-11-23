@@ -59,8 +59,8 @@
       "id": "upright",
       "heading": "¿Qué significa El Diablo al derecho?",
       "paragraphs": [
-        "Al derecho, El Diablo señala el apego: un hábito, un patrón, un antojo o una dependencia que decide más de lo que quisieras. La tentación también está aquí: eso que te jala hacia lo que se siente bien ahora y cuesta después.",
-        "La lectura de hoy suma su lado de sombra: materialismo, lujuria, la obsesión por el dinero o el estatus y los vínculos en los que alguien tiene poder sobre el otro. Es la carta clásica de sentir que no hay salida, ya sea por una persona, una deuda, un antojo o el miedo a cambiar.",
+        "Al derecho, El Diablo señala el apego: un hábito, un patrón, un antojo o una adicción, ya sea a un hábito, a una persona o al dinero, que decide más de lo que quisieras. La tentación también está aquí: eso que te jala hacia lo que se siente bien ahora y cuesta después.",
+        "La lectura de hoy suma su lado de sombra: materialismo, lujuria, la obsesión por el dinero o el estatus y los vínculos en los que alguien tiene poder sobre el otro. Es la carta clásica de sentir que no hay salida, ya sea por una persona, una deuda, un impulso o el miedo a cambiar.",
         "El dibujo da la clave para leerla con calma. Las cadenas llegan al cuello de las dos figuras, pero las vueltas están flojas, y nada en la carta dice que no puedan salir. El límite es real y, a la vez, no es total.",
         "Nombrar lo que tiene poder sobre ti es por donde empieza el cambio. Si esto te hace sentido, pregúntate a qué regresas una y otra vez, aunque una parte de ti preferiría no hacerlo."
       ]
@@ -88,7 +88,7 @@
       "heading": "¿Qué significa El Diablo en el trabajo y el dinero?",
       "paragraphs": [
         "Un empleo o una rutina en la que sigues solo por costumbre, un exceso de trabajo que se volvió compulsivo, la tentación de un atajo: así se ve la cadena en lo laboral. La carta pregunta qué te mantiene en tu lugar y si esa cadena de verdad está cerrada.",
-        "El dinero es uno de los temas centrales de esta carta: materialismo, deudas, gastar más de lo que entra o un sueldo que te amarra a un trabajo que de otro modo dejarías. La carta lo nombra sin rodeos para que veas cuánto decide el dinero por ti.",
+        "El dinero es uno de los temas centrales de esta carta: materialismo, deudas, gastar más de lo que entra o un sueldo que te amarra a un trabajo que de otro modo dejarías. Verlo te deja preguntarte cuánto decide el dinero por ti.",
         "La carta al revés pregunta dónde ya empiezas a salirte de una rutina vieja o a aflojar un hábito con el dinero."
       ]
     },
@@ -108,7 +108,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa El Diablo como persona y como sentimiento?",
       "paragraphs": [
-        "Si la pregunta es por los sentimientos de alguien, El Diablo responde con deseo más que con ternura: una atracción física fuerte, difícil de resistir, a veces con celos, posesividad o ganas de controlar. Es una pasión con anzuelo, intensa y no siempre cómoda. Al revés, eso se enfría o se vuelve ganas de zafarse de un lazo que ya aprieta demasiado. Como retrato, El Diablo es alguien a quien algo jala con fuerza, o alguien encantador y controlador que arma una dinámica de dependencia y tentación; también puede ser la parte de ti que se apegó a algo."
+        "Deseo más que ternura es lo que El Diablo significa cuando se pregunta por lo que siente alguien: una atracción física fuerte, difícil de resistir, a veces con celos, posesividad o ganas de controlar. Es una pasión con anzuelo, intensa y no siempre cómoda. Al revés, eso se enfría o se vuelve ganas de zafarse de un lazo que ya aprieta demasiado. Como retrato, El Diablo es alguien a quien algo jala con fuerza, o alguien encantador y controlador que arma una dinámica de dependencia y tentación; también puede ser la parte de ti que se apegó a algo."
       ]
     },
     {
@@ -197,43 +197,65 @@
   },
   "citations": [
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "The Horned Goat of Mendes, with wings like those of a bat, is standing on an altar"
     },
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "The right hand is upraised and extended, being the reverse of that benediction which is given by the Hierophant in the fifth card. In the left hand there is a great flaming torch, inverted towards the earth. A reversed pentagram is on the forehead"
     },
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "There is a ring in front of the altar, from which two chains are carried to the necks of two figures, male and female. These are analogous with those of the fifth card, as if Adam and Eve after the Fall. Hereof is the chain and fatality of the material life"
     },
     {
-      "pages": [128],
+      "pages": [
+        128
+      ],
       "text": "The figures are tailed, to signify the animal nature, but there is human intelligence in the faces"
     },
     {
-      "pages": [128, 131],
+      "pages": [
+        128,
+        131
+      ],
       "text": "he who is exalted above them is not to be their master for ever"
     },
     {
-      "pages": [285, 286],
+      "pages": [
+        285,
+        286
+      ],
       "text": "that which is predestined but is not for this reason evil"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "Attached, by a cord depending from their collars, to the pedestal on which the figure is mounted, are two small demons"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "In Le Tarot Divinatoire of Papus the small demons are replaced by naked human beings, male and female, who are yoked only to each other. The author may be felicitated on this improved symbolism"
     },
     {
-      "pages": [25],
+      "pages": [
+        25
+      ],
       "text": "The figure as a whole is not particularly evil"
     },
     {
-      "pages": [92],
+      "pages": [
+        92
+      ],
       "text": "beneath is a great winged figure with arms extended, pouring down influences. In the foreground are two human figures, male and female, unveiled before each other"
     }
   ],
@@ -248,7 +270,14 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [25, 92, 128, 131, 285, 286],
+      "pages": [
+        25,
+        92,
+        128,
+        131,
+        285,
+        286
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

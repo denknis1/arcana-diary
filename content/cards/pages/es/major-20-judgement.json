@@ -79,7 +79,7 @@
       "id": "love",
       "heading": "¿Qué significa El Juicio en el amor?",
       "paragraphs": [
-        "Una revisión sincera es lo que El Juicio puede traer a una relación: renovar un compromiso, nombrar lo que cambió o cerrar una historia en paz. Cualquiera de esos caminos es digno si sale de lo que de verdad cambió en ti. Además, es la carta que más se asocia con darle otra oportunidad al amor: una reconciliación o un vínculo antiguo que se mira con otros ojos.",
+        "Una revisión sincera es lo que El Juicio puede traer a una relación: renovar un compromiso, nombrar lo que cambió o cerrar una historia en paz. Cualquiera de esos caminos es digno si sale de lo que de verdad cambió en ti. Además, suele leerse como otra oportunidad para el amor: una reconciliación o un vínculo antiguo que se mira con otros ojos.",
         "Sin pareja, la misma mirada honesta sirve para notar lo que repites cada vez que conoces a alguien y para elegir distinto, desde quien eres hoy. Ver tus propios patrones con claridad ya es una forma de renovarte.",
         "Con El Juicio al revés, la mirada sobre tu pasado amoroso puede volverse dura. Perdonarte también es una forma de abrir el corazón."
       ]
@@ -89,7 +89,7 @@
       "heading": "¿Qué significa El Juicio en el trabajo y el dinero?",
       "paragraphs": [
         "En el trabajo, el llamado de El Juicio puede sonar como ganas de otro puesto, como una habilidad a la que siempre regresas o como un proyecto que por fin pide respuesta. También se presta para hacer balance del camino recorrido.",
-        "En el dinero, El Juicio significa hacer cuentas: saldar pendientes, revisar con honestidad deudas y gastos, y decidir con claridad después de aprender de errores pasados.",
+        "Hacer cuentas es lo que El Juicio significa para el dinero: saldar pendientes, revisar con honestidad deudas y gastos, y decidir con claridad después de aprender de errores pasados.",
         "¿Salió al revés? Pregúntate si el temor a equivocarte otra vez te tiene sin moverte."
       ]
     },
@@ -109,7 +109,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa El Juicio como persona y como sentimiento?",
       "paragraphs": [
-        "El Juicio puede retratar a alguien que despertó a lo que le importa y está en condiciones de responder por ello; en tu caso, es esa voz propia que por fin se escucha con claridad. En cuanto a sentimientos, la carta habla de un vínculo que se vuelve a mirar con honestidad: alivio y decisión a la vez, ganas renovadas de intentarlo, disposición a perdonar y a pedir perdón. Al revés, esos sentimientos se atoran en la duda, la culpa o los reproches, y la decisión sobre la relación se sigue posponiendo."
+        "El Juicio puede retratar a alguien que despertó a lo que le importa y está en condiciones de responder por ello; en tu caso, es esa voz propia que por fin se escucha con claridad. Si alguien pregunta qué siente la otra persona, El Juicio habla de un vínculo que se vuelve a mirar con honestidad: alivio y decisión a la vez, ganas renovadas de intentarlo, disposición a perdonar y a pedir perdón. Al revés, esos sentimientos se atoran en la duda, la culpa o los reproches, y la decisión sobre la relación se sigue posponiendo."
       ]
     },
     {
@@ -200,47 +200,69 @@
   },
   "citations": [
     {
-      "pages": [148],
+      "pages": [
+        148
+      ],
       "text": "he blows his bannered trumpet, and the cross as usual is displayed on the banner"
     },
     {
-      "pages": [148],
+      "pages": [
+        148
+      ],
       "text": "a woman on the right, a man on the left hand, and between them their child, whose back is turned. But in this card there are more than three who are restored"
     },
     {
-      "pages": [148],
+      "pages": [
+        148
+      ],
       "text": "all the figures are as one in the wonder, adoration and ecstacy expressed by their attitudes"
     },
     {
-      "pages": [148],
+      "pages": [
+        148
+      ],
       "text": "in answer to the summons of the Supernal—which summons is heard and answered from within"
     },
     {
-      "pages": [151],
+      "pages": [
+        151
+      ],
       "text": "What is that within us which does sound a trumpet and all that is lower in our nature rises in response"
     },
     {
-      "pages": [151],
+      "pages": [
+        151
+      ],
       "text": "Let the card continue to depict, for those who can see no further, the Last Judgment and the resurrection in the natural body; but let those who have inward eyes look and discover therewith"
     },
     {
-      "pages": [28],
+      "pages": [
+        28
+      ],
       "text": "Others say that it signifies renewal, which is obvious enough"
     },
     {
-      "pages": [316],
+      "pages": [
+        316
+      ],
       "text": "Let him then consider the card called the Last Judgment. They contain the legend of the soul"
     },
     {
-      "pages": [124],
+      "pages": [
+        124
+      ],
       "text": "It is held to be pouring the essences of life from chalice to chalice. It has one foot upon the earth and one upon waters"
     },
     {
-      "pages": [151],
+      "pages": [
+        151
+      ],
       "text": "it may be compared with that which passes under the name of Temperance"
     },
     {
-      "pages": [161],
+      "pages": [
+        161
+      ],
       "text": "the Zero therefore appears after No. 20"
     }
   ],
@@ -255,7 +277,15 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [28, 124, 148, 151, 161, 286, 316],
+      "pages": [
+        28,
+        124,
+        148,
+        151,
+        161,
+        286,
+        316
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

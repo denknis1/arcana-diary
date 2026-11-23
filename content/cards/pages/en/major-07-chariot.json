@@ -20,7 +20,7 @@
     "numeral": "VII",
     "also_called": []
   },
-  "capsule": "The Chariot is card VII of the Major Arcana: victory through determination, direction and momentum held together by will. Reversed, it means lost control, stalling or aggression. It is a strong, encouraging card if you know your direction. The driver moves forward on focus alone, without reins, and the upright answer to yes or no is yes.",
+  "capsule": "The Chariot is card VII of the Major Arcana: victory through determination, direction and momentum held together by will. Reversed, the drive turns into lost control, stalling or aggression. It is a strong, encouraging card if you know your direction. The driver moves forward on focus alone, without reins, and the upright answer to yes or no is yes.",
   "keywords": {
     "upright": [
       "determination",
@@ -106,7 +106,7 @@
       "id": "in_a_reading",
       "heading": "The Chariot as a person and as feelings",
       "paragraphs": [
-        "Someone driven and focused, who sets a course and keeps to it, fits The Chariot as a figure; drawn for yourself, it marks your readiness to take charge of where things go. As an answer about feelings, the card traditionally means determination and clear intent: interest that turns into action, a wish to move the connection forward and work through whatever stands in the way, sometimes with emotions kept under tight control. Reversed, it describes feelings in conflict: wanting closeness and freedom at once, frustration that the bond is not moving, like revving an engine that will not go, or an urge to control the pace."
+        "Someone driven and focused, who sets a course and keeps to it, fits The Chariot as a figure; drawn for yourself, it marks your readiness to take charge of where things go. As an answer about feelings, the card speaks of determination and clear intent: interest that turns into action, a wish to move the connection forward and work through whatever stands in the way, sometimes with emotions kept under tight control. Reversed, it describes feelings in conflict: wanting closeness and freedom at once, frustration that the bond is not moving, like revving an engine that will not go, or an urge to control the pace."
       ]
     },
     {
@@ -189,59 +189,88 @@
   },
   "citations": [
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "An erect and princely figure carrying a drawn sword"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "two sphinxes thus draw his chariot"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "On the shoulders of the victorious hero are supposed to be the Urim and Thummim"
     },
     {
-      "pages": [15],
+      "pages": [
+        15
+      ],
       "text": "In the eighteenth century white horses were yoked to the car"
     },
     {
-      "pages": [16],
+      "pages": [
+        16
+      ],
       "text": "Other animals than horses have also been used to draw the currus triumphalis, as, for example, a lion and a leopard"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "He is above all things triumph in the mind"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "that the planes of his conquest are manifest or external and not within himself"
     },
     {
-      "pages": [15],
+      "pages": [
+        15
+      ],
       "text": "it is really the King in his triumph"
     },
     {
-      "pages": [186],
+      "pages": [
+        186
+      ],
       "text": "A laurelled horseman bears one staff adorned with a laurel crown; footmen with staves are at his side"
     },
     {
-      "pages": [186],
+      "pages": [
+        186
+      ],
       "text": "on the surface, it is a victor triumphing"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "He has thus replied to the sphinx, and it is on this account that I have accepted the variation of Éliphas Lévi"
     },
     {
-      "pages": [15],
+      "pages": [
+        15
+      ],
       "text": "it must not be supposed that such was its original form"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "he is conquest on all planes"
     },
     {
-      "pages": [96, 99],
+      "pages": [
+        96,
+        99
+      ],
       "text": "that the liberation which he effects may leave himself in the bondage of the logical understanding"
     }
   ],
@@ -256,7 +285,14 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [15, 16, 96, 99, 186, 284],
+      "pages": [
+        15,
+        16,
+        96,
+        99,
+        186,
+        284
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {
