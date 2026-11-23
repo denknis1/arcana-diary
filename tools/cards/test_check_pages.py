@@ -100,6 +100,31 @@ def test_harsh_quote_needs_flag():
     assert has(errors(p), "waite.harsh")
 
 
+def test_harsh_flag_without_harsh_words_is_error():
+    p = page("en", "swords-03-three")
+    p["waite"]["quote"] = "Removal, absence, delay"
+    assert has(errors(p), "нужно false")
+
+
+def test_flag_word_sets_harsh_but_is_allowed_in_text():
+    p = page()
+    p["waite"]["harsh"] = False
+    p["waite"]["quote"] = "Folly, mania, extravagance, intoxication, delirium, frenzy, bewrayment"
+    assert has(errors(p), "нужно true")
+    q = page()
+    blk(q, "upright")["paragraphs"][0] += " It is not about danger or legal matters."
+    assert not has(errors(q), "тяжёлые слова")
+
+
+def test_hard_meanings_may_be_named_but_health_may_not():
+    p = page()
+    blk(p, "upright")["paragraphs"][0] += " Death rarely means physical death; ruin and betrayal are themes, not fate."
+    p["mentions"].append({"card_id": "major-13-death", "text": "Death"})
+    assert not has(errors(p), "тяжёлые слова")
+    blk(p, "upright")["paragraphs"][0] += " It can mean illness."
+    assert has(errors(p), "тяжёлые слова")
+
+
 def test_harsh_word_outside_quote():
     p = page("en", "swords-03-three")
     blk(p, "waite")["paragraphs"][0] += " Waite even lists mental alienation."
@@ -225,7 +250,7 @@ def test_title_too_long():
 
 def test_word_limits():
     p = page("en", "swords-03-three")
-    blk(p, "upright")["paragraphs"].append("More words about the heart and the rain. " * 10)
+    blk(p, "upright")["paragraphs"].append("More words about the heart and the rain. " * 20)
     assert has(errors(p), "объём")
 
 

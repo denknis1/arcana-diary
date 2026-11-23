@@ -20,7 +20,7 @@
     "numeral": "V",
     "also_called": ["The Pope"]
   },
-  "capsule": "The Hierophant, card V of the Major Arcana, speaks of tradition, learning and guidance from people who walked the road before you. Reversed, inherited rules start to feel borrowed or tight. It is a supportive card that also asks whether you follow a path by choice. As a yes or no, upright says yes: tried counsel is on your side.",
+  "capsule": "The Hierophant, card V of the Major Arcana, speaks of tradition, learning and guidance from people who walked the road before you. Reversed, inherited rules start to feel borrowed or tight. It is a supportive card that also asks whether you follow a path by choice. Backed by a tried path and good counsel, its upright answer is yes.",
   "keywords": {
     "upright": [
       "tradition",
@@ -50,7 +50,7 @@
       "id": "waite",
       "heading": "What did Waite write about The Hierophant?",
       "paragraphs": [
-        "The upright list is about ties between people: some chosen, like marriage and alliance, some binding, like captivity and servitude, with mercy and goodness from another account. The reversed words mostly describe getting along, society, concord and good understanding, with over-kindness and weakness as the price.",
+        "The upright list is about ties between people: some chosen, like marriage and alliance, some that bind against one's will, with mercy and goodness from another account. The reversed words mostly describe getting along, society, concord and good understanding, with over-kindness and weakness as the price.",
         "Waite himself is cooler than the list. He writes that the Hierophant \"is not inspiration\" (p. 91), although the word appears among the meanings, and he warns that the pontiff may forget \"the significance of this his symbolic state\" (p. 91)."
       ]
     },
@@ -58,9 +58,9 @@
       "id": "upright",
       "heading": "What does The Hierophant mean upright?",
       "paragraphs": [
-        "Upright, The Hierophant points to tradition and learning: a teacher, a mentor, a school of thought, a community whose values match yours. It often comes up when you do not need to invent a method from scratch, because a tried path already holds much of what you are looking for.",
-        "The card favors guidance and shared values. Asking someone experienced, following a proven sequence, joining a group, keeping a ritual that steadies you: all of these belong to it. Waite describes the card as \"the outer side of the life which leads to the doctrine\" (p. 91), the visible, shared side of belief.",
-        "If this fits your situation, ask yourself: whose knowledge could spare you a few wrong turns, and what would you like to learn from them?"
+        "Tradition and learning are The Hierophant's ground upright: a teacher, a mentor, a school of thought, a community whose values match yours. It often comes up when you do not need to invent a method from scratch, because a tried path already holds much of what you are looking for.",
+        "The card favors guidance and shared values. Asking someone experienced, following a proven sequence, joining a group, keeping a ritual that steadies you: all of these belong to it. Waite accepts an earlier description of the card as \"the outer side of the life which leads to the doctrine\" (p. 91), the visible, shared side of belief.",
+        "Should that describe your moment, ask yourself: whose knowledge could spare you a few wrong turns, and what would you like to learn from them?"
       ]
     },
     {
@@ -76,8 +76,8 @@
       "id": "love",
       "heading": "What does The Hierophant mean in love?",
       "paragraphs": [
-        "In love, The Hierophant brings commitment and shared values to the front. If you are single, it can point to meeting people through a community, a class or a tradition you care about, or to working out what kind of commitment you actually want.",
-        "In a relationship, it asks what you are building on together: customs, promises, a way of doing things. Notice whether the familiar shape of a relationship suits you, or whether you would rather design your own.",
+        "Commitment and shared values come to the front when The Hierophant appears in a love reading. For someone unattached, it may suggest meeting people through a community, a class or a tradition you care about, or working out what kind of commitment you actually want.",
+        "Inside a couple, the question is what you are building on together: customs, promises, a way of doing things. Notice whether the familiar shape of a relationship suits you, or whether you would rather design your own.",
         "Reversed, the card can show a pull between what is expected of a relationship and what feels true to you. Which of those expectations are really yours?"
       ]
     },
@@ -85,15 +85,15 @@
       "id": "work_money",
       "heading": "What does The Hierophant mean for work and money?",
       "paragraphs": [
-        "At work, The Hierophant favors learning from people who know the field: a mentor, formal training, an established method, the standards of a profession. It can also point to working inside an institution and finding your place in it.",
-        "With money, look at your approach: are you following a sound, tested practice, or a habit you never questioned? Reversed, notice where the way things have always been done keeps you from a better one."
+        "Career questions with The Hierophant turn toward learning from people who know the field: a mentor, formal training, an established method, the standards of a profession. It can also point to working inside an institution and finding your place in it.",
+        "Ask the same of how you handle money: are you following a sound, tested practice, or a habit you never questioned? Reversed, notice where the way things have always been done keeps you from a better one."
       ]
     },
     {
       "id": "advice",
       "heading": "What is The Hierophant's advice?",
       "paragraphs": [
-        "Ask someone you respect how they would approach the question you are holding, then make the decision yourself. The Hierophant's advice is to borrow experience without borrowing a whole life: take the part of a tradition that helps you and leave what does not fit."
+        "Ask someone you respect how they would approach the question you are holding, then make the decision yourself. Borrow experience without borrowing a whole life: take the part of a tradition that helps you and leave what does not fit."
       ]
     },
     {
@@ -150,7 +150,7 @@
   "faq": [
     {
       "q": "Is The Hierophant a good or bad card?",
-      "a": "Mostly good. It stands behind study, steady counsel and the comfort of belonging somewhere. The caution is about going along by default, keeping a custom only because everyone does. Next to restless or rebellious cards in a spread, that caution can become the main message."
+      "a": "Mostly good. The trap it can hide is going along by default, keeping a custom only because everyone does; outside that trap, it stands behind study, steady counsel and the comfort of belonging somewhere."
     },
     {
       "q": "Is The Hierophant the same card as the Pope?",
@@ -184,7 +184,7 @@
       284
     ],
     "translation": null,
-    "harsh": false
+    "harsh": true
   },
   "citations": [
     {

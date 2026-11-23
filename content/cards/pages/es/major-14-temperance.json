@@ -21,7 +21,7 @@
     "numeral": "XIV",
     "also_called": []
   },
-  "capsule": "La Templanza, carta XIV, habla de equilibrio, moderación y paciencia: la integración lenta de lo que parece opuesto. Al revés, la mezcla se va a los extremos o a la prisa. Es una carta serena que solo advierte contra forzar el ritmo. Si preguntas sí o no, al derecho es sí, porque todo encuentra su lugar con calma.",
+  "capsule": "La Templanza, carta XIV, habla de equilibrio, moderación y paciencia: la integración lenta de lo que parece opuesto. Al revés, la mezcla se va a los extremos o a la prisa. Es una carta serena que prefiere no forzar el ritmo. Como todo encuentra su lugar con calma, al derecho contesta que sí a una pregunta de sí o no.",
   "keywords": {
     "upright": [
       "equilibrio",
@@ -50,8 +50,8 @@
       "id": "waite",
       "heading": "¿Qué escribió Waite sobre La Templanza?",
       "paragraphs": [
-        "En palabras sencillas, la primera lista es práctica: gastar con cuidado, quedarse en el punto medio, administrar bien, ceder un poco. La segunda empieza con iglesias y sacerdocio, un lado de la carta que Arcana Diary no lee, y termina con lo que no logra mezclarse: desunión, malas combinaciones, intereses que chocan.",
-        "A Waite el nombre le parecía poco acertado. Escribió que el símbolo entero no tiene una relación especial con la templanza (p. 24) y que se le llama así de forma fantasiosa, porque la figura templa, combina y armoniza la naturaleza psíquica y la material (p. 127)."
+        "La primera lista es práctica: gastar con cuidado, quedarse en el punto medio, administrar bien, ceder un poco. La segunda empieza con iglesias y sacerdocio, un lado de la carta que Arcana Diary no lee, y termina con lo que no logra mezclarse: desunión, malas combinaciones, intereses que chocan.",
+        "A Waite el nombre le extrañaba a primera vista. Escribió que, en la superficie, el símbolo entero no tiene una relación especial con la templanza (p. 24) y que se le llama así de forma fantasiosa, porque la figura templa, combina y armoniza la naturaleza psíquica y la material (p. 127)."
       ]
     },
     {
@@ -76,18 +76,18 @@
       "id": "love",
       "heading": "¿Qué significa La Templanza en el amor?",
       "paragraphs": [
-        "En el amor, La Templanza propone un punto medio amable. Si no tienes pareja, puede hablar de un ritmo más tranquilo: conocer a alguien sin correr y sin descuidar tu propia vida, tus planes y tu gente mientras tanto.",
-        "Si tienes pareja, habla de dar y recibir: dónde podrías ceder un poco y dónde te conviene sostener lo que necesitas. Describe tu parte de la mezcla: lo que tú pones y lo que tú pides.",
-        "Al revés, puede señalar un vaivén entre mucha cercanía y mucha distancia. ¿Qué cambio pequeño lo acercaría al centro?"
+        "El ángel pasa el agua de una copa a otra, y así propone el amor esta carta: un punto medio amable. Si estás conociendo a alguien, puede hablar de un ritmo más tranquilo: conocerse sin correr y sin descuidar tu propia vida, tus planes y tu gente mientras tanto.",
+        "Ya en pareja, habla de dar y recibir: dónde podrías ceder un poco y dónde te conviene sostener lo que necesitas.",
+        "Al revés, la mezcla puede volverse un vaivén entre mucha cercanía y mucha distancia. ¿Qué cambio pequeño lo acercaría al centro?"
       ]
     },
     {
       "id": "work_money",
       "heading": "¿Qué significa La Templanza en el trabajo y el dinero?",
       "paragraphs": [
-        "En el trabajo, La Templanza favorece el avance constante sobre las rachas de horas extra: combinar habilidades, juntar las ideas de un equipo, dosificar un proyecto largo. Puede señalar un papel en el que eres quien pone de acuerdo a los demás.",
-        "Con el dinero, mira tu manera de decidir. La lista de Waite para esta carta empieza con economía, moderación y frugalidad (p. 285); la lectura de hoy es, sencillamente, no irte a los extremos al gastar o al ahorrar.",
-        "Al revés, fíjate dónde el trabajo o el gasto se volvió todo o nada."
+        "Proyectos largos, equipos variados y habilidades combinadas van bien con esta carta: prefiere el avance constante a las rachas de horas extra y juntar las ideas de un equipo en vez de imponer una. Puede señalar un papel en el que eres quien pone de acuerdo a los demás.",
+        "La lista de Waite para esta carta empieza con economía, moderación y frugalidad (p. 285); en cuanto al dinero, la lectura de hoy te pregunta dónde te vas a los extremos al gastar o al ahorrar.",
+        "Al revés, la señal es un trabajo o un gasto que se volvió todo o nada."
       ]
     },
     {
@@ -106,7 +106,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa La Templanza como persona y como sentimiento?",
       "paragraphs": [
-        "En una tirada, La Templanza suele representar a quien media: alguien paciente que encuentra el punto que sirve a todos y ayuda a que las partes se acerquen. Si la carta habla de ti, muestra tu capacidad de mantener la calma mientras las cosas se asientan. Su tono es sereno y sin prisa; al revés, se vuelve inquieto, jalado entre dos extremos."
+        "Quien media entre otros es la figura que suele traer La Templanza: alguien paciente que encuentra el punto que sirve a todos y ayuda a que las partes se acerquen. Si te representa a ti, muestra tu capacidad de mantener la calma mientras las cosas se asientan. Su tono es sereno y sin prisa; al revés, se vuelve inquieto, dividido entre dos extremos."
       ]
     },
     {
@@ -151,11 +151,11 @@
   "faq": [
     {
       "q": "¿La Templanza es una carta buena o mala?",
-      "a": "Buena, de forma discreta. Apoya la paciencia, el esfuerzo sostenido y la capacidad de unir lo opuesto. Solo advierte contra forzar resultados. Como es tan tranquila, pasa desapercibida en muchas tiradas, aunque a menudo marca el momento en que todo empieza a asentarse."
+      "a": "Discretamente buena. Apoya la paciencia, el esfuerzo sostenido y la capacidad de unir lo opuesto. Forzar resultados no va con ella. Como es tan tranquila, pasa desapercibida en muchas tiradas, aunque a menudo marca el momento en que todo empieza a asentarse."
     },
     {
       "q": "¿La Templanza significa que tengo que renunciar a algo?",
-      "a": "No necesariamente. La palabra suena a abstenerse, pero el dibujo muestra mezcla, no renuncia: el agua pasa de una copa a otra. Al propio Waite el nombre le parecía ajeno a la imagen (p. 24). La carta pide proporción, y eso a veces es menos de algo y a veces más."
+      "a": "No necesariamente. La palabra suena a abstenerse, pero el dibujo muestra mezcla, no renuncia: el agua pasa de una copa a otra. El propio Waite reconoce que, a primera vista, imagen y nombre no parecen ir juntos (p. 24). La carta pide proporción, y eso a veces es menos de algo y a veces más."
     },
     {
       "q": "¿Qué número es La Templanza en el tarot?",

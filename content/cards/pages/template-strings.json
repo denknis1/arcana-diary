@@ -41,7 +41,7 @@
       "boundary": "Everything below is the modern reading used on Arcana Diary. Where a line comes from Waite, we name him and give the page."
     },
     "work_money": {
-      "money_line": "Arcana Diary makes no money forecasts; the card helps you look at your own choices."
+      "money_line": "This is what the card means for money, not a forecast or financial advice."
     },
     "yes_no": {
       "upright": "Upright: {label}. {reason}",
@@ -49,7 +49,7 @@
       "rule": "On Arcana Diary an upright card gives its base answer, and every reversed card moves it to \"Not clear yet\". That is not a bad sign: the answer is still forming."
     },
     "in_a_reading": {
-      "note": "The card describes a role, not a real person, and speaks about your side of the situation, not anyone else's."
+      "note": "The card describes a role, not a real person. What it says about feelings is the card's traditional meaning, not a statement about someone in your life."
     },
     "combinations": {
       "intro": "These pairs are modern readings, built on Arcana Diary's meanings for each card.",
@@ -121,7 +121,7 @@
       "boundary": "Todo lo que sigue es la lectura moderna que usamos en Arcana Diary. Cuando algo viene de Waite, lo decimos y damos la página."
     },
     "work_money": {
-      "money_line": "En Arcana Diary las cartas no pronostican nada sobre el dinero: te ayudan a mirar tus decisiones."
+      "money_line": "Esto es lo que la carta significa para el dinero, no un pronóstico ni un consejo financiero."
     },
     "yes_no": {
       "upright": "Al derecho: {label}. {reason}",
@@ -129,7 +129,7 @@
       "rule": "En Arcana Diary, una carta al derecho da su respuesta base, y toda carta al revés la cambia a «Todavía no está claro». No es mala señal: la respuesta todavía se está formando."
     },
     "in_a_reading": {
-      "note": "La carta describe un papel, no a una persona real, y habla de tu lado de la situación, no del de nadie más."
+      "note": "La carta describe un papel, no a una persona real. Lo que dice sobre los sentimientos es su significado tradicional, no una afirmación sobre alguien de tu vida."
     },
     "combinations": {
       "intro": "Estas parejas son lecturas modernas, basadas en los significados de cada carta en Arcana Diary.",

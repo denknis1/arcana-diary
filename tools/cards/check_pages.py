@@ -38,12 +38,12 @@ WIKISOURCE = "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
 COMMONS = "https://commons.wikimedia.org/wiki/"
 
 # Объём: текст, который видит читатель, без заголовков и вопросов FAQ (карта + строки шаблона).
-WORDS = {"major": (1200, 1650), "minor": (900, 1300)}
+WORDS = {"major": (1200, 1750), "minor": (900, 1350)}
 # Ориентиры по блокам (только предупреждения): (старшие), (младшие).
 BLOCK_WORDS = {
     "on_the_card": ((150, 280), (90, 200)), "waite": ((40, 160), (30, 140)),
     "upright": ((110, 300), (90, 220)), "reversed": ((80, 250), (70, 200)), "love": ((90, 250), (80, 200)),
-    "work_money": ((50, 180), (40, 150)), "advice": ((30, 120), (30, 120)), "in_a_reading": ((40, 120), (40, 120)),
+    "work_money": ((50, 180), (40, 150)), "advice": ((30, 120), (30, 120)), "in_a_reading": ((60, 170), (60, 170)),
     "combinations": ((40, 150), (30, 150)), "not_to_confuse": ((50, 130), (50, 130)),
     "ask_yourself": ((20, 60), (20, 60)), "faq": ((150, 320), (130, 300)),
 }
@@ -61,17 +61,25 @@ FAQ_SHARED_MAX = 2  # общих пятисловных цепочек отве�
 GOOD_BAD = {"en": re.compile(r"\bgood or bad\b", re.I), "es": re.compile(r"\bbuena o mala\b", re.I)}
 VERDICT_WORD = {"en": {"yes": r"\byes\b", "no": r"\bno\b", "unclear": r"\bnot clear\b"},
                 "es": {"yes": r"\bsí\b", "no": r"\bno\b", "unclear": r"\bno está claro\b"}}
-# Тяжёлые старинные слова Уэйта: в цитате — с флагом waite.harsh, в тексте страницы — нельзя.
+# Тяжёлые старинные слова Уэйта. Решение владельца 23.11.2026 («прямо, но спокойно»): трудные значения карт
+# называются прямо (горе, разрушение, предательство; «Death rarely means physical death»), поэтому в тексте
+# страницы запрещены только слова о здоровье и теле, рассудке, суде и тюрьме — темах, о которых сайт не гадает.
 HARSH = {
-    "en": [r"death", r"dead", r"dies?", r"dying", r"miscarriage", r"illness", r"disease", r"sickness",
+    "en": [r"dead", r"dies?", r"dying", r"miscarriage", r"illness", r"disease", r"sickness",
            r"lawsuits?", r"imprisonment", r"prison", r"madness", r"insanity", r"mental alienation", r"mania",
-           r"delirium", r"frenzy", r"widowhood", r"ruin", r"perdition", r"perish", r"calamity", r"catastrophe",
-           r"misery", r"tyranny", r"theft", r"treachery", r"sterility"],
-    "es": [r"muertes?", r"muert[oa]s?", r"morir\w*", r"aborto", r"enfermedad(es)?", r"pleitos?",
+           r"delirium", r"frenzy", r"widowhood", r"perdition", r"perish", r"sterility"],
+    "es": [r"muert[oa]s?", r"morir\w*", r"aborto", r"enfermedad(es)?", r"pleitos?",
            r"demanda judicial", r"encarcelamiento", r"prisión", r"cárcel", r"enajenación", r"demencia",
-           r"manía", r"delirio", r"frenesí", r"viudez", r"ruina", r"perdición", r"perecer", r"calamidad",
-           r"catástrofe", r"miseria", r"tiranía", r"robo", r"traición", r"esterilidad"],
+           r"manía", r"delirio", r"frenesí", r"viudez", r"perdición", r"perecer", r"esterilidad"],
 }
+# Флаг waite.harsh ставится по английской цитате (EN и ES всегда равны): слова HARSH["en"] плюс эти.
+# Группы: смерть; болезнь тела и рассудка; суд и плен; насилие и бедствие; преступление и предательство.
+# Слова о характере, ссорах, неудачах и чувствах (enemies, disgrace, despotism, quarrel) флаг не ставят.
+# В тексте страницы слова этого списка (кроме HARSH) не запрещены.
+HARSH_FLAG_EXTRA = [r"death", r"ruin", r"calamity", r"catastrophe", r"misery", r"tyranny", r"theft",
+                    r"treachery", r"mortality", r"destruction", r"destroyed", r"violence", r"ravage", r"wars?", r"fatality",
+                    r"disasters?", r"law", r"legal", r"litigation", r"captivity", r"treason", r"danger",
+                    r"terror", r"indigence"]
 NO_CORRESPONDENCE = {
     "en": r"Golden Dawn|zodiac|astrolog\w*|\bplanet\w*|\bSaturn\b|\bLibra\b|\belement of (air|fire|water|earth)\b",
     "es": r"Golden Dawn|zod[ií]aco|astrolog\w*|\bplaneta\w*|\bSaturno\b|\bLibra\b|\belemento (aire|fuego|agua|tierra)\b",
@@ -472,13 +480,12 @@ def check_page(page: dict, ctx: Context, path: str = "") -> Result:
     if lang == "en" and w.get("translation") is not None:
         err("waite.translation: в EN — null")
     harsh_rx = [re.compile(r"(?<!\w)" + h + r"(?!\w)", re.I) for h in HARSH[lang]]
-    harsh_en = [re.compile(r"(?<!\w)" + h + r"(?!\w)", re.I) for h in HARSH["en"]]
-    in_quote = any(rx.search(quote) for rx in harsh_en) or any(rx.search(w.get("translation") or "")
-                                                               for rx in harsh_rx)
-    if in_quote and not w.get("harsh"):
-        err("waite.harsh: в цитате тяжёлые слова — нужно true (шаблон добавит строку контекста)")
-    if w.get("harsh") and not in_quote:
-        warn("waite.harsh: true, но тяжёлых слов в цитате не найдено")
+    flag_rx = [re.compile(r"(?<!\w)" + h + r"(?!\w)", re.I) for h in HARSH["en"] + HARSH_FLAG_EXTRA]
+    flag_words = sorted({m.group(0).lower() for rx in flag_rx for m in rx.finditer(quote)})
+    if flag_words and not w.get("harsh"):
+        err(f"waite.harsh: в цитате тяжёлые слова {flag_words} — нужно true (шаблон добавит строку контекста)")
+    if w.get("harsh") and not flag_words:
+        err("waite.harsh: в цитате нет слов из списка тяжёлых — нужно false")
     all_names = [n for n in ctx.names[lang].values()]
     for text in all_units(page):
         plain = text

@@ -21,7 +21,7 @@
     "numeral": "IX",
     "also_called": []
   },
-  "capsule": "El Ermitaño es la carta IX de los arcanos mayores: introspección, pausa y la sabiduría que llega sin ruido. Al revés, el retiro se vuelve aislamiento o el ajetreo no deja pensar. Es una carta serena que pide tiempo y solo advierte contra el encierro. Aún no está claro si es sí o no: su farol alumbra apenas un tramo.",
+  "capsule": "El Ermitaño es la carta IX de los arcanos mayores: introspección, pausa y la sabiduría que llega sin ruido. Al revés, el retiro se vuelve aislamiento o el ajetreo no deja pensar. Es una carta serena que pide tiempo, sin confundirlo con el encierro. Aún no está claro si es sí o no: su farol alumbra apenas un tramo.",
   "keywords": {
     "upright": [
       "introspección",
@@ -51,7 +51,7 @@
       "heading": "¿Qué escribió Waite sobre El Ermitaño?",
       "paragraphs": [
         "La primera lista empieza por la prudencia y la circunspección, es decir, el buen juicio y la cautela, y después pasa a varias formas de engaño. La segunda habla de esconderse y contenerse: ocultamiento, disfraz, miedo, una cautela sin motivo.",
-        "En su propia lectura, Waite le daba más peso a la luz que al escondite. Veía un consejo de prudencia en el Ermitaño que sigue un camino solitario con la luz de su propia lámpara (p. 22), y rechazó leer la carta como un aislamiento oculto que protege a quien se encierra (p. 104)."
+        "En su propia lectura, Waite le daba más peso a la luz que al escondite. Veía un consejo de prudencia en el Ermitaño que sigue un camino solitario con la luz de su propia lámpara (p. 22), y rechazó relacionar la carta con el aislamiento de los ocultistas, entendido como una protección contra toda mezcla (p. 104)."
       ]
     },
     {
@@ -76,25 +76,25 @@
       "id": "love",
       "heading": "¿Qué significa El Ermitaño en el amor?",
       "paragraphs": [
-        "En el amor, El Ermitaño te invita a mirar hacia adentro antes de buscar afuera. Sin pareja, la carta sugiere un tiempo para conocerte mejor, de modo que lo que esperas de otra persona nazca de un lugar más claro.",
-        "En una relación, puede pedir espacio para pensar: una tarde tranquila, una caminata a solas, tiempo para ordenar lo que sientes antes de platicarlo. Necesitar espacio no es lo mismo que alejarse, y la carta solo habla de tu lado.",
-        "Al revés, fíjate si la soledad se volvió escondite o si vives tan pendiente de los demás que nunca te escuchas. ¿Qué sabes de tus propios deseos que todavía no has dicho en voz alta?"
+        "Su farol alumbra hacia adentro antes que hacia afuera, y en el amor eso es conocer tu propio corazón antes de compartirlo. Con alguien a tu lado, puede pedir espacio para pensar: una tarde tranquila, una caminata a solas, tiempo para ordenar lo que sientes antes de platicarlo. Necesitar espacio no es lo mismo que alejarse.",
+        "Mientras no hay pareja, la carta sugiere un tiempo para conocerte mejor, de modo que lo que esperas de otra persona nazca de un lugar más claro.",
+        "Con el farol al revés, fíjate si la soledad se volvió escondite o si vives tan pendiente de los demás que nunca te escuchas. ¿Qué sabes de tus propios deseos que todavía no has dicho en voz alta?"
       ]
     },
     {
       "id": "work_money",
       "heading": "¿Qué significa El Ermitaño en el trabajo y el dinero?",
       "paragraphs": [
-        "En el trabajo, El Ermitaño favorece la concentración profunda y el tiempo para pensar: investigar, estudiar, armar un plan sin prisa. También puede hablar de buscar orientación en alguien con más experiencia, o de ser tú quien orienta a otras personas.",
-        "En temas de dinero, mira cómo llegas a tus decisiones: ¿te das tiempo para pensar o dejas que el ruido y las comparaciones te empujen?",
-        "Al revés, revisa si te aislaste de quien podría ayudarte, o si el ajetreo no te deja ver el panorama completo."
+        "Al decidir sobre dinero, mira cómo llegas a tus decisiones: ¿te das tiempo para pensar o dejas que el ruido y las comparaciones te empujen?",
+        "La concentración profunda y el tiempo para pensar son su terreno en el trabajo: investigar, estudiar, armar un plan sin prisa. También puede hablar de buscar orientación en alguien con más experiencia, o de ser tú quien orienta a otras personas.",
+        "Con la carta al revés, piensa si te aislaste de quien podría ayudarte, o si el ajetreo no te deja ver el panorama completo."
       ]
     },
     {
       "id": "advice",
       "heading": "¿Qué significa El Ermitaño como consejo?",
       "paragraphs": [
-        "Sal a caminar sin audífonos ni celular y deja que una sola pregunta te acompañe. El consejo de El Ermitaño es cuidar un rincón pequeño de silencio en tu día y escuchar lo que aparece ahí."
+        "Sal a caminar sin audífonos ni celular y deja que una sola pregunta te acompañe. Cuida un rincón pequeño de silencio en tu día y escucha lo que aparece ahí."
       ]
     },
     {
@@ -106,7 +106,7 @@
       "id": "in_a_reading",
       "heading": "¿Qué significa El Ermitaño como persona y como sentimiento?",
       "paragraphs": [
-        "En una tirada, El Ermitaño puede representar a una persona que guía, a alguien que piensa en silencio o que se mantiene un poco aparte y por eso ve con claridad. Si te describe a ti, señala lo que ya sabes por dentro y todavía no dices. Trae calma y recogimiento, a veces ganas de soledad; al revés, se acerca a la soledad que pesa o a una inquietud que no te deja parar."
+        "Una persona que guía, alguien que piensa en silencio o que se mantiene un poco aparte y por eso ve con claridad: así suele ser la gente que trae El Ermitaño. Si te describe a ti, señala lo que ya sabes por dentro y todavía no dices. Trae calma y recogimiento, a veces ganas de soledad; al revés, se acerca a la soledad que pesa o a una inquietud que no te deja parar."
       ]
     },
     {
@@ -119,7 +119,7 @@
         },
         {
           "card_id": "swords-04-four",
-          "text": "Doble invitación a retirarte. Descansar de verdad es la tarea, no una demora."
+          "text": "Dos llamados a retirarte a la vez. Descansar de verdad es la tarea, no una demora."
         },
         {
           "card_id": "major-07-chariot",
@@ -135,7 +135,7 @@
       "id": "not_to_confuse",
       "heading": "¿Cómo distinguir El Ermitaño del Ocho de Copas?",
       "paragraphs": [
-        "En las dos cartas hay una figura sola, apartada de los demás. En el Ocho de Copas, un hombre de aspecto abatido abandona sus copas (p. 210); el sentido actual es irse en busca de algo con más significado. El Ermitaño va más adelante: Waite lo pone en una altura con su faro en alto. El Ocho trata de dejar algo atrás; El Ermitaño, del silencio que encuentras cuando te detienes a mirar hacia adentro."
+        "En las dos cartas hay una figura sola, apartada de los demás. En el Ocho de Copas, un hombre de aspecto abatido abandona sus copas (p. 210); el sentido actual es irse en busca de algo con más significado. El Ermitaño va más adelante: Waite lo pone en una altura con su faro en alto (p. 104). El Ocho trata de dejar algo atrás; El Ermitaño, del silencio que encuentras cuando te detienes a mirar hacia adentro."
       ]
     },
     {
@@ -151,11 +151,11 @@
   "faq": [
     {
       "q": "¿El Ermitaño es una carta buena o mala?",
-      "a": "No es ni buena ni mala, sino reflexiva. Apoya el descanso, la calma y las respuestas propias, y solo advierte contra alargar el retiro cuando ya cumplió su función. Junto a cartas de mucha actividad o vida social, quizá solo te pide un rato para ti."
+      "a": "Más que buena o mala, es reflexiva. Apoya el descanso, la calma y las respuestas propias. Lo que no quiere es que alargues el retiro cuando ya cumplió su función: el tiempo a solas sirve para volver con los demás con un paso más claro."
     },
     {
       "q": "¿El Ermitaño significa soledad?",
-      "a": "Significa una soledad elegida, no impuesta. Waite lo veía como alguien que ya llegó a una altura y levanta una luz que otros pueden seguir. Si lo que sientes es una soledad que pesa, eso queda más cerca del lado al revés: un silencio que ya duró más de lo que ayuda."
+      "a": "Significa una soledad elegida, no impuesta. Waite lo veía como alguien que ya llegó a una altura y levanta una luz que otros pueden seguir (pp. 17, 104). Si lo que sientes es una soledad que pesa, eso queda más cerca del lado al revés: un silencio que ya duró más de lo que ayuda."
     },
     {
       "q": "¿Qué hay dentro del farol de El Ermitaño?",
