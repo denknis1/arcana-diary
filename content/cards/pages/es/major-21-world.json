@@ -1,0 +1,256 @@
+{
+  "schema": 2,
+  "card_id": "major-21-world",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "El Mundo",
+    "in_sentence": "El Mundo",
+    "de": "de El Mundo"
+  },
+  "title": "El Mundo en el tarot: significado, invertida y amor",
+  "description": "Qué significa El Mundo al derecho y al revés (carta invertida): plenitud, amor, trabajo y consejo. Palabras de Waite (1911), la carta de 1909 y si es sí o no.",
+  "h1": "El Mundo en el tarot: significado",
+  "image_alt": "El Mundo, carta de 1909 de la baraja Rider-Waite-Smith: una figura envuelta en un velo baila con una vara en cada mano dentro de una corona ovalada de laurel; en las esquinas, una cabeza humana, un águila, un toro y un león.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 21,
+    "numeral": "XXI",
+    "also_called": [
+      "El Universo"
+    ]
+  },
+  "capsule": "El Mundo, carta XXI y última de los arcanos mayores, habla de plenitud, logro y cierre de ciclo. Al revés, algo está casi terminado, pero quedan cabos sueltos. Es una carta buena que te pide reconocer el camino recorrido. Al derecho dice que sí, porque el círculo está completo y la figura baila libre dentro de él.",
+  "keywords": {
+    "upright": [
+      "plenitud",
+      "logro",
+      "cierre de ciclo",
+      "integración"
+    ],
+    "reversed": [
+      "cabos sueltos",
+      "ciclo sin cerrar",
+      "estancamiento",
+      "perfeccionismo"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de El Mundo?",
+      "paragraphs": [
+        "Una gran corona ovalada ocupa casi toda la carta y, dentro, una figura baila en el aire. Waite la describe como una guirnalda elíptica, como si fuera una cadena de flores que simboliza todo lo que se percibe con los sentidos (p. 30). En la carta de 1909 la corona es verde y frondosa, atada con cintas rojas arriba y abajo, sobre un cielo azul claro, y arriba aparece el XXI.",
+        "Según Waite, es una mujer a la que el viento le ciñe las caderas con un velo ligero, su única ropa; está bailando y lleva una vara en cada mano (p. 30). En la carta de 1909 el velo es una banda larga gris violácea que se enrosca alrededor del cuerpo, y las dos varas son blancas.",
+        "En las cuatro esquinas se asoman cabezas entre nubes: en la carta de 1909, una cabeza humana y un águila arriba, un toro y un león abajo. Waite las llama los cuatro seres vivientes del Apocalipsis y de la visión de Ezequiel, que el simbolismo cristiano atribuye a los evangelistas (p. 30).",
+        "Para él, la danza es una imagen del torbellino de la vida sensible y de la alegría alcanzada en el cuerpo (p. 30). En la segunda parte del libro no volvió a describir el dibujo, porque su diseño, escribe, no ha cambiado y no puede cambiar (p. 156)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre El Mundo?",
+      "paragraphs": [
+        "La primera lista junta dos ideas: la recompensa por algo que se termina y el movimiento hacia otro lugar, por camino o a otro país. La segunda convierte ambas en quietud: lo que se queda fijo y no avanza.",
+        "Waite llama a esta carta el mensaje final de los arcanos mayores y dice que representa la perfección y el fin del Cosmos (p. 156). Cuenta también que Éliphas Lévi llamó corona a la guirnalda (pp. 30–31)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa El Mundo al derecho?",
+      "paragraphs": [
+        "Al derecho, El Mundo habla de cierre de ciclo: una etapa que se completa, un trabajo terminado, una parte de tu vida que por fin se entiende como un todo. Es el logro que se siente por dentro, no solo el que ven los demás.",
+        "Su lado más hondo es la plenitud y la integración: lo que aprendiste en el camino encaja y sientes que estás en tu lugar. La figura no se aferra a nada; la corona que la rodea ya está cerrada.",
+        "La lista de Waite agrega movimiento y cambio de lugar; que cada final prepare el siguiente comienzo es una lectura moderna, no de Waite. Si esto te hace sentido, date un momento para reconocer cuánto creciste antes de empezar lo que sigue."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa El Mundo al revés?",
+      "paragraphs": [
+        "Al revés, El Mundo señala algo casi terminado que no acaba de cerrarse: un último paso que se pospone, un ciclo sin cerrar que te deja a medio camino entre lo que fue y lo que sigue.",
+        "Las palabras de Waite para este lado, inercia, fijeza, estancamiento y permanencia, describen ese mismo punto desde afuera: nada se mueve. El perfeccionismo que deja el último paso sin dar ya pertenece a la lectura de hoy.",
+        "Ubica los cabos sueltos y ata solo uno; con eso, lo demás suele sentirse más ligero."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa El Mundo en el amor?",
+      "paragraphs": [
+        "En el amor, El Mundo empieza por la plenitud que encuentras en ti. Si no tienes pareja, puede hablar de estar a gusto con tu vida tal como es, de modo que la cercanía sea algo que compartes y no algo que te falta.",
+        "Si tienes pareja, puede marcar la sensación de encajar y de haber crecido a través de algo, uno al lado del otro. Celebrar lo que han construido le va bien a esta carta. Habla de cómo vives tú el vínculo, no de cómo termina la historia.",
+        "Al revés, busca algo pendiente de tu lado, una conversación o un cierre, que mantiene abierto un capítulo."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa El Mundo en el trabajo y el dinero?",
+      "paragraphs": [
+        "En el trabajo, El Mundo puede hablar de terminar un proyecto, concluir una capacitación o llegar al punto en que tu esfuerzo por fin suma. Favorece cerrar bien: un resumen, un agradecimiento, una pausa antes de la siguiente tarea.",
+        "Con el dinero, mira los planes que dejaste a medias y si te permites ver lo que ya construiste.",
+        "Al revés, fíjate qué paso pendiente detiene todo lo demás."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa El Mundo como consejo?",
+      "paragraphs": [
+        "Termina una tarea pendiente y date un momento para reconocer tu esfuerzo. El consejo de El Mundo es cerrar el círculo a propósito, para que deje de jalarte. Márcala como hecha, cuéntalo y disfruta la sensación de algo terminado."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Mundo es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa El Mundo como persona y como sentimiento?",
+      "paragraphs": [
+        "En una tirada, El Mundo puede describir a alguien en paz con su propia vida, que atravesó una etapa larga y la lleva con ligereza. Cuando habla de ti, es esa parte de ti que siente que todo encaja. Su sentimiento es una satisfacción tranquila; al revés, la inquietud de lo que está a punto de completarse y no termina."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa El Mundo junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-00-fool",
+          "text": "Un final y un nuevo inicio se tocan. Cierra bien este capítulo y empieza el siguiente con curiosidad."
+        },
+        {
+          "card_id": "cups-10-ten",
+          "text": "Plenitud en casa y con tu gente. Disfruta la sensación de pertenencia que ayudaste a construir."
+        },
+        {
+          "card_id": "wands-03-three",
+          "text": "Una meta cumplida y una vista más amplia. Mira qué se vuelve posible con este cierre."
+        },
+        {
+          "card_id": "pentacles-08-eight",
+          "text": "La práctica de mucho tiempo da fruto. Reconoce la habilidad que construiste paso a paso."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir El Mundo de La Rueda de la Fortuna?",
+      "paragraphs": [
+        "La Rueda de la Fortuna también tiene cuatro seres en las esquinas: Waite dice que los cuatro seres vivientes de Ezequiel ocupan los ángulos de la carta (p. 108). Hoy la Rueda se lee como ciclos, cambio y movimiento, un giro en marcha. El Mundo es el círculo en reposo: un ciclo terminado, no uno que sigue girando. Si todo se mueve, es la Rueda; si algo se completa, es El Mundo."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale El Mundo?",
+      "paragraphs": [
+        "¿Qué terminé hace poco y todavía no me he reconocido?",
+        "¿Qué cabo suelto mantiene abierto un capítulo?",
+        "¿Qué aprendí en este ciclo que quiero llevar al siguiente?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Mundo es una carta buena o mala?",
+      "a": "Buena. Respalda los cierres, la sensación de estar en paz con lo hecho y el mérito de tu esfuerzo. Su única advertencia aparece al revés: un final sin atar puede impedirte disfrutar el resultado, y ahí importa más cerrar que hacerlo perfecto."
+    },
+    {
+      "q": "¿El Mundo significa viaje?",
+      "a": "Puede leerse así. La lista de Waite incluye viaje, ruta, emigración y cambio de lugar (p. 287), así que el movimiento forma parte del significado antiguo. En Arcana Diary ese movimiento se lee de forma más amplia: pasar a una etapa nueva, con o sin maleta."
+    },
+    {
+      "q": "¿El Mundo es la última carta del tarot?",
+      "a": "Es la última de los arcanos mayores, la XXI. Waite cuidó de numerarla siempre como 21 y también la llama el Universo (p. 161). Después vienen los 56 arcanos menores, que forman otro grupo, con sus cuatro palos."
+    },
+    {
+      "q": "¿Quién es la figura que baila en El Mundo?",
+      "a": "Waite solo dice que es una mujer cubierta por un velo. Cuenta que Éliphas Lévi veía en ella la Verdad, aunque para él la Verdad le corresponde mejor a la carta diecisiete (pp. 31, 159). Leída hoy, puede ser cualquier persona que se siente en casa dentro de su propia vida."
+    }
+  ],
+  "related": [
+    "major-20-judgement",
+    "major-00-fool",
+    "major-10-wheel-of-fortune",
+    "cups-10-ten"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-10-wheel-of-fortune",
+      "text": "La Rueda de la Fortuna"
+    }
+  ],
+  "waite": {
+    "quote": "Assured success, recompense, voyage, route, emigration, flight, change of place. Reversed: Inertia, fixity, stagnation, permanence.",
+    "quote_lang": "en",
+    "pages": [
+      287
+    ],
+    "translation": "Éxito asegurado, recompensa, viaje, ruta, emigración, huida, cambio de lugar. Al revés: inercia, fijeza, estancamiento, permanencia.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [30],
+      "text": "The four living creatures of the Apocalypse and Ezekiel's vision, attributed to the evangelists in Christian symbolism, are grouped about an elliptic garland, as if it were a chain of flowers intended to symbolize all sensible things"
+    },
+    {
+      "pages": [30],
+      "text": "within this garland there is the figure of a woman, whom the wind has girt about the loins with a light scarf, and this is all her vesture. She is in the act of dancing, and has a wand in either hand"
+    },
+    {
+      "pages": [30],
+      "text": "It is eloquent as an image of the swirl of the sensitive life, of joy attained in the body"
+    },
+    {
+      "pages": [156],
+      "text": "As this final message of the Major Trumps is unchanged—and indeed unchangeable—in respect of its design, it has been partly described already"
+    },
+    {
+      "pages": [156],
+      "text": "It represents also the perfection and end of the Cosmos"
+    },
+    {
+      "pages": [30, 31],
+      "text": "Éliphas Lévi calls the garland a crown, and reports that the figure represents Truth"
+    },
+    {
+      "pages": [159],
+      "text": "The figure has been said to stand for Truth, which is, however, more properly allocated to the seventeenth card"
+    },
+    {
+      "pages": [161],
+      "text": "I have taken care not to number the World or Universe otherwise than as 21"
+    },
+    {
+      "pages": [108],
+      "text": "the four Living Creatures of Ezekiel occupy the angles of the card"
+    },
+    {
+      "pages": [287],
+      "text": "Assured success, recompense, voyage, route, emigration, flight, change of place. Reversed: Inertia, fixity, stagnation, permanence"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 21 World.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_21_World.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [30, 31, 108, 156, 159, 161, 287],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

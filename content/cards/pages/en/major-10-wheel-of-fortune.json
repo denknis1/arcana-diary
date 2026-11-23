@@ -1,0 +1,294 @@
+{
+  "schema": 2,
+  "card_id": "major-10-wheel-of-fortune",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Wheel of Fortune",
+    "in_sentence": "the Wheel of Fortune"
+  },
+  "title": "Wheel of Fortune Tarot Meaning: Upright & Reversed",
+  "description": "Wheel of Fortune upright: cycles, change, luck; reversed: resisting change. Love, work, advice, Waite's 1911 text and the 1909 card. Ask your question.",
+  "h1": "Wheel of Fortune Tarot Card Meaning",
+  "image_alt": "Wheel of Fortune, 1909 Rider–Waite–Smith card: an orange wheel lettered T, A, R, O in a blue sky, a blue sphinx with a sword on top, a yellow snake and a red animal-headed figure at its sides, winged creatures in the corners.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 10,
+    "numeral": "X",
+    "also_called": []
+  },
+  "capsule": "The Wheel of Fortune is card X of the Major Arcana: cycles, change and a turning point you do not control. Reversed, it shows resisting change or feeling stuck. It is a lively card with one caution: no position on a wheel lasts. For a yes or no, upright says yes, since the wheel is moving and stuck things shift.",
+  "keywords": {
+    "upright": [
+      "cycles",
+      "change",
+      "turning point",
+      "luck"
+    ],
+    "reversed": [
+      "resisting change",
+      "feeling stuck",
+      "clinging",
+      "repeating patterns"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Wheel of Fortune card?",
+      "paragraphs": [
+        "A great orange wheel hangs in a blue sky among grey clouds, and it is the largest thing on the card. Waite says that for this design he \"again followed the reconstruction of Éliphas Lévi\" and that the picture stands \"for the perpetual motion of a fluidic universe and for the flux of human life\" (p. 108).",
+        "A blue sphinx sits on top of the rim, a sword resting against its shoulder. \"The Sphinx is the equilibrium therein,\" Waite writes (p. 108), and he objects to versions that lift it onto a pedestal above the wheel, because that spoils \"the essential idea of stability amidst movement\" (p. 111).",
+        "A yellow snake slides down the left side; Waite says he presented Typhon \"in his serpent form\" (p. 108). On the right is a red figure with an animal's head. In Part I he sums up Lévi's arrangement as \"a Hermanubis rising with the wheel, a Sphinx couchant at the summit and a Typhon on the descending side\" (p. 21).",
+        "Winged figures rest on clouds in the four corners: a human figure, an eagle, a bull and a lion. Waite calls them \"the four Living Creatures of Ezekiel\" (p. 108). On the 1909 card each of them has a book, the rim carries the letters T, A, R and O, and X is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Wheel of Fortune?",
+      "paragraphs": [
+        "Read plainly, the upright list is about things going up: success, elevation, luck, felicity. The reversed list is the surprise. It does not describe a fall at all; increase, abundance and superfluity all mean having more, even more than enough.",
+        "Waite had little patience with the occult commentary on this card. He called it \"of a singularly fatuous kind\" and added that \"the findings of common fortune-telling are better than this on their own plane\" (p. 111)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Wheel of Fortune mean upright?",
+      "paragraphs": [
+        "Upright, the Wheel of Fortune marks a turning point: a situation that was stuck begins to move, or one of your familiar cycles comes around again. It tends to appear when circumstances shift faster than your plans.",
+        "The card does not ask you to stop the wheel. It asks where the movement is going and how you can travel with it, instead of holding on to the way things were. Some of what turns lies outside your hands; your response does not.",
+        "Luck belongs to this card too. Waite's list names it, and today it reads as the sense that a door has opened. Treat that as a reason to look around, not as a promise. If this fits your situation, ask: what is already changing, and which small step would go with it?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Wheel of Fortune mean reversed?",
+      "paragraphs": [
+        "Reversed, the Wheel of Fortune often points to resisting change: wanting the wheel to stop while it keeps on turning. It can also describe feeling stuck at the low point of a cycle, or repeating patterns that come back wearing new clothes.",
+        "This side of the card is a modern reading, not Waite's. His reversed words speak of increase and abundance, not of a downturn.",
+        "Clinging to the old shape of things is the usual knot. Ask which part of the cycle depends on you, start there, and stop trying to set the timing for the rest."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Wheel of Fortune mean in love?",
+      "paragraphs": [
+        "In love, the Wheel of Fortune brings movement: a change of pace, a new chapter, a pattern you can finally see. If you are single, it can describe a season when your plans or your wishes are shifting. Pay attention to what you want now, not only to what you wanted a while ago.",
+        "In a relationship, the card points to a change of rhythm, such as a move, new routines or a stage that asks you to adjust. It speaks about how you meet that change, not about anyone else's choices.",
+        "Reversed in love, look for something that keeps recurring in your relationships, or for a wish to keep everything exactly as it was. Which of the two sounds closer to your story?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Wheel of Fortune mean for work and money?",
+      "paragraphs": [
+        "At work, the Wheel of Fortune can point to shifting ground: a team being reorganized, a stalled project that suddenly moves, a role that changes shape. It favors flexibility and an eye on where the momentum is heading.",
+        "With money, the card asks how you respond when circumstances turn: do you adjust calmly, or chase every swing up and down?",
+        "Reversed, look at a change at work you keep pushing against, or at a habit that keeps returning you to the same spot."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the Wheel of Fortune's advice?",
+      "paragraphs": [
+        "Find one place where things are already shifting, and make one small move that goes with the change instead of against it. The Wheel's advice is to ride the turn rather than brace against it: choose the direction, take the step, and let the rest of the circle keep turning without your grip on it."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Wheel of Fortune a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Wheel of Fortune as a person and as a feeling",
+      "paragraphs": [
+        "This card rarely paints a character; it paints a moment, the point where a situation swings round. If it stands for someone, picture a person who adapts quickly and lands on their feet whatever comes. Pointed at you, it marks your ability to move with what changes. Its mood is the lift of things finally moving, mixed with not knowing where they will settle; reversed, that lift sours into frustration at going nowhere."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Wheel of Fortune with other cards",
+      "pairs": [
+        {
+          "card_id": "major-12-hanged-man",
+          "text": "Movement meets a chosen pause. Let things settle for a moment before you decide which way to turn."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "A turn that picks up speed. Reply quickly and keep plans simple while everything is in motion."
+        },
+        {
+          "card_id": "pentacles-02-two",
+          "text": "Change on several fronts at once. Decide what needs you first and stay light on your feet."
+        },
+        {
+          "card_id": "major-21-world",
+          "text": "A circle closes as the wheel turns once more. Mark what you have finished before the next round."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "The Wheel of Fortune or The Tower?",
+      "paragraphs": [
+        "Both cards speak of change you did not fully choose. In Part I Waite names the other card \"The Tower struck by Lightning\" (p. 25) and says \"it is assuredly a card of confusion\" (p. 26). The Tower is a sudden jolt that breaks a structure. The Wheel is a rotation: a cycle that keeps moving and comes round again. A shock that knocks something down belongs to The Tower; a season quietly turning belongs to the Wheel."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Wheel of Fortune",
+      "paragraphs": [
+        "What in my life is already turning, even if I have not admitted it yet?",
+        "Where am I holding on to how things used to be?",
+        "What is one small move I could make that goes with the change?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Wheel of Fortune a good or bad card?",
+      "a": "Mostly good. It favors movement after a period of standing still and reminds you that circumstances can shift. Its caution is built into the circle itself: nothing stays at the top or at the bottom, so enjoy a rise without counting on it and treat a slump as a stage, not a verdict."
+    },
+    {
+      "q": "Is the Wheel of Fortune a luck card?",
+      "a": "Partly, but it does not predict luck. Waite's list does include \"luck, felicity\" (p. 285), yet on Arcana Diary the card describes change that may already be underway and asks how you meet it. Take it as a nudge to notice what is opening, rather than as a promise of good fortune."
+    },
+    {
+      "q": "What do the letters on the Wheel of Fortune mean?",
+      "a": "On the 1909 card the rim shows T, A, R and O, with other signs set between them. Waite explains that the word Taro can also be read there as Rota, and that the letters alternate with those of the Divine Name, \"to shew that Providence is implied through all\" (p. 108). He gives them no fortune-telling meaning."
+    },
+    {
+      "q": "Does the Wheel of Fortune mean everything is out of my hands?",
+      "a": "No. The wheel turns whether or not you push it, but the card looks at your share of the movement: what you notice, what you agree to, what you release. Even in Waite's design, one figure stays steady at the top while everything else revolves."
+    }
+  ],
+  "related": [
+    "major-09-hermit",
+    "major-11-justice",
+    "major-12-hanged-man",
+    "major-16-tower"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-16-tower",
+      "text": "The Tower"
+    }
+  ],
+  "waite": {
+    "quote": "Destiny, fortune, success, elevation, luck, felicity. Reversed: Increase, abundance, superfluity.",
+    "quote_lang": "en",
+    "pages": [
+      284,
+      285
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        108
+      ],
+      "text": "In this symbol I have again followed the reconstruction of Éliphas Lévi"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "the symbolic picture stands for the perpetual motion of a fluidic universe and for the flux of human life. The Sphinx is the equilibrium therein"
+    },
+    {
+      "pages": [
+        111
+      ],
+      "text": "Sometimes the sphinx is represented couchant on a pedestal above, which defrauds the symbolism by stultifying the essential idea of stability amidst movement"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "I have, however, presented Typhon in his serpent form"
+    },
+    {
+      "pages": [
+        21
+      ],
+      "text": "These are replaced in the reconstruction by a Hermanubis rising with the wheel, a Sphinx couchant at the summit and a Typhon on the descending side"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "the four Living Creatures of Ezekiel occupy the angles of the card"
+    },
+    {
+      "pages": [
+        111
+      ],
+      "text": "the occult explanations of this card are—even for occultism itself—of a singularly fatuous kind"
+    },
+    {
+      "pages": [
+        111
+      ],
+      "text": "The findings of common fortune-telling are better than this on their own plane"
+    },
+    {
+      "pages": [
+        25
+      ],
+      "text": "The Tower struck by Lightning"
+    },
+    {
+      "pages": [
+        26
+      ],
+      "text": "It is assuredly a card of confusion"
+    },
+    {
+      "pages": [
+        285
+      ],
+      "text": "tune, success, elevation, luck, felicity"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "The transliteration of Taro as Rota is inscribed on the wheel, counterchanged with the letters of the Divine Name—to shew that Providence is implied through all"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - 10 Wheel of Fortune.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_10_Wheel_of_Fortune.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        21,
+        25,
+        26,
+        108,
+        111,
+        284,
+        285
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

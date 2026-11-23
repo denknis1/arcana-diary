@@ -1,0 +1,259 @@
+{
+  "schema": 2,
+  "card_id": "major-02-high-priestess",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "The High Priestess",
+    "in_sentence": "The High Priestess"
+  },
+  "title": "The High Priestess Tarot Meaning: Upright & Reversed",
+  "description": "The High Priestess upright: intuition, inner knowing; reversed: outside noise. Love, work, advice, Waite's 1911 text and the 1909 card. Ask your question.",
+  "h1": "The High Priestess Tarot Card Meaning",
+  "image_alt": "The High Priestess, 1909 Rider–Waite–Smith card: a woman in a pale blue mantle sits between a black pillar marked B and a white one marked J, a scroll in her lap and a yellow crescent at her feet.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 2,
+    "numeral": "II",
+    "also_called": []
+  },
+  "capsule": "The High Priestess, card II of the Major Arcana, is the card of intuition, inner knowing and stillness: what you understand once you stop pushing. Reversed, outside noise drowns that quiet voice. A calm, wise card, it cautions only against forcing answers. Asked yes or no, she answers: not clear yet, since her scroll stays partly covered.",
+  "keywords": {
+    "upright": [
+      "intuition",
+      "inner knowing",
+      "mystery",
+      "stillness"
+    ],
+    "reversed": [
+      "ignored intuition",
+      "outside noise",
+      "surface knowledge",
+      "unspoken things"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on The High Priestess card?",
+      "paragraphs": [
+        "A woman in a pale blue mantle sits between two pillars, one black and one white, with a curtain hung behind her. Waite seats her \"between the white and black pillars—J. and B.—of the mystic Temple\" and adds that \"the veil of the Temple is behind her: it is embroidered with palms and pomegranates\" (p. 76). On the 1909 card the pillars are the largest shapes: the black one on the left carries a white B, the pale one on the right a dark J, and the pomegranates show red seeds.",
+        "She wears \"a horned diadem on her head, with a globe in the middle place, and a large solar cross on her breast\", with \"the lunar crescent\" at her feet (p. 76). On the 1909 card the crescent is yellow and her robe spills over it like water, the cross is white, and II sits above her crown.",
+        "In her lap lies a scroll. Waite says it bears the word Tora and \"is partly covered by her mantle, to shew that some things are implied and some spoken\" (p. 76). On the 1909 card a few letters can be read on the roll before the blue cloth hides the rest.",
+        "Her clothes, in Waite's words, are \"flowing and gauzy, and the mantle suggests light—a shimmering radiance\" (p. 76)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about The High Priestess?",
+      "paragraphs": [
+        "The upright words circle around what is hidden or not yet shown, and then around the qualities that keep it: silence, tenacity, wisdom, learning. The reversed words swap that quiet depth for heat and display: passion, ardour, conceit, and knowledge that stays on the surface.",
+        "Waite held this card in high regard. He wrote that \"there are some respects in which this card is the highest and holiest of the Greater Arcana\" (p. 79) and called her \"the Secret Tradition and the higher sense of the instituted Mysteries\" (p. 13)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does The High Priestess mean upright?",
+      "paragraphs": [
+        "Upright, The High Priestess points to intuition: knowing something before you can explain it. A hunch, a dream that stays with you through the day, a feeling that keeps coming back are her territory. The card tends to appear when more effort or more information will not bring the answer you need.",
+        "Her gift is stillness. She does not move or argue; she listens. That is not passivity but attention, the kind that notices what is said and what is only implied, and gives both their weight.",
+        "Mystery belongs to the meaning, too. Not every question is ready to be answered, and the card lets you keep one open a little longer instead of closing it too early. Where this matches your life, ask what part of it you already sense but cannot yet explain."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does The High Priestess mean reversed?",
+      "paragraphs": [
+        "Reversed, The High Priestess often points to ignored intuition: an inner voice drowned out by outside noise, by advice from every side or by a schedule with no quiet in it. It can also show unspoken things, something you sense and have not named, even to yourself.",
+        "Waite's reversed list goes another way, toward passion, conceit and surface knowledge, the loud opposite of her calm. That last phrase is worth keeping: are you skimming a situation instead of letting it sink in? The drowned-out voice is a modern reading, not Waite's.",
+        "The remedy is simple, if not always easy: step back from outside opinions for a while and notice what remains underneath them."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does The High Priestess mean in love?",
+      "paragraphs": [
+        "In love, The High Priestess asks you to trust what you sense before looking for answers outside yourself. Some feelings need quiet time before they become clear, and the card gives you permission not to name them yet.",
+        "Without a partner, the card may ask you to keep your own pace rather than hurry toward someone because it seems expected. With a partner, it may mean paying attention to what you feel in calm moments, not only in loud ones, and keeping an inner space that belongs to you.",
+        "Reversed, notice whether you are brushing past a hunch, or holding back something that weighs on you. The card cannot read another heart; it speaks about what you know of your own."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does The High Priestess mean for work and money?",
+      "paragraphs": [
+        "At work, The High Priestess favors observation before action. Watch, listen, take note of what goes unsaid in meetings, and let your judgment settle before you commit. Research, study and quiet expertise belong here as well.",
+        "With money, the card asks whether a decision feels right underneath the numbers or only looks right at first glance. Reversed, be careful about acting on half-read information or on the noise around you."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is The High Priestess's advice?",
+      "paragraphs": [
+        "Sleep on your question, and when you wake, notice the first feeling that comes, before you check your phone or ask anyone. The card's advice is to let your own knowing speak first."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is The High Priestess a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The High Priestess as a person and as a feeling",
+      "paragraphs": [
+        "If The High Priestess stands for someone in a spread, imagine the quiet one who notices everything and says little, or the part of you that understands more than it shows. Emotionally she brings calm attention and a sense that something is still unfolding; reversed, that calm can turn into restless second-guessing or a secret that feels heavy to carry."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The High Priestess with other cards",
+      "pairs": [
+        {
+          "card_id": "major-18-moon",
+          "text": "Intuition in a foggy landscape. Trust your inner sense, but give unclear things time to show their shape."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "A stalled choice. Stop weighing the options aloud and ask what you already sense."
+        },
+        {
+          "card_id": "major-09-hermit",
+          "text": "A double call for quiet. Time alone may show you more than any advice."
+        },
+        {
+          "card_id": "cups-13-queen",
+          "text": "Intuition and empathy together. Listen to your own feelings with the care you usually give to others."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "The High Priestess or The Hierophant?",
+      "paragraphs": [
+        "Both figures sit between two pillars, yet Waite insists that the pillars of The Hierophant belong to a different place from the Temple she keeps (p. 88). He raises his right hand in a sign; she, Waite points out, makes none (p. 88). Today the Hierophant is read as tradition, learning and guidance that comes from outside. The High Priestess is knowledge from within: silent, personal, not handed down."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about The High Priestess",
+      "paragraphs": [
+        "What do I already know about this that nobody told me?",
+        "Which hunch have I been talking myself out of?",
+        "Where could I make room for a little silence in my day?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is The High Priestess a good or bad card?",
+      "a": "Good, though its help is quiet. It supports intuition, patience and listening before you act. Because it does not push for results, it can feel frustrating when you want a quick answer. The only warning it carries: do not force a decision that your inner sense has not caught up with."
+    },
+    {
+      "q": "Does The High Priestess mean someone is keeping a secret?",
+      "a": "It cannot tell you what another person hides. Waite's list does open with \"secrets, mystery\" (p. 283), but on Arcana Diary that word turns inward: something you sense and have not said yet, perhaps not even to yourself. The useful question is what you might be holding back."
+    },
+    {
+      "q": "Does The High Priestess represent a woman?",
+      "a": "In Waite's day it could. His list says the card may stand for \"the Querent herself, if female\" (p. 283), and his forty-two-card method uses it to mark a woman who asks (p. 308). Today it describes a quality anyone can have: observant, unhurried, guided from within."
+    },
+    {
+      "q": "What other names does The High Priestess have?",
+      "a": "Older decks called her \"the Pope Joan, or Female Pontiff\", Waite writes, and some early writers named her \"the Mother, or Pope's Wife\", which he found \"opposed to the symbolism\" (p. 13). In the 1909 deck the title printed at the bottom of the card is The High Priestess."
+    }
+  ],
+  "related": [
+    "major-01-magician",
+    "major-03-empress",
+    "major-05-hierophant",
+    "major-18-moon",
+    "swords-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-05-hierophant",
+      "text": "The Hierophant"
+    }
+  ],
+  "waite": {
+    "quote": "Secrets, mystery, the future as yet unrevealed … silence, tenacity; mystery, wisdom, science. Reversed: Passion, moral or physical ardour, conceit, surface knowledge.",
+    "quote_lang": "en",
+    "pages": [283],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [76],
+      "text": "She is seated between the white and black pillars—J. and B.—of the mystic Temple and the veil of the Temple is behind her: it is embroidered with palms and pomegranates"
+    },
+    {
+      "pages": [76],
+      "text": "She has the lunar crescent at her feet, a horned diadem on her head, with a globe in the middle place, and a large solar cross on her breast"
+    },
+    {
+      "pages": [76],
+      "text": "The scroll in her hands is inscribed with the word Tora … It is partly covered by her mantle, to shew that some things are implied and some spoken"
+    },
+    {
+      "pages": [76],
+      "text": "The vestments are flowing and gauzy, and the mantle suggests light—a shimmering radiance"
+    },
+    {
+      "pages": [79],
+      "text": "There are some respects in which this card is the highest and holiest of the Greater Arcana"
+    },
+    {
+      "pages": [13],
+      "text": "She is the Secret Tradition and the higher sense of the instituted Mysteries"
+    },
+    {
+      "pages": [13],
+      "text": "The High Priestess, the Pope Joan, or Female Pontiff; early expositors have sought to term this card the Mother, or Pope's Wife, which is opposed to the symbolism"
+    },
+    {
+      "pages": [283],
+      "text": "Secrets, mystery, the future as yet unrevealed; the woman who interests the Querent, if male; the Querent herself, if female"
+    },
+    {
+      "pages": [308],
+      "text": "the Querent—if of the male sex—is represented by the Magician, and if female by the High Priestess"
+    },
+    {
+      "pages": [88],
+      "text": "seated between two pillars, but they are not those of the Temple which is guarded by the High Priestess"
+    },
+    {
+      "pages": [88],
+      "text": "with his right hand he gives the well-known ecclesiastical sign"
+    },
+    {
+      "pages": [88],
+      "text": "It is noticeable in this connexion that the High Priestess makes no sign"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - 02 High Priestess.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_02_High_Priestess.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [13, 76, 79, 88, 283, 308],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

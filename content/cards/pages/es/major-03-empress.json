@@ -1,0 +1,265 @@
+{
+  "schema": 2,
+  "card_id": "major-03-empress",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "La Emperatriz",
+    "in_sentence": "La Emperatriz",
+    "de": "de La Emperatriz"
+  },
+  "title": "La Emperatriz en el tarot: significado, invertida y amor",
+  "description": "Qué significa La Emperatriz al derecho y al revés (carta invertida): abundancia, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "La Emperatriz en el tarot: significado",
+  "image_alt": "La Emperatriz, carta de 1909 de la baraja Rider-Waite-Smith: una mujer coronada con vestido blanco estampado, sentada en cojines rojos con un cetro, un escudo en forma de corazón a su lado, trigo maduro al frente y árboles y una cascada detrás.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 3,
+    "numeral": "III",
+    "also_called": []
+  },
+  "capsule": "La Emperatriz, carta III de los arcanos mayores, habla de abundancia, creatividad y placer: lo que crece cuando se cuida sin prisa. Al revés, ese crecimiento se seca porque nada lo alimenta. Es una carta generosa que solo pide paciencia. ¿Sí o no? Al derecho, sí: el trigo maduro que la rodea muestra que lo cuidado da fruto.",
+  "keywords": {
+    "upright": [
+      "abundancia",
+      "creatividad",
+      "placer",
+      "naturaleza",
+      "crecimiento"
+    ],
+    "reversed": [
+      "creatividad seca",
+      "placer pospuesto",
+      "autoexigencia",
+      "crecimiento forzado"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de La Emperatriz?",
+      "paragraphs": [
+        "Una mujer coronada descansa sobre cojines rojos al aire libre, con un cetro alzado en la mano derecha. Waite la describe como una figura majestuosa, sentada, de ropas ricas y porte real, como una hija del cielo y de la tierra (p. 80). En la carta de 1909 su vestido blanco está cubierto de un estampado rojo y ella ocupa casi todo el dibujo.",
+        "Su diadema es de doce estrellas reunidas en un racimo, y su cetro remata en el globo de este mundo (p. 80). En la carta de 1909 las estrellas son blancas y se apoyan en una corona de hojas verdes, sobre su pelo rubio.",
+        "Junto a su asiento se recarga un escudo en forma de corazón. Waite solo dice que lleva el símbolo de Venus (p. 80); en la carta de 1909 el escudo es gris y el signo es un círculo con una cruz debajo.",
+        "Frente a ella madura un campo de grano y, más allá, cae una cascada (p. 80). En la carta de 1909 ese campo es una franja de trigo amarillo en la parte de abajo; detrás se levantan árboles altos y oscuros, y a la derecha el agua corre hacia un arroyo. El cielo es amarillo y en lo alto está el III."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre La Emperatriz?",
+      "paragraphs": [
+        "Al derecho, la lista de Waite empieza por la fecundidad, la acción y la iniciativa, y luego suma un hilo más oscuro: lo desconocido, lo clandestino, la dificultad, la duda y la ignorancia. Al revés, en cambio, la lista es luminosa: luz, verdad, el desenredo de asuntos complicados y la alegría pública; otra lectura solo da vacilación.",
+        "En sus notas sobre el dibujo la llama el Paraíso Terrenal, todo lo que simboliza la casa visible del ser humano (p. 80)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa La Emperatriz al derecho?",
+      "paragraphs": [
+        "Al derecho, La Emperatriz habla de abundancia en sentido amplio: una buena temporada para las ideas, los proyectos, los afectos y el placer de las cosas sencillas. Es un crecimiento que nace del cuidado constante, no de apretar más.",
+        "La creatividad está en el centro. La carta puede salir cuando algo que empezaste ya puede crecer, sea un proyecto, un oficio, tu casa o un jardín de verdad, y te pide cuidarlo como a un ser vivo: con agua, luz y paciencia. La naturaleza es su lenguaje: lo que se siembra y se riega a tiempo, madura.",
+        "También defiende el gusto sin culpa. La buena comida, la belleza, el descanso o un rato al aire libre no son premios para cuando termines todo; son parte de lo que mantiene vivo el crecimiento. Si esto te hace sentido, revisa qué está madurando en tu vida y qué te pide ahora."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa La Emperatriz al revés?",
+      "paragraphs": [
+        "Al revés, La Emperatriz suele señalar creatividad seca, como un jardín sin agua: ideas que no llegan, proyectos que se sienten como obligación. Otra versión es el placer pospuesto hasta terminar todos los pendientes, que casi nunca se terminan.",
+        "La lista al revés de Waite no va por ahí: es luminosa, llena de luz y de verdad. La lectura del jardín seco es moderna, no de Waite.",
+        "Otra trampa es la autoexigencia, que lleva al crecimiento forzado: querer que un proyecto, una relación o tu propia vida florezcan a fuerza de presión. La respuesta de la carta es alimentar en lugar de empujar: date un gusto sencillo y sin prisa, y deja que las ideas regresen desde ahí."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa La Emperatriz en el amor?",
+      "paragraphs": [
+        "En el amor, La Emperatriz invita al cariño, la ternura y el disfrute con los sentidos despiertos. El afecto se disfruta, no se gana, y la carta empieza por cómo te tratas.",
+        "Sin pareja, la carta puede invitarte a sentirte a gusto en tu propia vida primero, de una forma que facilita los vínculos cálidos. Si tienes pareja, favorece la ternura, los gustos compartidos y los pequeños cuidados: cocinar en pareja, el contacto, el tiempo sin reloj.",
+        "Al revés, pregúntate si cuidas a todo el mundo menos a ti, o si te guardas el cariño hasta sentir que lo mereces. La carta habla de tu lado del amor."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa La Emperatriz en el trabajo y el dinero?",
+      "paragraphs": [
+        "En el trabajo, La Emperatriz favorece los proyectos creativos y todo lo que crece con cuidado constante: un buen ambiente en el equipo, un producto que se desarrolla poco a poco, la relación con tus clientes a lo largo del tiempo.",
+        "En lo económico, mira tu relación con el gusto y la generosidad: ¿gastas en lo que de verdad nutre tu vida o en lo que solo tapa un hueco? Al revés, fíjate dónde el exceso de trabajo no deja lugar para disfrutar."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa La Emperatriz como consejo?",
+      "paragraphs": [
+        "Consiente tus sentidos con algo sencillo: una fruta madura, un aroma que te guste o flores frescas cerca de donde pasas más tiempo, y cuídalo. El consejo de La Emperatriz es practicar el cuidado en algo pequeño y visible, y dejar que ese hábito se extienda al resto."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿La Emperatriz es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa La Emperatriz como persona y como sentimiento?",
+      "paragraphs": [
+        "Cuando La Emperatriz aparece como alguien en la tirada, recuerda a quien recibe a todos con generosidad, esa casa donde la gente siempre termina en la cocina, o a tu propia capacidad de hacer crecer personas y proyectos. Con ella llegan plenitud, calidez y sensación de abundancia; al revés, puede sentirse como desgaste, vacío o prisa por que todo dé fruto ya."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa La Emperatriz junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-04-emperor",
+          "text": "El cuidado se encuentra con la estructura. Que el cariño y los límites claros sostengan el mismo plan."
+        },
+        {
+          "card_id": "pentacles-07-seven",
+          "text": "Un crecimiento que pide paciencia. Sigue cuidando lo que sembraste y evalúa la cosecha más adelante."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Abundancia compartida con amistades. Buen momento para celebrar en grupo."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Generosidad junto a las ganas de retener. Fíjate dónde podrías aflojar un poco."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir La Emperatriz de la Reina de Oros?",
+      "paragraphs": [
+        "Las dos hablan de cuidado y bienestar. Waite le da a la Reina de Oros un aire serio e inteligente, contemplando su símbolo, y en su lista pone opulencia, generosidad y seguridad (p. 256); hoy se lee como cuidado práctico y estabilidad. La Emperatriz es más amplia y más libre: el crecimiento, la creatividad y el placer mismos, no la administración cuidadosa de lo que tienes."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale La Emperatriz?",
+      "paragraphs": [
+        "¿Qué estoy dejando para después de terminar los pendientes?",
+        "¿Cómo puedo tratarme con el mismo cariño que les doy a otros?",
+        "¿Qué proyecto mío necesita más paciencia y menos presión?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿La Emperatriz es una carta buena o mala?",
+      "a": "Buena. Pocas cartas son tan cálidas: apoya el crecimiento, el afecto y el gusto por la vida tal como es. Su advertencia es suave: lo que crece toma su tiempo, y demasiada comodidad puede volverse estancamiento. Al revés, sobre todo te pide alimentarte antes de exigirte más."
+    },
+    {
+      "q": "¿La Emperatriz es una carta pasiva?",
+      "a": "No en el libro de Waite. Justo después de la fecundidad, su lista pone la acción y la iniciativa (p. 283), y en la primera parte recuerda que a la carta se le relacionaba, en un sentido general, con la actividad (p. 13). Su descanso en los cojines no es flojera: es la calma de quien ya tiene su trabajo creciendo."
+    },
+    {
+      "q": "¿La Emperatriz y El Emperador son pareja?",
+      "a": "Waite presenta a El Emperador como su esposo solo por atribución (p. 13), y en otra página aclara que las dos cartas no pintan del todo la vida de matrimonio, aunque la sugieren (p. 84). En una lectura conviene verlas como dos lados que puedes usar: cuidado y crecimiento por un lado, estructura y límites por el otro."
+    },
+    {
+      "q": "¿Importa que La Emperatriz mire de frente?",
+      "a": "No, según Waite. En barajas antiguas a veces se le dibujaba de frente y a su pareja de perfil, y él aclara que ese contraste no esconde ningún sentido (p. 13). La carta de 1909 también la muestra mirando hacia quien la observa, pero el significado sale de la escena: el trigo, el agua, los cojines."
+    }
+  ],
+  "related": [
+    "major-02-high-priestess",
+    "major-04-emperor",
+    "pentacles-13-queen",
+    "cups-03-three",
+    "pentacles-07-seven"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-13-queen",
+      "text": "Reina de Oros"
+    },
+    {
+      "card_id": "major-04-emperor",
+      "text": "El Emperador"
+    }
+  ],
+  "waite": {
+    "quote": "Fruitfulness, action, initiative, length of days; the unknown, clandestine; also difficulty, doubt, ignorance. Reversed: Light, truth, the unravelling of involved matters, public rejoicings … vacillation.",
+    "quote_lang": "en",
+    "pages": [283],
+    "translation": "Fecundidad, acción, iniciativa, larga vida; lo desconocido, lo clandestino; también dificultad, duda, ignorancia. Al revés: luz, verdad, el desenredo de asuntos complicados, regocijo público … vacilación.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [80],
+      "text": "A stately figure, seated, having rich vestments and royal aspect, as of a daughter of heaven and earth"
+    },
+    {
+      "pages": [80],
+      "text": "Her diadem is of twelve stars, gathered in a cluster"
+    },
+    {
+      "pages": [80],
+      "text": "The sceptre which she bears is surmounted by the globe of this world"
+    },
+    {
+      "pages": [80],
+      "text": "The symbol of Venus is on the shield which rests near her"
+    },
+    {
+      "pages": [80],
+      "text": "A field of corn is ripening in front of her, and beyond there is a fall of water"
+    },
+    {
+      "pages": [80],
+      "text": "She is the inferior Garden of Eden, the Earthly Paradise, all that is symbolized by the visible house of man"
+    },
+    {
+      "pages": [283],
+      "text": "Fruitfulness, action, initiative, length of days"
+    },
+    {
+      "pages": [13],
+      "text": "The Empress has been connected with the ideas of universal fecundity and in a general sense with activity"
+    },
+    {
+      "pages": [13],
+      "text": "The Emperor, by imputation the spouse of the former"
+    },
+    {
+      "pages": [84],
+      "text": "this card and that of the Empress do not precisely represent the condition of married life, though this state is implied"
+    },
+    {
+      "pages": [13],
+      "text": "The Empress, who is sometimes represented with full face, while her correspondence, the Emperor, is in profile. As there has been some tendency to ascribe a symbolical significance to this distinction, it seems desirable to say that it carries no inner meaning"
+    },
+    {
+      "pages": [256],
+      "text": "she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein. Divinatory Meanings: Opulence, generosity, magnificence, security, liberty"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 03 Empress.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_03_Empress.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [13, 80, 84, 256, 283],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "schema": 2,
+  "card_id": "major-06-lovers",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Los Enamorados",
+    "in_sentence": "Los Enamorados",
+    "de": "de Los Enamorados"
+  },
+  "title": "Los Enamorados en el tarot: significado, invertida y amor",
+  "description": "Qué significan Los Enamorados al derecho y al revés (carta invertida): elección, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Los Enamorados en el tarot: significado",
+  "image_alt": "Los Enamorados, carta de 1909 de la baraja Rider-Waite-Smith: un ángel alado bajo un gran sol amarillo abre los brazos sobre un hombre y una mujer desnudos; detrás de ella, un árbol con una serpiente; detrás de él, un árbol de frutos como llamas.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 6,
+    "numeral": "VI",
+    "also_called": ["Los Amantes"]
+  },
+  "capsule": "Los Enamorados, carta VI de los arcanos mayores, unen el vínculo con la elección: una unión sincera o una decisión que muestra tus valores. Al revés, aparecen dudas entre dos caminos o un desacuerdo contigo. Es una carta cálida que pide honestidad. Si preguntas sí o no, al derecho es sí: hay encuentro y bendición.",
+  "keywords": {
+    "upright": [
+      "elección",
+      "unión",
+      "valores",
+      "armonía"
+    ],
+    "reversed": [
+      "dudas entre dos caminos",
+      "conflicto interno",
+      "evitar decidir",
+      "desequilibrio"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de Los Enamorados?",
+      "paragraphs": [
+        "Una enorme figura con alas ocupa la mitad de arriba de la carta y abre los brazos sobre un hombre y una mujer que están de pie, separados, en campo abierto. Waite lo cuenta así: el sol brilla en lo más alto y debajo hay una gran figura alada, con los brazos extendidos, que derrama sus influencias (p. 92).",
+        "Según Waite, las dos personas están sin velos una frente a la otra, como Adán y Eva cuando llegaron al paraíso del cuerpo terrenal (p. 92). Detrás del hombre, añade, está el Árbol de la Vida con doce frutos; detrás de la mujer, el Árbol del Conocimiento del Bien y del Mal, con la serpiente enroscada (p. 92).",
+        "En la carta de 1909 el sol es un gran disco amarillo con el VI adentro; el ángel tiene alas rojas y el pelo como llamas, y una nube lo separa de la pareja. Los frutos del árbol del hombre parecen pequeñas llamas, y el árbol de la mujer da frutos redondos y anaranjados, con una serpiente verde alrededor del tronco. Entre los dos se levanta una sola montaña rojiza. Ella mira hacia el ángel; él la mira a ella.",
+        "Para Waite, esta es, dicho sin rodeos, la carta del amor humano (p. 92). También la vas a encontrar como Los Amantes."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre Los Enamorados?",
+      "paragraphs": [
+        "La primera lista es luminosa y sencilla: atracción, amor, belleza y dificultades que quedaron atrás. La segunda habla de planes que no se sostienen, y otra versión agrega obstáculos de todo tipo; «contrarieties» es una palabra antigua para lo que te sale al revés.",
+        "Waite tenía poca paciencia con las lecturas anteriores de esta carta. Escribió que los significados viejos se caen a pedazos junto con los dibujos viejos, y que algunos eran falsos en su simbolismo (p. 95)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significan Los Enamorados al derecho?",
+      "paragraphs": [
+        "Al derecho, Los Enamorados hablan de una unión sincera, sin defensas, y de una elección que deja ver lo que más te importa. Las dos cosas suelen llegar juntas: un vínculo te pide algo, o una decisión te pide ser fiel a lo que eres.",
+        "Aquí la armonía no es la ausencia de opciones. Es sentir que tu corazón y tus valores apuntan hacia el mismo lado, de modo que la decisión se siente bien por dentro y no solo en el papel.",
+        "La lista de Waite habla de atracción y belleza, y el dibujo muestra a dos personas que no se esconden nada. Si esto te hace sentido, pregúntate: ¿qué elegirías si no tuvieras miedo de perderte de algo?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significan Los Enamorados al revés?",
+      "paragraphs": [
+        "Al revés, Los Enamorados suelen hablar de dudas entre dos caminos: entre lo que quieres y lo que crees correcto, o entre dos opciones que te jalan por igual. Muchas veces es un conflicto interno más que un choque con alguien. También puede señalar la tentación de evitar decidir, o un desequilibrio en el que das mucho más de lo que te hace bien.",
+        "La segunda lista de Waite, fracaso y planes insensatos, habla de proyectos que no prosperan. El desacuerdo contigo es una lectura moderna, no de Waite.",
+        "Empieza por la honestidad contigo, sin juzgarte. Una decisión que va de acuerdo con lo que valoras suele sentirse más ligera una vez tomada."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significan Los Enamorados en el amor?",
+      "paragraphs": [
+        "En el amor, es la carta más ligada al romance, y te invita a elegir con conciencia, con el corazón y los principios de acuerdo. Si no tienes pareja, puede hablar de una atracción que sí importa, o de aclarar qué quieres de verdad antes de elegir a alguien.",
+        "Si tienes pareja, la carta habla de honestidad y de un compromiso más hondo: volver a elegir el vínculo, abiertamente, como decisión tuya. Describe lo que tú pones y no predice a dónde va la relación.",
+        "Al revés, fíjate dónde sientes un jaloneo o dónde lo que haces se aleja de lo que dices querer. ¿Cómo se vería un siguiente paso honesto?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significan Los Enamorados en el trabajo y el dinero?",
+      "paragraphs": [
+        "En el trabajo, la carta puede hablar de una decisión de rumbo que se apoya en lo que te importa: un puesto, una sociedad, un proyecto que va contigo. También favorece la buena colaboración, cuando todos reman hacia el mismo lado.",
+        "Con el dinero, revisa si lo que gastas y lo que ahorras van de acuerdo con lo que valoras. Al revés, busca decisiones tomadas solo para quedar bien o que llevas rato dejando al azar."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significan Los Enamorados como consejo?",
+      "paragraphs": [
+        "Pon tus dos opciones lado a lado y elige la que se parezca más a lo que valoras, aunque sea la menos cómoda. El consejo de Los Enamorados es decidir desde lo que más te importa, no desde el miedo ni la costumbre, y hacerlo de frente, para poder sostenerlo después."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿Los Enamorados es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significan Los Enamorados como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, Los Enamorados pueden ser una pareja, un aliado cercano o cualquiera con quien compartes un lazo real; también puedes ser tú frente a una encrucijada. El sentimiento que traen es atracción y cercanía, el calor de elegir con todo el corazón. Al revés, ese calor se convierte en duda o en el tirón de dos rumbos al mismo tiempo."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significan Los Enamorados junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-05-hierophant",
+          "text": "El amor se encuentra con el compromiso y la tradición. Pregúntate qué promesa quieres hacer."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Una decisión que sigues aplazando. Di en voz alta las dos opciones antes de pesarlas."
+        },
+        {
+          "card_id": "major-15-devil",
+          "text": "Vínculo junto a apego. Observa qué lazo te deja libre y cuál ya es pura costumbre."
+        },
+        {
+          "card_id": "cups-10-ten",
+          "text": "Un lazo que se vuelve hogar. Fíjate en qué te hace sentir que perteneces."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir Los Enamorados del Dos de Copas?",
+      "paragraphs": [
+        "El Dos de Copas también muestra a una pareja: según Waite, un joven y una doncella brindan uno por el otro, y sobre sus copas se alza un bastón alado con una cabeza de león (p. 222). Hoy se lee como un encuentro entre iguales, basado en el respeto. Los Enamorados abarcan más: un lazo y una elección bajo una bendición, con tus valores en juego. Si la pregunta es sobre una relación entre dos, mira el Dos; si es sobre lo que valoras, mira Los Enamorados."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te salen Los Enamorados?",
+      "paragraphs": [
+        "¿Qué quiero de verdad aquí, más allá de lo que se ve bien o se siente seguro?",
+        "¿Qué valor mío está en juego en esta elección?",
+        "¿En qué hablo con total honestidad en este vínculo y en qué me guardo algo?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Los Enamorados es una carta buena o mala?",
+      "a": "Buena, casi siempre. Trae cercanía, atracción y el alivio de una decisión que encaja con lo que te importa. Lo que puede destapar es una grieta: querer una cosa y hacer otra. Hasta ese lado difícil sirve, porque señala con precisión dónde hace falta sinceridad."
+    },
+    {
+      "q": "¿Qué número es la carta de Los Enamorados?",
+      "a": "Es la carta 6, que en la baraja de 1909 lleva el VI. Waite la pone sexta en su lista y le da dos nombres, Los Enamorados o el Matrimonio (p. 14). Va después de El Papa y antes de El Carro."
+    },
+    {
+      "q": "¿Qué carta del tarot representa el amor de pareja?",
+      "a": "Varias hablan de amor, y Los Enamorados es la más directa. Hay otras cercanas: el Dos de Copas habla de un vínculo entre iguales, y en la versión del siglo XVIII que describe Waite esta misma carta mostraba a un padre y una madre con su hijo en medio (pp. 14–15). Ninguna carta decide cómo va una relación."
+    },
+    {
+      "q": "¿Los Enamorados significa elegir entre dos personas?",
+      "a": "Rara vez de forma tan literal. Algunas versiones posteriores sí mostraban a un hombre entre el vicio y la virtud, pero Waite dice que su carta las reemplaza volviendo a los primeros principios (p. 92). En Arcana Diary la elección suele estar dentro de ti: entre un deseo y un principio, o entre dos caminos propios."
+    }
+  ],
+  "related": [
+    "major-05-hierophant",
+    "major-07-chariot",
+    "cups-02-two",
+    "swords-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-02-two",
+      "text": "Dos de Copas"
+    },
+    {
+      "card_id": "major-05-hierophant",
+      "text": "El Papa"
+    },
+    {
+      "card_id": "major-07-chariot",
+      "text": "El Carro"
+    }
+  ],
+  "waite": {
+    "quote": "Attraction, love, beauty, trials overcome. Reversed: Failure, foolish designs. Another account speaks of marriage frustrated and contrarieties of all kinds.",
+    "quote_lang": "en",
+    "pages": [
+      284
+    ],
+    "translation": "Atracción, amor, belleza, pruebas superadas. Al revés: fracaso, planes insensatos. Otra versión habla de un matrimonio frustrado y de contrariedades de todo tipo.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [92],
+      "text": "The sun shines in the zenith, and beneath is a great winged figure with arms extended, pouring down influences"
+    },
+    {
+      "pages": [92],
+      "text": "In the foreground are two human figures, male and female, unveiled before each other, as if Adam and Eve when they first occupied the paradise of the earthly body"
+    },
+    {
+      "pages": [92],
+      "text": "Behind the man is the Tree of Life, bearing twelve fruits, and the Tree of the Knowledge of Good and Evil is behind the woman; the serpent is twining round it"
+    },
+    {
+      "pages": [92],
+      "text": "This is in all simplicity the card of human love"
+    },
+    {
+      "pages": [95],
+      "text": "The old meanings fall to pieces of necessity with the old pictures, but even as interpretations of the latter, some of them were of the order of commonplace and others were false in symbolism"
+    },
+    {
+      "pages": [222],
+      "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head"
+    },
+    {
+      "pages": [14],
+      "text": "6. The Lovers or Marriage"
+    },
+    {
+      "pages": [14, 15],
+      "text": "it is really a card of married life, shewing father and mother, with their child placed between them"
+    },
+    {
+      "pages": [92],
+      "text": "It replaces, by recourse to first principles, the old card of marriage, which I have described previously, and the later follies which depicted man between vice and virtue"
+    },
+    {
+      "pages": [284],
+      "text": "The Lovers.—Attraction, love, beauty, trials overcome"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 06 Lovers.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_06_Lovers.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [14, 15, 92, 95, 222, 284],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "schema": 2,
+  "card_id": "major-12-hanged-man",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "The Hanged Man",
+    "in_sentence": "The Hanged Man"
+  },
+  "title": "The Hanged Man Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "The Hanged Man upright: pause, new perspective; reversed: stalling. Love, work, advice, Waite's 1911 text and the 1909 card. Draw it for your question.",
+  "h1": "The Hanged Man Tarot Card Meaning",
+  "image_alt": "The Hanged Man, 1909 Rider–Waite–Smith card: a man in a blue tunic and red hose hangs upside down by one foot from a T-shaped frame of leafy wood, his other leg bent behind, a yellow halo around his head.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 12,
+    "numeral": "XII",
+    "also_called": []
+  },
+  "capsule": "The Hanged Man is card XII of the Major Arcana: a pause, surrender to waiting and a new perspective on an old problem. Reversed, the pause can slide into stalling. It is a quiet, thoughtful card rather than a painful one. As a yes or no, it is not clear yet: his new view is still forming.",
+  "keywords": {
+    "upright": [
+      "pause",
+      "surrender",
+      "new perspective",
+      "waiting"
+    ],
+    "reversed": [
+      "stalling",
+      "empty sacrifice",
+      "restlessness",
+      "holding on"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on The Hanged Man card?",
+      "paragraphs": [
+        "A man hangs upside down by one foot from a T-shaped frame of wood, and his body fills the middle of the card from top to bottom. Waite notes that the frame \"forms a Tau cross\" (p. 116). In Part I he adds that the man is held \"by a rope about one of his ankles\" and that \"one leg is crossed over the other\" (p. 23).",
+        "Waite asks the reader to notice three things: \"the tree of sacrifice is living wood, with leaves thereon\"; \"the face expresses deep entrancement, not suffering\"; and the whole figure \"suggests life in suspension\" (p. 116).",
+        "On the 1909 card the crossbeam sprouts green leaves at both ends, his tunic is blue, his legs are in red hose and his shoes are yellow. A yellow halo with fine rays circles his head, which Waite calls \"a nimbus about the head\" (p. 116). His arms are out of sight behind his back; Part I says \"the arms are bound behind him\" (p. 23). XII is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about The Hanged Man?",
+      "paragraphs": [
+        "The upright list is mostly about clear sight: wisdom, circumspection (careful looking around), discernment, intuition. Trials and sacrifice sit among those words as the price such clarity can carry. The reversed list turns outward, toward selfishness, the crowd and public life.",
+        "Waite was blunt about the usual explanations. The card, he wrote, \"has been called falsely a card of martyrdom, a card of prudence, a card of the Great Work, a card of duty\" (p. 116), and in Part I he dismisses the current meanings as \"cartomancists' intuitions\" (p. 23). His own short answer is that it \"expresses the relation, in one of its aspects, between the Divine and the Universe\" (p. 116)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does The Hanged Man mean upright?",
+      "paragraphs": [
+        "Upright, The Hanged Man describes a pause: a stretch of waiting where pushing harder has stopped working. It tends to show up when a problem refuses to move however you approach it.",
+        "The card's answer is surrender, not as giving up but as releasing the need to force things. Upside down, the familiar looks different, and a new perspective often arrives only once you stop wrestling with the old one.",
+        "Waite's list keeps sacrifice in the picture, and today the card can point to a trade: giving up speed, control or a fixed plan in return for clearer sight. If this fits your situation, ask: what would I notice if I stopped trying to fix this for a day?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does The Hanged Man mean reversed?",
+      "paragraphs": [
+        "Reversed, The Hanged Man points to waiting that has gone stale. Stalling takes the place of reflection, an empty sacrifice carries on after it stopped making sense, and restlessness grows while nothing actually moves.",
+        "These are modern readings, not Waite's; his reversed list names selfishness and the crowd instead.",
+        "The useful question here is what you are holding on to. If the pause no longer teaches you anything, a small move, even an imperfect one, may serve you better than more waiting."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does The Hanged Man mean in love?",
+      "paragraphs": [
+        "In love, The Hanged Man asks you to look before you react. If you are single, it can describe a quiet season, a break from searching that lets you see what you actually want rather than what you assumed you should want.",
+        "In a relationship, it favors stepping back from a repeated argument and viewing it from the other angle, without forcing a decision too early. The card speaks only about your view and your choices.",
+        "Reversed in love, notice where waiting has become a way of not choosing, or where you keep giving up something that matters to you. Is the pause still helping, or only postponing?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does The Hanged Man mean for work and money?",
+      "paragraphs": [
+        "At work, The Hanged Man can point to a project on hold, a delay you cannot hurry, or a problem that needs a fresh angle rather than more effort. Use the gap to rethink the approach.",
+        "With money, it invites a look at your own habits: are you waiting for clarity before a choice, or postponing one you already understand?",
+        "Reversed, look at tasks you keep putting off while telling yourself you are still thinking them over."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is The Hanged Man's advice?",
+      "paragraphs": [
+        "Take the opposite side of your own problem and argue it, aloud or on paper, as convincingly as you can. The Hanged Man's advice is to change your viewpoint before you change anything else, then notice what shifts once you have defended the position you were resisting."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is The Hanged Man a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Hanged Man as a person and as a feeling",
+      "paragraphs": [
+        "In a spread, The Hanged Man often stands for someone in between: a person who has stepped out of the race on purpose, or who is letting a situation ripen. When the card points to you, it shows a willingness to stay still long enough to see differently. The mood it carries is calm suspension, patient and a little detached; reversed, that calm frays into impatience or a sense of going nowhere."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Hanged Man with other cards",
+      "pairs": [
+        {
+          "card_id": "major-13-death",
+          "text": "A pause before something closes. Let the waiting show you what is ready to end."
+        },
+        {
+          "card_id": "cups-08-eight",
+          "text": "A new view that leads to walking away. Once you see what no longer fits, you can leave it behind."
+        },
+        {
+          "card_id": "major-10-wheel-of-fortune",
+          "text": "Stillness inside a turning cycle. Wait until you can tell which way things are moving, then go with them."
+        },
+        {
+          "card_id": "cups-04-four",
+          "text": "Reflection at risk of becoming withdrawal. Check whether you are pausing to see or pausing to avoid."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "The Hanged Man or the Four of Swords?",
+      "paragraphs": [
+        "Both cards show a pause. For the Four of Swords, Waite describes \"the effigy of a knight in the attitude of prayer, at full length\" (p. 246), and the card is read today as rest and recovery. The Four is a pause to lie down and regain strength. The Hanged Man's pause is for seeing differently: he is awake and deliberately upside down. Worn out? That sounds like the Four. Stuck on a problem? That sounds like The Hanged Man."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about The Hanged Man",
+      "paragraphs": [
+        "What am I pushing on that might need a pause instead?",
+        "How does this problem look if I argue the other side?",
+        "Is this waiting still teaching me something, or has it become a habit?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is The Hanged Man a good or bad card?",
+      "a": "More helpful than bad. It is a card of standstill, which can feel frustrating, yet what it offers is real: a chance to catch something you missed while you were busy pushing. Its warning concerns waiting too long, or giving up things that matter to you for no clear gain."
+    },
+    {
+      "q": "Is The Hanged Man a card of suffering?",
+      "a": "No, and Waite is firm about it. He reads the man's expression as trance rather than pain, and the figure as alive and held in suspension (p. 116). On the 1909 card his features are calm, almost peaceful, with light around his head."
+    },
+    {
+      "q": "Why is The Hanged Man upside down?",
+      "a": "The card offers no single reason, and Waite admits as much: \"It is a card of profound significance, but all the significance is veiled\" (p. 116). On Arcana Diary the position reads as a chosen change of viewpoint. From there the world looks different, and the card asks what you would see if you stopped standing where you always stand."
+    },
+    {
+      "q": "Does The Hanged Man mean sacrifice?",
+      "a": "Sometimes. In Part I Waite calls sacrifice \"the prevailing interpretation\" (p. 23), and the word appears on his list, though he doubted every published reading of this card. Read today, the sacrifice is usually small and chosen: time, speed or a fixed plan, let go so that you can see more clearly."
+    }
+  ],
+  "related": [
+    "major-11-justice",
+    "major-13-death",
+    "swords-04-four",
+    "cups-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-04-four",
+      "text": "Four of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Wisdom, circumspection, discernment, trials, sacrifice, intuition, divination, prophecy. Reversed: Selfishness, the crowd, body politic.",
+    "quote_lang": "en",
+    "pages": [
+      285
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [116],
+      "text": "The gallows from which he is suspended forms a Tau cross"
+    },
+    {
+      "pages": [23],
+      "text": "to which he is attached by a rope about one of his ankles. The arms are bound behind him, and one leg is crossed over the other"
+    },
+    {
+      "pages": [116],
+      "text": "the tree of sacrifice is living wood, with leaves thereon; (2) that the face expresses deep entrancement, not suffering; (3) that the figure, as a whole, suggests life in suspension"
+    },
+    {
+      "pages": [116],
+      "text": "There is a nimbus about the head of the seeming martyr"
+    },
+    {
+      "pages": [116],
+      "text": "It has been called falsely a card of martyrdom, a card of prudence, a card of the Great Work, a card of duty"
+    },
+    {
+      "pages": [23],
+      "text": "all current meanings attributed to this card are cartomancists' intuitions"
+    },
+    {
+      "pages": [116],
+      "text": "it expresses the relation, in one of its aspects, between the Divine and the Universe"
+    },
+    {
+      "pages": [246],
+      "text": "The effigy of a knight in the attitude of prayer, at full length"
+    },
+    {
+      "pages": [116],
+      "text": "It is a card of profound significance, but all the significance is veiled"
+    },
+    {
+      "pages": [23],
+      "text": "According to another, and indeed the prevailing interpretation, he signifies sacrifice"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - 12 Hanged Man.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_12_Hanged_Man.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [23, 116, 246, 285],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

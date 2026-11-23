@@ -1,0 +1,267 @@
+{
+  "schema": 2,
+  "card_id": "major-19-sun",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "El Sol",
+    "in_sentence": "El Sol",
+    "de": "de El Sol"
+  },
+  "title": "El Sol en el tarot: significado, invertida y amor",
+  "description": "Qué significa El Sol al derecho y al revés (carta invertida): alegría, amor, trabajo y consejo. Palabras de Waite (1911), la carta de 1909 y si es sí o no.",
+  "h1": "El Sol en el tarot: significado",
+  "image_alt": "El Sol, carta de 1909 de la baraja Rider-Waite-Smith: un niño desnudo con corona de flores y pluma roja monta un caballo blanco bajo un gran sol con rostro, con un estandarte rojo y girasoles tras un muro.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 19,
+    "numeral": "XIX",
+    "also_called": []
+  },
+  "capsule": "El Sol, carta XIX de los arcanos mayores, habla de alegría, claridad y energía. Al revés, la luz sigue ahí, pero se nubla por cansancio o por dudas. Es una carta buena que solo te pide permitirte disfrutar. Ante una pregunta de sí o no, al derecho dice que sí: el niño avanza a la vista, sin nada que esconder.",
+  "keywords": {
+    "upright": [
+      "alegría",
+      "claridad",
+      "energía",
+      "éxito"
+    ],
+    "reversed": [
+      "alegría apagada",
+      "cansancio",
+      "dudas",
+      "nubes pasajeras"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de El Sol?",
+      "paragraphs": [
+        "Un sol enorme, con rostro humano y mirada serena, ocupa toda la mitad de arriba. Debajo, un niño desnudo monta un caballo blanco con los brazos bien abiertos. Waite dice que esta imagen, el niño a caballo que lleva un estandarte rojo, es el mejor simbolismo para la carta (p. 144). En la carta de 1909 el estandarte es una tela larga de color rojo anaranjado que ondea detrás del caballo, el niño lleva una corona de flores con una pluma roja y arriba aparece el XIX.",
+        "Detrás del jinete hay un muro de piedra gris y, por encima, asoman los girasoles. Para Waite, el niño sale del jardín amurallado de la vida sensible y sigue su viaje de regreso a casa (p. 144).",
+        "Las barajas antiguas pintaban otra escena: dos niños en un jardín cerrado por un muro, jugando o corriendo de la mano (pp. 27–28); el jinete solitario con su estandarte escarlata aparece ahí como un símbolo mucho mejor (p. 28). Waite cuenta también que en esas cartas los rayos principales del sol eran alternadamente ondulados y salientes (p. 27); en la carta de 1909 se turnan rayos ondulados y rectos.",
+        "El sol es lo más grande del dibujo. Waite lo llama el sol glorioso de la tierra y, en un sentido más hondo, la luz de la conciencia en el espíritu: luz directa, no reflejada (p. 144)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre El Sol?",
+      "paragraphs": [
+        "La lista de Waite es breve y alegre: bienestar en lo cotidiano, un buen matrimonio, la satisfacción de estar a gusto. Al revés no cambia de signo; solo le baja el volumen a la misma buena noticia.",
+        "Lo que a Waite le importaba era el niño. Escribió que, en su sencillez, lleva el sello de la Naturaleza y del Arte, y que en su inocencia representa el mundo restaurado (p. 147)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa El Sol al derecho?",
+      "paragraphs": [
+        "Al derecho, El Sol es alegría sin complicaciones: todo se ve claro, cálido y fácil de entender. Suele salir cuando algo va bien o cuando por fin puedes ver lo bueno que ya estaba ahí. El niño del caballo no tiene nada que ocultar ni que demostrar, y la carta te ofrece esa misma soltura.",
+        "La claridad es su segundo regalo. Con esta luz, una situación se ve completa y resulta más fácil decir lo que quieres. También trae energía para mostrarte tal como eres, sin esconder lo que te gusta ni lo que sabes hacer.",
+        "Si esto te hace sentido, la pregunta de la carta es ligera: ¿qué te está saliendo bien ahora y cómo puedes disfrutarlo sin esperar a que algo lo eche a perder?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa El Sol al revés?",
+      "paragraphs": [
+        "Al revés, El Sol conserva su calor, pero brilla menos. Queda una alegría apagada, quizá por cansancio, quizá por dudas que te dicen que mejor no celebres todavía. Se parece más a unas nubes pasajeras en una tarde de verano que a una tormenta.",
+        "Aquí Waite y la lectura de hoy coinciden: para él, al revés la carta significa lo mismo, pero en menor medida (p. 286). El cansancio y las dudas son una lectura moderna, no de Waite.",
+        "Busca un solo momento luminoso en tu día y disfrútalo completo, sin restarle importancia."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa El Sol en el amor?",
+      "paragraphs": [
+        "En el amor, El Sol trae calidez, juego y sinceridad. Si no tienes pareja, puede hablar de la soltura de ser tú frente a gente nueva, de platicar sin ensayar cada palabra.",
+        "Si tienes pareja, invita a reír más seguido, a decir en voz alta lo que planean y a dejar que el cariño se note en lo de todos los días. Habla de tu manera de querer, no de lo que hace la otra persona.",
+        "Al revés, puede señalar un gusto que te guardas, como si necesitaras certeza antes de relajarte. ¿Dónde podrías dejar entrar un poco más de luz?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa El Sol en el trabajo y el dinero?",
+      "paragraphs": [
+        "En el trabajo, El Sol puede hablar de una etapa en la que tu esfuerzo se nota y las tareas se ven claras. Favorece trabajar a la vista: compartir resultados, pedir con claridad lo que necesitas y aceptar el éxito sin minimizarlo.",
+        "Con el dinero, revisa si miras tu situación de frente o si prefieres no ver. La luz de la carta te invita a poner las cuentas sobre la mesa.",
+        "Al revés, fíjate dónde el agotamiento hace que un buen trabajo te parezca menor de lo que es."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa El Sol como consejo?",
+      "paragraphs": [
+        "Celebra un logro tuyo, por pequeño que sea, y cuéntaselo a alguien que se alegre contigo. El consejo de El Sol es dejar que el gusto sea sencillo, sin pretexto ni permiso. Si puedes, hazlo de día y al aire libre."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Sol es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa El Sol como persona y como sentimiento?",
+      "paragraphs": [
+        "Como figura en una tirada, El Sol describe a alguien cálido y abierto, con quien es fácil convivir y que no se esconde. Si habla de ti, es esa parte de ti que brilla cuando dejas de cuidarte de las miradas. Su sentimiento es el gusto de estar bien, a veces puro alivio; al revés, un buen ánimo que es real, pero llega con poca fuerza."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa El Sol junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-18-moon",
+          "text": "Después de una etapa confusa, las cosas se aclaran. Revisa qué es real y disfruta verlo con nitidez."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Una alegría que pide compañía. Festeja con tu gente, aunque el motivo sea pequeño."
+        },
+        {
+          "card_id": "wands-06-six",
+          "text": "Un logro que otros pueden ver. Acepta el reconocimiento sin quitarle valor."
+        },
+        {
+          "card_id": "swords-08-eight",
+          "text": "La luz muestra que la trampa estaba sobre todo en tu cabeza. Mira de qué límite podrías salir primero."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir El Sol de La Estrella?",
+      "paragraphs": [
+        "Las dos cartas son luminosas y esperanzadoras. La Estrella muestra, según Waite, una gran estrella radiante de ocho rayos rodeada de siete más pequeñas, y a una mujer que vierte agua de dos jarras sobre el mar y la tierra (p. 136); hoy se lee como esperanza y calma después de un tiempo difícil. El Sol es pleno día: una alegría que ya llegó, no una que se espera. Si apenas vuelves a respirar con calma, es La Estrella; si puedes disfrutar lo que tienes enfrente, es El Sol."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale El Sol?",
+      "paragraphs": [
+        "¿Qué me está saliendo bien y todavía no me he detenido a disfrutar?",
+        "¿Qué parte de mí escondo y podría dejar ver?",
+        "¿Qué pequeño logro puedo celebrar hoy?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Sol es una carta buena o mala?",
+      "a": "Buena, y de las más abiertas del tarot. Respalda la alegría, la mirada clara y la sinceridad sobre lo que quieres. Su única advertencia es amable: no aplaces un buen momento mientras esperas a que algo lo estropee."
+    },
+    {
+      "q": "¿El Sol habla de matrimonio?",
+      "a": "No como pronóstico. La lista de Waite de 1911 incluye un matrimonio afortunado (p. 286), pero en Arcana Diary la carta no anuncia sucesos. Habla de la calidez y la apertura con que tú quieres a los demás, sea cual sea la forma de tus relaciones."
+    },
+    {
+      "q": "¿Quién es el niño de la carta de El Sol?",
+      "a": "Waite no le da nombre. Escribe que la luz de la carta se representa con el corazón de un niño, y que ese niño encarna la sencillez y una inocencia que es sabiduría (pp. 144, 147). Visto hoy, es esa parte de cualquier persona que todavía disfruta algo sin necesitar motivo."
+    },
+    {
+      "q": "¿El Sol significa éxito?",
+      "a": "Puede, en el sentido de que algo va bien y se nota. Pero la lista de Waite habla más de satisfacción que de triunfo, y la carta no promete un resultado concreto. El éxito de El Sol es el que se siente por dentro: estar a gusto con lo que haces."
+    }
+  ],
+  "related": [
+    "major-18-moon",
+    "major-20-judgement",
+    "major-17-star",
+    "cups-03-three",
+    "wands-06-six"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-17-star",
+      "text": "La Estrella"
+    }
+  ],
+  "waite": {
+    "quote": "Material happiness, fortunate marriage, contentment. Reversed: The same in a lesser sense.",
+    "quote_lang": "en",
+    "pages": [
+      286
+    ],
+    "translation": "Felicidad material, matrimonio afortunado, satisfacción. Al revés: lo mismo en menor medida.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [144],
+      "text": "The naked child mounted on a white horse and displaying a red standard has been mentioned already as the better symbolism connected with this card"
+    },
+    {
+      "pages": [144],
+      "text": "coming out from the walled garden of the sensitive life and passing on the journey home"
+    },
+    {
+      "pages": [27, 28],
+      "text": "a wall suggesting an enclosure—as it might be, a walled garden—wherein are two children, either naked or lightly clothed, facing a water, and gambolling, or running hand in hand"
+    },
+    {
+      "pages": [28],
+      "text": "a much better symbol—a naked child mounted on a white horse and displaying a scarlet standard"
+    },
+    {
+      "pages": [27],
+      "text": "The luminary is distinguished in older cards by chief rays that are waved and salient alternately"
+    },
+    {
+      "pages": [144],
+      "text": "represented by the glorious sun of earth"
+    },
+    {
+      "pages": [144],
+      "text": "The sun is that of consciousness in the spirit—the direct as the antithesis of the reflected light"
+    },
+    {
+      "pages": [147],
+      "text": "In that simplicity, he bears the seal of Nature and of Art; in that innocence, he signifies the restored world"
+    },
+    {
+      "pages": [286],
+      "text": "Material happiness, fortunate marriage, contentment. Reversed: The same in a lesser sense"
+    },
+    {
+      "pages": [136],
+      "text": "A great, radiant, star of eight rays, surrounded by seven lesser stars"
+    },
+    {
+      "pages": [136],
+      "text": "She pours Water of Life from two great ewers, irrigating sea and land"
+    },
+    {
+      "pages": [144],
+      "text": "the light of the world to come, which goes before aspiration and is typified by the heart of a child"
+    },
+    {
+      "pages": [144, 147],
+      "text": "a child in the sense of simplicity and innocence in the sense of wisdom"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 19 Sun.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_19_Sun.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [27, 28, 136, 144, 147, 286],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

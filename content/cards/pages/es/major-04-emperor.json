@@ -1,0 +1,266 @@
+{
+  "schema": 2,
+  "card_id": "major-04-emperor",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "El Emperador",
+    "in_sentence": "El Emperador",
+    "de": "de El Emperador"
+  },
+  "title": "El Emperador en el tarot: significado, invertida y amor",
+  "description": "Qué significa El Emperador al derecho y al revés (carta invertida): estructura, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "El Emperador en el tarot: significado",
+  "image_alt": "El Emperador, carta de 1909 de la baraja Rider-Waite-Smith: un rey de barba blanca, con corona, armadura y manto rojo, sentado en un trono de piedra con cabezas de carnero, con un cetro dorado y un globo en las manos.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 4,
+    "numeral": "IV",
+    "also_called": []
+  },
+  "capsule": "El Emperador es la carta IV de los arcanos mayores: estructura, estabilidad y liderazgo sobre lo que te toca. Al revés, ese orden se endurece o se te escapa. Es una carta firme que respalda las decisiones claras y te avisa cuando aprietas de más. ¿Sí o no? Al derecho, sí: su trono de piedra no se mueve.",
+  "keywords": {
+    "upright": [
+      "estructura",
+      "liderazgo",
+      "estabilidad",
+      "límites claros"
+    ],
+    "reversed": [
+      "rigidez",
+      "control que se escapa",
+      "inmadurez",
+      "falta de orden"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de El Emperador?",
+      "paragraphs": [
+        "Un rey con corona ocupa de frente un trono ancho de piedra, lo más grande de la carta, con montañas peladas a su espalda. Waite lo describe en pocas palabras: como cetro lleva una forma de la cruz ansada, en la mano izquierda sostiene un globo y los brazos del trono terminan en cabezas de carnero (p. 84). Waite nombra los carneros, pero no dice qué significan.",
+        "En la carta de 1909 el cielo es naranja, arriba se lee el IV y otras dos cabezas de carnero rematan las esquinas del respaldo. El rey tiene una barba larga y blanca y una corona dorada; debajo del manto rojo se asoma una armadura gris azulada en los brazos y las piernas. El cetro, en su mano derecha, es dorado: una cruz con un aro en la punta.",
+        "Para Waite, este rey es la ejecución y la realización, el poder de este mundo (p. 84). Cuenta que a veces se le pintaba sentado en una piedra cúbica, algo que según él enreda el sentido de la carta (p. 84), y que en barajas antiguas aparecía de perfil, un detalle que, aclara, no encierra ningún significado oculto (p. 13). En la carta de 1909 te mira de frente.",
+        "Más allá del trono terrenal, Waite ve otra forma de reinar: el dominio del pensamiento por encima del mundo animal (p. 87)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre El Emperador?",
+      "paragraphs": [
+        "La primera lista habla de un poder firme y útil: estabilidad, protección, razón, convicción y alguien importante que te echa la mano. La segunda sorprende, porque empieza con palabras amables, benevolencia y compasión, sigue con crédito y solo al final llega a la obstrucción y la inmadurez.",
+        "Waite no quería encerrar la carta en una sola idea. Recuerda que alguien la describió como la voluntad hecha cuerpo y aclara que esa es apenas una de sus aplicaciones; otra descripción la despacha como pura fantasía (p. 87)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa El Emperador al derecho?",
+      "paragraphs": [
+        "Al derecho, El Emperador habla de estructura: un plan con pasos, una rutina que se sostiene, una decisión que respaldas. Suele salir cuando algo necesita que alguien tome el mando, y la carta sugiere que puedes ser tú, al menos en la parte que te corresponde.",
+        "Su liderazgo no hace ruido. Está sentado, quieto, con la armadura bajo el manto, y mantiene el orden a su alrededor. Esa estabilidad nace de los límites claros: saber qué sí vas a hacer, qué no, y decirlo sin rodeos.",
+        "La lista de Waite suma protección y razón: la fuerza de esta carta cuida lo que te importa en lugar de imponerse. Si esto te hace sentido, pregúntate en qué parte de tu vida un poco más de orden te quitaría peso en vez de agregarlo."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa El Emperador al revés?",
+      "paragraphs": [
+        "Al revés, El Emperador muestra un orden que se descompone hacia uno de dos lados. Puede volverse rigidez: reglas que sigues aunque ya no sirven, una autoridad que se impone sin escuchar, sea la tuya o la de alguien más. O puede ser un control que se escapa justo cuando hace falta firmeza, con días que pasan con falta de orden.",
+        "La segunda lista de Waite nombra la obstrucción y la inmadurez, que se acercan a ese segundo caso: una autoridad que todavía no encuentra su lugar. La rigidez es una lectura moderna, no de Waite.",
+        "Revisa qué reglas te siguen cuidando y cuáles solo te atoran, y afloja una de estas últimas."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa El Emperador en el amor?",
+      "paragraphs": [
+        "En el amor, El Emperador te pide claridad sobre lo que necesitas para sentir tranquilidad en una relación. Si no tienes pareja, puede hablar de definir qué buscas antes de salir a buscarlo, y de preferir la calma a la persecución.",
+        "Si tienes pareja, la carta mira los acuerdos y las rutinas que tú aportas: qué te parece justo, en qué asumes responsabilidad, qué te da paz. Los acuerdos firmes pueden darte seguridad, siempre que dejen espacio para la ternura. La carta habla de tu parte y de nada más.",
+        "Al revés, fíjate si intentas controlar cada detalle de la relación o si, al contrario, dejaste de decir lo que quieres. ¿Cuál de las dos te suena más?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa El Emperador en el trabajo y el dinero?",
+      "paragraphs": [
+        "En el trabajo, El Emperador favorece el orden: un plan claro, funciones bien repartidas, compromisos que cumples y la confianza para dirigir una tarea. Puede ser buen momento para hacerte cargo de un proyecto o para poner en orden un proceso que siempre se atora.",
+        "Con el dinero, mira tu manera de decidir: ¿hay un sistema sencillo detrás de tus elecciones o cada una se resuelve sobre la marcha? Al revés, revisa si alguna regla se volvió costumbre que nadie cuestiona."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa El Emperador como consejo?",
+      "paragraphs": [
+        "Define una regla o rutina sencilla que dé orden a tu día y síguela. El consejo de El Emperador es darle un marco firme a un solo aspecto de tu vida, sin querer controlarlo todo de golpe. Puede ser algo tan pequeño como una hora fija para lo que llevas rato posponiendo."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Emperador es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa El Emperador como persona y como sentimiento?",
+      "paragraphs": [
+        "Como figura dentro de una tirada, El Emperador es quien organiza, decide y protege: alguien con reglas y con la cabeza fría. Si te representa a ti, señala tu capacidad de tomar las riendas de lo tuyo. La emoción que trae es una sensación de control tranquilo, a veces a la defensiva; al revés, esa calma se puede volver terquedad o impotencia."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa El Emperador junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-03-empress",
+          "text": "El orden se junta con el crecimiento. Dale a lo que construyes un marco y también espacio para florecer."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Seguridad agarrada con fuerza. Pregúntate si tus reglas te cuidan o solo te impiden moverte."
+        },
+        {
+          "card_id": "wands-02-two",
+          "text": "Una base firme frente a un horizonte más amplio. Planea el siguiente paso desde donde ya pisas firme."
+        },
+        {
+          "card_id": "major-05-hierophant",
+          "text": "Tus propias reglas al lado de la tradición. Separa el orden que elegiste del que heredaste."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir El Emperador de El Carro?",
+      "paragraphs": [
+        "El Carro también muestra a un gobernante, pero en movimiento: Waite describe una figura erguida y principesca con una espada desenvainada (p. 96). Lo llama el rey en su triunfo, la victoria que, como consecuencia natural, crea un reinado, no la realeza ya instalada de la cuarta carta (pp. 15–16). Hoy El Carro se lee como determinación y avance; El Emperador es el orden que se queda cuando el terreno ya está ganado. Si tu pregunta es cómo llegar, mira El Carro; si es cómo sostener lo que tienes, mira El Emperador."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale El Emperador?",
+      "paragraphs": [
+        "¿Dónde me haría la vida más fácil una sola regla clara?",
+        "¿Qué límites cumplo de verdad y cuáles solo menciono?",
+        "¿Estoy llevando las riendas o las estoy apretando de más?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Emperador es una carta buena o mala?",
+      "a": "Buena, en la mayoría de las tiradas. Apoya la firmeza, las decisiones claras y hacerte cargo de tu parte. Lo que advierte es el exceso de control: un orden que te sirve puede convertirse en un orden al que sirves. Junto a cartas ligeras se lee como apoyo; junto a cartas pesadas, como una invitación a soltar un poco."
+    },
+    {
+      "q": "¿El Emperador representa a un padre o a un jefe?",
+      "a": "Puede describir un papel así, alguien que pone reglas o carga con la responsabilidad, pero nunca revela las intenciones de una persona real. La lista de Waite sí incluye a un gran personaje y la ayuda (p. 283). En Arcana Diary, la carta habla de tu lado: cómo te relacionas con la autoridad, incluida la tuya."
+    },
+    {
+      "q": "¿Qué número es El Emperador en el tarot?",
+      "a": "Es el 4, que en la carta de 1909 aparece como IV. Va justo después de La Emperatriz, y Waite trata a las dos cartas como pareja: dice que a él se le atribuye ser el esposo de ella (p. 13), aunque aclara que juntas no representan exactamente la vida matrimonial (p. 84)."
+    },
+    {
+      "q": "¿El Emperador habla de tener poder sobre los demás?",
+      "a": "No, tal como se lee en Arcana Diary. Waite sí pone en su lista el poder, la autoridad y la voluntad (p. 283), pero la lectura moderna dirige la carta al dominio propio: reglas que cumples, decisiones que asumes, cuidado de lo que proteges. Si una autoridad de afuera te pesa, la carta pregunta qué está en tus manos cambiar."
+    }
+  ],
+  "related": [
+    "major-03-empress",
+    "major-05-hierophant",
+    "major-07-chariot",
+    "pentacles-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-07-chariot",
+      "text": "El Carro"
+    },
+    {
+      "card_id": "major-03-empress",
+      "text": "La Emperatriz"
+    }
+  ],
+  "waite": {
+    "quote": "Stability, power, protection, realization; a great person; aid, reason, conviction; also authority and will. Reversed: Benevolence, compassion, credit; also confusion to enemies, obstruction, immaturity.",
+    "quote_lang": "en",
+    "pages": [
+      283,
+      284
+    ],
+    "translation": "Estabilidad, poder, protección, realización; un gran personaje; ayuda, razón, convicción; también autoridad y voluntad. Al revés: benevolencia, compasión, crédito; también confusión para los enemigos, obstrucción, inmadurez.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [84],
+      "text": "He has a form of the Crux ansata for his sceptre and a globe in his left hand"
+    },
+    {
+      "pages": [84],
+      "text": "seated on a throne, the arms of which are fronted by rams' heads"
+    },
+    {
+      "pages": [84],
+      "text": "He is executive and realization, the power of this world"
+    },
+    {
+      "pages": [84],
+      "text": "He is occasionally represented as seated on a cubic stone, which, however, confuses some of the issues"
+    },
+    {
+      "pages": [13],
+      "text": "her correspondence, the Emperor, is in profile. As there has been some tendency to ascribe a symbolical significance to this distinction, it seems desirable to say that it carries no inner meaning"
+    },
+    {
+      "pages": [87],
+      "text": "Hereof is the lordship of thought rather than of the animal world"
+    },
+    {
+      "pages": [87],
+      "text": "The Emperor has been described as (a) will in its embodied form, but this is only one of its applications, and (b) as an expression of virtualities contained in the Absolute Being—but this is fantasy"
+    },
+    {
+      "pages": [96],
+      "text": "An erect and princely figure carrying a drawn sword"
+    },
+    {
+      "pages": [15, 16],
+      "text": "it is really the King in his triumph, typifying, however, the victory which creates kingship as its natural consequence and not the vested royalty of the fourth card"
+    },
+    {
+      "pages": [283],
+      "text": "Stability, power, protection, realization; a great person; aid, reason, conviction; also authority and will"
+    },
+    {
+      "pages": [13],
+      "text": "The Emperor, by imputation the spouse of the former"
+    },
+    {
+      "pages": [84],
+      "text": "this card and that of the Empress do not precisely represent the condition of married life, though this state is implied"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 04 Emperor.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_04_Emperor.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [13, 15, 16, 84, 87, 96, 283, 284],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}
