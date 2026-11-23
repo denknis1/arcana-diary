@@ -62,7 +62,7 @@
     },
     {
       "q": "¿Se puede hacer el tarot del día con tres cartas?",
-      "a": "La carta del día es una sola. Si prefieres tres para tu jornada, haz una tirada de tres cartas sin escribir pregunta: la lectura toma pasado, presente y hacia dónde va como un mensaje sobre el momento que vives. Esa tirada sí cuenta para tu límite diario."
+      "a": "La carta del día es una sola. Si prefieres tres para tu jornada, haz una tirada de tres cartas sin escribir pregunta: la lectura toma pasado, presente y hacia dónde va como un mensaje sobre el momento que vives. Esa lectura sí cuenta para tu límite diario."
     }
   ],
   "intents": [

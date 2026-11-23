@@ -30,7 +30,7 @@
       "id": "lectura",
       "heading": "Lo que guardamos de cada lectura",
       "paragraphs": [
-        "De cada tirada guardamos: la pregunta que escribes (opcional, hasta 500 caracteres); el tema que eliges (amor, trabajo, sobre ti, una decisión o general); la situación que marcas en la lectura de amor (sin pareja, en pareja, después de una ruptura, es complicado); el idioma; el tipo de tirada; las cartas que salieron y si cada una quedó al derecho o al revés; el número aleatorio con el que se barajaron; la respuesta que escribió el lector de IA, y la fecha y hora. Si haces preguntas de seguimiento, guardamos cada una (hasta 500 caracteres) junto con su respuesta.",
+        "De cada lectura guardamos: la pregunta que escribes (opcional, hasta 500 caracteres); el tema que eliges (amor, trabajo, sobre ti, una decisión o general); la situación que marcas en la lectura de amor (sin pareja, en pareja, después de una ruptura, es complicado); el idioma; el tipo de tirada; las cartas que salieron y si cada una quedó al derecho o al revés; el número aleatorio con el que se barajaron; la respuesta que escribió el lector de IA, y la fecha y hora. Si haces preguntas de seguimiento, guardamos cada una (hasta 500 caracteres) junto con su respuesta.",
         "Antes de escribir la lectura, una revisión automática clasifica la pregunta en un grupo: pregunta común, pregunta de dinero, tema que las cartas no pronostican (como la salud o la seguridad) o pregunta sobre otra persona. Guardamos ese grupo con la lectura, sin una copia aparte de la pregunta.",
         "Finalidades principales: barajar y mostrar tus cartas, escribir tu lectura, responder tus preguntas de seguimiento, volver a mostrarte la lectura cuando regreses y evitar que un mismo toque cree dos lecturas."
       ]
@@ -111,7 +111,7 @@
       "heading": "Cuánto tiempo guardamos los datos",
       "paragraphs": [
         "Lecturas sin cuenta, con sus preguntas de seguimiento: 7 días desde que se hicieron; después, una limpieza que corre cada hora las borra. Enlaces de un solo uso para guardar una lectura: 7 días. Lecturas de tu diario: hasta que borres la entrada o tu cuenta. El diario gratis muestra tus {diary_free} lecturas más recientes; las anteriores no aparecen en la lista, pero se conservan y vienen en tu descarga.",
-        "Tiradas de la carta del día: 7 días. Contadores por dirección: dos días, con una clave diaria que nunca se guarda. Marcas de crisis en preguntas de seguimiento: un día. Registro de llamadas al modelo: 90 días. Conteos diarios de la revisión de preguntas: 365 días.",
+        "Lecturas de la carta del día: 7 días. Contadores por dirección: dos días, con una clave diaria que nunca se guarda. Marcas de crisis en preguntas de seguimiento: un día. Registro de llamadas al modelo: 90 días. Conteos diarios de la revisión de preguntas: 365 días.",
         "Tu cuenta: hasta que la elimines. Al hacerlo, solo conservamos el número de cuenta en una lista de cuentas eliminadas durante 8 días, para que una sesión antigua no pueda escribir nada. Lista de espera de Plus: hasta que pidas salir o elimines tu cuenta."
       ]
     },

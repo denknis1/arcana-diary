@@ -102,7 +102,7 @@
     },
     {
       "q": "¿Necesito mi propia baraja para leer el tarot?",
-      "a": "No para empezar: aquí la tirada se hace en línea con la baraja de 1909, y puedes hacer {guest_limit} tiradas al día sin registrarte. Si después quieres una baraja física, elige una Rider–Waite–Smith para que los dibujos coincidan con estas páginas."
+      "a": "No para empezar: aquí la tirada se hace en línea con la baraja de 1909, y puedes hacer {guest_limit} lecturas al día sin registrarte. Si después quieres una baraja física, elige una Rider–Waite–Smith para que los dibujos coincidan con estas páginas."
     }
   ],
   "intents": [

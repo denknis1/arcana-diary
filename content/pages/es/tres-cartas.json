@@ -48,7 +48,7 @@
     },
     {
       "q": "¿La tirada de 3 cartas es gratis?",
-      "a": "Sí. Tienes {guest_limit} tiradas diarias sin registrarte y {user_limit} si entras a tu cuenta, y esta es una de ellas. Trae {followups} preguntas de seguimiento gratis por si alguna carta te deja con dudas."
+      "a": "Sí. Tienes {guest_limit} lecturas diarias sin registrarte y {user_limit} si entras a tu cuenta, y esta es una de ellas. Trae {followups} preguntas de seguimiento gratis por si alguna carta te deja con dudas."
     },
     {
       "q": "¿Qué preguntas funcionan con tres cartas?",

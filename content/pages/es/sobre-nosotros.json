@@ -7,7 +7,7 @@
   "title": "Sobre Arcana Diary: lecturas de tarot con IA y guías",
   "description": "Arcana Diary es un sitio de tarot con IA en español y en inglés, con la baraja Rider–Waite–Smith de 1909. Quién lo opera, cómo se hacen los textos y qué no es.",
   "h1": "Sobre Arcana Diary: el tarot para pensar con calma",
-  "lead": "Arcana Diary es un sitio de tarot en español de México y en inglés. Saca las cartas al azar, una inteligencia artificial escribe la lectura a partir de una base fija de significados y, si quieres, tus tiradas se guardan en un diario privado.",
+  "lead": "Arcana Diary es un sitio de tarot en español de México y en inglés. Saca las cartas al azar, una inteligencia artificial escribe la lectura a partir de una base fija de significados y, si quieres, tus lecturas se guardan en un diario privado.",
   "capsule": null,
   "blocks": [
     {
@@ -15,7 +15,7 @@
       "heading": "¿Qué es Arcana Diary?",
       "paragraphs": [
         "Tienes cinco formas de consultar las cartas: la tirada de tres, una sola carta, el sí o no con una o con tres cartas, la tirada del amor y la Carta del día. Todas usan las 78 cartas de la baraja Rider–Waite–Smith. La respuesta trae un titular de una línea, unas frases sobre cada carta y una acción pequeña que puedes hacer; luego puedes seguir preguntando sobre las mismas cartas.",
-        "Además hay una biblioteca de consulta: una página por carta, con su sentido al derecho y al revés, una guía de los arcanos mayores y una tabla con la inclinación de cada carta en el sí o no. Si inicias sesión, guardas tus tiradas en un diario, les pones una nota que nadie más ve y, pasada una semana, regresas a marcar cómo te fue."
+        "Además hay una biblioteca de consulta: una página por carta, con su sentido al derecho y al revés, una guía de los arcanos mayores y una tabla con la inclinación de cada carta en el sí o no. Si inicias sesión, guardas tus lecturas en un diario, les pones una nota que nadie más ve y, pasada una semana, regresas a marcar cómo te fue."
       ]
     },
     {

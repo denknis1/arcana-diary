@@ -17,7 +17,7 @@
         "Primero escribes tu pregunta, si quieres; también puedes dejar el espacio en blanco y sacar las cartas para ver el momento que vives. Luego eliges entre tres cartas, la tirada de siempre, o una sola, para algo rápido. El sitio baraja las 78 cartas al azar y las pone boca abajo sobre la mesa. Se voltean una por una, y cada una puede salir al derecho o al revés con la misma probabilidad.",
         "Con tres cartas, cada una ocupa un lugar. El pasado muestra lo que ha ido formando la situación; el presente, lo que pasa ahora; hacia dónde va, adónde podría ir la cosa si nada cambia. Es una posibilidad, no un destino. Con una carta, la lectura se concentra en tu pregunta tal como está hoy.",
         "La lectura la escribe una inteligencia artificial que trabaja solo con nuestra base de significados: qué quiere decir cada carta al derecho y al revés, cómo se lee en el amor y qué consejo da. No agrega símbolos de su cosecha ni trae ideas de otras barajas. Recibes un titular corto, unas líneas sobre cada carta, lo que dicen juntas y una acción pequeña para hoy o esta semana.",
-        "Si algo no te quedó claro, tienes {followups} preguntas de seguimiento gratis sobre la misma tirada; a partir de ahí, cada pregunta extra usa una de tus lecturas del día. Puedes hacer {guest_limit} lecturas diarias sin registrarte y {user_limit} si entras con tu correo. Con sesión iniciada guardas la tirada en tu diario y después marcas si se cumplió, en parte o no; el diario gratis muestra tus {diary_free} tiradas más recientes."
+        "Si algo no te quedó claro, tienes {followups} preguntas de seguimiento gratis sobre la misma lectura; a partir de ahí, cada pregunta extra usa una de tus lecturas del día. Puedes hacer {guest_limit} lecturas diarias sin registrarte y {user_limit} si entras con tu correo. Con sesión iniciada guardas la lectura en tu diario y después marcas si se cumplió, en parte o no; el diario gratis muestra tus {diary_free} lecturas más recientes."
       ]
     },
     {
@@ -45,7 +45,7 @@
       "paragraphs": [
         "El tarot no adivina el futuro. Lo que sí hace bien es darte una imagen y unas palabras para pensar lo que ya estás viviendo: una carta de pausa cuando no paras, una de cierre cuando te cuesta soltar. Usado así, como un espejo que hace preguntas, sirve de mucho.",
         "Por eso la lectura no da fechas, no promete resultados y no habla por otra persona. Tampoco decide por ti. Puede decirte con claridad hacia dónde se inclinan las cartas en tu propia vida y cuál sería un primer paso; lo demás lo pones tú.",
-        "Si una lectura te incomoda, no la tomes como sentencia. Vuelve a leerla mañana, compárala con lo que ocurrió y quédate con lo que te sirva. Para eso está el diario: con el tiempo ves qué tiradas te ayudaron a pensar y cuáles no te dijeron gran cosa, y esa cuenta honesta vale más que cualquier promesa de acierto."
+        "Si una lectura te incomoda, no la tomes como sentencia. Vuelve a leerla mañana, compárala con lo que ocurrió y quédate con lo que te sirva. Para eso está el diario: con el tiempo ves qué lecturas te ayudaron a pensar y cuáles no te dijeron gran cosa, y esa cuenta honesta vale más que cualquier promesa de acierto."
       ]
     },
     {
@@ -54,7 +54,7 @@
       "paragraphs": [
         "Puedes hacerlo, y hay quien lo hace. Lo que cambia aquí es el orden. Primero el sitio baraja y saca las cartas al azar, y tú las ves con su ilustración de 1909, al derecho o al revés. Solo después se escribe la lectura, a partir de esas cartas y de una base fija de significados de las 78, no de una conversación libre.",
         "La respuesta del sí o no la calcula nuestro código, no el lector: cada carta tiene una inclinación que no cambia, y una carta al revés siempre queda en «todavía no está claro». Por eso la misma tirada da siempre la misma respuesta, y puedes ver de dónde salió.",
-        "Hay además reglas que no se mueven aunque insistas: sin fechas, sin promesas, sin decir lo que otra persona siente. Y está el diario, donde guardas tus tiradas, apuntas una nota que solo tú ves y vuelves para marcar si se cumplieron. Si inicias sesión, el lector puede tomar en cuenta, de pasada, lo que preguntaste antes sobre el mismo tema."
+        "Hay además reglas que no se mueven aunque insistas: sin fechas, sin promesas, sin decir lo que otra persona siente. Y está el diario, donde guardas tus lecturas, apuntas una nota que solo tú ves y vuelves para marcar si se cumplieron. Si inicias sesión, el lector puede tomar en cuenta, de pasada, lo que preguntaste antes sobre el mismo tema."
       ]
     }
   ],
