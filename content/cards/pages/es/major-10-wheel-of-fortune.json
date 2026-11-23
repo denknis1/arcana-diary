@@ -1,0 +1,295 @@
+{
+  "schema": 2,
+  "card_id": "major-10-wheel-of-fortune",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "La Rueda de la Fortuna",
+    "in_sentence": "La Rueda de la Fortuna",
+    "de": "de La Rueda de la Fortuna"
+  },
+  "title": "La Rueda de la Fortuna en el tarot: significado e invertida",
+  "description": "Qué significa La Rueda de la Fortuna al derecho y al revés (carta invertida): cambio, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "La Rueda de la Fortuna en el tarot: significado",
+  "image_alt": "La Rueda de la Fortuna, carta de 1909 de la baraja Rider-Waite-Smith: una rueda anaranjada con las letras T, A, R, O en un cielo azul, una esfinge con espada arriba, una serpiente y una figura roja a los lados y seres alados en las esquinas.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 10,
+    "numeral": "X",
+    "also_called": []
+  },
+  "capsule": "La Rueda de la Fortuna es la carta X de los arcanos mayores: buena suerte, ciclos y un giro que no depende solo de ti. Al revés, habla de mala racha o resistencia al cambio. Es favorable, con un recordatorio: nadie se queda arriba siempre. La rueda gira y lo atorado se mueve, así que al derecho responde que sí.",
+  "keywords": {
+    "upright": [
+      "cambio",
+      "ciclos",
+      "oportunidad",
+      "movimiento"
+    ],
+    "reversed": [
+      "resistencia al cambio",
+      "estancamiento",
+      "patrones que se repiten",
+      "querer controlar"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de La Rueda de la Fortuna?",
+      "paragraphs": [
+        "Una gran rueda anaranjada flota en un cielo azul entre nubes grises, y es lo más grande de la carta. Waite cuenta que para este dibujo volvió a seguir la reconstrucción de Éliphas Lévi y que la imagen representa el movimiento perpetuo de un universo fluido y el flujo de la vida humana (p. 108).",
+        "Arriba de la rueda está sentada una esfinge azul con una espada apoyada en el hombro. Para Waite, la esfinge es el punto de equilibrio dentro de ese movimiento (p. 108), y por eso critica las versiones que la suben a un pedestal aparte: así se pierde la idea de estabilidad en medio del movimiento (p. 111).",
+        "Por el lado izquierdo baja una serpiente amarilla; Waite explica que dibujó a Tifón en forma de serpiente (p. 108). A la derecha hay una figura roja con cabeza de animal. En la primera parte del libro, Waite resume así el diseño de Lévi: un Hermanubis que sube con la rueda, una esfinge echada en lo alto y un Tifón del lado que baja (p. 21).",
+        "En las cuatro esquinas descansan sobre nubes figuras con alas: una humana, un águila, un toro y un león. Waite las llama los cuatro seres vivientes de Ezequiel (p. 108). En la carta de 1909 cada una tiene un libro, el borde de la rueda lleva letras y signos, y arriba aparece el X."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre La Rueda de la Fortuna?",
+      "paragraphs": [
+        "Todo en la primera lista sube: éxito, elevación, suerte, felicidad. La segunda sorprende, porque no describe ninguna caída: aumento, abundancia y lo superfluo hablan de tener más, incluso de sobra.",
+        "Waite tenía poca paciencia con las explicaciones ocultistas de esta carta. Las llamó de una necedad singular y escribió que las conclusiones de la adivinación común son mejores que eso en su propio terreno (p. 111)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa La Rueda de la Fortuna al derecho?",
+      "paragraphs": [
+        "Al derecho, La Rueda de la Fortuna marca un giro: algo que estaba atorado se pone en movimiento, o regresa una etapa que ya conoces. Suele salir cuando las circunstancias cambian más rápido que tus planes.",
+        "La carta no te pide frenar la rueda. Te pide ver hacia dónde va y acompañar el cambio en lugar de agarrarte a cómo eran las cosas. Hay partes del giro que no dependen de ti; tu respuesta, sí.",
+        "También es la carta de la buena suerte: un golpe de fortuna, una puerta que se abre cuando no la buscabas, un momento que de pronto juega a tu favor. La lectura de hoy también la liga al karma: las acciones regresan como consecuencias, y lo que pones en movimiento suele volver. La lectura de hoy también la liga al karma: las acciones regresan como consecuencias, y lo que pones en movimiento suele volver. Tómala como invitación a fijarte, no como promesa. Si esto te hace sentido, pregúntate: ¿qué ya se está moviendo y qué paso chico iría a su favor?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa La Rueda de la Fortuna al revés?",
+      "paragraphs": [
+        "Al revés, La Rueda de la Fortuna suele hablar de resistencia al cambio: querer detener la rueda con las manos mientras sigue girando. También puede señalar una racha de mala suerte, tropiezos que llegan uno detrás de otro, estancamiento o patrones que se repiten con otra cara.",
+        "Esta lectura es moderna, no de Waite: su segunda lista habla de aumento y abundancia, no de una mala racha.",
+        "El nudo suele estar en querer controlar el ritmo de todo. Fíjate qué parte del ciclo sí está en tus manos, empieza por ahí y deja que lo demás tome su tiempo."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa La Rueda de la Fortuna en el amor?",
+      "paragraphs": [
+        "Una rueda que gira trae movimiento al amor: otro ritmo, una etapa nueva, un patrón que por fin ves con claridad. Por tu cuenta, puede ser una temporada en la que cambian tus planes o lo que buscas; fíjate en lo que quieres hoy y no solo en lo que querías antes. Las lecturas de hoy también ven en ella un encuentro afortunado que nadie planeó.",
+        "En la vida en pareja, invita a acompañar los cambios de la relación, como una mudanza, otros horarios o una etapa distinta, en vez de pelearte con ellos. Habla de cómo los recibes tú, no de las decisiones de nadie más.",
+        "Cuando la rueda parece atorada, la carta se lee como mal momento para el amor. Revisa si hay algo que se repite en tus relaciones o si te empeñas en que todo siga igual. ¿Cuál de las dos te suena más?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa La Rueda de la Fortuna en el trabajo y el dinero?",
+      "paragraphs": [
+        "Terreno que se mueve: así suele llegar esta carta al trabajo, con un equipo que se reorganiza, un proyecto detenido que de pronto avanza, un puesto que cambia de forma. Favorece la flexibilidad y mirar hacia dónde va el impulso.",
+        "Un cambio de fortuna, más veces para bien que para mal, es lo que La Rueda significa en el dinero: una oportunidad que no esperabas, una temporada apretada que afloja. Como toda rueda, también trae subidas y bajadas, así que lo que cuenta es cómo respondes al giro: ¿ajustas con calma o persigues cada vaivén?",
+        "Al revés, puede hablar de un tropiezo con el dinero o de una temporada de vacas flacas, y en el trabajo de un cambio al que te sigues resistiendo o de una costumbre que te regresa siempre al mismo punto."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa La Rueda de la Fortuna como consejo?",
+      "paragraphs": [
+        "Di que sí a una invitación o propuesta pequeña que normalmente rechazarías. Muévete con el giro en vez de esperar a que se detenga: basta un paso chico para ver hacia dónde te lleva el cambio."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿La Rueda de la Fortuna es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa La Rueda de la Fortuna como persona y como sentimiento?",
+      "paragraphs": [
+        "Esta carta casi nunca retrata un carácter; retrata un momento, el punto en que algo da la vuelta. Si representa a alguien, imagina a una persona que se adapta rápido y sale adelante con lo que venga, o a quien aparece justo en un momento de giro. Como sentimiento, La Rueda al derecho habla de vivir el encuentro como buena suerte: la sensación de que llegó en el momento justo y de que algo cambió para bien, a veces un giro repentino en lo que se siente. Al revés, los sentimientos son cambiantes e inestables, cercanos una semana y lejanos la siguiente, con la idea de que no es el momento."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa La Rueda de la Fortuna junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-12-hanged-man",
+          "text": "El movimiento se encuentra con una pausa elegida. Deja que las cosas se asienten antes de decidir hacia dónde girar."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "Un giro que agarra velocidad. Responde rápido y mantén tus planes sencillos mientras todo se mueve."
+        },
+        {
+          "card_id": "pentacles-02-two",
+          "text": "Cambios en varios frentes a la vez. Decide qué necesita tu atención primero y no pierdas la ligereza."
+        },
+        {
+          "card_id": "major-21-world",
+          "text": "Un círculo se cierra mientras la rueda vuelve a girar. Reconoce lo que terminaste antes de la siguiente vuelta."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir La Rueda de la Fortuna de La Torre?",
+      "paragraphs": [
+        "Las dos hablan de cambios que no eliges del todo. En la primera parte del libro, Waite llama a la otra carta la Torre alcanzada por el rayo (p. 25) y dice que es, desde luego, una carta de confusión (p. 26). La Torre es una sacudida repentina que rompe una estructura; La Rueda es un giro, un ciclo que sigue y vuelve a pasar por el mismo punto. Si el cambio se siente como golpe, mira La Torre; si se siente como cambio de temporada, es La Rueda."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale La Rueda de la Fortuna?",
+      "paragraphs": [
+        "¿Qué en mi vida ya está girando, aunque todavía no lo acepte?",
+        "¿Dónde me aferro a cómo eran antes las cosas?",
+        "¿Qué movimiento pequeño podría hacer a favor del cambio?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿La Rueda de la Fortuna es una carta buena o mala?",
+      "a": "Casi siempre buena. Favorece el movimiento después de una temporada quieta y recuerda que las circunstancias cambian. Su advertencia viene en la forma misma del círculo: nada se queda arriba ni abajo, así que disfruta lo que sube sin darlo por hecho y toma una racha difícil como etapa, no como sentencia."
+    },
+    {
+      "q": "¿La Rueda de la Fortuna significa buena suerte?",
+      "a": "Sí: la buena suerte es uno de sus significados principales hoy, y de cabeza se lee como un giro desfavorable. La lista de Waite sí incluye la suerte y la felicidad (p. 285). En Arcana Diary esa suerte es un cambio de circunstancias, no una promesa: úsala como aviso para notar lo que se abre y cómo lo recibes."
+    },
+    {
+      "q": "¿Qué significan las letras de La Rueda de la Fortuna?",
+      "a": "En la carta de 1909 el borde muestra la T, la A, la R y la O, con otros signos entre ellas. Waite explica que ahí la palabra Taro también se lee como Rota y que esas letras se alternan con las del Nombre Divino, para mostrar que la Providencia está presente en todo (p. 108). No les da ningún significado de adivinación."
+    },
+    {
+      "q": "¿La Rueda de la Fortuna significa que nada depende de ti?",
+      "a": "No. La rueda gira la empujes o no, pero la carta mira tu parte del movimiento: lo que notas, lo que aceptas y lo que sueltas. Incluso en el dibujo de Waite hay una figura que se mantiene firme arriba mientras todo lo demás da vueltas."
+    }
+  ],
+  "related": [
+    "major-09-hermit",
+    "major-11-justice",
+    "major-12-hanged-man",
+    "major-16-tower"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-16-tower",
+      "text": "La Torre"
+    }
+  ],
+  "waite": {
+    "quote": "Destiny, fortune, success, elevation, luck, felicity. Reversed: Increase, abundance, superfluity.",
+    "quote_lang": "en",
+    "pages": [
+      284,
+      285
+    ],
+    "translation": "Destino, fortuna, éxito, elevación, suerte, felicidad. Al revés: aumento, abundancia, lo superfluo.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        108
+      ],
+      "text": "In this symbol I have again followed the reconstruction of Éliphas Lévi"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "the symbolic picture stands for the perpetual motion of a fluidic universe and for the flux of human life. The Sphinx is the equilibrium therein"
+    },
+    {
+      "pages": [
+        111
+      ],
+      "text": "Sometimes the sphinx is represented couchant on a pedestal above, which defrauds the symbolism by stultifying the essential idea of stability amidst movement"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "I have, however, presented Typhon in his serpent form"
+    },
+    {
+      "pages": [
+        21
+      ],
+      "text": "These are replaced in the reconstruction by a Hermanubis rising with the wheel, a Sphinx couchant at the summit and a Typhon on the descending side"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "the four Living Creatures of Ezekiel occupy the angles of the card"
+    },
+    {
+      "pages": [
+        111
+      ],
+      "text": "the occult explanations of this card are—even for occultism itself—of a singularly fatuous kind"
+    },
+    {
+      "pages": [
+        111
+      ],
+      "text": "The findings of common fortune-telling are better than this on their own plane"
+    },
+    {
+      "pages": [
+        25
+      ],
+      "text": "The Tower struck by Lightning"
+    },
+    {
+      "pages": [
+        26
+      ],
+      "text": "It is assuredly a card of confusion"
+    },
+    {
+      "pages": [
+        285
+      ],
+      "text": "tune, success, elevation, luck, felicity"
+    },
+    {
+      "pages": [
+        108
+      ],
+      "text": "The transliteration of Taro as Rota is inscribed on the wheel, counterchanged with the letters of the Divine Name—to shew that Providence is implied through all"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 10 Wheel of Fortune.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_10_Wheel_of_Fortune.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        21,
+        25,
+        26,
+        108,
+        111,
+        284,
+        285
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

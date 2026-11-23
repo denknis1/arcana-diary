@@ -1,0 +1,255 @@
+{
+  "schema": 2,
+  "card_id": "cups-12-knight",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Caballero de Copas",
+    "in_sentence": "el Caballero de Copas",
+    "de": "del Caballero de Copas"
+  },
+  "title": "Caballero de Copas en el tarot: significado e invertida",
+  "description": "Qué significa el Caballero de Copas al derecho y al revés (carta invertida): romance, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Caballero de Copas en el tarot: significado",
+  "image_alt": "Caballero de Copas, carta de 1909 de la baraja Rider-Waite-Smith: un caballero con casco alado ofrece una copa dorada desde un caballo blanco que camina junto a un río.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 12,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Caballero de Copas trae romance, encanto y una propuesta que nace del corazón. Al revés, el humor cambia rápido y las promesas pueden quedarse en palabras. Es una carta amable; lo difícil llega cuando el idealismo va más rápido que los hechos. Si preguntas por sí o no, dice que sí: avanza sin prisa, con la copa tendida.",
+  "keywords": {
+    "upright": [
+      "romance",
+      "propuesta",
+      "idealismo",
+      "encanto"
+    ],
+    "reversed": [
+      "cambios de humor",
+      "promesas vacías",
+      "idealización",
+      "fantasía"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Caballero de Copas?",
+      "paragraphs": [
+        "Un caballero con armadura avanza al paso sobre un caballo blanco y lleva una copa dorada tendida frente a él. Waite lo describe elegante pero no guerrero, cabalgando en calma, con un casco alado que remite a las gracias más altas de la imaginación (p. 202). También es un soñador, añade Waite, aunque en su visión lo rondan imágenes de los sentidos (p. 202).",
+        "En la carta de 1909 el caballo baja la cabeza y levanta una pata delantera. El casco y los talones del jinete llevan alas pequeñas, su túnica tiene peces rojos y abajo serpentea un río angosto, al pie de una loma rocosa."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Caballero de Copas?",
+      "paragraphs": [
+        "La lista al derecho de Waite habla de algo que se acerca: una llegada, a veces la de un mensajero, una propuesta, una invitación; la de al revés es dura y nombra el engaño y el fraude (p. 202). En Arcana Diary esa cara de la carta no acusa a nadie: la leemos como promesas más bonitas que reales, incluidas las que te haces a ti."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Caballero de Copas al derecho?",
+      "paragraphs": [
+        "Es el romántico de la baraja: encanto, un detalle sincero, una propuesta que te mueve algo por dentro. Suele salir cuando llega una invitación, una cita o una idea creativa, o cuando las ganas de seguir al corazón pesan más que el plan.",
+        "Su caballo va al paso, no al galope. La carta favorece actuar desde lo que sientes, pero con calma: decir lo amable, mandar el mensaje. Aquí el idealismo es una fuerza, siempre que termine en algo que de verdad puedas hacer.",
+        "¿Qué harías hoy si confiaras en lo que sientes?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Caballero de Copas al revés?",
+      "paragraphs": [
+        "Al revés, puede hablar de cambios de humor, de una fantasía que no baja a tierra o de idealización: imaginar a alguien, o un proyecto, más bonito de lo que es. También puede señalar promesas vacías, palabras con mucho sentimiento y pocos hechos detrás.",
+        "Parte de esto coincide con el engaño y la doblez de la lista de Waite (p. 202); los cambios de humor y la fantasía son una lectura moderna, no de Waite. Conserva el sueño y pregúntate cuál sería un paso real hacia él."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Caballero de Copas en el amor?",
+      "paragraphs": [
+        "Pocas cartas son tan románticas: cortejo, detalles, una invitación a salir, palabras bonitas dichas con el corazón. Te invita a expresar tu cariño a tu manera, sin esperar una respuesta inmediata.",
+        "Al revés, las promesas pueden ir más rápido que los hechos, también las tuyas, y el entusiasmo puede cambiar según el día.",
+        "Si estás conociendo a alguien, la carta pide ver a la persona real y no solo la imagen que te hiciste. En una relación ya formada, invita a recuperar el romance: una sorpresa, una carta escrita a mano, una cena con detalle."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Caballero de Copas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Un proyecto creativo, una oferta laboral o un puesto donde cuenten la imaginación y el trato con la gente: ese es su terreno. También favorece presentar una idea con entusiasmo y buen modo.",
+        "Para el dinero, su significado es una oferta u oportunidad, casi siempre ligada a algo que te gusta hacer, junto con la tentación de gastar por impulso del corazón. Al revés, marca planes de dinero más soñados que calculados."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Caballero de Copas como consejo?",
+      "paragraphs": [
+        "Escribe en pocas líneas lo que sientes por alguien o por algo que te importa, y entrégalo sin prisa, como quien ofrece una copa. No hace falta un gran gesto: basta con que sea sincero."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Caballero de Copas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Caballero de Copas como persona y como sentimiento?",
+      "paragraphs": [
+        "Montado en su caballo blanco, el Caballero de Copas es alguien con alma romántica y mucho encanto, que se guía por lo que siente: quien corteja, quien propone un plan, quien llega con una idea creativa. También puedes ser tú, si te animas a seguir al corazón. Cuando se trata de sentimientos, la carta significa interés romántico, admiración y ganas de demostrar cariño con un detalle. Al revés, esos sentimientos se vuelven cambiantes: atracción con altibajos, idealizar desde lejos o palabras cálidas que todavía no se traducen en hechos."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Caballero de Copas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "cups-02-two",
+          "text": "Una propuesta romántica y un vínculo entre iguales: cariño que puede ir y venir en las dos direcciones."
+        },
+        {
+          "card_id": "cups-07-seven",
+          "text": "Muchos sueños a la vez. Elige el que de verdad llevarías a cabo."
+        },
+        {
+          "card_id": "cups-04-four",
+          "text": "Una invitación tendida mientras tu atención está en otra parte. Levanta la vista antes de decir que no."
+        },
+        {
+          "card_id": "major-06-lovers",
+          "text": "Romance frente a una elección real: sigue al corazón y revisa que vaya de acuerdo con tus valores."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Caballero de Copas del Caballero de Bastos y de la Sota de Copas?",
+      "paragraphs": [
+        "El Caballero de Bastos también va a caballo, pero Waite dice que el movimiento de su caballo sugiere un ánimo precipitado (p. 174); hoy se lee como acción, impulso y aventura. El de Copas avanza al paso y se guía por lo que siente.",
+        "En la Sota de Copas, según Waite, las imágenes de la mente toman forma (p. 204), y hoy se lee como un mensaje afectivo o un sentimiento nuevo. La Sota trae la noticia; el Caballero, la propuesta."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Caballero de Copas?",
+      "paragraphs": [
+        "¿Qué ofrecería hoy si siguiera a mi corazón?",
+        "¿Lo que siento es por la persona real o por la idea que me hice de ella?",
+        "¿Qué paso concreto acercaría este sueño a la realidad?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Caballero de Copas es una carta buena o mala?",
+      "a": "Buena en casi todas las lecturas. Trae calidez, romance y algo que se ofrece, a ti o desde ti. Su lado difícil es la distancia entre sentir y cumplir: palabras lindas, un plan sin sustento, un ánimo que cambia de un día a otro. Notarlo a tiempo basta para acortar esa distancia."
+    },
+    {
+      "q": "¿El Caballero de Copas significa que me quiere?",
+      "a": "No habla de una persona concreta. Como significado, es la carta clásica del cortejo: las ganas de conquistar a alguien con un detalle. Si eso encaja con alguien de tu vida, lo vas a notar en lo que esa persona hace con el tiempo, no en una sola carta."
+    },
+    {
+      "q": "¿El Caballero de Copas es una persona o un acontecimiento?",
+      "a": "Puede ser cualquiera de los dos. Los significados de Waite se inclinan por los hechos: una llegada, un acercamiento, a veces el de un mensajero (p. 202). Hoy muchas lecturas suman a una persona que trae romance o una idea. En tu pregunta, mira qué se acerca a ti."
+    },
+    {
+      "q": "¿El Caballero de Copas puede ser una mujer?",
+      "a": "Sí. En la carta hay un caballero, pero el papel que describe, alguien que corteja, sueña y ofrece, puede tocarle a cualquier persona, sin importar su género. Eso te incluye."
+    }
+  ],
+  "related": [
+    "cups-11-page",
+    "cups-13-queen",
+    "wands-12-knight",
+    "swords-12-knight",
+    "pentacles-12-knight"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-12-knight",
+      "text": "Caballero de Bastos"
+    },
+    {
+      "card_id": "cups-11-page",
+      "text": "Sota de Copas"
+    }
+  ],
+  "waite": {
+    "quote": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement. Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud.",
+    "quote_lang": "en",
+    "pages": [
+      202
+    ],
+    "translation": "Llegada, acercamiento —a veces el de un mensajero—; insinuaciones, propuesta, porte, invitación, incitación. Al revés: trampa, artificio, sutileza, estafa, duplicidad, fraude.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        202
+      ],
+      "text": "Graceful, but not warlike; riding quietly, wearing a winged helmet, referring to those higher graces of the imagination which sometimes characterize this card"
+    },
+    {
+      "pages": [
+        202
+      ],
+      "text": "He too is a dreamer, but the images of the side of sense haunt him in his vision"
+    },
+    {
+      "pages": [
+        202
+      ],
+      "text": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement"
+    },
+    {
+      "pages": [
+        202
+      ],
+      "text": "Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
+    },
+    {
+      "pages": [
+        204
+      ],
+      "text": "It is the pictures of the mind taking form"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 12.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_12.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        174,
+        202,
+        204
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

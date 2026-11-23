@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "page_id": "how-readings-work",
+  "lang": "en",
+  "url": "/how-readings-work",
+  "status": "reviewed",
+  "title": "How Our AI Tarot Readings Work: Draw, Rules, Sources",
+  "description": "How Arcana Diary draws cards, what the AI model is given, the yes or no rule, safety limits and help lines, follow-ups, the diary, and what we never claim.",
+  "h1": "How readings work: the method, step by step",
+  "lead": "This page sets out the whole method behind a reading on Arcana Diary, from the moment you press draw to the text you read and what happens to it afterwards. The same rules apply to every visitor.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "draw",
+      "heading": "1. How the cards are drawn",
+      "paragraphs": [
+        "The server shuffles the full deck of 78 cards using a random seed from a cryptographic generator, then deals the number of cards the tool needs: one for a single card, three for the main reading and the love spread, one or three for yes or no. Each card's orientation is decided separately, with a one in two chance of coming up reversed. The AI model plays no part in this; it only sees the result.",
+        "The seed is stored with the reading, so the same reading always shows the same cards in the same orientation when you open it again. In a three-card reading the positions are past (the forces behind the situation so far), present (what is under way now) and where it's heading (where things may go from here if nothing shifts, a possibility and never a fate). The love spread uses the same three positions.",
+        "Your Card of the Day works differently. It stays the same all day and changes after your local midnight, and it does not count toward your daily readings. Its text is prepared in advance for each card and orientation, so it speaks about the card's theme for today, not about a question."
+      ]
+    },
+    {
+      "id": "check",
+      "heading": "2. The check before any card is drawn",
+      "paragraphs": [
+        "If you type a question, it is checked first: against a list of phrases in English and Spanish, and by a short call to an AI model that only sorts it. The sorting has five outcomes. Most questions are ordinary. Some are about money. Some ask for a forecast the cards do not give, about health, a death, a legal case or someone's safety. Some ask what another person thinks or feels. And a few show that the person asking may be in danger.",
+        "Each outcome changes the reading in a set way, described in the sections below. The text of your question is never written into the server logs."
+      ]
+    },
+    {
+      "id": "input",
+      "heading": "3. What the AI model receives",
+      "paragraphs": [
+        "The model gets one short, structured message. It holds your question (marked as your text, so that instructions typed into it are ignored), the topic and situation you chose if any, and for each card its position, whether it is upright or reversed, its name, keywords, meaning and advice line, plus the love line in a love reading. In a yes or no reading it also gets the lean already computed by the site.",
+        "If you are signed in, the message can also include up to five of your earlier readings on the same topic: the date, the question and the headline you got. Notes and came-true marks are never sent, and neither are earlier questions about health, safety, money or another person. Guests get no history at all. The model is not given your e-mail address or any other account details."
+      ]
+    },
+    {
+      "id": "writing",
+      "heading": "4. How the reading is written",
+      "paragraphs": [
+        "There is one voice: a calm friend who speaks to you as you, in short plain sentences, with no drama. The reply has a fixed shape. A one-line headline answers the question. Then come two or three sentences on each card, with three cards a line on what they say together, one concrete step for today or this week built from the cards' advice, and for yes or no a line on why the card leans the way it does. One card takes about 90 to 150 words, three cards about 180 to 250.",
+        "The text appears on screen while the model writes. Once it is complete, the server checks it against a list of forbidden phrases. If one slips through, the reply is swapped for the plain meanings of your cards from the base, with a note that the reader is unavailable; the same happens if the model does not answer or the day's spending limit is reached. In Spanish there is one more step: the reader does not know your gender, so any part that addresses you as masculine or feminine is rewritten in neutral wording."
+      ]
+    },
+    {
+      "id": "sources",
+      "heading": "5. The sources: the card base and Waite",
+      "paragraphs": [
+        "The reader works only from the site's base of card meanings, kept as versioned files: three to five keywords, an upright and a reversed meaning, a love line, an advice line and a yes or no lean for each of the 78 cards, in English and in Spanish. It is told not to add meanings, symbols, numerology or traditions from other decks. The deck is the Rider–Waite–Smith of 1909, and its scans are what you see on screen.",
+        "The card pages go further. They draw on Arthur Edward Waite's The Pictorial Key to the Tarot (1911), quoted with page numbers, and they say plainly where the site's reading of a card differs from his."
+      ]
+    },
+    {
+      "id": "yes-no",
+      "heading": "6. The yes or no rule",
+      "paragraphs": [
+        "The site's code works out the lean; the AI model never does and cannot alter it. Each card in the base carries a single upright lean, which is yes, no or not clear yet, and a reversed card always lands on not clear yet. Three cards are counted like a small vote in which only the yes and no cards take part: the side with more cards wins, and an even split, or a draw with neither a yes nor a no in it, ends as not clear yet.",
+        "Questions that ask for a forecast about health, a death, a legal case or safety, and questions about someone else's mind, receive a reading without any lean. Money questions keep their lean, read as your own readiness for the choice. The line \"This isn't financial advice.\" sits above the answer, and the step is a sober one."
+      ]
+    },
+    {
+      "id": "limits",
+      "heading": "7. Rules the reader never breaks",
+      "paragraphs": [
+        "In an ordinary question the reader may speak plainly about the direction the cards show for your own life. Some lines hold in every reading, however the question is put or how often it is asked. No dates or time frames. No promises, no fate, no claim that a reading is accurate or certain. No forecasts or instructions about health, a death, legal matters, safety, money, investments or debts.",
+        "Nothing about what another person thinks, wants or will do; the reading comes back to you and what is in your hands. No fear: no talk of doom or warnings of disaster, and a hard card is read as pressure, an ending or a call for care. No claims about facts in your life; a meaning is offered as something to consider."
+      ]
+    },
+    {
+      "id": "crisis",
+      "heading": "8. When a question shows someone may be in danger",
+      "paragraphs": [
+        "If the check finds signs of suicidal thoughts, self-harm or violence, no cards are drawn. You see a short, warm message and free, confidential lines to call, and in some countries to text: for the United States, Mexico, Spain, Argentina and Colombia, and for other countries a directory of help lines and a reminder to call the local emergency number. Your country is used only to pick the lines and is not stored.",
+        "The text you wrote is not saved, and this answer does not use one of your readings. The reader has its own safety net as well: if it sees such signs in a question the check let through, it stops and the same message appears."
+      ]
+    },
+    {
+      "id": "followups",
+      "heading": "9. Follow-up questions",
+      "paragraphs": [
+        "After a reading you have {followups} free follow-up questions. The model then sees the reading, its first answer and your earlier follow-ups, and replies in about 60 to 120 words about the same cards; nothing new is drawn. Each follow-up goes through the same check as the first question. One more beyond the free ones costs one of today's readings, and you are asked to confirm first."
+      ]
+    },
+    {
+      "id": "diary",
+      "heading": "10. The diary",
+      "paragraphs": [
+        "A guest reading is kept for 7 days, then deleted. To keep it, save it to your diary by signing in, either through a link sent to your e-mail or with Google. An entry holds the question, the cards, the answer and the follow-ups, a private note of up to 1,000 characters that is never sent to the AI model, and from the seventh day a mark for whether it came true, partly came true or did not.",
+        "The free diary lists your {diary_free} newest readings; older ones are hidden, not deleted. You can delete any entry, download all your readings as a file, or delete your account, which removes your readings and account data at once. A shared link to a reading shows the cards and the answer, never your question or your note."
+      ]
+    },
+    {
+      "id": "claims",
+      "heading": "11. What we do not claim",
+      "paragraphs": [
+        "Tarot cannot see ahead, and no reading here is a forecast. It is for reflection and entertainment. The cards come from chance, the meanings from a fixed base, the wording from an AI model, and none of that adds up to knowledge of what lies ahead. The came-true mark exists so you can judge the fit for yourself, not as proof. Decisions stay with you."
+      ]
+    }
+  ],
+  "faq": [],
+  "intents": []
+}

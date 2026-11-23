@@ -1,0 +1,248 @@
+{
+  "schema": 2,
+  "card_id": "swords-12-knight",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Caballero de Espadas",
+    "in_sentence": "el Caballero de Espadas",
+    "de": "del Caballero de Espadas"
+  },
+  "title": "Caballero de Espadas en el tarot: significado e invertida",
+  "description": "Qué significa el Caballero de Espadas al derecho y al revés (carta invertida): rapidez, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Caballero de Espadas en el tarot: significado",
+  "image_alt": "Caballero de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: un caballero con armadura galopa en un caballo blanco contra el viento, con la espada en alto y la capa roja ondeando.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 12,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Caballero de Espadas es rapidez, determinación y franqueza: una idea perseguida a todo galope. Al revés, la velocidad se vuelve imprudencia y palabras duras. Empuja las cosas hacia adelante, aunque puede atropellar a quien se cruce. Si preguntas sí o no, todavía no está claro: él carga antes de ver el panorama completo.",
+  "keywords": {
+    "upright": [
+      "rapidez",
+      "determinación",
+      "impulsividad",
+      "franqueza"
+    ],
+    "reversed": [
+      "palabras duras",
+      "prisa sin rumbo",
+      "imprudencia",
+      "impaciencia"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Caballero de Espadas?",
+      "paragraphs": [
+        "Un caballero con armadura galopa a toda velocidad en un caballo blanco, con la espada levantada y el cuerpo echado hacia adelante contra el viento. Waite dice que cabalga a toda carrera, como si dispersara a sus enemigos, y que casi podría ser Galahad, cuya espada es veloz y segura porque su corazón es limpio (p. 230). La espada en alto y el caballo estirado son lo más grande de la carta.",
+        "En la carta de 1909 una capa roja y un penacho rojo vuelan detrás de él, los árboles de la izquierda se doblan con el viento y jirones de nube cruzan el cielo. Unas mariposas amarillas adornan los arreos azules del caballo."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Caballero de Espadas?",
+      "paragraphs": [
+        "La lista de Waite al derecho es dura y pasa de la valentía y la destreza a la ira, la guerra y la ruina (p. 230). Al revés es breve: imprudencia, incapacidad y exceso (p. 230). La parte áspera de esa lista es de Waite; en Arcana Diary este caballero habla de velocidad, voluntad y palabras filosas, no de hacer daño."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Caballero de Espadas al derecho?",
+      "paragraphs": [
+        "Al derecho, la carta es determinación: un empujón fuerte para actuar ya sobre una idea, con ambición y cabeza rápida. Este caballero va directo al punto, dice lo que piensa sin adornos y corta la duda de un tajo. La franqueza es su don; el tacto, no tanto.",
+        "Suele salir cuando todo se acelera: una decisión que se toma en un día, una discusión que quieres ganar, una meta perseguida sin voltear a los lados. Esa rapidez puede llevar un proyecto muy lejos. Su riesgo es la impulsividad: lanzarse antes de revisar los datos o dejar atrás a la gente en el camino."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Caballero de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, el Caballero de Espadas puede hablar de imprudencia y de prisa sin rumbo: planes que empiezan y se abandonan, riesgos tomados sin pensar. También de palabras duras, discusiones que suben de tono y frases dichas para ganar, no para entenderse. La impaciencia aparece cuando las cosas no avanzan a tu ritmo. La imprudencia y el exceso de la lista de Waite encajan con este lado (p. 230). Frena lo suficiente para ver hacia dónde vas."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Caballero de Espadas en el amor?",
+      "paragraphs": [
+        "Veloz y franco: en el amor, este caballero trae conquista intensa, declaraciones veloces y un romance que va a todo galope. La honestidad es bienvenida; la brusquedad que lastima, no.",
+        "Con una pareja estable, puede describir pláticas que se encienden en segundos o la necesidad de decir las cosas de frente. Al conocer a alguien, puede ser una atracción que quiere respuestas ya. Al revés, te invita a cuidar los arranques y las palabras de las que luego te arrepentirías."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Caballero de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "En el trabajo marca el paso la ambición: sacar adelante un proyecto, competir fuerte, defender ideas, ir más rápido que los demás. La mente ágil ayuda, siempre que tenga un objetivo claro.",
+        "El galope también describe la cartera: decisiones rápidas, dinero que se mueve deprisa y la tentación de gastar por impulso. Al revés, señala decisiones de dinero tomadas a las carreras."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Caballero de Espadas como consejo?",
+      "paragraphs": [
+        "Antes de mandar un mensaje importante, cuenta hasta diez y vuelve a leerlo. Conserva la energía, pero apúntala: una sola meta, los datos revisados y palabras que digan lo que quieres decir sin herir a nadie."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Caballero de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Caballero de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Lanzado a todo galope, el Caballero de Espadas es alguien rápido, audaz y directo, movido por sus ideas y con poca paciencia para esperar: quien debate, quien se lanza primero, quien sale disparado delante del grupo. Si eres tú, marca una etapa de avanzar a toda marcha. Un interés fuerte y veloz es lo que la carta significa tradicionalmente como sentimiento: atracción que quiere actuar ya y lo dice de frente. Al revés, los sentimientos se vuelven impulsivos y cambiantes, de mucho a nada, o salen como comentarios descuidados que cortan."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Caballero de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "wands-08-eight",
+          "text": "Todo se acelera al mismo tiempo. Ir rápido está bien si no pierdes el rumbo."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "Prisa seguida de una pausa necesaria. Descansa antes de la siguiente carga."
+        },
+        {
+          "card_id": "major-14-temperance",
+          "text": "La velocidad se encuentra con la paciencia. Mezcla las dos y el resultado dura."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Una carga que choca con un estancamiento. Decide qué quieres de verdad antes de empujar."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Caballero de Espadas del Caballero de Bastos y de la Sota de Espadas?",
+      "paragraphs": [
+        "El Caballero de Bastos también va de camino, pero Waite aclara que, aunque lleva cota de malla, no va a la guerra (p. 174); hoy se lee como aventura y pasión. El de Espadas va tras una idea y se lanza por ella; el de Bastos sigue su entusiasmo.",
+        "La Sota de Espadas, según Waite, camina deprisa con la espada vertical entre las dos manos (p. 232), y se lee como curiosidad y vigilancia. La Sota reúne información; el Caballero actúa con ella."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Caballero de Espadas?",
+      "paragraphs": [
+        "¿Dónde voy con prisa y qué cambiaría un día más de pensarlo?",
+        "¿Mis palabras apuntan al problema o a una persona?",
+        "¿Qué meta vale de verdad toda esta energía?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Caballero de Espadas es una carta buena o mala?",
+      "a": "Las dos cosas, según hacia dónde vaya la energía. Es buena para tomar impulso, tener valor y destrabar un asunto atorado. Se complica cuando la velocidad sustituye al pensamiento o cuando la honestidad llega con filo. Bien dirigida, es de las cartas con más empuje de la baraja."
+    },
+    {
+      "q": "¿El Caballero de Espadas significa cambios rápidos?",
+      "a": "Muchas veces, sí. Una situación que se acelera, una decisión repentina, una noticia que pone todo en marcha: son lecturas modernas comunes. Pero la carta no habla de plazos. Describe un ritmo y una actitud, un arranque hacia adelante, no una fecha. Aprovecha el impulso y revisa primero la dirección."
+    },
+    {
+      "q": "¿El Caballero de Espadas significa que me quiere?",
+      "a": "No como un cariño tranquilo y asentado. En el amor, esta carta habla de un interés que se muestra con prisa y de frente. Es conquista e intensidad; si eso se convierte en algo duradero ya queda fuera de lo que esta carta describe."
+    }
+  ],
+  "related": [
+    "swords-11-page",
+    "swords-13-queen",
+    "wands-12-knight",
+    "cups-12-knight",
+    "pentacles-12-knight"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-12-knight",
+      "text": "Caballero de Bastos"
+    },
+    {
+      "card_id": "swords-11-page",
+      "text": "Sota de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Skill, bravery, capacity, defence, address, enmity, wrath, war, destruction, opposition, resistance, ruin … Reversed: Imprudence, incapacity, extravagance.",
+    "quote_lang": "en",
+    "pages": [
+      230
+    ],
+    "translation": "Habilidad, valentía, capacidad, defensa, destreza, enemistad, ira, guerra, destrucción, oposición, resistencia, ruina … Al revés: imprudencia, incapacidad, exceso.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        230
+      ],
+      "text": "He is riding in full course, as if scattering his enemies"
+    },
+    {
+      "pages": [
+        230
+      ],
+      "text": "He might almost be Galahad, whose sword is swift and sure because he is clean of heart"
+    },
+    {
+      "pages": [
+        230
+      ],
+      "text": "Skill, bravery, capacity, defence, address, enmity, wrath, war, destruction, opposition, resistance, ruin"
+    },
+    {
+      "pages": [
+        230
+      ],
+      "text": "Reversed: Imprudence, incapacity, extravagance"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "although mailed is not on a warlike errand"
+    },
+    {
+      "pages": [
+        232
+      ],
+      "text": "A lithe, active figure holds a sword upright in both hands, while in the act of swift walking"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 12.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_12.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        174,
+        230,
+        232
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

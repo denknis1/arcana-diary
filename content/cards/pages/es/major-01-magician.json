@@ -1,0 +1,309 @@
+{
+  "schema": 2,
+  "card_id": "major-01-magician",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "El Mago",
+    "in_sentence": "El Mago",
+    "de": "de El Mago"
+  },
+  "title": "El Mago en el tarot: significado, invertida y amor",
+  "description": "Qué significa El Mago al derecho y al revés (carta invertida): iniciativa, amor, trabajo y consejo. Palabras de Waite (1911), la carta de 1909 y si es sí o no.",
+  "h1": "El Mago en el tarot: significado",
+  "image_alt": "El Mago, carta de 1909 de la baraja Rider-Waite-Smith: un joven de manto rojo alza una vara blanca detrás de una mesa con una copa, una espada y una moneda, con un ocho acostado sobre la cabeza y rosas alrededor.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 1,
+    "numeral": "I",
+    "also_called": []
+  },
+  "capsule": "El Mago, carta I de los arcanos mayores, habla de iniciativa, habilidad y manifestación: una idea hecha realidad con los recursos a la mano. Al revés, ese talento se dispersa o se usa para manipular. Carta de impulso, pregunta al servicio de qué pones tu fuerza. Sus herramientas esperan sobre la mesa: al derecho, la respuesta es sí.",
+  "keywords": {
+    "upright": [
+      "iniciativa",
+      "habilidad",
+      "concentración",
+      "recursos a la mano"
+    ],
+    "reversed": [
+      "talento disperso",
+      "inseguridad",
+      "querer impresionar",
+      "potencial sin usar"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de El Mago?",
+      "paragraphs": [
+        "Un joven con manto rojo sobre una túnica blanca está de pie detrás de una mesa, bajo un cielo amarillo. Waite le da el rostro del divino Apolo, con una sonrisa de confianza y los ojos brillantes (p. 72). Con la mano derecha levanta una vara hacia el cielo y con la izquierda señala la tierra; para Waite, ese doble gesto muestra cómo la gracia, la virtud y la luz bajan de lo alto hacia lo de abajo (pp. 72–75). En la carta de 1909 la vara es blanca y la figura de pie es lo más grande del dibujo.",
+        "Sobre su cabeza flota un ocho acostado, que Waite llama el signo de la vida, como un cordón sin fin (p. 72). Waite le pone en la cintura un cinturón de serpiente que parece morderse la cola (p. 72). En la carta de 1909 el ocho es un simple lazo oscuro y arriba se lee el número I.",
+        "En la mesa están los signos de los cuatro palos. Waite dice que descansan como fichas frente al adepto, que los acomoda a su voluntad (p. 75). En la carta de 1909 se distinguen bien una copa alta, una espada acostada y una moneda con una estrella de cinco puntas.",
+        "Las flores enmarcan la escena: en el borde de arriba cuelgan rosas rojas entre hojas, y delante de la mesa crecen más rosas junto a lirios blancos. Según Waite, son rosas y lirios convertidos en flores de jardín para mostrar el cultivo de la aspiración (p. 75)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre El Mago?",
+      "paragraphs": [
+        "Al derecho, la lista de Waite va por dos caminos. Uno es la destreza y el buen trato con la gente; en el inglés original, «address» quiere decir soltura, no una dirección. El otro es una serie de problemas. Después de ambos vienen la confianza propia y la voluntad. Al revés, la lista hasta incluye el nombre de la carta, «Magus», entre palabras de inquietud y deshonra.",
+        "Para Waite, el dibujo pesaba más que la lista: veía en él la posesión y la comunicación de los dones del Espíritu (p. 75), y contaba esta carta entre las que, para él, señalan el verdadero tema del tarot (pp. 64–65)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa El Mago al derecho?",
+      "paragraphs": [
+        "Al derecho, El Mago habla de iniciativa: tienes una meta, tienes con qué trabajar y, por fin, las dos cosas coinciden. Es la carta de los recursos a la mano y de lo que hoy se llama manifestación: llevar una idea a algo concreto, cuando ya no falta nada esencial y solo queda empezar.",
+        "Lo que pide es concentración. El personaje no intenta hacerlo todo a la vez: alza una sola vara y señala un solo rumbo. En la vida diaria eso significa elegir un objetivo y poner tu habilidad a trabajar en él, en lugar de repartir la energía en diez frentes.",
+        "La carta también te pide creer en lo que ya sabes hacer. Si esto te hace sentido, piensa: ¿qué puedo arrancar ahora mismo con lo que ya tengo?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa El Mago al revés?",
+      "paragraphs": [
+        "Al revés, El Mago suele mostrar un talento disperso: muchas ideas, ningún proyecto terminado, planes que se quedan en palabras. También puede asomar la tentación de querer impresionar en lugar de construir, o la inseguridad que te hace dudar de algo que sí sabes hacer. En su lado más duro significa manipulación: la habilidad usada para engañar, convencer con trucos o vender una ilusión.",
+        "La lista al revés de Waite habla de inquietud y desasosiego, cerca de esa inseguridad; la dispersión, las ganas de lucirse y la manipulación son una lectura moderna, no de Waite.",
+        "En cualquier caso, la carta señala un potencial sin usar, no una falta de talento. Vuelve a una meta honesta y deja que tus recursos trabajen para ella, no para tu imagen."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa El Mago en el amor?",
+      "paragraphs": [
+        "Decir con claridad lo que quieres, en lugar de lanzar indirectas: esa es la invitación de El Mago en el amor. Tus palabras y tus actos pesan más de lo que crees.",
+        "Mientras buscas pareja, la carta habla de tomar la iniciativa: empezar la plática y mostrarte como eres. Con alguien a tu lado, puede pedirte que pongas en palabras un deseo o que le dediques esfuerzo real a algo que acordaron entre los dos.",
+        "Al revés, en el amor aparecen los juegos y la manipulación: el encanto usado como herramienta, promesas más grandes de lo que se piensa cumplir o el silencio que deja la duda."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa El Mago en el trabajo y el dinero?",
+      "paragraphs": [
+        "El arranque de un proyecto, la presentación de una idea, el uso de una habilidad que tenías guardada: en lo laboral, El Mago acompaña bien todo eso. Favorece la iniciativa práctica: una meta clara, las herramientas reunidas, el primer paso dado.",
+        "En tus finanzas, El Mago significa ingenio: ganar dinero con tus propias habilidades y poner lo que ya tienes a trabajar para un solo plan en vez de repartirlo. Al revés, habla de planes de dinero que se quedan en palabras, promesas que no se cumplen o propuestas que se ven mejor de lo que son; fíjate también dónde la duda deja una buena idea en el cajón."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa El Mago como consejo?",
+      "paragraphs": [
+        "Junta en un solo lugar todo lo que necesita tu idea, como las cuatro herramientas sobre la mesa de El Mago, y después toma una y ponla a trabajar. No se trata de conseguir más, sino de usar a propósito lo que ya está a tu alcance."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Mago es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa El Mago como persona y como sentimiento?",
+      "paragraphs": [
+        "Piensa en alguien con labia y recursos, que convierte una idea en un borrador que funciona, o en tu lado capaz de hacer que las cosas sucedan: así se ve El Mago como persona. En cuanto a sentimientos, la carta habla de un interés activo: atracción con intención, un encanto que viene con hechos, ganas de que el vínculo pase de la idea a la realidad. Al revés, ese mismo impulso puede significar juegos o manipulación: seducir para impresionar, palabras que van más rápido que los actos, un interés más de apariencia que de fondo, o inseguridad escondida tras una pose de confianza."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa El Mago junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "wands-01-ace",
+          "text": "Una chispa nueva encuentra las manos que saben darle forma. Vuelve concreta la idea mientras hay energía."
+        },
+        {
+          "card_id": "pentacles-08-eight",
+          "text": "Talento más práctica. La repetición constante convierte la habilidad en oficio."
+        },
+        {
+          "card_id": "major-02-high-priestess",
+          "text": "Acción y saber interior juntos. Antes de empujar tu plan, revisa qué te dice tu corazonada."
+        },
+        {
+          "card_id": "cups-07-seven",
+          "text": "Muchas opciones y un solo par de manos. Quédate con la que de verdad puedes trabajar."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir El Mago de El Carro?",
+      "paragraphs": [
+        "Las dos cartas hablan de voluntad. Waite describe al conductor de El Carro como una figura erguida y principesca con una espada desenvainada, y lo define ante todo como triunfo en la mente (p. 96); hoy se lee como determinación y avance por un camino elegido. El Mago está al principio: reúne herramientas y elige la meta. El Carro llega después, cuando el viaje ya va en marcha y lo difícil es sostener el rumbo."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale El Mago?",
+      "paragraphs": [
+        "¿Qué meta merece ahora toda mi atención?",
+        "¿Qué habilidad o recurso tengo guardado sin usar?",
+        "¿Estoy actuando para construir algo o para quedar bien?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Mago es una carta buena o mala?",
+      "a": "En general, buena: pocas cartas animan tanto a empezar algo, porque apoya la iniciativa, el talento y las metas claras. El punto delicado es el uso del poder: el talento puesto al servicio de la apariencia o un plan que se empuja sin preguntarse si es honesto. Al revés, ese punto pesa más."
+    },
+    {
+      "q": "¿El Mago es un tramposo?",
+      "a": "En las barajas antiguas, algo así. Waite cuenta que la carta también se llamaba «Juggler», el prestidigitador: el que tira los dados, el charlatán del mundo de los trucos vulgares. Para él, esa es la lectura popular, de folleto barato (p. 12). En la lectura moderna, el truco pertenece a la carta al revés: manipulación, ilusión, talento usado para engañar."
+    },
+    {
+      "q": "¿El Mago tiene que ver con la magia?",
+      "a": "No con hechizos. Waite le daba un sentido espiritual y describía los cuatro signos de la mesa como los elementos de la vida natural (p. 75). En una lectura moderna, la magia es práctica: el momento en que lo que sabes, lo que tienes y lo que quieres por fin jalan hacia el mismo lado."
+    },
+    {
+      "q": "¿El Mago siempre representa a un hombre?",
+      "a": "No. La lista de Waite dice que la carta puede representar al consultante si es hombre (p. 283), y en uno de sus métodos de tirada ocupa el lugar del hombre que pregunta (p. 308). Era una costumbre de 1911. En Arcana Diary la carta describe una forma de actuar, enfocada y con recursos, que le pertenece a cualquiera."
+    }
+  ],
+  "related": [
+    "major-00-fool",
+    "major-02-high-priestess",
+    "major-07-chariot",
+    "wands-01-ace",
+    "pentacles-08-eight"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-07-chariot",
+      "text": "El Carro"
+    }
+  ],
+  "waite": {
+    "quote": "Skill, diplomacy, address, subtlety; sickness, pain, loss, disaster, snares of enemies; self-confidence, will; the Querent, if male. Reversed: Physician, Magus, mental disease, disgrace, disquiet.",
+    "quote_lang": "en",
+    "pages": [
+      283
+    ],
+    "translation": "Habilidad, diplomacia, soltura, sutileza; enfermedad, dolor, pérdida, desastre, trampas de enemigos; confianza en sí mismo, voluntad; el consultante, si es hombre. Al revés: médico, mago, enfermedad mental, deshonra, inquietud.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        72
+      ],
+      "text": "having the countenance of divine Apollo, with smile of confidence and shining eyes"
+    },
+    {
+      "pages": [
+        72
+      ],
+      "text": "In the Magician's right hand is a wand raised towards heaven, while the left hand is pointing to the earth"
+    },
+    {
+      "pages": [
+        72,
+        75
+      ],
+      "text": "it shews the descent of grace, virtue and light, drawn from things above and derived to things below"
+    },
+    {
+      "pages": [
+        72
+      ],
+      "text": "the sign of life, like an endless cord, forming the figure 8 in a horizontal position"
+    },
+    {
+      "pages": [
+        72
+      ],
+      "text": "About his waist is a serpent-cincture, the serpent appearing to devour its own tail"
+    },
+    {
+      "pages": [
+        75
+      ],
+      "text": "On the table in front of the Magician are the symbols of the four Tarot suits, signifying the elements of natural life, which lie like counters before the adept, and he adapts them as he wills"
+    },
+    {
+      "pages": [
+        75
+      ],
+      "text": "Beneath are roses and lilies, the flos campi and lilium convallium, changed into garden flowers, to shew the culture of aspiration"
+    },
+    {
+      "pages": [
+        75
+      ],
+      "text": "The suggestion throughout is therefore the possession and communication of the Powers and Gifts of the Spirit"
+    },
+    {
+      "pages": [
+        64,
+        65
+      ],
+      "text": "certain cards, like the Magician … which do … not correspond to Conditions of Life, Arts, Sciences, Virtues … they indicate the real subject matter with which we are concerned"
+    },
+    {
+      "pages": [
+        283
+      ],
+      "text": "Skill, diplomacy, address, subtlety; sickness, pain, loss, disaster, snares of enemies; self-confidence, will; the Querent, if male. Reversed: Physician, Magus, mental disease, disgrace, disquiet"
+    },
+    {
+      "pages": [
+        12
+      ],
+      "text": "The Magus, Magician, or Juggler, the caster of the dice and mountebank, in the world of vulgar trickery. This is the colportage interpretation"
+    },
+    {
+      "pages": [
+        308
+      ],
+      "text": "the Querent—if of the male sex—is represented by the Magician"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "An erect and princely figure carrying a drawn sword"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "He is above all things triumph in the mind"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 01 Magician.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_01_Magician.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        12,
+        64,
+        65,
+        72,
+        75,
+        96,
+        283,
+        308
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

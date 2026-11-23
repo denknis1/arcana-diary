@@ -1,0 +1,228 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-04-four",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Four of Pentacles",
+    "in_sentence": "the Four of Pentacles"
+  },
+  "title": "Four of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Four of Pentacles upright: security, control, saving; reversed: a loosening grip, overspending or fear of loss. Love, work, money and Waite's 1911 text.",
+  "h1": "Four of Pentacles Tarot Card Meaning",
+  "image_alt": "Four of Pentacles, 1909 Rider–Waite–Smith card: a crowned man clasps a coin to his chest, with one coin on his crown and two under his feet, a town of towers behind.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 4,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Four of Pentacles means security and control: holding on to what you have, saving, guarding your resources, sometimes too tightly. Reversed, the grip loosens, or fear of loss tightens it further. It is a card of stability that asks whether you are protecting or clinging. The answer is not clear yet: the coins sit still.",
+  "keywords": {
+    "upright": [
+      "security",
+      "control",
+      "holding on",
+      "saving"
+    ],
+    "reversed": [
+      "loosening grip",
+      "overspending",
+      "fear of loss"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Four of Pentacles card?",
+      "paragraphs": [
+        "A crowned man holds one coin tight against his chest, a second sits on top of his crown and two more lie under his feet; the clasped coin at his heart is the center of the picture. Waite describes him almost the same way: \"A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet\" (p. 274). Then Waite sums him up in one short sentence: \"He holds to that which he has\" (p. 274).",
+        "On the 1909 card he is wrapped in a dark cloak over a reddish-brown robe and looks straight out at the viewer. Behind him a town of towers and red roofs fills the horizon on both sides. IV is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Four of Pentacles?",
+      "paragraphs": [
+        "Waite's upright list starts with \"the surety of possessions\" (p. 274), the safety of having and keeping, and then turns to things that come to you from others: gift, legacy, inheritance. Waite's reversed list is short and says nothing about money: suspense, delay, opposition (p. 274)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Four of Pentacles mean upright?",
+      "paragraphs": [
+        "Security is the first meaning: savings put aside, a budget that holds, a home or position you have worked for and want to keep. Saving here is a strength; the card respects the effort it took to build something stable.",
+        "The other side is control. Holding on can turn into holding too tight: guarding money, time or feelings so closely that nothing new gets in and nothing goes out. The card asks where protection ends and a closed fist begins. Ask yourself what you fear would happen if you loosened your hold a little."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Four of Pentacles mean reversed?",
+      "paragraphs": [
+        "Reversed, the Four of Pentacles can mean a loosening grip: you begin to share, spend or trust again after a careful stretch. It can also swing too far, into overspending or giving away more than is wise. Or the opposite happens: fear of loss makes the grip even tighter, and every expense starts to feel like a threat.",
+        "Waite's reversed meanings, suspense, delay and opposition (p. 274), describe things held up rather than spent; the money readings are modern. Either way the aim is a middle path, safe enough to rest and open enough to move."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Four of Pentacles mean in love?",
+      "paragraphs": [
+        "Arms wrapped around one coin: in love this card describes a guarded heart. It can show a stable, loyal bond in which both people value security, and also the cost of that safety: possessiveness, jealousy, fear of being hurt, feelings kept under lock.",
+        "While dating, you may notice that you keep new people at a distance to protect an old wound or a routine that feels safe. Reversed, the hold softens and the heart opens up, or worry about losing someone turns into clinging."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Four of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Saving is the clearest sense of this card: building a cushion, cutting costs, watching every expense, keeping what you have earned. It means financial security and a conservative way with money, sometimes so careful that it becomes a fear of spending at all. On the job it describes holding on to a position, guarding a budget or a territory, and resisting change. Reversed, it can mean overspending, money slipping through your fingers, or a tight grip loosening at last."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Four of Pentacles?",
+      "paragraphs": [
+        "Find one thing you are holding too tightly, whether money, a plan or a feeling, and loosen your grip on it a little: share it, spend a small part of it on something that matters, or simply talk about it with someone you trust."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Four of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Four of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "Pictured as someone in your life, this card is careful and protective: loyal, dependable, good with money, but slow to trust and fond of control. Asked about feelings, the Four of Pentacles traditionally means affection that is real but guarded: a wish to keep the bond safe, possessiveness, reluctance to show vulnerability. Reversed, the guard comes down and the heart opens a little, or the fear of losing someone grows into clinging."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Four of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "major-04-emperor",
+          "text": "Structure and control together; firm rules protect what you have but can make it rigid."
+        },
+        {
+          "card_id": "cups-04-four",
+          "text": "Closed in on both sides: clinging to what you have and missing what is offered."
+        },
+        {
+          "card_id": "pentacles-05-five",
+          "text": "The fear behind the grip is scarcity. Look at what is truly there before tightening more."
+        },
+        {
+          "card_id": "wands-09-nine",
+          "text": "Guarding what was hard won. Caution is fair; a wall around everything is not."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Four of Pentacles or Six of Pentacles?",
+      "paragraphs": [
+        "Waite's Six of Pentacles shows \"a person in the guise of a merchant\" who weighs money in a pair of scales and hands it out to those in need (p. 270); today it means generosity and a fair flow of giving and receiving. The Four keeps the coins close; the Six lets them move."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Four of Pentacles",
+      "paragraphs": [
+        "What am I holding on to, and what do I fear would happen if I let go?",
+        "Is this protection, or is it control?",
+        "What could I share without feeling any less safe?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Four of Pentacles a good or bad card?",
+      "a": "Neither, mostly. Its strength is stability: savings, a firm base, care with what you have. Its risk is a fist that closes too tight. Whether it reads as good depends on whether you are protecting something or clinging to it, and the card leaves that question with you."
+    },
+    {
+      "q": "Does the Four of Pentacles mean greed?",
+      "a": "Not by itself. Its core is security and keeping what you have, which Waite calls \"cleaving to that which one has\" (p. 274). Greed is the far end of that meaning, when saving turns into hoarding and nothing is shared. Most often the card simply describes caution."
+    },
+    {
+      "q": "Is the Four of Pentacles about saving money?",
+      "a": "Very often. Putting money aside, building a reserve and spending carefully are among its most common readings, along with protecting a home or a job. The card values that care; it only asks you to notice when caution stops serving you."
+    }
+  ],
+  "related": [
+    "pentacles-03-three",
+    "pentacles-05-five",
+    "wands-04-four",
+    "cups-04-four",
+    "swords-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-06-six",
+      "text": "Six of Pentacles"
+    }
+  ],
+  "waite": {
+    "quote": "The surety of possessions, cleaving to that which one has, gift, legacy, inheritance. Reversed; Suspense, delay, opposition.",
+    "quote_lang": "en",
+    "pages": [
+      274
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        274
+      ],
+      "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet"
+    },
+    {
+      "pages": [
+        274
+      ],
+      "text": "He holds to that which he has"
+    },
+    {
+      "pages": [
+        274
+      ],
+      "text": "The surety of possessions, cleaving to that which one has, gift, legacy, inheritance. Reversed; Suspense, delay, opposition"
+    },
+    {
+      "pages": [
+        270
+      ],
+      "text": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 04.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_04.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        270,
+        274
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

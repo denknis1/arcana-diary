@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "page_id": "contacto",
+  "lang": "es",
+  "url": "/es/contacto",
+  "status": "reviewed",
+  "title": "Contacto de Arcana Diary: correo y para qué escribir",
+  "description": "Cómo escribirle a Arcana Diary por correo: un error en una página de cartas, una lectura que rompió las reglas o una duda sobre tus datos, y qué no respondemos.",
+  "h1": "Contacto: escríbele a Arcana Diary",
+  "lead": "La forma de comunicarte con Arcana Diary es por correo: {contact_email}. Responsable del sitio: {operator_name}, {operator_address}.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "para-que",
+      "heading": "¿Sobre qué puedes escribir?",
+      "paragraphs": [
+        "Un error en una página de carta o en una guía: un detalle equivocado del dibujo, una cita de Waite mal copiada, una frase en español que suena rara. Incluye la dirección de la página y la frase.",
+        "Una lectura que no respetó las reglas del sitio; por ejemplo, que dio una fecha, prometió un resultado o dijo saber lo que siente otra persona. El enlace para compartir muestra las cartas y la respuesta, pero no tu pregunta: agrégala solo si no te molesta compartirla.",
+        "Tus datos. En la página de tu cuenta puedes descargar tus lecturas y borrar la cuenta sin escribirnos. Para cualquier otro tema sobre tus datos personales, escríbenos desde el correo con el que inicias sesión.",
+        "Algo que no funciona: una página que no carga, un enlace de inicio de sesión que falla, algo que se ve mal en el celular. Dinos qué dispositivo y qué navegador usas."
+      ]
+    },
+    {
+      "id": "no-podemos",
+      "heading": "¿Qué no podemos responder?",
+      "paragraphs": [
+        "No hacemos lecturas personales por correo, ni damos orientación sobre tu salud, temas legales, dinero o seguridad.",
+        "Si estás pensando en hacerte daño, o alguien te está lastimando, no esperes una respuesta por correo: llama al número de emergencias de donde estés o busca una línea gratuita y confidencial cerca de ti en findahelpline.com."
+      ]
+    }
+  ],
+  "faq": [],
+  "intents": []
+}

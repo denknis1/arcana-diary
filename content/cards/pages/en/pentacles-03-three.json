@@ -1,0 +1,229 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-03-three",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Three of Pentacles",
+    "in_sentence": "the Three of Pentacles"
+  },
+  "title": "Three of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Three of Pentacles upright: teamwork, craft, collaboration; reversed: uneven teamwork, unseen effort. Love, work, money and Waite's 1911 text. Draw it now.",
+  "h1": "Three of Pentacles Tarot Card Meaning",
+  "image_alt": "Three of Pentacles, 1909 Rider–Waite–Smith card: under a stone arch carved with three pentacles, a craftsman on a bench works while a monk and a cloaked figure hold a plan.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 3,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Three of Pentacles stands for teamwork, skill and craft: building something well together with other people. Reversed, the team falls out of step or your effort goes unseen. It is a favorable card that asks you to listen as much as you contribute. The verdict is yes, since the mason and the planners work on one shared building.",
+  "keywords": {
+    "upright": [
+      "teamwork",
+      "craft",
+      "collaboration",
+      "skill"
+    ],
+    "reversed": [
+      "uneven teamwork",
+      "unseen effort",
+      "working alone",
+      "careless work"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Three of Pentacles card?",
+      "paragraphs": [
+        "A carved stone arch frames the scene, with three pentacles set in a triangle near its top; the arch and its three coins are the largest shapes on the card. Waite's description is brief: \"A sculptor at his work in a monastery\" (p. 276).",
+        "On the 1909 card the craftsman, in a blue-gray tunic and a yellow apron, stands on a wooden bench with his back half turned and a tool raised in one hand. To the right stand a monk in a dark hooded habit and a figure in a long cloak dotted with red; between them they hold a sheet with a drawing on it."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Three of Pentacles?",
+      "paragraphs": [
+        "Waite gives the card two readings: the trade itself, skilled labour, and the more usual one, \"a card of nobility, aristocracy, renown, glory\" (p. 276). Waite's reversed list is about falling short: mediocrity and pettiness, \"in work and otherwise\" (p. 276)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Three of Pentacles mean upright?",
+      "paragraphs": [
+        "Teamwork is the core: people with different skills working toward one result, each doing the part they do best. Collaboration here is practical, with plans on the table, questions asked and feedback taken seriously. Craft matters too; the card honors work done carefully and the skill that others begin to recognize.",
+        "It often marks an early but real stage: a project taking shape, an apprenticeship, the first time people who know the field see what you can do. Ask yourself whose help would make the work better, and what you bring that no one else does."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Three of Pentacles mean reversed?",
+      "paragraphs": [
+        "Reversed, the Three of Pentacles can show uneven teamwork: one person carrying the load, goals that do not line up, meetings that go nowhere. It can also mean unseen effort, a skill the people around you do not notice, or working alone out of pride or habit when help is close. Careless work belongs here as well, corners cut to finish fast.",
+        "Waite's reversed word mediocrity (p. 276) fits that last case. The fix is plain: agree on who does what, ask for honest feedback and name what you contribute."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Three of Pentacles mean in love?",
+      "paragraphs": [
+        "Builders sharing one plan: in love this card means a relationship that grows through shared effort, with common goals, small agreements and a home or future put together piece by piece. It values respect for each other's strengths over grand gestures.",
+        "When you are not in a relationship, connections tend to grow out of work, study or a shared project, and closeness comes from doing things side by side. Reversed, the effort is lopsided: one person plans while the other drifts, or two people build different things without saying so."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Three of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Skill is what pays under this card: work done well and noticed, a place on a strong team, a client who returns because the job was good. It favors learning on the job and steady progress on a shared project. Financially it means earning through competence, such as fair pay for good work, a raise tied to what you can do or income from a craft. Reversed, it can mean being underpaid for the effort, or a joint project stalled over who does what."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Three of Pentacles?",
+      "paragraphs": [
+        "Ask a colleague or friend for honest feedback on something you are working on, then act on at least one point. Good work grows faster with more than one pair of eyes on it."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Three of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Three of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "Here the card describes a capable, cooperative person: a colleague who knows the craft, a mentor, someone who listens before deciding; it may equally reflect your own skill. In a question about feelings, the Three of Pentacles stands for respect and appreciation, interest built on shared effort and a wish to make something real together, step by step. Reversed, the feelings are out of step: unequal effort, a sense of not being valued, two people who are not on the same page."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Three of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "cups-03-three",
+          "text": "Work and friendship meet; celebrate a shared result with the people who built it."
+        },
+        {
+          "card_id": "major-05-hierophant",
+          "text": "Learning from someone experienced: a teacher, a method, a tradition of good craft."
+        },
+        {
+          "card_id": "swords-05-five",
+          "text": "Tension inside a team. Winning the argument costs more than finishing the work together."
+        },
+        {
+          "card_id": "wands-06-six",
+          "text": "Skill that gets noticed: good work brings recognition."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Three of Pentacles or Eight of Pentacles?",
+      "paragraphs": [
+        "Waite's Eight of Pentacles shows \"an artist in stone at his work\" (p. 266), and Waite links the two cards: the apprentice of the Eight \"has received his reward and is now at work in earnest\" in the Three (p. 276). Today the Eight means practice and diligence, mostly alone at the bench. The Three adds other people: the skill is shared, checked and valued."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Three of Pentacles",
+      "paragraphs": [
+        "Whose input would make my work better?",
+        "What do I bring to this project that is truly mine?",
+        "Where am I working alone when I could ask for help?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Three of Pentacles a good or bad card?",
+      "a": "Good. It is a card of competence and cooperation, showing work in motion and people who can help it along. Even reversed it describes fixable problems: unclear roles, missing feedback, effort no one has noticed yet. Waite's upright list reaches as far as renown and glory (p. 276)."
+    },
+    {
+      "q": "Who are the people on the Three of Pentacles?",
+      "a": "Waite names only one of them, the sculptor at work in a monastery (p. 276). On the 1909 card a monk and a cloaked figure stand beside him with a drawn plan, so the scene is usually read as a craftsman checking the work against the plan with the people he works with. That reading is modern, not Waite's."
+    },
+    {
+      "q": "Does the Three of Pentacles mean recognition?",
+      "a": "Often. Work done well and noticed by people who know the field is one of its typical meanings, whether that comes as praise, a better role or a client's trust. It describes recognition earned through skill and shared effort, not a sudden lucky break."
+    }
+  ],
+  "related": [
+    "pentacles-02-two",
+    "pentacles-04-four",
+    "wands-03-three",
+    "cups-03-three",
+    "swords-03-three"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-08-eight",
+      "text": "Eight of Pentacles"
+    }
+  ],
+  "waite": {
+    "quote": "Métier, trade, skilled labour; … regarded as a card of nobility, aristocracy, renown, glory. Reversed: Mediocrity, in work and otherwise, puerility, pettiness, weakness.",
+    "quote_lang": "en",
+    "pages": [
+      276
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        276
+      ],
+      "text": "A sculptor at his work in a monastery"
+    },
+    {
+      "pages": [
+        276
+      ],
+      "text": "regarded as a card of nobility, aristocracy, renown, glory. Reversed: Mediocrity, in work and otherwise, puerility, pettiness"
+    },
+    {
+      "pages": [
+        276
+      ],
+      "text": "The apprentice or amateur therein has received his reward and is now at work in earnest"
+    },
+    {
+      "pages": [
+        266
+      ],
+      "text": "An artist in stone at his work"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 03.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_03.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        266,
+        276
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

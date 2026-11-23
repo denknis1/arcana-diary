@@ -1,0 +1,248 @@
+{
+  "schema": 2,
+  "card_id": "swords-11-page",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Page of Swords",
+    "in_sentence": "the Page of Swords"
+  },
+  "title": "Page of Swords Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Page of Swords upright: curiosity, alertness, new ideas; reversed: gossip, scattered thoughts. Love, work, advice and Waite's 1911 words. Ask your question.",
+  "h1": "Page of Swords Tarot Card Meaning",
+  "image_alt": "Page of Swords, 1909 Rider–Waite–Smith card: a young figure on a windy green hilltop grips a raised sword in both hands and looks back over one shoulder, with clouds and birds behind.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 11,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Page of Swords stands for curiosity, alertness and new ideas: a quick young mind that wants the facts. Reversed, it turns into gossip, scattered thoughts or words said too soon. A lively card that asks for honest words. To a yes-or-no question the answer is not clear yet: the Page is still watching and gathering information.",
+  "keywords": {
+    "upright": [
+      "curiosity",
+      "alertness",
+      "new ideas",
+      "vigilance"
+    ],
+    "reversed": [
+      "gossip",
+      "scattered thoughts",
+      "all talk",
+      "defensiveness"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Page of Swords card?",
+      "paragraphs": [
+        "A young figure strides across a rough hilltop, gripping a raised sword in both hands and glancing back over one shoulder. Waite pictures him \"looking this way and that, as if an expected enemy might appear at any moment\" (p. 232), walking over rugged ground while the clouds gather wildly around him (p. 232). The raised sword, cut off by the top edge of the card, is its main symbol.",
+        "On the 1909 card his hair and the small tree at the lower left are blown by the same wind, and a flock of tiny birds crosses the blue sky. He wears a rose tunic with yellow sleeves and leggings and red boots, and white clouds pile up on both sides of him."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Page of Swords?",
+      "paragraphs": [
+        "Waite's upright list is about watching and checking: overseeing, vigilance, examination, even spying and secret service (p. 232). His reversed list turns those same qualities toward their worse side and adds being caught unprepared (p. 232). In his shorter list of extra meanings, the Page is an indiscreet person who pries into secrets (p. 291), which is close to the gossip of today's reversed card."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Page of Swords mean upright?",
+      "paragraphs": [
+        "Curiosity drives this card: a hunger to learn, to ask, to find out how things really work. New ideas arrive fast, and the Page wants to test them, talk about them and collect the facts behind them. Alertness and vigilance belong here too, the habit of noticing what others miss.",
+        "It often turns up while you are studying, exploring a new subject or trying to get to the truth of a situation. The Page is young and does not yet see the whole picture, so the card favors questions over verdicts. Speak only as far as your facts reach, and let the opinion come later."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Page of Swords mean reversed?",
+      "paragraphs": [
+        "Reversed, the Page of Swords can stand for gossip, scattered thoughts or speaking before thinking. It can also be all talk, plenty of ideas with no follow-through, or defensiveness when you feel unsure and hide it behind sharp remarks. Waite's reversed list points to the darker side of watching and to being caught unprepared (p. 232); gossip and empty talk are modern readings. Check your sources and say only what you can stand behind."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Page of Swords mean in love?",
+      "paragraphs": [
+        "Questions are the Page's way into love: getting to know someone, flirting through conversation and long message threads, wanting to understand before deciding. The card prefers honest talk to guessing games.",
+        "New to someone, it suggests learning who they are before deciding what they mean to you. With a partner, it can point to a conversation that is overdue, or to a habit of checking up on each other that is worth a closer look. Upside down, it can mark mixed messages, talk about the relationship behind its back, or sharp words that come out too fast."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Page of Swords mean for work and money?",
+      "paragraphs": [
+        "Research, study and a new skill to learn: those are the Page's work themes, along with fresh ideas brought to a meeting and roles built on communication or analysis.",
+        "Watchfulness is what the card brings to money: reading the fine print, comparing prices, asking questions before you pay. Reversed, it can mean acting on rumors or careless information."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Page of Swords?",
+      "paragraphs": [
+        "Pick one question you keep wondering about and look into it today: read, ask, compare. Write down what you learn before you form an opinion. The Page's strength is attention, so let the facts arrive before the conclusion does."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Page of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Page of Swords as a person and as feelings",
+      "paragraphs": [
+        "With sword raised against the wind, the Page of Swords is a young or young-at-heart mind: curious, quick, talkative, sometimes restless or blunt. It can be a student, a newcomer, someone who asks a lot of questions, or you in a learning phase. Interest mixed with caution is what the card traditionally means as feelings: curiosity about someone, a wish to talk and find out more before trusting. Reversed, it stands for guarded or mixed feelings: signals that contradict each other, or distance kept through prickly, defensive words."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Page of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "swords-01-ace",
+          "text": "A new idea, clearly seen. Write it down before it scatters."
+        },
+        {
+          "card_id": "major-02-high-priestess",
+          "text": "Questions meet quiet knowing. Listen as carefully as you ask."
+        },
+        {
+          "card_id": "swords-07-seven",
+          "text": "Information and secrets. Watch what you share, and where your news came from."
+        },
+        {
+          "card_id": "pentacles-11-page",
+          "text": "Two students side by side: a quick mind and a patient one. Steady study pays off."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Page of Swords, Knight of Swords or Page of Wands?",
+      "paragraphs": [
+        "The Knight of Swords, as Waite describes him, rides at full speed as if scattering his enemies (p. 230); today he reads as ambition and haste. The Page watches and asks; the Knight is already acting on his idea.",
+        "The Page of Wands, Waite writes, \"stands in the act of proclamation\" (p. 176), and is read today as enthusiasm and news of fresh plans. The Page of Wands announces; the Page of Swords investigates."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Page of Swords",
+      "paragraphs": [
+        "What do I really want to find out right now?",
+        "Am I gathering facts, or collecting rumors?",
+        "Is there something I said too fast that I would like to put better?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Page of Swords a good or bad card?",
+      "a": "Mostly good. It brings curiosity, fresh thinking and a sharp eye, all useful when you need to understand something. Its harder side is the tongue: careless remarks, an opinion formed before the facts are in. Used honestly, its watchfulness works in your favor."
+    },
+    {
+      "q": "Does the Page of Swords mean news or a message?",
+      "a": "It can. A message, an email or a piece of information is a common modern reading, often news that is worth checking before you act on it. Waite's list of extra meanings even gives astonishing news for the reversed card (p. 291)."
+    },
+    {
+      "q": "Is the Page of Swords a man or a woman?",
+      "a": "Either. Waite describes a lithe, active figure and writes of it as he: \"He is alert and lithe\" (p. 232). In a spread, though, the Page describes a way of thinking that anyone can have, at any age: curious, quick and watchful. It can just as well describe you."
+    }
+  ],
+  "related": [
+    "swords-10-ten",
+    "swords-12-knight",
+    "wands-11-page",
+    "cups-11-page",
+    "pentacles-11-page"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-12-knight",
+      "text": "Knight of Swords"
+    },
+    {
+      "card_id": "wands-11-page",
+      "text": "Page of Wands"
+    }
+  ],
+  "waite": {
+    "quote": "Authority, overseeing, secret service, vigilance, spying, examination … Reversed: More evil side of these qualities; what is unforeseen, unprepared state; sickness is also intimated.",
+    "quote_lang": "en",
+    "pages": [
+      232
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        232
+      ],
+      "text": "He is alert and lithe, looking this way and that, as if an expected enemy might appear at any moment"
+    },
+    {
+      "pages": [
+        232
+      ],
+      "text": "He is passing over rugged land, and about his way the clouds are collocated wildly"
+    },
+    {
+      "pages": [
+        232
+      ],
+      "text": "Authority, overseeing, secret service, vigilance, spying, examination, and the qualities thereto belonging. Reversed: More evil side of these qualities; what is unforeseen, unprepared state"
+    },
+    {
+      "pages": [
+        291
+      ],
+      "text": "Page.—An indiscreet person will pry into the Querent's secrets. Reversed: Astonishing news."
+    },
+    {
+      "pages": [
+        230
+      ],
+      "text": "He is riding in full course, as if scattering his enemies"
+    },
+    {
+      "pages": [
+        176
+      ],
+      "text": "a young man stands in the act of proclamation"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 11.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_11.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        176,
+        230,
+        232,
+        291
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "schema": 2,
+  "card_id": "wands-10-ten",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Diez de Bastos",
+    "in_sentence": "el Diez de Bastos",
+    "de": "del Diez de Bastos"
+  },
+  "title": "Diez de Bastos en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Diez de Bastos al derecho y al revés (carta invertida): sobrecarga, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Diez de Bastos en el tarot: significado",
+  "image_alt": "Diez de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: un hombre visto de espaldas se dobla bajo un manojo de diez bastones y camina hacia una casa entre árboles.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 10,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Diez de Bastos es sobrecarga: demasiada responsabilidad, mucho esfuerzo y un cansancio que se acumula. Al revés, empiezas a soltar cargas o llegas al límite. Es exigente pero justa: reconoce lo que haces y te avisa que no cargues lo ajeno. La respuesta tira a no, porque diez bastones pesan demasiado para avanzar ligero.",
+  "keywords": {
+    "upright": [
+      "sobrecarga",
+      "responsabilidad",
+      "esfuerzo",
+      "cansancio"
+    ],
+    "reversed": [
+      "soltar cargas",
+      "llegar al límite",
+      "delegar",
+      "negarte a pedir ayuda"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Diez de Bastos?",
+      "paragraphs": [
+        "Un hombre y diez bastones. Waite lo resume como un hombre oprimido por el peso de los diez bastones que carga (p. 178). El manojo de madera es lo más grande del dibujo: lo abraza contra el pecho y se abre en abanico por encima de él.",
+        "En la carta de 1909 lo vemos de espaldas, inclinado hacia adelante, con la cara hundida en el manojo, y los bastones le tapan el camino. A la derecha hay una casa de techo rojo entre árboles, y arriba se lee el X. Waite añade que el lugar al que se acerca podría sufrir por las varas que lleva (p. 178)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Diez de Bastos?",
+      "paragraphs": [
+        "Waite reconoce que la carta tiene muchos significados y que algunos no se pueden conciliar (p. 178). Su idea central une las dos mitades de la lista: primero la fortuna y el éxito, y después la opresión de esas mismas cosas, según Waite (p. 178).",
+        "En la misma página, Waite la llama también carta de falsa apariencia, disfraz y perfidia, y deja de lado la lectura que la une con el honor y la buena fe (p. 178). Arcana Diary la lee sobre todo como el peso del éxito."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Diez de Bastos al derecho?",
+      "paragraphs": [
+        "Brazos llenos y una agenda que ya no cabe: al derecho, la carta habla de tanta responsabilidad que el esfuerzo de cargarla es lo único que alcanzas a ver. Muchas veces el peso nació de algo bueno, un ascenso, un papel en la familia, un proyecto que creció, y por eso cuesta soltarlo.",
+        "El dibujo es honesto con el precio. Doblado bajo los bastones, el hombre no ve el pueblo al que camina: la meta sigue ahí, pero la carga la esconde. La carta te invita a revisar lo que llevas, bastón por bastón, y separar lo tuyo de lo que levantaste por costumbre o por culpa.",
+        "Si hoy pudieras elegir desde cero, ¿cuál de estos compromisos volverías a aceptar?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Diez de Bastos al revés?",
+      "paragraphs": [
+        "Con la carta al revés, quizá llegó el momento de soltar cargas por fin: delegar, decir que no, dejar ir una tarea. También puede ir hacia el otro lado, llegar al límite después de negarte a pedir ayuda durante demasiado tiempo.",
+        "Las contrariedades, dificultades e intrigas de la lista de Waite (p. 178) describen un enredo de obstáculos; la lectura de soltar el peso es moderna, no de Waite. Entrega una carga a alguien más y fíjate cómo se siente el resto."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Diez de Bastos en el amor?",
+      "paragraphs": [
+        "El peso mal repartido es el tema. En el amor, esta carta puede señalar que haces más de lo que te toca: planear, arreglar, mantener la paz, sostener sin ayuda lo emocional hasta que se vuelve una chamba más.",
+        "Al revés, puede marcar el momento en que por fin lo dices, o una temporada en que la presión de afuera, del trabajo o de la familia, deja poco espacio para la cercanía.",
+        "Sin pareja y con mil pendientes, tal vez ahora no tienes lugar para alguien nuevo, y está bien reconocerlo. Con pareja, la carta pide una plática clara sobre cómo se reparte la carga, en vez de llevar la cuenta en silencio."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Diez de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "Demasiados proyectos, un puesto que no para de crecer, un sí para cada petición: en lo laboral es la carta de la sobrecarga, muchas veces el precio de ser de fiar. Te pregunta qué puedes compartir o dejar antes de que tu trabajo pierda calidad.",
+        "En el dinero, significa una responsabilidad económica pesada: muchas obligaciones a la vez, cuentas o deudas que pesan, o ingresos que cuestan un desgaste enorme. Al revés, puede señalar que esas obligaciones empiezan a aligerarse."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Diez de Bastos como consejo?",
+      "paragraphs": [
+        "Haz una lista de todo lo que cargas esta semana. Tacha un pendiente: pásalo a alguien, muévelo para después o di que no. Luego observa qué cambia cuando ya no está."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Diez de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Diez de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Piensa en quien carga con todos: así es el Diez de Bastos como persona, alguien de fiar y con mucha entrega, que tarda en pedir ayuda y a veces se queda sin tiempo para su propia vida. Si eres tú, es esa parte de ti que dice que sí antes de ver si puede.",
+        "Cuando la pregunta es por los sentimientos, la carta habla de un amor que se vive como deber: un cariño verdadero pero pesado, una relación que se siente como otra responsabilidad o un afecto enterrado bajo el estrés. Al revés, son sentimientos que se aligeran cuando baja la presión, o el punto en que ya no se puede más."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Diez de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-14-temperance",
+          "text": "Equilibrio para una vida cargada de más: quita peso y reparte tu energía con moderación."
+        },
+        {
+          "card_id": "swords-10-ten",
+          "text": "La sobrecarga toca fondo. Se cierra la costumbre de cargarlo todo y puede empezar algo más ligero."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Agarrar con fuerza todo lo que llevas. Pregúntate qué conservas solo por miedo a soltarlo."
+        },
+        {
+          "card_id": "wands-03-three",
+          "text": "Planes que crecieron demasiado para un solo par de brazos. La perspectiva es buena; aligera la carga antes de seguir."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Diez de Bastos del Nueve de Bastos?",
+      "paragraphs": [
+        "Waite describe al hombre del Nueve de Bastos apoyado en su bastón, esperando, con ocho bastones detrás como una empalizada (p. 180). Hoy el Nueve se lee como resiliencia en el último tramo. Las dos cartas muestran cansancio, pero el Nueve todavía cuida una línea, mientras que el Diez ya tomó todos los bastones en brazos y sigue caminando con ellos."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Diez de Bastos?",
+      "paragraphs": [
+        "¿Cuál de las cosas que cargo es realmente mía?",
+        "¿Quién me ha ofrecido ayuda que sigo rechazando?",
+        "¿Qué alcanzaría a ver si dejo una carga en el suelo?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Diez de Bastos es una carta buena o mala?",
+      "a": "Es pesada, pero no mala. Reconoce el trabajo duro y la constancia de quien sostiene mucho; su aviso es sobre el costo. Waite incluso la liga con la fortuna, la ganancia y cualquier tipo de éxito antes de que llegue el peso (p. 178), así que muchas veces hay un logro detrás."
+    },
+    {
+      "q": "¿El Diez de Bastos significa que estoy cargando demasiado?",
+      "a": "Muchas veces, sí: es su lectura moderna más común. No te juzga por eso, porque muchas cargas se toman por cariño o lealtad. Solo te pide ver qué sigue teniendo sentido hoy."
+    },
+    {
+      "q": "¿El Diez de Bastos significa el fin de una relación?",
+      "a": "No. No es una carta de finales sino de tensión: una parte que carga más, estrés que llega de afuera, cercanía apretada entre pendientes. La tensión se puede platicar y repartir de otra forma. La carta pide ponerle nombre al peso en lugar de cargarlo callando."
+    }
+  ],
+  "related": [
+    "wands-09-nine",
+    "wands-11-page",
+    "cups-10-ten",
+    "swords-10-ten",
+    "pentacles-10-ten"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-09-nine",
+      "text": "Nueve de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "The chief meaning is oppression simply, but it is also fortune, gain, any kind of success … Reversed: Contrarieties, difficulties, intrigues, and their analogies.",
+    "quote_lang": "en",
+    "pages": [
+      178
+    ],
+    "translation": "El significado principal es simplemente opresión, pero también es fortuna, ganancia, cualquier tipo de éxito … Al revés: contrariedades, dificultades, intrigas y sus análogos.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        178
+      ],
+      "text": "A man oppressed by the weight of the ten staves which he is carrying"
+    },
+    {
+      "pages": [
+        178
+      ],
+      "text": "The place which the figure is approaching may suffer from the rods that he carries"
+    },
+    {
+      "pages": [
+        178
+      ],
+      "text": "A card of many significances, and some of the readings cannot be harmonized"
+    },
+    {
+      "pages": [
+        178
+      ],
+      "text": "but it is also fortune, gain, any kind of success, and then it is the oppression of these things"
+    },
+    {
+      "pages": [
+        178
+      ],
+      "text": "It is also a card of false-seeming, disguise, perfidy"
+    },
+    {
+      "pages": [
+        178
+      ],
+      "text": "I set aside that which connects it with honour and good faith"
+    },
+    {
+      "pages": [
+        178
+      ],
+      "text": "Reversed: Contrarieties, difficulties, intrigues, and their analogies"
+    },
+    {
+      "pages": [
+        180
+      ],
+      "text": "The figure leans upon his staff and has an expectant look"
+    },
+    {
+      "pages": [
+        180
+      ],
+      "text": "Behind are eight other staves—erect, in orderly disposition, like a palisade"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 10.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_10.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        178,
+        180
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

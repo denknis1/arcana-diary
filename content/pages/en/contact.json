@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "page_id": "contact",
+  "lang": "en",
+  "url": "/contact",
+  "status": "reviewed",
+  "title": "Contact Arcana Diary: E-mail and What to Write About",
+  "description": "How to reach Arcana Diary by e-mail: report a mistake in a card page, a reading that broke the site's rules, or ask about your data. What we cannot answer.",
+  "h1": "Contact Arcana Diary: write to us",
+  "lead": "The way to reach Arcana Diary is e-mail: {contact_email}. The site is run by {operator_name}, {operator_address}.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "write-about",
+      "heading": "What to write about",
+      "paragraphs": [
+        "A mistake on a card page or a guide: a wrong detail about a picture, a misquoted line from Waite, a Spanish phrase that sounds off. Please give the page address and the sentence.",
+        "A reading that went against the site's rules, for example one that gave a date, promised an outcome or claimed to know what someone else feels. The shared link of the reading shows its cards and answer but not your question, so add the question yourself only if you are comfortable doing so.",
+        "Your data. You can download your readings and delete your account yourself on the account page. For anything else about your personal data, write from the e-mail address you sign in with.",
+        "Something that does not work: a page that will not load, a sign-in link that fails, a layout problem on your phone. Say which device and browser you use."
+      ]
+    },
+    {
+      "id": "cannot",
+      "heading": "What we cannot answer",
+      "paragraphs": [
+        "We do not do personal readings by e-mail, and we cannot give advice on health, legal matters, money or safety.",
+        "If you are thinking about harming yourself, or someone is hurting you, please do not wait for an e-mail reply: call your local emergency number, or find a free, confidential line near you at findahelpline.com."
+      ]
+    }
+  ],
+  "faq": [],
+  "intents": []
+}

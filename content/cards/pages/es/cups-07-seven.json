@@ -1,0 +1,234 @@
+{
+  "schema": 2,
+  "card_id": "cups-07-seven",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Siete de Copas",
+    "in_sentence": "el Siete de Copas",
+    "de": "del Siete de Copas"
+  },
+  "title": "Siete de Copas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Siete de Copas al derecho y al revés (carta invertida): ilusión, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Siete de Copas en el tarot: significado",
+  "image_alt": "Siete de Copas, carta de 1909 de la baraja Rider-Waite-Smith: una silueta oscura mira siete copas sobre nubes con una cabeza, una figura velada, una serpiente, una torre, joyas, una corona y un dragón.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 7,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Siete de Copas habla de opciones, fantasía e ilusión: muchas posibilidades, no todas reales. Al revés, trae claridad y opciones reales, o la confusión de tener demasiadas opciones. Alimenta la imaginación, pero puede engañarte. Si es sí o no, no está claro: entre tantas copas de ensueño no se sabe cuál es real.",
+  "keywords": {
+    "upright": [
+      "opciones",
+      "fantasía",
+      "ilusión",
+      "confusión"
+    ],
+    "reversed": [
+      "claridad",
+      "opciones reales",
+      "demasiadas opciones"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Siete de Copas?",
+      "paragraphs": [
+        "Una figura oscura, vista de espaldas, mira siete copas que flotan sobre nubes grises. Waite las llama copas extrañas de visión y dice que sus imágenes vienen sobre todo del espíritu fantástico (p. 212); no da un significado para cada dibujo.",
+        "En la carta de 1909 las copas forman dos filas contra un cielo azul. Arriba hay una cabeza de pelo rizado, una figura velada que brilla en rojo al centro y una serpiente enroscada sobre su copa; abajo, una torre, un montón de joyas, una corona de hojas y un dragón. La silueta es lo más grande del dibujo, abajo a la izquierda, con un brazo estirado hacia las copas. Arriba se lee el VII."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Siete de Copas?",
+      "paragraphs": [
+        "La lista de Waite no sale del terreno de la mente: favores de hadas, reflexión, sentimiento, imaginación, cosas vistas en el espejo de la contemplación (p. 212). Waite admite algún logro en ese terreno, pero aclara que no sugiere nada permanente ni sólido (p. 212). En la lista breve del final del libro, Waite le da idea, plan, resolución y movimiento (p. 290)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Siete de Copas al derecho?",
+      "paragraphs": [
+        "Siete copas, siete promesas distintas: es la carta de las opciones y de soñar despierto. El Siete de Copas sale cuando hay muchas posibilidades a la vez, o cuando la fantasía hace que un plan se vea más brillante de lo que es. Algunas visiones son posibles; otras son puro deseo; y unas cuantas ni siquiera te harían feliz.",
+        "La carta no te pide dejar de soñar: la imaginación sirve. El problema es la ilusión, decidir por la imagen y no por los hechos, o perseguir todas las copas sin terminar ninguna. Esa mezcla puede traer confusión. ¿Cuál de estas opciones podrías de verdad tomar con las manos?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Siete de Copas al revés?",
+      "paragraphs": [
+        "Al revés, las nubes se abren. Muchas veces marca claridad: ver qué opciones reales quedan cuando dejas a un lado lo que solo existe en sueños, y elegir una. Su otra cara es tener demasiadas opciones y no decidirte por ninguna. A veces también es bajar a tierra después de un sueño que no se sostuvo, algo que duele un poco pero te deja elegir.",
+        "Para la carta al revés, Waite anota deseo, voluntad, determinación y proyecto (p. 212), lo que se inclina hacia el primer lado: un anhelo que se vuelve plan."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Siete de Copas en el amor?",
+      "paragraphs": [
+        "Antes de una relación nueva, la carta te pregunta si te atrae la persona o la historia que te cuentas sobre ella. Conocer gente puede parecer un campo de copas brillantes, todas perfectas desde lejos.",
+        "En pareja, la fantasía puede ocupar el lugar de la plática real: imaginar cómo podría ser todo en vez de ver cómo es, o preguntarte por otros caminos.",
+        "Al revés, las ilusiones se caen y ves con más claridad lo que quieres en el amor, aunque la imagen real brille menos que el sueño."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Siete de Copas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Varias ofertas, proyectos paralelos o caminos profesionales al mismo tiempo: el Siete de Copas es un menú lleno y sin orden claro. Quédate con la opción que resiste cuando escribes los hechos.",
+        "En lo económico significa ilusiones sobre el dinero, planes que se ven mejor que los números y promesas de ganancias fáciles que conviene revisar antes de creerlas."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Siete de Copas como consejo?",
+      "paragraphs": [
+        "Escribe todas las opciones que traes en la cabeza y tacha la mitad. A cada una de las que quedan, agrégale un dato: un costo, un requisito, alguien que pueda contarte más. Luego da un paso pequeño en un solo camino."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Siete de Copas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Siete de Copas como persona y como sentimiento?",
+      "paragraphs": [
+        "Quien sueña despierto, con mil ideas y planes y a veces difícil de descifrar, es el retrato del Siete de Copas como persona; también puede ser alguien a quien ves a través de la niebla de tus esperanzas, o tú entre muchos caminos. Leída como sentimiento, la carta habla de fascinación e idealización, de atracción por una posibilidad y de dudas sobre qué es real o qué se quiere. Al revés, la niebla se levanta: el sentimiento se vuelve más claro y con los pies en la tierra."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Siete de Copas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-18-moon",
+          "text": "Ilusión sobre ilusión. Espera una luz más clara antes de confiar en lo que ves."
+        },
+        {
+          "card_id": "pentacles-01-ace",
+          "text": "Entre tantos sueños, una oportunidad concreta que sí puedes empezar."
+        },
+        {
+          "card_id": "major-11-justice",
+          "text": "Sopesa las opciones con honestidad y elige la que puedas sostener."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Siete de Copas del Dos de Espadas?",
+      "paragraphs": [
+        "El Dos de Espadas también habla de elegir, pero Waite describe otra escena: una figura femenina con los ojos vendados que equilibra dos espadas sobre los hombros (p. 250). Hoy se lee como un estancamiento, una decisión que se evita para no mirar. En el Siete de Copas ves demasiado; en el Dos de Espadas te niegas a mirar las dos opciones que tienes."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Siete de Copas?",
+      "paragraphs": [
+        "¿Cuál de estas opciones es un hecho y cuál es un deseo?",
+        "Si solo pudiera quedarme con una, ¿cuál sería?",
+        "¿Qué prueba pequeña me mostraría si esto es real?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Siete de Copas es una carta buena o mala?",
+      "a": "Ni una cosa ni la otra. Es una carta de posibilidades, lo cual entusiasma, y de ensueños, que pueden hacerte perder tiempo. Se vuelve buena cuando la imaginación termina en una elección y un primer paso; se complica cuando juntas sueños sin probar ninguno."
+    },
+    {
+      "q": "¿El Siete de Copas significa engaño?",
+      "a": "No como acusación. La ilusión de esta carta suele ser un deseo que embellece las cosas, más que una mentira de alguien. La lista de Waite gira en torno a la imaginación y la contemplación (p. 212). Revisar los hechos con calma, sin sospechar de nadie, suele bastar."
+    },
+    {
+      "q": "¿Qué representan las siete copas?",
+      "a": "Waite no las explica una por una (p. 212); solo dice que sus imágenes son visiones de un espíritu fantástico. En Arcana Diary se leen juntas, como un montón de posibilidades tentadoras, sin darle a cada copa un significado propio."
+    }
+  ],
+  "related": [
+    "cups-06-six",
+    "cups-08-eight",
+    "wands-07-seven",
+    "swords-07-seven",
+    "pentacles-07-seven"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-02-two",
+      "text": "Dos de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation … Reversed: Desire, will, determination, project.",
+    "quote_lang": "en",
+    "pages": [
+      212
+    ],
+    "translation": "Favores de hadas, imágenes de reflexión, sentimiento, imaginación, cosas vistas en el espejo de la contemplación … Al revés: deseo, voluntad, determinación, proyecto.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        212
+      ],
+      "text": "Strange chalices of vision, but the images are more especially those of the fantastic spirit."
+    },
+    {
+      "pages": [
+        212
+      ],
+      "text": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation; some attainment in these degrees, but nothing permanent or substantial is suggested."
+    },
+    {
+      "pages": [
+        212
+      ],
+      "text": "Reversed: Desire, will, determination, project."
+    },
+    {
+      "pages": [
+        290
+      ],
+      "text": "Seven.—Fair child; idea, design, resolve, movement."
+    },
+    {
+      "pages": [
+        250
+      ],
+      "text": "A hoodwinked female figure balances two swords upon her shoulders."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 07.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_07.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        212,
+        250,
+        290
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

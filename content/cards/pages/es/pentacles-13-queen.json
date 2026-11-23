@@ -1,0 +1,255 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-13-queen",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Reina de Oros",
+    "in_sentence": "la Reina de Oros",
+    "de": "de la Reina de Oros"
+  },
+  "title": "Reina de Oros en el tarot: significado, invertida y amor",
+  "description": "Qué significa la Reina de Oros al derecho y al revés (carta invertida): hogar, amor, trabajo, dinero y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Reina de Oros en el tarot: significado",
+  "image_alt": "Reina de Oros, carta de 1909 de la baraja Rider-Waite-Smith: una reina en un trono de piedra tallada mira la moneda que sostiene en el regazo, bajo un arco de rosas; abajo, un conejo.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 13,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "La Reina de Oros representa el cuidado práctico, el hogar y la generosidad: un cariño que se nota en lo concreto. Al revés, puede hablar de descuidarte, de preocupación por el dinero o de un cariño que asfixia. Es de las cartas más cálidas, si te incluyes entre quienes cuidas. Al derecho responde que sí: lo que atiende da fruto.",
+  "keywords": {
+    "upright": [
+      "cuidado práctico",
+      "hogar",
+      "cuerpo",
+      "generosidad"
+    ],
+    "reversed": [
+      "descuidarte",
+      "preocupación por el dinero",
+      "cariño que asfixia",
+      "desequilibrio"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de la Reina de Oros?",
+      "paragraphs": [
+        "Una reina coronada está sentada en un trono de piedra tallada, en un jardín; sostiene con las dos manos una moneda grande en el regazo y la mira. Waite describe su rostro como el de una mujer morena cuyas cualidades se resumen en la grandeza de alma (p. 256). Según Waite, contempla su símbolo y quizá ve mundos en él (p. 256).",
+        "En la carta de 1909 un arco de rosas y hojas cruza la parte de arriba, y hay flores junto al trono. Ella lleva un vestido rojo y un velo verde; al fondo se ven montañas azules y agua. En la esquina de abajo, a la derecha, aparece un conejito en el pasto. Lo más grande es la moneda del regazo, hacia la que se inclina toda la figura."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre la Reina de Oros?",
+      "paragraphs": [
+        "La lista de Waite habla de riqueza y bienestar: opulencia, generosidad, esplendor, seguridad y libertad (p. 256). La lista al revés de Waite es dura, con el mal y el miedo junto a la sospecha y la desconfianza (p. 256); en Arcana Diary ese lado se lee como inseguridad y preocupación por la casa y el dinero.",
+        "Además de grandeza de alma, Waite le atribuye una inteligencia seria (p. 256)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa la Reina de Oros al derecho?",
+      "paragraphs": [
+        "Al derecho, la Reina de Oros es cuidado práctico: la comida lista, las cuentas en orden, una casa a la que da gusto llegar. Su generosidad no es de discursos, sino de cosas concretas, y su seguridad nace de días comunes bien llevados.",
+        "Puede salir cuando te toca cuidar de otros, en casa o en el trabajo, o cuando la vida pide atención a lo tangible: el hogar, el cuerpo, el gasto de la semana. Lo básico, como descansar a gusto y comer rico, también es para disfrutarse. ¿Qué cuidado le das a todo el mundo menos a ti?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa la Reina de Oros al revés?",
+      "paragraphs": [
+        "Al revés, el cuidado pierde el equilibrio. Puede irse todo hacia afuera hasta descuidarte, o volverse un cariño que asfixia y no deja espacio a los demás. También puede hablar de preocupación por el dinero de la casa o de un desequilibrio entre el trabajo y el hogar.",
+        "La sospecha y la desconfianza de la lista de Waite (p. 256) encajan con ese lado inseguro; lo demás es una lectura moderna, no de Waite. Para volver a empezar, haz una sola cosa práctica por tu propia comodidad."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa la Reina de Oros en el amor?",
+      "paragraphs": [
+        "La Reina de Oros quiere con cuidados que se notan: un plato hecho con ganas, una casa acogedora, apoyo firme en los días comunes. En pareja, describe un vínculo seguro y generoso, donde las dos personas se sienten atendidas.",
+        "Sin pareja, habla del cariño que ya das a tu gente y de hacer tu propia vida cómoda primero. Al revés, el cuidado puede volverse de un solo lado: darlo todo o sentir que nadie valora lo que haces. Dejar que te ayuden también es parte de esta carta."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa la Reina de Oros en el trabajo y el dinero?",
+      "paragraphs": [
+        "El cuidado práctico llega también a la cartera: seguridad económica, un presupuesto de casa que cubre lo necesario y deja algo para disfrutar, recursos bien administrados y compartidos. Al revés, puede hablar de preocupación por el dinero del hogar, de gastar de más en otros o de un presupuesto tan apretado que no deja lugar a ningún gusto.",
+        "En el empleo, es quien mantiene todo funcionando y además cuida a la gente."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa la Reina de Oros como consejo?",
+      "paragraphs": [
+        "Acomoda un rincón de tu casa para descansar a gusto: buena luz, algo suave, una planta. Y luego úsalo de verdad. Para esta Reina, la comodidad no es un premio por terminar todo, sino parte de lo que te permite seguir cuidando a otros."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿La Reina de Oros es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa la Reina de Oros como persona y como sentimiento?",
+      "paragraphs": [
+        "Sentada en su jardín, la Reina de Oros es alguien cálido, práctico y generoso, que hace sentir en casa a los demás, administra bien y ayuda con hechos; puede ser una figura materna, una amistad, alguien del trabajo o tú. En lo emocional, es un cariño entregado y protector: la tranquilidad de estar con alguien, las ganas de cuidarla y de construir juntos una vida cómoda. Al revés, ese cuidado puede sentirse asfixiante o de un solo lado, o la preocupación y la inseguridad le ganan al cariño."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa la Reina de Oros junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "pentacles-10-ten",
+          "text": "Un hogar seguro y lazos familiares: cuidado que construye algo duradero."
+        },
+        {
+          "card_id": "pentacles-05-five",
+          "text": "Tiempos difíciles enfrentados con ayuda práctica. Dar o recibir apoyo hace la diferencia."
+        },
+        {
+          "card_id": "pentacles-14-king",
+          "text": "Dos sostenes firmes: una vida en común con buenas bases y generosidad de ambos lados."
+        },
+        {
+          "card_id": "cups-06-six",
+          "text": "Recuerdos cálidos y comodidad de casa; ternura de la familia o de viejas amistades."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir la Reina de Oros del Nueve de Oros y de La Emperatriz?",
+      "paragraphs": [
+        "Waite describe el Nueve de Oros como una mujer con un pájaro en la muñeca, entre parras, en el jardín de una casa señorial (p. 264); hoy significa autonomía y disfrutar el logro propio. La comodidad de la Reina se comparte; la del Nueve es personal y hecha por cuenta propia.",
+        "La Emperatriz, en la descripción de Waite, tiene delante un campo de trigo que madura y, más allá, una caída de agua (p. 80); hoy representa la abundancia y la creatividad en grande. La Reina de Oros lleva esa misma calidez a una casa y a un presupuesto."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale la Reina de Oros?",
+      "paragraphs": [
+        "¿A quién cuido, y estoy yo en esa lista?",
+        "¿Qué haría que mi casa se sintiera más como un lugar para descansar?",
+        "¿Dónde podría una ayuda práctica decir más que las palabras?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿La Reina de Oros es una carta buena o mala?",
+      "a": "Buena. Es de las cartas más reconfortantes: seguridad, generosidad y una vida atendida con cariño. Su lado difícil aparece cuando ese cuidado ya no te alcanza a ti o se aprieta hasta volverse control, y las dos cosas se alivian con cambios pequeños y prácticos."
+    },
+    {
+      "q": "¿La Reina de Oros significa dinero?",
+      "a": "En parte. El dinero aparece en esta carta como seguridad y buen manejo de lo que tienes, no como riqueza repentina. El propio Waite advierte que las cartas de este palo no tratan especialmente de cuestiones de dinero (p. 254), y el sentido de la Reina va más allá: casa, comodidad, cuidado."
+    },
+    {
+      "q": "¿Qué significa el conejo de la Reina de Oros?",
+      "a": "Waite no lo menciona: su descripción de esta Reina habla solo de su rostro y de cómo mira la moneda (p. 256). El conejito es parte del dibujo, un animal pequeño en la orilla de la escena, y aquí no le damos un significado propio."
+    },
+    {
+      "q": "¿La Reina de Oros es una figura materna?",
+      "a": "Hoy se lee así con frecuencia, porque su sentido es cuidar y sostener un hogar. Aun así, la carta describe una manera de cuidar, no un papel en la familia: cualquiera puede ocuparlo, también tú."
+    }
+  ],
+  "related": [
+    "pentacles-12-knight",
+    "pentacles-14-king",
+    "wands-13-queen",
+    "cups-13-queen",
+    "swords-13-queen"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-09-nine",
+      "text": "Nueve de Oros"
+    },
+    {
+      "card_id": "major-03-empress",
+      "text": "La Emperatriz"
+    }
+  ],
+  "waite": {
+    "quote": "Opulence, generosity, magnificence, security, liberty. Reversed: Evil, suspicion, suspense, fear, mistrust.",
+    "quote_lang": "en",
+    "pages": [
+      256
+    ],
+    "translation": "Opulencia, generosidad, magnificencia, seguridad, libertad. Al revés: el mal, sospecha, incertidumbre, miedo, desconfianza.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        256
+      ],
+      "text": "whose qualities might be summed up in the idea of greatness of soul"
+    },
+    {
+      "pages": [
+        256
+      ],
+      "text": "she contemplates her symbol and may see worlds therein"
+    },
+    {
+      "pages": [
+        256
+      ],
+      "text": "she has also the serious cast of intelligence"
+    },
+    {
+      "pages": [
+        264
+      ],
+      "text": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines in the garden of a manorial house"
+    },
+    {
+      "pages": [
+        80
+      ],
+      "text": "A field of corn is ripening in front of her, and beyond there is a fall of water"
+    },
+    {
+      "pages": [
+        254
+      ],
+      "text": "because the cards do not happen to deal especially with questions of money"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 13.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_13.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        80,
+        254,
+        256,
+        264
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

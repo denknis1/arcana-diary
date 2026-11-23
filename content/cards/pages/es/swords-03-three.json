@@ -1,0 +1,249 @@
+{
+  "schema": 2,
+  "card_id": "swords-03-three",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Tres de Espadas",
+    "in_sentence": "el Tres de Espadas",
+    "de": "del Tres de Espadas"
+  },
+  "title": "Tres de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Tres de Espadas al derecho y al revés (carta invertida): dolor, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Tres de Espadas en el tarot: significado",
+  "image_alt": "Tres de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: tres espadas atraviesan un corazón rojo bajo nubes grises y lluvia inclinada.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 3,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Tres de Espadas es la carta del corazón roto: dolor, duelo, traición y una verdad difícil. Al revés, el dolor empieza a aflojar o se guarda en silencio. Es una carta dura, pero no una condena: nombra la herida para que puedas atravesarla. Como respuesta de sí o no, al derecho es no: la herida está abierta.",
+  "keywords": {
+    "upright": [
+      "dolor",
+      "decepción",
+      "verdad difícil",
+      "tristeza"
+    ],
+    "reversed": [
+      "dolor que afloja",
+      "tristeza guardada",
+      "darle vueltas",
+      "confusión"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Tres de Espadas y qué simbolizan las espadas?",
+      "paragraphs": [
+        "Tres espadas atraviesan un corazón rojo bajo un cielo gris de nubes y lluvia. La descripción de Waite cabe en una línea: tres espadas que atraviesan un corazón, con nubes y lluvia detrás (p. 248). No hay personas ni paisaje: solo el corazón, las espadas y el mal tiempo.",
+        "En la carta de 1909 una espada baja recta por el centro del corazón y las otras dos lo cruzan en diagonal; la lluvia cae en líneas inclinadas y arriba se lee el III. ¿Qué simbolizan las espadas? Waite no les da un significado aparte: la carta quiere decir lo que el dibujo muestra, algo tan simple y evidente que no hace falta enumerarlo (p. 248)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Tres de Espadas?",
+      "paragraphs": [
+        "La primera lista habla de separación: algo que se aleja, personas que se apartan, una ruptura, cosas que se dispersan. La segunda mira hacia adentro, a una mente que pierde el rumbo; en Arcana Diary ese lado de la carta habla solo de pensamientos dispersos e inquietos.",
+        "Waite enumera lo que pasa; el dibujo muestra cómo se siente. Por eso hoy la carta se lee empezando por el corazón."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Tres de Espadas al derecho?",
+      "paragraphs": [
+        "Esta carta significa, sin rodeos, un corazón roto: el dolor de una ruptura, de una pérdida o de palabras que hieren. También habla de duelo, la tristeza por algo que terminó, y de traición: la herida de que alguien en quien confiabas te falle. Puede salir cuando algo difícil se dijo, se descubrió o se perdió, y la herida todavía arde.",
+        "Su mensaje es no esconder la tristeza: reconocerla es parte de atravesarla.",
+        "La división y la ruptura de Waite describen el lado de afuera: una distancia entre personas o planes. La carta no dice de quién es la culpa ni cómo termina la historia; describe un momento, no un juicio sobre ti."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Tres de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, puede hablar de un dolor que afloja y de los primeros pasos hacia el perdón, aunque cueste soltar la herida. O de una tristeza guardada en silencio, que te hace darle vueltas a unas palabras que dolieron.",
+        "Los significados al revés de Waite, error, distracción y confusión, encajan con esa segunda lectura: cuando la herida no se mira, los pensamientos se dispersan. El dolor que afloja es una lectura moderna. En los dos casos, habla de lo que sientes con alguien de confianza, o escríbelo para sacarlo de la cabeza."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Tres de Espadas en el amor?",
+      "paragraphs": [
+        "En el amor, el Tres de Espadas es la carta del corazón herido: una ruptura o una separación, una traición, una verdad difícil o el duelo por algo que termina. Te pide no tragarte lo que sientes y tratarte con suavidad mientras recuperas la calma.",
+        "Sin pareja, puede señalar una herida vieja que todavía pesa al conocer a alguien; con pareja, una conversación dolorosa o palabras que pegaron fuerte. Habla de tu lado y no decide cómo termina una relación. Al revés, el dolor puede estar suavizándose, o quizá lo guardas para no sufrir más."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Tres de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "En el trabajo, la carta puede hablar de una decepción: una crítica dura, un plan que se viene abajo o una tensión que divide al equipo. Te pide nombrar con claridad lo que salió mal en lugar de cargarlo en silencio.",
+        "En el dinero, la carta significa un tropiezo que duele, una pérdida o la angustia de un presupuesto apretado."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Tres de Espadas como consejo?",
+      "paragraphs": [
+        "Dale salida a lo que duele: escríbelo, cuéntaselo a alguien o llóralo sin juzgarte. El consejo de la carta es honestidad sin dureza: no hacer como que no pasa nada, pero tampoco dejar que el dolor ocupe todo el día. Después de nombrarlo, haz una cosa pequeña que te reconforte."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Tres de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Tres de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Cuando el Tres de Espadas describe a alguien en una tirada, es quien carga con una herida reciente o quien dice en voz alta una verdad difícil; si eres tú, señala lo que en ti necesita cuidado ahora. Si se pregunta por sentimientos, la respuesta es un corazón roto: tristeza, desilusión, el golpe de una traición o de unas palabras que dolieron. Al revés, ese dolor se va calmando y abre espacio al perdón, o se guarda sin decirse."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Tres de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "swords-04-four",
+          "text": "Después de la herida, una pausa necesaria. Primero el descanso, luego las decisiones."
+        },
+        {
+          "card_id": "swords-06-six",
+          "text": "Tristeza y un avance lento hacia aguas más tranquilas."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Dolor junto a la amistad; tu gente puede ayudarte a cargarlo."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Una verdad que duele y las ganas de no verla. Quítate la venda con cuidado."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Tres de Espadas del Nueve de Espadas y del Cinco de Copas?",
+      "paragraphs": [
+        "El Nueve de Espadas muestra, según Waite, a una mujer sentada en su lecho, lamentándose, con las espadas sobre ella (p. 236); hoy se lee como la preocupación que crece de noche. El Tres es la herida misma; el Nueve, la angustia que da vueltas a su alrededor.",
+        "El Cinco de Copas muestra tres copas caídas y dos en pie: para Waite, una pérdida en la que algo se conserva (p. 216). Hoy se lee como la decepción de cuando empiezas a ver lo que queda; el Tres de Espadas llega antes, en el momento agudo del dolor."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Tres de Espadas?",
+      "paragraphs": [
+        "¿Qué me duele ahora, dicho en una frase sencilla?",
+        "¿Estoy dejando salir lo que siento o me lo estoy guardando?",
+        "¿Qué cosa pequeña puedo hacer hoy para reconfortarme?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Qué significa el Tres de Espadas en el tarot?",
+      "a": "Que algo duele y pide ser nombrado. Empieza por ubicar de dónde viene ese dolor en tu pregunta: unas palabras, una pérdida, algo que salió a la luz. Reconócelo antes de decidir nada."
+    },
+    {
+      "q": "¿El Tres de Espadas es una carta buena o mala?",
+      "a": "Dura, sí; mala, no. No es una mala señal sobre ti ni sobre tu futuro: muestra dónde duele para que lo cuides en lugar de esconderlo. Al revés, incluso puede marcar el inicio del alivio. Nada en ella pide miedo."
+    },
+    {
+      "q": "¿El Tres de Espadas siempre significa ruptura?",
+      "a": "No. Puede hablar de una ruptura, pero también de una verdad que cuesta escuchar o de palabras que lastimaron, en el trabajo o entre amistades. La lista de Waite va más allá del amor: habla de separación en general (p. 248)."
+    },
+    {
+      "q": "¿El Tres de Espadas significa que me quiere?",
+      "a": "No en el sentido que uno espera. En el amor, su significado tradicional es un vínculo que sufre: una ruptura, distancia tras un engaño o tristeza de uno o de ambos lados. La carta no dice cómo acaba la historia; muestra dónde duele hoy."
+    }
+  ],
+  "related": [
+    "swords-02-two",
+    "swords-04-four",
+    "cups-03-three",
+    "wands-03-three",
+    "pentacles-03-three"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-09-nine",
+      "text": "Nueve de Espadas"
+    },
+    {
+      "card_id": "cups-05-five",
+      "text": "Cinco de Copas"
+    }
+  ],
+  "waite": {
+    "quote": "Removal, absence, delay, division, rupture, dispersion, and all that the design signifies naturally … Reversed: Mental alienation, error, loss, distraction, disorder, confusion.",
+    "quote_lang": "en",
+    "pages": [
+      248
+    ],
+    "translation": "Alejamiento, ausencia, demora, división, ruptura, dispersión, y todo lo que el dibujo significa de forma natural … Al revés: enajenación mental, error, pérdida, distracción, desorden, confusión.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        248
+      ],
+      "text": "Three swords piercing a heart; cloud and rain behind"
+    },
+    {
+      "pages": [
+        248
+      ],
+      "text": "and all that the design signifies naturally, being too simple and obvious to call for specific enumeration"
+    },
+    {
+      "pages": [
+        236
+      ],
+      "text": "One seated on her couch in lamentation, with the swords over her"
+    },
+    {
+      "pages": [
+        216
+      ],
+      "text": "three prone cups; two others stand upright behind him"
+    },
+    {
+      "pages": [
+        216
+      ],
+      "text": "It is a card of loss, but something remains over"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 03.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_03.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        216,
+        236,
+        248
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

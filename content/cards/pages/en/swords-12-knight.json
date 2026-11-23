@@ -1,0 +1,241 @@
+{
+  "schema": 2,
+  "card_id": "swords-12-knight",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Knight of Swords",
+    "in_sentence": "the Knight of Swords"
+  },
+  "title": "Knight of Swords Tarot Meaning: Upright & Reversed",
+  "description": "Knight of Swords upright: drive, haste, ambition; reversed: recklessness, harsh words. Love, work, advice and Waite's 1911 words. Ask your question.",
+  "h1": "Knight of Swords Tarot Card Meaning",
+  "image_alt": "Knight of Swords, 1909 Rider–Waite–Smith card: an armored knight on a white horse gallops into the wind, sword raised high, red cape streaming, trees bent behind him.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 12,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Knight of Swords is drive, haste and ambition: an idea pursued at full gallop, with blunt directness. Reversed, speed turns into recklessness and harsh words. It moves things forward, though it can run over people on the way. Whether the answer is yes or no is not clear yet: this rider charges in before seeing the whole field.",
+  "keywords": {
+    "upright": [
+      "drive",
+      "haste",
+      "ambition",
+      "directness"
+    ],
+    "reversed": [
+      "recklessness",
+      "harsh words",
+      "impatience",
+      "scattered energy"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Knight of Swords card?",
+      "paragraphs": [
+        "An armored knight on a white horse gallops at full stretch, sword raised high, leaning into a strong wind. Waite calls him \"a prototypical hero of romantic chivalry\" and says he might almost be Galahad, \"whose sword is swift and sure because he is clean of heart\" (p. 230). The raised sword and the stretched-out horse are the largest shapes on the card.",
+        "On the 1909 card a red cape and a red plume stream behind him, the trees at the left bend in the wind, and torn strips of cloud race across the sky. Small yellow butterflies decorate the horse's blue harness, and the ground under the hooves is bare."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Knight of Swords?",
+      "paragraphs": [
+        "Waite's upright list is blunt and runs from bravery and skill straight to wrath, war and ruin (p. 230). His reversed list is short: imprudence, incapacity and excess (p. 230). The hard half of the upright list is Waite's; on Arcana Diary this knight stands for speed, will and sharp words, not for harm."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Knight of Swords mean upright?",
+      "paragraphs": [
+        "Drive is the first meaning: a strong push to act on an idea right now, with ambition and fast thinking behind it. This knight goes straight to the point, speaks his mind and cuts through hesitation. Directness is his gift; tact is not.",
+        "The card often shows up when things suddenly speed up: a decision made in a day, an argument you want to win, a goal chased without looking left or right. That energy can carry a project a long way. Its catch is haste: rushing in before the facts are checked, or leaving people behind in the dust."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Knight of Swords mean reversed?",
+      "paragraphs": [
+        "Reversed, the Knight of Swords can mean recklessness: speed with no direction, plans started and dropped, risks taken without thought. Harsh words belong here too, arguments that escalate and things said to win rather than to be understood. Impatience and scattered energy often come along: frustration when things do not move at your pace, and effort spread over too many targets. Waite's reversed imprudence and excess fit this side (p. 230). Slow down long enough to see where you are heading."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Knight of Swords mean in love?",
+      "paragraphs": [
+        "Fast and frank: the Knight of Swords brings intense pursuit, quick declarations and a romance that moves at full speed. Honesty is welcome here; bluntness that wounds is not.",
+        "Meeting someone new, it can be a rush of attraction that wants answers right away. With a partner, it can describe talks that flare up quickly, or a need to say things straight out. Upside down, the card asks you to watch for impulsive moves and words you would want back later."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Knight of Swords mean for work and money?",
+      "paragraphs": [
+        "Ambition sets the tone at work: pushing a project through, competing hard, debating ideas, moving faster than everyone else. Sharp thinking helps, as long as it is aimed.",
+        "A galloping horse is also the card's picture of money: quick decisions, fast-moving finances and a pull toward impulsive spending. Reversed, it marks money choices made in a rush."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Knight of Swords?",
+      "paragraphs": [
+        "Before you send that important message or make that call, wait a while and read it again. Keep the energy and aim it: one clear goal, checked facts, and words that say what you mean without wounding anyone."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Knight of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Knight of Swords as a person and as feelings",
+      "paragraphs": [
+        "Charging at full gallop, the Knight of Swords is quick, bold and outspoken, driven by ideas and impatient with delay: a debater, a go-getter, the one who storms ahead of the group. If the card stands for you, it marks a time of charging forward. As feelings, it traditionally means strong, fast interest: attraction that wants to act now and says so directly. Reversed, the feelings turn impulsive and changeable, hot and then cold, or come out as careless, cutting remarks."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Knight of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "wands-08-eight",
+          "text": "Everything speeds up at once. Fast is fine; just keep your aim."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "Haste followed by a needed stop. Rest before the next charge."
+        },
+        {
+          "card_id": "major-14-temperance",
+          "text": "Speed meets patience. Mix the two and the result lasts."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "A charge runs into a stalemate. Decide what you actually want before you push."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Knight of Swords, Knight of Wands or Page of Swords?",
+      "paragraphs": [
+        "The Knight of Wands is also on the move, but Waite says he \"is not on a warlike errand\" (p. 174); today he reads as adventure and passion. The Knight of Swords is set on an idea and charges at it; the Knight of Wands follows his enthusiasm.",
+        "The Page of Swords, in Waite's description, walks swiftly with a sword held upright in both hands (p. 232), and is read as curiosity and watchfulness. The Page gathers information; the Knight acts on it."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Knight of Swords",
+      "paragraphs": [
+        "Where am I rushing, and what would one more day of thought change?",
+        "Are my words aimed at the problem or at a person?",
+        "Which single goal is worth all this energy?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Knight of Swords a good or bad card?",
+      "a": "Both, depending on where the energy goes. It is good for momentum, courage and getting a stuck matter moving. It turns difficult when speed replaces thought, or when honesty comes with an edge that hurts. Steered well, it is one of the most energetic cards in the deck."
+    },
+    {
+      "q": "Does the Knight of Swords mean fast change?",
+      "a": "Often, yes. A situation speeding up, a sudden decision, news that sets things in motion: these are common modern readings. The card says nothing about timing, though. It describes a pace and an attitude, a rush forward, not a date on the calendar. Use the momentum, and check the direction first."
+    },
+    {
+      "q": "Does the Knight of Swords mean he loves me?",
+      "a": "Not as a calm, settled love. Asked about love, the card traditionally means strong, quick interest expressed openly. It speaks of pursuit and intensity; whether that grows into something lasting is beyond what this card describes."
+    }
+  ],
+  "related": [
+    "swords-11-page",
+    "swords-13-queen",
+    "wands-12-knight",
+    "cups-12-knight",
+    "pentacles-12-knight"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-12-knight",
+      "text": "Knight of Wands"
+    },
+    {
+      "card_id": "swords-11-page",
+      "text": "Page of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Skill, bravery, capacity, defence, address, enmity, wrath, war, destruction, opposition, resistance, ruin … Reversed: Imprudence, incapacity, extravagance.",
+    "quote_lang": "en",
+    "pages": [
+      230
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        230
+      ],
+      "text": "In the design he is really a prototypical hero of romantic chivalry. He might almost be Galahad, whose sword is swift and sure because he is clean of heart."
+    },
+    {
+      "pages": [
+        230
+      ],
+      "text": "Skill, bravery, capacity, defence, address, enmity, wrath, war, destruction, opposition, resistance, ruin"
+    },
+    {
+      "pages": [
+        230
+      ],
+      "text": "Reversed: Imprudence, incapacity, extravagance"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "although mailed is not on a warlike errand"
+    },
+    {
+      "pages": [
+        232
+      ],
+      "text": "A lithe, active figure holds a sword upright in both hands, while in the act of swift walking"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 12.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_12.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        174,
+        230,
+        232
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

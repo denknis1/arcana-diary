@@ -1,0 +1,278 @@
+{
+  "schema": 2,
+  "card_id": "major-12-hanged-man",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "El Colgado",
+    "in_sentence": "El Colgado",
+    "de": "de El Colgado"
+  },
+  "title": "El Colgado en el tarot: significado, invertida y amor",
+  "description": "Qué significa El Colgado al derecho y al revés (carta invertida): pausa, amor, trabajo y consejo. Waite (1911), la carta de 1909 y si es sí o no.",
+  "h1": "El Colgado en el tarot: significado",
+  "image_alt": "El Colgado, carta de 1909 de la baraja Rider-Waite-Smith: un hombre de túnica azul y medias rojas cuelga de cabeza, atado de un pie a un madero en forma de T con hojas, con una aureola amarilla alrededor de la cabeza.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 12,
+    "numeral": "XII",
+    "also_called": []
+  },
+  "capsule": "El Colgado es la carta XII de los arcanos mayores: pausa, espera, sacrificio y otra perspectiva sobre un problema de siempre. Al revés, la pausa se vuelve demora e indecisión. Es una carta tranquila y reflexiva, no de sufrimiento. Pregúntale sí o no: todavía no está claro, porque su nueva mirada aún se está formando.",
+  "keywords": {
+    "upright": [
+      "pausa",
+      "otra perspectiva",
+      "entrega",
+      "espera"
+    ],
+    "reversed": [
+      "estancamiento",
+      "sacrificio sin sentido",
+      "inquietud",
+      "aferrarte"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de El Colgado?",
+      "paragraphs": [
+        "Un hombre cuelga de cabeza, atado de un pie a un madero en forma de T, y su cuerpo ocupa el centro de la carta de arriba abajo. Waite señala que el madero forma una cruz Tau (p. 116). En la primera parte del libro, al describir la carta tradicional, dice que lo sujeta una cuerda atada a uno de los tobillos y que tiene una pierna cruzada sobre la otra (p. 23).",
+        "Waite pide fijarse en tres cosas: el árbol es madera viva, con hojas; la cara muestra un trance profundo; y la figura entera sugiere una vida en suspenso (p. 116).",
+        "En la carta de 1909 el travesaño tiene hojas verdes en los dos extremos, la túnica es azul, las piernas van en medias rojas y los zapatos son amarillos. Alrededor de la cabeza brilla una aureola amarilla con rayos finos; Waite la llama nimbo (p. 116). Los brazos no se ven: en la primera parte, Waite dice que están atados a la espalda (p. 23). Arriba se lee el XII."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre El Colgado?",
+      "paragraphs": [
+        "La primera lista habla sobre todo de ver con claridad: sabiduría, circunspección, discernimiento, intuición. Entre esas palabras aparecen también las pruebas y el sacrificio, y Waite no explica por qué. La segunda lista mira hacia afuera: el egoísmo, la multitud y la vida pública.",
+        "Waite no se guardaba su opinión. Escribió que a esta carta se le ha llamado falsamente carta del martirio, de la prudencia, de la Gran Obra y del deber (p. 116), y en la primera parte despacha los significados corrientes como intuiciones de cartomancia (p. 23). Para él, la carta expresa, en uno de sus aspectos, la relación entre lo Divino y el Universo (p. 116)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa El Colgado al derecho?",
+      "paragraphs": [
+        "Al derecho, El Colgado habla de una pausa: un tramo de espera, como estar en el limbo, en el que empujar más ya no sirve. Suele aparecer cuando un problema no se mueve por más vueltas que le des.",
+        "Su respuesta es la entrega, no como rendirse, sino como soltar la necesidad de forzar las cosas. De cabeza, lo conocido se ve distinto, y otra perspectiva suele aparecer justo cuando dejas de pelear con la de antes.",
+        "La lista de Waite conserva el sacrificio, y hoy la carta puede hablar de un intercambio: soltar la prisa, el control o un plan fijo a cambio de ver más claro. Si esto te hace sentido, pregúntate: ¿qué notaría si dejo de intentar arreglarlo por un día?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa El Colgado al revés?",
+      "paragraphs": [
+        "Al revés, El Colgado habla de una espera que ya se echó a perder: el estancamiento toma el lugar de la reflexión, las demoras se acumulan, la indecisión deja abierta una elección que ya tocaba tomar, un sacrificio sin sentido sigue en pie y crece la inquietud sin que nada se mueva.",
+        "Estas lecturas son modernas, no de Waite: su segunda lista habla de egoísmo y de la multitud.",
+        "La pregunta útil es a qué te estás agarrando. Ojo con aferrarte a una pausa que ya no te enseña nada: un movimiento pequeño, aunque no sea perfecto, puede servirte más que seguir esperando."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa El Colgado en el amor?",
+      "paragraphs": [
+        "El hombre ve todo de cabeza, y en el amor la carta te pide lo mismo: mirar antes de reaccionar. Dentro de la pareja, favorece salir un momento de una discusión que se repite y verla desde el otro ángulo, sin forzar una decisión antes de tiempo. También se lee como una relación en pausa, un tramo en el que nada avanza ni retrocede.",
+        "Entre una relación y otra, puede hablar de una temporada tranquila, un descanso de la búsqueda que te deja ver qué quieres de verdad y no lo que creías que debías querer.",
+        "Al revés, la pregunta recae en la espera misma: ¿se volvió una forma de no elegir ni comprometerte, o sigues renunciando a algo que te importa? ¿La pausa todavía te ayuda o solo aplaza las cosas?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa El Colgado en el trabajo y el dinero?",
+      "paragraphs": [
+        "El trabajo puede quedar en suspenso con esta carta: un proyecto en pausa, una demora que no puedes apurar o un problema que pide otro ángulo y no más esfuerzo. Aprovecha el hueco para replantear cómo lo estás haciendo.",
+        "Pausa es también lo que El Colgado significa para el dinero: dinero detenido, una compra o una decisión que se queda en espera hasta verla desde otro lado y, a veces, un sacrificio de corto plazo a cambio de una meta más larga. Pregúntate si esperas a tener claridad o aplazas algo que ya entiendes bien.",
+        "Al revés, quizá la demora es tuya: tareas que sigues posponiendo mientras te dices que todavía lo estás pensando, o una decisión de dinero que sigues esquivando."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa El Colgado como consejo?",
+      "paragraphs": [
+        "Cambia de lugar algo cotidiano, como tu asiento o tu ruta, y observa qué notas distinto. Cambia de punto de vista antes de cambiar cualquier otra cosa: desde otro sitio, el mismo problema enseña otra cara."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Colgado es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa El Colgado como persona y como sentimiento?",
+      "paragraphs": [
+        "Con su calma de cabeza abajo, El Colgado describe a alguien en suspenso: quien se salió de la carrera a propósito o deja que una situación madure. Cuando habla de tu momento, señala tu disposición a hacer una pausa el tiempo suficiente para ver distinto. Si la pregunta es por los sentimientos de alguien, la carta significa un cariño en pausa: interés real que todavía no se mueve, dudas sobre el siguiente paso y, a veces, la disposición a ceder algo por la relación. Al revés, la pausa se vuelve indecisión: sentimientos atorados en el limbo, pocas ganas de comprometerse o una impaciencia que no lleva a ningún lado."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa El Colgado junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-13-death",
+          "text": "Una pausa antes de que algo se cierre. Deja que la espera te muestre qué ya pide terminar."
+        },
+        {
+          "card_id": "cups-08-eight",
+          "text": "Una mirada nueva que lleva a irse. Cuando ves lo que ya no encaja, puedes dejarlo atrás."
+        },
+        {
+          "card_id": "major-10-wheel-of-fortune",
+          "text": "Quietud en medio de un ciclo que gira. Espera a ver hacia dónde se mueven las cosas y luego acompáñalas."
+        },
+        {
+          "card_id": "cups-04-four",
+          "text": "Reflexión que corre el riesgo de volverse encierro. Revisa si haces la pausa para ver o para evitar."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir El Colgado del Cuatro de Espadas?",
+      "paragraphs": [
+        "Las dos cartas muestran una pausa. En el Cuatro de Espadas, Waite describe la efigie de un caballero en actitud de oración, tendido a todo lo largo (p. 246), y hoy se lee como descanso y recuperación. El Cuatro es una pausa para reponer fuerzas; la de El Colgado es para ver distinto: está despierto y de cabeza a propósito. ¿Te falta energía? Piensa en el Cuatro. ¿Te atoraste con un problema? Piensa en El Colgado."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale El Colgado?",
+      "paragraphs": [
+        "¿Qué estoy empujando que tal vez necesita una pausa?",
+        "¿Cómo se ve este problema si lo miro desde el lado contrario?",
+        "¿Esta espera todavía me enseña algo o ya se volvió costumbre?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Colgado es una carta buena o mala?",
+      "a": "Más útil que mala. Es una carta de pausa, y eso puede desesperar, pero lo que ofrece es real: ver algo que se te escapaba mientras empujabas. Su advertencia es esperar de más o renunciar a cosas que te importan sin una razón clara."
+    },
+    {
+      "q": "¿El Colgado es una carta de sufrimiento?",
+      "a": "No, y Waite lo dice con todas sus letras: el rostro del hombre no expresa dolor, y lo que la figura muestra es vida detenida, no su final (p. 116). En la carta de 1909 sus rasgos se ven tranquilos, casi en paz, con luz alrededor de la cabeza."
+    },
+    {
+      "q": "¿Por qué El Colgado está de cabeza?",
+      "a": "La carta no da una sola razón, y Waite lo reconoce: la llama una carta de significado profundo, pero con todo su significado velado (p. 116). En Arcana Diary esa postura se lee como un cambio de mirada elegido: desde ahí el mundo se ve distinto, y la carta te pregunta qué notarías si dejaras de pararte donde siempre."
+    },
+    {
+      "q": "¿El Colgado significa sacrificio?",
+      "a": "A veces. En la primera parte, Waite cuenta que esa es la interpretación más extendida (p. 23), y la palabra está en su lista, aunque él desconfiaba de todas las lecturas publicadas de esta carta. Hoy el sacrificio suele ser pequeño y elegido: tiempo, prisa o un plan fijo que sueltas para ver mejor."
+    }
+  ],
+  "related": [
+    "major-11-justice",
+    "major-13-death",
+    "swords-04-four",
+    "cups-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-04-four",
+      "text": "Cuatro de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Wisdom, circumspection, discernment, trials, sacrifice, intuition, divination, prophecy. Reversed: Selfishness, the crowd, body politic.",
+    "quote_lang": "en",
+    "pages": [
+      285
+    ],
+    "translation": "Sabiduría, circunspección, discernimiento, pruebas, sacrificio, intuición, adivinación, profecía. Al revés: egoísmo, la multitud, el cuerpo político.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        116
+      ],
+      "text": "The gallows from which he is suspended forms a Tau cross"
+    },
+    {
+      "pages": [
+        23
+      ],
+      "text": "to which he is attached by a rope about one of his ankles. The arms are bound behind him, and one leg is crossed over the other"
+    },
+    {
+      "pages": [
+        116
+      ],
+      "text": "the tree of sacrifice is living wood, with leaves thereon; (2) that the face expresses deep entrancement, not suffering; (3) that the figure, as a whole, suggests life in suspension, but life and not death"
+    },
+    {
+      "pages": [
+        116
+      ],
+      "text": "There is a nimbus about the head of the seeming martyr"
+    },
+    {
+      "pages": [
+        116
+      ],
+      "text": "It has been called falsely a card of martyrdom, a card of prudence, a card of the Great Work, a card of duty"
+    },
+    {
+      "pages": [
+        23
+      ],
+      "text": "all current meanings attributed to this card are cartomancists' intuitions"
+    },
+    {
+      "pages": [
+        116
+      ],
+      "text": "it expresses the relation, in one of its aspects, between the Divine and the Universe"
+    },
+    {
+      "pages": [
+        246
+      ],
+      "text": "The effigy of a knight in the attitude of prayer, at full length"
+    },
+    {
+      "pages": [
+        116
+      ],
+      "text": "It is a card of profound significance, but all the significance is veiled"
+    },
+    {
+      "pages": [
+        23
+      ],
+      "text": "According to another, and indeed the prevailing interpretation, he signifies sacrifice"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 12 Hanged Man.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_12_Hanged_Man.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        23,
+        116,
+        246,
+        285
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

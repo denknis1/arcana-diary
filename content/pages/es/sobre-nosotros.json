@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "page_id": "sobre-nosotros",
+  "lang": "es",
+  "url": "/es/sobre-nosotros",
+  "status": "reviewed",
+  "title": "Sobre Arcana Diary: lecturas de tarot con IA y guías",
+  "description": "Arcana Diary es un sitio de tarot con IA en español y en inglés, con la baraja Rider–Waite–Smith de 1909. Quién lo opera, cómo se hacen los textos y qué no es.",
+  "h1": "Sobre Arcana Diary: el tarot para pensar con calma",
+  "lead": "Arcana Diary es un sitio de tarot en español de México y en inglés. Saca las cartas al azar, una inteligencia artificial escribe la lectura a partir de una base fija de significados y, si quieres, tus lecturas se guardan en un diario privado.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "que-es",
+      "heading": "¿Qué es Arcana Diary?",
+      "paragraphs": [
+        "Tienes cinco formas de consultar las cartas: la tirada de tres, una sola carta, el sí o no con una o con tres cartas, la tirada del amor y la Carta del día. Todas usan las 78 cartas de la baraja Rider–Waite–Smith. La respuesta trae un titular de una línea, unas frases sobre cada carta y una acción pequeña que puedes hacer; luego puedes seguir preguntando sobre las mismas cartas.",
+        "Además hay una biblioteca de consulta: una página por carta, con su sentido al derecho y al revés, una guía de los arcanos mayores y una tabla con la inclinación de cada carta en el sí o no. Si inicias sesión, guardas tus lecturas en un diario, les pones una nota que nadie más ve y, pasada una semana, regresas a marcar cómo te fue."
+      ]
+    },
+    {
+      "id": "quien",
+      "heading": "¿Quién está detrás?",
+      "paragraphs": [
+        "Arcana Diary lo opera {operator_name}, con domicilio en {operator_address}. Las páginas las edita {editor_name}, editor de Arcana Diary.",
+        "{editor_name} es un seudónimo. El sitio no le atribuye títulos ni credenciales, y ninguna página está redactada desde la experiencia personal de alguien con las cartas. Su trabajo es concreto: leer cada página antes de que se publique y decidir si es clara, si respeta sus fuentes y si cumple las reglas del sitio.",
+        "Puedes escribir a {contact_email}. En la página de contacto te decimos qué datos ayudan a darte una respuesta."
+      ]
+    },
+    {
+      "id": "textos",
+      "heading": "¿Cómo se hacen los textos?",
+      "paragraphs": [
+        "Las páginas de cartas y las guías se redactan con un modelo de inteligencia artificial a partir de dos fuentes, nada más. Una es The Pictorial Key to the Tarot, el libro que Arthur Edward Waite publicó en 1911 para acompañar esta baraja; cada cita lleva el número de página de la transcripción de Wikisource, para que la puedas buscar. En español la cita aparece en inglés, tal como la escribió Waite, seguida de una traducción nuestra completa. La otra fuente es la base de significados del propio sitio: textos breves para cada carta, al derecho y al revés.",
+        "El modelo no puede rellenar huecos con lo que recuerde. Quedan fuera los sistemas de símbolos ajenos a la baraja, otras barajas y la historia inventada, y lo que se describe del dibujo se compara con el escaneo de 1909. Luego un programa revisa cada página en busca de frases prohibidas: promesas de acierto, fechas, pronósticos sobre salud o asuntos legales, afirmaciones sobre lo que siente otra persona. Después la lee {editor_name}, y solo entonces puede publicarse.",
+        "Las páginas en español se escriben aparte, pensando en quien lee desde México; no son una traducción frase por frase del inglés. Las lecturas que recibes al sacar cartas son otra cosa: las escribe en el momento un modelo de inteligencia artificial, con la misma base de significados y con reglas fijas, y nadie las revisa antes que tú. La página sobre cómo funcionan las lecturas explica esas reglas completas."
+      ]
+    },
+    {
+      "id": "baraja",
+      "heading": "¿Qué baraja ves en pantalla?",
+      "paragraphs": [
+        "Las imágenes son escaneos de la edición de 1909 de la Rider–Waite–Smith, dibujada por Pamela Colman Smith; entre coleccionistas, esa impresión se conoce como «Roses & Lilies». Los archivos vienen de Wikimedia Commons y la baraja es de dominio público. Cada imagen muestra la carta impresa completa, con su número, su título en inglés y su borde, en los colores originales y sin retoques de tono.",
+        "Aquí solo se lee esta baraja. El tarot de Marsella y otras barajas tienen sus propios dibujos y sus propias costumbres de lectura, y el sitio no las combina."
+      ]
+    },
+    {
+      "id": "no-es",
+      "heading": "¿Qué no es Arcana Diary?",
+      "paragraphs": [
+        "No es una forma de ver el futuro. El tarot no predice lo que viene, y Arcana Diary no dice lo contrario. Una lectura sirve para reflexionar y para entretenerte: unas imágenes y unas palabras sencillas para pensar tu situación y tu siguiente paso.",
+        "No es un consejo profesional. Nada de lo que ves aquí orienta sobre salud, asuntos legales, dinero o seguridad personal, ni sustituye la ayuda real en esos temas. Si una pregunta pide ese tipo de pronóstico, la lectura se enfoca en cómo estás llevando el asunto.",
+        "No es un servicio de crisis. Si lo que escribes indica que podrías estar en peligro, no se sacan cartas: el sitio te muestra líneas de ayuda gratuitas y confidenciales. Tampoco es una persona: cada lectura la escribe un modelo de inteligencia artificial. Y es solo para personas adultas: necesitas tener 18 años o más para usar Arcana Diary."
+      ]
+    }
+  ],
+  "faq": [],
+  "intents": []
+}

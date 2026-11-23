@@ -1,0 +1,233 @@
+{
+  "schema": 2,
+  "card_id": "swords-07-seven",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Siete de Espadas",
+    "in_sentence": "el Siete de Espadas",
+    "de": "del Siete de Espadas"
+  },
+  "title": "Siete de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Siete de Espadas al derecho y al revés (carta invertida): engaño, estrategia, amor, trabajo, consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Siete de Espadas en el tarot: significado",
+  "image_alt": "Siete de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: un hombre de gorro rojo se aleja de puntitas de un campamento con cinco espadas; dos quedan clavadas.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 7,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Siete de Espadas habla de estrategia, sigilo y engaño: llevarse algo sin que nadie lo note, un plan astuto o una verdad a medias, a veces contigo. Al revés, llega la necesidad de sincerarse. Es más filosa que mala: premia el ingenio y advierte contra los atajos. La respuesta es no, porque la figura se escabulle.",
+  "keywords": {
+    "upright": [
+      "estrategia",
+      "engaño",
+      "evasión",
+      "sigilo"
+    ],
+    "reversed": [
+      "sincerarse",
+      "autoengaño",
+      "secretos que salen",
+      "dudas de último momento"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Siete de Espadas?",
+      "paragraphs": [
+        "Según Waite, un hombre se lleva cinco espadas a toda prisa mientras las otras dos siguen clavadas en el suelo, con un campamento muy cerca (p. 240). El manojo de cinco espadas es lo más grande de la carta y la cruza casi de lado a lado.",
+        "En la carta de 1909 el cielo es amarillo intenso. El hombre lleva gorro rojo y zapatos rojos, camina de puntitas con las espadas en brazos y mira hacia atrás por encima del hombro. Detrás se ven tiendas de campaña con rayas y dibujos, una con una banderita; arriba se lee el VII."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Siete de Espadas?",
+      "paragraphs": [
+        "Waite reconoce que el sentido de esta carta es incierto, porque sus significados no se ponen de acuerdo (p. 240). Su lista al derecho junta planes, esperanza y confianza con peleas y un plan que puede fallar; al revés, pone el buen consejo junto a la calumnia y el parloteo (p. 240).",
+        "En Arcana Diary seguimos el dibujo: alguien que se va con algo que no es del todo suyo. Leerla como sigilo y estrategia es la lectura moderna, no la de Waite."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Siete de Espadas al derecho?",
+      "paragraphs": [
+        "El sigilo es lo primero que nombra esta carta: algo que se hace en silencio, lejos de las miradas. En su lado útil es estrategia, un plan que guardas hasta que madure o una salida ingeniosa para esquivar un obstáculo sin pelear. En su lado oscuro es engaño, medias verdades, un atajo poco honesto, querer salirte con la tuya.",
+        "La evasión también entra aquí. A veces quien se escabulle eres tú, dándole la vuelta a una plática o a un hecho que prefieres no ver.",
+        "¿Esto es discreción o me estoy escondiendo? De esa respuesta depende si la carta habla de buena táctica o de un atajo que deja cabos sueltos."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Siete de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, el Siete de Espadas puede marcar el momento de sincerarse: un secreto que ya cansa o dudas de último momento sobre un atajo. También puede mostrar que el autoengaño se cae, cuando la historia que te contabas ya no se sostiene, o secretos que salen a la luz después de estar escondidos.",
+        "La lista al revés de Waite empieza con buen consejo, orientación e instrucción (p. 240), y encaja con ese giro hacia la palabra honesta. Date el consejo que le darías a alguien de confianza en tu lugar."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Siete de Espadas en el amor?",
+      "paragraphs": [
+        "Lo que no se dice ocupa el centro de esta carta en el amor: un sentimiento que minimizas para no arriesgarte, una parte de tu vida que guardas aparte, una duda que nunca sale. Entre dos personas puede hablar de confianza estirada por secretos, grandes o chicos, o de un vínculo escondido.",
+        "Sin pareja, puede ser jugar a la indiferencia, mantener opciones abiertas o esconder el interés real detrás de tácticas. Al revés, la carta se inclina hacia la honestidad: una confesión, aclarar las cosas o admitir ante ti lo que de verdad quieres."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Siete de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Pensar con anticipación, proteger una idea, tantear el terreno antes de moverte: esa es la estrategia útil de esta carta en el trabajo. Su otra cara es la grilla de oficina, el mérito que alguien se lleva callado o las reglas que se doblan para avanzar.",
+        "Costos escondidos, letras chiquitas y tratos que parecen mejores de lo que son: eso dice la carta del dinero, así que lleva tus cuentas en orden. Al revés, un asunto de dinero que has evitado puede pedir que lo enfrentes."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Siete de Espadas como consejo?",
+      "paragraphs": [
+        "Aclara un acuerdo o una promesa que quedó en el aire, por escrito si hace falta. Y antes de seguir con un plan, pregúntate si funcionaría igual a la vista de todos."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Siete de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Siete de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Piensa en alguien estratégico: rápido, reservado, difícil de descifrar, que se guarda sus planes. Así es el Siete de Espadas como persona; en ti, es la parte que prefiere una salida astuta a una plática directa. Como sentimiento, habla de señales mezcladas y cosas que no se dicen: interés escondido, reserva, contención, a veces un vínculo que se mantiene en secreto. Al revés, significa ganas de hablar con honestidad, culpa por algo oculto o deseo de confesar lo que se calló."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Siete de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "swords-05-five",
+          "text": "Una victoria a costa de otros. Pregúntate cuánto te cuesta ganar así."
+        },
+        {
+          "card_id": "major-18-moon",
+          "text": "Las cosas no son lo que parecen. Revisa los hechos antes de creer una historia."
+        },
+        {
+          "card_id": "major-11-justice",
+          "text": "La honestidad y lo justo piden ir primero. Pon las cuentas claras."
+        },
+        {
+          "card_id": "swords-11-page",
+          "text": "Ojos atentos y movimientos rápidos; que tus planes sean limpios además de ingeniosos."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Siete de Espadas del Cinco de Espadas?",
+      "paragraphs": [
+        "En el Cinco de Espadas, Waite muestra a un hombre desdeñoso, dueño del campo, que mira a dos figuras alejarse abatidas (p. 244). Ahí las espadas se ganan en un conflicto abierto y la pérdida está a la vista. En el Siete de Espadas nadie pelea: las espadas salen en silencio, y el tema es el secreto, no una pelea ganada."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Siete de Espadas?",
+      "paragraphs": [
+        "¿Qué me estoy guardando y por qué?",
+        "¿Mi plan solo funciona si nadie se fija bien?",
+        "¿Qué verdad me quitaría peso si la dijera?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Siete de Espadas es una carta buena o mala?",
+      "a": "Es una carta mixta, no mala. La estrategia, el ingenio y la discreción son fortalezas reales; la carta solo pide usarlas a la vista. Se vuelve difícil cuando la astucia tapa algo, y aun así te da la oportunidad de notarlo antes de que se esconda más."
+    },
+    {
+      "q": "¿El Siete de Espadas significa que me están mintiendo?",
+      "a": "No necesariamente. El engaño es uno de sus significados tradicionales, pero la carta también puede señalar tu propia evasión o un buen plan que se guarda en privado. No puede decirte qué pretende otra persona. Te pide revisar los hechos y tener claro tu lado."
+    },
+    {
+      "q": "¿El Siete de Espadas significa infidelidad?",
+      "a": "Puede tener ese sentido en preguntas de amor, porque es la carta de los secretos, pero no es un veredicto sobre nadie. Más a menudo habla de sentimientos escondidos, dudas que no se dicen o falta de apertura. Muestra dónde falta honestidad, no quién hizo qué."
+    }
+  ],
+  "related": [
+    "swords-06-six",
+    "swords-08-eight",
+    "cups-07-seven",
+    "wands-07-seven",
+    "pentacles-07-seven"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-05-five",
+      "text": "Cinco de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Design, attempt, wish, hope, confidence; also quarrelling, a plan that may fail, annoyance … Reversed: Good advice, counsel, instruction, slander, babbling.",
+    "quote_lang": "en",
+    "pages": [
+      240
+    ],
+    "translation": "Designio, intento, deseo, esperanza, confianza; también peleas, un plan que puede fallar, fastidio … Al revés: buen consejo, orientación, instrucción, calumnia, parloteo.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        240
+      ],
+      "text": "A man in the act of carrying away five swords rapidly; the two others of the card remain stuck in the ground. A camp is close at hand."
+    },
+    {
+      "pages": [
+        240
+      ],
+      "text": "The design is uncertain in its import, because the significations are widely at variance with each other."
+    },
+    {
+      "pages": [
+        244
+      ],
+      "text": "A disdainful man looks after two retreating and dejected figures."
+    },
+    {
+      "pages": [
+        244
+      ],
+      "text": "He is the master in possession of the field."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 07.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_07.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        240,
+        244
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

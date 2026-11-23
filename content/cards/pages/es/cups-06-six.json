@@ -1,0 +1,246 @@
+{
+  "schema": 2,
+  "card_id": "cups-06-six",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Seis de Copas",
+    "in_sentence": "el Seis de Copas",
+    "de": "del Seis de Copas"
+  },
+  "title": "Seis de Copas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Seis de Copas al derecho y al revés (carta invertida): nostalgia, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Seis de Copas en el tarot: significado",
+  "image_alt": "Seis de Copas, carta de 1909 de la baraja Rider-Waite-Smith: un niño con capucha roja ofrece una copa con flores blancas a una figura más pequeña, entre copas floridas y una torre de piedra.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 6,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Seis de Copas habla de nostalgia, recuerdos, ternura e inocencia. Al revés, advierte de anclarse al pasado o de un pasado idealizado. Es una carta amable: consuela y solo pide que el recuerdo no ocupe el lugar del presente. La respuesta es sí, porque un niño ofrece flores con buena voluntad.",
+  "keywords": {
+    "upright": [
+      "nostalgia",
+      "recuerdos",
+      "inocencia",
+      "ternura"
+    ],
+    "reversed": [
+      "anclarse al pasado",
+      "pasado idealizado",
+      "madurar"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Seis de Copas?",
+      "paragraphs": [
+        "Waite la describe en una línea: niños en un jardín antiguo, con sus copas llenas de flores (p. 214). La figura más grande es un niño con capucha roja que se inclina para darle una copa de flores blancas a otra figura más pequeña.",
+        "En la carta de 1909 el niño mayor lleva túnica azul y medias rojas; la figura pequeña, pañoleta roja, vestido de puntos y un guante blanco. Al frente hay cuatro copas en fila con flores blancas en forma de estrella, y otra descansa sobre un bloque de piedra con un escudo marcado con una X. Detrás se ven una torre de piedra y una casa bajo un cielo azul, y a la izquierda alguien se aleja caminando. Arriba se lee el VI."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Seis de Copas?",
+      "paragraphs": [
+        "Para Waite es una carta del pasado y de los recuerdos: mirar atrás, por ejemplo a la infancia, y una felicidad que viene sobre todo de antes, de cosas que ya se fueron (p. 214). Waite también da una lectura opuesta, con relaciones, conocimientos y ambiente nuevos, y los niños jugando en un lugar desconocido (p. 214). En su lista breve del final del libro, Waite la resume como recuerdos agradables (p. 290)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Seis de Copas al derecho?",
+      "paragraphs": [
+        "Dos niños y una copa con flores marcan el tono: nostalgia, recuerdos cálidos y la bondad sencilla de dar sin esperar nada. El Seis de Copas suele salir cuando el pasado anda cerca, en una amistad de antes, un lugar conocido, una canción o un olor de la infancia, y ese recuerdo reconforta en lugar de doler.",
+        "También habla de inocencia y ternura: confianza, juego, la tranquilidad de estar con gente que te conoce de siempre. Muchas lecturas actuales la unen a reencuentros y a regalos hechos de corazón. ¿Qué de tus primeros años te gustaría traer al presente?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Seis de Copas al revés?",
+      "paragraphs": [
+        "Al revés, el Seis de Copas puede hablar de anclarse al pasado: repetir viejos tiempos o comparar el hoy con un pasado idealizado que nunca fue tan simple. A veces pide madurar y dejar atrás un papel o una costumbre que ya no te queda.",
+        "Waite lee la carta al revés como el futuro y la renovación (p. 214), y eso encaja con ese segundo lado: honra lo vivido, quédate con lo que te enseñó y mira hacia lo que sigue."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Seis de Copas en el amor?",
+      "paragraphs": [
+        "La ternura, el afecto juguetón y la sensación de estar en confianza son el terreno de esta carta en el amor.",
+        "En pareja, puede devolver la dulzura del principio: bromas compartidas, detalles pequeños, una cita que se siente como la primera. Muchas lecturas la relacionan además con alguien del pasado, una amistad o una expareja que vuelve a tu mente; la carta muestra el recuerdo y su calidez, no lo que viene después.",
+        "Al revés, conviene preguntarte si el cariño por un recuerdo te impide ver a quien tienes enfrente."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Seis de Copas en el trabajo y el dinero?",
+      "paragraphs": [
+        "En lo profesional, el Seis de Copas trae un ambiente amable y conocido: ayuda de gente con la que trabajaste antes, retomar algo que te encantaba hacer, un grupo donde la bondad cuenta.",
+        "Para el dinero, la carta significa regalos y generosidad, pequeñas ayudas de la familia o de amistades, dar y recibir sin llevar cuentas. Al revés, fíjate si una vieja forma de trabajar todavía le queda a lo que haces hoy."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Seis de Copas como consejo?",
+      "paragraphs": [
+        "Haz algo que te encantaba en la infancia, aunque sea un rato: dibujar, jugar, cantar una canción vieja. Fíjate qué parte de esa sensación puedes llevar a un día normal. Un gesto amable sin motivo, hacia quien sea, también va con esta carta."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Seis de Copas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Seis de Copas como persona y como sentimiento?",
+      "paragraphs": [
+        "Visto como persona, el Seis de Copas es alguien amable y cercano: una amistad de la infancia, alguien con quien compartes historia o que te hace sentir en casa; también puede ser tu lado juguetón y confiado. Como sentimiento, habla de ternura, recuerdos bonitos y un cariño sencillo, sin complicaciones, muchas veces ligado a un pasado en común. Al revés, ese sentimiento se apoya más en la nostalgia: apego a cómo eran las cosas más que a cómo son."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Seis de Copas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "cups-02-two",
+          "text": "Cariño con historia: un vínculo que se apoya en recuerdos y en cuidado mutuo."
+        },
+        {
+          "card_id": "pentacles-10-ten",
+          "text": "Raíces familiares y tradiciones; el consuelo de la casa y de quienes vinieron antes."
+        },
+        {
+          "card_id": "major-20-judgement",
+          "text": "Mirar atrás con claridad y quedarte con lo que te ayuda a empezar de nuevo."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Seis de Copas del Diez de Copas?",
+      "paragraphs": [
+        "El Diez de Copas también es una carta feliz y hogareña, pero Waite la describe con copas en un arcoíris sobre una pareja y dos niños que bailan cerca (p. 206). Hoy se lee como pertenencia y plenitud emocional en el presente. El Seis mira atrás con nostalgia; el Diez es la felicidad que se vive ahora, con la gente que te rodea."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Seis de Copas?",
+      "paragraphs": [
+        "¿Qué recuerdo me ha estado rondando, y por qué ahora?",
+        "¿Qué me encantaba hacer en la infancia que podría retomar?",
+        "¿Estoy disfrutando el pasado o me estoy escondiendo en él?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Seis de Copas es una carta buena o mala?",
+      "a": "Buena, en casi todas las lecturas. Trae calidez, generosidad y memorias que consuelan, y responde que sí. Su único lado difícil aparece cuando lo vivido se vuelve un refugio; entonces invita a guardar lo dulce y regresar al presente con un poco de esa ternura en las manos."
+    },
+    {
+      "q": "¿El Seis de Copas habla de un ex?",
+      "a": "A veces. Muchas personas la relacionan con alguien de otra etapa, y una expareja es una posibilidad, junto con viejas amistades y la familia. La carta habla de memoria y calidez, no de si alguien regresa; pregúntate qué te enseñó esa historia sobre lo que buscas hoy."
+    },
+    {
+      "q": "¿El Seis de Copas significa que me quiere?",
+      "a": "Como sentimiento, la carta significa un afecto suave y tierno, muchas veces nacido de una historia compartida. Ese es su significado tradicional, no una afirmación sobre una persona concreta. Si hay amor o no, solo se descubre platicando con honestidad."
+    }
+  ],
+  "related": [
+    "cups-05-five",
+    "cups-07-seven",
+    "wands-06-six",
+    "swords-06-six",
+    "pentacles-06-six"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-10-ten",
+      "text": "Diez de Copas"
+    }
+  ],
+  "waite": {
+    "quote": "A card of the past and of memories, looking back, as—for example—on childhood … Reversed: The future, renewal …",
+    "quote_lang": "en",
+    "pages": [
+      214
+    ],
+    "translation": "Una carta del pasado y de los recuerdos, de mirar atrás, por ejemplo, a la infancia … Al revés: el futuro, la renovación …",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        214
+      ],
+      "text": "Children in an old garden, their cups filled with flowers."
+    },
+    {
+      "pages": [
+        214
+      ],
+      "text": "A card of the past and of memories, looking back, as—for example—on childhood; happiness, enjoyment, but coming rather from the past; things that have vanished."
+    },
+    {
+      "pages": [
+        214
+      ],
+      "text": "Another reading reverses this, giving new relations, new knowledge, new environment, and then the children are disporting in an unfamiliar precinct."
+    },
+    {
+      "pages": [
+        214
+      ],
+      "text": "Reversed: The future, renewal, that which will come to pass presently."
+    },
+    {
+      "pages": [
+        290
+      ],
+      "text": "Six.—Pleasant memories."
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below, evidently husband and wife."
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "The two children dancing near them have not observed the prodigy"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 06.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_06.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        206,
+        214,
+        290
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

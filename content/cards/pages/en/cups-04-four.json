@@ -1,0 +1,269 @@
+{
+  "schema": 2,
+  "card_id": "cups-04-four",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Four of Cups",
+    "in_sentence": "the Four of Cups"
+  },
+  "title": "Four of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Four of Cups upright: apathy, withdrawal, overlooked offers; reversed: renewed interest. Love, work, advice, Waite's 1911 text and the 1909 card.",
+  "h1": "Four of Cups Tarot Card Meaning",
+  "image_alt": "Four of Cups, 1909 Rider–Waite–Smith card: a young man sits cross-armed under a tree before three cups while a hand from a cloud holds out a fourth.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 4,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Four of Cups describes apathy and withdrawal: boredom with what you have and offers you do not notice. Reversed, interest returns and you look up again. It is a quiet card, not a bad one: a pause that matters only if it lasts. Upright, the answer is not clear: a fourth cup waits, and nobody has looked up.",
+  "keywords": {
+    "upright": [
+      "apathy",
+      "contemplation",
+      "withdrawal",
+      "overlooked offers"
+    ],
+    "reversed": [
+      "renewed interest",
+      "saying yes",
+      "looking up",
+      "moving on"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Four of Cups card?",
+      "paragraphs": [
+        "A young man sits under a tree with three cups on the grass in front of him, while an arm reaches out of a cloud with a fourth. Waite adds that \"his expression notwithstanding is one of discontent with his environment\" (p. 218).",
+        "On the 1909 card the tree trunk is the tallest shape, running up past the top edge. The young man sits cross-legged, arms folded and eyes cast down, in red sleeves and blue leggings, and the three cups stand in a row along the bottom. The offered cup comes from a small cloud on the left."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Four of Cups?",
+      "paragraphs": [
+        "Waite's meanings are about having had enough: weariness, disgust, aversion and imaginary vexations, \"as if the wine of this world had caused satiety only\" (p. 218). Waite calls the new cup another wine, offered \"as if a fairy gift\", but the seated man \"sees no consolation therein\" (p. 218).",
+        "Waite also calls it \"a card of blended pleasure\" (p. 218), so even upright the mood is mixed rather than simply low."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Four of Cups mean upright?",
+      "paragraphs": [
+        "Apathy is the first meaning of the Four of Cups: nothing quite satisfies, and what you already have feels flat. It can come after a busy or disappointing stretch, when withdrawal feels safer than trying again.",
+        "Contemplation is the kinder face of the same card. Stepping back to think can be exactly right; the risk is that the pause turns into not seeing. Overlooked offers are the classic detail: an invitation, a chance, a kind word that passes by while your eyes are on the ground.",
+        "What is being offered to you right now that you have not really looked at?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Four of Cups mean reversed?",
+      "paragraphs": [
+        "Reversed, the slump lifts: renewed interest, curiosity coming back, a readiness for saying yes to something you had been ignoring. Sometimes it means moving on from what no longer satisfies you, and looking up toward what is new.",
+        "Waite's reversed list points the same way, with novelty, new instruction and new relations (p. 218). Follow the returning interest one small step at a time, without forcing it. A single yes is enough to start."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Four of Cups mean in love?",
+      "paragraphs": [
+        "Love can go flat under this card: routine, a relationship taken for granted, interest that has quietly faded. It is less about a lack of love than about not seeing what is already there.",
+        "When you are on your own, it may show interest from others that you keep waving away because it does not match the picture you had, or a real need for time alone first.",
+        "The reversed card brings fresh eyes: renewed interest in a partner, or readiness to accept a date you would once have refused. Are you turning away from something only because it looks different from what you expected?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Four of Cups mean for work and money?",
+      "paragraphs": [
+        "Boredom at work, a role that no longer interests you, the sense of going through the motions: that is the career meaning. It also covers chances missed because you were not looking, so check what is in front of you before deciding nothing is there.",
+        "For money, the Four of Cups is not a card of lack. It means dissatisfaction with what you have, or an opportunity passed over because it looks too small; reversed, it shows readiness to take up something new."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Four of Cups?",
+      "paragraphs": [
+        "Uncross your arms. Write down three things within reach that you tend to overlook, a person, an invitation, a small pleasure, then pick one and accept it today, before the habit of looking away returns."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Four of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Four of Cups as a person and as feelings",
+      "paragraphs": [
+        "The young man brooding under the tree on the Four of Cups is someone withdrawn or hard to impress, polite but distant, wrapped up in their own thoughts; you may be this figure yourself when you want time to sort your thoughts. In terms of feeling, it means indifference, mixed feelings or distance: interest that is low or unsure, and offers of affection that go unnoticed. Reversed, the feelings wake up: curiosity, warmth returning, a willingness to look again at someone who was there all along."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Four of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "cups-01-ace",
+          "text": "The new feeling arrives; what matters is whether you look up and take it."
+        },
+        {
+          "card_id": "major-09-hermit",
+          "text": "A deliberate step back. Use the quiet to find out what you actually want."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "Rest and retreat together. A pause is fine as long as it stays a pause."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "After the slump, things start moving fast. Be ready to answer."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Four of Cups, Five of Cups or Eight of Cups?",
+      "paragraphs": [
+        "Waite describes the Five of Cups as a cloaked figure looking sideways at three cups lying down, with two still upright behind him, and says that despite the loss something is left (p. 216). Its modern meaning is disappointment and regret; the Four is not grief but boredom.",
+        "Waite's Eight of Cups shows a downcast man leaving behind the cups that once made him happy (p. 210); modern readings see a search for something deeper. The Four sits and turns from what is offered; the Eight stands and walks off."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Four of Cups",
+      "paragraphs": [
+        "What have I stopped noticing because I am used to it?",
+        "Is my withdrawal a rest I need, or a habit I have slipped into?",
+        "What would I say yes to if I looked at it with fresh eyes?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Four of Cups a good or bad card?",
+      "a": "Mostly neither: it is a neutral, quiet card. It shows a pause, sometimes a necessary one, and its weak point is the chance that slips by unnoticed. Reversed it is even encouraging, since it describes interest and energy coming back."
+    },
+    {
+      "q": "Does the Four of Cups mean someone is not interested?",
+      "a": "As a card meaning, it describes low or unsure interest and emotional distance, often more about weariness than about the other person. It does not report what anyone in your life thinks; what someone actually does, week after week, matters more than one card."
+    },
+    {
+      "q": "What is the hand from the cloud on the Four of Cups?",
+      "a": "It holds out the fourth cup, the offer at the center of the card. Waite calls what it brings \"another wine, as if a fairy gift\", in which the seated figure finds no consolation (p. 218). Arcana Diary reads it simply as an offer that is there to be noticed, if you lift your eyes."
+    }
+  ],
+  "related": [
+    "cups-03-three",
+    "cups-05-five",
+    "wands-04-four",
+    "swords-04-four",
+    "pentacles-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-05-five",
+      "text": "Five of Cups"
+    },
+    {
+      "card_id": "cups-08-eight",
+      "text": "Eight of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "Weariness, disgust, aversion, imaginary vexations … This is also a card of blended pleasure. Reversed: Novelty, presage, new instruction, new relations.",
+    "quote_lang": "en",
+    "pages": [
+      218
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        218
+      ],
+      "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup"
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "His expression notwithstanding is one of discontent with his environment"
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "Weariness, disgust, aversion, imaginary vexations, as if the wine of this world had caused satiety only"
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "another wine, as if a fairy gift, is now offered the wastrel, but he sees no consolation therein"
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "This is also a card of blended pleasure"
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "Reversed: Novelty, presage, new instruction, new relations"
+    },
+    {
+      "pages": [
+        216
+      ],
+      "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him"
+    },
+    {
+      "pages": [
+        216
+      ],
+      "text": "It is a card of loss, but something remains over"
+    },
+    {
+      "pages": [
+        210
+      ],
+      "text": "A man of dejected aspect is deserting the cups of his felicity"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 04.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_04.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        210,
+        216,
+        218
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

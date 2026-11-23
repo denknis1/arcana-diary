@@ -1,0 +1,245 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-06-six",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Six of Pentacles",
+    "in_sentence": "the Six of Pentacles"
+  },
+  "title": "Six of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Six of Pentacles upright: generosity, fair exchange; reversed: strings attached, one-sided giving. Love, work, advice, Waite's 1911 text and the 1909 card.",
+  "h1": "Six of Pentacles Tarot Card Meaning",
+  "image_alt": "Six of Pentacles, 1909 Rider–Waite–Smith card: a merchant in a red cloak holds up a pair of scales and drops coins into the hands of a kneeling figure.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 6,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Six of Pentacles means generosity and fair exchange: charity, sharing, help that moves both ways. Reversed, it can show strings attached or one-sided giving. A kind card, it still asks who is holding the scales. Upright, a yes or no question gets a yes, since the merchant gives freely and keeps his balance level.",
+  "keywords": {
+    "upright": [
+      "generosity",
+      "fair exchange",
+      "giving and receiving",
+      "support"
+    ],
+    "reversed": [
+      "strings attached",
+      "one-sided giving",
+      "difficulty receiving",
+      "power imbalance"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Six of Pentacles card?",
+      "paragraphs": [
+        "A well-dressed man stands between two kneeling figures and shares his money. Waite describes him exactly: \"A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed\" (p. 270). Waite adds that it is \"a testimony to his own success in life, as well as to his goodness of heart\" (p. 270).",
+        "On the 1909 card the merchant wears a red cloak and hat over a striped tunic. The scales, the card's central sign, hang level from his raised left hand, while small coins fall from his right into the cupped palms of the figure on the left. The second figure, in a patched blue cloak, kneels on the right and looks up at him. Six pentacles float in the sky, a little town stands in the distance, and VI is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Six of Pentacles?",
+      "paragraphs": [
+        "Waite's list starts with gifts and gratification, then adds \"another account\" that reads the card as attention and vigilance (p. 270). Waite's main list (p. 270) treats the present as a good time, yet his later list of extra meanings says the opposite: \"The present must not be relied on\" (p. 293). Waite's reversed words (p. 270) turn to wanting: desire, envy, jealousy.",
+        "The modern reading keeps both halves of the picture, the open hand and the scales."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Six of Pentacles mean upright?",
+      "paragraphs": [
+        "Generosity is the plain meaning: sharing money, time or skill, and support reaching the people who need it. The card covers both sides of the scene. You may be the one with enough to spare, or the one being helped, with a gift, a loan or a hand at the right moment. Charity, donations and mentoring all belong here.",
+        "The scales keep the kindness honest. A fair exchange leaves both sides standing, with nobody owing more than they can carry, and giving and receiving each have their turn. Which side of the picture are you on today, and does the balance feel right to you?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Six of Pentacles mean reversed?",
+      "paragraphs": [
+        "Reversed, the Six of Pentacles can describe help with strings attached, gifts that carry a hidden price, or one-sided giving that leaves you drained. It can also show the other side of the scales: difficulty receiving, pride that turns help away, or a power imbalance in which one person always decides.",
+        "The uneven scales are a modern reading; Waite's reversed list is about envy and desire (p. 270). Either way, pick one exchange in your life and ask whether it still feels fair to you."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Six of Pentacles mean in love?",
+      "paragraphs": [
+        "Care offered freely and taken with thanks: that is this card in a relationship, where attention, effort and affection flow both ways and both people contribute. When you are on your own, it can be a time of kindness toward others, or of letting friends look after you for a change.",
+        "Reversed, the scales tip. One partner always gives and the other always takes, or affection seems to come with conditions. Notice what you give, and whether you also let yourself receive."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Six of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Coins dropping into open hands make the money meaning plain: generosity and fair exchange, money shared, a fair wage, a loan given or paid back, charity and gifts. You may be in a position to give, or on the receiving end of support for a while. Among colleagues it shows as mentoring, credit shared fairly and a manager who backs the people below. Reversed, it can mean debt that weighs on you, a loan with awkward conditions, or generosity that runs only one way."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Six of Pentacles?",
+      "paragraphs": [
+        "Offer one small, practical kindness today with nothing expected back: an hour of your time, a skill you can teach, a meal shared. Then watch whether you can accept help as easily as you give it."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Six of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Six of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "The merchant in this card is someone generous and fair: a mentor, a patron, the friend who helps without making a show of it. The kneeling figures count too: someone who, for now, is on the receiving end. The feeling in the Six of Pentacles is care and kindness: a wish to give and to look after someone, and gratitude for what has been received. Reversed, the feelings turn uneven: giving to win approval, a sense of owing, or one side holding more power than the other."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Six of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "pentacles-05-five",
+          "text": "A hard stretch meets a helping hand. Accept what is offered, and keep the exchange fair."
+        },
+        {
+          "card_id": "cups-06-six",
+          "text": "Simple kindness, gifts between friends, generosity with no ledger kept."
+        },
+        {
+          "card_id": "major-14-temperance",
+          "text": "Balance in giving: enough for others, enough left for you."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "How is the Six of Pentacles different from the Four of Pentacles?",
+      "paragraphs": [
+        "Both cards are about what you do with what you have. In the Four of Pentacles a crowned man clasps a pentacle with his arms, and Waite sums him up: \"He holds to that which he has\" (p. 274); today it is read as security and holding on. The Six opens the hand: what the Four hugs to his chest, the Six passes on."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Six of Pentacles",
+      "paragraphs": [
+        "Am I mostly giving or mostly receiving right now?",
+        "Is there an exchange in my life that no longer feels fair?",
+        "What help could I accept without feeling I owe too much?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Six of Pentacles a good or bad card?",
+      "a": "Mostly good. It stands for kindness, sharing and support that reaches the right place. Its one question is about fairness: help should not turn into control, and giving should not empty you out. Reversed, that question comes to the front."
+    },
+    {
+      "q": "Am I the giver or the receiver in the Six of Pentacles?",
+      "a": "It depends on your question, and you can be both. Ask where you have something to spare, money, time or know-how, and where you could use a hand. Many people find they are the merchant in one area of life and the kneeling figure in another."
+    },
+    {
+      "q": "Does the Six of Pentacles mean he loves me?",
+      "a": "Its traditional love meaning is care and generosity: attention given freely and a wish to look after someone. Asked about feelings, it leans warm. The scales add a note: the card is about whether that care moves in both directions, so look at what you give as well."
+    }
+  ],
+  "related": [
+    "pentacles-05-five",
+    "pentacles-07-seven",
+    "cups-06-six",
+    "wands-06-six",
+    "swords-06-six"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-04-four",
+      "text": "Four of Pentacles"
+    }
+  ],
+  "waite": {
+    "quote": "Presents, gifts, gratification; another account says attention, vigilance; now is the accepted time, present prosperity, etc. Reversed: Desire, cupidity, envy, jealousy, illusion.",
+    "quote_lang": "en",
+    "pages": [
+      270
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        270
+      ],
+      "text": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed"
+    },
+    {
+      "pages": [
+        270
+      ],
+      "text": "It is a testimony to his own success in life, as well as to his goodness of heart"
+    },
+    {
+      "pages": [
+        270
+      ],
+      "text": "Presents, gifts, gratification; another account says attention, vigilance; now is the accepted time, present prosperity"
+    },
+    {
+      "pages": [
+        293
+      ],
+      "text": "The present must not be relied on"
+    },
+    {
+      "pages": [
+        270
+      ],
+      "text": "Reversed: Desire, cupidity, envy, jealousy, illusion"
+    },
+    {
+      "pages": [
+        274
+      ],
+      "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms"
+    },
+    {
+      "pages": [
+        274
+      ],
+      "text": "He holds to that which he has"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 06.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_06.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        270,
+        274,
+        293
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

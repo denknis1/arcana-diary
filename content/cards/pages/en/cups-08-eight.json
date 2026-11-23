@@ -1,0 +1,244 @@
+{
+  "schema": 2,
+  "card_id": "cups-08-eight",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Eight of Cups",
+    "in_sentence": "the Eight of Cups"
+  },
+  "title": "Eight of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Eight of Cups upright: walking away, letting go; reversed: fear of change. Love, work, advice, Waite's 1911 text and the 1909 card. Ask your question.",
+  "h1": "Eight of Cups Tarot Card Meaning",
+  "image_alt": "Eight of Cups, 1909 Rider–Waite–Smith card: a figure in a red cloak with a staff walks away from eight stacked cups toward water and mountains, under a moon with a face.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 8,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Eight of Cups means walking away, letting go and seeking more, a search for meaning. Reversed, it shows fear of change, indecision or drifting. It can be brave and freeing, though leaving has a cost. The answer leans no, since the figure turns its back on the cups that are here.",
+  "keywords": {
+    "upright": [
+      "walking away",
+      "seeking more",
+      "letting go",
+      "search for meaning"
+    ],
+    "reversed": [
+      "fear of change",
+      "indecision",
+      "drifting"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Eight of Cups card?",
+      "paragraphs": [
+        "A figure in a red cloak, staff in hand, walks away from eight cups toward rocky hills. Waite writes that \"a man of dejected aspect is deserting the cups of his felicity, enterprise, under-taking or previous concern\" (p. 210).",
+        "On the 1909 card the eight cups fill the front of the picture: five along the bottom and three above, with a gap in the upper row. The figure, in red boots, crosses toward water and green mountains. In the sky hangs a moon with a face and closed eyes, a crescent drawn across its full disk. VIII is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Eight of Cups?",
+      "paragraphs": [
+        "Waite says the card \"speaks for itself on the surface\", yet notes other readings that run the opposite way: joy, mildness, timidity, honour, modesty (p. 210). In practice, Waite adds, it shows a matter in decline, or that something \"thought to be important is really of slight consequence\" (p. 210)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Eight of Cups mean upright?",
+      "paragraphs": [
+        "Eight cups stand neatly stacked, and still someone walks away. That is the heart of the card: walking away from something that looks fine from the outside but no longer satisfies, whether a job, a relationship, a habit or a role. It is less about failure than about seeing that the effort no longer brings what you need.",
+        "Letting go here is chosen, not forced, and it often hurts a little. The Eight of Cups speaks of seeking more: depth, honesty, a sense of purpose that the old place cannot give. What feels missing for you, and where could you look for it?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Eight of Cups mean reversed?",
+      "paragraphs": [
+        "Turned around, the card often shows fear of change: wanting to leave and staying put, or going back and forth in indecision. It can also mean drifting, leaving again and again without looking at why, or a return to something you had already outgrown.",
+        "Waite gives the reversed card \"great joy, happiness, feasting\" (p. 210), a reading that today's tarot rarely follows. On Arcana Diary the question is whether you are moving toward something or only away from something."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Eight of Cups mean in love?",
+      "paragraphs": [
+        "A relationship that looks fine but feels empty is the classic love theme of this card: emotional distance, a sense of having outgrown something, a wish for more depth. It asks whether your own needs are being met, and invites honesty about that before anything is decided.",
+        "Reversed, you may be torn: wanting to leave but afraid to, or walking away from something that still has value.",
+        "For someone not in a relationship, the card can mean stepping back from dating that leaves you hollow, to look for something that matters more."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Eight of Cups mean for work and money?",
+      "paragraphs": [
+        "Leaving a job that is secure but unfulfilling, stepping off a career path, or setting aside a project that has lost its meaning: these are the typical work themes here.",
+        "For money, the Eight of Cups means choosing meaning over comfort, sometimes walking away from a steady income, and accepting that a change has a cost. Reversed, it can mean staying out of fear rather than choice."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Eight of Cups?",
+      "paragraphs": [
+        "Say in one honest sentence what feels missing, and write it down. Then name one step toward it that does not require leaving everything at once. The card supports going; it also asks you to know what you are going toward."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Eight of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Eight of Cups as a person and as feelings",
+      "paragraphs": [
+        "Someone on the way out, or already looking past the present, is how the Eight of Cups appears as a person: restless, reflective, ready to go after deeper meaning, and sometimes this is you at a turning point. The feelings it describes are disappointment that has turned into distance, emotional withdrawal, and wanting more than the bond gives. Reversed, those feelings are mixed: torn between staying and going, or afraid to leave the familiar."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Eight of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "major-09-hermit",
+          "text": "Leaving the noise behind to look inward; a search that needs time alone."
+        },
+        {
+          "card_id": "major-13-death",
+          "text": "A real ending. One chapter closes so another can start."
+        },
+        {
+          "card_id": "cups-01-ace",
+          "text": "Walking away from what is empty makes room for new feelings and an open heart."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Eight of Cups, Six of Swords or Four of Cups?",
+      "paragraphs": [
+        "The Six of Swords is also a departure, but Waite shows \"a ferryman carrying passengers in his punt to the further shore\" (p. 242). Today it reads as a transition toward calmer waters, often with help. The Eight of Cups walks alone and by choice.",
+        "The Four of Cups, in Waite's description a seated young man who is offered a cup from a cloud (p. 218), withdraws but stays where he is. The Eight gets up and goes."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Eight of Cups",
+      "paragraphs": [
+        "What feels missing for me right now?",
+        "Am I leaving to find something, or to avoid something?",
+        "What would I take with me, and what can I leave behind?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Eight of Cups a good or bad card?",
+      "a": "It is bittersweet rather than bad. Leaving something behind can be sad, but here it is usually a chosen step toward a fuller life. It becomes harder when the leaving turns into a habit, a way of escaping instead of searching, and the same story repeats in each new place."
+    },
+    {
+      "q": "Does the Eight of Cups mean a breakup?",
+      "a": "Not always. In love questions it can describe pulling away from a bond that feels empty, but it can just as easily mean leaving a job, a city or an old version of yourself. It describes your need for more, not a fixed outcome."
+    },
+    {
+      "q": "Does the Eight of Cups mean leaving a job?",
+      "a": "It can. The card often appears when work is stable but no longer meaningful to you. It does not tell you to quit; it asks what you lack there and whether a change inside the job, or a carefully planned exit, would bring it."
+    }
+  ],
+  "related": [
+    "cups-07-seven",
+    "cups-09-nine",
+    "wands-08-eight",
+    "swords-08-eight",
+    "pentacles-08-eight"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-06-six",
+      "text": "Six of Swords"
+    },
+    {
+      "card_id": "cups-04-four",
+      "text": "Four of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "The card shews the decline of a matter … Reversed: Great joy, happiness, feasting.",
+    "quote_lang": "en",
+    "pages": [
+      210
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        210
+      ],
+      "text": "A man of dejected aspect is deserting the cups of his felicity, enterprise, under-taking or previous concern."
+    },
+    {
+      "pages": [
+        210
+      ],
+      "text": "The card speaks for itself on the surface, but other readings are entirely antithetical—giving joy, mildness, timidity, honour, modesty."
+    },
+    {
+      "pages": [
+        210
+      ],
+      "text": "it is usually found that the card shews the decline of a matter, or that a matter which has been thought to be important is really of slight consequence"
+    },
+    {
+      "pages": [
+        210
+      ],
+      "text": "Reversed: Great joy, happiness, feasting."
+    },
+    {
+      "pages": [
+        242
+      ],
+      "text": "A ferryman carrying passengers in his punt to the further shore."
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 08.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_08.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        210,
+        218,
+        242
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

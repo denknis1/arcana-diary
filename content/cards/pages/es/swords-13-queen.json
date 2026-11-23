@@ -1,0 +1,242 @@
+{
+  "schema": 2,
+  "card_id": "swords-13-queen",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Reina de Espadas",
+    "in_sentence": "la Reina de Espadas",
+    "de": "de la Reina de Espadas"
+  },
+  "title": "Reina de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa la Reina de Espadas al derecho y al revés (carta invertida): claridad, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Reina de Espadas en el tarot: significado",
+  "image_alt": "Reina de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: una reina con corona, sentada de perfil en un trono de piedra con nubes detrás, sostiene la espada recta y levanta la otra mano abierta.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 13,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "La Reina de Espadas es claridad, independencia y honestidad: ver las cosas como son y poner límites. Al revés, esa claridad puede volverse frialdad o amargura. Es una carta fuerte, algo seca, que pone la verdad antes que la comodidad. Ante una pregunta de sí o no, todavía no está claro: ella quiere todos los hechos antes de opinar.",
+  "keywords": {
+    "upright": [
+      "claridad",
+      "independencia",
+      "honestidad",
+      "límites"
+    ],
+    "reversed": [
+      "frialdad",
+      "amargura",
+      "críticas duras",
+      "dudar de ti"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de la Reina de Espadas?",
+      "paragraphs": [
+        "Una reina con corona está sentada de perfil en un trono alto de piedra; con una mano levanta la espada en vertical y la otra la alza abierta. Waite escribe que su rostro es severo pero contenido, que deja ver que conoce bien la tristeza y que no representa la misericordia (p. 228). La espada recta, más alta que la propia reina, es lo más grande de la carta.",
+        "En la carta de 1909 su corona está hecha de mariposas amarillas, en el trono hay más mariposas talladas y una pequeña cara, y su manto azul lleva un dibujo de nubes. Detrás, a baja altura, se amontonan nubes de verdad, un solo pájaro vuela alto y a la izquierda se ven árboles oscuros."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre la Reina de Espadas?",
+      "paragraphs": [
+        "Las dos listas de Waite para esta carta son duras; al derecho nombra tristeza, ausencia, luto y separación (p. 228). La tristeza en su cara es la lectura que él hace del dibujo; en Arcana Diary la Reina se lee por lo que esa experiencia deja: cabeza clara, palabra honesta y límites firmes."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa la Reina de Espadas al derecho?",
+      "paragraphs": [
+        "Al derecho, su fuerza es la claridad: ver una situación tal como es, sin hacerse ilusiones. La Reina de Espadas habla de independencia y honestidad, de saber separar los hechos de los deseos y de nombrar lo que es cierto. Su juicio es agudo porque se lo ganó con la experiencia.",
+        "Suele salir cuando necesitas poner límites, tomar una decisión justa o decir algo de frente. Te pide palabras directas pero no crueles, y confianza en lo que percibes. Hoy también se lee como alguien que atravesó una pena y salió con más sabiduría, algo que recuerda la tristeza que Waite vio en su rostro (p. 228)."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa la Reina de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, la Reina de Espadas puede hablar de frialdad: la claridad convertida en distancia, o la honestidad usada como arma. Caben aquí las críticas duras, la amargura que se queda de heridas viejas y los muros que protegen pero aíslan. Otra cara es dudar de ti y dejar de confiar en tu propio criterio. La lista de Waite al revés es más oscura todavía, con malicia y engaño (p. 228); la lectura moderna mira primero tu propio filo. Habla claro sin cerrar el corazón."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa la Reina de Espadas en el amor?",
+      "paragraphs": [
+        "Honestidad con lo que aceptas y lo que no: así llega la Reina de Espadas a una pregunta de amor. Pide límites claros y respeto por ti, prefiere la verdad a los halagos y cuida una independencia que no está peleada con el cariño.",
+        "En pareja, favorece las pláticas francas y los acuerdos justos. Sin pareja, puede marcar una etapa de estar por tu cuenta y elegir con calma, no con prisa. Al revés, puede señalar un corazón a la defensiva, palabras filosas en una discusión o una decepción vieja que todavía hace difícil dejar que alguien se acerque."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa la Reina de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Análisis, revisión de textos, negociación, cualquier puesto donde el juicio honesto cuente: ahí se mueve bien la Reina en el trabajo. También puede ser una jefa o mentora exigente pero justa.",
+        "Con esta Reina, la cartera pide independencia y manejo con cabeza fría: un presupuesto que entiendes, decisiones según los números y no según las ganas, valerte por tus propios medios. Al revés, puede indicar demasiada dureza contigo o gastos decididos sin escuchar a nadie."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa la Reina de Espadas como consejo?",
+      "paragraphs": [
+        "Di un «no» claro a algo que no quieres, sin dar mil explicaciones. Hazlo corto y sin crueldad: no le debes a nadie un discurso largo. La claridad dicha con amabilidad sigue siendo claridad."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿La Reina de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa la Reina de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Con la espada recta y el rostro severo, la Reina de Espadas es perceptiva, independiente y directa: dice lo que ve, valora la verdad y tiene poca paciencia para los halagos, muchas veces después de vivir algo duro. Puede ser una mentora, una amistad con buen ojo o tú cuando confías en tu criterio. Respeto e interés con la cabeza fría: ese es su significado tradicional como sentimiento, honesto pero protegido, que quiere la verdad antes de abrirse. Al revés, habla de distancia, de cierta frialdad o de una herida que se volvió crítica."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa la Reina de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-11-justice",
+          "text": "Mirada clara y sentido de lo justo. Revisa los hechos y decide con equilibrio."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "Honestidad dentro de un vínculo cálido. Di lo que necesitas, con suavidad y sin vueltas."
+        },
+        {
+          "card_id": "swords-03-three",
+          "text": "Claridad después del corazón roto: una pena que afina la mirada."
+        },
+        {
+          "card_id": "pentacles-09-nine",
+          "text": "Independencia en dos sentidos: de pensamiento y de recursos."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir la Reina de Espadas de la Reina de Copas y del Rey de Espadas?",
+      "paragraphs": [
+        "La Reina de Copas, según Waite, es como alguien que ve visiones en una copa (p. 200), y hoy se lee como compasión e intuición. Las dos reinas ven hondo: la de Copas se guía por lo que siente; la de Espadas, por lo que piensa.",
+        "El Rey de Espadas, escribe Waite, está sentado para juzgar (p. 226), y hoy representa autoridad y razón. La claridad de la Reina es personal y ganada a pulso; la del Rey es la de las reglas y las decisiones que otros deben seguir."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale la Reina de Espadas?",
+      "paragraphs": [
+        "¿Qué veo con claridad cuando dejo de desear que sea distinto?",
+        "¿Dónde necesito un límite y cómo lo diría?",
+        "¿Mi honestidad es clara o ya se volvió fría?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿La Reina de Espadas es una carta buena o mala?",
+      "a": "Buena, aunque no blanda. Trae mirada clara, sentido de lo justo y valor para hablar de frente. Su lado difícil aparece al revés, o cuando la claridad pierde calidez y se endurece. Su lección es quedarse con las dos cosas: mente aguda y corazón abierto."
+    },
+    {
+      "q": "¿La Reina de Espadas siempre es una mujer?",
+      "a": "No. El dibujo de 1909 muestra a una reina y Waite habla de ella en femenino (p. 228), pero la carta describe una forma de pensar que cualquiera puede tener: independiente, perceptiva, directa. Puede describir a un hombre, a una mujer o a ti, cuando la cabeza clara toma la palabra."
+    },
+    {
+      "q": "¿La Reina de Espadas significa soledad?",
+      "a": "No en el sentido de sentirse sin nadie. La independencia es uno de sus significados principales: elegir tu propia compañía un tiempo y apoyarte en ti. La lista antigua de Waite sí incluye la separación (p. 228), pero hoy la carta se lee más como autonomía que como aislamiento."
+    }
+  ],
+  "related": [
+    "swords-12-knight",
+    "swords-14-king",
+    "wands-13-queen",
+    "cups-13-queen",
+    "pentacles-13-queen"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-13-queen",
+      "text": "Reina de Copas"
+    },
+    {
+      "card_id": "swords-14-king",
+      "text": "Rey de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Widowhood, female sadness and embarrassment, absence, sterility, mourning, privation, separation. Reversed: Malice, bigotry, artifice, prudery, bale, deceit.",
+    "quote_lang": "en",
+    "pages": [
+      228
+    ],
+    "translation": "Viudez, tristeza y apuro femeninos, ausencia, esterilidad, luto, privación, separación. Al revés: malicia, intolerancia, artificio, mojigatería, desdicha, engaño.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        228
+      ],
+      "text": "her countenance is severe but chastened; it suggests familiarity with sorrow. It does not represent mercy"
+    },
+    {
+      "pages": [
+        228
+      ],
+      "text": "her sword notwithstanding, she is scarcely a symbol of power"
+    },
+    {
+      "pages": [
+        228
+      ],
+      "text": "Widowhood, female sadness and embarrassment, absence, sterility, mourning, privation, separation. Reversed: Malice, bigotry, artifice, prudery, bale, deceit."
+    },
+    {
+      "pages": [
+        200
+      ],
+      "text": "as one who sees visions in a cup"
+    },
+    {
+      "pages": [
+        226
+      ],
+      "text": "He sits in judgment"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 13.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_13.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        200,
+        226,
+        228
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

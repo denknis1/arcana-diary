@@ -1,0 +1,244 @@
+{
+  "schema": 2,
+  "card_id": "wands-02-two",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Two of Wands",
+    "in_sentence": "the Two of Wands"
+  },
+  "title": "Two of Wands Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Two of Wands upright: planning, vision, wider horizons; reversed: fear of the unknown. Love, work, advice, Waite's 1911 text. Ask your question.",
+  "h1": "Two of Wands Tarot Card Meaning",
+  "image_alt": "Two of Wands, 1909 Rider–Waite–Smith card: a man in a red cap and long cloak stands on a castle wall holding a small globe, a staff beside him, sea and hills beyond.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 2,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Two of Wands is about planning a bigger move: vision, choices and wider horizons seen from a safe base. Reversed, fear of the unknown or postponing keeps the plan on paper. Mostly positive, it backs ambition; the risk is staying put from habit. Yes is its answer: the man already holds a globe and looks outward.",
+  "keywords": {
+    "upright": [
+      "planning",
+      "vision",
+      "choices",
+      "wider horizons"
+    ],
+    "reversed": [
+      "fear of the unknown",
+      "playing it safe",
+      "postponing",
+      "lack of planning"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Two of Wands card?",
+      "paragraphs": [
+        "A man stands on a castle wall with a globe in one hand and a staff in the other. Waite's figure \"looks from a battlemented roof over sea and shore\" (p. 194); one staff rests on the battlement, and a second is fixed in a ring. Waite also asks the reader to notice \"the Rose and Cross and Lily\" on the left side (p. 194), without saying what they mean.",
+        "On the 1909 card the man, in a red cap and a long dark-red cloak, fills the middle of the picture and is seen in profile. The globe in his hand shows green and red patches. On the stone panel at the left, red roses and white lilies cross in an X. Beyond the wall lie water, green fields, a red-roofed house and gray mountains."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Two of Wands?",
+      "paragraphs": [
+        "Waite admits the two halves of his list cannot be reconciled: \"Between the alternative readings there is no marriage possible\" (p. 194). The first half is wealth and grandeur; the second is sadness and mortification, joined to words about the body that Arcana Diary does not read.",
+        "Waite reads the picture as \"a lord overlooking his dominion and alternately contemplating a globe\", which reminds him of \"the sadness of Alexander amidst the grandeur of this world's wealth\" (p. 194). Having much and still looking past it is close to how the card is read today."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Two of Wands mean upright?",
+      "paragraphs": [
+        "Planning is the core of the Two of Wands. You have a base, some security or success behind you, and now you are weighing what comes next. Vision runs ahead of action: the plan exists in your head or on paper, and the open question is how far you want to go.",
+        "The card often appears when a familiar life starts to feel small. A move, study in another city, a bigger role, a project that would take you out of your comfort zone: the choices are open, and the card favors making them on purpose rather than drifting into them.",
+        "What would you aim for if the wall in front of you were a starting line instead of a limit?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Two of Wands mean reversed?",
+      "paragraphs": [
+        "Upside down, the plan stalls. Fear of the unknown can make playing it safe look like wisdom, and postponing turns into a habit: next month, next year. Sometimes the trouble runs the other way, a lack of planning, with big wishes and no map for reaching them.",
+        "This reading is modern; the reversed words in Waite's list (p. 194), from surprise and wonder to trouble and fear, go in another direction. Test one small piece of the bigger plan in a low-risk way and see how it feels."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Two of Wands mean in love?",
+      "paragraphs": [
+        "From his wall the man looks past everything he already has, and in love the card asks a similar question: what do you want your love life to look like? Couples may be weighing a shared step, such as moving in, relocating or a long-term goal, and the card asks for honesty about it.",
+        "Without a partner, it can mark a time of deciding what you really want instead of taking what is nearest. Reversed, comfort may keep you somewhere you have outgrown, or worry about change may freeze an important conversation."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Two of Wands mean for work and money?",
+      "paragraphs": [
+        "Career plans are the strongest theme: a bigger role, work abroad, a new market, a choice between a secure job and a wider opportunity.",
+        "For money, the card means planning: long-term goals, a budget for something bigger, comparing options before committing. Reversed, it can mean a bigger step put off only out of fear of change, or a plan that has no numbers behind it yet."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Two of Wands?",
+      "paragraphs": [
+        "Write down where you want to be, then name the first small step that leads beyond your current walls. Look at a map or a photo of that place and say what draws you there."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Two of Wands a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Two of Wands as a person and as feelings",
+      "paragraphs": [
+        "When it stands for someone, the Two of Wands shows a planner with ambition: secure enough to think big, always looking past the present situation, sometimes a little restless or distant while deciding. As feelings, it stands for serious interest with an eye on the future: weighing a connection, imagining where it could lead, not yet acting on it. Reversed, the feeling is hesitation, interest held back by fear of change or by comfort with what is familiar."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Two of Wands with other cards",
+      "pairs": [
+        {
+          "card_id": "major-00-fool",
+          "text": "The planning is done; now comes the step off the wall."
+        },
+        {
+          "card_id": "pentacles-02-two",
+          "text": "Two plans and limited resources. Decide which one gets your energy first."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "A choice you keep at arm's length. Name the options plainly before you decide."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "Once the decision is made, plans start moving quickly."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Two of Wands or Three of Wands?",
+      "paragraphs": [
+        "The Three of Wands also shows a man facing the sea, but Waite places him at \"a cliff's edge\", watching \"ships passing over the sea\" (p. 192). Today it is read as expansion and progress, with efforts already under way. The Two stays on the castle roof with a plan in hand; the Three has stepped outside, and something has already set sail."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Two of Wands",
+      "paragraphs": [
+        "What would I plan if I trusted myself to carry it out?",
+        "What keeps me on familiar ground right now?",
+        "What is one small test of the bigger plan?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Two of Wands a good or bad card?",
+      "a": "Mostly good. It speaks of ambition, a secure base and the freedom to pick a wider path. The harder side is hesitation, when comfort or worry keeps a good plan waiting. Even then, the next step stays yours to choose."
+    },
+    {
+      "q": "What does the globe in the Two of Wands mean?",
+      "a": "Waite gives the globe no meaning of its own (p. 194). He reads the whole scene, a lord surveying his land and turning to the globe in his hand, and compares it to Alexander's sadness amid great wealth (p. 194). The modern meaning of planning and wider horizons comes from that scene as a whole."
+    },
+    {
+      "q": "Does the Two of Wands mean travel or moving away?",
+      "a": "It can. A wish to go further, travel, study elsewhere or relocate is a common modern reading of this card. More often it is about the decision itself: whether a move is worth it and how to prepare. The card prefers a plan to an impulsive jump."
+    }
+  ],
+  "related": [
+    "wands-01-ace",
+    "wands-03-three",
+    "cups-02-two",
+    "swords-02-two",
+    "pentacles-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-03-three",
+      "text": "Three of Wands"
+    }
+  ],
+  "waite": {
+    "quote": "On the one hand, riches, fortune, magnificence; on the other, physical suffering, disease, chagrin, sadness, mortification … Reversed: Surprise, wonder, enchantment, emotion, trouble, fear.",
+    "quote_lang": "en",
+    "pages": [
+      194
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        194
+      ],
+      "text": "A tall man looks from a battlemented roof over sea and shore"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "The Rose and Cross and Lily should be noticed on the left side"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "Between the alternative readings there is no marriage possible"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "here is a lord overlooking his dominion and alternately contemplating a globe; it looks like the malady, the mortification, the sadness of Alexander amidst the grandeur of this world's wealth"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "Reversed: Surprise, wonder, enchantment, emotion, trouble, fear"
+    },
+    {
+      "pages": [
+        192
+      ],
+      "text": "looking from a cliff's edge at ships passing over the sea"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 02.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_02.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        192,
+        194
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "schema": 2,
+  "card_id": "swords-10-ten",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Diez de Espadas",
+    "in_sentence": "el Diez de Espadas",
+    "de": "del Diez de Espadas"
+  },
+  "title": "Diez de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Diez de Espadas al derecho y al revés (carta invertida): tocar fondo, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Diez de Espadas en el tarot: significado",
+  "image_alt": "Diez de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: una figura tendida boca abajo junto al agua, con diez espadas clavadas en la espalda, bajo un cielo negro con una franja amarilla.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 10,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Diez de Espadas habla de tocar fondo: un final doloroso, el cansancio de una lucha larga, el cierre de algo que ya no se sostiene. Al revés, puede ser la recuperación lenta o resistirse al final. Pesa, pero al fondo clarea. A una pregunta cerrada responde que no: ese camino ya llegó a su punto más bajo.",
+  "keywords": {
+    "upright": [
+      "fin de un ciclo",
+      "tocar fondo",
+      "cierre",
+      "nuevo amanecer"
+    ],
+    "reversed": [
+      "levantarse",
+      "recuperación",
+      "resistirse al final",
+      "pensar lo peor"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Diez de Espadas?",
+      "paragraphs": [
+        "Una figura yace boca abajo a la orilla del agua, con diez espadas clavadas en la espalda. Waite la describe en una sola frase: una figura tendida, atravesada por todas las espadas de la carta (p. 234). Las espadas son lo más grande del dibujo: una hilera de hojas rectas que ocupa casi todo el espacio.",
+        "En la carta de 1909 el cielo es completamente negro, pero en el horizonte se abre una franja amarilla sobre un lago azul pálido y unas colinas bajas. Una tela roja cubre las piernas de la figura y arriba se lee el X. Waite no comenta esa luz (p. 234); verla como amanecer es una lectura moderna, no de Waite."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Diez de Espadas?",
+      "paragraphs": [
+        "La lista de Waite al derecho nombra la pena tal cual: dolor, aflicción, lágrimas, tristeza, desolación y todo lo que el propio dibujo sugiere (p. 234). Al revés propone algo poco común: ventajas y favores que llegan pero no duran, junto con algo de poder y autoridad (p. 234). Esa mejoría pasajera es de Waite; la lectura moderna al revés habla, en cambio, de recuperación."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Diez de Espadas al derecho?",
+      "paragraphs": [
+        "Al derecho, el Diez de Espadas marca el fin de un ciclo doloroso: una situación, una relación o un plan que llegó a su límite y ya no aguanta más. Hoy también se lee como tocar fondo, la sensación de que ya no se puede caer más bajo, y como el agotamiento de cargar demasiado tiempo con algo. La traición también forma parte de su significado: el dolor de que te falle alguien de confianza.",
+        "Dicho con calma, es el punto más bajo de una etapa difícil, no un castigo. Cuando algo de verdad terminó, ya no hace falta sostenerlo, y eso también alivia. Detrás de las espadas el cielo se pone amarillo: la carta deja a la vista un nuevo amanecer."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Diez de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, la carta puede hablar de levantarse poco a poco: una recuperación lenta después de una etapa muy dura. También puede señalar resistirse al final, aferrarse a algo que ya terminó, o pensar lo peor y ver todo más oscuro de lo que es. Para Waite, al revés eran ganancias y favores que no duran (p. 234); la recuperación es una lectura moderna. Sea cual sea tu caso, busca una señal pequeña de que el día vuelve a empezar."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Diez de Espadas en el amor?",
+      "paragraphs": [
+        "Una relación que llegó a su fin, una ruptura dolorosa o una manera de quererse que ya no funciona: eso trae esta carta a una pregunta de amor. Puede cargar también la herida de una traición. No te pide aguantar más; te da permiso de soltar lo que ya se terminó.",
+        "En pareja, a veces lo que se cierra no es el vínculo sino una costumbre: pelear por lo mismo, arrastrar viejos reproches. Sin pareja, puede señalar un desamor antiguo que por fin puedes dejar atrás. Al revés, la herida empieza a sanar despacio, o cuesta aceptar un final."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Diez de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Diez espadas y una figura en el suelo: en el trabajo puede ser un proyecto o un empleo que termina, el desgaste de cargar con demasiado o la sensación de que alguien del equipo te falló. Conviene cerrar bien lo que ya acabó en lugar de remendarlo otra vez.",
+        "El bolsillo también puede tocar fondo: una pérdida, una deuda que pesa o un presupuesto que ya no se estira más."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Diez de Espadas como consejo?",
+      "paragraphs": [
+        "Elige un pensamiento doloroso que repites y contéstale con un dato amable y cierto sobre tu presente. Luego deja que el final sea final: no más rescates para lo que ya se acabó. Descansar también es empezar a levantarse."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Diez de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Diez de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Al borde de sus fuerzas está quien encarna el Diez de Espadas: con una herida reciente y sin ganas de seguir en una situación que le quitó toda la energía. Si eres tú, marca el momento de parar y recuperarte. Al preguntar por sentimientos, la carta significa tradicionalmente dolor y agotamiento: la herida de una traición, el «ya no puedo más», las ganas de que una etapa dura se acabe. Al revés, son sentimientos de recuperación lenta y de esperanza con cautela, o de aferrarse a una herida vieja y repasarla sin parar."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Diez de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "swords-04-four",
+          "text": "Después del punto más bajo, descanso. Reponerse empieza por hacer menos, no más."
+        },
+        {
+          "card_id": "major-13-death",
+          "text": "Una etapa se cierra del todo. Déjala terminar para hacer espacio a lo que sigue."
+        },
+        {
+          "card_id": "major-17-star",
+          "text": "Tocar fondo y, después, esperanza: el amanecer amarillo del Diez se abre a una calma nueva."
+        },
+        {
+          "card_id": "swords-06-six",
+          "text": "Dejar atrás lo que terminó y avanzar, despacio, hacia un lugar más tranquilo."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Diez de Espadas del Nueve de Espadas y del Diez de Bastos?",
+      "paragraphs": [
+        "El Nueve de Espadas es, para Waite, una carta de desolación total (p. 236); hoy se lee como la preocupación que no deja dormir. El Nueve es la angustia por lo que podría pasar; el Diez es el final que ya llegó, con el amanecer detrás.",
+        "El Diez de Bastos muestra, según Waite, a un hombre oprimido por el peso de los diez bastones que carga (p. 178): una carga que todavía se lleva a cuestas. El Diez de Espadas llega cuando esa carga por fin se suelta."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Diez de Espadas?",
+      "paragraphs": [
+        "¿Qué cosa ya terminó y sigo intentando sostener?",
+        "¿Qué pensamiento doloroso ya repetí lo suficiente?",
+        "¿Qué señal pequeña me dice que empieza un día nuevo?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Diez de Espadas es una carta buena o mala?",
+      "a": "Es de las más duras de la baraja, pero no es un mal augurio. Marca un final doloroso y el punto más bajo de una época difícil, y eso también quiere decir que más abajo ya no hay. Hay alivio en eso: cuando algo de verdad se acaba, reponerse se vuelve posible."
+    },
+    {
+      "q": "¿El Diez de Espadas significa muerte?",
+      "a": "No. En Arcana Diary habla del final de una situación dolorosa, nunca del final de una vida. La lista de Waite menciona dolor, lágrimas y tristeza, y él mismo aclara que no es en especial una carta de muerte violenta (p. 234). Hoy se lee como tocar fondo y como un capítulo cerrado, con luz asomando en el borde del cielo."
+    },
+    {
+      "q": "¿El Diez de Espadas habla de traición?",
+      "a": "Puede. Sentir una puñalada por la espalda, en sentido figurado, es uno de sus significados modernos más comunes. Aun así, la carta no señala a nadie ni dice de quién es la culpa; muchas veces solo marca el momento en que una situación desgastante se quedó sin cuerda."
+    }
+  ],
+  "related": [
+    "swords-09-nine",
+    "swords-11-page",
+    "wands-10-ten",
+    "cups-10-ten",
+    "pentacles-10-ten"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-09-nine",
+      "text": "Nueve de Espadas"
+    },
+    {
+      "card_id": "wands-10-ten",
+      "text": "Diez de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "Pain, affliction, tears, sadness, desolation … Reversed: Advantage, profit, success, favour, but none of these are permanent; also power and authority.",
+    "quote_lang": "en",
+    "pages": [
+      234
+    ],
+    "translation": "Dolor, aflicción, lágrimas, tristeza, desolación … Al revés: ventaja, ganancia, éxito, favor, pero nada de esto es permanente; también poder y autoridad.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        234
+      ],
+      "text": "A prostrate figure, pierced by all the swords belonging to the card"
+    },
+    {
+      "pages": [
+        234
+      ],
+      "text": "Whatsoever is intimated by the design; also pain, affliction, tears, sadness, desolation"
+    },
+    {
+      "pages": [
+        234
+      ],
+      "text": "Reversed: Advantage, profit, success, favour, but none of these are permanent; also power and authority"
+    },
+    {
+      "pages": [
+        236
+      ],
+      "text": "It is a card of utter desolation"
+    },
+    {
+      "pages": [
+        178
+      ],
+      "text": "A man oppressed by the weight of the ten staves which he is carrying"
+    },
+    {
+      "pages": [
+        234
+      ],
+      "text": "It is not especially a card of violent death"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 10.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_10.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        178,
+        234,
+        236
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

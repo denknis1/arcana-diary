@@ -1,0 +1,268 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-01-ace",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "As de Oros",
+    "in_sentence": "el As de Oros",
+    "de": "del As de Oros"
+  },
+  "title": "As de Oros en el tarot: significado, invertida y amor",
+  "description": "Qué significa el As de Oros al derecho y al revés (carta invertida): oportunidad, amor, trabajo, dinero y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "As de Oros en el tarot: significado",
+  "image_alt": "As de Oros, carta de 1909 de la baraja Rider-Waite-Smith: una mano abierta sale de una nube con una gran moneda dorada sobre un jardín con un arco de seto y montañas azules.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 1,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El As de Oros es un nuevo comienzo material: oportunidad, prosperidad y algo concreto que construir, sobre todo en trabajo y dinero. Al revés, la oportunidad se atora o se escapa por falta de plan. Es de las cartas más favorables y pide un primer paso práctico. ¿La respuesta? Sí: la moneda ya está ofrecida, al alcance de la mano.",
+  "keywords": {
+    "upright": [
+      "oportunidad",
+      "prosperidad",
+      "estabilidad",
+      "nuevo comienzo material"
+    ],
+    "reversed": [
+      "oportunidad perdida",
+      "falta de plan",
+      "demora",
+      "miedo a la escasez"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del As de Oros?",
+      "paragraphs": [
+        "Lo más grande de la carta es una moneda dorada con una estrella de cinco puntas. Waite la describe en una línea: una mano que sale, como de costumbre, de una nube y sostiene en alto un pentáculo (p. 280). De la estrella, Waite dice para todo el palo que es un pentagrama que representa la correspondencia de los cuatro elementos en la naturaleza humana (p. 254).",
+        "En la carta de 1909 la mano está abierta, con la palma hacia arriba, y la moneda descansa sobre los dedos. Abajo hay un jardín: flores blancas altas a la izquierda, un seto con puntos rojos y un arco abierto en el seto, por donde un camino amarillo pálido lleva hacia unas montañas azules."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el As de Oros?",
+      "paragraphs": [
+        "La lista al derecho de Waite suena a pura buena suerte: satisfacción, dicha y oro (p. 280). Al revés, Waite conserva el dinero, pero lo vuelve amargo: el lado malo de la riqueza (p. 280). Waite añade que, de un modo u otro, la carta muestra prosperidad y comodidad material, y que si eso le sirve o no a quien lo tiene depende de cómo caiga la carta (p. 280).",
+        "La lista de significados adicionales de Waite llama a este As la más favorable de todas las cartas (p. 293)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el As de Oros al derecho?",
+      "paragraphs": [
+        "La oportunidad es el centro de esta carta: una oferta de trabajo, un primer cliente, un curso que lleva a un empleo, un proyecto que por fin pisa suelo firme. La prosperidad crece desde ahí poco a poco, como un jardín; por eso el As se lee como semilla y no como cosecha.",
+        "También habla de estabilidad y de tener los pies en la tierra. Favorece pasos sencillos: un primer presupuesto, un horario que sí puedas cumplir, algo hecho hoy en lugar de un gran plan para algún día. Pregúntate cuál sería el comienzo más concreto y si tienes ganas de cuidarlo."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el As de Oros al revés?",
+      "paragraphs": [
+        "Al revés, la carta puede hablar de una oportunidad perdida, o de una que sigue ahí pero no se toma por falta de plan: mucha ilusión y pocas cuentas. También puede ser demora: una oferta que no avanza, un pago que tarda, un inicio que se sigue posponiendo. O el miedo a la escasez, que hace ver arriesgado cualquier primer paso.",
+        "Los significados al revés de Waite hablan de riqueza que hace daño, no de riqueza que falta (p. 280); la oportunidad perdida es una lectura moderna. En los dos casos el remedio se parece: afirma el terreno y empieza en pequeño."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el As de Oros en el amor?",
+      "paragraphs": [
+        "Es un amor práctico y cálido. Para una pareja puede marcar una etapa firme: vivir bajo el mismo techo, unas cuentas compartidas, la decisión de construir algo que dure.",
+        "Sin pareja, la carta puede hablar de un comienzo nacido de la vida diaria: conocer a alguien en el trabajo, en un curso o en la rutina, sin ninguna prisa. Al revés, la semilla está, pero nadie la siembra: interés sin seguimiento, o el trabajo y el dinero comiéndose el tiempo para el amor."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el As de Oros en el trabajo y el dinero?",
+      "paragraphs": [
+        "Pocas cartas son tan alentadoras para la vida laboral: un empleo nuevo, un ascenso, un negocio con bases firmes, un oficio que empieza a dejar dinero. Prosperidad, en sentido económico, es una nueva fuente de ingresos: un aumento, un contrato, ahorros que empiezan a juntarse. Al revés, habla de planes de dinero que se atoran, de una oportunidad que se deja pasar o de gastos que corren más rápido que los ingresos."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el As de Oros como consejo?",
+      "paragraphs": [
+        "Da un paso práctico hacia lo que quieres construir: manda la solicitud, agenda la reunión, escribe la primera página. Si te ayuda, siembra una semilla de verdad o un esqueje y ponlo donde lo veas; te recordará que lo sólido crece a su propio ritmo."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El As de Oros es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el As de Oros como persona y como sentimiento?",
+      "paragraphs": [
+        "Con la moneda ofrecida sobre la palma, el As de Oros es alguien confiable y con los pies en la tierra: cumple lo que promete, le gusta tener un plan y demuestra cariño con ayuda concreta. En cuestiones del corazón, la carta habla de un interés serio y constante: atracción que mira hacia el futuro y deseo de construir algo estable y seguro. Al revés, el interés existe pero avanza con cautela, frenado por dudas sobre la seguridad, o puesto más en lo práctico que en la cercanía."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el As de Oros junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-01-magician",
+          "text": "El talento se encuentra con la oportunidad: tienes los recursos y sabes cómo usarlos."
+        },
+        {
+          "card_id": "pentacles-08-eight",
+          "text": "Una puerta nueva y después práctica paciente; el comienzo rinde gracias al trabajo constante."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "Cariño con base firme: un afecto que quiere construir algo en común."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Una ganancia nueva y las ganas de protegerla. Guarda una parte, pero deja espacio para crecer."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el As de Oros del As de Bastos y del Diez de Oros?",
+      "paragraphs": [
+        "En el As de Bastos de Waite también sale una mano de una nube, pero empuña un bastón grueso (p. 196); hoy se lee como chispa de inspiración y energía nueva. Ese As es el impulso de empezar; el As de Oros, la oportunidad concreta de construir.",
+        "Según Waite, el Diez de Oros muestra a un hombre, una mujer y un niño bajo un arco que da entrada a una casa, y su lista empieza con ganancia, riquezas y asuntos de familia (p. 262). El Diez es la riqueza ya construida y compartida; el As, su primera semilla."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el As de Oros?",
+      "paragraphs": [
+        "¿Qué quiero construir, en una sola frase concreta?",
+        "¿Cuál es el paso más pequeño que puedo dar hoy?",
+        "¿Qué necesito para que el terreno esté lo bastante firme para empezar?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El As de Oros es una carta buena o mala?",
+      "a": "Buena, y de las más bienvenidas en preguntas prácticas. Favorece comienzos con sustancia detrás. Lo que pide es esfuerzo, porque ninguna semilla se siembra sola. Al revés tampoco es mala señal: muestra una oportunidad que necesita un plan más firme antes de crecer."
+    },
+    {
+      "q": "¿El As de Oros significa dinero?",
+      "a": "Muchas veces, sí: hoy se lee como la carta de dinero más clara entre los cuatro Ases, con ingresos y una base material mejor. Eso sí, el propio Waite anotó que las cartas de este palo no tratan especialmente de dinero (p. 254). La carta da un significado, no una cifra con la que contar."
+    },
+    {
+      "q": "¿El As de Oros significa un trabajo nuevo?",
+      "a": "Puede ser. Un puesto nuevo, un primer cliente, una capacitación que lleva a un empleo o un pequeño negocio que toma forma son lecturas típicas. Describe una puerta con suelo firme, no el resultado de una solicitud concreta."
+    }
+  ],
+  "related": [
+    "pentacles-02-two",
+    "wands-01-ace",
+    "cups-01-ace",
+    "swords-01-ace"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-01-ace",
+      "text": "As de Bastos"
+    },
+    {
+      "card_id": "pentacles-10-ten",
+      "text": "Diez de Oros"
+    }
+  ],
+  "waite": {
+    "quote": "Perfect contentment, felicity, ecstasy; also speedy intelligence; gold. Reversed: The evil side of wealth, bad intelligence; also great riches.",
+    "quote_lang": "en",
+    "pages": [
+      280
+    ],
+    "translation": "Satisfacción perfecta, dicha, éxtasis; también noticias rápidas; oro. Al revés: el lado malo de la riqueza, malas noticias; también grandes riquezas.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        280
+      ],
+      "text": "A hand—issuing, as usual, from a cloud—holds up a pentacle"
+    },
+    {
+      "pages": [
+        254
+      ],
+      "text": "typifying the correspondence of the four elements in human nature"
+    },
+    {
+      "pages": [
+        280
+      ],
+      "text": "Perfect contentment, felicity, ecstasy; also speedy intelligence; gold. Reversed: The evil side of wealth"
+    },
+    {
+      "pages": [
+        280
+      ],
+      "text": "In any case it shews prosperity, comfortable material conditions, but whether these are of advantage to the possessor will depend on whether the card is reversed or not"
+    },
+    {
+      "pages": [
+        293
+      ],
+      "text": "Ace.—The most favourable of all cards"
+    },
+    {
+      "pages": [
+        254
+      ],
+      "text": "because the cards do not happen to deal especially with questions of money"
+    },
+    {
+      "pages": [
+        196
+      ],
+      "text": "A hand issuing from a cloud grasps a stout wand or club"
+    },
+    {
+      "pages": [
+        262
+      ],
+      "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child"
+    },
+    {
+      "pages": [
+        262
+      ],
+      "text": "Gain, riches; family matters"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 01.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_01.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        196,
+        254,
+        262,
+        280,
+        293
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

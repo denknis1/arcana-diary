@@ -1,0 +1,248 @@
+{
+  "schema": 2,
+  "card_id": "cups-09-nine",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Nine of Cups",
+    "in_sentence": "the Nine of Cups"
+  },
+  "title": "Nine of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Nine of Cups upright: contentment, a wish within reach; reversed: hollow satisfaction. Love, work, advice and Waite's 1911 text. Ask your question.",
+  "h1": "Nine of Cups Tarot Card Meaning",
+  "image_alt": "Nine of Cups, 1909 Rider–Waite–Smith card: a smiling man in a red hat sits with arms crossed before nine gold cups on a curved, blue-draped counter.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 9,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "Often called the wish card, the Nine of Cups stands for contentment, satisfaction and gratitude for what is yours. Reversed, a wish can feel less fulfilling than hoped, or pleasure slides into excess. Among the happiest cards in the deck, it asks only for honest enjoyment. Nine full cups behind a pleased host make the upright answer yes.",
+  "keywords": {
+    "upright": [
+      "contentment",
+      "wishes",
+      "satisfaction",
+      "gratitude"
+    ],
+    "reversed": [
+      "unmet wishes",
+      "hollow satisfaction",
+      "excess",
+      "smugness"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Nine of Cups card?",
+      "paragraphs": [
+        "A man sits on a wooden bench with his arms folded and a pleased smile, and behind him nine cups stand in a row along a curved counter. Waite describes him as one who \"has feasted to his heart's content\", with wine set out on \"the arched counter behind him\" (p. 208).",
+        "On the 1909 card the background is bright yellow, the cups are gold, and a blue cloth hangs from the counter like a curtain; his hat is red with a plume, and IX is printed at the top. The arc of cups above his head is the largest shape in the picture. Waite adds that \"the picture offers the material side only, but there are other aspects\" (p. 208)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Nine of Cups?",
+      "paragraphs": [
+        "Waite's list for this card is almost all good news: concord, contentment, victory, success and satisfaction for the person asking (p. 208). Even his reversed side is kind (truth, loyalty and liberty), though Waite admits that the readings vary and include mistakes and imperfections (p. 208).",
+        "The reversed meanings used on Arcana Diary, a wish that disappoints or pleasure that turns into excess, are a modern reading, not Waite's."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Nine of Cups mean upright?",
+      "paragraphs": [
+        "Contentment is the heart of this card: having enough, and letting yourself enjoy it. The man in the picture looks as if what he wanted has arrived, which is why the Nine of Cups is known as the wish card. It can appear when something you hoped for is within reach or already here, and the only task left is to be glad of it.",
+        "The satisfaction it describes is personal: comfort, pleasure, a sense of reward after effort. Gratitude belongs here too, the habit of noticing what is already on the table. Which of your wishes matters most right now, and could you say it plainly, without apologizing?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Nine of Cups mean reversed?",
+      "paragraphs": [
+        "Upside down, the cups look fuller than they feel. The reversed Nine of Cups can point to unmet wishes, or to a wish that came true and still left you flat. It can also mean hollow satisfaction that rests on outer things alone, or excess: more of a good thing than actually feels good.",
+        "Sometimes the reversed card shows smugness: being so pleased with yourself that you stop noticing what is missing, or keeping up a contented face for others. It asks a simple question: what would truly satisfy you, as opposed to what is supposed to?"
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Nine of Cups mean in love?",
+      "paragraphs": [
+        "Enjoying each other, feeling at ease, getting from a bond what you hoped for: in love, the Nine of Cups is one of the warmest cards. Between partners it describes a happy, easy stretch; on your own, it describes being at peace with yourself and clear about what you wish for in a partner.",
+        "Reversed, a relationship can look fine from outside and still leave something wanting, or one wish may crowd out everything else. Be honest about what you long for, and allow yourself to want it."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Nine of Cups mean for work and money?",
+      "paragraphs": [
+        "A goal reached, praise earned, a job you are glad to have: work under this card feels rewarding. For money, the Nine of Cups means comfort and having enough to enjoy life, with room for a treat. Reversed, it can mean spending to fill a gap that money does not reach."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Nine of Cups?",
+      "paragraphs": [
+        "Write one wish down in a single sentence and read it aloud once, without explaining or apologizing. Then name three things you already enjoy. Wanting more and feeling grateful for what is here can live side by side."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Nine of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Nine of Cups as a person and as feelings",
+      "paragraphs": [
+        "Arms folded before his row of cups, the Nine of Cups is someone at ease with life: generous, fond of good food and good company, pleased with what they have, now and then a little self-satisfied. As feelings, it stands for contentment and happiness with the connection, the sense that this bond is what was wished for and is enjoyable just as it is. Reversed, the feeling goes flat: satisfaction that does not quite last, interest that rests on pleasure more than on depth, or a quiet sense that the ideal is not enough."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Nine of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "major-19-sun",
+          "text": "Contentment that shows on your face. A bright, open time to enjoy what you have."
+        },
+        {
+          "card_id": "cups-04-four",
+          "text": "Plenty on the table and little appetite for it. Look again at what is already yours."
+        },
+        {
+          "card_id": "major-17-star",
+          "text": "A wish held with calm hope; keep it in view and let it guide small steps."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Personal happiness spilling over into friendship. A good moment to celebrate together."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Nine of Cups, Ten of Cups or Nine of Pentacles?",
+      "paragraphs": [
+        "In Waite's Ten of Cups, a rainbow of cups is watched \"in wonder and ecstacy\" by a man and woman while two children dance nearby (p. 206). That card is read today as shared happiness and family; the Nine is your own satisfaction, enjoyed on your own terms.",
+        "Waite's Nine of Pentacles shows a woman \"with a bird upon her wrist\" among grapevines (p. 264), read today as independence and comfort earned by your own work. Both are contented cards: the Nine of Cups is about pleasure and wishes, the Pentacles card about self-reliance."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Nine of Cups",
+      "paragraphs": [
+        "What do I wish for right now, in one sentence?",
+        "What am I already enjoying that I tend to overlook?",
+        "Is this pleasure filling me up, or only filling time?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Nine of Cups a good or bad card?",
+      "a": "Good, and one of the most cheerful of the Minor Arcana. It stands for contentment and a wish within reach. Its shadow, seen mostly when the card is reversed, is pleasure that becomes too much or a smile kept up for show."
+    },
+    {
+      "q": "Why is the Nine of Cups called the wish card?",
+      "a": "It is the card's popular modern name: readers treat it as the sign of a wish close to coming true. The picture suits the name, with its full row of cups and a satisfied grin. Waite never uses that name; his meanings start with harmony and contentment and go on to success (p. 208)."
+    },
+    {
+      "q": "Does the Nine of Cups mean my wish will come true?",
+      "a": "Not as a promise. The card describes how it feels when a wish is close and life feels full, not a fixed outcome. Use it to name clearly what you want, and to notice how much of it is already in place."
+    }
+  ],
+  "related": [
+    "cups-08-eight",
+    "cups-10-ten",
+    "wands-09-nine",
+    "swords-09-nine",
+    "pentacles-09-nine"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-10-ten",
+      "text": "Ten of Cups"
+    },
+    {
+      "card_id": "pentacles-09-nine",
+      "text": "Nine of Pentacles"
+    }
+  ],
+  "waite": {
+    "quote": "Concord, contentment … also victory, success, advantage; satisfaction for the Querent … Reversed: Truth, loyalty, liberty; but the readings vary and include mistakes, imperfections, etc.",
+    "quote_lang": "en",
+    "pages": [
+      208
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        208
+      ],
+      "text": "A goodly personage has feasted to his heart's content, and abundant refreshment of wine is on the arched counter behind him"
+    },
+    {
+      "pages": [
+        208
+      ],
+      "text": "The picture offers the material side only, but there are other aspects"
+    },
+    {
+      "pages": [
+        208
+      ],
+      "text": "Concord, contentment, physical bien-être; also victory, success, advantage; satisfaction for the Querent or person for whom the consultation is made. Reversed: Truth, loyalty, liberty; but the readings vary and include mistakes, imperfections, etc."
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "it is contemplated in wonder and ecstacy by a man and woman below"
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "The two children dancing near them"
+    },
+    {
+      "pages": [
+        264
+      ],
+      "text": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 09.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_09.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        206,
+        208,
+        264
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "schema": 2,
+  "card_id": "wands-06-six",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Six of Wands",
+    "in_sentence": "the Six of Wands"
+  },
+  "title": "Six of Wands Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Six of Wands upright: success, recognition, confidence; reversed: unseen effort, self-doubt. Love, work, advice and Waite's 1911 words. Ask your question.",
+  "h1": "Six of Wands Tarot Card Meaning",
+  "image_alt": "Six of Wands, 1909 Rider–Waite–Smith card: a rider in a laurel wreath on a white horse holds a staff crowned with a wreath, with people carrying staves beside him.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 6,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Six of Wands stands for success, public recognition and the confidence that comes with being seen. Reversed, it can mean effort that goes unnoticed, self-doubt or leaning on applause. It is an encouraging card, though a win can tip into pride. A laurel crown on the rider's staff makes the upright answer yes.",
+  "keywords": {
+    "upright": [
+      "recognition",
+      "success",
+      "confidence",
+      "progress"
+    ],
+    "reversed": [
+      "unseen effort",
+      "need for approval",
+      "self-doubt",
+      "fall from grace"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Six of Wands card?",
+      "paragraphs": [
+        "A rider in a laurel wreath carries a staff topped with a second wreath, and people on foot walk beside him. Waite's line is short: \"A laurelled horseman bears one staff adorned with a laurel crown; footmen with staves are at his side\" (p. 186). Horse and rider fill most of the card, and the wreath on the staff stands out against the sky.",
+        "On the 1909 card the horse is white and wears a long green cloth that falls almost to the ground; the rider's cloak is dark red, and a red ribbon ties the wreath to his staff. The five other staves rise from the crowd at the left and behind the horse's head, and VI is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Six of Wands?",
+      "paragraphs": [
+        "Waite says the picture was \"so designed that it can cover several significations\" (p. 186): a victory, and also great news of the kind a royal messenger might deliver, or a hope that finally comes true.",
+        "Waite's reversed words are blunt: fear of an enemy at the gate, and betrayal from inside (p. 186). Arcana Diary does not read the reversed card that way. In a second list Waite even gives the reversed card a hopeful line, \"fulfilment of deferred hope\" (p. 288)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Six of Wands mean upright?",
+      "paragraphs": [
+        "Success that other people can see: a project lands, an exam goes well, an effort gets praised in public. The Six of Wands is the card of recognition, and of the quiet confidence that grows when your work is noticed.",
+        "It marks progress rather than an ending. The rider is still on his way, and the win carries you into the next step instead of closing the story. Enjoy the moment, then keep going.",
+        "Accept credit where it is due. If praise makes you shrink, ask what it would take to simply say thank you."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Six of Wands mean reversed?",
+      "paragraphs": [
+        "When the card is upside down, the applause is missing or late: unseen effort, work that nobody mentions, a result credited to someone else. It can also show a need for approval, when your sense of worth rises and falls with other people's opinions.",
+        "Self-doubt belongs here too, and so does a fall from grace: pride that runs ahead of the work and trips over itself. Waite's reversed list includes fear and an indefinite delay (p. 186); unseen effort and self-doubt are modern meanings, not his. Remind yourself what you are proud of, whether or not anyone is cheering yet."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Six of Wands mean in love?",
+      "paragraphs": [
+        "Pride in each other is the love meaning of the Six of Wands: a relationship you are happy to show, a partner you admire, a moment when your bond is celebrated by the people around you. Feeling sure of your own worth shapes the choices you make.",
+        "While dating, this is the card of walking in with confidence and letting yourself be appreciated rather than auditioning for approval.",
+        "Reversed, it may show insecurity: comparing your relationship with other people's, or needing constant reassurance that things are fine. What would you still be proud of if nobody was watching?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Six of Wands mean for work and money?",
+      "paragraphs": [
+        "Promotion, praise from a manager, a pitch that wins, a strong review: few cards are more welcome in a career question. It describes recognition for work already done, so let it fuel what comes next.",
+        "For money, the Six of Wands means reward for effort: income that reflects your work, a payoff from a good result, finances moving in the right direction."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Six of Wands?",
+      "paragraphs": [
+        "Tell someone about one thing you did well this week, without playing it down. Then thank the people who helped you get there. Sharing a win honestly builds confidence; hiding it out of modesty helps nobody."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Six of Wands a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Six of Wands as a person and as feelings",
+      "paragraphs": [
+        "The person of the Six of Wands is confident and admired, someone others look up to and like to follow, who does not mind a little applause. As feelings, the card stands for admiration and pride: being proud of the connection, wanting to show it, feeling good about where things stand. Reversed, those feelings turn uncertain: a need for reassurance, worry about how the bond looks from outside, or pride that gets in the way of closeness."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Six of Wands with other cards",
+      "pairs": [
+        {
+          "card_id": "wands-05-five",
+          "text": "Competition first, recognition after: the struggle was worth it."
+        },
+        {
+          "card_id": "wands-07-seven",
+          "text": "A success that now needs defending. Stay steady and keep your ground."
+        },
+        {
+          "card_id": "major-19-sun",
+          "text": "Joy and visible success together, one of the brightest pairs."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "A partnership you are proud to show the world."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Six of Wands or Four of Wands?",
+      "paragraphs": [
+        "Waite's Four of Wands shows \"a great garland suspended\" from four staves and \"two female figures\" lifting flowers (p. 190); today it is read as celebration, home and community. The Six is one person's win and public recognition, while the Four is a shared celebration where nobody stands in the spotlight."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Six of Wands",
+      "paragraphs": [
+        "What have I done recently that deserves recognition?",
+        "Do I let myself accept praise, or do I explain it away?",
+        "How much of my confidence depends on other people's applause?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Six of Wands a good or bad card?",
+      "a": "Good, in most readings. Success and recognition make it one of the most encouraging cards for work or personal goals. Its shadow is pride, or caring more about applause than about the work itself. Reversed, it speaks of praise that has not come, which is frustrating but not a bad omen."
+    },
+    {
+      "q": "Does the Six of Wands mean I will win?",
+      "a": "No card promises a result. This one describes what success looks like: effort that is noticed and the self-belief that grows from it. It is encouraging for a question about a goal, but the outcome still depends on the steps you take and on choices other people make."
+    },
+    {
+      "q": "Why is the Six of Wands linked with news?",
+      "a": "Because Waite gave it that meaning. Besides victory, he read the card as \"great news, such as might be carried in state by the King's courier\" (p. 186). Modern readings keep the idea mostly as good news about a result you were waiting for."
+    }
+  ],
+  "related": [
+    "wands-05-five",
+    "wands-07-seven",
+    "cups-06-six",
+    "swords-06-six",
+    "pentacles-06-six"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-04-four",
+      "text": "Four of Wands"
+    }
+  ],
+  "waite": {
+    "quote": "A victor triumphing, but it is also great news … expectation crowned with its own desire … Reversed: Apprehension, fear … treachery, disloyalty … also indefinite delay.",
+    "quote_lang": "en",
+    "pages": [
+      186
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        186
+      ],
+      "text": "A laurelled horseman bears one staff adorned with a laurel crown; footmen with staves are at his side."
+    },
+    {
+      "pages": [
+        186
+      ],
+      "text": "The card has been so designed that it can cover several significations; on the surface, it is a victor triumphing, but it is also great news, such as might be carried in state by the King's courier; it is expectation crowned with its own desire, the crown of hope"
+    },
+    {
+      "pages": [
+        186
+      ],
+      "text": "Reversed: Apprehension, fear, as of a victorious enemy at the gate; treachery, disloyalty, as of gates being opened to the enemy; also indefinite delay."
+    },
+    {
+      "pages": [
+        288
+      ],
+      "text": "Six.—Servants may lose the confidence of their masters; a young lady may be betrayed by a friend. Reversed: Fulfilment of deferred hope."
+    },
+    {
+      "pages": [
+        190
+      ],
+      "text": "From the four great staves planted in the foreground there is a great garland suspended; two female figures uplift nose-gays"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 06.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_06.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        186,
+        190,
+        288
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

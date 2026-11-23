@@ -1,0 +1,251 @@
+{
+  "schema": 2,
+  "card_id": "swords-02-two",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Two of Swords",
+    "in_sentence": "the Two of Swords"
+  },
+  "title": "Two of Swords Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Two of Swords upright: indecision, stalemate, avoidance; reversed: information overload. Love, work, advice, Waite's 1911 text and the 1909 card.",
+  "h1": "Two of Swords Tarot Card Meaning",
+  "image_alt": "Two of Swords, 1909 Rider–Waite–Smith card: a blindfolded woman in white sits on a stone bench, arms crossed, two swords rising over her shoulders, the sea and a crescent moon behind.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 2,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Two of Swords means indecision and a stalemate: a choice held at arm's length so nothing has to change yet. Reversed, the pressure breaks and the decision can no longer wait. It is a card of delay rather than harm, though avoidance only postpones. Upright, the answer is not clear yet: the blindfolded figure has not picked a side.",
+  "keywords": {
+    "upright": [
+      "indecision",
+      "stalemate",
+      "avoidance",
+      "weighing options"
+    ],
+    "reversed": [
+      "information overload",
+      "decision forced",
+      "truth revealed",
+      "relief"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Two of Swords card?",
+      "paragraphs": [
+        "A woman sits alone with her eyes covered, arms crossed over her chest, a sword in each hand so that the blades rise past her shoulders. Waite's description is just \"a hoodwinked female figure\" who \"balances two swords upon her shoulders\" (p. 250). Waite does not explain the blindfold.",
+        "On the 1909 card the two long swords are the biggest shapes, opening upward in a wide V that nearly fills the pale blue sky. She wears a white robe and sits on a gray stone bench with her back to the sea; rocks break the water, a low yellow shore runs along the horizon, a thin crescent moon hangs in the upper right, and the numeral II sits above her head."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Two of Swords?",
+      "paragraphs": [
+        "Waite's list is friendlier than the picture: balance, courage, friendship, peace kept while both sides stay armed (p. 250). Waite adds that \"another reading gives tenderness, affection, intimacy\" (p. 250), and in the same breath asks for caution, since \"Swords generally are not symbolical of beneficent forces in human affairs\" (p. 250).",
+        "Waite's reversed list turns to deceit: imposture, falsehood, duplicity, disloyalty (p. 250)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Two of Swords mean upright?",
+      "paragraphs": [
+        "Indecision is the core of this card: two options, both with a price, and a wish to keep them balanced rather than choose. It is a stalemate that looks calm on the surface, a truce held by not looking too closely. Weighing options belongs here, and so does avoidance: the blindfold keeps out the very information that would force a decision.",
+        "The card can also mark a standoff between two people, each holding a position, neither ready to move. The calm is real, but it is fragile.",
+        "What would you choose if you let yourself see the whole picture?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Two of Swords mean reversed?",
+      "paragraphs": [
+        "Turned over, the Two of Swords can mean the stalemate ending, with or without your say. Information overload is one form: too many facts and opinions and no way to sort them. Another is a decision forced by events, or a truth revealed that can no longer be dodged. For some, the reversal brings relief, the plain admission of what you want after a long time on the fence.",
+        "Waite reads this side as falsehood and double dealing (p. 250); the readings above are modern, not Waite's. Pick the option you would choose if no one were watching, and start there."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Two of Swords mean in love?",
+      "paragraphs": [
+        "Crossed arms over the heart: that is the love picture of this card. Between partners, the Two of Swords can describe a topic both people step around, or a truce that keeps the peace without settling anything. If you feel torn between two people or two paths, it reflects that as well.",
+        "Still looking for someone? It can show holding back, unsure whether to open up, with a guarded heart that protects itself by not feeling too much. Reversed, a feeling or a choice pushed aside for a while is ready to come into the open."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Two of Swords mean for work and money?",
+      "paragraphs": [
+        "An unopened bill, a budget nobody wants to look at, two financial choices weighed for far too long: this is the card's money picture. It means a stalemate in finances, not a loss.",
+        "On the job, it can mark a choice between two offers or two plans, or a standoff with a colleague where neither side gives way. Get the missing facts, then decide; a stalemate costs more the longer it runs."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Two of Swords?",
+      "paragraphs": [
+        "Find the one piece of information you are missing and go get it. Then lift the blindfold: write both options side by side with what each would cost, and notice which one you keep coming back to."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Two of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Two of Swords as a person and as feelings",
+      "paragraphs": [
+        "Someone guarded and diplomatic is the Two of Swords as a person: they keep the peace by keeping their own view private, or stand caught between two loyalties. In you, it is the reluctance to choose. Asked about feelings, the card traditionally means being torn: emotions held back, a heart kept behind crossed arms, uncertainty about which way to go. Turned the other way up, what was held back starts to break through, sometimes as confusion and sometimes as the relief of finally saying what is true."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Two of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "major-06-lovers",
+          "text": "A real choice between two paths. Decide by what you value, not by what is easiest to put off."
+        },
+        {
+          "card_id": "swords-08-eight",
+          "text": "Avoidance hardening into a sense of being stuck. A way out appears once you look."
+        },
+        {
+          "card_id": "major-02-high-priestess",
+          "text": "When facts are missing, quiet intuition may already know the answer."
+        },
+        {
+          "card_id": "major-14-temperance",
+          "text": "A truce turning into real balance, through patience on both sides."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Two of Swords or Eight of Swords?",
+      "paragraphs": [
+        "Waite's Eight of Swords also covers a woman's eyes, but there she is tied as well, with all eight blades set around her, and Waite calls the scene a passing confinement rather than a permanent one (p. 238). Today the Eight is read as feeling trapped and doubting yourself.",
+        "In the Two, the figure holds the swords and the choice is hers; in the Eight, the swords stand around her and the problem is feeling stuck."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Two of Swords",
+      "paragraphs": [
+        "What am I refusing to look at so that I do not have to choose?",
+        "Which option do I keep returning to when I stop arguing with myself?",
+        "What single fact would make this decision easier?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Two of Swords a good or bad card?",
+      "a": "Neither, really: it is a card of delay, not of damage. It shows a choice on hold and a calm that will not last forever, which is useful to notice before the choice is made for you. Its gift is time to think; its risk is using that time to avoid thinking. Reversed, things usually start moving again."
+    },
+    {
+      "q": "Does the Two of Swords mean I should wait?",
+      "a": "Not exactly. It describes waiting that is already happening, a decision on pause, and asks whether the pause still helps you. Waiting for one missing fact is wise; waiting so as not to face the choice usually is not."
+    },
+    {
+      "q": "Can the Two of Swords mean friendship?",
+      "a": "In Waite's list, yes: \"courage, friendship, concord in a state of arms\" are among its upright meanings (p. 250). Today it is read more as balance under tension, so a friendship in this card may be one where something stays unspoken to keep things smooth."
+    }
+  ],
+  "related": [
+    "swords-01-ace",
+    "swords-03-three",
+    "wands-02-two",
+    "cups-02-two",
+    "pentacles-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-08-eight",
+      "text": "Eight of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Conformity and the equipoise which it suggests, courage, friendship, concord in a state of arms … Reversed: Imposture, falsehood, duplicity, disloyalty.",
+    "quote_lang": "en",
+    "pages": [
+      250
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        250
+      ],
+      "text": "A hoodwinked female figure balances two swords upon her shoulders"
+    },
+    {
+      "pages": [
+        250
+      ],
+      "text": "another reading gives tenderness, affection, intimacy"
+    },
+    {
+      "pages": [
+        250
+      ],
+      "text": "The suggestion of harmony and other favourable readings must be considered in a qualified manner, as Swords generally are not symbolical of beneficent forces in human affairs"
+    },
+    {
+      "pages": [
+        250
+      ],
+      "text": "Reversed: Imposture, falsehood, duplicity, disloyalty"
+    },
+    {
+      "pages": [
+        250
+      ],
+      "text": "courage, friendship, concord in a state of arms"
+    },
+    {
+      "pages": [
+        238
+      ],
+      "text": "A woman, bound and hoodwinked, with the swords of the card about her"
+    },
+    {
+      "pages": [
+        238
+      ],
+      "text": "Yet it is rather a card of temporary durance than of irretrievable bondage"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 02.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_02.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        238,
+        250
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

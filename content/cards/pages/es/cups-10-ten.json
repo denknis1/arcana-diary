@@ -1,0 +1,251 @@
+{
+  "schema": 2,
+  "card_id": "cups-10-ten",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Diez de Copas",
+    "in_sentence": "el Diez de Copas",
+    "de": "del Diez de Copas"
+  },
+  "title": "Diez de Copas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Diez de Copas al derecho y al revés (carta invertida): armonía, familia, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Diez de Copas en el tarot: significado",
+  "image_alt": "Diez de Copas, carta de 1909 de la baraja Rider-Waite-Smith: una pareja de espaldas alza los brazos hacia un arcoíris de diez copas y dos niños bailan cerca de una casa de techo rojo.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 10,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Diez de Copas es la carta de la plenitud emocional: armonía, familia y felicidad compartida. Al revés, puede mostrar tensión en casa o la distancia entre un ideal y la vida real. Pocas cartas son tan cálidas; su riesgo es comparar tu vida con una postal. Al derecho responde que sí: un arcoíris cubre a la familia.",
+  "keywords": {
+    "upright": [
+      "armonía",
+      "familia",
+      "felicidad compartida",
+      "plenitud emocional"
+    ],
+    "reversed": [
+      "desconexión",
+      "tensión en casa",
+      "ideal inalcanzable",
+      "valores distintos"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Diez de Copas?",
+      "paragraphs": [
+        "Diez copas forman un arcoíris en el cielo. Debajo, según Waite, un hombre y una mujer, a todas luces marido y mujer, lo contemplan maravillados: él la rodea con un brazo y los dos levantan el otro (p. 206). A un lado bailan sus dos hijos, que para Waite no se han fijado en el prodigio, pero son felices a su manera (p. 206).",
+        "En la carta de 1909 vemos a la pareja de espaldas, el arcoíris brilla en rosa y amarillo, y una casita de techo rojo asoma entre árboles sobre una loma verde, con un río que serpentea a la izquierda; arriba se lee el X. El arco de copas ocupa la mitad superior y es lo más grande del dibujo."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Diez de Copas?",
+      "paragraphs": [
+        "Para Waite esta es la carta del corazón en paz: contento, descanso y un amor y una amistad que llegan a su plenitud (p. 206). Waite suma dos lecturas curiosas: rodeada de figuras, una persona que se hace cargo de los intereses de quien consulta, y también la ciudad, el pueblo o el país donde esa persona vive (p. 206).",
+        "La lista de Waite para la carta al revés es dura (p. 206). En Arcana Diary ese lado habla de tensión en casa y de la distancia entre el ideal y el día a día: una lectura moderna, no de Waite."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Diez de Copas al derecho?",
+      "paragraphs": [
+        "Al derecho, esta carta es plenitud emocional: sentir que el amor, la casa y la gente que te rodea encajan. La familia está en el centro, sea de sangre, tu pareja, tus amistades cercanas o la gente que elegiste como tuya. La armonía aquí no es perfección, sino la tranquilidad de pertenecer a algún lugar.",
+        "Puede salir cuando un largo esfuerzo por formar un hogar o reparar lazos empieza a dar frutos, o solo para mostrarte cuánto cariño ya tienes cerca. ¿Dónde te sientes en casa ahora, y quién está ahí contigo?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Diez de Copas al revés?",
+      "paragraphs": [
+        "Al revés, el arcoíris pierde color. Puede hablar de desconexión: gente bajo el mismo techo que se siente lejos, o tensión en casa de la que nadie habla. Muchas veces el problema es un ideal inalcanzable de cómo debería verse una familia feliz, comparado con una vida real más desordenada.",
+        "También caben aquí los valores distintos: dos personas que esperan futuros diferentes. La carta no da el vínculo por roto. Pide una plática honesta sobre lo que cada quien quiere y mirar los momentos de cariño que sí son reales."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Diez de Copas en el amor?",
+      "paragraphs": [
+        "Si hoy estás sin pareja, la carta te invita a imaginar el hogar y el amor que quieres, y a acercarte a eso a tu ritmo. En pareja, celebra el compromiso, la estabilidad emocional y las ganas de construir un hogar juntos: una relación que se siente como familia, tranquila y de acuerdo sobre el futuro.",
+        "Al revés, puede mostrar valores que jalan hacia lados distintos, o la desilusión de que la relación no se parece a la imagen que tenías en la cabeza."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Diez de Copas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Un equipo que se siente como una buena familia, un lugar donde perteneces, un proyecto con gente de confianza: así se ve esta carta en el trabajo. En el dinero significa estabilidad que sostiene una vida tranquila en casa y la sensación de tener suficiente para compartir. Al revés, la presión por el trabajo o las cuentas puede llegar hasta la mesa familiar."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Diez de Copas como consejo?",
+      "paragraphs": [
+        "Regálate una plática tranquila con tu familia o con la gente que sientes como tal, sin celular y sin prisa. Fíjate en un detalle que te haga sentir parte de algo y dilo en voz alta."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Diez de Copas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Diez de Copas como persona y como sentimiento?",
+      "paragraphs": [
+        "Cuando la pregunta es qué siente alguien, el Diez de Copas significa plenitud emocional y deseo de un futuro duradero: la sensación de haber encontrado un hogar en la otra persona. Con la carta al revés aparecen las fricciones: distancia dentro de un vínculo cercano, un ideal que la vida diaria no alcanza o planes de futuro que van por caminos distintos. Y si representa a alguien, es una persona entregada a su hogar y a la gente que quiere: cálida, leal, en su mejor momento cuando todos están reunidos."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Diez de Copas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "cups-02-two",
+          "text": "Un vínculo entre dos que crece hasta volverse hogar compartido."
+        },
+        {
+          "card_id": "cups-06-six",
+          "text": "Recuerdos de familia y felicidad presente lado a lado; vuelve un cariño de antes."
+        },
+        {
+          "card_id": "swords-05-five",
+          "text": "La paz de la casa tensa por una pelea que nadie gana. Elige el vínculo antes que tener la razón."
+        },
+        {
+          "card_id": "major-21-world",
+          "text": "Una larga etapa en el amor o la familia se cierra con sensación de plenitud."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Diez de Copas del Diez de Oros?",
+      "paragraphs": [
+        "El Diez de Oros muestra, según Waite, a un hombre y una mujer bajo un arco que da entrada a una casa y sus tierras, con un niño, dos perros y un anciano sentado al frente (p. 262). Entre sus significados, Waite pone ganancia, riqueza y la morada de una familia (p. 262); hoy se lee como legado y seguridad a largo plazo.",
+        "Las dos cartas hablan de familia. El Diez de Copas es el sentimiento de pertenecer; el Diez de Oros, el lado material: la casa y lo que se hereda."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Diez de Copas?",
+      "paragraphs": [
+        "¿En dónde me siento en casa ahora mismo?",
+        "¿Estoy comparando mi vida con una foto que en realidad nadie vive?",
+        "¿Quién es familia para mí y cuándo se lo dije por última vez?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Diez de Copas es una carta buena o mala?",
+      "a": "Buena: es de las cartas más amorosas del tarot, con armonía y felicidad que se comparte. Al revés tampoco es mala señal; nombra roces o expectativas que no se cumplieron en casa, y eso se puede platicar."
+    },
+    {
+      "q": "¿El Diez de Copas significa matrimonio?",
+      "a": "No como predicción. La carta describe un hogar con amor y estabilidad, que puede incluir una boda pero no la promete. En su lista de significados adicionales, Waite sí menciona un buen matrimonio para un hombre que consulta (p. 289); en Arcana Diary la leemos de forma más amplia, como plenitud en cualquier forma de amor."
+    },
+    {
+      "q": "¿El Diez de Copas siempre habla de la familia?",
+      "a": "No. La familia es su significado más conocido, pero el hogar puede ser tu pareja, tus amistades, una comunidad o la gente que escogiste. Lo que cuenta es sentirte en paz con quienes te rodean, sea donde sea."
+    }
+  ],
+  "related": [
+    "cups-09-nine",
+    "cups-11-page",
+    "wands-10-ten",
+    "swords-10-ten",
+    "pentacles-10-ten"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-10-ten",
+      "text": "Diez de Oros"
+    }
+  ],
+  "waite": {
+    "quote": "Contentment, repose of the entire heart … also perfection of human love and friendship … Reversed: Repose of the false heart, indignation, violence.",
+    "quote_lang": "en",
+    "pages": [
+      206
+    ],
+    "translation": "Contento, reposo de todo el corazón … también perfección del amor humano y de la amistad … Al revés: reposo del corazón falso, indignación, violencia.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        206
+      ],
+      "text": "it is contemplated in wonder and ecstacy by a man and woman below, evidently husband and wife. His right arm is about her; his left is raised upward; she raises her right arm."
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "The two children dancing near them have not observed the prodigy but are happy after their own manner."
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "if with several picture-cards, a person who is taking charge of the Querent's interests; also the town, village or country inhabited by the Querent"
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "Reversed: Repose of the false heart, indignation, violence."
+    },
+    {
+      "pages": [
+        262
+      ],
+      "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground."
+    },
+    {
+      "pages": [
+        262
+      ],
+      "text": "Gain, riches; family matters, archives, extraction, the abode of a family."
+    },
+    {
+      "pages": [
+        289
+      ],
+      "text": "Ten.—For a male Querent, a good marriage and one beyond his expectations."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 10.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_10.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        206,
+        262,
+        289
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

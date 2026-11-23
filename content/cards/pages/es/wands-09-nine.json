@@ -1,0 +1,260 @@
+{
+  "schema": 2,
+  "card_id": "wands-09-nine",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Nueve de Bastos",
+    "in_sentence": "el Nueve de Bastos",
+    "de": "del Nueve de Bastos"
+  },
+  "title": "Nueve de Bastos en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Nueve de Bastos al derecho y al revés (carta invertida): perseverancia, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Nueve de Bastos en el tarot: significado",
+  "image_alt": "Nueve de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: un hombre con una tela blanca atada a la cabeza sujeta un bastón delante de otros ocho bastones con hojas.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 9,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Nueve de Bastos habla de perseverancia, resiliencia y último esfuerzo, siempre con cautela. Al revés, la guardia se gasta o se vuelve un muro. Es dura, no mala: respalda tu aguante y te pide no defenderte de más. Por ahora no está claro si es sí: la figura sigue en guardia, sin haber llegado al final.",
+  "keywords": {
+    "upright": [
+      "perseverancia",
+      "cautela",
+      "resiliencia",
+      "último esfuerzo"
+    ],
+    "reversed": [
+      "guardia agotada",
+      "desconfianza",
+      "rechazar ayuda",
+      "ganas de rendirte"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Nueve de Bastos?",
+      "paragraphs": [
+        "Un hombre aprieta un bastón con las dos manos delante de una hilera de bastones altos. Waite lo describe con mirada expectante, como quien espera a un enemigo (p. 180). Detrás quedan otros ocho, rectos y bien ordenados, que Waite compara con una empalizada (p. 180); esa cerca de madera ocupa casi toda la carta.",
+        "En la carta de 1909 lleva una tela blanca atada a la cabeza y mira de reojo hacia un lado. De la punta de cada bastón brotan hojitas verdes; al fondo hay colinas bajas bajo un cielo azul pálido, y arriba se lee el IX."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Nueve de Bastos?",
+      "paragraphs": [
+        "Para Waite, el sentido central es la fuerza de quien resiste: si lo atacan, enfrentará la embestida con valor, y su complexión deja ver que puede ser un rival temible (p. 180). Según Waite, con ese sentido vienen también la demora, la suspensión y el aplazamiento (p. 180).",
+        "La lista al revés de Waite suena dura (p. 180). En Arcana Diary ese lado se lee como una guardia que ya se desgastó."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Nueve de Bastos al derecho?",
+      "paragraphs": [
+        "La resiliencia es el corazón de esta carta: hubo golpes, el camino fue largo y la figura sigue de pie. Suele salir en el último tramo, cuando la meta está cerca y las fuerzas parecen pocas. Es la carta del último esfuerzo, y la perseverancia que pide no tiene nada de espectacular: se trata de seguir un día más.",
+        "También trae cautela. Después de una racha pesada es normal vigilar el horizonte y esperar el siguiente golpe, como hace el hombre del dibujo.",
+        "La fuerza en la oposición de la que habla Waite (p. 180) encaja con la lectura moderna: la lucha quizá no terminó, pero todavía tienes con qué terminarla. ¿Qué defensas te siguen cuidando y cuáles mantienes solo por costumbre?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Nueve de Bastos al revés?",
+      "paragraphs": [
+        "Al revés, el Nueve de Bastos puede hablar de una guardia agotada: un problema más se siente como demasiado y aparecen las ganas de rendirte. También puede mostrar lo contrario, una desconfianza tan alta que rechazar ayuda ya sale en automático.",
+        "Los obstáculos y la adversidad de la lista de Waite describen la presión que viene de afuera (p. 180); el desgaste de una guardia que no baja es una lectura moderna, no de Waite. Deja que alguien cargue una parte y descansa donde estés a salvo."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Nueve de Bastos en el amor?",
+      "paragraphs": [
+        "Después de una desilusión cuesta bajar la guardia, y de eso habla esta carta en el amor: la cerca de bastones es el muro que se levanta cuando ya hubo una herida. Respeta ese cuidado, pero te pregunta si el muro todavía te protege o si ya deja fuera la cercanía que buscas.",
+        "Al revés, la guardia puede estar tan alta que nadie se acerca, o tan gastada que ya dejaste de intentarlo; en los dos casos toca descansar antes de forzar algo.",
+        "Para quien vuelve a salir con alguien, la carta prefiere aperturas pequeñas y cuidadosas a un gran salto. En una relación larga, puede marcar una racha difícil que ya superaron, con tu guardia todavía a medio bajar."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Nueve de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "Un proyecto que se alargó, un puesto que te puso a prueba, el empujón final antes de entregar: ese es su terreno en lo laboral. Favorece terminar lo empezado sin descuidar tus límites.",
+        "En lo económico, la carta significa aguantar y proteger: cuidar ahorros o ingresos que te costaron, salir de una temporada apretada, ser prudente después de un tropiezo. Al revés, el presupuesto se siente al límite y la cautela puede volverse preocupación por cada gasto."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Nueve de Bastos como consejo?",
+      "paragraphs": [
+        "Elige una sola cosa de la que te estás defendiendo y pregúntate con honestidad si sigue siendo una amenaza real. Si lo es, mantén la guardia ahí y solo ahí. Si no, suelta ese bastón y guarda la energía para el tramo final."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Nueve de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Nueve de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Hecho persona, el Nueve de Bastos es alguien que ha pasado por mucho y siguió adelante: leal, con mucho aguante, que tarda en confiar y siempre tiene un ojo atento. Si eres tú, es esa parte de ti que no se rinde.",
+        "Como sentimiento, la carta significa un cariño con reservas: interés real detrás de una guardia, ganas de proteger lo que importa y el temor a otra herida, que vuelve lento abrirse. Al revés, habla de sentimientos desgastados por una lucha larga, o de una defensa tan alta que el cariño casi no logra pasar."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Nueve de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "wands-10-ten",
+          "text": "Resistir se convierte en cargar de más. Decide qué pelea sigue siendo tuya antes de que el peso crezca."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "La guardia puede bajar un rato. Recupera fuerzas y el último tramo pesará menos."
+        },
+        {
+          "card_id": "major-08-strength",
+          "text": "Aguante con mano suave: la paciencia, no la dureza, te lleva hasta el final."
+        },
+        {
+          "card_id": "wands-06-six",
+          "text": "El esfuerzo está cerca del reconocimiento. La meta ya se ve; sostén el paso."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Nueve de Bastos del Siete de Bastos?",
+      "paragraphs": [
+        "Waite describe el Siete de Bastos como un joven sobre una altura rocosa que blande su bastón, mientras otros seis se alzan hacia él desde abajo (p. 184). Hoy se lee como defender tu postura ante un desafío que está pasando ahora. El Nueve llega después: la pelea fue larga, las fuerzas escasean y la pregunta es si seguir vigilando o bajar la guardia."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Nueve de Bastos?",
+      "paragraphs": [
+        "¿De qué me sigo defendiendo, y eso todavía está ahí?",
+        "¿Quién podría cargar una parte de esto si se lo pido?",
+        "¿Qué necesita de mí hoy el tramo final?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Nueve de Bastos es una carta buena o mala?",
+      "a": "Más buena que mala, aunque no es fácil. Habla de aguante después de lo difícil y de la fuerza para terminar. En su lista adicional, Waite la llama, en general, una mala carta (p. 288); en Arcana Diary no la leemos así, porque la figura sigue de pie y puede elegir su siguiente paso."
+    },
+    {
+      "q": "¿El Nueve de Bastos significa que debo rendirme?",
+      "a": "No. Su mensaje va en sentido contrario: habla del último tramo de un esfuerzo largo y de la fuerza para terminarlo. Si esto te hace sentido, lo que puede pedirte que sueltes es una defensa que ya no necesitas, no la meta."
+    },
+    {
+      "q": "¿El Nueve de Bastos significa que me quiere?",
+      "a": "No de una forma sencilla y abierta. Tradicionalmente, la carta habla de un afecto protegido tras una cerca: interés sincero, frenado por la desconfianza que deja una herida vieja. Al revés, es un afecto gastado por una pelea larga. Nombra un tipo de amor, no el corazón de nadie en particular."
+    }
+  ],
+  "related": [
+    "wands-08-eight",
+    "wands-10-ten",
+    "cups-09-nine",
+    "swords-09-nine",
+    "pentacles-09-nine"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-07-seven",
+      "text": "Siete de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "The card signifies strength in opposition … delay, suspension, adjournment. Reversed: Obstacles, adversity, calamity.",
+    "quote_lang": "en",
+    "pages": [
+      180
+    ],
+    "translation": "La carta significa fuerza en la oposición … demora, suspensión, aplazamiento. Al revés: obstáculos, adversidad, calamidad.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        180
+      ],
+      "text": "has an expectant look, as if awaiting an enemy"
+    },
+    {
+      "pages": [
+        180
+      ],
+      "text": "erect, in orderly disposition, like a palisade"
+    },
+    {
+      "pages": [
+        180
+      ],
+      "text": "If attacked, the person will meet an onslaught boldly; and his build shews that he may prove a formidable antagonist"
+    },
+    {
+      "pages": [
+        180
+      ],
+      "text": "With this main significance there are all its possible adjuncts—delay, suspension, adjournment"
+    },
+    {
+      "pages": [
+        180
+      ],
+      "text": "Reversed: Obstacles, adversity, calamity"
+    },
+    {
+      "pages": [
+        180
+      ],
+      "text": "The card signifies strength in opposition"
+    },
+    {
+      "pages": [
+        184
+      ],
+      "text": "A young man on a craggy eminence brandishing a staff; six other staves are raised towards him from below"
+    },
+    {
+      "pages": [
+        288
+      ],
+      "text": "Nine.—Generally speaking, a bad card"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 09.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_09.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        180,
+        184,
+        288
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

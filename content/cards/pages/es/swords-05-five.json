@@ -1,0 +1,239 @@
+{
+  "schema": 2,
+  "card_id": "swords-05-five",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Cinco de Espadas",
+    "in_sentence": "el Cinco de Espadas",
+    "de": "del Cinco de Espadas"
+  },
+  "title": "Cinco de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Cinco de Espadas al derecho y al revés (carta invertida): conflicto, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Cinco de Espadas en el tarot: significado",
+  "image_alt": "Cinco de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: un hombre pelirrojo sonríe con tres espadas mientras dos figuras se alejan hacia el mar; dos espadas en el suelo y nubes rasgadas.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 5,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Cinco de Espadas habla de conflicto, orgullo y una victoria vacía: ganar la discusión y quedarte con la distancia. Al revés, son las ganas de hacer las paces o un resentimiento que no se va. Es difícil: cuestiona la forma de ganar, no lo que vales. Responde que no: quien gana pierde a los demás.",
+  "keywords": {
+    "upright": [
+      "conflicto",
+      "orgullo",
+      "victoria vacía",
+      "distancia"
+    ],
+    "reversed": [
+      "hacer las paces",
+      "resentimiento",
+      "dejar atrás",
+      "arrepentimiento"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Cinco de Espadas?",
+      "paragraphs": [
+        "Un hombre recoge espadas mientras otros dos se alejan. Waite lo describe como un hombre desdeñoso que mira a dos figuras abatidas que se retiran, y lo llama el dueño del campo (p. 244). Según Waite, las espadas de los vencidos quedan en el suelo, y él lleva dos en el hombro izquierdo y una tercera en la mano derecha, con la punta hacia la tierra (p. 244).",
+        "En la carta de 1909 el hombre pelirrojo de túnica verde y mangas rojas es la figura más grande y mira hacia atrás con media sonrisa. A sus pies hay dos espadas tiradas. Los otros caminan hacia un mar gris azulado, el más cercano con una tela roja sobre el hombro, y nubes largas y rasgadas cruzan el cielo; arriba se lee el V."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Cinco de Espadas?",
+      "paragraphs": [
+        "La lista de Waite para esta carta es tajante, y al revés la repite y solo le añade ritos de entierro (p. 244). Lo que Waite sí describe con claridad es la escena: uno se queda con el campo y los demás se van vencidos (p. 244). La lectura de hoy parte de esa imagen, la de una victoria que deja el lugar vacío."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Cinco de Espadas al derecho?",
+      "paragraphs": [
+        "El conflicto ocupa el centro de esta carta: una discusión, una rivalidad o una lucha de poder donde alguien quiere ganar a toda costa, con tácticas duras o palabras hechas para herir. Es la carta de la victoria vacía: te sales con la tuya y pierdes confianza, cariño o cercanía en el camino. Después queda la tensión, y el orgullo hace difícil que alguien dé el primer paso.",
+        "También puede describir el otro lado: alejarte de una pelea que no podías ganar o que no valía la pena. A veces irse es lo más sensato.",
+        "¿Tener la razón vale la distancia que deja?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Cinco de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, el Cinco de Espadas puede hablar de hacer las paces después de un choque: una disculpa, una tregua, las ganas de reparar lo que la pelea dañó. También de un resentimiento que sigue vivo, de una discusión vieja que vuelve una y otra vez, o del arrepentimiento por lo que se dijo. A veces es simplemente dejar atrás un conflicto que ya dio todo lo que tenía.",
+        "Para Waite, al revés la carta repite lo mismo (p. 244); la reconciliación es una lectura moderna, no de Waite. Decide qué puedes soltar y ofrece un gesto de reparación si eso te hace bien."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Cinco de Espadas en el amor?",
+      "paragraphs": [
+        "Dos personas que se van mientras una se queda con las espadas: en el amor, es la pelea ganada y la cercanía perdida. En pareja, la carta habla de luchas de poder, de discutir por quién tiene la razón o de palabras dichas para anotarse un punto que dejan marca; pregunta si ganar importa más que el vínculo. Cuando no hay nadie, puede reflejar desconfianza después de un final amargo.",
+        "Al revés, aparecen las ganas de reconciliarse después de una pelea, o una tensión que sigue entre dos personas. Elige el diálogo antes que el orgullo."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Cinco de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Rivalidad abierta: ese es el rostro laboral de la carta, con alguien que necesita ganar cada junta, una competencia que se vuelve agria o un logro tuyo que deja molesto al equipo. La carta pregunta cómo ganas, no solo si ganas.",
+        "Espadas que se lleva una sola persona: para las finanzas, la carta significa disputas y ganancias que cuestan algo, una discusión sobre quién le debe a quién o un trato donde uno gana a costa del otro. Al revés, puede hablar de arreglar una diferencia de dinero y seguir adelante."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Cinco de Espadas como consejo?",
+      "paragraphs": [
+        "Baja el tono en una pelea donde ganar te costaría demasiado, aunque creas tener la razón. Di lo que necesitas una sola vez, con calma, y luego deja de insistir: el vínculo vale más que el punto ganado."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Cinco de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Cinco de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Alguien competitivo que necesita ganar, a veces con mucho orgullo o lengua afilada: ese es el Cinco de Espadas como persona, igual que quien acaba de alejarse de una pelea. En tu caso, es el orgullo cuando toma el control. Si la pregunta es por sentimientos, la carta responde con tensión y resentimiento: orgullo herido, actitud defensiva, la sensación de haber sufrido una injusticia o de haber ganado y aun así sentir un vacío. Al revés, eso se suaviza en arrepentimiento y ganas de hacer las paces, o se queda latente."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Cinco de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "swords-07-seven",
+          "text": "Una victoria con tácticas dudosas. Revisa si el método es honesto."
+        },
+        {
+          "card_id": "major-14-temperance",
+          "text": "Un camino de vuelta a la calma después de una pelea, con paciencia y acuerdos."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "Reparar después del choque: el vínculo vale más que la discusión."
+        },
+        {
+          "card_id": "swords-06-six",
+          "text": "Después del conflicto, dejar atrás las aguas revueltas."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Cinco de Espadas del Cinco de Bastos?",
+      "paragraphs": [
+        "Waite describe en el Cinco de Bastos a un grupo de jóvenes que agitan sus bastos como en juego o en pelea, una guerra de mentira (p. 188). Hoy se lee como competencia y roces sin un ganador claro.",
+        "El Cinco de Bastos es el forcejeo mientras dura, con todos todavía adentro; el Cinco de Espadas llega después, cuando un lado ganó y los demás ya se fueron."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Cinco de Espadas?",
+      "paragraphs": [
+        "¿Qué estoy tratando de ganar y cuánto me puede costar?",
+        "¿Con quién me haría bien hacer las paces?",
+        "¿Qué discusión puedo soltar hoy?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Cinco de Espadas es una carta buena o mala?",
+      "a": "Difícil, sí, pero no dice nada fijo sobre tu futuro. Muestra un conflicto y lo que cuesta, para que puedas elegir distinto: retroceder, reparar o irte. Al revés, muchas veces marca el giro hacia la reconciliación, y ese es un buen momento para dar tú el primer paso."
+    },
+    {
+      "q": "¿El Cinco de Espadas significa traición?",
+      "a": "Puede, en el sentido de alguien que gana con trampas o pone su victoria por encima de la lealtad. Más a menudo habla de una pelea con costo: palabras que fueron demasiado lejos y orgullo de los dos lados. La carta describe la dinámica, no a quién culpar."
+    },
+    {
+      "q": "¿Soy quien gana o quien pierde en el Cinco de Espadas?",
+      "a": "Cualquiera de los dos, y justo de eso se trata. La carta puede mostrarte con las espadas en la mano o como una de las figuras que se van. Pregúntate qué papel juegas hoy: en esta escena, los dos lados pierden algo."
+    }
+  ],
+  "related": [
+    "swords-04-four",
+    "swords-06-six",
+    "wands-05-five",
+    "cups-05-five",
+    "pentacles-05-five"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-05-five",
+      "text": "Cinco de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "Degradation, destruction, revocation, infamy, dishonour, loss, with the variants and analogues of these. Reversed: The same; burial and obsequies.",
+    "quote_lang": "en",
+    "pages": [
+      244
+    ],
+    "translation": "Degradación, destrucción, revocación, infamia, deshonra, pérdida, con sus variantes y análogos. Al revés: lo mismo; entierro y exequias.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        244
+      ],
+      "text": "A disdainful man looks after two retreating and dejected figures"
+    },
+    {
+      "pages": [
+        244
+      ],
+      "text": "Their swords lie upon the ground. He carries two others on his left shoulder, and a third sword is in his right hand, point to earth"
+    },
+    {
+      "pages": [
+        244
+      ],
+      "text": "He is the master in possession of the field"
+    },
+    {
+      "pages": [
+        244
+      ],
+      "text": "Reversed: The same; burial and obsequies"
+    },
+    {
+      "pages": [
+        188
+      ],
+      "text": "A posse of youths, who are brandishing staves, as if in sport or strife. It is mimic warfare"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 05.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_05.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        188,
+        244
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

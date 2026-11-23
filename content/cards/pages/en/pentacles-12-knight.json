@@ -1,0 +1,248 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-12-knight",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Knight of Pentacles",
+    "in_sentence": "the Knight of Pentacles"
+  },
+  "title": "Knight of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Knight of Pentacles upright: diligence, routine, slow progress; reversed: stagnation. Love, work, money, Waite's 1911 text and the 1909 card. Ask your question.",
+  "h1": "Knight of Pentacles Tarot Card Meaning",
+  "image_alt": "Knight of Pentacles, 1909 Rider–Waite–Smith card: an armored rider on a still black horse holds out a pentacle above a plowed brown field.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 12,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Knight of Pentacles means diligence, routine and reliability: slow progress that keeps going. Reversed, steady effort can harden into stagnation, boredom or perfectionism. It is a good card for patient work; the risk is that steady turns into stuck. Asked for a yes or no, the horse standing still in its field says not clear yet.",
+  "keywords": {
+    "upright": [
+      "diligence",
+      "routine",
+      "reliability",
+      "slow progress"
+    ],
+    "reversed": [
+      "stagnation",
+      "boredom",
+      "perfectionism",
+      "feeling stuck"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Knight of Pentacles card?",
+      "paragraphs": [
+        "A knight in armor sits on a heavy black horse that is not moving, and holds a pentacle out in front of him. Waite gives him only a few lines: \"He rides a slow, enduring, heavy horse, to which his own aspect corresponds\" (p. 258). Waite adds that the Knight \"exhibits his symbol, but does not look therein\" (p. 258): the coin is shown, not studied.",
+        "On the 1909 card the horse wears a red bridle, and sprigs of green leaves rise from the rider's helmet and from the horse's head. Behind them a brown field lies in long furrows under a yellow sky, with a few small trees on the far right. The largest shape on the card is the black horse, which fills most of the picture."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Knight of Pentacles?",
+      "paragraphs": [
+        "Waite's list is about being of use: service, interest, responsibility and honesty, kept to practical, everyday matters (p. 258). Waite's reversed list (p. 258) is the same quality gone still, from idleness and stagnation to discouragement and carelessness.",
+        "In a shorter list of extra meanings, Waite calls the card \"an useful man; useful discoveries\" and, reversed, \"a brave man out of employment\" (p. 292)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Knight of Pentacles mean upright?",
+      "paragraphs": [
+        "Diligence is the core of this card: showing up every day, doing the dull parts properly and finishing the job. Progress is slow, but it is real, and it rests on routine rather than bursts of inspiration. Reliability belongs here too: keeping promises, being on time, doing what you said you would.",
+        "The card can come up when a goal needs many small steps: a long project, money put aside a little at a time, a skill learned over months. Waite's word utility (p. 258) suits it, since the card values what works over what dazzles. Which task deserves your steady, unhurried attention right now?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Knight of Pentacles mean reversed?",
+      "paragraphs": [
+        "Upside down, the slow pace can stop altogether. Stagnation, boredom with a routine that no longer leads anywhere, or perfectionism that keeps polishing instead of finishing all belong to this side. Feeling stuck is the common thread.",
+        "Inertia, idleness and carelessness in Waite's reversed list (p. 258) describe the same stillness; boredom and perfectionism are a modern reading, not Waite's. One small change, such as a new route, a deadline or a draft finally sent, is often enough to get the horse walking again."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Knight of Pentacles mean in love?",
+      "paragraphs": [
+        "Love under the Knight of Pentacles moves at walking pace: loyalty, patience and care shown in what someone does rather than in big words. The card favors bonds built slowly and kept alive with small, regular gestures.",
+        "For a couple, it describes a stable, committed relationship, perhaps a little predictable. Without a partner, it means getting to know someone gradually before deciding anything. Reversed, routine can slide into monotony: the same evenings, the same plans, little spark. One new shared activity helps more than a long talk about the problem."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Knight of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Work under this card is methodical and dependable: a long project done step by step, a job where consistency gets noticed, a craft learned through repetition. It is less about quick promotion than about solid work every day.",
+        "Steady handling is the Knight's way with money too: a budget kept, bills paid on time, savings that grow slowly. The reversed Knight can leave money stuck through too much caution, or bills and paperwork waiting for later."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Knight of Pentacles?",
+      "paragraphs": [
+        "Pick one routine that supports you and keep it from start to finish. Choose something small enough to manage even on a tired day: ten minutes of practice, one page, one look at the budget. What counts is not speed but coming back to it, at the Knight's own walking pace."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Knight of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Knight of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "Dependable and hardworking, patient, somewhat reserved, more at ease with a plan than with surprises: this is the Knight of Pentacles as a person, and it may also be you, in a season of steady effort. The feeling he carries is serious, loyal interest that grows slowly: care proven through actions, reliability, a wish to build something lasting rather than rush. With the card reversed, that interest can seem stuck or cautious to the point of distance: affection that is there but goes unspoken, or worn down by routine."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Knight of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "pentacles-08-eight",
+          "text": "Patient practice and careful work: a skill built one piece at a time."
+        },
+        {
+          "card_id": "pentacles-07-seven",
+          "text": "Slow growth checked with patience. Keep going; the harvest takes its own time."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Caution on caution: steadiness that may turn into holding on too tight."
+        },
+        {
+          "card_id": "pentacles-02-two",
+          "text": "Many demands and a rider who prefers one task. Finish one thing before picking up the next."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Knight of Pentacles, Page of Pentacles or Knight of Wands?",
+      "paragraphs": [
+        "Waite draws the Page of Pentacles as a youth \"looking intently at the pentacle which hovers over his raised hands\" (p. 260), while his Knight shows the coin without looking at it (p. 258). Today the Page means starting to learn something practical; the Knight means carrying the work through.",
+        "Of the Knight of Wands, Waite says the motion of his horse \"suggests the precipitate mood\" (p. 174); today that card means bold action and adventure. Same rank, opposite pace: one charges, the other plods."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Knight of Pentacles",
+      "paragraphs": [
+        "Which part of my life needs steady effort more than a burst of energy?",
+        "Where has my routine stopped helping me?",
+        "What would one small, dependable step look like today?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Knight of Pentacles a good or bad card?",
+      "a": "Mostly good. It stands for honest effort, patience and keeping your word, qualities that rarely let anyone down. Its hard side is a standstill, when slowness stops being a choice, and that can usually be changed with one small decision. Nothing about it is a reason to worry."
+    },
+    {
+      "q": "Does the Knight of Pentacles mean things are moving too slowly?",
+      "a": "Often, at least compared with what you hoped. The card describes gradual movement, real but unhurried. Whether that is a problem depends on the goal: a long project can take its time, while something that has not moved at all is closer to the card's reversed side."
+    },
+    {
+      "q": "Does the Knight of Pentacles mean he loves me?",
+      "a": "It describes a quiet, committed kind of love rather than a dramatic one. Traditionally the card means interest that is serious and proven by deeds, with loyalty and a wish to take things one step at a time. It shows a style of feeling, not a verdict on one particular person."
+    },
+    {
+      "q": "What does the Knight of Pentacles mean in a job search?",
+      "a": "It suggests the methodical route: applications sent regularly, skills polished, follow-ups done. This is not a card of lucky breaks but of sustained effort, and it favors a pace you can keep over a burst followed by a long pause."
+    }
+  ],
+  "related": [
+    "pentacles-11-page",
+    "pentacles-13-queen",
+    "wands-12-knight",
+    "cups-12-knight",
+    "swords-12-knight"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-11-page",
+      "text": "Page of Pentacles"
+    },
+    {
+      "card_id": "wands-12-knight",
+      "text": "Knight of Wands"
+    }
+  ],
+  "waite": {
+    "quote": "Utility, serviceableness, interest, responsibility, rectitude—all on the normal and external plane. Reversed: inertia, idleness, repose of that kind, stagnation; also placidity, discouragement, carelessness.",
+    "quote_lang": "en",
+    "pages": [
+      258
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        258
+      ],
+      "text": "He rides a slow, enduring, heavy horse, to which his own aspect corresponds"
+    },
+    {
+      "pages": [
+        258
+      ],
+      "text": "He exhibits his symbol, but does not look therein"
+    },
+    {
+      "pages": [
+        292
+      ],
+      "text": "An useful man; useful discoveries. Reversed: A brave man out of employment."
+    },
+    {
+      "pages": [
+        260
+      ],
+      "text": "looking intently at the pentacle which hovers over his raised hands"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 12.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_12.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        174,
+        258,
+        260,
+        292
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

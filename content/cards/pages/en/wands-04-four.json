@@ -1,0 +1,262 @@
+{
+  "schema": 2,
+  "card_id": "wands-04-four",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Four of Wands",
+    "in_sentence": "the Four of Wands"
+  },
+  "title": "Four of Wands Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Four of Wands upright: celebration, homecoming, stability; reversed: tension at home. Love, work, advice and Waite's 1911 text. Ask your question.",
+  "h1": "Four of Wands Tarot Card Meaning",
+  "image_alt": "Four of Wands, 1909 Rider–Waite–Smith card: a garland hangs between four tall staves; two women raise bouquets before a castle wall and a red-roofed tower.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 4,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Four of Wands stands for celebration, homecoming and stability, a joyful moment shared with your community. Reversed, it can show tension at home, a hollow celebration or a transition. A happy card, it asks you to enjoy what is good now. The reply is yes: the garland is already up, and people are coming out to celebrate.",
+  "keywords": {
+    "upright": [
+      "celebration",
+      "homecoming",
+      "stability",
+      "community"
+    ],
+    "reversed": [
+      "tension at home",
+      "hollow celebration",
+      "transition",
+      "not feeling at home"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Four of Wands card?",
+      "paragraphs": [
+        "Waite describes it this way: \"From the four great staves planted in the foreground there is a great garland suspended; two female figures uplift nose-gays\" (p. 190). Beside them, he adds, \"is a bridge over a moat, leading to an old manorial house\" (p. 190).",
+        "On the 1909 card the background is bright yellow, and the four tall staves with their garland of leaves and red-orange blossoms are the largest shapes in the frame; ribbons are tied to the two outer staves. The two women hold their flowers high, one in white and blue, the other in dark red. Behind them rises a gray wall with a tower under a pointed red roof. Small figures gather at the left, and a stone arch shows at the right."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Four of Wands?",
+      "paragraphs": [
+        "Waite says that here the meanings are \"for once almost on the surface\" (p. 190): what you see is what the card means. His list also includes \"a species of domestic harvest-home\" (p. 190), the old name for the feast at the end of the harvest.",
+        "Waite's reversed line is rare in the book: the meaning \"remains unaltered\", with prosperity and beauty still in place (p. 190). The modern reversed reading below is less sunny, and it is Arcana Diary's own."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Four of Wands mean upright?",
+      "paragraphs": [
+        "Celebration comes first: a milestone, a gathering, a wedding or a party, any moment when people come together to mark something good. Homecoming is the second meaning: arriving where you are welcome, returning to people who feel like home, or making a place truly yours.",
+        "Under the garland there is also stability. The joy rests on a base that was built, so the card often follows finished work, a completed stage, a home or community settled enough to rest in.",
+        "What deserves to be marked in your life right now, and with whom would you share it?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Four of Wands mean reversed?",
+      "paragraphs": [
+        "When the Four of Wands is reversed, it can show a hollow celebration, tension at home, or simply not feeling at home where you are. It also fits a transition: moving house, a change in family life, a group you are leaving or have not yet joined.",
+        "Sometimes the snag is waiting for everything to be perfect before enjoying it. A smaller, simpler celebration may be all that is needed."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Four of Wands mean in love?",
+      "paragraphs": [
+        "Commitment and joy are the love themes: moving in, an engagement, a wedding, or a relationship that simply feels like home. In modern readings this is a classic card of happy milestones between partners.",
+        "Upside down, the card may describe a home atmosphere grown tense, a celebration that feels forced, or a passage between two stages of a relationship.",
+        "When there is no partner, it turns to belonging: friends, family and places where you are welcomed as you are, a warm base from which new connections grow easily."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Four of Wands mean for work and money?",
+      "paragraphs": [
+        "A project reaching a milestone, a launch, a team that works well together, a party for finished work: this is the Four on the job. It favors workplaces that feel like a community.",
+        "For money, the card means stability and a secure base, often linked to home: a comfortable period, savings for a place of your own, spending on something shared and festive. Reversed, it can mean money strain during a change, such as the costs of a move, or tension about money at home."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Four of Wands?",
+      "paragraphs": [
+        "Mark one good thing in your life on purpose: invite people over, put flowers in a corner of your space, raise a glass to a finished stage. Joy that is shared grows."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Four of Wands a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Four of Wands as a person and as feelings",
+      "paragraphs": [
+        "Read as someone you know, the Four of Wands is the host: warm and welcoming, the one who brings people together and makes any place feel like home. As feelings, it means happiness and a sense of security in a connection, the wish to celebrate it and to build a shared home or future. Reversed, the feeling is unsettled: the affection is there, but something about belonging or stability has not settled into place."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Four of Wands with other cards",
+      "pairs": [
+        {
+          "card_id": "wands-06-six",
+          "text": "Success that gets celebrated. Share the win with the people who helped."
+        },
+        {
+          "card_id": "pentacles-10-ten",
+          "text": "A stable home and lasting family ties; roots worth a party."
+        },
+        {
+          "card_id": "major-19-sun",
+          "text": "Joy without reserve: a bright, open-hearted celebration."
+        },
+        {
+          "card_id": "wands-05-five",
+          "text": "Friction before the gathering. Settle small quarrels so everyone can relax."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Four of Wands, Three of Cups or Ten of Cups?",
+      "paragraphs": [
+        "The Three of Cups also celebrates, but Waite's picture is \"Maidens in a garden-ground with cups uplifted\" (p. 220), and today it is read as friendship and shared joy. The Ten of Cups shows, in Waite's words, an \"Appearance of Cups in a rainbow\" with \"a home-scene beyond\" (p. 206); its modern meaning is lasting emotional fulfillment. The Four of Wands marks the arrival itself: a milestone, a welcome, a base that now stands."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Four of Wands",
+      "paragraphs": [
+        "What in my life deserves to be celebrated now?",
+        "Where do I truly feel at home?",
+        "Who would I like to share a good moment with?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Four of Wands a good or bad card?",
+      "a": "Good, one of the happiest cards of the Minor Arcana. It brings joy, belonging and a steady base. Reversed, it does not turn bad: it shows something unsettled at home or in a group that can be talked through. Waite even kept the reversed meaning bright (p. 190)."
+    },
+    {
+      "q": "Is the Four of Wands a wedding card?",
+      "a": "Often, yes: weddings, engagements and moving in together are among its typical modern meanings. Still, it describes a festive moment and a shared commitment, not a promise of a proposal. It can just as well be a family party, a housewarming or the end of a big project."
+    },
+    {
+      "q": "Does the Four of Wands mean a new home?",
+      "a": "It can. A house to come back to and a settled place are central to the card, so a move, a housewarming or putting down roots often comes up. Waite's own list starts with country life and a \"haven of refuge\" (p. 190)."
+    }
+  ],
+  "related": [
+    "wands-03-three",
+    "wands-05-five",
+    "cups-04-four",
+    "swords-04-four",
+    "pentacles-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-03-three",
+      "text": "Three of Cups"
+    },
+    {
+      "card_id": "cups-10-ten",
+      "text": "Ten of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "Country life, haven of refuge, … repose, concord, harmony, prosperity, peace … Reversed: The meaning remains unaltered; it is prosperity, increase, felicity, beauty, embellishment.",
+    "quote_lang": "en",
+    "pages": [
+      190
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        190
+      ],
+      "text": "From the four great staves planted in the foreground there is a great garland suspended; two female figures uplift nose-gays"
+    },
+    {
+      "pages": [
+        190
+      ],
+      "text": "at their side is a bridge over a moat, leading to an old manorial house"
+    },
+    {
+      "pages": [
+        190
+      ],
+      "text": "They are for once almost on the surface"
+    },
+    {
+      "pages": [
+        190
+      ],
+      "text": "country life, haven of refuge, a species of domestic harvest-home"
+    },
+    {
+      "pages": [
+        190
+      ],
+      "text": "Reversed: The meaning remains unaltered; it is prosperity, increase, felicity, beauty, embellishment"
+    },
+    {
+      "pages": [
+        220
+      ],
+      "text": "Maidens in a garden-ground with cups uplifted"
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "Appearance of Cups in a rainbow"
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "There is a home-scene beyond"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 04.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_04.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        190,
+        206,
+        220
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

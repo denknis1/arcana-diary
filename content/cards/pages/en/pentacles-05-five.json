@@ -1,0 +1,249 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-05-five",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Five of Pentacles",
+    "in_sentence": "the Five of Pentacles"
+  },
+  "title": "Five of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Five of Pentacles upright: hardship, money worries, feeling left out; reversed: accepting help. Love, work, advice, Waite's 1911 text and the 1909 card.",
+  "h1": "Five of Pentacles Tarot Card Meaning",
+  "image_alt": "Five of Pentacles, 1909 Rider–Waite–Smith card: two figures in ragged clothes walk through falling snow below a lit stained-glass window with five pentacles.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 5,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Five of Pentacles means hardship and money worries: poverty, a lean stretch, feeling left out in the cold. Reversed, the hard time begins to loosen as help is let in. Hard, yes, but the card also shows warmth within reach. Upright, its answer to a yes or no question is no: the two walkers pass the lit window by.",
+  "keywords": {
+    "upright": [
+      "hardship",
+      "money worries",
+      "feeling left out",
+      "seeking support"
+    ],
+    "reversed": [
+      "easing hardship",
+      "accepting help",
+      "isolation",
+      "pride"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Five of Pentacles card?",
+      "paragraphs": [
+        "Two poor figures cross a snowy street below a glowing window. Waite sums the scene up in one sentence: \"Two mendicants in a snow-storm pass a lighted casement\" (p. 272). The biggest thing on the card is that window, a stained-glass panel with five yellow pentacles set among green leaves.",
+        "On the 1909 card the wall behind them is black and thick with white flakes, and snow covers the ground. Their clothes are torn and patched: the one on the right is wrapped in a long orange shawl, head bowed, and the other, in blue, walks at the side. Neither of them stops beneath the window."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Five of Pentacles?",
+      "paragraphs": [
+        "Waite's main reading is material trouble, with the destitution in the picture as only one of its forms (p. 272). Waite also records a very different line, in which some cartomancers took the Five as a card of love and lovers, and he admits the two readings \"cannot be harmonized\" (p. 272). The reversed words in Waite's list (p. 272) are harsh, and Arcana Diary does not read the card that way."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Five of Pentacles mean upright?",
+      "paragraphs": [
+        "Hardship sits at the center of this card: money worries, bills that do not fit the budget, a season of going without. It is just as much a card of feeling left out, of watching from the cold while others seem to be warm inside. A lost job, loneliness after a move or a breakup, or the sense that nobody sees what you are carrying can all belong here.",
+        "Look again at the window. The light is close, and the card asks whether help is nearer than it seems: a friend, a relative, a neighbor, a community group. Seeking support is part of the meaning, not an extra. What would change if one person knew how things really are for you?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Five of Pentacles mean reversed?",
+      "paragraphs": [
+        "Reversed, the Five of Pentacles can speak of easing hardship: money pressure lifting a little, the cold stretch thawing, or a choice to step in out of the snow. Accepting help is a large part of this side, and so is noticing pride when it keeps you on the doorstep. It can also mean isolation that lasts even with support close by, because asking still feels hard.",
+        "Waite's reversed words describe disorder rather than relief (p. 272); the easing is a modern reading. The practical step is the same in both cases: say yes to one offer of help."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Five of Pentacles mean in love?",
+      "paragraphs": [
+        "Two people walk side by side through the storm, and that is one way this card shows up in love: a couple going through a hard time together, often with money stress in the background. It can also mean feeling shut out by someone you care about, or a cold spell between you. When you are not dating anyone, it often describes loneliness or the sting of a rejection.",
+        "Reversed, warmth can return: you let a partner or a friend come closer, or find company after a solitary stretch. The card speaks of a hard season, not of how a bond has to end."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Five of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Financial hardship is the plain money side of this card: debt, a budget that will not stretch, income lost or the worry of losing it. In a workplace it can describe being passed over, a job that feels shaky, or a team where you stand on the outside. It names a hard place without saying what comes next, and its lit window points to resources around you that may not have been used yet."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Five of Pentacles?",
+      "paragraphs": [
+        "Find out about one source of practical support near you, such as a community group, a local service or a neighbor who has offered before, and take one step to contact it. Asking for help with money or with loneliness is a practical move, not a defeat."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Five of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Five of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "The two figures trudging through the snow on the Five of Pentacles are people going through a lean time, short on money or on company, who find it hard to ask for anything; if the card describes you, it asks you to let someone in. As for the heart, it stands for loneliness and insecurity: feeling unwanted, overlooked or not good enough, or affection that has gone cold for a while. Reversed, those feelings are thawing into a wish to reach out again, relief at being let back in, and trust slowly coming back."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Five of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "major-17-star",
+          "text": "After the cold, hope returns, and the lit window becomes something you can walk toward."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Friends are the warmth here. Let your circle gather round instead of coping alone."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Holding on tight out of worry about having nothing. Loosen one grip and see what it frees."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "How is the Five of Pentacles different from the Six of Pentacles and the Five of Cups?",
+      "paragraphs": [
+        "The Six of Pentacles also shows people in need, but there, Waite writes, a merchant \"distributes it to the needy and distressed\" (p. 270). In the Six, help is given and received; in the Five, it is near and not yet reached.",
+        "The Five of Cups shows, in Waite's words, a cloaked figure \"looking sideways at three prone cups\" while two stand behind him (p. 216); today it is read as grief and regret over a loss. The Five of Pentacles is about going without and feeling shut out rather than mourning."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Five of Pentacles",
+      "paragraphs": [
+        "Where am I trying to get through this alone?",
+        "Who or what near me could help, if I asked?",
+        "What is one practical thing I need most right now?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Five of Pentacles a good or bad card?",
+      "a": "It is one of the hardest cards in its suit, but it is not a judgment on you. It names a lean time or a sense of being shut out, and it keeps a lit window in the picture, so help is part of the card too. Reversed, it is usually read as the turn toward relief."
+    },
+    {
+      "q": "Does the Five of Pentacles always mean money problems?",
+      "a": "No. Money is its most common meaning, yet the card also covers loneliness, exclusion, or a time when nobody seems to notice your struggle, even with a steady income. Read it through your question: a budget, a friendship, a team, a home."
+    },
+    {
+      "q": "Does the Five of Pentacles mean he loves me?",
+      "a": "Not in the warm sense the question hopes for. Asked about love, the card traditionally means a chilly patch: distance, loneliness felt by one or both people, or two partners struggling through hardship together. It shows a bond under strain, not a verdict on it, and leaves the next chapter open."
+    }
+  ],
+  "related": [
+    "pentacles-04-four",
+    "pentacles-06-six",
+    "cups-05-five",
+    "wands-05-five",
+    "swords-05-five"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-06-six",
+      "text": "Six of Pentacles"
+    },
+    {
+      "card_id": "cups-05-five",
+      "text": "Five of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "The card foretells material trouble above all, whether in the form illustrated—that is, destitution—or otherwise … Reversed: Disorder, chaos, ruin, discord, profligacy.",
+    "quote_lang": "en",
+    "pages": [
+      272
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        272
+      ],
+      "text": "Two mendicants in a snow-storm pass a lighted casement"
+    },
+    {
+      "pages": [
+        272
+      ],
+      "text": "The card foretells material trouble above all, whether in the form illustrated—that is, destitution—or otherwise"
+    },
+    {
+      "pages": [
+        272
+      ],
+      "text": "For some cartomancists, it is a card of love and lovers"
+    },
+    {
+      "pages": [
+        272
+      ],
+      "text": "These alternatives cannot be harmonized"
+    },
+    {
+      "pages": [
+        272
+      ],
+      "text": "Reversed: Disorder, chaos, ruin, discord, profligacy"
+    },
+    {
+      "pages": [
+        270
+      ],
+      "text": "weighs money in a pair of scales and distributes it to the needy and distressed"
+    },
+    {
+      "pages": [
+        216
+      ],
+      "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 05.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_05.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        216,
+        270,
+        272
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "schema": 2,
+  "card_id": "cups-06-six",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Six of Cups",
+    "in_sentence": "the Six of Cups"
+  },
+  "title": "Six of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Six of Cups upright: nostalgia, kindness; reversed: stuck in the past. Love, work, advice, Waite's 1911 text and the 1909 card. Draw it for your question.",
+  "h1": "Six of Cups Tarot Card Meaning",
+  "image_alt": "Six of Cups, 1909 Rider–Waite–Smith card: a child in a red hood hands a cup of white flowers to a smaller child, more flower-filled cups around them, a stone tower behind.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 6,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Six of Cups means nostalgia, memories, kindness and the innocence of childhood. Reversed, it warns of being stuck in the past or of an idealized past. Mostly gentle, it comforts, and asks only that memory not replace today. It answers yes: a child holds out a cup of white flowers in plain welcome.",
+  "keywords": {
+    "upright": [
+      "nostalgia",
+      "innocence",
+      "kindness",
+      "memories"
+    ],
+    "reversed": [
+      "stuck in the past",
+      "idealized past",
+      "growing up"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Six of Cups card?",
+      "paragraphs": [
+        "Waite's description is short: \"Children in an old garden, their cups filled with flowers\" (p. 214). The biggest figure is a child in a red hood who bends to offer a cup of white flowers to a smaller child.",
+        "On the 1909 card the taller child wears a blue tunic and red stockings; the smaller one wears a red headscarf, a spotted dress and a white glove. Four more cups of star-shaped white flowers stand in a row at the front, and another rests on a stone block carved with a shield and an X. Behind them rise a stone tower and a house under a blue sky, and a small figure walks off at the left. VI is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Six of Cups?",
+      "paragraphs": [
+        "Waite calls it \"a card of the past and of memories\" (p. 214): happiness that comes mostly from earlier days, and things that have vanished. Waite also gives an opposite reading, \"new relations, new knowledge, new environment\", with the children playing in an unfamiliar place (p. 214). Waite's shorter list near the end of the book sums it up in two words, \"Pleasant memories\" (p. 290)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Six of Cups mean upright?",
+      "paragraphs": [
+        "Two children and a cup of flowers set the tone: nostalgia, warm memories, and the plain kindness of giving without a reason. The Six of Cups often turns up when the past is close at hand, through an old friend, a familiar place, a song or a smell from childhood, and the memory brings comfort rather than pain.",
+        "Innocence is part of it too: trust, playfulness, the ease of being with people who knew you before you had to try. Modern readings also tie the card to reunions and to gifts given freely. What from your earlier years would you like to carry into the present?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Six of Cups mean reversed?",
+      "paragraphs": [
+        "Upside down, the Six of Cups can mean being stuck in the past: replaying old times, or measuring today against an idealized past that was never quite that simple. Sometimes the reversed card asks for growing up, leaving an old pattern or role behind.",
+        "Waite reads the reversal as \"the future, renewal\" (p. 214), which fits that second side: honor the memory, keep what it taught you, then turn to what comes next."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Six of Cups mean in love?",
+      "paragraphs": [
+        "Tenderness, playful affection and the sense of being safe with someone belong to this card. Between partners, it can bring back the sweetness of the early days: shared jokes, small gestures, an evening that feels like the start.",
+        "Modern readings often connect it with a person from the past, an old friend or a former partner coming to mind again; the card shows the memory and its warmth, not what happens next.",
+        "Reversed, ask whether love for a memory is getting in the way of the person in front of you."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Six of Cups mean for work and money?",
+      "paragraphs": [
+        "Work under the Six of Cups feels friendly and familiar: help from former colleagues, picking up a skill you loved, a group where kindness counts.",
+        "In money matters it means gifts and generosity, small help from family or friends, giving and receiving without keeping score. Reversed, check whether an old way of working still fits the job you have now."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Six of Cups?",
+      "paragraphs": [
+        "Do something you loved as a child, even briefly: draw, play, sing along to an old song. Notice which part of that feeling you can bring into an ordinary day. A small act of kindness toward someone, with no reason behind it, belongs to this card as well."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Six of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Six of Cups as a person and as feelings",
+      "paragraphs": [
+        "The Six of Cups, with its children and flower-filled cups, stands for someone gentle and kind: an old friend, a childhood companion, anyone who makes you feel at home. It can also be the playful, trusting side of you. As feelings, it stands for tenderness, fond memories and a sweet, uncomplicated affection, often tied to a shared past. Reversed, those feelings lean on nostalgia, an attachment to how things used to be more than to how they are."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Six of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "cups-02-two",
+          "text": "Affection with a shared history: a bond built on memories and mutual care."
+        },
+        {
+          "card_id": "pentacles-10-ten",
+          "text": "Family roots and traditions; comfort that comes from home and from those who came before."
+        },
+        {
+          "card_id": "major-20-judgement",
+          "text": "Looking back with clear eyes and keeping from the past what helps you begin again."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Six of Cups or Ten of Cups?",
+      "paragraphs": [
+        "The Ten of Cups is also a happy card about home, but Waite pictures a couple under \"Cups in a rainbow\", with two children dancing near them (p. 206). Today it reads as belonging and emotional fulfillment in the present. The Six looks back with nostalgia; the Ten is happiness lived now, with the people around you."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Six of Cups",
+      "paragraphs": [
+        "Which memory has been on my mind lately, and why now?",
+        "What did I love doing as a child that I could try again?",
+        "Am I enjoying the past, or hiding in it?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Six of Cups a good or bad card?",
+      "a": "Good, in most readings. It brings warmth, generosity and comforting recollections, and it answers yes. Its only catch is when the past becomes a place to hide; then the card invites you to keep the sweetness and return your attention to the present."
+    },
+    {
+      "q": "Is the Six of Cups about an ex?",
+      "a": "Sometimes. Many readers link it to someone from earlier years, and an ex is one possibility, alongside childhood friends and family. The card speaks about warmth and recollection, not about whether anyone returns; ask what that old connection taught you about what you want today."
+    },
+    {
+      "q": "Does the Six of Cups mean he loves me?",
+      "a": "As feelings, this card traditionally means gentle, tender affection, often rooted in history two people share. That is its meaning in the deck, not a statement about one particular person. Whether love is there is something only an honest conversation can show."
+    }
+  ],
+  "related": [
+    "cups-05-five",
+    "cups-07-seven",
+    "wands-06-six",
+    "swords-06-six",
+    "pentacles-06-six"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-10-ten",
+      "text": "Ten of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "A card of the past and of memories, looking back, as—for example—on childhood … Reversed: The future, renewal …",
+    "quote_lang": "en",
+    "pages": [
+      214
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        214
+      ],
+      "text": "Children in an old garden, their cups filled with flowers."
+    },
+    {
+      "pages": [
+        214
+      ],
+      "text": "A card of the past and of memories, looking back, as—for example—on childhood; happiness, enjoyment, but coming rather from the past; things that have vanished."
+    },
+    {
+      "pages": [
+        214
+      ],
+      "text": "Another reading reverses this, giving new relations, new knowledge, new environment, and then the children are disporting in an unfamiliar precinct."
+    },
+    {
+      "pages": [
+        214
+      ],
+      "text": "Reversed: The future, renewal, that which will come to pass presently."
+    },
+    {
+      "pages": [
+        290
+      ],
+      "text": "Six.—Pleasant memories."
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below, evidently husband and wife."
+    },
+    {
+      "pages": [
+        206
+      ],
+      "text": "The two children dancing near them have not observed the prodigy"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 06.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_06.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        206,
+        214,
+        290
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

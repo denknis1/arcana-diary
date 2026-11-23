@@ -1,0 +1,254 @@
+{
+  "schema": 2,
+  "card_id": "cups-14-king",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "King of Cups",
+    "in_sentence": "the King of Cups"
+  },
+  "title": "King of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "King of Cups upright: emotional balance, calm; reversed: suppressed emotions, coldness. Love, work, advice and Waite's 1911 words. Ask your question.",
+  "h1": "King of Cups Tarot Card Meaning",
+  "image_alt": "King of Cups, 1909 Rider–Waite–Smith card: a crowned king with a cup and a short sceptre sits on a stone throne set in a rough sea, a fish leaping and a ship behind.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 14,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The King of Cups means emotional balance, calm and maturity: feeling deeply without being swept away, and handling people with diplomacy. Reversed, feelings get pushed down or composure becomes a mask. A reassuring card that asks for honesty under the surface. Its answer is yes, since the King keeps his cup steady on a rough sea.",
+  "keywords": {
+    "upright": [
+      "emotional balance",
+      "calm",
+      "maturity",
+      "diplomacy"
+    ],
+    "reversed": [
+      "suppressed emotions",
+      "moodiness",
+      "calm as a mask",
+      "coldness"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the King of Cups card?",
+      "paragraphs": [
+        "A king sits on a stone throne that seems to float on a rough sea. Waite writes that he \"holds a short sceptre in his left hand and a great cup in his right\", with a ship riding on one side and a dolphin leaping on the other (p. 198). Waite also explains the water himself: \"the Sign of the Cup naturally refers to water\" (p. 198).",
+        "On the 1909 card the waves are drawn in green and blue bands, the ship has red sails, and the sky behind the throne is gray rather than blue. The king wears a green cloak over a long blue robe."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the King of Cups?",
+      "paragraphs": [
+        "Waite's King of Cups is a responsible man of business or a profession, \"disposed to oblige the Querent\", with a sense of equity and creative intelligence (p. 198). Reversed, Waite turns severe: dishonesty, double-dealing, scandal and loss (p. 198). Arcana Diary reads that side differently, as feelings kept under too tight a lid."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the King of Cups mean upright?",
+      "paragraphs": [
+        "Calm is the gift of this card: emotional balance that comes from maturity, not from feeling less. It can appear when you need to stay centered while things around you are choppy, hear the whole story and answer with diplomacy instead of reacting.",
+        "It also stands for kindness with a spine: being supportive without being pulled into someone else's storm. Waite adds art, science and creative intelligence to the King's meanings (p. 198), and today the card keeps that link between feeling and wisdom.",
+        "Where can I respond today instead of reacting?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the King of Cups mean reversed?",
+      "paragraphs": [
+        "Upside down, the King of Cups can mean suppressed emotions: feelings handled by pushing them down, calm as a mask. Moods may then leak out sideways, as irritability, moodiness or sudden coldness. It can also describe composure used to keep others at a distance or, at its hardest, emotional manipulation: feelings used to steer other people.",
+        "This reading is modern, not Waite's. The way through is easy to name: admit what you feel beneath the composure and let it be there, without needing to control it."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the King of Cups mean in love?",
+      "paragraphs": [
+        "In love, this King describes care that does not panic: steady affection, honest talks held calmly, patience through a hard week, and commitment that shows in everyday kindness. You can stay calm and still let your feelings show.",
+        "With the card reversed, the question is whether calm has turned into distance, or whether something important is left unsaid to avoid a scene.",
+        "For anyone dating, it values emotional maturity: choosing someone with whom you can feel without fear and speak without drama, and being that kind of person too."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the King of Cups mean for work and money?",
+      "paragraphs": [
+        "This is the card of the calm professional: a leader who listens, a mediator in a tense meeting, someone whose tact holds people together. It favors handling conflict with steady nerves.",
+        "For money, the King of Cups means stability kept with a cool head: generosity balanced by good sense, decisions made without panic. Reversed, it can mark spending driven by mood, or money worries hidden instead of talked through."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the King of Cups?",
+      "paragraphs": [
+        "Before you react to something difficult, take three slow breaths, then answer. The pause is not coldness: it gives your feelings room and your words a steadier voice. Try it once today, in the conversation that matters most."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the King of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The King of Cups as a person and as feelings",
+      "paragraphs": [
+        "This King, as a person, is someone mature and kind who keeps calm under pressure: a mentor, a supportive partner, the diplomatic leader everyone turns to when things get rough. It can be you, when you hold steady for others. In a question about feelings, the card stands for deep, stable affection, loyalty and protective care: love shown through reliability more than grand words. Reversed, those feelings may be held back or hidden behind a cool surface, with moods that are hard to read."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The King of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "major-14-temperance",
+          "text": "Calm joined by patience: a tense situation gets the time it needs to settle."
+        },
+        {
+          "card_id": "cups-13-queen",
+          "text": "Mature care from both sides: one heart listens, the other holds steady."
+        },
+        {
+          "card_id": "swords-05-five",
+          "text": "Conflict meets diplomacy. Lower the temperature before trying to win."
+        },
+        {
+          "card_id": "cups-10-ten",
+          "text": "Steady love that makes a home feel safe and shared."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "King of Cups, The Emperor or King of Pentacles?",
+      "paragraphs": [
+        "The Emperor also rules from a throne, but Waite describes him as \"commanding, stately\", on a seat whose arms are fronted by rams' heads (p. 84). Today he stands for structure and authority; the King of Cups leads through calm and feeling rather than rules.",
+        "The King of Pentacles has the bull's head on his throne, \"a recurrent symbol\" in Waite's words (p. 254). His card speaks of security and material success; the King of Cups speaks of emotional steadiness."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the King of Cups",
+      "paragraphs": [
+        "What am I feeling under my calm right now?",
+        "Where would a short pause help me answer better?",
+        "Who could use my steady listening today?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the King of Cups a good or bad card?",
+      "a": "Mostly good. It brings calm, kindness and the maturity to handle strong feelings well. Its difficult side appears when composure turns into hiding: feelings swallowed, distance kept. Read that way, the card is a nudge toward honesty, not a warning."
+    },
+    {
+      "q": "Does the King of Cups mean he loves me?",
+      "a": "It does not describe a specific person's heart. As a meaning, the King of Cups is steady, grown-up love: loyalty, protection and care proven by consistency. To know where you stand with someone, their actions over time and an honest conversation tell you more than a card."
+    },
+    {
+      "q": "Is the King of Cups emotionally unavailable?",
+      "a": "Not upright, where he is the opposite: present and calm. The idea comes from the reversed card, which can stand for feelings held back or composure used as a shield. As a meaning, that is distance, not a lack of care, and it is worth naming gently."
+    },
+    {
+      "q": "Why does the King of Cups sit on the sea?",
+      "a": "Waite's answer is brief: the cup belongs with water, and he gives the waves no separate meaning (p. 198). Arcana Diary reads the picture as it is drawn: a quiet figure on restless water, steady without stopping the waves."
+    }
+  ],
+  "related": [
+    "cups-13-queen",
+    "cups-01-ace",
+    "wands-14-king",
+    "swords-14-king",
+    "pentacles-14-king"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-04-emperor",
+      "text": "The Emperor"
+    },
+    {
+      "card_id": "pentacles-14-king",
+      "text": "King of Pentacles"
+    }
+  ],
+  "waite": {
+    "quote": "Fair man, man of business, law, or divinity; responsible … creative intelligence. Reversed: Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss.",
+    "quote_lang": "en",
+    "pages": [
+      198
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        198
+      ],
+      "text": "He holds a short sceptre in his left hand and a great cup in his right; his throne is set upon the sea; on one side a ship is riding and on the other a dolphin is leaping"
+    },
+    {
+      "pages": [
+        198
+      ],
+      "text": "The implicit is that the Sign of the Cup naturally refers to water"
+    },
+    {
+      "pages": [
+        198
+      ],
+      "text": "Fair man, man of business, law, or divinity; responsible, disposed to oblige the Querent; also equity, art and science, including those who profess science, law and art; creative intelligence"
+    },
+    {
+      "pages": [
+        198
+      ],
+      "text": "Reversed: Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss"
+    },
+    {
+      "pages": [
+        84
+      ],
+      "text": "He is a crowned monarch—commanding, stately, seated on a throne, the arms of which are fronted by rams' heads"
+    },
+    {
+      "pages": [
+        254
+      ],
+      "text": "The bull's head should be noted as a recurrent symbol on the throne"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 14.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_14.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        84,
+        198,
+        254
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

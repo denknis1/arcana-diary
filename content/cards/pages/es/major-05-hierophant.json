@@ -1,0 +1,305 @@
+{
+  "schema": 2,
+  "card_id": "major-05-hierophant",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "El Papa",
+    "in_sentence": "El Papa",
+    "de": "de El Papa"
+  },
+  "title": "El Papa en el tarot: significado, invertida y amor",
+  "description": "Qué significa El Papa al derecho y al revés (carta invertida): tradición, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "El Papa en el tarot: significado",
+  "image_alt": "El Papa, carta de 1909 de la baraja Rider-Waite-Smith: una figura con triple corona dorada y manto rojo, sentada entre dos columnas grises, alza la mano derecha; a sus pies hay dos llaves cruzadas y dos figuras arrodilladas.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 5,
+    "numeral": "V",
+    "also_called": [
+      "El Hierofante"
+    ]
+  },
+  "capsule": "El Papa, carta V de los arcanos mayores, habla de tradición, aprendizaje, guía espiritual e instituciones compartidas. Al revés, significa rebeldía frente a reglas que ya no te quedan. Es una carta de apoyo, aunque su sombra es el conformismo. Pregúntale sí o no: al derecho dice que sí y bendice el camino probado.",
+  "keywords": {
+    "upright": [
+      "tradición",
+      "aprendizaje",
+      "valores",
+      "guía",
+      "comunidad"
+    ],
+    "reversed": [
+      "reglas que ya no te quedan",
+      "costumbre",
+      "rebeldía",
+      "presión por encajar"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de El Papa?",
+      "paragraphs": [
+        "Una figura con una corona dorada muy alta está sentada en lo alto, entre dos columnas grises de piedra que junto con ella ocupan casi toda la carta. Waite le pone la triple corona y la sienta entre dos columnas que, aclara, no son las del templo que custodia La Sacerdotisa (p. 88).",
+        "En la mano izquierda sostiene un cetro que termina en una triple cruz; con la derecha hace una señal eclesiástica conocida, que según Waite distingue entre la parte visible y la parte oculta de la doctrina. A sus pies están las llaves cruzadas, y dos ministros con albas se arrodillan frente a él (p. 88).",
+        "En la carta de 1909 arriba se lee el V, el manto es rojo con una franja blanca marcada con crucecitas y las llaves son doradas, sobre una tela roja. Los dos que se arrodillan llevan la coronilla al descubierto y unas bandas amarillas cruzadas en la espalda; el de la izquierda viste una túnica con rosas rojas. Abajo se lee THE HIEROPHANT; en español también se le conoce como El Hierofante.",
+        "Waite lo llama la cabeza de la jerarquía reconocida y el canal de la gracia que pertenece al mundo de las instituciones, a diferencia del de la naturaleza (p. 91)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre El Papa?",
+      "paragraphs": [
+        "La primera lista habla de lazos entre personas: unos elegidos, como el matrimonio y la alianza, y otros que atan a la fuerza; otra versión agrega misericordia y bondad. La segunda describe sobre todo la buena convivencia, sociedad, concordia y entendimiento, con el exceso de bondad y la debilidad como precio.",
+        "Waite es más frío que su lista. Escribe que esta figura no es la inspiración (p. 91), aunque la palabra aparece entre los significados, y advierte que el pontífice puede olvidar el sentido de su papel simbólico (p. 91)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa El Papa al derecho?",
+      "paragraphs": [
+        "Al derecho, El Papa habla de tradición y aprendizaje: un maestro, una mentora, una escuela, una comunidad con valores que compartes. Suele salir cuando no hace falta inventar todo desde cero, porque un camino ya probado guarda buena parte de lo que buscas.",
+        "La carta favorece la guía: preguntarle a alguien con experiencia, seguir un método que funciona, sumarte a un grupo, conservar un ritual que te da calma. Hoy también se lee como la carta de las creencias religiosas o espirituales, la educación formal y las instituciones de siempre: una iglesia, una universidad, una profesión con sus normas. Waite da por buena la descripción de la carta como el lado exterior de la vida que lleva a la doctrina (p. 91), la cara visible y compartida de lo que se cree.",
+        "Su lado difícil es el conformismo: seguir las reglas solo porque todos lo hacen y guardarte tus preguntas. Si esto te hace sentido, pregúntate de quién podrías aprender para ahorrarte un par de vueltas, y qué costumbres elegirías aunque nadie te las pidiera."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa El Papa al revés?",
+      "paragraphs": [
+        "Al revés, El Papa puede señalar reglas que ya no te quedan: tradiciones que sigues por pura costumbre y no por convicción, o la presión por encajar en lo que se espera de ti. Sobre todo significa rebeldía y libertad: cuestionar lo que te enseñaron, desafiar el «así se hace», elegir un camino poco convencional, aunque sea en silencio, con ganas de creer y vivir a tu manera.",
+        "La segunda lista de Waite no habla de rebeldía. Sus palabras, sociedad, concordia, exceso de bondad, debilidad, se parecen más a seguir a los demás con demasiada facilidad. El lado rebelde es una lectura moderna, no de Waite.",
+        "Ninguno de los dos caminos está mal por sí mismo. Distingue lo que eliges seguir de lo que sigues por inercia, y quédate con lo primero a propósito."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa El Papa en el amor?",
+      "paragraphs": [
+        "Los compromisos y los valores pasan al centro cuando El Papa te sale en una pregunta de amor. Es de las cartas más ligadas al matrimonio y a la relación tradicional: promesas hechas en serio y a la vista de todos, muchas veces con la familia de por medio. Cuando no hay pareja, la carta sugiere conocer gente a través de una comunidad, un curso o una tradición que te importa, o aclarar qué tipo de compromiso quieres de verdad.",
+        "Dentro de la pareja, la pregunta es sobre qué están construyendo: acuerdos, promesas, costumbres de la casa. Piensa qué tradiciones quieres conservar en tus vínculos y cuáles prefieres vivir a tu manera.",
+        "Al revés, puede mostrar un jaloneo entre lo que se espera de una relación y lo que tú sientes como verdadero: presión de la familia, valores distintos sobre el compromiso o ganas de un vínculo menos convencional. ¿Cuáles de esas expectativas son tuyas?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa El Papa en el trabajo y el dinero?",
+      "paragraphs": [
+        "En tu carrera, El Papa te acerca a quien conoce el oficio: un mentor, una capacitación, un método establecido, las normas de una profesión. También puede hablar de trabajar dentro de una institución y encontrar tu lugar en ella.",
+        "Para el dinero, la carta significa un manejo conservador y estable: hábitos probados, un presupuesto con reglas claras, una seguridad que se construye poco a poco y sin atajos. Al revés, habla de romper con la forma en que siempre se manejó el dinero en casa, y eso puede traer libertad o decisiones a la ligera."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa El Papa como consejo?",
+      "paragraphs": [
+        "Busca a alguien que ya recorrió un camino parecido al tuyo y hazle una pregunta concreta; luego decide por tu cuenta. Toma prestada la experiencia sin tomar prestada una vida entera: quédate con la parte de la tradición que te ayuda y suelta la que no te queda."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Papa es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa El Papa como persona y como sentimiento?",
+      "paragraphs": [
+        "Cuando aparece como figura, El Papa es quien enseña, aconseja o cuida una tradición, la persona a la que otros acuden para pedir orientación; leído como tu retrato, marca tu lado que enseña o el que tiene ganas de aprender. Si la pregunta es qué siente alguien, la carta habla tradicionalmente de respeto, lealtad e intenciones serias: el deseo de un compromiso formal, a la manera de siempre, guiado más por el deber y los valores compartidos que por la pasión. Al revés, describe sentimientos frenados por las expectativas: dudas ante el compromiso, la sensación de no tener espacio propio o ganas de una relación que no siga las reglas de costumbre."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa El Papa junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-06-lovers",
+          "text": "Una elección personal dentro de valores compartidos. Pregúntate qué promesa quieres cumplir."
+        },
+        {
+          "card_id": "pentacles-03-three",
+          "text": "Aprender trabajando con otros. Busca a la persona cuyo oficio quieres ver de cerca."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Pertenencia y festejo. Tu gente también puede ser un lugar para aprender."
+        },
+        {
+          "card_id": "major-04-emperor",
+          "text": "Reglas propias frente a costumbres compartidas. Revisa con cuáles estás de acuerdo de verdad."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir El Papa de La Sacerdotisa?",
+      "paragraphs": [
+        "La Sacerdotisa también se sienta entre dos columnas, y Waite pone las dos cartas una junto a otra: él es el poder que rige la religión exterior; ella, el genio de lo esotérico, un poder retirado, y además no hace ninguna señal (p. 88), mientras él levanta la mano. Hoy ella se lee como intuición y saber interior, y él como tradición y guía que llega de afuera. Si buscas la respuesta adentro, es terreno de ella; si buscas a quien te enseñe, es terreno de él."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale El Papa?",
+      "paragraphs": [
+        "¿De quién podría aprender sobre lo que hoy me preocupa?",
+        "¿Qué reglas mías elegí y cuáles solo heredé?",
+        "¿A qué grupo pertenezco y qué le aporto?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Papa es una carta buena o mala?",
+      "a": "En su mayor parte es buena, aunque esconde una trampa: seguir la corriente sin pensarlo, mantener una costumbre solo porque todos lo hacen. Fuera de esa trampa, respalda el estudio, el buen consejo y el gusto de pertenecer a algo."
+    },
+    {
+      "q": "¿El Papa y El Hierofante son la misma carta?",
+      "a": "Sí. Waite cuenta que a esta carta se le llama Padre Espiritual y, más comúnmente, el Papa, y que al parecer también la llamaron el Abad (p. 14). Él prefirió el nombre más amplio, Hierofante, porque el Papa es solo una aplicación particular del oficio general que la figura simboliza (p. 88)."
+    },
+    {
+      "q": "¿El Papa significa boda?",
+      "a": "Como significado, sí; como predicción, no. El matrimonio encabeza la lista de Waite para esta carta (p. 284), junto a la alianza y a los lazos de deber, y la lectura moderna mantiene ese vínculo con el compromiso formal. La carta describe ese tipo de unión, pero no dice nada seguro sobre una boda en tu vida."
+    },
+    {
+      "q": "¿El Papa habla de religión?",
+      "a": "Puede, pero casi nunca tiene que ser así. Waite aclara que no es la religión, aunque sí una manera de expresarla (p. 91). Dentro de una lectura, la carta suele señalar cualquier sistema establecido: una escuela, una profesión, una costumbre de familia, las creencias con las que creciste."
+    }
+  ],
+  "related": [
+    "major-04-emperor",
+    "major-06-lovers",
+    "major-02-high-priestess",
+    "pentacles-03-three"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-02-high-priestess",
+      "text": "La Sacerdotisa"
+    }
+  ],
+  "waite": {
+    "quote": "Marriage, alliance, captivity, servitude; by another account, mercy and goodness; inspiration … Reversed: Society, good understanding, concord, over-kindness, weakness.",
+    "quote_lang": "en",
+    "pages": [
+      284
+    ],
+    "translation": "Matrimonio, alianza, cautiverio, servidumbre; según otra versión, misericordia y bondad; inspiración … Al revés: sociedad, buen entendimiento, concordia, exceso de bondad, debilidad.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        88
+      ],
+      "text": "He wears the triple crown and is seated between two pillars, but they are not those of the Temple which is guarded by the High Priestess"
+    },
+    {
+      "pages": [
+        88
+      ],
+      "text": "In his left hand he holds a sceptre terminating in the triple cross, and with his right hand he gives the well-known ecclesiastical sign which is called that of esotericism, distinguishing between the manifest and concealed part of doctrine"
+    },
+    {
+      "pages": [
+        88
+      ],
+      "text": "At his feet are the crossed keys, and two priestly ministers in albs kneel before him"
+    },
+    {
+      "pages": [
+        91
+      ],
+      "text": "He is the order and the head of the recognized hierarchy"
+    },
+    {
+      "pages": [
+        91
+      ],
+      "text": "he is the channel of grace belonging to the world of institution as distinct from that of Nature"
+    },
+    {
+      "pages": [
+        91
+      ],
+      "text": "he is not inspiration"
+    },
+    {
+      "pages": [
+        91
+      ],
+      "text": "it may so happen that the pontiff forgets the significance of this his symbolic state"
+    },
+    {
+      "pages": [
+        91
+      ],
+      "text": "the outer side of the life which leads to the doctrine"
+    },
+    {
+      "pages": [
+        88
+      ],
+      "text": "He is the ruling power of external religion, as the High Priestess is the prevailing genius of the esoteric, withdrawn power"
+    },
+    {
+      "pages": [
+        88
+      ],
+      "text": "It is noticeable in this connexion that the High Priestess makes no sign"
+    },
+    {
+      "pages": [
+        14
+      ],
+      "text": "The High Priest or Hierophant, called also Spiritual Father, and more commonly and obviously the Pope. It seems even to have been named the Abbot"
+    },
+    {
+      "pages": [
+        88
+      ],
+      "text": "He has been usually called the Pope, which is a particular application of the more general office that he symbolizes"
+    },
+    {
+      "pages": [
+        91
+      ],
+      "text": "he is not religion, although he is a mode of its expression"
+    },
+    {
+      "pages": [
+        284
+      ],
+      "text": "The Hierophant.—Marriage, alliance, captivity, servitude"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 05 Hierophant.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_05_Hierophant.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        14,
+        88,
+        91,
+        284
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

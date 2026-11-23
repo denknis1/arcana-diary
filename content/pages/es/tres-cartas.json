@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "page_id": "tres-cartas",
+  "lang": "es",
+  "url": "/es/tiradas/3-cartas",
+  "status": "reviewed",
+  "title": "Tarot gratis 3 cartas: pasado, presente y hacia dónde va",
+  "description": "Saca tres cartas del tarot gratis: pasado, presente y hacia dónde va tu pregunta. Aprende a leerlas juntas con un ejemplo completo. Sin registro. Haz tu tirada.",
+  "h1": "Tarot gratis de 3 cartas: pasado, presente y lo que sigue",
+  "lead": "Tres cartas, tres lugares: lo que viene de atrás, lo que pasa ahora y hacia dónde puede ir. Escribe tu pregunta, o déjala en blanco, y lee las tres como una sola historia.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "posiciones",
+      "heading": "¿Qué significan las tres posiciones?",
+      "paragraphs": [
+        "La primera carta es el pasado: lo que fue armando la situación hasta hoy. No tiene que ser algo lejano; puede ser una decisión de hace unas semanas, una costumbre o un cansancio que se fue juntando. Te ayuda a entender por qué estás donde estás.",
+        "La segunda es el presente: lo que ocurre ahora, lo que está en juego o lo que más pesa en este momento. Suele ser la carta que reconoces más rápido, porque habla de algo que ya sientes.",
+        "La tercera es «Hacia dónde va», y aquí conviene leer con cuidado. En muchas tiradas se le llama futuro; aquí preferimos decir hacia dónde va: lo que podría venir si todo sigue igual. Muestra un camino posible, no una sentencia. Si no te gusta lo que enseña, esa misma carta te da pistas de qué mover.",
+        "Hay otras maneras de usar tres cartas, como situación, obstáculo y consejo. En esta tirada los lugares son siempre los mismos, para que puedas comparar tus lecturas a lo largo del tiempo en el diario. El papel del consejo lo cumple el paso concreto que cierra cada lectura."
+      ]
+    },
+    {
+      "id": "juntas",
+      "heading": "¿Cómo leer las tres cartas juntas?",
+      "paragraphs": [
+        "Leer carta por carta es el primer paso, pero la tirada cobra sentido cuando la ves como una historia. Fíjate en qué cambia de la primera a la tercera: ¿la escena se aligera o se carga?, ¿hay movimiento o todo está quieto?, ¿la carta del presente frena lo que traía el pasado o lo continúa?",
+        "Mira también lo que se repite. En las lecturas modernas, cada palo tiene su terreno: las Copas, las emociones y los vínculos; los Bastos, el impulso y los proyectos; las Espadas, las ideas y los conflictos; los Oros, el trabajo, el dinero y lo concreto. Si dos cartas comparten palo, ese terreno pesa más en tu pregunta. Si salen dos o tres arcanos mayores, muchos lectores lo toman como señal de que el tema pesa mucho para ti.",
+        "Una carta al revés no arruina a las otras dos. Suele marcar dónde se atora la historia: si el pasado sale de cabeza, algo de atrás no terminó de cerrarse; si es la tercera, el camino pide primero quitar un estorbo. Léela como parte del relato, no como mala noticia.",
+        "Al final, busca la carta que da la clave. A veces es la del presente; a veces la tercera, que pone en palabras lo que la tirada te pide. En la lectura que recibes, después de las tres cartas vienen una o dos frases que las unen y luego una acción pequeña para los próximos días."
+      ]
+    },
+    {
+      "id": "ejemplo",
+      "heading": "¿Cómo se ve una lectura de tres cartas?",
+      "paragraphs": [
+        "Imagina la pregunta «¿Cómo retomo mi proyecto después de una mala racha?» con estas tres cartas. En el pasado, el Cinco de Copas: una figura con capa negra mira tres copas derramadas y no ve las dos que siguen de pie detrás. Habla de la desilusión que dejó la racha y de lo que todavía tienes, aunque no lo estés mirando.",
+        "En el presente, el Cuatro de Espadas: un caballero reposa bajo un vitral, con una espada a su lado. Es una carta de pausa y de juntar fuerzas. En este lugar, dice que el momento pide descansar y ordenar las ideas, no exigirte arrancar mañana mismo.",
+        "En «Hacia dónde va», el Tres de Bastos: alguien de espaldas observa barcos que navegan a lo lejos. Habla de ampliar la mirada y de ver los primeros frutos de lo que pones en marcha. Si nada cambia, la historia va hacia allá: de la tristeza al descanso, y del descanso a un horizonte más abierto.",
+        "Juntas, las tres cartas cuentan que la pausa no es tiempo perdido, sino el puente entre la racha y el siguiente intento. Un paso posible sería informarte esta semana sobre un curso o buscar a una persona que te ayude a retomar, sin pedirte resultados todavía. Esa es la forma de la lectura que recibes aquí: cada carta en su lugar, lo que cuentan en conjunto y un paso."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Cómo leer el tarot con 3 cartas?",
+      "a": "Primero lee cada carta en su lugar: pasado, presente y hacia dónde va. Después míralas como una historia y busca qué cambia entre la primera y la tercera. Al final, quédate con una acción pequeña. Si apenas empiezas, compara lo que dice la lectura con lo que ves en los dibujos; así aprendes a reconocer las cartas."
+    },
+    {
+      "q": "¿La tirada de 3 cartas es gratis?",
+      "a": "Sí. Tienes {guest_limit} lecturas diarias sin registrarte y {user_limit} si entras a tu cuenta, y esta es una de ellas. Trae {followups} preguntas de seguimiento gratis por si alguna carta te deja con dudas."
+    },
+    {
+      "q": "¿Qué preguntas funcionan con tres cartas?",
+      "a": "Las que tienen historia: algo que viene de atrás y todavía no se resuelve. «¿Qué necesito entender de esta etapa en mi trabajo?», «¿Cómo llevo mejor la relación con mi familia?», «¿Qué me frena con este cambio?». Si lo que buscas es una inclinación hacia un lado, mejor usa el sí o no."
+    },
+    {
+      "q": "¿Sirve para preguntas de amor, dinero o trabajo?",
+      "a": "Para el amor, sí, y existe una tirada del amor que lee la parte amorosa de cada carta. Con el trabajo, la lectura mira cómo vives la situación y qué paso sí depende de ti. Con el dinero, las cartas hablan de cómo vives la decisión, no de ganancias, y no son un consejo financiero."
+    },
+    {
+      "q": "¿Por qué no usan la baraja española ni el tarot de Marsella?",
+      "a": "Porque nuestra base de significados se escribió para la baraja Rider–Waite–Smith, con sus dibujos de 1909, en la que todas las cartas, también las de los palos, tienen una escena. Mezclar barajas daría lecturas sin un criterio fijo. Si conoces la baraja española, los nombres de los palos te van a sonar: Oros, Copas, Espadas y Bastos."
+    },
+    {
+      "q": "¿Cuál es el mejor tarot gratis de 3 cartas?",
+      "a": "El que te deja ver qué cartas salieron y te explica por qué la lectura dice lo que dice. Aquí ves cada carta con su dibujo de 1909, su lugar en la tirada y lo que significan juntas, y la lectura completa no te cuesta nada dentro del límite del día."
+    },
+    {
+      "q": "¿Puedo leer el tarot de 3 cartas con inteligencia artificial?",
+      "a": "Sí: aquí quien escribe es un lector de inteligencia artificial, en español, a partir de las tres cartas que el sitio saca al azar y de nuestra base de significados. No responde de memoria ni inventa cartas: lee las que tienes enfrente, al derecho o al revés."
+    }
+  ],
+  "intents": [
+    {
+      "q": "¿cómo leer el tarot con 3 cartas?",
+      "source": "[PAA]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "tarot gratis 3 cartas",
+      "source": "[карта страниц] 2 400",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "tirada de 3 cartas gratis",
+      "source": "[карта страниц]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "tarot 3 cartas gratis",
+      "source": "[карта страниц]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "pasado, presente y futuro",
+      "source": "[title tarotime, tarotia]",
+      "answered_in": "posiciones"
+    },
+    {
+      "q": "qué representa cada carta en la tirada de 3 cartas",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "posiciones"
+    },
+    {
+      "q": "cómo leer las tres cartas juntas",
+      "source": "[40-tools-serp-study] ES-099, «чего никто не делает»",
+      "answered_in": "juntas"
+    },
+    {
+      "q": "para qué sirve el tarot gratis de 3 cartas",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "ejemplo"
+    },
+    {
+      "q": "preguntas para una tirada de 3 cartas",
+      "source": "[H2 tarotia]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "tarot gratis 3 cartas: amor, dinero y salud",
+      "source": "[TikTok, поз.8]",
+      "answered_in": "faq:3"
+    },
+    {
+      "q": "por qué la baraja española para una tirada de 3 cartas",
+      "source": "[H2 tarotamigo]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "tarot de marsella con tres cartas",
+      "source": "[title tiradastarotgratis]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "¿cuál es el mejor tarot gratis?",
+      "source": "[PAA]",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "¿dónde puedo encontrar chatgpt para leer tarot gratis en español?",
+      "source": "[PAA]",
+      "answered_in": "faq:6"
+    }
+  ]
+}

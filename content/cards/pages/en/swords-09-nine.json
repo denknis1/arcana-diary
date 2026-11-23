@@ -1,0 +1,244 @@
+{
+  "schema": 2,
+  "card_id": "swords-09-nine",
+  "lang": "en",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Nine of Swords",
+    "in_sentence": "the Nine of Swords"
+  },
+  "title": "Nine of Swords Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Nine of Swords upright: anxiety, worry, sleepless thoughts; reversed: worry easing or hidden fears. Love, work, advice and Waite's 1911 text. Ask your question.",
+  "h1": "Nine of Swords Tarot Card Meaning",
+  "image_alt": "Nine of Swords, 1909 Rider–Waite–Smith card: a woman sits up in bed with her face in her hands below nine swords on a black wall.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 9,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Nine of Swords means anxiety and worry: sleepless thoughts at night, fears that grow larger in the mind than in life, and inner pressure. Reversed, the worry starts to ease, or it is kept hidden. It is a hard card, yet it speaks of fear more than of fact. The answer is no: worry, not clarity, fills the room.",
+  "keywords": {
+    "upright": [
+      "anxiety",
+      "worry",
+      "sleepless thoughts",
+      "inner pressure"
+    ],
+    "reversed": [
+      "worry easing",
+      "hidden fears",
+      "reaching out",
+      "hope returning"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Nine of Swords card?",
+      "paragraphs": [
+        "A woman sits up in bed in the dark with her face in her hands, and nine swords hang in rows across the black wall behind her. Waite pictures her \"seated on her couch in lamentation\" (p. 236) and calls it \"a card of utter desolation\" (p. 236).",
+        "On the 1909 card the swords lie flat, one above another, and fill most of the background; none of them touches her. Her gown is white, and the quilt over her knees is a checkerboard of blue and yellow squares with red roses. A carved panel runs along the side of the bed, and IX is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Nine of Swords?",
+      "paragraphs": [
+        "Waite's upright list is among the bleakest in his book, running from failure and deception to despair (p. 236), and Arcana Diary does not read it as a forecast.",
+        "His reversed side lists suspicion, doubt, shame and \"reasonable fear\" (p. 236). Fear is the word that carries over into how the card is read now. The idea that such worry swells at night and outgrows its cause is the modern reading, not Waite's."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Nine of Swords mean upright?",
+      "paragraphs": [
+        "Anxiety is the plain meaning of the Nine of Swords, and at its darkest, despair. It is the card of nightmares and of lying awake in the small hours, replaying a conversation, running through everything that could go wrong and feeling the weight of it all at once.",
+        "Worry here tends to be bigger than the problem behind it. The pressure is real, but much of it lives in sleepless thoughts rather than in what is happening now. Guilt and regret can feed it too: something you blame yourself for, or a load carried in silence.",
+        "Is this happening now, or only in my head at night?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Nine of Swords mean reversed?",
+      "paragraphs": [
+        "Reversed, the Nine of Swords can mean worry easing: the worst of a hard night behind you, reaching out to someone, hope returning after a stretch of dread.",
+        "It can also mean hidden fears, worry kept so private that it never gets air and so grows heavier. Waite's reversed words, suspicion, doubt and shame (p. 236), fit this second reading. Either way, saying the fear out loud to someone kind is a good first step."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Nine of Swords mean in love?",
+      "paragraphs": [
+        "Lying awake over a relationship is how this card often shows up in love: fear of losing someone, doubts about where things stand, guilt about something said or done.",
+        "Between partners it can mean worry that is not being shared, so it grows in silence. Unattached, it can be anxiety about being alone, or an old rejection that still replays at night. Reversed, the fear starts to loosen, often after an honest talk, or it is hidden even from the person closest to you."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Nine of Swords mean for work and money?",
+      "paragraphs": [
+        "Bills that keep you up at night, fear of not having enough, a budget that feels tighter than it is: money worries are this card's financial meaning.",
+        "At work it is stress and dread about deadlines, mistakes or being judged, the kind of worry that follows you home. Writing the actual numbers or tasks down often shrinks them to their real size."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Nine of Swords?",
+      "paragraphs": [
+        "Before bed, write the worry that keeps coming back on paper, along with one small step you could take in daylight. Close the notebook and leave it outside the bedroom."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Nine of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Nine of Swords as a person and as feelings",
+      "paragraphs": [
+        "An overthinker, often kind and conscientious, who lies awake over what might go wrong: that is the Nine of Swords as a person. If it is you, it is the part that needs reassurance more than solutions. As feelings, the card stands for anxiety about the bond: fear of losing it, insecurity, guilt or regret, unease about where it is heading. Reversed, those feelings ease as fears get spoken, or stay hidden and weigh more."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Nine of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "swords-03-three",
+          "text": "A hurt and the sleepless worry that follows it. Let both be named."
+        },
+        {
+          "card_id": "major-18-moon",
+          "text": "Night fears and unclear signals together. Wait for daylight before deciding what is real."
+        },
+        {
+          "card_id": "major-17-star",
+          "text": "After a long night, hope. Calm and rest can return."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "Worry that asks for real rest. Quiet your thoughts before you act."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Nine of Swords, Ten of Swords or Three of Swords?",
+      "paragraphs": [
+        "Waite's Ten of Swords shows \"a prostrate figure, pierced by all the swords\" (p. 234); today it is read as an ending, hitting bottom. The Nine is the fear of the worst; the Ten is a painful ending that also clears the way.",
+        "Waite's Three of Swords, a heart pierced by three swords in the rain (p. 248), stands for the wound; the Nine for the sleepless worry around it."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Nine of Swords",
+      "paragraphs": [
+        "What is the fear, put into one sentence?",
+        "Who could I tell about it?",
+        "What one small thing is in my hands today?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Nine of Swords a good or bad card?",
+      "a": "It is a hard card, not a sign of doom. It names anxiety honestly, which is the first step to easing it. It describes how worry feels, not what lies ahead, and reversed it can mark the moment the night starts to lift."
+    },
+    {
+      "q": "Does the Nine of Swords mean my fears are real?",
+      "a": "Not necessarily. The card's usual modern message is that worry tends to grow larger than its cause, especially at night. Some fears point to something that needs attention; others fade once they are said aloud. The card asks you to tell the two apart in daylight."
+    },
+    {
+      "q": "Is the Nine of Swords about guilt?",
+      "a": "It can be. Next to anxiety, guilt and regret are common modern meanings: replaying a mistake, blaming yourself, carrying shame quietly. Shame is in Waite's reversed list as well (p. 236). The card does not judge; it shows a weight that gets lighter when it is shared or set right."
+    }
+  ],
+  "related": [
+    "swords-08-eight",
+    "swords-10-ten",
+    "cups-09-nine",
+    "wands-09-nine",
+    "pentacles-09-nine"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-10-ten",
+      "text": "Ten of Swords"
+    },
+    {
+      "card_id": "swords-03-three",
+      "text": "Three of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Death, failure, miscarriage, delay, deception, disappointment, despair. Reversed: Imprisonment, suspicion, doubt, reasonable fear, shame.",
+    "quote_lang": "en",
+    "pages": [
+      236
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        236
+      ],
+      "text": "One seated on her couch in lamentation, with the swords over her."
+    },
+    {
+      "pages": [
+        236
+      ],
+      "text": "It is a card of utter desolation."
+    },
+    {
+      "pages": [
+        236
+      ],
+      "text": "suspicion, doubt, reasonable fear, shame"
+    },
+    {
+      "pages": [
+        234
+      ],
+      "text": "A prostrate figure, pierced by all the swords belonging to the card."
+    },
+    {
+      "pages": [
+        248
+      ],
+      "text": "Three swords piercing a heart; cloud and rain behind."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 09.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_09.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        234,
+        236,
+        248
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

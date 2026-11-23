@@ -1,0 +1,221 @@
+{
+  "schema": 2,
+  "card_id": "swords-08-eight",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "Ocho de Espadas",
+    "in_sentence": "el Ocho de Espadas",
+    "de": "del Ocho de Espadas"
+  },
+  "title": "Ocho de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Ocho de Espadas al derecho y al revés (carta invertida): bloqueo, miedo, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Ocho de Espadas en el tarot: significado",
+  "image_alt": "Ocho de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: una mujer de rojo, vendada y atada con bandas grises, entre ocho espadas, con un castillo detrás.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 8,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Ocho de Espadas es la carta del bloqueo: miedo, creencias limitantes y la sensación de no tener salida, aunque casi siempre queda una salida posible. Al revés, las ataduras se aflojan y empiezas a liberarte. Es dura, pero con un fondo esperanzador. La respuesta es no: la figura sigue vendada y atada.",
+  "keywords": {
+    "upright": [
+      "bloqueo",
+      "miedo",
+      "creencias limitantes",
+      "salida posible"
+    ],
+    "reversed": [
+      "liberarse",
+      "miedos que se aflojan",
+      "otra perspectiva",
+      "dar el primer paso"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Ocho de Espadas?",
+      "paragraphs": [
+        "Para Waite es una mujer atada y vendada, con las espadas de la carta en torno a ella (p. 238). Las espadas son lo más grande del dibujo: están clavadas en la tierra a su alrededor, como una cerca.",
+        "En la carta de 1909 lleva una túnica larga de color rojo anaranjado, una venda gris en los ojos y más vendas grises enrolladas en los brazos y el cuerpo. Hay tres espadas a su izquierda y cinco a su derecha, y frente a ella el terreno está libre. A sus pies hay charcos, detrás se alza un castillo sobre una roca, y arriba se lee el VIII."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Ocho de Espadas?",
+      "paragraphs": [
+        "Waite da una lista dura, que va de las malas noticias y la crisis a la traición (p. 238), y en Arcana Diary no leemos la carta como un pronóstico de problemas.",
+        "Antes de la lista, Waite deja su frase clave: es más una carta de encierro pasajero que de cautiverio sin remedio (p. 238). La atadura es real, pero según él no es para siempre, y por ahí sigue la lectura moderna."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Ocho de Espadas al derecho?",
+      "paragraphs": [
+        "Sentir que no hay salida es el significado directo: un trabajo, una relación, una rutina o una decisión en la que todo se atora y no se ve por dónde salir. El bloqueo puede ser real, pero muchas veces nace por dentro: del miedo a equivocarte, de dudar de ti o de creencias limitantes que repiten que no puedes o que no hay otra opción.",
+        "El dibujo lo dice sin palabras. Las espadas están a los lados, pero nada cierra el camino de enfrente; lo que le impide verlo es la venda. Pensar de más y esperar a que alguien venga al rescate aprietan las ataduras.",
+        "¿Qué intentaría si creyera que tengo más opciones de las que veo?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Ocho de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, el Ocho de Espadas puede hablar de liberarse: miedos que se aflojan, una venda que se resbala, otra perspectiva que muestra más espacio del que pensabas. La salida puede estar ya a la vista; falta dar el primer paso.",
+        "También puede indicar lo contrario: saber que podrías moverte y quedarte en el mismo lugar, o apretar los nudos con más preocupación. Esta lectura al revés es moderna; la lista al revés de Waite es otra serie de problemas (p. 238)."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Ocho de Espadas en el amor?",
+      "paragraphs": [
+        "Dudar de ti es lo que más ata cuando esta carta sale en el amor: no sentirte suficiente, no atreverte a pedir lo que necesitas, quedarte porque irte parece imposible y no porque lo eliges.",
+        "Sin pareja, puede describir el freno ante alguien nuevo porque una herida vieja insiste en que todo saldrá mal. En pareja, pregunta cuánto del bloqueo es la situación y cuánto es la historia que te cuentas. Al revés, aparece el valor para hablar, para mostrarte o para salir de un patrón que te encogía."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Ocho de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Un puesto que aprieta, reglas que encierran, la idea de que nadie más te contrataría: en el trabajo, esta carta habla de sentir que no hay a dónde moverse. Pon a prueba esa idea con un hecho: una solicitud, una plática, una habilidad que podrías aprender.",
+        "Deudas, un presupuesto apretado o un gasto fijo que parece cerrar todas las puertas: así se ve la trampa con el dinero, junto con la sensación de que nada puede cambiar. Al revés, empiezan a verse opciones."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Ocho de Espadas como consejo?",
+      "paragraphs": [
+        "Cuestiona un pensamiento que te frena y busca una sola prueba de que no siempre es cierto. Dila en voz alta y luego da un paso pequeño hacia el lado abierto, solo para sentir que el suelo está ahí."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Ocho de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Ocho de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Con los ojos vendados entre las espadas, el Ocho de Espadas es alguien que se siente acorralado y duda de sus opciones: con capacidad, pero frenado por el miedo o por pensar de más, esperando un permiso que nunca llega del todo. En ti, es la voz que insiste en que no hay salida. Por dentro, significa sentirse sin fuerza: querer acercarse o irse, pero con el freno del miedo, la culpa o las circunstancias. Al revés, eso se destraba: vuelve el valor, las dudas bajan y hay más ánimo para actuar según lo que se siente."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Ocho de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "swords-02-two",
+          "text": "Dos vendas: una decisión aplazada y una trampa que se da por hecha. Quítate una y mira."
+        },
+        {
+          "card_id": "major-15-devil",
+          "text": "Lazos que parecen fijos pero están flojos. Pregúntate qué te mantiene ahí."
+        },
+        {
+          "card_id": "swords-01-ace",
+          "text": "Un momento de claridad corta las ataduras; un pensamiento claro cambia el panorama."
+        },
+        {
+          "card_id": "major-08-strength",
+          "text": "Valor tranquilo frente al miedo. La paciencia suave afloja lo que la fuerza no puede."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Ocho de Espadas del Dos de Espadas?",
+      "paragraphs": [
+        "El Dos de Espadas también trae, según Waite, una figura femenina con venda, que sostiene dos espadas en equilibrio sobre los hombros (p. 250). El Dos es una decisión que se aplaza, un equilibrio que se sostiene sin mirar; el Ocho es la sensación de encierro. En el Dos ella carga sus espadas; en el Ocho, la encierran."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Ocho de Espadas?",
+      "paragraphs": [
+        "¿Qué límite he puesto a prueba de verdad?",
+        "¿Qué historia sobre mí me mantiene donde estoy?",
+        "¿Quién podría ayudarme a ver el lado abierto?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Ocho de Espadas es una carta buena o mala?",
+      "a": "Es dura, pero no sin esperanza. Nombra con honestidad un bloqueo y luego señala el terreno libre que la venda no deja ver. A mucha gente le da alivio: si parte del problema está en cómo se miran las cosas, parte de la respuesta también."
+    },
+    {
+      "q": "¿El Ocho de Espadas significa que mi relación no tiene salida?",
+      "a": "No como un hecho sobre tu vida. En el amor, su sentido tradicional es la sensación de estancamiento: no saber cómo avanzar, miedo a hablar o dudar de que haya otras opciones. Pregunta cuánto es circunstancia y cuánto es miedo, y eso solo lo puedes distinguir tú, quizá con alguien de confianza."
+    },
+    {
+      "q": "¿El Ocho de Espadas significa hacerse la víctima?",
+      "a": "Puede describir una mentalidad de víctima: sentir que las cosas te pasan sin que tengas voz. La carta no te culpa; muestra cómo esa mirada te mantiene sin moverte. Recuperar aunque sea una decisión pequeña es la forma en que la carta da la vuelta."
+    }
+  ],
+  "related": [
+    "swords-07-seven",
+    "swords-09-nine",
+    "cups-08-eight",
+    "wands-08-eight",
+    "pentacles-08-eight"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-02-two",
+      "text": "Dos de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Bad news, violent chagrin, crisis, censure, power in trammels, conflict, calumny; also sickness. Reversed: Disquiet, difficulty, opposition, accident, treachery; what is unforeseen; fatality.",
+    "quote_lang": "en",
+    "pages": [
+      238
+    ],
+    "translation": "Malas noticias, pesar violento, crisis, censura, poder maniatado, conflicto, calumnia; también enfermedad. Al revés: inquietud, dificultad, oposición, accidente, traición; lo imprevisto; fatalidad.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        238
+      ],
+      "text": "A woman, bound and hoodwinked, with the swords of the card about her. Yet it is rather a card of temporary durance than of irretrievable bondage."
+    },
+    {
+      "pages": [
+        250
+      ],
+      "text": "A hoodwinked female figure balances two swords upon her shoulders."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 08.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_08.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        238,
+        250
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

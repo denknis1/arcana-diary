@@ -1,0 +1,306 @@
+{
+  "schema": 2,
+  "card_id": "major-07-chariot",
+  "lang": "es",
+  "status": "reviewed",
+  "editor": "{editor_name}",
+  "reviewed_at": "2026-11-23",
+  "name_forms": {
+    "name": "El Carro",
+    "in_sentence": "El Carro",
+    "de": "de El Carro"
+  },
+  "title": "El Carro en el tarot: significado, invertida y amor",
+  "description": "Qué significa El Carro al derecho y al revés (carta invertida): determinación, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "El Carro en el tarot: significado",
+  "image_alt": "El Carro, carta de 1909 de la baraja Rider-Waite-Smith: un joven con armadura y corona va de pie en un carro de piedra bajo un dosel de estrellas, con una esfinge negra y una blanca echadas al frente.",
+  "facts": {
+    "arcana": "major",
+    "suit": null,
+    "number": 7,
+    "numeral": "VII",
+    "also_called": []
+  },
+  "capsule": "El Carro es la carta VII de los arcanos mayores: triunfo por determinación, dirección y avance guiados por la voluntad. Al revés, el avance se vuelve descontrol, freno o agresividad. Es una carta de ánimo, siempre que sepas a dónde vas. En preguntas de sí o no, al derecho responde que sí: el carro avanza con rumbo claro.",
+  "keywords": {
+    "upright": [
+      "determinación",
+      "avance",
+      "dirección",
+      "autocontrol"
+    ],
+    "reversed": [
+      "freno",
+      "energía dispersa",
+      "empeño a la fuerza",
+      "rumbo perdido"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta de El Carro?",
+      "paragraphs": [
+        "Un joven con armadura va de pie en un carro cuadrado de piedra, bajo un dosel azul sembrado de estrellas, con una vara larga en la mano derecha. Waite cuenta que dos esfinges tiran de su carro (p. 96). En la carta de 1909 están echadas al frente, la de la izquierda negra y la de la derecha blanca, y de ellas no sale ninguna rienda hacia sus manos.",
+        "Según el texto de Waite, el joven lleva una espada desenvainada (p. 96); en la carta de 1909, lo que sostiene se parece más a un cetro o a una vara larga. En los hombros tiene dos medias lunas amarillas y en el pecho un cuadro brillante. De los hombros, Waite solo dice que ahí estarían el Urim y el Tumim (p. 96).",
+        "Al frente del carro hay un escudo blanco con un emblema rojo y, encima, unas alas azules abiertas. Detrás se ve una ciudad amurallada de techos rojos bajo un cielo amarillo, y sobre el dosel aparece el VII.",
+        "Las barajas antiguas pintaban otro tiro. Waite recuerda que en el siglo XVIII el carro lo jalaban caballos blancos, y que a veces se usaron otros animales, como un león y un leopardo (pp. 15, 16)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre El Carro?",
+      "paragraphs": [
+        "La primera lista arranca con la ayuda («succour» quiere decir socorro) y la providencia, y luego pasa al conflicto y a la presunción, el exceso de confianza. La segunda se queda en el choque con otros: riñas, disputas, perder terreno.",
+        "Waite veía en la carta algo más que esa lista. Para él, el conductor es ante todo el triunfo de la mente, aunque sus conquistas son externas y no están dentro de él (p. 96). En la primera parte del libro dice que, en realidad, es el Rey en su triunfo (p. 15)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa El Carro al derecho?",
+      "paragraphs": [
+        "Al derecho, El Carro habla de determinación: una meta elegida y la voluntad de seguir hacia ella. Su significado moderno más común es el triunfo que se gana con esfuerzo: ambición, control de la situación, obstáculos superados porque no te detuviste. Aparece con frecuencia cuando te sobra energía pero te falta dirección, o cuando dos partes de ti quieren cosas distintas y el camino pide que jalen parejo.",
+        "El dibujo enseña cómo. No hay riendas: las esfinges avanzan por enfoque y autocontrol, no a jalones. Una es negra y otra blanca, y nadie te pide quedarte con una sola; basta con que las dos miren hacia el mismo lado.",
+        "De ahí nace el avance. En la lista de Waite caben el triunfo y la presunción, y la lectura moderna conserva las dos cosas: una buena racha puede convertirse en terquedad. Si esto te hace sentido, una buena pregunta es: ¿hacia dónde voy y qué parte de mí jala para otro lado?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa El Carro al revés?",
+      "paragraphs": [
+        "Al revés, El Carro significa perder el control o el rumbo. Suele mostrar un freno: energía dispersa en demasiadas metas, cada esfinge por su lado, obstáculos que detienen el avance y ningún camino claro. La otra cara es la contraria: seguir con empeño a la fuerza, incluso con agresividad, tan rápido que se pierde de vista a dónde ibas.",
+        "Lo que Waite anota para la carta al revés (riñas, disputas, derrota) describe el lado de afuera: el choque con otras personas. El rumbo perdido por dentro es una lectura moderna, no de Waite.",
+        "En los dos casos ayuda más dirigir que acelerar. Detente un momento, revisa hacia dónde vas y suelta una cosa que te desvíe antes de meterle más fuerza."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa El Carro en el amor?",
+      "paragraphs": [
+        "Saber qué quieres e ir por eso con intención, sin esperar a que las dudas se acomoden solas: eso es lo que El Carro te pide en el amor. Si estás sin pareja, la carta puede ayudarte a tener más claro lo que buscas en alguien y a animarte a dar el paso.",
+        "Para una pareja, la carta significa determinación para que la relación funcione: superar obstáculos en conjunto y llevarla hacia adelante a propósito. La pregunta es de rumbo: hacia dónde va la relación y si tus propios deseos caben en ese camino. Equilibrar tus ganas con lo que la relación necesita también es parte de la carta.",
+        "Al revés, puede hablar de una relación que jala hacia dos lados, de una lucha de poder o de alguien que quiere controlarlo todo. De tu lado, quizá notes que te debates entre la cercanía y la libertad, o que aceleras algo más de lo que te sienta bien. ¿Qué cambiaría si bajas la velocidad y tomas el volante?"
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa El Carro en el trabajo y el dinero?",
+      "paragraphs": [
+        "Una meta clara y un esfuerzo constante son lo que respalda El Carro en el trabajo: un proyecto que sacas adelante hasta el final, un empujón para que algo arranque, una decisión sobre tu rumbo profesional. Te pide decirle que no a lo que te desvía.",
+        "Con El Carro, la disciplina sirve a una meta: el dinero bajo control, un objetivo claro, avances que se ganan con esfuerzo constante y no con suerte.",
+        "Al revés, fíjate en algún plan que se detuvo por querer abarcarlo todo, o en gastos que van sin rumbo."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa El Carro como consejo?",
+      "paragraphs": [
+        "Lleva una tarea importante hasta el final antes de abrir otra: dos esfinges, una sola dirección. Si a mitad del camino te llama algo nuevo, anótalo para después y vuelve a lo que empezaste. Así se ve el consejo de El Carro en un día normal."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Carro es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa El Carro como persona y como sentimiento?",
+      "paragraphs": [
+        "Alguien con empuje, que fija un rumbo y lo sostiene, es el retrato más común de El Carro; cuando te describe a ti, señala tus ganas de tomar las riendas, justo lo que el conductor del dibujo no necesita. Como respuesta sobre sentimientos, la carta habla de determinación e intención clara: un interés que se vuelve acción, ganas de que la relación avance y de superar lo que se interponga, a veces con las emociones muy controladas. Al revés, habla de sentimientos en conflicto: querer cercanía y libertad a la vez, frustración porque el vínculo no se mueve, como pisar el acelerador sin avanzar, o ganas de controlar el ritmo."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa El Carro junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-08-strength",
+          "text": "La voluntad se junta con la paciencia. Sigue adelante, pero guía con mano suave y no a jalones."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "Doble velocidad: todo se mueve rápido. No pierdas de vista la meta, para que la prisa no decida por ti."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Un avance detenido por una decisión pendiente. Elige primero y el movimiento vendrá después."
+        },
+        {
+          "card_id": "major-09-hermit",
+          "text": "Movimiento y quietud. Una pausa breve para revisar tu brújula interior hace que el siguiente empujón rinda más."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir El Carro del Seis de Bastos?",
+      "paragraphs": [
+        "Las dos cartas muestran a alguien que avanza victorioso. El Seis de Bastos presenta a un jinete coronado de laurel, con gente a pie a su lado, y Waite lo lee, en la superficie, como un vencedor que triunfa (p. 186); hoy se entiende como reconocimiento, un éxito que los demás ven. El Carro es lo que viene antes: la voluntad y el rumbo que te llevan hasta ahí. Si quieres saber si tu esfuerzo ya se nota, mira el Seis; si te preguntas si puedes sostener el camino, eso le toca a El Carro."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale El Carro?",
+      "paragraphs": [
+        "¿A dónde quiero llegar, dicho en una sola frase?",
+        "¿Qué dos partes de mí jalan hacia lados distintos?",
+        "¿Qué podría soltar para que mi energía vaya en una sola dirección?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Carro es una carta buena o mala?",
+      "a": "Sobre todo buena: respalda el esfuerzo, el enfoque y la decisión de ponerte en marcha, y muchas veces marca un progreso firme. El riesgo sale del mismo motor: un empuje que olvida su meta termina en necedad, y la lista de Waite mezcla el triunfo con el orgullo y el conflicto."
+    },
+    {
+      "q": "¿Por qué El Carro tiene esfinges y no caballos?",
+      "a": "Porque así lo decidió Waite. Escribe que el héroe ya respondió a la esfinge y que por eso aceptó la variante de Éliphas Lévi (p. 96). Ya antes, al repasar las barajas viejas, advierte que ese tiro no era el original (p. 15)."
+    },
+    {
+      "q": "¿El Carro significa un viaje?",
+      "a": "No por sí solo. Ninguna de las palabras que Waite da a esta carta habla de viajar, y en Arcana Diary el carro representa un movimiento interior: un rumbo que eliges y sostienes. Si preguntas por un viaje, la carta habla de qué tan firme es tu decisión, no del viaje en sí."
+    },
+    {
+      "q": "¿El Carro es una carta de victoria?",
+      "a": "Sí, es una de las cartas clásicas de victoria: un éxito que se gana con enfoque y voluntad, no con suerte. Waite veía al conductor como una conquista en todos los planos, pero también le marcó un límite: la libertad que logra puede dejarlo atado al entendimiento lógico (pp. 96–99). Como significado, describe el impulso detrás del triunfo y no promete cómo termina una competencia."
+    }
+  ],
+  "related": [
+    "major-06-lovers",
+    "major-08-strength",
+    "wands-06-six",
+    "wands-08-eight"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-06-six",
+      "text": "Seis de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "Succour, providence; also war, triumph, presumption, vengeance, trouble. Reversed: Riot, quarrel, dispute, litigation, defeat.",
+    "quote_lang": "en",
+    "pages": [
+      284
+    ],
+    "translation": "Socorro, providencia; también guerra, triunfo, presunción, venganza, problemas. Al revés: motín, riña, disputa, litigio, derrota.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        96
+      ],
+      "text": "An erect and princely figure carrying a drawn sword"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "two sphinxes thus draw his chariot"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "On the shoulders of the victorious hero are supposed to be the Urim and Thummim"
+    },
+    {
+      "pages": [
+        15
+      ],
+      "text": "In the eighteenth century white horses were yoked to the car"
+    },
+    {
+      "pages": [
+        16
+      ],
+      "text": "Other animals than horses have also been used to draw the currus triumphalis, as, for example, a lion and a leopard"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "He is above all things triumph in the mind"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "that the planes of his conquest are manifest or external and not within himself"
+    },
+    {
+      "pages": [
+        15
+      ],
+      "text": "it is really the King in his triumph"
+    },
+    {
+      "pages": [
+        186
+      ],
+      "text": "A laurelled horseman bears one staff adorned with a laurel crown; footmen with staves are at his side"
+    },
+    {
+      "pages": [
+        186
+      ],
+      "text": "on the surface, it is a victor triumphing"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "He has thus replied to the sphinx, and it is on this account that I have accepted the variation of Éliphas Lévi"
+    },
+    {
+      "pages": [
+        15
+      ],
+      "text": "it must not be supposed that such was its original form"
+    },
+    {
+      "pages": [
+        96
+      ],
+      "text": "he is conquest on all planes"
+    },
+    {
+      "pages": [
+        96,
+        99
+      ],
+      "text": "that the liberation which he effects may leave himself in the bondage of the logical understanding"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - 07 Chariot.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_07_Chariot.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        15,
+        16,
+        96,
+        99,
+        186,
+        284
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}
