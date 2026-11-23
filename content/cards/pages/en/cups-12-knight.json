@@ -1,0 +1,254 @@
+{
+  "schema": 2,
+  "card_id": "cups-12-knight",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Knight of Cups",
+    "in_sentence": "the Knight of Cups"
+  },
+  "title": "Knight of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Knight of Cups upright: romance, invitation, charm; reversed: moodiness, empty promises. Love, work, advice and Waite's 1911 words. Draw it for your question.",
+  "h1": "Knight of Cups Tarot Card Meaning",
+  "image_alt": "Knight of Cups, 1909 Rider–Waite–Smith card: an armored knight in a winged helmet holds out a golden cup as he rides a white horse at a walk beside a river.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 12,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Knight of Cups brings romance, charm and an invitation: the urge to follow your heart and offer what you feel. Reversed, moods shift fast and promises stay in the clouds. A warm card, though idealism can outrun the real steps. Asked for yes or no, the knight says yes, riding calmly forward with his cup held out.",
+  "keywords": {
+    "upright": [
+      "romance",
+      "invitation",
+      "charm",
+      "following the heart"
+    ],
+    "reversed": [
+      "moodiness",
+      "unrealistic expectations",
+      "empty promises",
+      "daydreaming"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Knight of Cups card?",
+      "paragraphs": [
+        "A knight in armor rides a white horse at a walk, holding a golden cup out in front of him like a gift. Waite calls him \"graceful, but not warlike; riding quietly\", and says his winged helmet refers to \"those higher graces of the imagination\" that sometimes mark this card (p. 202). He too is a dreamer, Waite adds, though one haunted by images of the senses (p. 202).",
+        "On the 1909 card the horse lowers its head and lifts one front leg mid-step. Small wings rise from the helmet and the rider's heels, red fish are drawn on his tunic, and a narrow river winds across the ground below a rocky slope."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Knight of Cups?",
+      "paragraphs": [
+        "Waite's upright list is about something coming toward you: an arrival, an approach that may be a messenger's, a proposal, an invitation (p. 202). Waite's reversed list is blunt and names trickery and fraud (p. 202). On Arcana Diary the reversed card accuses no one; we read it as promises that sound better than they are, including the ones you make to yourself."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Knight of Cups mean upright?",
+      "paragraphs": [
+        "The romantic of the deck: charm, a sincere gesture, an invitation to something that moves you. It often turns up with an offer, a date or a creative idea, or when following the heart starts to matter more than following the plan.",
+        "His horse walks; it does not gallop. The card favors acting on a feeling with grace rather than haste: say the kind thing, send the message. Imagination is a strength here, as long as it leads to a step you can actually take.",
+        "What would I do today if I trusted what I feel?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Knight of Cups mean reversed?",
+      "paragraphs": [
+        "Turned over, the Knight of Cups can stand for moodiness, daydreaming or unrealistic expectations: a plan that lives mostly in the imagination, or a picture of someone that is more wish than fact. It can also point to empty promises, words full of feeling with little action behind them.",
+        "Part of this matches the trickery and duplicity in Waite's reversed list (p. 202); the softer readings, moods and fantasy, are modern ones, not Waite's. Keep the dream, and ask what one real step toward it would look like."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Knight of Cups mean in love?",
+      "paragraphs": [
+        "Romance is this knight's home ground: courtship, a heartfelt gesture, an invitation to spend time together. The card asks you to express affection in your own way, without needing an immediate answer.",
+        "Meeting someone new, it can mark a season of flirting, or a crush that is fun to feel; the question is whether it rests on the real person or on the picture in your head. For two people already together, it brings romance back into view: a surprise, a love note, an evening planned with care.",
+        "Upside down, it asks you to notice mood swings and promises that run ahead of what is actually done, yours included."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Knight of Cups mean for work and money?",
+      "paragraphs": [
+        "Work under this card leans toward what you care about: a creative project, a job offer, a role that uses imagination and people skills. It also favors pitching an idea with warmth instead of pressure.",
+        "Its money meaning is an offer or an opportunity, usually tied to work you love, along with a habit of spending on feelings rather than plans. Reversed, it marks money hopes that are bigger than the plan behind them."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Knight of Cups?",
+      "paragraphs": [
+        "Make one kind gesture today toward someone or something that moves you: a message, an invitation, an hour of your time. Do it simply, without waiting to see what comes back. The knight rides at a walk, so let the gesture be gentle and real rather than grand."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Knight of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Knight of Cups as a person and as feelings",
+      "paragraphs": [
+        "Taken as a person, the Knight of Cups is a romantic, a charmer, someone who leads with feeling: an artist, a suitor, a friend who arrives with an invitation. It can also be you, ready to act on what your heart says. As feelings, the card traditionally stands for romantic interest, admiration and the wish to show affection with a gesture. Reversed, those same feelings turn changeable: attraction mixed with moodiness, idealizing from a distance, or warm words not yet matched by steps."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Knight of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "cups-02-two",
+          "text": "A romantic offer and a bond between equals: affection that can travel both ways."
+        },
+        {
+          "card_id": "cups-07-seven",
+          "text": "Many dreams at once. Pick the one you would really act on."
+        },
+        {
+          "card_id": "cups-04-four",
+          "text": "An invitation held out while your attention is elsewhere. Look up before you say no."
+        },
+        {
+          "card_id": "major-06-lovers",
+          "text": "Romance meets a real choice: follow your heart, and check that it agrees with your values."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Knight of Cups, Knight of Wands or Page of Cups?",
+      "paragraphs": [
+        "The Knight of Wands is also on horseback, but Waite says the motion of his horse \"suggests the precipitate mood\" (p. 174). Today he reads as bold action and adventure; the Knight of Cups moves slowly and leads with feeling.",
+        "The Page of Cups shows, in Waite's words, \"the pictures of the mind taking form\" (p. 204), and is read today as a tender message or a new feeling. The Page brings the news; the Knight brings the offer."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Knight of Cups",
+      "paragraphs": [
+        "What would I offer today if I followed my heart?",
+        "Is this feeling about the real person or plan, or about my picture of it?",
+        "What is one concrete step that would make this dream real?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Knight of Cups a good or bad card?",
+      "a": "A good card in most readings. It brings warmth, romance and something offered, to you or by you. Its harder side is a gap between feeling and follow-through: lovely words, a plan with no ground under it, a mood that changes by the hour. Noticed early, that gap is easy to close."
+    },
+    {
+      "q": "Does the Knight of Cups mean someone loves me?",
+      "a": "It is not a statement about anyone. As a meaning, the Knight of Cups is the classic card of courtship, the wish to win a heart with a gesture. Whether that fits a particular person shows in what that person actually does, over time, not in a single card."
+    },
+    {
+      "q": "Is the Knight of Cups a person or an event?",
+      "a": "It can be either. Waite's meanings lean toward events: arrival, approach, \"sometimes that of a messenger\" (p. 202). Many readers today add a person who brings romance or an idea. In your own question, look at what moves toward you: a message, an offer, a chance to say yes."
+    },
+    {
+      "q": "Can the Knight of Cups be a woman?",
+      "a": "Yes. The figure is drawn as a knight, but the role it describes, someone who courts, dreams and offers, can belong to anyone of any gender. That includes you."
+    }
+  ],
+  "related": [
+    "cups-11-page",
+    "cups-13-queen",
+    "wands-12-knight",
+    "swords-12-knight",
+    "pentacles-12-knight"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-12-knight",
+      "text": "Knight of Wands"
+    },
+    {
+      "card_id": "cups-11-page",
+      "text": "Page of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement. Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud.",
+    "quote_lang": "en",
+    "pages": [
+      202
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        202
+      ],
+      "text": "Graceful, but not warlike; riding quietly, wearing a winged helmet, referring to those higher graces of the imagination which sometimes characterize this card"
+    },
+    {
+      "pages": [
+        202
+      ],
+      "text": "He too is a dreamer, but the images of the side of sense haunt him in his vision"
+    },
+    {
+      "pages": [
+        202
+      ],
+      "text": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement"
+    },
+    {
+      "pages": [
+        202
+      ],
+      "text": "Reversed: Trickery, artifice, subtlety, swindling, duplicity, fraud"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
+    },
+    {
+      "pages": [
+        204
+      ],
+      "text": "It is the pictures of the mind taking form"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 12.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_12.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        174,
+        202,
+        204
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

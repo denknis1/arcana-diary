@@ -1,0 +1,238 @@
+{
+  "schema": 2,
+  "card_id": "wands-01-ace",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Ace of Wands",
+    "in_sentence": "the Ace of Wands"
+  },
+  "title": "Ace of Wands Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Ace of Wands upright: inspiration, a spark, new energy; reversed: delays, a false start. Love, work, advice and Waite's 1911 text. Ask your question.",
+  "h1": "Ace of Wands Tarot Card Meaning",
+  "image_alt": "Ace of Wands, 1909 Rider–Waite–Smith card: a hand comes out of a gray cloud holding a sprouting wand, loose leaves in the air, green hills and a castle below.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 1,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Ace of Wands is a fresh spark: inspiration, new energy and the potential of an idea wanting to start. Reversed, it can mean delays, scattered energy or a false start. A positive card, it backs beginnings and asks you to act while the warmth lasts. Answer to a yes-or-no question: yes, since the branch is alive and sprouting.",
+  "keywords": {
+    "upright": [
+      "inspiration",
+      "spark",
+      "new energy",
+      "potential"
+    ],
+    "reversed": [
+      "delays",
+      "scattered energy",
+      "false start",
+      "lack of direction"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Ace of Wands card?",
+      "paragraphs": [
+        "A hand comes out of a cloud and holds a thick, living wand. Waite gives the picture a single line: \"A hand issuing from a cloud grasps a stout wand or club\" (p. 196). Everything else below comes from the drawing itself.",
+        "On the 1909 card the wand is the largest thing in the frame, running almost the full height of the card. Small green twigs grow from it, and several loose leaves hang in the air on both sides. The hand enters from the right out of a gray, curling cloud, with fine lines radiating around it. Far below, a river winds through green hills, a castle stands on a hilltop at the left, and a few trees grow at the right."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Ace of Wands?",
+      "paragraphs": [
+        "The upright list is all about starting: making and inventing something, setting out on an enterprise, the source a thing grows from. Waite also reports another account that reads the Ace as money and fortune (p. 196).",
+        "Waite's reversed list is blunt and ends on \"a certain clouded joy\" (p. 196); Arcana Diary reads the reversed Ace through that last phrase only, as a spark dimmed for now."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Ace of Wands mean upright?",
+      "paragraphs": [
+        "Inspiration arrives first with this card: an idea that will not leave you alone, a wish to make something, a surge of new energy for a plan that was only a thought until now. The potential is real but raw. The Ace gives you the spark, not the finished fire.",
+        "It often turns up at the start of a project, a creative push, a new course or role, or on a day when you simply feel more awake to what you want. The modern meaning stays close to the creation and enterprise that open Waite's list (p. 196).",
+        "What is this spark asking for: a first sketch, a call, an hour of real work? Giving it a small concrete form keeps it alive."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Ace of Wands mean reversed?",
+      "paragraphs": [
+        "Turned upside down, the Ace of Wands can describe a spark that keeps flickering without catching. Delays, a false start, or so many ideas that none of them gets your full attention are the usual pictures; scattered energy and a lack of direction can leave you eager and stuck at once.",
+        "This reading is a modern one, built from Arcana Diary's meanings rather than from the list in Waite's book (p. 196). Pick the one idea that still excites you, protect an hour for it, and let the others wait their turn."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Ace of Wands mean in love?",
+      "paragraphs": [
+        "A sudden spark of desire or curiosity is the love meaning of this Ace: attraction, flirting, the excitement of something new. It speaks of passion more than of security.",
+        "Already together, you may feel fresh energy coming into the relationship: a new shared plan, a trip, or simply more playfulness. Without a partner, it is the moment you feel like meeting people again and want to show interest openly.",
+        "Upside down, the spark may be there but hesitant: interest you keep to yourself, or excitement that flares and fades quickly. A simple, honest gesture says more than a long wait."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Ace of Wands mean for work and money?",
+      "paragraphs": [
+        "New projects are this card's natural ground at work: a fresh idea, an exciting offer, a business plan, a creative task you want to own. Energy runs high, so begin while it lasts.",
+        "As a money card, the Ace stands for a new source of income or a chance to earn through your own initiative. Reversed, it can mean a launch that keeps slipping, or effort spread over too many plans for any of them to pay."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Ace of Wands?",
+      "paragraphs": [
+        "Give your newest idea a name, then do the smallest first piece of it: one page, one sketch, one message. A spark needs a form more than it needs a perfect plan."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Ace of Wands a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Ace of Wands as a person and as feelings",
+      "paragraphs": [
+        "As a person, the Ace of Wands is someone full of ideas and starting energy: the friend who proposes the trip, the colleague who launches the project. It can also be you, at the moment a new interest takes hold. As feelings, the card stands for attraction, excitement and a fresh spark of desire, the early stage when someone feels drawn and curious. Reversed, those feelings are present but unsteady: interest that flares and cools, or excitement held back."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Ace of Wands with other cards",
+      "pairs": [
+        {
+          "card_id": "major-01-magician",
+          "text": "An idea meets the skill to carry it out. Start with what you already have."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "The spark picks up speed; once you begin, things can move fast."
+        },
+        {
+          "card_id": "cups-01-ace",
+          "text": "Passion and new feelings together: a fresh start for both heart and drive."
+        },
+        {
+          "card_id": "wands-10-ten",
+          "text": "Too many sparks have turned into duties. Keep the one that still excites you."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Ace of Wands, Page of Wands or Ace of Swords?",
+      "paragraphs": [
+        "The Page of Wands holds a wand too, but in his card a young man \"stands in the act of proclamation\", as Waite puts it (p. 176); today the Page is read as curiosity and the urge to explore. The Ace is the raw spark with no person in the picture; the Page is someone learning what to do with it.",
+        "The Ace of Swords repeats the hand from a cloud, \"grasping a sword\" in Waite's description (p. 252). It stands for clarity and a clear decision, where the Ace of Wands is drive and desire."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Ace of Wands",
+      "paragraphs": [
+        "Which idea keeps coming back to me lately?",
+        "What is the smallest first step I could take with it?",
+        "Where is my energy leaking into too many plans?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Ace of Wands a good or bad card?",
+      "a": "Good, and one of the liveliest cards in the deck. It favors beginnings, creativity and the courage to act. Its harder side, mostly when reversed, is drive without a target, and you can fix that by choosing one idea and starting small."
+    },
+    {
+      "q": "Why does the wand on the Ace of Wands have leaves?",
+      "a": "Waite explains it for the whole suit: \"The Wands throughout this suit are always in leaf, as it is a suit of life and animation\" (p. 172). On the Ace the leaves are easy to see, some still on the branch and some drifting free, which is why the card reads as growing, active energy."
+    },
+    {
+      "q": "Does the Ace of Wands mean someone is attracted to me?",
+      "a": "No card can tell you what a particular person feels. In a question about attraction, the traditional meaning of this card is a lively, hopeful spark of desire. Whether that spark is shared is something only time together and an honest conversation can show."
+    }
+  ],
+  "related": [
+    "wands-02-two",
+    "cups-01-ace",
+    "swords-01-ace",
+    "pentacles-01-ace"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-11-page",
+      "text": "Page of Wands"
+    },
+    {
+      "card_id": "swords-01-ace",
+      "text": "Ace of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Creation, invention, enterprise, the powers which result in these; principle, beginning, source … Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy.",
+    "quote_lang": "en",
+    "pages": [
+      196
+    ],
+    "translation": null,
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [196],
+      "text": "A hand issuing from a cloud grasps a stout wand or club"
+    },
+    {
+      "pages": [196],
+      "text": "according to another account, money, fortune, inheritance"
+    },
+    {
+      "pages": [196],
+      "text": "Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy"
+    },
+    {
+      "pages": [196],
+      "text": "Creation, invention, enterprise, the powers which result in these"
+    },
+    {
+      "pages": [176],
+      "text": "a young man stands in the act of proclamation"
+    },
+    {
+      "pages": [252],
+      "text": "A hand issues from a cloud, grasping a sword"
+    },
+    {
+      "pages": [172],
+      "text": "The Wands throughout this suit are always in leaf, as it is a suit of life and animation"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 01.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_01.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [172, 176, 196, 252],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "schema": 2,
+  "card_id": "wands-01-ace",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "As de Bastos",
+    "in_sentence": "el As de Bastos",
+    "de": "del As de Bastos"
+  },
+  "title": "As de Bastos en el tarot: significado, invertida y amor",
+  "description": "Qué significa el As de Bastos al derecho y al revés (carta invertida): inspiración, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "As de Bastos en el tarot: significado",
+  "image_alt": "As de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: una mano sale de una nube gris con un bastón que echa hojas; abajo, colinas verdes, un río y un castillo.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 1,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El As de Bastos es el impulso de algo que empieza: inspiración, energía creativa y ganas de arrancar un nuevo proyecto. Al revés, habla de retrasos, energía dispersa o un arranque en falso. Es una carta buena que te pide moverte mientras dura el entusiasmo. ¿La respuesta? Sí: el bastón echa hojas frescas, señal de fuerza para comenzar.",
+  "keywords": {
+    "upright": [
+      "inspiración",
+      "impulso",
+      "nuevo proyecto",
+      "energía creativa"
+    ],
+    "reversed": [
+      "retrasos",
+      "energía dispersa",
+      "arranque en falso",
+      "falta de rumbo"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del As de Bastos?",
+      "paragraphs": [
+        "Una mano sale de una nube y aprieta un bastón grueso y vivo. Waite resume el dibujo en una frase: una mano que sale de una nube sujeta un bastón o garrote robusto (p. 196). No agrega más detalles, así que lo demás viene de la imagen.",
+        "En la carta de 1909 el bastón es lo más grande del cuadro y ocupa casi todo el alto de la carta. Le brotan ramitas verdes y varias hojas sueltas flotan a los lados. La mano entra por la derecha desde una nube gris de rizos, rodeada de líneas finas como rayos. Abajo, un río cruza colinas verdes; a la izquierda hay un castillo en lo alto de un cerro y a la derecha, unos árboles."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el As de Bastos?",
+      "paragraphs": [
+        "La primera lista gira en torno al comienzo: crear, inventar, emprender, el origen del que algo nace. Waite menciona además otra versión que lee el As como dinero y fortuna (p. 196).",
+        "La lista al revés de Waite es dura y termina con «cierta alegría nublada» (p. 196). En Arcana Diary la carta al revés se lee solo desde esa última frase: una chispa que por ahora brilla menos."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el As de Bastos al derecho?",
+      "paragraphs": [
+        "Es la inspiración en estado puro: una idea que no te suelta, ganas de hacer algo con tus manos o tu cabeza, un empuje que pide movimiento. Puede tratarse de un nuevo proyecto, un curso, un negocio propio o algo creativo que llevas rato queriendo empezar.",
+        "La energía creativa está ahí, pero todavía no tiene forma. El As te da la chispa; el fuego lo construyes tú con pasos concretos. Lo que hoy describimos se parece mucho a la creación y el emprendimiento con que abre la lista de Waite (p. 196).",
+        "¿Qué pide esta chispa de ti: un boceto, una llamada, una hora de trabajo de verdad?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el As de Bastos al revés?",
+      "paragraphs": [
+        "Al revés, la idea sigue ahí pero no despega. Hay retrasos, algún arranque en falso o tantos planes a la vez que ninguno recibe tu atención completa. La energía dispersa y la falta de rumbo te dejan con muchas ganas y sin avanzar, como un cerillo que no prende.",
+        "Esta es una lectura moderna, hecha con los significados de Arcana Diary y no con la lista de Waite (p. 196). Escoge el proyecto que más te enciende, apártale un rato fijo y deja los demás para después."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el As de Bastos en el amor?",
+      "paragraphs": [
+        "Si hay pareja, el As de Bastos trae chispa nueva: un plan juntos, un viaje, más juego y más deseo en lo cotidiano. Sin pareja, marca ganas de conocer gente y de mostrar tu interés sin tanto rodeo.",
+        "En el fondo es una carta de atracción y pasión más que de estabilidad: el principio emocionante de algo, cuando todo se siente posible.",
+        "Al revés, la chispa puede estar, pero con miedo a mostrarse: un interés que guardas o un entusiasmo que se prende y se apaga rápido. Un gesto sencillo y honesto dice más que esperar en silencio."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el As de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "Es buena carta para arrancar algo en el trabajo: una idea propia, una propuesta que te emociona, un emprendimiento, un encargo creativo. Hay energía de sobra, así que conviene empezar mientras dura.",
+        "En dinero, significa una nueva fuente de ingresos o una oportunidad de ganar gracias a tu iniciativa. Al revés, apunta a un lanzamiento que se pospone una y otra vez, o a un esfuerzo repartido en tantos frentes que ninguno deja nada."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el As de Bastos como consejo?",
+      "paragraphs": [
+        "Empieza ese proyecto que te entusiasma con algo mínimo: un boceto, una llamada o la primera línea. Una chispa necesita forma, no un plan perfecto; lo demás se ajusta sobre la marcha."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El As de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el As de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el As de Bastos es alguien lleno de ideas y de arranque: quien propone el viaje, quien lanza el proyecto en la oficina. También puedes ser tú, justo cuando algo nuevo te atrapa. Como sentimiento, la carta significa atracción, entusiasmo y deseo recién encendido, esa etapa en la que alguien se siente con curiosidad y ganas de acercarse. Al revés, el interés existe pero es inestable: se prende y se enfría, o se queda a medias por timidez."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el As de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-01-magician",
+          "text": "La idea encuentra la habilidad para hacerla real. Empieza con lo que ya tienes."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "La chispa toma velocidad: en cuanto arrancas, todo puede moverse rápido."
+        },
+        {
+          "card_id": "cups-01-ace",
+          "text": "Pasión y sentimientos nuevos a la vez: un comienzo que toca el corazón y las ganas."
+        },
+        {
+          "card_id": "wands-10-ten",
+          "text": "Demasiadas chispas convertidas en obligaciones. Quédate con la que todavía te emociona."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el As de Bastos de la Sota de Bastos y del As de Espadas?",
+      "paragraphs": [
+        "La Sota de Bastos también lleva un bastón, pero en ella Waite describe a un joven que hace una proclama (p. 176); hoy se lee como curiosidad y ganas de explorar. El As es la chispa sola, sin nadie en la escena; la Sota es la persona que aprende qué hacer con ella.",
+        "El As de Espadas repite la mano que sale de una nube, aquí sujetando una espada, según Waite (p. 252). Habla de claridad y de decidir; el As de Bastos, de impulso y deseo."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el As de Bastos?",
+      "paragraphs": [
+        "¿Qué idea me sigue rondando estos días?",
+        "¿Cuál es el paso más pequeño que puedo dar con ella?",
+        "¿En qué planes se me está yendo la energía sin dejar nada?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El As de Bastos es una carta buena o mala?",
+      "a": "Buena, y de las más vivas de la baraja. Favorece los comienzos, la creatividad y el valor de actuar. Su lado difícil, sobre todo al revés, es tener mucha fuerza y ningún objetivo, algo que se arregla eligiendo una sola idea y empezando en pequeño."
+    },
+    {
+      "q": "¿Por qué el bastón del As de Bastos tiene hojas?",
+      "a": "Waite lo explica para todo el palo: los bastos siempre aparecen con hojas porque es un palo de vida y movimiento (p. 172). En el As se notan más que en ninguna otra, unas pegadas a la rama y otras sueltas en el aire, y por eso la carta se lee como energía que crece."
+    },
+    {
+      "q": "¿El As de Bastos significa que le gusto a alguien?",
+      "a": "Ninguna carta puede decirte qué siente una persona concreta. Ante una pregunta de atracción, el significado tradicional de esta carta es una chispa de deseo viva y esperanzada. Si esa chispa es mutua, solo lo muestran el trato y una plática honesta."
+    }
+  ],
+  "related": [
+    "wands-02-two",
+    "cups-01-ace",
+    "swords-01-ace",
+    "pentacles-01-ace"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-11-page",
+      "text": "Sota de Bastos"
+    },
+    {
+      "card_id": "swords-01-ace",
+      "text": "As de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Creation, invention, enterprise, the powers which result in these; principle, beginning, source … Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy.",
+    "quote_lang": "en",
+    "pages": [
+      196
+    ],
+    "translation": "Creación, invención, emprendimiento, los poderes que dan lugar a todo esto; principio, comienzo, fuente … Al revés: caída, decadencia, ruina, perdición, perecer; también cierta alegría nublada.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [196],
+      "text": "A hand issuing from a cloud grasps a stout wand or club"
+    },
+    {
+      "pages": [196],
+      "text": "according to another account, money, fortune, inheritance"
+    },
+    {
+      "pages": [196],
+      "text": "Reversed: Fall, decadence, ruin, perdition, to perish; also a certain clouded joy"
+    },
+    {
+      "pages": [196],
+      "text": "Creation, invention, enterprise, the powers which result in these"
+    },
+    {
+      "pages": [176],
+      "text": "a young man stands in the act of proclamation"
+    },
+    {
+      "pages": [252],
+      "text": "A hand issues from a cloud, grasping a sword"
+    },
+    {
+      "pages": [172],
+      "text": "The Wands throughout this suit are always in leaf, as it is a suit of life and animation"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 01.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_01.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [172, 176, 196, 252],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

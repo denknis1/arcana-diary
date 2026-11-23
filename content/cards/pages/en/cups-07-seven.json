@@ -1,0 +1,219 @@
+{
+  "schema": 2,
+  "card_id": "cups-07-seven",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Seven of Cups",
+    "in_sentence": "the Seven of Cups"
+  },
+  "title": "Seven of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Seven of Cups upright: choices, fantasy, illusion; reversed: clarity. Love, work, advice, Waite's 1911 text and the 1909 card. Draw it for your question.",
+  "h1": "Seven of Cups Tarot Card Meaning",
+  "image_alt": "Seven of Cups, 1909 Rider–Waite–Smith card: a dark silhouette faces seven cups on clouds holding a head, a veiled glowing figure, a snake, a tower, jewels, a wreath and a dragon.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 7,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Seven of Cups is about choices, fantasy and illusion: many options, not all of them real. Reversed, it brings clarity and realistic options, or the overwhelm of too many. It feeds imagination but can mislead. Whether the answer is yes or no is not clear: seven visions float in the clouds and none is proven.",
+  "keywords": {
+    "upright": [
+      "choices",
+      "fantasy",
+      "illusion",
+      "options"
+    ],
+    "reversed": [
+      "clarity",
+      "realistic options",
+      "overwhelm"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Seven of Cups card?",
+      "paragraphs": [
+        "A figure seen from behind, a dark silhouette, faces seven cups floating on gray clouds. Waite calls them \"strange chalices of vision\" whose images belong to \"the fantastic spirit\" (p. 212), and he gives no separate meaning for each picture.",
+        "On the 1909 card the cups sit in two rows against a blue sky. Along the top are a head with curly hair, a veiled figure glowing red in the middle, and a snake curling over its cup; along the bottom, a tower, a heap of jewels, a wreath of leaves and a dragon. The silhouette is the largest shape, at the lower left, one arm stretched toward the cups. VII is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Seven of Cups?",
+      "paragraphs": [
+        "Waite's list stays in the mind: fairy favours, reflection, sentiment, imagination, things seen \"in the glass of contemplation\" (p. 212). Waite allows \"some attainment in these degrees\" but adds that \"nothing permanent or substantial is suggested\" (p. 212). In the short list near the end of his book, Waite gives the card \"idea, design, resolve, movement\" (p. 290)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Seven of Cups mean upright?",
+      "paragraphs": [
+        "Seven cups, seven different promises: this is the card of choices and daydreams. The Seven of Cups shows up when there are many options at once, or when fantasy makes a plan look brighter than it is. Some visions are real possibilities, some are wishful thinking, and a few would not even make you happy.",
+        "The card does not tell you to stop dreaming; imagination is useful. The trouble is illusion: deciding on the picture instead of the facts, or chasing every cup and finishing none. Which of these options could you actually reach out and hold?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Seven of Cups mean reversed?",
+      "paragraphs": [
+        "Reversed, the clouds start to thin. The card often marks clarity: seeing which realistic options remain once the daydreams are set aside, and choosing one. Its other face is overwhelm, so many choices that none gets made. Sometimes it also means coming down to earth after a dream did not hold, which stings a little but frees you to choose.",
+        "Waite's reversed meanings, \"desire, will, determination, project\" (p. 212), lean toward the first side: a wish turning into a plan you can follow through."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Seven of Cups mean in love?",
+      "paragraphs": [
+        "Before a new connection, this card asks whether you are drawn to the person or to a story about them. Dating can look like a field of glowing cups, each one perfect from a distance.",
+        "For a couple, fantasy may be standing in for real talk: imagining how things could be instead of seeing how they are, or wondering about other paths.",
+        "Upside down, illusions fall away, and what you want in love becomes plainer to see, even if the real picture is less shiny than the dream."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Seven of Cups mean for work and money?",
+      "paragraphs": [
+        "Several job offers, side projects or career paths at once: the Seven of Cups is a full menu with no clear order. Keep the option that still holds up once you write down the facts.",
+        "In money terms it means wishful thinking, plans that look better than the numbers, and promises of easy gains that deserve a second look."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Seven of Cups?",
+      "paragraphs": [
+        "Write down every option you are juggling, then cross out half. For each one left, add a single fact: a cost, a requirement, a person who could tell you more. Then take one small step on one path."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Seven of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Seven of Cups as a person and as feelings",
+      "paragraphs": [
+        "Dreamers belong to this card: imaginative people full of plans, sometimes hard to pin down, or someone you see through a haze of hopes; the dreamer may also be you, weighing many paths. Read as feelings, the Seven of Cups means fascination and idealization, attraction to a possibility, and uncertainty about what is real or wanted. Reversed, the haze lifts and the feelings become clearer and more grounded."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Seven of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "major-18-moon",
+          "text": "Illusion on illusion. Wait for clearer light before trusting what you see."
+        },
+        {
+          "card_id": "pentacles-01-ace",
+          "text": "Among many dreams, one practical opportunity you can actually start."
+        },
+        {
+          "card_id": "major-11-justice",
+          "text": "Weigh the options honestly and pick the one you can stand behind."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Seven of Cups or Two of Swords?",
+      "paragraphs": [
+        "The Two of Swords is also about choosing, but Waite describes a very different scene: \"a hoodwinked female figure balances two swords upon her shoulders\" (p. 250). Today it reads as a stalemate, a decision avoided by not looking. In the Seven of Cups you see too many options; in the Two of Swords you refuse to look at the two you have."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Seven of Cups",
+      "paragraphs": [
+        "Which of these options is a fact, and which is a wish?",
+        "If I could keep only one, which would it be?",
+        "What small test would show me whether this is real?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Seven of Cups a good or bad card?",
+      "a": "Neither, really. It is a card of possibilities, which is exciting, and of daydreams, which can eat up time. It turns good when imagination leads to a decision and a first step, and tricky when you keep collecting dreams without testing any of them."
+    },
+    {
+      "q": "Does the Seven of Cups mean deception?",
+      "a": "Not as an accusation. The illusion here is usually wishful thinking, the way hope makes something look better than it is. Waite's own list is about imagination and contemplation (p. 212). Checking the facts calmly, without suspicion, is usually enough to see what is solid."
+    },
+    {
+      "q": "What do the seven cups represent?",
+      "a": "Waite does not explain them one by one (p. 212); he says only that the images come from a fantastic, visionary spirit. Arcana Diary reads them together, as a crowd of tempting possibilities, and does not give each cup a meaning of its own."
+    }
+  ],
+  "related": [
+    "cups-06-six",
+    "cups-08-eight",
+    "wands-07-seven",
+    "swords-07-seven",
+    "pentacles-07-seven"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-02-two",
+      "text": "Two of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation … Reversed: Desire, will, determination, project.",
+    "quote_lang": "en",
+    "pages": [
+      212
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [212],
+      "text": "Strange chalices of vision, but the images are more especially those of the fantastic spirit."
+    },
+    {
+      "pages": [212],
+      "text": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation; some attainment in these degrees, but nothing permanent or substantial is suggested."
+    },
+    {
+      "pages": [212],
+      "text": "Reversed: Desire, will, determination, project."
+    },
+    {
+      "pages": [290],
+      "text": "Seven.—Fair child; idea, design, resolve, movement."
+    },
+    {
+      "pages": [250],
+      "text": "A hoodwinked female figure balances two swords upon her shoulders."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 07.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_07.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [212, 250, 290],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "schema": 2,
+  "card_id": "wands-08-eight",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Ocho de Bastos",
+    "in_sentence": "el Ocho de Bastos",
+    "de": "del Ocho de Bastos"
+  },
+  "title": "Ocho de Bastos en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Ocho de Bastos al derecho y al revés (carta invertida): rapidez, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Ocho de Bastos en el tarot: significado",
+  "image_alt": "Ocho de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: ocho bastos paralelos vuelan en diagonal por un cielo azul sobre lomas verdes y un río.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 8,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Ocho de Bastos habla de rapidez, movimiento y noticias: mensajes en camino y planes que agarran impulso. Al revés, puede ser retrasos, mensajes cruzados o prisa que causa errores. Es una carta animada que te pide seguir el ritmo y apuntar bien. Como nada frena el vuelo de los bastos, al derecho la respuesta es sí.",
+  "keywords": {
+    "upright": [
+      "rapidez",
+      "movimiento",
+      "noticias",
+      "impulso"
+    ],
+    "reversed": [
+      "retrasos",
+      "mensajes cruzados",
+      "prisa",
+      "celos"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Ocho de Bastos?",
+      "paragraphs": [
+        "Ocho bastos vuelan en paralelo por un cielo despejado, inclinados hacia la tierra. Waite lo llama movimiento a través de lo inmóvil: un vuelo de bastos sobre campo abierto (p. 182). No aparece ninguna persona; los bastos mismos son lo más grande de la carta.",
+        "En la carta de 1909 cruzan de arriba a la izquierda hacia abajo a la derecha, con hojitas que brotan a lo largo. Abajo se ven lomas verdes, un río y una construcción pequeña en lo alto de una loma; arriba se lee el VIII. Waite agrega que los bastos se acercan al final de su recorrido (p. 182)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Ocho de Bastos?",
+      "paragraphs": [
+        "La lista de Waite habla de actividad y de ritmo: rapidez como la de un mensajero urgente, mucha prisa y mucha esperanza, y en general todo lo que está en movimiento (p. 182). Waite le da también las flechas del amor y, al revés, las flechas de los celos y las riñas en casa (p. 182).",
+        "Las lecturas de hoy conservan la velocidad y los mensajes, y suman los viajes y el avance rápido."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Ocho de Bastos al derecho?",
+      "paragraphs": [
+        "Con el Ocho de Bastos las cosas se mueven rápido: llegan respuestas, los planes agarran impulso, un proyecto atorado de pronto arranca. Es la carta de la rapidez y las noticias, y de actuar con un rumbo claro.",
+        "También habla de movimiento en sentido literal: viajes, salidas, andar de un lado a otro todo el día. Actúa con agilidad mientras el camino está libre y contesta corto para no perder el impulso. La velocidad rinde más cuando sabes bien hacia dónde apuntas.",
+        "¿Qué tienes detenido que podría arrancar con un empujón tuyo?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Ocho de Bastos al revés?",
+      "paragraphs": [
+        "Al revés, el vuelo se frena o se dispersa: retrasos, planes en pausa, mensajes cruzados que confunden a todos. También puede hablar de prisa: ir tan rápido que se pierden detalles y la energía no tiene dónde aterrizar.",
+        "Waite lee la carta al revés por el lado oscuro del amor: flechas de celos, disputas internas y punzadas de conciencia (p. 182). Los retrasos y los mensajes cruzados son lectura moderna. Baja el ritmo lo suficiente para apuntar y luego manda un solo mensaje claro."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Ocho de Bastos en el amor?",
+      "paragraphs": [
+        "Enamorarse rápido es el sentido más conocido del Ocho de Bastos en el amor: atracción repentina, respuestas al momento, una relación que toma velocidad. Waite incluso le da a esta carta las flechas del amor (p. 182).",
+        "En una relación larga, trae energía nueva: planes juntos, un viaje, cosas que se vuelven a mover después de una racha tranquila. Al conocer a alguien, se pasa rápido del primer mensaje a la primera cita; si sientes prisa por escribir, hazlo con claridad y no dejes que la emoción decida por ti.",
+        "Al revés, pueden aparecer los celos, señales confusas o un ritmo que a alguno de los dos le parece demasiado rápido."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Ocho de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "Entregas que se adelantan, una lluvia de correos, un proyecto que por fin acelera, viajes de trabajo: así describe el Ocho de Bastos el ritmo laboral. Te sirven las respuestas claras y cortas y las decisiones ágiles.",
+        "Del lado del dinero, la carta significa movimiento rápido: ingresos y gastos que cambian pronto, un pago o una oferta que avanza, decisiones de dinero que se toman al vuelo. Como el tema es la velocidad, revisar dos veces antes de comprometerte también es parte de su sentido."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Ocho de Bastos como consejo?",
+      "paragraphs": [
+        "Contesta ese mensaje o correo que tienes pendiente y deja que las cosas vuelen. Mantener el impulso cuesta menos que arrancarlo de nuevo, así que da el siguiente paso pequeño mientras el camino está libre."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Ocho de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Ocho de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Ocho de Bastos es alguien de reacciones rápidas y mucho ánimo: contesta al momento, hace planes sobre la marcha y le gusta que las cosas se muevan. Como sentimiento, habla de una atracción fuerte y veloz, de emoción y de ganas de ver a dónde llega todo: las flechas del amor de Waite (p. 182), en versión moderna. Al revés, los sentimientos se enredan: celos, señales confusas, dudas o un interés que perdió velocidad."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Ocho de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "wands-01-ace",
+          "text": "Una chispa nueva que prende rápido; empieza mientras hay energía."
+        },
+        {
+          "card_id": "wands-11-page",
+          "text": "Noticias y mensajes en movimiento. Contesta mientras están frescos."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "La velocidad se cruza con el descanso. Haz una pausa antes del siguiente empujón."
+        },
+        {
+          "card_id": "wands-06-six",
+          "text": "Avance rápido hacia un logro que se nota."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Ocho de Bastos del Caballero de Bastos?",
+      "paragraphs": [
+        "Waite muestra al Caballero de Bastos como si fuera de viaje, sobre un caballo cuyo movimiento sugiere un ánimo precipitado (p. 174); hoy se lee como acción, aventura y audacia. El Caballero es una persona con prisa; el Ocho son los hechos en movimiento, sin ningún jinete que los guíe."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Ocho de Bastos?",
+      "paragraphs": [
+        "¿Qué mensaje he estado guardando?",
+        "¿Voy rápido con un rumbo o solo voy con prisa?",
+        "¿Qué me ayudaría a mantener este impulso sin perder los detalles?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Ocho de Bastos es una carta buena o mala?",
+      "a": "Buena, para casi cualquier pregunta. Trae rapidez y movimiento después de una espera y favorece actuar claro y pronto. El único problema es la precipitación: mensajes enviados sin pensar o planes apurados. Al revés, muestra que el flujo se frena o se enreda, algo que pide paciencia, no preocupación."
+    },
+    {
+      "q": "¿El Ocho de Bastos significa viaje?",
+      "a": "Puede ser. Los viajes son un significado moderno muy común, que sale del dibujo de bastos volando sobre campo abierto. La lista de Waite habla más bien de actividad, prisa y un mensajero urgente (p. 182), así que léelo como movimiento en general; el viaje es una de sus formas."
+    },
+    {
+      "q": "¿El Ocho de Bastos significa que me quiere?",
+      "a": "Ninguna carta puede decirte lo que hay en el corazón de otra persona. Como significado, el Ocho habla de atracción rápida y emoción, y Waite la relaciona con el amor (p. 182). En tu pregunta describe el ritmo y la energía del vínculo; lo demás solo lo puede decir la otra persona."
+    }
+  ],
+  "related": [
+    "wands-07-seven",
+    "wands-09-nine",
+    "cups-08-eight",
+    "swords-08-eight",
+    "pentacles-08-eight"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-12-knight",
+      "text": "Caballero de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "Activity in undertakings … swiftness … great haste, great hope … the arrows of love. Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels",
+    "quote_lang": "en",
+    "pages": [
+      182
+    ],
+    "translation": "Actividad en lo que se emprende … rapidez … mucha prisa, mucha esperanza … las flechas del amor. Al revés: flechas de celos, disputa interna, punzadas de conciencia, riñas.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [182],
+      "text": "The card represents motion through the immovable—a flight of wands through an open country; but they draw to the term of their course."
+    },
+    {
+      "pages": [182],
+      "text": "Activity in undertakings, the path of such activity, swiftness, as that of an express messenger; great haste, great hope, speed towards an end which promises assured felicity; generally, that which is on the move; also the arrows of love."
+    },
+    {
+      "pages": [182],
+      "text": "Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels; and domestic disputes for persons who are married."
+    },
+    {
+      "pages": [174],
+      "text": "He is shewn as if upon a journey, armed with a short wand"
+    },
+    {
+      "pages": [174],
+      "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 08.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_08.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [174, 182],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

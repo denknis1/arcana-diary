@@ -1,0 +1,232 @@
+{
+  "schema": 2,
+  "card_id": "cups-05-five",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Five of Cups",
+    "in_sentence": "the Five of Cups"
+  },
+  "title": "Five of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Five of Cups upright: disappointment, regret; reversed: acceptance. Love, work, advice, Waite's 1911 text and the 1909 card. Draw it for your question.",
+  "h1": "Five of Cups Tarot Card Meaning",
+  "image_alt": "Five of Cups, 1909 Rider–Waite–Smith card: a figure in a long black cloak bows over three spilled cups, two cups standing behind, a river and a small castle beyond.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 5,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Five of Cups means disappointment, regret and sorrow, and what remains after a loss. Reversed, it shows acceptance and moving on, or sadness kept out of sight. Sad, not cruel: it lets grief be real and shows the cups still standing. As a yes-or-no answer it gives no, since the figure's eyes stay on the spill.",
+  "keywords": {
+    "upright": [
+      "disappointment",
+      "regret",
+      "sorrow",
+      "what remains"
+    ],
+    "reversed": [
+      "acceptance",
+      "moving on",
+      "hidden sadness"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Five of Cups card?",
+      "paragraphs": [
+        "A figure in a long black cloak stands with head bowed. Waite describes \"a dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him\" (p. 216). Waite also places a bridge in the background, leading to a small keep (p. 216).",
+        "On the 1909 card the black cloak is the largest shape, filling the middle of a gray sky. On the left lie the three fallen cups, with red and green liquid spilled around them; the two upright cups stand on the right. A river crosses the scene, a small castle rises on a hill at the far left, and a bridge arches on the right. V is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Five of Cups?",
+      "paragraphs": [
+        "Waite reads it as a loss that is not total: three cups are gone and two are left (p. 216). Waite also calls it a card of inheritance \"not corresponding to expectations\", and notes that some read it as marriage, \"but not without bitterness or frustration\" (p. 216)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Five of Cups mean upright?",
+      "paragraphs": [
+        "Three cups on the ground hold the eye, and that is where this card's feeling lives: disappointment when something did not turn out as hoped, regret over a choice, sorrow over an ending. The card does not hurry you past it. Loss is named plainly here, and so is the grief that comes with it.",
+        "Yet the picture has a second half. Behind the figure two cups still stand, and a bridge leads on across the river. What remains belongs to the meaning, not as a consolation prize but as fact: people, plans or strengths the loss did not take. The card often comes up while attention is still fixed on the spill, before turning around feels possible. Which two cups are still standing in your own situation?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Five of Cups mean reversed?",
+      "paragraphs": [
+        "Reversed, the Five of Cups often marks acceptance: the sadness softens and you begin moving on, turning toward what is left. Self-forgiveness belongs here too, letting go of blame for what spilled.",
+        "The other face is hidden sadness, sorrow pushed down so that nobody sees it, which tends to linger longer. Waite's reversed list, with news, alliances, kin and return (p. 216), goes in a different direction; acceptance is the modern reading."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Five of Cups mean in love?",
+      "paragraphs": [
+        "Love under this card is colored by disappointment: a relationship that did not become what you hoped, a breakup still being grieved, or regret over words and choices.",
+        "Already together, you may be carrying a hurt that has not been talked through, with more attention on what went wrong than on what still works. Without a partner, an old loss may be keeping your eyes on the past.",
+        "When the card is upside down, the heart is often ready to set the past down and notice who is still there for you."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Five of Cups mean for work and money?",
+      "paragraphs": [
+        "A project that fell through, a job that did not work out, a missed chance: this card names the professional disappointment and asks what can still be used. The two standing cups are your skills, contacts and lessons.",
+        "For money it means a loss or setback that stings, and regret over a past decision; reversed, recovering and making peace with it."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Five of Cups?",
+      "paragraphs": [
+        "Give the loss its due, then turn around. Write down one thing that disappointed you, in plain words, and next to it two things that still hold: a person, a skill, a place, a habit that keeps you steady. Grieve the three cups; do not forget the two."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Five of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Five of Cups as a person and as feelings",
+      "paragraphs": [
+        "As a person, the Five of Cups is someone dwelling on a loss: grieving, full of regret, a little closed off while the hurt is fresh. It can also be you, in a stretch of looking back. As feelings, the card stands for sadness and disappointment, and often for regret about what went wrong between two people. Reversed, those feelings are softening into acceptance, forgiveness and a readiness to move on."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Five of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "major-17-star",
+          "text": "Grief that has started to lift; hope returns once you look up from the spill."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Sorrow shared with friends. The people around you are among the cups still standing."
+        },
+        {
+          "card_id": "cups-08-eight",
+          "text": "Disappointment turns into a decision to walk away and look for something that means more."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Five of Cups, Four of Cups or Three of Swords?",
+      "paragraphs": [
+        "The Four of Cups also shows someone ignoring cups: Waite describes a young man under a tree while \"an arm issuing from a cloud offers him another cup\" (p. 218). Today it reads as apathy and withdrawal, not grief. The Five has lost something; the Four is bored with what it has.",
+        "The Three of Swords, in Waite's words \"three swords piercing a heart\" (p. 248), is the sharp moment of hurt. The Five of Cups comes later, when grief has settled and the question is what remains."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Five of Cups",
+      "paragraphs": [
+        "What exactly am I grieving, in a few words?",
+        "Which cups are still standing for me?",
+        "What would help me turn around, even a little?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Five of Cups a good or bad card?",
+      "a": "It is a sad card, not a bad omen. It admits that something hurt or was lost, and it keeps two cups upright in the picture, so the story does not end with the loss. Reversed, it is one of the gentler signs that acceptance has begun."
+    },
+    {
+      "q": "Does the Five of Cups mean a breakup?",
+      "a": "Not necessarily. It can show sadness after a breakup, but the card covers any loss or unmet expectation: a plan, a friendship, a hope you held for a long time. It describes your grief, not the future of a relationship."
+    },
+    {
+      "q": "What do the two standing cups mean in the Five of Cups?",
+      "a": "They are what the loss did not take. Waite puts it simply: \"three have been taken, but two are left\" (p. 216). Modern readings see in them support, hope and resources still within reach, waiting until you feel ready to turn and look."
+    }
+  ],
+  "related": [
+    "cups-04-four",
+    "cups-06-six",
+    "wands-05-five",
+    "swords-05-five",
+    "pentacles-05-five"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-04-four",
+      "text": "Four of Cups"
+    },
+    {
+      "card_id": "swords-03-three",
+      "text": "Three of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "A card of loss, but something remains over; three have been taken, but two are left … Reversed: News, alliances, affinity, consanguinity, ancestry, return, false projects.",
+    "quote_lang": "en",
+    "pages": [
+      216
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [216],
+      "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him"
+    },
+    {
+      "pages": [216],
+      "text": "a bridge is in the background, leading to a small keep or holding"
+    },
+    {
+      "pages": [216],
+      "text": "It is a card of loss, but something remains over; three have been taken, but two are left"
+    },
+    {
+      "pages": [216],
+      "text": "it is a card of inheritance, patrimony, transmission, but not corresponding to expectations; with some interpreters it is a card of marriage, but not without bitterness or frustration"
+    },
+    {
+      "pages": [216],
+      "text": "Reversed: News, alliances, affinity, consanguinity, ancestry, return, false projects."
+    },
+    {
+      "pages": [218],
+      "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup."
+    },
+    {
+      "pages": [248],
+      "text": "Three swords piercing a heart"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 05.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_05.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [216, 218, 248],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

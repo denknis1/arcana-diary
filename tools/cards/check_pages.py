@@ -78,7 +78,7 @@ HARSH = {
 # В тексте страницы слова этого списка (кроме HARSH) не запрещены.
 HARSH_FLAG_EXTRA = [r"death", r"ruin", r"calamity", r"catastrophe", r"misery", r"tyranny", r"theft",
                     r"treachery", r"mortality", r"destruction", r"destroyed", r"violence", r"ravage", r"wars?", r"fatality",
-                    r"disasters?", r"law", r"legal", r"litigation", r"captivity", r"treason", r"danger",
+                    r"disasters?", r"legal", r"litigation", r"captivity", r"treason", r"danger",
                     r"terror", r"indigence"]
 NO_CORRESPONDENCE = {
     "en": r"Golden Dawn|zodiac|astrolog\w*|\bplanet\w*|\bSaturn\b|\bLibra\b|\belement of (air|fire|water|earth)\b",

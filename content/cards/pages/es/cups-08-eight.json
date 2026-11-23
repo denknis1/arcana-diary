@@ -1,0 +1,229 @@
+{
+  "schema": 2,
+  "card_id": "cups-08-eight",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Ocho de Copas",
+    "in_sentence": "el Ocho de Copas",
+    "de": "del Ocho de Copas"
+  },
+  "title": "Ocho de Copas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Ocho de Copas al derecho y al revés (carta invertida): partida, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Ocho de Copas en el tarot: significado",
+  "image_alt": "Ocho de Copas, carta de 1909 de la baraja Rider-Waite-Smith: una figura con capa roja y bastón se aleja de ocho copas apiladas hacia el agua y las montañas, bajo una luna con cara.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 8,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Ocho de Copas habla de partida, búsqueda de sentido y dejar atrás lo que ya no llena. Al revés, muestra miedo al cambio, indecisión o ir a la deriva. Puede ser un paso valiente y liberador, aunque irse cuesta. La respuesta tiende al no: alguien da la espalda a las copas y se va.",
+  "keywords": {
+    "upright": [
+      "partida",
+      "búsqueda",
+      "dejar atrás",
+      "sentido"
+    ],
+    "reversed": [
+      "miedo al cambio",
+      "indecisión",
+      "ir a la deriva"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Ocho de Copas?",
+      "paragraphs": [
+        "Una figura con capa roja y bastón se aleja de ocho copas rumbo a unas colinas rocosas. Waite la describe como un hombre de aspecto abatido que abandona las copas de su felicidad, de su empresa o de lo que antes le importaba (p. 210).",
+        "En la carta de 1909 las ocho copas ocupan todo el frente: cinco abajo y tres arriba, con un hueco en la fila de arriba. La figura, con botas rojas, avanza hacia el agua y unas montañas verdes. En el cielo hay una luna con cara y ojos cerrados, con una media luna trazada sobre el disco. Arriba se lee el VIII."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Ocho de Copas?",
+      "paragraphs": [
+        "Para Waite la carta habla por sí misma a primera vista, aunque recoge lecturas opuestas: alegría, suavidad, timidez, honor, modestia (p. 210). En la práctica, dice Waite, muestra un asunto que decae, o que algo que parecía importante en realidad pesa poco (p. 210)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Ocho de Copas al derecho?",
+      "paragraphs": [
+        "Ocho copas bien acomodadas, y aun así alguien se va. Ese es el corazón de la carta: la partida de algo que desde afuera se ve bien pero ya no te llena, sea un trabajo, una relación, una costumbre o un papel. No habla tanto de fracaso como de darte cuenta de que el esfuerzo ya no te da lo que necesitas.",
+        "Aquí dejar atrás es una elección, no algo impuesto, y suele doler un poco. El Ocho de Copas habla de buscar más: profundidad, honestidad, un propósito que el lugar de siempre ya no ofrece. ¿Qué sientes que falta, y dónde podrías buscarlo?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Ocho de Copas al revés?",
+      "paragraphs": [
+        "Cuando sale al revés, la carta suele mostrar miedo al cambio: querer irte y quedarte, o ir y venir en la indecisión. También puede hablar de ir a la deriva, de irte una y otra vez sin mirar por qué, o de regresar a algo que ya te quedaba chico.",
+        "Waite da para la carta al revés gran alegría, felicidad y festejo (p. 210), algo que el tarot de hoy casi no sigue. En Arcana Diary la pregunta es si vas hacia algo o solo te alejas de algo."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Ocho de Copas en el amor?",
+      "paragraphs": [
+        "Una relación que se ve bien pero se siente vacía es el tema clásico de esta carta en el amor: distancia emocional, la sensación de haber crecido hacia otro lado, ganas de algo más profundo. Te pregunta si tus necesidades se están cumpliendo y te invita a hablarlo con honestidad antes de decidir nada.",
+        "Al revés, puede haber dudas: querer irte y no atreverte, o alejarte de algo que todavía vale.",
+        "Sin pareja, la carta puede hablar de tomar distancia de citas que no te llenan, para buscar algo que te importe más."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Ocho de Copas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Dejar un trabajo seguro pero sin sentido, apartarte de un camino profesional o soltar un proyecto que ya no te dice nada: son los temas típicos de esta carta.",
+        "En cuanto al dinero, significa elegir el sentido por encima de la comodidad, a veces renunciar a un ingreso estable y aceptar que un cambio tiene su costo. Al revés, puede hablar de quedarte por miedo y no por decisión."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Ocho de Copas como consejo?",
+      "paragraphs": [
+        "Di en una frase honesta qué sientes que falta y escríbelo. Después nombra un paso hacia eso que no te obligue a dejarlo todo de golpe. La carta apoya la partida, pero también te pide saber hacia dónde vas."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Ocho de Copas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Ocho de Copas como persona y como sentimiento?",
+      "paragraphs": [
+        "Alguien que va de salida, o que ya mira más allá de lo que tiene, con inquietud y ganas de algo más hondo: así aparece el Ocho de Copas como persona, y a veces eres tú en un punto de cambio. Los sentimientos que nombra son una desilusión que se volvió distancia, el retiro emocional y las ganas de recibir más de lo que el vínculo da. Al revés, el sentimiento es mixto: dudas entre quedarse e irse, o miedo a dejar lo conocido."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Ocho de Copas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-09-hermit",
+          "text": "Dejar el ruido para mirar hacia adentro; una búsqueda que pide tiempo a solas."
+        },
+        {
+          "card_id": "major-13-death",
+          "text": "Un final de verdad: un capítulo se cierra para que empiece otro."
+        },
+        {
+          "card_id": "cups-01-ace",
+          "text": "Alejarte de lo que está vacío deja espacio para sentimientos nuevos y un corazón abierto."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Ocho de Copas del Seis de Espadas y del Cuatro de Copas?",
+      "paragraphs": [
+        "El Seis de Espadas también es una partida, pero Waite describe a un barquero que lleva pasajeros en su barca hacia la otra orilla (p. 242). Hoy se lee como una transición hacia aguas más calmadas, muchas veces con ayuda. En el Ocho de Copas se camina a solas y por decisión propia.",
+        "El Cuatro de Copas, según Waite un joven sentado al que le tienden una copa desde una nube (p. 218), se retrae pero no se mueve. El Ocho se levanta y se va."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Ocho de Copas?",
+      "paragraphs": [
+        "¿Qué siento que me falta ahora?",
+        "¿Me voy para encontrar algo o para evitar algo?",
+        "¿Qué me llevaría conmigo y qué puedo dejar atrás?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Ocho de Copas es una carta buena o mala?",
+      "a": "Es agridulce más que mala. Despedirte de algo puede dar tristeza, pero aquí suele ser un paso elegido hacia una vida más plena. Se complica cuando irse se vuelve costumbre, una forma de escapar en lugar de buscar, y la misma historia se repite en cada lugar nuevo."
+    },
+    {
+      "q": "¿El Ocho de Copas significa terminar una relación?",
+      "a": "No siempre. En preguntas de amor puede describir que te apartas de un vínculo que se siente vacío, pero también puede tratarse de un trabajo, una ciudad o una versión anterior de ti. Habla de tu necesidad de algo más, no de un desenlace fijo."
+    },
+    {
+      "q": "¿El Ocho de Copas significa dejar el trabajo?",
+      "a": "Puede ser. La carta suele salir cuando el empleo es estable pero ya no tiene sentido para ti. No te dice que renuncies; te pregunta qué te falta ahí y si lo traería un cambio dentro del mismo puesto o una salida bien pensada."
+    }
+  ],
+  "related": [
+    "cups-07-seven",
+    "cups-09-nine",
+    "wands-08-eight",
+    "swords-08-eight",
+    "pentacles-08-eight"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-06-six",
+      "text": "Seis de Espadas"
+    },
+    {
+      "card_id": "cups-04-four",
+      "text": "Cuatro de Copas"
+    }
+  ],
+  "waite": {
+    "quote": "The card shews the decline of a matter … Reversed: Great joy, happiness, feasting.",
+    "quote_lang": "en",
+    "pages": [
+      210
+    ],
+    "translation": "La carta muestra la decadencia de un asunto … Al revés: gran alegría, felicidad, festejo.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [210],
+      "text": "A man of dejected aspect is deserting the cups of his felicity, enterprise, under-taking or previous concern."
+    },
+    {
+      "pages": [210],
+      "text": "The card speaks for itself on the surface, but other readings are entirely antithetical—giving joy, mildness, timidity, honour, modesty."
+    },
+    {
+      "pages": [210],
+      "text": "it is usually found that the card shews the decline of a matter, or that a matter which has been thought to be important is really of slight consequence"
+    },
+    {
+      "pages": [210],
+      "text": "Reversed: Great joy, happiness, feasting."
+    },
+    {
+      "pages": [242],
+      "text": "A ferryman carrying passengers in his punt to the further shore."
+    },
+    {
+      "pages": [218],
+      "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 08.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_08.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [210, 218, 242],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

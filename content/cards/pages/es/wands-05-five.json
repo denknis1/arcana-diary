@@ -1,0 +1,227 @@
+{
+  "schema": 2,
+  "card_id": "wands-05-five",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Cinco de Bastos",
+    "in_sentence": "el Cinco de Bastos",
+    "de": "del Cinco de Bastos"
+  },
+  "title": "Cinco de Bastos en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Cinco de Bastos al derecho y al revés (carta invertida): competencia, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Cinco de Bastos en el tarot: significado",
+  "image_alt": "Cinco de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: cinco jóvenes con ropa distinta agitan bastos largos que se cruzan sobre sus cabezas.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 5,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Cinco de Bastos habla de competencia, tensión y diferencias de opinión: muchas voces y nadie al mando. Al revés, puede ser una discusión que evitas o un roce que se calma. Es una carta movida más que mala: el desafío cansa, pero también te empuja. Mientras nadie gane el forcejeo, todavía no está claro el resultado.",
+  "keywords": {
+    "upright": [
+      "competencia",
+      "tensión",
+      "diferencias",
+      "desafío"
+    ],
+    "reversed": [
+      "evitar el conflicto",
+      "conflicto interno",
+      "tensión que baja",
+      "tregua"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Cinco de Bastos?",
+      "paragraphs": [
+        "Cinco jóvenes agitan bastos largos unos contra otros. Waite los describe como un grupo de muchachos que blanden bastones, como en juego o en pelea, y llama a la escena una guerra fingida (p. 188). Lo más grande de la carta es el nudo de bastos cruzados en el centro.",
+        "En la carta de 1909 cada uno viste distinto: de amarillo, de rojo con un sombrerito café, con una túnica oscura de dibujo menudo, de verde y de blanco con puntos azules. Pisan un terreno disparejo bajo un cielo azul pálido, cada quien sostiene su basto en otro ángulo y arriba se lee el V. Ninguno queda por encima de los demás."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Cinco de Bastos?",
+      "paragraphs": [
+        "Para Waite la escena es imitación, un simulacro de pelea, y también la competencia dura de quien busca riqueza y fortuna, lo que él relaciona con la batalla de la vida (p. 188). En la lista de significados adicionales de Waite, la carta al revés dice que las riñas pueden volverse una ventaja (p. 289).",
+        "La primera palabra de la lista al revés pertenece al terreno de las leyes, y en Arcana Diary no leemos la carta así. Las disputas, el engaño y la contradicción sí se quedan."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Cinco de Bastos al derecho?",
+      "paragraphs": [
+        "Roce, competencia, ideas que chocan: el Cinco de Bastos describe una rivalidad en el trabajo o en un grupo, varias personas empujando por lo mismo, diferencias de opinión en una junta donde todos hablan y casi nadie escucha. Hay tensión, pero no enemistad.",
+        "Ese roce puede servir. Una buena discusión afina un plan, y un desafío sano te saca más esfuerzo del que creías tener. El problema empieza cuando ganar se vuelve el objetivo y ya nadie recuerda de qué se trataba.",
+        "¿Cuál de estas competencias te importa en serio, y qué quieres sacar de ella?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Cinco de Bastos al revés?",
+      "paragraphs": [
+        "Al revés, la carta puede hablar de evitar el conflicto: callarte para no pelear mientras el desacuerdo sigue por debajo. También puede mostrar un conflicto interno, dos deseos tuyos que jalan para lados distintos.",
+        "Su cara más amable es una tensión que baja: la gente deja de hablar encima de los demás, se llega a una tregua o cada quien acepta que piensan distinto. Las palabras de Waite al revés, disputas, engaño y contradicción (p. 188), muestran el lado turbio, una discusión que se vuelve tramposa. La tregua y la calma son lectura moderna, no de Waite. Una plática honesta y tranquila ayuda más que dejar hervir el roce."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Cinco de Bastos en el amor?",
+      "paragraphs": [
+        "Cuando en el amor todo se vuelve competencia, aparece el Cinco de Bastos: discusiones chiquitas, competir por atención, ver quién tiene la razón. Puede haber atracción y roce al mismo tiempo, una relación con chispa y con choques.",
+        "Conocer a alguien puede sentirse como un concurso, con rivalidad por la misma persona o demasiadas opiniones ajenas. Entre dos que ya están juntos, suele mostrar necesidades distintas que chocan en cosas del día a día. Escucha antes de defender tu punto.",
+        "Si sale al revés, quizá hay una plática pendiente que se sigue aplazando, o la tensión empieza a aflojar porque alguien escuchó primero."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Cinco de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "Rivalidad entre compañeros, varios buscando el mismo ascenso, un equipo con ideas que chocan y nadie que coordine: es una carta típica de un ambiente laboral competitivo. Quédate con las discusiones que mejoran el trabajo y suelta las que solo sirven para tener la razón.",
+        "Respecto al dinero, significa competencia por recursos: un mercado apretado, varias manos sobre el mismo presupuesto o diferencias en casa sobre cómo gastar. Habla de esfuerzo y de roces alrededor del dinero, de la lucha por salir adelante."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Cinco de Bastos como consejo?",
+      "paragraphs": [
+        "Escoge una sola batalla que de verdad te importe y deja pasar las demás. En esa, di con claridad lo que quieres y escucha la respuesta completa antes de contestar. Para que te tomen en cuenta no hace falta gritar más fuerte que nadie."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Cinco de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Cinco de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Cinco de Bastos es alguien que disfruta una buena discusión: mucha energía, ganas de competir y, a veces, más interés en ganar que en ponerse de acuerdo. Como sentimiento, habla de emociones revueltas: atracción con roce, una rivalidad juguetona, un estira y afloja donde nadie quiere ceder primero. Al revés, el sentimiento puede ser el deseo de tener paz a cualquier precio, una frustración que no se dice o un enojo que se va calmando poco a poco."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Cinco de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "wands-07-seven",
+          "text": "Del forcejeo a la defensa: elige el lugar que es tuyo y sostenlo."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "Un roce que se vuelve entendimiento cuando las dos partes escuchan."
+        },
+        {
+          "card_id": "major-14-temperance",
+          "text": "Muchas voces y un punto medio. Busca lo que cada lado puede aceptar."
+        },
+        {
+          "card_id": "wands-06-six",
+          "text": "Una competencia que termina en reconocimiento: el esfuerzo se nota."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Cinco de Bastos del Cinco de Espadas?",
+      "paragraphs": [
+        "El Cinco de Espadas muestra, según Waite, a un hombre desdeñoso que mira a dos figuras abatidas que se retiran (p. 244); hoy se lee como un conflicto con ganador y perdedores, una victoria vacía. En el Cinco de Bastos todavía no gana nadie: todos siguen en el forcejeo, y se parece más a una competencia que a una derrota."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Cinco de Bastos?",
+      "paragraphs": [
+        "¿Qué desacuerdo de mi vida vale de verdad mi energía?",
+        "¿Estoy defendiendo lo que quiero o solo quiero tener la razón?",
+        "¿Qué diría si supiera que me van a escuchar?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Cinco de Bastos es una carta buena o mala?",
+      "a": "Ni buena ni mala del todo: es una carta movida. El roce y la competencia pueden agotarte o ayudarte, según cómo los manejes. Una rivalidad sana te impulsa a mejorar; la discusión constante solo deja a todos cansados. La carta te pregunta en cuál de las dos estás."
+    },
+    {
+      "q": "¿El Cinco de Bastos es una pelea de verdad?",
+      "a": "Casi nunca. Waite describe la escena como una pelea de mentiras, una imitación de batalla (p. 188), y las lecturas de hoy siguen esa idea: rivalidad, debate y competencia, no que alguien salga lastimado. Piensa en una junta acalorada."
+    },
+    {
+      "q": "¿Qué significa el Cinco de Bastos en un equipo o grupo de amigos?",
+      "a": "Un grupo donde cada quien empuja su idea al mismo tiempo. Energía sobra, pero sin un poco de orden se va en cinco direcciones. Ponerse de acuerdo en una meta común, y en quién decide al final, suele convertir el desorden en trabajo en equipo."
+    }
+  ],
+  "related": [
+    "wands-04-four",
+    "wands-06-six",
+    "cups-05-five",
+    "swords-05-five",
+    "pentacles-05-five"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-05-five",
+      "text": "Cinco de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Imitation, as, for example, sham fight, but also the strenuous competition and struggle of the search after riches and fortune … Reversed: Litigation, disputes, trickery, contradiction.",
+    "quote_lang": "en",
+    "pages": [
+      188
+    ],
+    "translation": "Imitación, como, por ejemplo, una pelea fingida, pero también la competencia y la lucha esforzadas de quien busca riquezas y fortuna … Al revés: litigio, disputas, engaño, contradicción.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [188],
+      "text": "A posse of youths, who are brandishing staves, as if in sport or strife. It is mimic warfare"
+    },
+    {
+      "pages": [188],
+      "text": "but also the strenuous competition and struggle of the search after riches and fortune. In this sense it connects with the battle of life."
+    },
+    {
+      "pages": [188],
+      "text": "Reversed: Litigation, disputes, trickery, contradiction."
+    },
+    {
+      "pages": [289],
+      "text": "Five.—Success in financial speculation. Reversed: Quarrels may be turned to advantage."
+    },
+    {
+      "pages": [244],
+      "text": "A disdainful man looks after two retreating and dejected figures."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 05.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_05.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [188, 244, 289],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

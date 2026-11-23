@@ -1,0 +1,257 @@
+{
+  "schema": 2,
+  "card_id": "wands-12-knight",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Caballero de Bastos",
+    "in_sentence": "el Caballero de Bastos",
+    "de": "del Caballero de Bastos"
+  },
+  "title": "Caballero de Bastos en el tarot: significado e invertida",
+  "description": "Qué significa el Caballero de Bastos al derecho y al revés (carta invertida): acción, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Caballero de Bastos en el tarot: significado",
+  "image_alt": "Caballero de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: un jinete con armadura sobre un caballo encabritado alza un bastón con hojas; abajo, tres pirámides en la arena.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 12,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Caballero de Bastos habla de acción, pasión y aventura: un impulso que quiere moverse ya. Al revés, esa energía se vuelve prisa, frustración o planes a medias. Es una carta viva y casi siempre bienvenida; su riesgo es correr sin rumbo. Si preguntas sí o no, responde que sí: su caballo ya se lanza hacia adelante.",
+  "keywords": {
+    "upright": [
+      "acción",
+      "pasión",
+      "aventura",
+      "impulso"
+    ],
+    "reversed": [
+      "prisa",
+      "energía dispersa",
+      "frustración",
+      "planes a medias"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Caballero de Bastos?",
+      "paragraphs": [
+        "Un jinete con armadura monta un caballo que se encabrita sobre las patas traseras, y el caballo es lo más grande de la imagen. Waite describe al Caballero como si fuera de viaje, armado con un bastón corto, y aclara que, aunque lleva cota de malla, no va a la guerra (p. 174). Según Waite, pasa junto a montículos o pirámides (p. 174).",
+        "En la carta de 1909 el caballo es color arena claro y tiene las patas delanteras en alto; el bastón que el jinete levanta echa pequeñas hojas verdes. Lleva penachos anaranjados, una túnica amarilla con figuras negras enroscadas y, abajo a la izquierda, se ven tres pirámides. Para Waite, el movimiento del caballo es la clave del carácter de quien lo monta y sugiere un ánimo precipitado (p. 174)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Caballero de Bastos?",
+      "paragraphs": [
+        "La lista al derecho de Waite (p. 174) gira alrededor de irse: salir, ausentarse, emigrar, cambiar de casa, con un joven amistoso como figura. En la lista al revés de Waite (p. 174), el viaje se convierte en corte: rupturas, interrupciones, desacuerdos.",
+        "En sus significados adicionales, Waite es más tajante y la llama sin más una mala carta (p. 288); Arcana Diary no lee así al Caballero. Hoy la carta conserva el movimiento y le suma fuego: arrojo, deseo y gusto por lo desconocido."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Caballero de Bastos al derecho?",
+      "paragraphs": [
+        "Un caballo ya en el aire: el Caballero de Bastos es acción que no pide permiso. Trae pasión, aventura y ese impulso que convierte una idea en plan, y el plan en un boleto, una llamada o un primer paso. También se asocia con viajes y mudanzas, como las partidas de la lista de Waite (p. 174).",
+        "Este Caballero arranca rápido y con gusto; terminar ya es otra historia. Si puedes decir tu meta en una frase, adelante. Si no, elige primero una dirección, para que la carrera te lleve a algún lado y no solo lejos."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Caballero de Bastos al revés?",
+      "paragraphs": [
+        "Al revés, el Caballero de Bastos puede hablar de prisa sin plan: energía dispersa, muchos comienzos y pocos finales, y frustración cuando el mundo no va a tu velocidad. El entusiasmo se prende y se apaga, y deja planes a medias.",
+        "Las palabras de Waite para este lado, como interrupción y discordia (p. 174), encajan aquí; leerlo como un impulso que se desvía es una lectura moderna, no de Waite. Escoge un proyecto, termina una parte pequeña y deja que lo demás espere."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Caballero de Bastos en el amor?",
+      "paragraphs": [
+        "La pasión es lo primero que este Caballero trae al amor: chispa, coqueteo, planes improvisados y la emoción de lo nuevo. Sin pareja, suele describir una etapa intensa de conocer gente, o tus propias ganas de dejar de esperar y dar el primer paso.",
+        "En una relación, devuelve la aventura: un viaje en pareja, un plan compartido, más juego y menos rutina. Al revés, la intensidad llega a ratos, o la impaciencia quiere acelerar algo que va a otro ritmo. Pregúntate si lo que sientes tiene raíces o es solo la chispa del momento."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Caballero de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "Con este Caballero el trabajo se mueve rápido: un proyecto nuevo, una propuesta audaz, un empleo con viajes o un cambio de planes que recibes con energía. Favorece arrancar y tomar la iniciativa; al revés, habla de proyectos lanzados a la carrera y abandonados a medio camino.",
+        "El dinero, con esta carta, entra y sale rápido: compras por impulso, una aventura cara, gastos que pagan la emoción más que los planes. Al revés, esa misma prisa se nota en decisiones de dinero tomadas antes de tener claras las cuentas."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Caballero de Bastos como consejo?",
+      "paragraphs": [
+        "Muévete para soltar la energía acumulada: sal a caminar a buen paso o dile que sí a un plan que te entusiasme, sin darle más vueltas. Después anota a dónde quieres que te lleve y cómo vas a saber que ya terminaste."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Caballero de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Caballero de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Caballero de Bastos es quien vive en movimiento: con encanto, inquietud y prisa por actuar, quien propone el viaje y ya tiene la maleta hecha. Cualquiera puede ocupar ese papel, también tú cuando sientes ganas de arrancar. Como sentimiento, la carta significa pasión y emoción: una atracción fuerte, un interés que llega de golpe y las ganas de actuar en ese mismo momento. Al revés, ese sentimiento va y viene: impaciencia, señales confusas, un interés que arde mucho y luego se enfría."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Caballero de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "wands-01-ace",
+          "text": "La chispa y el jinete que la lleva: una idea que pide acción ya. Arranca y luego mide tu paso."
+        },
+        {
+          "card_id": "pentacles-12-knight",
+          "text": "El caballero más rápido junto al más lento: tu impulso rinde más con una rutina firme detrás."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "Primero la carrera, luego el descanso. Una pausa evita que el fuego se consuma."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "Pasión con una conexión real, compartida entre dos."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Caballero de Bastos del Caballero de Espadas y del Ocho de Bastos?",
+      "paragraphs": [
+        "Waite describe al Caballero de Espadas cabalgando a todo galope, como si dispersara a sus enemigos (p. 230), mientras que su Caballero de Bastos va de viaje y no a la batalla (p. 174). Hoy el de Espadas se lee como pensamiento rápido y palabras filosas; el de Bastos es pasión y aventura, más fuego que discusión.",
+        "El Ocho de Bastos de Waite es un vuelo de bastos sobre campo abierto, sin ningún jinete (p. 182). Esa carta habla de sucesos que se aceleran; el Caballero, de alguien que pone las cosas en marcha."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Caballero de Bastos?",
+      "paragraphs": [
+        "¿A dónde quiero que me lleve toda esta energía?",
+        "¿Qué empecé ya que merece terminarse antes que lo nuevo?",
+        "¿A qué plan improvisado me gustaría decirle que sí?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Caballero de Bastos es una carta buena o mala?",
+      "a": "Buena, en la mayoría de los casos. Trae valor, empuje y ganas de vivir, algo útil en casi cualquier pregunta que pida un primer paso. Lo que advierte es lanzarse sin pensar y luego perder el interés. Si frenas lo justo para apuntar, su energía juega a tu favor."
+    },
+    {
+      "q": "¿El Caballero de Bastos significa viaje o mudanza?",
+      "a": "Puede ser. Waite incluye partida, emigración y cambio de residencia entre sus significados (p. 174), y hoy la carta sigue ligada a viajes, mudanzas y aventuras lejos de casa. Depende de tu pregunta: la carta nombra las ganas de irse, no una fecha ni un destino."
+    },
+    {
+      "q": "¿El Caballero de Bastos significa que le gusto?",
+      "a": "Ninguna carta puede hablar por una persona en particular. En una pregunta sobre sentimientos, su sentido tradicional es una atracción viva y las ganas de actuar pronto; al revés, un interés que llega a ráfagas. Lo que esa persona dice y hace a la vista te dirá mucho más."
+    }
+  ],
+  "related": [
+    "wands-11-page",
+    "wands-13-queen",
+    "cups-12-knight",
+    "swords-12-knight",
+    "pentacles-12-knight"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-12-knight",
+      "text": "Caballero de Espadas"
+    },
+    {
+      "card_id": "wands-08-eight",
+      "text": "Ocho de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "Departure, absence, flight, emigration. A dark young man, friendly. Change of residence. Reversed: Rupture, division, interruption, discord.",
+    "quote_lang": "en",
+    "pages": [
+      174
+    ],
+    "translation": "Partida, ausencia, huida, emigración. Un joven moreno, amistoso. Cambio de residencia. Al revés: ruptura, división, interrupción, discordia.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        174
+      ],
+      "text": "He is shewn as if upon a journey, armed with a short wand, and although mailed is not on a warlike errand"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "He is passing mounds or pyramids"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
+    },
+    {
+      "pages": [
+        174
+      ],
+      "text": "Departure, absence, flight, emigration. A dark young man, friendly. Change of residence. Reversed: Rupture, division, interruption, discord."
+    },
+    {
+      "pages": [
+        288
+      ],
+      "text": "Knight.—A bad card"
+    },
+    {
+      "pages": [
+        230
+      ],
+      "text": "He is riding in full course, as if scattering his enemies"
+    },
+    {
+      "pages": [
+        182
+      ],
+      "text": "a flight of wands through an open country"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 12.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_12.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        174,
+        182,
+        230,
+        288
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

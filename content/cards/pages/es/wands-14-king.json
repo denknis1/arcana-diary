@@ -1,0 +1,242 @@
+{
+  "schema": 2,
+  "card_id": "wands-14-king",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Rey de Bastos",
+    "in_sentence": "el Rey de Bastos",
+    "de": "del Rey de Bastos"
+  },
+  "title": "Rey de Bastos en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Rey de Bastos al derecho y al revés (carta invertida): liderazgo, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Rey de Bastos en el tarot: significado",
+  "image_alt": "Rey de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: un rey de perfil, en un trono con leones pintados, sostiene en alto un bastón con hojas; a sus pies, una pequeña salamandra negra.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 14,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Rey de Bastos representa liderazgo, visión e iniciativa: la audacia de convertir una idea en algo real y llevar a otros contigo. Al revés, puede volverse autoritarismo, impaciencia o una visión que no aterriza. Es una carta fuerte y alentadora, mientras el poder inspire en vez de controlar. Responde que sí: este rey ya se inclina para actuar.",
+  "keywords": {
+    "upright": [
+      "liderazgo",
+      "visión",
+      "iniciativa",
+      "audacia"
+    ],
+    "reversed": [
+      "autoritarismo",
+      "impaciencia",
+      "expectativas demasiado altas",
+      "visión sin aterrizar"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Rey de Bastos?",
+      "paragraphs": [
+        "Un rey de perfil ocupa un trono de respaldo alto y sostiene un bastón largo que echa hojas verdes. Waite escribe que el Rey alza un bastón florecido y lleva bajo la corona una gorra de ceremonia (p. 170). El león, dice Waite, aparece blasonado en el respaldo del trono (p. 170).",
+        "En la carta de 1909 el rey mira a la izquierda y se sienta en la orilla del asiento, como si fuera a levantarse. Una corona amarilla de puntas descansa sobre una gorra roja; viste una túnica rojo anaranjado con una capa verde sobre los hombros. Leones negros y salamandras enroscadas en círculo cubren el respaldo naranja, y una pequeña salamandra negra está en el escalón, a sus pies. Waite atribuye a esta carta una naturaleza ardiente, ágil, animada, apasionada y noble (p. 170)."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Rey de Bastos?",
+      "paragraphs": [
+        "Para Waite, este Rey es un hombre decente y confiable, y su carta siempre significa honestidad (p. 170). Al revés, según Waite (p. 170), sigue siendo bueno, solo que más estricto: severo y austero, aunque tolerante.",
+        "En sus significados adicionales, Waite le da al lado al revés un sentido práctico: un consejo que conviene seguir (p. 288)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Rey de Bastos al derecho?",
+      "paragraphs": [
+        "Inclinado hacia adelante, como si estuviera por ponerse de pie, el Rey de Bastos es la visión puesta a trabajar. Representa liderazgo, iniciativa y audacia: ver hacia dónde pueden ir las cosas, tomar la decisión y sumar a otros con el ejemplo, no con órdenes. Suele leerse como la carta de quien emprende, funda algo o lidera por naturaleza.",
+        "Cuando sale, te pide tomar el mando de tu propio rumbo. ¿Qué decisión le estás dejando a otros? La honestidad que Waite le atribuye (p. 170) también cuenta hoy: este Rey dirige a la vista, dice lo que cree y actúa en consecuencia."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Rey de Bastos al revés?",
+      "paragraphs": [
+        "Al revés, el Rey de Bastos puede convertir su fuego en presión: impaciencia con quien va más lento, autoritarismo, expectativas demasiado altas para cualquiera o una visión sin aterrizar en pasos reales. A veces muestra lo contrario: dudar de tu derecho a liderar.",
+        "El Rey al revés de Waite sigue siendo bueno, solo severo (p. 170); los matices más duros son una lectura moderna, no de Waite. Escucha a tu gente antes de imponer el rumbo y da el ejemplo en un área pequeña."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Rey de Bastos en el amor?",
+      "paragraphs": [
+        "Una pasión madura: saber lo que quieres, decirlo con claridad y ofrecerlo con calidez. Así entra este Rey al amor. Cuando hay un vínculo, apunta a planes compartidos y gestos valientes, una relación que crece porque las dos personas construyen algo. Sin pareja, favorece ir de frente: dar el primer paso con honestidad, sin juegos.",
+        "Cuando sale al revés, cuidado con el control: decidir por ambos, presionar o perder la paciencia cuando la otra persona lleva otro ritmo. Toma la iniciativa con respeto, no con presión."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Rey de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "Este Rey se siente en casa al frente: dirigir un proyecto, fundar un negocio, marcar el rumbo y mantener al equipo motivado. Favorece la iniciativa y la mirada amplia; al revés, advierte sobre querer controlar cada detalle o anunciar planes en grande y dejar que otros los carguen.",
+        "Como carta de dinero, significa ganar con tu propia visión y empuje: ingresos de un proyecto que tú diriges, seguridad al negociar lo que vale tu trabajo. Al revés, habla de exceso de confianza y de decisiones de dinero más rápidas que los datos."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Rey de Bastos como consejo?",
+      "paragraphs": [
+        "Mueve tú un asunto que nadie está moviendo y explica a los demás hacia dónde va. Liderar, en el sentido de esta carta, es ir primero y decir por qué."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Rey de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Rey de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Rey de Bastos es quien lidera por naturaleza: con carisma, honestidad y audacia, rápido para tomar la iniciativa y a veces también para perder la paciencia. Puede ser un jefe, una mentora, una pareja o tú cuando tomas el mando. Como sentimiento, la carta significa un interés seguro y comprometido: atracción fuerte unida a las ganas de construir algo serio y decirlo abiertamente. Al revés, el sentimiento sigue siendo intenso, pero puede volverse orgulloso o controlador, o enfriarse por impaciencia."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Rey de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "wands-03-three",
+          "text": "Visión y expansión: planes que llegan más lejos que antes, contigo al frente."
+        },
+        {
+          "card_id": "pentacles-08-eight",
+          "text": "Ideas grandes y trabajo paciente. La visión necesita horas de práctica detrás."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Un bloqueo y quien puede romperlo: elige y di en voz alta lo que elegiste."
+        },
+        {
+          "card_id": "major-08-strength",
+          "text": "Audacia con paciencia: un liderazgo que convence en vez de empujar."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Rey de Bastos de El Emperador y del Rey de Oros?",
+      "paragraphs": [
+        "Waite sienta a El Emperador en un trono cuyos brazos llevan cabezas de carnero (p. 84); hoy esa carta significa estructura, reglas y estabilidad. El Rey de Bastos dirige con visión y entusiasmo; El Emperador, con orden: uno enciende el fuego y el otro levanta los muros.",
+        "En el Rey de Oros, Waite señala la cabeza de toro como símbolo que se repite en el trono (p. 254), y la carta se lee como seguridad y abundancia constante. El de Bastos arriesga e inspira; el de Oros conserva y hace crecer."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Rey de Bastos?",
+      "paragraphs": [
+        "¿Qué decisión estoy esperando que otra persona tome por mí?",
+        "¿Dónde podría guiar con el ejemplo en lugar de presionar?",
+        "¿Qué idea mía merece un primer paso de verdad?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Rey de Bastos es una carta buena o mala?",
+      "a": "Buena, para la mayoría de las preguntas. En su lista adicional, Waite la llama en general favorable (p. 288), y hoy representa valor, visión y un liderazgo honesto. Su punto débil es el orgullo o presionar de más, algo que aparece sobre todo cuando sale al revés."
+    },
+    {
+      "q": "¿El Rey de Bastos es un jefe o una figura paterna?",
+      "a": "Puede ser cualquiera de los dos, o ninguno. La carta describe un papel: alguien que dirige, una madre o un padre, una amistad con más experiencia, una pareja o tú. Lo que la define es el estilo: audaz, cálido, decidido y con ganas de ir primero."
+    },
+    {
+      "q": "¿El Rey de Bastos significa que me quiere?",
+      "a": "Ninguna carta responde por una persona concreta. En una pregunta de amor, el sentido tradicional de este Rey es una pasión madura y comprometida, con ganas de construir un futuro en común; al revés, una emoción fuerte mezclada con orgullo. Fíjate más en sus palabras y en sus actos."
+    }
+  ],
+  "related": [
+    "wands-13-queen",
+    "wands-12-knight",
+    "cups-14-king",
+    "swords-14-king",
+    "pentacles-14-king"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-04-emperor",
+      "text": "El Emperador"
+    },
+    {
+      "card_id": "pentacles-14-king",
+      "text": "Rey de Oros"
+    }
+  ],
+  "waite": {
+    "quote": "Dark man, friendly, countryman, generally married, honest and conscientious. The card always signifies honesty … Reversed: Good, but severe; austere, yet tolerant.",
+    "quote_lang": "en",
+    "pages": [
+      170
+    ],
+    "translation": "Hombre moreno, amistoso, del campo, por lo general casado, honesto y concienzudo. La carta siempre significa honestidad … Al revés: bueno, pero severo; austero, aunque tolerante.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [170],
+      "text": "The King uplifts a flowering wand, and wears, like his three correspondences in the remaining suits, what is called a cap of maintenance beneath his crown"
+    },
+    {
+      "pages": [170],
+      "text": "He connects with the symbol of the lion, which is emblazoned on the back of his throne"
+    },
+    {
+      "pages": [170],
+      "text": "The physical and emotional nature to which this card is attributed is dark, ardent, lithe, animated, impassioned, noble"
+    },
+    {
+      "pages": [170],
+      "text": "The card always signifies honesty"
+    },
+    {
+      "pages": [170],
+      "text": "Reversed: Good, but severe; austere, yet tolerant"
+    },
+    {
+      "pages": [288],
+      "text": "Wands. King.—Generally favourable; may signify a good marriage. Reversed: Advice that should be followed."
+    },
+    {
+      "pages": [84],
+      "text": "seated on a throne, the arms of which are fronted by rams' heads"
+    },
+    {
+      "pages": [254],
+      "text": "The bull's head should be noted as a recurrent symbol on the throne"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 14.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_14.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [84, 170, 254, 288],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

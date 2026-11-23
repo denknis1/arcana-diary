@@ -1,0 +1,260 @@
+{
+  "schema": 2,
+  "card_id": "cups-02-two",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Two of Cups",
+    "in_sentence": "the Two of Cups"
+  },
+  "title": "Two of Cups Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Two of Cups upright: partnership, mutual respect, connection; reversed: imbalance. Love, work, advice, Waite's 1911 text and the 1909 card. Ask your question.",
+  "h1": "Two of Cups Tarot Card Meaning",
+  "image_alt": "Two of Cups, 1909 Rider–Waite–Smith card: a young woman and man pledge gold cups beneath a staff twined by two snakes and topped by a winged lion's head.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "cups",
+    "number": 2,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Two of Cups is the card of partnership: mutual attraction, respect and a connection between equals. Reversed, that balance tilts, through misunderstanding or one side giving more. Its support is wholehearted; what it watches is whether care flows both ways. Two people meeting as equals make the upright answer a clear yes.",
+  "keywords": {
+    "upright": [
+      "partnership",
+      "mutual respect",
+      "connection",
+      "harmony"
+    ],
+    "reversed": [
+      "imbalance",
+      "misunderstanding",
+      "uneven giving",
+      "distance"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Two of Cups card?",
+      "paragraphs": [
+        "A young woman and a young man stand face to face and bring their cups together. Waite describes them as \"pledging one another\", with the Caduceus of Hermes rising above the cups and a lion's head between its great wings (p. 222).",
+        "Waite notes that this sign is a variant found \"in a few old examples of this card\", and he sets its symbolic meanings aside because they \"do not concern us in this place\" (p. 222).",
+        "On the 1909 card the winged lion's head is the biggest shape, red-brown above a staff wound with two snakes. She wears a green wreath and a pale blue cloak over a white gown; he wears a wreath of red flowers and a patterned tunic. Behind them, a house with a red roof sits on a green hill."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Two of Cups?",
+      "paragraphs": [
+        "Waite's meanings read like a list of ways two people come close: love, passion, friendship, affinity, union, concord and sympathy (p. 222). Waite gives no reversed meaning on that page; in his later list of additional meanings, the reversed Two of Cups is a single word, passion (p. 290)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Two of Cups mean upright?",
+      "paragraphs": [
+        "Partnership is the heart of the Two of Cups: two people who meet as equals, with mutual respect and real attraction. Few cards mark so clearly a budding romance, a friendship sealed, a reconciliation, or any bond in which both sides choose each other.",
+        "The connection can be practical too: a good business partner, an agreement that is fair to both, someone who understands you without long explanations. What makes it this card is balance; nobody stands above the other.",
+        "Harmony here is active, built by listening as much as by speaking. Which of your bonds feels most equal right now, and what keeps it that way?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Two of Cups mean reversed?",
+      "paragraphs": [
+        "Turned upside down, the card shows a bond out of balance: misunderstanding, distance, or uneven giving, where one cup offers more than the other. It can also mark the strain after a quarrel, or a time when it is hard to feel close even to yourself.",
+        "Waite gives no reversed list for this card on its own page (p. 222), and his short additional list names only passion (p. 290); imbalance and distance are a modern reading, not Waite's. Say calmly what you need in order to feel equal again."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Two of Cups mean in love?",
+      "paragraphs": [
+        "Two cups raised to the same height make this one of the most romantic minor cards: mutual attraction, a first date that feels easy, a bond growing into a partnership. Inside an existing relationship it marks closeness, a commitment renewed, or making peace after an argument.",
+        "Without a partner, the card may describe a meeting of minds that feels promising, or simply learning what an equal bond looks like before you choose anyone.",
+        "Imbalance is the reversed side in love: one person reaching more than the other, words that miss, a coolness that has crept in. A calm, honest talk is usually the first step back."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Two of Cups mean for work and money?",
+      "paragraphs": [
+        "Partnerships are the career theme: a business partner who fits, a client relationship built on trust, a colleague you work well with, a deal where both sides gain. Waite's additional list calls the card favourable in business as well as love, and adds wealth and honour (p. 290).",
+        "As a money card, it means fair exchange and shared resources: a joint plan, a balanced agreement, pooling what you have with someone you trust. Reversed, it can show a lopsided arrangement or tension over who pays for what."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Two of Cups?",
+      "paragraphs": [
+        "Tell one person you care about one specific thing you value in them, and give them room to answer. A bond grows stronger when both people hear, in plain words, that they matter."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Two of Cups a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Two of Cups as a person and as feelings",
+      "paragraphs": [
+        "As a person, the Two of Cups is a partner in the full sense: a lover, a close friend or a colleague who meets you as an equal and keeps their word. It can also mirror your own gift for sharing. As feelings, it is among the clearest cards of mutual attraction and affection, a wish to be close and to build something together. Reversed, the feeling is still there but unsure of itself: distance, mixed signals, care that does not feel returned."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Two of Cups with other cards",
+      "pairs": [
+        {
+          "card_id": "cups-10-ten",
+          "text": "A bond between two that grows into a shared home and a sense of family."
+        },
+        {
+          "card_id": "major-14-temperance",
+          "text": "Patience inside a partnership. Small adjustments on both sides keep the balance."
+        },
+        {
+          "card_id": "wands-04-four",
+          "text": "A connection worth celebrating, with the people who matter to you around it."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Closeness, with a decision both of you keep putting off. Talk about the thing you avoid."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Two of Cups or The Lovers?",
+      "paragraphs": [
+        "Waite's picture of The Lovers shows a man and a woman, unveiled, under a large winged figure with spread arms, and he calls it \"the card of human love\" (p. 92). Its modern meaning is a deep bond and a choice that reveals your values.",
+        "The Two of Cups is the bond itself, lived day to day between two equals. One card is a crossroads; the other is a toast."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Two of Cups",
+      "paragraphs": [
+        "In which of my relationships do I feel most equal?",
+        "Is there a bond where I give more than I receive, or less?",
+        "What could I tell someone close today about why they matter to me?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Two of Cups a good or bad card?",
+      "a": "Good, especially for any question that involves another person. It brings mutual respect, attraction and agreement. Reversed, it reveals a gap in a bond, which is useful to see early: a gap you can talk about is a gap you can begin to close."
+    },
+    {
+      "q": "Does the Two of Cups mean a soulmate?",
+      "a": "Not as fate. The card describes two people drawn to each other, with respect running both ways, which is what many people mean by the word. It does not fix the future of that bond; it shows its quality as things stand."
+    },
+    {
+      "q": "Can the Two of Cups be about friendship?",
+      "a": "Yes. Waite lists friendship and concord right beside love (p. 222), and many readings of this card are about friends, family or people you work with. What matters is the quality of the tie: two people choosing each other freely, without one leaning on the other."
+    }
+  ],
+  "related": [
+    "cups-01-ace",
+    "cups-03-three",
+    "wands-02-two",
+    "swords-02-two",
+    "pentacles-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-06-lovers",
+      "text": "The Lovers"
+    }
+  ],
+  "waite": {
+    "quote": "Love, passion, friendship, affinity, union, concord, sympathy, the interrelation of the sexes … Reversed: Passion.",
+    "quote_lang": "en",
+    "pages": [
+      222,
+      290
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        222
+      ],
+      "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head"
+    },
+    {
+      "pages": [
+        222
+      ],
+      "text": "It is a variant of a sign which is found in a few old examples of this card"
+    },
+    {
+      "pages": [
+        222
+      ],
+      "text": "Some curious emblematical meanings are attached to it, but they do not concern us in this place"
+    },
+    {
+      "pages": [
+        222
+      ],
+      "text": "Love, passion, friendship, affinity, union, concord, sympathy"
+    },
+    {
+      "pages": [
+        290
+      ],
+      "text": "Two.—Favourable in things of pleasure and business, as well as love; also wealth and honour. Reversed: Passion."
+    },
+    {
+      "pages": [
+        92
+      ],
+      "text": "beneath is a great winged figure with arms extended"
+    },
+    {
+      "pages": [
+        92
+      ],
+      "text": "two human figures, male and female, unveiled before each other"
+    },
+    {
+      "pages": [
+        92
+      ],
+      "text": "This is in all simplicity the card of human love"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 02.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_02.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        92,
+        222,
+        290
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

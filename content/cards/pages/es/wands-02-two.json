@@ -1,0 +1,246 @@
+{
+  "schema": 2,
+  "card_id": "wands-02-two",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Dos de Bastos",
+    "in_sentence": "el Dos de Bastos",
+    "de": "del Dos de Bastos"
+  },
+  "title": "Dos de Bastos en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Dos de Bastos al derecho y al revés (carta invertida): planes, visión, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Dos de Bastos en el tarot: significado",
+  "image_alt": "Dos de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: un hombre con gorro rojo y capa larga mira desde la muralla de un castillo con un pequeño globo en la mano.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "wands",
+    "number": 2,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Dos de Bastos habla de planes y visión: ya tienes una base y llega la decisión de hacia dónde crecer, con el horizonte enfrente. Al revés, el miedo a lo desconocido te hace posponer. Es buena: apoya la ambición y pide no quedarte por pura costumbre. Responde que sí: la mirada ya va más allá de la muralla.",
+  "keywords": {
+    "upright": [
+      "planes",
+      "visión",
+      "decisión",
+      "horizonte"
+    ],
+    "reversed": [
+      "miedo a lo desconocido",
+      "quedarte en lo seguro",
+      "posponer",
+      "falta de planeación"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Dos de Bastos?",
+      "paragraphs": [
+        "Un hombre alto mira desde la azotea almenada de un castillo hacia el mar y la costa, según la describe Waite (p. 194). Sostiene un globo en una mano; un bastón se apoya en la almena y otro está sujeto con una argolla. Waite pide fijarse en la rosa, la cruz y el lirio del lado izquierdo (p. 194), pero no explica qué significan.",
+        "En la carta de 1909 el hombre ocupa el centro del dibujo, de perfil, con gorro rojo y una capa larga color vino. Su globo tiene manchas verdes y rojas. En el tablero de piedra de la izquierda se cruzan rosas rojas y lirios blancos en forma de X. Detrás de la muralla se ven agua, campos verdes, una casa de techo rojo y montañas grises."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Dos de Bastos?",
+      "paragraphs": [
+        "Waite reconoce que las dos mitades de su lista no se pueden conciliar (p. 194). La primera es riqueza y grandeza; la segunda es dura, y en Arcana Diary no leemos la carta así.",
+        "Para explicar el dibujo, Waite propone ver a un señor que contempla sus dominios y, a ratos, el globo que tiene en la mano, y lo compara con la tristeza de Alejandro en medio de toda la riqueza del mundo (p. 194). Tenerlo casi todo y aun así mirar más lejos: por ahí va también la lectura de hoy."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Dos de Bastos al derecho?",
+      "paragraphs": [
+        "Al derecho, es la carta de los planes. Algo ya está logrado, hay cierta seguridad, y ahora la pregunta es qué tan lejos quieres llegar. La visión va por delante de los hechos: el proyecto existe en tu cabeza o en una libreta, todavía no en el mundo.",
+        "Suele salir cuando la vida conocida empieza a quedarte chica: mudarte, estudiar fuera, aceptar un puesto más grande, abrir algo propio. Hay más de un camino posible, y la carta favorece tomar la decisión con calma y a propósito, no dejar que otros o la rutina la tomen por ti.",
+        "Si la muralla fuera una línea de salida y no un límite, ¿hacia dónde mirarías?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Dos de Bastos al revés?",
+      "paragraphs": [
+        "Al revés, el plan se queda en pausa. El miedo a lo desconocido hace que quedarte en lo seguro parezca lo más sensato, y posponer se vuelve costumbre. A veces pasa lo contrario: falta de planeación, muchas ganas de cambio y ningún mapa.",
+        "Esta lectura es moderna; las palabras al revés de la lista de Waite (p. 194), de la sorpresa al asombro y la inquietud, van por otro lado. Prueba una parte pequeña del plan, con poco riesgo, y mira cómo te sientes."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Dos de Bastos en el amor?",
+      "paragraphs": [
+        "Sin pareja, la carta te invita a pensar qué quieres a largo plazo antes de quedarte con lo que está más a la mano. Imaginar la relación que deseas ya es un primer paso.",
+        "En pareja, puede tocar una decisión compartida: vivir juntos, cambiarse de ciudad, una meta en común. Lo importante es hablarla con franqueza y no darla por hecha.",
+        "Al revés, la comodidad puede tenerte en un lugar que ya te queda chico, o el temor al cambio puede congelar una plática que hace falta."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Dos de Bastos en el trabajo y el dinero?",
+      "paragraphs": [
+        "En lo laboral habla de planes de carrera: un puesto con más alcance, trabajar en otro país, un mercado nuevo, elegir entre un empleo seguro y una oportunidad más amplia.",
+        "En dinero, significa planeación: metas a largo plazo, un presupuesto para algo grande, comparar opciones antes de comprometerte. Al revés, apunta a ahorros que se quedan quietos solo por miedo al cambio, o a un plan que todavía no tiene números."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Dos de Bastos como consejo?",
+      "paragraphs": [
+        "Dibuja en una hoja el mapa de dónde quieres estar en un año y pégalo donde lo veas. Luego escribe al lado el primer paso pequeño que te saca de tus murallas."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Dos de Bastos es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Dos de Bastos como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Dos de Bastos describe a alguien con ambición y cabeza para planear: tiene una base firme, mira más allá de lo inmediato y a veces parece distante mientras decide. Como sentimiento, significa un interés serio que piensa en el futuro: sopesar una relación, imaginar a dónde podría llegar, sin dar todavía el paso. Al revés, ese sentimiento se vuelve duda: interés frenado por el miedo al cambio o por la comodidad de lo conocido."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Dos de Bastos junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-00-fool",
+          "text": "El plan ya está; falta bajarte de la muralla y dar el salto."
+        },
+        {
+          "card_id": "pentacles-02-two",
+          "text": "Dos proyectos y recursos limitados. Decide cuál recibe primero tu energía."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Una elección que sigues aplazando. Pon las opciones en claro antes de decidir."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "En cuanto tomas la decisión, los planes se aceleran."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Dos de Bastos del Tres de Bastos?",
+      "paragraphs": [
+        "En el Tres de Bastos también hay un hombre frente al mar, pero Waite lo pone al borde de un acantilado, mirando barcos que pasan (p. 192). Hoy se lee como expansión y progreso: el esfuerzo ya está en marcha. El Dos sigue en la azotea del castillo con el plan en la mano; en el Tres, el hombre ya salió y algo zarpó."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Dos de Bastos?",
+      "paragraphs": [
+        "¿Qué planearía si confiara en que puedo llevarlo a cabo?",
+        "¿Qué me mantiene en terreno conocido ahora mismo?",
+        "¿Qué prueba pequeña puedo hacer del plan grande?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Dos de Bastos es una carta buena o mala?",
+      "a": "Buena en general. Habla de ambición, de una base segura y de la libertad para escoger un camino más amplio. Su lado difícil es la indecisión, cuando la comodidad o la duda tienen esperando un buen plan. Aun así, el siguiente paso queda en tus manos."
+    },
+    {
+      "q": "¿Qué significa el globo del Dos de Bastos?",
+      "a": "Waite no le da al globo un significado propio (p. 194). Lee la escena completa, la de un señor que recorre con la vista su tierra y vuelve al globo que sostiene, y la compara con la tristeza de Alejandro (p. 194). El sentido moderno de planear y abrir horizontes sale de esa escena entera."
+    },
+    {
+      "q": "¿El Dos de Bastos habla de viajes o de mudarse?",
+      "a": "Puede ser. Las ganas de ir más lejos, viajar, estudiar en otro lado o cambiar de ciudad son una lectura moderna común de esta carta. Pero casi siempre se centra en decidir: si el cambio vale la pena y cómo prepararlo. Prefiere un plan a un brinco impulsivo."
+    }
+  ],
+  "related": [
+    "wands-01-ace",
+    "wands-03-three",
+    "cups-02-two",
+    "swords-02-two",
+    "pentacles-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-03-three",
+      "text": "Tres de Bastos"
+    }
+  ],
+  "waite": {
+    "quote": "On the one hand, riches, fortune, magnificence; on the other, physical suffering, disease, chagrin, sadness, mortification … Reversed: Surprise, wonder, enchantment, emotion, trouble, fear.",
+    "quote_lang": "en",
+    "pages": [
+      194
+    ],
+    "translation": "Por un lado, riqueza, fortuna, magnificencia; por el otro, sufrimiento físico, enfermedad, pesadumbre, tristeza, mortificación … Al revés: sorpresa, asombro, encantamiento, emoción, turbación, miedo.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [
+        194
+      ],
+      "text": "A tall man looks from a battlemented roof over sea and shore"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "The Rose and Cross and Lily should be noticed on the left side"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "Between the alternative readings there is no marriage possible"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "here is a lord overlooking his dominion and alternately contemplating a globe; it looks like the malady, the mortification, the sadness of Alexander amidst the grandeur of this world's wealth"
+    },
+    {
+      "pages": [
+        194
+      ],
+      "text": "Reversed: Surprise, wonder, enchantment, emotion, trouble, fear"
+    },
+    {
+      "pages": [
+        192
+      ],
+      "text": "looking from a cliff's edge at ships passing over the sea"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 02.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_02.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        192,
+        194
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}
