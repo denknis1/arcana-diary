@@ -135,7 +135,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     const link = line?.querySelector('a');
     expect(link?.textContent).toBe('your account');
     expect(link?.getAttribute('href')).toBe('/account');
-    expect(queryText(root, 'The reminder was not switched on. You can switch it on in your account.')).toBeNull();
+    expect(queryText(root, "The reminder wasn't turned on. You can turn it on in your account.")).toBeNull();
   });
 
   it('the reminder line in Spanish links to the Spanish account page (owner decision 16)', async () => {
@@ -149,7 +149,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     const mounted = await mount(<DiaryIsland lang="es" />);
     await waitFor(() => expect(mounted.root.querySelectorAll('a.diary-item')).toHaveLength(1));
     const line = mounted.root.querySelector('p[role="status"]');
-    expect(line?.textContent).toBe('El recordatorio en 7 días está activado — puedes desactivarlo en tu cuenta.');
+    expect(line?.textContent).toBe('El recordatorio en 7 días está activado; puedes desactivarlo en tu cuenta.');
     expect(line?.querySelector('a')?.textContent).toBe('tu cuenta');
     expect(line?.querySelector('a')?.getAttribute('href')).toBe('/es/cuenta');
   });
@@ -203,10 +203,10 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
   it('more than ten: the hidden line and the Plus card with the whole-diary benefit', async () => {
     h.session = { access_token: 'tok-a' };
     serve({ 'GET /api/diary': page([ITEM], 3) });
-    const { root } = await open((r) => byText(r, 'More readings in Plus: 3'));
+    const { root } = await open((r) => byText(r, 'Older readings, shown with Plus: 3'));
     expect(byText(root, 'What Plus gives you')).toBeTruthy();
     expect(byText(root, 'Your whole diary, with no limit')).toBeTruthy();
-    expect(byText(root, 'Your diary keeps your last 10 readings. Plus keeps all of them.')).toBeTruthy();
+    expect(byText(root, 'Your diary shows your last 10 readings. Plus shows all of them.')).toBeTruthy();
     expect(vi.mocked(sendEvent)).toHaveBeenCalledWith({ name: 'plus_view', tool: null, lang: 'en', params: { place: 'diary' } });
   });
 
@@ -347,7 +347,7 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
       'GET /api/diary': page([ITEM]),
     });
     const { root } = await open((r) => expect(r.querySelectorAll('a.diary-item')).toHaveLength(1));
-    expect(byText(root, 'The reminder was not switched on. You can switch it on in your account.')).toBeTruthy();
+    expect(byText(root, "The reminder wasn't turned on. You can turn it on in your account.")).toBeTruthy();
     expect(root.textContent).not.toContain('The reminder in 7 days is on'); // owner decision 16: only on 'set'
   });
 

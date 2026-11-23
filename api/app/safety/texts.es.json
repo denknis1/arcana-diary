@@ -3,7 +3,7 @@
   "status": "draft",
   "crisis": {
     "title": "No tienes que cargar con esto a solas",
-    "body": "Lo que escribiste suena muy pesado, y qué bueno que lo dijiste. Esto no es algo que deban responder las cartas. Ahora mismo puede ayudarte hablar con una persona: estas líneas son gratuitas y confidenciales, y quienes contestan están ahí justo para esto. Puedes contar tanto o tan poco como quieras.",
+    "body": "Lo que escribiste suena muy pesado, y qué bueno que lo dijiste. Esto no es algo que deban responder las cartas. Ahora mismo puede ayudarte hablar con una persona: estas líneas son gratuitas y confidenciales, y quienes contestan están ahí justo para esto. Puedes contarles lo mucho o lo poco que quieras.",
     "not_saved": "No guardamos lo que escribiste.",
     "contacts_intro": "Aquí puedes hablar con alguien:",
     "fallback_contacts": "Si tu país no aparece, en findahelpline.com encuentras líneas gratuitas y confidenciales cerca de ti.",
@@ -22,8 +22,8 @@
     "redirect_money": "Esto no es un consejo financiero."
   },
   "provider_disclosure": "Para escribir tu lectura, tu pregunta se envía a nuestro proveedor de IA, Anthropic. Mejor no incluyas nombres ni datos personales.",
-  "privacy_link_text": "Cómo cuidamos tu pregunta",
-  "reader_unavailable": "Ahora mismo no podemos escribir tu lectura; aquí tienes el significado de tus cartas según nuestra base. Puedes intentarlo de nuevo en un momento.",
+  "privacy_link_text": "Qué hacemos con tu pregunta",
+  "reader_unavailable": "Ahora mismo no podemos escribir tu lectura; aquí tienes el significado de tus cartas según nuestra base de cartas. Puedes intentarlo de nuevo en un momento.",
   "followup_unavailable": "Ahora mismo no podemos responder esta pregunta. No se contó, así que puedes volver a hacerla en un momento.",
   "retry_label": "Intentar de nuevo"
 }

@@ -3,11 +3,11 @@
   "status": "draft",
   "crisis": {
     "title": "You don't have to carry this alone",
-    "body": "What you wrote sounds really heavy, and I'm glad you said it. This isn't something the cards should answer. Right now it can help to talk with a person: the lines here are free and confidential, and the people on them are there for exactly this. You can tell them as much or as little as you want.",
-    "not_saved": "We haven't saved what you wrote.",
+    "body": "What you wrote sounds really heavy, and we're glad you said it. This isn't something the cards should answer. Right now it can help to talk with a person: the lines here are free and confidential, and the people on them are there for exactly this. You can tell them as much or as little as you want.",
+    "not_saved": "We don't keep what you wrote.",
     "contacts_intro": "You can talk to someone here:",
     "fallback_contacts": "If your country isn't listed, findahelpline.com shows free, confidential lines near you.",
-    "emergency_line": "If you're in danger right now, or you might act on these thoughts soon, call your local emergency number.",
+    "emergency_line": "If you're in danger right now, or think you might hurt yourself soon, call your local emergency number.",
     "closing": "When you feel ready, the cards will still be here.",
     "line_purpose": {
       "crisis": "If you're thinking about suicide or hurting yourself",
@@ -17,8 +17,8 @@
     }
   },
   "soft_lines": {
-    "redirect_topic": "Cards don't predict this kind of thing. Here is what they can say about you and your next step.",
-    "redirect_person": "Cards can't tell what another person thinks or feels. Here is what they can say about you and your side of this.",
+    "redirect_topic": "The cards don't predict this kind of thing. Here is what they can say about you and your next step.",
+    "redirect_person": "The cards can't tell what another person thinks or feels. Here is what they can say about you and your side of this.",
     "redirect_money": "This isn't financial advice."
   },
   "provider_disclosure": "To write your reading, your question is sent to our AI provider, Anthropic. Please leave out names and personal details.",

@@ -79,7 +79,7 @@ describe('a diary entry (screen 4b; spec 4.4b §5)', () => {
     await click(byText(root, 'Partly', 'button'));
     expect(byText(root, 'Partly', 'button').getAttribute('aria-pressed')).toBe('true');
     await click(byText(root, 'No', 'button')); // a change, not a new answer (review M21)
-    await click(byText(root, 'Clear', 'button'));
+    await click(byText(root, 'Remove answer', 'button'));
     expect(f.calls.filter(([name]) => name === 'patch')).toEqual([['patch', { outcome: 'partly' }], ['patch', { outcome: 'no' }],
       ['patch', { outcome: null }]]);
     expect(send).toHaveBeenCalledTimes(1);
@@ -207,10 +207,10 @@ describe('a diary entry (screen 4b; spec 4.4b §5)', () => {
 
   it('after Clear, focus moves to the first outcome button', async () => {
     const { root } = await mount(entry(fakeApi({ ...ENTRY, outcome: 'no' }), at(8)));
-    const clear = byText(root, 'Clear', 'button');
+    const clear = byText(root, 'Remove answer', 'button');
     clear.focus();
     await click(clear);
-    expect(queryText(root, 'Clear', 'button')).toBeNull();
+    expect(queryText(root, 'Remove answer', 'button')).toBeNull();
     expect(document.activeElement).toBe(byText(root, 'Came true', 'button'));
   });
 

@@ -23,7 +23,7 @@ describe('the Card of the Day reminder (screen 7b; spec 4.4b §7)', () => {
     vi.stubGlobal('fetch', served.fetch);
     const saved: Array<[Blob, string]> = [];
     const { root } = await mount(<DailyIsland lang="en" save={(blob, name) => { saved.push([blob, name]); }} />);
-    await click(byText(root, 'Tap to turn your card', 'span').closest('button')!);
+    await click(byText(root, 'Tap to turn over your card', 'span').closest('button')!);
     await click(byText(root, 'Remind me tomorrow', 'button'));
     expect(saved.map(([blob, name]) => [blob.type, name])).toEqual([[ICS_TYPE, ICS_FILENAME]]);
     const text = await saved[0][0].text();

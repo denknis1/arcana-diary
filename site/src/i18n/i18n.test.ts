@@ -54,8 +54,8 @@ describe('dictionaries', () => {
     expect([t('en').navDiary, t('es').navDiary, t('en').navDiaryShort, t('es').navDiaryShort]).toEqual([
       'Your diary', 'Tu diario', 'Diary', 'Diario']);
     expect([t('en').plusBenefit3, t('es').plusBenefit3]).toEqual(['Your whole diary, with no limit', 'Todo tu diario, sin límite']);
-    expect([t('en').plusDiaryNote, t('es').plusDiaryNote]).toEqual(['Your diary keeps your last 10 readings. Plus keeps all of them.',
-      'Tu diario guarda tus últimas 10 tiradas. Plus las guarda todas.']);
+    expect([t('en').plusDiaryNote, t('es').plusDiaryNote]).toEqual(['Your diary shows your last 10 readings. Plus shows all of them.',
+      'Tu diario muestra tus últimas 10 lecturas. Plus las muestra todas.']);
     expect([t('en').saveToDiary, t('es').saveToDiary, t('en').savedToDiary]).toEqual(['Save to diary', 'Guardar en el diario',
       'Saved to your diary ✓']);
   });
@@ -64,7 +64,7 @@ describe('dictionaries', () => {
     expect([fill(t('en').diaryReminderOn, { account: t('en').diaryReminderOnLink }),
       fill(t('es').diaryReminderOn, { account: t('es').diaryReminderOnLink })]).toEqual([
       'The reminder in 7 days is on — you can turn it off in your account.',
-      'El recordatorio en 7 días está activado — puedes desactivarlo en tu cuenta.']);
+      'El recordatorio en 7 días está activado; puedes desactivarlo en tu cuenta.']);
   });
 
   it('name the votes with the card base labels (content/cards/yes-no-rules.json)', () => {
