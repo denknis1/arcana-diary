@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "page_id": "about",
+  "lang": "en",
+  "url": "/about",
+  "status": "draft",
+  "title": "About Arcana Diary: AI Tarot Readings and Card Guides",
+  "description": "Arcana Diary is an AI tarot reader in English and Spanish, built on the 1909 Rider–Waite–Smith deck. Who runs it, how the texts are made, and what it is not.",
+  "h1": "About Arcana Diary: tarot as a tool for thinking",
+  "lead": "Arcana Diary is a tarot site in English and Mexican Spanish. It draws cards at random, has an AI model write a reading from a fixed base of card meanings, and keeps your readings in a private diary if you want one.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "what",
+      "heading": "What Arcana Diary is",
+      "paragraphs": [
+        "There are five ways to draw here: a three-card reading, a single card, a yes or no lean on one card or three, a love spread, and a Card of the Day. All of them use the 78 cards of the Rider–Waite–Smith deck. A reading arrives as a one-line headline, a few sentences on each card and one small action to take, and you can ask follow-up questions about the cards you drew.",
+        "Next to the tools sits a reference library: a page for every card, upright and reversed, a guide to the Major Arcana and a table of the yes or no lean of each card. If you sign in, you can save readings to a diary, add a note that only you see, and return a week later to mark how things went."
+      ]
+    },
+    {
+      "id": "who",
+      "heading": "Who runs it",
+      "paragraphs": [
+        "Arcana Diary is operated by {operator_name}, {operator_address}. The pages are edited by {editor_name}, editor of Arcana Diary.",
+        "{editor_name} is a pen name. The site claims no credentials for its editor, and no page here is written from anyone's personal experience with the cards. What the editor does is narrower and easy to state: read each page before it goes live and decide whether it is clear, correct against its sources and within the site's rules.",
+        "You can write to the site at {contact_email}. The contact page explains what to include so a message can be answered."
+      ]
+    },
+    {
+      "id": "texts",
+      "heading": "How the texts are made",
+      "paragraphs": [
+        "Card pages and guides are drafted with an AI model from two sources and nothing else. The first is The Pictorial Key to the Tarot by Arthur Edward Waite, published in 1911 as the guidebook to this deck; every quotation carries its page number in the Wikisource transcription, so you can look it up. The second is the site's own base of short card meanings, written for both orientations of every card.",
+        "The model is not allowed to fill gaps from memory. Symbol systems from outside the deck, other decks and invented history stay out, and a description of a card's picture is checked against the 1909 scan. A script then tests each page for banned claims: promises of accuracy, dates, forecasts about health or legal matters, statements about what another person feels. After that, {editor_name} reads the page, and only then can it be published.",
+        "The Spanish pages are written on their own for readers in Mexico, not translated sentence by sentence from the English ones. The readings you get when you draw are a different matter: an AI model writes them live from the same base of meanings, under fixed rules, and nobody reads them before you do. The page on how readings work describes those rules in full."
+      ]
+    },
+    {
+      "id": "deck",
+      "heading": "The 1909 deck",
+      "paragraphs": [
+        "The pictures are scans of the 1909 edition of the Rider–Waite–Smith deck, drawn by Pamela Colman Smith and known to collectors as the Roses & Lilies printing. The files come from Wikimedia Commons, and the deck is in the public domain. Each image shows the whole printed card, with its number, English title and border, in the original colours, with no tinting.",
+        "Only this deck is read here. The Marseille tarot and other decks have their own pictures and their own habits of reading, and the site does not mix them in."
+      ]
+    },
+    {
+      "id": "not",
+      "heading": "What Arcana Diary is not",
+      "paragraphs": [
+        "It is not a way to see the future. Tarot does not predict events, and Arcana Diary does not say it does. A reading is meant for reflection and for fun: a set of pictures and plain words to think with about your own situation and your next step.",
+        "It is not advice. Nothing on the site is guidance on health, the law, money or personal safety, and a reading never stands in for real help with any of these. When a question asks for such a forecast, the reading turns to how you are carrying the matter instead.",
+        "It is not a crisis service. If what you type suggests you may be in danger, no cards are drawn; the site shows free, confidential help lines instead. It is not a person either: every reading is written by an AI model. And it is meant for adults only. You need to be 18 or older to use Arcana Diary."
+      ]
+    }
+  ],
+  "faq": [],
+  "intents": []
+}
