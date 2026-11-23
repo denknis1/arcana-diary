@@ -4,6 +4,15 @@ import { buildCreateBody, QUESTION_MAX, cleanQuestion, cardsFor, drawLabelKey, i
 import { SITUATIONS } from './types';
 
 describe('panelConfig', () => {
+  it('draws three cards on the Spanish 3 cartas page, counted as the three_cards tool (spec stage 6 §5)', () => {
+    const config = panelConfig('three_cards', 'es');
+    expect([config.tool, config.kind, config.countToggle, config.entry, config.placeholderKey]).toEqual([
+      'three_cards', 'three', false, 'tool', 'homePlaceholder']);
+    expect(drawLabelKey(config, 'three')).toBe('drawThree');
+    expect(toolFor(config, 'three')).toBe('three_cards');
+    expect(buildCreateBody(config, { kind: 'three', question: '', situation: null, tz: undefined })).toEqual({
+      lang: 'es', kind: 'three' });
+  });
   it('draws three cards on the home pages, with the 1 / 3 toggle only in Spanish', () => {
     expect(panelConfig('home', 'en')).toMatchObject({ tool: 'home', kind: 'three', countToggle: false });
     expect(panelConfig('home', 'es')).toMatchObject({ tool: 'home', kind: 'three', countToggle: true });

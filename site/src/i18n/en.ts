@@ -264,6 +264,8 @@ export const en = {
   tocWorkMoney: 'Work and money',
   tocYesNo: 'Yes or no',
   tocFaq: 'FAQ',
+  // stage 6: the Spanish three-card page (query · fact); English has no such page, the key keeps both files equal
+  threeCardsEyebrow: 'Three-card tarot · Free, no sign-up',
 };
 
 export type DictKey = keyof typeof en;

@@ -265,6 +265,8 @@ export const es: Dict = {
   tocWorkMoney: 'Trabajo y dinero',
   tocYesNo: 'Sí o no',
   tocFaq: 'Preguntas',
+  // etapa 6: la página de 3 cartas (consulta · dato)
+  threeCardsEyebrow: 'Tarot de 3 cartas · Gratis, sin registro',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

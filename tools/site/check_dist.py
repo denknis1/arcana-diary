@@ -33,7 +33,7 @@ SERVICE_PAGE_IDS = frozenset({"about", "contact", "how-readings-work", "privacy"
                               "como-funcionan-las-lecturas", "privacidad", "terminos"})
 # the pages with a night room or the Card of the Day: a guest there never downloads the sign-in library
 READING_PAGES = ("/", "/one-card", "/yes-no", "/love", "/daily", "/cards/the-moon", "/es", "/es/si-o-no", "/es/amor",
-                 "/es/carta-del-dia", "/es/cartas/la-luna")
+                 "/es/carta-del-dia", "/es/cartas/la-luna", "/es/tiradas/3-cartas")
 AUTH_MARKERS = ("GoTrueClient", "supabase.auth.token")  # strings found only in @supabase/auth-js
 ROBOTS = re.compile(r'<meta name="robots" content="noindex, nofollow"\s*/?>')
 ENTRY = re.compile(r'(?:component-url|renderer-url|src)="(/_astro/[^"]+\.js)"')

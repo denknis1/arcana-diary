@@ -1,17 +1,20 @@
 ---
-// A tool page (screens 5a, 6, one card; spec stage 6 §5): the eyebrow from the dictionary, H1 and lead from the stage
-// 5 text, the night panel (love adds a note under it); under the tool the text blocks and the FAQ of content/pages.
+// A tool page (screens 5a, 6, 12d, one card; spec stage 6 §5): the eyebrow from the dictionary, H1 and lead from the
+// stage 5 text, the night panel (love adds a note under it); under the tool the text blocks and the FAQ of
+// content/pages. "3 cartas" (Spanish only) has breadcrumbs Inicio › 3 cartas (prototype TresCartas).
 import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Faq from '../components/Faq.astro';
 import TextBlocks from '../components/TextBlocks.astro';
 import ReadingIsland from '../islands/ReadingIsland';
 import { t, type DictKey } from '../i18n';
-import { faqLd, webPageLd } from '../lib/jsonld';
+import { crumbsFor } from '../lib/breadcrumbs';
+import { breadcrumbLd, faqLd, webPageLd } from '../lib/jsonld';
 import { pagePath, type PageKey } from '../lib/routes';
 import { filledPage, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
-type ToolPage = 'one_card' | 'yes_no' | 'love';
+type ToolPage = 'one_card' | 'yes_no' | 'love' | 'three_cards';
 
 interface Props {
   lang: Lang;
@@ -20,13 +23,19 @@ interface Props {
 
 const { lang, page } = Astro.props;
 const d = t(lang);
-const EYEBROW: Record<ToolPage, DictKey> = { one_card: 'oneCardEyebrow', yes_no: 'yesNoEyebrow', love: 'loveEyebrow' };
-const CURRENT: Record<ToolPage, PageKey | undefined> = { one_card: undefined, yes_no: 'yes_no', love: 'love' };
+const EYEBROW: Record<ToolPage, DictKey> = {
+  one_card: 'oneCardEyebrow', yes_no: 'yesNoEyebrow', love: 'loveEyebrow', three_cards: 'threeCardsEyebrow',
+};
+const CURRENT: Record<ToolPage, PageKey | undefined> = {
+  one_card: undefined, yes_no: 'yes_no', love: 'love', three_cards: 'home',
+};
 const path = pagePath(page, lang);
 const text = filledPage(textPage(path));
+const crumbs = crumbsFor(page, lang);
 ---
 <Base lang={lang} title={text.title} description={text.description} path={path} current={CURRENT[page]}
-  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
+  jsonLd={[breadcrumbLd(crumbs), webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
+  <Breadcrumbs lang={lang} crumbs={crumbs} />
   <div class="tool-layout">
     <section class="page-hero">
       <p class="eyebrow">{d[EYEBROW[page]]}</p>
