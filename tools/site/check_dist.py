@@ -33,7 +33,7 @@ SERVICE_PAGE_IDS = frozenset({"about", "contact", "how-readings-work", "privacy"
                               "como-funcionan-las-lecturas", "privacidad", "terminos"})
 # the pages with a night room or the Card of the Day: a guest there never downloads the sign-in library
 READING_PAGES = ("/", "/one-card", "/yes-no", "/love", "/daily", "/cards/the-moon", "/es", "/es/si-o-no", "/es/amor",
-                 "/es/carta-del-dia", "/es/cartas/la-luna")
+                 "/es/carta-del-dia", "/es/cartas/la-luna", "/es/tiradas/3-cartas")
 AUTH_MARKERS = ("GoTrueClient", "supabase.auth.token")  # strings found only in @supabase/auth-js
 ROBOTS = re.compile(r'<meta name="robots" content="noindex, nofollow"\s*/?>')
 ENTRY = re.compile(r'(?:component-url|renderer-url|src)="(/_astro/[^"]+\.js)"')
@@ -317,12 +317,61 @@ def auth_problems(dist: Path) -> list[str]:
     return problems
 
 
+def card_paths(lang: str) -> dict[str, str]:
+    """Path of every card of site/src/data/deck.json -> its card_id, in one language."""
+    base, key = ("/cards/", "slug_en") if lang == "en" else ("/es/cartas/", "slug_es")
+    deck = json.loads((SITE / "src/data/deck.json").read_text(encoding="utf-8"))
+    return {base + card[key]: card["card_id"] for card in deck}
+
+
+class Links(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.hrefs: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "a" and dict(attrs).get("href"):
+            self.hrefs.append(dict(attrs)["href"])
+
+
+def card_link_sets(html: str, lang: str) -> set[str]:
+    links = Links()
+    links.feed(html)
+    return set(links.hrefs) & set(card_paths(lang))
+
+
+def list_problems(dist: Path) -> list[str]:
+    """Card lists of stage 6: hubs 78 distinct card links, Major Arcana pages 22, yes/no page 78 with 45/13/20 by block."""
+    deck = json.loads((SITE / "src/data/deck.json").read_text(encoding="utf-8"))
+    votes = {v: sum(c["yes_no"] == v for c in deck) for v in ("yes", "no", "unclear")}
+    majors = sum(c["arcana"] == "major" for c in deck)
+    wants = [("/cards", "en", len(deck)), ("/es/cartas", "es", len(deck)),
+             ("/cards/major-arcana", "en", majors), ("/es/cartas/arcanos-mayores", "es", majors),
+             ("/yes-no/cards", "en", len(deck))]
+    problems = []
+    for path, lang, want in wants:
+        file = dist / dist_file(path)
+        if file.is_file():
+            got = len(card_link_sets(file.read_text(encoding="utf-8"), lang))
+            if got != want:
+                problems.append(f"{got} distinct card links instead of {want}: site/dist/{dist_file(path)}")
+    file = dist / dist_file("/yes-no/cards")
+    if file.is_file():
+        html = file.read_text(encoding="utf-8")
+        for block, verdict in (("lean-yes", "yes"), ("lean-no", "no"), ("not-clear-yet", "unclear")):
+            m = re.search(rf'<section\b[^>]*\bid="{block}".*?</section>', html, re.S)
+            got = len(card_link_sets(m.group(0), "en")) if m else 0
+            if got != votes[verdict]:
+                problems.append(f"{got} card links in block {block} instead of {votes[verdict]}: site/dist/{dist_file('/yes-no/cards')}")
+    return problems
+
+
 def main(dist: Path | None = None, launched: bool = False) -> int:
     dist = dist or SITE / "dist"
     problems = ([f"missing: site/dist/{name}" for name in missing(dist)] + unexpected_pages(dist)
                 + robots_problems(dist) + head_problems(dist) + hreflang_target_problems(dist)
                 + placeholder_problems(dist) + sitemap_problems(dist) + robots_txt_problems(dist)
-                + auth_problems(dist) + (launched_problems() if launched else []))
+                + list_problems(dist) + auth_problems(dist) + (launched_problems() if launched else []))
     for problem in problems:
         print(problem)
     if problems:

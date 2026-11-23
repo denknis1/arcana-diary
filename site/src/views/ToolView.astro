@@ -1,14 +1,20 @@
 ---
-// A tool page (screens 5a, 6, one card): eyebrow, title, lead and the night panel; love adds a note under it.
+// A tool page (screens 5a, 6, 12d, one card; spec stage 6 §5): the eyebrow from the dictionary, H1 and lead from the
+// stage 5 text, the night panel (love adds a note under it); under the tool the text blocks and the FAQ of
+// content/pages. "3 cartas" (Spanish only) has breadcrumbs Inicio › 3 cartas (prototype TresCartas).
 import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import TextBlocks from '../components/TextBlocks.astro';
 import ReadingIsland from '../islands/ReadingIsland';
 import { t, type DictKey } from '../i18n';
-import { pagePath } from '../lib/routes';
-import { webPageLd } from '../lib/jsonld';
+import { crumbsFor } from '../lib/breadcrumbs';
+import { breadcrumbLd, faqLd, webPageLd } from '../lib/jsonld';
+import { pagePath, type PageKey } from '../lib/routes';
 import { filledPage, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
-type ToolPage = 'one_card' | 'yes_no' | 'love';
+type ToolPage = 'one_card' | 'yes_no' | 'love' | 'three_cards';
 
 interface Props {
   lang: Lang;
@@ -17,27 +23,30 @@ interface Props {
 
 const { lang, page } = Astro.props;
 const d = t(lang);
-const COPY: Record<ToolPage, { title: DictKey; eyebrow: DictKey; h1: DictKey; lead: DictKey; note?: DictKey }> = {
-  one_card: { title: 'oneCardTitle', eyebrow: 'oneCardEyebrow', h1: 'oneCardH1', lead: 'oneCardLead' },
-  yes_no: { title: 'yesNoTitle', eyebrow: 'yesNoEyebrow', h1: 'yesNoH1', lead: 'yesNoLead' },
-  love: { title: 'loveTitle', eyebrow: 'loveEyebrow', h1: 'loveH1', lead: 'loveLead', note: 'loveNote' },
+const EYEBROW: Record<ToolPage, DictKey> = {
+  one_card: 'oneCardEyebrow', yes_no: 'yesNoEyebrow', love: 'loveEyebrow', three_cards: 'threeCardsEyebrow',
 };
-const copy = COPY[page];
+const CURRENT: Record<ToolPage, PageKey | undefined> = {
+  one_card: undefined, yes_no: 'yes_no', love: 'love', three_cards: 'home',
+};
 const path = pagePath(page, lang);
-const text = filledPage(textPage(path)); // title and description of the stage 5 text (spec stage 6 §5)
+const text = filledPage(textPage(path));
+const crumbs = crumbsFor(page, lang);
 ---
-<Base lang={lang} title={text.title} description={text.description} path={path}
-  current={page === 'one_card' ? undefined : page}
-  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang })]}>
+<Base lang={lang} title={text.title} description={text.description} path={path} current={CURRENT[page]}
+  jsonLd={[...(crumbs.length ? [breadcrumbLd(crumbs)] : []), webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
+  <Breadcrumbs lang={lang} crumbs={crumbs} />
   <div class="tool-layout">
     <section class="page-hero">
-      <p class="eyebrow">{d[copy.eyebrow]}</p>
-      <h1 class="display">{d[copy.h1]}</h1>
-      <p class="lead">{d[copy.lead]}</p>
+      <p class="eyebrow">{d[EYEBROW[page]]}</p>
+      <h1 class="display">{text.h1}</h1>
+      <p class="lead">{text.lead}</p>
     </section>
     <div>
       <ReadingIsland client:load lang={lang} page={page} />
-      {copy.note ? <p class="small muted">{d[copy.note]}</p> : null}
+      {page === 'love' ? <p class="small muted">{d.loveNote}</p> : null}
     </div>
   </div>
+  <TextBlocks blocks={text.blocks} />
+  <Faq heading={d.faqTitle} items={text.faq} id="faq" />
 </Base>

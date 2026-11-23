@@ -1,10 +1,12 @@
 """tools/site/check_dist.py on small hand-made builds (spec 4.4b §5, §6, §11; stage 6 §8): every page exists, an
 indexable page has its head and JSON-LD, no placeholder is left, private and hidden pages are noindex and out of the
 sitemap and of every hreflang pair, and the sign-in library is never loaded at start by a reading page."""
+import json
+
 import check_dist
 from check_dist import (EXTRA, READING_PAGES, auth_problems, canonical, dist_file, expected_alternates, expected_pages,
                         head_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
-                        hreflang_target_problems, placeholder_problems, robots_problems, robots_txt_problems,
+                        hreflang_target_problems, list_problems, placeholder_problems, robots_problems, robots_txt_problems,
                         sitemap_problems, static_chunks, unexpected_pages)
 
 ISLAND = '<astro-island component-url="/_astro/ReadingIsland.a1.js" renderer-url="/_astro/client.b2.js"></astro-island>'
@@ -35,10 +37,32 @@ def sitemap(paths):
             + "".join(f"<url><loc>{canonical(p)}</loc></url>" for p in paths) + "</urlset>")
 
 
+DECK = json.loads((check_dist.SITE / "src/data/deck.json").read_text(encoding="utf-8"))
+
+
+def links(cards, lang):
+    base, key = ("/cards/", "slug_en") if lang == "en" else ("/es/cartas/", "slug_es")
+    return "".join(f'<li><a href="{base}{c[key]}">x</a></li>' for c in cards)
+
+
+def list_pages(dist, drop=None):
+    """The pages with card lists, as the build draws them (a nav link to /cards is not a card link)."""
+    nav = '<a href="/cards">Cards</a>'
+    majors = [c for c in DECK if c["arcana"] == "major"]
+    write(dist, "cards.html", head("/cards") + nav + links(DECK, "en"))
+    write(dist, "es/cartas.html", head("/es/cartas") + links(DECK, "es"))
+    write(dist, "cards/major-arcana.html", head("/cards/major-arcana") + links(majors, "en"))
+    write(dist, "es/cartas/arcanos-mayores.html", head("/es/cartas/arcanos-mayores") + links(majors, "es"))
+    blocks = "".join(f'<section id="{b}">{links([c for c in DECK if c["yes_no"] == v][:drop], "en")}</section>'
+                     for b, v in (("lean-yes", "yes"), ("lean-no", "no"), ("not-clear-yet", "unclear")))
+    write(dist, "yes-no/cards.html", head("/yes-no/cards") + nav + blocks)
+
+
 def site(tmp_path, reading_island='import{x}from"./api.d4.js";'):
     dist = tmp_path / "dist"
     for path in expected_pages():
         write(dist, dist_file(path), head(path) + ISLAND)
+    list_pages(dist)
     write(dist, "_astro/client.b2.js", 'import{h}from"./preact.c3.js";')
     write(dist, "_astro/preact.c3.js", "export const h=1;")
     write(dist, "_astro/ReadingIsland.a1.js", reading_island)
@@ -224,6 +248,26 @@ def test_a_build_without_the_library_chunk_is_reported(tmp_path):
     dist = site(tmp_path, "")
     (dist / "_astro/supabaseClient.e5.js").unlink()
     assert auth_problems(dist) == ["no chunk of the sign-in library in site/dist/_astro (src/lib/supabaseClient.ts not built?)"]
+
+
+def test_card_lists_have_all_their_distinct_card_links(tmp_path):
+    dist = site(tmp_path)
+    assert list_problems(dist) == []
+    assert sum(c["yes_no"] == "yes" for c in DECK) == 45 and sum(c["yes_no"] == "no" for c in DECK) == 13
+
+
+def test_a_shrunk_card_list_is_reported(tmp_path):
+    dist = site(tmp_path)
+    list_pages(dist, drop=-1)
+    problems = list_problems(dist)
+    assert "77 distinct card links instead of 78: site/dist/yes-no/cards.html" not in problems  # one per block: 75
+    assert "44 card links in block lean-yes instead of 45: site/dist/yes-no/cards.html" in problems
+    assert "12 card links in block lean-no instead of 13: site/dist/yes-no/cards.html" in problems
+    write(dist, "cards.html", links(DECK[:-1], "en"))
+    write(dist, "es/cartas/arcanos-mayores.html", "")
+    problems = list_problems(dist)
+    assert "77 distinct card links instead of 78: site/dist/cards.html" in problems
+    assert "0 distinct card links instead of 22: site/dist/es/cartas/arcanos-mayores.html" in problems
 
 
 def test_main_reports_every_problem_and_passes_a_good_build(tmp_path, capsys):

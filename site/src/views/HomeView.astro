@@ -1,15 +1,19 @@
 ---
-// Home EN / ES (screens 1, 12a, 13a): the question and three cards in the night panel; ES adds "1 carta / 3 cartas"
-// and is the one-card page at #una-carta. Hub links wait for stage 6. Stage 4.4b: step 3 is about the diary; a line
-// after the account was deleted (HomeNotice).
+// Home EN / ES (screens 1, 12a, 13a; spec stage 6 §5): the eyebrow from the dictionary, H1 and lead from the stage 5
+// text, the night panel (ES adds "1 carta / 3 cartas" and is the one-card page at #una-carta); under it the other
+// formats, the Card of the Day tile, the text blocks, the cards to learn and the FAQ of content/pages. The old
+// "How a reading works" steps gave way to the stage 5 block "How the reading works". A line after the account was
+// deleted (HomeNotice).
 import Base from '../layouts/Base.astro';
 import CardFigure from '../components/CardFigure.astro';
+import Faq from '../components/Faq.astro';
+import TextBlocks from '../components/TextBlocks.astro';
 import HomeNotice from '../islands/HomeNotice';
 import ReadingIsland from '../islands/ReadingIsland';
 import { t } from '../i18n';
 import { CARD_BACK, cardById } from '../lib/deck';
+import { faqLd, webPageLd } from '../lib/jsonld';
 import { cardPath, pagePath } from '../lib/routes';
-import { webPageLd } from '../lib/jsonld';
 import { filledPage, textPage } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
@@ -20,7 +24,7 @@ interface Props {
 const { lang } = Astro.props;
 const d = t(lang);
 const path = pagePath('home', lang);
-const text = filledPage(textPage(path)); // title and description of the stage 5 text (spec stage 6 §5)
+const text = filledPage(textPage(path));
 const formats = [
   ...(lang === 'en' ? [{ href: pagePath('one_card', lang), name: d.fmtOneCard, hint: d.fmtOneCardHint }] : []),
   { href: pagePath('yes_no', lang), name: d.fmtYesNo, hint: d.fmtYesNoHint },
@@ -28,16 +32,15 @@ const formats = [
   { href: pagePath('daily', lang), name: d.fmtDaily, hint: d.fmtDailyHint },
 ];
 const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => cardById(id)!);
-const steps = [d.howStep1, d.howStep2, d.howStep3];
 ---
 <Base lang={lang} title={text.title} description={text.description} path={path} current="home"
-  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang })]}>
+  jsonLd={[webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
   <HomeNotice client:load lang={lang} />
   <div class="tool-layout">
     <section class="page-hero">
       <p class="eyebrow">{d.homeEyebrow}</p>
-      <h1 class="display display--home">{d.homeH1}</h1>
-      <p class="lead">{d.homeLead}</p>
+      <h1 class="display display--home">{text.h1}</h1>
+      <p class="lead">{text.lead}</p>
     </section>
     <ReadingIsland client:load lang={lang} page="home" showBacks />
   </div>
@@ -65,6 +68,8 @@ const steps = [d.howStep1, d.howStep2, d.howStep3];
     </div>
   </section>
 
+  <TextBlocks blocks={text.blocks} />
+
   <section class="page-section" aria-labelledby="learn">
     <h2 class="h2" id="learn">{d.learnTitle}</h2>
     <p class="lead">{d.learnLead}</p>
@@ -75,11 +80,5 @@ const steps = [d.howStep1, d.howStep2, d.howStep3];
     </div>
   </section>
 
-  <section class="page-section" aria-labelledby="how">
-    <h2 class="h2" id="how">{d.howTitle}</h2>
-    <ol class="steps">
-      {steps.map((text, i) => <li><span class="steps__n" aria-hidden="true">{i + 1}</span><span>{text}</span></li>)}
-    </ol>
-    <p class="small muted">{d.disclaimer}</p>
-  </section>
+  <Faq heading={d.faqTitle} items={text.faq} id="faq" />
 </Base>

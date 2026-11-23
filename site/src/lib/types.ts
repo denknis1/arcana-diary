@@ -3,8 +3,8 @@
 export type Lang = 'en' | 'es';
 export const LANGS: readonly Lang[] = ['en', 'es'];
 
-/** The `tool` of docs/design/analytics-events.md that the 4.4a pages use. */
-export type Tool = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily';
+/** The `tool` of docs/design/analytics-events.md that the pages use (three_cards: /es/tiradas/3-cartas, stage 6). */
+export type Tool = 'home' | 'one_card' | 'yes_no' | 'love' | 'daily' | 'three_cards';
 
 /** `kind` of POST /api/readings. */
 export type Kind = 'one' | 'three' | 'yes_no' | 'card_page';

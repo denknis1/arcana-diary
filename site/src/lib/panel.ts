@@ -3,7 +3,7 @@
 import type { DictKey } from '../i18n';
 import type { CardCount, CreateBody, Kind, Lang, Situation, Tool } from './types';
 
-export type PanelPage = 'home' | 'one_card' | 'yes_no' | 'love' | 'card';
+export type PanelPage = 'home' | 'one_card' | 'yes_no' | 'love' | 'card' | 'three_cards';
 
 export interface PanelConfig {
   page: PanelPage;
@@ -35,6 +35,8 @@ export function panelConfig(page: PanelPage, lang: Lang, cardId: string | null =
       return { ...base, tool: 'yes_no', kind: 'yes_no', yesNoCount: true, labelKey: 'yesNoLabel', placeholderKey: 'yesNoPlaceholder' };
     case 'love':
       return { ...base, tool: 'love', kind: 'three', situations: true, topic: 'love', placeholderKey: 'lovePlaceholder' };
+    case 'three_cards': // /es/tiradas/3-cartas (spec stage 6 §5): past, present, where it's heading
+      return { ...base, tool: 'three_cards', kind: 'three', placeholderKey: 'homePlaceholder' };
     case 'card':
       return { ...base, tool: 'one_card', entry: 'card_page', kind: 'card_page', cardId, placeholderKey: 'cardPlaceholder' };
   }
