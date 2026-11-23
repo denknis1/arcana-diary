@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "page_id": "home",
+  "lang": "en",
+  "url": "/",
+  "status": "draft",
+  "title": "Free Tarot Reading: Ask a Question, Draw Three Cards",
+  "description": "Three Rider–Waite–Smith cards for your question: past, present, next step, read in plain words with one step to take. No sign-up. Ask the cards now.",
+  "h1": "Free tarot reading: ask the cards",
+  "lead": "Type a question, or leave the box empty, and draw three cards. The reader explains each one plainly and ends with one small step.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "how-it-works",
+      "heading": "How the reading works",
+      "paragraphs": [
+        "Write your question in the box above, or skip it and just draw. The site shuffles all 78 cards and lays out three of them: Past, for what has shaped the situation; Present, for what is going on now; and Next step, for where things may go if nothing changes. Each card has an even chance of landing upright or reversed.",
+        "The cards turn over one by one while an AI reader writes your reading. It works only from our card base, the meanings and advice written for every card in both orientations, with no outside systems or symbols from other decks. You get a one-line answer, a few sentences on each card, a note on how the three fit together and one concrete thing to do.",
+        "Without signing in you can draw {guest_limit} readings a day; after signing in, {user_limit}. The Card of the Day is free on top of that and never counts toward the limit."
+      ]
+    },
+    {
+      "id": "ask",
+      "heading": "How to ask a good question",
+      "paragraphs": [
+        "A good question is about you and something you can act on. “How can I make this move easier for myself?” opens more room than “Will the move work out?”, because a reading speaks to your choices, not to events outside your hands.",
+        "Keep it to one subject: if two worries are on your mind, ask twice. Open questions that begin with how, what or where give the fullest answers; for a plain lean one way or the other, use the yes or no tool.",
+        "When a question asks what someone else thinks or feels, the cards are read back toward you: what you feel and need in that connection, and what is in your hands. A request for a medical, legal or safety outcome is treated the same way, with no forecast. With no question at all, the three cards read as a message about where you are right now."
+      ]
+    },
+    {
+      "id": "deck",
+      "heading": "Which deck, and why some cards are reversed",
+      "paragraphs": [
+        "Every reading uses the Rider–Waite–Smith deck, and the pictures you see are scans of its 1909 edition, now in the public domain. Of its 78 cards, 22 belong to the Major Arcana, from The Fool at 0 to The World at XXI, and 56 to the Minor Arcana, split into Wands, Cups, Swords and Pentacles. Here Strength carries the number VIII, Justice XI.",
+        "A reversed card is one that lands upside down. It keeps the card's theme but turns it: the energy is held back, delayed, overdone or turned inward. About half of all cards come up reversed here, so one or two reversals in a spread are ordinary, not a warning."
+      ]
+    },
+    {
+      "id": "limits",
+      "heading": "What a reading can and can't tell you",
+      "paragraphs": [
+        "A tarot reading does not predict the future. It will not name the person you are going to marry or the month an offer arrives. What it gives you is a structured way to look at a question: a picture to think with, a word for something you half felt, another angle on a choice you are weighing.",
+        "Arthur Edward Waite, who wrote the guidebook for this deck, called what the divinatory art extracts from the Major Arcana “at once artificial and arbitrary” (p. 287). We read the cards in that spirit. The reader says plainly where the cards point in your own life, but it never gives dates, never promises an outcome and never claims to know another person's mind.",
+        "If a question shows that you may be in danger, the site does not read cards at all. It shows free, confidential help lines instead."
+      ]
+    },
+    {
+      "id": "after",
+      "heading": "After the reading: follow-ups and your diary",
+      "paragraphs": [
+        "Each reading takes {followups} follow-up questions for free, such as “What can I do this week?”. A follow-up beyond that uses one of your readings for the day, and the site asks first.",
+        "Then save the reading to your diary. You sign in with an e-mail link or a Google account. An entry keeps the question, the cards and the text, a private note only you can see, and a simple mark: came true, partly or no. You can ask for a reminder in 7 days to come back and set that mark. The free diary shows your {diary_free} newest readings.",
+        "Looking back is the most useful step, and the one most often skipped: after a few weeks you can see which cards keep turning up and which questions you ask again. You can download your readings or delete your account whenever you like."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is this tarot reading really free?",
+      "a": "Yes. You can draw {guest_limit} readings a day without signing in and {user_limit} after you sign in, each with {followups} free follow-up questions. The Card of the Day is free every day, and nothing asks for payment details."
+    },
+    {
+      "q": "Is a free online tarot reading accurate?",
+      "a": "Tarot does not foresee events, so no reading, online or face to face, is accurate the way a forecast would be. A good one is clear about what each card means and honest about its limits. You judge the fit yourself, best by marking the reading in your diary later."
+    },
+    {
+      "q": "Who reads the cards: a person or an AI?",
+      "a": "An AI reader. It writes from our base of 78 card meanings, upright and reversed, and follows fixed rules: no dates, no promises, no claims about other people's thoughts. The site draws the cards at random; the reader does not pick them."
+    },
+    {
+      "q": "How does tarot work?",
+      "a": "Tarot is 78 pictures, each with an agreed meaning. You draw at random, and the meaning of each card you get becomes a prompt to see your situation from its angle. Its practical value is simple: it slows you down and gives you words for what you feel."
+    },
+    {
+      "q": "Are tarot cards evil?",
+      "a": "No. Tarot cards are printed pictures with traditional meanings, and nothing in a deck can harm you. No card is a bad omen: even the hardest ones speak of pressure, an ending or a change."
+    },
+    {
+      "q": "Can I get a free yes or no or love reading here?",
+      "a": "Yes. The yes or no tool gives a lean from one or three cards and shows which card tipped it. The love spread looks at your relationship or your search for one, using each card's love meaning. Both share the same deck and daily readings."
+    }
+  ],
+  "intents": [
+    {
+      "q": "free tarot reading",
+      "source": "[карта страниц]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "how this free online tarot reading works",
+      "source": "[H2 deckaura]",
+      "answered_in": "how-it-works"
+    },
+    {
+      "q": "free 3 card tarot reading",
+      "source": "[карта страниц]",
+      "answered_in": "how-it-works"
+    },
+    {
+      "q": "is a free online tarot reading accurate?",
+      "source": "[H2 jobcannon/psychicsource]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "ai tarot reading free yes or no",
+      "source": "[Ahrefs]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "how does tarot work",
+      "source": "[Ahrefs, тема]",
+      "answered_in": "faq:3"
+    },
+    {
+      "q": "are tarot cards evil",
+      "source": "[Ahrefs, тема]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "what are tarot cards",
+      "source": "[Ahrefs, тема]",
+      "answered_in": "deck"
+    },
+    {
+      "q": "free tarot reading yes or no",
+      "source": "[Ahrefs]",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "free love tarot reading yes or no",
+      "source": "[Ahrefs]",
+      "answered_in": "faq:5"
+    },
+    {
+      "q": "is he thinking about me tarot reading free",
+      "source": "[Ahrefs]",
+      "answered_in": "ask"
+    },
+    {
+      "q": "free tarot reading what is he thinking",
+      "source": "[Ahrefs]",
+      "answered_in": "ask"
+    },
+    {
+      "q": "who will i marry tarot free reading",
+      "source": "[Ahrefs]",
+      "answered_in": "limits"
+    },
+    {
+      "q": "what to ask in a tarot reading (beginner)",
+      "source": "[разбор EN-001: чего никто не делает]",
+      "answered_in": "ask"
+    },
+    {
+      "q": "who reads the cards: a person, an AI or random",
+      "source": "[разбор EN-001: чего никто не делает]",
+      "answered_in": "faq:2"
+    }
+  ]
+}

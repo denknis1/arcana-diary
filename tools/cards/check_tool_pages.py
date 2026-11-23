@@ -35,7 +35,7 @@ PLAN = {
 }
 FIELDS = {"schema", "page_id", "lang", "url", "status", "title", "description", "h1", "lead", "capsule", "blocks",
           "faq", "intents"}
-PLACEHOLDERS = {"guest_limit", "user_limit", "followups", "diary_free"}
+PLACEHOLDERS = {"guest_limit", "user_limit", "followups", "diary_free", "yes_count", "no_count", "unclear_count"}
 INTENTS_MIN = 10
 FAQ_COUNT = (3, 8)
 SLACK = 0.10  # допуск по объёму сверх плана (±10 %)

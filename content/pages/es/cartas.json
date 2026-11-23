@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "page_id": "cartas",
+  "lang": "es",
+  "url": "/es/cartas",
+  "status": "draft",
+  "title": "Cartas del tarot: las 78 y su significado, una por una",
+  "description": "Las 78 cartas del tarot: 22 arcanos mayores (0 a XXI) y 56 menores en cuatro palos. Significado al derecho, carta invertida, amor y trabajo. Elige tu carta.",
+  "h1": "Cartas del tarot: toda la baraja, carta por carta",
+  "lead": "Cada una de las 78 cartas de la baraja Rider-Waite-Smith de 1909 tiene aquí su propia página: lo que muestra el dibujo, lo que escribió Waite en 1911 y cómo se lee hoy, al derecho y al revés.",
+  "capsule": "Una baraja de tarot completa trae 78 cartas. Hay 22 arcanos mayores, que llevan números romanos desde el 0 (El Loco) hasta el XXI (El Mundo), y 56 arcanos menores en cuatro palos —Bastos, Copas, Espadas, Oros—, cada uno con cartas del As al Diez más Sota, Caballero, Reina y Rey.",
+  "blocks": [
+    {
+      "id": "que-son",
+      "heading": "¿Qué son las cartas del tarot y cuántas hay?",
+      "paragraphs": [
+        "Las cartas del tarot son una baraja de 78 imágenes que se usan para leer una pregunta: piensas en lo que te inquieta, sacas una o varias cartas y las lees frente a esa pregunta. Cada carta es una escena pequeña —un joven al borde de un precipicio, una torre que se derrumba, una mujer que vierte agua bajo una estrella— y cada escena tiene significados en los que casi todos los lectores coinciden.",
+        "Una carta no anuncia un hecho concreto; habla de un tema: un comienzo, una elección, una pérdida, una recompensa, una pausa. Por eso la misma carta te puede decir una cosa sobre el trabajo y otra sobre el amor. De las 78, veintidós son arcanos mayores y cincuenta y seis, menores."
+      ]
+    },
+    {
+      "id": "arcanos-mayores",
+      "heading": "¿Qué son los arcanos mayores?",
+      "paragraphs": [
+        "Son las 22 cartas sin palo. Cada una tiene nombre propio —El Mago, Los Enamorados, La Muerte, La Luna— y hablan de los temas grandes de una etapa: empezar de cero, cerrar algo, recuperar la esperanza, completar un ciclo. Cuando una aparece entre cartas menores, casi siempre señala lo más importante de la tirada.",
+        "En esta baraja La Fuerza lleva el VIII y La Justicia el XI. Waite cuenta que intercambió las dos cartas y que La Justicia solía llevar el ocho (p. 100); si tu baraja las trae en el orden contrario, no tiene ningún error. En la página de los arcanos mayores encuentras las 22, su orden y la historia que muchos leen en ellas."
+      ]
+    },
+    {
+      "id": "arcanos-menores",
+      "heading": "¿Qué son los arcanos menores y cuáles son sus palos?",
+      "paragraphs": [
+        "Las otras 56 cartas son los arcanos menores. Cuentan la vida de todos los días: la plática que salió mal, el pago de la quincena, la tarde con tu gente. Forman cuatro palos, y en cada uno hay diez cartas numeradas y cuatro figuras. En la baraja de 1909 cada carta menor trae una escena completa con personas, no solo una fila de símbolos, así que puedes leer el dibujo aunque todavía no sepas el significado.",
+        "En la lectura moderna, cada palo tiene su terreno. Bastos: impulso, ambición, proyectos creativos, ganas de arrancar. Copas: emociones, amor, amistad e intuición. Espadas: ideas, palabras y decisiones, pero también conflicto y preocupación; es el palo con más cartas difíciles. Oros: dinero, trabajo, casa y todo lo práctico. En algunas barajas a los Oros les dicen Pentáculos y a los Bastos, Varas.",
+        "Dentro de cada palo, los números cuentan una historia. El As es la semilla: un regalo, una oportunidad, la primera chispa. El Diez muestra a dónde llegó esa energía, para bien o para mal: una pareja y dos niños bajo un arcoíris de copas en el Diez de Copas, un hombre doblado bajo diez bastos que no lo dejan ver el camino en el Diez de Bastos."
+      ]
+    },
+    {
+      "id": "figuras-de-la-corte",
+      "heading": "¿Qué son las figuras de la corte?",
+      "paragraphs": [
+        "Dieciséis cartas menores son figuras de la corte, cuatro por palo: Sota, Caballero, Reina y Rey. Son las que más cuestan, porque una sola puede significar tres cosas: una persona de tu vida, una parte de ti o una manera de manejar lo que estás viviendo.",
+        "Una clave moderna ayuda mucho. La Sota aprende y trae noticias. El Caballero actúa y se mueve, a veces más rápido de lo que conviene. La Reina vive la cualidad de su palo hacia adentro, con cuidado; el Rey la ejerce hacia afuera, con autoridad serena. Así, la Reina de Copas es empatía e intuición, y el Rey de Oros, estabilidad, abundancia y éxito construido con paciencia.",
+        "Las figuras no fijan edad ni género: un Rey puede describir a una muchacha que lleva su propio negocio, y una Sota, a cualquier persona que esté empezando algo."
+      ]
+    },
+    {
+      "id": "como-leer",
+      "heading": "¿Cómo leer los significados al derecho y al revés?",
+      "paragraphs": [
+        "Al derecho, la carta muestra su tema con libertad. Al revés, de cabeza, el mismo tema aparece frenado, retrasado, guardado hacia adentro o llevado al exceso. Una carta al revés no es lo contrario de la misma carta al derecho, ni una mala noticia automática: La Torre al revés puede ser un cambio que intentas evitar, y el Cinco de Copas al revés, la aceptación que empieza a llegar después de la tristeza.",
+        "El contexto también cuenta. Waite recomendaba leer cada carta a la luz del rumbo general de toda la tirada (pp. 309–310). En la práctica, una carta de Espadas se siente más ligera junto a La Estrella que junto a La Torre.",
+        "Ninguna carta predice el futuro. Una tirada te ayuda a ver tu pregunta desde lados que no habías considerado, y lo que hagas con eso sigue siendo tu decisión."
+      ]
+    },
+    {
+      "id": "para-una-pregunta",
+      "heading": "¿Cómo se leen las cartas del tarot para una pregunta?",
+      "paragraphs": [
+        "Empieza con una pregunta clara sobre ti: «¿Qué necesito ver de esta oferta de trabajo?» abre más camino que «¿Me va a buscar?». Luego saca las cartas. Aquí la baraja se revuelve sola; si tienes una baraja en las manos, revuélvela como te salga natural hasta que decidas parar, y voltea una parte antes si quieres que también salgan cartas de cabeza.",
+        "Mira antes de leer: qué pasa en el dibujo y qué detalle te llama la atención. Después busca el significado y ponlo frente a tu pregunta. Con tres cartas, léelas juntas, como una sola frase, y no como tres respuestas sueltas.",
+        "El lector de Arcana Diary es una inteligencia artificial que hace este trabajo con palabras sencillas: parte de los mismos significados que ves en estas páginas y te muestra las cartas que salieron. La lectura se queda en tu diario si la guardas, y ahí mismo, más adelante, anotas si se cumplió."
+      ]
+    },
+    {
+      "id": "que-baraja",
+      "heading": "¿Qué baraja usamos: Rider-Waite o Marsella?",
+      "paragraphs": [
+        "Las cartas de este sitio son escaneos de una impresión de 1909 de la baraja Rider-Waite-Smith, dibujada por Pamela Colman Smith. Arthur Edward Waite explicó sus significados en The Pictorial Key to the Tarot, publicado en 1911. No es el Tarot de Marsella.",
+        "Si estudias con una baraja de Marsella, muchos nombres te van a sonar, pero los dibujos no son los mismos, y los significados de estas páginas están pensados para la Rider-Waite-Smith. Lo más útil es leer cada baraja con su propia guía y no mezclar las dos en una misma tirada."
+      ]
+    },
+    {
+      "id": "pagina-de-cada-carta",
+      "heading": "¿Qué encuentras en la página de cada carta?",
+      "paragraphs": [
+        "Abre cualquier carta de la lista y verás las mismas secciones, en el mismo orden: qué hay en la carta de 1909, qué escribió Waite en 1911 con sus números de página, el significado al derecho y al revés, en el amor, en el trabajo y el dinero, como consejo, si es sí o no, como persona y como sentimiento, junto a otras cartas, con qué carta no confundirla y unas preguntas para hacerte.",
+        "Si estás aprendiendo, una carta al día es buen ritmo: voltea tu carta del día, lee su página y en la noche anota qué te trajo el día. Así las 78 se aprenden con lo que vives y no de memoria."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿Cuántas cartas tiene el tarot?",
+      "a": "Setenta y ocho: 22 arcanos mayores y 56 arcanos menores. Cada palo de los menores junta diez cartas con número y cuatro figuras de la corte, o sea, catorce. La baraja de 1909 que usamos aquí tiene exactamente esas 78."
+    },
+    {
+      "q": "¿Cuáles son las 12 cartas del tarot?",
+      "a": "No existe un grupo oficial de doce. Las cartas principales del tarot son los 22 arcanos mayores, de El Loco a El Mundo. Las listas de «12 cartas clave» que circulan en internet son una selección de quien las hizo, casi siempre con los mayores más conocidos, como Los Enamorados, La Muerte o La Torre."
+    },
+    {
+      "q": "¿Cuáles son las 22 cartas del tarot?",
+      "a": "Son los arcanos mayores: El Loco, con el 0, y 21 cartas numeradas, de El Mago (I) a El Mundo (XXI). La lista de esta página los muestra con su número, y la página de los arcanos mayores explica su orden y cómo se leen en una tirada."
+    },
+    {
+      "q": "¿Cuántos tipos de cartas hay en el tarot?",
+      "a": "Hay dos grandes grupos, arcanos mayores y arcanos menores, y dentro de los menores, dos tipos más: las cartas numeradas, del As al Diez, y las figuras de la corte. En total son 22 mayores, 40 numeradas y 16 figuras."
+    },
+    {
+      "q": "¿Cómo se llaman las 78 cartas del tarot?",
+      "a": "Las 22 mayores tienen nombre propio, de El Loco a El Mundo. Las 56 menores se nombran por número y palo, como el As de Copas o el Siete de Espadas, o por figura y palo, como la Reina de Bastos o el Rey de Oros. Todos los nombres están en la lista de esta página."
+    },
+    {
+      "q": "¿Necesito mi propia baraja para leer el tarot?",
+      "a": "No para empezar: aquí la tirada se hace en línea con la baraja de 1909, y puedes hacer {guest_limit} tiradas al día sin registrarte. Si después quieres una baraja física, elige una Rider-Waite-Smith para que los dibujos coincidan con estas páginas."
+    }
+  ],
+  "intents": [
+    {"q": "cuantas cartas tiene el tarot", "source": "[Ahrefs] 1 000", "answered_in": "capsule"},
+    {"q": "cuantas cartas del tarot son", "source": "[Ahrefs] 200", "answered_in": "faq:0"},
+    {"q": "¿cuáles son las 22 cartas del tarot?", "source": "[PAA]", "answered_in": "faq:2"},
+    {"q": "¿cuáles son las 12 cartas del tarot?", "source": "[PAA]", "answered_in": "faq:1"},
+    {"q": "¿cómo se llaman las 78 cartas del tarot?", "source": "[PAA]", "answered_in": "faq:4"},
+    {"q": "¿qué significa cada una de las cartas del tarot?", "source": "[PAA]", "answered_in": "pagina-de-cada-carta"},
+    {"q": "cuales son las cartas del tarot", "source": "[Ahrefs] 60", "answered_in": "que-son"},
+    {"q": "como leer las cartas del tarot", "source": "[Ahrefs] 150", "answered_in": "para-una-pregunta"},
+    {"q": "como se leen las cartas del tarot", "source": "[Ahrefs] 80", "answered_in": "para-una-pregunta"},
+    {"q": "como interpretar las cartas del tarot", "source": "[Ahrefs] 60", "answered_in": "como-leer"},
+    {"q": "significado de las 78 cartas del tarot de marsella", "source": "[карта страниц]", "answered_in": "que-baraja"},
+    {"q": "cuántos tipos de cartas hay en el tarot", "source": "[Instagram, источник AIO]", "answered_in": "faq:3"},
+    {"q": "cómo leer las cartas con esta guía", "source": "[H2 darkforest]", "answered_in": "para-una-pregunta"},
+    {"q": "tu mazo importa", "source": "[H2 darkforest]", "answered_in": "faq:5"},
+    {"q": "palos del tarot y su significado", "source": "[план, блок «Arcanos menores y sus palos»]", "answered_in": "arcanos-menores"},
+    {"q": "figuras de la corte en el tarot", "source": "[план, блок «Figuras de la corte»]", "answered_in": "figuras-de-la-corte"}
+  ]
+}

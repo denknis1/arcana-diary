@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "page_id": "cards",
+  "lang": "en",
+  "url": "/cards",
+  "status": "draft",
+  "title": "Tarot Card Meanings: All 78 Cards, Upright & Reversed",
+  "description": "All 78 tarot cards: 22 Major Arcana (0–XXI) and 56 Minor in four suits, with upright and reversed meanings, love, work and yes or no. Pick a card to start.",
+  "h1": "Tarot card meanings: the whole deck, card by card",
+  "lead": "Every card of the 1909 Rider–Waite–Smith deck has its own page here: what is drawn on it, what Waite wrote about it, and how it reads upright and reversed today.",
+  "capsule": "A tarot deck has 78 cards. The 22 Major Arcana, running from 0 (The Fool) to XXI (The World), carry the big themes of a life; the 56 Minor Arcana form four suits — Wands, Cups, Swords, Pentacles — each with Ace to Ten plus four court cards: Page, Knight, Queen, King. Every card has an upright and a reversed meaning.",
+  "blocks": [
+    {
+      "id": "what-tarot-cards-are",
+      "heading": "What tarot cards are",
+      "paragraphs": [
+        "Tarot cards are a deck of 78 picture cards used for reading: you hold a question in mind, draw one or more cards, and read the pictures against it. Each card is a small scene — a young man at a cliff edge, three swords through a heart, a woman pouring water under a star — and each scene carries meanings that most readers agree on.",
+        "A card stands for a theme rather than a fixed event: a beginning, a choice, a loss, a reward, a pause. So one card can speak to a job question and a love question in different words. The cards on this site are scans of a 1909 printing of the Rider–Waite–Smith deck, drawn by Pamela Colman Smith; Arthur Edward Waite described their meanings in The Pictorial Key to the Tarot (1911)."
+      ]
+    },
+    {
+      "id": "major-arcana",
+      "heading": "The Major Arcana: 22 cards without a suit",
+      "paragraphs": [
+        "These cards carry the large themes: a fresh start, a hard ending, hope after a fall, a cycle closing. When one of them turns up among Minor cards, it usually marks the part of the question that matters most.",
+        "Two numbers catch people out. In this deck Strength carries VIII and Justice XI; Waite writes that he exchanged the two and that Justice is usually numbered eight (p. 100), so another deck may show them the other way round. The Major Arcana page covers all 22, their order and the story many readers see in them."
+      ]
+    },
+    {
+      "id": "minor-arcana",
+      "heading": "Minor Arcana: the four suits",
+      "paragraphs": [
+        "The other 56 cards are the Minor Arcana. They describe ordinary life: the conversation that went wrong, the paycheck, the evening with friends. There are four suits of 14 cards, numbered from Ace to Ten and then four court cards. Each Minor card in the 1909 deck shows a full scene with people in it, not just a row of suit symbols, so you can read the picture before you know the meaning.",
+        "In the modern reading each suit has its own ground. Wands: drive, ambition, creative work, the urge to start something. Cups: feelings, love, friendship and intuition. Swords: thoughts, words and decisions, and also conflict and worry — this is the suit with the most hard cards. Pentacles: money, work, home and the practical side of things.",
+        "Inside a suit the numbers tell a story. The Ace is the seed: a gift, an opening, a first spark. The Ten shows where that energy ends up, for better or worse — a whole household under a rainbow in the Ten of Cups, a man bent under a load he can barely see past in the Ten of Wands."
+      ]
+    },
+    {
+      "id": "court-cards",
+      "heading": "Court cards: Page, Knight, Queen, King",
+      "paragraphs": [
+        "Sixteen of the Minor cards are court cards, four in each suit. They are the hardest for many people, because one card can mean three things: a person in your life, a side of yourself, or a way of handling the situation.",
+        "A common modern key helps. The Page learns and brings news. The Knight acts and moves, sometimes too fast. The Queen holds the quality of her suit from the inside, with care; the King holds it from the outside, with steady authority. So the Queen of Cups reads as emotional depth and intuition you can trust, and the King of Pentacles as security, generosity and confidence with money.",
+        "A court card does not fix age or gender: a King can describe a young woman who runs her own business, and a Page anyone starting out."
+      ]
+    },
+    {
+      "id": "upright-and-reversed",
+      "heading": "How to read a meaning, upright and reversed",
+      "paragraphs": [
+        "Drawn upright, a card shows its theme flowing openly. Drawn reversed — upside down — the same theme is blocked, delayed, turned inward or pushed too far. A reversed card is not the opposite of the upright one and not automatically bad news: the reversed Tower can be an upheaval held off, and the reversed Five of Cups a sadness that is beginning to soften.",
+        "Context changes the reading too. Waite advised weighing the particular sense of each card against the general trend of the whole spread (pp. 309–310). In practice, one Swords card reads lighter beside The Star than beside The Tower.",
+        "No card predicts the future. A reading shows your question from sides you had not considered; what you do with it stays your choice."
+      ]
+    },
+    {
+      "id": "reading-step-by-step",
+      "heading": "How to read tarot cards for a question",
+      "paragraphs": [
+        "Start with one clear question about yourself: \"What do I need to see about this job offer?\" opens more than \"Will he call?\". Then draw. On this site the deck is shuffled for you; with a deck in your hands, shuffle any way that feels natural until you choose to stop, and turn part of the deck around first if you want reversed cards to come up.",
+        "Look before you read: what is happening in the picture, and what catches your eye? Then hold the meaning against your question. With three cards, read them together as one sentence rather than three separate verdicts.",
+        "The AI reader on Arcana Diary does this work in plain words, starting from the same card meanings you find on these pages, and shows you the cards it drew. You can save a reading to your diary and come back later to mark whether it came true."
+      ]
+    },
+    {
+      "id": "card-pages",
+      "heading": "What each card page gives you",
+      "paragraphs": [
+        "Open any card in the list below and the sections come in the same order: the 1909 picture described, Waite's 1911 meanings with his page numbers, the upright and reversed meanings, love, work and money, advice, a yes-or-no lean, the card as a person and as feelings, pairings with other cards, the look-alike card it is easy to confuse it with, and a few questions to ask yourself.",
+        "If you are learning, one card a day is a steady pace: turn over your Card of the Day, read its page, and note in the evening what the day brought."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How many cards are in a tarot deck?",
+      "a": "Seventy-eight: 22 Major Arcana and 56 Minor Arcana. The Minor cards split into four suits of 14, each with ten numbered cards and four court cards. The 1909 deck on this site keeps exactly that count."
+    },
+    {
+      "q": "Are tarot cards evil?",
+      "a": "No. Tarot cards are printed pictures, and a reading is a way to think about a question. Cards like Death, The Devil or The Tower look grim, but they describe endings, attachments and upheaval, which are part of any life. Nothing in a reading can harm you, and you can stop whenever you like."
+    },
+    {
+      "q": "What are the 12 main tarot cards?",
+      "a": "There is no official group of twelve. The main cards of the tarot are the 22 Major Arcana, from The Fool to The World. Lists of twelve key cards found online are someone's own selection, usually the best-known Majors such as The Lovers, Death and The Tower."
+    },
+    {
+      "q": "Which is the strongest card in tarot?",
+      "a": "Tarot has no official ranking. Many readers name The World or The Sun as the strongest positive cards and The Tower as the most forceful one. Inside a single reading, any Major card weighs more than a Minor card, because it speaks to the larger theme of your question."
+    },
+    {
+      "q": "Where can I find card meanings I can trust?",
+      "a": "Look for pages that show where a meaning comes from. Every card page here separates what Waite wrote in 1911, with his page numbers, from the modern reading that most reference books share, so you can see which is which and judge for yourself."
+    },
+    {
+      "q": "Is there a PDF of tarot card meanings?",
+      "a": "Not from Arcana Diary: each card has its own web page, linked from the list below and kept up to date. Waite's 1911 book, The Pictorial Key to the Tarot, is in the public domain, and you can read it free online."
+    }
+  ],
+  "intents": [
+    {"q": "how many cards in a tarot deck", "source": "[Ahrefs] 4 900", "answered_in": "capsule"},
+    {"q": "how many tarot cards are there", "source": "[Ahrefs] 2 500", "answered_in": "faq:0"},
+    {"q": "how many cards are in a tarot deck", "source": "[Ahrefs] 1 300", "answered_in": "faq:0"},
+    {"q": "what are tarot cards", "source": "[Ahrefs] 3 400", "answered_in": "what-tarot-cards-are"},
+    {"q": "what do the tarot cards represent?", "source": "[PAA]", "answered_in": "what-tarot-cards-are"},
+    {"q": "how to read tarot cards", "source": "[Ahrefs] 6 000", "answered_in": "reading-step-by-step"},
+    {"q": "how to use tarot cards", "source": "[Ahrefs] 1 800", "answered_in": "reading-step-by-step"},
+    {"q": "how to shuffle tarot cards", "source": "[Ahrefs] 2 200", "answered_in": "reading-step-by-step"},
+    {"q": "are tarot cards evil", "source": "[Ahrefs] 2 300", "answered_in": "faq:1"},
+    {"q": "what are the 12 main tarot cards?", "source": "[PAA]", "answered_in": "faq:2"},
+    {"q": "which is the strongest card in tarot?", "source": "[PAA]", "answered_in": "faq:3"},
+    {"q": "what are the 78 tarot cards and their meanings?", "source": "[PAA]", "answered_in": "card-pages"},
+    {"q": "tarot cards meaning list with pictures", "source": "[карта страниц]", "answered_in": "card-pages"},
+    {"q": "tarot card meanings pdf", "source": "[карта страниц]", "answered_in": "faq:5"},
+    {"q": "are there any websites with accurate meanings for each card?", "source": "[reddit sitelink]", "answered_in": "faq:4"},
+    {"q": "tarot card meanings reversed", "source": "[H2 labyrinthos / tarot.com]", "answered_in": "upright-and-reversed"},
+    {"q": "minor arcana suits meaning", "source": "[H2 labyrinthos / lunafactory]", "answered_in": "minor-arcana"},
+    {"q": "what are court cards in tarot", "source": "[H2 lunafactory]", "answered_in": "court-cards"}
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "page_id": "daily",
+  "lang": "en",
+  "url": "/daily",
+  "status": "draft",
+  "title": "Daily Tarot: Your Free Tarot Card of the Day",
+  "description": "One tarot card a day, drawn from all 78, upright or reversed. It stays the same until midnight and is always free. Turn over today's card.",
+  "h1": "Daily tarot: your card for today",
+  "lead": "Tap to turn over one card for today. It stays put until your local midnight, and a new one is waiting after that.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "what",
+      "heading": "What a card of the day is",
+      "paragraphs": [
+        "A card of the day is one card drawn in the morning as a theme to carry with you, not a forecast of what happens by evening. Think of it as a lens. The Page of Cups might ask you to stay open to a small, sweet surprise; the Four of Swords, to leave room for a real pause; the Knight of Wands, to move on something you keep putting off.",
+        "Here your card is drawn once for your local day in this browser, so it stays the same if you come back at lunch. It can land upright or reversed. The short text under it was prepared ahead for that card and orientation, with no question behind it, so anyone who turns the same card today reads the same lines. For a reading about your own question, use one card or the main three-card reading.",
+        "The Card of the Day is free and does not count toward your daily readings."
+      ]
+    },
+    {
+      "id": "use",
+      "heading": "How to use it through the day",
+      "paragraphs": [
+        "Morning: read the card once and keep one word from it, such as patience, start or let go. Don't try to bend the day to fit the card; just keep the word close.",
+        "Daytime: notice when the theme shows up. A moment you held back, a conversation that needed honesty, a chance to rest that you skipped. One such moment is plenty.",
+        "Evening: take a minute to check. Where did the card show up, and where did it not fit at all? Both answers teach you something. Writing that check down, even in a paper notebook, is what turns a daily draw into a habit that pays off over weeks. Tap “Remind me tomorrow” to put the next draw in your calendar."
+      ]
+    },
+    {
+      "id": "repeat",
+      "heading": "Same card again?",
+      "paragraphs": [
+        "Seeing the same card on different days is normal. Any single card turns up about once in 78 days on average, but across two weeks the odds that some card repeats are about 70 %, and across a month a repeat is close to certain. Chance alone explains it.",
+        "Still, a repeat is a good reason to look again. Open the card's full page and ask what you did with it last time. If the same theme keeps returning, it may be pointing at something you haven't acted on yet. A card that comes back reversed after an upright day shows the same theme from its blocked side."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is my tarot card of the day?",
+      "a": "It is the card you turn over at the top of this page. It is drawn at random for your day and stays the same until your local midnight; then a new one is drawn for the next day."
+    },
+    {
+      "q": "What does the tarot card of the day mean?",
+      "a": "It is a theme for the day, not a prediction. Read its short text in the morning, keep one word from it in mind and watch where it shows up. The card's own page has the full meaning, upright and reversed."
+    },
+    {
+      "q": "Is there a tarot card for each day of the week?",
+      "a": "Arcana Diary does not tie cards to Monday or Sunday. Each day's card is drawn at random from the whole deck, so any of the 78 can come up on any day."
+    },
+    {
+      "q": "Can I draw a second card of the day?",
+      "a": "No, one a day is the point: a card you can redraw stops being a theme. If you want another view of the same day, ask a question with one card, which uses one of your regular readings."
+    },
+    {
+      "q": "Is there a daily love tarot card?",
+      "a": "The Card of the Day is not split by topic. You can read it with love in mind, since each card's page has a section on its love meaning. For a reading about your relationship, use the love spread."
+    }
+  ],
+  "intents": [
+    {
+      "q": "what is my tarot card of the day",
+      "source": "[Ahrefs]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "how to find the tarot card of the day",
+      "source": "[Ahrefs]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "what does tarot card of the day mean",
+      "source": "[Ahrefs]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "what is tarot card of the day",
+      "source": "[Ahrefs]",
+      "answered_in": "what"
+    },
+    {
+      "q": "what is the tarot card for each day of the week?",
+      "source": "[Ahrefs]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "daily tarot draw",
+      "source": "[карта страниц]",
+      "answered_in": "what"
+    },
+    {
+      "q": "tarot card of the day",
+      "source": "[карта страниц, ядро 3 100]",
+      "answered_in": "what"
+    },
+    {
+      "q": "how do you interpret a daily tarot card?",
+      "source": "[reddit r/witchcraft, источник AI Overview]",
+      "answered_in": "use"
+    },
+    {
+      "q": "daily tarot reading lesson",
+      "source": "[learntarot.com lesson 5, источник AI Overview]",
+      "answered_in": "use"
+    },
+    {
+      "q": "daily tarot: setting an intention",
+      "source": "[H2 dailytarotdraw]",
+      "answered_in": "use"
+    },
+    {
+      "q": "daily love tarot reading",
+      "source": "[horoscope.com, поз.10]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "same tarot card of the day again",
+      "source": "[разбор EN-006: чего никто не делает]",
+      "answered_in": "repeat"
+    },
+    {
+      "q": "how to check the daily card in the evening",
+      "source": "[разбор EN-006: чего никто не делает]",
+      "answered_in": "use"
+    }
+  ]
+}

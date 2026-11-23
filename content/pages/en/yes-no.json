@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "page_id": "yes-no",
+  "lang": "en",
+  "url": "/yes-no",
+  "status": "draft",
+  "title": "Yes or No Tarot: One or Three Cards and the Rule Behind It",
+  "description": "Draw one card or three and get Yes, No or Not clear yet, plus the card that decided it. Upright, 45 of 78 cards lean yes; reversed means not clear yet. Ask now.",
+  "h1": "Yes or no tarot: a clear answer, and why",
+  "lead": "Ask a question a yes or a no can answer, then draw one card or three. You get a lean and the card that decided it; the choice stays yours.",
+  "capsule": null,
+  "blocks": [
+    {
+      "id": "rule",
+      "heading": "How the yes or no rule works",
+      "paragraphs": [
+        "Every card in our base has one fixed lean when it lands upright: yes, no or not clear yet. Of the 78, 45 lean yes, 13 lean no and 20 are not clear yet. The Sun and the Ace of Cups lean yes; The Tower and the Five of Pentacles lean no; cards of waiting or choosing, like the Two of Swords or The Moon, are not clear yet.",
+        "Upside down, any card gives not clear yet, whatever its upright lean. Reversal shows a theme that is blocked or still forming, so we don't flip it into the opposite answer. Since about half of all draws land reversed, not clear yet is the most frequent result on one card, more common than yes and no together. That is deliberate: it tells you the question isn't settled.",
+        "The site computes the lean from the cards; the reader cannot change it and only adds why. A yes or no reading is one of your {guest_limit} free readings a day ({user_limit} after signing in). The yes or no cards page lists every card with its lean."
+      ]
+    },
+    {
+      "id": "count",
+      "heading": "One card or three",
+      "paragraphs": [
+        "One card is the quick lean: its answer is the answer. Three cards hold a vote. Cards that are not clear yet sit it out, and the yes and no cards decide: more yes than no gives yes, more no than yes gives no, and a tie, or no yes or no card at all, gives not clear yet.",
+        "So two unclear cards and one yes make a yes, while a yes, a no and an unclear card make not clear yet. You see each card's vote, so you know what tipped it."
+      ]
+    },
+    {
+      "id": "ask",
+      "heading": "How to ask a yes or no question",
+      "paragraphs": [
+        "Ask about one choice of your own, in words a yes or a no can answer: “Should I apply for this job?”, “Should I go to the reunion?”. Avoid two questions in one, such as “Should I move, or stay and change jobs?”, because a single lean can't answer both.",
+        "Some questions get a reading but no yes or no. Ask whether someone else will act, like “Will she text me back?”, and the cards turn to your side of it instead. Questions that want a verdict on a diagnosis, a legal case or someone's safety also get no lean. Money questions do get one, about your own readiness, never about winning, and the site marks it as not financial advice."
+      ]
+    },
+    {
+      "id": "after-no",
+      "heading": "What to do with a no or a not clear yet",
+      "paragraphs": [
+        "A no is a lean against the choice as you see it today, not a closed door. The line on why usually names what is missing: timing, information or your own readiness. Ask a follow-up about that part, for example “What would make this a better choice?”.",
+        "Not clear yet means the question isn't ripe; something still has to happen or be decided, often by you. Don't redraw until a yes appears. Give it a few days, or ask an open question in the main reading.",
+        "A yes is a lean too, not a push. If it leaves you uneasy, that unease is part of the answer."
+      ]
+    },
+    {
+      "id": "accuracy",
+      "heading": "How accurate is it",
+      "paragraphs": [
+        "A yes or no reading can't be right the way a weather report is, because tarot does not see ahead. It can be consistent and open: the same card in the same orientation always gives the same lean, the rule is in plain view, and nobody calls an outcome certain. Treat the answer as a second opinion on your own reasons.",
+        "To test it, save your readings to the diary and mark later how things went. After a dozen questions you will know how often the lean matched, which says more than any promise a site can make."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What cards mean yes or no in tarot?",
+      "a": "In our base, 45 cards lean yes upright, among them The Sun, The World and the Ace of Pentacles; 13 lean no, such as The Tower and the Three of Swords; 20 are not clear yet. Every reversed card is not clear yet."
+    },
+    {
+      "q": "Can you use tarot for yes or no questions?",
+      "a": "Yes, when the question is about your own choice and you take the answer as a lean. Simple, single questions get the clearest answers."
+    },
+    {
+      "q": "Should I do it? Can the cards decide for me?",
+      "a": "No. The cards give a lean and a reason; the decision is yours. If a no brings relief, or a yes makes you nervous, your reaction says as much as the card."
+    },
+    {
+      "q": "Why do I keep getting not clear yet?",
+      "a": "It is the most common answer on one card by design: reversed cards and 20 upright cards all give it. Three cards give it less often, because only the yes and no cards vote."
+    },
+    {
+      "q": "Is a 7 card yes or no spread better?",
+      "a": "This tool uses one card or three. More cards don't make an answer surer; under our rule they only add votes. For a wider view, ask an open question in the main reading."
+    }
+  ],
+  "intents": [
+    {
+      "q": "tarot yes or no",
+      "source": "[Ahrefs] 10 000",
+      "answered_in": "rule"
+    },
+    {
+      "q": "online tarot reading yes or no",
+      "source": "[Ahrefs] 2 000",
+      "answered_in": "rule"
+    },
+    {
+      "q": "tarot card yes or no",
+      "source": "[Ahrefs] 1 500",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "7 tarot yes or no",
+      "source": "[Ahrefs] 800",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "free tarot reading yes or no",
+      "source": "[Ahrefs] 600",
+      "answered_in": "rule"
+    },
+    {
+      "q": "one card tarot yes no",
+      "source": "[Ahrefs] 350",
+      "answered_in": "count"
+    },
+    {
+      "q": "should i do it yes or no tarot?",
+      "source": "[PAA]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "what cards mean yes or no in tarot?",
+      "source": "[PAA]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "can you use tarot for yes or no?",
+      "source": "[PAA]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "are tarot cards accurate, yes or no?",
+      "source": "[PAA]",
+      "answered_in": "accuracy"
+    },
+    {
+      "q": "yes or no tarot accurate 100 percent",
+      "source": "[карта страниц]",
+      "answered_in": "accuracy"
+    },
+    {
+      "q": "how accurate is a yes or no tarot reading?",
+      "source": "[H2 jobcannon]",
+      "answered_in": "accuracy"
+    },
+    {
+      "q": "how to ask a good yes or no question",
+      "source": "[H2 jobcannon/psychicsource]",
+      "answered_in": "ask"
+    },
+    {
+      "q": "one-card or three-card yes or no reading",
+      "source": "[H2 jobcannon]",
+      "answered_in": "count"
+    },
+    {
+      "q": "what to do with a no or not clear yet answer",
+      "source": "[разбор EN-007: чего никто не делает]",
+      "answered_in": "after-no"
+    },
+    {
+      "q": "reversed cards in yes or no tarot",
+      "source": "[разбор EN-007: чего никто не делает]",
+      "answered_in": "rule"
+    }
+  ]
+}

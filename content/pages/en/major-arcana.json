@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "page_id": "major-arcana",
+  "lang": "en",
+  "url": "/cards/major-arcana",
+  "status": "draft",
+  "title": "Major Arcana Tarot Cards: All 22 Meanings, 0 to XXI",
+  "description": "The 22 Major Arcana, from The Fool (0) to The World (XXI): what they mean, why Strength is VIII, the Fool's journey and how they read in a spread. Open a card.",
+  "h1": "Major Arcana: 22 cards, one long road",
+  "lead": "The trump cards of the tarot, from The Fool to The World. Each has its own page with the 1909 picture, Waite's words and the modern meaning, upright and reversed.",
+  "capsule": "The Major Arcana are the 22 tarot cards that belong to no suit, numbered 0 to XXI, from The Fool to The World. In the Rider–Waite–Smith deck Strength is VIII and Justice is XI. They stand for life's large themes and turning points, while the 56 Minor Arcana cover everyday matters.",
+  "blocks": [
+    {
+      "id": "what-they-are",
+      "heading": "What the Major Arcana are",
+      "paragraphs": [
+        "Arcana means secrets, and these are the deck's 22 big ones. They have no suit and no court cards: each card is a single figure or scene with a name — The Magician, The Lovers, Death, The Moon — and a Roman numeral at the top. Waite calls them the Greater Arcana (p. 79) and also the Trumps Major (p. 287).",
+        "The difference from the rest of the deck fits in two lines. A Minor card describes a situation: a quarrel, a payday, a gift, a long night of worry. A Major card describes the force behind it: a stretch of discipline, a loss of illusions, the hope that returns after a hard season. Minor cards are what fills your week; Major cards are what your season is about.",
+        "In the modern reading every Major card has a clear core. The Fool is a beginning taken on trust, The Emperor structure and authority, The Hermit solitude and reflection, Justice fairness and accountability, The Star hope and renewal. Each card's page gives its full meaning, upright and reversed, in love and work, and as advice."
+      ]
+    },
+    {
+      "id": "names-and-numbers",
+      "heading": "Names and numbers, from 0 to XXI",
+      "paragraphs": [
+        "The list below follows the deck: The Fool first, at 0, then The Magician at I, The High Priestess at II and so on up to The World. Several cards also go by other names, and Waite uses them himself: he notes that the Hierophant has usually been called the Pope (p. 88), lists Strength as Fortitude among his meanings (p. 284), and writes of the World or Universe (p. 161).",
+        "The Fool's place has never been settled. In his first part Waite gives it the number 21 while admitting that most arrangements treat it as the cipher, a card of nothing (p. 29). Later he places the Zero after No. 20, keeps The World at 21 and calls the Zero unnumbered, wherever it belongs (p. 161). The 1909 card itself carries a 0."
+      ]
+    },
+    {
+      "id": "strength-and-justice",
+      "heading": "Why Strength is VIII and Justice is XI",
+      "paragraphs": [
+        "If your own deck shows Justice at VIII and Strength at XI, nothing is wrong with it. Waite writes that his Strength card \"has been interchanged with that of Justice, which is usually numbered eight\", and he gives no reason beyond his own satisfaction, adding that the change means nothing to the reader (p. 100).",
+        "The meanings do not travel with the numerals. Strength stays patience, courage and gentle control; Justice stays fairness, truth and the consequences of what was done. Arcana Diary keeps the order of the 1909 cards, so in the list Strength comes straight after The Chariot and Justice after the Wheel of Fortune."
+      ]
+    },
+    {
+      "id": "fools-journey",
+      "heading": "The Fool's journey",
+      "paragraphs": [
+        "A popular modern way to read the Major Arcana is as one story: The Fool, the traveller at 0, meets each of the other cards in turn. It is not a scheme Waite set out — he wrote only that the Fool stands for the outward journey (p. 161) — but it helps many people remember the order and see why each card sits where it does.",
+        "Readers who use the story often split the 21 numbered cards into three rows of seven. The first row, I to VII, is about meeting the world: skill and focus with The Magician, a choice of values with The Lovers, and The Chariot driving out on will and determination.",
+        "The second row, VIII to XIV, turns inward. Strength teaches patience instead of force, The Hermit takes a lamp into solitude, Death closes a chapter so another can open, and Temperance blends what remains into balance.",
+        "The third row, XV to XXI, holds both the hardest and the brightest cards. The Devil shows the attachments that hold us in place and The Tower brings down whatever stood on shaky foundations; after them come The Star's quiet hope, The Sun's clarity and finally The World, where a cycle comes together.",
+        "Read this way, a card's position adds a layer. The Star right after The Tower is hope that comes after a collapse, not hope out of nowhere; The World after Judgement is completion that was earned."
+      ]
+    },
+    {
+      "id": "in-a-spread",
+      "heading": "How Major cards read in a spread",
+      "paragraphs": [
+        "A Major card in a reading usually points to the heart of the matter. In a three-card spread of past, present and next step, a Major in the middle often names the theme you are living through now, while the Minor cards on either side show how it plays out in practice.",
+        "Several Majors in one reading suggest a period that feels larger than a single decision. A spread with none suggests a question about everyday choices you can shape directly. Neither is better than the other; the second is often the more practical reading.",
+        "Reversed, a Major card keeps its theme but meets resistance. The reversed Chariot is momentum stalling because energy pulls two ways; the reversed Star is hope running low; the reversed World is a last step that keeps getting put off. None of these is a punishment — each names what needs attention."
+      ]
+    },
+    {
+      "id": "yes-or-no",
+      "heading": "Major Arcana in a yes-or-no reading",
+      "paragraphs": [
+        "Upright, most of the Majors lean yes on Arcana Diary. Death, The Devil and The Tower lean no, and a handful say not clear yet, among them The High Priestess, Justice and The Moon. Any reversed card, Major or Minor, reads as not clear yet. The yes or no card list explains the rule and gives every card's lean."
+      ]
+    },
+    {
+      "id": "your-card",
+      "heading": "Is there a Major Arcana card that is yours?",
+      "paragraphs": [
+        "Some sites work out a personal card by adding up the digits of your birth date. That method is numerology, and Arcana Diary does not use it, so we will not give you a card that way.",
+        "A more personal answer comes from your own readings. Save them to your diary and notice which Majors keep returning: a card that turns up again and again over weeks is a fair guess at the theme of your season, and its page is worth reading slowly. The free diary shows your {diary_free} most recent readings."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What are the 22 Major Arcana cards?",
+      "a": "They are The Fool, at 0, and 21 numbered cards from The Magician (I) to The World (XXI). Among them are the best-known images of the tarot, such as The Lovers, Death, The Tower and The Sun. The list on this page gives each one with its numeral and a link to its full meaning."
+    },
+    {
+      "q": "What is the most powerful tarot card?",
+      "a": "There is no official ranking. Readers often name The World, for completion, or The Sun, for joy and clarity, while The Tower is the most forceful in the sense of sudden change. Waite wrote that in some respects The High Priestess is the highest and holiest of the Greater Arcana (p. 79)."
+    },
+    {
+      "q": "What is 22 in the Major Arcana?",
+      "a": "There is no card numbered 22. The count reaches 22 because it starts at zero with The Fool, so the last numeral is XXI, The World. If you see a 22 attached to The Fool somewhere, it is a different way of counting the same card."
+    },
+    {
+      "q": "Are the Major Arcana bad cards?",
+      "a": "No. The Sun, The Star and The World are among the brightest cards in the deck. Death and The Tower describe endings and upheaval; Death is read as a stage of life closing, not as a person's end. Most Majors read as hopeful or neutral, depending on the question and the cards around them."
+    },
+    {
+      "q": "How do I learn the Major Arcana?",
+      "a": "Go through them in order, one row of seven at a time, and look at each picture before you read its keywords. Then let real readings teach you: when a Major comes up as your Card of the Day, open its page and see how the meaning matches the day you actually had."
+    }
+  ],
+  "intents": [
+    {"q": "what are the 22 major arcana cards?", "source": "[PAA]", "answered_in": "faq:0"},
+    {"q": "how many major arcana cards are there", "source": "[карта страниц]", "answered_in": "capsule"},
+    {"q": "how do i find my major arcana?", "source": "[PAA]", "answered_in": "your-card"},
+    {"q": "what's the most powerful tarot card?", "source": "[PAA]", "answered_in": "faq:1"},
+    {"q": "what is 22 in the major arcana?", "source": "[PAA]", "answered_in": "faq:2"},
+    {"q": "tarot card meanings major arcana", "source": "[карта страниц]", "answered_in": "what-they-are"},
+    {"q": "how would you describe each of the major arcana?", "source": "[reddit sitelink]", "answered_in": "what-they-are"},
+    {"q": "story of the major arcana", "source": "[reddit sitelink]", "answered_in": "fools-journey"},
+    {"q": "the fool's journey", "source": "[тема tarotcake]", "answered_in": "fools-journey"},
+    {"q": "history of the major arcana", "source": "[Википедия, sitelink]", "answered_in": "names-and-numbers"},
+    {"q": "why is strength 8 and justice 11 in tarot", "source": "[план, блок Strength and Justice numbering]", "answered_in": "strength-and-justice"},
+    {"q": "major arcana vs minor arcana", "source": "[разбор: «сравнение старших и младших в двух строчках»]", "answered_in": "what-they-are"},
+    {"q": "what does it mean when you get a lot of major arcana", "source": "[H2 velvetastral, ES-091]", "answered_in": "in-a-spread"},
+    {"q": "major arcana reversed meanings", "source": "[H2 velvetastral, ES-091]", "answered_in": "in-a-spread"},
+    {"q": "major arcana that mean yes, no and maybe", "source": "[H2 mysticmag, EN-009]", "answered_in": "yes-or-no"}
+  ]
+}
