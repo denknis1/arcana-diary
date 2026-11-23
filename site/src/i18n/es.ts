@@ -270,6 +270,12 @@ export const es: Dict = {
   // etapa 6: enlaces de las listas (matriz de la etapa 2, L-ES-14 «Las 78 cartas»)
   allCardsLink: 'Las 78 cartas',
   yesNoListAsk: 'Haz tu pregunta',
+  // etapa 6: las páginas de servicio en el pie y en las migas
+  footerAbout: 'Sobre nosotros',
+  footerHowReadings: 'Cómo funcionan las lecturas',
+  footerContact: 'Contacto',
+  footerPrivacy: 'Privacidad',
+  footerTerms: 'Términos',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { FACTS } from './facts';
+import { allPagePaths, hreflangPair } from './routes';
 import { SERVICE_PAGE_IDS, TEXT_PAGES, filledPage, hiddenPaths, isHidden, pageTexts, textPage } from './textPages';
 
 describe('stage 5 text pages', () => {
@@ -35,5 +36,13 @@ describe('stage 5 text pages', () => {
     expect(SERVICE_PAGE_IDS.size).toBe(10);
     expect([...hiddenPaths()].sort()).toEqual(['/about', '/contact', '/es/contacto', '/es/privacidad',
       '/es/sobre-nosotros', '/es/terminos', '/privacy', '/terms']);
+  });
+
+  it('never pair an open page with a hidden one for hreflang', () => {
+    const hidden = hiddenPaths();
+    for (const path of allPagePaths()) {
+      const pair = hreflangPair(path);
+      if (!hidden.has(path) && pair !== null) expect(hidden.has(pair), `${path} ↔ ${pair}`).toBe(false);
+    }
   });
 });

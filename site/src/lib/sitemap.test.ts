@@ -5,7 +5,8 @@ import { indexablePaths, sitemapXml } from './sitemap';
 describe('sitemap (spec stage 6 §3)', () => {
   it('lists the indexable pages: no diary, no account, no 404, no hidden service page', () => {
     const paths = indexablePaths();
-    expect(paths).toHaveLength(177 - 4 - 2);
+    expect(paths).toHaveLength(187 - 4 - 2 - 8); // no diary/account, no 404, no hidden service page
+    expect(paths).toContain('/how-readings-work');
     expect(paths).toContain('/cards');
     expect(paths).toContain('/es/tiradas/3-cartas');
     for (const p of ['/diary', '/es/diario', '/account', '/es/cuenta', '/404', '/es/404', '/about']) {

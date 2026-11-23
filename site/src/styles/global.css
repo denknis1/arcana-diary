@@ -560,3 +560,5 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 @media (min-width: 900px) {
   .name-list { columns: 3; }
 }
+
+.site-footer__service { margin-top: var(--space-2); font-size: var(--font-size-small); }

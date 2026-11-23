@@ -1,9 +1,12 @@
 ---
-// Footer (screens 1, 12a): the tools, "not a guarantee", the card art credit, the help link and EN | ES.
-// Card meanings, About and Privacy arrive with stages 6–7.
+// Footer (screens 1, 12a; spec stage 6 §3): the tools; the service pages that are open (a hidden one — operator
+// placeholders without a value, decision 35 — is left out); "not a guarantee", the card art credit, the help link and
+// EN | ES.
 import LangSwitch from './LangSwitch.astro';
 import { t } from '../i18n';
-import { HELP_URL, pagePath } from '../lib/routes';
+import { SERVICE_LABELS } from '../lib/breadcrumbs';
+import { HELP_URL, SERVICE_KEYS, pagePath } from '../lib/routes';
+import { hiddenPaths } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
 interface Props {
@@ -19,6 +22,9 @@ const links = [
   { href: pagePath('love', lang), label: d.navLove },
   { href: pagePath('daily', lang), label: d.navDaily },
 ];
+const hidden = hiddenPaths();
+const service = SERVICE_KEYS.map((key) => ({ href: pagePath(key, lang), label: d[SERVICE_LABELS[key]] }))
+  .filter((link) => !hidden.has(link.href));
 ---
 <footer class="site-footer">
   <div class="container site-footer__inner">
@@ -26,6 +32,11 @@ const links = [
       <ul>
         {links.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
       </ul>
+      {service.length > 0 ? (
+        <ul class="site-footer__service">
+          {service.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        </ul>
+      ) : null}
     </nav>
     <p>{d.disclaimer}</p>
     <p>{d.cardArtCredit}</p>

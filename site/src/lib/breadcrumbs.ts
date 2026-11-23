@@ -1,16 +1,24 @@
 // Breadcrumbs (spec stage 6 §3; stage 2 `breadcrumb` columns): first Home / Inicio; a major card — Home › Cards ›
 // Major Arcana › card; a minor card — Home › Cards › card; the hub — Home › Cards; Major Arcana — Home › Cards › Major
-// Arcana; the yes/no card list — Home › Yes or No › Card list; "3 cartas" — Inicio › 3 cartas; the tools on the home
-// level have none.
-import { t } from '../i18n';
+// Arcana; the yes/no card list — Home › Yes or No › Card list; "3 cartas" — Inicio › 3 cartas; a service page — Home ›
+// page; the tools on the home level have none.
+import { t, type DictKey } from '../i18n';
 import { cardName, type DeckCard } from './deck';
-import { cardPath, pagePath, type PageKey } from './routes';
+import { SERVICE_KEYS, cardPath, pagePath, type PageKey, type ServiceKey } from './routes';
 import type { Lang } from './types';
 
 export interface Crumb {
   name: string;
   path: string;
 }
+
+/** The short names of the service pages: the footer and the last breadcrumb. */
+export const SERVICE_LABELS: Readonly<Record<ServiceKey, DictKey>> = {
+  about: 'footerAbout', how_readings_work: 'footerHowReadings', contact: 'footerContact', privacy: 'footerPrivacy',
+  terms: 'footerTerms',
+};
+
+const isService = (key: PageKey): key is ServiceKey => (SERVICE_KEYS as readonly PageKey[]).includes(key);
 
 function base(lang: Lang): { home: Crumb; cards: Crumb; major: Crumb } {
   const d = t(lang);
@@ -37,7 +45,7 @@ export function crumbsFor(key: PageKey, lang: Lang): Crumb[] {
       if (lang !== 'es') return []; // no English three-card page: the key is an alias of the home page
       return [home, { name: d.threeCardsChip, path: pagePath('three_cards', lang) }];
     default:
-      return [];
+      return isService(key) ? [home, { name: d[SERVICE_LABELS[key]], path: pagePath(key, lang) }] : [];
   }
 }
 

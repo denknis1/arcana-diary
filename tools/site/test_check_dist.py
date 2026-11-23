@@ -82,8 +82,8 @@ def test_every_page_of_stage_6_is_expected():
             "/about", "/how-readings-work", "/es/privacidad"} <= set(pages)
 
 
-def test_today_the_open_site_would_refuse_the_eight_hidden_service_pages():
-    assert launched_problems() == [f"hidden page on the open site: {p} (an operator placeholder has no value)" for p in
+def test_today_the_open_site_would_refuse_the_eight_hidden_service_pages(tmp_path):
+    assert launched_problems(site(tmp_path)) == [f"hidden page on the open site: {p} (an operator placeholder has no value)" for p in
                                    ("/about", "/contact", "/es/contacto", "/es/privacidad", "/es/sobre-nosotros",
                                     "/es/terminos", "/privacy", "/terms")]
 
@@ -234,9 +234,33 @@ def test_robots_txt_names_the_sitemap(tmp_path):
     assert robots_txt_problems(dist) == ["robots.txt does not name the sitemap"]
 
 
-def test_the_open_site_refuses_a_hidden_page(monkeypatch):
+def test_the_open_site_refuses_a_hidden_page(tmp_path, monkeypatch):
+    dist = site(tmp_path)
     monkeypatch.setattr(check_dist, "expected_pages", lambda: ["/", "/about"])
-    assert launched_problems() == ["hidden page on the open site: /about (an operator placeholder has no value)"]
+    assert launched_problems(dist) == ["hidden page on the open site: /about (an operator placeholder has no value)"]
+    monkeypatch.setattr(check_dist, "hidden_pages", lambda: set())
+    assert launched_problems(dist) == []
+
+
+def test_the_open_site_refuses_a_robots_txt_that_closes_the_whole_site(tmp_path, monkeypatch):
+    dist = site(tmp_path)
+    monkeypatch.setattr(check_dist, "hidden_pages", lambda: set())
+    for closed in ("User-agent: *\nDisallow: /\nSitemap: https://arcanadiary.com/sitemap.xml\n",
+                   "User-agent: *\ndisallow:/ \nSitemap: https://arcanadiary.com/sitemap.xml\n",
+                   "User-agent: *\nDisallow: /*\nSitemap: https://arcanadiary.com/sitemap.xml\n"):
+        write(dist, "robots.txt", closed)
+        assert launched_problems(dist) == ["robots.txt closes the whole site (Disallow: /) on the open site"]
+        assert robots_txt_problems(dist) == []  # the stage site may close itself
+    write(dist, "robots.txt", "User-agent: *\nDisallow: /api/\nSitemap: https://arcanadiary.com/sitemap.xml\n")
+    assert launched_problems(dist) == []
+
+
+def test_main_launched_fails_on_the_hidden_pages_of_today(tmp_path, capsys):
+    dist = site(tmp_path)
+    assert check_dist.main(dist) == 0
+    capsys.readouterr()
+    assert check_dist.main(dist, launched=True) == 1
+    assert capsys.readouterr().out.count("hidden page on the open site") == 8
 
 
 def test_a_dynamic_import_of_the_library_is_fine(tmp_path):

@@ -1,7 +1,9 @@
 // Canonical address and hreflang of a page (spec stage 6 §3): canonical https://arcanadiary.com{path}; en, es and
-// x-default = EN for a page whose pair in pairs.json points back at it; a page without such a pair gets no hreflang
-// at all (spec stage 2 §3: no pair, no hreflang).
+// x-default = EN for a page whose pair in pairs.json points back at it and when both sides are indexable; a page
+// without such a pair — or whose pair is a hidden service page (owner decision 35) — gets no hreflang at all (spec
+// stage 2 §3: no pair, no hreflang; controller decision C: a pair only when both sides are indexable).
 import { hreflangPair, langOf } from './routes';
+import { hiddenPaths } from './textPages';
 
 export const SITE_URL = 'https://arcanadiary.com';
 /** Share picture of a page without its own card scan (no 1200 × 630 picture exists yet). */
@@ -21,11 +23,14 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${path}`;
 }
 
-/** hreflang set of an indexable page: call only for indexable page paths. [] when the page has no mutual pair. */
-export function alternates(path: string): Alternate[] {
+let defaultHidden: ReadonlySet<string> | undefined;
+
+/** hreflang set of an indexable page: call only for indexable page paths. [] when the page has no mutual pair or
+ * either side is hidden (`hidden`: the hidden service pages, by default those of src/data/facts.json). */
+export function alternates(path: string, hidden: ReadonlySet<string> = (defaultHidden ??= hiddenPaths())): Alternate[] {
   const lang = langOf(path);
   const pair = hreflangPair(path);
-  if (pair === null) return [];
+  if (pair === null || hidden.has(path) || hidden.has(pair)) return [];
   const en = lang === 'en' ? path : pair;
   const es = lang === 'es' ? path : pair;
   return [

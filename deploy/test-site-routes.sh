@@ -83,6 +83,16 @@ expect "/es/tiradas — только папка" "$(status /es/tiradas)" 404
 expect "/es/tiradas — страница 404 ES" "$(html_lang /es/tiradas)" '<html lang="es"'
 expect "robots.txt называет sitemap" "$("${CURL[@]}" "$URL/robots.txt" | grep -c '^Sitemap: https://arcanadiary.com/sitemap.xml$')" 1
 expect "sitemap.xml без дневника и кабинета" "$("${CURL[@]}" "$URL/sitemap.xml" | grep -cE '/(diary|es/diario|account|es/cuenta)<')" 0
+# stage 6, часть 4: служебные страницы; с метками оператора — noindex и вне sitemap.xml
+for path in /about /how-readings-work /contact /privacy /terms /es/sobre-nosotros /es/como-funcionan-las-lecturas \
+  /es/contacto /es/privacidad /es/terminos; do
+  expect "$path" "$(status "$path")" 200
+done
+expect "/about — скрыта (meta robots)" "$("${CURL[@]}" "$URL/about" | grep -c 'name="robots" content="noindex, nofollow"')" 1
+expect "/es/privacidad — скрыта (meta robots)" "$("${CURL[@]}" "$URL/es/privacidad" | grep -c 'name="robots" content="noindex, nofollow"')" 1
+expect "/how-readings-work — открыта" "$(canonical /how-readings-work)" "https://arcanadiary.com/how-readings-work"
+expect "/es/como-funcionan-las-lecturas — страница ES" "$(html_lang /es/como-funcionan-las-lecturas)" '<html lang="es"'
+expect "sitemap.xml без скрытых" "$("${CURL[@]}" "$URL/sitemap.xml" | grep -c '/about<\|/privacy<\|/es/terminos<')" 0
 expect "/nope" "$(status /nope)" 404
 expect "/nope — страница 404 EN" "$(html_lang /nope)" '<html lang="en"'
 expect "/es/nope" "$(status /es/nope)" 404
