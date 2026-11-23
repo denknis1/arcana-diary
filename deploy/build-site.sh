@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Собирает site/dist в контейнере node:22; Node на хост не ставится. До сборки — данные сайта совпадают с
 # источниками (tools/site/sync_site_data.py --check: тексты, факты из api/app/config.py), после — проверка
-# собранного сайта (tools/site/check_dist.py: страницы, head, hreflang, JSON-LD, метки, sitemap.xml, robots.txt).
+# собранного сайта (tools/site/check_dist.py: страницы, head, hreflang, JSON-LD, метки, sitemap.xml, robots.txt); ссылки матрицы этапа 2 (tools/site/check_links.py).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 python3 "$ROOT/tools/site/sync_site_data.py" --check
@@ -14,3 +14,4 @@ docker run --rm -u "$(id -u):$(id -g)" \
 LAUNCHED_FLAG=""
 if [ -f "$ROOT/deploy/.env" ] && grep -qx 'LAUNCHED=true' "$ROOT/deploy/.env"; then LAUNCHED_FLAG="--launched"; fi
 python3 "$ROOT/tools/site/check_dist.py" $LAUNCHED_FLAG
+python3 "$ROOT/tools/site/check_links.py"
