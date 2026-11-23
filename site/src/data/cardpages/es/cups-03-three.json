@@ -1,0 +1,208 @@
+{
+ "schema": 2,
+ "card_id": "cups-03-three",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Tres de Copas",
+  "in_sentence": "el Tres de Copas",
+  "de": "del Tres de Copas"
+ },
+ "title": "Tres de Copas en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Tres de Copas al derecho y al revés (carta invertida): amistad, celebración, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Tres de Copas en el tarot: significado",
+ "image_alt": "Tres de Copas, carta de 1909 de la baraja Rider-Waite-Smith: tres mujeres alzan copas doradas en un círculo cerrado, con uvas, frutas y una calabaza a sus pies.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 3,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "Amistad, celebración y alegría compartida con tu gente: eso es el Tres de Copas. Al revés, el círculo se rompe: sentirte fuera, chismes o excesos de fiesta. Casi no tiene lado pesado; solo te pide cuidar que tus amistades sean parejas. Las tres copas se alzan en un brindis, y eso es un sí.",
+ "keywords": {
+  "upright": [
+   "amistad",
+   "celebración",
+   "comunidad",
+   "alegría"
+  ],
+  "reversed": [
+   "sentirte fuera",
+   "chismes",
+   "excesos",
+   "amistades disparejas"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Tres de Copas?",
+   "paragraphs": [
+    "Tres mujeres, muy juntas, levantan sus copas por encima de la cabeza. Waite lo dice en pocas palabras: jóvenes en un jardín, copas en alto, como si brindaran entre sí (p. 220).",
+    "En la carta de 1909 la figura del centro está de espaldas, envuelta en un largo manto rojo anaranjado, y su copa es el punto más alto del dibujo. La de la izquierda viste de blanco; la de la derecha, de color café claro, lleva un racimo de uvas en la mano que tiene abajo. A sus pies hay uvas, una calabaza y un arbusto con frutos redondos y anaranjados, bajo un cielo azul limpio."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Tres de Copas?",
+   "paragraphs": [
+    "Waite lee la carta como el final feliz de un asunto: abundancia, perfección y alegría, un buen desenlace, victoria, plenitud y consuelo (p. 220). Al revés, Waite habla de rapidez y de cierre: prontitud, logro y fin (p. 220)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Tres de Copas al derecho?",
+   "paragraphs": [
+    "La amistad es la primera palabra del Tres de Copas: la gente que te conoce, que se ríe contigo y que aparece cuando hace falta. Suele salir alrededor de reuniones, cumpleaños o reencuentros, cada vez que la alegría se comparte en lugar de guardarse.",
+    "También habla de comunidad: un equipo, un grupo o un círculo donde sientes que perteneces y donde las buenas noticias se festejan entre todos. Los logros pequeños cuentan; la carta no espera algo enorme para brindar.",
+    "¿Con quién te sientes más tú, y cuándo fue la última vez que celebraron algo juntos?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Tres de Copas al revés?",
+   "paragraphs": [
+    "Al revés, el Tres de Copas puede mostrar el sentirte fuera del grupo, mirando el baile desde afuera, o amistades disparejas en las que siempre organiza la misma persona. Los chismes y una tercera persona que se mete entre dos amigos también caben aquí.",
+    "El otro lado son los excesos: demasiada fiesta, demasiado de algo bueno, energía social gastada hasta que no queda nada para ti. La lista al revés de Waite tiene una línea para esto: el lado del exceso en el disfrute físico y los placeres de los sentidos (p. 220). Una tarde tranquila con una sola persona con quien estés a gusto puede devolver el equilibrio."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Tres de Copas en el amor?",
+   "paragraphs": [
+    "Con esta carta el amor se vuelve ligero y social: un romance que nace de la amistad, conocer a alguien por medio de tu gente, una relación donde también hay diversión. Lo que importa es la alegría, no el drama.",
+    "En pareja, invita a celebrar juntos y a convivir con amistades, sin descuidar las tuyas.",
+    "Al revés, el corazón se llena de gente: una tercera persona que complica las cosas, chismes alrededor de la relación, o amistades y pareja que tiran cada quien por su lado."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Tres de Copas en el trabajo y el dinero?",
+   "paragraphs": [
+    "Para el trabajo, describe un equipo que se disfruta: colegas que celebran los logros de otros, un proyecto que terminan juntos, contactos que abren puertas. Es buena carta para colaborar, organizar eventos y todo lo que depende de la gente.",
+    "En el dinero, habla de abundancia compartida: gastos en reuniones, regalos entre amistades, la sensación de tener lo suficiente para compartir con gusto. Al revés, puede señalar que se gasta de más en salidas y fiestas."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Tres de Copas como consejo?",
+   "paragraphs": [
+    "Mándale hoy un mensaje a una amiga o un amigo y propón un plan sencillo: un café, una caminata, una llamada. Cúmplelo, y cuando se vean, brinden por algo pequeño que salió bien."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Tres de Copas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Tres de Copas como persona y como sentimiento?",
+   "paragraphs": [
+    "Tres copas en alto: el Tres de Copas es una buena amistad, quien junta a la gente o alguien con quien todo se vuelve más ligero; quizá reconozcas ahí tu faceta más sociable. Como sentimiento, habla de cariño, diversión y comodidad: disfrutar la compañía de alguien, un afecto que puede ser amistoso o el inicio de algo más. Al revés, describe sentimientos revueltos en un grupo: alguien que se queda afuera o un cariño repartido entre demasiadas personas."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Tres de Copas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "swords-03-three",
+     "text": "Tus amistades te acompañan en un momento duro; la tristeza compartida pesa menos."
+    },
+    {
+     "card_id": "major-19-sun",
+     "text": "Alegría sin nada que esconder: una celebración abierta y luminosa."
+    },
+    {
+     "card_id": "pentacles-03-three",
+     "text": "Un equipo que trabaja bien y lo disfruta. Celebren juntos lo que terminaron."
+    },
+    {
+     "card_id": "major-09-hermit",
+     "text": "Entre la fiesta y el tiempo a solas. Los dos tienen su lugar; fíjate cuál necesitas."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Tres de Copas del Cuatro de Bastos?",
+   "paragraphs": [
+    "Waite describe el Cuatro de Bastos como cuatro varas que sostienen una gran guirnalda, con dos mujeres que alzan ramilletes junto a un puente que lleva a una antigua casona (p. 190); sus significados empiezan con la vida campestre, un refugio, el reposo y la armonía (p. 190). Su lectura moderna: celebración, regreso a casa y una base estable.",
+    "El Tres de Copas festeja a las personas; el Cuatro de Bastos, un lugar y una etapa cumplida."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Tres de Copas?",
+   "paragraphs": [
+    "¿Quién en mi vida me hace sentir más yo?",
+    "¿Qué cosa pequeña podría celebrar pronto con alguien?",
+    "¿Mis amistades se sienten parejas, o cargo yo con casi todo?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Tres de Copas es una carta buena o mala?",
+   "a": "Buena: pocas cartas menores traen tanta alegría, toda amistad, comunidad y gusto compartido. Al revés te pide ver qué amistades te corresponden y dónde la diversión ya se pasó de la raya; notarlo ayuda, no es una mala señal."
+  },
+  {
+   "q": "¿El Tres de Copas habla de un triángulo amoroso?",
+   "a": "Solo a veces, y solo al revés. Al derecho, las tres figuras son amigas que celebran juntas. En una pregunta de amor, la carta al revés puede describir a una tercera persona u opiniones ajenas que se meten en la pareja, pero es una imagen de la situación, no una prueba de nada."
+  },
+  {
+   "q": "¿Qué significa el Tres de Copas en la amistad?",
+   "a": "Es la carta de la amistad por excelencia. Describe amistades que celebran tus logros, un grupo donde perteneces o el reencuentro con gente que extrañabas. En el dibujo que describe Waite, el gesto es un brindis entre iguales (p. 220), y ese es el espíritu de la carta."
+  }
+ ],
+ "related": [
+  "cups-02-two",
+  "cups-04-four",
+  "wands-03-three",
+  "swords-03-three",
+  "pentacles-03-three"
+ ],
+ "mentions": [
+  {
+   "card_id": "wands-04-four",
+   "text": "Cuatro de Bastos"
+  }
+ ],
+ "waite": {
+  "quote": "The conclusion of any matter in plenty, perfection and merriment; happy issue, victory, fulfilment, solace … Reversed: Expedition, dispatch, achievement, end.",
+  "quote_lang": "en",
+  "pages": [
+   220
+  ],
+  "translation": "La conclusión de cualquier asunto en abundancia, perfección y alegría; feliz desenlace, victoria, cumplimiento, consuelo … Al revés: presteza, prontitud, logro, fin.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 03.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_03.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    190,
+    220
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

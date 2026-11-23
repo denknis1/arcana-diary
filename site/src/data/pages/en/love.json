@@ -1,0 +1,150 @@
+{
+ "schema": 1,
+ "page_id": "love",
+ "lang": "en",
+ "url": "/love",
+ "status": "reviewed",
+ "title": "Love Tarot Reading: Free Three-Card Spread for Your Heart",
+ "description": "Three cards on your love life: past, present and where it's heading, read with each card's love meaning. Pick your situation, or leave it open. Draw for love.",
+ "h1": "Love tarot reading: what does your heart need?",
+ "lead": "Three cards about you and your relationship, read with each card's love meaning. Pick your situation if you like, and ask about what you can feel, say or do.",
+ "capsule": null,
+ "blocks": [
+  {
+   "id": "spread",
+   "heading": "What the love spread shows",
+   "paragraphs": [
+    "This spread lays out three cards and reads them in order. The first, Past, shows what has shaped this part of your love life: an old pattern, a recent change, something you learned last time. The second, Present, is about now, inside you and between you and the other person. The third, Where it's heading, shows where things may go if nothing changes; it is a possibility, not a fate, and the reading turns it into one thing you can do this week.",
+    "Each card is read through its love meaning from our card base, not only its general one. The Two of Cups becomes a connection where respect flows both ways; the Five of Cups, disappointment that is real, with something still standing behind you; the Ten of Cups, the kind of loving home you want to build. Reversed cards keep their theme but show it held back or turned inward.",
+    "The situation chips above the box, single, in a relationship, after a breakup and it's complicated, shape the advice without the reader assuming anything else about your life. They are optional, and so is the question: leave it blank and the spread becomes a picture of where you stand in love right now."
+   ]
+  },
+  {
+   "id": "questions",
+   "heading": "Questions that work in love",
+   "paragraphs": [
+    "The love questions that work best put you at the center. “What do I need to feel closer in my relationship?”, “What keeps me from trusting someone new?”, “How can I let go of this breakup?” and “What do I want to say in this conversation?” all give the cards something to work on, because the answer depends on you.",
+    "The most searched love questions are about someone else: does he love me, is she thinking about me, what is he feeling. Our reader answers them from your side: your own wishes and worries in that connection, what you want to say, and whether simply asking the other person could be the step. It will not describe what is going on inside someone else. Each card's own page does say what that card traditionally means as feelings, which is useful background, but it stays a meaning, not news about a real person.",
+    "Questions that ask for a date (“When will I meet someone?”) or a promise (“Will we end up together?”) get a reading about you, with no date and no promise. A deck can't name a month, and a reading that pretends to is guessing. Questions about two people at once work best when you ask what you want from each connection, not which of them will choose you."
+   ]
+  },
+  {
+   "id": "situations",
+   "heading": "Single, in a relationship, after a breakup, or it's complicated",
+   "paragraphs": [
+    "The chip tells the reader where you stand and shapes the advice; nothing else about your life is assumed. Here is what each one suits.",
+    "“Single” suits questions about what you want and what holds you back: “What am I looking for now?”, “Which pattern do I keep repeating?” The reading won't name a person or a time.",
+    "With “in a relationship”, ask about what you bring and what is strained or growing between you: “How can I feel closer to my partner?” Cards such as the Ten of Cups or the Two of Cups read as warmth and partnership; the Five of Wands as competing to be heard or to be right; the Three of Swords as words that hurt and need talking through.",
+    "“After a breakup” suits questions about what you carry out of it and how you find your footing again, not whether the other person returns. Hard cards here, like the Three of Swords or the Five of Cups, name heartache and sorrow plainly. They describe a stage you are in, not one that has to last; reversed, both are often read as pain that is starting to ease.",
+    "“It's complicated” covers the rest: a crush, someone who isn't free, an on-and-off connection. Questions that keep to what is in your hands work best: what you want, what you are willing to accept, and what you would say if you were being fully honest."
+   ]
+  },
+  {
+   "id": "wont-tell",
+   "heading": "What a love reading won't tell you",
+   "paragraphs": [
+    "It won't read another person's mind, promise a reunion or set a date for anything. A confident claim about someone else's heart is a guess, and acting on a guess about a real person can lead to choices you wouldn't make with a clear head. That is why the reader stays on your side of the story, even when you ask about theirs.",
+    "What a love reading can do is make your own side clearer: what you want, what you fear, what you have been avoiding saying. That is the part of a relationship you can change, and it is usually where the next step is.",
+    "Keep the reading in your diary and return to it once things have moved, to note how they went. Love questions often come back in new words. A record of what you asked, what the cards said and what happened is the clearest way to see your own pattern."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Does he love me? Can tarot tell?",
+   "a": "No reading can tell what a particular person feels. If you ask, the cards are read about you: what you feel, what you need from this connection and what you could say. Each card's page explains what it traditionally means as feelings, as a meaning, not a statement about him."
+  },
+  {
+   "q": "What is he thinking about me?",
+   "a": "The love reading won't guess another person's thoughts. It reads your side instead, and the step it suggests is often the simplest one: asking the person directly, in your own words."
+  },
+  {
+   "q": "Can I ask a yes or no love question?",
+   "a": "Yes, with the yes or no cards, as long as you are asking about a choice that is yours: “Should I tell her how I feel?”, “Should I go on a second date?”. A question about what someone else feels or will do gets a reading without a yes or no."
+  },
+  {
+   "q": "Are love tarot readings legit?",
+   "a": "They are honest when they stay within what tarot can do: describe themes, help you ask better questions and leave the decision with you. A love reading that promises a person, a date or a reunion is claiming something no deck can know. You can check our readings against your own record in the diary."
+  },
+  {
+   "q": "Is the love reading free?",
+   "a": "Yes. It is one of your daily readings, {guest_limit} before you sign in and {user_limit} once you do, and it comes with {followups} free follow-up questions for what you want to dig into."
+  },
+  {
+   "q": "Is a love horoscope the same as a love tarot reading?",
+   "a": "No. A love horoscope is one text written for many people at once. A love reading is drawn for you, can take your question and situation into account, and ends with a step that fits them."
+  }
+ ],
+ "intents": [
+  {
+   "q": "free love tarot what is he thinking",
+   "source": "[Ahrefs] 700",
+   "answered_in": "faq:1"
+  },
+  {
+   "q": "free love tarot reading yes or no",
+   "source": "[Ahrefs] 300",
+   "answered_in": "faq:2"
+  },
+  {
+   "q": "does he love me tarot spread",
+   "source": "[Ahrefs] 100",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "does he love me tarot",
+   "source": "[Ahrefs] 80",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "does he love me tarot yes or no",
+   "source": "[Ahrefs] 80",
+   "answered_in": "faq:2"
+  },
+  {
+   "q": "does he love me tarot free",
+   "source": "[Ahrefs] 60",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "free tarot card reading love",
+   "source": "[карта страниц]",
+   "answered_in": "faq:4"
+  },
+  {
+   "q": "love tarot readings: are they legit?",
+   "source": "[reddit, поз.7]",
+   "answered_in": "faq:3"
+  },
+  {
+   "q": "has your love reading ever been accurate?",
+   "source": "[reddit sitelink]",
+   "answered_in": "wont-tell"
+  },
+  {
+   "q": "thoughts on love readings? dos and don'ts",
+   "source": "[reddit sitelink]",
+   "answered_in": "questions"
+  },
+  {
+   "q": "how to ask the cards about love",
+   "source": "[H2 solstarot]",
+   "answered_in": "questions"
+  },
+  {
+   "q": "love tarot horoscope or a personal love reading?",
+   "source": "[H2 deckaura]",
+   "answered_in": "faq:5"
+  },
+  {
+   "q": "when the question is about two people",
+   "source": "[H2 onecardtarot.online]",
+   "answered_in": "questions"
+  },
+  {
+   "q": "what the love tarot spread positions mean",
+   "source": "[H2 типовой: «Что значит расклад»]",
+   "answered_in": "spread"
+  }
+ ]
+}

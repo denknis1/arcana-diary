@@ -1,0 +1,213 @@
+{
+ "schema": 2,
+ "card_id": "swords-09-nine",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Nueve de Espadas",
+  "in_sentence": "el Nueve de Espadas",
+  "de": "del Nueve de Espadas"
+ },
+ "title": "Nueve de Espadas en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Nueve de Espadas al derecho y al revés (carta invertida): ansiedad, preocupación, amor, trabajo y consejo. Palabras de Waite (1911) y sí o no.",
+ "h1": "Nueve de Espadas en el tarot: significado",
+ "image_alt": "Nueve de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: una mujer sentada en la cama se cubre la cara con las manos bajo nueve espadas en una pared negra.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "swords",
+  "number": 9,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Nueve de Espadas es la carta de la ansiedad y la preocupación: pensamientos en círculo, miedos nocturnos y una presión que crece más en la mente que en la vida. Al revés, la angustia baja o se guarda en secreto. Es dura, pero describe miedo, no hechos. La respuesta es no: pesa más la noche.",
+ "keywords": {
+  "upright": [
+   "ansiedad",
+   "preocupación",
+   "pensamientos en círculo",
+   "miedos nocturnos"
+  ],
+  "reversed": [
+   "alivio",
+   "miedos guardados",
+   "pedir apoyo",
+   "esperanza que vuelve"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Nueve de Espadas?",
+   "paragraphs": [
+    "Una mujer se sienta en la cama, a oscuras, con la cara entre las manos, y nueve espadas cuelgan en hileras sobre la pared negra. Waite la describe en su lecho, en pleno lamento, y dice que la carta es pura desolación (p. 236).",
+    "En la carta de 1909 las espadas están acostadas, una encima de otra, y llenan casi todo el fondo; ninguna la toca. Lleva un camisón blanco, y la colcha sobre sus rodillas es un tablero de cuadros azules y amarillos con rosas rojas. Un panel tallado recorre el costado de la cama, y arriba se lee el IX."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Nueve de Espadas?",
+   "paragraphs": [
+    "La lista al derecho de Waite está entre las más sombrías de su libro, del fracaso y el engaño a la desesperación (p. 236), y en Arcana Diary no la leemos como un pronóstico.",
+    "Al revés, Waite anota sospecha, duda, vergüenza y un temor razonable (p. 236). El miedo es lo que pasa de su lista a la lectura de hoy. Que ese miedo crezca de noche y se haga más grande que su causa es lectura moderna, no de Waite."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Nueve de Espadas al derecho?",
+   "paragraphs": [
+    "La ansiedad es el significado directo del Nueve de Espadas y, en su punto más oscuro, la desesperación. Es la carta de las pesadillas, de despertar de madrugada y no volver a dormir, de repasar una conversación, de imaginar todo lo que podría salir mal y sentir el peso de todo junto.",
+    "Aquí la preocupación suele ser más grande que el problema que la causa. La presión es real, pero gran parte vive en los pensamientos en círculo y no en lo que pasa ahora. La culpa y el arrepentimiento también la alimentan: algo que te reprochas o una carga que llevas en silencio.",
+    "¿Esto está pasando ahora o solo en mi cabeza, de noche?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Nueve de Espadas al revés?",
+   "paragraphs": [
+    "Al revés, el Nueve de Espadas puede hablar de alivio: lo peor de una mala noche queda atrás, te animas a pedir apoyo y aparece una esperanza que vuelve después de una racha de angustia.",
+    "También puede hablar de miedos guardados, una preocupación tan privada que nunca toma aire y por eso pesa más. Las palabras al revés de Waite, sospecha, duda y vergüenza (p. 236), encajan con esta segunda lectura. En los dos casos, decir el miedo en voz alta a alguien que te quiera bien es un buen primer paso."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Nueve de Espadas en el amor?",
+   "paragraphs": [
+    "Desvelarte por una relación es la forma en que esta carta suele aparecer en el amor: miedo a perder a alguien, dudas sobre en qué punto están, culpa por algo que se dijo o se hizo.",
+    "Entre dos personas puede ser una preocupación que no se comparte y crece en silencio. Sin pareja, puede ser la ansiedad de estar a solas o un rechazo viejo que regresa de noche. Al revés, el miedo empieza a aflojar, muchas veces después de una plática honesta, o se esconde incluso de la persona más cercana."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Nueve de Espadas en el trabajo y el dinero?",
+   "paragraphs": [
+    "Cuentas que no te dejan dormir, miedo a que no alcance, un presupuesto que se siente más apretado de lo que es: eso es el Nueve de Espadas cuando se trata de dinero.",
+    "En el trabajo es estrés y temor por los plazos, por los errores o por el juicio ajeno, la clase de preocupación que te sigue hasta la casa. Escribir los números o los pendientes reales suele devolverlos a su tamaño."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Nueve de Espadas como consejo?",
+   "paragraphs": [
+    "Antes de dormir, pasa al papel la preocupación que más vuelve, junto con un paso pequeño que podrías dar de día. Cierra la libreta y déjala fuera de tu cuarto."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Nueve de Espadas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Nueve de Espadas como persona y como sentimiento?",
+   "paragraphs": [
+    "Alguien que piensa de más, a menudo amable y responsable, que se desvela por lo que podría salir mal: así es el Nueve de Espadas como persona. Si eres tú, es la parte que necesita consuelo más que soluciones. Como sentimiento, habla de ansiedad por el vínculo: miedo a perderlo, inseguridad, culpa o arrepentimiento, inquietud por el rumbo. Al revés, esos sentimientos se calman cuando los miedos se dicen, o se quedan escondidos y pesan más."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Nueve de Espadas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "swords-03-three",
+     "text": "Una herida y la preocupación que no deja dormir después. Nombra las dos."
+    },
+    {
+     "card_id": "major-18-moon",
+     "text": "Miedos de noche y señales confusas. Espera la luz del día para decidir qué es real."
+    },
+    {
+     "card_id": "major-17-star",
+     "text": "Después de una noche larga, esperanza. La calma y el descanso pueden volver."
+    },
+    {
+     "card_id": "swords-04-four",
+     "text": "Una preocupación que pide descanso de verdad. Calma tus pensamientos antes de actuar."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Nueve de Espadas del Diez y del Tres de Espadas?",
+   "paragraphs": [
+    "En el Diez de Espadas, Waite muestra una figura caída de bruces, con todas sus espadas clavadas (p. 234); hoy se lee como un final, tocar fondo. El Nueve es el miedo a lo peor; el Diez, un final doloroso que también despeja el camino.",
+    "El Tres de Espadas de Waite, un corazón atravesado por tres espadas bajo la lluvia (p. 248), es la herida; el Nueve, la angustia que no deja dormir alrededor de ella."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Nueve de Espadas?",
+   "paragraphs": [
+    "¿Qué miedo tengo, en pocas palabras?",
+    "¿A quién se lo podría contar?",
+    "¿Qué cosa pequeña sí está en mis manos hoy?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Nueve de Espadas es una carta buena o mala?",
+   "a": "Es dura, pero no anuncia una desgracia. Nombra la ansiedad con honestidad, y ese es el primer paso para aliviarla. Describe cómo se siente la preocupación, no lo que viene, y al revés puede marcar el momento en que la noche empieza a aclarar."
+  },
+  {
+   "q": "¿El Nueve de Espadas significa que mis miedos son reales?",
+   "a": "No necesariamente. Su mensaje moderno más común es que la preocupación suele crecer más que su causa, sobre todo de noche. Algunos miedos señalan algo que merece atención; otros se deshacen al decirlos en voz alta. La carta te pide distinguirlos con la luz del día."
+  },
+  {
+   "q": "¿El Nueve de Espadas habla de culpa?",
+   "a": "Puede. Junto a la ansiedad, la culpa y el arrepentimiento son significados modernos comunes: repasar un error, reprocharte algo, cargar vergüenza en silencio. Waite también pone la vergüenza en su lista al revés (p. 236). La carta no juzga; muestra un peso que se aligera al compartirlo o al repararlo."
+  }
+ ],
+ "related": [
+  "swords-08-eight",
+  "swords-10-ten",
+  "cups-09-nine",
+  "wands-09-nine",
+  "pentacles-09-nine"
+ ],
+ "mentions": [
+  {
+   "card_id": "swords-10-ten",
+   "text": "Diez de Espadas"
+  },
+  {
+   "card_id": "swords-03-three",
+   "text": "Tres de Espadas"
+  }
+ ],
+ "waite": {
+  "quote": "Death, failure, miscarriage, delay, deception, disappointment, despair. Reversed: Imprisonment, suspicion, doubt, reasonable fear, shame.",
+  "quote_lang": "en",
+  "pages": [
+   236
+  ],
+  "translation": "Muerte, fracaso, aborto, demora, engaño, decepción, desesperación. Al revés: encarcelamiento, sospecha, duda, temor razonable, vergüenza.",
+  "harsh": true
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 09.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_09.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    234,
+    236,
+    248
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

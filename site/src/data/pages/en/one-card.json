@@ -1,0 +1,115 @@
+{
+ "schema": 1,
+ "page_id": "one-card",
+ "lang": "en",
+ "url": "/one-card",
+ "status": "reviewed",
+ "title": "One Card Tarot Reading: Pull a Card for Your Question",
+ "description": "Pull one card from the full 78-card deck, upright or reversed, and get it read for your question with one small step to take. No sign-up. Draw a card.",
+ "h1": "One card tarot: a single card for right now",
+ "lead": "Pull one card from the full deck and get it read for your question in a few sentences. It is the quickest reading on the site.",
+ "capsule": null,
+ "blocks": [
+  {
+   "id": "when",
+   "heading": "When one card is enough",
+   "paragraphs": [
+    "One card is enough when the question is narrow and you want a direction rather than a full picture: what to focus on today, how to approach a talk you are dreading, what sits under a mood you can't name. It also suits beginners, because a single card is easy to hold in mind and to check against your day.",
+    "Three cards serve better when the question has a history or several moving parts, since they add what shaped the situation and where it may lead. Waite wrote that the particular phase in each divination “must be judged by considering the general trend of the cards” (pp. 309–310). Alone, a card has no neighbours to lean on, so the question you bring carries more of the weight: make it specific.",
+    "This is not the Card of the Day. Here you can ask a question and come back later with another one. The Card of the Day is drawn without a question, once for your whole day, and stays the same every time you open it."
+   ]
+  },
+  {
+   "id": "how-to-read",
+   "heading": "How to read a single card",
+   "paragraphs": [
+    "Start with your first reaction to the picture, before any words. Notice where your eye goes: a figure, a gesture, the light, the ground. That reaction often shows which side of the card speaks to your question.",
+    "Then take the meaning the reader gives and tie it to one part of your situation. Three short questions help: where is this already happening in my life, what would change if I acted on it, and what could I do about it today? The reading ends with a step of its own; take it as written or adapt it to your week.",
+    "If the card feels hard, treat it as information, not a sentence passed on you. The Tower, the Ten of Swords or Death speak of strain, something finishing or a shift already under way. Drawn alone, they can point at what needs your attention now, which is worth knowing early.",
+    "For more on the card you pulled, open its page: each of the 78 has a full meaning upright and reversed, plus what it says about love and work."
+   ]
+  },
+  {
+   "id": "upright-reversed",
+   "heading": "Upright and reversed",
+   "paragraphs": [
+    "This tool reads reversals: any card may land upside down, with the same odds as landing upright. Upright, the theme of the card is out in the open. Reversed, that theme is stuck, late, too much or kept inside: the Three of Cups upright is shared joy with friends, reversed it can mean feeling left out or a friendship that has grown uneven.",
+    "A reversed card is not a worse card. Some heavy cards even ease when reversed, as the worst of a pressure starts to lift; the Ten of Swords reversed is often read as the slow work of getting back up. The reading always follows the way your card actually landed."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can one card answer a yes or no question?",
+   "a": "Yes, on the yes or no tool. There each upright card has a set lean, and an upside-down card gives not clear yet. You see the answer and the reason behind it, and you can switch to three cards for a vote."
+  },
+  {
+   "q": "Can I pull a random tarot card without a question?",
+   "a": "Yes. Skip the question and draw: with nothing typed, the reader treats the card as a note on the moment you are in. Every draw comes from a fresh shuffle of all 78 cards, with a random orientation."
+  },
+  {
+   "q": "How do I shuffle tarot cards for an online reading?",
+   "a": "You don't have to: the site shuffles the whole deck for each draw with a random seed. With a paper deck, the usual ways are an overhand shuffle, a riffle, or spreading the cards face down on the table and mixing them with both hands until it feels done."
+  },
+  {
+   "q": "Can I draw again if I don't like my card?",
+   "a": "You can, but the first card is usually the more useful one. Drawing until something pleasant appears turns the reading into a search for comfort. Each new draw also uses up a reading: you get {guest_limit} a day without signing in, {user_limit} after."
+  },
+  {
+   "q": "Is a one card tarot reading accurate?",
+   "a": "No tarot reading sees what lies ahead, and a single card gives the least context of all. Its strength is focus: one clear theme to test against your day. Save it to your diary and mark later whether it fit."
+  }
+ ],
+ "intents": [
+  {
+   "q": "one card tarot yes no",
+   "source": "[Ahrefs]",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "one card tarot reading yes or no",
+   "source": "[Ahrefs]",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "pull a tarot card for me",
+   "source": "[карта страниц]",
+   "answered_in": "faq:1"
+  },
+  {
+   "q": "pull a random tarot card",
+   "source": "[карта страниц]",
+   "answered_in": "faq:1"
+  },
+  {
+   "q": "one card tarot with reversals",
+   "source": "[карта страниц]",
+   "answered_in": "upright-reversed"
+  },
+  {
+   "q": "how to shuffle tarot cards",
+   "source": "[Ahrefs, тема]",
+   "answered_in": "faq:2"
+  },
+  {
+   "q": "how to do a one card tarot reading",
+   "source": "[H2 flipsimu]",
+   "answered_in": "how-to-read"
+  },
+  {
+   "q": "when to use a one tarot card reading",
+   "source": "[H2 flipsimu]",
+   "answered_in": "when"
+  },
+  {
+   "q": "tips for better one card tarot results",
+   "source": "[H2 flipsimu]",
+   "answered_in": "how-to-read"
+  },
+  {
+   "q": "how people use one card tarot",
+   "source": "[H2 onecardtarot.online]",
+   "answered_in": "when"
+  }
+ ]
+}

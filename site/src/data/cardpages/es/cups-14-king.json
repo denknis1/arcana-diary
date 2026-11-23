@@ -1,0 +1,217 @@
+{
+ "schema": 2,
+ "card_id": "cups-14-king",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Rey de Copas",
+  "in_sentence": "el Rey de Copas",
+  "de": "del Rey de Copas"
+ },
+ "title": "Rey de Copas en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Rey de Copas al derecho y al revés (carta invertida): serenidad, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Rey de Copas en el tarot: significado",
+ "image_alt": "Rey de Copas, carta de 1909 de la baraja Rider-Waite-Smith: un rey coronado, con una copa y un cetro corto, en un trono de piedra sobre un mar agitado, con un pez que salta y un barco.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 14,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "Madurez emocional, equilibrio y serenidad: el Rey de Copas siente con profundidad y responde con diplomacia. Al revés, las emociones se reprimen o la calma se vuelve una máscara. Es una carta que tranquiliza y, a la vez, pide sinceridad debajo de la compostura. La respuesta es sí, porque sostiene su copa firme sobre un mar agitado.",
+ "keywords": {
+  "upright": [
+   "madurez emocional",
+   "equilibrio",
+   "serenidad",
+   "diplomacia"
+  ],
+  "reversed": [
+   "emociones reprimidas",
+   "cambios de humor",
+   "calma fingida",
+   "frialdad"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Rey de Copas?",
+   "paragraphs": [
+    "Un rey está sentado en un trono de piedra que parece flotar sobre un mar movido. Según Waite, lleva un cetro corto en la mano izquierda y una gran copa en la derecha, y su trono descansa sobre el mar, con un barco a un lado y un delfín que salta al otro (p. 198). El propio Waite explica el agua: el signo de la copa remite por naturaleza al agua (p. 198).",
+    "En la carta de 1909 las olas están pintadas en franjas verdes y azules, el barco lleva velas rojas y el cielo detrás del trono es gris, no azul. El rey viste un manto verde sobre una túnica larga azul."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Rey de Copas?",
+   "paragraphs": [
+    "Para Waite, el Rey de Copas es un hombre responsable, de negocios o de una profesión, dispuesto a ayudar a quien consulta, con sentido de la equidad e inteligencia creativa (p. 198). Al revés, Waite se pone severo: deshonestidad, doble juego, escándalo y pérdida (p. 198). En Arcana Diary leemos ese lado de otra forma: como sentimientos guardados bajo una tapa demasiado apretada."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Rey de Copas al derecho?",
+   "paragraphs": [
+    "La calma es el don de esta carta: un equilibrio que nace de la madurez emocional, no de sentir menos. Puede salir cuando te toca mantenerte en tu centro mientras todo se mueve, escuchar la historia completa y responder con diplomacia en vez de reaccionar.",
+    "También habla de una bondad con firmeza: apoyar sin dejarte arrastrar por la tormenta de otra persona. Waite suma a sus significados el arte, la ciencia y la inteligencia creativa (p. 198); la lectura de hoy conserva ese lazo entre sentir y saber.",
+    "¿Dónde puedo responder hoy en lugar de reaccionar?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Rey de Copas al revés?",
+   "paragraphs": [
+    "Al revés, el Rey de Copas puede hablar de emociones reprimidas: lo que sientes se empuja hacia abajo y la serenidad se vuelve calma fingida. Entonces el ánimo se escapa por otros lados, en cambios de humor, irritación o una frialdad repentina. También puede describir la compostura usada para alejar a los demás o, en su cara más dura, la manipulación emocional.",
+    "Esta lectura es moderna, no de Waite. Reconoce lo que sientes debajo de la calma y deja que esté ahí, sin necesidad de controlarlo."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Rey de Copas en el amor?",
+   "paragraphs": [
+    "Constancia, cariño y presencia emocional: en el amor, este rey describe un cuidado que no entra en pánico. Favorece las conversaciones honestas con calma, la paciencia en una semana difícil y un compromiso que se nota en el trato diario.",
+    "Si estás en busca de pareja, la carta valora la madurez emocional: elegir vínculos donde puedas sentir sin miedo y hablar con calma, y ser tú también esa clase de persona.",
+    "Con la carta al revés, la serenidad puede haberse vuelto distancia, o algo importante queda sin decir para no armar un drama."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Rey de Copas en el trabajo y el dinero?",
+   "paragraphs": [
+    "Es la carta de quien trabaja con temple: quien dirige y escucha, quien media en una junta tensa, quien con su tacto mantiene unida a la gente. Favorece manejar los conflictos con pulso firme.",
+    "En el dinero, el Rey de Copas significa estabilidad llevada con cabeza fría: generosidad equilibrada con sensatez y decisiones sin pánico. Al revés, puede marcar gastos decididos por el humor del día, o preocupaciones de dinero que se esconden en lugar de platicarse."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Rey de Copas como consejo?",
+   "paragraphs": [
+    "Escucha a alguien hasta el final, sin interrumpir y sin dar consejos. Cuando termine, respira antes de contestar. Esa pausa es la serenidad del Rey puesta en práctica, para ti y para la otra persona."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Rey de Copas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Rey de Copas como persona y como sentimiento?",
+   "paragraphs": [
+    "En el papel de una persona, el Rey de Copas es alguien con madurez y bondad que no pierde la calma bajo presión: quien guía a otros, una pareja que sostiene, la persona a quien todos buscan cuando las cosas se complican. Puedes ser tú, cuando sostienes a otros con serenidad. Si la pregunta es por sentimientos, la carta significa cariño hondo y estable, lealtad y ganas de proteger: un amor que se demuestra con constancia más que con grandes palabras. Al revés, esos sentimientos pueden quedarse guardados tras una superficie fría."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Rey de Copas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "major-14-temperance",
+     "text": "Serenidad sumada a paciencia: una situación tensa recibe el tiempo que necesita para asentarse."
+    },
+    {
+     "card_id": "cups-13-queen",
+     "text": "Cuidado maduro desde dos lados: alguien que escucha y alguien que sostiene."
+    },
+    {
+     "card_id": "swords-05-five",
+     "text": "Un conflicto frente a la diplomacia. Baja la tensión antes de querer ganar."
+    },
+    {
+     "card_id": "cups-10-ten",
+     "text": "Un amor estable que hace del hogar un lugar seguro y compartido."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Rey de Copas de El Emperador y del Rey de Oros?",
+   "paragraphs": [
+    "El Emperador también gobierna desde un trono, pero Waite lo describe imponente y majestuoso, en un trono con cabezas de carnero al frente de los brazos (p. 84). Hoy se lee como estructura y autoridad; el Rey de Copas guía con calma y sentimiento, no con reglas.",
+    "El trono del Rey de Oros lleva la cabeza de toro, un símbolo que Waite pide notar porque se repite (p. 254). Su carta habla de estabilidad y éxito material; la del Rey de Copas, de serenidad emocional."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Rey de Copas?",
+   "paragraphs": [
+    "¿Qué siento debajo de mi calma en este momento?",
+    "¿Dónde me ayudaría una pausa corta para responder mejor?",
+    "¿A quién le vendría bien hoy que yo escuche con calma?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Rey de Copas es una carta buena o mala?",
+   "a": "Buena en general. Trae calma, bondad y la madurez para manejar emociones fuertes. Su lado difícil aparece cuando la compostura se vuelve escondite: sentimientos que se tragan, distancia que se mantiene. Leída así, la carta es un empujón a la sinceridad, no una alarma."
+  },
+  {
+   "q": "¿El Rey de Copas significa que me quiere?",
+   "a": "No describe el corazón de una persona concreta. Como significado, el Rey de Copas es un amor estable y adulto: lealtad, protección y un cuidado que no falla. Para saber en qué punto estás con alguien, cuentan más sus actos y una plática honesta que una carta."
+  },
+  {
+   "q": "¿El Rey de Copas es emocionalmente distante?",
+   "a": "Al derecho, no: es lo contrario, presente y sereno. La idea viene de la carta al revés, que puede hablar de sentimientos contenidos o de compostura usada como escudo. Como significado, eso es distancia, no falta de cariño, y vale la pena nombrarla con suavidad."
+  },
+  {
+   "q": "¿Por qué el Rey de Copas está sobre el mar?",
+   "a": "La respuesta de Waite es breve: la copa va con el agua, y a las olas no les da un significado aparte (p. 198). En Arcana Diary el dibujo se lee tal cual: una figura serena sobre agua inquieta, firme sin detener las olas."
+  }
+ ],
+ "related": [
+  "cups-13-queen",
+  "cups-01-ace",
+  "wands-14-king",
+  "swords-14-king",
+  "pentacles-14-king"
+ ],
+ "mentions": [
+  {
+   "card_id": "major-04-emperor",
+   "text": "El Emperador"
+  },
+  {
+   "card_id": "pentacles-14-king",
+   "text": "Rey de Oros"
+  }
+ ],
+ "waite": {
+  "quote": "Fair man, man of business, law, or divinity; responsible … creative intelligence. Reversed: Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss.",
+  "quote_lang": "en",
+  "pages": [
+   198
+  ],
+  "translation": "Hombre de tez clara, hombre de negocios, de leyes o de teología; responsable … inteligencia creativa. Al revés: hombre deshonesto, de doble juego; bribonería, exacción, injusticia, vicio, escándalo, saqueo, pérdida considerable.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Cups 14.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_14.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    84,
+    198,
+    254
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

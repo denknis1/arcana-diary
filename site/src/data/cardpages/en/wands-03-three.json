@@ -1,0 +1,208 @@
+{
+ "schema": 2,
+ "card_id": "wands-03-three",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Three of Wands",
+  "in_sentence": "the Three of Wands"
+ },
+ "title": "Three of Wands Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "Three of Wands upright: expansion, foresight, progress; reversed: unexpected delays. Love, work, advice and Waite's 1911 text. Ask your question.",
+ "h1": "Three of Wands Tarot Card Meaning",
+ "image_alt": "Three of Wands, 1909 Rider–Waite–Smith card: a man seen from behind stands on a cliff among three staves, watching small ships on a golden-yellow sea.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 3,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "The Three of Wands means expansion and foresight: progress is under way, and you are looking ahead to what it can grow into. Reversed, it can mean unexpected delays, frustration or playing small. A positive card, it rewards patience and a wide view. It says yes upright, since the ships are already at sea and making headway.",
+ "keywords": {
+  "upright": [
+   "expansion",
+   "foresight",
+   "progress",
+   "looking ahead"
+  ],
+  "reversed": [
+   "unexpected delays",
+   "frustration",
+   "playing small",
+   "lack of foresight"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Three of Wands card?",
+   "paragraphs": [
+    "Waite describes \"A calm, stately personage, with his back turned, looking from a cliff's edge at ships passing over the sea\" (p. 192). Three staves stand planted in the ground, and he \"leans slightly on one of them\" (p. 192).",
+    "On the 1909 card the whole sky and sea are a deep yellow, almost gold. The man, the largest shape in the picture, wears a red robe with a green cloak thrown over one shoulder, a checked band across his back and a thin white band around his head. His right hand grips the staff beside him. Small ships sit far out on the water, gray hills line the horizon, and III is printed at the top."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Three of Wands?",
+   "paragraphs": [
+    "Waite's figure is a merchant: \"those are his ships, bearing his merchandise\" (p. 192). Waite adds that the card means \"able co-operation in business\", as if a successful merchant looked toward you ready to help (p. 192), and in his later notes he calls it \"A very good card; collaboration will favour enterprise\" (p. 289).",
+    "Waite's reversed meaning (p. 192) is unusual because it is good news: troubles end and hardship pauses. Today the reversed card is read the other way, as described below."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Three of Wands mean upright?",
+   "paragraphs": [
+    "Expansion is the heart of this card. Plans that were drafted earlier are now moving, and the view keeps widening. Progress is real but not finished: the ships are out, not yet home.",
+    "Foresight matters here. The card suits long-range thinking: work with people far away, a course or move that widens your world, a project ready for a bigger stage. Looking ahead is its posture, calm and alert rather than anxious, the way the man stands on the cliff with one hand on his staff.",
+    "Which of your efforts is already under way, and what would help it travel further?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Three of Wands mean reversed?",
+   "paragraphs": [
+    "Reversed, the card usually stands for unexpected delays: the ships seem slow, and frustration grows while you wait. It can also mean playing small, staying near home when the plan needs a wider field, or a lack of foresight that leaves you surprised by obstacles.",
+    "This is a modern reading, the opposite of Waite's (p. 192). Either way, check what is still in your hands and adjust the course rather than abandon it."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Three of Wands mean in love?",
+   "paragraphs": [
+    "On your own, the card favors widening your circle: new places, new people, a connection that might begin at a distance. Your own openness widens the view.",
+    "In a couple, it supports shared plans, a trip, a move, a future you are building step by step, and it is a common card for long-distance relationships.",
+    "Reversed, waiting may feel too long, or you may be holding back from a bigger step. Patience helps, and so does saying plainly what you hope for."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Three of Wands mean for work and money?",
+   "paragraphs": [
+    "Work under this card is growing: a project expanding, clients or partners further away, a role that reaches a wider market. Waite's merchant watching his ships fits it well (p. 192).",
+    "As money, the Three of Wands means returns beginning to show from earlier effort and room to grow, especially through trade, sales or collaboration. Reversed, payment or growth may come slower than planned, which calls for patience and a fresh look at the plan."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Three of Wands?",
+   "paragraphs": [
+    "Reach out to one person or opportunity beyond your usual circle, and then give it time. A plan that travels far needs both a first message and the patience to let it arrive."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Three of Wands a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Three of Wands as a person and as feelings",
+   "paragraphs": [
+    "Watching ships from a high ledge, the Three of Wands is someone with a long view: an organizer, a trader, a partner who thinks in years rather than days, sometimes a person who lives or works far away. In a question about feelings, the Three of Wands means hopeful interest that looks to the future, imagining where a connection could go and ready to give it room. Reversed, the feeling turns into impatience or doubt: things seem to move too slowly, or there is hesitation to commit beyond the familiar."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Three of Wands with other cards",
+   "pairs": [
+    {
+     "card_id": "pentacles-03-three",
+     "text": "Growth through teamwork: the plan expands because skilled people join it."
+    },
+    {
+     "card_id": "swords-06-six",
+     "text": "A move or journey toward calmer ground, with a wider view ahead."
+    },
+    {
+     "card_id": "wands-06-six",
+     "text": "Progress turns into recognition; the effort you sent out starts to be seen."
+    },
+    {
+     "card_id": "cups-04-four",
+     "text": "An offer from further away is easy to miss. Look up from the usual."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Three of Wands or Two of Wands?",
+   "paragraphs": [
+    "In the Two of Wands the man is still at home: Waite puts him on \"a battlemented roof\" with a globe in his hand (p. 194). That card is read today as planning and choosing. The difference is the stage. On the Two the decision is being made inside the walls; on the Three the figure has left the castle for open ground, and his ships are already on the water."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Three of Wands",
+   "paragraphs": [
+    "What have I already set in motion?",
+    "Where am I playing small?",
+    "Who outside my usual circle could I reach out to?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Three of Wands a good or bad card?",
+   "a": "Good. It is one of the most hopeful Wands: effort under way, a widening view and support for growth. Its harder side is impatience when results seem slow. Even the old reversed meaning in Waite's book is gentle, an end of troubles (p. 192)."
+  },
+  {
+   "q": "Is the Three of Wands about waiting?",
+   "a": "Partly. It is active waiting: you have done your part and now watch for results, ready to act when they come. The figure does not sit; he stands at the edge, leaning on a staff. Attention, not worry, is what the card asks of the wait."
+  },
+  {
+   "q": "Does the Three of Wands mean travel?",
+   "a": "Often, in modern readings: journeys, work abroad, study far from home or simply a wider world. It does not set a date or promise a trip. It shows that looking beyond your usual shore is in the air, and that plans made earlier are starting to move."
+  }
+ ],
+ "related": [
+  "wands-02-two",
+  "wands-04-four",
+  "cups-03-three",
+  "swords-03-three",
+  "pentacles-03-three"
+ ],
+ "mentions": [
+  {
+   "card_id": "wands-02-two",
+   "text": "Two of Wands"
+  }
+ ],
+ "waite": {
+  "quote": "Established strength, enterprise, effort, trade, commerce, discovery … Reversed: The end of troubles, suspension or cessation of adversity, toil and disappointment.",
+  "quote_lang": "en",
+  "pages": [
+   192
+  ],
+  "translation": null,
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 03.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_03.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    192,
+    194,
+    289
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

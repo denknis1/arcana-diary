@@ -1,0 +1,150 @@
+{
+ "schema": 1,
+ "page_id": "yes-no-cards",
+ "lang": "en",
+ "url": "/yes-no/cards",
+ "status": "reviewed",
+ "title": "Yes or No Tarot Cards: All 78 and the Rule Behind Them",
+ "description": "Which tarot cards mean yes, no or not clear yet, why each card leans the way it does, and why every reversed card is not clear yet. See the rule, then ask.",
+ "h1": "Yes or no tarot cards: every card, and why it leans",
+ "lead": "The whole deck sorted by its yes-or-no lean, with the rule behind it. Nothing is hidden: this same list decides the answer you get on the Yes or No page.",
+ "capsule": "On Arcana Diary each card has a fixed lean when upright: {yes_count} of the 78 lean yes, {no_count} lean no and {unclear_count} say not clear yet. Any reversed card reads as not clear yet. With three cards, only the yes and no cards are counted; the side with more cards decides, and a tie stays not clear yet.",
+ "blocks": [
+  {
+   "id": "the-rule",
+   "heading": "The rule in one paragraph",
+   "paragraphs": [
+    "Every card's lean comes from its upright picture and meaning. A scene of movement, growth or something offered leans yes; a scene of loss, a heavy load or a door closing leans no; a scene of waiting, weighing or a choice not yet made says not clear yet. A reversed card always reads as not clear yet. One card gives its own lean. Three cards vote: the not-clear cards abstain, and whichever of yes and no has more cards wins. If they tie, or none of the three is decisive, the answer is not clear yet.",
+    "Two examples. The Sun, a reversed Three of Swords and The Hermit: only The Sun is decisive, so the answer is yes. The Star, the Five of Cups and Justice: one yes, one no and one abstaining card make a tie, so the answer is not clear yet — and the reading shows you which card pulled which way."
+   ]
+  },
+  {
+   "id": "lean-yes",
+   "heading": "Cards that lean yes",
+   "paragraphs": [
+    "Upright, {yes_count} cards lean yes. Most of the Wands, Cups and Pentacles are here, along with most of the Major Arcana, while the Swords give only a couple. What they share is a picture of something moving forward or being handed over: The Chariot driving on, eight wands flying through a clear sky, the Ace of Cups overflowing in five streams, a golden coin held out above a garden in the Ace of Pentacles.",
+    "A few of them surprise people. The Wheel of Fortune leans yes because the wheel is turning and things that were stuck begin to move. Temperance leans yes because the angel pours between two cups without spilling a drop: patience that works. The few Swords that do lean yes are about clear thinking and a decision made with reason."
+   ]
+  },
+  {
+   "id": "lean-no",
+   "heading": "Cards that lean no",
+   "paragraphs": [
+    "{no_count} cards lean no. Among the Majors there are only a few, among them Death and The Tower; among the Minor cards they are mostly Swords, with a few from the other suits. Their pictures show something ending, weighing down or going wrong: the bent figure under ten wands, the cloaked figure staring at three spilled cups, two people passing a lit window in the snow, a figure sitting up awake under nine swords.",
+    "A no describes the situation, not you. Death leans no because a chapter is closing rather than going on as it was, and the honest answer to \"Will this stay the same?\" is often no. The Devil leans no because its chains hold the figures in place, even though they could be lifted off: the no is about the hold, and the hold can change."
+   ]
+  },
+  {
+   "id": "not-clear-yet",
+   "heading": "Not clear yet",
+   "paragraphs": [
+    "{unclear_count} cards say not clear yet when upright. A handful of Majors say it, such as The High Priestess and The Moon; the rest are Minor cards whose pictures catch the moment before an outcome: a blindfolded woman holding two swords in balance, a boat still mid-crossing, a farmer leaning on his hoe while the harvest ripens.",
+    "Not clear yet is an answer, not a failure. It says that what you are asking about is still being weighed, waited for or decided, often by you. The useful step is to name what is missing: information, time, or your own choice."
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "Reversed cards: why they are not a no",
+   "paragraphs": [
+    "Many lists flip a reversed card into its opposite, so a reversed yes turns into a no. Arcana Diary does not. A reversed card keeps its theme but shows it blocked, delayed or turned inward, and a blocked yes is not the same as a no. So every reversed card, whatever its upright lean, reads as not clear yet, and in a three-card reading it abstains like any other not-clear card.",
+    "This keeps reversals meaningful without letting them overrule the rest: two reversed cards and an upright Star still give a yes, because The Star is the only card that decides."
+   ]
+  },
+  {
+   "id": "how-to-ask",
+   "heading": "Questions that work, and questions to skip",
+   "paragraphs": [
+    "A yes-or-no question works best when it is about your own step, here and now: \"Is it a good idea to apply for this job?\" or \"Should I bring this up with my sister this week?\" Questions about timing, such as \"When will I meet someone?\", suit an open reading better, because the cards give a lean, never a date.",
+    "Skip questions about what is going on inside another person's head or heart. A card can describe the kind of feeling it stands for, but not the inner life of someone specific. Ask instead what you can do in that relationship, or what you need to understand about it."
+   ]
+  },
+  {
+   "id": "how-far-to-trust",
+   "heading": "How far to trust a yes or no",
+   "paragraphs": [
+    "Tarot does not see the future, so no answer from the cards is a forecast. Treat the lean as one input that comes with its reason: read why the card leans the way it does and hold that against what you already know. If the reason fits, it is worth weighing; if it does not, your own judgment wins.",
+    "The diary helps you test it. Save the reading, then return in a week or a month and note whether it came true, partly, or not at all. Over a few months you see for yourself how much weight your yes-or-no readings deserve."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Why is a reversed card not clear yet and not a no?",
+   "a": "Because a reversed card shows its theme blocked or delayed, and a blocked yes is not the same as a no. Every reversed card therefore reads as not clear yet, whatever its upright lean, and in a three-card reading it abstains."
+  },
+  {
+   "q": "Can the same card give a different answer on another day?",
+   "a": "Not on its own: a card in the same orientation always has the same lean, as the list on this page shows. What changes is the orientation, since about half of all draws land reversed, and, with three cards, the other cards that vote with it or against it."
+  },
+  {
+   "q": "Which card is the strongest yes?",
+   "a": "None. Under the rule every yes counts the same: one card, one vote. A card like The Sun may feel like a stronger yes because of its picture, but in a three-card vote it carries no more weight than any other yes."
+  },
+  {
+   "q": "Can I draw again if I don't like the answer?",
+   "a": "You can, but drawing until a yes comes up tells you only that you wanted one. A better move is to read why the card leaned as it did and then ask what you can do about it. Each reading comes with {followups} free follow-up questions for exactly that."
+  }
+ ],
+ "intents": [
+  {
+   "q": "tarot cards yes or no",
+   "source": "[Ahrefs] 800",
+   "answered_in": "capsule"
+  },
+  {
+   "q": "yes no meanings of all 78 tarot cards",
+   "source": "[title angelorum]",
+   "answered_in": "capsule"
+  },
+  {
+   "q": "what cards mean yes or no in tarot?",
+   "source": "[PAA]",
+   "answered_in": "the-rule"
+  },
+  {
+   "q": "yes or no tarot cards list",
+   "source": "[карта страниц]",
+   "answered_in": "lean-yes"
+  },
+  {
+   "q": "which tarot cards mean yes, no, or maybe?",
+   "source": "[H2 mysticmag]",
+   "answered_in": "not-clear-yet"
+  },
+  {
+   "q": "major arcana that mean yes, no and maybe",
+   "source": "[H2 mysticmag]",
+   "answered_in": "lean-no"
+  },
+  {
+   "q": "minor arcana that mean yes, no and maybe",
+   "source": "[H2 mysticmag]",
+   "answered_in": "lean-yes"
+  },
+  {
+   "q": "yes vs no tarot cards",
+   "source": "[reddit r/tarot, поз.3]",
+   "answered_in": "lean-no"
+  },
+  {
+   "q": "how to obtain a yes or no answer with reversals",
+   "source": "[H2 tarotelements]",
+   "answered_in": "reversed"
+  },
+  {
+   "q": "yes no tarot questions to avoid",
+   "source": "[H2 tarotelements]",
+   "answered_in": "how-to-ask"
+  },
+  {
+   "q": "including time frames in yes no tarot questions",
+   "source": "[H2 tarotelements]",
+   "answered_in": "how-to-ask"
+  },
+  {
+   "q": "thoughts on yes/no tarots?",
+   "source": "[reddit sitelink]",
+   "answered_in": "how-far-to-trust"
+  }
+ ]
+}

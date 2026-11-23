@@ -1,0 +1,172 @@
+{
+ "schema": 1,
+ "page_id": "si-o-no",
+ "lang": "es",
+ "url": "/es/si-o-no",
+ "status": "reviewed",
+ "title": "Tarot sí o no gratis: 1 o 3 cartas, y el porqué",
+ "description": "Haz una pregunta de sí o no y saca 1 o 3 cartas. Cada carta tiene una inclinación fija y la carta invertida da «todavía no está claro». Pruébalo gratis.",
+ "h1": "Tarot sí o no: una respuesta clara, y por qué",
+ "lead": "Escribe una pregunta que se pueda contestar con sí o no, saca una carta o tres y mira hacia dónde se inclinan. Junto a la respuesta aparece la razón, para que no sea un sí o un no salido de la nada.",
+ "capsule": null,
+ "blocks": [
+  {
+   "id": "como-funciona",
+   "heading": "¿Cómo funciona el sí o no?",
+   "paragraphs": [
+    "Cada una de las 78 cartas tiene en nuestra base una inclinación fija: sí, no o todavía no está claro. Esa inclinación sale del significado de la carta al derecho. El Sol, por ejemplo, se inclina al sí, porque bajo su luz nada queda en sombra; La Torre, al no, porque lo construido se cae en lugar de avanzar; La Luna se queda en «todavía no está claro», porque ilumina a medias. La página de cada carta dice hacia dónde se inclina.",
+    "En total, {yes_count} cartas se inclinan al sí, {no_count} al no y {unclear_count} quedan en todavía no está claro. La cuenta no es pareja, y conviene decirlo: en la baraja hay más cartas que empujan hacia adelante que cartas que cierran el paso. Entre los arcanos mayores, la mayoría dice sí; en los palos, también buena parte de Bastos, Copas y Oros, mientras que en Espadas casi ninguna.",
+    "Cuando una carta sale al revés, su respuesta siempre es «todavía no está claro», sea cual sea. No quiere decir que la respuesta sea mala: quiere decir que todavía se está formando, que algo está a medias o necesita otra vuelta antes de decidir.",
+    "La respuesta no la elige el lector: la calcula nuestro código con esa regla, antes de que empiece la lectura. El lector de inteligencia artificial solo explica por qué la carta se inclina hacia ese lado, a partir de su significado, y propone un paso. Así puedes revisar cualquier respuesta, porque la regla es la misma para todas las personas y todas las preguntas."
+   ]
+  },
+  {
+   "id": "una-o-tres",
+   "heading": "¿Una carta o tres?",
+   "paragraphs": [
+    "Con una carta tienes una inclinación inmediata: la respuesta es la de esa carta. Sirve para las dudas del día a día, cuando buscas un empujón para pensar y no un análisis largo.",
+    "Con tres cartas decide la mayoría, pero solo votan las que se inclinan al sí o al no; las que todavía no están claras se abstienen. Si hay más síes que noes, la respuesta es sí; si hay más noes, es no. Si quedan empatadas, o si ninguna de las tres se inclina, la respuesta es «todavía no está claro». Por eso una sola carta de sí puede decidir cuando las otras dos todavía se están formando.",
+    "Estas tres cartas no tienen pasado, presente ni futuro: cada una es un voto sobre tu pregunta tal como está hoy. En la lectura ves hacia dónde se inclina cada una y qué inclinó la balanza. Si la decisión te importa mucho, tres cartas dan más matices; si solo quieres una señal para arrancar, con una basta. No hay tiradas de cinco: el sí o no se hace con una carta o con tres."
+   ]
+  },
+  {
+   "id": "como-preguntar",
+   "heading": "¿Cómo preguntar para que la respuesta sirva?",
+   "paragraphs": [
+    "Una buena pregunta de sí o no habla de algo que depende de ti y se contesta con una palabra: «¿Me conviene aceptar esta oferta?», «¿Es buen momento para hablar con mi jefa?», «¿Me inscribo al curso?». Mientras más concreta sea, más fácil es entender la respuesta.",
+    "Evita juntar dos preguntas en una, como «¿Renuncio y me cambio de ciudad?», porque un sí no te diría a cuál de las dos responde. Y evita las preguntas con fecha, como «¿Me irá bien antes de diciembre?»: las cartas no manejan plazos.",
+    "Algunas preguntas no reciben sí ni no. Si preguntas qué siente, piensa o hará otra persona, o algo sobre salud, seguridad o el resultado de un asunto legal, la lectura no da veredicto: te habla de cómo llevas esa situación y de lo que sí está en tus manos. En preguntas de dinero, la respuesta se lee como una inclinación sobre tu propia decisión, nunca como un pronóstico de ganancias, y la página te recuerda que no es un consejo financiero."
+   ]
+  },
+  {
+   "id": "que-hago-con-un-no",
+   "heading": "¿Qué hago con un «no»?",
+   "paragraphs": [
+    "Un no no es un castigo ni una puerta cerrada para siempre. Casi siempre viene de una carta que habla de pérdida, de conflicto, de cansancio o de algo que se viene abajo, y te pide mirar eso antes de seguir. Lee el porqué que aparece junto a la respuesta: ahí está la razón concreta.",
+    "Pregúntate qué parte del no tiene que ver con el momento y qué parte con el plan. A veces el plan está bien y lo que falta es descanso, información o una plática pendiente. Si después de pensarlo sigues con ganas de hacerlo, la decisión es tuya; la carta solo te dio algo que considerar.",
+    "Con «todavía no está claro», no repitas la tirada de inmediato buscando otra respuesta. La carta ya te dijo que algo no termina de acomodarse. Mejor espera a tener más datos, cambia la pregunta por una más precisa o pregunta qué necesitas saber antes de decidir."
+   ]
+  },
+  {
+   "id": "que-tan-acertado",
+   "heading": "¿Qué tan acertado es el tarot sí o no?",
+   "paragraphs": [
+    "Ninguna tirada de sí o no puede asegurarte lo que va a ocurrir, y si una página te promete aciertos totales, toma esa promesa con calma. Las cartas salen al azar; lo que no es azar es la regla con la que se leen, y esa regla está a la vista y no cambia según tu pregunta.",
+    "Lo que sí logra una respuesta de sí o no es mover algo en ti. Si te sale sí y sientes alivio, ya sabes lo que querías. Si te sale no y te da coraje, también. Esa reacción suele ser lo más útil de toda la tirada.",
+    "Si inicias sesión, puedes guardar la lectura en tu diario y regresar después a marcar si se cumplió, en parte o no. Con el tiempo ves por tu cuenta qué tanto te sirvieron estas respuestas."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El tarot sí o no es gratis?",
+   "a": "Sí. Cada tirada, de una carta o de tres, cuenta como una de tus lecturas del día: {guest_limit} sin registro y {user_limit} con sesión iniciada. No pagas por ver la respuesta ni el porqué."
+  },
+  {
+   "q": "¿Qué cartas del tarot significan sí?",
+   "a": "En nuestra base, {yes_count} cartas se inclinan al sí cuando salen al derecho: casi todos los arcanos mayores y buena parte de Bastos, Copas y Oros. Hablan de comienzos, avance, logro o apoyo, y El Sol es un buen ejemplo. La página de cada carta dice hacia dónde se inclina y por qué."
+  },
+  {
+   "q": "¿Qué cartas significan no?",
+   "a": "En nuestra base son {no_count} cartas, y La Torre es un ejemplo. Hablan de pérdida, conflicto, engaño, agotamiento o de algo que se derrumba. Otras {unclear_count} quedan en «todavía no está claro». En la página de cada carta ves en qué grupo está."
+  },
+  {
+   "q": "¿Por qué una carta al revés da «todavía no está claro»?",
+   "a": "Porque al revés la energía de la carta se frena, se tuerce o se vuelve hacia adentro, y eso no alcanza para un sí ni para un no. Es una regla nuestra y la aplicamos igual a las 78 cartas, así la respuesta nunca depende de una interpretación hecha al momento."
+  },
+  {
+   "q": "¿Puedo preguntar sí o no sobre el amor?",
+   "a": "Sí, siempre que la pregunta sea sobre ti: «¿Le doy otra oportunidad a esta relación?» o «¿Es momento de decir lo que siento?». Si preguntas si la otra persona te quiere o si te busca, la lectura no da veredicto y vuelve a ti. Para mirar tu relación con más calma, prueba la tirada del amor."
+  },
+  {
+   "q": "¿Puedo repetir la pregunta si no me gusta la respuesta?",
+   "a": "Puedes, pero cada tirada nueva usa una de tus lecturas del día y saca cartas nuevas al azar, así que la respuesta puede cambiar sin que haya cambiado nada en tu vida. Te sirve más releer el porqué de la primera y pensar qué te movió."
+  },
+  {
+   "q": "¿Sirve con el tarot de Marsella?",
+   "a": "Aquí no usamos el tarot de Marsella: la regla está hecha para la Rider–Waite–Smith de 1909 y sus 78 cartas. Otras barajas tienen sus propias costumbres para el sí y el no, y no las mezclamos con la nuestra."
+  }
+ ],
+ "intents": [
+  {
+   "q": "tarot si o no",
+   "source": "[Ahrefs MX] 4 000",
+   "answered_in": "como-funciona"
+  },
+  {
+   "q": "tarot si o no gratis",
+   "source": "[Ahrefs MX] 1 300",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "tarot del si o no",
+   "source": "[Ahrefs MX] 500",
+   "answered_in": "como-funciona"
+  },
+  {
+   "q": "tarot gratis si o no",
+   "source": "[Ahrefs MX] 400",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "tarot si o no 1 carta",
+   "source": "[Ahrefs MX] 350",
+   "answered_in": "una-o-tres"
+  },
+  {
+   "q": "tarot si o no 1 carta gratis",
+   "source": "[Ahrefs MX] 200",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "tarot si o no del amor",
+   "source": "[Ahrefs MX] 80",
+   "answered_in": "faq:4"
+  },
+  {
+   "q": "tarot sí o no certero",
+   "source": "[title nostra]",
+   "answered_in": "que-tan-acertado"
+  },
+  {
+   "q": "tarot sí o no respuesta inmediata",
+   "source": "[title tarotap]",
+   "answered_in": "una-o-tres"
+  },
+  {
+   "q": "qué cartas del tarot significan sí, no o depende",
+   "source": "[H2 jobcannon, juliantarot]",
+   "answered_in": "faq:1"
+  },
+  {
+   "q": "qué cartas significan no en el tarot",
+   "source": "[H2 jobcannon, juliantarot]",
+   "answered_in": "faq:2"
+  },
+  {
+   "q": "cómo se decide sí, no o quizás",
+   "source": "[H2 juliantarot]",
+   "answered_in": "como-funciona"
+  },
+  {
+   "q": "tarot de marsella sí o no: los 22 arcanos",
+   "source": "[H2 juliantarot]",
+   "answered_in": "faq:6"
+  },
+  {
+   "q": "cómo hacer el tarot sí o no gratis",
+   "source": "[H2 tarotap]",
+   "answered_in": "como-preguntar"
+  },
+  {
+   "q": "1 carta o 3 cartas",
+   "source": "[H2 tarotap, juliantarot]",
+   "answered_in": "una-o-tres"
+  },
+  {
+   "q": "tarot si o no con 5 cartas gratis",
+   "source": "[tiradastarotgratis, источник AIO]",
+   "answered_in": "una-o-tres"
+  }
+ ]
+}

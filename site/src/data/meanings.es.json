@@ -8,7 +8,8 @@
    "salto a lo nuevo"
   ],
   "upright": "El Loco camina hacia el borde de un precipicio con una rosa blanca en la mano y la mirada en el cielo. Invita a empezar algo sin tener todas las respuestas, con curiosidad y ligereza. Decirle que sí a lo nuevo puede abrirte caminos, siempre que mires dónde pones el pie.",
-  "reversed": "Al revés, El Loco puede señalar un impulso que corre más rápido que la reflexión o, al contrario, un miedo que no te deja dar el primer paso. Quizá esperas una certeza total antes de moverte. Pregúntate si lo que te frena es prudencia o pura costumbre."
+  "reversed": "Al revés, El Loco puede señalar un impulso que corre más rápido que la reflexión o, al contrario, un miedo que no te deja dar el primer paso. Quizá esperas una certeza total antes de moverte. Pregúntate si lo que te frena es prudencia o pura costumbre.",
+  "yes_no_why": "El Loco mira hacia adelante, ligero de equipaje, y el camino frente a él está abierto."
  },
  {
   "card_id": "major-01-magician",
@@ -19,7 +20,8 @@
    "recursos a la mano"
   ],
   "upright": "Sobre la mesa de El Mago están la copa, la espada, el bastón y la moneda: todo lo que necesitas ya está a tu alcance. La carta te pide enfocar tu energía, usar tus talentos y convertir una idea en acción. Lo importante es elegir una dirección y ponerle intención.",
-  "reversed": "Puede haber talento disperso o planes que se quedan en palabras. A veces esta posición también señala la tentación de convencer en lugar de hablar claro, contigo o con otros. Revisa si tus recursos están al servicio de lo que de verdad quieres."
+  "reversed": "Puede haber talento disperso o planes que se quedan en palabras. A veces esta posición también señala la tentación de convencer en lugar de hablar claro, contigo o con otros. Revisa si tus recursos están al servicio de lo que de verdad quieres.",
+  "yes_no_why": "El Mago ya tiene las herramientas sobre la mesa y la voluntad para usarlas."
  },
  {
   "card_id": "major-02-high-priestess",
@@ -30,7 +32,8 @@
    "saber interior"
   ],
   "upright": "La Sacerdotisa se sienta entre dos columnas, una oscura y otra clara, frente a un velo que no deja ver lo que hay detrás. Representa el conocimiento que llega en silencio, cuando dejas de buscar respuestas afuera. Observa, escucha tu voz interior y no fuerces decisiones.",
-  "reversed": "Puede que tu intuición ya te esté diciendo algo, pero el ruido de afuera no te deja escucharla. Hay secretos que pesan o información que no sale de detrás del velo. Date un rato de quietud antes de tomar partido."
+  "reversed": "Puede que tu intuición ya te esté diciendo algo, pero el ruido de afuera no te deja escucharla. Hay secretos que pesan o información que no sale de detrás del velo. Date un rato de quietud antes de tomar partido.",
+  "yes_no_why": "La Sacerdotisa guarda sus respuestas detrás del velo, sin mostrarlas."
  },
  {
   "card_id": "major-03-empress",
@@ -42,7 +45,8 @@
    "crecimiento"
   ],
   "upright": "La Emperatriz descansa en un campo de trigo maduro, entre árboles y un arroyo que corre. Celebra el crecimiento, la creatividad y el gusto por los placeres sencillos: la comida, la belleza, el contacto con la naturaleza. Es una carta generosa para los proyectos que piden paciencia y cariño.",
-  "reversed": "La creatividad puede sentirse seca, como un jardín sin agua, o el disfrute queda para después de terminar los pendientes. La autoexigencia puede apurar lo que necesita crecer a su propio ritmo. Recupera algo que te dé gusto sin tener que ganártelo."
+  "reversed": "La creatividad puede sentirse seca, como un jardín sin agua, o el disfrute queda para después de terminar los pendientes. La autoexigencia puede apurar lo que necesita crecer a su propio ritmo. Recupera algo que te dé gusto sin tener que ganártelo.",
+  "yes_no_why": "La Emperatriz está rodeada de trigo maduro: lo que se cuida con paciencia da fruto."
  },
  {
   "card_id": "major-04-emperor",
@@ -53,7 +57,8 @@
    "límites claros"
   ],
   "upright": "El Emperador ocupa un trono de piedra decorado con cabezas de carnero. Representa el orden, la responsabilidad y la capacidad de sostener lo que construyes con reglas claras. Puedes tomar el mando de tu situación y poner límites que te protejan.",
-  "reversed": "El control se vuelve rigidez: una autoridad que se impone sin escuchar, ya sea la tuya o la de alguien más. En otros casos ocurre lo contrario: falta estructura y los días pasan sin orden. Revisa dónde necesitas más firmeza y dónde más flexibilidad."
+  "reversed": "El control se vuelve rigidez: una autoridad que se impone sin escuchar, ya sea la tuya o la de alguien más. En otros casos ocurre lo contrario: falta estructura y los días pasan sin orden. Revisa dónde necesitas más firmeza y dónde más flexibilidad.",
+  "yes_no_why": "El Emperador se apoya en un trono de piedra: hay base sólida y control de la situación."
  },
  {
   "card_id": "major-05-hierophant",
@@ -65,7 +70,8 @@
    "comunidad"
   ],
   "upright": "El Papa bendice a dos discípulos arrodillados, con dos llaves cruzadas a sus pies. Habla de tradiciones, maestros y caminos ya probados que pueden orientarte. Aprender de alguien con experiencia o reconectar con los valores que te sostienen puede darte rumbo.",
-  "reversed": "Algunas reglas ya no te quedan, o sientes presión por hacer las cosas como se espera de ti. La carta también puede invitarte a buscar tu propia manera de creer. Distingue entre lo que eliges seguir y lo que sigues por costumbre."
+  "reversed": "Algunas reglas ya no te quedan, o sientes presión por hacer las cosas como se espera de ti. La carta también puede invitarte a buscar tu propia manera de creer. Distingue entre lo que eliges seguir y lo que sigues por costumbre.",
+  "yes_no_why": "El Papa bendice a quienes siguen un camino probado, con las llaves del saber a sus pies."
  },
  {
   "card_id": "major-06-lovers",
@@ -76,7 +82,8 @@
    "armonía"
   ],
   "upright": "En Los Enamorados, un ángel extiende sus alas sobre un hombre y una mujer, y ella alza la mirada hacia el ángel. La carta une los vínculos sinceros con las elecciones importantes que reflejan lo que valoras. Elegir con el corazón y con honestidad puede abrir un camino más auténtico.",
-  "reversed": "Surgen dudas entre dos opciones, una decisión que evitas o una distancia entre lo que quieres y lo que haces. No siempre se trata de pareja: a veces el desacuerdo es contigo, entre lo que dices querer y lo que eliges cada día. Mira qué valor tuyo está en juego."
+  "reversed": "Surgen dudas entre dos opciones, una decisión que evitas o una distancia entre lo que quieres y lo que haces. No siempre se trata de pareja: a veces el desacuerdo es contigo, entre lo que dices querer y lo que eliges cada día. Mira qué valor tuyo está en juego.",
+  "yes_no_why": "En Los Enamorados hay encuentro, bendición y una elección hecha con el corazón."
  },
  {
   "card_id": "major-07-chariot",
@@ -87,7 +94,8 @@
    "autocontrol"
   ],
   "upright": "El Carro avanza tirado por dos esfinges, una blanca y una negra, que el conductor guía sin riendas. Habla de voluntad, enfoque y de mover tu vida hacia donde decides ir. Cuando tus fuerzas internas tiran hacia lados distintos, tu intención es lo que las alinea.",
-  "reversed": "Perder el rumbo o querer controlarlo todo a la fuerza son las dos caras de esta posición. Cuando cada esfinge va por su lado, la energía se reparte en demasiadas metas a la vez. Elige una dirección y suelta lo que te jala hacia otro lado."
+  "reversed": "Perder el rumbo o querer controlarlo todo a la fuerza son las dos caras de esta posición. Cuando cada esfinge va por su lado, la energía se reparte en demasiadas metas a la vez. Elige una dirección y suelta lo que te jala hacia otro lado.",
+  "yes_no_why": "El Carro ya está en marcha y su conductor sabe hacia dónde va."
  },
  {
   "card_id": "major-08-strength",
@@ -98,7 +106,8 @@
    "valor sereno"
   ],
   "upright": "En La Fuerza, una mujer cierra con suavidad la boca de un león, sin violencia ni prisa. Muestra una fortaleza que nace de la paciencia y la compasión, no del control. Puedes manejar lo difícil si te tratas con firmeza y ternura a la vez.",
-  "reversed": "Puede haber dudas sobre tu propia capacidad o emociones intensas que se desbordan. A veces el león de esta carta es la exigencia de aguantarlo todo sin quejarte. Recuerda que apoyarte en otros también es una forma de valentía."
+  "reversed": "Puede haber dudas sobre tu propia capacidad o emociones intensas que se desbordan. A veces el león de esta carta es la exigencia de aguantarlo todo sin quejarte. Recuerda que apoyarte en otros también es una forma de valentía.",
+  "yes_no_why": "La Fuerza doma al león con calma: el valor sereno tiene la situación en sus manos."
  },
  {
   "card_id": "major-09-hermit",
@@ -109,7 +118,8 @@
    "sabiduría"
   ],
   "upright": "El Ermitaño se detiene en la cima de la montaña con un farol que ilumina solo el siguiente paso. Propone retirarte un poco del ruido para encontrar tus propias respuestas. Este tiempo a solas no es aislamiento, sino una pausa para escucharte con honestidad.",
-  "reversed": "El retiro puede volverse aislamiento que ya no te hace bien o, al revés, miedo a quedarte en silencio contigo. Quizá buscas respuestas en todos lados menos en tu propia experiencia. Encuentra un punto medio entre la reflexión y la compañía."
+  "reversed": "El retiro puede volverse aislamiento que ya no te hace bien o, al revés, miedo a quedarte en silencio contigo. Quizá buscas respuestas en todos lados menos en tu propia experiencia. Encuentra un punto medio entre la reflexión y la compañía.",
+  "yes_no_why": "El farol de El Ermitaño alumbra solo el siguiente paso, no el final del camino."
  },
  {
   "card_id": "major-10-wheel-of-fortune",
@@ -120,7 +130,8 @@
    "movimiento"
   ],
   "upright": "La Rueda de la Fortuna gira en el cielo con una esfinge en lo alto y figuras que suben y bajan a su alrededor. Habla de ciclos, de cambios que no controlas del todo y de oportunidades que pueden aparecer cuando menos lo esperas. Lo que sí puedes elegir es cómo te mueves con el giro.",
-  "reversed": "Puede que sientas que las cosas no avanzan o que se repite un patrón conocido. También aparece la resistencia al cambio, como si quisieras detener la rueda con las manos. Observa qué parte del ciclo depende de ti y empieza por ahí."
+  "reversed": "Puede que sientas que las cosas no avanzan o que se repite un patrón conocido. También aparece la resistencia al cambio, como si quisieras detener la rueda con las manos. Observa qué parte del ciclo depende de ti y empieza por ahí.",
+  "yes_no_why": "La Rueda gira en el cielo y nada en ella se queda quieto: es una carta de movimiento."
  },
  {
   "card_id": "major-11-justice",
@@ -131,7 +142,8 @@
    "causa y efecto"
   ],
   "upright": "La Justicia sostiene una espada en alto con una mano y una balanza con la otra, y mira de frente. Pide decisiones honestas, asumir la responsabilidad de tus actos y buscar lo que es justo para todas las partes. Lo que pongas hoy en la balanza puede pesar en lo que construyas después.",
-  "reversed": "Hay una situación que sientes injusta o una decisión tomada sin ver todos los hechos. Esta posición también puede invitarte a revisar tu parte con honestidad, sin culpas. Reúne la información que falta antes de concluir."
+  "reversed": "Hay una situación que sientes injusta o una decisión tomada sin ver todos los hechos. Esta posición también puede invitarte a revisar tu parte con honestidad, sin culpas. Reúne la información que falta antes de concluir.",
+  "yes_no_why": "La balanza de La Justicia sigue en movimiento y pesa lo que cada parte pone en ella."
  },
  {
   "card_id": "major-12-hanged-man",
@@ -142,7 +154,8 @@
    "espera"
   ],
   "upright": "El Colgado pende de un árbol cabeza abajo, con el rostro tranquilo y una aureola de luz. Habla de una pausa que no es derrota, sino una oportunidad para mirar las cosas desde otro ángulo. A veces soltar el control te muestra lo que el esfuerzo no dejaba ver.",
-  "reversed": "La espera se alarga más de lo necesario o cuesta soltar lo que ya no avanza. Algunos sacrificios ya no te llevan a ningún lado. Pregúntate si esta pausa todavía te enseña algo o si ya toca ponerte de pie y mover algo, aunque sea poco."
+  "reversed": "La espera se alarga más de lo necesario o cuesta soltar lo que ya no avanza. Algunos sacrificios ya no te llevan a ningún lado. Pregúntate si esta pausa todavía te enseña algo o si ya toca ponerte de pie y mover algo, aunque sea poco.",
+  "yes_no_why": "El Colgado está suspendido en una pausa y mira el mundo al revés."
  },
  {
   "card_id": "major-13-death",
@@ -153,7 +166,8 @@
    "renovación"
   ],
   "upright": "La Muerte avanza despacio sobre un caballo blanco mientras, al fondo, el sol se asoma entre dos torres. Su mensaje es simbólico: señala el final de una etapa y la transformación que llega con él. Dejar ir lo que ya cumplió su ciclo abre espacio para algo nuevo.",
-  "reversed": "Algo en ti se resiste a un cambio o teme cerrar la puerta. Aferrarte a lo conocido puede alargar la incomodidad. Mira con cariño lo que se termina, agradece lo que te dio y permite que se vaya a su ritmo."
+  "reversed": "Algo en ti se resiste a un cambio o teme cerrar la puerta. Aferrarte a lo conocido puede alargar la incomodidad. Mira con cariño lo que se termina, agradece lo que te dio y permite que se vaya a su ritmo.",
+  "yes_no_why": "La Muerte marca el final de una etapa, no su continuación."
  },
  {
   "card_id": "major-14-temperance",
@@ -164,7 +178,8 @@
    "integración"
   ],
   "upright": "Un ángel vierte agua de una copa a otra, con un pie en el agua y otro en la tierra. La Templanza enseña a mezclar con calma, encontrar el punto medio y dejar que las cosas tomen su tiempo. Su armonía valora la paciencia más que la prisa.",
-  "reversed": "Los excesos, la prisa o una vida que se siente desbalanceada rompen la mezcla de esta carta. Tal vez intentas resolver todo a la vez. Haz un solo ajuste que te devuelva el equilibrio, como el ángel que mide el agua entre sus dos copas."
+  "reversed": "Los excesos, la prisa o una vida que se siente desbalanceada rompen la mezcla de esta carta. Tal vez intentas resolver todo a la vez. Haz un solo ajuste que te devuelva el equilibrio, como el ángel que mide el agua entre sus dos copas.",
+  "yes_no_why": "El ángel de La Templanza mezcla las aguas sin derramar: las piezas se acomodan con paciencia."
  },
  {
   "card_id": "major-15-devil",
@@ -175,7 +190,8 @@
    "cadenas sueltas"
   ],
   "upright": "En El Diablo, dos figuras están encadenadas, pero las cadenas son tan holgadas que podrían quitárselas. Muestra apegos, hábitos o relaciones que te atan más de lo que quisieras. Reconocer lo que te controla es el primer paso para recuperar tu libertad.",
-  "reversed": "Lo que te ata quizá se ve ya con más claridad, y con eso llegan las ganas de soltarlo. Ojo con las tentaciones que se disfrazan de libertad. Celebra cada paso hacia tu libertad, aunque parezca mínimo, y no te castigues si a veces regresas al mismo lugar."
+  "reversed": "Lo que te ata quizá se ve ya con más claridad, y con eso llegan las ganas de soltarlo. Ojo con las tentaciones que se disfrazan de libertad. Celebra cada paso hacia tu libertad, aunque parezca mínimo, y no te castigues si a veces regresas al mismo lugar.",
+  "yes_no_why": "Las cadenas de El Diablo siguen puestas, aunque flojas, y te atan a lo que no te conviene."
  },
  {
   "card_id": "major-16-tower",
@@ -186,7 +202,8 @@
    "liberación"
   ],
   "upright": "Un rayo golpea La Torre y derriba su corona, dejando ver lo que estaba mal construido. Habla de cambios bruscos que mueven estructuras que ya no eran firmes. Aunque la sacudida asuste, también puede liberarte de algo que se sostenía sobre bases falsas.",
-  "reversed": "Puede ser un cambio que intentas evitar o una crisis que se vive por dentro, sin que nadie la note. En otros casos, la sacudida llega con menos fuerza de lo que temías. Aprovecha para reconstruir con bases más honestas."
+  "reversed": "Puede ser un cambio que intentas evitar o una crisis que se vive por dentro, sin que nadie la note. En otros casos, la sacudida llega con menos fuerza de lo que temías. Aprovecha para reconstruir con bases más honestas.",
+  "yes_no_why": "El rayo derriba la corona de La Torre: lo construido se cae en lugar de avanzar."
  },
  {
   "card_id": "major-17-star",
@@ -197,7 +214,8 @@
    "inspiración"
   ],
   "upright": "Bajo un cielo lleno de estrellas, una mujer vierte agua sobre la tierra y sobre un estanque. La Estrella trae esperanza, calma y confianza en tu camino. Su luz renueva y te invita a creer otra vez en lo que deseas.",
-  "reversed": "El desánimo o la sensación de que la esperanza se apagó por un rato pueden estar presentes. A lo mejor dudas de tus propios sueños o te cuesta imaginar algo bueno para ti en este momento. Rescata algo pequeño que te devuelva la ilusión y cuídalo."
+  "reversed": "El desánimo o la sensación de que la esperanza se apagó por un rato pueden estar presentes. A lo mejor dudas de tus propios sueños o te cuesta imaginar algo bueno para ti en este momento. Rescata algo pequeño que te devuelva la ilusión y cuídalo.",
+  "yes_no_why": "Bajo La Estrella el agua vuelve a correr sobre la tierra y la esperanza se renueva."
  },
  {
   "card_id": "major-18-moon",
@@ -208,7 +226,8 @@
    "lo que no se ve"
   ],
   "upright": "La Luna habla de un momento en el que todavía no ves todo con claridad. Las emociones, las señales y los miedos se mezclan, así que avanza despacio y revisa qué es real antes de actuar. Tu intuición te ayuda a hacer mejores preguntas, no a sacar conclusiones.",
-  "reversed": "Invertida, La Luna puede indicar que la confusión empieza a disiparse o que algo que evitabas mirar sale a la luz. También puede señalar que la ansiedad va más rápido que los hechos. Separa lo que sabes de lo que temes y dale tiempo al resto."
+  "reversed": "Invertida, La Luna puede indicar que la confusión empieza a disiparse o que algo que evitabas mirar sale a la luz. También puede señalar que la ansiedad va más rápido que los hechos. Separa lo que sabes de lo que temes y dale tiempo al resto.",
+  "yes_no_why": "La Luna ilumina a medias: todavía hay cosas que no se alcanzan a ver."
  },
  {
   "card_id": "major-19-sun",
@@ -219,7 +238,8 @@
    "éxito"
   ],
   "upright": "Un niño monta un caballo blanco bajo un sol radiante, con girasoles a su espalda. El Sol irradia alegría, claridad y la satisfacción de mostrarte tal como eres. Es una de las cartas más luminosas del tarot: lo que estaba en sombra se ve, y lo que haces puede brillar.",
-  "reversed": "La alegría cuesta un poco más o el optimismo se nubla por momentos. La luz sigue ahí, aunque por ahora la veas menos, como un día nublado que no deja de ser de día. Encuentra motivos sencillos para celebrar y deja que te recarguen."
+  "reversed": "La alegría cuesta un poco más o el optimismo se nubla por momentos. La luz sigue ahí, aunque por ahora la veas menos, como un día nublado que no deja de ser de día. Encuentra motivos sencillos para celebrar y deja que te recarguen.",
+  "yes_no_why": "Bajo El Sol nada queda en sombra: el niño avanza a caballo, alegre y a la vista de todos."
  },
  {
   "card_id": "major-20-judgement",
@@ -230,7 +250,8 @@
    "segunda oportunidad"
   ],
   "upright": "Un ángel toca la trompeta y las figuras se levantan con los brazos abiertos. El Juicio habla de un despertar, de escuchar un llamado interior y de mirar tu historia con nuevos ojos. Evaluar con honestidad te ayuda a decidir quién quieres ser a partir de ahora.",
-  "reversed": "La autocrítica se vuelve demasiado dura o cuesta perdonarte. O escuchas el llamado, pero lo dejas para después, esperando un momento perfecto. Mira tus errores con compasión y quédate con el aprendizaje, no con la culpa."
+  "reversed": "La autocrítica se vuelve demasiado dura o cuesta perdonarte. O escuchas el llamado, pero lo dejas para después, esperando un momento perfecto. Mira tus errores con compasión y quédate con el aprendizaje, no con la culpa.",
+  "yes_no_why": "El ángel de El Juicio toca la trompeta y todo despierta para responder al llamado."
  },
  {
   "card_id": "major-21-world",
@@ -241,7 +262,8 @@
    "integración"
   ],
   "upright": "En El Mundo, una figura baila dentro de una corona de laurel, rodeada por los símbolos de los cuatro elementos. Habla de completar un ciclo, de sentirte en tu lugar y de integrar lo aprendido. El logro y la plenitud de esta carta también preparan el siguiente comienzo.",
-  "reversed": "Un ciclo cuesta cerrarse o sientes que te falta una última pieza. Quizá no te das crédito por lo que avanzas y sigues buscando una perfección que no hace falta. Mira qué falta para terminar y date permiso de completarlo."
+  "reversed": "Un ciclo cuesta cerrarse o sientes que te falta una última pieza. Quizá no te das crédito por lo que avanzas y sigues buscando una perfección que no hace falta. Mira qué falta para terminar y date permiso de completarlo.",
+  "yes_no_why": "El Mundo cierra el círculo: el ciclo está completo y bien integrado."
  },
  {
   "card_id": "wands-01-ace",
@@ -252,7 +274,8 @@
    "energía creativa"
   ],
   "upright": "Una mano sale de una nube y ofrece un bastón del que brotan hojas verdes. Es la chispa de algo nuevo: una idea, un proyecto o unas ganas que piden moverse. Aprovecha ese entusiasmo antes de que se enfríe.",
-  "reversed": "La idea está ahí, pero no termina de despegar, o la energía se reparte en demasiadas direcciones. La motivación baja un rato, como suele pasar cuando los resultados tardan. Elige el proyecto que más te enciende y dale un primer empujón."
+  "reversed": "La idea está ahí, pero no termina de despegar, o la energía se reparte en demasiadas direcciones. La motivación baja un rato, como suele pasar cuando los resultados tardan. Elige el proyecto que más te enciende y dale un primer empujón.",
+  "yes_no_why": "El bastón del As brota con hojas nuevas: hay energía fresca para empezar."
  },
  {
   "card_id": "wands-02-two",
@@ -263,7 +286,8 @@
    "horizonte"
   ],
   "upright": "Desde lo alto de un castillo, un hombre sostiene un pequeño globo terráqueo y mira el horizonte. Es tiempo de planear, imaginar posibilidades y decidir hacia dónde crecer. Ya tienes una base; ahora toca elegir qué tan lejos quieres llegar.",
-  "reversed": "El miedo a salir de lo conocido puede dejar los planes en el papel. Tal vez te debates entre quedarte donde estás o explorar algo distinto, y esa duda te detiene más que cualquier obstáculo. Ponle fecha a una idea para que deje de ser solo un deseo."
+  "reversed": "El miedo a salir de lo conocido puede dejar los planes en el papel. Tal vez te debates entre quedarte donde estás o explorar algo distinto, y esa duda te detiene más que cualquier obstáculo. Ponle fecha a una idea para que deje de ser solo un deseo.",
+  "yes_no_why": "El Dos de Bastos ya tiene una base firme y la mirada puesta en un horizonte más amplio."
  },
  {
   "card_id": "wands-03-three",
@@ -274,7 +298,8 @@
    "oportunidades"
   ],
   "upright": "De espaldas, una figura observa barcos que navegan a lo lejos sobre un mar dorado. Con el Tres de Bastos se ven los primeros frutos de lo que pones en marcha y se abren horizontes más amplios. Lo que siembras ahora puede empezar a tomar forma.",
-  "reversed": "Las cosas no llegan tan rápido como quisieras y eso puede traer frustración o la sensación de que los barcos no regresan. Detrás puede haber miedo a ampliar tu mundo y salir del puerto conocido. Revisa tu estrategia sin abandonar la visión."
+  "reversed": "Las cosas no llegan tan rápido como quisieras y eso puede traer frustración o la sensación de que los barcos no regresan. Detrás puede haber miedo a ampliar tu mundo y salir del puerto conocido. Revisa tu estrategia sin abandonar la visión.",
+  "yes_no_why": "En el Tres de Bastos los barcos ya navegan: lo que se puso en marcha avanza y se expande."
  },
  {
   "card_id": "wands-04-four",
@@ -285,7 +310,8 @@
    "comunidad"
   ],
   "upright": "Cuatro bastos adornados con guirnaldas forman un arco bajo el que dos figuras celebran con flores en alto. La carta trae alegría compartida, la sensación de estar en casa y motivos para festejar. Hay estabilidad y reconocimiento a lo que construyes.",
-  "reversed": "Puede haber tensión en casa o una celebración que se siente a medias. A veces lo difícil no es que falte algo, sino detenerte a disfrutar lo que ya tienes. Reúnete con tu gente en algo sencillo y reconecta."
+  "reversed": "Puede haber tensión en casa o una celebración que se siente a medias. A veces lo difícil no es que falte algo, sino detenerte a disfrutar lo que ya tienes. Reúnete con tu gente en algo sencillo y reconecta.",
+  "yes_no_why": "El Cuatro de Bastos es fiesta bajo un arco de flores sobre bases firmes."
  },
  {
   "card_id": "wands-05-five",
@@ -296,7 +322,8 @@
    "desafío"
   ],
   "upright": "Cinco jóvenes cruzan sus bastos en un forcejeo desordenado, sin que se vea un ganador. Representa roces, competencia o diferencias de opinión que generan tensión. No siempre es un conflicto grave: a veces es la fricción necesaria para encontrar una mejor idea.",
-  "reversed": "Quizá evitas un conflicto que necesitas hablar, o la tensión empieza a bajar después de tanto choque. Competir por todo cansa, incluso cuando se trata de cosas que no te importan tanto. Elige qué batallas valen tu energía."
+  "reversed": "Quizá evitas un conflicto que necesitas hablar, o la tensión empieza a bajar después de tanto choque. Competir por todo cansa, incluso cuando se trata de cosas que no te importan tanto. Elige qué batallas valen tu energía.",
+  "yes_no_why": "En el Cinco de Bastos todos forcejean y no se ve quién gana."
  },
  {
   "card_id": "wands-06-six",
@@ -307,7 +334,8 @@
    "avance"
   ],
   "upright": "Un jinete con corona de laurel avanza entre una multitud que lo celebra. Es la carta del reconocimiento, de los logros visibles y de la confianza en tu propio valor. Muestra tu trabajo y acepta el aplauso sin minimizarlo.",
-  "reversed": "El reconocimiento que esperas no llega o la opinión ajena empieza a pesar demasiado. Las dudas sobre tu propio mérito aparecen, aunque tu esfuerzo sea real. Valora tu avance aunque nadie más lo note por ahora."
+  "reversed": "El reconocimiento que esperas no llega o la opinión ajena empieza a pesar demasiado. Las dudas sobre tu propio mérito aparecen, aunque tu esfuerzo sea real. Valora tu avance aunque nadie más lo note por ahora.",
+  "yes_no_why": "El jinete del Seis de Bastos regresa con laurel y la multitud lo aplaude."
  },
  {
   "card_id": "wands-07-seven",
@@ -318,7 +346,8 @@
    "postura propia"
   ],
   "upright": "Desde lo alto, una figura defiende su lugar con un bastón mientras otros seis se alzan desde abajo. El Siete de Bastos te pide sostener tus convicciones frente a la presión o la crítica. Tienes una posición ventajosa, pero mantenerla requiere energía y claridad.",
-  "reversed": "El cansancio de defenderte puede hacerte sentir que todos te cuestionan. O a lo mejor te pones a la defensiva más de lo necesario y conviertes cada comentario en un ataque. Pregúntate qué vale la pena sostener y qué puedes soltar."
+  "reversed": "El cansancio de defenderte puede hacerte sentir que todos te cuestionan. O a lo mejor te pones a la defensiva más de lo necesario y conviertes cada comentario en un ataque. Pregúntate qué vale la pena sostener y qué puedes soltar.",
+  "yes_no_why": "El Siete de Bastos sigue en plena defensa, con seis bastos que lo presionan desde abajo."
  },
  {
   "card_id": "wands-08-eight",
@@ -329,7 +358,8 @@
    "impulso"
   ],
   "upright": "Ocho bastos cruzan el cielo en la misma dirección, sobre un paisaje abierto. Todo se acelera: las cosas se mueven después de una espera y los mensajes empiezan a circular. Actúa con agilidad y aprovecha el impulso.",
-  "reversed": "Los retrasos, las prisas que provocan errores o las noticias que tardan marcan esta posición. Con demasiadas cosas a la vez, los bastos vuelan sin dirección. Ordena tus pendientes y empuja primero lo que sí puede moverse."
+  "reversed": "Los retrasos, las prisas que provocan errores o las noticias que tardan marcan esta posición. Con demasiadas cosas a la vez, los bastos vuelan sin dirección. Ordena tus pendientes y empuja primero lo que sí puede moverse.",
+  "yes_no_why": "Los ocho bastos vuelan juntos hacia el mismo lado: todo se mueve con rapidez."
  },
  {
   "card_id": "wands-09-nine",
@@ -340,7 +370,8 @@
    "último esfuerzo"
   ],
   "upright": "Una figura cansada pero alerta se apoya en su bastón, con otros ocho alineados a su espalda. El Nueve de Bastos es perseverancia: seguir de pie a pesar del cansancio. Puedes estar cerca de la meta, aunque la desconfianza te haga ver amenazas donde no las hay.",
-  "reversed": "El agotamiento aparece, junto con la sensación de que ya no puedes más. La guardia puede volverse tan alta que te aísla del apoyo que tienes cerca. Acepta una mano si alguien te la ofrece y date un descanso real antes del último tramo."
+  "reversed": "El agotamiento aparece, junto con la sensación de que ya no puedes más. La guardia puede volverse tan alta que te aísla del apoyo que tienes cerca. Acepta una mano si alguien te la ofrece y date un descanso real antes del último tramo.",
+  "yes_no_why": "El Nueve de Bastos sigue en guardia, cerca del final, pero sin haber llegado."
  },
  {
   "card_id": "wands-10-ten",
@@ -351,7 +382,8 @@
    "cansancio"
   ],
   "upright": "Un hombre carga diez bastos a la vez, inclinado y sin poder ver el camino que tiene enfrente. Refleja responsabilidades acumuladas y el hábito de cargar más de lo que te toca. El esfuerzo es admirable, pero quizá es hora de soltar parte del peso.",
-  "reversed": "Soltar algunas cargas o llegar a tu límite: esta posición puede ir hacia cualquiera de los dos lados. Delegar cuesta cuando temes que las cosas no salgan como quieres, y entonces cargas también con lo ajeno. Reparte responsabilidades y conserva lo que de verdad es tuyo."
+  "reversed": "Soltar algunas cargas o llegar a tu límite: esta posición puede ir hacia cualquiera de los dos lados. Delegar cuesta cuando temes que las cosas no salgan como quieres, y entonces cargas también con lo ajeno. Reparte responsabilidades y conserva lo que de verdad es tuyo.",
+  "yes_no_why": "El hombre del Diez de Bastos carga demasiado peso para avanzar con ligereza."
  },
  {
   "card_id": "wands-11-page",
@@ -362,7 +394,8 @@
    "mensajes"
   ],
   "upright": "La Sota de Bastos observa con curiosidad el bastón que sostiene, en medio de un paisaje desértico. Trae el entusiasmo de quien explora por primera vez, con ideas frescas que siguen tomando forma. Prueba algo nuevo sin presionarte a dominarlo de inmediato.",
-  "reversed": "Las ideas se quedan en el entusiasmo inicial o la impaciencia por ver resultados apaga las ganas. Quizá también hay inseguridad para dar el primer paso. Ponle un pequeño plan a esa idea para que no se apague."
+  "reversed": "Las ideas se quedan en el entusiasmo inicial o la impaciencia por ver resultados apaga las ganas. Quizá también hay inseguridad para dar el primer paso. Ponle un pequeño plan a esa idea para que no se apague.",
+  "yes_no_why": "La Sota de Bastos mira su bastón con curiosidad y entusiasmo, lista para explorar."
  },
  {
   "card_id": "wands-12-knight",
@@ -373,7 +406,8 @@
    "impulso"
   ],
   "upright": "El Caballero de Bastos cabalga a toda velocidad en un caballo que se encabrita, con la mirada fija al frente. Con él llegan la pasión, la valentía y las ganas de lanzarte a la aventura. La energía está de tu lado, aunque conviene pensar un poco antes de saltar.",
-  "reversed": "La impaciencia y las decisiones impulsivas pueden dejar proyectos abandonados a la mitad. El caballo corre, pero la frustración aparece cuando el mundo no va a tu velocidad. Canaliza esa energía en algo que puedas terminar."
+  "reversed": "La impaciencia y las decisiones impulsivas pueden dejar proyectos abandonados a la mitad. El caballo corre, pero la frustración aparece cuando el mundo no va a tu velocidad. Canaliza esa energía en algo que puedas terminar.",
+  "yes_no_why": "El Caballero de Bastos avanza con fuerza y decisión hacia adelante."
  },
  {
   "card_id": "wands-13-queen",
@@ -384,7 +418,8 @@
    "determinación"
   ],
   "upright": "La Reina de Bastos se sienta con un girasol en la mano y un gato negro a sus pies. Transmite confianza, calidez y un carisma que inspira a otros. Brilla con autenticidad y toma tu lugar sin pedir permiso.",
-  "reversed": "La inseguridad, los celos o la sensación de que tu luz se apaga frente a otros ocupan el lugar del girasol. Tal vez das tanto de tu energía que te quedas sin fuego para ti. Reconecta con algo que te haga sentir tú."
+  "reversed": "La inseguridad, los celos o la sensación de que tu luz se apaga frente a otros ocupan el lugar del girasol. Tal vez das tanto de tu energía que te quedas sin fuego para ti. Reconecta con algo que te haga sentir tú.",
+  "yes_no_why": "La Reina de Bastos ocupa su trono con un girasol en la mano y la mirada firme."
  },
  {
   "card_id": "wands-14-king",
@@ -395,7 +430,8 @@
    "audacia"
   ],
   "upright": "El Rey de Bastos mira a lo lejos desde un trono adornado con leones y salamandras. Representa el liderazgo con visión, la capacidad de inspirar y de convertir ideas en proyectos reales. Toma la iniciativa y guía con el ejemplo.",
-  "reversed": "La impaciencia o las expectativas demasiado altas, contigo o con los demás, se vuelven autoritarismo. Otras veces la visión es grande, pero no termina de aterrizar en pasos reales. Escucha a tu gente antes de imponer el rumbo."
+  "reversed": "La impaciencia o las expectativas demasiado altas, contigo o con los demás, se vuelven autoritarismo. Otras veces la visión es grande, pero no termina de aterrizar en pasos reales. Escucha a tu gente antes de imponer el rumbo.",
+  "yes_no_why": "El Rey de Bastos sostiene un bastón que florece y mira lejos, con un plan en mente."
  },
  {
   "card_id": "cups-01-ace",
@@ -406,7 +442,8 @@
    "compasión"
   ],
   "upright": "Una mano sostiene una copa que se desborda en cinco chorros, mientras una paloma desciende sobre ella. El As de Copas abre un nuevo comienzo emocional: amor, ternura o compasión que empieza a fluir. Es una invitación a abrir el corazón y dejar que la emoción te llene.",
-  "reversed": "La copa parece tapada: las emociones se guardan y cuesta recibir afecto aunque esté cerca. Quizá temes que, si abres un poco, todo se desborde de golpe. Deja salir una emoción pequeña y nómbrala sin pedirle permiso a nadie."
+  "reversed": "La copa parece tapada: las emociones se guardan y cuesta recibir afecto aunque esté cerca. Quizá temes que, si abres un poco, todo se desborde de golpe. Deja salir una emoción pequeña y nómbrala sin pedirle permiso a nadie.",
+  "yes_no_why": "La copa del As se desborda: hay emoción, ternura y apertura de sobra."
  },
  {
   "card_id": "cups-02-two",
@@ -417,7 +454,8 @@
    "acuerdo"
   ],
   "upright": "Dos figuras intercambian copas frente a frente, bajo un caduceo coronado por un león alado. Aquí se celebra la conexión, la reciprocidad y los vínculos en los que ambas partes se encuentran. También puede referirse a amistades, alianzas o acuerdos que nacen del respeto.",
-  "reversed": "El equilibrio se rompe un poco: hay malentendidos, distancia emocional o una de las copas ofrece más que la otra. A lo mejor te cuesta mostrarte como eres. Habla con sinceridad de lo que necesitas para que el intercambio vuelva a ser parejo."
+  "reversed": "El equilibrio se rompe un poco: hay malentendidos, distancia emocional o una de las copas ofrece más que la otra. A lo mejor te cuesta mostrarte como eres. Habla con sinceridad de lo que necesitas para que el intercambio vuelva a ser parejo.",
+  "yes_no_why": "En el Dos de Copas las dos copas se encuentran a la misma altura: hay reciprocidad."
  },
  {
   "card_id": "cups-03-three",
@@ -428,7 +466,8 @@
    "alegría"
   ],
   "upright": "Tres mujeres alzan sus copas y bailan en círculo entre frutas de la cosecha. Es la carta de la amistad, la celebración y la alegría de compartir con tu gente. Apóyate en tu comunidad y festeja los pequeños logros.",
-  "reversed": "La distancia con amistades, los chismes o los excesos en las fiestas rompen el círculo. A veces te sientes fuera del grupo, mirando el baile desde afuera. Acércate a una persona con quien de verdad puedas ser tú."
+  "reversed": "La distancia con amistades, los chismes o los excesos en las fiestas rompen el círculo. A veces te sientes fuera del grupo, mirando el baile desde afuera. Acércate a una persona con quien de verdad puedas ser tú.",
+  "yes_no_why": "Las tres copas se alzan juntas en un brindis: hay algo que celebrar."
  },
  {
   "card_id": "cups-04-four",
@@ -439,7 +478,8 @@
    "oportunidad ignorada"
   ],
   "upright": "Bajo un árbol, una figura cruzada de brazos mira tres copas mientras una mano que sale de una nube le ofrece una cuarta. El Cuatro de Copas refleja apatía, la sensación de que nada te llena y la dificultad para ver lo que se ofrece. A veces este desgano pide una pausa para preguntarte qué te falta de verdad.",
-  "reversed": "El aburrimiento quizá empieza a ceder y, poco a poco, aparecen posibilidades nuevas. La mano que ofrecía la copa sigue ahí, y por fin te dan ganas de tomarla. Mantén esa curiosidad y di que sí a lo que te mueve."
+  "reversed": "El aburrimiento quizá empieza a ceder y, poco a poco, aparecen posibilidades nuevas. La mano que ofrecía la copa sigue ahí, y por fin te dan ganas de tomarla. Mantén esa curiosidad y di que sí a lo que te mueve.",
+  "yes_no_why": "La figura del Cuatro de Copas está distraída y no ve la copa que le ofrecen."
  },
  {
   "card_id": "cups-05-five",
@@ -450,7 +490,8 @@
    "lo que queda"
   ],
   "upright": "Una figura con capa negra mira tres copas derramadas, sin notar las dos que siguen en pie a su espalda. El Cinco de Copas puede hablar de tristeza, decepción o la sensación de que algo no salió como esperabas. Tu dolor es válido, y también lo es lo que todavía tienes.",
-  "reversed": "La aceptación empieza a llegar y la mirada se va hacia lo que permanece. O quizá la tristeza se queda más tiempo del que quisieras y cuesta soltarla. Date tiempo y, cuando puedas, gira un poco el cuerpo hacia lo que sigue en pie."
+  "reversed": "La aceptación empieza a llegar y la mirada se va hacia lo que permanece. O quizá la tristeza se queda más tiempo del que quisieras y cuesta soltarla. Date tiempo y, cuando puedas, gira un poco el cuerpo hacia lo que sigue en pie.",
+  "yes_no_why": "La mirada del Cinco de Copas se queda en lo que se derramó y no en lo que sigue en pie."
  },
  {
   "card_id": "cups-06-six",
@@ -461,7 +502,8 @@
    "ternura"
   ],
   "upright": "En un patio tranquilo, un niño ofrece a una niña una copa llena de flores. Trae recuerdos, ternura e inocencia, y la alegría de las cosas simples. Puede devolverte el recuerdo de un lugar o de una sensación que te hace bien.",
-  "reversed": "La nostalgia ancla al ayer y lo que ya quedó atrás se idealiza. En otros casos marca las ganas de crecer y dejar viejos patrones. Honra tus recuerdos y lo que aprendiste de ellos, sin quedarte a vivir ahí."
+  "reversed": "La nostalgia ancla al ayer y lo que ya quedó atrás se idealiza. En otros casos marca las ganas de crecer y dejar viejos patrones. Honra tus recuerdos y lo que aprendiste de ellos, sin quedarte a vivir ahí.",
+  "yes_no_why": "El niño del Seis de Copas ofrece flores con inocencia y buena voluntad."
  },
  {
   "card_id": "cups-07-seven",
@@ -472,7 +514,8 @@
    "confusión"
   ],
   "upright": "Siete copas flotan entre nubes y cada una guarda algo distinto: joyas, un castillo, una serpiente, una figura velada. Representa muchas opciones, sueños y fantasías que pueden distraerte de lo real. No todo lo que brilla es lo que necesitas.",
-  "reversed": "La confusión empieza a despejarse y ves con más claridad lo que quieres. O al contrario, te cuesta comprometerte con una sola opción por miedo a perder las demás. Elige lo que es posible, no solo lo que deslumbra."
+  "reversed": "La confusión empieza a despejarse y ves con más claridad lo que quieres. O al contrario, te cuesta comprometerte con una sola opción por miedo a perder las demás. Elige lo que es posible, no solo lo que deslumbra.",
+  "yes_no_why": "Entre tantas copas de ensueño, el Siete de Copas no deja ver cuál es real."
  },
  {
   "card_id": "cups-08-eight",
@@ -483,7 +526,8 @@
    "sentido"
   ],
   "upright": "Bajo la luna, una figura se aleja caminando y deja atrás ocho copas bien acomodadas. El Ocho de Copas invita a soltar algo que ya no te llena, aunque desde afuera parezca estar bien. Es el valor de buscar un sentido más profundo.",
-  "reversed": "Miedo a irte o duda entre quedarte y partir: la figura se detiene a medio camino. O te alejas por costumbre en lugar de resolver, y cada partida se parece a la anterior. Pregúntate si buscas algo mejor o solo evitas lo difícil."
+  "reversed": "Miedo a irte o duda entre quedarte y partir: la figura se detiene a medio camino. O te alejas por costumbre en lugar de resolver, y cada partida se parece a la anterior. Pregúntate si buscas algo mejor o solo evitas lo difícil.",
+  "yes_no_why": "Alguien da la espalda a las ocho copas y se va en busca de otra cosa."
  },
  {
   "card_id": "cups-09-nine",
@@ -494,7 +538,8 @@
    "disfrute"
   ],
   "upright": "Un hombre sonriente se sienta con los brazos cruzados delante de nueve copas alineadas en lo alto, a su espalda. El Nueve de Copas es conocido como la carta de los deseos: trae satisfacción, gratitud y el gusto de disfrutar lo que ya es tuyo. Reconocer lo bueno que tienes también es parte del disfrute.",
-  "reversed": "Algo que deseabas no te llena tanto como imaginabas, o la satisfacción se busca solo afuera. Los excesos dejan un sabor vacío, como una fiesta que se alarga de más. Revisa qué deseo es de verdad tuyo."
+  "reversed": "Algo que deseabas no te llena tanto como imaginabas, o la satisfacción se busca solo afuera. Los excesos dejan un sabor vacío, como una fiesta que se alarga de más. Revisa qué deseo es de verdad tuyo.",
+  "yes_no_why": "El Nueve de Copas es la carta de los deseos: el hombre sonríe satisfecho frente a sus copas."
  },
  {
   "card_id": "cups-10-ten",
@@ -505,7 +550,8 @@
    "plenitud emocional"
   ],
   "upright": "Bajo un arcoíris de copas, una pareja abraza el cielo mientras dos niños juegan a su lado. Muestra armonía, felicidad compartida y vínculos donde puedes ser tú. Aquí la plenitud emocional se vive en relaciones que dan paz.",
-  "reversed": "Las tensiones familiares o la distancia entre el ideal y lo que vives pueden pesar. Tal vez buscas una perfección que nadie puede dar. Valora la armonía real, aunque no se parezca a la foto que imaginabas."
+  "reversed": "Las tensiones familiares o la distancia entre el ideal y lo que vives pueden pesar. Tal vez buscas una perfección que nadie puede dar. Valora la armonía real, aunque no se parezca a la foto que imaginabas.",
+  "yes_no_why": "El arcoíris del Diez de Copas cubre a una familia en armonía."
  },
  {
   "card_id": "cups-11-page",
@@ -516,7 +562,8 @@
    "sorpresa"
   ],
   "upright": "La Sota de Copas mira con sorpresa a un pececito que asoma de su copa, a la orilla del mar. Esta sota es sensibilidad y creatividad en estado puro, atenta a mensajes o emociones que pueden llegar sin aviso. Déjate sorprender y escucha a tu imaginación.",
-  "reversed": "Las emociones se sienten a flor de piel o la creatividad se bloquea justo cuando quieres usarla. Quizá te cuesta tomar en serio tus propios sentimientos y los tratas como cosa de niños. Escúchalos con ternura, sin juzgarlos."
+  "reversed": "Las emociones se sienten a flor de piel o la creatividad se bloquea justo cuando quieres usarla. Quizá te cuesta tomar en serio tus propios sentimientos y los tratas como cosa de niños. Escúchalos con ternura, sin juzgarlos.",
+  "yes_no_why": "La Sota de Copas mira con agrado al pececito que asoma de su copa y recibe lo inesperado con gusto."
  },
  {
   "card_id": "cups-12-knight",
@@ -527,7 +574,8 @@
    "encanto"
   ],
   "upright": "El Caballero de Copas avanza despacio sobre un caballo blanco, ofreciendo su copa con delicadeza. Habla de romance, de gestos que invitan y de seguir lo que te dicta el corazón. Es una carta de encanto y de ideales que piden ser vividos.",
-  "reversed": "Las promesas bonitas no siempre se sostienen, y la idealización o los cambios de humor pueden confundirte. La fantasía puede llevarte más lejos que los hechos. Pide hechos concretos que respalden las palabras, incluidas las tuyas."
+  "reversed": "Las promesas bonitas no siempre se sostienen, y la idealización o los cambios de humor pueden confundirte. La fantasía puede llevarte más lejos que los hechos. Pide hechos concretos que respalden las palabras, incluidas las tuyas.",
+  "yes_no_why": "El Caballero de Copas avanza despacio y ofrece su copa con el corazón por delante."
  },
  {
   "card_id": "cups-13-queen",
@@ -538,7 +586,8 @@
    "mundo emocional"
   ],
   "upright": "La Reina de Copas contempla una copa ornamentada y cerrada, sentada a la orilla del mar. Su fuerza está en la empatía, la intuición y la capacidad de sostener emociones profundas sin ahogarte en ellas. Lo que tu corazón sabe merece ser escuchado y tener un lugar.",
-  "reversed": "Las emociones de otros se te pegan, como olas que mojan la orilla, o tus propios sentimientos se desbordan. Cuesta distinguir qué emoción es tuya y cuál viene de otra persona. Pon un límite amable que proteja tu mundo emocional."
+  "reversed": "Las emociones de otros se te pegan, como olas que mojan la orilla, o tus propios sentimientos se desbordan. Cuesta distinguir qué emoción es tuya y cuál viene de otra persona. Pon un límite amable que proteja tu mundo emocional.",
+  "yes_no_why": "La Reina de Copas guarda su copa cerrada a la orilla del mar, en paz con sus propias emociones."
  },
  {
   "card_id": "cups-14-king",
@@ -549,7 +598,8 @@
    "diplomacia"
   ],
   "upright": "El Rey de Copas se sienta en un trono que flota sobre un mar agitado, sin perder la calma. Es la madurez emocional hecha persona: sentir con profundidad y responder con serenidad. Escuchar sin reaccionar de inmediato te permite ofrecer apoyo con equilibrio.",
-  "reversed": "Las emociones reprimidas o los cambios de humor, propios o ajenos, agitan el mar bajo el trono. Mostrar vulnerabilidad cuesta, y es más fácil aparentar que todo está bajo control. Di lo que sientes antes de que se acumule."
+  "reversed": "Las emociones reprimidas o los cambios de humor, propios o ajenos, agitan el mar bajo el trono. Mostrar vulnerabilidad cuesta, y es más fácil aparentar que todo está bajo control. Di lo que sientes antes de que se acumule.",
+  "yes_no_why": "El Rey de Copas se mantiene sereno sobre aguas agitadas."
  },
  {
   "card_id": "swords-01-ace",
@@ -560,7 +610,8 @@
    "idea nueva"
   ],
   "upright": "De entre las nubes surge una mano que empuña una espada en alto, rematada por una corona con ramas de olivo y palma. Representa claridad mental, verdad e ideas que cortan la confusión. Es buen momento para tomar una decisión y decir las cosas con honestidad.",
-  "reversed": "Los pensamientos se enredan, las palabras pueden herir o una verdad cuesta aceptarse. Con la espada al revés, la mente corta hacia el lado equivocado: decisiones apresuradas, tomadas antes de entender bien la situación. Aclara tus ideas antes de hablar o actuar."
+  "reversed": "Los pensamientos se enredan, las palabras pueden herir o una verdad cuesta aceptarse. Con la espada al revés, la mente corta hacia el lado equivocado: decisiones apresuradas, tomadas antes de entender bien la situación. Aclara tus ideas antes de hablar o actuar.",
+  "yes_no_why": "La espada del As corta la confusión y deja a la vista una verdad clara."
  },
  {
   "card_id": "swords-02-two",
@@ -571,7 +622,8 @@
    "equilibrio frágil"
   ],
   "upright": "Con los ojos vendados, una figura sostiene dos espadas cruzadas sobre el pecho, de espaldas al mar. El Dos de Espadas muestra una decisión que se pospone o un equilibrio frágil que evita el conflicto. Cerrar los ojos protege por un momento, pero no resuelve.",
-  "reversed": "La indecisión ya pesa demasiado y los brazos se cansan de sostener las espadas cruzadas sobre el pecho. O a lo mejor aparece información que por fin te obliga a mirar. Quítate la venda y mira con calma lo que tienes delante, aunque no te guste del todo."
+  "reversed": "La indecisión ya pesa demasiado y los brazos se cansan de sostener las espadas cruzadas sobre el pecho. O a lo mejor aparece información que por fin te obliga a mirar. Quítate la venda y mira con calma lo que tienes delante, aunque no te guste del todo.",
+  "yes_no_why": "La figura del Dos de Espadas tiene los ojos vendados y la decisión en pausa."
  },
  {
   "card_id": "swords-03-three",
@@ -582,7 +634,8 @@
    "tristeza"
   ],
   "upright": "Tres espadas atraviesan un corazón rojo bajo un cielo de lluvia. Es la imagen del dolor emocional, la decepción o las palabras que hieren. Reconocer la tristeza, en lugar de esconderla, es parte de atravesarla.",
-  "reversed": "El dolor puede empezar a aflojar, aunque cueste soltar la herida. A veces la tristeza se guarda en silencio para no preocupar a nadie, y así tarda más en irse. Habla de lo que sientes con alguien de confianza."
+  "reversed": "El dolor puede empezar a aflojar, aunque cueste soltar la herida. A veces la tristeza se guarda en silencio para no preocupar a nadie, y así tarda más en irse. Habla de lo que sientes con alguien de confianza.",
+  "yes_no_why": "Tres espadas atraviesan el corazón bajo la lluvia: la herida está abierta."
  },
  {
   "card_id": "swords-04-four",
@@ -593,7 +646,8 @@
    "silencio"
   ],
   "upright": "Un caballero reposa con las manos unidas bajo un vitral, con una espada a su lado y otras tres colgadas en la pared. El Cuatro de Espadas pide descanso, una pausa mental y tiempo para recuperar fuerzas antes de seguir. No es tiempo de forzar, sino de detenerte y ordenar tus ideas.",
-  "reversed": "El cansancio acumulado o una inquietud que no te deja parar se notan en esta posición. Otra lectura posible: vuelves a la actividad antes de tiempo, sin haber recuperado fuerzas. Respeta tus pausas aunque el mundo siga corriendo."
+  "reversed": "El cansancio acumulado o una inquietud que no te deja parar se notan en esta posición. Otra lectura posible: vuelves a la actividad antes de tiempo, sin haber recuperado fuerzas. Respeta tus pausas aunque el mundo siga corriendo.",
+  "yes_no_why": "El caballero del Cuatro de Espadas descansa con las manos unidas, lejos de cualquier decisión."
  },
  {
   "card_id": "swords-05-five",
@@ -604,7 +658,8 @@
    "distancia"
   ],
   "upright": "Un hombre recoge espadas con media sonrisa mientras dos figuras se alejan cabizbajas hacia el mar. La escena muestra conflictos donde ganar cuesta demasiado, orgullo y relaciones lastimadas. Pregúntate si tener la razón vale lo que pierdes en el camino.",
-  "reversed": "Las ganas de hacer las paces o de dejar atrás una pelea empiezan a aparecer. Aun así, puede quedar resentimiento vivo debajo de la superficie. Da el primer paso hacia la reconciliación si eso te hace bien."
+  "reversed": "Las ganas de hacer las paces o de dejar atrás una pelea empiezan a aparecer. Aun así, puede quedar resentimiento vivo debajo de la superficie. Da el primer paso hacia la reconciliación si eso te hace bien.",
+  "yes_no_why": "Quien gana en el Cinco de Espadas se queda con las espadas, pero pierde a los demás."
  },
  {
   "card_id": "swords-06-six",
@@ -615,7 +670,8 @@
    "cambio de rumbo"
   ],
   "upright": "Un barquero lleva a una mujer y a un niño hacia aguas más tranquilas, con seis espadas clavadas en la barca. Es una carta de transición: dejar atrás lo turbulento y avanzar hacia algo más sereno. Aunque el viaje sea callado, cada tramo puede acercarte a la calma.",
-  "reversed": "La resistencia a dejar algo atrás o un cambio que se retrasa mantienen la barca cerca de la orilla. Quizá llevas en la barca cargas que no te corresponden. Revisa qué necesitas soltar antes de seguir."
+  "reversed": "La resistencia a dejar algo atrás o un cambio que se retrasa mantienen la barca cerca de la orilla. Quizá llevas en la barca cargas que no te corresponden. Revisa qué necesitas soltar antes de seguir.",
+  "yes_no_why": "La barca del Seis de Espadas está a mitad del cruce y aún no llega a la otra orilla."
  },
  {
   "card_id": "swords-07-seven",
@@ -626,7 +682,8 @@
    "sigilo"
   ],
   "upright": "Una figura se aleja de puntillas con cinco espadas en brazos, mirando hacia atrás. Hay estrategia, pero también evasión, secretos o atajos poco honestos. Revisa si estás actuando con transparencia y si tienes toda la información.",
-  "reversed": "Lo que estaba oculto puede salir a la luz, o llega el momento en que decides dejar de evadir. Si hay algo que callas, tal vez la culpa pesa más que el secreto mismo. Elige la honestidad, aunque te cueste un momento incómodo."
+  "reversed": "Lo que estaba oculto puede salir a la luz, o llega el momento en que decides dejar de evadir. Si hay algo que callas, tal vez la culpa pesa más que el secreto mismo. Elige la honestidad, aunque te cueste un momento incómodo.",
+  "yes_no_why": "La figura del Siete de Espadas se lleva las espadas a escondidas, mirando hacia atrás."
  },
  {
   "card_id": "swords-08-eight",
@@ -637,7 +694,8 @@
    "salida posible"
   ],
   "upright": "Una mujer vendada y atada está rodeada de ocho espadas, pero el camino frente a ella está libre. El Ocho de Espadas refleja la sensación de no tener salida, cuando muchas veces la trampa está en tus pensamientos. Puedes empezar a moverte, aunque sea un paso a la vez.",
-  "reversed": "Puede que te estés liberando de un miedo o de una creencia que te limita. Las cuerdas se aflojan, aunque dudes de tu capacidad para salir del círculo de espadas. Cada pequeño movimiento cuenta, incluso el de quitarte la venda."
+  "reversed": "Puede que te estés liberando de un miedo o de una creencia que te limita. Las cuerdas se aflojan, aunque dudes de tu capacidad para salir del círculo de espadas. Cada pequeño movimiento cuenta, incluso el de quitarte la venda.",
+  "yes_no_why": "En el Ocho de Espadas la figura sigue vendada y atada, aunque la salida esté cerca."
  },
  {
   "card_id": "swords-09-nine",
@@ -648,7 +706,8 @@
    "miedos nocturnos"
   ],
   "upright": "Una figura se sienta en la cama con el rostro entre las manos, mientras nueve espadas cuelgan en la pared oscura. Es la carta de la preocupación, de los pensamientos que dan vueltas y de los miedos que crecen de noche. Muchas veces la mente imagina escenarios peores que la realidad.",
-  "reversed": "La angustia empieza a bajar o aparece alguien con quien hablarla. Otras veces las preocupaciones se guardan en secreto y crecen en la oscuridad, lejos de cualquier mirada que las ponga en su tamaño real. Compartir lo que pesa suele aligerarlo."
+  "reversed": "La angustia empieza a bajar o aparece alguien con quien hablarla. Otras veces las preocupaciones se guardan en secreto y crecen en la oscuridad, lejos de cualquier mirada que las ponga en su tamaño real. Compartir lo que pesa suele aligerarlo.",
+  "yes_no_why": "En el Nueve de Espadas pesa más la angustia de la noche que la claridad del día."
  },
  {
   "card_id": "swords-10-ten",
@@ -659,7 +718,8 @@
    "nuevo amanecer"
   ],
   "upright": "Bajo un cielo oscuro, diez espadas marcan el final de una historia, mientras en el horizonte empieza a clarear. El Diez de Espadas es tocar fondo: cerrar algo que ya no puede sostenerse. Lo más difícil puede estar llegando a su fin, y con él, la posibilidad de empezar de nuevo.",
-  "reversed": "Un final puede empezar a pesar menos, o quizá cuesta aceptarlo. Puede que el miedo agrande lo que ocurre y no te deje ver que el cielo ya empieza a aclarar. Voltea hacia el amanecer del fondo y da un paso pequeño."
+  "reversed": "Un final puede empezar a pesar menos, o quizá cuesta aceptarlo. Puede que el miedo agrande lo que ocurre y no te deje ver que el cielo ya empieza a aclarar. Voltea hacia el amanecer del fondo y da un paso pequeño.",
+  "yes_no_why": "Diez espadas pesan sobre la figura en el suelo: por ese camino ya no hay hacia dónde seguir."
  },
  {
   "card_id": "swords-11-page",
@@ -670,7 +730,8 @@
    "comunicación"
   ],
   "upright": "La Sota de Espadas sostiene su espada en alto sobre un terreno con viento, atenta a todo lo que pasa. Encarna la curiosidad mental, las ganas de aprender y la costumbre de observar antes de actuar. Haz preguntas, investiga y di lo que piensas con cuidado.",
-  "reversed": "Los chismes, las palabras impulsivas o una mente dispersa pueden enredar las cosas. Quizá la curiosidad se convierte en prisa por hablar antes de pensar, o en vigilar demasiado lo que hacen otros. Comprueba la información antes de compartirla."
+  "reversed": "Los chismes, las palabras impulsivas o una mente dispersa pueden enredar las cosas. Quizá la curiosidad se convierte en prisa por hablar antes de pensar, o en vigilar demasiado lo que hacen otros. Comprueba la información antes de compartirla.",
+  "yes_no_why": "La Sota de Espadas vigila y reúne información, con la espada en alto pero sin moverse."
  },
  {
   "card_id": "swords-12-knight",
@@ -681,7 +742,8 @@
    "franqueza"
   ],
   "upright": "El Caballero de Espadas carga a toda velocidad contra el viento, con la espada en alto y las nubes revueltas. Es la energía de las ideas firmes, las decisiones rápidas y las ganas de ir directo al punto. Esa energía te ayuda a avanzar, pero puede atropellar a otros si no la mides.",
-  "reversed": "Las palabras duras, la prisa sin dirección o las discusiones que escalan aparecen con fuerza. Si las cosas no avanzan a tu ritmo, la frustración puede empujarte a cargar sin mirar. Frena un poco y piensa en el impacto de lo que dices."
+  "reversed": "Las palabras duras, la prisa sin dirección o las discusiones que escalan aparecen con fuerza. Si las cosas no avanzan a tu ritmo, la frustración puede empujarte a cargar sin mirar. Frena un poco y piensa en el impacto de lo que dices.",
+  "yes_no_why": "El Caballero de Espadas carga contra el viento entre nubes revueltas, antes de ver el panorama completo."
  },
  {
   "card_id": "swords-13-queen",
@@ -692,7 +754,8 @@
    "límites"
   ],
   "upright": "La Reina de Espadas, sentada de perfil, sostiene la espada en alto y extiende una mano, como quien invita a hablar con la verdad. Ve con la claridad que da la experiencia y habla con independencia y honestidad directa. Ver las cosas como son te permite poner límites con firmeza.",
-  "reversed": "La frialdad, las críticas duras o una distancia que protege pero aísla toman el lugar de la claridad. A veces la espada se vuelve contra ti y la experiencia se convierte en amargura que cuesta soltar. Habla con claridad sin cerrar tu corazón."
+  "reversed": "La frialdad, las críticas duras o una distancia que protege pero aísla toman el lugar de la claridad. A veces la espada se vuelve contra ti y la experiencia se convierte en amargura que cuesta soltar. Habla con claridad sin cerrar tu corazón.",
+  "yes_no_why": "La Reina de Espadas pide ver todos los hechos antes de pronunciarse, y faltan piezas."
  },
  {
   "card_id": "swords-14-king",
@@ -703,7 +766,8 @@
    "verdad"
   ],
   "upright": "El Rey de Espadas se sienta de frente con la espada levemente inclinada, bajo un cielo con aves y nubes. Gobierna con pensamiento claro, criterio firme y capacidad de decidir con objetividad. Usa la cabeza más que la emoción y actúa con integridad.",
-  "reversed": "La rigidez mental, el poder usado para imponer o las decisiones frías que no consideran a las personas marcan esta posición. En otros casos, el problema es el contrario: dudas para fijar una postura. Equilibra la razón con la empatía."
+  "reversed": "La rigidez mental, el poder usado para imponer o las decisiones frías que no consideran a las personas marcan esta posición. En otros casos, el problema es el contrario: dudas para fijar una postura. Equilibra la razón con la empatía.",
+  "yes_no_why": "El Rey de Espadas mira de frente con la espada firme y decide con cabeza fría."
  },
  {
   "card_id": "pentacles-01-ace",
@@ -714,7 +778,8 @@
    "nuevo comienzo material"
   ],
   "upright": "Una mano sale de las nubes y ofrece una moneda dorada sobre un jardín cuidado, con un arco de flores al fondo. El As de Oros trae oportunidades concretas: un trabajo, un proyecto o un recurso que puede aparecer para crecer. Es una semilla que pide tiempo y cuidado para dar frutos.",
-  "reversed": "Una oportunidad se escapa por falta de planeación o las metas materiales no terminan de concretarse. La moneda está ahí, pero la inseguridad no te deja tomarla. Pon los pies en la tierra y empieza por lo básico."
+  "reversed": "Una oportunidad se escapa por falta de planeación o las metas materiales no terminan de concretarse. La moneda está ahí, pero la inseguridad no te deja tomarla. Pon los pies en la tierra y empieza por lo básico.",
+  "yes_no_why": "El As de Oros ofrece una oportunidad concreta, como una semilla en tierra buena."
  },
  {
   "card_id": "pentacles-02-two",
@@ -725,7 +790,8 @@
    "prioridades"
   ],
   "upright": "Un joven hace malabares con dos monedas unidas por un lazo infinito, mientras detrás los barcos suben y bajan con las olas. El reto del Dos de Oros es equilibrar varias responsabilidades y adaptarte a los cambios con flexibilidad. Puedes sostenerlo todo un tiempo si sabes qué va primero.",
-  "reversed": "Con demasiadas cosas a la vez, alguna moneda puede caerse, y organizarte se vuelve cuesta arriba. Mientras sigues con el malabar, algunas decisiones se quedan esperando. Suelta un pendiente y recupera el ritmo."
+  "reversed": "Con demasiadas cosas a la vez, alguna moneda puede caerse, y organizarte se vuelve cuesta arriba. Mientras sigues con el malabar, algunas decisiones se quedan esperando. Suelta un pendiente y recupera el ritmo.",
+  "yes_no_why": "El Dos de Oros sigue haciendo malabares y la balanza cambia de lado a cada momento."
  },
  {
   "card_id": "pentacles-03-three",
@@ -736,7 +802,8 @@
    "aprendizaje"
   ],
   "upright": "En una catedral, un artesano trabaja la piedra mientras dos personas revisan los planos con él. El Tres de Oros reúne colaboración, talento reconocido y el gusto de construir algo bien hecho con otros. Tu esfuerzo se nota más cuando sumas habilidades.",
-  "reversed": "La falta de coordinación, el trabajo que no se valora o los roces al colaborar detienen la obra. A lo mejor quieres hacerlo todo por tu cuenta, sin mostrar los planos a nadie. Abre la conversación a otras ideas y deja que te ayuden a pulir la obra."
+  "reversed": "La falta de coordinación, el trabajo que no se valora o los roces al colaborar detienen la obra. A lo mejor quieres hacerlo todo por tu cuenta, sin mostrar los planos a nadie. Abre la conversación a otras ideas y deja que te ayuden a pulir la obra.",
+  "yes_no_why": "El artesano del Tres de Oros y quienes revisan los planos trabajan en la misma obra."
  },
  {
   "card_id": "pentacles-04-four",
@@ -747,7 +814,8 @@
    "conservar"
   ],
   "upright": "Un hombre aprieta una moneda contra el pecho, sostiene otra sobre la cabeza y pisa dos más, con la ciudad a su espalda. Aquí está el deseo de proteger lo que tienes y buscar seguridad, pero también el miedo a soltar. Cuidar tus recursos está bien, mientras no te cierres a lo que puede llegar.",
-  "reversed": "El control se afloja o, al contrario, el miedo a perder te lleva a aferrarte más. Entre apretar la moneda y dejarla rodar hay muchas formas de cuidar lo que tienes. Encuentra un punto medio entre conservar y compartir, sin culparte por querer seguridad."
+  "reversed": "El control se afloja o, al contrario, el miedo a perder te lleva a aferrarte más. Entre apretar la moneda y dejarla rodar hay muchas formas de cuidar lo que tienes. Encuentra un punto medio entre conservar y compartir, sin culparte por querer seguridad.",
+  "yes_no_why": "El Cuatro de Oros conserva sin arriesgar, atrapado entre proteger y avanzar."
  },
  {
   "card_id": "pentacles-05-five",
@@ -758,7 +826,8 @@
    "ayuda cercana"
   ],
   "upright": "Dos figuras caminan en la nieve frente a un vitral iluminado, sin notar la luz que tienen tan cerca. El Cinco de Oros retrata momentos de escasez, preocupación o la sensación de quedarte afuera. Recuerda que la ayuda puede estar más cerca de lo que parece.",
-  "reversed": "Puede que la dificultad empiece a ceder o que te abras a recibir apoyo. Si el orgullo te impide pedir una mano, recuerda que la puerta iluminada sigue ahí, a unos pasos. Si alguien te ofrece compañía, déjate acompañar un tramo."
+  "reversed": "Puede que la dificultad empiece a ceder o que te abras a recibir apoyo. Si el orgullo te impide pedir una mano, recuerda que la puerta iluminada sigue ahí, a unos pasos. Si alguien te ofrece compañía, déjate acompañar un tramo.",
+  "yes_no_why": "Las figuras del Cinco de Oros caminan en el frío sin ver la puerta iluminada."
  },
  {
   "card_id": "pentacles-06-six",
@@ -769,7 +838,8 @@
    "apoyo"
   ],
   "upright": "Un mercader sostiene una balanza en una mano y con la otra reparte monedas a quienes las piden. Representa la generosidad, el apoyo mutuo y el equilibrio entre dar y recibir. Puede ser momento de ofrecer lo que tienes o de aceptar ayuda sin culpa.",
-  "reversed": "La ayuda llega con condiciones o en una relación una parte siempre da y la otra solo recibe. Si te cuesta aceptar apoyo, la balanza también se inclina, aunque sea hacia el otro lado. Cuida que los intercambios sean justos para ti."
+  "reversed": "La ayuda llega con condiciones o en una relación una parte siempre da y la otra solo recibe. Si te cuesta aceptar apoyo, la balanza también se inclina, aunque sea hacia el otro lado. Cuida que los intercambios sean justos para ti.",
+  "yes_no_why": "El mercader del Seis de Oros reparte con la balanza en equilibrio."
  },
  {
   "card_id": "pentacles-07-seven",
@@ -780,7 +850,8 @@
    "esfuerzo"
   ],
   "upright": "Un campesino se apoya en su azadón y observa con calma las monedas que crecen en la planta. El Siete de Oros habla de paciencia, de evaluar lo que siembras y de esperar los frutos de tu esfuerzo. Revisa con calma si vas por buen camino.",
-  "reversed": "La impaciencia crece porque los resultados tardan, o el esfuerzo se pone en el lugar equivocado. Es posible que sientas ganas de rendirte demasiado pronto. Cambia el método si hace falta, pero no tires lo avanzado."
+  "reversed": "La impaciencia crece porque los resultados tardan, o el esfuerzo se pone en el lugar equivocado. Es posible que sientas ganas de rendirte demasiado pronto. Cambia el método si hace falta, pero no tires lo avanzado.",
+  "yes_no_why": "El campesino del Siete de Oros todavía espera a que la cosecha madure."
  },
  {
   "card_id": "pentacles-08-eight",
@@ -791,7 +862,8 @@
    "constancia"
   ],
   "upright": "Un artesano talla monedas una por una en su banco de trabajo, con las terminadas colgadas a la vista. Celebra la dedicación, la práctica y el orgullo de hacer bien tu trabajo. Cada esfuerzo suma y te acerca a la maestría.",
-  "reversed": "El trabajo se vuelve repetitivo y sin sentido, o el perfeccionismo no deja terminar nada. Quizá pones horas en algo que ya no te importa, moneda tras moneda, sin preguntarte para qué. Reconecta con el propósito de lo que haces."
+  "reversed": "El trabajo se vuelve repetitivo y sin sentido, o el perfeccionismo no deja terminar nada. Quizá pones horas en algo que ya no te importa, moneda tras moneda, sin preguntarte para qué. Reconecta con el propósito de lo que haces.",
+  "yes_no_why": "El artesano del Ocho de Oros avanza con esfuerzo constante y trabajo bien hecho."
  },
  {
   "card_id": "pentacles-09-nine",
@@ -802,7 +874,8 @@
    "refinamiento"
   ],
   "upright": "En un jardín lleno de uvas, una mujer elegante sostiene un halcón en su mano enguantada. Con el Nueve de Oros llega la independencia: disfrutar lo que construyes por tu cuenta y estar a gusto en tu propia compañía. Es una carta de autonomía y de bienestar ganado con esfuerzo.",
-  "reversed": "La dependencia o la sensación de que tu bienestar está en manos de otros nublan el jardín. O lo que tienes no se disfruta por estar pensando en lo que te falta. Date un momento para apreciar tus logros."
+  "reversed": "La dependencia o la sensación de que tu bienestar está en manos de otros nublan el jardín. O lo que tienes no se disfruta por estar pensando en lo que te falta. Date un momento para apreciar tus logros.",
+  "yes_no_why": "La mujer del Nueve de Oros disfruta en su jardín lo que ha construido con sus manos."
  },
  {
   "card_id": "pentacles-10-ten",
@@ -813,7 +886,8 @@
    "raíces"
   ],
   "upright": "Bajo un arco con escudos, un anciano acaricia a sus perros mientras una pareja y un niño conversan cerca. Refleja estabilidad a largo plazo, raíces familiares y el deseo de construir algo que perdure. Seguridad, tradición y bienestar compartido se dan la mano en esta escena.",
-  "reversed": "Las tensiones familiares, las expectativas que se heredan o las dudas sobre lo que parecía firme mueven los cimientos. A veces surge el deseo de romper con tradiciones que no te representan. Construye a tu manera, sin perder tus raíces."
+  "reversed": "Las tensiones familiares, las expectativas que se heredan o las dudas sobre lo que parecía firme mueven los cimientos. A veces surge el deseo de romper con tradiciones que no te representan. Construye a tu manera, sin perder tus raíces.",
+  "yes_no_why": "El Diez de Oros muestra bases firmes que pasan de una generación a otra."
  },
  {
   "card_id": "pentacles-11-page",
@@ -824,7 +898,8 @@
    "constancia"
   ],
   "upright": "La Sota de Oros contempla con atención la moneda que sostiene, de pie en un campo verde. Invita a aprender, estudiar y dar los primeros pasos firmes hacia una meta concreta. Empieza algo con disciplina y paciencia.",
-  "reversed": "La distracción, la falta de constancia o las metas que se quedan en planes le quitan fuerza a esta carta. El miedo a empezar por no saber lo suficiente puede dejar la moneda quieta en tu mano. Da un primer paso imperfecto y aprende sobre la marcha."
+  "reversed": "La distracción, la falta de constancia o las metas que se quedan en planes le quitan fuerza a esta carta. El miedo a empezar por no saber lo suficiente puede dejar la moneda quieta en tu mano. Da un primer paso imperfecto y aprende sobre la marcha.",
+  "yes_no_why": "La Sota de Oros da pasos firmes hacia algo concreto."
  },
  {
   "card_id": "pentacles-12-knight",
@@ -835,7 +910,8 @@
    "método"
   ],
   "upright": "El Caballero de Oros se detiene sobre un caballo pesado y quieto, sosteniendo la moneda frente a un campo arado. Avanza despacio y con método: cumple lo que promete y cuida los detalles. Puede parecer lento, pero rara vez se detiene.",
-  "reversed": "El estancamiento, la rutina excesiva o el perfeccionismo frenan el avance hasta que el caballo deja de moverse. El aburrimiento también puede instalarse cuando todo es demasiado predecible. Agrega algo de flexibilidad a tu plan para que vuelva a moverse."
+  "reversed": "El estancamiento, la rutina excesiva o el perfeccionismo frenan el avance hasta que el caballo deja de moverse. El aburrimiento también puede instalarse cuando todo es demasiado predecible. Agrega algo de flexibilidad a tu plan para que vuelva a moverse.",
+  "yes_no_why": "Su caballo está quieto en el campo arado y el Caballero de Oros sostiene la moneda sin prisa."
  },
  {
   "card_id": "pentacles-13-queen",
@@ -846,7 +922,8 @@
    "generosidad"
   ],
   "upright": "La Reina de Oros sostiene una moneda en su regazo, rodeada de flores, frutos y un pequeño conejo. Su cuidado es práctico y generoso: sabe crear un hogar cálido y estable. Pon atención a lo concreto, como tu casa, tu cuerpo y tus rutinas, sin descuidar el disfrute.",
-  "reversed": "El desorden en tu espacio o unas rutinas que ya no te sostienen hacen que la casa pierda su calor. Tal vez lo práctico se vuelve pura preocupación y se te olvida que la casa y el cuerpo también son para disfrutarse. Vuelve a lo básico: tu descanso, tu espacio, tu calma."
+  "reversed": "El desorden en tu espacio o unas rutinas que ya no te sostienen hacen que la casa pierda su calor. Tal vez lo práctico se vuelve pura preocupación y se te olvida que la casa y el cuerpo también son para disfrutarse. Vuelve a lo básico: tu descanso, tu espacio, tu calma.",
+  "yes_no_why": "La Reina de Oros está rodeada de flores y frutos: lo que cuida, crece."
  },
  {
   "card_id": "pentacles-14-king",
@@ -857,6 +934,7 @@
    "éxito material"
   ],
   "upright": "El Rey de Oros se sienta entre racimos de uvas, con un castillo a su espalda y la moneda en la mano. Simboliza la estabilidad, la abundancia y el éxito que nace del esfuerzo constante. Es una carta de liderazgo práctico y de seguridad bien construida.",
-  "reversed": "El apego al estatus, la rigidez o el miedo a perder lo que tienes endurecen la mirada del Rey. Cuando todo se decide solo por lo material, el castillo puede volverse una jaula. Recuerda que tu valor no se mide por lo que posees."
+  "reversed": "El apego al estatus, la rigidez o el miedo a perder lo que tienes endurecen la mirada del Rey. Cuando todo se decide solo por lo material, el castillo puede volverse una jaula. Recuerda que tu valor no se mide por lo que posees.",
+  "yes_no_why": "El Rey de Oros tiene raíces firmes y recursos estables a su alrededor."
  }
 ]

@@ -1,0 +1,207 @@
+{
+ "schema": 2,
+ "card_id": "wands-08-eight",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Eight of Wands",
+  "in_sentence": "the Eight of Wands"
+ },
+ "title": "Eight of Wands Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "Eight of Wands upright: speed, movement, news; reversed: delays, crossed messages. Love, work, advice, Waite's 1911 words and the 1909 card. Ask your question.",
+ "h1": "Eight of Wands Tarot Card Meaning",
+ "image_alt": "Eight of Wands, 1909 Rider–Waite–Smith card: eight parallel wands fly diagonally through a clear blue sky above green hills and a river.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 8,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "The Eight of Wands stands for speed, movement and news: messages flying, plans picking up momentum, things in motion. Reversed, it can mean delays, crossed messages or rushing. It is a lively, encouraging card that asks you to keep up and aim well. Nothing blocks the flight on the card, so the upright answer is yes.",
+ "keywords": {
+  "upright": [
+   "speed",
+   "movement",
+   "news",
+   "momentum"
+  ],
+  "reversed": [
+   "delays",
+   "crossed messages",
+   "rushing",
+   "jealousy"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Eight of Wands card?",
+   "paragraphs": [
+    "Eight wands fly in parallel through an empty sky, slanting down toward the ground. Waite calls the card \"motion through the immovable—a flight of wands through an open country\" (p. 182). There are no people at all; the wands themselves are the largest thing on the card.",
+    "On the 1909 card they cross from the upper left to the lower right, with small leaves sprouting along them. Below lie green hills, a river and a small building on a hilltop, and VIII is printed at the top. Waite adds that the wands \"draw to the term of their course\" (p. 182): their flight is nearly over."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Eight of Wands?",
+   "paragraphs": [
+    "Waite's list is about activity and pace: \"swiftness, as that of an express messenger\" (p. 182), great haste and great hope, and generally whatever is on the move. Waite also gives the card \"the arrows of love\" (p. 182), and for the reversed card, arrows of jealousy and quarrels at home.",
+    "Modern readings keep his speed and messages and add travel and quick progress."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Eight of Wands mean upright?",
+   "paragraphs": [
+    "Things move fast under this card: replies come quickly, plans gain momentum, a stuck project suddenly starts to roll. The Eight of Wands is the card of speed and news, and of action that follows a clear aim.",
+    "It also covers movement in a literal sense: trips, travel, being on the go. Act while the path is clear, and keep your messages short so the momentum keeps going. Speed works best when you know exactly where you are aiming.",
+    "What in your life is ready to move if you give it a push?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Eight of Wands mean reversed?",
+   "paragraphs": [
+    "Upside down, the flight stalls or scatters: delays, plans on hold, crossed messages that leave both sides confused. It can also describe rushing, moving so fast that details get lost and the energy has nowhere to land.",
+    "Waite's reversed list turns the arrows around: \"arrows of jealousy,\" internal dispute, stingings of conscience and quarrels (p. 182). The delays and crossed messages are modern meanings. Slow down enough to aim, then send one clear message or take one clear action."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Eight of Wands mean in love?",
+   "paragraphs": [
+    "Falling fast is the classic love meaning here: sudden attraction, quick replies, a romance that picks up speed. Waite himself gave this card the arrows of love (p. 182).",
+    "Dating under this card tends to move quickly, from a first message to a first meeting. In a long relationship it brings fresh energy: plans together, a trip, things moving again after a quiet spell. Notice what you want to say and say it while the feeling is fresh.",
+    "Reversed, it can be jealousy, mixed signals, or a pace that feels too fast for one of you."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Eight of Wands mean for work and money?",
+   "paragraphs": [
+    "Deadlines pulled forward, a flood of emails, a project that finally speeds up, travel for work: the Eight of Wands describes a fast pace on the job. Clear, short replies and quick decisions serve you well.",
+    "As a money card, it means fast movement: income and expenses changing quickly, a payment or offer moving along, quick decisions about money. Speed is the theme, so a second look before you commit is part of the card's sense."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Eight of Wands?",
+   "paragraphs": [
+    "Answer the one message you have been putting off, quickly and simply. Momentum is easier to keep than to restart, so take the next small step while the path is clear."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Eight of Wands a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Eight of Wands as a person and as feelings",
+   "paragraphs": [
+    "Quick and lively, the person of the Eight of Wands answers fast, makes plans on the spot and likes things to keep moving. Read as feelings, it means strong, fast attraction and excitement, an eagerness to see where things go: Waite's arrows of love (p. 182) in modern form. Reversed, the feelings get tangled: jealousy, mixed signals, hesitation, or interest that has slowed down."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Eight of Wands with other cards",
+   "pairs": [
+    {
+     "card_id": "wands-01-ace",
+     "text": "A new spark that catches fast; start while the energy is there."
+    },
+    {
+     "card_id": "wands-11-page",
+     "text": "News and messages on the move. Reply while they are fresh."
+    },
+    {
+     "card_id": "swords-04-four",
+     "text": "Speed meets rest. Pause before the next push."
+    },
+    {
+     "card_id": "wands-06-six",
+     "text": "Fast progress toward a visible success."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Eight of Wands or Knight of Wands?",
+   "paragraphs": [
+    "Waite shows the Knight of Wands \"as if upon a journey,\" on a horse whose motion \"suggests the precipitate mood\" (p. 174); today he is read as action, adventure and boldness. The Knight is a person in a hurry, while the Eight is events in motion, with no rider at all."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Eight of Wands",
+   "paragraphs": [
+    "Which message have I been holding back?",
+    "Am I moving fast with an aim, or just rushing?",
+    "What would keep this momentum going without losing the details?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Eight of Wands a good or bad card?",
+   "a": "Good, for most questions. It brings speed and movement after a wait and favors clear, quick action. Trouble only comes from haste: messages sent too fast, plans pushed through without a check. Reversed, it shows the flow slowing or getting tangled, which calls for patience rather than worry."
+  },
+  {
+   "q": "Does the Eight of Wands mean travel?",
+   "a": "It can. Travel and trips are a common modern meaning, drawn from the picture of wands flying over open country. Waite's own list speaks of activity, haste and an express messenger (p. 182) rather than journeys, so read it as movement in general, of which travel is one kind."
+  },
+  {
+   "q": "Does the Eight of Wands mean he loves me?",
+   "a": "No card can tell you what someone else feels. As a meaning, the Eight stands for quick attraction and excitement, and Waite ties it to love (p. 182). In your question it describes the pace and energy of the connection; the other person's heart is theirs to speak for."
+  }
+ ],
+ "related": [
+  "wands-07-seven",
+  "wands-09-nine",
+  "cups-08-eight",
+  "swords-08-eight",
+  "pentacles-08-eight"
+ ],
+ "mentions": [
+  {
+   "card_id": "wands-12-knight",
+   "text": "Knight of Wands"
+  }
+ ],
+ "waite": {
+  "quote": "Activity in undertakings … swiftness … great haste, great hope … the arrows of love. Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels",
+  "quote_lang": "en",
+  "pages": [
+   182
+  ],
+  "translation": null,
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 08.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_08.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    174,
+    182
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

@@ -27,7 +27,7 @@ def site(tmp_path, reading_island: str):
 
 def test_the_private_pages_are_expected():
     assert {"/diary", "/es/diario", "/account", "/es/cuenta"} <= set(expected_pages())
-    assert len(expected_pages()) == 171
+    assert len(expected_pages()) == 177
 
 
 def test_only_the_private_pages_say_noindex(tmp_path):
@@ -63,4 +63,4 @@ def test_main_reports_every_problem_and_passes_a_good_build(tmp_path, capsys):
     for name in check_dist.DATA_FILES:
         write(dist, name, "[]")
     assert check_dist.main(dist) == 0
-    assert capsys.readouterr().out == "OK: 171 pages\n"
+    assert capsys.readouterr().out == "OK: 177 pages\n"

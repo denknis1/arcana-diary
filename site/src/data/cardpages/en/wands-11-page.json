@@ -1,0 +1,216 @@
+{
+ "schema": 2,
+ "card_id": "wands-11-page",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Page of Wands",
+  "in_sentence": "the Page of Wands"
+ },
+ "title": "Page of Wands Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "Page of Wands upright: curiosity, enthusiasm, new ideas; reversed: fading enthusiasm. Love, work, advice and Waite's 1911 text. Ask your question.",
+ "h1": "Page of Wands Tarot Card Meaning",
+ "image_alt": "Page of Wands, 1909 Rider–Waite–Smith card: a young man in a feathered hat and patterned yellow tunic looks up at a tall leafing staff in a desert with pyramids.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 11,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "The Page of Wands means curiosity, enthusiasm and exploration: new ideas and the urge to try them. Reversed, the spark flickers through impatience, hesitation or plans left half-done. It is a hopeful card; its risk is enthusiasm that burns out before anything is built. The answer is yes: the young messenger studies his staff, eager to set out.",
+ "keywords": {
+  "upright": [
+   "curiosity",
+   "enthusiasm",
+   "exploration",
+   "new ideas"
+  ],
+  "reversed": [
+   "fading enthusiasm",
+   "hesitation",
+   "impatience",
+   "unfinished ideas"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Page of Wands card?",
+   "paragraphs": [
+    "A young man holds a tall staff upright and gazes at its top. Waite places him \"in a scene similar to the former\", the Knight's, where the rider is \"passing mounds or pyramids\" (pp. 174, 176). For Waite the Page \"stands in the act of proclamation\" and \"his tidings are strange\" (p. 176). The staff, taller than he is, is the largest thing on the card.",
+    "On the 1909 card he stands in profile against a pale blue sky, wearing a gray hat with a red feather, a cloak over his shoulders and a yellow tunic covered in dark curling shapes. A few small leaves grow along the staff. The ground is orange sand, three pyramid shapes rise on the right, and the words PAGE of WANDS run along the bottom."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Page of Wands?",
+   "paragraphs": [
+    "Waite's list makes the Page a bringer of tidings, both envoy and postman, and also a faithful lover (p. 176). Waite adds that he \"has the chief qualities of his suit\" and \"may signify family intelligence\", that is, family news (p. 176).",
+    "Waite gives one pairing too: \"a dangerous rival, if followed by the Page of Cups\" (p. 176). Arcana Diary keeps the messenger, his news and the indecision from that list, and leaves the rival aside."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Page of Wands mean upright?",
+   "paragraphs": [
+    "Curiosity drives this card. Something has caught your interest, a subject, a place, a creative project, a new way of working, and you want to explore it for its own sake. The Page loves the beginner's stage: enthusiasm before expertise, new ideas before a plan.",
+    "It is also a messenger card, as Waite's envoy and postman suggest (p. 176). Modern readings keep that thread: good news about a project, an invitation to try something, a first sign that an idea could grow. If such a message turns up, treat it as an opening rather than a final answer.",
+    "Exploration matters more here than results. What would you try if you were allowed to be bad at it for a while?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Page of Wands mean reversed?",
+   "paragraphs": [
+    "When the card appears reversed, it can point to fading enthusiasm: a burst of excitement that cools before anything starts, or ten projects begun and none carried through. It can also show hesitation, holding an idea back for fear it is not good enough, or impatience when results are slow.",
+    "Waite's reversed list has bad news and \"indecision and the instability which accompanies it\" (p. 176); both carry into the modern reading, the news as a message that disappoints. Unfinished ideas are not failures; pick one, give it a small, concrete next step, and complete that step."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Page of Wands mean in love?",
+   "paragraphs": [
+    "A feather in the hat and eyes on the leafing staff: the Page brings playful, curious energy to love. Flirting, a new crush, an exciting first date or the wish to try something new together all belong to this card.",
+    "Unpartnered, it favors exploring and saying yes to the invitation without needing to know where it leads. Alongside a partner, it can bring back fun and spontaneity.",
+    "Reversed, the excitement may burn hot and fade, or hesitation may keep you from showing interest at all. Notice whether you want the person or mostly the thrill of something new."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Page of Wands mean for work and money?",
+   "paragraphs": [
+    "New ideas at work are this card's territory: a fresh project, a course, a role that excites you, the first steps of a side venture. It favors learning by doing, even before you feel ready.",
+    "Its money meaning is early-stage energy: an idea that could earn something, a small first venture, excitement about a new source of income. Reversed, it can show money spent on impulse, or plans that stay at the idea stage."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Page of Wands?",
+   "paragraphs": [
+    "Try one new thing this week simply because it makes you curious: a class, a sketch, a walk somewhere unfamiliar. Keep it small enough to start today, and let it be a first try rather than a test."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Page of Wands a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Page of Wands as a person and as feelings",
+   "paragraphs": [
+    "An explorer, young at heart: that is the Page of Wands as a person, curious, warm, quick to get excited, full of plans and sometimes restless. Waite adds the messenger's role and the word \"faithful\" (p. 176). Read as you, it is the part that wants to start something.",
+    "In a question about feelings, its traditional meaning is excited interest and attraction: a crush, flirtation, the fun of getting to know someone, enthusiasm that is sincere but still young. Reversed, it stands for interest that flares and cools, mixed signals, or excitement held back by shyness."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Page of Wands with other cards",
+   "pairs": [
+    {
+     "card_id": "wands-01-ace",
+     "text": "A spark and the eager one who catches it. A good moment to begin something creative."
+    },
+    {
+     "card_id": "wands-08-eight",
+     "text": "Messages and movement: news about an idea travels fast, so be ready to answer."
+    },
+    {
+     "card_id": "major-00-fool",
+     "text": "Double beginner's energy. Enjoy the openness, and look where you put your feet."
+    },
+    {
+     "card_id": "pentacles-08-eight",
+     "text": "Curiosity meets practice. Interest turns into skill when you keep showing up."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Page of Wands or Knight of Wands?",
+   "paragraphs": [
+    "Waite writes that the Knight of Wands rides a horse whose motion \"suggests the precipitate mood\" (p. 174). Today the Knight is read as bold action, passion and adventure. The Page stands still in the same kind of desert and looks at his staff; the Knight is already riding. The Page explores an idea, while the Knight throws himself into it."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Page of Wands",
+   "paragraphs": [
+    "What has caught my curiosity lately?",
+    "Which idea have I started and dropped more than once?",
+    "What is the smallest first try I could make this week?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Page of Wands a good or bad card?",
+   "a": "Mostly good: it brings curiosity, fresh energy and the nerve of a beginner. The weak spot is follow-through, since excitement can fade before an idea gets tested. Reversed, it is less a bad sign than a nudge to choose one plan and give it a real try."
+  },
+  {
+   "q": "Is the Page of Wands a man or a woman?",
+   "a": "Either. Waite describes a young man (p. 176), but modern readings treat the Page, like every court card, as a role open to anyone of any age: the student, the beginner, the one with a fresh idea. It may describe you, or simply the eager energy around your question."
+  },
+  {
+   "q": "Does the Page of Wands mean she likes me?",
+   "a": "Traditionally it stands for lively interest: attraction, playful curiosity, the excitement of something new. Whether such interest is deep or passing is something the card leaves open, and reversed it leans toward mixed signals. Let your own wishes and what is actually said between you guide you more than the card."
+  },
+  {
+   "q": "Is the Page of Wands a messenger card?",
+   "a": "Yes, in old and modern readings alike. Waite counts him among the bringers of tidings (p. 176), and today the card is linked with word about a project, an invitation, or a spark of news that stirs your interest. It describes a kind of message, without a date or a promise attached."
+  }
+ ],
+ "related": [
+  "wands-10-ten",
+  "wands-12-knight",
+  "cups-11-page",
+  "swords-11-page",
+  "pentacles-11-page"
+ ],
+ "mentions": [
+  {
+   "card_id": "cups-11-page",
+   "text": "Page of Cups"
+  },
+  {
+   "card_id": "wands-12-knight",
+   "text": "Knight of Wands"
+  }
+ ],
+ "waite": {
+  "quote": "Dark young man, faithful, a lover, an envoy, a postman … Reversed: Anecdotes, announcements, evil news. Also indecision and the instability which accompanies it.",
+  "quote_lang": "en",
+  "pages": [
+   176
+  ],
+  "translation": null,
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Wands 11.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_11.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    174,
+    176
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

@@ -1,0 +1,208 @@
+{
+ "schema": 2,
+ "card_id": "wands-07-seven",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Siete de Bastos",
+  "in_sentence": "el Siete de Bastos",
+  "de": "del Siete de Bastos"
+ },
+ "title": "Siete de Bastos en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Siete de Bastos al derecho y al revés (carta invertida): defensa, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Siete de Bastos en el tarot: significado",
+ "image_alt": "Siete de Bastos, carta de 1909 de la baraja Rider-Waite-Smith: un joven de verde en lo alto blande un basto mientras seis bastos se alzan desde abajo.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "wands",
+  "number": 7,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Siete de Bastos habla de defensa y convicción: sostener tu postura propia, tus ideas o tus límites cuando te presionan. Al revés, puede ser agotamiento, ganas de ceder o una actitud a la defensiva. Es una carta exigente, pero valiente. La figura sigue resistiendo a seis bastos, así que el sí o el no todavía no está claro.",
+ "keywords": {
+  "upright": [
+   "defensa",
+   "convicción",
+   "resistencia",
+   "postura propia"
+  ],
+  "reversed": [
+   "agotamiento",
+   "ceder",
+   "actitud a la defensiva",
+   "indecisión"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Siete de Bastos?",
+   "paragraphs": [
+    "Un joven en lo alto de una peña blande un basto mientras otros seis se levantan hacia él desde abajo. Así lo describe Waite: un joven sobre una altura rocosa, con un basto en alto y seis bastos alzados contra él desde abajo (p. 184). El basto que sostiene atravesado con las dos manos es lo más grande de la carta.",
+    "En la carta de 1909 viste una túnica verde y planta los pies bien abiertos sobre un montículo verde con roca en la orilla. Los seis bastos se alzan derechos frente a él y sus puntas no le pasan de la cintura. Sus zapatos no hacen juego: en un pie lleva un zapato bajo y en el otro una bota corta. Arriba se lee el VII."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Siete de Bastos?",
+   "paragraphs": [
+    "Para Waite es una carta de valor: en apariencia seis atacan a uno, pero ese uno tiene la posición ventajosa (p. 184). Waite agrega que también es una carta de éxito, porque quien está arriba quizá quede fuera del alcance de sus rivales (p. 184).",
+    "En el plano de las ideas, Waite le da el sentido de discusión y disputa de palabras (p. 184). La lista de Waite al revés, perplejidad, apuros y ansiedad, termina con una advertencia contra la indecisión (p. 184)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Siete de Bastos al derecho?",
+   "paragraphs": [
+    "Sostener tu postura propia aunque te presionen: eso es el Siete de Bastos. Defender una idea en una junta, mantener un límite cuando otros empujan, seguir con una decisión que te cuestionan. Es carta de convicción y de resistencia, y del valor de quedarte en tu lugar.",
+    "La altura cuenta. Tienes una posición ventajosa, por lo que sabes, por tu experiencia o porque tienes claro lo que quieres, pero mantenerla pide energía y claridad. No todo desafío necesita respuesta.",
+    "Mantente firme en lo que de verdad te importa y suelta las discusiones que ya no te dicen nada."
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Siete de Bastos al revés?",
+   "paragraphs": [
+    "Al revés, la carta puede mostrar agotamiento por defenderte todo el tiempo y la tentación de ceder solo para que se acabe la presión. Ceder no siempre está mal, pero conviene ver si lo eliges o si ya no te quedan fuerzas para elegir.",
+    "El otro lado es una actitud a la defensiva: tomar cada comentario como un ataque y dar batallas que nadie empezó. La advertencia de Waite contra la indecisión (p. 184) sirve para los dos casos; el cansancio y la defensiva son lectura moderna. Pregúntate qué terreno es de verdad tuyo y cuídalo con calma, no a fuerza de desgaste."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Siete de Bastos en el amor?",
+   "paragraphs": [
+    "Defender lo que necesitas sin convertir cada plática en una pelea: ese es el tono del Siete de Bastos en el amor. Puede hablar de cuidar el vínculo frente a presiones de afuera, opiniones de la familia o alguien que compite por la misma persona.",
+    "Mientras conoces gente, describe mantener lo que buscas aunque te digan que pidas menos, o sostener un límite que pusiste desde el principio.",
+    "Al revés, puede ser el cansancio de tener que justificarte siempre, o una guardia tan alta que no deja entrar la cercanía. ¿Dónde te defiendes por pura costumbre?"
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Siete de Bastos en el trabajo y el dinero?",
+   "paragraphs": [
+    "Varios candidatos para el mismo puesto, un mercado lleno de competencia, una decisión que tienes que defender ante tus colegas: así se ve esta carta en el trabajo. Waite incluye en ella negociaciones, rivalidad comercial, trueque y competencia en los negocios (p. 184). Tu posición es fuerte si te preparas y das argumentos cortos.",
+    "Respecto al dinero, la carta significa proteger lo que ganaste: cuidar tu presupuesto cuando te presionan para gastar, sostener tu precio, defender tu parte en un campo competido."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Siete de Bastos como consejo?",
+   "paragraphs": [
+    "Sostén tu postura en un tema importante con calma, desde tu lugar, sin levantar la voz. Antes, decide cuál es: una sola cosa que vas a mantener, y otras que puedes soltar. Ser firme no te obliga a contestar cada reto."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Siete de Bastos es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Siete de Bastos como persona y como sentimiento?",
+   "paragraphs": [
+    "Visto en una persona, el Siete de Bastos es alguien con principios, que protege lo suyo, dice lo que piensa y no cede fácilmente cuando le insisten. Como sentimiento, habla de una postura protectora y decidida: ganas de cuidar el vínculo y de defenderlo, junto con cierta guardia, una reserva que espera a sentir confianza. Al revés, el sentimiento puede ser cansancio, duda sobre si vale la pena el esfuerzo o una actitud defensiva que aleja a la otra persona."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Siete de Bastos junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "wands-05-five",
+     "text": "Muchas peleas chicas; decide cuál merece tu defensa."
+    },
+    {
+     "card_id": "major-08-strength",
+     "text": "Firmeza con mano suave: el valor tranquilo aguanta más que la fuerza bruta."
+    },
+    {
+     "card_id": "wands-10-ten",
+     "text": "Defiendes demasiado a la vez. Suelta lo que no te toca cargar."
+    },
+    {
+     "card_id": "swords-02-two",
+     "text": "No sabes qué defender. Elige y luego sostén tu elección."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Siete de Bastos del Nueve de Bastos?",
+   "paragraphs": [
+    "El Nueve de Bastos muestra, según Waite, una figura apoyada en su basto, con mirada expectante, como si esperara a un enemigo, y ocho bastos detrás como una empalizada (p. 180); hoy se lee como resiliencia y último esfuerzo. El Siete es la defensa activa, con el reto enfrente; el Nueve, la pausa después de muchos asaltos, con cansancio pero alerta."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Siete de Bastos?",
+   "paragraphs": [
+    "¿Qué postura estoy defendiendo ahora y sigo creyendo en ella?",
+    "¿Dónde me pongo a la defensiva aunque nadie me ataque?",
+    "¿Cómo se vería sostener mi lugar con calma?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Siete de Bastos es una carta buena o mala?",
+   "a": "Más buena que mala, aunque desgasta. Te muestra con ventaja bajo presión, algo que pide valor y te da una oportunidad real de conservar tu lugar. El costo es la energía: defenderse sin parar agota a cualquiera. Al revés, te pregunta si esa pelea todavía vale la pena."
+  },
+  {
+   "q": "¿El Siete de Bastos significa que tengo enemigos?",
+   "a": "No. Waite sí describe a seis que atacan a uno (p. 184), pero hoy los bastos se leen como presión: críticas, competencia, exigencias o dudas, a veces las tuyas. La carta habla de cómo respondes, no de quién está en tu contra."
+  },
+  {
+   "q": "¿Por qué el joven del Siete de Bastos trae zapatos distintos?",
+   "a": "Waite no lo explica; su descripción del dibujo no menciona los zapatos (p. 184). En la carta de 1909 lleva un zapato bajo en un pie y una bota en el otro. Una explicación moderna común es que se vistió con prisa, algo que cuadra con un reto que llegó sin aviso."
+  }
+ ],
+ "related": [
+  "wands-06-six",
+  "wands-08-eight",
+  "cups-07-seven",
+  "swords-07-seven",
+  "pentacles-07-seven"
+ ],
+ "mentions": [
+  {
+   "card_id": "wands-09-nine",
+   "text": "Nueve de Bastos"
+  }
+ ],
+ "waite": {
+  "quote": "It is a card of valour … It is further a card of success … Reversed: Perplexity, embarrassments, anxiety. It is also a caution against indecision.",
+  "quote_lang": "en",
+  "pages": [
+   184
+  ],
+  "translation": "Es una carta de valor … Es además una carta de éxito … Al revés: perplejidad, apuros, ansiedad. También es una advertencia contra la indecisión.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Wands 07.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Wands_07.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    180,
+    184
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

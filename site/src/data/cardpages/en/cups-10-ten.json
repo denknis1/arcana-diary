@@ -1,0 +1,206 @@
+{
+ "schema": 2,
+ "card_id": "cups-10-ten",
+ "lang": "en",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Ten of Cups",
+  "in_sentence": "the Ten of Cups"
+ },
+ "title": "Ten of Cups Tarot Card Meaning: Upright, Reversed & Love",
+ "description": "Ten of Cups upright: emotional fulfillment, family, harmony; reversed: tension at home. Love, work, advice and Waite's 1911 text. Ask your question.",
+ "h1": "Ten of Cups Tarot Card Meaning",
+ "image_alt": "Ten of Cups, 1909 Rider–Waite–Smith card: a couple seen from behind raise their arms to a rainbow of ten cups while two children dance near a red-roofed house.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "cups",
+  "number": 10,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "The Ten of Cups is the card of emotional fulfillment: family, harmony and a deep sense of belonging. Reversed, it can show tension at home or a gap between an idealized picture and real life. Few cards are warmer; just don't measure your life against a postcard. A rainbow over a happy household makes its upright answer yes.",
+ "keywords": {
+  "upright": [
+   "emotional fulfillment",
+   "family",
+   "harmony",
+   "belonging"
+  ],
+  "reversed": [
+   "disconnection",
+   "tension at home",
+   "idealized picture",
+   "misaligned values"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "What is on the Ten of Cups card?",
+   "paragraphs": [
+    "Ten cups form a rainbow across the sky. Below it, Waite writes, a man and woman, \"evidently husband and wife\", gaze up in wonder, his arm around her and their free arms raised (p. 206). Their two children dance hand in hand, and Waite notes that they \"have not observed the prodigy but are happy after their own manner\" (p. 206).",
+    "On the 1909 card the couple is seen from behind, the rainbow glows pink and yellow, and a small house with a red roof sits among trees on a green hill, with a river winding off to the left; X is printed at the top. The arc of cups fills the upper half of the card and is its largest shape."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "What did Waite write about the Ten of Cups?",
+   "paragraphs": [
+    "Waite gives this card the full heart: contentment, rest and the perfection of love and friendship (p. 206). Waite adds two unusual readings, a person taking charge of the interests of the one asking when picture cards surround it, and the town, village or country where that person lives (p. 206).",
+    "Waite's reversed list is blunt (p. 206). On Arcana Diary the reversed side stands for strain at home and a gap between an ideal and everyday life, a modern reading, not Waite's."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "What does the Ten of Cups mean upright?",
+   "paragraphs": [
+    "Emotional fulfillment is the core of the Ten of Cups: the feeling that love, home and the people around you fit together. Family sits at its center, whether that means relatives, a partner, close friends or the people you have chosen as your own. Harmony here is not perfection; it is the ease of belonging somewhere.",
+    "The card can come up when a long effort to build a home or mend ties starts to pay off emotionally, or simply to show how much warmth is already present. Where do you feel most at home right now, and who is there with you?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "What does the Ten of Cups mean reversed?",
+   "paragraphs": [
+    "Turned over, the rainbow fades a little. The reversed Ten of Cups can point to disconnection: people under one roof who feel far apart, or tension at home that nobody names. Often the trouble is an idealized picture of how a happy family should look, held up against a real life that is messier.",
+    "Misaligned values belong here too, two people hoping for different futures. The card does not declare the bond broken. It asks for an honest talk about what each person wants, and for attention to the warm moments that are already real."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "What does the Ten of Cups mean in love?",
+   "paragraphs": [
+    "Two people raising their arms under one rainbow: in love, the Ten of Cups stands for lasting happiness, commitment and the wish to build a shared home. It is often read as a relationship that feels like family, settled, warm and agreed about the future.",
+    "Reversed, it can show values pulling in different directions, or disappointment that a relationship does not match the picture in your head. On your own, the card turns to the kind of home and love you want, and invites you to move toward it at your own pace."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "What does the Ten of Cups mean for work and money?",
+   "paragraphs": [
+    "A team that feels like a good family, a workplace where you belong, a project shared with people you trust: this is the Ten of Cups at work. Its money meaning is stability that supports a calm home life and the sense of having enough to share. Reversed, strain over work or money can spill over into home."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "What is the advice of the Ten of Cups?",
+   "paragraphs": [
+    "Spend an unhurried hour with someone who feels like family, phones away and no agenda. Notice one small sign of belonging during that time and say it out loud, so both of you hear it."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "Is the Ten of Cups a yes or no card?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "The Ten of Cups as a person and as feelings",
+   "paragraphs": [
+    "When the question is how someone feels, the Ten of Cups means deep emotional fulfillment and the wish for a lasting future, the sense of having found a home in the other person. Upside down, the same card speaks of distance inside a close bond, an ideal that daily life has not matched, or hopes for the future that point in different directions. As a person, it is the one devoted to home and loved ones: warm, loyal, happiest when everyone is gathered together."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "The Ten of Cups with other cards",
+   "pairs": [
+    {
+     "card_id": "cups-02-two",
+     "text": "A connection between two people growing into a shared home."
+    },
+    {
+     "card_id": "cups-06-six",
+     "text": "Old family memories and present happiness side by side; warmth from the past returning."
+    },
+    {
+     "card_id": "swords-05-five",
+     "text": "Peace at home strained by a quarrel no one really wins. Choose the bond over being right."
+    },
+    {
+     "card_id": "major-21-world",
+     "text": "A long chapter in love or family life comes together with a sense of completion."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "Ten of Cups or Ten of Pentacles?",
+   "paragraphs": [
+    "Waite's Ten of Pentacles shows \"a man and woman beneath an archway which gives entrance to a house and domain\", with a child, two dogs and an old man seated in front (p. 262). Waite's meanings for it include gain, riches and \"the abode of a family\" (p. 262), and today it is read as legacy and long-term security.",
+    "Both cards are about family. The Ten of Cups is the feeling of belonging; the Ten of Pentacles is the material side, the home and what is passed down."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "Questions to ask yourself about the Ten of Cups",
+   "paragraphs": [
+    "Where do I feel most at home right now?",
+    "Am I comparing my life with a picture that nobody really lives?",
+    "Who feels like family to me, and when did I last tell them?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Is the Ten of Cups a good or bad card?",
+   "a": "Good: it is one of the most loving cards in the deck, about harmony and happiness shared with others. Reversed, it is still not a bad sign. It names strain or unmet expectations at home, which can be talked through."
+  },
+  {
+   "q": "Does the Ten of Cups mean marriage?",
+   "a": "Not as a prediction. The card describes a loving, settled home, which can include marriage but does not promise it. Waite's list of extra meanings does mention \"a good marriage\" for a man asking (p. 289); Arcana Diary reads the card more broadly, as fulfillment in any shape of love."
+  },
+  {
+   "q": "Does the Ten of Cups have to be about family?",
+   "a": "No. Family is its best-known meaning, but home here can be friends, a partner, a community or the people you have chosen. What counts is the feeling of being at peace with those around you, wherever and with whomever that happens."
+  }
+ ],
+ "related": [
+  "cups-09-nine",
+  "cups-11-page",
+  "wands-10-ten",
+  "swords-10-ten",
+  "pentacles-10-ten"
+ ],
+ "mentions": [
+  {
+   "card_id": "pentacles-10-ten",
+   "text": "Ten of Pentacles"
+  }
+ ],
+ "waite": {
+  "quote": "Contentment, repose of the entire heart … also perfection of human love and friendship … Reversed: Repose of the false heart, indignation, violence.",
+  "quote_lang": "en",
+  "pages": [
+   206
+  ],
+  "translation": null,
+  "harsh": true
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Card image",
+   "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Cups 10.jpeg (public domain)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Cups_10.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Description of the picture, traditional meanings and quotes",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+   "pages": [
+    206,
+    262,
+    289
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Modern meanings, keywords and the yes/no rule",
+   "where": "Arcana Diary card meanings",
+   "url": null
+  }
+ ]
+}

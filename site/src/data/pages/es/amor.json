@@ -1,0 +1,149 @@
+{
+ "schema": 1,
+ "page_id": "amor",
+ "lang": "es",
+ "url": "/es/amor",
+ "status": "reviewed",
+ "title": "Tarot del amor gratis: 3 cartas para tu corazón",
+ "description": "Tarot del amor gratis: tres cartas sobre tu relación o tu corazón, según tu situación, con un paso para esta semana. Sin nombres ni promesas. Haz tu tirada.",
+ "h1": "Tarot del amor: ¿qué necesita tu corazón?",
+ "lead": "Tres cartas sobre ti y tu vida amorosa, leídas desde tu situación: sin pareja, en pareja, después de una ruptura o cuando la cosa está complicada. La lectura habla de lo que sientes y de lo que puedes hacer.",
+ "capsule": null,
+ "blocks": [
+  {
+   "id": "que-muestra",
+   "heading": "¿Qué muestra la tirada del amor?",
+   "paragraphs": [
+    "Es una tirada de tres cartas pensada para el corazón. La primera, en el lugar del pasado, muestra lo que ha ido formando tu situación amorosa: costumbres, heridas, decisiones que todavía pesan. La segunda, en el presente, habla de lo que vives ahora. La tercera, hacia dónde va, señala adónde podría ir la historia si nada cambia (una posibilidad, no un destino), y de ahí sale una acción pequeña para esta semana.",
+    "Lo que la distingue de una tirada general es cómo se lee cada carta. Las 78 tienen en nuestra base una línea dedicada al amor, y el lector de inteligencia artificial la usa para tu pregunta. No es lo mismo el Cuatro de Espadas en una consulta de trabajo que en una de pareja, donde habla de tomarte un respiro para mirar la relación con más calma.",
+    "Antes de sacar las cartas puedes marcar tu situación: sin pareja, en pareja, después de una ruptura o es complicado. No es obligatorio, pero ayuda a que el consejo final te quede a la medida, sin que la lectura dé por hecho nada más de tu vida. Si no escribes pregunta, las tres cartas se leen como un mensaje sobre tu momento en el amor."
+   ]
+  },
+  {
+   "id": "que-preguntar",
+   "heading": "¿Qué preguntar al tarot del amor?",
+   "paragraphs": [
+    "Las preguntas que más dan son las que te ponen al centro: «¿Qué necesito para sentirme en paz en esta relación?», «¿Qué me impide abrirme a conocer a alguien?», «¿Cómo hablo de lo que me molesta sin que acabemos peleando?», «¿Qué me dejó mi última relación?». Todas tienen una respuesta que puedes poner en práctica.",
+    "Funcionan peor las que dependen de alguien más: qué piensa, qué quiere, si te busca o si regresa. Las cartas no pueden ver dentro de nadie, y la lectura no lo intenta. Si escribes algo así, la respuesta se vuelve hacia ti: qué te pasa a ti en ese vínculo, qué necesitas y qué está en tus manos decir o hacer.",
+    "Un truco sencillo: si tu pregunta empieza con «¿Él…?» o «¿Ella…?», cámbiala por una que empiece contigo. «¿Ella quiere algo serio?» se convierte en «¿Qué quiero yo de esta relación y cómo se lo digo?». Es la misma inquietud, pero ahora hay algo que hacer.",
+    "Tampoco hace falta escribir nombres. Como la lectura no habla por la otra persona, el nombre no cambia el resultado. Si pensar en ese nombre te ayuda a concentrarte, adelante, pero lo importante es lo que tú quieres entender."
+   ]
+  },
+  {
+   "id": "situaciones",
+   "heading": "¿Cómo cambia la lectura según tu situación?",
+   "paragraphs": [
+    "Sin pareja, la lectura se fija en tu manera de buscar o de no buscar, en lo que esperas de alguien y en lo que te frena. El As de Copas habla de abrirte a sentir y a recibir cariño; El Ermitaño, de un tiempo para entender qué necesitas antes de mirar hacia afuera. Ninguna carta dice cuándo aparecerá alguien, porque eso no lo sabe nadie, pero sí qué puedes cuidar mientras tanto.",
+    "Con una relación de por medio, las cartas suelen tocar la convivencia, lo que se da y lo que se recibe, las pláticas que se quedaron pendientes. El Dos de Copas pone el acento en el respeto que va en los dos sentidos; el Ocho de Oros, en el cariño que se construye con detalles de todos los días; el Cuatro de Copas, en la rutina que apaga la ilusión.",
+    "Después de una ruptura, la tirada mira tu proceso: lo que todavía duele, lo que estás soltando y cómo tratarte bien en esta etapa. El Cinco de Copas habla de tristeza y de lo que sigue en pie aunque cueste verlo; el Seis de Espadas, de cruzar hacia aguas más tranquilas a tu ritmo. No te dirán si tu ex regresa; sí pueden ayudarte a ver qué quieres tú ahora.",
+    "Para lo que no tiene un nombre claro, como una relación a medias, alguien que te gusta pero no está disponible o un vínculo que va y viene, elige «Es complicado». Ahí la lectura no intenta desenredar todo de un jalón: busca la parte que sí depende de ti y un paso que no te deje peor de lo que estás."
+   ]
+  },
+  {
+   "id": "que-no-dice",
+   "heading": "¿Qué no te dice el tarot del amor?",
+   "paragraphs": [
+    "No te dice lo que siente, piensa o hará otra persona. Ninguna carta puede saberlo, y una lectura que lo afirmara te dejaría esperando en lugar de actuar. Lo que sí existe es el significado tradicional de cada carta en el amor: en la página de cada una hay una sección sobre lo que esa carta representa como sentimiento, siempre como significado de la carta y no como un dato sobre alguien de tu vida.",
+    "Tampoco da fechas, no promete que alguien aparezca y no ofrece rituales para atraer a nadie. Si lo que buscas es una respuesta rápida sobre tu propia decisión, como dar o no un paso, el tarot sí o no está hecho para eso.",
+    "Y no sustituye una plática. Muchas veces el siguiente paso que sale de la lectura es justo ese: decir algo, preguntar algo, poner un límite. Si las cartas te ayudan a encontrar las palabras, ya hicieron su parte. Y si después de la plática algo cambia, puedes volver a sacar tres cartas y comparar las dos lecturas en tu diario."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El tarot del amor es gratis?",
+   "a": "Sí. La tirada del amor cuenta como una de tus lecturas del día, {guest_limit} sin cuenta o {user_limit} con sesión iniciada, e incluye {followups} preguntas de seguimiento gratis por si quieres profundizar en alguna carta."
+  },
+  {
+   "q": "¿Cuál es la carta del amor en el tarot?",
+   "a": "La más conocida es Los Enamorados, de los arcanos mayores, que habla de conexión, reciprocidad y de elegir con el corazón y con honestidad. Muy cerca están el Dos de Copas, la atracción que va en los dos sentidos, y el As de Copas, un comienzo emocional. Pero cualquiera de las 78 puede salir en una pregunta de amor, y todas tienen algo que decir."
+  },
+  {
+   "q": "¿Las cartas pueden decir qué siente por mí?",
+   "a": "No. Ninguna lectura puede ver lo que hay en el corazón de otra persona, y aquí no se intenta. Si haces esa pregunta, la lectura te habla de lo que tú sientes y necesitas en ese vínculo, que es la parte en la que puedes hacer algo."
+  },
+  {
+   "q": "¿Qué significa El Colgado en el tarot del amor?",
+   "a": "El Colgado habla de una pausa y de ver la situación desde otro ángulo. En el amor te pide no forzar decisiones y entender qué necesitas antes de mover piezas. Al revés, puede señalar una espera que ya se alargó de más o algo que cuesta soltar."
+  },
+  {
+   "q": "¿Se puede hacer el tarot del amor con nombres?",
+   "a": "Puedes escribir un nombre en tu pregunta, pero no cambia la lectura: las cartas no hablan por la otra persona. Te conviene más escribir lo que tú quieres entender de ti en esa relación."
+  },
+  {
+   "q": "¿Hay tarot del amor de sí o no?",
+   "a": "Sí: en la página de sí o no puedes preguntar sobre tu propia decisión, como «¿Le digo lo que siento?». Si la pregunta es sobre lo que hará o sentirá otra persona, no hay veredicto, solo una lectura sobre ti."
+  },
+  {
+   "q": "¿Qué tan acertado es el tarot del amor?",
+   "a": "Tanto como te ayude a pensar. Las cartas salen al azar y no predicen el futuro inmediato de tu relación; lo valioso es lo que te hacen notar. Si guardas tus lecturas en el diario y marcas después si se cumplieron, con el tiempo ves cuáles te sirvieron de verdad."
+  }
+ ],
+ "intents": [
+  {
+   "q": "tarot del amor gratis",
+   "source": "[карта страниц]",
+   "answered_in": "faq:0"
+  },
+  {
+   "q": "tarot certero gratis futuro inmediato amor",
+   "source": "[карта страниц]",
+   "answered_in": "faq:6"
+  },
+  {
+   "q": "tarot gratis 3 cartas amor",
+   "source": "[карта страниц]",
+   "answered_in": "que-muestra"
+  },
+  {
+   "q": "tarot si o no del amor",
+   "source": "[Ahrefs MX] 80",
+   "answered_in": "faq:5"
+  },
+  {
+   "q": "tarot del amor si o no",
+   "source": "[Ahrefs MX] 30",
+   "answered_in": "faq:5"
+  },
+  {
+   "q": "cual es la carta del amor en el tarot",
+   "source": "[Ahrefs MX] 10",
+   "answered_in": "faq:1"
+  },
+  {
+   "q": "tarot del amor gratis que siente por mi",
+   "source": "[Ahrefs MX] 0",
+   "answered_in": "faq:2"
+  },
+  {
+   "q": "que significa el colgado en el tarot del amor",
+   "source": "[Ahrefs MX] 0",
+   "answered_in": "faq:3"
+  },
+  {
+   "q": "qué siente por ti ahora mismo según las cartas",
+   "source": "[H2 tarotamigo]",
+   "answered_in": "que-no-dice"
+  },
+  {
+   "q": "tarot del amor con nombres",
+   "source": "[H2 tarotamigo]",
+   "answered_in": "faq:4"
+  },
+  {
+   "q": "qué puedes preguntar en una tirada del tarot del amor",
+   "source": "[H2 tarotamigo]",
+   "answered_in": "que-preguntar"
+  },
+  {
+   "q": "cuando el amor no llega, qué puede revelarte",
+   "source": "[H2 tarotamigo]",
+   "answered_in": "situaciones"
+  },
+  {
+   "q": "tarot del amor después de una ruptura",
+   "source": "[ES-009, «Situations» в плане 50]",
+   "answered_in": "situaciones"
+  }
+ ]
+}

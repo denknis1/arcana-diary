@@ -1,0 +1,203 @@
+{
+ "schema": 2,
+ "card_id": "pentacles-04-four",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Cuatro de Oros",
+  "in_sentence": "el Cuatro de Oros",
+  "de": "del Cuatro de Oros"
+ },
+ "title": "Cuatro de Oros en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Cuatro de Oros al derecho y al revés (carta invertida): control, seguridad, amor, trabajo y dinero. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Cuatro de Oros en el tarot: significado",
+ "image_alt": "Cuatro de Oros, carta de 1909 de la baraja Rider-Waite-Smith: un hombre coronado abraza una moneda contra el pecho, con otra sobre la corona y dos bajo los pies; detrás, una ciudad de torres.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "pentacles",
+  "number": 4,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Cuatro de Oros habla de seguridad y control: conservar lo que tienes, ahorrar y proteger tus recursos, a veces de más. Al revés, el puño se afloja o el miedo a perder aprieta más. Es una carta de estabilidad que pregunta si cuidas o te aferras. El sí o el no todavía no está claro: las monedas siguen quietas.",
+ "keywords": {
+  "upright": [
+   "control",
+   "seguridad",
+   "apego material",
+   "conservar"
+  ],
+  "reversed": [
+   "aflojar",
+   "gasto excesivo",
+   "miedo a perder"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Cuatro de Oros?",
+   "paragraphs": [
+    "Un hombre coronado aprieta una moneda contra el pecho, otra descansa sobre su corona y dos más quedan bajo sus pies; la moneda abrazada es el centro del dibujo. Waite lo describe casi igual: una figura coronada con un pentáculo sobre la corona, que sujeta otro con manos y brazos, y dos pentáculos bajo los pies (p. 274). Y Waite lo resume en una frase: se aferra a lo que tiene (p. 274).",
+    "En la carta de 1909 se envuelve en un manto oscuro sobre una túnica café rojiza y mira de frente. Detrás, una ciudad de torres y techos rojos ocupa el horizonte a los dos lados. Arriba se lee el IV."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Cuatro de Oros?",
+   "paragraphs": [
+    "La lista al derecho de Waite empieza con la seguridad de las posesiones, la tranquilidad de tener y conservar, y luego pasa a lo que llega de otros: regalo, legado, herencia (p. 274). Al revés, la lista de Waite es corta y no habla de dinero: suspenso, demora, oposición (p. 274)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Cuatro de Oros al derecho?",
+   "paragraphs": [
+    "La seguridad es el primer significado: ahorros guardados, un presupuesto que aguanta, una casa o un puesto por el que trabajaste y que quieres conservar. Aquí ahorrar es una fortaleza; la carta respeta el esfuerzo que costó construir algo estable.",
+    "El otro lado es el control y el apego material. Cuidar puede volverse apretar de más: vigilar el dinero, el tiempo o los sentimientos tan de cerca que nada nuevo entra y nada sale. La carta pregunta dónde termina la protección y dónde empieza el puño cerrado. Pregúntate qué temes que pase si aflojas un poco."
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Cuatro de Oros al revés?",
+   "paragraphs": [
+    "Al revés, puede hablar de aflojar: vuelves a compartir, a gastar o a confiar después de una etapa cuidadosa. También puede irse al otro extremo, al gasto excesivo o a dar más de lo prudente. O pasa lo contrario: el miedo a perder hace que el puño apriete todavía más y cada gasto parezca una amenaza.",
+    "Los significados al revés de Waite, suspenso, demora y oposición (p. 274), hablan de cosas detenidas, no gastadas; las lecturas de dinero son modernas. En cualquier caso, la meta es un punto medio: seguridad para descansar y apertura para moverte."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Cuatro de Oros en el amor?",
+   "paragraphs": [
+    "Brazos alrededor de una moneda: en el amor, la carta describe un corazón en guardia. Puede hablar de un vínculo estable y leal donde ambos valoran la seguridad, y también del precio de esa seguridad: posesividad, celos, miedo a que te lastimen, sentimientos bajo llave.",
+    "Si estás conociendo gente, quizá notes que mantienes a las personas a distancia para proteger una herida vieja o una rutina que se siente segura. Al revés, la guardia baja y el corazón se abre, o el miedo a perder a alguien lleva a aferrarse."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Cuatro de Oros en el trabajo y el dinero?",
+   "paragraphs": [
+    "Ahorrar es el sentido más claro de esta carta: juntar un colchón, recortar gastos, cuidar cada peso, conservar lo que ganaste. Significa seguridad financiera y una forma prudente de manejar el dinero, a veces tan prudente que se vuelve miedo a gastar. En el trabajo describe cuidar un puesto, un presupuesto o un territorio, y resistirse al cambio. Al revés, puede hablar de gasto excesivo, de dinero que se va de las manos o de un control que por fin se afloja."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Cuatro de Oros como consejo?",
+   "paragraphs": [
+    "Regala algo que guardas sin usar y observa cómo se siente aflojar las manos. Si lo que aprietas es dinero, un plan o un sentimiento, suelta una parte pequeña: compártela o simplemente platícalo con alguien de confianza."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Cuatro de Oros es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Cuatro de Oros como persona y como sentimiento?",
+   "paragraphs": [
+    "Visto como alguien de tu vida, el Cuatro de Oros es una persona cuidadosa y protectora: leal, confiable, buena con el dinero, pero lenta para confiar y con gusto por el control. Como sentimiento, su significado tradicional es un cariño real pero en guardia: deseo de mantener el vínculo a salvo, posesividad, resistencia a mostrarse vulnerable. Al revés, la guardia baja y el corazón se abre un poco, o el miedo a perder a alguien se convierte en apego."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Cuatro de Oros junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "major-04-emperor",
+     "text": "Estructura y control juntos; las reglas firmes protegen lo que tienes, pero pueden volverlo rígido."
+    },
+    {
+     "card_id": "cups-04-four",
+     "text": "Cerrazón por los dos lados: aferrarte a lo que tienes y no ver lo que te ofrecen."
+    },
+    {
+     "card_id": "pentacles-05-five",
+     "text": "Detrás del puño está el miedo a la escasez. Mira lo que de verdad hay antes de apretar más."
+    },
+    {
+     "card_id": "wands-09-nine",
+     "text": "Cuidar lo que costó ganar. La cautela es justa; un muro alrededor de todo, no."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Cuatro de Oros del Seis de Oros?",
+   "paragraphs": [
+    "El Seis de Oros de Waite muestra a alguien con aspecto de mercader que pesa dinero en una balanza y lo reparte entre los necesitados (p. 270); hoy se lee como generosidad y equilibrio entre dar y recibir. El Cuatro guarda las monedas muy cerca; el Seis las deja circular."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Cuatro de Oros?",
+   "paragraphs": [
+    "¿A qué me aferro y qué temo que pase si lo suelto?",
+    "¿Esto es protección o es control?",
+    "¿Qué podría compartir sin sentir menos seguridad?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Cuatro de Oros es una carta buena o mala?",
+   "a": "En general, ni una cosa ni la otra. Su fuerza es la estabilidad: ahorro, una base firme, cuidado con lo que tienes. Su riesgo es un puño que se cierra de más. Que se lea como buena depende de si estás protegiendo algo o aferrándote, y esa pregunta la carta te la deja a ti."
+  },
+  {
+   "q": "¿El Cuatro de Oros significa avaricia?",
+   "a": "No por sí solo. Su centro es la seguridad y conservar lo que tienes, lo que Waite llama aferrarse a lo propio (p. 274). La avaricia es el extremo de ese significado, cuando ahorrar se vuelve acumular y nada se comparte. Casi siempre la carta describe simplemente cautela."
+  },
+  {
+   "q": "¿El Cuatro de Oros habla de ahorrar dinero?",
+   "a": "Muy a menudo. Guardar dinero, hacer un fondo de reserva y gastar con cuidado están entre sus lecturas más comunes, junto con proteger una casa o un empleo. La carta valora ese cuidado; solo te pide notar cuándo la prudencia deja de servirte."
+  }
+ ],
+ "related": [
+  "pentacles-03-three",
+  "pentacles-05-five",
+  "wands-04-four",
+  "cups-04-four",
+  "swords-04-four"
+ ],
+ "mentions": [
+  {
+   "card_id": "pentacles-06-six",
+   "text": "Seis de Oros"
+  }
+ ],
+ "waite": {
+  "quote": "The surety of possessions, cleaving to that which one has, gift, legacy, inheritance. Reversed; Suspense, delay, opposition.",
+  "quote_lang": "en",
+  "pages": [
+   274
+  ],
+  "translation": "La seguridad de las posesiones, aferrarse a lo que uno tiene, regalo, legado, herencia. Al revés: suspenso, demora, oposición.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 04.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_04.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    270,
+    274
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}

@@ -1,0 +1,208 @@
+{
+ "schema": 2,
+ "card_id": "swords-02-two",
+ "lang": "es",
+ "status": "reviewed",
+ "editor": "{editor_name}",
+ "reviewed_at": "2026-11-23",
+ "name_forms": {
+  "name": "Dos de Espadas",
+  "in_sentence": "el Dos de Espadas",
+  "de": "del Dos de Espadas"
+ },
+ "title": "Dos de Espadas en el tarot: significado, invertida y amor",
+ "description": "Qué significa el Dos de Espadas al derecho y al revés (carta invertida): indecisión, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+ "h1": "Dos de Espadas en el tarot: significado",
+ "image_alt": "Dos de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: una mujer con los ojos vendados, sentada en un banco de piedra, cruza los brazos con dos espadas sobre los hombros; detrás, el mar y la luna.",
+ "facts": {
+  "arcana": "minor",
+  "suit": "swords",
+  "number": 2,
+  "numeral": null,
+  "also_called": []
+ },
+ "capsule": "El Dos de Espadas es la carta de la indecisión: un bloqueo, una elección pospuesta y un equilibrio frágil que evita el conflicto. Al revés, la decisión se vuelve inevitable. Es una carta de pausa, no de daño, aunque cerrar los ojos solo aplaza. Si es sí o no, todavía no está claro: la figura vendada no elige.",
+ "keywords": {
+  "upright": [
+   "indecisión",
+   "bloqueo",
+   "evitar",
+   "equilibrio frágil"
+  ],
+  "reversed": [
+   "demasiada información",
+   "decisión inevitable",
+   "alivio",
+   "verdad a la vista"
+  ]
+ },
+ "blocks": [
+  {
+   "id": "on_the_card",
+   "heading": "¿Qué hay en la carta del Dos de Espadas?",
+   "paragraphs": [
+    "Una mujer con los ojos vendados está sentada sola y cruza los brazos sobre el pecho; en cada mano sostiene una espada que se alza por encima del hombro. Waite la resume en una línea: una mujer vendada que mantiene en equilibrio dos espadas apoyadas en los hombros (p. 250). Waite no explica la venda.",
+    "En la carta de 1909 las dos espadas largas son lo más grande: se abren hacia arriba en una V que casi llena el cielo azul pálido. Ella viste de blanco, se sienta en un banco de piedra gris y da la espalda al mar, donde asoman rocas; arriba a la derecha brilla una luna creciente amarilla y en lo alto se lee el II."
+   ]
+  },
+  {
+   "id": "waite",
+   "heading": "¿Qué escribió Waite sobre el Dos de Espadas?",
+   "paragraphs": [
+    "La lista de Waite es más amable de lo que sugiere el dibujo: equilibrio, valor, amistad y una paz que se mantiene con las armas en la mano (p. 250). Waite añade otra lectura de ternura, afecto e intimidad, pero pide tomar esos significados favorables con reservas, porque las Espadas en general no simbolizan fuerzas benéficas en los asuntos humanos (p. 250).",
+    "Al revés, la lista de Waite habla de impostura, falsedad, doblez y deslealtad (p. 250)."
+   ]
+  },
+  {
+   "id": "upright",
+   "heading": "¿Qué significa el Dos de Espadas al derecho?",
+   "paragraphs": [
+    "La indecisión manda en esta carta: dos caminos, los dos con su costo, y las ganas de mantenerlos en equilibrio para no tener que elegir. Por fuera hay calma, pero es un bloqueo, una tregua que se sostiene a fuerza de no mirar. Evitar el tema protege un rato, aunque no resuelve nada.",
+    "También puede hablar de dos personas plantadas cada una en su postura, sin ceder, o de una decisión que se deja para después una y otra vez. Ese equilibrio frágil aguanta, pero no para siempre.",
+    "¿Qué elegirías si te quitaras la venda y vieras todo el panorama?"
+   ]
+  },
+  {
+   "id": "reversed",
+   "heading": "¿Qué significa el Dos de Espadas al revés?",
+   "paragraphs": [
+    "Al revés, el bloqueo empieza a romperse, quieras o no. A veces llega demasiada información y cuesta ordenarla; otras, los hechos traen una decisión inevitable o dejan una verdad a la vista que ya no puedes esquivar. Y a veces lo que aparece es alivio: reconocer por fin lo que quieres.",
+    "Waite lee este lado como engaño y falsedad (p. 250); lo anterior es una lectura moderna, no de Waite. Elige lo que escogerías si nadie te estuviera viendo y empieza por ahí."
+   ]
+  },
+  {
+   "id": "love",
+   "heading": "¿Qué significa el Dos de Espadas en el amor?",
+   "paragraphs": [
+    "Un corazón con los brazos cruzados: así aparece el Dos de Espadas en el amor. En una relación, describe un tema que los dos rodean sin tocar o una tregua que mantiene la paz sin arreglar nada. Cuando aún no hay nadie, puede hablar de las dudas para abrirte: un corazón que se protege a fuerza de no sentir demasiado. Si estás entre dos personas o dos caminos, también se refleja aquí.",
+    "Al revés, un sentimiento o una decisión que llevaban rato guardados piden salir a la luz. Mira con honestidad lo que sientes antes de decidir."
+   ]
+  },
+  {
+   "id": "work_money",
+   "heading": "¿Qué significa el Dos de Espadas en el trabajo y el dinero?",
+   "paragraphs": [
+    "Un estado de cuenta sin abrir, un presupuesto que nadie quiere revisar, dos opciones de gasto comparadas durante demasiado tiempo: ese es el retrato económico de la carta. Significa estancamiento, no pérdida.",
+    "Entre dos ofertas o dos proyectos, la carta muestra el momento de elegir; con un colega, un estira y afloja donde nadie cede. Consigue los datos que faltan y decide: el estancamiento cuesta más mientras más dura."
+   ]
+  },
+  {
+   "id": "advice",
+   "heading": "¿Qué significa el Dos de Espadas como consejo?",
+   "paragraphs": [
+    "Busca hoy el único dato que te falta para decidir, sin esperar a tenerlo todo. Luego escribe las dos opciones lado a lado, con lo que cuesta cada una, y fíjate a cuál vuelves sin querer."
+   ]
+  },
+  {
+   "id": "yes_no",
+   "heading": "¿El Dos de Espadas es sí o no?",
+   "paragraphs": []
+  },
+  {
+   "id": "in_a_reading",
+   "heading": "¿Qué significa el Dos de Espadas como persona y como sentimiento?",
+   "paragraphs": [
+    "Alguien reservado y diplomático: así se ve el Dos de Espadas como persona, quien cuida la paz guardándose su opinión o vive entre dos lealtades. En ti, es la resistencia a elegir. Cuando se pregunta por sentimientos, la carta significa estar en medio: emociones contenidas, un corazón a la defensiva, dudas sobre qué camino tomar. Al revés, eso que se contenía empieza a salir, a veces como confusión y a veces como el alivio de decir por fin la verdad."
+   ]
+  },
+  {
+   "id": "combinations",
+   "heading": "¿Qué significa el Dos de Espadas junto a otras cartas?",
+   "pairs": [
+    {
+     "card_id": "major-06-lovers",
+     "text": "Una elección de verdad entre dos caminos. Decide por lo que valoras, no por lo que es más fácil aplazar."
+    },
+    {
+     "card_id": "swords-08-eight",
+     "text": "Evitar se convierte en sentirte sin salida. La salida aparece cuando miras."
+    },
+    {
+     "card_id": "major-02-high-priestess",
+     "text": "Cuando faltan datos, la intuición callada quizá ya conoce la respuesta."
+    },
+    {
+     "card_id": "major-14-temperance",
+     "text": "Una tregua que se vuelve equilibrio real, con paciencia de ambos lados."
+    }
+   ]
+  },
+  {
+   "id": "not_to_confuse",
+   "heading": "¿Cómo distinguir el Dos de Espadas del Ocho de Espadas?",
+   "paragraphs": [
+    "En el Ocho de Espadas también hay una venda: Waite describe a una mujer atada y con los ojos vendados, rodeada por las espadas de la carta, y aclara que es más un encierro pasajero que una atadura sin remedio (p. 238). En la lectura actual, el Ocho es sentirse sin salida y dudar de las propias fuerzas.",
+    "En el Dos, la figura sostiene las espadas y la elección es suya; en el Ocho, las espadas la rodean y el problema es no ver la salida."
+   ]
+  },
+  {
+   "id": "ask_yourself",
+   "heading": "¿Qué preguntarte cuando te sale el Dos de Espadas?",
+   "paragraphs": [
+    "¿Qué evito mirar para no tener que elegir?",
+    "¿A qué opción vuelvo cuando dejo de discutir conmigo?",
+    "¿Qué dato me haría más fácil esta decisión?"
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "¿El Dos de Espadas es una carta buena o mala?",
+   "a": "Más bien neutral: es una carta de espera, no de daño. Muestra una decisión en pausa y una calma que no dura siempre, y verlo a tiempo sirve. Te da espacio para pensar; el riesgo es usar ese espacio para no pensar. Al revés, casi siempre las cosas se vuelven a mover."
+  },
+  {
+   "q": "¿El Dos de Espadas significa que debo esperar?",
+   "a": "No exactamente. Describe una espera que ya está pasando, una decisión detenida, y pregunta si esa pausa todavía te ayuda. Esperar un dato que falta es sensato; esperar para no enfrentar la elección casi nunca lo es."
+  },
+  {
+   "q": "¿El Dos de Espadas puede hablar de amistad?",
+   "a": "En la lista de Waite, sí: la amistad y la concordia están entre sus significados al derecho (p. 250). La lectura actual la ve más como equilibrio bajo tensión, así que una amistad en esta carta puede ser una donde algo se calla para que todo siga tranquilo."
+  }
+ ],
+ "related": [
+  "swords-01-ace",
+  "swords-03-three",
+  "wands-02-two",
+  "cups-02-two",
+  "pentacles-02-two"
+ ],
+ "mentions": [
+  {
+   "card_id": "swords-08-eight",
+   "text": "Ocho de Espadas"
+  }
+ ],
+ "waite": {
+  "quote": "Conformity and the equipoise which it suggests, courage, friendship, concord in a state of arms … Reversed: Imposture, falsehood, duplicity, disloyalty.",
+  "quote_lang": "en",
+  "pages": [
+   250
+  ],
+  "translation": "Conformidad y el equilibrio que sugiere, valor, amistad, concordia en estado de armas … Al revés: impostura, falsedad, doblez, deslealtad.",
+  "harsh": false
+ },
+ "sources": [
+  {
+   "kind": "image",
+   "what": "Imagen de la carta",
+   "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 02.jpeg (dominio público)",
+   "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_02.jpeg"
+  },
+  {
+   "kind": "waite",
+   "what": "Descripción del dibujo, significados tradicionales y citas",
+   "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+   "pages": [
+    238,
+    250
+   ],
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+  },
+  {
+   "kind": "project",
+   "what": "Significados modernos, palabras clave y regla de sí o no",
+   "where": "Significados de cartas de Arcana Diary",
+   "url": null
+  }
+ ]
+}
