@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-02-two",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Two of Wands",
     "in_sentence": "the Two of Wands"
@@ -173,33 +173,47 @@
   "waite": {
     "quote": "On the one hand, riches, fortune, magnificence; on the other, physical suffering, disease, chagrin, sadness, mortification … Reversed: Surprise, wonder, enchantment, emotion, trouble, fear.",
     "quote_lang": "en",
-    "pages": [194],
+    "pages": [
+      194
+    ],
     "translation": null,
     "harsh": true
   },
   "citations": [
     {
-      "pages": [194],
+      "pages": [
+        194
+      ],
       "text": "A tall man looks from a battlemented roof over sea and shore"
     },
     {
-      "pages": [194],
+      "pages": [
+        194
+      ],
       "text": "The Rose and Cross and Lily should be noticed on the left side"
     },
     {
-      "pages": [194],
+      "pages": [
+        194
+      ],
       "text": "Between the alternative readings there is no marriage possible"
     },
     {
-      "pages": [194],
+      "pages": [
+        194
+      ],
       "text": "here is a lord overlooking his dominion and alternately contemplating a globe; it looks like the malady, the mortification, the sadness of Alexander amidst the grandeur of this world's wealth"
     },
     {
-      "pages": [194],
+      "pages": [
+        194
+      ],
       "text": "Reversed: Surprise, wonder, enchantment, emotion, trouble, fear"
     },
     {
-      "pages": [192],
+      "pages": [
+        192
+      ],
       "text": "looking from a cliff's edge at ships passing over the sea"
     }
   ],
@@ -214,7 +228,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [192, 194],
+      "pages": [
+        192,
+        194
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

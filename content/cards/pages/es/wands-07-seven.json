@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-07-seven",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Siete de Bastos",
     "in_sentence": "el Siete de Bastos",
@@ -175,25 +175,35 @@
   "waite": {
     "quote": "It is a card of valour … It is further a card of success … Reversed: Perplexity, embarrassments, anxiety. It is also a caution against indecision.",
     "quote_lang": "en",
-    "pages": [184],
+    "pages": [
+      184
+    ],
     "translation": "Es una carta de valor … Es además una carta de éxito … Al revés: perplejidad, apuros, ansiedad. También es una advertencia contra la indecisión.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [184],
+      "pages": [
+        184
+      ],
       "text": "A young man on a craggy eminence brandishing a staff; six other staves are raised towards him from below."
     },
     {
-      "pages": [184],
+      "pages": [
+        184
+      ],
       "text": "It is a card of valour, for, on the surface, six are attacking one, who has, however, the vantage position. On the intellectual plane, it signifies discussion, wordy strife; in business—negotiations, war of trade, barter, competition."
     },
     {
-      "pages": [184],
+      "pages": [
+        184
+      ],
       "text": "It is further a card of success, for the combatant is on the top and his enemies may be unable to reach him. Reversed: Perplexity, embarrassments, anxiety. It is also a caution against indecision."
     },
     {
-      "pages": [180],
+      "pages": [
+        180
+      ],
       "text": "The figure leans upon his staff and has an expectant look, as if awaiting an enemy. Behind are eight other staves—erect, in orderly disposition, like a palisade."
     }
   ],
@@ -208,7 +218,10 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [180, 184],
+      "pages": [
+        180,
+        184
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

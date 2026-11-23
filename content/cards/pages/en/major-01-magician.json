@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "major-01-magician",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "The Magician",
     "in_sentence": "The Magician"
@@ -181,65 +181,97 @@
   "waite": {
     "quote": "Skill, diplomacy, address, subtlety; sickness, pain, loss, disaster, snares of enemies; self-confidence, will; the Querent, if male. Reversed: Physician, Magus, mental disease, disgrace, disquiet.",
     "quote_lang": "en",
-    "pages": [283],
+    "pages": [
+      283
+    ],
     "translation": null,
     "harsh": true
   },
   "citations": [
     {
-      "pages": [72],
+      "pages": [
+        72
+      ],
       "text": "having the countenance of divine Apollo, with smile of confidence and shining eyes"
     },
     {
-      "pages": [72],
+      "pages": [
+        72
+      ],
       "text": "In the Magician's right hand is a wand raised towards heaven, while the left hand is pointing to the earth"
     },
     {
-      "pages": [72, 75],
+      "pages": [
+        72,
+        75
+      ],
       "text": "it shews the descent of grace, virtue and light, drawn from things above and derived to things below"
     },
     {
-      "pages": [72],
+      "pages": [
+        72
+      ],
       "text": "the sign of life, like an endless cord, forming the figure 8 in a horizontal position"
     },
     {
-      "pages": [72],
+      "pages": [
+        72
+      ],
       "text": "About his waist is a serpent-cincture, the serpent appearing to devour its own tail"
     },
     {
-      "pages": [75],
+      "pages": [
+        75
+      ],
       "text": "On the table in front of the Magician are the symbols of the four Tarot suits, signifying the elements of natural life, which lie like counters before the adept, and he adapts them as he wills"
     },
     {
-      "pages": [75],
+      "pages": [
+        75
+      ],
       "text": "Beneath are roses and lilies, the flos campi and lilium convallium, changed into garden flowers, to shew the culture of aspiration"
     },
     {
-      "pages": [75],
+      "pages": [
+        75
+      ],
       "text": "The suggestion throughout is therefore the possession and communication of the Powers and Gifts of the Spirit"
     },
     {
-      "pages": [64, 65],
+      "pages": [
+        64,
+        65
+      ],
       "text": "certain cards, like the Magician … which do … not correspond to Conditions of Life, Arts, Sciences, Virtues … they indicate the real subject matter with which we are concerned"
     },
     {
-      "pages": [283],
+      "pages": [
+        283
+      ],
       "text": "Skill, diplomacy, address, subtlety; sickness, pain, loss, disaster, snares of enemies; self-confidence, will; the Querent, if male. Reversed: Physician, Magus, mental disease, disgrace, disquiet"
     },
     {
-      "pages": [12],
+      "pages": [
+        12
+      ],
       "text": "The Magus, Magician, or Juggler, the caster of the dice and mountebank, in the world of vulgar trickery. This is the colportage interpretation"
     },
     {
-      "pages": [308],
+      "pages": [
+        308
+      ],
       "text": "the Querent—if of the male sex—is represented by the Magician"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "An erect and princely figure carrying a drawn sword"
     },
     {
-      "pages": [96],
+      "pages": [
+        96
+      ],
       "text": "He is above all things triumph in the mind"
     }
   ],
@@ -254,7 +286,16 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [12, 64, 65, 72, 75, 96, 283, 308],
+      "pages": [
+        12,
+        64,
+        65,
+        72,
+        75,
+        96,
+        283,
+        308
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

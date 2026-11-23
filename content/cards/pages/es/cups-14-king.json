@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-14-king",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Rey de Copas",
     "in_sentence": "el Rey de Copas",
@@ -183,33 +183,47 @@
   "waite": {
     "quote": "Fair man, man of business, law, or divinity; responsible … creative intelligence. Reversed: Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss.",
     "quote_lang": "en",
-    "pages": [198],
+    "pages": [
+      198
+    ],
     "translation": "Hombre de tez clara, hombre de negocios, de leyes o de teología; responsable … inteligencia creativa. Al revés: hombre deshonesto, de doble juego; bribonería, exacción, injusticia, vicio, escándalo, saqueo, pérdida considerable.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [198],
+      "pages": [
+        198
+      ],
       "text": "He holds a short sceptre in his left hand and a great cup in his right; his throne is set upon the sea; on one side a ship is riding and on the other a dolphin is leaping"
     },
     {
-      "pages": [198],
+      "pages": [
+        198
+      ],
       "text": "The implicit is that the Sign of the Cup naturally refers to water"
     },
     {
-      "pages": [198],
+      "pages": [
+        198
+      ],
       "text": "Fair man, man of business, law, or divinity; responsible, disposed to oblige the Querent; also equity, art and science, including those who profess science, law and art; creative intelligence"
     },
     {
-      "pages": [198],
+      "pages": [
+        198
+      ],
       "text": "Reversed: Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss"
     },
     {
-      "pages": [84],
+      "pages": [
+        84
+      ],
       "text": "He is a crowned monarch—commanding, stately, seated on a throne, the arms of which are fronted by rams' heads"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "The bull's head should be noted as a recurrent symbol on the throne"
     }
   ],
@@ -224,7 +238,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [84, 198, 254],
+      "pages": [
+        84,
+        198,
+        254
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-06-six",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Seis de Bastos",
     "in_sentence": "el Seis de Bastos",
@@ -175,29 +175,41 @@
   "waite": {
     "quote": "A victor triumphing, but it is also great news … expectation crowned with its own desire … Reversed: Apprehension, fear … treachery, disloyalty … also indefinite delay.",
     "quote_lang": "en",
-    "pages": [186],
+    "pages": [
+      186
+    ],
     "translation": "Un vencedor que triunfa, pero también es una gran noticia … la expectativa coronada con su propio deseo … Al revés: aprensión, miedo … traición, deslealtad … también demora indefinida.",
     "harsh": true
   },
   "citations": [
     {
-      "pages": [186],
+      "pages": [
+        186
+      ],
       "text": "A laurelled horseman bears one staff adorned with a laurel crown; footmen with staves are at his side."
     },
     {
-      "pages": [186],
+      "pages": [
+        186
+      ],
       "text": "The card has been so designed that it can cover several significations; on the surface, it is a victor triumphing, but it is also great news, such as might be carried in state by the King's courier; it is expectation crowned with its own desire, the crown of hope"
     },
     {
-      "pages": [186],
+      "pages": [
+        186
+      ],
       "text": "Reversed: Apprehension, fear, as of a victorious enemy at the gate; treachery, disloyalty, as of gates being opened to the enemy; also indefinite delay."
     },
     {
-      "pages": [288],
+      "pages": [
+        288
+      ],
       "text": "Six.—Servants may lose the confidence of their masters; a young lady may be betrayed by a friend. Reversed: Fulfilment of deferred hope."
     },
     {
-      "pages": [190],
+      "pages": [
+        190
+      ],
       "text": "From the four great staves planted in the foreground there is a great garland suspended; two female figures uplift nose-gays"
     }
   ],
@@ -212,7 +224,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [186, 190, 288],
+      "pages": [
+        186,
+        190,
+        288
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-14-king",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Rey de Bastos",
     "in_sentence": "el Rey de Bastos",
@@ -178,41 +178,59 @@
   "waite": {
     "quote": "Dark man, friendly, countryman, generally married, honest and conscientious. The card always signifies honesty … Reversed: Good, but severe; austere, yet tolerant.",
     "quote_lang": "en",
-    "pages": [170],
+    "pages": [
+      170
+    ],
     "translation": "Hombre moreno, amistoso, del campo, por lo general casado, honesto y concienzudo. La carta siempre significa honestidad … Al revés: bueno, pero severo; austero, aunque tolerante.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [170],
+      "pages": [
+        170
+      ],
       "text": "The King uplifts a flowering wand, and wears, like his three correspondences in the remaining suits, what is called a cap of maintenance beneath his crown"
     },
     {
-      "pages": [170],
+      "pages": [
+        170
+      ],
       "text": "He connects with the symbol of the lion, which is emblazoned on the back of his throne"
     },
     {
-      "pages": [170],
+      "pages": [
+        170
+      ],
       "text": "The physical and emotional nature to which this card is attributed is dark, ardent, lithe, animated, impassioned, noble"
     },
     {
-      "pages": [170],
+      "pages": [
+        170
+      ],
       "text": "The card always signifies honesty"
     },
     {
-      "pages": [170],
+      "pages": [
+        170
+      ],
       "text": "Reversed: Good, but severe; austere, yet tolerant"
     },
     {
-      "pages": [288],
+      "pages": [
+        288
+      ],
       "text": "Wands. King.—Generally favourable; may signify a good marriage. Reversed: Advice that should be followed."
     },
     {
-      "pages": [84],
+      "pages": [
+        84
+      ],
       "text": "seated on a throne, the arms of which are fronted by rams' heads"
     },
     {
-      "pages": [254],
+      "pages": [
+        254
+      ],
       "text": "The bull's head should be noted as a recurrent symbol on the throne"
     }
   ],
@@ -227,7 +245,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [84, 170, 254, 288],
+      "pages": [
+        84,
+        170,
+        254,
+        288
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

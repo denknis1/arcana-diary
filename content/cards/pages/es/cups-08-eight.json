@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-08-eight",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Ocho de Copas",
     "in_sentence": "el Ocho de Copas",
@@ -173,33 +173,47 @@
   "waite": {
     "quote": "The card shews the decline of a matter … Reversed: Great joy, happiness, feasting.",
     "quote_lang": "en",
-    "pages": [210],
+    "pages": [
+      210
+    ],
     "translation": "La carta muestra el declive de un asunto … Al revés: gran alegría, felicidad, banquetes.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [210],
+      "pages": [
+        210
+      ],
       "text": "A man of dejected aspect is deserting the cups of his felicity, enterprise, under-taking or previous concern."
     },
     {
-      "pages": [210],
+      "pages": [
+        210
+      ],
       "text": "The card speaks for itself on the surface, but other readings are entirely antithetical—giving joy, mildness, timidity, honour, modesty."
     },
     {
-      "pages": [210],
+      "pages": [
+        210
+      ],
       "text": "it is usually found that the card shews the decline of a matter, or that a matter which has been thought to be important is really of slight consequence"
     },
     {
-      "pages": [210],
+      "pages": [
+        210
+      ],
       "text": "Reversed: Great joy, happiness, feasting."
     },
     {
-      "pages": [242],
+      "pages": [
+        242
+      ],
       "text": "A ferryman carrying passengers in his punt to the further shore."
     },
     {
-      "pages": [218],
+      "pages": [
+        218
+      ],
       "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup."
     }
   ],
@@ -214,7 +228,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [210, 218, 242],
+      "pages": [
+        210,
+        218,
+        242
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

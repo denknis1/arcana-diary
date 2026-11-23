@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-01-ace",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "As de Copas",
     "in_sentence": "el As de Copas",

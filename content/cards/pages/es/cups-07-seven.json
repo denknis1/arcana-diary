@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-07-seven",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Siete de Copas",
     "in_sentence": "el Siete de Copas",
@@ -168,29 +168,41 @@
   "waite": {
     "quote": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation … Reversed: Desire, will, determination, project.",
     "quote_lang": "en",
-    "pages": [212],
+    "pages": [
+      212
+    ],
     "translation": "Favores de hadas, imágenes de reflexión, sentimiento, imaginación, cosas vistas en el espejo de la contemplación … Al revés: deseo, voluntad, determinación, proyecto.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [212],
+      "pages": [
+        212
+      ],
       "text": "Strange chalices of vision, but the images are more especially those of the fantastic spirit."
     },
     {
-      "pages": [212],
+      "pages": [
+        212
+      ],
       "text": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation; some attainment in these degrees, but nothing permanent or substantial is suggested."
     },
     {
-      "pages": [212],
+      "pages": [
+        212
+      ],
       "text": "Reversed: Desire, will, determination, project."
     },
     {
-      "pages": [290],
+      "pages": [
+        290
+      ],
       "text": "Seven.—Fair child; idea, design, resolve, movement."
     },
     {
-      "pages": [250],
+      "pages": [
+        250
+      ],
       "text": "A hoodwinked female figure balances two swords upon her shoulders."
     }
   ],
@@ -205,7 +217,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [212, 250, 290],
+      "pages": [
+        212,
+        250,
+        290
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

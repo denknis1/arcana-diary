@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-11-page",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Page of Cups",
     "in_sentence": "the Page of Cups"
@@ -171,33 +171,47 @@
   "waite": {
     "quote": "Fair young man, one impelled to render service … a studious youth; news, message; application, reflection, meditation … Reversed: Taste, inclination, attachment, seduction, deception, artifice.",
     "quote_lang": "en",
-    "pages": [204],
+    "pages": [
+      204
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [204],
+      "pages": [
+        204
+      ],
       "text": "contemplates a fish rising from a cup to look at him. It is the pictures of the mind taking form."
     },
     {
-      "pages": [198],
+      "pages": [
+        198
+      ],
       "text": "The implicit is that the Sign of the Cup naturally refers to water, which appears in all the court cards."
     },
     {
-      "pages": [204],
+      "pages": [
+        204
+      ],
       "text": "Fair young man, one impelled to render service and with whom the Querent will be connected; a studious youth; news, message; application, reflection, meditation; also these things directed to business."
     },
     {
-      "pages": [204],
+      "pages": [
+        204
+      ],
       "text": "Reversed: Taste, inclination, attachment, seduction, deception, artifice."
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Graceful, but not warlike; riding quietly, wearing a winged helmet"
     },
     {
-      "pages": [202],
+      "pages": [
+        202
+      ],
       "text": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement."
     }
   ],
@@ -212,7 +226,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [198, 202, 204],
+      "pages": [
+        198,
+        202,
+        204
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "swords-05-five",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Five of Swords",
     "in_sentence": "the Five of Swords"

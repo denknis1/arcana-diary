@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "swords-09-nine",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Nueve de Espadas",
     "in_sentence": "el Nueve de Espadas",

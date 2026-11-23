@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-13-queen",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Reina de Bastos",
     "in_sentence": "la Reina de Bastos",
@@ -178,41 +178,59 @@
   "waite": {
     "quote": "A dark woman, countrywoman, friendly, chaste, loving, honourable … Also, love of money, or a certain success in business. Reversed: Good, economical, obliging, serviceable.",
     "quote_lang": "en",
-    "pages": [172],
+    "pages": [
+      172
+    ],
     "translation": "Una mujer morena, del campo, amistosa, casta, cariñosa, honorable … También, amor al dinero, o cierto éxito en los negocios. Al revés: buena, ahorradora, atenta, servicial.",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [172],
+      "pages": [
+        172
+      ],
       "text": "The Wands throughout this suit are always in leaf, as it is a suit of life and animation"
     },
     {
-      "pages": [172],
+      "pages": [
+        172
+      ],
       "text": "the Queen's personality corresponds to that of the King, but is more magnetic"
     },
     {
-      "pages": [172],
+      "pages": [
+        172
+      ],
       "text": "Also, love of money, or a certain success in business"
     },
     {
-      "pages": [172],
+      "pages": [
+        172
+      ],
       "text": "opposition, jealousy, even deceit and infidelity"
     },
     {
-      "pages": [172],
+      "pages": [
+        172
+      ],
       "text": "A dark woman, countrywoman, friendly, chaste, loving, honourable"
     },
     {
-      "pages": [288],
+      "pages": [
+        288
+      ],
       "text": "A good harvest, which may be taken in several senses"
     },
     {
-      "pages": [100],
+      "pages": [
+        100
+      ],
       "text": "is closing the jaws of a lion"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she contemplates her symbol and may see worlds therein"
     }
   ],
@@ -227,7 +245,12 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [100, 172, 256, 288],
+      "pages": [
+        100,
+        172,
+        256,
+        288
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

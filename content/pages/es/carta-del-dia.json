@@ -3,7 +3,7 @@
   "page_id": "carta-del-dia",
   "lang": "es",
   "url": "/es/carta-del-dia",
-  "status": "draft",
+  "status": "reviewed",
   "title": "Carta del día del tarot: tu carta de hoy, gratis",
   "description": "Tu carta del tarot para hoy: una al día, al derecho o invertida, con un mensaje corto y un paso para tu jornada. Gratis, sin registro. Voltéala ahora.",
   "h1": "Tarot del día: tu carta para hoy",
@@ -66,19 +66,75 @@
     }
   ],
   "intents": [
-    {"q": "tarot del dia de hoy", "source": "[карта страниц]", "answered_in": "que-es"},
-    {"q": "tarot diario gratis", "source": "[карта страниц]", "answered_in": "faq:0"},
-    {"q": "carta del día tarot", "source": "[карта страниц]", "answered_in": "que-es"},
-    {"q": "carta del tarot para hoy", "source": "[title astralgossip]", "answered_in": "que-es"},
-    {"q": "tarot hoy/mañana", "source": "[title horoscopo.com]", "answered_in": "faq:4"},
-    {"q": "tarot de amor diario", "source": "[title horoscopo.com]", "answered_in": "faq:3"},
-    {"q": "qué significa tu carta del día", "source": "[H2 cadizdirecto]", "answered_in": "faq:2"},
-    {"q": "cómo hacer tu tirada de tarot diario gratis", "source": "[H2 cadizdirecto]", "answered_in": "como-usarla"},
-    {"q": "cuando una carta se repite en tu consulta diaria", "source": "[H2 cadizdirecto]", "answered_in": "se-repite"},
-    {"q": "qué hacer cuando una carta del día no gusta", "source": "[H2 cadizdirecto]", "answered_in": "como-usarla"},
-    {"q": "cómo aplicar el mensaje de la carta a tu día", "source": "[H2 cadizdirecto]", "answered_in": "como-usarla"},
-    {"q": "cómo funciona el tarot diario", "source": "[H2 tarot.eu]", "answered_in": "que-es"},
-    {"q": "qué puedes preguntar al tarot sobre tu día", "source": "[H2 tarot.eu]", "answered_in": "faq:1"},
-    {"q": "tarot del día en 3 cartas", "source": "[title astrocentro]", "answered_in": "faq:5"}
+    {
+      "q": "tarot del dia de hoy",
+      "source": "[карта страниц]",
+      "answered_in": "que-es"
+    },
+    {
+      "q": "tarot diario gratis",
+      "source": "[карта страниц]",
+      "answered_in": "faq:0"
+    },
+    {
+      "q": "carta del día tarot",
+      "source": "[карта страниц]",
+      "answered_in": "que-es"
+    },
+    {
+      "q": "carta del tarot para hoy",
+      "source": "[title astralgossip]",
+      "answered_in": "que-es"
+    },
+    {
+      "q": "tarot hoy/mañana",
+      "source": "[title horoscopo.com]",
+      "answered_in": "faq:4"
+    },
+    {
+      "q": "tarot de amor diario",
+      "source": "[title horoscopo.com]",
+      "answered_in": "faq:3"
+    },
+    {
+      "q": "qué significa tu carta del día",
+      "source": "[H2 cadizdirecto]",
+      "answered_in": "faq:2"
+    },
+    {
+      "q": "cómo hacer tu tirada de tarot diario gratis",
+      "source": "[H2 cadizdirecto]",
+      "answered_in": "como-usarla"
+    },
+    {
+      "q": "cuando una carta se repite en tu consulta diaria",
+      "source": "[H2 cadizdirecto]",
+      "answered_in": "se-repite"
+    },
+    {
+      "q": "qué hacer cuando una carta del día no gusta",
+      "source": "[H2 cadizdirecto]",
+      "answered_in": "como-usarla"
+    },
+    {
+      "q": "cómo aplicar el mensaje de la carta a tu día",
+      "source": "[H2 cadizdirecto]",
+      "answered_in": "como-usarla"
+    },
+    {
+      "q": "cómo funciona el tarot diario",
+      "source": "[H2 tarot.eu]",
+      "answered_in": "que-es"
+    },
+    {
+      "q": "qué puedes preguntar al tarot sobre tu día",
+      "source": "[H2 tarot.eu]",
+      "answered_in": "faq:1"
+    },
+    {
+      "q": "tarot del día en 3 cartas",
+      "source": "[title astrocentro]",
+      "answered_in": "faq:5"
+    }
   ]
 }

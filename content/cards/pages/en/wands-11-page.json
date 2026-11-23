@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-11-page",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Page of Wands",
     "in_sentence": "the Page of Wands"
@@ -183,41 +183,59 @@
   "waite": {
     "quote": "Dark young man, faithful, a lover, an envoy, a postman … Reversed: Anecdotes, announcements, evil news. Also indecision and the instability which accompanies it.",
     "quote_lang": "en",
-    "pages": [176],
+    "pages": [
+      176
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "In a scene similar to the former, a young man stands in the act of proclamation"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "He is passing mounds or pyramids"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "He is unknown but faithful, and his tidings are strange"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "Dark young man, faithful, a lover, an envoy, a postman"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "Has the chief qualities of his suit. He may signify family intelligence"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "A dangerous rival, if followed by the Page of Cups"
     },
     {
-      "pages": [176],
+      "pages": [
+        176
+      ],
       "text": "Also indecision and the instability which accompanies it"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     }
   ],
@@ -232,7 +250,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [174, 176],
+      "pages": [
+        174,
+        176
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

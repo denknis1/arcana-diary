@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-10-ten",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Ten of Cups",
     "in_sentence": "the Ten of Cups"
@@ -172,37 +172,53 @@
   "waite": {
     "quote": "Contentment, repose of the entire heart … also perfection of human love and friendship … Reversed: Repose of the false heart, indignation, violence.",
     "quote_lang": "en",
-    "pages": [206],
+    "pages": [
+      206
+    ],
     "translation": null,
     "harsh": true
   },
   "citations": [
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "it is contemplated in wonder and ecstacy by a man and woman below, evidently husband and wife. His right arm is about her; his left is raised upward; she raises her right arm."
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "The two children dancing near them have not observed the prodigy but are happy after their own manner."
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "if with several picture-cards, a person who is taking charge of the Querent's interests; also the town, village or country inhabited by the Querent"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "Reversed: Repose of the false heart, indignation, violence."
     },
     {
-      "pages": [262],
+      "pages": [
+        262
+      ],
       "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground."
     },
     {
-      "pages": [262],
+      "pages": [
+        262
+      ],
       "text": "Gain, riches; family matters, archives, extraction, the abode of a family."
     },
     {
-      "pages": [289],
+      "pages": [
+        289
+      ],
       "text": "Ten.—For a male Querent, a good marriage and one beyond his expectations."
     }
   ],
@@ -217,7 +233,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [206, 262, 289],
+      "pages": [
+        206,
+        262,
+        289
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

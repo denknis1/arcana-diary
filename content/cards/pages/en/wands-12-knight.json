@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-12-knight",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Knight of Wands",
     "in_sentence": "the Knight of Wands"
@@ -177,33 +177,47 @@
   "waite": {
     "quote": "Departure, absence, flight, emigration. A dark young man, friendly. Change of residence. Reversed: Rupture, division, interruption, discord.",
     "quote_lang": "en",
-    "pages": [174],
+    "pages": [
+      174
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "He is shewn as if upon a journey, armed with a short wand, and although mailed is not on a warlike errand"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "He is passing mounds or pyramids"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     },
     {
-      "pages": [288],
+      "pages": [
+        288
+      ],
       "text": "Knight.—A bad card"
     },
     {
-      "pages": [230],
+      "pages": [
+        230
+      ],
       "text": "He is riding in full course, as if scattering his enemies"
     },
     {
-      "pages": [182],
+      "pages": [
+        182
+      ],
       "text": "a flight of wands through an open country"
     }
   ],
@@ -218,7 +232,12 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [174, 182, 230, 288],
+      "pages": [
+        174,
+        182,
+        230,
+        288
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

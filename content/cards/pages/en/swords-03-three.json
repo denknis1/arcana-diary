@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "swords-03-three",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Three of Swords",
     "in_sentence": "the Three of Swords"
@@ -190,23 +190,33 @@
   },
   "citations": [
     {
-      "pages": [248],
+      "pages": [
+        248
+      ],
       "text": "Three swords piercing a heart; cloud and rain behind"
     },
     {
-      "pages": [248],
+      "pages": [
+        248
+      ],
       "text": "being too simple and obvious to call for specific enumeration"
     },
     {
-      "pages": [236],
+      "pages": [
+        236
+      ],
       "text": "One seated on her couch in lamentation, with the swords over her"
     },
     {
-      "pages": [216],
+      "pages": [
+        216
+      ],
       "text": "three prone cups; two others stand upright behind him"
     },
     {
-      "pages": [216],
+      "pages": [
+        216
+      ],
       "text": "It is a card of loss, but something remains over"
     }
   ],
@@ -221,7 +231,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [216, 236, 248],
+      "pages": [
+        216,
+        236,
+        248
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

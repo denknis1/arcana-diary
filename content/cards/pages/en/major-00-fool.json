@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "major-00-fool",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "The Fool",
     "in_sentence": "The Fool"
@@ -194,67 +194,102 @@
   },
   "citations": [
     {
-      "pages": [152],
+      "pages": [
+        152
+      ],
       "text": "With light step, as if earth and its trammels had little power to restrain him"
     },
     {
-      "pages": [152],
+      "pages": [
+        152
+      ],
       "text": "His countenance is full of intelligence and expectant dream"
     },
     {
-      "pages": [152, 155],
+      "pages": [
+        152,
+        155
+      ],
       "text": "The sun, which shines behind him, knows whence he came, whither he is going"
     },
     {
-      "pages": [152],
+      "pages": [
+        152
+      ],
       "text": "He has a rose in one hand and in the other a costly wand, from which depends over his right shoulder a wallet curiously embroidered"
     },
     {
-      "pages": [152],
+      "pages": [
+        152
+      ],
       "text": "The edge which opens on the depth has no terror"
     },
     {
-      "pages": [152],
+      "pages": [
+        152
+      ],
       "text": "his dog is still bounding"
     },
     {
-      "pages": [161],
+      "pages": [
+        161
+      ],
       "text": "His wallet is inscribed with dim signs, to shew that many sub-conscious memories are stored up in the soul"
     },
     {
-      "pages": [29, 30],
+      "pages": [
+        29,
+        30
+      ],
       "text": "he is looking over his shoulder and does not know that he is on the brink of a precipice; but a dog or other animal—some call it a tiger—is attacking him from behind"
     },
     {
-      "pages": [29],
+      "pages": [
+        29
+      ],
       "text": "21—which, however, in most of the arrangements is the cipher card, number nothing—The Fool, Mate, or Unwise Man"
     },
     {
-      "pages": [287],
+      "pages": [
+        287
+      ],
       "text": "that which is extracted from the Trumps Major by the divinatory art is at once artificial and arbitrary"
     },
     {
-      "pages": [161],
+      "pages": [
+        161
+      ],
       "text": "the Fool, which is the most speaking of all the symbols. He signifies the journey outward"
     },
     {
-      "pages": [155],
+      "pages": [
+        155
+      ],
       "text": "He is the spirit in search of experience"
     },
     {
-      "pages": [161],
+      "pages": [
+        161
+      ],
       "text": "the Zero therefore appears after No. 20"
     },
     {
-      "pages": [161],
+      "pages": [
+        161
+      ],
       "text": "Wherever it ought to be put, the Zero is an unnumbered card"
     },
     {
-      "pages": [309, 310],
+      "pages": [
+        309,
+        310
+      ],
       "text": "the particular phase in each divination must be judged by considering the general trend of the cards"
     },
     {
-      "pages": [196],
+      "pages": [
+        196
+      ],
       "text": "A hand issuing from a cloud grasps a stout wand or club. Divinatory Meanings: Creation, invention, enterprise, the powers which result in these; principle, beginning, source"
     }
   ],
@@ -269,7 +304,18 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [29, 30, 152, 155, 161, 196, 286, 287, 309, 310],
+      "pages": [
+        29,
+        30,
+        152,
+        155,
+        161,
+        196,
+        286,
+        287,
+        309,
+        310
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

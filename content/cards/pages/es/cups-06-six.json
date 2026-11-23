@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-06-six",
   "lang": "es",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Seis de Copas",
     "in_sentence": "el Seis de Copas",
@@ -168,37 +168,53 @@
   "waite": {
     "quote": "A card of the past and of memories, looking back, as—for example—on childhood … Reversed: The future, renewal …",
     "quote_lang": "en",
-    "pages": [214],
+    "pages": [
+      214
+    ],
     "translation": "Una carta del pasado y de los recuerdos, de mirar atrás, por ejemplo, a la infancia … Al revés: el futuro, la renovación …",
     "harsh": false
   },
   "citations": [
     {
-      "pages": [214],
+      "pages": [
+        214
+      ],
       "text": "Children in an old garden, their cups filled with flowers."
     },
     {
-      "pages": [214],
+      "pages": [
+        214
+      ],
       "text": "A card of the past and of memories, looking back, as—for example—on childhood; happiness, enjoyment, but coming rather from the past; things that have vanished."
     },
     {
-      "pages": [214],
+      "pages": [
+        214
+      ],
       "text": "Another reading reverses this, giving new relations, new knowledge, new environment, and then the children are disporting in an unfamiliar precinct."
     },
     {
-      "pages": [214],
+      "pages": [
+        214
+      ],
       "text": "Reversed: The future, renewal, that which will come to pass presently."
     },
     {
-      "pages": [290],
+      "pages": [
+        290
+      ],
       "text": "Six.—Pleasant memories."
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below, evidently husband and wife."
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "The two children dancing near them have not observed the prodigy"
     }
   ],
@@ -213,7 +229,11 @@
       "kind": "waite",
       "what": "Descripción del dibujo, significados tradicionales y citas",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
-      "pages": [206, 214, 290],
+      "pages": [
+        206,
+        214,
+        290
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

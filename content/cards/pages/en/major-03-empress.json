@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "major-03-empress",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "The Empress",
     "in_sentence": "The Empress"

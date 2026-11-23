@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-04-four",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Four of Wands",
     "in_sentence": "the Four of Wands"
@@ -178,41 +178,59 @@
   "waite": {
     "quote": "Country life, haven of refuge, … repose, concord, harmony, prosperity, peace … Reversed: The meaning remains unaltered; it is prosperity, increase, felicity, beauty, embellishment.",
     "quote_lang": "en",
-    "pages": [190],
+    "pages": [
+      190
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [190],
+      "pages": [
+        190
+      ],
       "text": "From the four great staves planted in the foreground there is a great garland suspended; two female figures uplift nose-gays"
     },
     {
-      "pages": [190],
+      "pages": [
+        190
+      ],
       "text": "at their side is a bridge over a moat, leading to an old manorial house"
     },
     {
-      "pages": [190],
+      "pages": [
+        190
+      ],
       "text": "They are for once almost on the surface"
     },
     {
-      "pages": [190],
+      "pages": [
+        190
+      ],
       "text": "country life, haven of refuge, a species of domestic harvest-home"
     },
     {
-      "pages": [190],
+      "pages": [
+        190
+      ],
       "text": "Reversed: The meaning remains unaltered; it is prosperity, increase, felicity, beauty, embellishment"
     },
     {
-      "pages": [220],
+      "pages": [
+        220
+      ],
       "text": "Maidens in a garden-ground with cups uplifted"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "Appearance of Cups in a rainbow"
     },
     {
-      "pages": [206],
+      "pages": [
+        206
+      ],
       "text": "There is a home-scene beyond"
     }
   ],
@@ -227,7 +245,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [190, 206, 220],
+      "pages": [
+        190,
+        206,
+        220
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

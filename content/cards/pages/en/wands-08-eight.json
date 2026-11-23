@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-08-eight",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Eight of Wands",
     "in_sentence": "the Eight of Wands"
@@ -174,29 +174,41 @@
   "waite": {
     "quote": "Activity in undertakings … swiftness … great haste, great hope … the arrows of love. Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels",
     "quote_lang": "en",
-    "pages": [182],
+    "pages": [
+      182
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [182],
+      "pages": [
+        182
+      ],
       "text": "The card represents motion through the immovable—a flight of wands through an open country; but they draw to the term of their course."
     },
     {
-      "pages": [182],
+      "pages": [
+        182
+      ],
       "text": "Activity in undertakings, the path of such activity, swiftness, as that of an express messenger; great haste, great hope, speed towards an end which promises assured felicity; generally, that which is on the move; also the arrows of love."
     },
     {
-      "pages": [182],
+      "pages": [
+        182
+      ],
       "text": "Reversed: Arrows of jealousy, internal dispute, stingings of conscience, quarrels; and domestic disputes for persons who are married."
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "He is shewn as if upon a journey, armed with a short wand"
     },
     {
-      "pages": [174],
+      "pages": [
+        174
+      ],
       "text": "The motion of the horse is a key to the character of its rider, and suggests the precipitate mood"
     }
   ],
@@ -211,7 +223,10 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [174, 182],
+      "pages": [
+        174,
+        182
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

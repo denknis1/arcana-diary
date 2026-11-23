@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "wands-05-five",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Five of Wands",
     "in_sentence": "the Five of Wands"
@@ -174,33 +174,47 @@
   "waite": {
     "quote": "Imitation, as, for example, sham fight, but also the strenuous competition and struggle of the search after riches and fortune … Reversed: Litigation, disputes, trickery, contradiction.",
     "quote_lang": "en",
-    "pages": [188],
+    "pages": [
+      188
+    ],
     "translation": null,
     "harsh": true
   },
   "citations": [
     {
-      "pages": [188],
+      "pages": [
+        188
+      ],
       "text": "A posse of youths, who are brandishing staves, as if in sport or strife. It is mimic warfare"
     },
     {
-      "pages": [188],
+      "pages": [
+        188
+      ],
       "text": "but also the strenuous competition and struggle of the search after riches and fortune. In this sense it connects with the battle of life."
     },
     {
-      "pages": [188],
+      "pages": [
+        188
+      ],
       "text": "Hence some attributions say that it is a card of gold, gain, opulence"
     },
     {
-      "pages": [188],
+      "pages": [
+        188
+      ],
       "text": "Reversed: Litigation, disputes, trickery, contradiction."
     },
     {
-      "pages": [289],
+      "pages": [
+        289
+      ],
       "text": "Five.—Success in financial speculation. Reversed: Quarrels may be turned to advantage."
     },
     {
-      "pages": [244],
+      "pages": [
+        244
+      ],
       "text": "A disdainful man looks after two retreating and dejected figures."
     }
   ],
@@ -215,7 +229,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [188, 244, 289],
+      "pages": [
+        188,
+        244,
+        289
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {

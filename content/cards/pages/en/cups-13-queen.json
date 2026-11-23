@@ -2,9 +2,9 @@
   "schema": 2,
   "card_id": "cups-13-queen",
   "lang": "en",
-  "status": "draft",
+  "status": "reviewed",
   "editor": "{editor_name}",
-  "reviewed_at": null,
+  "reviewed_at": "2026-11-23",
   "name_forms": {
     "name": "Queen of Cups",
     "in_sentence": "the Queen of Cups"
@@ -182,33 +182,47 @@
   "waite": {
     "quote": "Good, fair woman; honest, devoted woman … loving intelligence, and hence the gift of vision … Reversed: The accounts vary; good woman … perverse woman; vice, dishonour, depravity.",
     "quote_lang": "en",
-    "pages": [200],
+    "pages": [
+      200
+    ],
     "translation": null,
     "harsh": false
   },
   "citations": [
     {
-      "pages": [200],
+      "pages": [
+        200
+      ],
       "text": "Beautiful, fair, dreamy—as one who sees visions in a cup"
     },
     {
-      "pages": [200],
+      "pages": [
+        200
+      ],
       "text": "she sees, but she also acts, and her activity feeds her dream"
     },
     {
-      "pages": [200],
+      "pages": [
+        200
+      ],
       "text": "Good, fair woman; honest, devoted woman, who will do service to the Querent; loving intelligence, and hence the gift of vision; success, happiness, pleasure; also wisdom, virtue; a perfect spouse and a good mother"
     },
     {
-      "pages": [200],
+      "pages": [
+        200
+      ],
       "text": "Reversed: The accounts vary; good woman; otherwise, distinguished woman but one not to be trusted; perverse woman; vice, dishonour, depravity"
     },
     {
-      "pages": [76],
+      "pages": [
+        76
+      ],
       "text": "It is partly covered by her mantle, to shew that some things are implied and some spoken"
     },
     {
-      "pages": [256],
+      "pages": [
+        256
+      ],
       "text": "she contemplates her symbol and may see worlds therein"
     }
   ],
@@ -223,7 +237,11 @@
       "kind": "waite",
       "what": "Description of the picture, traditional meanings and quotes",
       "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
-      "pages": [76, 200, 256],
+      "pages": [
+        76,
+        200,
+        256
+      ],
       "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
     },
     {
