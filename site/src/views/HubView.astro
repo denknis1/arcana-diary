@@ -24,7 +24,7 @@ const suits = SUITS.map((suit) => ({ suit, id: SUIT_IDS[lang][suit], name: suitN
   <section class="page-section" aria-labelledby="major-list">
     <h2 class="h2" id="major-list"><a href={pagePath('major_arcana', lang)}>{d.crumbMajor}</a></h2>
     <ul class="major-grid">
-      {majors.map((c) => <li><a href={c.href}><CardFigure card={c.card} lang={lang} sizes="100px" /></a></li>)}
+      {majors.map((c) => <li><a href={c.href}><CardFigure card={c.card} lang={lang} sizes="100px" alt="" /></a></li>)}
     </ul>
   </section>
   <section class="page-section" aria-labelledby="minor-list">

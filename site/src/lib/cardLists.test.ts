@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { SUITS, firstKeyword, ldItems, majorCards, suitCards, verdictCards } from './cardLists';
-import { cardById } from './deck';
+import { DECK, cardById } from './deck';
 import { FACTS } from './facts';
 
 describe('card lists of the hubs (spec stage 6 §5: from the data, not from the text)', () => {
@@ -27,5 +27,12 @@ describe('card lists of the hubs (spec stage 6 §5: from the data, not from the 
     expect(firstKeyword(cardById('major-18-moon')!, 'en')).toBe('uncertainty');
     expect(firstKeyword(cardById('major-00-fool')!, 'es')).toBe('comienzo');
     expect(ldItems(majorCards('en')).slice(0, 1)).toEqual([{ name: 'The Fool', path: '/cards/the-fool' }]);
+  });
+
+  it('have a non-empty first keyword for all 78 cards in both languages', () => {
+    expect(DECK).toHaveLength(78);
+    for (const lang of ['en', 'es'] as const) {
+      for (const card of DECK) expect(firstKeyword(card, lang), `${card.card_id} ${lang}`).not.toBe('');
+    }
   });
 });

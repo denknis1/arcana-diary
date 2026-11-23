@@ -34,7 +34,7 @@ const text = filledPage(textPage(path));
 const crumbs = crumbsFor(page, lang);
 ---
 <Base lang={lang} title={text.title} description={text.description} path={path} current={CURRENT[page]}
-  jsonLd={[breadcrumbLd(crumbs), webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
+  jsonLd={[...(crumbs.length ? [breadcrumbLd(crumbs)] : []), webPageLd({ name: text.h1, description: text.description, path, lang }), faqLd(text.faq)]}>
   <Breadcrumbs lang={lang} crumbs={crumbs} />
   <div class="tool-layout">
     <section class="page-hero">
