@@ -1,0 +1,229 @@
+{
+  "schema": 2,
+  "card_id": "swords-07-seven",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Seven of Swords",
+    "in_sentence": "the Seven of Swords"
+  },
+  "title": "Seven of Swords Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Seven of Swords upright: secrecy, strategy, half-truths; reversed: coming clean, self-deception. Love, work, advice and Waite's 1911 text. Ask your question.",
+  "h1": "Seven of Swords Tarot Card Meaning",
+  "image_alt": "Seven of Swords, 1909 Rider–Waite–Smith card: a man in a red cap tiptoes away from a camp with five swords, two left in the ground.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 7,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Seven of Swords means secrecy and strategy: getting away with something, a clever plan or a truth only half told, sometimes to yourself. Reversed, it leans toward coming clean. Not a bad card so much as a sharp one, it values wit and warns against cutting corners. The answer is no: the figure is sneaking away.",
+  "keywords": {
+    "upright": [
+      "secrecy",
+      "strategy",
+      "avoidance",
+      "half-truths"
+    ],
+    "reversed": [
+      "coming clean",
+      "self-deception",
+      "secrets surfacing",
+      "second thoughts"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Seven of Swords card?",
+      "paragraphs": [
+        "Waite's picture is of \"a man in the act of carrying away five swords rapidly\" while \"the two others of the card remain stuck in the ground\", with a camp close at hand (p. 240). The bundle of five blades is the biggest thing on the card, crossing it almost from side to side.",
+        "On the 1909 card the sky is bright yellow. The man wears a red cap and red shoes, walks on his toes with the swords gathered in his arms, and looks back over his shoulder. Behind him stand striped and patterned tents, one with a small flag; VII is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Seven of Swords?",
+      "paragraphs": [
+        "Waite admits that this card is \"uncertain in its import\" because its meanings pull apart (p. 240). His upright list mixes plans, hopes and confidence with quarrels and \"a plan that may fail\" (p. 240); his reversed list sets good advice beside slander and idle talk.",
+        "Arcana Diary follows the picture, a man slipping off with what is not fully his. Reading it as secrecy and strategy is the modern meaning, not Waite's."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Seven of Swords mean upright?",
+      "paragraphs": [
+        "Secrecy is the first thing this card names: something done quietly and out of view. On the bright side it is strategy, a plan kept close until it is ready, or a clever way around an obstacle without a fight. On the darker side it is half-truths, a corner cut, deception, an attempt to get away with something.",
+        "Avoidance belongs here too. Sometimes the one slipping away is you, dodging a conversation or a fact you would rather not face.",
+        "Is this discretion, or am I hiding? The answer decides whether the card is about smart tactics or about a shortcut that leaves loose ends."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Seven of Swords mean reversed?",
+      "paragraphs": [
+        "Reversed, the Seven of Swords can mark coming clean: a secret you are tired of carrying, or second thoughts about a shortcut. It can also show self-deception coming into view, when the story you told yourself stops holding up, or secrets surfacing that were kept out of sight.",
+        "Waite's reversed side, \"good advice, counsel, instruction\" (p. 240), fits that turn toward an honest word. Take the advice you would give a friend in your place."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Seven of Swords mean in love?",
+      "paragraphs": [
+        "Something unsaid sits at the center of this card in love: a feeling played down so as not to risk it, a part of life kept apart, a doubt never voiced. Between partners it can describe trust stretched by secrets, big or small, or a hidden connection.",
+        "Unattached, it can describe playing it cool, keeping options open, hiding real interest behind tactics. Reversed, the card leans toward honesty: a confession, clearing the air, or admitting to yourself what you really want."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Seven of Swords mean for work and money?",
+      "paragraphs": [
+        "Thinking ahead, protecting an idea, reading the room before a move: strategy is the useful face of this card at work. Its other face is office politics, credit taken quietly, or rules bent to get ahead.",
+        "Hidden costs, fine print and deals that look better than they are make up its money meaning, so keep your own records clear. Reversed, a money matter you have avoided may ask to be faced."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Seven of Swords?",
+      "paragraphs": [
+        "Say one small truth you have been dodging, out loud or on paper, even if the only listener is you. Then check whether your plan would still work if everyone could see it."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Seven of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Seven of Swords as a person and as feelings",
+      "paragraphs": [
+        "Picture a strategist: quick, private, hard to pin down, someone who keeps their plans to themselves. That is the Seven of Swords as a person; seen in you, it is the part that prefers a clever exit to a direct talk. As feelings, the card stands for mixed signals and things left unsaid: interest kept hidden, guardedness, holding back, sometimes a bond kept secret. Reversed, it means a pull toward honesty, guilt over something concealed, or a wish to confess what was held back."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Seven of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "swords-05-five",
+          "text": "A win taken at others' expense. Ask what this victory costs you."
+        },
+        {
+          "card_id": "major-18-moon",
+          "text": "Things are not what they seem. Check the facts before you trust a story."
+        },
+        {
+          "card_id": "major-11-justice",
+          "text": "Honesty and fairness ask to come first. Set the record straight."
+        },
+        {
+          "card_id": "swords-11-page",
+          "text": "Watchful eyes and quick moves; keep your plans honest as well as clever."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Seven of Swords or Five of Swords?",
+      "paragraphs": [
+        "Waite's Five of Swords shows a disdainful man who \"is the master in possession of the field\" while two figures walk away dejected (p. 244). There the swords are won in open conflict and the loss is plain to everyone. In the Seven of Swords no one has fought: the blades leave quietly, and the issue is secrecy rather than a quarrel won."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Seven of Swords",
+      "paragraphs": [
+        "What am I keeping to myself, and why?",
+        "Does my plan only work if nobody looks closely?",
+        "Which truth would make things lighter if I said it?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Seven of Swords a good or bad card?",
+      "a": "It is a mixed card, not a bad one. Strategy, wit and discretion are real strengths, and the card simply asks you to use them openly. It turns hard only when cleverness is covering something, and even then it gives you the chance to notice before more is hidden."
+    },
+    {
+      "q": "Does the Seven of Swords mean someone is lying to me?",
+      "a": "Not necessarily. Deception is one traditional meaning, but the card can just as well point to your own avoidance, or to a smart plan kept private. It cannot tell you what another person intends. It asks you to check facts and to be clear about your own side."
+    },
+    {
+      "q": "Does the Seven of Swords mean infidelity?",
+      "a": "It can carry that meaning in love questions, since it is the card of secrets, but it is not a verdict on anyone. More often it describes hidden feelings, unspoken doubts or a lack of openness. It shows where honesty is missing, not who did what."
+    }
+  ],
+  "related": [
+    "swords-06-six",
+    "swords-08-eight",
+    "cups-07-seven",
+    "wands-07-seven",
+    "pentacles-07-seven"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-05-five",
+      "text": "Five of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Design, attempt, wish, hope, confidence; also quarrelling, a plan that may fail, annoyance … Reversed: Good advice, counsel, instruction, slander, babbling.",
+    "quote_lang": "en",
+    "pages": [
+      240
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [240],
+      "text": "A man in the act of carrying away five swords rapidly; the two others of the card remain stuck in the ground. A camp is close at hand."
+    },
+    {
+      "pages": [240],
+      "text": "The design is uncertain in its import, because the significations are widely at variance with each other."
+    },
+    {
+      "pages": [240],
+      "text": "also quarrelling, a plan that may fail, annoyance"
+    },
+    {
+      "pages": [240],
+      "text": "Reversed: Good advice, counsel, instruction, slander, babbling."
+    },
+    {
+      "pages": [244],
+      "text": "A disdainful man looks after two retreating and dejected figures."
+    },
+    {
+      "pages": [244],
+      "text": "He is the master in possession of the field."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 07.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_07.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [240, 244],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "schema": 2,
+  "card_id": "swords-14-king",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "King of Swords",
+    "in_sentence": "the King of Swords"
+  },
+  "title": "King of Swords Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "King of Swords upright: authority, reason, fairness; reversed: rigidity, cold logic. Love, work, advice and Waite's 1911 words. Ask your question.",
+  "h1": "King of Swords Tarot Card Meaning",
+  "image_alt": "King of Swords, 1909 Rider–Waite–Smith card: a crowned king in a blue robe sits facing forward on a tall throne carved with butterflies, holding his sword upright, slightly tilted.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 14,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The King of Swords stands for authority, reason and fairness: clear thinking turned into decisions. Reversed, logic can harden into rigidity, or power is used coldly. A dependable card that values truth above comfort. For a yes-or-no question it answers yes, since the King faces forward and decides with a steady blade.",
+  "keywords": {
+    "upright": [
+      "authority",
+      "reason",
+      "fairness",
+      "clear thinking"
+    ],
+    "reversed": [
+      "rigidity",
+      "cold logic",
+      "misuse of power",
+      "indecision"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the King of Swords card?",
+      "paragraphs": [
+        "A king sits facing straight out of the card on a tall throne, holding his drawn sword upright, slightly tilted, in his right hand. Waite writes that \"he sits in judgment, holding the unsheathed sign of his suit\" (p. 226), and that he recalls the figure of Justice among the Trumps Major (p. 226). The sword, rising above his crown, is the largest shape on the card.",
+        "On the 1909 card butterflies are carved at the top of the throne back, he wears a pale blue robe with an orange cloak and hood, and two small birds fly at the upper right. Low clouds and dark trees fill the edges, and his face is calm and level."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the King of Swords?",
+      "paragraphs": [
+        "Waite builds this King around one idea, judgment, and lists what follows from it: command, law, the authority of office (p. 226). The reversed list is blunt, naming cruelty and evil intention (p. 226). On Arcana Diary the reversed King means power or logic used without care for people, not a verdict on anyone."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the King of Swords mean upright?",
+      "paragraphs": [
+        "Clear thinking in a position of responsibility: that is the King of Swords. He stands for authority earned through knowledge, decisions based on reason, and fairness that applies the same rule to everyone. Truth matters more to him than comfort, and he states it plainly.",
+        "The card tends to appear when a decision needs a cool head: weighing facts, setting a rule, giving or taking expert advice. It asks you to use your logic and integrity and to own the call that is yours to make. Emotion is not banned here; it is simply not allowed to decide alone."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the King of Swords mean reversed?",
+      "paragraphs": [
+        "Reversed, the King of Swords can mean rigidity: thinking that refuses new facts, rules applied without regard for people. Cold logic used to avoid feelings belongs to this side, and so does misuse of power, authority turned into control. It can also be the opposite, indecision: holding back from a judgment that is yours to give. Waite's reversed list is harsher than this modern reading (p. 226). Ask whether your reasons would still hold if you said them aloud to the person they affect."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the King of Swords mean in love?",
+      "paragraphs": [
+        "Mature, honest and clear about terms: the King of Swords prefers agreements spoken out loud to hints and guesses. In love he brings respect, loyalty and reliability more than grand romance.",
+        "Inside a relationship, it suits a calm, adult talk about expectations, fair to both sides. Searching for someone, the card favors knowing what you want and saying so early. Reversed, it can mean letting logic overrule the heart, or a quarrel where being right matters more than being close."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the King of Swords mean for work and money?",
+      "paragraphs": [
+        "A steady blade and a level gaze: at work this is leadership, expertise and sound judgment, a role where your knowledge carries weight, or a manager who is strict but fair. Contracts and agreements read carefully also belong here.",
+        "Order and good sense are what the card means for money: a clear budget, rules you keep, choices you can explain. Reversed, it can point to rigid control of money, or decisions made coldly."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the King of Swords?",
+      "paragraphs": [
+        "Settle one pending matter on the facts, not on fear, and write your reasons down in a single sentence. If you cannot explain the decision simply, think it through once more before you make it."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the King of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The King of Swords as a person and as feelings",
+      "paragraphs": [
+        "Taken as a person, the King of Swords is an authority figure who leads with the head: experienced, fair, articulate, sometimes distant. He may be an expert, an advisor, a strict manager, or you when you are the one who must decide. As feelings, the card traditionally means respect and serious, considered intentions, expressed with more reason than warmth: feelings that are real but kept in check. Reversed, it stands for emotional coldness, control, or judging instead of listening."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The King of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "major-04-emperor",
+          "text": "Structure on top of reason: firm rules and clear leadership."
+        },
+        {
+          "card_id": "swords-01-ace",
+          "text": "A sharp new idea and the authority to act on it."
+        },
+        {
+          "card_id": "cups-14-king",
+          "text": "Head and heart in balance. Decide with logic, speak with warmth."
+        },
+        {
+          "card_id": "swords-08-eight",
+          "text": "A stuck feeling meets clear reasoning. Think your way out, one step at a time."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "King of Swords, Justice or Queen of Swords?",
+      "paragraphs": [
+        "Waite himself links the King to Justice (p. 226), a card whose meanings he gives as \"equity, rightness, probity\" (p. 285). Justice is a principle, fairness and the consequences of actions; the King of Swords is a person who applies it.",
+        "The Queen of Swords, in Waite's description, raises her sword vertically and extends her other hand (p. 228); today she stands for independence and honest boundaries. Her clarity comes from personal experience; the King's is public, the clarity of decisions that others have to follow."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the King of Swords",
+      "paragraphs": [
+        "What do the facts say, apart from what I fear or hope?",
+        "Which decision is mine to make, and am I avoiding it?",
+        "Can I explain my reasoning fairly to the people it affects?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the King of Swords a good or bad card?",
+      "a": "Good, in a serious way. It stands for sound judgment, fairness and the strength to decide. Its harder edge shows when reason forgets people: rules without mercy, arguments won at any cost. Upright, it is one of the few Swords cards that answers yes."
+    },
+    {
+      "q": "Does the King of Swords mean a decision is needed?",
+      "a": "Often, yes. The card tends to come up when a choice has been postponed or needs a firmer basis. It does not tell you what to choose; it asks you to gather the facts, weigh them honestly and take responsibility for the outcome."
+    },
+    {
+      "q": "Is the King of Swords cold?",
+      "a": "Not by nature. He is reserved rather than unkind: the card values fairness and truth, and its warmth shows as reliability more than as gestures. Real coldness belongs mostly to the reversed card, when reason pushes feelings aside completely and every exchange becomes a debate."
+    }
+  ],
+  "related": [
+    "swords-13-queen",
+    "swords-01-ace",
+    "wands-14-king",
+    "cups-14-king",
+    "pentacles-14-king"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-11-justice",
+      "text": "Justice"
+    },
+    {
+      "card_id": "swords-13-queen",
+      "text": "Queen of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "Power, command, authority, militant intelligence, law, offices of the crown … Reversed: Cruelty, perversity, barbarity, perfidy, evil intention.",
+    "quote_lang": "en",
+    "pages": [
+      226
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [226],
+      "text": "He sits in judgment, holding the unsheathed sign of his suit. He recalls, of course, the conventional Symbol of Justice in the Trumps Major"
+    },
+    {
+      "pages": [226],
+      "text": "Whatsoever arises out of the idea of judgment and all its connexions—power, command, authority, militant intelligence, law, offices of the crown"
+    },
+    {
+      "pages": [226],
+      "text": "Reversed: Cruelty, perversity, barbarity, perfidy, evil intention"
+    },
+    {
+      "pages": [285],
+      "text": "Justice.—Equity, rightness, probity, executive"
+    },
+    {
+      "pages": [228],
+      "text": "Her right hand raises the weapon vertically and the hilt rests on an arm of her royal chair; the left hand is extended"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 14.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_14.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [226, 228, 285],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

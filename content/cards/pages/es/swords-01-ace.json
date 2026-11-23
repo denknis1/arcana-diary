@@ -1,0 +1,245 @@
+{
+  "schema": 2,
+  "card_id": "swords-01-ace",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "As de Espadas",
+    "in_sentence": "el As de Espadas",
+    "de": "del As de Espadas"
+  },
+  "title": "As de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el As de Espadas al derecho y al revés (carta invertida): claridad, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "As de Espadas en el tarot: significado",
+  "image_alt": "As de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: una mano sale de una nube gris y empuña una espada vertical cuya punta atraviesa una corona dorada, sobre montañas bajas.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 1,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El As de Espadas habla de claridad, verdad e ideas nuevas: el instante en que una decisión corta la confusión. Al revés, las ideas se enredan o las palabras salen demasiado filosas. Favorece hablar con honestidad, aunque su filo también lastima. Como respuesta de sí o no, es sí: la espada en alto ya cortó la niebla.",
+  "keywords": {
+    "upright": [
+      "claridad",
+      "verdad",
+      "decisión",
+      "idea nueva"
+    ],
+    "reversed": [
+      "ideas enredadas",
+      "palabras que hieren",
+      "prisa",
+      "verdad callada"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del As de Espadas?",
+      "paragraphs": [
+        "Una mano sale de una nube y empuña una espada con la punta hacia arriba. Waite la describe así: una mano que surge de una nube y sujeta una espada cuya punta rodea una corona (p. 252). De esa corona dice Waite que puede tener un sentido mucho más alto del que suele tocar la adivinación, aunque no explica cuál (p. 252).",
+        "En la carta de 1909 la espada es lo más grande: ocupa casi todo el alto del dibujo. La mano entra desde una nube gris a la izquierda, con un leve resplandor alrededor del puño. De la corona dorada cuelgan una rama con bayas rojas de un lado y una hoja verde y larga del otro; seis gotas amarillas caen junto a la espada y abajo se ven montañas de color gris azulado."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el As de Espadas?",
+      "paragraphs": [
+        "La lista de Waite habla de fuerza llevada al extremo: triunfo, conquista, todo en su grado más alto. Para Waite es una carta de gran fuerza, tanto en el amor como en el odio (p. 252), así que su poder puede inclinarse hacia cualquier lado. Al revés, Waite conserva el mismo sentido, pero con resultados desastrosos (p. 252).",
+        "En su lista posterior de significados añadidos, Waite vuelve a los extremos: gran prosperidad o gran desdicha (p. 292). Hoy la carta se lee de forma más concreta, como la fuerza de una mente clara."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el As de Espadas al derecho?",
+      "paragraphs": [
+        "Con esta carta llega la claridad: una idea que ordena lo que estaba revuelto, una verdad dicha en voz alta, una decisión que solo esperaba un pensamiento limpio. Marca un comienzo en la mente, una idea nueva o una forma distinta de mirar un problema viejo, y ese avance suele sentirse nítido, casi de golpe.",
+        "La espada tiene dos filos. La verdad libera y también arde, y la misma frase puede ayudar o lastimar según cómo se diga. Úsala para despejar la confusión, no para ganarle a nadie.",
+        "¿Qué dato sencillo de tu vida está esperando que le pongas nombre?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el As de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, la carta puede hablar de ideas enredadas: muchas vueltas y ninguna línea clara. También de una verdad callada que intuyes pero no te animas a decir, de palabras que hieren porque salieron antes de pensarlas, o de decidir con prisa solo para dejar de sentir incertidumbre.",
+        "Para Waite, este lado conserva la fuerza del As con resultados desastrosos (p. 252); la niebla y la verdad callada son una lectura moderna, no de Waite. Baja el ritmo, escribe lo que sabes de cierto y habla cuando puedas decirlo con claridad y cuidado."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el As de Espadas en el amor?",
+      "paragraphs": [
+        "En una relación, el As de Espadas pide decir lo que lleva rato sin decirse, con calma y sin culpar a nadie: una plática honesta despeja más que muchas indirectas. Cuando todavía no hay nadie, habla de tener claro qué tipo de vínculo buscas y qué ya no vas a aceptar.",
+        "Su significado en el amor es la verdad: ver la relación como es y dejar de adivinar. Al revés, puede hablar de mensajes confusos o de palabras más filosas de lo que querías."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el As de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Una idea nueva que por fin tiene sentido: eso trae el As al trabajo, junto con problemas resueltos, planes con forma clara y entrevistas o exámenes donde cuenta la cabeza fría. Favorece leer los acuerdos con cuidado y poner los hechos primero.",
+        "Números claros: así se ve la carta en las finanzas. Saber cuánto entra y cuánto sale, y recortar un gasto que ya no tiene razón de ser. Al revés, puede hablar de cuentas confusas o de una compra decidida con prisa."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el As de Espadas como consejo?",
+      "paragraphs": [
+        "Resume en una frase afilada lo que de verdad quieres decidir y léela en voz alta. Si la frase se enreda, todavía falta claridad; si suena limpia, ya sabes por dónde empezar."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El As de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el As de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el As de Espadas es alguien directo y de mente clara, que habla con franqueza y prefiere una respuesta honesta a una cortés; también puede ser tu propia lucidez en su mejor momento. Como sentimiento, la carta habla de claridad y honestidad: un interés que sabe lo que quiere, respeto por la verdad y ganas de hablar las cosas de frente. Al revés, esos sentimientos se enturbian: señales mezcladas, cosas sin decir o una franqueza que se vuelve fría."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el As de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-11-justice",
+          "text": "Verdad y justicia juntas: una decisión pesada con honestidad, que puedes sostener."
+        },
+        {
+          "card_id": "swords-02-two",
+          "text": "Se rompe un empate. La respuesta que evitabas se vuelve evidente."
+        },
+        {
+          "card_id": "swords-11-page",
+          "text": "Ideas frescas y curiosidad para ponerlas a prueba. Pregunta antes de opinar."
+        },
+        {
+          "card_id": "major-01-magician",
+          "text": "Una idea clara y los medios para llevarla a cabo. Empieza mientras el pensamiento está fresco."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el As de Espadas del Rey de Espadas?",
+      "paragraphs": [
+        "Waite describe al Rey de Espadas sentado para juzgar, con la espada desenvainada de su palo (p. 226); hoy se lee como autoridad, razón y criterio firme. El As es el destello de claridad, la primera idea o la verdad que se ve de pronto; el Rey es esa claridad ya madura, convertida en autoridad para decidir por otros."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el As de Espadas?",
+      "paragraphs": [
+        "¿Qué sé ya, si lo digo en una sola frase?",
+        "¿Uso la verdad para aclarar las cosas o para ganar?",
+        "¿Qué decisión se vuelve fácil si dejo de esperar más certeza?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El As de Espadas es una carta buena o mala?",
+      "a": "Buena, en general. Trae claridad, palabras honestas y un avance en la forma de pensar, algo que ayuda en casi cualquier pregunta. Su lado difícil es el filo mismo: una verdad dicha sin cuidado puede doler. Al revés, muestra confusión por ordenar, nada que temer."
+    },
+    {
+      "q": "¿El As de Espadas significa un nuevo comienzo?",
+      "a": "Sí, pero de un tipo concreto: un comienzo en la mente. Como primera carta de Espadas, abre con una idea, una decisión o una comprensión nueva, más que con un sentimiento o un cambio de empleo por sí solo. Lo que venga después depende de lo que hagas con esa idea."
+    },
+    {
+      "q": "¿El As de Espadas puede significar una ruptura?",
+      "a": "Puede hablar de un corte limpio cuando sale a la luz una verdad, pero no es una carta de ruptura en sí. Lo más común es que signifique ver la relación como es y hablarla con honestidad. Si eso acerca o aleja a dos personas depende de la verdad misma."
+    }
+  ],
+  "related": [
+    "swords-02-two",
+    "wands-01-ace",
+    "cups-01-ace",
+    "pentacles-01-ace"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-14-king",
+      "text": "Rey de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Triumph, the excessive degree in everything, conquest, triumph of force … Reversed: The same, but the results are disastrous",
+    "quote_lang": "en",
+    "pages": [
+      252
+    ],
+    "translation": "Triunfo, el grado excesivo en todo, conquista, triunfo de la fuerza … Al revés: lo mismo, pero los resultados son desastrosos",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        252
+      ],
+      "text": "A hand issues from a cloud, grasping a sword, the point of which is encircled by a crown"
+    },
+    {
+      "pages": [
+        252
+      ],
+      "text": "The crown may carry a much higher significance than comes usually within the sphere of fortune-telling"
+    },
+    {
+      "pages": [
+        252
+      ],
+      "text": "It is a card of great force, in love as well as in hatred"
+    },
+    {
+      "pages": [
+        252
+      ],
+      "text": "Reversed: The same, but the results are disastrous"
+    },
+    {
+      "pages": [
+        292
+      ],
+      "text": "Great prosperity or great misery"
+    },
+    {
+      "pages": [
+        226
+      ],
+      "text": "He sits in judgment, holding the unsheathed sign of his suit"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 01.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_01.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        226,
+        252,
+        292
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

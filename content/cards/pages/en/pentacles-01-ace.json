@@ -1,0 +1,267 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-01-ace",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Ace of Pentacles",
+    "in_sentence": "the Ace of Pentacles"
+  },
+  "title": "Ace of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Ace of Pentacles upright: opportunity, prosperity, a new start; reversed: a missed chance or shaky plan. Love, work, money and Waite's 1911 text. Draw it now.",
+  "h1": "Ace of Pentacles Tarot Card Meaning",
+  "image_alt": "Ace of Pentacles, 1909 Rider–Waite–Smith card: an open hand from a cloud holds a large gold coin over a garden with a hedge arch and blue mountains.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 1,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Ace of Pentacles is a solid new start: opportunity and prosperity, often in work or money. Reversed, the chance stalls or slips past for lack of a plan. It is one of the most welcome cards and asks only for a first practical step. For a yes-or-no question it gives yes: the coin is offered, within reach.",
+  "keywords": {
+    "upright": [
+      "opportunity",
+      "prosperity",
+      "new start",
+      "groundedness"
+    ],
+    "reversed": [
+      "missed opportunity",
+      "shaky plan",
+      "delay",
+      "scarcity worry"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Ace of Pentacles card?",
+      "paragraphs": [
+        "A single gold coin, marked with a five-pointed star, is the largest thing on the card. Waite describes the scene in one line: \"A hand—issuing, as usual, from a cloud—holds up a pentacle\" (p. 280). Of the star he says, for the whole suit, that it is a pentagram \"typifying the correspondence of the four elements in human nature\" (p. 254).",
+        "On the 1909 card the hand lies open, palm up, with faint rays around it, and the coin rests on the fingers. Below is a garden: tall white flowers on the left, a hedge dotted with red, and an arch cut into the hedge where a pale yellow path leads toward blue mountains."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Ace of Pentacles?",
+      "paragraphs": [
+        "Waite's upright list reads like pure good fortune: contentment, happiness and gold (p. 280). The reversed side keeps the money but sours it into \"the evil side of wealth\" (p. 280). Waite adds that either way the card shows \"prosperity, comfortable material conditions\" (p. 280); whether they help the person who has them depends on how the card falls.",
+        "In his list of additional meanings, Waite calls this Ace \"the most favourable of all cards\" (p. 293)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Ace of Pentacles mean upright?",
+      "paragraphs": [
+        "Opportunity is the heart of this card: a job offer, a first client, a course that leads to paid work, a project that finally has ground under it. Prosperity grows out of that opening slowly, the way a garden fills in, which is why the Ace is read as a seed rather than a harvest. It marks the moment an idea becomes something you can see, count and hold.",
+        "Groundedness is the other half. The card favors plain, practical moves: a first budget, a schedule you can keep, one step taken today instead of a grand plan for some other time. Ask yourself what the most concrete beginning would be, and whether you are ready to tend it."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Ace of Pentacles mean reversed?",
+      "paragraphs": [
+        "Turned over, the card can show a missed opportunity, or one that is there but never taken because it rests on a shaky plan, all hope and no numbers. It can also mean delay: an offer that stalls, a payment that takes longer, a start that keeps moving. Scarcity worry belongs here too, the fear of losing what you have that makes any first step feel too risky.",
+        "Waite's reversed list is about wealth that does harm, not wealth that is missing (p. 280); the missed chance is a modern reading. Both point to one remedy: firm up the ground, then begin small."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Ace of Pentacles mean in love?",
+      "paragraphs": [
+        "Love under this coin is practical and warm. A couple may be reaching a solid stage: a shared home, a joint budget, a decision to build something that lasts. Care shows in what people do, not in big speeches.",
+        "Without a partner, the Ace can describe a fresh start rooted in everyday life, meeting someone through work, a class or a routine, and liking how steady it feels. Upside down, the seed is there but not planted: interest without follow-through, or work and money crowding love out of the week."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Ace of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Few cards are as encouraging for a career: a new job, a promotion, a business with sound footing, a skill that starts to earn. Prosperity is the plain financial sense: a new source of income, such as a raise, a contract or savings that begin to build up. Reversed, it means financial plans that stall, a chance passed over, or spending that runs ahead of earning."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Ace of Pentacles?",
+      "paragraphs": [
+        "Take one practical step toward what you want to build: send the application, book the meeting, write the first page. If it helps, plant a real seed or a cutting and keep it where you can see it, a small reminder that solid things grow at their own pace."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Ace of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Ace of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "The person behind this card is reliable and down to earth: someone who keeps promises, likes a plan and shows care through practical help. It can also be you, on a day you feel ready to commit to something real. Read for feelings, the Ace means serious, steady interest: attraction with an eye on the future and a wish to build something stable and safe. Reversed, the interest is there but cautious, held back by doubts about security, or turned more toward practical gains than toward closeness."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Ace of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "major-01-magician",
+          "text": "Skill meets opportunity: the resources are here, and so is the know-how to use them."
+        },
+        {
+          "card_id": "pentacles-08-eight",
+          "text": "A new opening followed by patient practice; the start pays off through steady work."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "Feeling with a firm base under it: affection that wants to build something together."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "A fresh gain and the urge to keep it safe. Save part of it, but leave room to grow."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Ace of Pentacles, Ace of Wands or Ten of Pentacles?",
+      "paragraphs": [
+        "Waite's Ace of Wands also has a hand from a cloud, but it \"grasps a stout wand or club\" (p. 196); today it means a spark of inspiration and fresh energy. That Ace is the urge to begin; the Ace of Pentacles is the concrete chance to build.",
+        "In Waite's description the Ten of Pentacles shows a man, a woman and a child beneath an archway leading to a house, and his list opens with \"Gain, riches; family matters\" (p. 262). The Ten is wealth already built and shared; the Ace is its first seed."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Ace of Pentacles",
+      "paragraphs": [
+        "What do I want to build, in one concrete sentence?",
+        "What is the smallest first step I could take today?",
+        "What would make the ground firm enough for me to start?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Ace of Pentacles a good or bad card?",
+      "a": "Good, and among the most welcome cards for practical questions. It favors fresh starts with substance behind them. What it asks for is effort, since a seed does not plant itself. Even reversed it is no bad omen; it shows a chance that needs a firmer plan before it can grow."
+    },
+    {
+      "q": "Does the Ace of Pentacles mean money?",
+      "a": "Often, yes: today it is the clearest money card among the four Aces, standing for income and a better material footing. Waite himself noted that the cards of this suit do not deal especially with money (p. 254). The card names a meaning, not a sum you can count on."
+    },
+    {
+      "q": "Does the Ace of Pentacles mean a new job?",
+      "a": "It can. A new position, a first client, training that leads to paid work and a small business taking shape are all typical readings. The card describes an opening with real ground under it, not the result of one particular application; whether a given offer fits is still yours to weigh."
+    }
+  ],
+  "related": [
+    "pentacles-02-two",
+    "wands-01-ace",
+    "cups-01-ace",
+    "swords-01-ace"
+  ],
+  "mentions": [
+    {
+      "card_id": "wands-01-ace",
+      "text": "Ace of Wands"
+    },
+    {
+      "card_id": "pentacles-10-ten",
+      "text": "Ten of Pentacles"
+    }
+  ],
+  "waite": {
+    "quote": "Perfect contentment, felicity, ecstasy; also speedy intelligence; gold. Reversed: The evil side of wealth, bad intelligence; also great riches.",
+    "quote_lang": "en",
+    "pages": [
+      280
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        280
+      ],
+      "text": "A hand—issuing, as usual, from a cloud—holds up a pentacle"
+    },
+    {
+      "pages": [
+        254
+      ],
+      "text": "typifying the correspondence of the four elements in human nature"
+    },
+    {
+      "pages": [
+        280
+      ],
+      "text": "Perfect contentment, felicity, ecstasy; also speedy intelligence; gold. Reversed: The evil side of wealth"
+    },
+    {
+      "pages": [
+        280
+      ],
+      "text": "In any case it shews prosperity, comfortable material conditions, but whether these are of advantage to the possessor will depend on whether the card is reversed or not"
+    },
+    {
+      "pages": [
+        293
+      ],
+      "text": "Ace.—The most favourable of all cards"
+    },
+    {
+      "pages": [
+        254
+      ],
+      "text": "because the cards do not happen to deal especially with questions of money"
+    },
+    {
+      "pages": [
+        196
+      ],
+      "text": "A hand issuing from a cloud grasps a stout wand or club"
+    },
+    {
+      "pages": [
+        262
+      ],
+      "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child"
+    },
+    {
+      "pages": [
+        262
+      ],
+      "text": "Gain, riches; family matters"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 01.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_01.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        196,
+        254,
+        262,
+        280,
+        293
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

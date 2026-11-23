@@ -1,0 +1,222 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-08-eight",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Eight of Pentacles",
+    "in_sentence": "the Eight of Pentacles"
+  },
+  "title": "Eight of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Eight of Pentacles upright: craftsmanship, diligence, practice; reversed: perfectionism, cutting corners. Love, work, advice and Waite's 1911 text.",
+  "h1": "Eight of Pentacles Tarot Card Meaning",
+  "image_alt": "Eight of Pentacles, 1909 Rider–Waite–Smith card: a young craftsman on a bench carves a pentacle with hammer and chisel, finished coins hung on a post beside him.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 8,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Eight of Pentacles means craftsmanship and diligence: practice, learning a skill, steady work done well. Reversed, it can show perfectionism, boredom or cutting corners. It is a hopeful, hard-working card whose only demand is effort. The yes or no answer upright is yes, because the apprentice keeps carving coin after coin with care.",
+  "keywords": {
+    "upright": [
+      "craftsmanship",
+      "diligence",
+      "practice",
+      "focus"
+    ],
+    "reversed": [
+      "perfectionism",
+      "boredom",
+      "cutting corners",
+      "misused skill"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Eight of Pentacles card?",
+      "paragraphs": [
+        "A young worker sits at his bench, busy with the next coin. Waite's description is short: \"An artist in stone at his work, which he exhibits in the form of trophies\" (p. 266). The trophies are the largest thing on the card, a column of finished pentacles running down a wooden post on the right.",
+        "On the 1909 card he holds a hammer in one hand and a chisel in the other, set against the pentacle he is shaping. He has curly hair and wears a blue tunic, a black apron and red hose. One more coin lies on the ground by his feet. Far off on the left stands a small town with a tower, and VIII is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Eight of Pentacles?",
+      "paragraphs": [
+        "Waite's list is about work itself: employment, commissions, craftsmanship and skill, \"perhaps in the preparatory stage\" (p. 266), that is, while still learning. Waite's reversed words (p. 266) turn to ambition that comes to nothing, vanity and greed around money. Waite adds that the card can also show skill used badly, \"the ingenious mind turned to cunning and intrigue\" (p. 266)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Eight of Pentacles mean upright?",
+      "paragraphs": [
+        "Craftsmanship is the core of this card: doing a thing carefully, then doing it again a little better. The Eight is the apprentice's card, about training, a new job, a course or simply the hours you put into a skill that matters to you. Diligence is the attitude here, quiet and repeated, not dramatic.",
+        "Focus is the other half. The worker in the picture looks only at the coin in his hands, not at the town in the distance. Progress comes from attention to detail and from practice that nobody applauds. Which skill would grow fastest if you gave it your full attention, one piece at a time?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Eight of Pentacles mean reversed?",
+      "paragraphs": [
+        "Reversed, the Eight of Pentacles can describe perfectionism that never lets a job be finished, or boredom with work that has become pure repetition. It can also point to cutting corners: quantity over quality, effort without care, or skills left to go rusty.",
+        "Misused skill is the older side of this reversal, close to Waite's cunning and intrigue (p. 266); the rest is a modern reading. Ask what you once enjoyed about the craft, and set one small goal that brings that back."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Eight of Pentacles mean in love?",
+      "paragraphs": [
+        "Small, repeated acts of care build love under this card: remembering details, showing up, working on the relationship the way you would on a skill. It suits couples who invest effort and want to get better at being together. When you are single, the card often points to working on yourself first, or to a connection that starts slowly through work or study.",
+        "Reversed, one of you may be married to work, or the relationship runs on routine without attention. Notice where your care has become automatic."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Eight of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Coin after coin on the post: this is a work card above all, about apprenticeship, training, a new position, careful work and pride in the result. Its money meaning is income earned through skill and steady effort, a solid wage from a trade, and money growing slowly as your ability does. Reversed, it can show work that pays poorly for the effort, or a skill sold short."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Eight of Pentacles?",
+      "paragraphs": [
+        "Practice a skill you want to improve for one focused half hour, with your phone out of reach. At the end, note one thing you did better than last time, and one thing to try next."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Eight of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Eight of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "As a person, the Eight of Pentacles is a hard worker, a student or an apprentice: someone careful, reliable and proud of doing things properly, sometimes too absorbed in work to look up. As feelings, the card stands for steady, committed interest: someone willing to put in effort, show care through actions rather than speeches and build something real over time. Reversed, the feelings may be dutiful but flat, with effort going through the motions, or attention pulled away by work."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Eight of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "major-01-magician",
+          "text": "Skill meets will. Turn practice into one finished, visible result."
+        },
+        {
+          "card_id": "pentacles-09-nine",
+          "text": "Independence earned through your own craft and patient work."
+        },
+        {
+          "card_id": "swords-04-four",
+          "text": "Hard work needs rest too. Put the hammer down before you are worn out."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "How is the Eight of Pentacles different from the Three of Pentacles?",
+      "paragraphs": [
+        "Waite connects the two cards himself (p. 276): in the Three of Pentacles a sculptor carves inside a monastery, and the beginner of the Eight, rewarded by now, works seriously at his trade. Today the Three is read as teamwork and recognized skill, while the Eight is solitary practice: one person, one bench, learning by repetition."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Eight of Pentacles",
+      "paragraphs": [
+        "Which skill do I want to master, and why?",
+        "Where am I rushing work that deserves more care?",
+        "Am I still enjoying the craft, or only repeating it?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Eight of Pentacles a good or bad card?",
+      "a": "Good. It rewards effort and says your work matters, even when nobody is watching. Its only demand is consistency, and its only shadow, when reversed, is joyless work driven by perfectionism or boredom. For anyone learning something new, it is one of the most encouraging cards."
+    },
+    {
+      "q": "Does the Eight of Pentacles mean a new job?",
+      "a": "It can. Training, an apprenticeship or a role where you learn on the job are common readings. More often it describes how you work rather than where: patiently, with care, getting better each time. Recognition for skill belongs to the modern reading too, but the card speaks about the work more than the reward."
+    },
+    {
+      "q": "Does the Eight of Pentacles mean someone is too busy for me?",
+      "a": "Sometimes it is read that way: the person on the card is absorbed in his task. The card's feeling is commitment shown through effort, not coldness. If attention seems short, talk about it plainly; the card cannot tell you what is in someone else's head."
+    }
+  ],
+  "related": [
+    "pentacles-07-seven",
+    "pentacles-09-nine",
+    "cups-08-eight",
+    "wands-08-eight",
+    "swords-08-eight"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-03-three",
+      "text": "Three of Pentacles"
+    }
+  ],
+  "waite": {
+    "quote": "Work, employment, commission, craftsmanship, skill in craft and business, perhaps in the preparatory stage. Reversed: Voided ambition, vanity, cupidity, exaction, usury.",
+    "quote_lang": "en",
+    "pages": [
+      266
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [266],
+      "text": "An artist in stone at his work, which he exhibits in the form of trophies"
+    },
+    {
+      "pages": [266],
+      "text": "Work, employment, commission, craftsmanship, skill in craft and business, perhaps in the preparatory stage"
+    },
+    {
+      "pages": [266],
+      "text": "Reversed: Voided ambition, vanity, cupidity, exaction, usury"
+    },
+    {
+      "pages": [266],
+      "text": "It may also signify the possession of skill, in the sense of the ingenious mind turned to cunning and intrigue"
+    },
+    {
+      "pages": [276],
+      "text": "A sculptor at his work in a monastery"
+    },
+    {
+      "pages": [276],
+      "text": "The apprentice or amateur therein has received his reward and is now at work in earnest"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 08.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_08.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [266, 276],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-02-two",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Dos de Oros",
+    "in_sentence": "el Dos de Oros",
+    "de": "del Dos de Oros"
+  },
+  "title": "Dos de Oros en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Dos de Oros al derecho y al revés (carta invertida): malabares, amor, trabajo, dinero y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Dos de Oros en el tarot: significado",
+  "image_alt": "Dos de Oros, carta de 1909 de la baraja Rider-Waite-Smith: un joven con sombrero alto baila con dos monedas unidas por un lazo verde en forma de ocho; detrás, barcos sobre olas altas.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 2,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Dos de Oros es equilibrio en movimiento: malabares entre trabajo, dinero y tiempo con flexibilidad. Al revés, el malabar se vuelve sobrecarga y algo se cae. Es una carta amable con un aviso: puedes con todo un rato, no para siempre. Con las dos monedas en el aire, el sí o el no todavía no está claro.",
+  "keywords": {
+    "upright": [
+      "equilibrio",
+      "malabares",
+      "adaptación",
+      "prioridades"
+    ],
+    "reversed": [
+      "sobrecarga",
+      "pendientes que se caen",
+      "desorden",
+      "alegría forzada"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Dos de Oros?",
+      "paragraphs": [
+        "Un joven baila con una moneda en cada mano, y una cinta verde rodea las dos en forma de ocho acostado. Waite lo describe en pleno baile, con un pentáculo en cada mano, unidos por un cordón sin fin parecido a un 8 puesto al revés (p. 278). El lazo con sus monedas es la figura más grande de la carta; Waite no le da un significado aparte.",
+        "En la carta de 1909 el bailarín lleva un sombrero naranja muy alto, una túnica naranja con cinturón y zapatos verdes, y se equilibra con una rodilla doblada. Detrás, dos barcos suben por olas altas; uno se inclina mucho sobre la cresta. Arriba se lee el II."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Dos de Oros?",
+      "paragraphs": [
+        "La lista de Waite tira hacia dos lados (p. 278). Según Waite, el dibujo muestra alegría y diversión, pero la carta también se lee como noticias y mensajes por escrito, y como obstáculos, agitación y problemas (p. 278). En los significados al revés de Waite la diversión se vuelve forzada y fingida, y luego vienen palabras sobre la escritura y las letras de cambio (p. 278).",
+        "Entre sus significados adicionales, Waite deja una frase tranquila: los problemas son más imaginarios que reales (p. 293)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Dos de Oros al derecho?",
+      "paragraphs": [
+        "Los malabares son el dibujo y también el significado: varias exigencias a la vez, sostenidas con habilidad y hasta con buen humor. Trabajo, casa, dinero y tiempo piden atención, y la carta dice que puedes con ellos si te mantienes flexible. La adaptación es su fuerza: ajustarte cuando suben y bajan las olas, sin esperar a que el mar se calme.",
+        "Aquí el equilibrio no es quedarse quieto; es ritmo. Por eso importan las prioridades: decide qué moneda necesita tu mano ahora y cuál puede esperar. Pregúntate qué cargas porque importa y qué cargas solo porque nunca lo soltaste."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Dos de Oros al revés?",
+      "paragraphs": [
+        "Al revés, el ritmo se rompe. Puede hablar de sobrecarga: demasiados compromisos, una agenda sin huecos, pendientes que se caen y se acumulan. Llega el desorden, y las tareas pequeñas empiezan a costar más que las grandes. Los significados al revés de Waite suman otro matiz, una sonrisa sostenida por compromiso, una especie de alegría forzada (p. 278).",
+        "La salida es sencilla: suelta una cosa. Di que no a un favor, mueve una fecha de entrega, pide una mano y deja que las monedas que quedan recuperen su ritmo."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Dos de Oros en el amor?",
+      "paragraphs": [
+        "La imagen clásica es una relación al lado de una agenda llena: el amor en el aire junto con el trabajo, la familia y los pendientes. La carta pide ratos pequeños y constantes en pareja, aunque sea en días ocupados, para que el vínculo no se vuelva una tarea más.",
+        "Sin pareja, puede hablar de salir con alguien sin prisa por decidir, o de un interés repartido entre dos personas o dos prioridades. Al revés, una parte de la vida se come a la otra: planes cancelados, mensajes que se quedan para después, una relación que recibe solo la energía que sobra."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Dos de Oros en el trabajo y el dinero?",
+      "paragraphs": [
+        "Dos monedas, dos manos: en el trabajo es la carta de hacer varias cosas a la vez, dos puestos o un trabajo extra, fechas que se mueven y aun así salen. Con las cuentas, significa malabares con el dinero: mover fondos para cubrir pagos, un presupuesto que funciona pero hay que ajustar todo el tiempo, ingresos y gastos parejos semana a semana. Al revés, el presupuesto se desacomoda: pagos atrasados, estrés por dinero, más gastos de los que alcanzas a seguir."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Dos de Oros como consejo?",
+      "paragraphs": [
+        "Elige las dos tareas que más importan hoy y dales toda tu atención; lo demás puede esperar sin culpa. Una lista corta en papel ayuda más al malabar que una larga en la cabeza."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Dos de Oros es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Dos de Oros como persona y como sentimiento?",
+      "paragraphs": [
+        "Si describe a alguien, es una persona vivaz y flexible: hace muchas cosas a la vez, con buen humor, y aligera una semana pesada, aunque no siempre es fácil coincidir con ella. Como sentimiento, el Dos de Oros habla de un interés real pero repartido: cariño juguetón que comparte espacio con otras exigencias, o un corazón que duda entre dos opciones. Al revés, el sentimiento se pierde entre tantas ocupaciones: agobio, poco espacio para dar, señales confusas."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Dos de Oros junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-14-temperance",
+          "text": "Pies rápidos y mezcla paciente. Baja el malabar a un ritmo que puedas sostener."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "Todo se acelera; mantén el malabar ligero y atiende primero lo urgente."
+        },
+        {
+          "card_id": "cups-07-seven",
+          "text": "Demasiadas opciones en el aire. Quédate con las pocas que son reales antes de sumar más."
+        },
+        {
+          "card_id": "wands-10-ten",
+          "text": "El malabar ya pesa como una carga; toca dejar algo en el suelo."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Dos de Oros del Dos de Espadas?",
+      "paragraphs": [
+        "El Dos de Espadas de Waite muestra a una mujer con los ojos vendados que equilibra dos espadas sobre los hombros (p. 250); hoy se lee como indecisión y bloqueo. Las dos cartas equilibran dos cosas, pero el Dos de Espadas se queda quieto y evita elegir, mientras el Dos de Oros sigue en movimiento y se ajusta sobre la marcha."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Dos de Oros?",
+      "paragraphs": [
+        "¿Qué dos cosas necesitan de verdad mi atención primero?",
+        "¿Qué cargo que podría dejar en el suelo esta semana?",
+        "¿Disfruto el malabar o solo estoy guardando las apariencias?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Dos de Oros es una carta buena o mala?",
+      "a": "Más buena que mala. Muestra que puedes con mucho y que sabes adaptarte, una habilidad que vale la pena reconocer. La presión que describe es real, pero manejable; hasta las notas extra de Waite dicen que esos problemas pesan más en la imaginación (p. 293). Al revés, invita a aligerar la carga; no habla de fracaso."
+    },
+    {
+      "q": "¿Qué es el lazo del Dos de Oros?",
+      "a": "Un cordón verde con forma de ocho acostado que une las dos monedas. Waite lo llama cordón sin fin y lo compara con el número 8 (p. 278), pero no le da otro significado. Aquí la carta se lee por la escena completa: un baile que mantiene dos cosas en marcha."
+    },
+    {
+      "q": "¿El Dos de Oros significa que tengo que elegir?",
+      "a": "Todavía no. La carta habla de sostener dos cosas lado a lado, no de soltar una. La elección aparece cuando el malabar deja de funcionar: cuando el descanso, el dinero o tu gente empiezan a pagar el precio. Entonces la pregunta es qué moneda dejar primero."
+    }
+  ],
+  "related": [
+    "pentacles-01-ace",
+    "pentacles-03-three",
+    "wands-02-two",
+    "cups-02-two",
+    "swords-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-02-two",
+      "text": "Dos de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "A card of gaiety, recreation and its connexions … obstacles, agitation, trouble, embroilment. Reversed: Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange.",
+    "quote_lang": "en",
+    "pages": [
+      278
+    ],
+    "translation": "Una carta de alegría, diversión y lo relacionado con ellas … obstáculos, agitación, problemas, enredo. Al revés: alegría forzada, disfrute fingido, sentido literal, escritura a mano, redacción, letras de cambio.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [278],
+      "text": "A young man, in the act of dancing, has a pentacle in either hand, and they are joined by that endless cord which is like the number 8 reversed"
+    },
+    {
+      "pages": [278],
+      "text": "it is represented as a card of gaiety, recreation and its connexions, which is the subject of the design; but it is read also as news and messages in writing, as obstacles, agitation, trouble, embroilment"
+    },
+    {
+      "pages": [278],
+      "text": "Reversed: Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange"
+    },
+    {
+      "pages": [293],
+      "text": "Two.—Troubles are more imaginary than real"
+    },
+    {
+      "pages": [250],
+      "text": "A hoodwinked female figure balances two swords upon her shoulders"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 02.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_02.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [250, 278, 293],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

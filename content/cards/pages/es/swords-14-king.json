@@ -1,0 +1,228 @@
+{
+  "schema": 2,
+  "card_id": "swords-14-king",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Rey de Espadas",
+    "in_sentence": "el Rey de Espadas",
+    "de": "del Rey de Espadas"
+  },
+  "title": "Rey de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Rey de Espadas al derecho y al revés (carta invertida): razón, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Rey de Espadas en el tarot: significado",
+  "image_alt": "Rey de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: un rey con corona y túnica azul, sentado de frente en un trono alto tallado con mariposas, sostiene la espada recta, un poco inclinada.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 14,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Rey de Espadas es razón, autoridad y criterio: pensar con claridad y convertirlo en decisiones justas. Al revés, la lógica se endurece en rigidez o el poder se usa con frialdad. Es una carta confiable que pone la verdad por encima de la comodidad. Responde que sí: el Rey mira de frente y decide con la espada firme.",
+  "keywords": {
+    "upright": [
+      "razón",
+      "autoridad",
+      "criterio",
+      "verdad"
+    ],
+    "reversed": [
+      "rigidez",
+      "frialdad",
+      "abuso de poder",
+      "indecisión"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Rey de Espadas?",
+      "paragraphs": [
+        "Un rey está sentado de frente en un trono alto y sostiene en la mano derecha la espada desenvainada, recta y apenas inclinada. Waite dice que está sentado para juzgar, con el signo de su palo fuera de la vaina, y que recuerda a la figura de la Justicia entre los arcanos mayores (p. 226). La espada, que sube por encima de la corona, es lo más grande del dibujo.",
+        "En la carta de 1909 hay mariposas talladas en lo alto del respaldo, el rey viste una túnica azul claro con capa y capucha naranjas, y dos pájaros pequeños vuelan arriba a la derecha. Nubes bajas y árboles oscuros ocupan los bordes; su cara se ve tranquila y seria."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Rey de Espadas?",
+      "paragraphs": [
+        "Waite arma a este Rey alrededor de una sola idea, el juicio, y enumera lo que se desprende de ella: mando, ley, la autoridad de un cargo (p. 226). Su lista al revés es dura y nombra la crueldad y la mala intención (p. 226). En Arcana Diary, al revés, el Rey habla de poder o lógica usados sin cuidar a las personas, no de un veredicto sobre nadie."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Rey de Espadas al derecho?",
+      "paragraphs": [
+        "Al derecho, el Rey de Espadas es la razón puesta al servicio de una responsabilidad. Representa la autoridad que se gana con conocimiento, el criterio firme y la imparcialidad de aplicar la misma regla a todos. Para él la verdad pesa más que la comodidad, y la dice sin adornos.",
+        "Suele aparecer cuando una decisión pide cabeza fría: pesar los hechos, fijar una regla, dar o pedir un consejo experto. Te invita a usar tu lógica y tu integridad y a asumir la decisión que te toca. La emoción no está prohibida aquí; solo no decide sola."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Rey de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, el Rey de Espadas puede hablar de rigidez: una mente que no acepta datos nuevos, reglas aplicadas sin mirar a las personas. La frialdad que usa la lógica para no sentir también cabe aquí, igual que el abuso de poder, la autoridad convertida en control. O lo contrario: indecisión, dudar a la hora de fijar una postura que te corresponde. La lista de Waite al revés es más dura que esta lectura moderna (p. 226). Pregúntate si tus razones aguantarían dichas en voz alta ante quien las recibe."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Rey de Espadas en el amor?",
+      "paragraphs": [
+        "Acuerdos claros y conversaciones maduras: eso pide el Rey de Espadas en el amor. Prefiere decir las cosas en voz alta antes que dejarlas en indirectas, y aporta respeto, lealtad y constancia más que grandes gestos románticos.",
+        "Dentro de una relación, favorece una plática tranquila sobre lo que cada quien espera, justa para las dos partes. Si buscas a alguien, la carta te pide tener claro lo que quieres y decirlo pronto. Al revés, puede ser dejar que la cabeza le gane al corazón, o una discusión donde tener la razón importa más que estar cerca."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Rey de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Espada firme y mirada serena: en el trabajo es liderazgo, experiencia y buen criterio, un puesto donde tu conocimiento pesa, o un jefe estricto pero justo. Los contratos y acuerdos leídos con cuidado también entran aquí.",
+        "Orden y sensatez son lo que esta carta trae a tus finanzas: un presupuesto claro, reglas que cumples, decisiones que puedes explicar. Al revés, puede señalar un control rígido del dinero o decisiones tomadas con frialdad."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Rey de Espadas como consejo?",
+      "paragraphs": [
+        "Decide un asunto pendiente con base en hechos y no en el miedo, y escribe tus razones en una sola frase. Si no puedes explicar la decisión de forma sencilla, piénsala una vez más antes de tomarla."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Rey de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Rey de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Rey de Espadas es una figura de autoridad que dirige con la cabeza: con experiencia, justa, que sabe expresarse, a veces distante. Puede ser alguien experto, quien te asesora, un jefe exigente, o tú cuando te toca decidir. Como sentimiento, su significado tradicional es respeto e intenciones serias y pensadas, expresadas con más razón que calidez: sentimientos reales pero contenidos. Al revés, habla de frialdad emocional, de control o de juzgar en vez de escuchar."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Rey de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-04-emperor",
+          "text": "Estructura sobre la razón: reglas firmes y un liderazgo claro."
+        },
+        {
+          "card_id": "swords-01-ace",
+          "text": "Una idea nueva y nítida, y la autoridad para llevarla a cabo."
+        },
+        {
+          "card_id": "cups-14-king",
+          "text": "Cabeza y corazón en equilibrio. Decide con lógica y habla con calidez."
+        },
+        {
+          "card_id": "swords-08-eight",
+          "text": "La sensación de estar atorado se encuentra con la razón. Sal pensando, paso a paso."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Rey de Espadas de La Justicia y de la Reina de Espadas?",
+      "paragraphs": [
+        "El propio Waite relaciona al Rey con la Justicia (p. 226), una carta a la que da los significados de equidad, rectitud y probidad (p. 285). La Justicia es un principio, el equilibrio y las consecuencias de los actos; el Rey de Espadas es la persona que lo aplica.",
+        "La Reina de Espadas, según Waite, levanta la espada en vertical y extiende la otra mano (p. 228); hoy se lee como independencia y límites honestos. Su claridad nace de lo vivido; la del Rey es pública: la de las decisiones que otros tienen que acatar."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Rey de Espadas?",
+      "paragraphs": [
+        "¿Qué dicen los hechos, aparte de lo que temo o deseo?",
+        "¿Qué decisión me toca a mí y la estoy evitando?",
+        "¿Puedo explicar mis razones con justicia a quienes afectan?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Rey de Espadas es una carta buena o mala?",
+      "a": "Buena, de un modo serio. Habla de buen juicio, imparcialidad y fuerza para decidir. Su lado duro se nota cuando la razón se olvida de la gente: reglas sin compasión, discusiones ganadas a cualquier precio. Al derecho, es de las pocas cartas de Espadas que responden que sí."
+    },
+    {
+      "q": "¿El Rey de Espadas indica que hay que tomar una decisión?",
+      "a": "Muchas veces, sí. La carta suele salir cuando una elección se ha ido posponiendo o necesita una base más firme. No te dice qué escoger; te pide reunir los datos, pesarlos con honestidad y hacerte responsable del resultado."
+    },
+    {
+      "q": "¿El Rey de Espadas es una carta fría?",
+      "a": "No por naturaleza. Es reservado, no duro de corazón: la carta valora la imparcialidad y la verdad, y su calidez se nota en la constancia más que en los gestos. La frialdad de verdad pertenece sobre todo a la carta al revés, cuando la razón aparta por completo los sentimientos y cada plática se vuelve un debate."
+    }
+  ],
+  "related": [
+    "swords-13-queen",
+    "swords-01-ace",
+    "wands-14-king",
+    "cups-14-king",
+    "pentacles-14-king"
+  ],
+  "mentions": [
+    {
+      "card_id": "major-11-justice",
+      "text": "Justicia"
+    },
+    {
+      "card_id": "swords-13-queen",
+      "text": "Reina de Espadas"
+    }
+  ],
+  "waite": {
+    "quote": "Power, command, authority, militant intelligence, law, offices of the crown … Reversed: Cruelty, perversity, barbarity, perfidy, evil intention.",
+    "quote_lang": "en",
+    "pages": [
+      226
+    ],
+    "translation": "Poder, mando, autoridad, inteligencia militante, ley, cargos de la corona … Al revés: crueldad, perversidad, barbarie, perfidia, mala intención.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [226],
+      "text": "He sits in judgment, holding the unsheathed sign of his suit. He recalls, of course, the conventional Symbol of Justice in the Trumps Major"
+    },
+    {
+      "pages": [226],
+      "text": "Whatsoever arises out of the idea of judgment and all its connexions—power, command, authority, militant intelligence, law, offices of the crown"
+    },
+    {
+      "pages": [226],
+      "text": "Reversed: Cruelty, perversity, barbarity, perfidy, evil intention"
+    },
+    {
+      "pages": [285],
+      "text": "Justice.—Equity, rightness, probity, executive"
+    },
+    {
+      "pages": [228],
+      "text": "Her right hand raises the weapon vertically and the hilt rests on an arm of her royal chair; the left hand is extended"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 14.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_14.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [226, 228, 285],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

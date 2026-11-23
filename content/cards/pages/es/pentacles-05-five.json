@@ -1,0 +1,232 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-05-five",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Cinco de Oros",
+    "in_sentence": "el Cinco de Oros",
+    "de": "del Cinco de Oros"
+  },
+  "title": "Cinco de Oros en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Cinco de Oros al derecho y al revés (carta invertida): carencia, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Cinco de Oros en el tarot: significado",
+  "image_alt": "Cinco de Oros, carta de 1909 de la baraja Rider-Waite-Smith: dos figuras con ropa rota caminan bajo la nieve frente a un vitral iluminado con cinco oros.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 5,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Cinco de Oros habla de carencia y dificultad: apuros de dinero, pobreza, la sensación de quedarte afuera en el frío. Al revés, lo difícil empieza a ceder cuando aceptas ayuda. Es una carta dura, con una ventana encendida muy cerca. Ante una pregunta cerrada, al derecho responde no: las figuras pasan de largo bajo la nieve.",
+  "keywords": {
+    "upright": [
+      "carencia",
+      "dificultad",
+      "sensación de quedarte afuera",
+      "ayuda cercana"
+    ],
+    "reversed": [
+      "alivio",
+      "aceptar ayuda",
+      "aislamiento",
+      "orgullo"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Cinco de Oros?",
+      "paragraphs": [
+        "Dos figuras pobres cruzan una calle nevada bajo una ventana que brilla. Waite lo resume en una sola frase: dos mendigos en una tormenta de nieve pasan frente a una ventana iluminada (p. 272). Lo más grande de la carta es esa ventana: un vitral con cinco oros amarillos entre hojas verdes.",
+        "En la carta de 1909 el muro del fondo es negro y está lleno de copos blancos, y la nieve cubre el suelo. La ropa de las dos figuras está rota y remendada: la de la derecha va envuelta en un chal naranja largo, con la cabeza agachada, y la otra, vestida de azul, camina a su lado. Ninguna de las dos se detiene."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Cinco de Oros?",
+      "paragraphs": [
+        "Para Waite, la carta anuncia sobre todo problemas materiales, y la miseria del dibujo es solo una de sus formas (p. 272). Waite recoge además una lectura opuesta: para algunos cartomantes era una carta de amor y de amantes, y él mismo reconoce que las dos no se pueden conciliar (p. 272). Las palabras al revés de la lista de Waite (p. 272) son duras, y en Arcana Diary no leemos así la carta."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Cinco de Oros al derecho?",
+      "paragraphs": [
+        "La carencia está en el centro de esta carta: falta de dinero, cuentas que no cuadran, una temporada de apretarse el cinturón. Habla también de la sensación de quedarte afuera, mirando desde el frío un lugar donde otros parecen estar a gusto. Perder un trabajo o sentir que nadie ve lo que cargas también cabe aquí.",
+        "Mira otra vez la ventana: la luz está a unos pasos. La carta pregunta si hay ayuda cercana que todavía no has pedido, en tu familia, en una amistad o en un grupo de tu colonia. ¿Qué cambiaría si una sola persona supiera cómo estás de verdad?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Cinco de Oros al revés?",
+      "paragraphs": [
+        "Al revés, el Cinco de Oros puede hablar de alivio: el dinero aprieta un poco menos, la mala racha se afloja o decides salir de la nieve. Aceptar ayuda es central en este lado, igual que darte cuenta de cuándo el orgullo te deja en la puerta. También puede señalar un aislamiento que sigue aunque el apoyo esté cerca, porque pedir todavía cuesta.",
+        "Las palabras al revés de Waite hablan de desorden, no de alivio (p. 272); el alivio es una lectura moderna. En ambos casos el paso es pequeño: di que sí a una mano que te tienden."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Cinco de Oros en el amor?",
+      "paragraphs": [
+        "Sin pareja, esta carta suele hablar de soledad o del golpe de un rechazo. Con pareja, puede describir una temporada difícil que se vive en conjunto, a veces con apuros de dinero, o un frío entre los dos que te hace sentir fuera de la vida del otro.",
+        "Al revés, el calor puede volver: dejas que alguien se acerque o encuentras compañía después de un tramo de soledad. La carta describe una mala temporada, no el final de un vínculo."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Cinco de Oros en el trabajo y el dinero?",
+      "paragraphs": [
+        "La dificultad económica es el lado de dinero de esta carta: deudas, un presupuesto que no alcanza, ingresos que se pierden o el miedo a perderlos. En el trabajo puede hablar de sentir que te hacen a un lado, de un empleo inestable o de un equipo donde no encuentras tu lugar. Su ventana encendida apunta a recursos cercanos que quizá no has usado."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Cinco de Oros como consejo?",
+      "paragraphs": [
+        "Busca una puerta iluminada: averigua por un apoyo práctico cerca de ti, como una red de vecinos o un servicio de tu municipio, y da un primer paso para contactarlo. Pedir una mano es una decisión práctica, no una derrota."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Cinco de Oros es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Cinco de Oros como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Cinco de Oros es alguien que atraviesa una racha dura, con poco dinero o poca compañía, y a quien le cuesta pedir algo; si eres tú, la carta te invita a dejar entrar a alguien. Como sentimiento, significa soledad e inseguridad: sentir que sobras, que no te toman en cuenta, o un cariño que se enfrió por un tiempo. Al revés, esos sentimientos se van descongelando: ganas de volver a buscar al otro, alivio de volver a formar parte y confianza que regresa poco a poco."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Cinco de Oros junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-17-star",
+          "text": "Después del frío vuelve la esperanza, y la ventana encendida se vuelve un lugar al que puedes caminar."
+        },
+        {
+          "card_id": "cups-03-three",
+          "text": "Tu gente es el abrigo. Deja que tus amistades se acerquen en vez de aguantar por tu cuenta."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Aferrarte a lo poco por miedo a quedarte sin nada. Afloja un poco y mira qué se libera."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Cinco de Oros del Seis de Oros y del Cinco de Copas?",
+      "paragraphs": [
+        "El Seis de Oros también muestra gente necesitada, pero ahí, según Waite, un mercader reparte dinero a los pobres y afligidos (p. 270). En el Seis la ayuda se da y se recibe; en el Cinco está cerca y todavía no se alcanza.",
+        "En el Cinco de Copas, Waite describe una figura con capa que mira de lado tres copas caídas mientras dos siguen en pie (p. 216); hoy se lee como tristeza por una pérdida. El Cinco de Oros habla más de pasar necesidad y sentirse fuera que de un duelo."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Cinco de Oros?",
+      "paragraphs": [
+        "¿En qué estoy intentando salir adelante sin nadie?",
+        "¿Quién o qué cerca de mí podría ayudarme si lo pidiera?",
+        "¿Qué es lo más práctico que necesito ahora?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Cinco de Oros es una carta buena o mala?",
+      "a": "Es de las más duras de su palo, pero no es una sentencia sobre ti. Nombra una época de escasez o de sentirte fuera, y deja en el dibujo una ventana encendida: la ayuda también forma parte de la carta. Al revés, se suele leer como el giro hacia el alivio."
+    },
+    {
+      "q": "¿El Cinco de Oros siempre habla de dinero?",
+      "a": "No. El dinero es su lectura más común, pero también habla de soledad, de exclusión o de una etapa en la que nadie parece notar tu esfuerzo, aunque tengas un ingreso estable. Léelo según tu pregunta: una cuenta, una amistad, un equipo, una casa."
+    },
+    {
+      "q": "¿El Cinco de Oros significa que me quiere?",
+      "a": "No en el sentido cálido que uno espera. En el amor, su significado tradicional es una etapa fría: distancia, soledad de una o de las dos partes, o una pareja que atraviesa apuros en conjunto. Muestra un vínculo bajo presión, no un veredicto sobre él, y deja abierto lo que viene."
+    }
+  ],
+  "related": [
+    "pentacles-04-four",
+    "pentacles-06-six",
+    "cups-05-five",
+    "wands-05-five",
+    "swords-05-five"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-06-six",
+      "text": "Seis de Oros"
+    },
+    {
+      "card_id": "cups-05-five",
+      "text": "Cinco de Copas"
+    }
+  ],
+  "waite": {
+    "quote": "The card foretells material trouble above all, whether in the form illustrated—that is, destitution—or otherwise … Reversed: Disorder, chaos, ruin, discord, profligacy.",
+    "quote_lang": "en",
+    "pages": [
+      272
+    ],
+    "translation": "La carta anuncia sobre todo problemas materiales, ya sea en la forma que muestra el dibujo —es decir, la miseria— o de otro modo … Al revés: desorden, caos, ruina, discordia, disipación.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [272],
+      "text": "Two mendicants in a snow-storm pass a lighted casement"
+    },
+    {
+      "pages": [272],
+      "text": "The card foretells material trouble above all, whether in the form illustrated—that is, destitution—or otherwise"
+    },
+    {
+      "pages": [272],
+      "text": "For some cartomancists, it is a card of love and lovers"
+    },
+    {
+      "pages": [272],
+      "text": "These alternatives cannot be harmonized"
+    },
+    {
+      "pages": [272],
+      "text": "Reversed: Disorder, chaos, ruin, discord, profligacy"
+    },
+    {
+      "pages": [270],
+      "text": "weighs money in a pair of scales and distributes it to the needy and distressed"
+    },
+    {
+      "pages": [216],
+      "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 05.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_05.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [216, 270, 272],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

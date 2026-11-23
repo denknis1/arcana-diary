@@ -1,0 +1,223 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-02-two",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Two of Pentacles",
+    "in_sentence": "the Two of Pentacles"
+  },
+  "title": "Two of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "Two of Pentacles upright: balance, juggling, adaptability; reversed: overload and dropped balls. Love, work, money and Waite's 1911 text. Draw it now.",
+  "h1": "Two of Pentacles Tarot Card Meaning",
+  "image_alt": "Two of Pentacles, 1909 Rider–Waite–Smith card: a dancing young man in a tall hat holds two coins joined by a green figure-eight loop; ships ride high waves behind.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 2,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Two of Pentacles is balance in motion: juggling work, money and time while staying light on your feet. Reversed, the juggling turns into overload and things drop. It is a friendly card with a gentle warning: you can keep it all moving, but not forever. With both coins still in the air, the answer is not clear yet.",
+  "keywords": {
+    "upright": [
+      "balance",
+      "juggling",
+      "adaptability",
+      "priorities"
+    ],
+    "reversed": [
+      "overload",
+      "dropped balls",
+      "disorganization",
+      "forced cheer"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Two of Pentacles card?",
+      "paragraphs": [
+        "A young man dances with a coin in each hand, and a green band loops around both coins in a figure eight lying on its side. Waite writes that he is \"in the act of dancing\" and that the two pentacles are joined by \"that endless cord which is like the number 8 reversed\" (p. 278). The loop with its coins is the largest shape on the card; Waite gives it no separate meaning.",
+        "On the 1909 card the dancer wears a very tall orange-red hat, a belted orange tunic and green shoes, and balances with one knee bent. Behind him two ships ride high waves, one tipped steeply on a crest. II is printed at the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Two of Pentacles?",
+      "paragraphs": [
+        "Waite's list pulls two ways (p. 278). The design itself, Waite says, shows gaiety and recreation, yet the card is also read as written news and messages, and as obstacles, agitation and trouble (p. 278). In Waite's reversed list the fun turns forced, \"enforced gaiety, simulated enjoyment\", followed by words about handwriting, composition and letters of exchange (p. 278).",
+        "Waite's additional meanings add a calm line: \"Troubles are more imaginary than real\" (p. 293)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Two of Pentacles mean upright?",
+      "paragraphs": [
+        "Juggling is both the picture and the meaning: several demands at once, kept moving with some skill and even some fun. Work, home, money and time all want attention, and the card says you can handle them if you stay flexible. Adaptability is the strength here, adjusting as the waves rise and fall instead of waiting for a calm sea.",
+        "Balance in this card is not stillness; it is rhythm. That is why priorities matter: decide which coin needs your hand right now and which can wait a beat. Ask yourself what you carry because it matters, and what only because you never put it down."
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Two of Pentacles mean reversed?",
+      "paragraphs": [
+        "Upside down, the rhythm breaks. The card can mean overload: too many commitments, a calendar with no gaps, dropped balls that pile up. Disorganization creeps in, and small tasks start to cost more than big ones. Waite's reversed list adds another shade, a smile kept up for show, a kind of forced cheer (p. 278).",
+        "The way back is simple: put one thing down. Say no to a request, move a deadline, ask for a hand, and let the remaining coins find their rhythm again."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Two of Pentacles mean in love?",
+      "paragraphs": [
+        "A relationship next to a full schedule is the classic picture here: love kept in the air along with work, family and errands. The card asks for small, regular time together, even on busy days, so the bond does not become one more task.",
+        "For someone unattached, it can show playful dating with no rush to decide, or interest split between two people or two priorities. Reversed, one side of life swallows the other: plans cancelled, messages left for later, a partner or a new connection getting only the energy that is left over."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Two of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Two coins, two hands: on the job this is the card of multitasking, two roles or a side gig, shifting deadlines handled well. Financially it means juggling money: moving funds to cover bills, a budget that works but needs constant adjusting, income and expenses kept level week by week. Reversed, the budget slips: late payments, money stress, more going out than you can keep track of."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Two of Pentacles?",
+      "paragraphs": [
+        "Pick the two tasks that matter most today and give them your full attention; let the rest wait without guilt. A short list on paper helps the juggling more than a long one kept in your head."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Two of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Two of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "The figure on this card is lively and adaptable: a busy, cheerful multitasker who can make a hard week feel lighter, though not always easy to pin down. Read as emotion, the Two of Pentacles means interest that is real but juggled: warm, playful feelings sharing space with other demands, or a heart undecided between two options. Reversed, the feelings get lost in the busyness: overwhelm, little room to give, mixed signals."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Two of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "major-14-temperance",
+          "text": "Quick footwork meets patient blending. Slow the juggling to a pace you can keep."
+        },
+        {
+          "card_id": "wands-08-eight",
+          "text": "Everything speeds up; keep the juggling light and answer what is urgent first."
+        },
+        {
+          "card_id": "cups-07-seven",
+          "text": "Too many options in the air. Choose the few that are real before adding more."
+        },
+        {
+          "card_id": "wands-10-ten",
+          "text": "The juggling has become a heavy load; it is time to set something down."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Two of Pentacles or Two of Swords?",
+      "paragraphs": [
+        "Waite's Two of Swords shows \"a hoodwinked female figure\" who \"balances two swords upon her shoulders\" (p. 250); today it means indecision and a stalemate. Both cards balance two things, but the Two of Swords holds still and avoids choosing, while the Two of Pentacles keeps moving and adjusts as it goes."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Two of Pentacles",
+      "paragraphs": [
+        "Which two things truly need my attention first?",
+        "What am I carrying that I could set down this week?",
+        "Am I enjoying the juggling, or only keeping up appearances?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Two of Pentacles a good or bad card?",
+      "a": "Mostly good. It shows you coping with a lot and staying flexible, a skill worth noticing. The strain it describes is real but manageable; even Waite's extra notes call such troubles more imaginary than real (p. 293). Reversed, it is a nudge to lighten the load, not a sign of failure."
+    },
+    {
+      "q": "What is the loop on the Two of Pentacles?",
+      "a": "A green cord shaped like an eight on its side, joining the two coins. Waite calls it the endless cord and compares it to the number 8 (p. 278), but gives it no further meaning. On this page the card is read from the whole scene: a dance that keeps two things going."
+    },
+    {
+      "q": "Does the Two of Pentacles mean I have to choose?",
+      "a": "Not yet. The card describes keeping two things going side by side, not dropping one. A choice comes up only when the juggling stops working, when rest, money or the people close to you start paying for it. Then its question becomes which coin to set down first."
+    }
+  ],
+  "related": [
+    "pentacles-01-ace",
+    "pentacles-03-three",
+    "wands-02-two",
+    "cups-02-two",
+    "swords-02-two"
+  ],
+  "mentions": [
+    {
+      "card_id": "swords-02-two",
+      "text": "Two of Swords"
+    }
+  ],
+  "waite": {
+    "quote": "A card of gaiety, recreation and its connexions … obstacles, agitation, trouble, embroilment. Reversed: Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange.",
+    "quote_lang": "en",
+    "pages": [
+      278
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [278],
+      "text": "A young man, in the act of dancing, has a pentacle in either hand, and they are joined by that endless cord which is like the number 8 reversed"
+    },
+    {
+      "pages": [278],
+      "text": "it is represented as a card of gaiety, recreation and its connexions, which is the subject of the design; but it is read also as news and messages in writing, as obstacles, agitation, trouble, embroilment"
+    },
+    {
+      "pages": [278],
+      "text": "Reversed: Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange"
+    },
+    {
+      "pages": [293],
+      "text": "Two.—Troubles are more imaginary than real"
+    },
+    {
+      "pages": [250],
+      "text": "A hoodwinked female figure balances two swords upon her shoulders"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 02.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_02.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [250, 278, 293],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

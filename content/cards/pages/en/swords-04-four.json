@@ -1,0 +1,246 @@
+{
+  "schema": 2,
+  "card_id": "swords-04-four",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Four of Swords",
+    "in_sentence": "the Four of Swords"
+  },
+  "title": "Four of Swords Tarot Card Meaning: Upright, Reversed & Love",
+  "description": "Four of Swords upright: rest, retreat, quiet; reversed: restlessness. Love, work, advice, Waite's 1911 text and the 1909 card. Draw it for your question.",
+  "h1": "Four of Swords Tarot Card Meaning",
+  "image_alt": "Four of Swords, 1909 Rider–Waite–Smith card: a knight's figure lies with hands joined in prayer on a yellow tomb, three swords hang on the wall above and one lies along the side, a stained-glass window at top left.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 4,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The Four of Swords means rest, retreat and a needed pause: quiet time for the mind to settle after strain. Reversed, it can mean restlessness, or a pause too long. A gentle card, it backs stepping away as long as rest does not become hiding. Upright, the answer is not clear yet: nothing has started.",
+  "keywords": {
+    "upright": [
+      "rest",
+      "retreat",
+      "quiet",
+      "pause"
+    ],
+    "reversed": [
+      "restlessness",
+      "pushing on",
+      "pause too long",
+      "back into motion"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the Four of Swords card?",
+      "paragraphs": [
+        "A knight lies stretched out with his hands joined in prayer. Waite describes \"the effigy of a knight in the attitude of prayer, at full length upon his tomb\" (p. 246), so the figure is a carved likeness rather than a sleeping man. Waite says openly that two of his listed meanings, tomb and coffin, \"have suggested the design\" (p. 246).",
+        "On the 1909 card the lying figure is the largest shape, pale yellow on a yellow tomb, his hands pressed together and pointing up. Three swords hang point down on the wall above him, and a fourth lies flat along the side of the tomb. In the upper left corner a stained-glass window holds small colored figures, and IV is marked near the top."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the Four of Swords?",
+      "paragraphs": [
+        "Waite's upright list is about withdrawal: watchfulness, retreat, solitude, a hermit's repose, exile, and two burial words (p. 246). Arcana Diary does not read the card that way; here it stands for rest.",
+        "Waite's reversed list is practical and money-minded: wise administration, economy, precaution, even avarice (p. 246). In his additional meanings Waite calls the card \"a bad card\" and adds that, reversed, \"a qualified success may be expected by wise administration of affairs\" (p. 292)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the Four of Swords mean upright?",
+      "paragraphs": [
+        "Rest comes first in the Four of Swords: a break after stress, quiet time to think, a retreat from noise so the mind can settle. It often turns up after a hard stretch, when pushing harder would only blur things further, and it marks recovery in the everyday sense of getting your strength back.",
+        "The pause is active in its own way. Lying still, the figure is not giving up; it gathers strength and lets thoughts sort themselves out. Contemplation, planning in silence and sleeping on a decision all belong to this card.",
+        "What would change if you allowed yourself a real pause, without guilt?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the Four of Swords mean reversed?",
+      "paragraphs": [
+        "Reversed, the Four of Swords can point to restlessness: a mind that will not switch off, or pushing on when rest is what you need. It can also mean the opposite, a pause too long, a retreat that has slowly become a place to hide, and then the card asks for one small step back into motion.",
+        "Waite's reversed meanings are about careful management, economy and precaution (p. 246); restlessness and return are a modern reading. Either way, ask honestly which you need: more rest, or a gentle start."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the Four of Swords mean in love?",
+      "paragraphs": [
+        "Space is what this card asks for in love: time to think before deciding anything, a quiet stretch after a quarrel, or a slower pace when things have moved fast. For a couple it can mean a cooling-off period that lets both people breathe; for someone unattached, a deliberate break from dating to rest and reflect.",
+        "Reversed, it can show a readiness to come back to love after time alone, or restlessness that makes waiting hard. Quiet time often shows what you really feel."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the Four of Swords mean for work and money?",
+      "paragraphs": [
+        "A desk left empty for a while is the working picture of this card: a vacation, a quiet phase, time to plan before the next push, or a break you need after an intense project. It can also mark a deliberate pause in a job search while you rethink the direction.",
+        "Still hands on the tomb, still hands on the wallet: the money meaning is a quiet period, holding off on big purchases, reviewing where things stand and letting finances settle. Reversed, it can mean rushing back into spending or decisions before you are ready."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the Four of Swords?",
+      "paragraphs": [
+        "Lie down for a short rest with your eyes closed before your next task, and let nothing else in for those minutes. The answer you have been forcing may come more easily once your mind has had a break."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the Four of Swords a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The Four of Swords as a person and as feelings",
+      "paragraphs": [
+        "As a person, the Four of Swords is someone quiet and withdrawn for now, taking time alone to think, or someone who needs calm before they can engage; it may also be your own need for rest. As feelings, the card means a wish for space: calm, reflective, a little distant, not ready to act on what is felt. Reversed, the feelings are waking up: restlessness, readiness to reconnect, or impatience after a long silence."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The Four of Swords with other cards",
+      "pairs": [
+        {
+          "card_id": "major-09-hermit",
+          "text": "Solitude chosen on purpose. Step away to find your own answer."
+        },
+        {
+          "card_id": "major-12-hanged-man",
+          "text": "A pause that shows an old problem from a new angle."
+        },
+        {
+          "card_id": "swords-06-six",
+          "text": "Rest first, then a calm move toward steadier ground."
+        },
+        {
+          "card_id": "swords-03-three",
+          "text": "After the sting of a hard truth, quiet time to let the hurt settle."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "Four of Swords or Four of Cups?",
+      "paragraphs": [
+        "Waite's Four of Cups shows a young man under a tree who \"contemplates three cups set on the grass before him\" while an arm from a cloud offers another (p. 218). Today it is read as apathy and withdrawal, a flat mood that misses what is offered.",
+        "Both cards step back from the world. The Four of Swords is rest you need and choose; the Four of Cups is boredom that turns away."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the Four of Swords",
+      "paragraphs": [
+        "What am I still pushing through that could wait?",
+        "Where can I find an hour of real quiet?",
+        "Am I resting, or hiding from something I need to face?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the Four of Swords a good or bad card?",
+      "a": "Good, in a quiet way. It supports rest, reflection and stepping back before the next move, which most people need more often than they take it. It is not a card of action, so it can feel slow. Reversed, it points to restlessness or to a pause that is ready to end."
+    },
+    {
+      "q": "Does the Four of Swords mean death?",
+      "a": "No. Waite's picture is a knight's effigy on a tomb, and his list includes tomb and coffin (p. 246), but on Arcana Diary the card is read as rest and retreat. It describes a break from activity and a time to recharge, not the end of a life."
+    },
+    {
+      "q": "Does the Four of Swords mean a breakup?",
+      "a": "Not on its own. In love it usually means a break in the sense of a pause: space to think, a calmer pace, time apart to see clearly. Whether that pause brings two people closer or further apart depends on what both of them do with it."
+    }
+  ],
+  "related": [
+    "swords-03-three",
+    "swords-05-five",
+    "wands-04-four",
+    "cups-04-four",
+    "pentacles-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-04-four",
+      "text": "Four of Cups"
+    }
+  ],
+  "waite": {
+    "quote": "Vigilance, retreat, solitude, hermit's repose, exile, tomb and coffin … Reversed: Wise administration, circumspection, economy, avarice, precaution, testament.",
+    "quote_lang": "en",
+    "pages": [
+      246
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        246
+      ],
+      "text": "The effigy of a knight in the attitude of prayer, at full length upon his tomb"
+    },
+    {
+      "pages": [
+        246
+      ],
+      "text": "tomb and coffin. It is these last that have suggested the design"
+    },
+    {
+      "pages": [
+        246
+      ],
+      "text": "Vigilance, retreat, solitude, hermit's repose, exile, tomb and coffin"
+    },
+    {
+      "pages": [
+        246
+      ],
+      "text": "Reversed: Wise administration, circumspection, economy, avarice, precaution, testament"
+    },
+    {
+      "pages": [
+        292
+      ],
+      "text": "A bad card, but if reversed a qualified success may be expected by wise administration of affairs"
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Swords 04.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_04.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [
+        218,
+        246,
+        292
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

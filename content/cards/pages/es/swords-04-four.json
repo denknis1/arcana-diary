@@ -1,0 +1,247 @@
+{
+  "schema": 2,
+  "card_id": "swords-04-four",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Cuatro de Espadas",
+    "in_sentence": "el Cuatro de Espadas",
+    "de": "del Cuatro de Espadas"
+  },
+  "title": "Cuatro de Espadas en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Cuatro de Espadas al derecho y al revés (carta invertida): descanso, amor, trabajo y consejo. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Cuatro de Espadas en el tarot: significado",
+  "image_alt": "Cuatro de Espadas, carta de 1909 de la baraja Rider-Waite-Smith: la figura de un caballero yace con las manos unidas sobre una tumba amarilla, tres espadas en la pared y una a lo largo de la tumba.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "swords",
+    "number": 4,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Cuatro de Espadas habla de descanso, pausa y silencio: tiempo para recuperar fuerzas y dejar que la mente se calme. Al revés, es inquietud o una pausa que se alarga. Es amable: apoya retirarte un rato mientras no se vuelva escondite. Todavía no está claro si es sí o no: nada ha empezado.",
+  "keywords": {
+    "upright": [
+      "descanso",
+      "pausa",
+      "recuperar fuerzas",
+      "silencio"
+    ],
+    "reversed": [
+      "inquietud",
+      "seguir sin parar",
+      "pausa que se alarga",
+      "volver a la acción"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Cuatro de Espadas?",
+      "paragraphs": [
+        "Un caballero yace a lo largo, con las manos juntas en actitud de oración. Waite lo describe como la efigie de un caballero en actitud de rezo, tendido sobre su tumba (p. 246): no es un hombre dormido, sino una figura tallada. Waite reconoce que dos de los significados de su lista, la tumba y el ataúd, inspiraron el dibujo (p. 246).",
+        "En la carta de 1909 la figura acostada es lo más grande, de un amarillo pálido sobre una tumba amarilla, con las manos unidas hacia arriba. Tres espadas cuelgan con la punta hacia abajo en la pared, y una cuarta descansa a lo largo de la tumba. Arriba a la izquierda hay un vitral con pequeñas figuras de colores, y en lo alto se lee el IV."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Cuatro de Espadas?",
+      "paragraphs": [
+        "La lista al derecho de Waite habla de apartarse: vigilancia, retiro, soledad, el reposo del ermitaño, el exilio y dos palabras de entierro (p. 246). En Arcana Diary no leemos así la carta: aquí significa descanso.",
+        "Al revés, la lista de Waite se vuelve práctica: buena administración, economía, prudencia y hasta avaricia (p. 246). En sus significados añadidos, Waite la llama una carta mala, aunque al revés se puede esperar un éxito con reservas gracias a una administración sabia (p. 292)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Cuatro de Espadas al derecho?",
+      "paragraphs": [
+        "Descanso, ante todo: eso significa el Cuatro de Espadas. Una pausa después del estrés, un rato de silencio para pensar, retirarte del ruido para que la mente se acomode. Suele salir después de una racha dura, cuando empujar más solo enturbiaría las cosas, y habla de recuperar fuerzas en el sentido de todos los días.",
+        "Esta pausa no es rendirse. La figura quieta junta energía y deja que las ideas se ordenen solas; también caben aquí la reflexión, planear en silencio o consultar algo con la almohada.",
+        "¿Qué cambiaría si te dieras una pausa de verdad, sin culpa?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Cuatro de Espadas al revés?",
+      "paragraphs": [
+        "Al revés, la carta puede hablar de inquietud: una cabeza que no se apaga o seguir sin parar cuando lo que necesitas es detenerte. También de lo contrario, una pausa que se alarga demasiado, un retiro que poco a poco se volvió escondite; entonces pide volver a la acción con un paso pequeño.",
+        "Waite lee la carta al revés como buena administración, economía y precaución (p. 246); la inquietud y el regreso son una lectura moderna, no de Waite. Pregúntate con honestidad qué te hace falta: más descanso o un comienzo suave."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Cuatro de Espadas en el amor?",
+      "paragraphs": [
+        "Las manos juntas y la quietud del caballero resumen lo que esta carta pide en el amor: espacio para pensar antes de decidir. En pareja, puede ser una pausa después de una discusión o bajar el ritmo cuando todo fue muy rápido; cuando no hay nadie, un descanso de las citas para escucharte.",
+        "Al revés, aparecen las ganas de volver a abrirte después de un tiempo a solas, o una impaciencia que hace difícil esperar. El silencio suele mostrar lo que de verdad sientes."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Cuatro de Espadas en el trabajo y el dinero?",
+      "paragraphs": [
+        "Un escritorio vacío por un rato es la imagen laboral de esta carta: vacaciones, una etapa tranquila, tiempo para planear antes del siguiente empujón o un respiro después de un proyecto intenso. También puede marcar una pausa en la búsqueda de empleo mientras replanteas el rumbo.",
+        "Manos quietas sobre la tumba, manos quietas sobre la cartera: para las finanzas es un periodo tranquilo, sin compras grandes, para revisar cómo están las cosas y dejar que se estabilicen. Al revés, puede hablar de volver a gastar o a decidir antes de tiempo."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Cuatro de Espadas como consejo?",
+      "paragraphs": [
+        "Recuéstate quince minutos con los ojos cerrados, como el caballero de la carta, y no hagas nada más. Lo que hoy estás forzando quizá se acomode solo después de ese rato."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Cuatro de Espadas es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Cuatro de Espadas como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Cuatro de Espadas es alguien callado y retirado por ahora, que se toma tiempo a solas para pensar o necesita calma antes de acercarse; también puede ser tu propia necesidad de descanso. Como sentimiento, significa querer espacio: calma, reflexión, cierta distancia y todavía ninguna prisa por actuar. Al revés, esos sentimientos despiertan: inquietud, ganas de volver a acercarse o impaciencia después de un largo silencio."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Cuatro de Espadas junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-09-hermit",
+          "text": "Soledad elegida a propósito. Apártate para encontrar tu propia respuesta."
+        },
+        {
+          "card_id": "major-12-hanged-man",
+          "text": "Una pausa que muestra un problema viejo desde otro ángulo."
+        },
+        {
+          "card_id": "swords-06-six",
+          "text": "Primero descansar; después, moverte con calma hacia un lugar más sereno."
+        },
+        {
+          "card_id": "swords-03-three",
+          "text": "Después del golpe de una verdad dura, silencio para que la herida se asiente."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Cuatro de Espadas del Cuatro de Copas?",
+      "paragraphs": [
+        "Waite describe en el Cuatro de Copas a un joven sentado bajo un árbol que contempla tres copas en el pasto, mientras un brazo que sale de una nube le ofrece otra (p. 218). Hoy se lee como apatía y desinterés: un ánimo plano que no ve lo que se le ofrece.",
+        "Las dos cartas se apartan del mundo. El Cuatro de Espadas es un descanso que necesitas y eliges; el Cuatro de Copas, un hastío que da la espalda."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Cuatro de Espadas?",
+      "paragraphs": [
+        "¿Qué sigo empujando que podría esperar?",
+        "¿Dónde puedo encontrar un rato de silencio de verdad?",
+        "¿Estoy descansando o me estoy escondiendo de algo que tengo que enfrentar?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Cuatro de Espadas es una carta buena o mala?",
+      "a": "Buena, a su manera tranquila. Apoya el descanso, la reflexión y dar un paso atrás antes de lo que sigue, algo que casi todos necesitamos más de lo que nos permitimos. No es una carta de acción, así que puede sentirse lenta. Al revés, señala inquietud o una pausa que ya pide terminar."
+    },
+    {
+      "q": "¿El Cuatro de Espadas significa muerte?",
+      "a": "No. El dibujo de Waite es la efigie de un caballero sobre su tumba y su lista incluye tumba y ataúd (p. 246), pero en Arcana Diary la carta se lee como descanso y retiro. Habla de una pausa para recuperar fuerzas, no del final de una vida."
+    },
+    {
+      "q": "¿El Cuatro de Espadas significa ruptura?",
+      "a": "No por sí solo. En el amor suele hablar de una pausa: espacio para pensar, un ritmo más calmado, tiempo aparte para ver con claridad. Si esa pausa acerca o aleja depende de lo que hagan las dos personas con ella."
+    }
+  ],
+  "related": [
+    "swords-03-three",
+    "swords-05-five",
+    "wands-04-four",
+    "cups-04-four",
+    "pentacles-04-four"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-04-four",
+      "text": "Cuatro de Copas"
+    }
+  ],
+  "waite": {
+    "quote": "Vigilance, retreat, solitude, hermit's repose, exile, tomb and coffin … Reversed: Wise administration, circumspection, economy, avarice, precaution, testament.",
+    "quote_lang": "en",
+    "pages": [
+      246
+    ],
+    "translation": "Vigilancia, retiro, soledad, reposo de ermitaño, exilio, tumba y ataúd … Al revés: administración sabia, circunspección, economía, avaricia, precaución, testamento.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [
+        246
+      ],
+      "text": "The effigy of a knight in the attitude of prayer, at full length upon his tomb"
+    },
+    {
+      "pages": [
+        246
+      ],
+      "text": "tomb and coffin. It is these last that have suggested the design"
+    },
+    {
+      "pages": [
+        246
+      ],
+      "text": "Vigilance, retreat, solitude, hermit's repose, exile, tomb and coffin"
+    },
+    {
+      "pages": [
+        246
+      ],
+      "text": "Reversed: Wise administration, circumspection, economy, avarice, precaution, testament"
+    },
+    {
+      "pages": [
+        292
+      ],
+      "text": "A bad card, but if reversed a qualified success may be expected by wise administration of affairs"
+    },
+    {
+      "pages": [
+        218
+      ],
+      "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Swords 04.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Swords_04.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [
+        218,
+        246,
+        292
+      ],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

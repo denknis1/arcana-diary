@@ -1,0 +1,217 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-09-nine",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Nueve de Oros",
+    "in_sentence": "el Nueve de Oros",
+    "de": "del Nueve de Oros"
+  },
+  "title": "Nueve de Oros en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Nueve de Oros al derecho y al revés (carta invertida): autonomía, amor, trabajo y dinero. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Nueve de Oros en el tarot: significado",
+  "image_alt": "Nueve de Oros, carta de 1909 de la baraja Rider-Waite-Smith: una mujer con túnica larga de flores rojas, entre parras con uvas y nueve oros, sostiene un ave encapuchada en su mano enguantada.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 9,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Nueve de Oros habla de autonomía, disfrute y logro propio: la comodidad que te ganaste con tu trabajo y la libertad de gozarla. Al revés, puede ser depender de otros más de lo que quisieras o no poder disfrutar lo que tienes. Es una carta serena y generosa. Responde que sí: el jardín ya dio fruto.",
+  "keywords": {
+    "upright": [
+      "autonomía",
+      "disfrute",
+      "logro propio",
+      "refinamiento"
+    ],
+    "reversed": [
+      "dependencia",
+      "exceso de trabajo",
+      "autoestima frágil",
+      "lujo vacío"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Nueve de Oros?",
+      "paragraphs": [
+        "Una mujer está sola en un viñedo, con un ave en la mano y nueve oros a su alrededor. Waite la sitúa entre una gran abundancia de parras, en el jardín de una casa señorial, y dice que es un dominio amplio que sugiere abundancia en todo (p. 264). Según Waite, quizá esa finca le pertenece y da fe de su bienestar material (p. 264).",
+        "En la carta de 1909 el cielo es amarillo y arriba se lee el IX. Ella lleva una túnica larga color crema con florecitas rojas, y el ave tiene la cabeza cubierta con una caperuza roja. Seis oros se apilan de un lado y tres del otro, entre racimos de uvas; al fondo asoma una casa grande y, en el camino, hay un caracol pequeño. La figura alta de la mujer ocupa todo el centro."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Nueve de Oros?",
+      "paragraphs": [
+        "La lista de Waite al derecho (p. 264) suena tranquila: prudencia, seguridad, éxito, certeza y buen juicio. Al revés, la lista de Waite (p. 264) habla de trato deshonesto, bribonería y mala fe, y de un proyecto que se queda en nada; en Arcana Diary no leemos la carta como un aviso sobre nadie.",
+        "La independencia, el sentido más conocido hoy, es una lectura moderna, no de Waite, aunque el dibujo la hace fácil de ver."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Nueve de Oros al derecho?",
+      "paragraphs": [
+        "El Nueve de Oros significa independencia ganada: una vida, o una parte de ella, que se sostiene sola porque tú la construiste. Es un logro propio, y la carta suele salir cuando el esfuerzo empieza a rendir y por fin puedes disfrutar el resultado: una casa a tu gusto, un oficio que te da para vivir bien o simplemente tiempo que es tuyo.",
+        "También es la carta del refinamiento y del disfrute sin culpa: el buen gusto, los placeres tranquilos, un jardín cuidado durante años. Estar a solas aquí no es soledad triste; es estar a gusto en tu propia compañía. ¿Qué parte de tu vida ya se siente como tu propio jardín?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Nueve de Oros al revés?",
+      "paragraphs": [
+        "Al revés, la carta puede hablar de dependencia: apoyarte en el dinero o en la aprobación de alguien más de lo que te gustaría. También de exceso de trabajo, cuando persigues la comodidad con tanta prisa que no queda tiempo para gozarla, o de un lujo vacío que tapa la preocupación. Debajo suele haber una autoestima frágil, como si lo que tienes decidiera lo que vales.",
+        "La bribonería y la mala fe que Waite pone al revés (p. 264) miran hacia afuera, al trato deshonesto; la lectura moderna mira primero el suelo que pisas. Date un momento para apreciar lo que has logrado, tal como está hoy."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Nueve de Oros en el amor?",
+      "paragraphs": [
+        "Tu plenitud no depende de una pareja: esa es la idea central de esta carta en el amor. Sin pareja, describe una vida llena y cómoda en la que alguien nuevo sería compañía bienvenida, no un rescate. En una relación, pide espacio para conservar tus amistades, tu dinero y tus gustos, y favorece un vínculo entre dos personas que se sostienen solas.",
+        "Al revés, la independencia puede volverse distancia, o la relación puede girar más alrededor del dinero, la comodidad o el estatus que de la cercanía. Elige vínculos que sumen, no que llenen vacíos."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Nueve de Oros en el trabajo y el dinero?",
+      "paragraphs": [
+        "Uvas maduras en una finca que quizá es suya: aquí la carta habla con toda claridad de independencia económica, de un colchón que da tranquilidad y de la seguridad de ganarte la vida por tu cuenta, con margen para darte gustos. En lo laboral, describe trabajar por tu cuenta, un puesto donde confían en tu criterio o el momento en que años de esfuerzo dan fruto. Al revés, puede señalar gastar más de lo que entra, depender del dinero de otra persona o trabajar de más sin disfrutar lo ganado."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Nueve de Oros como consejo?",
+      "paragraphs": [
+        "Regálate un momento de calma en un lugar bonito, con o sin compañía: un café sin prisa, un parque, una comida que te guste de verdad. Tómalo como un agradecimiento a tu propio esfuerzo, no como un premio que mañana tengas que volver a ganarte."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Nueve de Oros es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Nueve de Oros como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Nueve de Oros es alguien que salió adelante a pulso: independiente, con buen gusto, con orden en el dinero y a gusto con su propia compañía. Como sentimiento, la carta significa admiración y un cariño tranquilo y seguro: disfrutar un vínculo sin necesitarlo para sentirse en plenitud, y valorar el respeto y el tiempo de calidad más que el drama. Al revés, ese sentimiento se vuelve reservado o distante: una independencia que funciona como muro, o un interés que mira más el estatus que a la persona."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Nueve de Oros junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-03-empress",
+          "text": "Una temporada fértil y cómoda; vale la pena bajar el ritmo para disfrutarla."
+        },
+        {
+          "card_id": "cups-09-nine",
+          "text": "Satisfacción por dentro y por fuera: gusto por lo que ya tienes."
+        },
+        {
+          "card_id": "pentacles-08-eight",
+          "text": "La práctica se vuelve independencia; el oficio que pulías ahora te sostiene."
+        },
+        {
+          "card_id": "cups-02-two",
+          "text": "Alguien en plenitud que encuentra a otra persona de igual a igual. Cercanía sin perder libertad."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Nueve de Oros de la Reina de Oros?",
+      "paragraphs": [
+        "Las dos cartas muestran a una mujer rodeada de abundancia. La Reina de Oros, según Waite, tiene un aire serio de inteligencia, contempla su símbolo y quizá ve mundos en él (p. 256); hoy se lee como cuidado práctico y generosidad, un hogar cálido que se comparte.",
+        "El Nueve habla de lo que construiste para ti y de la libertad que te da; la Reina, de cuidar a otros con lo que tienes."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Nueve de Oros?",
+      "paragraphs": [
+        "¿Qué logro mío no me he detenido a disfrutar?",
+        "¿Dónde me apoyo en otros más de lo que quisiera?",
+        "¿Qué gusto pequeño puedo darme hoy sin culpa?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Nueve de Oros es una carta buena o mala?",
+      "a": "Buena, y de las más cómodas del palo de Oros. Muestra un esfuerzo que se convirtió en seguridad y la libertad de disfrutarla. Al revés tampoco es mala señal: te invita a revisar si tu valor depende del dinero o de la mirada de otros."
+    },
+    {
+      "q": "¿El Nueve de Oros significa soledad?",
+      "a": "No. La mujer está sola, pero nada en la carta sugiere tristeza, y Waite la rodea de parras y de abundancia (p. 264). Habla de disfrutar tu espacio y tu compañía, y convive muy bien con la amistad o con el amor."
+    },
+    {
+      "q": "¿El Nueve de Oros significa que voy a tener dinero?",
+      "a": "Ninguna carta promete dinero. Como significado, esta habla de independencia económica y comodidad: poder sostenerte y gozar lo que te da tu trabajo. Léela como la imagen de una seguridad construida paso a paso, no como un pronóstico de riqueza."
+    }
+  ],
+  "related": [
+    "pentacles-08-eight",
+    "pentacles-10-ten",
+    "cups-09-nine",
+    "wands-09-nine",
+    "swords-09-nine"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-13-queen",
+      "text": "Reina de Oros"
+    }
+  ],
+  "waite": {
+    "quote": "Prudence, safety, success, accomplishment, certitude, discernment. Reversed: Roguery, deception, voided project, bad faith.",
+    "quote_lang": "en",
+    "pages": [
+      264
+    ],
+    "translation": "Prudencia, seguridad, éxito, logro, certeza, discernimiento. Al revés: bribonería, engaño, proyecto frustrado, mala fe.",
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [264],
+      "text": "stands amidst a great abundance of grapevines in the garden of a manorial house. It is a wide domain, suggesting plenty in all things. Possibly it is her own possession and testifies to material well-being."
+    },
+    {
+      "pages": [264],
+      "text": "Reversed: Roguery, deception, voided project, bad faith."
+    },
+    {
+      "pages": [256],
+      "text": "she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 09.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_09.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [256, 264],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}

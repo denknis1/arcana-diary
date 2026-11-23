@@ -1,0 +1,244 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-14-king",
+  "lang": "en",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "King of Pentacles",
+    "in_sentence": "the King of Pentacles"
+  },
+  "title": "King of Pentacles Tarot Meaning: Upright & Reversed",
+  "description": "King of Pentacles upright: abundance, security, success; reversed: greed, rigidity. Love, work, money, Waite's 1911 text and the 1909 card. Ask your question.",
+  "h1": "King of Pentacles Tarot Card Meaning",
+  "image_alt": "King of Pentacles, 1909 Rider–Waite–Smith card: a king in a robe covered with grapes sits on a throne carved with bulls' heads, a pentacle on his knee and a castle behind him.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 14,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "The King of Pentacles means abundance, security, leadership and success built through steady effort. Reversed, the same strength can turn into rigidity, greed or materialism. It is a strong, positive card that asks you to use what you have well, not to measure everything by it. Yes is the answer: vines surround him and his ground is solid.",
+  "keywords": {
+    "upright": [
+      "abundance",
+      "security",
+      "leadership",
+      "success"
+    ],
+    "reversed": [
+      "rigidity",
+      "greed",
+      "materialism"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "What is on the King of Pentacles card?",
+      "paragraphs": [
+        "A king sits on a throne in a garden of vines, a scepter in his right hand and his left resting on a pentacle at his knee. Waite says the figure \"calls for no special description\" (p. 254), noting only that the face is \"rather dark, suggesting also courage, but somewhat lethargic in tendency\" (p. 254). The one detail Waite asks readers to see is on the throne: \"The bull's head should be noted as a recurrent symbol\" (p. 254).",
+        "On the 1909 card two bulls' heads crown the back of the throne and another is carved on its arm. His dark robe is covered with bunches of grapes and vine leaves, and a wreath with red flowers sits on his head. A castle with towers rises behind the wall on the right. The largest figure is the king himself, robed in grapes, filling the throne."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "What did Waite write about the King of Pentacles?",
+      "paragraphs": [
+        "Waite's list (p. 254) gives valour and a practical, \"realizing\" intelligence: a head for business, sometimes for numbers, and success along those lines. His reversed list (p. 254) is blunt, with vice and corruption among its words; Arcana Diary does not read the card that way.",
+        "On the same page Waite notes that in many old packs this suit stood for coin and money, and that the meanings favor the change of name \"because the cards do not happen to deal especially with questions of money\" (p. 254). Among his extra meanings, Waite calls the King \"a rather dark man, a merchant, master, professor\" (p. 292)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "What does the King of Pentacles mean upright?",
+      "paragraphs": [
+        "Abundance and security are this card's plain meaning: a life, a household or a business on firm ground because it was built with patience. The King is success that lasts rather than a lucky windfall, and leadership that looks after people as well as results.",
+        "The card can appear when you are in charge of something practical, or when years of steady work have given you something solid. It also describes generosity: the King shares what he has built. Waite's \"success in these paths\" (p. 254) fits this side well. What foundation are you building, and who does it hold up besides you?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "What does the King of Pentacles mean reversed?",
+      "paragraphs": [
+        "Turned over, the King's strength stiffens. Rigidity comes first: rules kept for their own sake, no room for other people's ideas. Then materialism, the habit of measuring worth only by money or status, and sometimes greed, holding on to more than is needed. Doubt about your ability to provide belongs here too.",
+        "These meanings are a modern reading, not Waite's. Bring the question back to what you value, and let that, not the balance alone, guide your next practical choice."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "What does the King of Pentacles mean in love?",
+      "paragraphs": [
+        "Steadiness is how the King of Pentacles loves: showing up, keeping promises, offering a secure base. Without a partner, the card can mean readiness for something serious, a relationship that fits a stable life. For two people already together, it describes commitment, shared plans and a home built in common.",
+        "Reversed, security can matter more than closeness: love measured by what someone provides, or control dressed up as care. Peace and warmth in a relationship count as much as safety."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "What does the King of Pentacles mean for work and money?",
+      "paragraphs": [
+        "Grapes, a castle and a coin under his hand: abundance in its plain sense belongs to this King. It means financial security, wealth built slowly through work and sensible choices, a business that runs well. Reversed, it can mean greed, being rigid or anxious about money, or poor financial decisions made to protect status.",
+        "In a career, the card is the experienced leader, owner or manager: practical, trusted and able to turn plans into results."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "What is the advice of the King of Pentacles?",
+      "paragraphs": [
+        "Look after one thing that holds you up: a work tool, a habit, a relationship you rely on. Repair it, maintain it, give it time. The King's kind of wealth grows from foundations that are cared for, not from one big move."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "Is the King of Pentacles a yes or no card?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "The King of Pentacles as a person and as feelings",
+      "paragraphs": [
+        "As a person, the King of Pentacles is successful, reliable and generous: a provider and protector, often good with money and business, calm under pressure; a boss, a mentor, a parent figure, or you in charge of something solid. As feelings, the card stands for loyal, serious commitment: a wish to provide, to protect and to build a stable life together. Reversed, those feelings can turn possessive or controlling, love tied to status or money, or care that stays practical but closed."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "The King of Pentacles with other cards",
+      "pairs": [
+        {
+          "card_id": "pentacles-10-ten",
+          "text": "Lasting security and family: wealth or care that reaches the next generation."
+        },
+        {
+          "card_id": "pentacles-01-ace",
+          "text": "A new opportunity in experienced hands. Build on it step by step."
+        },
+        {
+          "card_id": "pentacles-13-queen",
+          "text": "Two pillars of practical care: a stable, generous home."
+        },
+        {
+          "card_id": "pentacles-06-six",
+          "text": "Success that is shared; generosity from a secure position."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "King of Pentacles, Four of Pentacles or The Emperor?",
+      "paragraphs": [
+        "Waite's Four of Pentacles is \"a crowned figure\" who clasps a coin with hands and arms: \"He holds to that which he has\" (p. 274). Today it means security and holding on. Both are crowned men with coins, but the Four grips, while the King rests his hand on the coin and shares.",
+        "Waite gives The Emperor a throne whose arms are fronted by rams' heads (p. 84), where this King's throne carries bulls (p. 254). Today the Emperor means structure and authority; the King of Pentacles means abundance and practical success."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "Questions to ask yourself about the King of Pentacles",
+      "paragraphs": [
+        "What have I built that I am proud of?",
+        "Where am I holding on to security so tightly that it costs me something else?",
+        "Who could share in what I have, and how?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is the King of Pentacles a good or bad card?",
+      "a": "Good, and one of the most reassuring cards for practical questions. It speaks of stability, generosity and achievement that rests on real work. Reversed, it shows the same resources handled too tightly or valued too much, which is a reason to rethink priorities, not a bad sign."
+    },
+    {
+      "q": "Does the King of Pentacles mean wealth?",
+      "a": "Wealth is part of its meaning, in the sense of financial security gathered over time. The card describes being well provided for and the habits that keep it that way. It is not a promise of a windfall, and it says nothing about where to put your money."
+    },
+    {
+      "q": "Why are there bulls on the King of Pentacles' throne?",
+      "a": "Waite asks readers to notice the bull's head on the throne (p. 254) but gives it no meaning, so this page gives it none either. On the 1909 scan there are several: two at the top corners of the seat and one on its arm."
+    },
+    {
+      "q": "Is the King of Pentacles a person or a situation?",
+      "a": "It can be either. Sometimes it describes someone with these qualities, a steady, generous person who handles money well; often it describes a stretch of stability and practical achievement. Gender plays no part: anyone, including you, can take on this role."
+    }
+  ],
+  "related": [
+    "pentacles-13-queen",
+    "pentacles-12-knight",
+    "wands-14-king",
+    "cups-14-king",
+    "swords-14-king"
+  ],
+  "mentions": [
+    {
+      "card_id": "pentacles-04-four",
+      "text": "Four of Pentacles"
+    },
+    {
+      "card_id": "major-04-emperor",
+      "text": "The Emperor"
+    }
+  ],
+  "waite": {
+    "quote": "Valour, realizing intelligence, business and normal intellectual aptitude … success in these paths. Reversed: Vice, weakness, ugliness, perversity, corruption, peril.",
+    "quote_lang": "en",
+    "pages": [
+      254
+    ],
+    "translation": null,
+    "harsh": false
+  },
+  "citations": [
+    {
+      "pages": [254],
+      "text": "The figure calls for no special description; the face is rather dark, suggesting also courage, but somewhat lethargic in tendency"
+    },
+    {
+      "pages": [254],
+      "text": "The bull's head should be noted as a recurrent symbol on the throne"
+    },
+    {
+      "pages": [254],
+      "text": "In many old Tarot packs this suit stood for current coin, money, deniers"
+    },
+    {
+      "pages": [254],
+      "text": "because the cards do not happen to deal especially with questions of money"
+    },
+    {
+      "pages": [254],
+      "text": "success in these paths"
+    },
+    {
+      "pages": [292],
+      "text": "A rather dark man, a merchant, master, professor"
+    },
+    {
+      "pages": [274],
+      "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet. He holds to that which he has"
+    },
+    {
+      "pages": [84],
+      "text": "seated on a throne, the arms of which are fronted by rams' heads"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Card image",
+      "where": "1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), Wikimedia Commons: File:RWS1909 - Pentacles 14.jpeg (public domain)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_14.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Description of the picture, traditional meanings and quotes",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911)",
+      "pages": [84, 254, 274, 292],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Modern meanings, keywords and the yes/no rule",
+      "where": "Arcana Diary card meanings",
+      "url": null
+    }
+  ]
+}

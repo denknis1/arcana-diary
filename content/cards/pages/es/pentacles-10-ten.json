@@ -1,0 +1,221 @@
+{
+  "schema": 2,
+  "card_id": "pentacles-10-ten",
+  "lang": "es",
+  "status": "draft",
+  "editor": "{editor_name}",
+  "reviewed_at": null,
+  "name_forms": {
+    "name": "Diez de Oros",
+    "in_sentence": "el Diez de Oros",
+    "de": "del Diez de Oros"
+  },
+  "title": "Diez de Oros en el tarot: significado, invertida y amor",
+  "description": "Qué significa el Diez de Oros al derecho y al revés (carta invertida): legado, familia, trabajo y dinero. Palabras de Waite (1911) y si es sí o no.",
+  "h1": "Diez de Oros en el tarot: significado",
+  "image_alt": "Diez de Oros, carta de 1909 de la baraja Rider-Waite-Smith: un anciano de cabello blanco con dos perros blancos bajo un arco de piedra, junto a una pareja y un niño, con diez oros en la escena.",
+  "facts": {
+    "arcana": "minor",
+    "suit": "pentacles",
+    "number": 10,
+    "numeral": null,
+    "also_called": []
+  },
+  "capsule": "El Diez de Oros es la carta del legado, la familia y la estabilidad: un hogar, un patrimonio o unos valores que pasan de una generación a otra. Al revés, habla de tensión familiar, roces por dinero o raíces flojas. Es una carta sólida y generosa. Responde que sí, con bases firmes para tres generaciones.",
+  "keywords": {
+    "upright": [
+      "legado",
+      "familia",
+      "estabilidad",
+      "raíces"
+    ],
+    "reversed": [
+      "tensión familiar",
+      "bases inestables",
+      "roces por dinero",
+      "romper con la tradición"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "on_the_card",
+      "heading": "¿Qué hay en la carta del Diez de Oros?",
+      "paragraphs": [
+        "Tres generaciones se reúnen a la entrada de una finca familiar. Waite describe a un hombre y una mujer bajo un arco que da paso a una casa y a sus tierras, con un niño que mira con curiosidad a dos perros que se acercan a un anciano sentado en primer plano (p. 262). Waite añade un detalle: la mano del niño descansa sobre uno de los perros (p. 262).",
+        "En la carta de 1909 el anciano tiene el cabello blanco y una túnica larga con racimos de uvas y otros dibujos. El hombre joven está de espaldas y la mujer, vestida de rojo, voltea hacia él. Los diez oros se reparten por toda la escena, desde lo alto del arco hasta el suelo, y en el muro de la izquierda cuelga un escudo con un castillo. Al fondo hay una torre, y el gran arco de piedra enmarca toda la parte de arriba."
+      ]
+    },
+    {
+      "id": "waite",
+      "heading": "¿Qué escribió Waite sobre el Diez de Oros?",
+      "paragraphs": [
+        "La lista de Waite al derecho (p. 262) habla de una riqueza que pertenece a una familia: ganancia, riquezas, asuntos familiares, archivos, linaje y la casa donde vive la familia. La lista al revés de Waite (p. 262) es dura, y en Arcana Diary la carta no se lee así; termina con regalo, dote y pensión.",
+        "En sus significados adicionales, Waite dice que el Diez representa la casa o la vivienda y que su valor depende de las otras cartas (pp. 292–293)."
+      ]
+    },
+    {
+      "id": "upright",
+      "heading": "¿Qué significa el Diez de Oros al derecho?",
+      "paragraphs": [
+        "Al derecho, esta carta habla de estabilidad a largo plazo: una casa, un negocio, unos ahorros o unas costumbres que se mantienen firmes y pueden pasar a quienes vienen detrás. Es la familia en sentido amplio, la gente de la que vienes y la gente para la que construyes, y el bienestar de una vida que descansa sobre suelo firme.",
+        "Aquí el legado no es solo dinero. Puede ser una receta de la abuela, un oficio aprendido en casa, una casa a la que todos vuelven o los valores que quieres dejar. ¿Qué estás construyendo hoy que te gustaría ver en pie dentro de muchos años?"
+      ]
+    },
+    {
+      "id": "reversed",
+      "heading": "¿Qué significa el Diez de Oros al revés?",
+      "paragraphs": [
+        "Al revés, la carta puede hablar de tensión familiar: roces por dinero, por una propiedad o por quién decide, o expectativas heredadas que ya no te quedan. También de bases inestables, cuando algo que parecía permanente ya no se siente tan sólido.",
+        "A veces significa romper con la tradición a propósito y elegir un camino distinto del que trazó tu familia. La lista al revés de Waite incluye pérdida y juegos de azar (p. 262); la lectura del camino propio es moderna. Pregúntate qué significa la seguridad para ti, más allá de lo que te enseñaron."
+      ]
+    },
+    {
+      "id": "love",
+      "heading": "¿Qué significa el Diez de Oros en el amor?",
+      "paragraphs": [
+        "Un compromiso pensado para durar: eso trae el Diez de Oros al amor. Habla de un hogar compartido, de unir vidas y gastos y de conocer a las familias. En pareja, describe un vínculo con raíces y valores en común; sin pareja, puede reflejar el deseo de esa estabilidad y de alguien que busque las mismas bases.",
+        "Al revés, la presión de la familia o los temas de dinero pueden pesar sobre la relación, o la vida en común puede sentirse más deber que elección. Piensa qué tipo de vida quieres compartir y qué pasos la vuelven real."
+      ]
+    },
+    {
+      "id": "work_money",
+      "heading": "¿Qué significa el Diez de Oros en el trabajo y el dinero?",
+      "paragraphs": [
+        "Diez monedas sobre una sola casa: es riqueza construida con el tiempo, seguridad financiera, patrimonio, ahorros y recursos de familia. En lo laboral le van bien los negocios familiares, las carreras largas y el trabajo que deja algo duradero. Al revés, puede significar discusiones de familia por dinero o una base económica inestable."
+      ]
+    },
+    {
+      "id": "advice",
+      "heading": "¿Qué significa el Diez de Oros como consejo?",
+      "paragraphs": [
+        "Platica con alguien mayor de tu familia sobre una historia o una tradición que quieras conservar. Pregunta cómo empezó, qué costó sostenerla y qué parte de ella te gustaría llevar contigo."
+      ]
+    },
+    {
+      "id": "yes_no",
+      "heading": "¿El Diez de Oros es sí o no?",
+      "paragraphs": []
+    },
+    {
+      "id": "in_a_reading",
+      "heading": "¿Qué significa el Diez de Oros como persona y como sentimiento?",
+      "paragraphs": [
+        "Como persona, el Diez de Oros es alguien con raíces y de fiar, que pone a la familia primero, cuida las tradiciones y piensa a largo plazo; también puede ser una persona mayor cuya experiencia sostiene a la familia. Como sentimiento, la carta significa un cariño serio y comprometido: ganas de compartir la vida, un hogar, un futuro y dos familias que se unen. Al revés, ese sentimiento se debate entre el amor y el deber, con expectativas familiares, preocupaciones de dinero o miedo al compromiso."
+      ]
+    },
+    {
+      "id": "combinations",
+      "heading": "¿Qué significa el Diez de Oros junto a otras cartas?",
+      "pairs": [
+        {
+          "card_id": "major-05-hierophant",
+          "text": "Tradición que se hereda: una costumbre o una creencia de familia que vale la pena conservar."
+        },
+        {
+          "card_id": "pentacles-04-four",
+          "text": "Cuidar lo que la familia tiene. Protégelo, pero deja lugar para compartir."
+        },
+        {
+          "card_id": "pentacles-06-six",
+          "text": "Una riqueza que circula; lo que construiste también puede apoyar a otros."
+        },
+        {
+          "card_id": "major-04-emperor",
+          "text": "Estructura y legado: reglas y planes que protegen el futuro de una familia."
+        }
+      ]
+    },
+    {
+      "id": "not_to_confuse",
+      "heading": "¿Cómo distinguir el Diez de Oros del Diez de Copas?",
+      "paragraphs": [
+        "El Diez de Copas también muestra una familia: según Waite, un hombre y una mujer contemplan con asombro un arcoíris de copas mientras dos niños bailan cerca (p. 206). Su lectura moderna es la plenitud emocional y la armonía en casa.",
+        "El Diez de Copas es la felicidad de una familia; el Diez de Oros, sus cimientos: la casa, los recursos y las costumbres sobre los que descansa."
+      ]
+    },
+    {
+      "id": "ask_yourself",
+      "heading": "¿Qué preguntarte cuando te sale el Diez de Oros?",
+      "paragraphs": [
+        "¿Qué recibí de mi familia que quiero conservar?",
+        "¿Qué significa para mí la seguridad, más allá de lo que me enseñaron?",
+        "¿Qué estoy construyendo hoy que me gustaría dejar a otros?"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "¿El Diez de Oros es una carta buena o mala?",
+      "a": "Buena. Pocas cartas de la baraja son tan estables: habla de bases duraderas, de familia y de bienestar compartido. Al revés tampoco es mala señal; muestra tensiones por dinero o por tradición que se pueden platicar y reconstruir a tu manera."
+    },
+    {
+      "q": "¿El Diez de Oros significa herencia?",
+      "a": "No como pronóstico. El legado de esta carta es lo que pasa de una generación a otra en sentido amplio: valores, oficios, una casa y a veces dinero. La lista de Waite habla de asuntos de familia y de archivos (p. 262), no de una suma que vaya a llegarte. Tómala como una pregunta sobre lo que recibiste y lo que quieres dejar."
+    },
+    {
+      "q": "¿El Diez de Oros habla solo de familia?",
+      "a": "No. La familia es lo primero que se lee en ella, pero la carta también abarca cualquier comunidad o institución hecha para durar: una empresa con años, un barrio, una tradición a la que perteneces y que te sostiene."
+    }
+  ],
+  "related": [
+    "pentacles-09-nine",
+    "pentacles-11-page",
+    "cups-10-ten",
+    "wands-10-ten",
+    "swords-10-ten"
+  ],
+  "mentions": [
+    {
+      "card_id": "cups-10-ten",
+      "text": "Diez de Copas"
+    }
+  ],
+  "waite": {
+    "quote": "Gain, riches; family matters, archives, extraction, the abode of a family. Reversed: Chance, fatality, loss, robbery, games of hazard; sometimes gift, dowry, pension.",
+    "quote_lang": "en",
+    "pages": [
+      262
+    ],
+    "translation": "Ganancia, riquezas; asuntos de familia, archivos, linaje, la morada de una familia. Al revés: azar, fatalidad, pérdida, robo, juegos de azar; a veces regalo, dote, pensión.",
+    "harsh": true
+  },
+  "citations": [
+    {
+      "pages": [262],
+      "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground. The child's hand is on one of them."
+    },
+    {
+      "pages": [292, 293],
+      "text": "Represents house or dwelling, and derives its value from other cards."
+    },
+    {
+      "pages": [206],
+      "text": "it is contemplated in wonder and ecstacy by a man and woman below"
+    },
+    {
+      "pages": [206],
+      "text": "The two children dancing near them"
+    }
+  ],
+  "sources": [
+    {
+      "kind": "image",
+      "what": "Imagen de la carta",
+      "where": "Baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), Wikimedia Commons: File:RWS1909 - Pentacles 10.jpeg (dominio público)",
+      "url": "https://commons.wikimedia.org/wiki/File:RWS1909_-_Pentacles_10.jpeg"
+    },
+    {
+      "kind": "waite",
+      "what": "Descripción del dibujo, significados tradicionales y citas",
+      "where": "A. E. Waite, The Pictorial Key to the Tarot (1911), en el inglés original",
+      "pages": [206, 262, 292, 293],
+      "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot"
+    },
+    {
+      "kind": "project",
+      "what": "Significados modernos, palabras clave y regla de sí o no",
+      "where": "Significados de cartas de Arcana Diary",
+      "url": null
+    }
+  ]
+}
