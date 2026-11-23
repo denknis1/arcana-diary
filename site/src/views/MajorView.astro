@@ -1,6 +1,7 @@
 ---
 // The 22 Major Arcana (spec stage 6 §5; prototype Major): capsule, the list with numeral, name and the first keyword
-// of the card base, a link to all 78 cards (L-EN-14, L-ES-14), the draw button, then the stage 5 blocks and FAQ.
+// of the card base, a link to all 78 cards (L-EN-14, L-ES-14) with the home's line about the hub under its name (the
+// terms of its context, from the dictionary), the draw button, then the stage 5 blocks and FAQ.
 import TextPageView from './TextPageView.astro';
 import { t } from '../i18n';
 import { firstKeyword, ldItems, majorCards } from '../lib/cardLists';
@@ -22,12 +23,17 @@ const majors = majorCards(lang);
         <li>
           <a href={c.href}>
             <span class="major-list__n">{c.card.numeral}</span>
-            <span class="link-list__text"><span class="link-list__name">{c.name}</span><span class="link-list__hint">{firstKeyword(c.card, lang)}</span></span>
+            <span class="link-list__text"><span class="link-list__name">{c.name}</span> <span class="link-list__hint">{firstKeyword(c.card, lang)}</span></span>
           </a>
         </li>
       ))}
     </ol>
-    <p class="block-link"><a href={pagePath('cards', lang)}>{d.allCardsLink}</a></p>
+    <p class="link-list">
+      <a href={pagePath('cards', lang)}>
+        <span class="link-list__text"><span class="link-list__name">{d.allCardsLink}</span> <span class="link-list__hint">{d.fmtCardsHint}</span></span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 4l5 5-5 5"></path></svg>
+      </a>
+    </p>
     <p><a class="btn btn--ink" href={pagePath('home', lang)}>{d.drawForQuestion}</a></p>
   </section>
 </TextPageView>

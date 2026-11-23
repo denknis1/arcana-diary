@@ -181,6 +181,46 @@ export function relatedCards(page: CardPageData): DeckCard[] {
   return page.related.map((id) => card(id, page));
 }
 
+/**
+ * The card links of the page's content, each target once (SEO Monster 2027, 4.4: two links to one URL in <main> do
+ * not add to each other, and the first one in the DOM gives the anchor). Walked in the template's order — capsule,
+ * the blocks (the pairs table comes before the paragraphs of its block), FAQ answers, "Related cards" — the first
+ * link to a card stays, a later mention or pair keeps its words as plain text, and "Related cards" keeps only the
+ * cards not linked above. Links inside <nav> (breadcrumbs, previous/next) are navigation and do not count.
+ */
+export function cardLinks(page: CardPageData, s: TemplateStrings, lang: Lang) {
+  const seen = new Set<string>();
+  const once = (href: string) => (seen.has(href) ? false : (seen.add(href), true));
+  const all = mentionSegments(page, lang);
+  const mentions = new Map<string, Segment[]>();
+  const keep = (key: string) => {
+    const segs = all.get(key);
+    if (!segs) return;
+    const out: Segment[] = [];
+    for (const seg of segs) {
+      const plain = typeof seg === 'string' ? seg : once(seg.href) ? null : seg.text;
+      if (plain === null) out.push(seg);
+      else if (typeof out[out.length - 1] === 'string') out[out.length - 1] += plain;
+      else out.push(plain);
+    }
+    mentions.set(key, out);
+  };
+  const pairs: PairRow[] = [];
+  keep('capsule');
+  for (const block of page.blocks) {
+    if (block.id === 'combinations') {
+      for (const row of pairRows(page, s, lang)) {
+        pairs.push(row.link && !once(row.link.href)
+          ? { before: row.before + row.link.text + row.after, link: null, after: '', reading: row.reading } : row);
+      }
+    }
+    (block.paragraphs ?? []).forEach((_, j) => keep(`${block.id}:${j}`));
+  }
+  page.faq.forEach((_, i) => keep(`faq:${i}`));
+  const related = relatedCards(page).filter((c) => once(cardPath(c, lang)));
+  return { mentions, pairs, related };
+}
+
 export function tocLinks(lang: Lang): { href: string; label: string }[] {
   const d = t(lang);
   return TOC.map(([key, label]) => ({ href: `#${SECTION_IDS[lang][key]}`, label: d[label] }));
@@ -188,11 +228,15 @@ export function tocLinks(lang: Lang): { href: string; label: string }[] {
 
 export function aboutLines(page: CardPageData, s: TemplateStrings, lang: Lang, editorName: string) {
   if (!page.reviewed_at) throw new Error(`${page.lang}/${page.card_id}: not reviewed`);
+  const reviewedAt = page.reviewed_at;
+  const [reviewedBefore, reviewedAfter] = around(s.about.method, 'reviewed_at', { editor_name: editorName });
   return {
     sources: page.sources.map((src) => ({ what: src.what, where: src.where,
       pages: src.pages ? formatPages(src.pages, s) : null, url: src.url })),
     pageNumbers: s.about.page_numbers,
     method: fill(s.about.method, { editor_name: editorName, reviewed_at: formatDate(page.reviewed_at, lang) }),
+    // the same line with the date apart, for <time datetime> (a dated fact, machine-readable)
+    reviewed: { before: reviewedBefore, datetime: reviewedAt, text: formatDate(reviewedAt, lang), after: reviewedAfter },
     deckNote: s.about.deck_note,
   };
 }

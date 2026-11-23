@@ -133,6 +133,24 @@ def test_context_terms_are_counted_in_a_window_around_the_link(tmp_path):
         assert terms == {"T-8": expect}
 
 
+def test_card_name_terms_of_a_card_list_row_are_the_name_of_the_linked_card(tmp_path):
+    # the hub's link to The Fool counts "The Fool", not a literal "{card_name}"; previous/next count the neighbour's name
+    row = {"link_id": "T-9", "from_id": "EN-093", "to_id": "@major", "anchor_pattern": "{card_name}",
+           "context_terms": "{card_name}|major arcana", "wave": LAUNCH}
+    site = Site(tmp_path)
+    majors = [c for c in site.deck if c["arcana"] == "major"]
+    write(tmp_path, "cards/major-arcana.html", "".join(f'<p><a href="/cards/{c["slug_en"]}">{c["name_en"]}</a>{"x " * 200}</p>'
+                                                         for c in majors))
+    terms = {}
+    assert check_row(Site(tmp_path), row, "en", terms)[0] == []
+    assert terms == {"T-9": (1, 2)}
+    nav = {**NAV, "context_terms": "{card_name}|tarot card"}
+    card_pages(tmp_path, site)
+    terms = {}
+    assert check_row(Site(tmp_path), nav, "en", terms)[0] == []
+    assert terms == {"T-3": (1, 2)}
+
+
 def test_every_href_must_be_canonical_and_live(tmp_path):
     write(tmp_path, "about.html", "")
     write(tmp_path, "cards.html", '<h2 id="wands"></h2>')

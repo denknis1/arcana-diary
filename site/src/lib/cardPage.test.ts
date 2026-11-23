@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
-  SECTION_IDS, aboutLines, ctaText, factsLine, faqHeading, formatDate, formatPages, imageCaption, keywordCaption,
-  keywordRows, mentionSegments, pairRows, relatedCards, segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines,
-  yesNoReason,
+  SECTION_IDS, aboutLines, cardLinks, ctaText, factsLine, faqHeading, formatDate, formatPages, imageCaption,
+  keywordCaption, keywordRows, mentionSegments, pairRows, relatedCards, segmentsOf, titleParts, tocLinks, waiteCite,
+  yesNoLines, yesNoReason, type Segment,
 } from './cardPage';
 import { CARD_PAGES, TEMPLATE_STRINGS, cardPage } from './cardPages';
 import { cardById, cardName } from './deck';
@@ -123,6 +123,45 @@ describe('the card template (spec stage 6 §4, rules §12)', () => {
     expect(about.sources).toEqual(moonEn.sources.map((src) => ({ what: src.what, where: src.where,
       pages: src.pages ? `${src.pages.length === 1 ? 'p.' : 'pp.'} ${src.pages.join(', ')}` : null, url: src.url })));
     expect(about.sources.find((_, i) => moonEn.sources[i].kind === 'project')!.url).toBeNull();
+    const date = formatDate(moonEn.reviewed_at!, 'en');
+    expect(about.reviewed).toEqual({ before: "Written with AI from Waite's book and Arcana Diary's card meanings. "
+      + 'Reviewed by Adrian Solenne on ', datetime: moonEn.reviewed_at, text: date, after: '.' });
+    const es = aboutLines(cardPage(moon, 'es'), ES, 'es', 'Adrian Solenne').reviewed;
+    expect(es.before + es.text + es.after).toBe(aboutLines(cardPage(moon, 'es'), ES, 'es', 'Adrian Solenne').method);
+  });
+
+  it('links each card once in the text of the page: the first place wins, the later ones stay plain (4.4)', () => {
+    const hrefs = (segs: readonly Segment[]) => segs.flatMap((seg) => (typeof seg === 'string' ? [] : [seg.href]));
+    for (const page of CARD_PAGES) {
+      const s = TEMPLATE_STRINGS[page.lang];
+      const plan = cardLinks(page, s, page.lang);
+      // reading order of the template: capsule, the blocks (the pairs table before the paragraphs of its block), FAQ
+      const order: string[] = [...hrefs(plan.mentions.get('capsule') ?? [])];
+      for (const block of page.blocks) {
+        if (block.id === 'combinations') order.push(...plan.pairs.flatMap((row) => (row.link ? [row.link.href] : [])));
+        (block.paragraphs ?? []).forEach((_, j) => order.push(...hrefs(plan.mentions.get(`${block.id}:${j}`) ?? [])));
+      }
+      page.faq.forEach((_, i) => order.push(...hrefs(plan.mentions.get(`faq:${i}`) ?? [])));
+      order.push(...plan.related.map((c) => cardPath(c, page.lang)));
+      expect(new Set(order).size, `${page.lang}/${page.card_id}`).toBe(order.length);
+      // nothing is lost: every card that was linked before is still linked once, the texts are unchanged
+      const before = new Set([...[...mentionSegments(page, page.lang).values()].flatMap(hrefs),
+        ...pairRows(page, s, page.lang).map((row) => row.link!.href), ...relatedCards(page).map((c) => cardPath(c, page.lang))]);
+      expect(new Set(order)).toEqual(before);
+      for (const [key, segs] of plan.mentions) {
+        const old = mentionSegments(page, page.lang).get(key)!;
+        expect(segs.map((seg) => (typeof seg === 'string' ? seg : seg.text)).join(''))
+          .toBe(old.map((seg) => (typeof seg === 'string' ? seg : seg.text)).join(''));
+      }
+      plan.pairs.forEach((row, i) => {
+        const old = pairRows(page, s, page.lang)[i];
+        expect(row.before + (row.link?.text ?? '') + row.after).toBe(old.before + old.link!.text + old.after);
+      });
+    }
+    // The Moon: The Sun and Two of Swords are linked in the text, so "Related cards" keeps only the other two
+    const moonPlan = cardLinks(moonEn, EN, 'en');
+    expect(moonPlan.related.map((c) => c.card_id)).toEqual(moonEn.related.filter((id) =>
+      !['major-19-sun', 'swords-02-two', 'major-02-high-priestess'].includes(id)));
   });
 
   it('gives the sections the anchors of the page maps (EN #reversed; ES #invertida, #amor, #si-o-no)', () => {

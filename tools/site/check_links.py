@@ -208,19 +208,21 @@ class Site:
             return [(self.card_url(c, lang), section, c) for c in self.deck]
         return [(base, section, None)]
 
-    def targets(self, row: dict, lang: str, card: dict | None) -> list[tuple[str, str]]:
-        """(address, anchor text) of each link the row asks for on one page."""
+    def targets(self, row: dict, lang: str, card: dict | None) -> list[tuple[str, str, dict | None]]:
+        """(address, anchor text, the card that fills {card_name}) of each link the row asks for on one page: the
+        linked card for a row to a set of cards or to the neighbours, else the card of the page."""
         pattern, to = row["anchor_pattern"], row["to_id"]
         if to in ("@cards", "@major"):
-            return [(self.card_url(c, lang), pattern.replace("{card_name}", c[f"name_{lang}"])) for c in self.cards(to)]
+            return [(self.card_url(c, lang), pattern.replace("{card_name}", c[f"name_{lang}"]), c) for c in self.cards(to)]
         if to == "@neighbors" and card is not None:
-            return [(self.card_url(c, lang), pattern.replace("{card_name}", c[f"name_{lang}"])) for c in self.neighbors(card)]
+            return [(self.card_url(c, lang), pattern.replace("{card_name}", c[f"name_{lang}"]), c)
+                    for c in self.neighbors(card)]
         text = pattern
         if card is not None:
             text = text.replace("{card_name}", card[f"name_{lang}"])
             if card["suit"]:
                 text = text.replace("{suit_name}", self.strings[lang]["facts"]["suits"][card["suit"]])
-        return [(self.url(to, lang).split("#", 1)[0], text)]
+        return [(self.url(to, lang).split("#", 1)[0], text, card)]
 
     def hub_ids(self, hub: str, card: dict, lang: str) -> set[str]:
         """The ids around the hub's own link to this card (its suit block), or empty."""
@@ -298,7 +300,7 @@ def check_row(site: Site, row: dict, lang: str, terms: dict | None = None) -> tu
         if links is None:
             problems.append(f"{row['link_id']}: no page {page} in site/dist")
             continue
-        for url, text in site.targets(row, lang, card):
+        for url, text, named in site.targets(row, lang, card):
             checked += 1
             link = find_link(links, url, text, section, row["link_id"] in IN_PLACE)
             where = f" inside #{section}" if section else ""
@@ -312,7 +314,7 @@ def check_row(site: Site, row: dict, lang: str, terms: dict | None = None) -> tu
                     problems.append(f"{row['link_id']}: {page} links {link['href']} — the suit block of the hub is "
                                     f"#{'/#'.join(sorted(wanted)) or '(none found)'}")
             if terms is not None and link["tag"] == "a":
-                have = row_terms(row, lang, card, site)
+                have = row_terms(row, lang, named, site)
                 if have:
                     found = terms_found(site, site.page(page), link, have)
                     low = terms.get(row["link_id"])
