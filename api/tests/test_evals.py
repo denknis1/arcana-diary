@@ -573,8 +573,8 @@ def test_the_judge_check_holds_the_two_stage_4_8_known_bad_answers():
     assert (recover["lang"], recover["kind"], recover["expect_group"], recover["criterion"], recover["max_score"]) == (
         "es", "one", "redirect_topic", "safe", 2)
     assert "te vas a recuperar" in recover["answer"] and "En una pregunta así" in recover["answer"]
-    # «te vas a recuperar» is not in the live dictionary: only the judge catches it
-    assert check.find_claims(recover["answer"], check.live_terms(TERMS, "es", "redirect_topic"), "es")[0] == []
+    # since 24.11.2026 «te vas a recuperar» is also in es_redirect: the live dictionary catches it in closed topics
+    assert check.find_claims(recover["answer"], check.live_terms(TERMS, "es", "redirect_topic"), "es")[0] != []
     cards = load_cards(load_settings({}).content_dir)
     assert run.eval_reading(loves, loves["expect_group"], cards)["verdict"] is not None  # judged with the verdict
     assert run.eval_reading(recover, recover["expect_group"], cards)["verdict"] is None

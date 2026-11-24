@@ -25,9 +25,13 @@
     "ella se arrepiente", "se arrepiente de haberte"
   ],
   "en_redirect": [
-    "will happen", "is going to happen", "is coming your way", "it will work out"
+    "will happen", "is going to happen", "is coming your way", "it will work out",
+    "you'll recover", "you will get better", "you'll get better", "you will be fine", "you'll be fine",
+    "you will win the case", "you'll win"
   ],
   "es_redirect": [
-    "llegará el amor", "llegará alguien", "va a pasar", "pasará algo", "va a salir bien"
+    "llegará el amor", "llegará alguien", "va a pasar", "pasará algo", "va a salir bien",
+    "te vas a recuperar", "te recuperarás", "vas a sanar", "te vas a curar", "vas a estar bien",
+    "vas a ganar el juicio"
   ]
 }
