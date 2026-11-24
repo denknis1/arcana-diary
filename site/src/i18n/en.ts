@@ -23,7 +23,7 @@ export const en = {
 
   questionLabel: 'Your question — optional',
   freeSaveAfter: 'Free · save it to your diary after',
-  providerLine: 'To write your reading, your question is sent to our AI provider, Anthropic. Please leave out names and personal details.',
+  providerLine: 'To write your reading, your question is sent to our AI provider. Please leave out names and personal details.',
   countGroupLabel: 'Number of cards',
   oneCardChip: '1 card',
   threeCardsChip: '3 cards',

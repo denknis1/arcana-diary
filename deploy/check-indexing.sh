@@ -68,6 +68,11 @@ else
   else
     pass "robots.txt без Disallow: /"
   fi
+  # stage 7.6: the sitemap is open and named in robots.txt; a card page and the Spanish home open without a password
+  expect "sitemap.xml" "$(status "https://$D/sitemap.xml")" 200
+  expect "robots.txt называет sitemap" "$("${CURL[@]}" "https://$D/robots.txt" | tr -d '\r' | grep -cx "Sitemap: https://$D/sitemap.xml")" 1
+  expect "страница карты" "$(status "https://$D/cards/the-moon")" 200
+  expect "главная ES" "$(status "https://$D/es")" 200
 fi
 
 if [ "$fails" -eq 0 ]; then echo "OK: все проверки пройдены"; else echo "ПРОВАЛ: $fails"; exit 1; fi

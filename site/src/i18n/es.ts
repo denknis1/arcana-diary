@@ -24,7 +24,7 @@ export const es: Dict = {
 
   questionLabel: 'Tu pregunta (opcional)',
   freeSaveAfter: 'Gratis · guárdala en tu diario después',
-  providerLine: 'Para escribir tu lectura, tu pregunta se envía a nuestro proveedor de IA, Anthropic. Mejor no incluyas nombres ni datos personales.',
+  providerLine: 'Para escribir tu lectura, tu pregunta se envía a nuestro proveedor de IA. Mejor no incluyas nombres ni datos personales.',
   countGroupLabel: 'Número de cartas',
   oneCardChip: '1 carta',
   threeCardsChip: '3 cartas',
