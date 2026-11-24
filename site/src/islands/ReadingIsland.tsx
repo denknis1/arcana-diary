@@ -22,6 +22,7 @@ import { NightRoom } from '../components/ui/NightRoom';
 import { PlusCard } from '../components/ui/PlusCard';
 import { useSaveToDiary } from '../components/ui/useSaveToDiary';
 import { CheckIcon } from '../components/ui/icons';
+import { ConsentLine } from '../components/ui/ConsentLine';
 
 interface Props {
   lang: Lang;
@@ -31,6 +32,7 @@ interface Props {
   showBacks?: boolean;
   /** The privacy page, once it is open (spec stage 6 §6); no link while it is hidden. */
   privacyHref?: string;
+  termsHref?: string; // the terms page, once it is open
 }
 
 function timeZone(): string | undefined {
@@ -45,7 +47,7 @@ function prefersReducedMotion(): boolean {
   return typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-export default function ReadingIsland({ lang, page, cardId, cardName, showBacks = false, privacyHref }: Props) {
+export default function ReadingIsland({ lang, page, cardId, cardName, showBacks = false, privacyHref, termsHref }: Props) {
   const d = t(lang);
   const config = useMemo(() => panelConfig(page, lang, cardId ?? null), [page, lang, cardId]);
   const [kind, setKind] = useState<Kind>(config.kind);
@@ -65,7 +67,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
   const focusQuestion = useRef(false); // "Ask another question": focus the question field once the room is closed
   const api = useMemo(() => siteApi(), []);
   const saving = useSaveToDiary({ lang, tool: drawn.current.tool, readingId: state.reading?.id ?? null,
-    signedIn: drawn.current.signedIn, privacyHref });
+    signedIn: drawn.current.signedIn, privacyHref, termsHref });
   const inputId = `question-${page}`;
 
   useEffect(() => {
@@ -274,6 +276,7 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         ) : null}
         <button type="submit" class="btn btn--gold btn--block" ref={drawButton}>{d[drawLabelKey(config, kind, count)]}</button>
         <p class="panel-hint">{d.freeSaveAfter}</p>
+        <ConsentLine lang={lang} termsHref={termsHref} privacyHref={privacyHref} />
       </form>
       {roomOpen ? (
         <NightRoom

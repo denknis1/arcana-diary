@@ -9,7 +9,9 @@ that sees only site/ (deploy/build-site.sh), so these files are generated into s
   site/src/data/pairs.json          — language pairs of every launch page (url → switch_to) from hreflang.csv
   site/src/data/facts.json          — the numbers and names the texts leave as {placeholders} (owner decision 36):
                                       limits from api/app/config.py (read as text, never imported), yes/no counts
-                                      from the deck, the editor's name
+                                      from the deck, the editor's name, and the operator's facts from
+                                      content/operator.json (only the filled ones; a service page with an unfilled
+                                      one stays hidden, owner decision 35)
   site/src/data/pages/<lang>/*.json — the stage 5 tool, hub and service texts (content/pages)
   site/src/data/cardpages/…         — the stage 5 card pages without `citations` (the reviewer's excerpts) and
                                       template-strings.json
@@ -36,6 +38,12 @@ LAUNCH = "запуск"
 # placeholder in the texts → constant of api/app/config.py (spec stage 6 §2)
 LIMITS = {"guest_limit": "DAILY_LIMIT", "user_limit": "USER_DAILY_LIMIT", "followups": "FOLLOWUP_LIMIT",
           "diary_free": "FREE_DIARY_VISIBLE"}
+OPERATOR = ROOT / "content/operator.json"
+# the operator's facts, filled by hand in content/operator.json (legal review 24.11.2026); a value is a string, or for
+# `effective_date` a {"en": …, "es": …} object (the date is written in the language of the page)
+OPERATOR_KEYS = ("operator_name", "operator_address", "jurisdiction", "contact_email", "hosting_provider",
+                 "email_provider", "effective_date")
+PER_LANGUAGE = {"effective_date"}
 EDITOR_NAME = "Adrian Solenne"  # spec stage 6 §2: the editor who reads and signs the card pages
 
 
@@ -74,12 +82,36 @@ def config_constant(text: str, name: str) -> int:
     return int(match.group(1))
 
 
+def operator_facts() -> dict:
+    """The filled facts of content/operator.json. An empty value is left out, so the placeholder has no value and the
+    service pages that use it stay hidden; a per-language value needs both languages, or it is left out too."""
+    data = json.loads(OPERATOR.read_text(encoding="utf-8"))
+    unknown = sorted(k for k in data if k not in OPERATOR_KEYS and not k.startswith("_"))
+    if unknown:
+        raise ValueError(f"content/operator.json: unknown key(s) {', '.join(unknown)}")
+    out: dict = {}
+    for key in OPERATOR_KEYS:
+        value = data.get(key, "")
+        if key in PER_LANGUAGE:
+            if not isinstance(value, dict) or set(value) - {"en", "es"}:
+                raise ValueError(f"content/operator.json: {key} must be an object with en and es")
+            value = {lang: str(value.get(lang, "")).strip() for lang in ("en", "es")}
+            if all(value.values()):
+                out[key] = value
+        elif not isinstance(value, str):
+            raise ValueError(f"content/operator.json: {key} must be a string")
+        elif value.strip():
+            out[key] = value.strip()
+    return out
+
+
 def facts() -> dict:
     text = API_CONFIG.read_text(encoding="utf-8")
     out: dict = {key: config_constant(text, name) for key, name in LIMITS.items()}
     verdicts = [c["yes_no"] for c in _load("deck.json")]
     out.update(yes_count=verdicts.count("yes"), no_count=verdicts.count("no"), unclear_count=verdicts.count("unclear"))
     out["editor_name"] = EDITOR_NAME
+    out.update(operator_facts())
     return out
 
 

@@ -34,7 +34,7 @@ type View =
   // consent: what the sign-in did to the reminder — 'set' says it is on, 'failed' that it is not (claim.ts)
   | { type: 'ready'; consent: ConsentOutcome; round: number; entry: string | null };
 
-export default function DiaryIsland({ lang }: { lang: Lang }) {
+export default function DiaryIsland({ lang, privacyHref, termsHref }: { lang: Lang; privacyHref?: string; termsHref?: string }) {
   const d = t(lang);
   const [view, setView] = useState<View>({ type: 'loading' });
   const api = useMemo(() => createAccountApi(siteFetch()), []);
@@ -130,7 +130,7 @@ export default function DiaryIsland({ lang }: { lang: Lang }) {
       <div class="diary diary--signin">
         <p class="lead">{d.diaryWhy}</p>
         {view.expired ? <p role="alert">{d.signInLinkExpired}</p> : null}
-        <SignInBlock lang={lang} auth={status.auth} google={status.google} idBase="diary" surface="day"
+        <SignInBlock lang={lang} auth={status.auth} google={status.google} idBase="diary" surface="day" termsHref={termsHref} privacyHref={privacyHref}
           redirectTo={async () => {
             const back = new URL(returnUrl(location.origin, lang, keep)); // an entry's address comes back to it (M21)
             const entry = entryParam(location.search);

@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import DiaryIsland from '../islands/DiaryIsland';
 import { t } from '../i18n';
 import { pagePath } from '../lib/routes';
+import { openPagePath } from '../lib/textPages';
 import type { Lang } from '../lib/types';
 
 interface Props {
@@ -13,10 +14,12 @@ interface Props {
 
 const { lang } = Astro.props;
 const d = t(lang);
+const privacyHref = openPagePath('privacy', lang) ?? undefined;
+const termsHref = openPagePath('terms', lang) ?? undefined;
 ---
 <Base lang={lang} title={d.diaryTitle} path={pagePath('diary', lang)} current="diary" noindex>
   <section class="page-hero">
     <h1 class="display">{d.navDiary}</h1>
   </section>
-  <DiaryIsland client:load lang={lang} />
+  <DiaryIsland client:load lang={lang} privacyHref={privacyHref} termsHref={termsHref} />
 </Base>

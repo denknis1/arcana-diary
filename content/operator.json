@@ -1,0 +1,13 @@
+{
+ "_note": "The operator's facts for the service pages (privacy, terms, about, contact). Fill a value, run python3 tools/site/sync_site_data.py and rebuild: a page that still has an empty value stays hidden. No invented address or company; until the business exists the operator is the owner as a private person (city and country are enough).",
+ "operator_name": "",
+ "operator_address": "",
+ "jurisdiction": "",
+ "contact_email": "hello@arcanadiary.com",
+ "hosting_provider": "DigitalOcean",
+ "email_provider": "Resend",
+ "effective_date": {
+  "en": "December 14, 2026",
+  "es": "14 de diciembre de 2026"
+ }
+}

@@ -14,10 +14,11 @@ interface Props {
 const { lang } = Astro.props;
 const d = t(lang);
 const privacyHref = openPagePath('privacy', lang) ?? undefined;
+const termsHref = openPagePath('terms', lang) ?? undefined;
 ---
 <Base lang={lang} title={d.accountTitle} path={pagePath('account', lang)} noindex>
   <section class="page-hero">
     <h1 class="display">{d.accountH1}</h1>
   </section>
-  <AccountIsland client:load lang={lang} privacyHref={privacyHref} />
+  <AccountIsland client:load lang={lang} privacyHref={privacyHref} termsHref={termsHref} />
 </Base>

@@ -14,7 +14,7 @@
    "id": "que-es",
    "heading": "¿Qué es Arcana Diary?",
    "paragraphs": [
-    "Tienes cinco formas de consultar las cartas: la tirada de tres, una sola carta, el sí o no con una o con tres cartas, la tirada del amor y la Carta del día. Todas usan las 78 cartas de la baraja Rider–Waite–Smith. La respuesta trae un titular de una línea, unas frases sobre cada carta y una acción pequeña que puedes hacer; luego puedes seguir preguntando sobre las mismas cartas.",
+    "Tienes varias formas de consultar las cartas: la tirada de tres, una sola carta, el sí o no con una o con tres cartas, la tirada del amor y la Carta del día. Todas usan las 78 cartas de la baraja Rider–Waite–Smith. La respuesta trae un titular de una línea, unas frases sobre cada carta y una acción pequeña que puedes hacer; luego puedes seguir preguntando sobre las mismas cartas.",
     "Además hay una biblioteca de consulta: una página por carta, con su sentido al derecho y al revés, una guía de los arcanos mayores y una tabla con la inclinación de cada carta en el sí o no. Si inicias sesión, guardas tus lecturas en un diario, les pones una nota que nadie más ve y, pasada una semana, regresas a marcar cómo te fue."
    ]
   },
@@ -40,7 +40,7 @@
    "id": "baraja",
    "heading": "¿Qué baraja ves en pantalla?",
    "paragraphs": [
-    "Las imágenes son escaneos de la edición de 1909 de la Rider–Waite–Smith, dibujada por Pamela Colman Smith; entre coleccionistas, esa impresión se conoce como «Roses & Lilies». Los archivos vienen de Wikimedia Commons y la baraja es de dominio público. Cada imagen muestra la carta impresa completa, con su número, su título en inglés y su borde, en los colores originales y sin retoques de tono.",
+    "Las imágenes son escaneos de la edición de 1909 de la Rider–Waite–Smith, dibujada por Pamela Colman Smith; entre coleccionistas, esa impresión se conoce como «Roses & Lilies». Los archivos vienen de Wikimedia Commons y la baraja es de dominio público en Estados Unidos y en los países donde la protección termina 70 años después de la muerte de quien creó la obra. Cada imagen muestra la carta impresa completa, con su número, su título en inglés y su borde, en los colores originales y sin retoques de tono.",
     "Aquí solo se lee esta baraja. El tarot de Marsella y otras barajas tienen sus propios dibujos y sus propias costumbres de lectura, y el sitio no las combina."
    ]
   },
@@ -49,7 +49,7 @@
    "heading": "¿Qué no es Arcana Diary?",
    "paragraphs": [
     "No es una forma de ver el futuro. El tarot no predice lo que viene, y Arcana Diary no dice lo contrario. Una lectura sirve para reflexionar y para entretenerte: unas imágenes y unas palabras sencillas para pensar tu situación y tu siguiente paso.",
-    "No es un consejo profesional. Nada de lo que ves aquí orienta sobre salud, asuntos legales, dinero o seguridad personal, ni sustituye la ayuda real en esos temas. Si una pregunta pide ese tipo de pronóstico, la lectura se enfoca en cómo estás llevando el asunto.",
+    "No es un consejo profesional. Nada de lo que ves aquí orienta sobre salud, asuntos legales, dinero o seguridad personal, ni sustituye la ayuda real en esos temas. Si una pregunta pide ese tipo de pronóstico, la lectura habla de los temas de las cartas y de cómo estás llevando el asunto, nunca de un resultado.",
     "No es un servicio de crisis. Si lo que escribes indica que podrías estar en peligro, no se sacan cartas: el sitio te muestra líneas de ayuda gratuitas y confidenciales. Tampoco es una persona: cada lectura la escribe un modelo de inteligencia artificial. Y es solo para personas adultas: necesitas tener 18 años o más para usar Arcana Diary."
    ]
   }

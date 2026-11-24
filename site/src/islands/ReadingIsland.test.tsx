@@ -151,3 +151,29 @@ describe('ReadingIsland: the links under the drawn card follow the tool (stage 2
       .toEqual([['/es/cartas/la-luna#amor', 'La Luna en el amor'], ['/es/cartas/la-luna', 'significado completo']]);
   });
 });
+
+describe('ReadingIsland: the 18+ and terms line under the draw button (legal review B3)', () => {
+  it.each([['en', 'By continuing you confirm you are 18 or older and accept the Terms and the Privacy policy.'],
+    ['es', 'Al continuar confirmas que tienes 18 años o más y aceptas los Términos y el Aviso de privacidad.']] as const)(
+    '%s: the line sits right under the draw button, as plain text while the pages are hidden', async (lang, text) => {
+      const { root } = await mount(<ReadingIsland lang={lang} page="home" />);
+      const line = root.querySelector('.consent-line')!;
+      expect(line.textContent).toBe(text);
+      expect(line.querySelector('a')).toBeNull();
+      expect(line.previousElementSibling).toBe(root.querySelector('.panel-hint'));
+      expect(root.querySelector('.panel-hint')!.previousElementSibling).toBe(root.querySelector('button[type="submit"]'));
+    });
+
+  it('links the terms and the privacy policy once both pages are open', async () => {
+    const { root } = await mount(<ReadingIsland lang="en" page="love" privacyHref="/privacy" termsHref="/terms" />);
+    const links = [...root.querySelectorAll('.consent-line a')].map((a) => [a.textContent, a.getAttribute('href')]);
+    expect(links).toEqual([['Terms', '/terms'], ['Privacy policy', '/privacy']]);
+  });
+
+  it('links only the page that is open', async () => {
+    const { root } = await mount(<ReadingIsland lang="es" page="love" termsHref="/es/terminos" />);
+    const line = root.querySelector('.consent-line')!;
+    expect([...line.querySelectorAll('a')].map((a) => a.textContent)).toEqual(['Términos']);
+    expect(line.textContent).toContain('el Aviso de privacidad.');
+  });
+});

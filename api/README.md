@@ -60,6 +60,8 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 | `RUN_MIGRATIONS` | `true` | применять миграции при старте |
 | `CONTENT_DIR`, `BANNED_TERMS_PATH`, `MIGRATIONS_DIR` | пути в репозитории | в образе заданы в `api/Dockerfile` |
 
+**Памятка по выкладке (юридическая вычитка 24.11.2026, В7):** смена `READER_PROVIDER` = правка privacy/privacidad (`content/pages/en/privacy.json`, `content/pages/es/privacidad.json`: блоки «short» и «ai» называют Anthropic) и проверка строки `provider_disclosure` в `api/app/safety/texts.*.json` в тот же день. Пока политика называет Anthropic, переменная должна оставаться `claude`.
+
 ## Адреса
 
 `POST /api/readings`, `GET /api/readings/{id}`, `GET /api/readings/{id}/stream` (SSE), `POST /api/readings/{id}/retry`

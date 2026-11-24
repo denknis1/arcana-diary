@@ -24,9 +24,10 @@ interface Props {
   origin: string;
   onClose: () => void;
   privacyHref?: string; // the privacy page, once it is open (spec stage 6 §6)
+  termsHref?: string;
 }
 
-export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, onClose, privacyHref }: Props) {
+export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, onClose, privacyHref, termsHref }: Props) {
   const d = t(lang);
   const [remind, setRemind] = useState(false);
   const remindNow = useRef(remind);
@@ -77,7 +78,8 @@ export function SaveSheet({ lang, readingId, auth, google, accountApi, origin, o
           <button type="button" class="btn btn--outline" ref={reloadButton} onClick={() => location.reload()}>{d.retry}</button>
         </>
       ) : auth ? (
-        <SignInBlock lang={lang} auth={auth} google={google} idBase="save" redirectTo={redirectTo} surface="night" />
+        <SignInBlock lang={lang} auth={auth} google={google} idBase="save" redirectTo={redirectTo} surface="night"
+          termsHref={termsHref} privacyHref={privacyHref} />
       ) : (
         <p class="small" role="status" aria-live="polite" />
       )}

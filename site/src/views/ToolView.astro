@@ -32,6 +32,7 @@ const CURRENT: Record<ToolPage, PageKey | undefined> = {
 const path = pagePath(page, lang);
 const text = filledPage(textPage(path));
 const privacyHref = openPagePath('privacy', lang) ?? undefined;
+const termsHref = openPagePath('terms', lang) ?? undefined;
 const crumbs = crumbsFor(page, lang);
 // L-EN-04: the yes/no tool links the card list that explains its rule (Spanish has no such list)
 const links: Record<string, { href: string; text: string }> = page === 'yes_no' && lang === 'en'
@@ -47,7 +48,7 @@ const links: Record<string, { href: string; text: string }> = page === 'yes_no' 
       <p class="lead">{text.lead}</p>
     </section>
     <div>
-      <ReadingIsland client:load lang={lang} page={page} privacyHref={privacyHref} />
+      <ReadingIsland client:load lang={lang} page={page} privacyHref={privacyHref} termsHref={termsHref} />
       {page === 'love' ? <p class="small muted">{d.loveNote}</p> : null}
     </div>
   </div>

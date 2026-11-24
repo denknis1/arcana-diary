@@ -12,6 +12,7 @@ import { fill, t, type DictKey } from '../../i18n';
 import type { Auth, SendError } from '../../lib/auth';
 import { isSignedIn, markSignInStarted, type SignInMethod } from '../../lib/authState';
 import type { Lang } from '../../lib/types';
+import { ConsentLine } from './ConsentLine';
 
 export const RESEND_WAIT_S = 60;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,9 +41,12 @@ interface Props {
   redirectTo: () => Promise<string | { url: string; thisDeviceOnly: boolean } | null>;
   /** 'night' inside the night room, 'day' on the diary and account pages. */
   surface: 'night' | 'day';
+  /** The terms and privacy pages, once they are open: the consent line links them (legal review B3). */
+  termsHref?: string;
+  privacyHref?: string;
 }
 
-export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }: Props) {
+export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface, termsHref, privacyHref }: Props) {
   const d = t(lang);
   const [email, setEmail] = useState('');
   const [phase, setPhase] = useState<'form' | 'sending' | 'sent'>('form');
@@ -156,6 +160,7 @@ export function SignInBlock({ lang, auth, google, idBase, redirectTo, surface }:
           <button type="button" class="btn btn--outline" disabled={phase === 'sending' || busy} onClick={() => void withGoogle()}>{d.signInGoogle}</button>
         </>
       ) : null}
+      <ConsentLine lang={lang} termsHref={termsHref} privacyHref={privacyHref} />
       {message ? <p role="alert" id={errorId}>{message}</p> : null}
     </div>
   );

@@ -33,6 +33,7 @@ const { lang, card } = Astro.props;
 const d = t(lang);
 const s = TEMPLATE_STRINGS[lang];
 const privacyHref = openPagePath('privacy', lang) ?? undefined;
+const termsHref = openPagePath('terms', lang) ?? undefined;
 const page = cardPage(card, lang);
 const path = cardPath(card, lang);
 const ids = SECTION_IDS[lang];
@@ -136,7 +137,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
     <section class="card-page__cta" id={ids.draw} aria-labelledby={`${ids.draw}-title`}>
       <h2 class="h2" id={`${ids.draw}-title`}>{cta.heading}</h2>
       <p class="muted">{cta.text}</p>
-      <ReadingIsland client:visible lang={lang} page="card" cardId={card.card_id} cardName={cardName(card, lang)} privacyHref={privacyHref} />
+      <ReadingIsland client:visible lang={lang} page="card" cardId={card.card_id} cardName={cardName(card, lang)} privacyHref={privacyHref} termsHref={termsHref} />
     </section>
 
     <div class="card-page__more">

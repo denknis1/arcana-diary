@@ -291,6 +291,9 @@ export const en = {
   footerTerms: 'Terms',
   // stage 6: next to the AI provider line and the e-mail consents, once the privacy page is open
   privacyLink: 'Privacy policy',
+  // legal review (24.11.2026, B3): under the draw button and in the sign-in block; the two words become links once their pages are open
+  consentLine: 'By continuing you confirm you are 18 or older and accept the {terms} and the {privacy}.',
+  termsLink: 'Terms',
   // stage 6: anchors of the stage 2 link matrix (links-en.csv, links-es.csv, wave "запуск")
   fmtCards: 'Card meanings',
   fmtCardsHint: 'What each of the 78 tarot cards means',

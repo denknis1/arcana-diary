@@ -27,6 +27,17 @@ describe('stage 5 text pages', () => {
       .toBe(false);
   });
 
+  it('open every service page once the operator facts are all filled in, with the date of its own language', () => {
+    const filled = { ...FACTS, operator_name: 'N', operator_address: 'City, Country', jurisdiction: 'Country' };
+    for (const id of SERVICE_PAGE_IDS) {
+      const page = TEXT_PAGES.find((p) => p.page_id === id)!;
+      expect(isHidden(page, filled), id).toBe(false);
+      expect(pageTexts(filledPage(page, filled)).join(' '), id).not.toMatch(/\{\w+\}/);
+    }
+    expect(filledPage(textPage('/privacy'), filled).lead).toContain('Effective date: December 14, 2026.');
+    expect(filledPage(textPage('/es/privacidad'), filled).lead).toContain('Vigente desde: 14 de diciembre de 2026.');
+  });
+
   it('refuse a page that is not a service page and has a placeholder without a value', () => {
     const page = { ...textPage('/'), capsule: 'Up to {nope} cards' };
     expect(() => isHidden(page)).toThrow('{nope}');

@@ -288,3 +288,22 @@ describe('the save sheet: privacy link next to the reminder consent (spec stage 
     expect(byText<HTMLAnchorElement>(open.root, t('es').privacyLink, 'a').getAttribute('href')).toBe('/es/privacidad');
   });
 });
+
+describe('SaveSheet: the 18+ and terms line in the sign-in window (legal review B3)', () => {
+  it('shows the line inside the sign-in block, with links only for open pages', async () => {
+    const f = fakes();
+    const { root } = await mount(sheet(f));
+    const line = root.querySelector('.signin .consent-line')!;
+    expect(line.textContent).toBe(t('en').consentLine.replace('{terms}', 'Terms').replace('{privacy}', 'Privacy policy'));
+    expect(line.querySelector('a')).toBeNull();
+  });
+
+  it('links Terms and Privacy policy when their pages are open', async () => {
+    const f = fakes();
+    const { root } = await mount(
+      <SaveSheet lang="es" readingId="r1" auth={f.auth} google={false} accountApi={f.accountApi}
+        origin="https://arcana.test" onClose={() => {}} privacyHref="/es/privacidad" termsHref="/es/terminos" />);
+    const links = [...root.querySelectorAll('.signin .consent-line a')].map((a) => [a.textContent, a.getAttribute('href')]);
+    expect(links).toEqual([['Términos', '/es/terminos'], ['Aviso de privacidad', '/es/privacidad']]);
+  });
+});
