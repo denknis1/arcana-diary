@@ -57,9 +57,25 @@ def test_facts_come_from_the_api_constants_and_the_deck():
     assert f["diary_free"] == config_constant(text, "FREE_DIARY_VISIBLE")
     assert f["yes_count"] + f["no_count"] + f["unclear_count"] == 78
     assert f["editor_name"] == "Adrian Solenne"
-    # spec §2: operator placeholders ({operator_name}, …) stay out until the operator's data exists
+    # spec §2: operator placeholders that are still empty in content/operator.json ({operator_name}, …) stay out
     assert set(f) == {"guest_limit", "user_limit", "followups", "diary_free", "yes_count", "no_count", "unclear_count",
-                      "editor_name"}
+                      "editor_name", "contact_email", "hosting_provider", "email_provider", "effective_date"}
+    assert f["effective_date"] == {"en": "December 14, 2026", "es": "14 de diciembre de 2026"}
+
+
+def test_operator_facts_leave_out_empty_values_and_half_filled_dates(tmp_path, monkeypatch):
+    import sync_site_data
+
+    path = tmp_path / "operator.json"
+    monkeypatch.setattr(sync_site_data, "OPERATOR", path)
+    path.write_text(json.dumps({"_note": "x", "operator_name": " ", "contact_email": " a@b.c ",
+                                "effective_date": {"en": "May 1, 2027", "es": ""}}), encoding="utf-8")
+    assert sync_site_data.operator_facts() == {"contact_email": "a@b.c"}
+    path.write_text(json.dumps({"effective_date": {"en": "May 1, 2027", "es": "1 de mayo de 2027"}}), encoding="utf-8")
+    assert sync_site_data.operator_facts() == {"effective_date": {"en": "May 1, 2027", "es": "1 de mayo de 2027"}}
+    path.write_text(json.dumps({"operator_nmae": "typo"}), encoding="utf-8")
+    with pytest.raises(ValueError, match="operator_nmae"):
+        sync_site_data.operator_facts()
 
 
 def test_text_pages_are_copied_for_both_languages():

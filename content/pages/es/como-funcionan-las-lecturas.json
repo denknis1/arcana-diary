@@ -57,7 +57,7 @@
       "heading": "6. ¿Cómo funciona la regla del sí o no?",
       "paragraphs": [
         "La inclinación la calcula el código del sitio, no el modelo, que no puede cambiarla. Cada carta de la base tiene una sola inclinación cuando sale al derecho: sí, no o todavía no está claro. Al revés, cualquier carta da «todavía no está claro». Con tres cartas se hace una pequeña votación en la que solo participan las cartas de sí y de no: gana el lado que tenga más, y un empate, o una tirada sin ninguna carta de sí ni de no, queda en «todavía no está claro».",
-        "Hay preguntas que reciben lectura, pero sin inclinación: las que piden un pronóstico sobre salud, una muerte, un asunto legal o la seguridad, y las que tratan de lo que pasa por la mente de otra persona. Las preguntas de dinero sí la conservan, leída como tu propia disposición para esa decisión; arriba de la respuesta aparece la línea «Esto no es un consejo financiero.» y el paso que se propone es prudente."
+        "Hay preguntas que reciben lectura, pero sin inclinación: las que piden un pronóstico sobre salud, una muerte, un asunto legal o la seguridad. Ahí el lector habla de los temas de las cartas, nunca de un resultado. Las preguntas sobre otra persona sí conservan la inclinación de las cartas, con la línea «Esto lee lo que significan las cartas en una pregunta como la tuya; no puede saber lo que siente o decide otra persona.» Las preguntas de dinero también la conservan, leída como tu propia disposición para esa decisión; arriba de la respuesta aparece la línea «Esto no es un consejo financiero.» y el paso que se propone es prudente."
       ]
     },
     {
@@ -65,7 +65,7 @@
       "heading": "7. ¿Qué reglas no se rompen nunca?",
       "paragraphs": [
         "En una pregunta común, el lector puede decir hacia dónde apuntan las cartas en tu propia vida. Pero hay límites que valen siempre, aunque la pregunta se formule de otro modo o se repita. Nada de fechas ni plazos. Nada de promesas, destino o afirmaciones de que una lectura es exacta. Ningún pronóstico ni indicación sobre salud, una muerte, asuntos legales, seguridad, dinero, inversiones o deudas.",
-        "Nada sobre lo que otra persona piensa, quiere o hará; la lectura regresa a ti y a lo que está en tus manos. Nada de miedo: ni presagios ni advertencias de desgracia, y una carta difícil se lee como presión, un cierre o un llamado a cuidarte. Tampoco se afirman hechos de tu vida; cada significado se ofrece como algo para considerar."
+        "Nada se afirma como hecho sobre lo que otra persona piensa, quiere o hará. En una pregunta sobre alguien más, el lector dice qué significan las cartas en una pregunta así, y el paso regresa a ti y a lo que está en tus manos. Nada de miedo: ni presagios ni advertencias de desgracia, y una carta difícil se lee como presión, un cierre o un llamado a cuidarte. Tampoco se afirman hechos de tu vida; cada significado se ofrece como algo para considerar."
       ]
     },
     {
@@ -87,7 +87,7 @@
       "id": "diario",
       "heading": "10. ¿Qué guarda el diario?",
       "paragraphs": [
-        "Una lectura sin sesión se conserva 7 días y luego se borra. Para quedártela, guárdala en tu diario e inicia sesión con un enlace que te llega al correo o con Google. Cada entrada guarda la pregunta, las cartas, la respuesta y las preguntas de seguimiento, una nota privada de hasta 1000 caracteres que nunca se envía al modelo y, a partir del séptimo día, una marca para indicar si se cumplió, en parte o no.",
+        "Una lectura sin sesión se conserva 7 días y luego se borra. Para quedártela, guárdala en tu diario e inicia sesión con un enlace que te llega al correo o con Google. Cada entrada guarda la pregunta, las cartas, la respuesta y las preguntas de seguimiento, una nota privada de hasta 1,000 caracteres que nunca se envía al modelo y, a partir del séptimo día, una marca para indicar si se cumplió, en parte o no.",
         "El diario gratis muestra tus {diary_free} lecturas más recientes; las anteriores quedan ocultas, no borradas. Puedes eliminar cualquier entrada, descargar todas tus lecturas en un archivo o borrar tu cuenta, lo que elimina de inmediato tus lecturas y los datos de la cuenta. Si compartes el enlace de una lectura, se ven las cartas y la respuesta, nunca tu pregunta ni tu nota."
       ]
     },

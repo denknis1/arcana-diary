@@ -6,5 +6,12 @@
  "yes_count": 45,
  "no_count": 13,
  "unclear_count": 20,
- "editor_name": "Adrian Solenne"
+ "editor_name": "Adrian Solenne",
+ "contact_email": "hello@arcanadiary.com",
+ "hosting_provider": "DigitalOcean",
+ "email_provider": "Resend",
+ "effective_date": {
+  "en": "December 14, 2026",
+  "es": "14 de diciembre de 2026"
+ }
 }

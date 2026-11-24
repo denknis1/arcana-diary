@@ -5,7 +5,7 @@
   "url": "/es/terminos",
   "status": "reviewed",
   "title": "Términos y condiciones de uso",
-  "description": "Las reglas para usar Arcana Diary: solo mayores de 18, lecturas para reflexionar y no para predecir ni aconsejar, límites gratis, cuentas, textos de IA.",
+  "description": "Las reglas para usar Arcana Diary: solo de 18 años o más, lecturas para reflexionar y no para predecir ni aconsejar, límites gratis, cuentas, textos de IA.",
   "h1": "Términos y condiciones de uso",
   "lead": "Estos términos son el acuerdo entre tú y {operator_name} para usar Arcana Diary en arcanadiary.com. Léelos antes de usar el sitio. Vigentes desde: {effective_date}.",
   "capsule": null,
@@ -38,7 +38,7 @@
       "heading": "Las lecturas sirven para reflexionar, no para predecir ni aconsejar",
       "paragraphs": [
         "El tarot no predice el futuro, y ninguna lectura de este sitio te dice qué ocurrirá o qué no. Una lectura es un punto de partida para pensar en tu situación y en tu siguiente paso; la ofrecemos para la reflexión y el entretenimiento.",
-        "Nada de lo que hay en el sitio es consejo médico, psicológico, legal, financiero ni de seguridad, ni sustituye a un médico, terapeuta, abogado, asesor financiero o a los servicios de emergencia. El lector no da fechas, no promete resultados, no te dice lo que piensa o siente otra persona, y no hace pronósticos sobre la salud, juicios o tu seguridad; en esos temas, la tirada de sí o no no da veredicto. Una respuesta de sí o no sobre dinero o compras siempre llega con el aviso de que no es un consejo financiero. Toma las decisiones importantes con ayuda de personas calificadas y con tu propio criterio, no a partir de una lectura."
+        "Nada de lo que hay en el sitio es consejo médico, psicológico, legal, financiero ni de seguridad, ni sustituye a un médico, terapeuta, abogado, asesor financiero o a los servicios de emergencia. El lector no da fechas, no promete resultados, no afirma como hecho lo que otra persona piensa, siente o hará (en una pregunta sobre alguien más lee lo que significan las cartas en una pregunta así, y la inclinación de sí o no es la de las cartas, no un dato sobre esa persona), y no hace pronósticos sobre la salud, juicios o tu seguridad; en esos temas, la tirada de sí o no no da veredicto. Una respuesta de sí o no sobre dinero o compras siempre llega con el aviso de que no es un consejo financiero. Toma las decisiones importantes con ayuda de personas calificadas y con tu propio criterio, no a partir de una lectura."
       ]
     },
     {
@@ -53,7 +53,7 @@
       "heading": "Lecturas generadas por IA",
       "paragraphs": [
         "Las lecturas y las respuestas a tus preguntas de seguimiento las genera un modelo de IA, no una persona, y nadie las revisa antes de que las veas. Unas revisiones automáticas buscan lo que el sitio no hace, como promesas, fechas o afirmaciones sobre los sentimientos de otra persona, y cambian ese texto por los significados de las cartas de la base; en español, un fragmento puede reescribirse para no dar por hecho tu género. Aun así, un texto de IA puede tener errores, repetirse, sonar raro o no encajar con tu situación. Si el lector no está disponible, recibes los significados de tus cartas tomados de la base.",
-        "Tu pregunta, junto con los datos que detalla el aviso de privacidad, viaja a nuestro proveedor de IA para que redacte la lectura. Evita poner en ella información que permita reconocerte a ti o a otras personas."
+        "Tu pregunta, junto con los datos que detalla el aviso de privacidad, viaja a nuestro proveedor de IA para que redacte la lectura. No incluyas nombres, datos de contacto ni otra información personal tuya o de otras personas."
       ]
     },
     {
@@ -86,7 +86,7 @@
       "heading": "Tu contenido y el nuestro",
       "paragraphs": [
         "Tus preguntas y tus notas siguen siendo tuyas. Nos permites guardarlas y procesarlas solo para darte el servicio, como explica el aviso de privacidad. Tú respondes por lo que escribes.",
-        "Los textos propios del sitio, la base de cartas, el diseño y el software pertenecen a {operator_name} o a quienes le otorgan licencia. Las citas de The Pictorial Key to the Tarot (1911), de A. E. Waite, y las imágenes de las cartas, que son escaneos de los dibujos de Pamela Colman Smith en la primera impresión de 1909, son de dominio público. Puedes guardar, imprimir, compartir y citar tus propias lecturas con fines personales y no comerciales. Como las lecturas se generan de forma automática, no podemos prometer que un texto sea único.",
+        "Los textos propios del sitio, la base de cartas, el diseño y el software pertenecen a {operator_name} o a quienes le otorgan licencia. Las citas de The Pictorial Key to the Tarot (1911), de A. E. Waite, y las imágenes de las cartas, que son escaneos de los dibujos de Pamela Colman Smith en la primera impresión de 1909, son de dominio público en Estados Unidos y en los países donde el derecho de autor dura 70 años después de la muerte del autor. Puedes guardar, imprimir, compartir y citar tus propias lecturas con fines personales y no comerciales. Como las lecturas se generan de forma automática, no podemos prometer que un texto sea único.",
         "La dirección de una lectura muestra sus cartas y su respuesta a cualquiera que la tenga, pero no tu pregunta, tus preguntas de seguimiento ni tu nota. Tú decides si la compartes."
       ]
     },
@@ -123,7 +123,7 @@
       "id": "cambios",
       "heading": "Cambios a estos términos",
       "paragraphs": [
-        "Podemos actualizar estos términos cuando cambien el servicio o la ley. Publicaremos la nueva versión aquí con una nueva fecha de vigencia. Si sigues usando el sitio después de esa fecha, se aplican los nuevos términos; si no estás de acuerdo, puedes dejar de usarlo y eliminar tu cuenta."
+        "Podemos actualizar estos términos cuando cambien el servicio o la ley. Publicaremos la nueva versión aquí con una nueva fecha de vigencia. Si el cambio es importante, avisaremos por correo a quienes tienen cuenta antes de que entre en vigor. Si sigues usando el sitio después de esa fecha, se aplican los nuevos términos; si no estás de acuerdo, puedes dejar de usarlo y eliminar tu cuenta."
       ]
     },
     {

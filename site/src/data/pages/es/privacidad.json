@@ -15,7 +15,7 @@
    "heading": "Quién es responsable de tus datos",
    "paragraphs": [
     "El responsable del tratamiento de tus datos personales es {operator_name}, con domicilio en {operator_address} (“nosotros”). Respondemos por ellos conforme a la ley aplicable ({jurisdiction}) y, cuando te proteja más, conforme a la ley del lugar donde vives.",
-    "Para cualquier duda sobre este aviso, escríbenos a {contact_email}. Arcana Diary es solo para personas mayores de 18 años."
+    "Para cualquier duda sobre este aviso, escríbenos a {contact_email}. Arcana Diary es solo para personas de 18 años o más."
    ]
   },
   {
@@ -23,14 +23,14 @@
    "heading": "En pocas palabras",
    "paragraphs": [
     "Puedes sacar cartas sin crear una cuenta. Para escribir tu lectura, tu pregunta se envía a nuestro proveedor de inteligencia artificial, Anthropic, así que mejor no incluyas nombres ni datos personales. Una lectura hecha sin cuenta se borra a los 7 días. Las que guardas en tu diario se quedan hasta que tú las borres, y puedes eliminar tu cuenta completa en un solo paso. En cualquier momento puedes descargar en un archivo todo lo que hay en tu cuenta.",
-    "No vendemos tus datos ni mostramos anuncios. No usamos cookies de publicidad ni de analítica. Nuestro propio contador de eventos registra lo que ocurre en una página, por ejemplo “se mostró una lectura”, sin dirección IP, sin cookie y sin número de cuenta o de dispositivo."
+    "No vendemos tus datos, no los compartimos con fines publicitarios y no mostramos anuncios. Como no hacemos seguimiento entre sitios, el sitio funciona igual aunque tu navegador envíe la señal “Do Not Track” o Global Privacy Control. No usamos cookies de publicidad ni de analítica. Nuestro propio contador de eventos registra lo que ocurre en una página, por ejemplo “se mostró una lectura”, sin dirección IP, sin cookie y sin número de cuenta o de dispositivo."
    ]
   },
   {
    "id": "lectura",
    "heading": "Lo que guardamos de cada lectura",
    "paragraphs": [
-    "De cada lectura guardamos: la pregunta que escribes (opcional, hasta 500 caracteres); el tema que eliges (amor, trabajo, sobre ti, una decisión o general); la situación que marcas en la lectura de amor (sin pareja, en pareja, después de una ruptura, es complicado); el idioma; el tipo de tirada; las cartas que salieron y si cada una quedó al derecho o al revés; el número aleatorio con el que se barajaron; la respuesta que escribió el lector de IA, y la fecha y hora. Si haces preguntas de seguimiento, guardamos cada una (hasta 500 caracteres) junto con su respuesta.",
+    "De cada lectura guardamos: la pregunta que escribes (opcional, hasta 500 caracteres); el tema que eliges (amor, trabajo, sobre ti, una decisión o general); la situación que marcas en la lectura de amor (sin pareja, en pareja, después de una ruptura, es complicado); el idioma; el tipo de tirada; las cartas que salieron y si cada una quedó al derecho o al revés; el número aleatorio con el que se barajaron; la respuesta que escribió el lector de IA, la fecha y hora, y datos técnicos de la lectura (la inclinación de sí o no, el modelo y la versión de sus instrucciones, el número de reintentos y de preguntas de seguimiento, y un número de solicitud de tu navegador). Si haces preguntas de seguimiento, guardamos cada una (hasta 500 caracteres) junto con su respuesta.",
     "Antes de escribir la lectura, una revisión automática clasifica la pregunta en un grupo: pregunta común, pregunta de dinero, tema que las cartas no pronostican (como la salud o la seguridad) o pregunta sobre otra persona. Guardamos ese grupo con la lectura, sin una copia aparte de la pregunta.",
     "Finalidades principales: barajar y mostrar tus cartas, escribir tu lectura, responder tus preguntas de seguimiento, volver a mostrarte la lectura cuando regreses y evitar que un mismo toque cree dos lecturas."
    ]
@@ -41,15 +41,15 @@
    "paragraphs": [
     "Tu navegador recibe una cookie llamada ad_guest con un número al azar. Con ella el servidor sabe qué lecturas se hicieron en ese dispositivo y cuántas lecturas gratis lleva hoy. No contiene nada más y dura un año.",
     "El navegador también le dice al sitio el nombre de tu zona horaria (por ejemplo, America/Mexico_City). La usamos para saber cuándo empieza tu día, para el límite diario y la carta del día, y para elegir qué líneas de ayuda mostrarte. No la guardamos con tus lecturas.",
-    "Para frenar el abuso automatizado, el servidor mira tu dirección IP, pero nunca la guarda tal cual: solo conserva una versión cifrada en un solo sentido (un hash), hecha con una clave aleatoria que existe únicamente en la memoria del servidor y se cambia cada día (hora UTC). Los contadores hechos con esos hashes se borran a los dos días. Cuando el sitio funciona detrás de Cloudflare, Cloudflare le indica a nuestro servidor de qué país llega la solicitud; ese dato solo sirve para escoger líneas de ayuda y no se guarda.",
-    "Para la carta del día guardamos el número al azar de tu dispositivo, la carta que salió y la fecha durante 7 días, para que tu carta no cambie en todo el día."
+    "Para frenar el abuso automatizado, el servidor mira tu dirección IP, pero nunca la guarda tal cual: solo conserva una versión cifrada en un solo sentido (un hash), hecha con una clave aleatoria que existe únicamente en la memoria del servidor y se cambia cada día (hora UTC). Los contadores hechos con esos hashes se borran en un máximo de tres días. Cloudflare, que transporta el tráfico del sitio, le indica a nuestro servidor de qué país llega la solicitud; ese dato solo sirve para escoger líneas de ayuda y no se guarda.",
+    "Para la carta del día guardamos el número al azar de tu dispositivo, la carta que salió y la fecha hasta por 8 días, para que tu carta no cambie en todo el día."
    ]
   },
   {
    "id": "cuenta",
    "heading": "Si creas una cuenta",
    "paragraphs": [
-    "Entras con un enlace que te llega por correo o con Google; no hay contraseña. De tu cuenta guardamos tu correo electrónico (lo conserva nuestro servicio de acceso, Supabase), un número de cuenta, la fecha en que la vimos por primera vez y si aceptaste recibir correos de recordatorio, con la fecha en que lo aceptaste.",
+    "Entras con un enlace que te llega por correo o con Google; no hay contraseña. De tu cuenta guardamos tu correo electrónico, un número de cuenta, la fecha en que la vimos por primera vez y si aceptaste recibir correos de recordatorio, con la fecha en que lo aceptaste. Nuestro servicio de acceso, Supabase, conserva el correo y lleva sus propios registros de acceso: cuándo entraste y, para proteger la sesión, la dirección IP y el tipo de navegador que vio. Si entras con Google, Supabase recibe además el perfil básico que Google envía junto con el correo (tu nombre y la dirección de tu foto de perfil); nosotros no los usamos.",
     "En tu diario quedan las lecturas que guardaste con sus preguntas de seguimiento, tu marca de “¿Se cumplió?” (sí, en parte o no) y cuándo la pusiste, y una nota privada opcional de hasta 1,000 caracteres con la fecha de su último cambio. Las notas y las marcas nunca se envían al lector de IA. Una lectura que hiciste sin cuenta puede pasar a tu cuenta con un enlace de un solo uso que dura 7 días; de ese enlace solo guardamos un hash.",
     "Cuando tienes sesión iniciada, el lector de IA ve además hasta 5 de tus lecturas anteriores sobre el mismo tema, para poder retomarlas: la fecha, la pregunta y el titular de cada respuesta. Solo se usan así las preguntas que la revisión automática marcó como comunes, nunca las de salud, seguridad, dinero u otra persona. Sin cuenta no hay ese historial.",
     "Si pides que te avisemos cuando abra el plan de pago Plus, guardamos el correo que nos das (o el de tu cuenta), el idioma y la fecha, y lo vinculamos a tu cuenta si tienes sesión iniciada."
@@ -60,7 +60,7 @@
    "heading": "Contador de eventos y registros del servicio",
    "paragraphs": [
     "Nuestro contador anota eventos como “se abrió una herramienta”, “se tocó sacar cartas”, “se voltearon las cartas”, “se mostró la lectura”, “se tocó guardar”, “se completó el acceso” y “se pidió un recordatorio”, con el idioma de la página, la herramienta, el día y la hora, y unos pocos valores fijos: si se escribió una pregunta, cuántas cartas salieron, cuántos milisegundos tardó en aparecer la lectura, el método de acceso y tu respuesta a “¿Se cumplió?”. No guarda dirección IP, cookie, número de cuenta o de dispositivo, ni el texto de ninguna pregunta.",
-    "De cada llamada al modelo de IA registramos para qué lectura fue, su propósito, el modelo, los tiempos, la cantidad de texto enviado y recibido (tokens), el costo y cómo terminó, pero ningún texto. Ese registro dura 90 días. La revisión automática de preguntas solo conserva conteos diarios por idioma y grupo, sin texto, durante 365 días. El servidor está configurado sin registros de visitas a las páginas y nunca escribe el texto de las preguntas en sus registros técnicos."
+    "De cada llamada al modelo de IA registramos para qué lectura fue, su propósito, el modelo, los tiempos, la cantidad de texto enviado y recibido (tokens), el costo y cómo terminó, pero ningún texto. Ese registro dura 90 días. La revisión automática de preguntas solo conserva conteos diarios por idioma y grupo, sin texto, durante 365 días. Nuestro propio servidor está configurado sin registros de visitas a las páginas y nunca escribe el texto de las preguntas en sus registros técnicos."
    ]
   },
   {
@@ -84,16 +84,16 @@
    "paragraphs": [
     "Compartimos datos con estos proveedores solo para que Arcana Diary funcione, no para hacer publicidad.",
     "Supabase opera nuestra base de datos y el servicio de acceso. Ahí se guardan todas las tablas que menciona este aviso (lecturas, preguntas de seguimiento, diario, cuentas, contadores y registros), en su región de la Unión Europea, en Fráncfort, Alemania. Los navegadores no tienen acceso a la base: solo nuestro servidor puede leerla.",
-    "Google recibe datos solo si decides entrar con Google: Google confirma tu identidad y le pasa tu correo a nuestro servicio de acceso; nosotros solo usamos el correo.",
-    "Cloudflare ofrece una verificación contra bots, Turnstile, que solo se activa cuando desde una misma dirección llegan demasiadas solicitudes: tu navegador carga entonces un script de Cloudflare, y nuestro servidor le manda a Cloudflare solo el token resultante, no tu dirección. Cloudflare también transporta el tráfico del sitio cuando su red está activada delante de nuestro servidor.",
-    "{hosting_provider} aloja el servidor donde funcionan el sitio y el servicio de lecturas. {email_provider} envía los enlaces de acceso y, si los aceptas, los correos de recordatorio. Además, podemos revelar datos cuando la ley lo exija, por ejemplo ante un requerimiento válido de una autoridad. Algunos de estos proveedores pueden tratar datos fuera del país donde vives."
+    "Google recibe datos solo si decides entrar con Google: Google confirma tu identidad y le pasa tu correo y tu perfil básico a nuestro servicio de acceso; nosotros solo usamos el correo.",
+    "Cloudflare está entre tu navegador y nuestro servidor: todo el tráfico de arcanadiary.com pasa por su red. Para entregar el sitio y protegerlo de ataques, Cloudflare trata tu dirección IP y las solicitudes en tránsito, y lleva sus propios registros técnicos de corta duración. Le indica a nuestro servidor tu dirección y el país del que llega la solicitud; la dirección solo la usamos para los contadores con hash que explicamos arriba, y el país, solo para escoger líneas de ayuda. Cloudflare también ofrece la verificación contra bots, Turnstile, que solo se activa cuando desde una misma dirección llegan demasiadas solicitudes: tu navegador carga entonces un script de Cloudflare, que revisa datos técnicos de tu navegador, y nuestro servidor le manda a Cloudflare el token resultante para comprobarlo.",
+    "{hosting_provider} aloja el servidor donde funcionan el sitio y el servicio de lecturas. {email_provider} envía los enlaces de acceso y, si los aceptas, los correos de recordatorio. Además, podemos revelar datos cuando la ley lo exija, por ejemplo ante un requerimiento válido de una autoridad. Anthropic, Cloudflare y Google tienen su sede en Estados Unidos, y {hosting_provider} y {email_provider} también pueden tratar datos ahí, así que tu pregunta y algunos datos técnicos pueden tratarse fuera del país donde vives. Nuestros contratos con estos proveedores incluyen las condiciones de protección de datos que ofrecen a sus clientes empresariales. Compartimos datos con ellos solo para que Arcana Diary funcione, no para hacer publicidad."
    ]
   },
   {
    "id": "enlaces",
    "heading": "Enlaces para compartir una lectura",
    "paragraphs": [
-    "Cada lectura tiene su propia dirección. Quien la tenga puede ver las cartas y la respuesta. Tu pregunta, el tema, la situación, las preguntas de seguimiento, la nota y la marca solo las ves tú: en el dispositivo donde hiciste la lectura sin cuenta, o en tu cuenta cuando ya la guardaste. Comparte la dirección solo con quien quieras que la vea."
+    "Cada lectura tiene su propia dirección. Quien la tenga puede ver las cartas y la respuesta. Tu pregunta, el tema, la situación, las preguntas de seguimiento, la nota y la marca solo las ves tú: en el dispositivo donde hiciste la lectura sin cuenta, o en tu cuenta cuando ya la guardaste. Comparte la dirección solo con quien quieras que la vea. La respuesta puede repetir parte de lo que preguntaste, así que léela antes de compartirla."
    ]
   },
   {
@@ -103,7 +103,7 @@
     "ad_guest (cookie, un año): el número al azar del dispositivo que explicamos arriba. Los scripts de la página no pueden leerla y solo viaja por conexiones seguras.",
     "ad-auth, ad-auth-user y ad-auth-code-verifier (almacenamiento local): tu sesión, que la biblioteca de acceso guarda solo después de que entras. ad_signed_in (almacenamiento local): una señal de que este dispositivo tiene sesión. ad_signin_started (almacenamiento local): el método de acceso y la hora en que tocaste un botón para entrar en este dispositivo; se usa durante 24 horas para pasar a tu cuenta las lecturas que hiciste aquí sin cuenta. Al cerrar sesión se borran.",
     "ad_notice (almacenamiento de sesión): una nota de un solo uso para que la página de inicio diga “cuenta eliminada” después de que la borras. El botón “Recuérdamelo mañana” de la carta del día arma un archivo de calendario dentro de tu navegador; a nosotros solo nos llega el conteo de que se tocó el botón.",
-    "No usamos cookies de publicidad ni de analítica. La verificación de Cloudflare y Google pueden manejar sus propios datos técnicos, conforme a sus políticas, cuando se cargan sus scripts."
+    "No usamos cookies de publicidad ni de analítica. La verificación de Cloudflare, y Google cuando pasas a su página de acceso, pueden manejar sus propios datos técnicos, conforme a sus políticas. Cloudflare puede poner sus propias cookies estrictamente técnicas, por ejemplo después de una verificación contra bots."
    ]
   },
   {
@@ -111,8 +111,8 @@
    "heading": "Cuánto tiempo guardamos los datos",
    "paragraphs": [
     "Lecturas sin cuenta, con sus preguntas de seguimiento: 7 días desde que se hicieron; después, una limpieza que corre cada hora las borra. Enlaces de un solo uso para guardar una lectura: 7 días. Lecturas de tu diario: hasta que borres la entrada o tu cuenta. El diario gratis muestra tus {diary_free} lecturas más recientes; las anteriores no aparecen en la lista, pero se conservan y vienen en tu descarga.",
-    "Lecturas de la carta del día: 7 días. Contadores por dirección: dos días, con una clave diaria que nunca se guarda. Marcas de crisis en preguntas de seguimiento: un día. Registro de llamadas al modelo: 90 días. Conteos diarios de la revisión de preguntas: 365 días.",
-    "Tu cuenta: hasta que la elimines. Al hacerlo, solo conservamos el número de cuenta en una lista de cuentas eliminadas durante 8 días, para que una sesión antigua no pueda escribir nada. Lista de espera de Plus: hasta que pidas salir o elimines tu cuenta."
+    "Lecturas de la carta del día: hasta 8 días. Contadores por dirección: un máximo de tres días, con una clave diaria que nunca se guarda. Marcas de crisis en preguntas de seguimiento: un día. Registro de llamadas al modelo: 90 días. Conteos diarios de la revisión de preguntas: 365 días. Registros del contador de eventos: 13 meses.",
+    "Tu cuenta: hasta que la elimines. Al hacerlo, conservamos el número de cuenta en una lista de cuentas eliminadas durante 8 días, para que una sesión antigua no pueda escribir nada. Lista de espera de Plus: 12 meses desde que te anotaste, o antes si pides salir o eliminas tu cuenta. Si Plus no ha abierto para entonces, tu registro se borra y no te escribiremos."
    ]
   },
   {
@@ -120,23 +120,23 @@
    "heading": "Consultar, descargar, corregir y borrar",
    "paragraphs": [
     "En tu diario puedes ver cada lectura guardada, cambiar o quitar tu nota y tu marca, y borrar cualquier entrada; se borra al instante con sus preguntas de seguimiento y sus enlaces para guardar. En tu cuenta puedes activar o desactivar los correos de recordatorio y descargar un archivo (JSON) con los datos de tu cuenta, cada lectura con su pregunta, cartas, respuesta, preguntas de seguimiento, marca y nota, y tu registro en la lista de espera de Plus.",
-    "Puedes eliminar tu cuenta desde la página de tu cuenta. Ocurre al momento, sin periodo de espera, y no se puede deshacer: se borran tus lecturas, preguntas de seguimiento, enlaces para guardar, perfil, registro en la lista de Plus y tu usuario de acceso. Si quieres conservar algo, descarga tu archivo antes. Sin cuenta, tus lecturas desaparecen a los 7 días; si quieres que borremos una antes, o salir de la lista de espera de Plus, escríbenos a {contact_email} con la dirección de la lectura o el correo que usaste.",
-    "Según la ley aplicable, también puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición (derechos ARCO), pedir que limitemos algún uso, llevarte tus datos, revocar el consentimiento que nos diste y acudir a la autoridad de protección de datos que corresponda. Escríbenos a {contact_email}. Podemos pedirte que confirmes que la cuenta o la lectura es tuya, y atenderemos tu solicitud como lo marque la ley aplicable."
+    "Puedes eliminar tu cuenta desde la página de tu cuenta. Ocurre al momento, sin periodo de espera, y no se puede deshacer: se borran tus lecturas, preguntas de seguimiento, enlaces para guardar, perfil, registro en la lista de Plus y tu usuario de acceso. Las copias de respaldo de nuestro proveedor de base de datos se sobrescriben en un plazo de {backup_days} días, y un contador diario y los registros del servicio, que no tienen texto y ya no apuntan a ti, vencen en los plazos indicados arriba. Si quieres conservar algo, descarga tu archivo antes. Sin cuenta, tus lecturas desaparecen a los 7 días; si quieres que borremos una antes, o salir de la lista de espera de Plus, escríbenos a {contact_email} con la dirección de la lectura o el correo que usaste.",
+    "Según la ley aplicable, también puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición (derechos ARCO), pedir que limitemos algún uso, llevarte tus datos, revocar el consentimiento que nos diste y acudir a la autoridad de protección de datos que corresponda. Escríbenos a {contact_email}. Podemos pedirte que confirmes que la cuenta o la lectura es tuya, y atenderemos tu solicitud como lo marque la ley aplicable. En tu solicitud indica tu nombre, el correo de tu cuenta o la dirección de la lectura, qué derecho quieres ejercer y sobre qué datos. Te responderemos en un plazo máximo de 20 días hábiles."
    ]
   },
   {
    "id": "finalidades",
    "heading": "Finalidades y por qué podemos usar tus datos",
    "paragraphs": [
-    "Finalidades principales, necesarias para darte el servicio que pides: lecturas, preguntas de seguimiento, diario y cuenta. Finalidades secundarias, que dependen de tu consentimiento y puedes revocar cuando quieras: los correos de recordatorio y el aviso de apertura de Plus. Usamos los contadores por dirección cifrada, la verificación contra bots, el contador de eventos y los registros del servicio para mantener el sitio seguro, libre de abuso y dentro de sus costos, y para saber qué partes funcionan. También conservamos o revelamos datos cuando la ley nos obliga.",
-    "Tu pregunta puede tocar temas íntimos. Tú decides qué escribir: la pregunta es opcional y siempre puedes sacar cartas sin ella."
+    "Finalidades principales, necesarias para darte el servicio que pides: lecturas, preguntas de seguimiento, diario y cuenta. Finalidades secundarias, que dependen de tu consentimiento y puedes revocar cuando quieras: los correos de recordatorio y un solo correo de aviso cuando abra Plus. Usamos los contadores por dirección cifrada, la verificación contra bots, el contador de eventos y los registros del servicio porque tenemos un interés legítimo en mantener el sitio seguro, libre de abuso y dentro de sus costos, y en saber qué partes funcionan. También conservamos o revelamos datos cuando la ley nos obliga.",
+    "Tu pregunta puede tocar temas íntimos, como tu salud, tus relaciones o tus creencias (datos personales sensibles). No te los pedimos ni los necesitamos. Si decides escribirlos, nos pides usarlos para redactar tu lectura, y solo para eso. La pregunta es opcional y siempre puedes sacar cartas sin ella."
    ]
   },
   {
    "id": "seguridad",
    "heading": "Cómo los protegemos",
    "paragraphs": [
-    "El sitio solo funciona con conexiones cifradas. La base de datos rechaza el acceso desde navegadores y solo nuestro servidor tiene la llave. Los enlaces para guardar y las direcciones IP solo se conservan como hash. No hay contraseñas que puedan filtrarse: entras con un enlace por correo o con Google. Las notas y los demás textos que escribes siempre se muestran como texto simple. Ningún servicio es del todo invulnerable; si crees que alguien usó tu cuenta, escríbenos."
+    "El sitio solo funciona con conexiones cifradas. La base de datos rechaza el acceso desde navegadores y solo nuestro servidor tiene la llave. En nuestras propias tablas, los enlaces para guardar y las direcciones IP solo se conservan como hash. No hay contraseñas que puedan filtrarse: entras con un enlace por correo o con Google. Las notas y los demás textos que escribes siempre se muestran como texto simple. Ningún servicio es del todo invulnerable; si crees que alguien usó tu cuenta, escríbenos."
    ]
   },
   {
@@ -150,7 +150,7 @@
    "id": "cambios",
    "heading": "Cambios a este aviso",
    "paragraphs": [
-    "Cuando cambien nuestras prácticas, por ejemplo cuando empiecen los correos de recordatorio o cambie un proveedor, actualizaremos esta página y su fecha de vigencia. Si un cambio afecta el uso de datos que ya nos diste, publicaremos aquí el aviso actualizado, con su nueva fecha de vigencia."
+    "Cuando cambien nuestras prácticas, por ejemplo cuando empiecen los correos de recordatorio o cambie un proveedor, actualizaremos esta página y su fecha de vigencia. Si un cambio afecta el uso de datos que ya nos diste, además avisaremos por correo a quienes tienen cuenta antes de que entre en vigor."
    ]
   },
   {
