@@ -33,8 +33,7 @@ describe('the card template (spec stage 6 §4, rules §12)', () => {
   });
 
   it('captions the scan and the keyword table, one row per orientation with no empty cell', () => {
-    expect(imageCaption(cardPage(moon, 'en'), EN)).toBe('The Moon, 1909 Rider–Waite–Smith deck ("Roses & Lilies" '
-      + 'printing), drawn by Pamela Colman Smith. Public-domain scan, Wikimedia Commons.');
+    expect(imageCaption(cardPage(moon, 'en'), EN)).toBe('The Moon, Rider–Waite–Smith deck, 1909');
     expect(keywordCaption(cardPage(moon, 'es'), ES)).toBe('La Luna: palabras clave');
     expect(keywordRows(moonEn, EN)).toEqual([
       { label: 'Upright', words: moonEn.keywords.upright.join(', ') },
