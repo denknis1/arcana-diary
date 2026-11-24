@@ -48,6 +48,8 @@ const ld = jsonLd.filter((item): item is JsonLd => item !== null);
     <link rel="manifest" href="/site.webmanifest" />
     {description !== undefined ? <meta name="description" content={description} /> : null}
     {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
+    {/* Google Search Console ownership (owner, 24.11.2026); keep it while the property is verified this way */}
+    <meta name="google-site-verification" content="j3Q-9BSM9HWdb1AFfvBrAfONqhO1_WajCkSEWTlJM_Q" />
     {indexable ? (
       <>
         <link rel="canonical" href={url} />
