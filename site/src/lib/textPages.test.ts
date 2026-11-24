@@ -28,8 +28,7 @@ describe('stage 5 text pages', () => {
   });
 
   it('open every service page once the operator facts are all filled in, with the date of its own language', () => {
-    const filled = { ...FACTS, operator_name: 'N', operator_address: 'City, Country', jurisdiction: 'Country',
-      backup_days: 7 };
+    const filled = { ...FACTS, operator_name: 'N', operator_address: 'City, Country', jurisdiction: 'Country' };
     for (const id of SERVICE_PAGE_IDS) {
       const page = TEXT_PAGES.find((p) => p.page_id === id)!;
       expect(isHidden(page, filled), id).toBe(false);

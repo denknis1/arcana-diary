@@ -42,7 +42,7 @@ OPERATOR = ROOT / "content/operator.json"
 # the operator's facts, filled by hand in content/operator.json (legal review 24.11.2026); a value is a string, or for
 # `effective_date` a {"en": …, "es": …} object (the date is written in the language of the page)
 OPERATOR_KEYS = ("operator_name", "operator_address", "jurisdiction", "contact_email", "hosting_provider",
-                 "email_provider", "effective_date", "backup_days")
+                 "email_provider", "effective_date")
 PER_LANGUAGE = {"effective_date"}
 EDITOR_NAME = "Adrian Solenne"  # spec stage 6 §2: the editor who reads and signs the card pages
 

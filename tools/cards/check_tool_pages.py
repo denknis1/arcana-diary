@@ -46,7 +46,7 @@ FIELDS = {"schema", "page_id", "lang", "url", "status", "title", "description", 
 PLACEHOLDERS = {"guest_limit", "user_limit", "followups", "diary_free", "yes_count", "no_count", "unclear_count",
                 # служебные страницы: пока оператор не выбран (решение 3), публиковать нельзя
                 "operator_name", "operator_address", "contact_email", "jurisdiction", "effective_date",
-                "hosting_provider", "email_provider", "editor_name", "backup_days"}
+                "hosting_provider", "email_provider", "editor_name"}
 INTENTS_MIN = 10
 # Правовые страницы: оговорки о гарантиях и суде нужны по сути («no guarantee», «courts of …»).
 LEGAL = {"privacy", "terms", "privacidad", "terminos"}

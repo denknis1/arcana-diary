@@ -120,7 +120,7 @@
       "heading": "Consultar, descargar, corregir y borrar",
       "paragraphs": [
         "En tu diario puedes ver cada lectura guardada, cambiar o quitar tu nota y tu marca, y borrar cualquier entrada; se borra al instante con sus preguntas de seguimiento y sus enlaces para guardar. En tu cuenta puedes activar o desactivar los correos de recordatorio y descargar un archivo (JSON) con los datos de tu cuenta, cada lectura con su pregunta, cartas, respuesta, preguntas de seguimiento, marca y nota, y tu registro en la lista de espera de Plus.",
-        "Puedes eliminar tu cuenta desde la página de tu cuenta. Ocurre al momento, sin periodo de espera, y no se puede deshacer: se borran tus lecturas, preguntas de seguimiento, enlaces para guardar, perfil, registro en la lista de Plus y tu usuario de acceso. Las copias de respaldo de nuestro proveedor de base de datos se sobrescriben en un plazo de {backup_days} días, y un contador diario y los registros del servicio, que no tienen texto y ya no apuntan a ti, vencen en los plazos indicados arriba. Si quieres conservar algo, descarga tu archivo antes. Sin cuenta, tus lecturas desaparecen a los 7 días; si quieres que borremos una antes, o salir de la lista de espera de Plus, escríbenos a {contact_email} con la dirección de la lectura o el correo que usaste.",
+        "Puedes eliminar tu cuenta desde la página de tu cuenta. Ocurre al momento, sin periodo de espera, y no se puede deshacer: se borran tus lecturas, preguntas de seguimiento, enlaces para guardar, perfil, registro en la lista de Plus y tu usuario de acceso. Si quieres conservar algo, descarga tu archivo antes. Sin cuenta, tus lecturas desaparecen a los 7 días; si quieres que borremos una antes, o salir de la lista de espera de Plus, escríbenos a {contact_email} con la dirección de la lectura o el correo que usaste.",
         "Según la ley aplicable, también puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición (derechos ARCO), pedir que limitemos algún uso, llevarte tus datos, revocar el consentimiento que nos diste y acudir a la autoridad de protección de datos que corresponda. Escríbenos a {contact_email}. Podemos pedirte que confirmes que la cuenta o la lectura es tuya, y atenderemos tu solicitud como lo marque la ley aplicable. En tu solicitud indica tu nombre, el correo de tu cuenta o la dirección de la lectura, qué derecho quieres ejercer y sobre qué datos. Te responderemos en un plazo máximo de 20 días hábiles."
       ]
     },
@@ -150,7 +150,7 @@
       "id": "cambios",
       "heading": "Cambios a este aviso",
       "paragraphs": [
-        "Cuando cambien nuestras prácticas, por ejemplo cuando empiecen los correos de recordatorio o cambie un proveedor, actualizaremos esta página y su fecha de vigencia. Si un cambio afecta el uso de datos que ya nos diste, además avisaremos por correo a quienes tienen cuenta antes de que entre en vigor."
+        "Cuando cambien nuestras prácticas, por ejemplo cuando empiecen los correos de recordatorio o cambie un proveedor, actualizaremos esta página y su fecha de vigencia. Si un cambio afecta el uso de datos que ya nos diste, mostraremos un aviso visible en el sitio y en tu cuenta (en las páginas del diario y de la cuenta) antes de que entre en vigor."
       ]
     },
     {

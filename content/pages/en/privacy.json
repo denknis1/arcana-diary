@@ -119,7 +119,7 @@
       "heading": "See, download, correct and delete",
       "paragraphs": [
         "In your diary you can see every saved reading, change or remove your note and your mark, and delete any entry; it goes at once with its follow-ups and saving links. In your account you can turn reminder e-mails on or off and download a file (JSON) with your account details, every reading with its question, cards, answer, follow-ups, mark and note, and your Plus waitlist entry.",
-        "You can delete your account in the account page. It happens at once, with no waiting period, and cannot be undone: your readings, follow-ups, saving links, profile, Plus waitlist entry and sign-in record are erased. Backup copies kept by our database provider are overwritten within {backup_days} days, and a day counter and text-free service logs that no longer point to you expire on the schedule above. Download your file first if you want to keep it. Without an account, your readings disappear after 7 days; to have one removed sooner, or to leave the Plus waitlist, write to {contact_email} with the reading's address or the e-mail you used.",
+        "You can delete your account in the account page. It happens at once, with no waiting period, and cannot be undone: your readings, follow-ups, saving links, profile, Plus waitlist entry and sign-in record are erased. Download your file first if you want to keep it. Without an account, your readings disappear after 7 days; to have one removed sooner, or to leave the Plus waitlist, write to {contact_email} with the reading's address or the e-mail you used.",
         "Depending on where you live, you may also have the right to ask what data we hold about you, to have it corrected or deleted, to object to or limit some uses, to take it with you, to withdraw a consent you gave, and to complain to your data protection authority. Write to {contact_email}. We may ask you to confirm that the account or reading is yours, and we will handle your request as the applicable law requires. Tell us which account or reading the request is about and what you want us to do. We will answer within one month."
       ]
     },
@@ -149,7 +149,7 @@
       "id": "changes",
       "heading": "Changes to this policy",
       "paragraphs": [
-        "When our practices change, for example when reminder e-mails start or a provider changes, we will update this page and its effective date. If a change affects how we use data you have already given us, we will also tell account holders by e-mail before it takes effect."
+        "When our practices change, for example when reminder e-mails start or a provider changes, we will update this page and its effective date. If a change affects how we use data you have already given us, we will first show a notice on the site and on the diary and account pages, before the change applies."
       ]
     },
     {
