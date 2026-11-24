@@ -183,10 +183,12 @@ export function relatedCards(page: CardPageData): DeckCard[] {
 
 /**
  * The card links of the page's content, each target once (SEO Monster 2027, 4.4: two links to one URL in <main> do
- * not add to each other, and the first one in the DOM gives the anchor). Walked in the template's order — capsule,
- * the blocks (the pairs table comes before the paragraphs of its block), FAQ answers, "Related cards" — the first
- * link to a card stays, a later mention or pair keeps its words as plain text, and "Related cards" keeps only the
- * cards not linked above. Links inside <nav> (breadcrumbs, previous/next) are navigation and do not count.
+ * not add to each other, and the first one in the DOM gives the anchor). The links in sentences come first (8.6: a
+ * link in a sentence with its context is worth more than a table row; owner decision 40): capsule, the paragraphs
+ * of the blocks, FAQ answers in the template's order — the first link to a card stays, a later mention keeps its
+ * words as plain text; then a row of the pairs table links its card only if no sentence does. "Related cards" is
+ * not here: it is navigation in <nav> (the whole `related` of the content, 3–5 cards, owner decision 40), and links
+ * inside <nav> (breadcrumbs, related, previous/next) do not count.
  */
 export function cardLinks(page: CardPageData, s: TemplateStrings, lang: Lang) {
   const seen = new Set<string>();
@@ -205,20 +207,14 @@ export function cardLinks(page: CardPageData, s: TemplateStrings, lang: Lang) {
     }
     mentions.set(key, out);
   };
-  const pairs: PairRow[] = [];
   keep('capsule');
-  for (const block of page.blocks) {
-    if (block.id === 'combinations') {
-      for (const row of pairRows(page, s, lang)) {
-        pairs.push(row.link && !once(row.link.href)
-          ? { before: row.before + row.link.text + row.after, link: null, after: '', reading: row.reading } : row);
-      }
-    }
-    (block.paragraphs ?? []).forEach((_, j) => keep(`${block.id}:${j}`));
-  }
+  for (const block of page.blocks) (block.paragraphs ?? []).forEach((_, j) => keep(`${block.id}:${j}`));
   page.faq.forEach((_, i) => keep(`faq:${i}`));
-  const related = relatedCards(page).filter((c) => once(cardPath(c, lang)));
-  return { mentions, pairs, related };
+  const pairs: PairRow[] = page.blocks.some((block) => block.id === 'combinations')
+    ? pairRows(page, s, lang).map((row) => (row.link && !once(row.link.href)
+      ? { before: row.before + row.link.text + row.after, link: null, after: '', reading: row.reading } : row))
+    : [];
+  return { mentions, pairs };
 }
 
 export function tocLinks(lang: Lang): { href: string; label: string }[] {

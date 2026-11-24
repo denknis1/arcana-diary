@@ -2,8 +2,8 @@
 // The card page (spec stage 6 §4; prototypes CardMoon — phone: a 150 px scan beside the facts line and the H1, the
 // capsule right below; DeskCard — desktop: the scan and the draw panel on the left, the text on the right). Order:
 // breadcrumbs → facts line, H1 → 1909 scan with its caption → capsule, keyword table → "on this page" chips → the
-// 12 blocks → the draw panel (ReadingIsland, unchanged) → FAQ (first open) → related cards not linked above (src/lib/cardPage.ts cardLinks) → previous and next card
-// → About this page. Text: content/cards/pages (stage 5); template strings: template-strings.json; nothing about
+// 12 blocks → the draw panel (ReadingIsland, unchanged) → FAQ (first open) → related cards (the whole `related`, a
+// <nav> inside the <aside>, owner decision 40) → previous and next card → About this page. Text: content/cards/pages (stage 5); template strings: template-strings.json; nothing about
 // elements or astrology (owner decision 10).
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
@@ -14,7 +14,7 @@ import { t } from '../i18n';
 import { cardCrumbs } from '../lib/breadcrumbs';
 import {
   SECTION_IDS, aboutLines, cardLinks, ctaText, factsLine, faqHeading, imageCaption, keywordCaption, keywordRows,
-  segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines, yesNoReason,
+  relatedCards, segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines, yesNoReason,
 } from '../lib/cardPage';
 import { TEMPLATE_STRINGS, cardPage } from '../lib/cardPages';
 import { cardImage, cardName, neighbors, type DeckCard } from '../lib/deck';
@@ -39,8 +39,9 @@ const ids = SECTION_IDS[lang];
 const crumbs = cardCrumbs(card, lang);
 const editorName = String(FACTS.editor_name);
 const facts = factsLine(page, s, lang);
-// each card linked once in the content (the first place wins); previous/next in <nav> stay (stage 2 matrix L-EN-08)
-const { mentions, pairs, related } = cardLinks(page, s, lang);
+// each card linked once in the content (a sentence before a pairs row); related and previous/next are <nav> (L-EN-08)
+const { mentions, pairs } = cardLinks(page, s, lang);
+const related = relatedCards(page);
 const yesNo = yesNoLines(card, yesNoReason(card, lang), s, lang);
 const cta = ctaText(page, s);
 const about = aboutLines(page, s, lang, editorName);
@@ -149,16 +150,16 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
         ))}
       </section>
 
-      {related.length > 0 ? (
-        <aside class="page-section" id={ids.related} aria-labelledby={`${ids.related}-title`}>
+      <aside class="page-section" id={ids.related}>
+        <nav aria-labelledby={`${ids.related}-title`}>
           <h2 class="h2" id={`${ids.related}-title`}>{s.related.heading}</h2>
           <ul class="card-row">
             {related.map((other) => (
               <li><a href={cardPath(other, lang)}><CardFigure card={other} lang={lang} sizes="100px" alt="" /></a></li>
             ))}
           </ul>
-        </aside>
-      ) : null}
+        </nav>
+      </aside>
 
       <nav class="card-nav" id="card-nav" aria-label={d.cardNav}>
         <a href={cardPath(prev, lang)}><small>{d.prevCard}</small> {prev.numeral} {cardName(prev, lang)}</a>

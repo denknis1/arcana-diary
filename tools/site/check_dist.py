@@ -452,7 +452,7 @@ def page_href(href: str) -> str:
 
 def markup_problems(dist: Path) -> list[str]:
     """Every built page: one link per address in <main> outside <nav> (SEO Monster 2027, 4.4: the first link in the DOM
-    gives the anchor, a second one adds nothing; breadcrumbs and previous/next are navigation in <nav>); a footer link
+    gives the anchor, a second one adds nothing; breadcrumbs, related cards and previous/next are navigation in <nav>); a footer link
     to the page itself carries aria-current="page"; no link text runs two words together at a tag boundary; a card
     page gives its review date as <time datetime>."""
     cards = set(card_paths("en")) | set(card_paths("es"))

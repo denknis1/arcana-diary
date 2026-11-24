@@ -329,6 +329,20 @@ def test_two_links_to_one_address_in_main_are_reported_but_not_inside_nav(tmp_pa
                                      "2 links to /daily in <main> outside <nav>: site/dist/index.html"]
 
 
+def test_related_cards_in_a_nav_inside_the_aside_repeat_a_card_of_the_text(tmp_path):
+    # owner decision 40: the whole "Related cards" block is navigation (<nav> in the <aside>), the text keeps its link
+    dist = site(tmp_path)
+    write(dist, "cards/the-moon.html", head("/cards/the-moon") + '<main id="main"><p><a href="/cards/the-sun">The Sun</a></p>'
+          '<aside id="related"><nav aria-labelledby="related-title"><h2 id="related-title">Related cards</h2><ul>'
+          '<li><a href="/cards/the-sun">XIX The Sun</a></li><li><a href="/cards/the-star">XVII The Star</a></li></ul></nav>'
+          '</aside></main><time datetime="2026-11-23">x</time>')
+    assert markup_problems(dist) == []
+    write(dist, "cards/the-moon.html", head("/cards/the-moon") + '<main id="main"><p><a href="/cards/the-sun">The Sun</a></p>'
+          '<aside id="related"><h2>Related cards</h2><ul><li><a href="/cards/the-sun">XIX The Sun</a></li></ul></aside>'
+          '</main><time datetime="2026-11-23">x</time>')
+    assert markup_problems(dist) == ["2 links to /cards/the-sun in <main> outside <nav>: site/dist/cards/the-moon.html"]
+
+
 def test_a_footer_link_to_the_page_itself_needs_aria_current(tmp_path):
     dist = site(tmp_path)
     write(dist, "yes-no.html", head("/yes-no") + '<main></main><footer><a href="/yes-no">Yes or No</a>'
