@@ -145,3 +145,34 @@ def test_redirect_phrases_are_banned_only_outside_group_ok(group, shown):
     final = run(make_reading(guard_group=group), text)
     assert final.shown == shown
     assert final.reason == (None if group == "ok" else "banned")
+
+
+# --- Fable review of 4.8 (I2, M4): a redirect_person reading with and without a verdict ---
+
+def test_person_one_card_headline_with_a_lean_is_replaced():
+    """I2: no verdict, not even in a one-card spread of a question about another person."""
+    reading = make_reading(kind="one", verdict=None, guard_group="redirect_person",
+                           cards=[{"card_id": "major-19-sun", "position": "card", "reversed": False}])
+    text = canned_answer(1, False).replace("The cards may point to a quiet, steady way forward.",
+                                           "The card leans toward yes.")
+    final = run(reading, text)
+    assert (final.shown, final.event, final.reason) == ("model", "replace", "headline")
+    assert final.sections["headline"] == fallback.headline_line(BASE, reading)
+
+
+def test_person_reading_with_a_verdict_keeps_a_lean_in_the_headline():
+    reading = yes_no(group="redirect_person")
+    text = canned_answer(1, True).replace("The cards may point to a quiet, steady way forward.",
+                                          "The card leans toward yes, with care.")
+    final = run(reading, text)
+    assert final.shown == "model" and final.reason is None
+    assert final.sections["headline"] == "The card leans toward yes, with care."
+
+
+def test_person_reading_with_a_verdict_replaces_a_bad_why_alone():
+    reading = yes_no(group="redirect_person")
+    text = canned_answer(1, True).replace("The card shows open hands and a clear road, a sign of easy movement.",
+                                          "Yes, clearly.")
+    final = run(reading, text)
+    assert (final.shown, final.event, final.reason) == ("model", "replace", "why")
+    assert final.sections["why"] == fallback.reading_why(BASE, reading)

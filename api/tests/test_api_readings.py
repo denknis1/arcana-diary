@@ -1029,3 +1029,23 @@ def test_a_database_failure_in_the_reading_stream_is_logged(api, monkeypatch, ca
     with caplog.at_level("ERROR", logger="arcana.reader"):
         assert stream(api, body["id"])[-1] == ("error", {"reason": "db"})
     assert "reading stream: the answer was not saved: column readings.nope does not exist" in caplog.text
+
+
+def test_person_yes_no_before_migration_008_answers_503_not_500(api):
+    """Fable review of 4.8, I6: new code on a database that still has the 007 constraint (no 'redirect_person' for a
+    verdict) answers 503 like any other unmigrated database, and nothing is saved."""
+    with api.db.connect() as conn:
+        conn.execute("ALTER TABLE readings DROP CONSTRAINT readings_verdict_allowed")
+        conn.execute("ALTER TABLE readings ADD CONSTRAINT readings_verdict_allowed CHECK (verdict IS NULL OR "
+                     "(kind = 'yes_no' AND guard_group IN ('ok', 'redirect_money')))")
+    try:
+        api.guard.json_replies.append({"group": "redirect_person", "violence": False})
+        response = post_reading(api.client, tz=MX, kind="yes_no", question="Will she text me back?")
+        assert response.status_code == 503 and response.json() == {"reason": "db"}
+        with api.db.connect() as conn:
+            assert conn.execute("SELECT count(*) AS n FROM readings").fetchone()["n"] == 0
+    finally:
+        with api.db.connect() as conn:
+            conn.execute("ALTER TABLE readings DROP CONSTRAINT readings_verdict_allowed")
+            conn.execute("ALTER TABLE readings ADD CONSTRAINT readings_verdict_allowed CHECK (verdict IS NULL OR "
+                         "(kind = 'yes_no' AND guard_group IN ('ok', 'redirect_money', 'redirect_person')))")

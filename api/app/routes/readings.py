@@ -3,12 +3,14 @@ import uuid
 from datetime import timedelta
 from typing import Literal
 
+import psycopg
 from fastapi import APIRouter, Request
 from pydantic import BaseModel, Field, field_validator
 
 from app import account_repo, limits, repo
 from app.config import GUEST_RETENTION_DAYS, IP_GUARD_LIMIT, RETRY_LIMIT
 from app.context import get_ctx
+from app.db import DatabaseUnavailable
 from app.draw import draw_spread, new_seed
 from app.reader import flow
 from app.reader.compose import SITUATIONS
@@ -163,6 +165,8 @@ def create_reading(body: ReadingIn, request: Request):
             count = limits.take_reading_slots(conn, quota, day, ip_hash, ip_day)  # §8.11: atomic
     except limits.LimitReached as exc:
         return respond(429, {"reason": exc.reason, "remaining": 0}, new_guest)
+    except psycopg.errors.CheckViolation as exc:  # 008 not applied yet: the same answer as an unmigrated database
+        raise DatabaseUnavailable("readings_verdict_allowed: migration 008 has not run yet") from exc
     except Repeated:
         with ctx.db.connect() as conn:
             earlier = repo.find_reading_by_request(conn, body.request_id, owner_id, guest_id, now)

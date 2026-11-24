@@ -9,7 +9,8 @@
     "still loves you", "is cheating", "cheating on you", "curse*", "hex", "bad energy", "evil eye",
     "you will die", "will die", "you are pregnant", "you're pregnant", "you will get pregnant",
     "you will recover", "you will win", "you will lose", "he loves you", "she loves you", "loves you back",
-    "wants you back", "he regrets", "she regrets", "it is written", "written in the stars"
+    "wants you back", "he regrets", "she regrets", "it is written", "written in the stars",
+    "cares about you", "cares for you", "miss you", "wants to be with you", "in love with you"
   ],
   "es": [
     "pasará lo que", "llegará esa persona",
@@ -22,16 +23,18 @@
     "te está poniendo el cuerno", "maldici*", "mala energía", "malas energías", "brujería", "amarre",
     "mal de ojo", "vas a morir", "va a morir", "morirá", "estás embarazada", "vas a quedar embarazada",
     "vas a ganar", "vas a perder", "te ama", "él te quiere", "ella te quiere", "te quiere de verdad", "él se arrepiente",
-    "ella se arrepiente", "se arrepiente de haberte"
+    "ella se arrepiente", "se arrepiente de haberte",
+    "que te quiere", "aún te quiere", "sí te quiere", "le gustas", "le importas", "enamorado de ti", "enamorada de ti",
+    "siente algo por ti", "quiere estar contigo"
   ],
   "en_redirect": [
     "will happen", "is going to happen", "is coming your way", "it will work out",
     "you'll recover", "you will get better", "you'll get better", "you will be fine", "you'll be fine",
-    "you will win the case", "you'll win"
+    "you will win the case", "you'll win the case", "you'll win in court"
   ],
   "es_redirect": [
     "llegará el amor", "llegará alguien", "va a pasar", "pasará algo", "va a salir bien",
     "te vas a recuperar", "te recuperarás", "vas a sanar", "te vas a curar", "vas a estar bien",
-    "vas a ganar el juicio"
+    "vas a ganar el juicio", "van a salir bien", "va a estar bien", "te vas a aliviar", "vas a salir bien"
   ]
 }

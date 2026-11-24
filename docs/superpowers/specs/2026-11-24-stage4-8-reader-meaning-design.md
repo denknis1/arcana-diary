@@ -56,10 +56,22 @@
   значение карт с примерами, вопрос не пересказывается словами «how he feels» / «lo que él siente» (их ловит
   словарь); с вердиктом — наклон карт, не поступок другого; topic — темы карт про ситуацию, «a theme never
   becomes a result», без вердикта; шаг — про спрашивающего.
-- Судья `judge.v6`; проверка судьи — 14 ответов: bad-13 (EN, person с вердиктом, «he loves you» словами карты),
+- Судья `judge.v6`; проверка судьи — 16 ответов (bad-15, bad-16 добавлены после проверки Fable): bad-13 (EN, person с вердиктом, «he loves you» словами карты),
   bad-14 (ES, topic, «te vas a recuperar» после «En una pregunta así…»); bad-09 («наклон без вердикта» на трёх
-  картах) перенесён в `redirect_topic`, потому что у person теперь есть вердикт. Оценка полного прогона — $2.59
-  (`--kind yes_no` — $0.79).
-- Словарь запретов не менялся: разрешённые формулировки из промптов он не ловит (тест), а пересказ вопроса
+  картах) перенесён в `redirect_topic`, потому что у person теперь есть вердикт. Оценка полного прогона — $2.64
+  (`--kind yes_no` — $0.81).
+- Словарь запретов: разрешённые формулировки из промптов он не ловит (тест), а пересказ вопроса
   («how he feels», «feelings for you», «lo que él siente») ловит — это может заменить ответ базой; число таких замен
-  в группах person/topic смотреть в платном прогоне (`replaced_by_group`).
+  в группах person/topic смотреть в платном прогоне (`replaced_by_group`). Правки словаря (`1c52907` и проверка
+  Fable I4): `en_redirect` — «you'll recover», «you will get better», «you'll get better», «you will be fine»,
+  «you'll be fine», «you'll win the case», «you'll win in court»; `es_redirect` — «te vas a recuperar», «te
+  recuperarás», «vas a sanar», «te vas a curar», «vas a estar bien», «vas a ganar el juicio», «van a salir bien»,
+  «va a estar bien», «te vas a aliviar», «vas a salir bien»; основной `en` — «cares about you», «cares for you»,
+  «miss you», «wants to be with you», «in love with you»; основной `es` — «que te quiere», «aún te quiere», «sí te
+  quiere», «le gustas», «le importas», «enamorado de ti», «enamorada de ti», «siente algo por ti», «quiere estar contigo». bad-14
+  («te vas a recuperar» в topic) словарём ловится; в проверке судьи он остаётся, чтобы судья тоже его штрафовал.
+- Проверка Fable (`.superpowers/sdd/s48-fable-review.md`): C1 (тяжёлая карта не читается как исход), I1 (вердикт не
+  переходит на новый вопрос уточнения; набор — два уточнения «да/нет»), I2 (без вердикта ни «да/нет», ни наклона в
+  любом раскладе; заголовок person/topic заменяется), I3 (догадка о чувствах другого), I4, I6 (503 при
+  `CheckViolation` до миграции 008), M1, M3, M4, M6, M7 исправлены; I5 (вопросы-обвинения в «да/нет») ждёт слова
+  владельца.

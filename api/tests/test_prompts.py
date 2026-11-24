@@ -406,7 +406,89 @@ def test_the_prompts_meaning_examples_pass_the_live_dictionary(lang, group):
     ("en", "The card says she will come back."),
     ("es", "En una pregunta así, la carta muestra que te ama."),
     ("es", "La carta dice que va a regresar."),
+    ("es", "En una pregunta así, la carta muestra que te quiere."),
 ])
 def test_a_fact_about_the_other_person_in_the_cards_mouth_is_still_caught(lang, line):
     terms = check.live_terms(check.load_reader_terms(), lang, "redirect_person")
     assert check.find_claims(line, terms, lang)[0]
+
+
+# --- Fable review of 4.8: C1, I1, I2, I3, I4, M1 pinned wording ---
+
+REVIEW_PHRASES = {
+    ("reader", "en"): (
+        "a hard card (Death, the Tower, the Ten of Swords, any reversed card) is never read as how the matter will go",
+        "Read a hard card only as what the person is carrying now",
+        'Without a <verdict>, in any spread, give no yes or no and do not say which way the cards lean',
+        'and not as a guess ("he may still care about you", "she probably misses you")',
+        '("the cards point to him coming back")',
+        "at what the other person feels, will feel or will do",
+        '"you will be fine", "you will heal"',
+        'A step never takes an outcome for granted ("get ready for his message", "plan how you will celebrate")',
+    ),
+    ("reader", "es"): (
+        "una carta dura (La Muerte, La Torre, el Diez de Espadas, cualquier carta al revés) nunca se lee como la forma",
+        "Lee una carta dura solo como lo que la persona está cargando ahora",
+        "Sin <verdict>, en cualquier tirada, no des un sí ni un no ni digas hacia dónde se inclinan las cartas",
+        "ni como suposición («quizá todavía siente algo por ti», «seguramente te extraña»)",
+        "(«las cartas apuntan a su regreso»)", "«te ama», «te quiere»",
+        "lo que la otra persona siente, sentirá o hará", "«vas a estar bien», «vas a sanar»",
+        "Un paso nunca da por hecho un resultado («prepárate para su mensaje», «planea cómo vas a celebrar»)",
+    ),
+    ("followup", "en"): (
+        'A hard card is never read as how the matter will go ("this points to an ending here")',
+        "The verdict answers only the reading's own question",
+        'never carry it over as the answer to a new question in the follow-up ("so the cards say yes to this too")',
+        "in a redirect_topic follow-up do not mention it at all",
+        'and not as a guess ("he may still care about you", "she probably misses you")',
+        "at what the other person feels, will feel or will do", '"you will be fine", "you will heal"',
+    ),
+    ("followup", "es"): (
+        "Una carta dura nunca se lee como la forma en que va a terminar el asunto («esto apunta a un final»)",
+        "El veredicto responde solo a la pregunta de la lectura",
+        "y en un seguimiento redirect_topic no lo menciones",
+        "ni como suposición («quizá todavía siente algo por ti», «seguramente te extraña»)", "«te ama», «te quiere»",
+        "lo que la otra persona siente, sentirá o hará", "«vas a estar bien», «vas a sanar»",
+    ),
+}
+
+
+@pytest.mark.parametrize("key", list(REVIEW_PHRASES))
+def test_fable_review_wording_is_in_the_prompts(key):
+    text = PROMPTS[key].text
+    for phrase in REVIEW_PHRASES[key]:
+        assert phrase in text, phrase
+
+
+@pytest.mark.parametrize("lang, line, group", [
+    ("es", "En una pregunta así, la carta muestra que te quiere.", "redirect_person"),
+    ("es", "Las cartas dicen que aún te quiere.", "redirect_person"),
+    ("es", "La carta muestra que le gustas.", "redirect_person"),
+    ("es", "Aquí la carta dice que quiere estar contigo.", "redirect_person"),
+    ("es", "Está enamorado de ti.", "redirect_person"),
+    ("en", "The card shows he still cares about you.", "redirect_person"),
+    ("en", "The cards say they miss you.", "redirect_person"),
+    ("en", "She wants to be with you.", "redirect_person"),
+    ("en", "The Lovers show he is in love with you.", "redirect_person"),
+    ("en", "Whatever he decides, you'll be fine.", "redirect_person"),
+    ("en", "You'll win the case.", "redirect_topic"),
+    ("en", "You'll win in court.", "redirect_topic"),
+    ("es", "Pase lo que pase, vas a estar bien.", "redirect_person"),
+    ("es", "Con el tiempo vas a sanar esta herida.", "redirect_topic"),
+    ("es", "Los resultados van a salir bien.", "redirect_topic"),
+    ("es", "Todo va a estar bien.", "redirect_topic"),
+    ("es", "Te vas a aliviar pronto.", "redirect_topic"),
+    ("es", "Vas a salir bien de la operación.", "redirect_topic"),
+])
+def test_fable_review_dictionary_additions_are_caught(lang, line, group):
+    terms = check.live_terms(check.load_reader_terms(), lang, group)
+    assert check.find_claims(line, terms, lang)[0], line
+
+
+@pytest.mark.parametrize("lang, line", [
+    ("en", "You'll win back your calm."),
+    ("es", "En una pregunta como la tuya, esta carta habla de cuánto te importa quedarte tranquila."),
+])
+def test_fable_review_dictionary_leaves_ordinary_wording_alone(lang, line):
+    terms = check.live_terms(check.load_reader_terms(), lang, "redirect_person")
+    assert check.find_claims(line, terms, lang)[0] == [], line

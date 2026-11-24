@@ -69,7 +69,9 @@ def finalize(reading: dict, streamed: dict[str, str], seen: list[str], outcome, 
     why_replaced = with_why and bool(written.get("why")) and not result.why_ok
     if why_replaced:
         final["why"] = fallback.reading_why(base, reading)
-    headline_replaced = kind == "yes_no" and not with_why and check.verdict_in(final.get("headline", ""), lang)
+    # I2: a redirect group never gets a yes or no without a verdict, in any spread
+    no_answer = kind == "yes_no" or reading["guard_group"] in ("redirect_topic", "redirect_person")
+    headline_replaced = no_answer and not with_why and check.verdict_in(final.get("headline", ""), lang)
     if headline_replaced:
         final["headline"] = fallback.headline_line(base, reading)
     if final == streamed:
