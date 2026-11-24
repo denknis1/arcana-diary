@@ -18,11 +18,11 @@
         {"name": "Línea de la Vida (CONASAMA)", "number": "800 911 2000", "channels": ["call"], "hours": "24/7",
          "langs": ["es"], "topic": "crisis",
          "source": "https://politica.expansion.mx/mexico/2025/09/10/prevencion-del-suicidio-servicios-y-numeros-de-ayuda-mexico",
-         "checked": "2026-11-14", "verify_before_launch": true},
+         "checked": "2026-11-24", "verify_before_launch": false},
         {"name": "Línea de las Mujeres (Secretaría de las Mujeres)", "number": "079", "note": "opción 1",
          "channels": ["call"], "hours": "24/7", "langs": ["es"], "topic": "violence",
          "source": "https://www.nmas.com.mx/sociedad/nueva-linea-de-las-mujeres-numero-telefono-atencion-emergencias-violencia",
-         "checked": "2026-11-14", "verify_before_launch": true}
+         "checked": "2026-11-24", "verify_before_launch": false}
       ]
     },
     "ES": {
@@ -65,11 +65,11 @@
         {"name": "Línea 106", "number": "106", "channels": ["call"], "hours": null, "langs": ["es"],
          "topic": "crisis",
          "source": "https://www.minsalud.gov.co/sites/rid/Lists/BibliotecaDigital/RIDE/VS/PP/ET/directorio-salud-mental-prevencion-suicidio-minsalud.pdf",
-         "checked": "2026-11-14", "verify_before_launch": true},
+         "checked": "2026-11-24", "verify_before_launch": false},
         {"name": "Línea 155 (orientación a mujeres víctimas de violencia)", "number": "155",
          "note": "gratuita; emergencias 123", "channels": ["call"], "hours": "24/7", "langs": ["es"],
          "topic": "violence", "source": "https://www.policia.gov.co/noticia/linea-155-orientacion-mujeres-victimas-violencia",
-         "checked": "2026-11-18", "verify_before_launch": true}
+         "checked": "2026-11-24", "verify_before_launch": false}
       ]
     }
   },

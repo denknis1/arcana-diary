@@ -54,9 +54,9 @@ def test_lines_have_topic_source_and_check_date():
     for line in all_lines():
         assert line["topic"] in ("crisis", "violence", "emergency", "directory"), line["name"]
         assert line["source"].startswith("https://"), line["name"]
-        assert line["checked"] in ("2026-11-14", "2026-11-18"), line["name"]
+        assert line["checked"] in ("2026-11-14", "2026-11-18", "2026-11-24"), line["name"]
     unverified = {line.get("number") for line in all_lines() if line["verify_before_launch"]}
-    assert unverified == {"106", "079", "800 911 2000", "155"}
+    assert unverified == set()  # MX and CO verified by the owner 24.11.2026
 
 
 def test_numbers_and_sources_match_spec():
@@ -86,8 +86,9 @@ def test_every_country_has_both_kinds_and_violence_goes_first():
 def test_new_violence_lines():
     lines = {c: [x for x in HELP["countries"][c]["lines"] if x["topic"] == "violence"][0] for c in ("ES", "AR", "CO")}
     assert [lines[c]["number"] for c in ("ES", "AR", "CO")] == ["016", "144", "155"]
-    assert lines["ES"]["verify_before_launch"] is False and lines["CO"]["verify_before_launch"] is True
-    assert all(x["hours"] == "24/7" and x["checked"] == "2026-11-18" for x in lines.values())
+    assert all(x["verify_before_launch"] is False for x in lines.values())  # CO verified by the owner 24.11.2026
+    assert all(x["hours"] == "24/7" for x in lines.values())
+    assert [lines[c]["checked"] for c in ("ES", "AR", "CO")] == ["2026-11-18", "2026-11-18", "2026-11-24"]
 
 
 @pytest.mark.parametrize("country, expected", [("mx", "MX"), ("US", "US"), (None, None), ("FR", None),
