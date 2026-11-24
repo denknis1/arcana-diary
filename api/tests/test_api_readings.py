@@ -80,16 +80,32 @@ def test_create_yes_no_has_verdict_from_rule(api):
     assert len(body["cards"]) == 1 and body["cards"][0]["position"] == "card"
 
 
-@pytest.mark.parametrize("group", ["redirect_topic", "redirect_person"])
-def test_yes_no_on_a_closed_topic_has_no_verdict(api, group):
-    api.guard.json_replies.append({"group": group, "violence": False})
-    body = create(api, kind="yes_no", question="Will she text me back?")
-    assert (body["kind"], body["verdict"], body["guard_group"]) == ("yes_no", None, group)
-    assert body["soft_line"] == api.ctx.texts["en"]["soft_lines"][group] and len(body["cards"]) == 1
+def test_yes_no_on_a_closed_topic_has_no_verdict(api):
+    api.guard.json_replies.append({"group": "redirect_topic", "violence": False})
+    body = create(api, kind="yes_no", question="Will my surgery go well?")
+    assert (body["kind"], body["verdict"], body["guard_group"]) == ("yes_no", None, "redirect_topic")
+    assert body["soft_line"] == api.ctx.texts["en"]["soft_lines"]["redirect_topic"] and len(body["cards"]) == 1
+    assert "vote" not in body["cards"][0]
     events = stream(api, body["id"])
     assert "why" not in stream_sections(events)
     assert "<verdict" not in api.reader.stream_calls()[0]["messages"][0]["content"]
     assert saved(api, body["id"])["verdict"] is None
+
+
+@pytest.mark.parametrize("lang", ["en", "es"])
+def test_yes_no_about_another_person_has_the_cards_verdict_with_the_soft_line(api, lang):
+    """Stage 4.8, owner decision 48: the cards' verdict by the yes/no rule, with the site's line above it."""
+    api.guard.json_replies.append({"group": "redirect_person", "violence": False})
+    body = create(api, kind="yes_no", question="Will she text me back?", lang=lang)
+    expected = api.ctx.cards.verdict(body["cards"])
+    assert body["verdict"] == {"value": expected, "label": api.ctx.cards.rules["labels"][lang][expected]}
+    assert body["guard_group"] == "redirect_person" and body["cards"][0]["vote"] == expected
+    assert body["soft_line"] == api.ctx.texts[lang]["soft_lines"]["redirect_person"]
+    events = stream(api, body["id"])
+    assert "why" in stream_sections(events)
+    content = api.reader.stream_calls()[0]["messages"][0]["content"]
+    assert '<verdict value="' in content and 'guard_group="redirect_person"' in content
+    assert saved(api, body["id"])["verdict"] == expected
 
 
 def test_yes_no_on_money_keeps_the_verdict_with_a_disclaimer(api):
@@ -125,21 +141,21 @@ def test_stream_sends_sections_and_saves_answer(api):
     body = create(api, kind="three", question="How can I settle into my new team?", topic="work")
     events = stream(api, body["id"])
     assert events[0][0] == "meta" and events[0][1]["replay"] is False
-    assert events[0][1]["prompt_version"] == "reader.en.v7"
+    assert events[0][1]["prompt_version"] == "reader.en.v8"
     assert [d["name"] for e, d in events if e == "section"] == ["headline", "card1", "card2", "card3", "synthesis",
                                                                  "step"]
     assert events[-1] == ("done", {"answer_shown": "model"})
     row = saved(api, body["id"])
     assert row["answer_shown"] == "model" and row["answer"]["fallback"] is None
     assert row["answer"]["model"] == stream_sections(events)
-    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v7")
+    assert (row["model"], row["prompt_version"]) == ("fake-reader", "reader.en.v8")
     [call] = api.reader.stream_calls()
     assert call["system"] == api.ctx.prompts[("reader", "en")].text
     assert '<cards count="3">' in call["messages"][0]["content"]
     with api.db.connect() as conn:
         log_row = conn.execute("SELECT * FROM llm_calls WHERE purpose = 'reader'").fetchone()
     assert log_row["reading_id"] == uuid.UUID(body["id"]) and log_row["tokens_in"] == 120
-    assert log_row["prompt_version"] == "reader.en.v7" and log_row["ms_first_token"] is not None
+    assert log_row["prompt_version"] == "reader.en.v8" and log_row["ms_first_token"] is not None
     assert log_row["created_at"] == api.clock()
 
 
@@ -947,14 +963,24 @@ def test_the_decisive_cards_decide_and_a_tie_is_unclear(api, monkeypatch):
     assert ([c["vote"] for c in body["cards"]], body["verdict"]["value"]) == (["no", "unclear", "unclear"], "no")
 
 
-@pytest.mark.parametrize("group", ["redirect_topic", "redirect_person"])
-def test_three_yes_no_cards_on_a_closed_topic_have_no_verdict_and_no_votes(api, group):
-    api.guard.json_replies.append({"group": group, "violence": False})
-    body = create(api, kind="yes_no", count=3, question="Will she text me back?")
+def test_three_yes_no_cards_on_a_closed_topic_have_no_verdict_and_no_votes(api):
+    api.guard.json_replies.append({"group": "redirect_topic", "violence": False})
+    body = create(api, kind="yes_no", count=3, question="Will my surgery go well?")
     assert body["verdict"] is None and len(body["cards"]) == 3
     assert all("vote" not in c for c in body["cards"])
     events = stream(api, body["id"])
     assert "why" not in stream_sections(events) and "synthesis" in stream_sections(events)
+
+
+def test_three_yes_no_cards_about_another_person_vote(api):
+    """Stage 4.8, decision 48: three cards about another person vote like any yes/no reading."""
+    api.guard.json_replies.append({"group": "redirect_person", "violence": False})
+    body = create(api, kind="yes_no", count=3, question="Will she text me back?")
+    assert body["verdict"]["value"] == api.ctx.cards.verdict(body["cards"]) and len(body["cards"]) == 3
+    assert all(c["vote"] in ("yes", "no", "unclear") for c in body["cards"])
+    events = stream(api, body["id"])
+    assert "why" in stream_sections(events) and "synthesis" in stream_sections(events)
+    assert api.reader.stream_calls()[0]["messages"][0]["content"].count("vote: ") == 3
 
 
 def test_count_is_for_yes_no_only(api):

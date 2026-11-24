@@ -30,7 +30,8 @@ def test_split_sql():
 
 def test_migrate_creates_tables_with_rls_and_no_policies(fresh_db):
     assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source", "004_events",
-                                           "005_request_ids", "006_rewrite_purpose", "007_remind_click"]
+                                           "005_request_ids", "006_rewrite_purpose", "007_remind_click",
+                                           "008_person_verdict"]
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT relname, relrowsecurity FROM pg_class"
                             " WHERE relnamespace = 'public'::regnamespace AND relkind = 'r'").fetchall()
@@ -166,6 +167,8 @@ def test_verdict_only_for_allowed_groups(db):
     one = [{"card_id": "major-18-moon", "position": "card", "reversed": False}]
     with db.connect() as conn:
         repo.insert_reading(conn, make_reading(kind="yes_no", cards=one, verdict="no", guard_group="redirect_money"))
+        # stage 4.8, decision 48: a question about another person has the cards' verdict
+        repo.insert_reading(conn, make_reading(kind="yes_no", cards=one, verdict="yes", guard_group="redirect_person"))
     for bad in (make_reading(kind="yes_no", cards=one, verdict="no", guard_group="redirect_topic"),
                 make_reading(kind="one", cards=one, verdict="yes")):
         with pytest.raises(psycopg.errors.CheckViolation):
@@ -316,7 +319,7 @@ def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
     assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source", "004_events", "005_request_ids",
-                                             "006_rewrite_purpose", "007_remind_click"]
+                                             "006_rewrite_purpose", "007_remind_click", "008_person_verdict"]
     with fresh_db.connect() as conn:
         row = conn.execute("SELECT user_id, outcome, outcome_at, note, note_updated_at FROM readings WHERE id = %s",
                            (reading["id"],)).fetchone()
@@ -331,7 +334,7 @@ def test_003_applies_over_002_and_leaves_the_old_rows_without_a_source(fresh_db)
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
     assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source", "004_events", "005_request_ids", "006_rewrite_purpose",
-                                             "007_remind_click"]
+                                             "007_remind_click", "008_person_verdict"]
     with fresh_db.connect() as conn:
         column = conn.execute("SELECT is_nullable, column_default FROM information_schema.columns"
                               " WHERE table_name = 'readings' AND column_name = 'guard_source'").fetchone()
@@ -420,7 +423,8 @@ def test_the_tests_refuse_a_supabase_database():
 
 def test_004_applies_over_003(fresh_db):
     apply_up_to(fresh_db, "001_init", "002_accounts", "003_guard_source")  # the live database after stage 4.3
-    assert migrate(fresh_db, MIGRATIONS) == ["004_events", "005_request_ids", "006_rewrite_purpose", "007_remind_click"]
+    assert migrate(fresh_db, MIGRATIONS) == ["004_events", "005_request_ids", "006_rewrite_purpose", "007_remind_click",
+                                             "008_person_verdict"]
     with fresh_db.connect() as conn:
         security = conn.execute("SELECT relrowsecurity FROM pg_class WHERE relname = 'events'").fetchone()
         names = {r["indexname"] for r in conn.execute("SELECT indexname FROM pg_indexes WHERE tablename = 'events'")}
@@ -448,7 +452,8 @@ def test_005_applies_over_004_and_leaves_the_old_rows_without_a_number(fresh_db)
         insert_001_reading(conn, reading)
         conn.execute("INSERT INTO followups (id, reading_id, n, question, created_at) VALUES (%s, %s, 1, 'Q?', %s)",
                      (uuid.uuid4(), reading["id"], T0))
-    assert migrate(fresh_db, MIGRATIONS) == ["005_request_ids", "006_rewrite_purpose", "007_remind_click"]
+    assert migrate(fresh_db, MIGRATIONS) == ["005_request_ids", "006_rewrite_purpose", "007_remind_click",
+                                             "008_person_verdict"]
     with fresh_db.connect() as conn:
         columns = conn.execute("SELECT table_name, is_nullable, column_default FROM information_schema.columns"
                                " WHERE column_name = 'request_id' ORDER BY table_name").fetchall()
@@ -511,7 +516,7 @@ def test_007_applies_over_006_keeps_the_events_and_takes_remind_click(fresh_db):
     insert = ("INSERT INTO events (day, name, tool, lang, params, created_at) VALUES (%s, %s, %s, 'en', '{}', %s)")
     with fresh_db.connect() as conn:
         conn.execute(insert, (T0.date(), "plus_view", None, T0))
-    assert migrate(fresh_db, MIGRATIONS) == ["007_remind_click"]
+    assert migrate(fresh_db, MIGRATIONS) == ["007_remind_click", "008_person_verdict"]
     with fresh_db.connect() as conn:
         conn.execute(insert, (T0.date(), "remind_click", "daily", T0))
         names = [r["name"] for r in conn.execute("SELECT name FROM events ORDER BY name")]
@@ -519,3 +524,27 @@ def test_007_applies_over_006_keeps_the_events_and_takes_remind_click(fresh_db):
     with pytest.raises(psycopg.errors.CheckViolation):
         with fresh_db.connect() as conn:
             conn.execute(insert, (T0.date(), "page_view", None, T0))
+
+
+# --- stage 4.8 (decision 48): migration 008 ---
+
+def test_008_applies_over_007_keeps_the_readings_and_allows_a_person_verdict(fresh_db):
+    apply_up_to(fresh_db, "001_init", "002_accounts", "003_guard_source", "004_events", "005_request_ids",
+                "006_rewrite_purpose", "007_remind_click")  # the live database before stage 4.8
+    one = [{"card_id": "major-18-moon", "position": "card", "reversed": False}]
+    before = make_reading(kind="yes_no", cards=one, verdict=None, guard_group="redirect_person")
+    with fresh_db.connect() as conn:
+        repo.insert_reading(conn, before)
+        with pytest.raises(psycopg.errors.CheckViolation):
+            with conn.transaction():
+                repo.insert_reading(conn, make_reading(kind="yes_no", cards=one, verdict="yes",
+                                                       guard_group="redirect_person"))
+    assert migrate(fresh_db, MIGRATIONS) == ["008_person_verdict"]
+    after = make_reading(kind="yes_no", cards=one, verdict="yes", guard_group="redirect_person")
+    with fresh_db.connect() as conn:
+        repo.insert_reading(conn, after)
+        verdicts = {r["id"]: r["verdict"] for r in conn.execute("SELECT id, verdict FROM readings")}
+    assert verdicts == {before["id"]: None, after["id"]: "yes"}
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with fresh_db.connect() as conn:
+            repo.insert_reading(conn, make_reading(kind="yes_no", cards=one, verdict="no", guard_group="redirect_topic"))

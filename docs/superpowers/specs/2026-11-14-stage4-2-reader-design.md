@@ -281,6 +281,13 @@ api/tests/
    consejo financiero.»); `why` — о готовности и настрое человека, не о рынке; `step` — всегда трезвый (проверить
    цифры, обсудить с тем, кто разбирается в финансах). Проверка вопроса различает `redirect_money` и
    `redirect_topic`.
+   *Решения 48–49 (24.11.2026, подэтап 4.8 — `2026-11-24-stage4-8-reader-meaning-design.md`) меняют этот пункт:*
+   вопрос о другом человеке (`redirect_person`) получает вердикт карт по правилу да/нет и `why`; чтец толкует
+   значение карт в таком вопросе (как значение, не как факт о человеке), мягкая строка — «This reads what the cards
+   mean in a question like yours; it can't know another person's feelings or choices.». Без вердикта остаются
+   только здоровье, беременность, смерть, суд, безопасность (`redirect_topic`): чтец толкует темы карт про
+   ситуацию, без исхода; строка — «This reads the themes of the cards; it is not a prediction and not medical, legal
+   or safety advice.» (ES — в спецификации 4.8).
 2. **Cloudflare.** Прокси Cloudflare включается до запуска; сервер принимает запросы только с адресов Cloudflare.
    Пока прокси нет (настройка `TRUST_CLOUDFLARE=false`), заголовки `CF-Connecting-IP` и `CF-IPCountry` не
    читаются: адрес — из соединения, телефоны помощи — по часовому поясу и языку.

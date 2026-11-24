@@ -117,8 +117,8 @@ def test_cut_before_why_on_a_reversed_card_stays_cut():
 
 
 def test_a_verdict_in_the_headline_without_a_verdict_is_replaced():
-    reading = yes_no(verdict=None, group="redirect_person")
-    text = canned_answer(1, False).replace("The cards may point to a quiet, steady way forward.", "Yes, he will.")
+    reading = yes_no(verdict=None, group="redirect_topic")
+    text = canned_answer(1, False).replace("The cards may point to a quiet, steady way forward.", "Yes, it will.")
     final = run(reading, text)
     assert (final.shown, final.event, final.reason) == ("model", "replace", "headline")
     assert final.sections["headline"] == fallback.headline_line(BASE, reading)

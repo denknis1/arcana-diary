@@ -138,7 +138,8 @@ def create_reading(body: ReadingIn, request: Request):
     group = guard.group if guard else "ok"
     seed = new_seed()
     cards = draw_spread(seed, body.kind, ctx.cards.order, body.count)
-    # §8.1: no verdict (and no votes) on health, death, courts, safety or another person, also with three cards;
+    # §8.1, decisions 48–49: no verdict (and no votes) on health, pregnancy, death, courts or safety, also with three
+    # cards; a question about another person gets one (redirect_person is not in NO_VERDICT_GROUPS);
     # three cards: the yes and no cards decide, "unclear" ones abstain, a tie or none is "unclear" (spread_verdict)
     with_verdict = body.kind == "yes_no" and group not in NO_VERDICT_GROUPS
     reading = {

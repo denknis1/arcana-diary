@@ -9,8 +9,8 @@ MARKERS = ["[[headline]]", "[[card 1]]", "[[card 2]]", "[[card 3]]", "[[synthesi
 def test_all_prompts_load_with_versions():
     assert {key: p.version for key, p in PROMPTS.items()} == {
         ("guard", None): "guard.v1",
-        ("reader", "en"): "reader.en.v7", ("reader", "es"): "reader.es.v7",
-        ("followup", "en"): "followup.en.v7", ("followup", "es"): "followup.es.v7",
+        ("reader", "en"): "reader.en.v8", ("reader", "es"): "reader.es.v8",
+        ("followup", "en"): "followup.en.v8", ("followup", "es"): "followup.es.v8",
         ("daily", "en"): "daily.en.v4", ("daily", "es"): "daily.es.v5",
     }
     assert all(len(p.text) > 500 for p in PROMPTS.values())
@@ -155,11 +155,13 @@ def test_reader_and_followup_treat_history_as_background(name, lang, phrases):
 
 @pytest.mark.parametrize("lang, phrases", [
     ("en", ("With three cards and a <verdict>, each card has a vote line", "a card that is not clear yet does not vote",
-            "never change a card's vote", "say what tipped it", "Read the card, or the three cards, about the person",
-            "Without a <verdict> there are no vote lines")),
+            "never change a card's vote", "say what tipped it",
+            "Without a <verdict> there are no vote lines", "Read the card, or the three cards, by the rules of its "
+            "guard group above")),
     ("es", ("Con tres cartas y <verdict>, cada carta trae una línea vote", "una carta que todavía no está clara no vota",
             "nunca cambies el voto de una carta", "di qué inclinó la balanza",
-            "Lee la carta, o las tres cartas, sobre la persona", "Sin <verdict> no hay líneas vote")),
+            "Lee la carta, o las tres cartas, según las reglas de su grupo de revisión de arriba",
+            "Sin <verdict> no hay líneas vote")),
 ])
 def test_reader_prompt_reads_yes_no_on_three_cards(lang, phrases):
     """Stage 4.5 §4: a paragraph per card with its vote, synthesis — what tipped the verdict, one step, one why."""
@@ -202,19 +204,17 @@ def test_bolder_in_ordinary_questions_without_dates_fate_or_other_people(name, l
     ("reader", "en", ("In redirect_money, redirect_topic and redirect_person, the confidence of rule 2 does not "
                       "apply",
                       "no line may hint at how it will turn out", '"the answer on her side is still forming"',
-                      '"the answer is taking shape"', "Talk about the person themself.")),
+                      '"the answer is taking shape"')),
     ("followup", "en", ("In redirect_money, redirect_topic and redirect_person, the confidence of rule 2 does not apply",
                         "no line may hint at how it will turn out", '"the answer on her side is still forming"',
-                        "Talk about the person themself.",
                         "The same holds when the reading itself has one of these groups (the guard_group on <reading>), "
                         "even if this follow-up is marked ok: the stricter group counts.")),
     ("reader", "es", ("En redirect_money, redirect_topic y redirect_person no vale la seguridad de la regla 2",
                       "ninguna línea puede insinuar cómo va a terminar",
-                      "«la respuesta de su lado todavía se está formando»", "«la respuesta está tomando forma»",
-                      "Habla de la persona misma.")),
+                      "«la respuesta de su lado todavía se está formando»", "«la respuesta está tomando forma»")),
     ("followup", "es", ("En redirect_money, redirect_topic y redirect_person no vale la seguridad de la regla 2",
                         "ninguna línea puede insinuar cómo va a terminar",
-                        "«la respuesta de su lado todavía se está formando»", "Habla de la persona misma.",
+                        "«la respuesta de su lado todavía se está formando»",
                         "Lo mismo vale cuando la lectura misma trae uno de estos grupos (el guard_group de <reading>), "
                         "aunque esta pregunta venga marcada ok: cuenta el grupo más estricto.")),
 ])
@@ -304,5 +304,109 @@ def test_the_no_hint_paragraph_keeps_the_verdict_wording(lang, phrase):
 
 def test_followup_rule_4_names_another_persons_return():
     """M1: rule 2 no longer says "will come back", so rule 4 of the follow-up names it."""
-    assert '"he is thinking of you", "she will come back"' in PROMPTS[("followup", "en")].text
+    assert '"he loves you", "he is thinking of you", "she will come back"' in PROMPTS[("followup", "en")].text
     assert "«piensa en ti», «va a regresar»" in PROMPTS[("followup", "es")].text
+
+
+# --- stage 4.8 (owner decisions 48–49): reader v8, follow-up v8 — the cards' meaning in person and topic questions ---
+
+from app.reader import check  # noqa: E402
+from app.reader.gender import find_reader_gender  # noqa: E402
+
+PERSON_TOPIC_PHRASES = {
+    ("reader", "en"): (
+        "Never state as a fact what another person thinks, feels, wants, intends or will do.",
+        'not as the card\'s words ("the card shows he loves you")',
+        "you read what the cards mean in a question like this: the card's themes, never the other person's mind",
+        '"In a question like yours, the Lovers speak of attraction and a wish to be close"',
+        '"here the cards point to distance and caution"',
+        "no line says what they feel, think, want or will do as a fact (rule 4)",
+        'do not restate it in words like "how he feels" or "whether she thinks of you"',
+        "reflect it by the \"Yes/no readings\" rules as the cards' lean on this question",
+        '("Yes, she will text you")',
+        "There is never a <verdict> here.",
+        '"In a question like this, Temperance is about patience and balance"',
+        "a theme never becomes a result", '"you will get better"', '"you will win the case"',
+        "Reading what the cards mean in a question like this, as above, is not a forecast",
+        "In redirect_money and redirect_person a <verdict> is still reflected as the cards' lean",
+        "the step is about the person's own feelings, needs or words",
+    ),
+    ("followup", "en"): (
+        "Never state as a fact what another person thinks, feels, wants, intends or will do",
+        "you read what the cards mean in a question like this: the card's themes, never the other person's mind",
+        '"In a question like yours, the Lovers speak of attraction and a wish to be close"',
+        '"In a question like this, Temperance is about patience and balance"', "a theme never becomes a result",
+        "Reading what the cards mean in a question like this, as above, is not a forecast",
+        "If it had one, mention it only as the cards' lean",
+    ),
+    ("reader", "es"): (
+        "Nunca afirmes como un hecho lo que otra persona piensa, siente, quiere o va a hacer.",
+        "ni como palabras de la carta («la carta muestra que te ama»)",
+        "lees lo que significan las cartas en una pregunta así: los temas de la carta",
+        "«En una pregunta como la tuya, Los Enamorados hablan de atracción y de ganas de estar cerca»",
+        "«aquí las cartas apuntan a distancia y cautela»", "«en una pregunta así, esta carta habla de señales confusas»",
+        "ninguna línea dice como un hecho lo que siente, piensa, quiere o va a hacer (regla 4)",
+        "como la inclinación de las cartas en esta pregunta", "(«Sí, te va a escribir»)",
+        "Aquí nunca hay <verdict>.", "«En una pregunta así, La Templanza habla de paciencia y equilibrio»",
+        "un tema nunca se vuelve un resultado", "«te vas a recuperar»", "«vas a ganar el juicio»",
+        "Leer lo que significan las cartas en una pregunta así, como arriba, no es un pronóstico",
+        "En redirect_money y redirect_person, el <verdict> se sigue reflejando como la inclinación de las cartas",
+    ),
+    ("followup", "es"): (
+        "Nunca afirmes como un hecho lo que otra persona piensa, siente, quiere o va a hacer",
+        "lees lo que significan las cartas en una pregunta así: los temas de la carta",
+        "«En una pregunta como la tuya, Los Enamorados hablan de atracción y de ganas de estar cerca»",
+        "«En una pregunta así, La Templanza habla de paciencia y equilibrio»", "un tema nunca se vuelve un resultado",
+        "Leer lo que significan las cartas en una pregunta así, como arriba, no es un pronóstico",
+        "Si lo traía, menciónalo solo como la inclinación de las cartas",
+    ),
+}
+
+
+@pytest.mark.parametrize("key", list(PERSON_TOPIC_PHRASES))
+def test_person_and_topic_questions_read_the_cards_meaning(key):
+    """Decision 48: the cards' meaning in a question about another person, never a fact about them, and the verdict
+    as the cards' lean; decision 49: the themes of the cards about the situation, no outcome, no yes or no."""
+    text = PROMPTS[key].text
+    assert [p for p in PERSON_TOPIC_PHRASES[key] if p not in text] == []
+    # v7's "read only about the person" lines are gone
+    gone = ("Do not guess them.", "Read the cards about the person asking", "Talk about the person themself.",
+            "No lo adivines.", "Lee las cartas sobre quien pregunta", "Habla de la persona misma.")
+    assert [g for g in gone if g in text] == []
+
+
+ALLOWED_MEANING = {
+    "en": ["In a question like yours, the Lovers speak of attraction and a wish to be close.",
+           "Here the cards point to distance and caution.", "This card talks about mixed signals.",
+           "In a question like this, Temperance is about patience and balance.",
+           "Here the Star speaks of hope and quiet trust.", "The card leans toward yes, with care."],
+    "es": ["En una pregunta como la tuya, Los Enamorados hablan de atracción y de ganas de estar cerca.",
+           "Aquí las cartas apuntan a distancia y cautela.",
+           "En una pregunta así, esta carta habla de señales confusas.",
+           "En una pregunta así, La Templanza habla de paciencia y equilibrio.",
+           "Aquí La Estrella habla de esperanza y de confianza tranquila.",
+           "La carta se inclina hacia el sí, con cuidado."],
+}
+
+
+@pytest.mark.parametrize("lang", ["en", "es"])
+@pytest.mark.parametrize("group", ["redirect_person", "redirect_topic"])
+def test_the_prompts_meaning_examples_pass_the_live_dictionary(lang, group):
+    """The phrasings the prompts teach are not caught by the live dictionary of a group without an outcome (so the
+    answer is not replaced by the card base), and in Spanish carry no gendered form for the reader."""
+    terms = check.live_terms(check.load_reader_terms(), lang, group)
+    for line in ALLOWED_MEANING[lang]:
+        assert check.find_claims(line, terms, lang)[0] == [], line
+        if lang == "es":
+            assert find_reader_gender(line) == [], line
+
+
+@pytest.mark.parametrize("lang, line", [
+    ("en", "In a question like yours, this card shows that he loves you."),
+    ("en", "The card says she will come back."),
+    ("es", "En una pregunta así, la carta muestra que te ama."),
+    ("es", "La carta dice que va a regresar."),
+])
+def test_a_fact_about_the_other_person_in_the_cards_mouth_is_still_caught(lang, line):
+    terms = check.live_terms(check.load_reader_terms(), lang, "redirect_person")
+    assert check.find_claims(line, terms, lang)[0]
