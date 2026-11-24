@@ -13,7 +13,7 @@ import JsonLdScript from '../components/JsonLd.astro';
 import { t } from '../i18n';
 import type { JsonLd } from '../lib/jsonld';
 import type { PageKey } from '../lib/routes';
-import { DEFAULT_IMAGE, absoluteUrl, alternates } from '../lib/seo';
+import { absoluteUrl, alternates, defaultImage } from '../lib/seo';
 import type { Lang } from '../lib/types';
 
 interface Props {
@@ -28,12 +28,12 @@ interface Props {
   jsonLd?: readonly (JsonLd | null)[];
 }
 
-const { lang, title, path, current, noindex = false, description, image = DEFAULT_IMAGE, ogType = 'website',
+const { lang, title, path, current, noindex = false, description, image, ogType = 'website',
   jsonLd = [] } = Astro.props;
 const d = t(lang);
 const indexable = !noindex && description !== undefined;
 const url = absoluteUrl(path);
-const imageUrl = absoluteUrl(image);
+const imageUrl = absoluteUrl(image ?? defaultImage(lang));
 const ld = jsonLd.filter((item): item is JsonLd => item !== null);
 ---
 <!doctype html>
@@ -42,6 +42,10 @@ const ld = jsonLd.filter((item): item is JsonLd => item !== null);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     {description !== undefined ? <meta name="description" content={description} /> : null}
     {noindex ? <meta name="robots" content="noindex, nofollow" /> : null}
     {indexable ? (

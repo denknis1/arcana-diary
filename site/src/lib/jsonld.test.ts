@@ -35,7 +35,7 @@ describe('JSON-LD (spec stage 6 §3)', () => {
     const editor = { '@type': 'Person', name: 'Adrian Solenne', jobTitle: 'Editor' };
     const org = { '@type': 'Organization', name: 'Arcana Diary', url: 'https://arcanadiary.com/' };
     expect(ld).toMatchObject({ '@type': 'Article', headline: 'The Moon Tarot Card Meaning', inLanguage: 'en',
-      image: 'https://arcanadiary.com/cards/the-moon.webp', author: org, publisher: org, dateModified: '2026-11-23',
+      image: 'https://arcanadiary.com/cards/the-moon.webp', author: org, publisher: org, datePublished: '2026-11-23', dateModified: '2026-11-23',
       editor, isBasedOn: { '@type': 'Book', name: 'The Pictorial Key to the Tarot', datePublished: '1911',
         url: 'https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot' } });
     expect(ld.mainEntityOfPage).toEqual({ '@type': 'WebPage', '@id': 'https://arcanadiary.com/cards/the-moon',

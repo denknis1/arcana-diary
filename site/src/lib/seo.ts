@@ -7,7 +7,8 @@ import { hiddenPaths } from './textPages';
 
 export const SITE_URL = 'https://arcanadiary.com';
 /** Share picture of a page without its own card scan (no 1200 × 630 picture exists yet). */
-export const DEFAULT_IMAGE = '/cards/the-moon.webp';
+export const DEFAULT_IMAGE = '/og/og-en.jpg'; // stage 7.2: 1200×630 share image (tools/site/og/make_og.mjs)
+export const defaultImage = (lang: 'en' | 'es'): string => `/og/og-${lang}.jpg`;
 
 export interface Alternate {
   hreflang: 'en' | 'es' | 'x-default';
