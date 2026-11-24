@@ -164,16 +164,25 @@ describe('ReadingIsland: the 18+ and terms line under the draw button (legal rev
       expect(root.querySelector('.panel-hint')!.previousElementSibling).toBe(root.querySelector('button[type="submit"]'));
     });
 
-  it('links the terms and the privacy policy once both pages are open', async () => {
+  it('links only the Terms here: the provider line above already links the privacy page', async () => {
     const { root } = await mount(<ReadingIsland lang="en" page="love" privacyHref="/privacy" termsHref="/terms" />);
     const links = [...root.querySelectorAll('.consent-line a')].map((a) => [a.textContent, a.getAttribute('href')]);
-    expect(links).toEqual([['Terms', '/terms'], ['Privacy policy', '/privacy']]);
+    expect(links).toEqual([['Terms', '/terms']]);
+    expect(root.querySelector('.consent-line')!.textContent).toContain('and the Privacy policy.');
+    expect([...root.querySelectorAll('form a')].filter((a) => a.getAttribute('href') === '/privacy')).toHaveLength(1);
   });
 
-  it('links only the page that is open', async () => {
-    const { root } = await mount(<ReadingIsland lang="es" page="love" termsHref="/es/terminos" />);
+  it('links only the Terms in Spanish too, one link per address in the form', async () => {
+    const { root } = await mount(<ReadingIsland lang="es" page="love" privacyHref="/es/privacidad" termsHref="/es/terminos" />);
     const line = root.querySelector('.consent-line')!;
-    expect([...line.querySelectorAll('a')].map((a) => a.textContent)).toEqual(['Términos']);
+    expect([...line.querySelectorAll('a')].map((a) => [a.textContent, a.getAttribute('href')])).toEqual([['Términos', '/es/terminos']]);
     expect(line.textContent).toContain('el Aviso de privacidad.');
+    const hrefs = [...root.querySelectorAll('form a')].map((a) => a.getAttribute('href'));
+    expect(new Set(hrefs).size).toBe(hrefs.length);
+  });
+
+  it('shows plain text without links while the Terms page is not open', async () => {
+    const { root } = await mount(<ReadingIsland lang="es" page="love" />);
+    expect(root.querySelector('.consent-line a')).toBeNull();
   });
 });

@@ -32,12 +32,23 @@ describe('canonical and hreflang (spec stage 6 §3)', () => {
   });
 
   it('gives no hreflang to a hidden page or to the pair of one (a pair only when both sides are indexable)', () => {
-    expect(alternates('/about')).toEqual([]);
-    expect(alternates('/es/sobre-nosotros')).toEqual([]);
+    expect(alternates('/about', new Set(['/about']))).toEqual([]);
+    expect(alternates('/es/sobre-nosotros', new Set(['/about']))).toEqual([]);
     expect(alternates('/how-readings-work').map((a) => a.href)).toEqual(['https://arcanadiary.com/how-readings-work',
       'https://arcanadiary.com/es/como-funcionan-las-lecturas', 'https://arcanadiary.com/how-readings-work']);
     expect(alternates('/how-readings-work', new Set(['/es/como-funcionan-las-lecturas']))).toEqual([]);
     expect(alternates('/es/como-funcionan-las-lecturas', new Set(['/es/como-funcionan-las-lecturas']))).toEqual([]);
+  });
+
+  it('pairs the eight newly opened service pages reciprocally', () => {
+    const pairs = [['/about', '/es/sobre-nosotros'], ['/contact', '/es/contacto'], ['/privacy', '/es/privacidad'],
+      ['/terms', '/es/terminos']];
+    for (const [en, es] of pairs) {
+      expect(hreflangPair(en)).toBe(es);
+      expect(alternates(en), en).toEqual([{ hreflang: 'en', href: absoluteUrl(en) }, { hreflang: 'es', href: absoluteUrl(es) },
+        { hreflang: 'x-default', href: absoluteUrl(en) }]);
+      expect(alternates(es), es).toEqual(alternates(en));
+    }
   });
 
   it('rejects a non-canonical path', () => {
@@ -67,6 +78,6 @@ describe('canonical and hreflang (spec stage 6 §3)', () => {
         expect(known.has(a.href), `${p} -> ${a.href}`).toBe(true);
       }
     }
-    expect(paired).toBe(168 + 2); // + how-readings-work ↔ como-funcionan-las-lecturas
+    expect(paired).toBe(168 + 2 + 8); // + how-readings-work pair + the four operator pairs (both sides)
   });
 });

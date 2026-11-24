@@ -276,7 +276,8 @@ export default function ReadingIsland({ lang, page, cardId, cardName, showBacks 
         ) : null}
         <button type="submit" class="btn btn--gold btn--block" ref={drawButton}>{d[drawLabelKey(config, kind, count)]}</button>
         <p class="panel-hint">{d.freeSaveAfter}</p>
-        <ConsentLine lang={lang} termsHref={termsHref} privacyHref={privacyHref} />
+        {/* the provider line above already links the privacy page in this form: one link per address */}
+        <ConsentLine lang={lang} termsHref={termsHref} />
       </form>
       {roomOpen ? (
         <NightRoom

@@ -39,8 +39,9 @@ LAUNCH = "запуск"
 LIMITS = {"guest_limit": "DAILY_LIMIT", "user_limit": "USER_DAILY_LIMIT", "followups": "FOLLOWUP_LIMIT",
           "diary_free": "FREE_DIARY_VISIBLE"}
 OPERATOR = ROOT / "content/operator.json"
-# the operator's facts, filled by hand in content/operator.json (legal review 24.11.2026); a value is a string, or for
-# `effective_date` a {"en": …, "es": …} object (the date is written in the language of the page)
+# the operator's facts, filled by hand in content/operator.json (legal review 24.11.2026); a value is a string, or a
+# {"en": …, "es": …} object when the languages write it differently ("the Netherlands" / "los Países Bajos");
+# `effective_date` is always such an object (the date is written in the language of the page)
 OPERATOR_KEYS = ("operator_name", "operator_address", "jurisdiction", "contact_email", "hosting_provider",
                  "email_provider", "effective_date")
 PER_LANGUAGE = {"effective_date"}
@@ -92,7 +93,7 @@ def operator_facts() -> dict:
     out: dict = {}
     for key in OPERATOR_KEYS:
         value = data.get(key, "")
-        if key in PER_LANGUAGE:
+        if key in PER_LANGUAGE or isinstance(value, dict):
             if not isinstance(value, dict) or set(value) - {"en", "es"}:
                 raise ValueError(f"content/operator.json: {key} must be an object with en and es")
             value = {lang: str(value.get(lang, "")).strip() for lang in ("en", "es")}
