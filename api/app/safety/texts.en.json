@@ -17,8 +17,8 @@
     }
   },
   "soft_lines": {
-    "redirect_topic": "The cards don't predict this kind of thing. Here is what they can say about you and your next step.",
-    "redirect_person": "The cards can't tell what another person thinks or feels. Here is what they can say about you and your side of this.",
+    "redirect_topic": "This reads the themes of the cards; it is not a prediction and not medical, legal or safety advice.",
+    "redirect_person": "This reads what the cards mean in a question like yours; it can't know another person's feelings or choices.",
     "redirect_money": "This isn't financial advice."
   },
   "provider_disclosure": "To write your reading, your question is sent to our AI provider, Anthropic. Please leave out names and personal details.",

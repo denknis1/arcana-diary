@@ -17,8 +17,8 @@
     }
   },
   "soft_lines": {
-    "redirect_topic": "Las cartas no predicen este tipo de cosas. Esto es lo que sí pueden decirte sobre ti y tu siguiente paso.",
-    "redirect_person": "Las cartas no pueden decir lo que otra persona piensa o siente. Esto es lo que sí dicen sobre ti y tu parte en esto.",
+    "redirect_topic": "Esto lee los temas de las cartas; no es una predicción ni un consejo médico, legal o de seguridad.",
+    "redirect_person": "Esto lee lo que significan las cartas en una pregunta como la tuya; no puede saber lo que siente o decide otra persona.",
     "redirect_money": "Esto no es un consejo financiero."
   },
   "provider_disclosure": "Para escribir tu lectura, tu pregunta se envía a nuestro proveedor de IA, Anthropic. Mejor no incluyas nombres ni datos personales.",

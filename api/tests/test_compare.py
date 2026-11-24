@@ -31,7 +31,7 @@ def test_the_set_has_50_items_and_no_crisis():
 
 
 def test_estimate_of_stage_a_stays_under_the_five_dollar_ceiling():
-    assert 3.3 < estimate_cost(STAGES["A"], load_set(), day=date(2026, 11, 19)) < 3.5
+    assert 3.5 < estimate_cost(STAGES["A"], load_set(), day=date(2026, 11, 19)) < 3.7  # 16 judge checks
     assert estimate_cost(STAGES["A"], load_set(), day=date(2026, 12, 1)) > 6  # judge 2 doubles from 01.12
 
 
@@ -67,7 +67,7 @@ def test_a_full_run_writes_blind_judge_inputs_and_the_spend(tmp_path):
         judged = [r for r in results if r.get("judge_content")]
         assert judged and all("<answer>" in r["judge_content"] for r in judged)
         assert not [r for r in judged if any(m in r["judge_content"] for m in STAGES["A"])]
-    assert len(answers["judge_check"]) == 12 and all(c["judge_content"] for c in answers["judge_check"])  # + bad-11, 12
+    assert len(answers["judge_check"]) == 16 and all(c["judge_content"] for c in answers["judge_check"])  # + bad-13, 14
     spend = read(out / "spend.json")
     assert spend["stopped"] is False and spend["not_done"] == [] and 0 < spend["spent"] < 5
     assert spend["unjoined"] == 0

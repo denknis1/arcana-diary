@@ -114,6 +114,8 @@ export const en = {
   prevCard: '← Previous',
   nextCard: 'Next →',
   cardNav: 'Keep exploring',
+  // stage 7.3: above Previous / Next — where the card stands in the deck order the two links follow (L-EN-08)
+  cardNavPosition: 'Tarot card {n} of {total}, in deck order',
 
   notFoundTitle: 'Page not found — Arcana Diary',
   notFoundEyebrow: 'Error 404',
@@ -276,6 +278,11 @@ export const en = {
   // stage 6: links of the card lists (stage 2 matrix L-EN-14 "All 78 cards", L-EN-06 "Ask your question")
   allCardsLink: 'All 78 cards',
   yesNoListAsk: 'Ask your question',
+  // stage 7.3: the line above "Ask your question" (L-EN-06) and the hints of the hub and of "All 78 cards" on the
+  // Major Arcana page (L-EN-12, L-EN-14)
+  yesNoListAskHint: 'On the Yes or No page you draw one tarot card or three, and this same rule gives the answer.',
+  hubCardCount: '{count} cards',
+  majorAllCardsHint: 'Meanings of all the tarot cards, the four suits included',
   // stage 6: the service pages in the footer and their breadcrumbs (spec §3)
   footerAbout: 'About',
   footerHowReadings: 'How our readings work',

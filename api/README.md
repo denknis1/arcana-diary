@@ -149,7 +149,7 @@ READER_PROVIDER=fake DATABASE_URL=postgresql://postgres:dev@127.0.0.1:55432/post
 Словарь `reader_banned_terms.json`: фразы о будущем самого человека («will happen», «llegará alguien») убраны из
 `en` / `es` и перенесены в `en_redirect` / `es_redirect` — они действуют в группах без исхода (для уточнения — по
 более строгой из групп расклада и уточнения) и в карте дня (`check.live_terms`).
-Карта дня ES — `daily.es.v5`; судья `judge.v5`.
+Карта дня ES — `daily.es.v5`; судья `judge.v5` (с этапа 4.8 — `judge.v6`).
 
 **Этап 4.7** (спецификация `docs/superpowers/specs/2026-11-22-stage4-7-es-gender-design.md`). После потока каждый
 испанский раздел, который остался текстом модели (не строкой из базы карт, подставленной `finalize`), проверяется на
@@ -174,6 +174,24 @@ estar… + прилагательное или причастие», «a ti mism
 строка журнала `gender rewrite of <раздел>: taken | original kept` даёт долю принятых. Перед выкладкой миграции 006:
 `SELECT conname FROM pg_constraint WHERE conrelid = 'llm_calls'::regclass AND contype = 'c';` — ожидается
 `llm_calls_purpose_check`.
+
+**Этап 4.8** (спецификация `docs/superpowers/specs/2026-11-24-stage4-8-reader-meaning-design.md`, решения владельца
+48–49). `NO_VERDICT_GROUPS` — только `redirect_topic`: вопрос «да/нет» о другом человеке (`redirect_person`) получает
+вердикт карт по правилу да/нет (у трёх карт — голоса), раздел `why` и мягкую строку «This reads what the cards mean in
+a question like yours; it can't know another person's feelings or choices.» / «Esto lee lo que significan las cartas
+en una pregunta como la tuya; no puede saber lo que siente o decide otra persona.». Здоровье, беременность, смерть,
+суд, безопасность — по-прежнему без вердикта, строка «This reads the themes of the cards; it is not a prediction and
+not medical, legal or safety advice.» / «Esto lee los temas de las cartas; no es una predicción ni un consejo médico,
+legal o de seguridad.». Промпты `reader.*.v8`, `followup.*.v8`: в person — значение карт в таком вопросе, сказанное
+как значение карт («In a question like yours, the Lovers speak of attraction…»), никогда как факт о другом человеке;
+в topic — темы карт про ситуацию, без исхода и без «да/нет»; шаг — о самом спрашивающем. Судья `judge.v6`, в его
+проверке 16 заведомо плохих ответов (bad-13 «he loves you», bad-14 «te vas a recuperar», bad-15 тяжёлая карта как исход, bad-16 догадка о чувствах другого; bad-09 перенесён в
+`redirect_topic` — «наклон без вердикта» остался только там). Расклады person, сохранённые до выкладки, остаются без
+вердикта: всё, что зависит от вердикта (`with_why`, голоса, страховка, проверка заголовка), смотрит на
+`reading.verdict`, а не на группу. Миграция 008 (`008_person_verdict`) добавляет `redirect_person` в ограничение
+`readings_verdict_allowed` (старые строки подходят; без неё новый код получит `CheckViolation` на person-раскладе
+«да/нет», поэтому выкладка — вместе с миграцией, она идёт при старте API). Словарь запретов дополнен (проверка Fable, 24.11.2026): основные списки — прямые утверждения о чувствах («cares about you», «miss you», «que te quiere», «le gustas» и т. д.), `en_redirect` / `es_redirect` — утешения-исходы («you'll win the case», «vas a estar bien», «van a salir bien» и т. д.); bad-14 словарём ловится (для topic), но остаётся в проверке судьи. Сайт не менялся: мягкую строку и вердикт он берёт
+из API.
 
 ## Ограничения, о которых надо помнить
 
@@ -332,9 +350,9 @@ ORDER BY tool, lang;
 ## Тестовый набор чтеца
 
 `api/evals/` — 60 вопросов на язык (последние 10 — «да/нет» на три карты, этап 4.5), 10 попыток взлома, по 10
-уточнений и 10 текстов карты дня на язык, 76 вопросов только для проверки вопроса, 12 заведомо плохих ответов для
-проверки судьи (судья `judge.v5`); оценка — около $2.56 (`--kind yes_no` — только вопросы «да/нет», проверка вопроса и
-судьи, около $0.76). Каждый прогон стоит денег: `.venv/bin/python -m evals.run` печатает оценку цены и без `--yes` и жёсткого
+уточнений и 10 текстов карты дня на язык, 76 вопросов только для проверки вопроса, 14 заведомо плохих ответов для
+проверки судьи (судья `judge.v6`); оценка — около $2.64 (`--kind yes_no` — только вопросы «да/нет», проверка вопроса и
+судьи, около $0.81). Каждый прогон стоит денег: `.venv/bin/python -m evals.run` печатает оценку цены и без `--yes` и жёсткого
 потолка `--max-usd N` не запускается (оценка выше потолка — тоже отказ); все вызовы идут через `evals/metering.py`,
 вызов сверх потолка не делается, элемент, на котором потолок сработал, не засчитывается, прогон останавливается с
 кодом 4, а потраченное печатается и пишется в отчёт (`spent_usd`, `not_done`); потолок можно превысить не больше

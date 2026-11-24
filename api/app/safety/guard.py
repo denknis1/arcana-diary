@@ -26,7 +26,9 @@ from app.terms import compile_terms, find_banned, normalize
 SAFETY_DIR = Path(__file__).resolve().parent
 CRISIS_TERMS = SAFETY_DIR / "crisis_terms.json"
 GROUPS = ("ok", "redirect_money", "redirect_topic", "redirect_person", "crisis")
-NO_VERDICT_GROUPS = frozenset({"redirect_topic", "redirect_person"})  # §8.1: no yes/no for these
+# §8.1, owner decisions 48–49 (stage 4.8): no yes/no on health, pregnancy, death, courts or safety; a question
+# about another person gets the cards' verdict, read as the cards' meaning, with the site's soft line
+NO_VERDICT_GROUPS = frozenset({"redirect_topic"})
 GUARD_SCHEMA = {
     "type": "object",
     "properties": {"group": {"type": "string", "enum": list(GROUPS)}, "violence": {"type": "boolean"}},

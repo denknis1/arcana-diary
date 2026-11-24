@@ -10,14 +10,14 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CardFigure from '../components/CardFigure.astro';
 import Segments from '../components/Segments.astro';
 import ReadingIsland from '../islands/ReadingIsland';
-import { t } from '../i18n';
+import { fill, t } from '../i18n';
 import { cardCrumbs } from '../lib/breadcrumbs';
 import {
   SECTION_IDS, aboutLines, cardLinks, ctaText, factsLine, faqHeading, imageCaption, keywordCaption, keywordRows,
   relatedCards, segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines, yesNoReason,
 } from '../lib/cardPage';
 import { TEMPLATE_STRINGS, cardPage } from '../lib/cardPages';
-import { cardImage, cardName, neighbors, type DeckCard } from '../lib/deck';
+import { DECK, cardImage, cardName, neighbors, type DeckCard } from '../lib/deck';
 import { FACTS } from '../lib/facts';
 import { openPagePath } from '../lib/textPages';
 import { breadcrumbLd, cardLd, faqLd } from '../lib/jsonld';
@@ -162,6 +162,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
       </aside>
 
       <nav class="card-nav" id="card-nav" aria-label={d.cardNav}>
+        <p class="card-nav__pos small muted">{fill(d.cardNavPosition, { n: DECK.indexOf(card) + 1, total: DECK.length })}</p>
         <a href={cardPath(prev, lang)}><small>{d.prevCard}</small> {prev.numeral} {cardName(prev, lang)}</a>
         <a href={cardPath(next, lang)}><small>{d.nextCard}</small> {next.numeral} {cardName(next, lang)}</a>
       </nav>

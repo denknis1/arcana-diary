@@ -11,7 +11,7 @@ Six sets, all written in full in this folder:
 - daily.jsonl — 10 card-of-the-day texts per language (§9.9): daily prompt → judge;
 - guard.jsonl — 76 questions for the question check only: crisis, look-alike everyday phrases and ambiguous
   stop-phrases that must not give a crisis answer;
-- judge_check.jsonl — 12 known-bad answers: the judge must give each one 2 or less on the named criterion,
+- judge_check.jsonl — 14 known-bad answers: the judge must give each one 2 or less on the named criterion,
   otherwise its averages are not trusted and the run fails.
 Every result records the guard's source and time, the raw answer and what a person would see after §2.5 — and,
 as in the API (stage 4.7), after the gender rewrite of a Spanish section (rewrite.py: the same call and checks, on the
@@ -213,7 +213,9 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
             raise RuntimeError("the first answer is a crisis answer")
         first_answer = compose.answer_text(first.sections)
         excerpts = cards.excerpts(reading["cards"], lang, reading["topic"])
-        messages = compose.followup_messages(reading, excerpts, None, first_answer, [], item["followup"], group)
+        verdict_label = label(reading["verdict"], lang, cards.rules) if reading["verdict"] else None  # as the API
+        messages = compose.followup_messages(reading, excerpts, verdict_label, first_answer, [], item["followup"],
+                                             group, votes=compose.card_votes(reading, cards))
         text, outcome = read_text(reader, prompts[("followup", lang)], messages, FOLLOWUP_MAX_TOKENS,
                                   first_token_timeout_s)
         crisis = bool(CRISIS_MARK.search(text))

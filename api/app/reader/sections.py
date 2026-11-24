@@ -26,7 +26,7 @@ class Event:
 
 
 def required_sections(kind: str, with_why: bool, cards: int | None = None) -> list[str]:
-    """with_why: the reading has a verdict (yes/no, and not a redirect_topic / redirect_person question).
+    """with_why: the reading has a verdict (yes/no, and not a redirect_topic question: NO_VERDICT_GROUPS).
     cards: how many were drawn (stage 4.5 §4: a yes/no reading may have three); None — the kind's own number."""
     n = cards or (3 if kind == "three" else 1)
     names = ["headline"] + [f"card{i}" for i in range(1, n + 1)]

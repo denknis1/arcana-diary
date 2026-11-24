@@ -213,7 +213,9 @@ def test_question_is_escaped_and_schema_sent():
 
 
 def test_groups_without_verdict():
-    assert NO_VERDICT_GROUPS == {"redirect_topic", "redirect_person"}
+    """Stage 4.8, owner decisions 48–49: only health, pregnancy, death, courts and safety go without a verdict."""
+    assert NO_VERDICT_GROUPS == {"redirect_topic"}
+    assert "redirect_person" not in NO_VERDICT_GROUPS
     assert "redirect_money" in GROUPS
 
 

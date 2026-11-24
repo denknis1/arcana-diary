@@ -150,6 +150,21 @@ def test_soft_lines(lang, group, expected):
     assert soft_line(TEXTS[lang], group) == expected
 
 
+@pytest.mark.parametrize("lang, group, expected", [
+    ("en", "redirect_person", "This reads what the cards mean in a question like yours; it can't know another person's "
+                              "feelings or choices."),
+    ("es", "redirect_person", "Esto lee lo que significan las cartas en una pregunta como la tuya; no puede saber lo que "
+                              "siente o decide otra persona."),
+    ("en", "redirect_topic", "This reads the themes of the cards; it is not a prediction and not medical, legal or "
+                             "safety advice."),
+    ("es", "redirect_topic", "Esto lee los temas de las cartas; no es una predicción ni un consejo médico, legal o de "
+                             "seguridad."),
+])
+def test_soft_lines_of_stage_4_8(lang, group, expected):
+    """Owner decisions 48–49 (spec 4.8 §3): the exact lines above person and topic readings."""
+    assert soft_line(TEXTS[lang], group) == expected
+
+
 def test_crisis_payload_lists_both_kinds_and_orders_by_violence():
     calm = crisis_payload(TEXTS["es"], HELP, "MX", "timezone", violence=False)
     assert calm["group"] == "crisis"

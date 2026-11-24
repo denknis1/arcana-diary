@@ -85,8 +85,9 @@ def _position(excerpt: dict, n_cards: int, lang: str) -> str:
 
 def reading_input(reading: dict, excerpts: list[dict], verdict_label: str | None,
                   votes: list[str] | None = None) -> str:
-    """<verdict> only when the reading has one: a yes/no question about health, death, courts, safety or another
-    person keeps kind="yes_no" but gets no verdict (§8.1), and the prompt says not to answer yes or no.
+    """<verdict> only when the reading has one: a yes/no question about health, pregnancy, death, courts or safety
+    keeps kind="yes_no" but gets no verdict (§8.1, decision 49), and the prompt says not to answer yes or no; a
+    question about another person has one (decision 48).
     votes — card_votes(): a "vote:" line in each card of a three-card yes/no reading (stage 4.5 §4)."""
     lang = reading["lang"]
     question, topic, situation = reading.get("question"), reading.get("topic"), reading.get("situation")

@@ -56,7 +56,8 @@ def load_helplines() -> dict:
 
 
 def soft_line(texts: dict, group: str) -> str | None:
-    """The line above the answer: no forecast (topic), not another person (person), not financial advice (money)."""
+    """The line above the answer (stage 4.8, decisions 48–49): the themes of the cards, no prediction or advice
+    (topic); what the cards mean, not another person's mind (person); not financial advice (money)."""
     return texts["soft_lines"].get(group) if group in GROUP_SOFT_LINES else None
 
 

@@ -66,10 +66,10 @@ def test_yes_no_has_verdict():
 
 
 def test_yes_no_without_verdict_has_no_verdict_tag():
-    reading = make_reading(kind="yes_no", verdict=None, guard_group="redirect_person",
+    reading = make_reading(kind="yes_no", verdict=None, guard_group="redirect_topic",
                            cards=[{"card_id": "major-18-moon", "position": "card", "reversed": False}])
     text = reading_input(reading, BASE.excerpts(reading["cards"], "en", None), None)
-    assert text.startswith('<reading kind="yes_no" lang="en" guard_group="redirect_person">')
+    assert text.startswith('<reading kind="yes_no" lang="en" guard_group="redirect_topic">')
     assert "<verdict" not in text
 
 
@@ -163,7 +163,7 @@ def test_three_yes_no_cards_carry_their_votes(lang, position, votes):
 
 def test_no_votes_for_one_card_or_without_a_verdict():
     one = make_reading(kind="yes_no", verdict="yes", cards=YES_NO_THREE[:1])
-    closed = make_reading(kind="yes_no", verdict=None, guard_group="redirect_person", cards=YES_NO_THREE)
+    closed = make_reading(kind="yes_no", verdict=None, guard_group="redirect_topic", cards=YES_NO_THREE)
     assert card_votes(one, BASE) is None and card_votes(closed, BASE) is None
     text = reading_input(closed, BASE.excerpts(YES_NO_THREE, "en", None), None, card_votes(closed, BASE))
     assert "vote:" not in text and text.count('position="one of three"') == 3

@@ -1,5 +1,5 @@
 // JSON-LD of the pages (spec stage 6 §3): BreadcrumbList wherever there are breadcrumbs; FAQPage from the FAQ; the
-// card page an Article (author and publisher: the Organization "Arcana Diary"; dateModified = reviewed_at; the
+// card page an Article (author and publisher: the Organization "Arcana Diary"; datePublished = dateModified = reviewed_at (owner decision 46); the
 // editor a Person; isBasedOn: Waite's book on Wikisource) whose WebPage carries reviewedBy — schema.org defines
 // reviewedBy on WebPage, not on Article; hubs a CollectionPage with an ItemList; tools and text pages a WebPage.
 import type { Crumb } from './breadcrumbs';
@@ -67,7 +67,7 @@ export function cardLd(p: { headline: string; description: string; path: string;
   const editor = { '@type': 'Person', name: p.editorName, jobTitle: 'Editor' };
   return {
     '@context': CONTEXT, '@type': 'Article', headline: p.headline, description: p.description, inLanguage: p.lang,
-    image: absoluteUrl(p.image), author: ORGANIZATION, publisher: ORGANIZATION, dateModified: p.reviewedAt, editor,
+    image: absoluteUrl(p.image), author: ORGANIZATION, publisher: ORGANIZATION, datePublished: p.reviewedAt, dateModified: p.reviewedAt, editor,
     isBasedOn: WAITE_BOOK,
     mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl(p.path), url: absoluteUrl(p.path), reviewedBy: editor,
       lastReviewed: p.reviewedAt },

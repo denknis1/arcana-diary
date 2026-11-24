@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { allPagePaths, hreflangPair, langOf } from './routes';
-import { DEFAULT_IMAGE, SITE_URL, absoluteUrl, alternates } from './seo';
+import { DEFAULT_IMAGE, SITE_URL, absoluteUrl, alternates, defaultImage } from './seo';
 import { hiddenPaths } from './textPages';
 
 describe('canonical and hreflang (spec stage 6 §3)', () => {
@@ -9,7 +9,8 @@ describe('canonical and hreflang (spec stage 6 §3)', () => {
     expect(absoluteUrl('/')).toBe('https://arcanadiary.com/');
     expect(absoluteUrl('/es')).toBe('https://arcanadiary.com/es');
     expect(absoluteUrl('/cards/the-moon.webp')).toBe('https://arcanadiary.com/cards/the-moon.webp');
-    expect(DEFAULT_IMAGE).toBe('/cards/the-moon.webp');
+    expect(DEFAULT_IMAGE).toBe('/og/og-en.jpg');
+    expect(defaultImage('es')).toBe('/og/og-es.jpg');
   });
 
   it('gives a paired page en, es and x-default = EN, from either side', () => {

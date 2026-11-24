@@ -920,3 +920,14 @@ def test_a_database_failure_in_a_followup_replay_is_logged(api, monkeypatch, cap
         events = parse_sse("".join(replay_followup(api.ctx, reading, followup)))
     assert events[-1] == ("error", {"reason": "db"})
     assert "follow-up replay: database unavailable: column followups.nope does not exist" in caplog.text
+
+
+def test_followup_on_a_person_reading_with_a_verdict_sends_the_verdict(api):
+    """Fable review of 4.8, M4: the <verdict> goes to the model with the reading, and the follow-up is judged by the
+    stricter group of the reading (a caring-guess phrase from the dictionary replaces the answer)."""
+    api.guard.json_replies.append({"group": "redirect_person", "violence": False})
+    reading_id = ready_reading(api, kind="yes_no", question="Should I tell him how I feel?")
+    api.reader.replies.append(FakeReply(chunks=["The Lovers speak of closeness, and he still cares about you."]))
+    events = parse_sse(ask(api.client, reading_id, "What helps me now?").text)
+    assert '<verdict value="' in api.reader.stream_calls()[-1]["messages"][0]["content"]
+    assert fin(events)[1]["answer_shown"] == "fallback"

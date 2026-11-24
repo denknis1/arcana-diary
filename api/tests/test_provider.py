@@ -12,7 +12,7 @@ from app.terms import find_banned
 MSG3 = [{"role": "user", "content": '<reading kind="three" lang="en" guard_group="ok">\n<cards count="3">'}]
 MSG_YN = [{"role": "user", "content": '<reading kind="yes_no" lang="en" guard_group="ok">\n<cards count="1">\n'
                                       '</cards>\n<verdict value="yes">Yes</verdict>'}]
-MSG_YN_NO_VERDICT = [{"role": "user", "content": '<reading kind="yes_no" lang="en" guard_group="redirect_person">\n'
+MSG_YN_NO_VERDICT = [{"role": "user", "content": '<reading kind="yes_no" lang="en" guard_group="redirect_topic">\n'
                                                  '<cards count="1">'}]
 
 
