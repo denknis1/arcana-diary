@@ -147,7 +147,7 @@ describe('ReadingIsland: the links under the drawn card follow the tool (stage 2
     await typeInto(root.querySelector('input[type="text"]')!, '¿Funcionará?');
     await click(byText(root, t('es').drawLove, 'button'));
     await waitFor(() => byText(root, 'La Luna en el amor', 'a'));
-    expect(Array.from(root.querySelectorAll<HTMLAnchorElement>('.night__actions a.btn')).map((a) => [a.getAttribute('href'), a.textContent]))
-      .toEqual([['/es/cartas/la-luna#amor', 'La Luna en el amor'], ['/es/cartas/la-luna', 'La Luna — significado completo']]);
+    expect(Array.from(root.querySelectorAll<HTMLAnchorElement>('.more-cards a')).map((a) => [a.getAttribute('href'), a.textContent]))
+      .toEqual([['/es/cartas/la-luna#amor', 'La Luna en el amor'], ['/es/cartas/la-luna', 'significado completo']]);
   });
 });

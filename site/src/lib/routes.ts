@@ -93,12 +93,15 @@ const full = (row: string): DrawnRule => ({ row, text: 'fullMeaning' });
  * Spanish one-card readings are the #una-carta mode of the home page (ES-001) and the card page's own draw. */
 const DRAWN_RULES: Readonly<Record<Lang, Readonly<Record<Tool, readonly DrawnRule[]>>>> = {
   en: {
+    // three_cards is a Spanish page only (/es/tiradas/3-cartas): the English entry is never reached, it is here
+    // because every tool has rules in both languages
     home: [full('L-EN-01')], three_cards: [full('L-EN-01')], one_card: [full('L-EN-02')],
     love: [full('L-EN-03')], yes_no: [full('L-EN-31')], daily: [{ row: 'L-EN-15', text: 'dailyCardLink' }],
   },
   es: {
     home: [full('L-ES-01')], one_card: [full('L-ES-01')], three_cards: [full('L-ES-02')],
-    love: [{ row: 'L-ES-03', text: 'drawnLoveLink', section: 'love' }, full('L-ES-23')],
+    // one row per card (owner decision 41): "La Luna en el amor · significado completo", the name said once
+    love: [{ row: 'L-ES-03', text: 'drawnLoveLink', section: 'love' }, { row: 'L-ES-23', text: 'drawnFullShort' }],
     yes_no: [{ row: 'L-ES-04', text: 'drawnWhyLink', section: 'yes_no' }],
     daily: [{ row: 'L-ES-15', text: 'dailyCardLink' }],
   },
@@ -112,17 +115,23 @@ function ownVote(card: Pick<DrawnCard, 'reversed' | 'vote'>, deckCard: DeckCard)
 }
 
 /** The links under one drawn card for a tool (owner decision 38: the screen follows the stage 2 matrix); the card
- * name is the card base's, the verdict the yes/no label in lower case, mid-sentence. No links for an unknown card. */
-export function drawnCardLink(card: Pick<DrawnCard, 'card_id' | 'reversed' | 'vote'>, tool: Tool, lang: Lang): DrawnLink[] {
+ * name is the card base's, the verdict the yes/no label in lower case, mid-sentence. A card whose own vote is "not
+ * clear yet" asks «¿Por qué La Luna?» (owner decision 41). A yes/no reading without a verdict (health, legal, safety,
+ * another person: the API gives no verdict and no votes) names no yes or no: the card's full meaning instead (owner
+ * decision of 24.11.2026). No links for an unknown card. */
+export function drawnCardLink(card: Pick<DrawnCard, 'card_id' | 'reversed' | 'vote'>, tool: Tool, lang: Lang,
+  hasVerdict = true): DrawnLink[] {
   const deckCard = cardById(card.card_id);
   if (!deckCard) return [];
   const d = t(lang);
   const name = cardName(deckCard, lang);
-  const verdict = d[VOTE_KEYS[ownVote(card, deckCard)]].toLocaleLowerCase(lang);
-  return DRAWN_RULES[lang][tool].map((rule) => ({
+  const vote = ownVote(card, deckCard);
+  const verdict = d[VOTE_KEYS[vote]].toLocaleLowerCase(lang);
+  const rules = tool === 'yes_no' && !hasVerdict ? [full(lang === 'en' ? 'L-EN-31' : 'L-ES-01')] : DRAWN_RULES[lang][tool];
+  return rules.map((rule) => ({
     row: rule.row,
     href: rule.section ? `${cardPath(deckCard, lang)}#${SECTION_IDS[lang][rule.section]}` : cardPath(deckCard, lang),
-    text: fill(d[rule.text], { name, verdict }),
+    text: fill(d[rule.text === 'drawnWhyLink' && vote === 'unclear' ? 'drawnWhyUnclearLink' : rule.text], { name, verdict }),
   }));
 }
 

@@ -4,11 +4,11 @@
 // the question small at top left, the headline as the large title; on a desktop cards left, text right (13d).
 // Close: × and Escape (listened on the document, so it works wherever focus is); Tab stays inside; after an action
 // whose button disappears, and on every change of phase, focus goes to the title. Yes/no on three cards (spec 4.5
-// §4): under each card its own vote (icon and word), the verdict and "why" large in the text column. Stage 4.4b §4:
-// the last of the answer's actions is "Save to diary" (a guest: opens the save sheet inside this dialog; Escape then
-// closes the sheet first, and the room behind it is inert) or "Saved to your diary ✓" with the link to the entry.
-// The links under the drawn cards follow the launch rows of the stage 2 matrix for the tool (owner decision 38,
-// drawnCardLink in src/lib/routes.ts).
+// §4): under each card its own vote (icon and word), the verdict and "why" large in the text column. Under the answer
+// (owner decision 41) "Save to diary" comes first (a guest: opens the save sheet inside this dialog; Escape then
+// closes the sheet first, and the room behind it is inert) or "Saved to your diary ✓" with the link to the entry;
+// below it a compact list of text links, one row per drawn card, that follow the launch rows of the stage 2 matrix
+// for the tool (owner decision 38, drawnCardLink in src/lib/routes.ts); then "Back to …" and "Ask another question".
 import type { ComponentChildren } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { fill, t, type DictKey } from '../../i18n';
@@ -82,6 +82,10 @@ export function NightRoom(props: NightRoomProps) {
   const reading = state.reading;
   const cards = reading?.cards ?? [];
   const three = cards.length === 3;
+  // one row of text links per drawn card (owner decision 41), none on the card page: its card is the page itself
+  const drawnRows = config.entry === 'card_page' ? [] : cards
+    .map((card) => drawnCardLink(card, config.tool, lang, Boolean(reading?.verdict)))
+    .filter((links) => links.length > 0);
   const timed = timedSpread(state); // past · present · path (not the three yes/no cards)
   const votes = cardVotes(state);
   const withAnswer = state.phase === 'reading' && answerVisible(state);
@@ -225,19 +229,30 @@ export function NightRoom(props: NightRoomProps) {
               ) : null}
               {readingShown(state) ? (
                 <div class="night__actions">
-                  {three ? <span class="answer__label">{d.moreAbout}</span> : null}
-                  {cards.flatMap((card) => drawnCardLink(card, config.tool, lang)).map((link) => (
-                    <a key={link.href} class="btn btn--outline" href={link.href} onClick={props.onMoreAbout}>{link.text}</a>
-                  ))}
-                  {props.sourceName ? (
-                    <button type="button" class="btn btn--gold" onClick={props.onClose}>{fill(d.backTo, { name: props.sourceName })}</button>
-                  ) : null}
-                  <button type="button" class="btn btn--text" onClick={props.onAskAnother}>{d.askAnother}</button>
                   {props.save ? (props.save.saved ? (
                     <p class="saved-mark"><a href={props.save.href}>{d.savedToDiary}</a></p>
                   ) : (
                     <button type="button" class="btn btn--gold" ref={saveButton} onClick={props.save.onSave}>{d.saveToDiary}</button>
                   )) : null}
+                  {drawnRows.length > 0 ? (
+                    <div class="more-cards">
+                      {three ? <span class="answer__label" id="more-cards-label">{d.moreAbout}</span> : null}
+                      <ul aria-labelledby={three ? 'more-cards-label' : undefined}>
+                        {drawnRows.map((links, i) => (
+                          <li key={i}>
+                            {links.flatMap((link, j) => [
+                              j > 0 ? <span key={`dot-${j}`} aria-hidden="true"> · </span> : null,
+                              <a key={link.href} href={link.href} onClick={props.onMoreAbout}>{link.text}</a>,
+                            ])}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                  {props.sourceName ? (
+                    <button type="button" class="btn btn--gold" onClick={props.onClose}>{fill(d.backTo, { name: props.sourceName })}</button>
+                  ) : null}
+                  <button type="button" class="btn btn--text" onClick={props.onAskAnother}>{d.askAnother}</button>
                 </div>
               ) : null}
               <p class="night__foot">{d.notGuarantee}</p>

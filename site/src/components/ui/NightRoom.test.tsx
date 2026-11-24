@@ -20,10 +20,13 @@ function room(state: NightState, extra: Partial<NightRoomProps> = {}) {
 afterEach(() => cleanup());
 
 describe('the night room and the diary (spec 4.4b §4)', () => {
-  it('a guest gets "Save to diary" under the answer, after the other actions (review M14)', async () => {
+  // L-EN-32, L-ES-26 (stage 2 matrix, owner decision 42): saving at launch is the reading's, not the Card of the Day's
+  it('L-EN-32: a guest gets "Save to diary" right under the answer, the first of its actions (owner decision 41)', async () => {
     const onSave = vi.fn();
     const { root } = await mount(room(shown(ONE, { headline: 'Slow down.' }), { save: { saved: false, href: '/diary?r=r1', onSave } }));
-    expect(root.querySelector('.night__actions')!.lastElementChild?.textContent).toBe('Save to diary');
+    const actions = Array.from(root.querySelector('.night__actions')!.children).map((el) => el.className);
+    expect(actions).toEqual(['btn btn--gold', 'more-cards', 'btn btn--text']); // save, the card links, ask another
+    expect(root.querySelector('.night__actions')!.firstElementChild?.textContent).toBe('Save to diary');
     await click(byText(root, 'Save to diary', 'button'));
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(queryText(root, 'Saved to your diary ✓')).toBeNull();
@@ -33,6 +36,17 @@ describe('the night room and the diary (spec 4.4b §4)', () => {
     const { root } = await mount(room(shown(ONE, { headline: 'Slow down.' }), { save: { saved: true, href: '/diary?r=r1', onSave: vi.fn() } }));
     expect(byText<HTMLAnchorElement>(root, 'Saved to your diary ✓', 'a').getAttribute('href')).toBe('/diary?r=r1');
     expect(queryText(root, 'Save to diary', 'button')).toBeNull();
+  });
+
+  it('L-ES-26: «Guardar en el diario» under the Spanish answer, then «Guardada en tu diario ✓» to the entry', async () => {
+    const config = panelConfig('one_card', 'es');
+    const guest = await mount(room(shown({ ...ONE, lang: 'es' }, { headline: 'Despacio.' }), {
+      lang: 'es', config, save: { saved: false, href: '/es/diario?r=r1', onSave: vi.fn() } }));
+    expect(guest.root.querySelector('.night__actions')!.firstElementChild?.textContent).toBe('Guardar en el diario');
+    guest.unmount();
+    const { root } = await mount(room(shown({ ...ONE, lang: 'es' }, { headline: 'Despacio.' }), {
+      lang: 'es', config, save: { saved: true, href: '/es/diario?r=r1', onSave: vi.fn() } }));
+    expect(byText<HTMLAnchorElement>(root, 'Guardada en tu diario ✓', 'a').getAttribute('href')).toBe('/es/diario?r=r1');
   });
 
   it('shows nothing when sign-in is off; with the sheet open Escape closes the sheet, not the room', async () => {
@@ -75,7 +89,8 @@ describe('the night room and the diary (spec 4.4b §4)', () => {
 
 // Owner decision 38 (23.11.2026): the links under the drawn cards follow the launch rows of
 // docs/research/stage2/links-{en,es}.csv — tools/site/check_links.py names this file for each row id below.
-describe('links under the drawn cards (stage 2 matrix, owner decision 38)', () => {
+// Owner decision 41: a compact list of text links, one row per drawn card, not full-width buttons.
+describe('links under the drawn cards (stage 2 matrix, owner decisions 38, 41)', () => {
   const card = (card_id: string, name: string, position: DrawnCard['position'], reversed = false, vote?: Vote): DrawnCard =>
     ({ card_id, name, position, reversed, ...(vote ? { vote } : {}) });
   const three = (lang: Lang, kind: ReadingCreated['kind'] = 'three'): ReadingCreated => ({
@@ -87,12 +102,18 @@ describe('links under the drawn cards (stage 2 matrix, owner decision 38)', () =
     id: 'r1', lang, kind, verdict, soft_line: null, remaining: 1,
     cards: [card('major-18-moon', lang === 'en' ? 'The Moon' : 'La Luna', 'card')],
   });
+  const mountRoom = (reading: ReadingCreated, lang: Lang, page: PanelPage) => mount(room(shown(reading, { headline: 'Slow down.' }), {
+    lang, config: panelConfig(page, lang, page === 'card' ? 'major-18-moon' : null), threeCards: reading.cards.length === 3,
+  }));
   const links = async (reading: ReadingCreated, lang: Lang, page: PanelPage) => {
-    const { root } = await mount(room(shown(reading, { headline: 'Slow down.' }), {
-      lang, config: panelConfig(page, lang), threeCards: reading.cards.length === 3,
-    }));
-    return Array.from(root.querySelectorAll<HTMLAnchorElement>('.night__actions a.btn'))
+    const { root } = await mountRoom(reading, lang, page);
+    expect(root.querySelectorAll('.more-cards a.btn')).toHaveLength(0); // text links, no pill buttons
+    return Array.from(root.querySelectorAll<HTMLAnchorElement>('.more-cards a'))
       .map((a) => [a.getAttribute('href'), a.textContent]);
+  };
+  const rows = async (reading: ReadingCreated, lang: Lang, page: PanelPage) => {
+    const { root } = await mountRoom(reading, lang, page);
+    return Array.from(root.querySelectorAll('.more-cards li')).map((li) => li.textContent);
   };
   const EN_THREE = [['/cards/the-moon', 'The Moon — full meaning'], ['/cards/the-sun', 'The Sun — full meaning'],
     ['/cards/the-star', 'The Star — full meaning']];
@@ -126,17 +147,20 @@ describe('links under the drawn cards (stage 2 matrix, owner decision 38)', () =
     expect(await links(three('es'), 'es', 'three_cards')).toEqual(ES_THREE);
   });
 
-  it('L-ES-03, L-ES-23: the love reading — "{card_name} en el amor" to #amor, then "— significado completo"', async () => {
+  it('L-ES-03, L-ES-23: the love reading — "{card_name} en el amor" to #amor · "significado completo", one row a card', async () => {
     expect(await links(three('es'), 'es', 'love')).toEqual([
-      ['/es/cartas/la-luna#amor', 'La Luna en el amor'], ['/es/cartas/la-luna', 'La Luna — significado completo'],
-      ['/es/cartas/el-sol#amor', 'El Sol en el amor'], ['/es/cartas/el-sol', 'El Sol — significado completo'],
-      ['/es/cartas/la-estrella#amor', 'La Estrella en el amor'], ['/es/cartas/la-estrella', 'La Estrella — significado completo'],
+      ['/es/cartas/la-luna#amor', 'La Luna en el amor'], ['/es/cartas/la-luna', 'significado completo'],
+      ['/es/cartas/el-sol#amor', 'El Sol en el amor'], ['/es/cartas/el-sol', 'significado completo'],
+      ['/es/cartas/la-estrella#amor', 'La Estrella en el amor'], ['/es/cartas/la-estrella', 'significado completo'],
     ]);
+    expect(await rows(three('es'), 'es', 'love')).toEqual(['La Luna en el amor · significado completo',
+      'El Sol en el amor · significado completo', 'La Estrella en el amor · significado completo']);
   });
 
   it('L-ES-04: sí o no — "Por qué {card_name} dice {verdict}" to #si-o-no, each card with its own vote', async () => {
+    // a card that says "not clear yet" asks the short question (owner decision 41)
     expect(await links(one('es', 'yes_no', { value: 'unclear', label: 'Todavía no está claro' }), 'es', 'yes_no'))
-      .toEqual([['/es/cartas/la-luna#si-o-no', 'Por qué La Luna dice todavía no está claro']]);
+      .toEqual([['/es/cartas/la-luna#si-o-no', '¿Por qué La Luna?']]);
     const votes: ReadingCreated = {
       id: 'r3', lang: 'es', kind: 'yes_no', soft_line: null, remaining: 1, verdict: { value: 'yes', label: 'Sí' },
       cards: [card('major-19-sun', 'El Sol', 'card', false, 'yes'), card('major-16-tower', 'La Torre', 'card', false, 'no'),
@@ -144,7 +168,21 @@ describe('links under the drawn cards (stage 2 matrix, owner decision 38)', () =
     };
     expect(await links(votes, 'es', 'yes_no')).toEqual([
       ['/es/cartas/el-sol#si-o-no', 'Por qué El Sol dice sí'], ['/es/cartas/la-torre#si-o-no', 'Por qué La Torre dice no'],
-      ['/es/cartas/la-estrella#si-o-no', 'Por qué La Estrella dice todavía no está claro'],
+      ['/es/cartas/la-estrella#si-o-no', '¿Por qué La Estrella?'],
     ]);
+  });
+
+  it('L-ES-04 without a verdict (health, legal, safety, another person): no yes or no, the full meaning instead', async () => {
+    // the API gives no verdict and no votes; the rule of the deck would say "sí" for El Sol — the link must not
+    const sun: ReadingCreated = { ...one('es', 'yes_no'), cards: [card('major-19-sun', 'El Sol', 'card')] };
+    expect(await links(sun, 'es', 'yes_no')).toEqual([['/es/cartas/el-sol', 'El Sol — significado completo']]);
+    expect(await links({ ...three('es', 'yes_no'), verdict: null }, 'es', 'yes_no')).toEqual(ES_THREE);
+    expect(await links({ ...sun, lang: 'en', cards: [card('major-19-sun', 'The Sun', 'card')] }, 'en', 'yes_no'))
+      .toEqual([['/cards/the-sun', 'The Sun — full meaning']]);
+  });
+
+  it('shows no link to the card of the card page itself (it would reload the page and close the reading)', async () => {
+    expect(await links(one('en', 'card_page'), 'en', 'card')).toEqual([]);
+    expect(await links(one('es', 'card_page'), 'es', 'card')).toEqual([]);
   });
 });

@@ -111,8 +111,17 @@ describe('drawnCardLink (owner decision 38; every row on screen: NightRoom.test.
 
   it('takes the vote from the API, else the yes/no rule (reversed: not clear yet); no link for an unknown card', () => {
     const sun = (reversed: boolean, vote?: 'no') => drawnCardLink({ card_id: 'major-19-sun', reversed, vote }, 'yes_no', 'es')[0].text;
-    expect([sun(false), sun(true), sun(false, 'no')]).toEqual(['Por qué El Sol dice sí',
-      'Por qué El Sol dice todavía no está claro', 'Por qué El Sol dice no']);
+    expect([sun(false), sun(true), sun(false, 'no')]).toEqual(['Por qué El Sol dice sí', '¿Por qué El Sol?',
+      'Por qué El Sol dice no']);
     expect(drawnCardLink({ card_id: 'major-99-none', reversed: false }, 'love', 'es')).toEqual([]);
+  });
+
+  it('names no yes or no when the reading has no verdict: the full meaning of the card', () => {
+    const sun = { card_id: 'major-19-sun', reversed: false };
+    expect(drawnCardLink(sun, 'yes_no', 'es', false)).toEqual([{ row: 'L-ES-01', href: '/es/cartas/el-sol',
+      text: 'El Sol — significado completo' }]);
+    expect(drawnCardLink(sun, 'yes_no', 'en', false)).toEqual([{ row: 'L-EN-31', href: '/cards/the-sun',
+      text: 'The Sun — full meaning' }]);
+    expect(drawnCardLink(sun, 'love', 'es', false).map((l) => l.row)).toEqual(['L-ES-03', 'L-ES-23']); // only yes/no
   });
 });

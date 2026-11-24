@@ -94,10 +94,13 @@ export const es: Dict = {
   dailyFallbackNote: 'No pudimos cargar tu carta, así que aquí tienes la carta de hoy de nuestra base de cartas.',
   dailyError: 'No pudimos voltear tu carta ahora mismo. Inténtalo de nuevo en un momento.',
   fullMeaning: '{name} — significado completo',
-  // links under a drawn card (stage 2 matrix, owner decision 38): L-ES-15, L-ES-03 (#amor), L-ES-04 (#si-o-no)
+  // links under a drawn card (stage 2 matrix, owner decisions 38, 41): L-ES-15, L-ES-03 (#amor), L-ES-04 (#si-o-no;
+  // a card that says "not clear yet": «¿Por qué La Luna?»), L-ES-23 after L-ES-03 in one row («· significado completo»)
   dailyCardLink: 'Carta de hoy: {name}',
   drawnLoveLink: '{name} en el amor',
   drawnWhyLink: 'Por qué {name} dice {verdict}',
+  drawnWhyUnclearLink: '¿Por qué {name}?',
+  drawnFullShort: 'significado completo',
   reversedTag: 'Al revés',
 
   cardTitle: '{name}: significado en el tarot — Arcana Diary',
