@@ -3,10 +3,12 @@ import { FACTS, fillFacts, missingFacts } from './facts';
 
 describe('facts (spec stage 6 §2, owner decision 36)', () => {
   it('hold the limits, the yes/no counts, the editor and the operator facts that are filled in', () => {
-    // content/operator.json: name, address and jurisdiction are still empty, so they are not here
     expect(Object.keys(FACTS).sort()).toEqual(['contact_email', 'diary_free', 'editor_name', 'effective_date',
-      'email_provider', 'followups', 'guest_limit', 'hosting_provider', 'no_count', 'unclear_count', 'user_limit',
-      'yes_count']);
+      'email_provider', 'followups', 'guest_limit', 'hosting_provider', 'jurisdiction', 'no_count', 'operator_address',
+      'operator_name', 'unclear_count', 'user_limit', 'yes_count']);
+    expect(FACTS.operator_name).toBe('Denis Kniazev');
+    expect(fillFacts('{operator_address} / {jurisdiction}', FACTS, 'en')).toBe('the Netherlands / the Netherlands');
+    expect(fillFacts('{operator_address} / {jurisdiction}', FACTS, 'es')).toBe('Países Bajos / los Países Bajos');
     expect(Number(FACTS.yes_count) + Number(FACTS.no_count) + Number(FACTS.unclear_count)).toBe(78);
     expect(FACTS.editor_name).toBe('Adrian Solenne');
   });

@@ -18,13 +18,15 @@ describe('stage 5 text pages', () => {
     expect(pageTexts(home).join(' ')).not.toMatch(/\{\w+\}/);
   });
 
+  // a synthetic facts object: the real one is complete, the hide rule must still hold for an empty placeholder
+  const { operator_name: _name, ...EMPTY_NAME } = FACTS;
+
   it('hide a service page while an operator placeholder has no value (owner decision 35)', () => {
-    expect(isHidden(textPage('/about'))).toBe(true);
-    expect(isHidden(textPage('/es/privacidad'))).toBe(true);
-    expect(isHidden(textPage('/how-readings-work'))).toBe(false);
-    expect(isHidden(textPage('/'))).toBe(false);
-    expect(isHidden(textPage('/about'), { ...FACTS, operator_name: 'X', operator_address: 'Y', contact_email: 'Z' }))
-      .toBe(false);
+    expect(isHidden(textPage('/about'), EMPTY_NAME)).toBe(true);
+    expect(isHidden(textPage('/es/privacidad'), EMPTY_NAME)).toBe(true);
+    expect(isHidden(textPage('/how-readings-work'), EMPTY_NAME)).toBe(false);
+    expect(isHidden(textPage('/'), EMPTY_NAME)).toBe(false);
+    expect(isHidden(textPage('/about'), { ...EMPTY_NAME, operator_name: 'X' })).toBe(false);
   });
 
   it('open every service page once the operator facts are all filled in, with the date of its own language', () => {
@@ -43,17 +45,26 @@ describe('stage 5 text pages', () => {
     expect(() => isHidden(page)).toThrow('{nope}');
   });
 
-  it('know the ten service pages and which of them are hidden now', () => {
+  it('know the ten service pages, all open with the real operator facts', () => {
     expect(SERVICE_PAGE_IDS.size).toBe(10);
-    expect([...hiddenPaths()].sort()).toEqual(['/about', '/contact', '/es/contacto', '/es/privacidad',
+    expect([...hiddenPaths()]).toEqual([]);
+    for (const page of TEXT_PAGES.filter((p) => SERVICE_PAGE_IDS.has(p.page_id))) {
+      expect(isHidden(page), page.url).toBe(false);
+      expect(pageTexts(filledPage(page)).join(' '), page.url).not.toMatch(/\{\w+\}/);
+    }
+  });
+
+  it('hide exactly the eight operator pages with a synthetic empty operator name', () => {
+    expect([...hiddenPaths(EMPTY_NAME)].sort()).toEqual(['/about', '/contact', '/es/contacto', '/es/privacidad',
       '/es/sobre-nosotros', '/es/terminos', '/privacy', '/terms']);
   });
 
   it('never pair an open page with a hidden one for hreflang', () => {
-    const hidden = hiddenPaths();
-    for (const path of allPagePaths()) {
-      const pair = hreflangPair(path);
-      if (!hidden.has(path) && pair !== null) expect(hidden.has(pair), `${path} ↔ ${pair}`).toBe(false);
+    for (const hidden of [hiddenPaths(), hiddenPaths(EMPTY_NAME)]) {
+      for (const path of allPagePaths()) {
+        const pair = hreflangPair(path);
+        if (!hidden.has(path) && pair !== null) expect(hidden.has(pair), `${path} ↔ ${pair}`).toBe(false);
+      }
     }
   });
 
@@ -64,7 +75,8 @@ describe('stage 5 text pages', () => {
   });
 
   it('give the address of a page only while it is open', () => {
-    expect(openPagePath('privacy', 'en')).toBeNull();
+    expect(openPagePath('privacy', 'en')).toBe('/privacy');
+    expect(openPagePath('privacy', 'es')).toBe('/es/privacidad');
     expect(openPagePath('how_readings_work', 'es')).toBe('/es/como-funcionan-las-lecturas');
   });
 });

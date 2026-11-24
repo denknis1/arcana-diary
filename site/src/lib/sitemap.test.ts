@@ -3,13 +3,15 @@ import { alternates } from './seo';
 import { indexablePaths, sitemapXml } from './sitemap';
 
 describe('sitemap (spec stage 6 §3)', () => {
-  it('lists the indexable pages: no diary, no account, no 404, no hidden service page', () => {
+  it('lists the indexable pages: no diary, no account, no 404, no hidden service page (none is hidden now)', () => {
     const paths = indexablePaths();
-    expect(paths).toHaveLength(187 - 4 - 2 - 8); // no diary/account, no 404, no hidden service page
+    expect(paths).toHaveLength(187 - 4 - 2); // no diary/account, no 404; the eight operator pages are open
     expect(paths).toContain('/how-readings-work');
     expect(paths).toContain('/cards');
     expect(paths).toContain('/es/tiradas/3-cartas');
-    for (const p of ['/diary', '/es/diario', '/account', '/es/cuenta', '/404', '/es/404', '/about']) {
+    for (const p of ['/about', '/contact', '/privacy', '/terms', '/es/sobre-nosotros', '/es/contacto',
+      '/es/privacidad', '/es/terminos']) expect(paths).toContain(p);
+    for (const p of ['/diary', '/es/diario', '/account', '/es/cuenta', '/404', '/es/404']) {
       expect(paths).not.toContain(p);
     }
   });
