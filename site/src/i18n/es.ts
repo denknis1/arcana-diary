@@ -292,6 +292,8 @@ export const es: Dict = {
   footerTerms: 'Términos',
   // etapa 6: junto a la línea del proveedor de IA y a los consentimientos, cuando la página de privacidad se abre
   privacyLink: 'Aviso de privacidad',
+  consentLine: 'Al continuar confirmas que tienes 18 años o más y aceptas los {terms} y el {privacy}.',
+  termsLink: 'Términos',
   // etapa 6: textos de enlace de la matriz de la etapa 2 (links-es.csv, ola «запуск»)
   fmtCards: 'Significados de las cartas',
   fmtCardsHint: 'Qué significa cada una de las 78 cartas del tarot',

@@ -62,7 +62,7 @@ export function isHidden(page: TextPage, facts: Facts = FACTS): boolean {
 }
 
 export function filledPage(page: TextPage, facts: Facts = FACTS): TextPage {
-  const f = (text: string) => fillFacts(text, facts);
+  const f = (text: string) => fillFacts(text, facts, page.lang);
   return {
     ...page,
     title: f(page.title), description: f(page.description), h1: f(page.h1), lead: f(page.lead),

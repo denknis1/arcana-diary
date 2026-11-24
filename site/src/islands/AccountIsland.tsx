@@ -60,6 +60,7 @@ interface Props {
   lang: Lang;
   /** The privacy page under the consent, once it is open (spec stage 6 §6). */
   privacyHref?: string;
+  termsHref?: string;
   /** Tests pass their own; the page uses the real ones. */
   api?: AccountApi;
   save?: SaveFile;
@@ -68,7 +69,7 @@ interface Props {
   signOutWaitMs?: number;
 }
 
-export default function AccountIsland({ lang, privacyHref, api: given, save = saveFile, navigate = (url) => location.assign(url),
+export default function AccountIsland({ lang, privacyHref, termsHref, api: given, save = saveFile, navigate = (url) => location.assign(url),
   session = openSession, signOutWaitMs = SIGN_OUT_WAIT_MS }: Props) {
   const d = t(lang);
   const api = useMemo(() => given ?? createAccountApi(siteFetch()), []);
@@ -150,6 +151,7 @@ export default function AccountIsland({ lang, privacyHref, api: given, save = sa
     return (
       <div class="account">
         <SignInBlock lang={lang} auth={status.auth} google={status.google} idBase="account" surface="day"
+          termsHref={termsHref} privacyHref={privacyHref}
           redirectTo={async () => returnUrl(location.origin, lang)} />
       </div>
     );

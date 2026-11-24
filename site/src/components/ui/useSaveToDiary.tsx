@@ -32,6 +32,7 @@ export interface SaveToDiaryOptions {
   origin?: string;
   /** The privacy page next to the reminder consent, once it is open (spec stage 6 §6). */
   privacyHref?: string;
+  termsHref?: string;
 }
 
 export interface SaveToDiary {
@@ -88,7 +89,7 @@ export function useSaveToDiary(options: SaveToDiaryOptions): SaveToDiary {
   const slot = config?.enabled && readingId ? { saved: signedIn, href: entryHref(lang, readingId), onSave: openSheet } : null;
   const sheet = open && config && readingId ? (
     <SaveSheet lang={lang} readingId={readingId} auth={auth} google={config.google} accountApi={api}
-      origin={options.origin ?? location.origin} onClose={closeSheet} privacyHref={options.privacyHref} />
+      origin={options.origin ?? location.origin} onClose={closeSheet} privacyHref={options.privacyHref} termsHref={options.termsHref} />
   ) : null;
   return { slot, sheet, closeSheet: open ? closeSheet : undefined, closeForRoom };
 }

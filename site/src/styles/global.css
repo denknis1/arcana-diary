@@ -172,6 +172,8 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .input--day::placeholder { color: var(--color-day-text-muted); }
 .panel-hint { margin: 0; text-align: center; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
 .provider-line { margin: 0; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.consent-line { margin: 0; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
+.signin--day .consent-line { color: var(--color-day-text-muted); }
 .count-hint { margin: 0; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
 .backs { display: flex; justify-content: center; gap: var(--space-4); padding: var(--space-3) 0; }
 .backs img { width: 92px; aspect-ratio: var(--card-ratio); border-radius: var(--radius-card); }

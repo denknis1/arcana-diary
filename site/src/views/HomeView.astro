@@ -26,6 +26,7 @@ const d = t(lang);
 const path = pagePath('home', lang);
 const text = filledPage(textPage(path));
 const privacyHref = openPagePath('privacy', lang) ?? undefined;
+const termsHref = openPagePath('terms', lang) ?? undefined;
 // the format switch (stage 2 matrix L-EN-17…21, L-ES-17…21); the Card of the Day is the tile under it (L-EN-20,
 // L-ES-19: one link to /daily on the page, SEO Monster 2027 4.4), not a row of the list as well
 const formats = [
@@ -46,7 +47,7 @@ const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => ca
       <h1 class="display display--home">{text.h1}</h1>
       <p class="lead">{text.lead}</p>
     </section>
-    <ReadingIsland client:load lang={lang} page="home" showBacks privacyHref={privacyHref} />
+    <ReadingIsland client:load lang={lang} page="home" showBacks privacyHref={privacyHref} termsHref={termsHref} />
   </div>
 
   <section class="page-section" aria-labelledby="other-ways">
