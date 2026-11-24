@@ -477,7 +477,13 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .card-row a { display: block; }
 .sources { margin: 0; padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); font-size: var(--font-size-small); }
 .sources__what { font-weight: 600; }
-.card-nav { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-7) 0 0; }
+/* a grid, not a flex row: the position line spans both columns, the two links keep their places at the ends */
+.card-nav {
+  display: grid; grid-template-columns: auto auto; justify-content: space-between; column-gap: var(--space-4);
+  row-gap: var(--space-2); padding: var(--space-7) 0 0;
+}
+/* inline-size containment: the line does not widen the two columns, so the links sit where the flex row had them */
+.card-nav__pos { grid-column: 1 / -1; margin: 0; contain: inline-size; }
 .card-nav a { display: flex; flex-direction: column; min-height: 44px; text-decoration: none; color: var(--color-day-text); }
 .card-nav small { color: var(--color-day-text-muted); }
 /* Desktop: rows 1–2 hold the scan beside the H1 and the start of the text, so row 3 (the draw panel) begins right

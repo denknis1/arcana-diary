@@ -1,10 +1,10 @@
 ---
 // The hub of 78 cards (spec stage 6 §5; prototypes Hub, DeskHub — without the suit elements, owner decision 10):
-// capsule, the 22 Major Arcana as pictures under a link to their page, the four suits as name lists with anchors
+// capsule, the 22 Major Arcana as pictures under a link to their page and its card count (L-EN-12, L-ES-12), the four suits as name lists with anchors
 // (#wands… / #bastos…, links L-EN-10, L-ES-10), the draw button, then the stage 5 blocks and FAQ.
 import CardFigure from '../components/CardFigure.astro';
 import TextPageView from './TextPageView.astro';
-import { t } from '../i18n';
+import { fill, t } from '../i18n';
 import { SUITS, ldItems, majorCards, suitCards } from '../lib/cardLists';
 import { TEMPLATE_STRINGS } from '../lib/cardPages';
 import { SUIT_IDS, pagePath } from '../lib/routes';
@@ -23,12 +23,14 @@ const suits = SUITS.map((suit) => ({ suit, id: SUIT_IDS[lang][suit], name: suitN
 <TextPageView lang={lang} pageKey="cards" current="cards" items={ldItems([...majors, ...suits.flatMap((s) => s.cards)])}>
   <section class="page-section" aria-labelledby="major-list">
     <h2 class="h2" id="major-list"><a href={pagePath('major_arcana', lang)}>{d.crumbMajor}</a></h2>
+    <p class="small muted">{fill(d.hubCardCount, { count: majors.length })}</p>
     <ul class="major-grid">
       {majors.map((c) => <li><a href={c.href}><CardFigure card={c.card} lang={lang} sizes="100px" alt="" /></a></li>)}
     </ul>
   </section>
   <section class="page-section" aria-labelledby="minor-list">
     <h2 class="h2" id="minor-list">{d.cardEyebrowMinor}</h2>
+    <p class="small muted">{fill(d.hubCardCount, { count: suits.reduce((n, s) => n + s.cards.length, 0) })}</p>
     {suits.map((s) => (
       <div class="suit" id={s.id}>
         <h3 class="h3"><span class={`suit-dot suit-dot--${s.suit}`} aria-hidden="true"></span>{s.name}</h3>

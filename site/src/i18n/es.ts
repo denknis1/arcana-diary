@@ -115,6 +115,8 @@ export const es: Dict = {
   prevCard: '← Anterior',
   nextCard: 'Siguiente →',
   cardNav: 'Sigue explorando',
+  // etapa 7.3: sobre Anterior / Siguiente — el lugar de la carta en el orden de la baraja que siguen (L-ES-08)
+  cardNavPosition: 'Carta del tarot {n} de {total}, en el orden de la baraja',
 
   notFoundTitle: 'Página no encontrada — Arcana Diary',
   notFoundEyebrow: 'Error 404',
@@ -277,6 +279,11 @@ export const es: Dict = {
   // etapa 6: enlaces de las listas (matriz de la etapa 2, L-ES-14 «Las 78 cartas»)
   allCardsLink: 'Las 78 cartas',
   yesNoListAsk: 'Haz tu pregunta',
+  // etapa 7.3: la línea sobre «Haz tu pregunta» (solo en inglés; la clave iguala los dos archivos) y las pistas del
+  // hub y de «Las 78 cartas» en la página de los arcanos mayores (L-ES-12, L-ES-14)
+  yesNoListAskHint: 'En la página Sí o no sacas una carta del tarot o tres, y esta misma regla da la respuesta.',
+  hubCardCount: '{count} cartas',
+  majorAllCardsHint: 'Significados de todas las cartas del tarot, con los cuatro palos',
   // etapa 6: las páginas de servicio en el pie y en las migas
   footerAbout: 'Sobre nosotros',
   footerHowReadings: 'Cómo funcionan las lecturas',

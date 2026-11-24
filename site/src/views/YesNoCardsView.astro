@@ -1,7 +1,7 @@
 ---
 // Yes or no card list, English only (spec stage 6 §5; prototype YesNoList): capsule, the rule block, then the blocks
 // "Cards that lean yes / no / Not clear yet" each with its list from deck.json (links to the cards, L-EN-05), the
-// other blocks, "Ask your question" (L-EN-06) and the FAQ.
+// other blocks, "Ask your question" (L-EN-06) under a line on what the Yes or No page does, and the FAQ.
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Faq from '../components/Faq.astro';
@@ -42,6 +42,9 @@ const all = (['yes', 'no', 'unclear'] as const).flatMap((v) => verdictCards(v, l
       ) : null}
     </section>
   ))}
-  <p class="page-section"><a class="btn btn--ink" href={pagePath('yes_no', lang)}>{d.yesNoListAsk}</a></p>
+  <div class="page-section">
+    <p>{d.yesNoListAskHint}</p>
+    <a class="btn btn--ink" href={pagePath('yes_no', lang)}>{d.yesNoListAsk}</a>
+  </div>
   <Faq heading={d.faqTitle} items={page.faq} id="faq" />
 </Base>
