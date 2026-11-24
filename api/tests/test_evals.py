@@ -515,6 +515,15 @@ def test_run_item_shows_the_rewritten_section_and_grades_the_raw_one():
     assert len(rewriter.json_calls()) == 1 and reader.json_calls() == []
 
 
+def test_run_item_records_why_a_rewrite_was_rejected():
+    item = run.load_items("es")[0]
+    reader = FakeProvider(replies=[FakeReply(chunks=split_chunks(es_three(ES_GENDERED)))])
+    rewriter = FakeProvider(json_replies=[{"text": ES_GENDERED.replace("cansada", "agotada")}])
+    result = run.run_item(item, **es_item_kwargs(reader, rewriter))
+    assert result["rewritten"] == [] and result["shown_sections"]["card2"] == ES_GENDERED
+    assert result["rewrite_rejected"] == {"card2": "gender still found (1 form)"}
+
+
 def test_run_item_without_a_rewriter_keeps_the_model_text():
     item = run.load_items("es")[0]
     reader = FakeProvider(replies=[FakeReply(chunks=split_chunks(es_three(ES_GENDERED)))])

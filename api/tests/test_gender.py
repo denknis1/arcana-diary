@@ -62,6 +62,29 @@ MORE_HITS = [
     ("Te sientes un poco más abierta hoy.", "Te sientes un poco más abierta"),
 ]
 
+# The six forms that reached the visitor in the paid eval of 24.11.2026 (es-04, fu-es-07, es-37, es-38, es-56,
+# fu-es-01), in the sentences the reader wrote, and the shapes around them.
+EVAL_20261124 = [
+    ("Para abrirte a alguien nuevo, quizá te ayude sentirte acompañado primero.", "sentirte acompañado"),
+    ("Lo que sí puedo leer en el Nueve de Bastos es que estás cansada de tanto esfuerzo, o al menos que tu energía "
+     "anda corta.", "estás cansada"),
+    ("Juntas, las cartas hablan de una espera que pesa y de la necesidad de bajar la presión y ser honesta con tus "
+     "propios sentimientos.", "ser honesta"),
+    ("Si nada cambia en la forma en que cargas esto, la carta apunta a seguir atrapado entre la presión y la espera.",
+     "seguir atrapado"),
+    ("Por ahora, el peso está en esperar y revisar qué tan tranquilo estás con la idea.", "tan tranquilo estás"),
+    ("El Ocho de Espadas habla de sentirse atado, pero también recuerda que el camino frente a ti está libre.",
+     "sentirse atado"),
+    # the same shapes, other words
+    ("Las cartas invitan a estar atenta a tus propias señales.", "estar atenta"),
+    ("La carta habla de ser sincero con tus límites.", "ser sincero"),
+    ("La carta sugiere quedarse callado un tiempo.", "quedarse callado"),
+    ("Las cartas invitan a continuar abierta al cambio.", "continuar abierta"),
+    ("La Torre habla de verse rebasado por todo.", "verse rebasado"),
+    ("Lo cansada que estás se nota en cada decisión.", "Lo cansada que estás"),
+    ("Mira qué tan seguro te sientes con esto.", "tan seguro te sientes"),
+]
+
 # Must not hit: the gender of a card, a thing or another person (the owner's list), then traps that look alike.
 OWNER_MISSES = ["La carta está invertida.", "El Emperador, al revés, habla de orden.", "Él está cansado.",
                 "Ella está lista.", "La Reina se ve tranquila.", "El camino está abierto."]
@@ -133,10 +156,30 @@ TRAPS = [
     "Habla con alguien cercano o cercana.",
     "Esto puede ser dicho con calma.",
     "No tiene por qué ser perfecto.",
+    # stage 4.7 follow-up: the new rules stop at another person, an adverb and a plain infinitive
+    "Para él, la carta habla de sentirse atado.",
+    "Tu pareja podría ser honesta con tus sentimientos.",
+    "Ella tendrá que ser honesta con tus amigos.",
+    "Las cartas piden ser honesta con ella.",
+    "Las cartas hablan de ser honestos con los demás.",
+    "La carta habla de seguir adelante con calma.",
+    "La carta sugiere seguir con paciencia y continuar el camino.",
+    "El Ermitaño apunta a seguir solo su camino.",
+    "La carta invita a sentirse en paz.",
+    "La carta invita a quedarse en casa.",
+    "La carta habla de sentirse tan bien como sea posible.",
+    "Alguien apunta a seguir atrapado.",
+    "Tan solo estás empezando.",
+    "Qué tan cerca estás de lo que quieres.",
+    "Lo importante es que estás aquí.",
+    "Lo bueno es que estás aquí.",
+    "Lo bueno que tiene esta carta es la calma.",
+    "Lo cansado que estaba él.",
+    "Más claro que nunca estás en tu camino.",
 ]
 
 
-@pytest.mark.parametrize("text, phrase", PAID_RUN + MORE_HITS)
+@pytest.mark.parametrize("text, phrase", PAID_RUN + MORE_HITS + EVAL_20261124)
 def test_gendered_forms_about_the_reader_hit(text, phrase):
     assert phrase in find_reader_gender(text)
 

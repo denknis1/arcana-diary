@@ -125,7 +125,7 @@ def read_text(reader, prompt, messages: list[dict], max_tokens: int, first_token
     return "".join(parts).strip(), outcome
 
 
-def eval_rewrite(rewriter, lang: str, terms):
+def eval_rewrite(rewriter, lang: str, terms, rejected: dict | None = None):
     """The API's gender rewrite (flow.rewrite_sections) without the daily budget and llm_calls: one call per
     section, in order. rewriter None (evals.compare: the raw answers of several models) — nothing is rewritten."""
     def rewrite_all(todo: dict[str, str]) -> dict[str, str]:
@@ -133,24 +133,27 @@ def eval_rewrite(rewriter, lang: str, terms):
             return {}
         out = {}
         for name, text in todo.items():
-            new, _, _ = rewrite.call_rewrite(rewriter, lang, text, terms)
+            why = []
+            new, _, _ = rewrite.call_rewrite(rewriter, lang, text, terms, why.append)
+            if why and rejected is not None:
+                rejected[name] = why[0]  # why the original stayed (counts and rule names, no answer text)
             if new:
                 out[name] = new
         return out
     return rewrite_all
 
 
-def shown_after_rewrite(final, sections: dict, lang: str, terms, rewriter):
+def shown_after_rewrite(final, sections: dict, lang: str, terms, rewriter, rejected: dict | None = None):
     """finalize's Final after the gender rewrite, as the API saves it; also the hits and the sections rewritten."""
     hits = rewrite.gendered(rewrite.model_sections(final, sections), lang)
-    final, done = rewrite.rewrite_answer(final, sections, lang, eval_rewrite(rewriter, lang, terms))
+    final, done = rewrite.rewrite_answer(final, sections, lang, eval_rewrite(rewriter, lang, terms, rejected))
     return final, hits, sorted(done)
 
 
-def rewrite_text(text: str, lang: str, terms, rewriter) -> tuple[str, list[str], bool]:
+def rewrite_text(text: str, lang: str, terms, rewriter, rejected: dict | None = None) -> tuple[str, list[str], bool]:
     """A follow-up or card-of-the-day text after the gender rewrite: (shown text, hits, rewritten)."""
     hits = rewrite.gendered({"text": text}, lang).get("text", [])
-    new = eval_rewrite(rewriter, lang, terms)({"text": text}).get("text") if hits else None
+    new = eval_rewrite(rewriter, lang, terms, rejected)({"text": text}).get("text") if hits else None
     return new or text, hits, new is not None
 
 
@@ -174,11 +177,14 @@ def run_item(item: dict, *, cards, prompts, guard, reader, judge_provider, judge
         sections, seen, outcome = read_sections(reader, prompts[("reader", lang)], reading, user_input,
                                                 first_token_timeout_s)
         final = finalize(reading, sections, seen, outcome, cards, terms, texts[lang]["reader_unavailable"])
+        rejected: dict = {}
         final, gender, rewritten = shown_after_rewrite(final, sections, lang, check.live_terms(terms, lang, group),
-                                                       rewriter)
+                                                       rewriter, rejected)
         result.update({"sections": sections, "shown": final.shown, "shown_reason": final.reason,
                        "shown_sections": final.sections, "reader_crisis": final.shown == "crisis",
                        "gender": gender, "rewritten": rewritten})
+        if rejected:
+            result["rewrite_rejected"] = rejected
         if final.shown == "crisis":
             result["auto"] = auto_checks(item, group, None, terms[lang], False, reader_crisis=True)
             return result
@@ -225,8 +231,11 @@ def run_followup_item(item: dict, *, cards, prompts, guard, reader, judge_provid
                                      reader_crisis=crisis)
         cut = not isinstance(outcome, Finished) or outcome.result.stop_reason == "max_tokens"
         if not crisis and text and not cut and not result["auto"]["banned"]:  # as the API: never a cut answer
-            shown, gender, rewritten = rewrite_text(text, lang, live, rewriter)
+            rejected: dict = {}
+            shown, gender, rewritten = rewrite_text(text, lang, live, rewriter, rejected)
             result.update({"shown_answer": shown, "gender": gender, "rewritten": ["followup"] if rewritten else []})
+            if rejected:
+                result["rewrite_rejected"] = rejected
         if not crisis:
             context = (f"{user_input}\n<first_answer>\n{first_answer}\n</first_answer>\n"
                        f"<followup>{item['followup']}</followup>")
@@ -252,8 +261,11 @@ def run_daily_item(item: dict, *, cards, prompts, reader, judge_provider, judge_
                   and not auto["banned"])
         result.update({"answer": text, "shown": "model" if usable else "fallback", "auto": auto})
         if usable:
-            shown, gender, rewritten = rewrite_text(text, lang, check.live_terms(terms, lang), rewriter)
+            rejected: dict = {}
+            shown, gender, rewritten = rewrite_text(text, lang, check.live_terms(terms, lang), rewriter, rejected)
             result.update({"shown_answer": shown, "gender": gender, "rewritten": ["daily"] if rewritten else []})
+            if rejected:
+                result["rewrite_rejected"] = rejected
         result["scores"] = judge(judge_provider, judge_prompt, item, messages[0]["content"], text)
     except Exception as exc:
         result["error"] = type(exc).__name__

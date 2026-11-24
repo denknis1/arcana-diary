@@ -15,7 +15,14 @@ A hit is anchored to the second person, so the gender of a card, a thing or anot
   pause, «y», «o» or «en esto» («no estás solo.»; not «estás solo a un paso», where it means "only");
 - «ti mismo / ti misma» (a ti, de ti, para ti…), «contigo mismo / misma», «tú mismo / misma» (with the accent:
   «tu mismo camino» is "your same path");
-- doublets on one stem: «tranquila o tranquilo», «-o/a», «-a/o», «-o(a)», «-os/as».
+- doublets on one stem: «tranquila o tranquilo», «-o/a», «-a/o», «-o(a)», «-os/as»;
+- «estar» / «ser» + adjective whose clause names a card («las cartas hablan de ... ser honesta con tus propios
+  sentimientos») when «tu / tus» follows in the same clause: the clause is about the reader (a person named in it
+  still blocks);
+- what a card points at, in «apunta a / invita a / habla de / sugiere / señala / pide…» + «seguir / continuar /
+  permanecer / quedarse / sentirse / verse / mostrarse» + adjective («la carta apunta a seguir atrapado», «habla de
+  sentirse atado»), unless the sentence names another person (él, ella, tu pareja, alguien…);
+- a degree word + adjective + «que»? + a tú verb («qué tan tranquilo estás», «lo cansada que estás»).
 
 find_reader_gender() returns the matched phrases in text order, each once.
 """
@@ -85,6 +92,23 @@ _ANCHORED = re.compile(rf"(?<!\w)(?P<verb>{_VERBS})\s+(?P<gap>{_GAP}){_PREDICATE
 # The infinitives: «estar» with any predicate, «ser» with the curated list only («puede ser dicho» is a passive).
 _ESTAR_RX = re.compile(rf"(?<!\w)(?P<verb>estar)\s+(?P<gap>{_GAP}){_PREDICATE}", re.IGNORECASE)
 _SER_RX = re.compile(rf"(?<!\w)(?P<verb>ser)\s+(?P<gap>{_GAP})(?P<adj>{_ADJ_LIST}|sola)(?!\w)", re.IGNORECASE)
+# What a card points at: «la carta apunta a seguir atrapado», «El Ocho de Espadas habla de sentirse atado». The
+# infinitive belongs to the reader, whom the whole answer is about; a person named in the clause blocks it.
+_POINTERS = (r"apunta|apuntan|invita|invitan|habla|hablan|sugiere|sugieren|señala|señalan|advierte|advierten|"
+             r"muestra|muestran|pide|piden|recomienda|recomiendan|anima|animan|lleva|llevan|conduce|conducen|"
+             r"tiende|tienden|alerta|avisa|avisan|recuerda|recuerdan|refleja|reflejan|marca|marcan")
+_POINTED = re.compile(
+    rf"(?<!\w)(?:{_POINTERS})\s+(?:(?:a|de|hacia)\s+)?(?:no\s+)?(?P<verb>seguir|continuar|permanecer|quedarse|sentirse|"
+    rf"verse|mostrarse|encontrarse|mantenerse)\s+(?P<gap>{_GAP}){_PREDICATE}", re.IGNORECASE)
+_PERSON_SUBJECT = re.compile(
+    r"(?<!\w)(?:él|ella|ellos|ellas|usted|ustedes|tu\s+pareja|tu\s+ex|esa\s+persona|la\s+otra\s+persona|"
+    r"otra\s+persona|alguien)(?!\w)", re.IGNORECASE)
+# «qué tan tranquilo estás», «lo cansada que estás», «cuán seguro te sientes»
+_DEGREE = re.compile(
+    rf"(?<!\w)(?:qué|tan|cuán|lo|más)\s+(?P<adj>{_ADJ_LIST}|{_PARTICIPLE})\s+(?:que\s+)?"
+    r"(?P<verb>estás|eres|te\s+sientes|te\s+ves|te\s+notas|andas|sigues|estés|seas|te\s+sientas)(?!\w)",
+    re.IGNORECASE)
+_TU_AFTER = re.compile(r"(?<!\w)tus?(?!\w)", re.IGNORECASE)
 _MISMO = re.compile(r"(?<!\w)(?:ti|contigo|tú)\s+mism[oa]s?(?!\w)", re.IGNORECASE)
 _DOUBLET = re.compile(r"(?<!\w)(?P<stem>\w{3,}?)(?P<a>[oa])(?P<s>s?)\s+o\s+(?P=stem)(?P<b>[oa])(?P=s)(?!\w)",
                       re.IGNORECASE)
@@ -159,16 +183,37 @@ def _clause_before(text: str, start: int) -> str:
     return text[begin:start]
 
 
+def _clause_after(text: str, end: int) -> str:
+    stop = _CLAUSE_END.search(text, end)
+    return text[end:stop.start()] if stop else text[end:]
+
+
 def _infinitive_ok(text: str, m: re.Match) -> bool:
     """«estar» / «ser»: not when a third-person verb or «tu <noun> <verb>» stands right before it, nor when its
-    clause names someone or something else."""
+    clause names someone or something else. A card named in the clause does not count when «tu / tus» follows the
+    adjective in the same clause («ser honesta con tus propios sentimientos»): that clause is about the reader."""
     clause = _clause_before(text, m.start())
     words = [w.lower() for w in _WORD.findall(clause)]
     if any(w in _THIRD_BEFORE_ESTAR for w in words[-3:]):
         return False
     if len(words) >= 3 and words[-3] in ("tu", "tus") and words[-1] not in _LINKS_BEFORE_INFINITIVE:
         return False  # «tu corazón quisiera estar tranquilo»; not «cuidar tu ánimo y ser claro»
+    if _TU_AFTER.search(_clause_after(text, m.end())):
+        return not _PERSON_SUBJECT.search(clause)
     return not _OTHER_SUBJECT.search(clause)
+
+
+def _pointed_ok(text: str, m: re.Match) -> bool:
+    """The card points at «seguir atrapado»: not when another person is named in the sentence («Para él, la carta
+    habla de sentirse atado»)."""
+    begin = max(text.rfind(c, 0, m.start()) for c in ".!?¿¡\n") + 1
+    stop = re.compile(r"[.!?\n]").search(text, m.end())
+    return not _PERSON_SUBJECT.search(text[begin:stop.start() if stop else len(text)])
+
+
+def _degree_ok(m: re.Match) -> bool:
+    adj = m.group("adj").lower()
+    return adj not in NOT_ADJECTIVES and adj not in ORIENTATION
 
 
 def _doublet_ok(text: str, m: re.Match) -> bool:
@@ -192,6 +237,10 @@ def find_reader_gender(text: str) -> list[str]:
         for m in rx.finditer(text):
             if _predicate_ok(text, m) and _infinitive_ok(text, m):
                 found.append((m.start(), m.group(0)))
+    for m in _POINTED.finditer(text):
+        if _predicate_ok(text, m) and _pointed_ok(text, m):
+            found.append((m.start("verb"), text[m.start("verb"):m.end()]))
+    found += [(m.start(), m.group(0)) for m in _DEGREE.finditer(text) if _degree_ok(m)]
     found += [(m.start(), m.group(0)) for m in _MISMO.finditer(text)]
     found += [(m.start(), m.group(0)) for m in _DOUBLET.finditer(text) if _doublet_ok(text, m)]
     found += [(m.start(), m.group(0)) for m in _SLASH.finditer(text)]
