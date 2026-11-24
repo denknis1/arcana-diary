@@ -2,7 +2,7 @@
 // the card comes from the card base (src/lib/daily.ts). Under the card "Remind me tomorrow" (spec 4.4b §7): a calendar
 // file made here, no server. The card of the day is not a reading: it is not saved to the diary (spec 4.4b §2.10).
 // The link to the card follows row L-EN-15 / L-ES-15 of the stage 2 matrix (owner decision 38); its "Save to diary"
-// (L-EN-16, L-ES-16) is not built — it waits for the owner (task 19 report).
+// (L-EN-16, L-ES-16) is wave V1.1 (owner decision 42, 24.11.2026).
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';

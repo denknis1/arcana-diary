@@ -39,10 +39,12 @@ PINNED = {"L-EN-04": "rule"}
 NEIGHBORS_SECTION = "card-nav"
 NIGHT_TEST = "site/src/components/ui/NightRoom.test.tsx"
 DAILY_TEST = "site/src/islands/DailyIsland.test.tsx"
-ISLAND_TESTS = {row: NIGHT_TEST for row in ("L-EN-01", "L-EN-02", "L-EN-03", "L-EN-31", "L-ES-01", "L-ES-02", "L-ES-03",
-                                            "L-ES-04", "L-ES-23")} | {"L-EN-15": DAILY_TEST, "L-ES-15": DAILY_TEST}
-NOT_BUILT = {row: "the Card of the Day is not a reading and is not saved to the diary (spec 4.4b §2.10); owner decision"
-             for row in ("L-EN-16", "L-ES-16")}
+ISLAND_TESTS = {row: NIGHT_TEST for row in ("L-EN-01", "L-EN-02", "L-EN-03", "L-EN-31", "L-EN-32", "L-ES-01", "L-ES-02",
+                                            "L-ES-03", "L-ES-04", "L-ES-23", "L-ES-26")} | {"L-EN-15": DAILY_TEST,
+                                                                                          "L-ES-15": DAILY_TEST}
+# A launch row an island does not draw yet, with the owner's reason. Empty: "Save to diary" on the Card of the Day
+# (L-EN-16, L-ES-16) moved to V1.1 (owner decision 42, 24.11.2026); saving at launch is the reading's (L-EN-32, L-ES-26).
+NOT_BUILT: dict[str, str] = {}
 WINDOW = 350
 ZONES = {"main", "header", "footer"}
 SKIP_TEXT = {"script", "style"}
@@ -238,7 +240,8 @@ def is_runtime(site: Site, row: dict, lang: str) -> bool:
     return to in RUNTIME or (to not in CARD_SETS | {"@neighbors"} and "{" in site.url(to, lang))
 
 
-NUMERAL = re.compile(r"^(0|[IVXL]+)\s+")
+# the numerals of the deck, 0 and I…XXI: a leading word of these letters that is no numeral ("ILL") is not skipped
+NUMERAL = re.compile(r"^(?=[0IVX])(0|X{0,2}(?:IX|IV|V?I{0,3}))\s+")
 
 
 def text_is(link: dict, want: str) -> bool:

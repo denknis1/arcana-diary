@@ -195,8 +195,8 @@ def test_links_drawn_by_islands_are_listed_not_checked(tmp_path, capsys):
     rows = launch_rows()
     assert len(rows) == 48
     assert [r["link_id"] for lang, r in rows if is_runtime(site, r, lang)] == [
-        "L-EN-01", "L-EN-02", "L-EN-03", "L-EN-15", "L-EN-16", "L-EN-31",
-        "L-ES-01", "L-ES-02", "L-ES-03", "L-ES-04", "L-ES-15", "L-ES-16", "L-ES-23"]
+        "L-EN-01", "L-EN-02", "L-EN-03", "L-EN-15", "L-EN-31", "L-EN-32",
+        "L-ES-01", "L-ES-02", "L-ES-03", "L-ES-04", "L-ES-15", "L-ES-23", "L-ES-26"]
     assert main(tmp_path) == 1
     assert "L-EN-04: no page /yes-no in site/dist" in capsys.readouterr().out
 
@@ -209,7 +209,14 @@ def test_every_row_drawn_by_an_island_has_a_vitest_case_or_a_reason(tmp_path):
     assert problems == []
     assert "  L-ES-03: site/src/components/ui/NightRoom.test.tsx" in lines
     assert "  L-EN-15: site/src/islands/DailyIsland.test.tsx" in lines
-    assert any(line.startswith("  L-EN-16: not built — ") for line in lines)
+    assert "  L-EN-32: site/src/components/ui/NightRoom.test.tsx" in lines
+    assert not any("not built" in line for line in lines)  # owner decision 42: L-EN-16, L-ES-16 are V1.1
+
+
+def test_a_row_not_built_is_listed_with_its_reason(monkeypatch):
+    monkeypatch.setitem(check_links.NOT_BUILT, "L-EN-99", "waits for the owner")
+    lines, problems = island_coverage(["L-EN-99"])
+    assert (lines, problems) == (["  L-EN-99: not built — waits for the owner"], [])
 
 
 def test_a_row_its_test_does_not_name_or_an_unknown_row_is_a_problem(tmp_path):
@@ -220,3 +227,12 @@ def test_a_row_its_test_does_not_name_or_an_unknown_row_is_a_problem(tmp_path):
     assert lines == ["  L-EN-02: site/src/components/ui/NightRoom.test.tsx"]
     assert problems == ["L-EN-01: drawn by an island, but site/src/components/ui/NightRoom.test.tsx has no vitest case "
                         "that names it", "L-EN-99: drawn by an island, but no vitest case covers it (ISLAND_TESTS)"]
+
+
+def test_a_leading_roman_numeral_of_the_deck_is_skipped_but_not_a_word_of_those_letters():
+    link = lambda text: {"text": text, "parts": [], "direct": []}  # noqa: E731
+    assert check_links.text_is(link("XIX The Sun"), "the sun")
+    assert check_links.text_is(link("0 The Fool"), "the fool")
+    assert check_links.text_is(link("XVIII The Moon"), "the moon")
+    assert not check_links.text_is(link("Ill omen"), "omen")
+    assert not check_links.text_is(link("Vivid dreams"), "dreams")

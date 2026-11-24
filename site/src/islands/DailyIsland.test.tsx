@@ -39,8 +39,8 @@ describe('the Card of the Day reminder (screen 7b; spec 4.4b §7)', () => {
 });
 
 // Owner decision 38: the link under the Card of the Day follows rows L-EN-15 / L-ES-15 of the stage 2 matrix
-// (tools/site/check_links.py names this file for them). "Save to diary" (L-EN-16, L-ES-16) is not built: the Card
-// of the Day is not a reading and is not saved (spec 4.4b §2.10).
+// (tools/site/check_links.py names this file for them). "Save to diary" (L-EN-16, L-ES-16) is wave V1.1: the Card
+// of the Day is not a reading and is not saved (spec 4.4b §2.10, owner decision 42).
 describe('the link under the Card of the Day (stage 2 matrix, owner decision 38)', () => {
   it.each([
     ['L-EN-15', 'en', 'The Moon', '/cards/the-moon', "Today's card: The Moon"],
