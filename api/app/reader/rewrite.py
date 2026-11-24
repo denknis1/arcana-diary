@@ -90,44 +90,70 @@ def _words(text: str) -> list[str]:
     return [w.lower() for w in _WORD.findall(text)]
 
 
-def _same_paragraph(original: str, text: str) -> bool:
-    """The rewrite is the same paragraph reworded: close word by word, no markup or entities, no new numbers, no
-    preamble, not English (Fable review I2)."""
+def _paragraph_problem(original: str, text: str) -> str | None:
+    """Why `text` is not the same paragraph reworded (None when it is): close word by word, no markup or entities,
+    no new numbers, no preamble, not English (Fable review I2). Numbers and rule names only, never answer text."""
     before, after = _words(original), _words(text)
     limit = MIN_SIMILARITY_SHORT if len(before) < SHORT_WORDS else MIN_SIMILARITY
-    if difflib.SequenceMatcher(None, before, after, autojunk=False).ratio() < limit:
-        return False
+    ratio = difflib.SequenceMatcher(None, before, after, autojunk=False).ratio()
+    if ratio < limit:
+        return f"similarity {ratio:.2f} < {limit} ({len(before)} -> {len(after)} words)"
     if _MARKUP.search(text) and not _MARKUP.search(original):
-        return False
+        return "markup"
     if not set(_DIGITS.findall(text)) <= set(_DIGITS.findall(original)):
-        return False
+        return "new number"
     if _PREAMBLE.match(text) and not _PREAMBLE.match(original):
-        return False
+        return "preamble"
     english = sum(w in _ENGLISH for w in after)
-    return english < 3 or english <= sum(w in _ENGLISH for w in before)
+    if english >= 3 and english > sum(w in _ENGLISH for w in before):
+        return "english"
+    return None
+
+
+def _same_paragraph(original: str, text: str) -> bool:
+    return _paragraph_problem(original, text) is None
+
+
+def rejection(original: str, candidate, terms, lang: str) -> tuple[str | None, str | None]:
+    """(the rewritten text, None) if it can replace the original, else (None, why). The reason names the check and
+    carries counts and rule or term names from our own lists, never any text of the answer."""
+    if not isinstance(candidate, str):
+        return None, "not a string"
+    text = candidate.strip()
+    if not text:
+        return None, "empty"
+    if "[[" in text or "]]" in text:
+        return None, "section markers"
+    if text == original.strip():
+        return None, "unchanged"
+    left = find_reader_gender(text)
+    if left:
+        return None, f"gender still found ({len(left)} form{'s' if len(left) > 1 else ''})"
+    banned = check.banned_in(text, terms, lang)
+    if banned:
+        return None, "banned: " + ", ".join(banned)
+    # the verdict wording stays as it was: none added, none dropped, none flipped or hedged (Fable review I1)
+    was, now = _verdict_rules(original, lang), _verdict_rules(text, lang)
+    if was != now:
+        return None, f"verdict wording changed (dropped {sorted(was - now)}, added {sorted(now - was)})"
+    problem = _paragraph_problem(original, text)
+    if problem:
+        return None, "not the same paragraph: " + problem
+    if not _length_ok(original, text):
+        return None, f"length {check.word_count(original)} -> {check.word_count(text)} words"
+    return text, None
 
 
 def accepted(original: str, candidate, terms, lang: str) -> str | None:
     """The rewritten text if it can replace the original, else None (the original stays)."""
-    if not isinstance(candidate, str):
-        return None
-    text = candidate.strip()
-    if not text or "[[" in text or "]]" in text or text == original.strip():
-        return None
-    if find_reader_gender(text):
-        return None
-    if check.banned_in(text, terms, lang):
-        return None
-    # the verdict wording stays as it was: none added, none dropped, none flipped or hedged (Fable review I1)
-    if _verdict_rules(text, lang) != _verdict_rules(original, lang):
-        return None
-    if not _same_paragraph(original, text):
-        return None
-    return text if _length_ok(original, text) else None
+    return rejection(original, candidate, terms, lang)[0]
 
 
-def call_rewrite(provider, lang: str, text: str, terms) -> tuple[str | None, Finished | Failed, int]:
-    """One complete_json call; never raises. (accepted text or None, the outcome for llm_calls, max_tokens)."""
+def call_rewrite(provider, lang: str, text: str, terms,
+                 on_reject: Callable[[str], None] | None = None) -> tuple[str | None, Finished | Failed, int]:
+    """One complete_json call; never raises. (accepted text or None, the outcome for llm_calls, max_tokens).
+    A reply that fails the checks is logged with the reason (counts and rule names, no answer text) and given to
+    on_reject, so a paid eval can record why an original stayed."""
     max_tokens = rewrite_max_tokens(text)
     started = time.monotonic()
 
@@ -149,12 +175,14 @@ def call_rewrite(provider, lang: str, text: str, terms) -> tuple[str | None, Fin
         return None, Failed("error", False, None, ms(), None), max_tokens
     outcome = Finished(result, None, ms())
     try:
-        new = accepted(text, data.get("text") if isinstance(data, dict) else None, terms, lang)
+        new, why = rejection(text, data.get("text") if isinstance(data, dict) else None, terms, lang)
     except Exception as exc:  # a bug in the checks must not break the answer (Fable review I4)
         log.warning("gender rewrite check failed: %s", type(exc).__name__)
-        new = None
+        new, why = None, f"check failed: {type(exc).__name__}"
     if new is None:
-        log.info("gender rewrite rejected: the original stays")
+        log.info("gender rewrite rejected, the original stays: %s", why)
+        if on_reject:
+            on_reject(why or "rejected")
     return new, outcome, max_tokens
 
 
