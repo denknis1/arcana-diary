@@ -28,7 +28,7 @@
     "14": "King"
    }
   },
-  "image_caption": "{Card}, 1909 Rider–Waite–Smith deck (\"Roses & Lilies\" printing), drawn by Pamela Colman Smith. Public-domain scan, Wikimedia Commons.",
+  "image_caption": "{Card}, Rider–Waite–Smith deck, 1909",
   "keywords": {
    "caption": "{Card}: keywords",
    "upright": "Upright",
@@ -78,7 +78,7 @@
    "page_many": "pp. {pages}",
    "page_numbers": "Page numbers follow the edition transcribed on Wikisource.",
    "method": "Written with AI from Waite's book and Arcana Diary's card meanings. Reviewed by {editor_name} on {reviewed_at}.",
-   "deck_note": "These are the meanings of the 1909 Rider–Waite–Smith deck; the Marseille tradition reads the cards differently."
+   "deck_note": "These are the meanings of the 1909 Rider–Waite–Smith deck, drawn by Pamela Colman Smith; the Marseille tradition reads the cards differently."
   }
  },
  "es": {
@@ -108,7 +108,7 @@
     "14": "Rey"
    }
   },
-  "image_caption": "{Card}, baraja Rider-Waite-Smith de 1909 (impresión «Roses & Lilies»), dibujo de Pamela Colman Smith. Escaneo de dominio público, Wikimedia Commons.",
+  "image_caption": "{Card}, baraja Rider-Waite-Smith, 1909",
   "keywords": {
    "caption": "{Card}: palabras clave",
    "upright": "Al derecho",
@@ -158,7 +158,7 @@
    "page_many": "pp. {pages}",
    "page_numbers": "Citamos a Waite en el inglés original; las páginas siguen la edición transcrita en Wikisource.",
    "method": "Esta página se escribió con IA a partir del libro de Waite y de los significados de cartas de Arcana Diary. La revisó {editor_name} el {reviewed_at}.",
-   "deck_note": "Son los significados de la baraja Rider-Waite-Smith de 1909, no los de la baraja española ni los del tarot de Marsella."
+   "deck_note": "Son los significados de la baraja Rider-Waite-Smith de 1909, dibujada por Pamela Colman Smith, no los de la baraja española ni los del tarot de Marsella."
   }
  }
 }
