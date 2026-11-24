@@ -57,10 +57,11 @@ def test_facts_come_from_the_api_constants_and_the_deck():
     assert f["diary_free"] == config_constant(text, "FREE_DIARY_VISIBLE")
     assert f["yes_count"] + f["no_count"] + f["unclear_count"] == 78
     assert f["editor_name"] == "Adrian Solenne"
-    # spec §2: operator placeholders that are still empty in content/operator.json ({operator_name}, …) stay out
+    # spec §2: the operator facts of content/operator.json, all filled since 24.11.2026 (an empty one would stay out)
     assert set(f) == {"guest_limit", "user_limit", "followups", "diary_free", "yes_count", "no_count", "unclear_count",
-                      "editor_name", "contact_email", "hosting_provider", "email_provider", "effective_date"}
-    assert f["effective_date"] == {"en": "December 14, 2026", "es": "14 de diciembre de 2026"}
+                      "editor_name", "operator_name", "operator_address", "jurisdiction", "contact_email",
+                      "hosting_provider", "email_provider", "effective_date"}
+    assert f["effective_date"] == {"en": "November 24, 2026", "es": "24 de noviembre de 2026"}
 
 
 def test_operator_facts_leave_out_empty_values_and_half_filled_dates(tmp_path, monkeypatch):

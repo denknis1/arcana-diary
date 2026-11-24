@@ -3,6 +3,8 @@ indexable page has its head and JSON-LD, no placeholder is left, private and hid
 sitemap and of every hreflang pair, and the sign-in library is never loaded at start by a reading page."""
 import json
 
+import pytest
+
 import check_dist
 from check_dist import (EXTRA, READING_PAGES, auth_problems, canonical, dist_file, expected_alternates, expected_pages,
                         head_problems, hidden_link_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
@@ -15,6 +17,17 @@ LD = '<script type="application/ld+json">{"@context":"https://schema.org","@type
 SITE_OTHER = "https://arcanadiary.com/other"
 REVIEWED = '<p>Reviewed on <time datetime="2026-11-23">November 23, 2026</time>.</p>'
 ROBOTS_TXT = "User-agent: *\nDisallow:\nSitemap: https://arcanadiary.com/sitemap.xml\n"
+
+
+HIDDEN = {"/about", "/contact", "/privacy", "/terms", "/es/sobre-nosotros", "/es/contacto", "/es/privacidad", "/es/terminos"}
+
+
+@pytest.fixture
+def hidden(monkeypatch):
+    """A synthetic state in which the eight service pages are hidden (an operator fact has no value): the rules stay
+    protected whatever the real operator.json and facts.json say today."""
+    monkeypatch.setattr(check_dist, "hidden_pages", lambda: set(HIDDEN))
+    return HIDDEN
 
 
 def write(dist, name, text):
@@ -84,7 +97,7 @@ def test_every_page_of_stage_6_is_expected():
             "/about", "/how-readings-work", "/es/privacidad"} <= set(pages)
 
 
-def test_today_the_open_site_would_refuse_the_eight_hidden_service_pages(tmp_path):
+def test_the_open_site_would_refuse_the_eight_hidden_service_pages(tmp_path, hidden):
     assert launched_problems(site(tmp_path)) == [f"hidden page on the open site: {p} (an operator placeholder has no value)" for p in
                                    ("/about", "/contact", "/es/contacto", "/es/privacidad", "/es/sobre-nosotros",
                                     "/es/terminos", "/privacy", "/terms")]
@@ -100,14 +113,38 @@ def test_hreflang_follows_mutual_pairs_only():
     assert canonical("/") == "https://arcanadiary.com/"
 
 
-def test_a_pair_with_a_hidden_page_is_no_hreflang_pair(monkeypatch):
+def test_a_pair_with_a_hidden_page_is_no_hreflang_pair(monkeypatch, hidden):
     monkeypatch.setattr(check_dist, "pairs", lambda: {"/yes-no": "/es/sobre-nosotros", "/es/sobre-nosotros": "/yes-no"})
     assert expected_alternates("/yes-no") == set()
 
 
-def test_hidden_pages_are_the_service_pages_with_an_operator_placeholder():
-    assert hidden_pages() == {"/about", "/contact", "/privacy", "/terms", "/es/sobre-nosotros", "/es/contacto",
-                              "/es/privacidad", "/es/terminos"}
+def test_hidden_pages_are_the_service_pages_with_an_operator_placeholder(tmp_path, monkeypatch):
+    data = tmp_path / "src/data"
+    (data / "pages/en").mkdir(parents=True)
+    (data / "facts.json").write_text(json.dumps({"guest_limit": 3, "operator_name": "Acme"}), encoding="utf-8")
+
+    def page(page_id, url, text):
+        body = {"page_id": page_id, "url": url, "title": "T", "description": "D", "h1": "H", "lead": text, "capsule": None,
+                "blocks": [], "faq": []}
+        (data / "pages/en" / f"{page_id}.json").write_text(json.dumps(body), encoding="utf-8")
+
+    page("about", "/about", "By {operator_name}")                 # service page, every value known: open
+    page("contact", "/contact", "Write to {operator_email}")      # service page, a value is missing: hidden
+    page("one-card", "/one-card", "{guest_limit} a day {nobody}")  # not a service page: never hidden
+    monkeypatch.setattr(check_dist, "SITE", tmp_path)
+    check_dist.hidden_pages.cache_clear()
+    try:
+        assert check_dist.hidden_pages() == {"/contact"}
+    finally:
+        check_dist.hidden_pages.cache_clear()
+
+
+def test_the_real_service_pages_are_all_open_today(tmp_path):
+    """The real operator facts are filled: no page is hidden, so the open site passes (--launched)."""
+    assert hidden_pages() == set()
+    dist = site(tmp_path)
+    assert launched_problems(dist) == []
+    assert check_dist.main(dist, launched=True) == 0
 
 
 def test_only_the_private_and_hidden_pages_say_noindex(tmp_path):
@@ -170,7 +207,7 @@ def test_an_html_file_that_is_not_an_expected_page_is_reported(tmp_path):
     assert unexpected_pages(dist) == ["unexpected page: site/dist/cards/new.html", "unexpected page: site/dist/secret.html"]
 
 
-def test_an_hreflang_link_to_a_noindex_or_hidden_page_is_reported(tmp_path):
+def test_an_hreflang_link_to_a_noindex_or_hidden_page_is_reported(tmp_path, hidden):
     dist = site(tmp_path)
     assert hreflang_target_problems(dist) == []
     link = '<link rel="alternate" hreflang="{}" href="https://arcanadiary.com{}">'
@@ -220,7 +257,7 @@ def test_a_malformed_sitemap_is_reported(tmp_path):
     assert any("exactly one <loc>" in p for p in sitemap_problems(dist))
 
 
-def test_the_sitemap_lists_exactly_the_indexable_pages(tmp_path):
+def test_the_sitemap_lists_exactly_the_indexable_pages(tmp_path, hidden):
     dist = site(tmp_path)
     assert sitemap_problems(dist) == []
     write(dist, "sitemap.xml", sitemap([p for p in indexable_pages() if p != "/cards"] + ["/diary", "/about"]))
@@ -236,7 +273,7 @@ def test_robots_txt_names_the_sitemap(tmp_path):
     assert robots_txt_problems(dist) == ["robots.txt does not name the sitemap"]
 
 
-def test_the_open_site_refuses_a_hidden_page(tmp_path, monkeypatch):
+def test_the_open_site_refuses_a_hidden_page(tmp_path, monkeypatch, hidden):
     dist = site(tmp_path)
     monkeypatch.setattr(check_dist, "expected_pages", lambda: ["/", "/about"])
     assert launched_problems(dist) == ["hidden page on the open site: /about (an operator placeholder has no value)"]
@@ -257,7 +294,7 @@ def test_the_open_site_refuses_a_robots_txt_that_closes_the_whole_site(tmp_path,
     assert launched_problems(dist) == []
 
 
-def test_main_launched_fails_on_the_hidden_pages_of_today(tmp_path, capsys):
+def test_main_launched_fails_on_hidden_pages(tmp_path, capsys, hidden):
     dist = site(tmp_path)
     assert check_dist.main(dist) == 0
     capsys.readouterr()
@@ -303,7 +340,7 @@ def test_a_shrunk_card_list_is_reported(tmp_path):
     assert "0 distinct card links instead of 22: site/dist/es/cartas/arcanos-mayores.html" in problems
 
 
-def test_a_link_to_a_hidden_page_is_reported(tmp_path):
+def test_a_link_to_a_hidden_page_is_reported(tmp_path, hidden):
     dist = site(tmp_path)
     assert hidden_link_problems(dist) == []
     write(dist, "es.html", head("/es") + '<a href="/privacy">p</a><a href="https://arcanadiary.com/es/terminos#x">t</a>')
