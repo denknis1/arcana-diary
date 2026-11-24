@@ -7,6 +7,15 @@
  "no_count": 13,
  "unclear_count": 20,
  "editor_name": "Adrian Solenne",
+ "operator_name": "Denis Kniazev",
+ "operator_address": {
+  "en": "the Netherlands",
+  "es": "Países Bajos"
+ },
+ "jurisdiction": {
+  "en": "the Netherlands",
+  "es": "los Países Bajos"
+ },
  "contact_email": "hello@arcanadiary.com",
  "hosting_provider": "DigitalOcean",
  "email_provider": "Resend",
