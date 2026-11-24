@@ -4,7 +4,9 @@ x-default for a mutual pair of two indexable pages, no hreflang at all otherwise
 hreflang link of any page points at a page that is not indexable; no page that is not hidden shows a {placeholder};
 the diary, the account and the hidden service pages say noindex and stay out of sitemap.xml, which lists every
 indexable page (plain <loc> entries: hreflang lives only in the head); robots.txt names the sitemap; no page that
-draws a reading loads the sign-in library at start (spec 4.4b §3).
+draws a reading loads the sign-in library at start (spec 4.4b §3); the markup findings of the stage 6 audit that a
+script can see (markup_problems: one link per address in <main> outside <nav>, aria-current in the footer, link text
+that does not run words together, the review date of a card page in <time datetime>).
 
 The pages are the language pairs of site/src/data/pairs.json, the two 404 pages and the four private pages; Astro
 writes one file per page (build.format "file"): / → index.html, /es → es.html, /cards/x → cards/x.html. A service
@@ -389,12 +391,98 @@ def list_problems(dist: Path) -> list[str]:
     return problems
 
 
+class Markup(HTMLParser):
+    """The markup findings of the stage 6 audit (docs/research/stage6/10-semantic-audit.md) that a script can see: the
+    links of <main> outside <nav>, the footer links, the text of every link as it is read (where a tag boundary falls
+    without a space between two words) and the <time datetime> elements."""
+
+    VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
+    STICKY = set(".,;:!?)]}»”’…")
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.stack: list[str] = []
+        self.main_links: list[str] = []
+        self.footer_links: list[tuple[str, str | None]] = []
+        self.joined: list[str] = []
+        self.times: list[str] = []
+        self._link: dict | None = None
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if self._link is not None:
+            self._link["boundary"] = True
+        if tag == "time" and a.get("datetime"):
+            self.times.append(a["datetime"])
+        if tag == "a" and a.get("href"):
+            href = a["href"]
+            if "main" in self.stack and "nav" not in self.stack and not href.startswith("#"):
+                self.main_links.append(href)
+            if "footer" in self.stack:
+                self.footer_links.append((href, a.get("aria-current")))
+            self._link = {"text": "", "boundary": False, "joined": False}
+        if tag not in self.VOID:
+            self.stack.append(tag)
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self._link is not None:
+            if self._link["joined"]:
+                self.joined.append(" ".join(self._link["text"].split()))
+            self._link = None
+        elif self._link is not None:
+            self._link["boundary"] = True
+        if tag in self.stack:
+            del self.stack[len(self.stack) - 1 - self.stack[::-1].index(tag):]
+
+    def handle_data(self, data):
+        link = self._link
+        if link is None or not data:
+            return
+        if (link["boundary"] and link["text"] and not link["text"][-1].isspace() and not data[0].isspace()
+                and data[0] not in self.STICKY):
+            link["joined"] = True
+        link["text"] += data
+        link["boundary"] = False
+
+
+def page_href(href: str) -> str:
+    """An internal href without the site address and the #fragment (two links that differ only there are one URL)."""
+    return href.removeprefix(SITE_URL).split("#")[0] or "/"
+
+
+def markup_problems(dist: Path) -> list[str]:
+    """Every built page: one link per address in <main> outside <nav> (SEO Monster 2027, 4.4: the first link in the DOM
+    gives the anchor, a second one adds nothing; breadcrumbs, related cards and previous/next are navigation in <nav>); a footer link
+    to the page itself carries aria-current="page"; no link text runs two words together at a tag boundary; a card
+    page gives its review date as <time datetime>."""
+    cards = set(card_paths("en")) | set(card_paths("es"))
+    problems = []
+    for path in sorted(expected_pages(), key=dist_file):
+        file = dist / dist_file(path)
+        if not file.is_file():
+            continue
+        name = f"site/dist/{dist_file(path)}"
+        page = Markup()
+        page.feed(file.read_text(encoding="utf-8"))
+        counts: dict[str, int] = {}
+        for href in page.main_links:
+            counts[page_href(href)] = counts.get(page_href(href), 0) + 1
+        problems += [f"{n} links to {href} in <main> outside <nav>: {name}" for href, n in counts.items() if n > 1]
+        problems += [f'footer link to the page itself without aria-current="page": {page_href(href)}: {name}'
+                     for href, current in page.footer_links if page_href(href) == path and current != "page"]
+        problems += [f"link text runs together «{text}»: {name}" for text in page.joined]
+        if path in cards and not any(re.fullmatch(r"\d{4}-\d{2}-\d{2}", t) for t in page.times):
+            problems.append(f"no <time datetime> of the review date: {name}")
+    return problems
+
+
 def main(dist: Path | None = None, launched: bool = False) -> int:
     dist = dist or SITE / "dist"
     problems = ([f"missing: site/dist/{name}" for name in missing(dist)] + unexpected_pages(dist)
                 + robots_problems(dist) + head_problems(dist) + hreflang_target_problems(dist)
                 + placeholder_problems(dist) + sitemap_problems(dist) + robots_txt_problems(dist)
-                + list_problems(dist) + auth_problems(dist) + hidden_link_problems(dist) + (launched_problems(dist) if launched else []))
+                + list_problems(dist) + auth_problems(dist) + hidden_link_problems(dist) + markup_problems(dist)
+                + (launched_problems(dist) if launched else []))
     for problem in problems:
         print(problem)
     if problems:

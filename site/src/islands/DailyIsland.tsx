@@ -1,8 +1,10 @@
 // Card of the Day (screens 7a, 7b; spec 4.4a §5): tap the back → GET /api/daily → the card and its text. On 503
 // the card comes from the card base (src/lib/daily.ts). Under the card "Remind me tomorrow" (spec 4.4b §7): a calendar
 // file made here, no server. The card of the day is not a reading: it is not saved to the diary (spec 4.4b §2.10).
+// The link to the card follows row L-EN-15 / L-ES-15 of the stage 2 matrix (owner decision 38); its "Save to diary"
+// (L-EN-16, L-ES-16) is wave V1.1 (owner decision 42, 24.11.2026).
 import { useEffect, useRef, useState } from 'preact/hooks';
-import { fill, t } from '../i18n';
+import { t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
 import { siteApi } from '../lib/siteApi';
 import { baseUrl, dailyNext, formatDay, localIsoDay, shownFromBase, type BaseMeaning, type DailyShown } from '../lib/daily';
@@ -10,7 +12,7 @@ import { CARD_BACK } from '../lib/deck';
 import { saveFile, type SaveFile } from '../lib/download';
 import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
 import { ICS_FILENAME, ICS_TYPE, dailyReminderIcs } from '../lib/ics';
-import { cardPath } from '../lib/routes';
+import { drawnCardLink } from '../lib/routes';
 import type { Lang } from '../lib/types';
 import { CardFace } from '../components/ui/CardFace';
 import { HelpLine } from '../components/ui/HelpLine';
@@ -81,9 +83,11 @@ export default function DailyIsland({ lang, save = saveFile }: { lang: Lang; sav
         </h2>
         {shown.fromBase ? <p class="small">{d.dailyFallbackNote}</p> : null}
         <p class="daily__text">{shown.text}</p>
-        <a href={cardPath(shown.card, lang)} onClick={() => sendEvent(analyticsEvent('more_about_cards', 'daily', lang))}>
-          {fill(d.fullMeaning, { name: shown.name })}
-        </a>
+        {drawnCardLink({ card_id: shown.card.card_id, reversed: shown.reversed }, 'daily', lang).map((link) => (
+          <a key={link.href} href={link.href} onClick={() => sendEvent(analyticsEvent('more_about_cards', 'daily', lang))}>
+            {link.text}
+          </a>
+        ))}
         <button type="button" class="btn btn--outline" onClick={remind}>{d.remindTomorrow}</button>
         <p class="small" role="status">{reminded ? d.remindDone : ''}</p>
       </section>

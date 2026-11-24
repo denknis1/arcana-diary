@@ -26,11 +26,14 @@ const d = t(lang);
 const path = pagePath('home', lang);
 const text = filledPage(textPage(path));
 const privacyHref = openPagePath('privacy', lang) ?? undefined;
+// the format switch (stage 2 matrix L-EN-17…21, L-ES-17…21); the Card of the Day is the tile under it (L-EN-20,
+// L-ES-19: one link to /daily on the page, SEO Monster 2027 4.4), not a row of the list as well
 const formats = [
   ...(lang === 'en' ? [{ href: pagePath('one_card', lang), name: d.fmtOneCard, hint: d.fmtOneCardHint }] : []),
   { href: pagePath('yes_no', lang), name: d.fmtYesNo, hint: d.fmtYesNoHint },
   { href: pagePath('love', lang), name: d.fmtLove, hint: d.fmtLoveHint },
-  { href: pagePath('daily', lang), name: d.fmtDaily, hint: d.fmtDailyHint },
+  ...(lang === 'es' ? [{ href: pagePath('three_cards', lang), name: d.fmtThree, hint: d.fmtThreeHint }] : []),
+  { href: pagePath('cards', lang), name: d.fmtCards, hint: d.fmtCardsHint },
 ];
 const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => cardById(id)!);
 ---
@@ -52,7 +55,7 @@ const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => ca
       {formats.map((f) => (
         <li>
           <a href={f.href}>
-            <span class="link-list__text"><span class="link-list__name">{f.name}</span><span class="link-list__hint">{f.hint}</span></span>
+            <span class="link-list__text"><span class="link-list__name">{f.name}</span> <span class="link-list__hint">{f.hint}</span></span>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 4l5 5-5 5"></path></svg>
           </a>
         </li>
@@ -60,25 +63,25 @@ const faces = ['major-18-moon', 'major-19-sun', 'major-16-tower'].map((id) => ca
     </ul>
   </section>
 
-  <section class="tile" aria-labelledby="daily-tile">
+  <a class="tile" href={pagePath('daily', lang)}>
     <img src={CARD_BACK} alt="" />
-    <div class="tile__body">
-      <p class="eyebrow" id="daily-tile">{d.dailyTileEyebrow}</p>
-      <p>{d.dailyTileText}</p>
-      <a href={pagePath('daily', lang)}>{d.dailyTileLink}</a>
-    </div>
-  </section>
+    <span class="tile__body">
+      <span class="eyebrow">{d.dailyTileEyebrow}</span>
+      <span>{d.dailyTileText}</span>
+      <span class="tile__cta">{d.dailyTileLink}</span>
+    </span>
+  </a>
 
   <TextBlocks blocks={text.blocks} />
 
   <section class="page-section" aria-labelledby="learn">
     <h2 class="h2" id="learn">{d.learnTitle}</h2>
     <p class="lead">{d.learnLead}</p>
-    <div class="card-row">
+    <ul class="card-row">
       {faces.map((card) => (
-        <a href={cardPath(card, lang)}><CardFigure card={card} lang={lang} sizes="100px" /></a>
+        <li><a href={cardPath(card, lang)}><CardFigure card={card} lang={lang} sizes="100px" alt="" /></a></li>
       ))}
-    </div>
+    </ul>
   </section>
 
   <Faq heading={d.faqTitle} items={text.faq} id="faq" />

@@ -14,7 +14,7 @@ L-EN-12,EN-014,EN-093,навигация,Что такое старшие арк
 L-EN-13,EN-093,@major,навигация,Найти старший аркан,{card_name},{card_name}|major arcana,запуск,
 L-EN-14,EN-093,EN-014,навигация,А все 78 карт?,All 78 cards,tarot cards|meanings,запуск,
 L-EN-15,EN-006,@drawn,подробность,Что значит карта дня подробнее?,Today's card: {card_name},{card_name}|card of the day|meaning,запуск,
-L-EN-16,EN-006,@diary,сохранение,Сохранить карту дня,Save to diary,diary|card of the day,запуск,служебная страница за входом
+L-EN-16,EN-006,@diary,сохранение,Сохранить карту дня,Save to diary,diary|card of the day,V1.1,служебная страница за входом; решение 42 (24.11.2026): карта дня на запуске не сохраняется
 L-EN-17,EN-001,EN-005,навигация,Хочу одну карту,One card,one card|reading,запуск,переключатель формата
 L-EN-18,EN-001,EN-007,навигация,Хочу ответ да или нет,Yes or No,yes or no|tarot,запуск,
 L-EN-19,EN-001,EN-011,навигация,Вопрос о любви,Love reading,love|reading,запуск,
@@ -30,3 +30,4 @@ L-EN-28,EN-099,EN-001,действие,Хочу совет на свою сит�
 L-EN-29,EN-014,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,tarot cards|reading|question,запуск,кнопка под списком карт
 L-EN-30,EN-093,EN-001,действие,Хочу вытянуть сам,Draw a card for your question,major arcana|reading|question,запуск,кнопка под списком старших арканов
 L-EN-31,EN-007,@drawn,подробность,Что эта карта значит вообще?,{card_name} — full meaning,{card_name}|yes or no|meaning,запуск,под картой в ответе да/нет; с V1.1 рядом — L-EN-23 на страницу yes-or-no
+L-EN-32,EN-001,@diary,сохранение,Сохранить это чтение,Save to diary,diary|reading,запуск,"решение 42 (24.11.2026): сохранение на запуске — у чтения, не у карты дня; кнопка «Save to diary» под ответом каждого инструмента чтения (гость — окно входа), после сохранения — ссылка «Saved to your diary ✓» на запись дневника"

@@ -2,8 +2,8 @@
 // The card page (spec stage 6 §4; prototypes CardMoon — phone: a 150 px scan beside the facts line and the H1, the
 // capsule right below; DeskCard — desktop: the scan and the draw panel on the left, the text on the right). Order:
 // breadcrumbs → facts line, H1 → 1909 scan with its caption → capsule, keyword table → "on this page" chips → the
-// 12 blocks → the draw panel (ReadingIsland, unchanged) → FAQ (first open) → related cards → previous and next card
-// → About this page. Text: content/cards/pages (stage 5); template strings: template-strings.json; nothing about
+// 12 blocks → the draw panel (ReadingIsland, unchanged) → FAQ (first open) → related cards (the whole `related`, a
+// <nav> inside the <aside>, owner decision 40) → previous and next card → About this page. Text: content/cards/pages (stage 5); template strings: template-strings.json; nothing about
 // elements or astrology (owner decision 10).
 import Base from '../layouts/Base.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
@@ -13,8 +13,8 @@ import ReadingIsland from '../islands/ReadingIsland';
 import { t } from '../i18n';
 import { cardCrumbs } from '../lib/breadcrumbs';
 import {
-  SECTION_IDS, aboutLines, ctaText, factsLine, faqHeading, imageCaption, keywordCaption, keywordRows, mentionSegments,
-  pairRows, relatedCards, segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines, yesNoReason,
+  SECTION_IDS, aboutLines, cardLinks, ctaText, factsLine, faqHeading, imageCaption, keywordCaption, keywordRows,
+  relatedCards, segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines, yesNoReason,
 } from '../lib/cardPage';
 import { TEMPLATE_STRINGS, cardPage } from '../lib/cardPages';
 import { cardImage, cardName, neighbors, type DeckCard } from '../lib/deck';
@@ -39,9 +39,10 @@ const ids = SECTION_IDS[lang];
 const crumbs = cardCrumbs(card, lang);
 const editorName = String(FACTS.editor_name);
 const facts = factsLine(page, s, lang);
-const mentions = mentionSegments(page, lang);
+// each card linked once in the content (a sentence before a pairs row); related and previous/next are <nav> (L-EN-08)
+const { mentions, pairs } = cardLinks(page, s, lang);
+const related = relatedCards(page);
 const yesNo = yesNoLines(card, yesNoReason(card, lang), s, lang);
-const pairs = pairRows(page, s, lang);
 const cta = ctaText(page, s);
 const about = aboutLines(page, s, lang, editorName);
 const cite = titleParts(waiteCite(page, s));
@@ -122,6 +123,8 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
           )}
           {block.id === 'waite' ? <p class="waite-boundary">{s.waite.boundary}</p> : null}
           {block.id === 'work_money' ? <p class="block-note">{s.work_money.money_line}</p> : null}
+          {block.id === 'love' ? <p class="block-link"><a href={pagePath('love', lang)}>{d.cardLoveLink}</a></p> : null}
+          {block.id === 'yes_no' ? <p class="block-link"><a href={pagePath('yes_no', lang)}>{d.cardYesNoLink}</a></p> : null}
           {block.id === 'in_a_reading' ? <p class="block-note">{s.in_a_reading.note}</p> : null}
           {block.id === 'ask_yourself' ? (
             <p><a class="btn btn--outline" href={pagePath('diary', lang)}>{s.ask_yourself.diary_button}</a></p>
@@ -147,18 +150,20 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
         ))}
       </section>
 
-      <section class="page-section" id={ids.related} aria-labelledby={`${ids.related}-title`}>
-        <h2 class="h2" id={`${ids.related}-title`}>{s.related.heading}</h2>
-        <ul class="card-row">
-          {relatedCards(page).map((other) => (
-            <li><a href={cardPath(other, lang)}><CardFigure card={other} lang={lang} sizes="100px" alt="" /></a></li>
-          ))}
-        </ul>
-      </section>
+      <aside class="page-section" id={ids.related}>
+        <nav aria-labelledby={`${ids.related}-title`}>
+          <h2 class="h2" id={`${ids.related}-title`}>{s.related.heading}</h2>
+          <ul class="card-row">
+            {related.map((other) => (
+              <li><a href={cardPath(other, lang)}><CardFigure card={other} lang={lang} sizes="100px" alt="" /></a></li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
 
-      <nav class="card-nav" aria-label={d.cardNav}>
-        <a href={cardPath(prev, lang)}><small>{d.prevCard}</small>{prev.numeral} {cardName(prev, lang)}</a>
-        <a href={cardPath(next, lang)}><small>{d.nextCard}</small>{next.numeral} {cardName(next, lang)}</a>
+      <nav class="card-nav" id="card-nav" aria-label={d.cardNav}>
+        <a href={cardPath(prev, lang)}><small>{d.prevCard}</small> {prev.numeral} {cardName(prev, lang)}</a>
+        <a href={cardPath(next, lang)}><small>{d.nextCard}</small> {next.numeral} {cardName(next, lang)}</a>
       </nav>
 
       <section class="page-section about-page" id={ids.about} aria-labelledby={`${ids.about}-title`}>
@@ -176,7 +181,7 @@ const ld = cardLd({ headline: page.h1, description: page.description, path, lang
           })}
         </ul>
         <p class="small muted">{about.pageNumbers}</p>
-        <p class="small">{about.method}</p>
+        <p class="small">{about.reviewed.before}<time datetime={about.reviewed.datetime}>{about.reviewed.text}</time>{about.reviewed.after}</p>
         <p class="small muted">{about.deckNote}</p>
       </section>
     </div>

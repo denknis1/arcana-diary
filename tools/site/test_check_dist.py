@@ -6,13 +6,14 @@ import json
 import check_dist
 from check_dist import (EXTRA, READING_PAGES, auth_problems, canonical, dist_file, expected_alternates, expected_pages,
                         head_problems, hidden_link_problems, hidden_pages, indexable_pages, launched_problems, noindex_pages,
-                        hreflang_target_problems, list_problems, placeholder_problems, robots_problems, robots_txt_problems,
-                        sitemap_problems, static_chunks, unexpected_pages)
+                        hreflang_target_problems, list_problems, markup_problems, placeholder_problems, robots_problems,
+                        robots_txt_problems, sitemap_problems, static_chunks, unexpected_pages)
 
 ISLAND = '<astro-island component-url="/_astro/ReadingIsland.a1.js" renderer-url="/_astro/client.b2.js"></astro-island>'
 NOINDEX = '<meta name="robots" content="noindex, nofollow">'
 LD = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage"}</script>'
 SITE_OTHER = "https://arcanadiary.com/other"
+REVIEWED = '<p>Reviewed on <time datetime="2026-11-23">November 23, 2026</time>.</p>'
 ROBOTS_TXT = "User-agent: *\nDisallow:\nSitemap: https://arcanadiary.com/sitemap.xml\n"
 
 
@@ -60,8 +61,9 @@ def list_pages(dist, drop=None):
 
 def site(tmp_path, reading_island='import{x}from"./api.d4.js";'):
     dist = tmp_path / "dist"
+    cards = set(check_dist.card_paths("en")) | set(check_dist.card_paths("es"))
     for path in expected_pages():
-        write(dist, dist_file(path), head(path) + ISLAND)
+        write(dist, dist_file(path), head(path) + ISLAND + (REVIEWED if path in cards else ""))
     list_pages(dist)
     write(dist, "_astro/client.b2.js", 'import{h}from"./preact.c3.js";')
     write(dist, "_astro/preact.c3.js", "export const h=1;")
@@ -307,6 +309,69 @@ def test_a_link_to_a_hidden_page_is_reported(tmp_path):
     write(dist, "es.html", head("/es") + '<a href="/privacy">p</a><a href="https://arcanadiary.com/es/terminos#x">t</a>')
     assert hidden_link_problems(dist) == ["link to the hidden page /es/terminos: site/dist/es.html",
                                           "link to the hidden page /privacy: site/dist/es.html"]
+
+
+def test_a_good_build_has_no_markup_problem(tmp_path):
+    assert markup_problems(site(tmp_path)) == []
+
+
+def test_two_links_to_one_address_in_main_are_reported_but_not_inside_nav(tmp_path):
+    # SEO Monster 2027, 4.4: the first link in the DOM gives the anchor; navigation sits in <nav>
+    dist = site(tmp_path)
+    crumbs = '<nav><a href="/">Home</a><a href="/cards">Cards</a></nav>'
+    write(dist, "cards/the-moon.html", head("/cards/the-moon") + f'<main id="main">{crumbs}<p><a href="/cards#cups">Cups</a> '
+          '<a href="/cards/the-sun">The Sun</a> <a href="#love">Love</a> <a href="#love">Love</a></p>'
+          '<aside><a href="https://arcanadiary.com/cards/the-sun#love">XIX The Sun</a></aside>'
+          '<nav id="card-nav"><a href="/cards/the-sun">Next</a></nav></main>'
+          '<footer><a href="/cards/the-sun">The Sun</a></footer><time datetime="2026-11-23">x</time>')
+    write(dist, "index.html", head("/") + '<main><a href="/daily">Card of the Day</a><a href="/daily">Turn it over</a></main>')
+    assert markup_problems(dist) == ["2 links to /cards/the-sun in <main> outside <nav>: site/dist/cards/the-moon.html",
+                                     "2 links to /daily in <main> outside <nav>: site/dist/index.html"]
+
+
+def test_related_cards_in_a_nav_inside_the_aside_repeat_a_card_of_the_text(tmp_path):
+    # owner decision 40: the whole "Related cards" block is navigation (<nav> in the <aside>), the text keeps its link
+    dist = site(tmp_path)
+    write(dist, "cards/the-moon.html", head("/cards/the-moon") + '<main id="main"><p><a href="/cards/the-sun">The Sun</a></p>'
+          '<aside id="related"><nav aria-labelledby="related-title"><h2 id="related-title">Related cards</h2><ul>'
+          '<li><a href="/cards/the-sun">XIX The Sun</a></li><li><a href="/cards/the-star">XVII The Star</a></li></ul></nav>'
+          '</aside></main><time datetime="2026-11-23">x</time>')
+    assert markup_problems(dist) == []
+    write(dist, "cards/the-moon.html", head("/cards/the-moon") + '<main id="main"><p><a href="/cards/the-sun">The Sun</a></p>'
+          '<aside id="related"><h2>Related cards</h2><ul><li><a href="/cards/the-sun">XIX The Sun</a></li></ul></aside>'
+          '</main><time datetime="2026-11-23">x</time>')
+    assert markup_problems(dist) == ["2 links to /cards/the-sun in <main> outside <nav>: site/dist/cards/the-moon.html"]
+
+
+def test_a_footer_link_to_the_page_itself_needs_aria_current(tmp_path):
+    dist = site(tmp_path)
+    write(dist, "yes-no.html", head("/yes-no") + '<main></main><footer><a href="/yes-no">Yes or No</a>'
+          '<a href="/love">Love</a></footer>')
+    write(dist, "es.html", head("/es") + '<main></main><footer><a href="/es#una-carta" aria-current="page">Una carta</a></footer>')
+    write(dist, "love.html", head("/love") + '<main></main><footer><a href="/love" aria-current="true">Love</a></footer>')
+    assert markup_problems(dist) == ["footer link to the page itself without aria-current=\"page\": /love: site/dist/love.html",
+                                     "footer link to the page itself without aria-current=\"page\": /yes-no: site/dist/yes-no.html"]
+
+
+def test_link_text_that_runs_together_is_reported(tmp_path):
+    # the text of a link is what a crawler, a screen reader and a language model read: "PreviousXVII" is no word
+    dist = site(tmp_path)
+    good = ('<a href="/cards/the-star"><small>← Previous</small> XVII The Star</a>'
+            '<a href="/one-card"><span>One card</span> <span>A single card</span></a>'
+            '<a href="/cards/the-sun"><b>XIX</b> The Sun</a><a href="/x">Haz una <b>tirada</b>, ya</a>')
+    write(dist, "love.html", head("/love") + f"<main>{good}</main>")
+    assert markup_problems(dist) == []
+    bad = ('<a href="/cards/the-star"><small>← Previous</small>XVII The Star</a>'
+           '<a href="/one-card"><span>One card</span><span>A single card</span></a>')
+    write(dist, "love.html", head("/love") + f"<main>{bad}</main>")
+    assert markup_problems(dist) == ["link text runs together «← PreviousXVII The Star»: site/dist/love.html",
+                                     "link text runs together «One cardA single card»: site/dist/love.html"]
+
+
+def test_a_card_page_dates_its_review_with_time(tmp_path):
+    dist = site(tmp_path)
+    write(dist, "es/cartas/la-luna.html", head("/es/cartas/la-luna") + '<main><p>La revisó X el 23 de noviembre de 2026.</p></main>')
+    assert markup_problems(dist) == ["no <time datetime> of the review date: site/dist/es/cartas/la-luna.html"]
 
 
 def test_main_reports_every_problem_and_passes_a_good_build(tmp_path, capsys):

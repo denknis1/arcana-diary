@@ -13,9 +13,28 @@ describe('dictionaries', () => {
     expect([t('en').breadcrumbLabel, t('es').breadcrumbLabel]).toEqual(['Breadcrumb', 'Ruta']);
   });
 
+  it('use the anchors of the stage 2 link matrix (docs/research/stage2/links-{en,es}.csv)', () => {
+    expect([t('en').fmtLove, t('en').fmtCards, t('en').yesNoMethodLink]).toEqual([
+      'Love reading', 'Card meanings', 'How we read yes and no']);
+    expect([t('es').fmtThree, t('es').fmtCards, t('es').cardLoveLink, t('es').cardYesNoLink]).toEqual([
+      'Tirada de 3 cartas', 'Significados de las cartas', 'Haz una tirada de amor', 'Pregunta sí o no']);
+    expect([t('en').drawForQuestion, t('es').drawForQuestion, t('en').allCardsLink, t('es').allCardsLink,
+      t('en').yesNoListAsk]).toEqual(['Draw a card for your question', 'Saca una carta para tu pregunta', 'All 78 cards',
+      'Las 78 cartas', 'Ask your question']);
+    // L-EN-26 (love block of the card page) and the hints of the hub link (context terms of L-EN-21 / L-ES-21)
+    expect([t('en').cardLoveLink, t('en').fmtCardsHint, t('es').fmtCardsHint]).toEqual([
+      'Do a love reading', 'What each of the 78 tarot cards means', 'Qué significa cada una de las 78 cartas del tarot']);
+    // under a drawn card (owner decisions 38, 41): L-EN-01…03/31, L-ES-01/02; L-EN-15, L-ES-15; L-ES-03; L-ES-04
+    // (a card that says "not clear yet": the short question); L-ES-23 after L-ES-03 in the same row
+    expect([t('en').fullMeaning, t('es').fullMeaning, t('en').dailyCardLink, t('es').dailyCardLink, t('es').drawnLoveLink,
+      t('es').drawnWhyLink, t('es').drawnWhyUnclearLink, t('es').drawnFullShort]).toEqual(['{name} — full meaning',
+      '{name} — significado completo', "Today's card: {name}", 'Carta de hoy: {name}', '{name} en el amor',
+      'Por qué {name} dice {verdict}', '¿Por qué {name}?', 'significado completo']);
+  });
+
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(248);
+    expect(keys('en').length).toBe(260);
   });
 
   it('have no empty strings', () => {

@@ -211,13 +211,15 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
   border-radius: var(--radius-pill); border: 1px solid var(--color-day-accent); color: var(--color-day-accent);
   font-size: var(--font-size-small); font-weight: 700;
 }
+/* the Card of the Day tile is one link (home: one link to /daily on the page) */
 .tile {
   display: flex; gap: var(--space-4); align-items: center; padding: var(--space-5); margin-top: var(--space-6);
-  border-radius: var(--radius-panel); background: var(--color-day-surface);
+  border-radius: var(--radius-panel); background: var(--color-day-surface); color: var(--color-day-text);
+  text-decoration: none;
 }
 .tile img { width: 56px; aspect-ratio: var(--card-ratio); border-radius: calc(var(--radius-card) - var(--space-1)); flex-shrink: 0; }
 .tile__body { display: flex; flex-direction: column; gap: var(--space-2); }
-.tile__body a { font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+.tile__cta { font-weight: 600; color: var(--color-day-accent); text-decoration: underline; }
 
 /* The night room (screens 2a–2e, 5b, 8b, 13d) */
 .night-room {
@@ -284,9 +286,13 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 .verdict { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); text-align: center; }
 .verdict__word { display: flex; align-items: center; gap: var(--space-4); font-family: var(--font-display); font-weight: 500; font-size: var(--font-size-display-1); line-height: 1; }
 .verdict__word svg { color: var(--color-night-accent); }
-.more-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: var(--space-2); }
-.more-cards .btn { font-size: var(--font-size-small); padding: 0 var(--space-2); }
 .night__actions { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+/* the links under the drawn cards (owner decision 41): a compact list of text links, one row per card, each link a
+   44 px tap target; the focus ring is the night one (.night :focus-visible) */
+.more-cards ul { list-style: none; margin: 0; padding: 0; }
+.more-cards li { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--space-1); }
+.more-cards a { display: inline-flex; align-items: center; min-height: 44px; color: var(--color-night-accent); font-weight: 600; }
+.more-cards span[aria-hidden] { color: var(--color-night-text-muted); }
 .night__foot { margin: var(--space-6) 0 0; text-align: center; font-size: var(--font-size-small); color: var(--color-night-text-muted); }
 .followups { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-night-line); }
 .followup__q { margin: 0; font-size: var(--font-size-small); color: var(--color-night-text-muted); }

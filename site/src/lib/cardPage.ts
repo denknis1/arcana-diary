@@ -5,9 +5,9 @@
 import { fill, t, type DictKey } from '../i18n';
 import meaningsEn from '../data/meanings.en.json';
 import meaningsEs from '../data/meanings.es.json';
-import type { CardBlockId, CardPageData, TemplateStrings } from './cardPages';
+import type { CardPageData, TemplateStrings } from './cardPages';
 import { cardById, cardName, type DeckCard } from './deck';
-import { cardPath, suitPath } from './routes';
+import { SECTION_IDS, cardPath, suitPath, type SectionKey } from './routes';
 import type { Lang, Vote } from './types';
 
 export type Segment = string | { text: string; href: string };
@@ -22,23 +22,7 @@ export interface PairRow extends LinkSlot {
   reading: string;
 }
 
-type SectionKey = CardBlockId | 'draw' | 'faq' | 'related' | 'about';
-
-/** Section anchors; EN #reversed, ES #invertida, #amor, #si-o-no are rows EN-095, ES-092…094 of the page maps. */
-export const SECTION_IDS: Readonly<Record<Lang, Readonly<Record<SectionKey, string>>>> = {
-  en: {
-    on_the_card: 'on-the-card', waite: 'waite', upright: 'upright', reversed: 'reversed', love: 'love',
-    work_money: 'work-and-money', advice: 'advice', yes_no: 'yes-or-no', in_a_reading: 'as-a-person',
-    combinations: 'combinations', not_to_confuse: 'not-to-confuse', ask_yourself: 'ask-yourself',
-    draw: 'draw', faq: 'faq', related: 'related', about: 'about',
-  },
-  es: {
-    on_the_card: 'en-la-carta', waite: 'waite', upright: 'al-derecho', reversed: 'invertida', love: 'amor',
-    work_money: 'trabajo-y-dinero', advice: 'consejo', yes_no: 'si-o-no', in_a_reading: 'como-persona',
-    combinations: 'combinaciones', not_to_confuse: 'no-confundir', ask_yourself: 'preguntas-para-ti',
-    draw: 'tu-pregunta', faq: 'preguntas', related: 'relacionadas', about: 'sobre-esta-pagina',
-  },
-};
+export { SECTION_IDS };
 
 const TOC: readonly [SectionKey, DictKey][] = [['upright', 'tocUpright'], ['reversed', 'tocReversed'], ['love', 'tocLove'],
   ['work_money', 'tocWorkMoney'], ['yes_no', 'tocYesNo'], ['faq', 'tocFaq']];
@@ -197,6 +181,42 @@ export function relatedCards(page: CardPageData): DeckCard[] {
   return page.related.map((id) => card(id, page));
 }
 
+/**
+ * The card links of the page's content, each target once (SEO Monster 2027, 4.4: two links to one URL in <main> do
+ * not add to each other, and the first one in the DOM gives the anchor). The links in sentences come first (8.6: a
+ * link in a sentence with its context is worth more than a table row; owner decision 40): capsule, the paragraphs
+ * of the blocks, FAQ answers in the template's order — the first link to a card stays, a later mention keeps its
+ * words as plain text; then a row of the pairs table links its card only if no sentence does. "Related cards" is
+ * not here: it is navigation in <nav> (the whole `related` of the content, 3–5 cards, owner decision 40), and links
+ * inside <nav> (breadcrumbs, related, previous/next) do not count.
+ */
+export function cardLinks(page: CardPageData, s: TemplateStrings, lang: Lang) {
+  const seen = new Set<string>();
+  const once = (href: string) => (seen.has(href) ? false : (seen.add(href), true));
+  const all = mentionSegments(page, lang);
+  const mentions = new Map<string, Segment[]>();
+  const keep = (key: string) => {
+    const segs = all.get(key);
+    if (!segs) return;
+    const out: Segment[] = [];
+    for (const seg of segs) {
+      const plain = typeof seg === 'string' ? seg : once(seg.href) ? null : seg.text;
+      if (plain === null) out.push(seg);
+      else if (typeof out[out.length - 1] === 'string') out[out.length - 1] += plain;
+      else out.push(plain);
+    }
+    mentions.set(key, out);
+  };
+  keep('capsule');
+  for (const block of page.blocks) (block.paragraphs ?? []).forEach((_, j) => keep(`${block.id}:${j}`));
+  page.faq.forEach((_, i) => keep(`faq:${i}`));
+  const pairs: PairRow[] = page.blocks.some((block) => block.id === 'combinations')
+    ? pairRows(page, s, lang).map((row) => (row.link && !once(row.link.href)
+      ? { before: row.before + row.link.text + row.after, link: null, after: '', reading: row.reading } : row))
+    : [];
+  return { mentions, pairs };
+}
+
 export function tocLinks(lang: Lang): { href: string; label: string }[] {
   const d = t(lang);
   return TOC.map(([key, label]) => ({ href: `#${SECTION_IDS[lang][key]}`, label: d[label] }));
@@ -204,11 +224,15 @@ export function tocLinks(lang: Lang): { href: string; label: string }[] {
 
 export function aboutLines(page: CardPageData, s: TemplateStrings, lang: Lang, editorName: string) {
   if (!page.reviewed_at) throw new Error(`${page.lang}/${page.card_id}: not reviewed`);
+  const reviewedAt = page.reviewed_at;
+  const [reviewedBefore, reviewedAfter] = around(s.about.method, 'reviewed_at', { editor_name: editorName });
   return {
     sources: page.sources.map((src) => ({ what: src.what, where: src.where,
       pages: src.pages ? formatPages(src.pages, s) : null, url: src.url })),
     pageNumbers: s.about.page_numbers,
     method: fill(s.about.method, { editor_name: editorName, reviewed_at: formatDate(page.reviewed_at, lang) }),
+    // the same line with the date apart, for <time datetime> (a dated fact, machine-readable)
+    reviewed: { before: reviewedBefore, datetime: reviewedAt, text: formatDate(reviewedAt, lang), after: reviewedAfter },
     deckNote: s.about.deck_note,
   };
 }

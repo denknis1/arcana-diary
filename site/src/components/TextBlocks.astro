@@ -1,16 +1,20 @@
 ---
-// The blocks of a stage 5 text (content/pages): a section per block, its id the block id, an H2 and the paragraphs.
+// The blocks of a stage 5 text (content/pages): a section per block, its id the block id, an H2 and the paragraphs;
+// `links` puts a link of the stage 2 matrix at the end of a block (spec stage 6 §7: address links sit in the blocks,
+// next to the terms of their context).
 import type { TextBlock } from '../lib/textPages';
 
 interface Props {
   blocks: readonly TextBlock[];
+  links?: Readonly<Record<string, { href: string; text: string }>>;
 }
 
-const { blocks } = Astro.props;
+const { blocks, links = {} } = Astro.props;
 ---
 {blocks.map((block) => (
   <section class="page-section prose" id={block.id} aria-labelledby={`${block.id}-title`}>
     <h2 class="h2" id={`${block.id}-title`}>{block.heading}</h2>
     {block.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    {links[block.id] ? <p class="block-link"><a href={links[block.id].href}>{links[block.id].text}</a></p> : null}
   </section>
 ))}

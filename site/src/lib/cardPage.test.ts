@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
-  SECTION_IDS, aboutLines, ctaText, factsLine, faqHeading, formatDate, formatPages, imageCaption, keywordCaption,
-  keywordRows, mentionSegments, pairRows, relatedCards, segmentsOf, titleParts, tocLinks, waiteCite, yesNoLines,
-  yesNoReason,
+  SECTION_IDS, aboutLines, cardLinks, ctaText, factsLine, faqHeading, formatDate, formatPages, imageCaption,
+  keywordCaption, keywordRows, mentionSegments, pairRows, relatedCards, segmentsOf, titleParts, tocLinks, waiteCite,
+  yesNoLines, yesNoReason, type Segment,
 } from './cardPage';
 import { CARD_PAGES, TEMPLATE_STRINGS, cardPage } from './cardPages';
 import { cardById, cardName } from './deck';
@@ -123,6 +123,48 @@ describe('the card template (spec stage 6 §4, rules §12)', () => {
     expect(about.sources).toEqual(moonEn.sources.map((src) => ({ what: src.what, where: src.where,
       pages: src.pages ? `${src.pages.length === 1 ? 'p.' : 'pp.'} ${src.pages.join(', ')}` : null, url: src.url })));
     expect(about.sources.find((_, i) => moonEn.sources[i].kind === 'project')!.url).toBeNull();
+    const date = formatDate(moonEn.reviewed_at!, 'en');
+    expect(about.reviewed).toEqual({ before: "Written with AI from Waite's book and Arcana Diary's card meanings. "
+      + 'Reviewed by Adrian Solenne on ', datetime: moonEn.reviewed_at, text: date, after: '.' });
+    const es = aboutLines(cardPage(moon, 'es'), ES, 'es', 'Adrian Solenne').reviewed;
+    expect(es.before + es.text + es.after).toBe(aboutLines(cardPage(moon, 'es'), ES, 'es', 'Adrian Solenne').method);
+  });
+
+  it('links each card once in the text of the page: a sentence before a pairs row, the later ones plain (4.4, 8.6)', () => {
+    const hrefs = (segs: readonly Segment[]) => segs.flatMap((seg) => (typeof seg === 'string' ? [] : [seg.href]));
+    let pairsPlain = 0;
+    for (const page of CARD_PAGES) {
+      const s = TEMPLATE_STRINGS[page.lang];
+      const plan = cardLinks(page, s, page.lang);
+      const sentences: string[] = [...hrefs(plan.mentions.get('capsule') ?? [])];
+      for (const block of page.blocks) {
+        (block.paragraphs ?? []).forEach((_, j) => sentences.push(...hrefs(plan.mentions.get(`${block.id}:${j}`) ?? [])));
+      }
+      page.faq.forEach((_, i) => sentences.push(...hrefs(plan.mentions.get(`faq:${i}`) ?? [])));
+      const rows = plan.pairs.flatMap((row) => (row.link ? [row.link.href] : []));
+      const order = [...sentences, ...rows];
+      expect(new Set(order).size, `${page.lang}/${page.card_id}`).toBe(order.length);
+      // every mention is a link once: a pairs row that names a card linked in a sentence is plain text
+      expect(new Set(sentences)).toEqual(new Set([...mentionSegments(page, page.lang).values()].flatMap(hrefs)));
+      pairRows(page, s, page.lang).forEach((old, i) => {
+        const row = plan.pairs[i];
+        expect(row.link === null, `${page.lang}/${page.card_id} pair ${i}`).toBe(sentences.includes(old.link!.href)
+          || pairRows(page, s, page.lang).slice(0, i).some((before) => before.link!.href === old.link!.href));
+        expect(row.before + (row.link?.text ?? '') + row.after).toBe(old.before + old.link!.text + old.after);
+        if (row.link === null) pairsPlain += 1;
+      });
+      for (const [key, segs] of plan.mentions) {
+        const old = mentionSegments(page, page.lang).get(key)!;
+        expect(segs.map((seg) => (typeof seg === 'string' ? seg : seg.text)).join(''))
+          .toBe(old.map((seg) => (typeof seg === 'string' ? seg : seg.text)).join(''));
+      }
+      // "Related cards" is navigation in <nav>: the whole `related` of the content, 3–5 cards (owner decision 40)
+      expect(page.related.length, `${page.lang}/${page.card_id}`).toBeGreaterThanOrEqual(3);
+      expect(page.related.length, `${page.lang}/${page.card_id}`).toBeLessThanOrEqual(5);
+      expect(Object.keys(plan)).toEqual(['mentions', 'pairs']);
+    }
+    // the 20 cards named both in a sentence and in the pairs table (stage 5 texts) keep the link in the sentence
+    expect(pairsPlain).toBe(20);
   });
 
   it('gives the sections the anchors of the page maps (EN #reversed; ES #invertida, #amor, #si-o-no)', () => {

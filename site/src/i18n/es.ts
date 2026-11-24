@@ -93,7 +93,14 @@ export const es: Dict = {
   dailyLoading: 'Volteando tu carta…',
   dailyFallbackNote: 'No pudimos cargar tu carta, así que aquí tienes la carta de hoy de nuestra base de cartas.',
   dailyError: 'No pudimos voltear tu carta ahora mismo. Inténtalo de nuevo en un momento.',
-  fullMeaning: '{name}: significado completo',
+  fullMeaning: '{name} — significado completo',
+  // links under a drawn card (stage 2 matrix, owner decisions 38, 41): L-ES-15, L-ES-03 (#amor), L-ES-04 (#si-o-no;
+  // a card that says "not clear yet": «¿Por qué La Luna?»), L-ES-23 after L-ES-03 in one row («· significado completo»)
+  dailyCardLink: 'Carta de hoy: {name}',
+  drawnLoveLink: '{name} en el amor',
+  drawnWhyLink: 'Por qué {name} dice {verdict}',
+  drawnWhyUnclearLink: '¿Por qué {name}?',
+  drawnFullShort: 'significado completo',
   reversedTag: 'Al revés',
 
   cardTitle: '{name}: significado en el tarot — Arcana Diary',
@@ -278,6 +285,14 @@ export const es: Dict = {
   footerTerms: 'Términos',
   // etapa 6: junto a la línea del proveedor de IA y a los consentimientos, cuando la página de privacidad se abre
   privacyLink: 'Aviso de privacidad',
+  // etapa 6: textos de enlace de la matriz de la etapa 2 (links-es.csv, ola «запуск»)
+  fmtCards: 'Significados de las cartas',
+  fmtCardsHint: 'Qué significa cada una de las 78 cartas del tarot',
+  fmtThree: 'Tirada de 3 cartas',
+  fmtThreeHint: 'Pasado, presente y hacia dónde va',
+  yesNoMethodLink: 'Cómo leemos el sí o no',
+  cardLoveLink: 'Haz una tirada de amor',
+  cardYesNoLink: 'Pregunta sí o no',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

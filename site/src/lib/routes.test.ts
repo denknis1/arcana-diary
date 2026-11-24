@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import pairs from '../data/pairs.json';
 import { DECK } from './deck';
-import { NAV_KEYS, PRIVATE_PAIRS, allPagePaths, cardPath, distFile, hreflangPair, langOf, pagePath, switchPath } from './routes';
+import { NAV_KEYS, PRIVATE_PAIRS, allPagePaths, cardPath, distFile, drawnCardLink, hreflangPair, langOf, pagePath, switchPath } from './routes';
 
 describe('routes', () => {
   it('lists every page of the site for both languages (stage 6 part 1)', () => {
@@ -97,5 +97,31 @@ describe('routes', () => {
     expect(distFile('/es')).toBe('es.html');
     expect(distFile('/es/404')).toBe('es/404.html');
     expect(distFile('/es/cartas/la-luna')).toBe('es/cartas/la-luna.html');
+  });
+});
+
+describe('drawnCardLink (owner decision 38; every row on screen: NightRoom.test.tsx, DailyIsland.test.tsx)', () => {
+  it('gives each tool its launch rows of the stage 2 matrix, in both languages', () => {
+    const moon = { card_id: 'major-18-moon', reversed: false };
+    const rows = (lang: 'en' | 'es') => (['home', 'one_card', 'three_cards', 'love', 'yes_no', 'daily'] as const)
+      .map((tool) => drawnCardLink(moon, tool, lang).map((l) => l.row).join('+'));
+    expect(rows('en')).toEqual(['L-EN-01', 'L-EN-02', 'L-EN-01', 'L-EN-03', 'L-EN-31', 'L-EN-15']);
+    expect(rows('es')).toEqual(['L-ES-01', 'L-ES-01', 'L-ES-02', 'L-ES-03+L-ES-23', 'L-ES-04', 'L-ES-15']);
+  });
+
+  it('takes the vote from the API, else the yes/no rule (reversed: not clear yet); no link for an unknown card', () => {
+    const sun = (reversed: boolean, vote?: 'no') => drawnCardLink({ card_id: 'major-19-sun', reversed, vote }, 'yes_no', 'es')[0].text;
+    expect([sun(false), sun(true), sun(false, 'no')]).toEqual(['Por qué El Sol dice sí', '¿Por qué El Sol?',
+      'Por qué El Sol dice no']);
+    expect(drawnCardLink({ card_id: 'major-99-none', reversed: false }, 'love', 'es')).toEqual([]);
+  });
+
+  it('names no yes or no when the reading has no verdict: the full meaning of the card', () => {
+    const sun = { card_id: 'major-19-sun', reversed: false };
+    expect(drawnCardLink(sun, 'yes_no', 'es', false)).toEqual([{ row: 'L-ES-01', href: '/es/cartas/el-sol',
+      text: 'El Sol — significado completo' }]);
+    expect(drawnCardLink(sun, 'yes_no', 'en', false)).toEqual([{ row: 'L-EN-31', href: '/cards/the-sun',
+      text: 'The Sun — full meaning' }]);
+    expect(drawnCardLink(sun, 'love', 'es', false).map((l) => l.row)).toEqual(['L-ES-03', 'L-ES-23']); // only yes/no
   });
 });
