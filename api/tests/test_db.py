@@ -31,7 +31,7 @@ def test_split_sql():
 def test_migrate_creates_tables_with_rls_and_no_policies(fresh_db):
     assert migrate(fresh_db, MIGRATIONS) == ["001_init", "002_accounts", "003_guard_source", "004_events",
                                            "005_request_ids", "006_rewrite_purpose", "007_remind_click",
-                                           "008_person_verdict"]
+                                           "008_person_verdict", "009_daily_journal"]
     with fresh_db.connect() as conn:
         rows = conn.execute("SELECT relname, relrowsecurity FROM pg_class"
                             " WHERE relnamespace = 'public'::regnamespace AND relkind = 'r'").fetchall()
@@ -319,7 +319,7 @@ def test_002_applies_over_001_and_keeps_the_readings(fresh_db):
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
     assert migrate(fresh_db, MIGRATIONS) == ["002_accounts", "003_guard_source", "004_events", "005_request_ids",
-                                             "006_rewrite_purpose", "007_remind_click", "008_person_verdict"]
+                                             "006_rewrite_purpose", "007_remind_click", "008_person_verdict", "009_daily_journal"]
     with fresh_db.connect() as conn:
         row = conn.execute("SELECT user_id, outcome, outcome_at, note, note_updated_at FROM readings WHERE id = %s",
                            (reading["id"],)).fetchone()
@@ -334,7 +334,7 @@ def test_003_applies_over_002_and_leaves_the_old_rows_without_a_source(fresh_db)
     with fresh_db.connect() as conn:
         insert_001_reading(conn, reading)
     assert migrate(fresh_db, MIGRATIONS) == ["003_guard_source", "004_events", "005_request_ids", "006_rewrite_purpose",
-                                             "007_remind_click", "008_person_verdict"]
+                                             "007_remind_click", "008_person_verdict", "009_daily_journal"]
     with fresh_db.connect() as conn:
         column = conn.execute("SELECT is_nullable, column_default FROM information_schema.columns"
                               " WHERE table_name = 'readings' AND column_name = 'guard_source'").fetchone()
@@ -424,7 +424,7 @@ def test_the_tests_refuse_a_supabase_database():
 def test_004_applies_over_003(fresh_db):
     apply_up_to(fresh_db, "001_init", "002_accounts", "003_guard_source")  # the live database after stage 4.3
     assert migrate(fresh_db, MIGRATIONS) == ["004_events", "005_request_ids", "006_rewrite_purpose", "007_remind_click",
-                                             "008_person_verdict"]
+                                             "008_person_verdict", "009_daily_journal"]
     with fresh_db.connect() as conn:
         security = conn.execute("SELECT relrowsecurity FROM pg_class WHERE relname = 'events'").fetchone()
         names = {r["indexname"] for r in conn.execute("SELECT indexname FROM pg_indexes WHERE tablename = 'events'")}
@@ -453,7 +453,7 @@ def test_005_applies_over_004_and_leaves_the_old_rows_without_a_number(fresh_db)
         conn.execute("INSERT INTO followups (id, reading_id, n, question, created_at) VALUES (%s, %s, 1, 'Q?', %s)",
                      (uuid.uuid4(), reading["id"], T0))
     assert migrate(fresh_db, MIGRATIONS) == ["005_request_ids", "006_rewrite_purpose", "007_remind_click",
-                                             "008_person_verdict"]
+                                             "008_person_verdict", "009_daily_journal"]
     with fresh_db.connect() as conn:
         columns = conn.execute("SELECT table_name, is_nullable, column_default FROM information_schema.columns"
                                " WHERE column_name = 'request_id' ORDER BY table_name").fetchall()
@@ -516,7 +516,7 @@ def test_007_applies_over_006_keeps_the_events_and_takes_remind_click(fresh_db):
     insert = ("INSERT INTO events (day, name, tool, lang, params, created_at) VALUES (%s, %s, %s, 'en', '{}', %s)")
     with fresh_db.connect() as conn:
         conn.execute(insert, (T0.date(), "plus_view", None, T0))
-    assert migrate(fresh_db, MIGRATIONS) == ["007_remind_click", "008_person_verdict"]
+    assert migrate(fresh_db, MIGRATIONS) == ["007_remind_click", "008_person_verdict", "009_daily_journal"]
     with fresh_db.connect() as conn:
         conn.execute(insert, (T0.date(), "remind_click", "daily", T0))
         names = [r["name"] for r in conn.execute("SELECT name FROM events ORDER BY name")]
@@ -539,7 +539,7 @@ def test_008_applies_over_007_keeps_the_readings_and_allows_a_person_verdict(fre
             with conn.transaction():
                 repo.insert_reading(conn, make_reading(kind="yes_no", cards=one, verdict="yes",
                                                        guard_group="redirect_person"))
-    assert migrate(fresh_db, MIGRATIONS) == ["008_person_verdict"]
+    assert migrate(fresh_db, MIGRATIONS) == ["008_person_verdict", "009_daily_journal"]
     after = make_reading(kind="yes_no", cards=one, verdict="yes", guard_group="redirect_person")
     with fresh_db.connect() as conn:
         repo.insert_reading(conn, after)
@@ -548,3 +548,93 @@ def test_008_applies_over_007_keeps_the_readings_and_allows_a_person_verdict(fre
     with pytest.raises(psycopg.errors.CheckViolation):
         with fresh_db.connect() as conn:
             repo.insert_reading(conn, make_reading(kind="yes_no", cards=one, verdict="no", guard_group="redirect_topic"))
+# --- stage 8.1: migration 009 (spec 2026-11-27 §4) ---
+
+BEFORE_009 = ("001_init", "002_accounts", "003_guard_source", "004_events", "005_request_ids", "006_rewrite_purpose",
+              "007_remind_click", "008_person_verdict")
+
+
+def test_009_applies_over_008_keeps_the_guest_draws_and_the_old_insert(fresh_db):
+    """The live database before stage 8.1: its guest draws stay, and the stage 4.2 insert (ON CONFLICT (guest_id,
+    day)) still works after 009, so going back to the old code is safe."""
+    apply_up_to(fresh_db, *BEFORE_009)
+    guest = uuid.uuid4()
+    with fresh_db.connect() as conn:
+        repo.record_daily_draw(conn, guest, T0.date(), "major-18-moon", False)
+    assert migrate(fresh_db, MIGRATIONS) == ["009_daily_journal"]
+    with fresh_db.connect() as conn:
+        repo.record_daily_draw(conn, guest, T0.date(), "cups-02-two", True)  # the same day again: nothing
+        rows = conn.execute("SELECT guest_id, user_id, day, card_id, felt, note, noted_at FROM daily_draws").fetchall()
+    assert rows == [{"guest_id": guest, "user_id": None, "day": T0.date(), "card_id": "major-18-moon", "felt": None,
+                     "note": None, "noted_at": None}]
+
+
+def test_009_runs_again_without_harm(fresh_db):
+    """IF EXISTS / IF NOT EXISTS: the file applied a second time (a half-applied run retried by hand) changes nothing."""
+    migrate(fresh_db, MIGRATIONS)
+    with fresh_db.connect() as conn:
+        for statement in split_sql((MIGRATIONS / "009_daily_journal.sql").read_text(encoding="utf-8")):
+            conn.execute(statement)
+
+
+def test_009_one_card_per_owner_and_day_and_exactly_one_owner(db):
+    user, guest, day = uuid.uuid4(), uuid.uuid4(), T0.date()
+    insert = "INSERT INTO daily_draws (guest_id, user_id, day, card_id, reversed) VALUES (%s, %s, %s, 'major-18-moon', false)"
+    with db.connect() as conn:
+        conn.execute(insert, (None, user, day))
+        conn.execute(insert, (guest, None, day))  # a guest row and an account row on the same day
+        for args in ((None, user, day), (guest, None, day), (None, None, day), (guest, user, day + timedelta(days=1))):
+            with pytest.raises((psycopg.errors.UniqueViolation, psycopg.errors.CheckViolation)):
+                with conn.transaction():
+                    conn.execute(insert, args)
+
+
+@pytest.mark.parametrize("sql", [
+    "UPDATE daily_draws SET felt = 'maybe'",
+    "UPDATE daily_draws SET note = repeat('x', 281)",
+])
+def test_009_mark_and_note_checks(db, sql):
+    with db.connect() as conn:
+        repo.record_daily_draw(conn, uuid.uuid4(), T0.date(), "major-18-moon", False)
+    with pytest.raises(psycopg.errors.CheckViolation):
+        with db.connect() as conn:
+            conn.execute(sql)
+
+
+def test_009_push_subscriptions_checks(db):
+    row = {"user_id": None, "guest_id": uuid.uuid4(), "endpoint": "https://fcm.googleapis.com/fcm/send/x",
+           "p256dh": "k", "auth": "a", "lang": "en", "tz": "UTC", "hour": 8, "now": T0}
+    insert = ("INSERT INTO push_subscriptions (user_id, guest_id, endpoint, p256dh, auth, lang, tz, hour, created_at,"
+              " active_at) VALUES (%(user_id)s, %(guest_id)s, %(endpoint)s, %(p256dh)s, %(auth)s, %(lang)s, %(tz)s,"
+              " %(hour)s, %(now)s, %(now)s)")
+    with db.connect() as conn:
+        conn.execute(insert, row)
+        for bad in ({"endpoint": row["endpoint"]}, {"endpoint": "https://e/2", "hour": 24},
+                    {"endpoint": "https://e/3", "guest_id": None}, {"endpoint": "https://e/4", "user_id": uuid.uuid4()},
+                    {"endpoint": "https://e/5", "lang": "fr"}):
+            with pytest.raises((psycopg.errors.UniqueViolation, psycopg.errors.CheckViolation)):
+                with conn.transaction():
+                    conn.execute(insert, {**row, **bad})
+
+
+def test_009_events_take_the_four_new_names(db):
+    with db.connect() as conn:
+        for name in ("daily_felt", "daily_calendar_view", "push_enabled", "push_click"):
+            conn.execute("INSERT INTO events (day, name, tool, lang, params, created_at) VALUES (%s, %s, NULL, 'en',"
+                         " '{}', %s)", (T0.date(), name, T0))
+        assert conn.execute("SELECT count(*) AS n FROM events").fetchone()["n"] == 4
+
+
+def test_009_push_subscriptions_are_closed_to_the_browser_roles(fresh_db):
+    with psycopg.connect(fresh_db.url, autocommit=True) as conn:
+        for role in ("anon", "authenticated"):
+            if not conn.execute("SELECT 1 FROM pg_roles WHERE rolname = %s", (role,)).fetchone():
+                conn.execute(f"CREATE ROLE {role}")
+            conn.execute(f"ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO {role}")
+    migrate(fresh_db, MIGRATIONS)
+    with fresh_db.connect() as conn:
+        row = conn.execute("SELECT has_table_privilege('anon', 'public.push_subscriptions', 'SELECT') AS a,"
+                           " has_table_privilege('authenticated', 'public.push_subscriptions', 'INSERT') AS b,"
+                           " (SELECT relrowsecurity FROM pg_class WHERE relname = 'push_subscriptions') AS rls"
+                           ).fetchone()
+    assert row == {"a": False, "b": False, "rls": True}
