@@ -162,3 +162,29 @@ describe('"Remind me each morning" (stage 8.1 §2.5)', () => {
     expect(old.root.textContent).toBe('');
   });
 });
+
+describe('review fixes (I3, I4)', () => {
+  it('in the iPhone Home Screen app the offer shows at once, whatever the streak (I4)', async () => {
+    const { root } = await mount(<PushOffer lang="en" streak={1} env={fakeBrowser({ userAgent: IPHONE, standalone: true }).env}
+      api={api().api} storage={new MemoryStorage()} />);
+    await waitFor(() => expect(queryText(root, 'Remind me each morning', 'button')).not.toBeNull());
+    cleanup();
+    const android = await mount(<PushOffer lang="en" streak={1} env={fakeBrowser({ standalone: true }).env}
+      api={api().api} storage={new MemoryStorage()} />);
+    await waitFor(() => expect(android.root.querySelector('.push')).toBeNull());
+    expect(android.root.textContent).toBe(''); // elsewhere the 3-day rule stays
+  });
+
+  it('when the server no longer holds the subscription the refresh drops it and the line stops saying "on" (I3)', async () => {
+    const browser = fakeBrowser({ permission: 'granted', subscribed: true });
+    const served = routeFetch({ 'POST /api/push/subscription': () => jsonResponse(404, { reason: 'unknown' }) });
+    const storage = new MemoryStorage();
+    storage.setItem('ad_push_hour', '6');
+    storage.setItem('ad_push_refreshed', '2000-01-01');
+    const { root } = await mount(<PushOffer lang="en" streak={1} env={browser.env} api={createPushApi(served.fetch)} storage={storage} />);
+    await waitFor(() => expect(browser.unsubscribed).toBe(1));
+    await waitFor(() => expect(root.textContent).not.toContain('Morning reminder on'));
+    expect((served.calls[0].body as { refresh?: boolean }).refresh).toBe(true);
+    expect(storage.getItem('ad_push_hour')).toBeNull();
+  });
+});

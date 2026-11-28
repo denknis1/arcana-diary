@@ -144,3 +144,49 @@ def test_deleting_an_accounts_row_needs_that_accounts_token(push_api):
     assert push_api.new_client().request("DELETE", "/api/push/subscription", json=out,
                                          headers=bearer(ANA)).status_code == 204
     assert rows(push_api) == []
+
+
+def test_a_refresh_updates_a_known_row_and_never_creates_one(push_api):
+    mine = body(1)
+    push_api.new_client().post("/api/push/subscription", json=mine, headers=bearer(ANA))
+    with push_api.db.connect() as conn:
+        conn.execute("UPDATE push_subscriptions SET fails = 2")
+    again = {**mine, "hour": 21, "tz": "UTC", "lang": "es", "refresh": True}
+    response = push_api.new_client().post("/api/push/subscription", json=again, headers=bearer(ANA))
+    assert response.status_code == 201 and response.json() == {"hour": 21, "tz": "UTC"}
+    [row] = rows(push_api)
+    assert (row["user_id"], row["hour"], row["lang"], row["tz"], row["fails"]) == (ANA, 21, "es", "UTC", 0)
+    # no row for this endpoint (the account was deleted, the row expired): 404 and nothing is created
+    unknown = {**body(2), "refresh": True}
+    for headers in (bearer(ANA), guest_headers(uuid.uuid4())):
+        assert push_api.new_client().post("/api/push/subscription", json=unknown, headers=headers).status_code == 404
+    assert len(rows(push_api)) == 1
+
+
+def test_a_refresh_after_the_account_is_deleted_creates_no_guest_row(push_api):
+    mine = body(1)
+    push_api.client.post("/api/push/subscription", json=mine, headers=bearer(ANA))
+    assert push_api.client.request("DELETE", "/api/account", json={"confirm": "DELETE"},
+                                   headers=bearer(ANA)).status_code == 200
+    assert rows(push_api) == []
+    response = push_api.new_client().post("/api/push/subscription", json={**mine, "refresh": True},
+                                          headers=guest_headers(uuid.uuid4()))
+    assert response.status_code == 404 and rows(push_api) == []
+
+
+def test_a_guest_refresh_cannot_touch_an_accounts_row(push_api):
+    mine = body(1)
+    push_api.client.post("/api/push/subscription", json=mine, headers=bearer(ANA))
+    before = rows(push_api)
+    other = {**mine, "hour": 20, "refresh": True}
+    assert push_api.new_client().post("/api/push/subscription", json=other,
+                                      headers=guest_headers(uuid.uuid4())).status_code == 409
+    assert rows(push_api) == before
+
+
+def test_an_unknown_push_service_leaves_its_host_in_the_log_but_not_the_address(push_api, caplog):
+    import logging
+    with caplog.at_level(logging.INFO, logger="arcana.push"):
+        response = push_api.client.post("/api/push/subscription", json=body(1, endpoint="https://push.unknown.example/very/secret"))
+    assert response.status_code == 422
+    assert "push.unknown.example" in caplog.text and "secret" not in caplog.text

@@ -8,9 +8,13 @@
   "push_off"; more than PUSH_PER_MINUTE a minute from one address → 429 "rate"; more than
   PUSH_SUBSCRIPTIONS_PER_OWNER browsers of one owner → 429 "subscriptions". Asking again replaces the row.
   A guest request for an endpoint that belongs to an account → 409 "owned", nothing changes.
+  With "refresh": true (the site's daily refresh) nothing is ever created: the row of that endpoint is only updated
+  (hour, tz, lang, keys, active_at); no such row → 404 "unknown" (the site then drops its browser subscription — so a
+  deleted account or an expired row does not come back as a guest subscription).
 - DELETE /api/push/subscription {"endpoint"} → 204: a guest row goes for whoever knows the endpoint; a row of an
   account only with that account's token; always 204, so the answer tells nothing about other people's rows.
 """
+import logging
 from typing import Literal
 
 from fastapi import APIRouter, Request, Response
@@ -22,6 +26,7 @@ from app.context import get_ctx
 from app.routes.common import respond, viewer
 
 router = APIRouter(prefix="/api")
+log = logging.getLogger("arcana.push")
 
 
 class PushKeys(BaseModel):
@@ -37,6 +42,7 @@ class PushIn(BaseModel):
     hour: int = Field(ge=0, le=23)
     tz: str | None = Field(default=None, max_length=64)
     lang: Literal["en", "es"]
+    refresh: bool = False
 
 
 class PushOut(BaseModel):
@@ -61,6 +67,7 @@ def subscribe(body: PushIn, request: Request):
     if ctx.push_burst.hit(ip_hash, now) > PUSH_PER_MINUTE:
         return respond(429, {"reason": "rate"}, who.new_guest)
     if not webpush.valid_endpoint(body.endpoint):
+        log.info("push subscription refused: host %s is not in the list", webpush.endpoint_host(body.endpoint))
         return respond(422, {"reason": "invalid", "fields": ["endpoint"]}, who.new_guest)
     if not webpush.valid_keys(body.keys.p256dh, body.keys.auth):
         return respond(422, {"reason": "invalid", "fields": ["keys"]}, who.new_guest)
@@ -71,6 +78,15 @@ def subscribe(body: PushIn, request: Request):
         if who.user:
             account_repo.lock_account(conn, who.user.id)  # takes turns with delete_account
             account_repo.refuse_deleted(conn, who.user.id)
+        if body.refresh:
+            found = repo.refresh_push(conn, {"user_id": user_id, "guest_id": guest_id, "endpoint": body.endpoint,
+                                             "p256dh": body.keys.p256dh, "auth": body.keys.auth, "lang": body.lang,
+                                             "tz": tz, "hour": body.hour, "now": now})
+            if found == "missing":
+                return respond(404, {"reason": "unknown"}, who.new_guest)
+            if found == "owned":
+                return respond(409, {"reason": "owned"}, who.new_guest)
+            return respond(201, {"hour": body.hour, "tz": tz}, who.new_guest)
         if repo.count_push(conn, user_id, guest_id, body.endpoint) >= PUSH_SUBSCRIPTIONS_PER_OWNER:
             return respond(429, {"reason": "subscriptions"}, who.new_guest)
         if not repo.upsert_push(conn, {"user_id": user_id, "guest_id": guest_id, "endpoint": body.endpoint,

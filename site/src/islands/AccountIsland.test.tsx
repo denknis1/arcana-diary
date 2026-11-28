@@ -19,6 +19,7 @@ function fakes(over: {
   deleteAccount?: AccountApi['deleteAccount'];
   exportFile?: AccountApi['exportFile'];
   signOut?: () => Promise<void>;
+  stopReminders?: () => Promise<unknown>;
 } = {}) {
   const calls: string[] = [];
   const saved: Array<[Blob, string]> = [];
@@ -44,7 +45,7 @@ function fakes(over: {
   } as unknown as AccountApi;
   const signedIn = async (): Promise<SessionStatus> => ({ type: 'signedIn', auth, google: false, session: { access_token: 'tok' } });
   const props = { api, navigate, save: (blob: Blob, name: string) => { saved.push([blob, name]); }, session: signedIn,
-    signOutWaitMs: 20 };
+    signOutWaitMs: 20, stopReminders: over.stopReminders ?? (async () => { calls.push('stopReminders'); }) };
   return { calls, saved, navigate, auth, props };
 }
 
@@ -146,7 +147,7 @@ describe('the account page (spec 4.4b §6)', () => {
     await click(byText(root, 'Eliminar cuenta', 'button'));
     await click(byText(root, 'Eliminar para siempre', 'button'));
     await waitFor(() => expect(f.navigate).toHaveBeenCalledWith('/es?account=deleted'));
-    expect(f.calls.slice(-2)).toEqual(['delete', 'signOut']);
+    expect(f.calls.slice(-3)).toEqual(['delete', 'stopReminders', 'signOut']); // this browser stops the reminders too (I3)
     expect(sessionStorage.getItem(NOTICE_KEY)).toBe('accountDeleted'); // the home page says it once (review M22)
   });
 
@@ -338,5 +339,21 @@ describe('the account page (spec 4.4b §6)', () => {
     restored(true);
     expect(reload).toHaveBeenCalledTimes(1);
     reload.mockRestore();
+  });
+
+  it('a failed account deletion leaves the reminders alone; a failing stop does not block leaving (I3)', async () => {
+    const tried: string[] = [];
+    const failing = fakes({ deleteAccount: async () => { tried.push('delete'); return { ok: false, status: 503, error: 'unavailable', body: { reason: 'db' } }; } });
+    const first = await mount(<AccountIsland lang="en" {...failing.props} />);
+    await click(byText(first.root, 'Delete account', 'button'));
+    await click(byText(first.root, 'Delete forever', 'button'));
+    await waitFor(() => expect(tried).toEqual(['delete']));
+    expect(failing.calls).not.toContain('stopReminders');
+    cleanup();
+    const broken = fakes({ stopReminders: async () => { throw new Error('no push'); } });
+    const second = await mount(<AccountIsland lang="en" {...broken.props} />);
+    await click(byText(second.root, 'Delete account', 'button'));
+    await click(byText(second.root, 'Delete forever', 'button'));
+    await waitFor(() => expect(broken.navigate).toHaveBeenCalled());
   });
 });

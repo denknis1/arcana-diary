@@ -6441,7 +6441,7 @@ In this order, after the owner has read the Fable review and the texts table bel
    step: the date is the deploy's, not the day the code was written.
 3. **VAPID keys:** `deploy/gen-vapid.sh` — prints only `ключи VAPID дописаны в .env`; exit 3 means the keys are already
    there (nothing changed). Never print `deploy/.env` to check: `grep -c '^VAPID_' deploy/.env` prints only a count (2).
-4. **Deploy** with `deploy/deploy.sh` (builds the site with its checks, rebuilds the API image; migration 009 runs at the
+4. **Deploy** (in a quiet hour: between the site build and the API restart, a minute or two, the new site talks to the old API — the calendar shows an error with «Try again» and no reminder offer; it passes by itself) with `deploy/deploy.sh` (builds the site with its checks, rebuilds the API image; migration 009 runs at the
    API start — until it has run, `/api/daily` answers 503 and the site shows the card from the card base).
 5. **After the deploy:** `curl -sI https://arcanadiary.com/sw.js | grep -i cache-control` → `no-cache`;
    `curl -s https://arcanadiary.com/api/push/key` → `"enabled":true`. Then the owner's phone check (spec §6): the card,

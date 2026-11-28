@@ -137,3 +137,19 @@ def test_a_push_request_carries_the_vapid_header_and_a_readable_body():
     assert headers["Content-Encoding"] == "aes128gcm" and headers["TTL"] == "14400" and headers["Topic"] == "daily"
     assert headers["Authorization"].startswith("vapid t=")
     assert json.loads(decrypt(body, key, auth)) == {"lang": "en"}
+
+
+def test_the_vapid_audience_is_the_lower_case_origin_without_the_port():
+    private, public = webpush.generate_vapid()
+    keys = webpush.load_vapid(private, public)
+    header = webpush.vapid_authorization("https://FCM.googleapis.com:443/fcm/send/x", keys, "https://arcanadiary.com", 1_800_000_000)
+    token = header.split("t=", 1)[1].split(",", 1)[0]
+    claims = jwt.decode(token, keys.private_key.public_key(), algorithms=["ES256"], audience="https://fcm.googleapis.com",
+                        options={"verify_exp": False})
+    assert claims["aud"] == "https://fcm.googleapis.com"
+
+
+def test_endpoint_host_for_the_log_is_only_a_plain_host():
+    assert webpush.endpoint_host("https://push.example.org/secret/path?x=1") == "push.example.org"
+    assert webpush.endpoint_host("https://exa mple.org/x") == "-"
+    assert webpush.endpoint_host(None) == "-"

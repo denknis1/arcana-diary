@@ -10,7 +10,8 @@ import { analyticsEvent, sendEvent } from '../../lib/analytics';
 import { browserStorage, type StorageLike } from '../../lib/authState';
 import { localIsoDay } from '../../lib/daily';
 import {
-  browserEnv, createPushApi, currentSubscription, DEFAULT_HOUR, deniedSeen, DISMISSED_KEY, hourLabel, markDeniedSeen,
+  browserEnv, createPushApi, currentSubscription, DEFAULT_HOUR, deniedSeen, DISMISSED_KEY, hourLabel, iosHomeApp,
+  markDeniedSeen,
   OFFER_STREAK, offerDismissed, pushSupport, refresh, storedHour, turnOff, turnOn, type PushApi, type PushEnv,
   type PushKey,
 } from '../../lib/push';
@@ -41,7 +42,8 @@ export function PushOffer({ lang, streak, env: givenEnv, api: givenApi, storage:
   const [hour, setHour] = useState(DEFAULT_HOUR); // the choice in the select
   const [onHour, setOnHour] = useState<number | null>(null); // the hour the server holds, when this browser knows it
   const key = useRef<PushKey | undefined>(undefined);
-  const wantsOffer = streak >= OFFER_STREAK && !offerDismissed(now(), storage);
+  // the third day in a row; in the iPhone Home Screen app at once (its storage may not carry the streak: review I4)
+  const wantsOffer = (streak >= OFFER_STREAK || iosHomeApp(env)) && !offerDismissed(now(), storage);
   const deps = () => ({ env, api, storage, lang, tz: deviceTimeZone(), today: localIsoDay(new Date(now())) });
 
   useEffect(() => {
@@ -50,7 +52,10 @@ export function PushOffer({ lang, streak, env: givenEnv, api: givenApi, storage:
       if (subscription && env.notification?.permission === 'granted') {
         setOnHour(storedHour(storage));
         setState('on');
-        void refresh(deps(), subscription).then((fresh) => { if (fresh !== null) setOnHour(fresh); });
+        void refresh(deps(), subscription).then((fresh) => {
+          if (fresh === 'gone') { setOnHour(null); setState('offer'); } // the server no longer has it: no "on" without a row
+          else if (fresh !== null) setOnHour(fresh);
+        });
       } else if (env.notification?.permission === 'denied') setState(deniedSeen(storage) ? 'hidden' : 'denied');
       else {
         setState('offer');

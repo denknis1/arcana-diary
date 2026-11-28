@@ -1,9 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { fakeFetch, jsonResponse } from './testing/fakes';
 import { fakeBrowser, MemoryStorage } from './testing/push';
 import {
-  createPushApi, deniedSeen, DISMISSED_KEY, HOUR_KEY, hourLabel, iosVersion, keyBytes, markDeniedSeen, offerDismissed,
-  pushSupport, REFRESHED_KEY, refresh, storedHour, turnOff, turnOn,
+  createPushApi, deniedSeen, DISMISSED_KEY, HOUR_KEY, hourLabel, iosHomeApp, iosVersion, keyBytes, markDeniedSeen, offerDismissed,
+  pushSupport, READY_TIMEOUT_MS, REFRESHED_KEY, refresh, storedHour, turnOff, turnOn,
 } from './push';
 
 const IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 Version/18.1 Mobile/15E148 Safari/604.1';
@@ -174,5 +174,61 @@ describe('turning the reminder on and off', () => {
     await refresh(deps(browser, fetched, storage), subscription);
     expect(fetched.calls).toHaveLength(1);
     expect((fetched.calls[0].body as { hour: number }).hour).toBe(6);
+  });
+});
+
+describe('review fixes: the worker is active before subscribing, the refresh only updates (I2, I3)', () => {
+  const setup = (browser: ReturnType<typeof fakeBrowser>, fetched: ReturnType<typeof fakeFetch>, storage = new MemoryStorage()) => ({
+    env: browser.env, api: createPushApi(fetched.fetch), storage, lang: 'en' as const, tz: 'UTC', today: '2026-11-22',
+  });
+
+  it('subscribes only after serviceWorker.ready, with the permission still asked first (I2)', async () => {
+    const browser = fakeBrowser({ ready: 'late' }); // register() returns while the worker is still installing
+    const fetched = fakeFetch(jsonResponse(200, { enabled: true, public_key: KEY }), jsonResponse(201, { hour: 8, tz: 'UTC' }));
+    expect(await turnOn(setup(browser, fetched), 8)).toBe('on'); // a subscribe before "ready" would throw: 'failed'
+    expect(browser.asked).toBe(1);
+    expect(browser.subscribed).toHaveLength(1);
+  });
+
+  it('a worker that never gets ready is a failure after 10 seconds, not a hanging button (I2)', async () => {
+    vi.useFakeTimers();
+    try {
+      const browser = fakeBrowser({ ready: 'never' });
+      const fetched = fakeFetch(jsonResponse(200, { enabled: true, public_key: KEY }));
+      const result = turnOn(setup(browser, fetched), 8);
+      await vi.advanceTimersByTimeAsync(READY_TIMEOUT_MS + 1);
+      expect(await result).toBe('failed');
+      expect(browser.subscribed).toHaveLength(0);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('the refresh asks the server to update only; a 404 lets the browser subscription go (I3)', async () => {
+    const browser = fakeBrowser({ permission: 'granted', subscribed: true });
+    const storage = new MemoryStorage();
+    storage.setItem(HOUR_KEY, '6');
+    const fetched = fakeFetch(jsonResponse(404, { reason: 'unknown' }));
+    const subscription = (await (await browser.env.serviceWorker!.getRegistration('/'))!.pushManager.getSubscription())!;
+    expect(await refresh(setup(browser, fetched, storage), subscription)).toBe('gone');
+    expect((fetched.calls[0].body as { refresh?: boolean }).refresh).toBe(true);
+    expect(browser.unsubscribed).toBe(1);
+    expect([storage.getItem(HOUR_KEY), storage.getItem(REFRESHED_KEY)]).toEqual([null, null]);
+  });
+
+  it('another failure of the refresh keeps the subscription', async () => {
+    const browser = fakeBrowser({ permission: 'granted', subscribed: true });
+    const storage = new MemoryStorage();
+    storage.setItem(HOUR_KEY, '6');
+    const subscription = (await (await browser.env.serviceWorker!.getRegistration('/'))!.pushManager.getSubscription())!;
+    expect(await refresh(setup(browser, fakeFetch(jsonResponse(503, { reason: 'db' })), storage), subscription)).toBeNull();
+    expect(browser.unsubscribed).toBe(0);
+    expect(storage.getItem(HOUR_KEY)).toBe('6');
+  });
+
+  it('an iPhone Home Screen app is told apart from Safari and from other phones (I4)', () => {
+    expect(iosHomeApp(fakeBrowser({ userAgent: IPHONE, standalone: true }).env)).toBe(true);
+    expect(iosHomeApp(fakeBrowser({ userAgent: IPHONE }).env)).toBe(false);
+    expect(iosHomeApp(fakeBrowser({ standalone: true }).env)).toBe(false); // Android installed app: the 3-day rule
   });
 });

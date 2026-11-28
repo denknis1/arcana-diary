@@ -4,6 +4,7 @@
   per local day on every device); otherwise this guest cookie's, as before. The answer carries the streak and, for
   an account, today's evening mark. Never waits for the model; not counted in the daily limit; rate-limited per
   address.
+- GET /api/daily/calendar and PUT /api/daily/{day} count against the same per-address limit as GET /api/daily.
 - GET /api/daily/calendar?month=YYYY-MM: the account's cards of a month with their texts, marks and notes, the
   streaks and the month's most frequent card; the free calendar opens the current and the previous month, older
   months answer "locked" (kept, for Plus). A guest gets this device's last CALENDAR_GUEST_DAYS days, without marks
@@ -31,13 +32,18 @@ from app.routes.readings import reject_nul
 router = APIRouter(prefix="/api")
 
 
+def too_fast(ctx, request: Request, now) -> bool:
+    """One count per address for the three Card of the Day routes (the same limit as GET /api/daily)."""
+    ip_hash = ctx.salt.hash_ip(limits.client_ip(request, ctx.settings.trust_cloudflare), now)
+    return ctx.daily_burst.hit(ip_hash, now) > limits.DAILY_RATE_LIMIT
+
+
 @router.get("/daily")
 def daily(request: Request, lang: Literal["en", "es"], tz: str | None = None):
     ctx = get_ctx(request)
     now = ctx.clock()
     who = viewer(ctx, request)
-    ip_hash = ctx.salt.hash_ip(limits.client_ip(request, ctx.settings.trust_cloudflare), now)
-    if ctx.daily_burst.hit(ip_hash, now) > limits.DAILY_RATE_LIMIT:
+    if too_fast(ctx, request, now):
         return respond(429, {"reason": "rate"}, who.new_guest)
     day = limits.local_day(limits.resolve_tz(tz), now)
     mark = None
@@ -89,6 +95,8 @@ def calendar(request: Request, lang: Literal["en", "es"], month: str | None = Qu
              tz: str | None = None):
     ctx = get_ctx(request)
     who = viewer(ctx, request)
+    if too_fast(ctx, request, ctx.clock()):
+        return respond(429, {"reason": "rate"}, who.new_guest)
     today = limits.local_day(limits.resolve_tz(tz), ctx.clock())
     if who.user is None:
         rows, days = [], []
@@ -123,6 +131,8 @@ def calendar(request: Request, lang: Literal["en", "es"], month: str | None = Qu
 def mark_day(day: date, body: DailyMark, request: Request):
     ctx = get_ctx(request)
     who = viewer(ctx, request)
+    if too_fast(ctx, request, ctx.clock()):
+        return respond(429, {"reason": "rate"}, who.new_guest)
     if who.user is None:
         return sign_in_required()  # spec §2.4: marks and notes only after sign-in
     fields = body.model_dump(include=body.model_fields_set)

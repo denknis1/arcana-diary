@@ -110,6 +110,16 @@ def valid_endpoint(url: str) -> bool:
     return host in PUSH_HOSTS or any(host.endswith(suffix) and len(host) > len(suffix) for suffix in PUSH_HOST_SUFFIXES)
 
 
+def endpoint_host(url) -> str:
+    """The host of a refused address for the log (never the path: that is the key to the row); '-' when it is not
+    a plain host name."""
+    try:
+        host = urlsplit(url).hostname or ""
+    except ValueError:
+        return "-"
+    return host if _HOST.fullmatch(host) and len(host) <= 100 else "-"
+
+
 def endpoint_tag(url) -> str:
     """What the log may say about an endpoint (a personal identifier and the key to its row): a short hash."""
     return hashlib.sha256(str(url).encode("utf-8", "replace")).hexdigest()[:8]
@@ -152,7 +162,7 @@ def encrypt(plaintext: bytes, p256dh: str, auth: str, *, sender: ec.EllipticCurv
 
 def vapid_authorization(endpoint: str, keys: VapidKeys, subject: str, now: float) -> str:
     parts = urlsplit(endpoint)
-    token = jwt.encode({"aud": f"{parts.scheme}://{parts.netloc}", "exp": int(now) + VAPID_TTL_S, "sub": subject},
+    token = jwt.encode({"aud": f"{parts.scheme}://{parts.hostname}", "exp": int(now) + VAPID_TTL_S, "sub": subject},
                        keys.private_key, algorithm="ES256")
     return f"vapid t={token}, k={keys.public_key}"
 

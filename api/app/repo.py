@@ -247,6 +247,19 @@ def upsert_push(conn, sub: dict) -> bool:
         is not None
 
 
+def refresh_push(conn, sub: dict) -> str:
+    """The site's daily refresh: update the row of this endpoint, never create one. 'ok'; 'owned' — the row belongs
+    to an account and the caller is a guest; 'missing' — no row (deleted account, expired, turned off elsewhere)."""
+    updated = conn.execute(
+        "UPDATE push_subscriptions SET user_id = %(user_id)s, guest_id = %(guest_id)s, p256dh = %(p256dh)s,"
+        " auth = %(auth)s, lang = %(lang)s, tz = %(tz)s, hour = %(hour)s, fails = 0, active_at = %(now)s"
+        " WHERE endpoint = %(endpoint)s AND (user_id IS NULL OR %(user_id)s::uuid IS NOT NULL) RETURNING id", sub).fetchone()
+    if updated is not None:
+        return "ok"
+    exists = conn.execute("SELECT 1 FROM push_subscriptions WHERE endpoint = %s", (sub["endpoint"],)).fetchone()
+    return "owned" if exists else "missing"
+
+
 def count_push(conn, user_id, guest_id, endpoint: str) -> int:
     """The owner's other subscriptions (the browser asking now is not counted twice)."""
     where, args = _daily_owner(user_id, guest_id)

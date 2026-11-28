@@ -14,6 +14,7 @@ export const DENIED_SEEN_KEY = 'ad_push_denied_seen'; // the "blocked in your br
 export const DEFAULT_HOUR = 8;
 export const OFFER_STREAK = 3; // spec §2.5: the offer comes after the third day in a row
 export const DISMISS_DAYS = 30;
+export const READY_TIMEOUT_MS = 10_000; // how long the tap waits for the service worker to become active
 
 export interface PushEnv {
   serviceWorker?: ServiceWorkerContainer;
@@ -48,9 +49,18 @@ export function iosVersion(userAgent: string): [number, number] | null {
   return match ? [Number(match[1]), Number(match[2])] : null;
 }
 
+export function isIos(env: PushEnv): boolean {
+  return /iPhone|iPad|iPod/.test(env.userAgent) || (/Macintosh/.test(env.userAgent) && env.maxTouchPoints > 1);
+}
+
+/** The iPhone Home Screen app has its own storage: a guest's streak may start from 1 there, so the offer must not
+ * wait for the third day (review I4). */
+export function iosHomeApp(env: PushEnv): boolean {
+  return isIos(env) && env.standalone;
+}
+
 export function pushSupport(env: PushEnv): Support {
-  const ios = /iPhone|iPad|iPod/.test(env.userAgent) || (/Macintosh/.test(env.userAgent) && env.maxTouchPoints > 1);
-  if (ios) {
+  if (isIos(env)) {
     const version = iosVersion(env.userAgent);
     // Web Push on the Home Screen came with iOS 16.4: before it, there is nothing to offer and nothing to hint
     if (version && (version[0] < 16 || (version[0] === 16 && version[1] < 4))) return 'no';
@@ -118,11 +128,14 @@ export interface SubscriptionBody {
   hour: number;
   tz?: string;
   lang: Lang;
+  /** The daily refresh: the server only updates a subscription it already holds and answers 404 otherwise. */
+  refresh?: true;
 }
 
 export interface PushApi {
   key(): Promise<ApiResult<{ enabled: boolean; public_key: string }>>;
   subscribe(body: SubscriptionBody): Promise<ApiResult<{ hour: number; tz: string }>>;
+  refresh(body: SubscriptionBody): Promise<ApiResult<{ hour: number; tz: string }>>;
   unsubscribe(endpoint: string): Promise<ApiResult<null>>;
 }
 
@@ -133,6 +146,7 @@ export function createPushApi(fetchFn: FetchFn): PushApi {
   return {
     key: () => callJson(fetchFn, '/api/push/key'),
     subscribe: (body) => callJson(fetchFn, '/api/push/subscription', json('POST', body)),
+    refresh: (body) => callJson(fetchFn, '/api/push/subscription', json('POST', { ...body, refresh: true })),
     unsubscribe: (endpoint) => callJson(fetchFn, '/api/push/subscription', json('DELETE', { endpoint })),
   };
 }
@@ -149,6 +163,20 @@ export async function currentSubscription(env: PushEnv): Promise<PushSubscriptio
     return (await registration?.pushManager.getSubscription()) ?? null;
   } catch {
     return null;
+  }
+}
+
+/** The registration once its worker is active (pushManager.subscribe needs that); a worker that does not come up in
+ * READY_TIMEOUT_MS is a failure, so the button never hangs. */
+async function activeRegistration(container: ServiceWorkerContainer): Promise<ServiceWorkerRegistration> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error('service worker not ready')), READY_TIMEOUT_MS);
+  });
+  try {
+    return await Promise.race([container.ready, timeout]);
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -185,7 +213,8 @@ export async function turnOn(deps: PushDeps, hour: number, prefetched?: PushKey)
       key = fetched;
     }
     if (!key.data.enabled || !key.data.public_key) return 'off';
-    const registration = await env.serviceWorker.register(SW_URL, { scope: '/' });
+    await env.serviceWorker.register(SW_URL, { scope: '/' });
+    const registration = await activeRegistration(env.serviceWorker); // the permission was asked first: still the tap
     const subscription = (await registration.pushManager.getSubscription())
       ?? (await registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyBytes(key.data.public_key) }));
     const saved = await api.subscribe(bodyOf(subscription, hour, tz, lang));
@@ -213,14 +242,25 @@ export async function turnOff(deps: Pick<PushDeps, 'env' | 'api' | 'storage'>): 
   return true;
 }
 
-/** Once a day while the reminder is on: the same subscription again, with today's time zone; the hour the server
- * answers with is the one shown. */
-export async function refresh(deps: PushDeps, subscription: PushSubscription): Promise<number | null> {
+/** Once a day while the reminder is on: the subscription again, with today's time zone; the hour the server answers
+ * with is the one shown. The server only updates a row it holds (never creates one): 404 means it is gone (the
+ * account was deleted, the row expired), and then this browser lets the subscription go too — 'gone'. */
+export async function refresh(deps: PushDeps, subscription: PushSubscription): Promise<number | null | 'gone'> {
   if (deps.storage?.getItem(REFRESHED_KEY) === deps.today) return null;
   const hour = storedHour(deps.storage);
   if (hour === null) return null; // the hour is not known here: sending a default would overwrite the server's
-  const saved = await deps.api.subscribe(bodyOf(subscription, hour, deps.tz, deps.lang));
-  if (!saved.ok) return null;
+  const saved = await deps.api.refresh(bodyOf(subscription, hour, deps.tz, deps.lang));
+  if (!saved.ok) {
+    if (saved.status !== 404) return null;
+    try {
+      await subscription.unsubscribe();
+    } catch {
+      // nothing is sent to a subscription the server does not know
+    }
+    deps.storage?.removeItem(HOUR_KEY);
+    deps.storage?.removeItem(REFRESHED_KEY);
+    return 'gone';
+  }
   deps.storage?.setItem(REFRESHED_KEY, deps.today);
   if (!validHour(saved.data.hour)) return null;
   deps.storage?.setItem(HOUR_KEY, String(saved.data.hour)); // the server's word

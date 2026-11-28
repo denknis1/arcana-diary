@@ -156,3 +156,17 @@ def test_a_note_of_280_characters_fits_and_is_never_in_an_event_or_a_model_call(
         events = conn.execute("SELECT count(*) AS n FROM events").fetchone()["n"]
     assert events == 0 and api.reader.stream_calls() == []
     assert note in dump_tables(api.db)  # only in daily_draws
+
+
+def test_calendar_and_mark_are_rate_limited_per_address(api):
+    from helpers import from_ip
+    ip = from_ip("198.51.100.91")
+    client = api.new_client()
+    codes = [client.get("/api/daily/calendar", params={"lang": "en"}, headers=ip).status_code for _ in range(31)]
+    assert codes == [200] * 30 + [429]
+    assert client.get("/api/daily/calendar", params={"lang": "en"}, headers=ip).json() == {"reason": "rate"}
+    assert client.get("/api/daily/calendar", params={"lang": "en"}, headers=from_ip("198.51.100.92")).status_code == 200
+    other = from_ip("198.51.100.93")  # PUT: by address, whoever asks
+    codes = [client.put("/api/daily/2026-11-22", json={"felt": "yes"}, headers={**bearer(ANA), **other}).status_code
+             for _ in range(31)]
+    assert codes[-1] == 429 and 429 not in codes[:30]
