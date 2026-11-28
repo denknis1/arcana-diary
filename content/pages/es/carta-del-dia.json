@@ -15,7 +15,7 @@
       "heading": "¿Qué es la carta del día?",
       "paragraphs": [
         "Es una sola carta que volteas al empezar el día para tener una idea en qué fijarte. No contesta una pregunta concreta: funciona como un tema para las próximas horas, algo que puedes traer a la mente en el tráfico, en la fila del súper o antes de contestar un mensaje que te pone de nervios.",
-        "Tu carta sale de las 78 de la baraja Rider–Waite–Smith y puede quedar al derecho o al revés. Se elige para este navegador y para tu día: si regresas más tarde, vas a ver la misma, y después de la medianoche de tu hora local toca una nueva. No hay manera de sacar otra hasta que aparezca una que te guste, y es a propósito.",
+        "Tu carta sale de las 78 de la baraja Rider–Waite–Smith y puede quedar al derecho o al revés. Se elige para tu día, en este navegador o en tu cuenta si inicias sesión: si regresas más tarde, vas a ver la misma, y después de la medianoche de tu hora local toca una nueva. No hay manera de sacar otra hasta que aparezca una que te guste, y es a propósito.",
         "Junto a la carta viene un texto breve, de pocas líneas, que nuestro lector de inteligencia artificial escribe por adelantado a partir del significado de esa carta. Es el mismo para todas las personas a las que hoy les salió esa carta en esa orientación, así que no supone nada de tu vida: ni pareja, ni trabajo, ni planes. Lo personal lo pones tú. Si quieres ir más a fondo, debajo está el enlace al significado completo."
       ]
     },
@@ -25,8 +25,16 @@
       "paragraphs": [
         "Voltéala con calma, de preferencia antes de abrir el correo o las redes. Mira primero el dibujo: qué hace la figura, qué la rodea, si la escena se siente quieta o movida. Después lee el mensaje y el paso que propone. Casi siempre es algo pequeño, como escribirle a alguien o regalarte quince minutos sin pantalla, pensado para que quepa en un día normal.",
         "A lo largo del día, trae la carta de vuelta una o dos veces. Si te salió una carta de pausa y te descubres corriendo de un lado a otro, ahí tienes una pista. Si te salió una de impulso y llevas rato posponiendo algo, igual. No se trata de que la carta le atine a lo que ocurra, sino de que te ayude a darte cuenta.",
-        "En la noche, haz un repaso corto: ¿dónde apareció la idea de la carta?, ¿le hiciste caso o no? Puedes anotarlo donde quieras. La carta del día no se guarda en el diario, porque no es una lectura, pero si te late volver mañana, el botón «Recuérdamelo mañana» te da un archivo para poner el aviso en tu calendario.",
+        "En la noche, haz un repaso corto: ¿dónde apareció la idea de la carta?, ¿le hiciste caso o no? Con sesión iniciada, debajo de la carta te preguntamos si apareció en tu día y puedes dejar una línea. Si te late volver mañana, el botón «Recuérdamelo mañana» te da un archivo para poner el aviso en tu calendario.",
         "¿Y si no te gusta la que salió? Pasa, sobre todo con La Torre, el Diez de Espadas o La Muerte. Ninguna anuncia una desgracia para hoy. Una carta difícil suele hablar de presión, de un cierre o de algo que pide atención, y verla temprano te da tiempo de pensar dónde cuidarte."
+      ]
+    },
+    {
+      "id": "calendario",
+      "heading": "¿Dónde quedan tus cartas de cada día?",
+      "paragraphs": [
+        "En tu diario hay un calendario del mes con una cartita por cada día que volteaste. Toca un día para ver otra vez su carta y su texto. Arriba ves cuántos días seguidos llevas, tu mejor racha y la carta que más se repitió en el mes. Si un día no la abres, la cuenta empieza de nuevo y tu mejor racha se queda.",
+        "En la noche, debajo de la carta, puedes contestar «¿Apareció la carta de hoy en tu día?» con sí, en parte o no, y agregar una línea si quieres. Sin cuenta, el calendario de este navegador muestra tus últimos 7 días; al iniciar sesión, esas cartas pasan a tu cuenta y ahí se quedan todas."
       ]
     },
     {
@@ -35,7 +43,7 @@
       "paragraphs": [
         "Cada día la carta se saca de nuevo entre las 78, sin tomar en cuenta las de días anteriores. Que te toque la misma que ayer tiene una probabilidad de 1 entre 78, y en unas cuantas semanas es normal que alguna vuelva a salir. No es un aviso ni un mensaje escondido: así funciona el azar.",
         "Aun así, una carta que regresa puede servirte de pregunta. Léela como una invitación a revisar lo que te propuso la primera vez: ¿diste el paso o lo dejaste para después? Si ahora sale al revés, compara los dos significados; a veces la segunda vez enseña la parte de la misma idea que todavía se atora.",
-        "Un detalle práctico: tu carta está ligada al navegador. Si abres el sitio en otro celular o en otra computadora, puede salir una distinta. Lo más útil es elegir un solo lugar para verla cada mañana y quedarte con lo que te diga ahí."
+        "Un detalle práctico: sin cuenta, tu carta está ligada al navegador, y en otro celular o en otra computadora puede salir una distinta. Con sesión iniciada es la misma en todos tus dispositivos."
       ]
     }
   ],
@@ -63,6 +71,10 @@
     {
       "q": "¿Se puede hacer el tarot del día con tres cartas?",
       "a": "La carta del día es una sola. Si prefieres tres para tu jornada, haz una tirada de tres cartas sin escribir pregunta: la lectura toma pasado, presente y hacia dónde va como un mensaje sobre el momento que vives. Esa lectura sí cuenta para tu límite diario."
+    },
+    {
+      "q": "¿Se guarda mi carta del día?",
+      "a": "Sí. Con sesión iniciada, cada carta del día queda en tu cuenta con tu respuesta de la noche y tu línea, y ves la misma carta en el celular y en la computadora. Sin cuenta, el calendario de este navegador muestra tus últimos 7 días y las cartas se guardan 60 días."
     }
   ],
   "intents": [

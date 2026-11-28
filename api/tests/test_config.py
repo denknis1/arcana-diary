@@ -162,3 +162,13 @@ def test_supabase_url():
     assert load_settings({"SUPABASE_URL": " https://abc.supabase.co/ "}).supabase_url == "https://abc.supabase.co"
     with pytest.raises(ValueError, match="SUPABASE_URL"):
         load_settings({"SUPABASE_URL": "http://abc.supabase.co"})
+
+
+def test_browser_reminders_are_off_by_default_and_run_every_ten_minutes():
+    s = load_settings({})
+    assert (s.vapid_private_key, s.vapid_public_key) == ("", "")
+    assert s.vapid_subject == "https://arcanadiary.com" and s.push_job_interval_s == 600.0
+    s = load_settings({"VAPID_PRIVATE_KEY": "p", "VAPID_PUBLIC_KEY": "q", "VAPID_SUBJECT": "mailto:x@example.com",
+                       "PUSH_JOB_INTERVAL_S": "0"})
+    assert (s.vapid_private_key, s.vapid_public_key, s.vapid_subject, s.push_job_interval_s) == (
+        "p", "q", "mailto:x@example.com", 0.0)

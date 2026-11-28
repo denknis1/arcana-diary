@@ -36,6 +36,17 @@ describe('analyticsEvent', () => {
     const roomEvent = 'reading_shown' as 'night_open' | 'cards_revealed' | 'reading_shown';
     expect(analyticsEvent(roomEvent, 'home', 'en').tool).toBe('home');
     expect(analyticsEvent('outcome_answered', null, 'en').tool).toBeNull();
+    // @ts-expect-error push_enabled is the daily card's only
+    expect(analyticsEvent('push_enabled', 'home', 'en').tool).toBe('home');
+  });
+
+  it('knows the events of stage 8.1: the mark and the calendar without a tool and without the mark itself', () => {
+    expect(analyticsEvent('daily_felt', null, 'es', { place: 'calendar' })).toEqual({
+      name: 'daily_felt', tool: null, lang: 'es', params: { place: 'calendar' },
+    });
+    expect(analyticsEvent('daily_calendar_view', 'daily', 'en', { signed_in: false }).tool).toBeNull();
+    expect(analyticsEvent('push_enabled', 'daily', 'en')).toEqual({ name: 'push_enabled', tool: 'daily', lang: 'en', params: {} });
+    expect(analyticsEvent('push_click', null, 'es').tool).toBeNull();
   });
 });
 

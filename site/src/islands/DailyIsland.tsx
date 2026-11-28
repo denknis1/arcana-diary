@@ -3,19 +3,26 @@
 // file made here, no server. The card of the day is not a reading: it is not saved to the diary (spec 4.4b §2.10).
 // The link to the card follows row L-EN-15 / L-ES-15 of the stage 2 matrix (owner decision 38); its "Save to diary"
 // (L-EN-16, L-ES-16) is wave V1.1 (owner decision 42, 24.11.2026).
-import { useEffect, useRef, useState } from 'preact/hooks';
-import { t } from '../i18n';
+// Stage 8.1 (spec 2026-11-27 §2): under the text the streak line with the link to the calendar of the diary, and from
+// 17:00 the evening mark — for an account (the API sends today's mark only to an account); a guest sees the question
+// with inactive answers and a sign-in line (owner decision 56).
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { fill, t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
-import { siteApi } from '../lib/siteApi';
+import { calendarHref, createJournalApi, STREAK_SHOWN_FROM } from '../lib/journal';
+import { siteApi, siteFetch } from '../lib/siteApi';
 import { baseUrl, dailyNext, formatDay, localIsoDay, shownFromBase, type BaseMeaning, type DailyShown } from '../lib/daily';
 import { CARD_BACK } from '../lib/deck';
 import { saveFile, type SaveFile } from '../lib/download';
 import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
 import { ICS_FILENAME, ICS_TYPE, dailyReminderIcs } from '../lib/ics';
-import { drawnCardLink } from '../lib/routes';
+import { drawnCardLink, pagePath } from '../lib/routes';
+import { useEveningOpen } from '../lib/useEveningOpen';
 import type { Lang } from '../lib/types';
 import { CardFace } from '../components/ui/CardFace';
+import { EveningMark } from '../components/ui/EveningMark';
 import { HelpLine } from '../components/ui/HelpLine';
+import { PushOffer } from '../components/ui/PushOffer';
 
 type View = { type: 'back' } | { type: 'loading' } | { type: 'shown'; shown: DailyShown } | { type: 'error'; error: ErrorKind };
 
@@ -41,8 +48,11 @@ export default function DailyIsland({ lang, save = saveFile }: { lang: Lang; sav
   const d = t(lang);
   const [view, setView] = useState<View>({ type: 'back' });
   const [reminded, setReminded] = useState(false);
+  const [signedOut, setSignedOut] = useState(false); // a mark came back 401: the session ended, the line says so
+  const evening = useEveningOpen();
   const heading = useRef<HTMLHeadingElement>(null);
   const tappedAt = useRef(0);
+  const journal = useMemo(() => createJournalApi(siteFetch()), []);
 
   useEffect(() => sendEvent(analyticsEvent('tool_view', 'daily', lang)), []);
 
@@ -88,8 +98,18 @@ export default function DailyIsland({ lang, save = saveFile }: { lang: Lang; sav
             {link.text}
           </a>
         ))}
+        <p class="daily__streak">
+          {shown.streak >= STREAK_SHOWN_FROM ? `${fill(d.dailyStreak, { n: shown.streak })} · ` : ''}
+          <a href={calendarHref(lang)}>{d.dailyCalendarLink}</a>
+        </p>
+        {!shown.fromBase && evening ? (
+          <EveningMark lang={lang} idBase="daily-mark" initial={shown.mark ?? { felt: null, note: null }} place="daily"
+            surface="night" guest={shown.mark === null || signedOut} save={(patch) => journal.mark(shown.day, patch)}
+            onSignedOut={() => setSignedOut(true)} signInHref={pagePath('diary', lang)} />
+        ) : null}
         <button type="button" class="btn btn--outline" onClick={remind}>{d.remindTomorrow}</button>
         <p class="small" role="status">{reminded ? d.remindDone : ''}</p>
+        {shown.fromBase ? null : <PushOffer lang={lang} streak={shown.streak} />}
       </section>
     );
   }

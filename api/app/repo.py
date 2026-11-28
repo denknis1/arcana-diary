@@ -181,6 +181,137 @@ def record_daily_draw(conn, guest_id, day, card_id: str, reversed_: bool) -> Non
                  " ON CONFLICT (guest_id, day) DO NOTHING", (guest_id, day, card_id, reversed_))
 
 
+DAILY_FIELDS = "day, card_id, reversed, felt, note, noted_at"
+
+
+def _daily_owner(user_id, guest_id) -> tuple[str, tuple]:
+    """Migration 009: a row belongs to an account (user_id) or to a guest cookie (guest_id), never both."""
+    return ("user_id = %s", (user_id,)) if user_id is not None else ("guest_id = %s", (guest_id,))
+
+
+def account_daily_draw(conn, user_id, day, card_id: str, reversed_: bool) -> dict:
+    """Stage 8.1 §3: one card per account and day on every device. The first request of the day stores `card_id`;
+    every later one is ignored: the account's card stays, also when this device's guest card of the same day is
+    claimed (the claim deletes the device's card, see account_repo.claim_daily)."""
+    conn.execute("INSERT INTO daily_draws (user_id, day, card_id, reversed) VALUES (%s, %s, %s, %s)"
+                 " ON CONFLICT (user_id, day) DO NOTHING", (user_id, day, card_id, reversed_))
+    return conn.execute(f"SELECT {DAILY_FIELDS} FROM daily_draws WHERE user_id = %s AND day = %s",
+                        (user_id, day)).fetchone()
+
+
+def draw_days(conn, user_id, guest_id) -> list:
+    """Every day with a card of this owner, oldest first (the streaks)."""
+    where, args = _daily_owner(user_id, guest_id)
+    return [r["day"] for r in conn.execute(f"SELECT day FROM daily_draws WHERE {where} ORDER BY day", args)]
+
+
+def calendar_rows(conn, user_id, guest_id, start, end, lang: str) -> list[dict]:
+    """The owner's cards from `start` to before `end`, oldest first, each with the text the daily job cached for
+    it in `lang` (cached_text, None once the cache is gone: the caller then uses the card base)."""
+    where, args = _daily_owner(user_id, guest_id)
+    return conn.execute(
+        f"SELECT d.day, d.card_id, d.reversed, d.felt, d.note, d.noted_at, c.text AS cached_text FROM daily_draws d"
+        " LEFT JOIN daily_cache c ON c.card_id = d.card_id AND c.reversed = d.reversed AND c.day = d.day"
+        f" AND c.lang = %s WHERE d.{where} AND d.day >= %s AND d.day < %s ORDER BY d.day",
+        (lang, *args, start, end)).fetchall()
+
+
+def set_daily_mark(conn, user_id, day, fields: dict, now) -> dict | None:
+    """Stage 8.1 §3: only the fields present in `fields` ("felt", "note") change; noted_at is `now`, or NULL once
+    both are empty. None when the account has no card that day (a card is never drawn after the fact)."""
+    row = conn.execute("SELECT felt, note FROM daily_draws WHERE user_id = %s AND day = %s FOR UPDATE",
+                       (user_id, day)).fetchone()
+    if row is None:
+        return None
+    if not fields:
+        return conn.execute(f"SELECT {DAILY_FIELDS} FROM daily_draws WHERE user_id = %s AND day = %s",
+                            (user_id, day)).fetchone()
+    felt = fields["felt"] if "felt" in fields else row["felt"]
+    note = fields["note"] if "note" in fields else row["note"]
+    noted_at = None if felt is None and note is None else now
+    return conn.execute(f"UPDATE daily_draws SET felt = %s, note = %s, noted_at = %s WHERE user_id = %s AND day = %s"
+                        f" RETURNING {DAILY_FIELDS}", (felt, note, noted_at, user_id, day)).fetchone()
+
+
+def upsert_push(conn, sub: dict) -> bool:
+    """Stage 8.1: one row per browser endpoint; the same browser subscribing again (another hour, a refresh, another
+    owner on a shared computer) replaces its row and clears its failures. last_sent_day stays: at most one a day.
+    A guest cannot take a row that belongs to an account: False, nothing changed."""
+    return conn.execute(
+        "INSERT INTO push_subscriptions (user_id, guest_id, endpoint, p256dh, auth, lang, tz, hour, created_at,"
+        " active_at) VALUES (%(user_id)s, %(guest_id)s, %(endpoint)s, %(p256dh)s, %(auth)s, %(lang)s, %(tz)s,"
+        " %(hour)s, %(now)s, %(now)s) ON CONFLICT (endpoint) DO UPDATE SET user_id = EXCLUDED.user_id,"
+        " guest_id = EXCLUDED.guest_id, p256dh = EXCLUDED.p256dh, auth = EXCLUDED.auth, lang = EXCLUDED.lang,"
+        " tz = EXCLUDED.tz, hour = EXCLUDED.hour, fails = 0, active_at = EXCLUDED.active_at"
+        " WHERE push_subscriptions.user_id IS NULL OR EXCLUDED.user_id IS NOT NULL RETURNING id", sub).fetchone() \
+        is not None
+
+
+def refresh_push(conn, sub: dict) -> str:
+    """The site's daily refresh: update the row of this endpoint, never create one. 'ok'; 'owned' — the row belongs
+    to an account and the caller is a guest; 'missing' — no row (deleted account, expired, turned off elsewhere)."""
+    updated = conn.execute(
+        "UPDATE push_subscriptions SET user_id = %(user_id)s, guest_id = %(guest_id)s, p256dh = %(p256dh)s,"
+        " auth = %(auth)s, lang = %(lang)s, tz = %(tz)s, hour = %(hour)s, fails = 0, active_at = %(now)s"
+        " WHERE endpoint = %(endpoint)s AND (user_id IS NULL OR %(user_id)s::uuid IS NOT NULL) RETURNING id", sub).fetchone()
+    if updated is not None:
+        return "ok"
+    exists = conn.execute("SELECT 1 FROM push_subscriptions WHERE endpoint = %s", (sub["endpoint"],)).fetchone()
+    return "owned" if exists else "missing"
+
+
+def count_push(conn, user_id, guest_id, endpoint: str) -> int:
+    """The owner's other subscriptions (the browser asking now is not counted twice)."""
+    where, args = _daily_owner(user_id, guest_id)
+    return conn.execute(f"SELECT count(*) AS n FROM push_subscriptions WHERE {where} AND endpoint <> %s",
+                        (*args, endpoint)).fetchone()["n"]
+
+
+def delete_push(conn, endpoint: str, user_id=None) -> bool:
+    """A row of an account goes only for that account (user_id); a guest row for whoever knows the endpoint."""
+    return conn.execute("DELETE FROM push_subscriptions WHERE endpoint = %s AND (user_id IS NULL OR user_id = %s)"
+                        " RETURNING id", (endpoint, user_id)).fetchone() is not None
+
+
+def push_subscriptions(conn) -> list[dict]:
+    """Every subscription; the reminder job picks the due ones by their own zone and hour."""
+    return conn.execute("SELECT id, user_id, guest_id, endpoint, p256dh, auth, lang, tz, hour, last_sent_day"
+                        " FROM push_subscriptions ORDER BY created_at").fetchall()
+
+
+def claim_push_day(conn, sub_id, day) -> bool:
+    """At most one reminder a day: the first run that marks the day sends; a parallel or repeated run finds it
+    marked. False when the day is already marked or the row is gone."""
+    return conn.execute("UPDATE push_subscriptions SET last_sent_day = %s WHERE id = %s"
+                        " AND last_sent_day IS DISTINCT FROM %s RETURNING id", (day, sub_id, day)).fetchone() \
+        is not None
+
+
+def opened_daily(conn, user_id, guest_id, day) -> bool:
+    where, args = _daily_owner(user_id, guest_id)
+    return conn.execute(f"SELECT 1 FROM daily_draws WHERE {where} AND day = %s", (*args, day)).fetchone() is not None
+
+
+def push_delivered(conn, sub_id) -> None:
+    conn.execute("UPDATE push_subscriptions SET fails = 0 WHERE id = %s", (sub_id,))
+
+
+def push_failed(conn, sub_id) -> int | None:
+    """One more failed delivery in a row; the new count, None when the row is gone."""
+    row = conn.execute("UPDATE push_subscriptions SET fails = fails + 1 WHERE id = %s RETURNING fails",
+                       (sub_id,)).fetchone()
+    return row["fails"] if row else None
+
+
+def delete_push_by_id(conn, sub_id) -> None:
+    conn.execute("DELETE FROM push_subscriptions WHERE id = %s", (sub_id,))
+
+
+def touch_guest_push(conn, guest_id, now) -> None:
+    """A guest's reminder lives 90 days from the last Card of the Day visit (housekeeping)."""
+    conn.execute("UPDATE push_subscriptions SET active_at = %s WHERE guest_id = %s", (now, guest_id))
+
+
 def count_guard_event(conn, day, lang: str, group: str, source: str) -> None:
     conn.execute("INSERT INTO guard_events (day, lang, guard_group, source, count) VALUES (%s, %s, %s, %s, 1)"
                  " ON CONFLICT (day, lang, guard_group, source) DO UPDATE SET count = guard_events.count + 1",

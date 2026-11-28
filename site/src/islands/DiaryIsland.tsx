@@ -8,6 +8,9 @@
 // library keeps the session the device had) — and `#error=…` is an expired link, whose hash goes once its line is
 // shown (final review M3). A reminder that the sign-in switched on is said in one line with a link to the account
 // page, where it can be turned off (owner decision 16).
+// Stage 8.1 (spec 2026-11-27 §2.2, §2.4): two tabs, "Readings" (/diary) and "Card of the Day" (/diary?tab=daily, the
+// calendar). A guest on the calendar tab sees this device's last 7 days, then "Sign in to keep your cards" and the
+// sign-in block; the sign-in brings the tab back.
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { t } from '../i18n';
 import { createAccountApi } from '../lib/accountApi';
@@ -16,15 +19,19 @@ import { methodOf, openSession, type SessionStatus } from '../lib/auth';
 import { browserStorage, clearSignedIn } from '../lib/authState';
 import { finishSignIn, hashAccessToken, linkFailed, readReturnParams, returnUrl, type ConsentOutcome } from '../lib/claim';
 import { entryParam } from '../lib/diary';
+import { CALENDAR_TAB, calendarHref, createJournalApi } from '../lib/journal';
 import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
 import { pagePath } from '../lib/routes';
 import { siteFetch } from '../lib/siteApi';
 import { deviceTimeZone } from '../lib/timeZone';
 import type { Lang } from '../lib/types';
+import { DailyCalendar } from '../components/ui/DailyCalendar';
 import { DiaryEntry } from '../components/ui/DiaryEntry';
 import { DiaryList } from '../components/ui/DiaryList';
 import { HelpLine } from '../components/ui/HelpLine';
 import { SignInBlock } from '../components/ui/SignInBlock';
+
+type Tab = 'readings' | 'daily';
 
 type View =
   | { type: 'loading' }
@@ -38,6 +45,10 @@ export default function DiaryIsland({ lang, privacyHref, termsHref }: { lang: La
   const d = t(lang);
   const [view, setView] = useState<View>({ type: 'loading' });
   const api = useMemo(() => createAccountApi(siteFetch()), []);
+  const journal = useMemo(() => createJournalApi(siteFetch()), []);
+  // read in the browser only: the page is built without an address (the build renders the loading view)
+  const tab = useMemo<Tab>(() => (typeof location !== 'undefined'
+    && new URLSearchParams(location.search).get('tab') === CALENDAR_TAB ? 'daily' : 'readings'), []);
   const reopened = useRef(false);
   // The access token of the address hash, read once, on the first open (undefined until then): "Try again" after a
   // failed claim is still the same page load; a re-open after the session went is not (handoff 3). The token alone
@@ -114,7 +125,15 @@ export default function DiaryIsland({ lang, privacyHref, termsHref }: { lang: La
   }
   if (view.type === 'status') {
     const { status } = view;
-    if (status.type === 'off') return <div class="diary"><p class="lead">{d.diarySignInSoon}</p></div>;
+    if (status.type === 'off') {
+      return (
+        <div class="diary">
+          <DiaryTabs lang={lang} tab={tab} />
+          {tab === 'daily' ? <DailyCalendar lang={lang} api={journal} guest tz={deviceTimeZone()} /> : null}
+          <p class="lead">{d.diarySignInSoon}</p>
+        </div>
+      );
+    }
     if (status.type === 'unreachable') {
       return (
         <div class="diary">
@@ -128,13 +147,16 @@ export default function DiaryIsland({ lang, privacyHref, termsHref }: { lang: La
     const keep = readReturnParams(location.search);
     return (
       <div class="diary diary--signin">
-        <p class="lead">{d.diaryWhy}</p>
+        <DiaryTabs lang={lang} tab={tab} />
+        {tab === 'daily' ? <DailyCalendar lang={lang} api={journal} guest tz={deviceTimeZone()} /> : null}
+        <p class="lead">{tab === 'daily' ? <a href="#diary-email">{d.calendarSignIn}</a> : d.diaryWhy}</p>
         {view.expired ? <p role="alert">{d.signInLinkExpired}</p> : null}
         <SignInBlock lang={lang} auth={status.auth} google={status.google} idBase="diary" surface="day" termsHref={termsHref} privacyHref={privacyHref}
           redirectTo={async () => {
             const back = new URL(returnUrl(location.origin, lang, keep)); // an entry's address comes back to it (M21)
             const entry = entryParam(location.search);
             if (entry) back.searchParams.set('r', entry);
+            if (tab === 'daily') back.searchParams.set('tab', CALENDAR_TAB); // stage 8.1: back to the calendar
             return back.toString();
           }} />
       </div>
@@ -144,8 +166,11 @@ export default function DiaryIsland({ lang, privacyHref, termsHref }: { lang: La
     <div class="diary">
       {view.consent === 'set' ? <ReminderOn lang={lang} /> : null}
       {view.consent === 'failed' ? <p role="status">{d.diaryConsentFailed}</p> : null}
+      {view.entry ? null : <DiaryTabs lang={lang} tab={tab} />}
       {view.entry ? (
         <DiaryEntry key={view.round} lang={lang} id={view.entry} api={api} tz={deviceTimeZone()} onSignedOut={() => void signedOut()} />
+      ) : tab === 'daily' ? (
+        <DailyCalendar key={view.round} lang={lang} api={journal} guest={false} tz={deviceTimeZone()} onSignedOut={() => void signedOut()} />
       ) : (
         <DiaryList key={view.round} lang={lang} api={api} onSignedOut={() => void signedOut()} />
       )}
@@ -163,5 +188,16 @@ function ReminderOn({ lang }: { lang: Lang }) {
     <p role="status">
       {before}<a href={pagePath('account', lang)}>{d.diaryReminderOnLink}</a>{after}
     </p>
+  );
+}
+
+/** Stage 8.1: the two parts of the diary as links (a page each), the current one marked. */
+function DiaryTabs({ lang, tab }: { lang: Lang; tab: Tab }) {
+  const d = t(lang);
+  return (
+    <nav class="diary__tabs" aria-label={d.diaryTabsLabel}>
+      <a href={pagePath('diary', lang)} aria-current={tab === 'readings' ? 'page' : undefined}>{d.diaryTabReadings}</a>
+      <a href={calendarHref(lang)} aria-current={tab === 'daily' ? 'page' : undefined}>{d.navDaily}</a>
+    </nav>
   );
 }

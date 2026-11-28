@@ -29,6 +29,10 @@ CLAIM_TOKEN_DAYS = 7           # stage 4.3 §4.2: a one-time token to save a gue
 CLAIM_TOKENS_PER_READING = 5   # live tokens per reading at once ("Save to diary" may be pressed again, not forever)
 NOTE_MAX_CHARS = 1000          # stage 4.3 §6: the private note of a diary entry (never sent to a model)
 FREE_DIARY_VISIBLE = 10        # stage 4.4b §5 (decision 9): the diary lists the newest 10; older ones are hidden, kept
+DAILY_NOTE_MAX_CHARS = 280     # stage 8.1 §2.3: the one-line note under the Card of the Day (never sent to a model)
+CALENDAR_GUEST_DAYS = 7        # stage 8.1 §2.4: a guest's calendar shows this device's last 7 days, without marks
+PUSH_PER_MINUTE = 10           # stage 8.1: POST /api/push/subscription per address per minute
+PUSH_SUBSCRIPTIONS_PER_OWNER = 10  # stage 8.1: browsers with reminders per account or guest cookie
 HISTORY_LIMIT = 5              # stage 4.3 §7: earlier readings of the same topic in the reader's input
 WAITLIST_IP_LIMIT = 5          # stage 4.3 §8: Plus waitlist requests per address per UTC day
 EVENTS_PER_MINUTE = 30         # stage 4.4a §6: POST /api/events per address per minute (a reading sends about 6)
@@ -90,6 +94,10 @@ class Settings:
     supabase_url: str  # stage 4.3 §3: the project's public address; "" — sign-in is off
     supabase_anon_key: str  # stage 4.4b §3: the project's public (anon / publishable) key for the browser; not a secret
     google_signin: bool  # stage 4.4b §3: GOOGLE_SIGNIN=true shows "Continue with Google"
+    vapid_private_key: str  # stage 8.1: browser reminders (Web Push); "" — off. Secret: only in deploy/.env
+    vapid_public_key: str   # stage 8.1: its public half, given to the browser
+    vapid_subject: str      # stage 8.1: who sends (RFC 8292 "sub"), an https address or mailto:
+    push_job_interval_s: float  # stage 8.1: how often the reminder job looks for due subscriptions; 0 — off
 
 
 def _bool(value: str) -> bool:
@@ -193,6 +201,10 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         supabase_url=_supabase_url(env.get("SUPABASE_URL") or ""),
         supabase_anon_key=_public_key(env.get("SUPABASE_ANON_KEY") or ""),
         google_signin=_flag("GOOGLE_SIGNIN", env.get("GOOGLE_SIGNIN") or ""),
+        vapid_private_key=env.get("VAPID_PRIVATE_KEY") or "",
+        vapid_public_key=env.get("VAPID_PUBLIC_KEY") or "",
+        vapid_subject=env.get("VAPID_SUBJECT") or "https://arcanadiary.com",
+        push_job_interval_s=float(env.get("PUSH_JOB_INTERVAL_S") or 600),
     )
 
 

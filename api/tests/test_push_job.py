@@ -1,0 +1,204 @@
+"""Stage 8.1 (spec 2026-11-27 §2.5, §3): the morning reminder job — its hour, once a day, not when the card is open,
+what the message says, and what a failed delivery does."""
+import asyncio
+import json
+import os
+import uuid
+from dataclasses import replace
+from datetime import date, datetime, timedelta, timezone
+from types import SimpleNamespace
+
+import httpx
+import pytest
+from cryptography.hazmat.primitives.asymmetric import ec
+
+from app import housekeeping, repo, webpush
+from app.config import load_settings
+from app.housekeeping import run_background
+from app.push import due_day, send_due
+from test_webpush import decrypt
+
+VAPID = webpush.generate_vapid()
+MX = "America/Mexico_City"
+EIGHT_THIRTY_MX = datetime(2026, 11, 20, 14, 30, tzinfo=timezone.utc)  # 08:30 in Mexico City
+
+
+class FakePost:
+    def __init__(self, *statuses):
+        self.statuses = list(statuses)
+        self.calls: list[tuple[str, dict, bytes]] = []
+
+    def __call__(self, url, headers, body):
+        self.calls.append((url, headers, body))
+        status = self.statuses.pop(0) if self.statuses else 201
+        if isinstance(status, Exception):
+            raise status
+        return status
+
+
+@pytest.fixture
+def push_api(api_factory):
+    api = api_factory(vapid_private_key=VAPID[0], vapid_public_key=VAPID[1])
+    api.clock.now = EIGHT_THIRTY_MX
+    return api
+
+
+def subscribe(api, *, user_id=None, guest_id=None, hour=8, tz=MX, lang="en"):
+    key = ec.generate_private_key(ec.SECP256R1())
+    auth = webpush.b64url(os.urandom(16))
+    endpoint = f"https://fcm.googleapis.com/fcm/send/{uuid.uuid4()}"
+    if user_id is None and guest_id is None:
+        guest_id = uuid.uuid4()
+    with api.db.connect() as conn:
+        repo.upsert_push(conn, {"user_id": user_id, "guest_id": guest_id, "endpoint": endpoint,
+                                "p256dh": webpush.b64url(webpush._point(key.public_key())), "auth": auth,
+                                "lang": lang, "tz": tz, "hour": hour, "now": api.clock()})
+    return SimpleNamespace(key=key, auth=auth, endpoint=endpoint, guest_id=guest_id, user_id=user_id)
+
+
+def run(api, post):
+    return send_due(api.ctx, api.clock(), post=post)
+
+
+def subs(api) -> list[dict]:
+    with api.db.connect() as conn:
+        return conn.execute("SELECT fails, last_sent_day FROM push_subscriptions").fetchall()
+
+
+def test_the_hour_is_the_subscribers_own():
+    sub = {"tz": MX, "hour": 8, "last_sent_day": None}
+    assert due_day(sub, datetime(2026, 11, 20, 13, 59, tzinfo=timezone.utc)) is None  # 07:59 there
+    assert due_day(sub, EIGHT_THIRTY_MX) == date(2026, 11, 20)
+    assert due_day(sub, datetime(2026, 11, 20, 16, 0, tzinfo=timezone.utc)) is None  # 10:00: the window is over
+    assert due_day({**sub, "last_sent_day": date(2026, 11, 20)}, EIGHT_THIRTY_MX) is None
+    assert due_day({**sub, "tz": "Europe/Madrid", "hour": 15}, EIGHT_THIRTY_MX) == date(2026, 11, 20)  # 15:30
+
+
+def test_one_reminder_a_day_that_names_no_card(push_api):
+    sub = subscribe(push_api, lang="es")
+    post = FakePost()
+    assert run(push_api, post) == {"sent": 1, "skipped": 0, "failed": 0, "deleted": 0}
+    assert run(push_api, post)["sent"] == 0  # the next run of the same day
+    [(url, headers, body)] = post.calls
+    assert url == sub.endpoint and headers["Authorization"].startswith("vapid t=")
+    assert json.loads(decrypt(body, sub.key, sub.auth)) == {"lang": "es"}  # only the language, never the card
+    assert subs(push_api) == [{"fails": 0, "last_sent_day": date(2026, 11, 20)}]
+    push_api.clock.advance(days=1)
+    assert run(push_api, post)["sent"] == 1
+
+
+def test_no_reminder_when_the_card_is_already_open(push_api):
+    sub = subscribe(push_api)
+    with push_api.db.connect() as conn:
+        repo.record_daily_draw(conn, sub.guest_id, date(2026, 11, 20), "major-18-moon", False)
+    post = FakePost()
+    assert run(push_api, post)["skipped"] == 1 and post.calls == []
+    assert run(push_api, post)["skipped"] == 0  # the day is marked: not looked at again
+
+
+def test_an_accounts_open_card_counts_on_any_device(push_api):
+    user = uuid.uuid4()
+    subscribe(push_api, user_id=user)
+    with push_api.db.connect() as conn:
+        repo.account_daily_draw(conn, user, date(2026, 11, 20), "major-18-moon", False)
+    assert run(push_api, FakePost())["skipped"] == 1
+
+
+def test_a_gone_subscription_is_deleted_at_once(push_api):
+    subscribe(push_api)
+    assert run(push_api, FakePost(410))["deleted"] == 1 and subs(push_api) == []
+
+
+def test_three_failures_in_a_row_delete_and_a_success_resets(push_api):
+    subscribe(push_api)
+    post = FakePost(500, 502, 201, 503, 429, 500)
+    for expected in (1, 2, 0, 1, 2):
+        run(push_api, post)
+        assert subs(push_api)[0]["fails"] == expected
+        push_api.clock.advance(days=1)
+    assert run(push_api, post)["deleted"] == 1 and subs(push_api) == []
+
+
+def test_a_refused_vapid_key_is_logged_and_never_counted(push_api, caplog):
+    subscribe(push_api)
+    with caplog.at_level("ERROR", logger="arcana.push"):
+        for _ in range(4):
+            run(push_api, FakePost(403))
+            push_api.clock.advance(days=1)
+    assert subs(push_api)[0]["fails"] == 0 and "VAPID" in caplog.text
+
+
+def test_without_keys_nothing_is_sent(api):
+    api.clock.now = EIGHT_THIRTY_MX
+    subscribe(api)
+    post = FakePost()
+    assert run(api, post) == {"sent": 0, "skipped": 0, "failed": 0, "deleted": 0} and post.calls == []
+
+
+def test_the_job_starts_only_with_keys(db, monkeypatch):
+    started = []
+
+    async def fake(*args, **kwargs):
+        started.append(args[-1] if args else None)
+
+    async def fake_push(ctx, interval_s):
+        started.append(("push", interval_s))
+
+    monkeypatch.setattr(housekeeping, "daily_loop", fake)
+    monkeypatch.setattr(housekeeping, "cleanup_loop", fake)
+    monkeypatch.setattr(housekeeping, "push_loop", fake_push)
+    settings = replace(load_settings({}), database_url=db.url, run_migrations=False, daily_job_interval_s=0.0)
+    keys = webpush.load_vapid(*VAPID)
+    asyncio.run(run_background(SimpleNamespace(settings=settings, db=db, clock=lambda: EIGHT_THIRTY_MX, vapid=keys)))
+    assert ("push", 600.0) in started
+    started.clear()
+    asyncio.run(run_background(SimpleNamespace(settings=settings, db=db, clock=lambda: EIGHT_THIRTY_MX, vapid=None)))
+    assert all(not (isinstance(s, tuple) and s[0] == "push") for s in started)
+
+
+def test_our_own_network_errors_are_never_counted(push_api):
+    subscribe(push_api)
+    post = FakePost(*[httpx.ConnectError("down"), httpx.ReadTimeout("slow")] * 3)
+    for _ in range(6):
+        assert run(push_api, post)["failed"] == 1
+        push_api.clock.advance(days=1)
+    assert subs(push_api)[0]["fails"] == 0
+
+
+def test_an_hour_23_window_runs_past_midnight():
+    sub = {"tz": MX, "hour": 23, "last_sent_day": None}
+    local = lambda h, m, d: datetime(2026, 11, d, tzinfo=timezone.utc) + timedelta(hours=h + 6, minutes=m)  # MX is UTC-6
+    assert due_day(sub, local(23, 30, 20)) == date(2026, 11, 20)
+    assert due_day(sub, local(24, 30, 20)) == date(2026, 11, 20)  # 00:30 on the 21st still belongs to the 20th
+    assert due_day(sub, local(25, 0, 20)) is None
+    assert due_day({**sub, "last_sent_day": date(2026, 11, 20)}, local(24, 30, 20)) is None  # one a day
+    assert due_day({**sub, "hour": 8}, EIGHT_THIRTY_MX) == date(2026, 11, 20)
+
+
+def test_a_poisoned_row_is_deleted_and_the_run_goes_on(push_api):
+    bad = subscribe(push_api)
+    good = subscribe(push_api)
+    with push_api.db.connect() as conn:
+        conn.execute("UPDATE push_subscriptions SET endpoint = 'https://evil.com' || chr(10) || '.notify.windows.com/x'"
+                     " WHERE endpoint = %s", (bad.endpoint,))
+    post = FakePost()
+    counts = run(push_api, post)
+    assert counts["deleted"] == 1 and counts["sent"] == 1 and [c[0] for c in post.calls] == [good.endpoint]
+    assert len(subs(push_api)) == 1
+
+
+def test_any_exception_on_one_row_is_logged_by_type_and_the_run_goes_on(push_api, caplog):
+    first = subscribe(push_api)
+    second = subscribe(push_api)
+    post = FakePost(httpx.InvalidURL("secret-endpoint-token"), 201)
+    with caplog.at_level("INFO"):
+        counts = run(push_api, post)
+    assert counts["sent"] == 1 and len(post.calls) == 2
+    assert "secret-endpoint-token" not in caplog.text and first.endpoint not in caplog.text
+    assert second.endpoint not in caplog.text
+
+
+def test_the_httpx_loggers_are_quiet_after_app_start(api):
+    import logging
+    assert logging.getLogger("httpx").getEffectiveLevel() >= logging.WARNING
+    assert logging.getLogger("httpcore").getEffectiveLevel() >= logging.WARNING

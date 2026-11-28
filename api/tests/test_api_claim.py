@@ -203,3 +203,74 @@ def test_device_false_still_moves_the_token_reading_made_here(api):
     token = claim_token(api.client, mine).json()["token"]
     assert claim_without_device(api.client, ANA, [token]).json() == {"claimed": [mine]}
     assert reading_row(api, mine)["user_id"] == ANA and reading_row(api, other)["user_id"] is None
+
+
+# --- stage 8.1 §3: the cards of the day and the reminders of this device move with the sign-in ---
+from datetime import date  # noqa: E402
+
+from app.draw import daily_draw  # noqa: E402
+
+
+def guest_card(api, client, lang="en"):
+    response = client.get("/api/daily", params={"lang": lang, "tz": MX})
+    assert response.status_code == 200, response.text
+    return response.json()
+
+
+def test_signing_in_moves_this_devices_cards_of_the_day(api):
+    client = api.new_client()
+    guest_card(api, client)  # the first request sets the cookie and stores nothing
+    first = guest_card(api, client)
+    api.clock.advance(days=1)
+    guest_card(api, client)
+    assert claim(client, ANA).json() == {"claimed": []}
+    with api.db.connect() as conn:
+        rows = conn.execute("SELECT guest_id, user_id, day, card_id FROM daily_draws ORDER BY day").fetchall()
+    assert [(r["guest_id"], r["user_id"], r["day"]) for r in rows] == [(None, ANA, date(2026, 11, 20)),
+                                                                       (None, ANA, date(2026, 11, 21))]
+    assert rows[0]["card_id"] == first["card"]["card_id"]
+    signed = client.get("/api/daily", params={"lang": "en", "tz": MX}, headers=bearer(ANA)).json()
+    assert signed["streak"] == 2  # the device's days count for the account now
+
+
+def test_a_day_the_account_already_has_keeps_the_accounts_card(api):
+    phone = api.new_client()
+    assert phone.get("/api/daily", params={"lang": "en", "tz": MX}, headers=bearer(ANA)).status_code == 200
+    laptop = api.new_client()
+    guest_card(api, laptop)
+    guest_card(api, laptop)
+    claim(laptop, ANA)
+    with api.db.connect() as conn:
+        rows = conn.execute("SELECT guest_id, user_id, card_id, reversed FROM daily_draws").fetchall()
+    expected = daily_draw(str(ANA), date(2026, 11, 20), api.ctx.cards.order)
+    assert [(r["guest_id"], r["user_id"], (r["card_id"], r["reversed"])) for r in rows] == [(None, ANA, expected)]
+
+
+def test_device_false_leaves_this_devices_cards_and_reminders(api):
+    client = api.new_client()
+    guest_card(api, client)
+    guest_card(api, client)
+    guest = uuid.UUID(client.cookies["ad_guest"])
+    with api.db.connect() as conn:
+        conn.execute("INSERT INTO push_subscriptions (guest_id, endpoint, p256dh, auth, lang, tz, hour, created_at,"
+                     " active_at) VALUES (%s, 'https://fcm.googleapis.com/fcm/send/x', 'k', 'a', 'en', 'UTC', 8, now(),"
+                     " now())", (guest,))
+    response = client.post("/api/account/claim", headers=bearer(ANA), json={"device": False})
+    assert response.json() == {"claimed": []}
+    with api.db.connect() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM daily_draws WHERE guest_id = %s", (guest,)).fetchone()["n"] == 1
+        assert conn.execute("SELECT user_id FROM push_subscriptions").fetchone()["user_id"] is None
+
+
+def test_signing_in_moves_this_devices_reminders(api):
+    client = api.new_client()
+    guest_card(api, client)
+    guest = uuid.UUID(client.cookies["ad_guest"])
+    with api.db.connect() as conn:
+        conn.execute("INSERT INTO push_subscriptions (guest_id, endpoint, p256dh, auth, lang, tz, hour, created_at,"
+                     " active_at) VALUES (%s, 'https://fcm.googleapis.com/fcm/send/x', 'k', 'a', 'en', 'UTC', 8, now(),"
+                     " now())", (guest,))
+    claim(client, ANA)
+    with api.db.connect() as conn:
+        row = conn.execute("SELECT user_id, guest_id FROM push_subscriptions").fetchone()
+    assert row == {"user_id": ANA, "guest_id": None}

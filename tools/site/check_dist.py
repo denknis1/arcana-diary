@@ -32,7 +32,7 @@ SITE_URL = "https://arcanadiary.com"
 DISALLOW_ALL = re.compile(r"^\s*disallow\s*:\s*/\*?\s*$", re.I | re.M)
 EXTRA = ("/404", "/es/404")
 PRIVATE = ("/diary", "/es/diario", "/account", "/es/cuenta")  # noindex, outside hreflang.csv
-DATA_FILES = ("data/daily-en.json", "data/daily-es.json", "sitemap.xml", "robots.txt")
+DATA_FILES = ("data/daily-en.json", "data/daily-es.json", "sitemap.xml", "robots.txt", "sw.js")  # sw.js: stage 8.1
 # = SERVICE_PAGE_IDS of site/src/lib/textPages.ts
 SERVICE_PAGE_IDS = frozenset({"about", "contact", "how-readings-work", "privacy", "terms", "sobre-nosotros", "contacto",
                               "como-funcionan-las-lecturas", "privacidad", "terminos"})

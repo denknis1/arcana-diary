@@ -283,3 +283,51 @@ def test_a_repeated_delete_is_refused_and_logs_no_false_error(api, caplog):
         again = delete_account(api, confirm="DELETE")
     assert again.status_code == 401 and again.json() == {"reason": "auth"}
     assert caplog.text == ""
+
+
+# --- stage 8.1 §3: the export has the cards of the day and the reminders; deleting the account takes them ---
+from datetime import date  # noqa: E402
+
+from app.draw import daily_draw  # noqa: E402
+
+
+def card_today(api, user):
+    response = api.new_client().get("/api/daily", params={"lang": "en", "tz": MX}, headers=bearer(user))
+    assert response.status_code == 200, response.text
+
+
+def add_reminder(api, user, endpoint="https://fcm.googleapis.com/fcm/send/abc"):
+    with api.db.connect() as conn:
+        conn.execute("INSERT INTO push_subscriptions (user_id, endpoint, p256dh, auth, lang, tz, hour, created_at,"
+                     " active_at) VALUES (%s, %s, 'k', 'secret-auth', 'en', 'America/Mexico_City', 8, %s, %s)",
+                     (user, endpoint, api.clock(), api.clock()))
+
+
+def test_the_export_has_the_cards_of_the_day_and_the_reminders_without_their_keys(api):
+    card_today(api, ANA)
+    api.client.put("/api/daily/2026-11-20", json={"felt": "yes", "note": "It did."}, headers=bearer(ANA))
+    add_reminder(api, ANA)
+    response = api.client.get("/api/account/export", headers=bearer(ANA))
+    body = response.json()
+    card_id, reversed_ = daily_draw(str(ANA), date(2026, 11, 20), api.ctx.cards.order)
+    [card] = body["daily_cards"]
+    assert (card["day"], card["card_id"], card["reversed"], card["felt"], card["note"]) == (
+        "2026-11-20", card_id, reversed_, "yes", "It did.")
+    assert card["name_en"] == api.ctx.cards.name(card_id, "en") and card["name_es"] == api.ctx.cards.name(card_id, "es")
+    [sub] = body["push_subscriptions"]
+    assert (sub["service"], sub["hour"], sub["tz"], sub["lang"]) == ("fcm.googleapis.com", 8, MX, "en")
+    assert "secret-auth" not in response.text and "/fcm/send/abc" not in response.text
+
+
+def test_deleting_the_account_takes_its_cards_marks_and_reminders(api):
+    card_today(api, ANA)
+    card_today(api, BEN)
+    api.client.put("/api/daily/2026-11-20", json={"note": "Private line."}, headers=bearer(ANA))
+    add_reminder(api, ANA)
+    add_reminder(api, BEN, endpoint="https://fcm.googleapis.com/fcm/send/ben")
+    assert delete_account(api, confirm="DELETE").status_code == 200
+    assert count(api, "SELECT count(*) AS n FROM daily_draws WHERE user_id = %s", ANA) == 0
+    assert count(api, "SELECT count(*) AS n FROM push_subscriptions WHERE user_id = %s", ANA) == 0
+    assert count(api, "SELECT count(*) AS n FROM daily_draws WHERE user_id = %s", BEN) == 1
+    assert count(api, "SELECT count(*) AS n FROM push_subscriptions WHERE user_id = %s", BEN) == 1
+    assert "Private line." not in dump_tables(api.db)

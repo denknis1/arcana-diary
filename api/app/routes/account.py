@@ -3,6 +3,7 @@ readings and deleting the account at once (no grace period). Signed in only (401
 from the token; the profile row is made on first use."""
 import logging
 from typing import Literal
+from urllib.parse import urlsplit
 
 from fastapi import APIRouter, Request
 from pydantic import BaseModel, ConfigDict
@@ -73,6 +74,18 @@ def export_reading(ctx, reading: dict, followups: list[dict]) -> dict:
     }
 
 
+def export_daily_card(ctx, row: dict) -> dict:
+    return {"day": row["day"], "card_id": row["card_id"], "name_en": ctx.cards.name(row["card_id"], "en"),
+            "name_es": ctx.cards.name(row["card_id"], "es"), "reversed": row["reversed"], "felt": row["felt"],
+            "note": row["note"], "noted_at": row["noted_at"]}
+
+
+def export_subscription(row: dict) -> dict:
+    """The push service by name only: the endpoint and its keys let anyone holding the file send to the browser."""
+    return {"service": urlsplit(row["endpoint"]).hostname, "hour": row["hour"], "tz": row["tz"], "lang": row["lang"],
+            "created_at": row["created_at"], "last_sent_day": row["last_sent_day"]}
+
+
 @router.get("/account/export")
 def export_account(request: Request):
     ctx = get_ctx(request)
@@ -84,8 +97,12 @@ def export_account(request: Request):
         profile = account_repo.ensure_profile(conn, who.user.id, now)
         entries = account_repo.export_readings(conn, who.user.id)
         waitlist = account_repo.waitlist_entry(conn, who.user.id, who.user.email)
+        daily_cards = account_repo.export_daily(conn, who.user.id)
+        subscriptions = account_repo.export_push(conn, who.user.id)
     payload = {"exported_at": now, "account": account_view(who.user, profile),
                "readings": [export_reading(ctx, reading, followups) for reading, followups in entries],
+               "daily_cards": [export_daily_card(ctx, row) for row in daily_cards],
+               "push_subscriptions": [export_subscription(row) for row in subscriptions],
                "plus_waitlist": waitlist}
     response = respond(200, payload)
     response.headers["Content-Disposition"] = f'attachment; filename="arcana-diary-{now.date().isoformat()}.json"'

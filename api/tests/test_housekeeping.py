@@ -45,16 +45,18 @@ def test_delete_stale_counters_caches_and_old_logs(db):
     with db.connect() as conn:
         for day in (today, today - timedelta(days=3)):
             conn.execute("INSERT INTO usage (subject, day, count) VALUES ('ip:x', %s, 1)", (day,))
+        for day in (today - timedelta(days=61), today - timedelta(days=63)):  # stage 8.1: the cache keeps 62 days
             repo.put_daily_cache(conn, {"card_id": "major-18-moon", "reversed": False, "lang": "en", "day": day,
                                         "text": "T.", "model": "m", "prompt_version": "daily.en.v1"})
-        repo.record_daily_draw(conn, uuid.uuid4(), today - timedelta(days=8), "major-18-moon", False)
-        repo.record_daily_draw(conn, uuid.uuid4(), today, "major-18-moon", False)
+        repo.record_daily_draw(conn, uuid.uuid4(), today - timedelta(days=61), "major-18-moon", False)
+        repo.record_daily_draw(conn, uuid.uuid4(), today - timedelta(days=59), "major-18-moon", False)
         repo.count_guard_event(conn, today - timedelta(days=30), "en", "ok", "model")
         repo.count_guard_event(conn, today - timedelta(days=400), "en", "ok", "model")
         repo.log_llm_call(conn, call(T0))
         repo.log_llm_call(conn, call(T0 - timedelta(days=91)))
     assert delete_expired(db, T0) == {"readings": 0, "usage": 1, "daily_cache": 1, "daily_draws": 1,
-                                      "llm_calls": 1, "guard_events": 1, "events": 0, "plus_waitlist": 0, "claim_tokens": 0, "deleted_accounts": 0,
+                                      "push_subscriptions": 0, "llm_calls": 1, "guard_events": 1, "events": 0,
+                                      "plus_waitlist": 0, "claim_tokens": 0, "deleted_accounts": 0,
                                       "followup_tombstones": 0}
     assert (count(db, "usage"), count(db, "daily_cache"), count(db, "daily_draws")) == (1, 1, 1)
     assert (count(db, "guard_events"), count(db, "llm_calls")) == (1, 1)
@@ -308,3 +310,31 @@ def test_delete_old_events_and_waitlist(db):
     counts = delete_expired(db, T0)
     assert (counts["events"], counts["plus_waitlist"]) == (1, 1)
     assert (count(db, "events"), count(db, "plus_waitlist")) == (1, 1)
+
+
+# --- stage 8.1: retention of the cards of the day and of browser reminders (spec 2026-11-27 §4) ---
+
+def push_row(conn, *, user_id=None, guest_id=None, active_at=T0, endpoint=None) -> None:
+    conn.execute("INSERT INTO push_subscriptions (user_id, guest_id, endpoint, p256dh, auth, lang, tz, hour,"
+                 " created_at, active_at) VALUES (%s, %s, %s, 'k', 'a', 'en', 'UTC', 8, %s, %s)",
+                 (user_id, guest_id, endpoint or f"https://fcm.googleapis.com/fcm/send/{uuid.uuid4()}", active_at,
+                  active_at))
+
+
+def test_guest_cards_of_the_day_go_after_60_days_an_accounts_stay(db):
+    today, user = T0.date(), uuid.uuid4()
+    with db.connect() as conn:
+        repo.record_daily_draw(conn, uuid.uuid4(), today - timedelta(days=61), "major-18-moon", False)
+        repo.account_daily_draw(conn, user, today - timedelta(days=400), "major-18-moon", False)
+    assert delete_expired(db, T0)["daily_draws"] == 1
+    with db.connect() as conn:
+        assert repo.draw_days(conn, user, None) == [today - timedelta(days=400)]
+
+
+def test_guest_reminders_go_90_days_after_the_last_visit_an_accounts_stay(db):
+    with db.connect() as conn:
+        push_row(conn, guest_id=uuid.uuid4(), active_at=T0 - timedelta(days=91))
+        push_row(conn, guest_id=uuid.uuid4(), active_at=T0 - timedelta(days=89))
+        push_row(conn, user_id=uuid.uuid4(), active_at=T0 - timedelta(days=400))
+    assert delete_expired(db, T0)["push_subscriptions"] == 1
+    assert count(db, "push_subscriptions") == 2

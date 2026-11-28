@@ -98,12 +98,24 @@ export interface SavedFollowup {
   soft_line: string | null;
 }
 
-/** 200 of GET /api/daily. */
+/** The evening mark under the Card of the Day (stage 8.1 §2.3). */
+export type Felt = 'yes' | 'partly' | 'no';
+export const FELTS: readonly Felt[] = ['yes', 'partly', 'no'];
+
+export interface DailyMark {
+  felt: Felt | null;
+  note: string | null;
+}
+
+/** 200 of GET /api/daily. Stage 8.1: the streak, and today's mark for an account (null for a guest). */
 export interface DailyCard {
   day: string;
   card: { card_id: string; name: string; reversed: boolean };
   text: string;
   source: 'cache' | 'fallback';
+  streak?: number;
+  best_streak?: number;
+  mark?: DailyMark | null;
 }
 
 /** Body of POST /api/readings. */

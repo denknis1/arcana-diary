@@ -14,17 +14,19 @@ import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../i18n';
 import { createAccountApi, type Account, type AccountApi } from '../lib/accountApi';
 import { openSession, type Auth, type SessionStatus } from '../lib/auth';
-import { clearSignedIn } from '../lib/authState';
+import { browserStorage, clearSignedIn } from '../lib/authState';
 import { returnUrl } from '../lib/claim';
 import { saveFile, type SaveFile } from '../lib/download';
 import { errorMessageKey, needsHelpLink, reasonOf, type ErrorKind } from '../lib/errors';
 import { markNotice, noticeHref } from '../lib/notice';
+import { browserEnv, createPushApi, turnOff } from '../lib/push';
 import { pagePath } from '../lib/routes';
 import { siteFetch } from '../lib/siteApi';
 import { deviceTimeZone } from '../lib/timeZone';
 import type { Lang } from '../lib/types';
 import { DeleteAccountDialog } from '../components/ui/DeleteAccountDialog';
 import { HelpLine } from '../components/ui/HelpLine';
+import { PushSwitch } from '../components/ui/PushSwitch';
 import { SignInBlock } from '../components/ui/SignInBlock';
 
 export const SIGN_OUT_WAIT_MS = 3000;
@@ -67,10 +69,13 @@ interface Props {
   navigate?: (url: string) => void;
   session?: () => Promise<SessionStatus>;
   signOutWaitMs?: number;
+  /** The reminder of this browser after the account is gone (review I3); tests pass their own. */
+  stopReminders?: () => Promise<unknown>;
 }
 
 export default function AccountIsland({ lang, privacyHref, termsHref, api: given, save = saveFile, navigate = (url) => location.assign(url),
-  session = openSession, signOutWaitMs = SIGN_OUT_WAIT_MS }: Props) {
+  session = openSession, signOutWaitMs = SIGN_OUT_WAIT_MS,
+  stopReminders = () => turnOff({ env: browserEnv(), api: createPushApi(siteFetch()), storage: browserStorage() }) }: Props) {
   const d = t(lang);
   const api = useMemo(() => given ?? createAccountApi(siteFetch()), []);
   const [view, setView] = useState<View>({ type: 'loading' });
@@ -225,6 +230,10 @@ export default function AccountIsland({ lang, privacyHref, termsHref, api: given
       if (sessionGone(result.status, result.body)) return signedOut(auth, google);
       return setFailed({ action: 'delete', error: result.error }); // said inside the dialog (review I5)
     }
+    // The server dropped the subscriptions with the account; this browser must stop too (else its daily refresh or a
+    // later tap would bring one back): unsubscribe here, never longer than a few seconds, never a failure.
+    await Promise.race([Promise.resolve().then(stopReminders).catch(() => undefined),
+      new Promise((resolve) => setTimeout(resolve, signOutWaitMs))]);
     markNotice('accountDeleted');
     await leave(auth, noticeHref(home)); // at once: the token still lives until it expires; busy until the page goes
   };
@@ -256,6 +265,7 @@ export default function AccountIsland({ lang, privacyHref, termsHref, api: given
         {privacyHref ? <p class="small"><a href={privacyHref}>{d.privacyLink}</a></p> : null}
         {problem('consent')}
       </div>
+      <PushSwitch lang={lang} />
       <div class="account__actions">
         <button type="button" class="btn btn--outline" aria-disabled={busy !== null} onClick={() => void download()}>
           {d.accountExport}
