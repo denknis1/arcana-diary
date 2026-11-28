@@ -181,6 +181,34 @@ def record_daily_draw(conn, guest_id, day, card_id: str, reversed_: bool) -> Non
                  " ON CONFLICT (guest_id, day) DO NOTHING", (guest_id, day, card_id, reversed_))
 
 
+DAILY_FIELDS = "day, card_id, reversed, felt, note, noted_at"
+
+
+def _daily_owner(user_id, guest_id) -> tuple[str, tuple]:
+    """Migration 009: a row belongs to an account (user_id) or to a guest cookie (guest_id), never both."""
+    return ("user_id = %s", (user_id,)) if user_id is not None else ("guest_id = %s", (guest_id,))
+
+
+def account_daily_draw(conn, user_id, day, card_id: str, reversed_: bool) -> dict:
+    """Stage 8.1 §3: one card per account and day on every device. The first request of the day stores `card_id`;
+    every later one (and a card claimed from this device's guest cookie) wins over it."""
+    conn.execute("INSERT INTO daily_draws (user_id, day, card_id, reversed) VALUES (%s, %s, %s, %s)"
+                 " ON CONFLICT (user_id, day) DO NOTHING", (user_id, day, card_id, reversed_))
+    return conn.execute(f"SELECT {DAILY_FIELDS} FROM daily_draws WHERE user_id = %s AND day = %s",
+                        (user_id, day)).fetchone()
+
+
+def draw_days(conn, user_id, guest_id) -> list:
+    """Every day with a card of this owner, oldest first (the streaks)."""
+    where, args = _daily_owner(user_id, guest_id)
+    return [r["day"] for r in conn.execute(f"SELECT day FROM daily_draws WHERE {where} ORDER BY day", args)]
+
+
+def touch_guest_push(conn, guest_id, now) -> None:
+    """A guest's reminder lives 90 days from the last Card of the Day visit (housekeeping)."""
+    conn.execute("UPDATE push_subscriptions SET active_at = %s WHERE guest_id = %s", (now, guest_id))
+
+
 def count_guard_event(conn, day, lang: str, group: str, source: str) -> None:
     conn.execute("INSERT INTO guard_events (day, lang, guard_group, source, count) VALUES (%s, %s, %s, %s, 1)"
                  " ON CONFLICT (day, lang, guard_group, source) DO UPDATE SET count = guard_events.count + 1",
