@@ -327,6 +327,20 @@ export const en = {
   calendarGuestTitle: 'Your last 7 days',
   calendarSignIn: 'Sign in to keep your cards',
   calendarDayCard: 'Card of {date}',
+  // stage 8.1: the morning reminder in the browser (spec 2026-11-27 §2.5); notifBody is the spec's exact text
+  pushOffer: 'Remind me each morning',
+  pushHourLabel: 'At',
+  pushNotNow: 'Not now',
+  pushOn: 'Morning reminder on, at {hour}.',
+  pushOff: 'Turn off',
+  pushDenied: 'Notifications for this site are blocked in your browser settings.',
+  pushFailed: "We couldn't turn on the reminder. Please try again.",
+  pushIosHint: 'To get a morning reminder on iPhone, add this site to your Home Screen: tap Share, then “Add to Home Screen”, and open it from there.',
+  notifTitle: 'Arcana Diary',
+  notifBody: 'Your card for today is waiting',
+  accountPushTitle: 'Morning reminder in this browser',
+  accountPushOn: 'On, at {hour}.',
+  accountPushNone: 'Off. You can turn it on under the Card of the Day.',
 };
 
 export type DictKey = keyof typeof en;

@@ -142,6 +142,9 @@ done
 expect "/ — без X-Robots-Tag (LAUNCHED=true)" "$(robots /)" ""
 expect "/ — без Referrer-Policy" "$(referrer /)" ""
 expect "/ — без Cache-Control: no-store" "$(cache /)" ""
+# stage 8.1: the service worker of the morning reminder is never served stale
+expect "/sw.js" "$(status /sw.js)" 200
+expect "/sw.js — Cache-Control" "$(cache /sw.js)" "no-cache"
 expect "/diary?claim=… — X-Robots-Tag" "$(robots '/diary?claim=abc_DEF-1&remind=1')" "noindex, nofollow"
 expect "/diary?claim=… — Cache-Control" "$(cache '/diary?claim=abc_DEF-1&remind=1')" "no-store"
 expect "/es/diario — страница ES" "$(html_lang /es/diario)" '<html lang="es"'

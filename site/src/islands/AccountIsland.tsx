@@ -25,6 +25,7 @@ import { deviceTimeZone } from '../lib/timeZone';
 import type { Lang } from '../lib/types';
 import { DeleteAccountDialog } from '../components/ui/DeleteAccountDialog';
 import { HelpLine } from '../components/ui/HelpLine';
+import { PushSwitch } from '../components/ui/PushSwitch';
 import { SignInBlock } from '../components/ui/SignInBlock';
 
 export const SIGN_OUT_WAIT_MS = 3000;
@@ -256,6 +257,7 @@ export default function AccountIsland({ lang, privacyHref, termsHref, api: given
         {privacyHref ? <p class="small"><a href={privacyHref}>{d.privacyLink}</a></p> : null}
         {problem('consent')}
       </div>
+      <PushSwitch lang={lang} />
       <div class="account__actions">
         <button type="button" class="btn btn--outline" aria-disabled={busy !== null} onClick={() => void download()}>
           {d.accountExport}

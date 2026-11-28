@@ -87,6 +87,7 @@ def site(tmp_path, reading_island='import{x}from"./api.d4.js";'):
     write(dist, "data/daily-es.json", "[]")
     write(dist, "sitemap.xml", sitemap(indexable_pages()))
     write(dist, "robots.txt", ROBOTS_TXT)
+    write(dist, "sw.js", "self.addEventListener('push', () => {});\n")  # stage 8.1: the reminder's service worker
     return dist
 
 
@@ -417,3 +418,10 @@ def test_main_reports_every_problem_and_passes_a_good_build(tmp_path, capsys):
     assert "missing: site/dist/diary.html" in out and "missing: site/dist/sitemap.xml" in out
     assert check_dist.main(site(tmp_path)) == 0
     assert capsys.readouterr().out == "OK: 187 pages\n"
+
+def test_a_build_without_the_service_worker_fails(tmp_path, capsys):
+    """Stage 8.1: /sw.js is a file of the build (src/pages/sw.js.ts); without it the morning reminder cannot work."""
+    dist = site(tmp_path)
+    (dist / "sw.js").unlink()
+    assert check_dist.main(dist) == 1
+    assert "missing: " in capsys.readouterr().out

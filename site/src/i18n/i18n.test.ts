@@ -41,11 +41,13 @@ describe('dictionaries', () => {
       .toEqual(['Yes', 'Partly', 'No', 'Sí', 'En parte', 'No']);
     expect([t('en').navDaily, t('es').navDaily, t('en').calendarSignIn]).toEqual([
       'Card of the Day', 'Carta del día', 'Sign in to keep your cards']);
+    expect([t('en').notifBody, t('es').notifBody, t('en').pushOffer]).toEqual([
+      'Your card for today is waiting', 'Tu carta de hoy te espera', 'Remind me each morning']);
   });
 
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(289);
+    expect(keys('en').length).toBe(302);
   });
 
   it('have no empty strings', () => {

@@ -16,6 +16,9 @@
 	header @private X-Robots-Tag "noindex, nofollow"
 	header @private Referrer-Policy "same-origin"
 	header @private Cache-Control "no-store"
+	# stage 8.1: the browser checks the reminder's service worker for a new version on every visit; never a stale
+	# copy from Cloudflare or the browser cache
+	header /sw.js Cache-Control "no-cache"
 	# API on the main domain: first-party cookie, no CORS; flush_interval -1 passes the SSE stream unbuffered.
 	# X-Real-IP is always overwritten with the TCP peer, so a client cannot choose its own address (§8.2).
 	handle /api/* {

@@ -21,6 +21,7 @@ import type { Lang } from '../lib/types';
 import { CardFace } from '../components/ui/CardFace';
 import { EveningMark } from '../components/ui/EveningMark';
 import { HelpLine } from '../components/ui/HelpLine';
+import { PushOffer } from '../components/ui/PushOffer';
 
 type View = { type: 'back' } | { type: 'loading' } | { type: 'shown'; shown: DailyShown } | { type: 'error'; error: ErrorKind };
 
@@ -104,6 +105,7 @@ export default function DailyIsland({ lang, save = saveFile }: { lang: Lang; sav
         ) : null}
         <button type="button" class="btn btn--outline" onClick={remind}>{d.remindTomorrow}</button>
         <p class="small" role="status">{reminded ? d.remindDone : ''}</p>
+        {shown.fromBase ? null : <PushOffer lang={lang} streak={shown.streak} />}
       </section>
     );
   }

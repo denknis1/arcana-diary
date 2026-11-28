@@ -327,6 +327,20 @@ export const es: Dict = {
   calendarGuestTitle: 'Tus últimos 7 días',
   calendarSignIn: 'Inicia sesión para guardar tus cartas',
   calendarDayCard: 'Carta del {date}',
+  // stage 8.1: the morning reminder in the browser (spec 2026-11-27 §2.5); notifBody is the spec's exact text
+  pushOffer: 'Avísame cada mañana',
+  pushHourLabel: 'A las',
+  pushNotNow: 'Ahora no',
+  pushOn: 'Aviso de la mañana activado, a las {hour}.',
+  pushOff: 'Desactivar',
+  pushDenied: 'Las notificaciones de este sitio están bloqueadas en la configuración de tu navegador.',
+  pushFailed: 'No se pudo activar el aviso. Intenta de nuevo.',
+  pushIosHint: 'Para recibir el aviso en iPhone, agrega este sitio a tu pantalla de inicio: toca Compartir, luego «Agregar a inicio», y ábrelo desde ahí.',
+  notifTitle: 'Arcana Diary',
+  notifBody: 'Tu carta de hoy te espera',
+  accountPushTitle: 'Aviso de la mañana en este navegador',
+  accountPushOn: 'Activado, a las {hour}.',
+  accountPushNone: 'Desactivado. Puedes activarlo debajo de la carta del día.',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.
