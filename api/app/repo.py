@@ -255,6 +255,40 @@ def delete_push(conn, endpoint: str) -> bool:
         is not None
 
 
+def push_subscriptions(conn) -> list[dict]:
+    """Every subscription; the reminder job picks the due ones by their own zone and hour."""
+    return conn.execute("SELECT id, user_id, guest_id, endpoint, p256dh, auth, lang, tz, hour, last_sent_day"
+                        " FROM push_subscriptions ORDER BY created_at").fetchall()
+
+
+def claim_push_day(conn, sub_id, day) -> bool:
+    """At most one reminder a day: the first run that marks the day sends; a parallel or repeated run finds it
+    marked. False when the day is already marked or the row is gone."""
+    return conn.execute("UPDATE push_subscriptions SET last_sent_day = %s WHERE id = %s"
+                        " AND last_sent_day IS DISTINCT FROM %s RETURNING id", (day, sub_id, day)).fetchone() \
+        is not None
+
+
+def opened_daily(conn, user_id, guest_id, day) -> bool:
+    where, args = _daily_owner(user_id, guest_id)
+    return conn.execute(f"SELECT 1 FROM daily_draws WHERE {where} AND day = %s", (*args, day)).fetchone() is not None
+
+
+def push_delivered(conn, sub_id) -> None:
+    conn.execute("UPDATE push_subscriptions SET fails = 0 WHERE id = %s", (sub_id,))
+
+
+def push_failed(conn, sub_id) -> int | None:
+    """One more failed delivery in a row; the new count, None when the row is gone."""
+    row = conn.execute("UPDATE push_subscriptions SET fails = fails + 1 WHERE id = %s RETURNING fails",
+                       (sub_id,)).fetchone()
+    return row["fails"] if row else None
+
+
+def delete_push_by_id(conn, sub_id) -> None:
+    conn.execute("DELETE FROM push_subscriptions WHERE id = %s", (sub_id,))
+
+
 def touch_guest_push(conn, guest_id, now) -> None:
     """A guest's reminder lives 90 days from the last Card of the Day visit (housekeeping)."""
     conn.execute("UPDATE push_subscriptions SET active_at = %s WHERE guest_id = %s", (now, guest_id))

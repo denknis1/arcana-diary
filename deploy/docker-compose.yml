@@ -55,6 +55,11 @@ services:
       SUPABASE_URL: ${SUPABASE_URL:-}
       SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-}
       GOOGLE_SIGNIN: ${GOOGLE_SIGNIN:-}
+      # stage 8.1: browser reminders; the keys are written into deploy/.env by deploy/gen-vapid.sh (empty — off)
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY:-}
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY:-}
+      VAPID_SUBJECT: ${VAPID_SUBJECT:-}
+      PUSH_JOB_INTERVAL_S: ${PUSH_JOB_INTERVAL_S:-}
 
 volumes:
   caddy_data:

@@ -6,7 +6,8 @@
   stage 8.1: guest cards of the day after 60 days, guest browser reminders 90 days after the last visit (an
   account's cards and reminders stay until the account is deleted);
 - freeing follow-ups cut by a restart (no answer, stale) and giving paid ones back to their owner;
-- the card-of-the-day job (app.daily.daily_loop).
+- the card-of-the-day job (app.daily.daily_loop);
+- stage 8.1: the morning reminder job (app.push.push_loop), only with VAPID keys in deploy/.env.
 """
 import asyncio
 import logging
@@ -14,6 +15,7 @@ from datetime import datetime, timedelta, timezone
 
 from app import limits, repo
 from app.daily import daily_loop
+from app.push import push_loop
 from app.db import Database, DatabaseUnavailable, migrate
 
 log = logging.getLogger("arcana.housekeeping")
@@ -117,4 +119,6 @@ async def run_background(ctx, migrate_retry_s: float = MIGRATE_RETRY_S) -> None:
     jobs = [("cleanup", cleanup_loop(ctx.db, settings.cleanup_interval_s, ctx.clock))]
     if settings.daily_job_interval_s > 0:
         jobs.append(("daily", daily_loop(ctx, settings.daily_job_interval_s)))
+    if getattr(ctx, "vapid", None) is not None and settings.push_job_interval_s > 0:  # stage 8.1: keys set
+        jobs.append(("push", push_loop(ctx, settings.push_job_interval_s)))
     await asyncio.gather(*(_logged(name, job) for name, job in jobs))  # one crashing job does not stop the other
