@@ -5,12 +5,13 @@ worker shows "Your card for today is waiting" (the lock screen). No model is cal
 
 Delivery: 2xx — the failure count goes back to 0; 404 / 410 — the browser dropped the subscription, the row goes at
 once; 401 / 403 — the push service refused our VAPID key (a server problem, not the browser's): logged, not counted,
-so a key mistake never wipes everyone's subscriptions; anything else (5xx, 429, a network error) — one more failure
-in a row, and MAX_FAILS in a row delete the row. Nothing about the person or the endpoint is logged.
+so a key mistake never wipes everyone's subscriptions; any other HTTP answer (5xx, 429...) — one more failure
+in a row, and MAX_FAILS in a row delete the row; our own network errors (no answer) are not counted, so an outage
+never wipes subscriptions. Nothing about the person is logged, the endpoint only as a short hash.
 """
 import asyncio
 import logging
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, time, timedelta
 
 import httpx
 
@@ -27,12 +28,15 @@ POST_TIMEOUT_S = 10.0
 
 
 def due_day(sub: dict, now: datetime) -> date | None:
-    """The subscriber's local day when its hour has come and that day has had no reminder yet; else None."""
-    local = now.astimezone(resolve_tz(sub["tz"]))
-    if sub["last_sent_day"] == local.date():
-        return None
-    start = local.replace(hour=sub["hour"], minute=0, second=0, microsecond=0)
-    return local.date() if start <= local < start + timedelta(hours=SEND_WINDOW_H) else None
+    """The local day whose reminder window [hour, hour+2h) holds now and that has had no reminder yet; else None.
+    The window may end on the next local day (hour 23), so yesterday's window is looked at too."""
+    zone = resolve_tz(sub["tz"])
+    local = now.astimezone(zone)
+    for day in (local.date(), local.date() - timedelta(days=1)):
+        start = datetime.combine(day, time(sub["hour"]), tzinfo=zone)
+        if start <= local < start + timedelta(hours=SEND_WINDOW_H):
+            return None if sub["last_sent_day"] == day else day
+    return None
 
 
 def http_post(url: str, headers: dict, body: bytes) -> int:
@@ -46,38 +50,58 @@ def send_due(ctx, now: datetime, post=http_post) -> dict[str, int]:
     with ctx.db.connect() as conn:
         subs = repo.push_subscriptions(conn)
     for sub in subs:
-        day = due_day(sub, now)
-        if day is None:
-            continue
+        try:
+            _send_one(ctx, sub, now, post, counts)
+        except Exception as exc:  # one bad row never stops the run; the type only, the endpoint is a secret
+            counts["failed"] += 1
+            log.error("a reminder failed (%s) for subscription %s", type(exc).__name__,
+                      webpush.endpoint_tag(sub.get("endpoint")))
+    return counts
+
+
+def _send_one(ctx, sub: dict, now: datetime, post, counts: dict) -> None:
+    day = due_day(sub, now)
+    if day is None:
+        return
+    if not webpush.valid_endpoint(sub["endpoint"]):  # a row that got in before the check was strict
         with ctx.db.connect() as conn:
-            if not repo.claim_push_day(conn, sub["id"], day):
-                continue
-            opened = repo.opened_daily(conn, sub["user_id"], sub["guest_id"], day)
-        if opened:
-            counts["skipped"] += 1
-            continue
+            repo.delete_push_by_id(conn, sub["id"])
+        counts["deleted"] += 1
+        log.warning("deleted a subscription with an invalid endpoint (%s)", webpush.endpoint_tag(sub["endpoint"]))
+        return
+    with ctx.db.connect() as conn:
+        if not repo.claim_push_day(conn, sub["id"], day):
+            return
+        opened = repo.opened_daily(conn, sub["user_id"], sub["guest_id"], day)
+    if opened:
+        counts["skipped"] += 1
+        return
+    counted = True
+    try:
         headers, body = webpush.push_request(sub["endpoint"], sub["p256dh"], sub["auth"], {"lang": sub["lang"]},
                                              ctx.vapid, ctx.settings.vapid_subject, now.timestamp())
-        try:
-            status = post(sub["endpoint"], headers, body)
-        except httpx.HTTPError:
-            status = 0
-        with ctx.db.connect() as conn:
-            if 200 <= status < 300:
-                repo.push_delivered(conn, sub["id"])
-                counts["sent"] += 1
-            elif status in GONE:
-                repo.delete_push_by_id(conn, sub["id"])
-                counts["deleted"] += 1
-            elif status in REFUSED_KEY:
-                log.error("a push service refused our VAPID key (HTTP %s): check VAPID_* in deploy/.env", status)
-                counts["failed"] += 1
-            elif (repo.push_failed(conn, sub["id"]) or 0) >= MAX_FAILS:
-                repo.delete_push_by_id(conn, sub["id"])
-                counts["deleted"] += 1
-            else:
-                counts["failed"] += 1
-    return counts
+        status = post(sub["endpoint"], headers, body)
+    except httpx.RequestError:  # our own network (connect, timeout, DNS): no answer, so the browser is not at fault
+        status, counted = 0, False
+    except Exception as exc:  # the row cannot be sent at all (bad keys, bad address): counts like a refusal
+        status = 0
+        log.error("a reminder could not be sent (%s) to subscription %s", type(exc).__name__,
+                  webpush.endpoint_tag(sub["endpoint"]))
+    with ctx.db.connect() as conn:
+        if 200 <= status < 300:
+            repo.push_delivered(conn, sub["id"])
+            counts["sent"] += 1
+        elif status in GONE:
+            repo.delete_push_by_id(conn, sub["id"])
+            counts["deleted"] += 1
+        elif status in REFUSED_KEY:
+            log.error("a push service refused our VAPID key (HTTP %s): check VAPID_* in deploy/.env", status)
+            counts["failed"] += 1
+        elif counted and (repo.push_failed(conn, sub["id"]) or 0) >= MAX_FAILS:
+            repo.delete_push_by_id(conn, sub["id"])
+            counts["deleted"] += 1
+        else:
+            counts["failed"] += 1
 
 
 async def push_loop(ctx, interval_s: float) -> None:

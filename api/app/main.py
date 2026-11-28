@@ -22,6 +22,8 @@ from app.routes.common import check_token
 API_AUTH = [Depends(check_token)]
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
+for _noisy in ("httpx", "httpcore"):  # they log every request URL at INFO, and a push endpoint is a personal secret
+    logging.getLogger(_noisy).setLevel(logging.WARNING)
 log = logging.getLogger("arcana")
 
 

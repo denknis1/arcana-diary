@@ -7,8 +7,9 @@
   address of a known push service is taken (422 "endpoint"), only real keys (422 "keys"); reminders off → 503
   "push_off"; more than PUSH_PER_MINUTE a minute from one address → 429 "rate"; more than
   PUSH_SUBSCRIPTIONS_PER_OWNER browsers of one owner → 429 "subscriptions". Asking again replaces the row.
-- DELETE /api/push/subscription {"endpoint"} → 204: whoever knows the endpoint is that browser; always 204, so the
-  answer tells nothing about other people's rows.
+  A guest request for an endpoint that belongs to an account → 409 "owned", nothing changes.
+- DELETE /api/push/subscription {"endpoint"} → 204: a guest row goes for whoever knows the endpoint; a row of an
+  account only with that account's token; always 204, so the answer tells nothing about other people's rows.
 """
 from typing import Literal
 
@@ -72,15 +73,17 @@ def subscribe(body: PushIn, request: Request):
             account_repo.refuse_deleted(conn, who.user.id)
         if repo.count_push(conn, user_id, guest_id, body.endpoint) >= PUSH_SUBSCRIPTIONS_PER_OWNER:
             return respond(429, {"reason": "subscriptions"}, who.new_guest)
-        repo.upsert_push(conn, {"user_id": user_id, "guest_id": guest_id, "endpoint": body.endpoint,
+        if not repo.upsert_push(conn, {"user_id": user_id, "guest_id": guest_id, "endpoint": body.endpoint,
                                 "p256dh": body.keys.p256dh, "auth": body.keys.auth, "lang": body.lang, "tz": tz,
-                                "hour": body.hour, "now": now})
+                                "hour": body.hour, "now": now}):
+            return respond(409, {"reason": "owned"}, who.new_guest)  # the row belongs to an account
     return respond(201, {"hour": body.hour, "tz": tz}, who.new_guest)
 
 
 @router.delete("/push/subscription")
 def unsubscribe(body: PushOut, request: Request):
     ctx = get_ctx(request)
+    who = viewer(ctx, request)
     with ctx.db.connect() as conn:
-        repo.delete_push(conn, body.endpoint)
+        repo.delete_push(conn, body.endpoint, who.user.id if who.user else None)
     return Response(status_code=204)

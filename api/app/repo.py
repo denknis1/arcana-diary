@@ -233,15 +233,18 @@ def set_daily_mark(conn, user_id, day, fields: dict, now) -> dict | None:
                         f" RETURNING {DAILY_FIELDS}", (felt, note, noted_at, user_id, day)).fetchone()
 
 
-def upsert_push(conn, sub: dict) -> None:
+def upsert_push(conn, sub: dict) -> bool:
     """Stage 8.1: one row per browser endpoint; the same browser subscribing again (another hour, a refresh, another
-    owner on a shared computer) replaces its row and clears its failures. last_sent_day stays: at most one a day."""
-    conn.execute(
+    owner on a shared computer) replaces its row and clears its failures. last_sent_day stays: at most one a day.
+    A guest cannot take a row that belongs to an account: False, nothing changed."""
+    return conn.execute(
         "INSERT INTO push_subscriptions (user_id, guest_id, endpoint, p256dh, auth, lang, tz, hour, created_at,"
         " active_at) VALUES (%(user_id)s, %(guest_id)s, %(endpoint)s, %(p256dh)s, %(auth)s, %(lang)s, %(tz)s,"
         " %(hour)s, %(now)s, %(now)s) ON CONFLICT (endpoint) DO UPDATE SET user_id = EXCLUDED.user_id,"
         " guest_id = EXCLUDED.guest_id, p256dh = EXCLUDED.p256dh, auth = EXCLUDED.auth, lang = EXCLUDED.lang,"
-        " tz = EXCLUDED.tz, hour = EXCLUDED.hour, fails = 0, active_at = EXCLUDED.active_at", sub)
+        " tz = EXCLUDED.tz, hour = EXCLUDED.hour, fails = 0, active_at = EXCLUDED.active_at"
+        " WHERE push_subscriptions.user_id IS NULL OR EXCLUDED.user_id IS NOT NULL RETURNING id", sub).fetchone() \
+        is not None
 
 
 def count_push(conn, user_id, guest_id, endpoint: str) -> int:
@@ -251,9 +254,10 @@ def count_push(conn, user_id, guest_id, endpoint: str) -> int:
                         (*args, endpoint)).fetchone()["n"]
 
 
-def delete_push(conn, endpoint: str) -> bool:
-    return conn.execute("DELETE FROM push_subscriptions WHERE endpoint = %s RETURNING id", (endpoint,)).fetchone() \
-        is not None
+def delete_push(conn, endpoint: str, user_id=None) -> bool:
+    """A row of an account goes only for that account (user_id); a guest row for whoever knows the endpoint."""
+    return conn.execute("DELETE FROM push_subscriptions WHERE endpoint = %s AND (user_id IS NULL OR user_id = %s)"
+                        " RETURNING id", (endpoint, user_id)).fetchone() is not None
 
 
 def push_subscriptions(conn) -> list[dict]:

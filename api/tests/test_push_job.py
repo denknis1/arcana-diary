@@ -5,7 +5,7 @@ import json
 import os
 import uuid
 from dataclasses import replace
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from types import SimpleNamespace
 
 import httpx
@@ -111,7 +111,7 @@ def test_a_gone_subscription_is_deleted_at_once(push_api):
 
 def test_three_failures_in_a_row_delete_and_a_success_resets(push_api):
     subscribe(push_api)
-    post = FakePost(500, httpx.ConnectError("down"), 201, 503, 429, 500)
+    post = FakePost(500, 502, 201, 503, 429, 500)
     for expected in (1, 2, 0, 1, 2):
         run(push_api, post)
         assert subs(push_api)[0]["fails"] == expected
@@ -154,3 +154,51 @@ def test_the_job_starts_only_with_keys(db, monkeypatch):
     started.clear()
     asyncio.run(run_background(SimpleNamespace(settings=settings, db=db, clock=lambda: EIGHT_THIRTY_MX, vapid=None)))
     assert all(not (isinstance(s, tuple) and s[0] == "push") for s in started)
+
+
+def test_our_own_network_errors_are_never_counted(push_api):
+    subscribe(push_api)
+    post = FakePost(*[httpx.ConnectError("down"), httpx.ReadTimeout("slow")] * 3)
+    for _ in range(6):
+        assert run(push_api, post)["failed"] == 1
+        push_api.clock.advance(days=1)
+    assert subs(push_api)[0]["fails"] == 0
+
+
+def test_an_hour_23_window_runs_past_midnight():
+    sub = {"tz": MX, "hour": 23, "last_sent_day": None}
+    local = lambda h, m, d: datetime(2026, 11, d, tzinfo=timezone.utc) + timedelta(hours=h + 6, minutes=m)  # MX is UTC-6
+    assert due_day(sub, local(23, 30, 20)) == date(2026, 11, 20)
+    assert due_day(sub, local(24, 30, 20)) == date(2026, 11, 20)  # 00:30 on the 21st still belongs to the 20th
+    assert due_day(sub, local(25, 0, 20)) is None
+    assert due_day({**sub, "last_sent_day": date(2026, 11, 20)}, local(24, 30, 20)) is None  # one a day
+    assert due_day({**sub, "hour": 8}, EIGHT_THIRTY_MX) == date(2026, 11, 20)
+
+
+def test_a_poisoned_row_is_deleted_and_the_run_goes_on(push_api):
+    bad = subscribe(push_api)
+    good = subscribe(push_api)
+    with push_api.db.connect() as conn:
+        conn.execute("UPDATE push_subscriptions SET endpoint = 'https://evil.com' || chr(10) || '.notify.windows.com/x'"
+                     " WHERE endpoint = %s", (bad.endpoint,))
+    post = FakePost()
+    counts = run(push_api, post)
+    assert counts["deleted"] == 1 and counts["sent"] == 1 and [c[0] for c in post.calls] == [good.endpoint]
+    assert len(subs(push_api)) == 1
+
+
+def test_any_exception_on_one_row_is_logged_by_type_and_the_run_goes_on(push_api, caplog):
+    first = subscribe(push_api)
+    second = subscribe(push_api)
+    post = FakePost(httpx.InvalidURL("secret-endpoint-token"), 201)
+    with caplog.at_level("INFO"):
+        counts = run(push_api, post)
+    assert counts["sent"] == 1 and len(post.calls) == 2
+    assert "secret-endpoint-token" not in caplog.text and first.endpoint not in caplog.text
+    assert second.endpoint not in caplog.text
+
+
+def test_the_httpx_loggers_are_quiet_after_app_start(api):
+    import logging
+    assert logging.getLogger("httpx").getEffectiveLevel() >= logging.WARNING
+    assert logging.getLogger("httpcore").getEffectiveLevel() >= logging.WARNING

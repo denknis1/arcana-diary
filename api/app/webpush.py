@@ -11,6 +11,7 @@ pins for sign-in (ES256 tokens). The test vector of RFC 8291 §5 checks the encr
 """
 import base64
 import binascii
+import hashlib
 import json
 import logging
 import os
@@ -85,18 +86,33 @@ def load_vapid(private_b64: str, public_b64: str) -> VapidKeys | None:
     return VapidKeys(key, public)
 
 
+_ENDPOINT_CHARS = re.compile(r"[A-Za-z0-9\-._~!$&'()*+,;=:@/?%]+")  # RFC 3986 unreserved, sub-delims, ':' '@' '/' '?'
+_BAD_PCT = re.compile(r"%(?![0-9A-Fa-f]{2})")
+_HOST = re.compile(r"[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*")
+
+
 def valid_endpoint(url: str) -> bool:
-    if not isinstance(url, str) or len(url) > ENDPOINT_MAX:
+    """Strict: the whole string is RFC 3986 characters only (no whitespace, control characters or backslash, which
+    parsers and httpx read differently), and the parsed host is exactly a known push host or a label before a known
+    suffix."""
+    if not isinstance(url, str) or len(url) > ENDPOINT_MAX or not _ENDPOINT_CHARS.fullmatch(url) \
+            or _BAD_PCT.search(url):
         return False
     try:
         parts = urlsplit(url)
         port = parts.port
     except ValueError:
         return False
-    host = (parts.hostname or "").lower()
-    if parts.scheme != "https" or port not in (None, 443) or parts.username or parts.password or not parts.path:
+    host = parts.hostname or ""
+    if parts.scheme != "https" or port not in (None, 443) or parts.username or parts.password or not parts.path \
+            or not _HOST.fullmatch(host) or parts.netloc.lower() not in (host, f"{host}:443"):
         return False
-    return host in PUSH_HOSTS or any(host.endswith(suffix) for suffix in PUSH_HOST_SUFFIXES)
+    return host in PUSH_HOSTS or any(host.endswith(suffix) and len(host) > len(suffix) for suffix in PUSH_HOST_SUFFIXES)
+
+
+def endpoint_tag(url) -> str:
+    """What the log may say about an endpoint (a personal identifier and the key to its row): a short hash."""
+    return hashlib.sha256(str(url).encode("utf-8", "replace")).hexdigest()[:8]
 
 
 def _browser_key(p256dh: str) -> bytes:

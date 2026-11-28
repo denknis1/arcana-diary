@@ -101,6 +101,20 @@ def test_missing_or_mismatched_keys_leave_reminders_off(caplog):
     ("https://fcm.googleapis.com", False),
     ("https://fcm.googleapis.com/" + "a" * 1100, False),
     ("https://[::1/x", False),
+    ("https://fcm.googleapis.com/a\nb", False),
+    ("https://fcm.googleapis.com/a\tb", False),
+    ("https://evil.com\n.notify.windows.com/x", False),
+    ("https://evil.com\\.notify.windows.com/x", False),
+    ("https://fcm.googleapis.com\\@evil.com/x", False),
+    ("https://fcm.googleapis.com/a b", False),
+    ("https://fcm.googleapis.com/a\x00b", False),
+    ("https://fcm.googleapis.com/a\\b", False),
+    ("https://fcm.googleapis.com/a%zz", False),
+    ("https://fcm.googleapis.com/é", False),
+    ("https://.notify.windows.com/x", False),
+    ("https://FCM.googleapis.com/fcm/send/abc", True),
+    ("https://fcm.googleapis.com:443/fcm/send/abc", True),
+    ("https://fcm.googleapis.com/fcm/send/a%2Fb-c_d~e", True),
 ])
 def test_only_known_push_services_are_accepted(url, ok):
     assert webpush.valid_endpoint(url) is ok

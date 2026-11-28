@@ -111,7 +111,8 @@ def test_one_address_is_limited_per_minute(push_api):
 def test_unsubscribing_deletes_the_row_and_is_always_204(push_api):
     push_api.client.post("/api/push/subscription", json=body(1), headers=bearer(ANA))
     out = {"endpoint": body(1)["endpoint"]}
-    assert push_api.new_client().request("DELETE", "/api/push/subscription", json=out).status_code == 204
+    assert push_api.new_client().request("DELETE", "/api/push/subscription", json=out,
+                                         headers=bearer(ANA)).status_code == 204
     assert rows(push_api) == []
     assert push_api.new_client().request("DELETE", "/api/push/subscription", json=out).status_code == 204
 
@@ -120,4 +121,26 @@ def test_a_deleted_account_cannot_subscribe(push_api):
     assert push_api.client.request("DELETE", "/api/account", json={"confirm": "DELETE"},
                                    headers=bearer(ANA)).status_code == 200
     assert push_api.new_client().post("/api/push/subscription", json=body(1), headers=bearer(ANA)).status_code == 401
+    assert rows(push_api) == []
+
+
+def test_a_guest_cannot_take_over_an_accounts_row(push_api):
+    mine = body(1)
+    assert push_api.client.post("/api/push/subscription", json=mine, headers=bearer(ANA)).status_code == 201
+    before = rows(push_api)
+    other = {**mine, "keys": browser_keys(), "hour": 20, "lang": "es"}
+    response = push_api.new_client().post("/api/push/subscription", json=other, headers=guest_headers(uuid.uuid4()))
+    assert response.status_code == 409
+    assert rows(push_api) == before
+    with push_api.db.connect() as conn:
+        assert conn.execute("SELECT p256dh FROM push_subscriptions").fetchone()["p256dh"] == mine["keys"]["p256dh"]
+
+
+def test_deleting_an_accounts_row_needs_that_accounts_token(push_api):
+    push_api.client.post("/api/push/subscription", json=body(1), headers=bearer(ANA))
+    out = {"endpoint": body(1)["endpoint"]}
+    assert push_api.new_client().request("DELETE", "/api/push/subscription", json=out).status_code == 204
+    assert len(rows(push_api)) == 1
+    assert push_api.new_client().request("DELETE", "/api/push/subscription", json=out,
+                                         headers=bearer(ANA)).status_code == 204
     assert rows(push_api) == []
