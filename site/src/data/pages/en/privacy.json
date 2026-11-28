@@ -41,7 +41,7 @@
     "Your browser gets a cookie named ad_guest that holds a random number. It tells our server which readings were made on this device and how many free readings the device has used today. It contains nothing else and lasts one year.",
     "Your browser also tells the site its time zone name (for example, America/Mexico_City). We use it to know when your day starts, for the daily limit and the Card of the Day, and to choose which helplines to show. We do not store it with your readings.",
     "To stop automated abuse, the server looks at your network (IP) address. Our server never stores the address as it is: it keeps only a scrambled version (a hash) made with a random key that exists only in the server's memory and is replaced every day (UTC). The counters built from these hashes are deleted within three days. Cloudflare, which carries the site's traffic, tells our server which country a request comes from; we use that only to pick helplines and never store it.",
-    "For the Card of the Day we store your device's random number with the card it drew and the date, for up to 8 days, so that your card stays the same all day."
+    "For the Card of the Day we store your device's random number with the card it drew and the date for 60 days, so that your card stays the same all day, your streak can be counted and your last 7 days show in the calendar. When you sign in, these cards move into your account."
    ]
   },
   {
@@ -49,16 +49,24 @@
    "heading": "If you create an account",
    "paragraphs": [
     "You sign in with a link sent to your e-mail address or with Google. There is no password. For an account we keep your e-mail address, an account number, the date we first saw the account, whether you agreed to reminder e-mails and when. Our sign-in service, Supabase, holds the e-mail address and keeps its own sign-in records: when you signed in and, to protect the session, the network address and browser type it saw. If you sign in with Google, Supabase also receives the basic profile Google sends with the e-mail (your name and profile picture address); we do not use them.",
-    "Your diary holds the readings you saved, with their follow-ups, your “Did it come true?” mark (yes, partly or no) and when you set it, and an optional private note of up to 1,000 characters and when you changed it. Notes and marks are never sent to the AI reader. A reading made as a guest can be moved into your account with a one-time link that works for 7 days; we keep only a scrambled form (hash) of that link's code.",
+    "Your diary holds the readings you saved, with their follow-ups, your “Did it come true?” mark (yes, partly or no) and when you set it, and an optional private note of up to 1,000 characters and when you changed it. Notes and marks are never sent to the AI reader. A reading made as a guest can be moved into your account with a one-time link that works for 7 days; we keep only a scrambled form (hash) of that link's code. Your calendar keeps each day's card, your answer to “Did today's card show up in your day?” (yes, partly or no) and an optional line of up to 280 characters, with their date; they never go to the AI reader either.",
     "When you are signed in, the AI reader also sees up to 5 of your earlier readings on the same topic, so it can refer back to them: the date, the question and the headline of each answer. Only questions the automatic check marked as ordinary are used this way, never questions about health, safety, money or another person. Guests get no such history.",
     "If you ask to be told when the paid Plus plan opens, we store the e-mail address you give (or your account's address), the language and the date, and link it to your account if you are signed in."
+   ]
+  },
+  {
+   "id": "reminders",
+   "heading": "Morning reminders in your browser",
+   "paragraphs": [
+    "Under the Card of the Day you can ask for a reminder each morning at an hour you choose, with your browser's permission. The browser gives us an address at its push service (run by Google, Mozilla, Apple or Microsoft) and two keys for encrypting messages. We store that address, the keys, the hour, your time zone name, the language, the day of the last reminder and the failed deliveries in a row, with your account number or, without an account, your device's random number.",
+    "We send at most one reminder a day, and none once you have opened your card. It is encrypted and says only “Your card for today is waiting”, never which card, because it may show on a locked screen. You can turn it off under the card, on your account page or in your browser's settings."
    ]
   },
   {
    "id": "counter-logs",
    "heading": "Our event counter and service logs",
    "paragraphs": [
-    "Our own counter records events such as “tool opened”, “draw pressed”, “cards revealed”, “reading shown”, “save pressed”, “sign-in finished” and “reminder pressed”, with the page language, the tool, the day and time, and a few fixed values: whether a question was typed, how many cards were drawn, how many milliseconds the reading took to appear, the sign-in method, and your answer to “Did it come true?”. It stores no address, cookie, account number, device number or question text.",
+    "Our own counter records events such as “tool opened”, “draw pressed”, “cards revealed”, “reading shown”, “save pressed”, “sign-in finished”, “reminder pressed”, “card of the day marked”, “calendar opened”, “morning reminder turned on” and “morning reminder opened”, with the page language, the tool, the day and time, and a few fixed values: whether a question was typed, how many cards were drawn, how many milliseconds the reading took to appear, the sign-in method, your answer to “Did it come true?”, whether a calendar was opened signed in and where a card of the day was marked, never that answer or your line. It stores no address, cookie, account number, device number or question text.",
     "For each call to the AI model we log which reading it was for, the purpose, the model, timings, the amount of text in and out (tokens), the cost and how the call ended, but no text. This log is kept for 90 days. The automatic question check keeps only daily counts by language and group, with no text, for 365 days. Our own server is set up without logs of page visits, and question texts are never written to its technical logs."
    ]
   },
@@ -74,7 +82,7 @@
    "heading": "What the AI provider receives",
    "paragraphs": [
     "Readings are written by an AI model from Anthropic. For a reading, Anthropic receives the reading type and language, your question, topic and situation, and the cards drawn with their meanings from our card base. For a follow-up it also receives the first answer, earlier follow-ups and the new question. For a signed-in reader it also receives the short history described above. The automatic question check sends your question to Anthropic in a separate short request, unless a fixed list of crisis phrases already recognised it. A Spanish reading may be sent back once more so that a passage can be rewritten in wording that does not assume your gender.",
-    "Anthropic does not receive your e-mail address, account or device number, network address, notes or “Did it come true?” marks. The Card of the Day sends nothing about you: its texts are written in advance, once a day, for every card. Anthropic handles what it receives under its own terms and policies for business customers. Because your question leaves our servers, please do not include names, contact details or other information that identifies you or someone else."
+    "Anthropic does not receive your e-mail address, account or device number, network address, notes, “Did it come true?” marks or Card of the Day answers and lines. The Card of the Day sends nothing about you: its texts are written in advance, once a day, for every card. Anthropic handles what it receives under its own terms and policies for business customers. Because your question leaves our servers, please do not include names, contact details or other information that identifies you or someone else."
    ]
   },
   {
@@ -84,8 +92,8 @@
     "Supabase runs our database and our sign-in service. Every table described in this policy (readings, follow-ups, diary, accounts, counters and logs) is stored there, in its EU region in Frankfurt, Germany. The database is closed to browsers: only our server can read it.",
     "Google receives data only if you choose to sign in with Google: Google confirms your identity and passes your e-mail address and basic profile to our sign-in service; we use only the e-mail address.",
     "Cloudflare stands between your browser and our server: all traffic to arcanadiary.com passes through its network. To deliver the site and protect it from attacks, Cloudflare processes your network (IP) address and the requests in transit, and keeps its own short-term technical logs. It tells our server your address and the country a request comes from; we use the address only for the hashed counters described above and the country only to pick helplines. Cloudflare also provides the bot check, Turnstile, which runs only when a network address sends unusually many requests: your browser then loads a Cloudflare script, which looks at technical details of your browser, and our server sends Cloudflare the resulting token to verify.",
-    "{hosting_provider} hosts the server that runs the site and the reading service. {email_provider} sends sign-in links and, if you agree to them, reminder e-mails. We may also disclose data when the law requires it, for example to answer a valid request from a court or authority.",
-    "Anthropic, Cloudflare and Google are based in the United States, and {hosting_provider} and {email_provider} may process data there too, so your question and technical data may be handled outside the country where you live, including outside the European Economic Area. Our contracts with these providers include the data protection terms they offer to business customers (for transfers from Europe, standard contractual clauses). We share data with them only to run Arcana Diary, not for our own marketing."
+    "{hosting_provider} hosts the server that runs the site and the reading service. {email_provider} sends sign-in links and, if you agree to them, reminder e-mails. Morning reminders are delivered by your browser's push service. We may also disclose data when the law requires it, for example to answer a valid request from a court or authority.",
+    "Anthropic, Cloudflare and Google, like the push services of Mozilla, Apple and Microsoft, are based in the United States, and {hosting_provider} and {email_provider} may process data there too, so your question and technical data may be handled outside the country where you live, including outside the European Economic Area. Our contracts with these providers include the data protection terms they offer to business customers (for transfers from Europe, standard contractual clauses). We share data with them only to run Arcana Diary, not for our own marketing."
    ]
   },
   {
@@ -101,7 +109,7 @@
    "paragraphs": [
     "ad_guest (cookie, one year): the random device number described above. Your browser does not let page scripts read it, and it is sent only over secure connections.",
     "ad-auth, ad-auth-user and ad-auth-code-verifier (local storage): your sign-in session, kept by the sign-in library only after you sign in. ad_signed_in (local storage): a flag that tells the site this device is signed in. ad_signin_started (local storage): the sign-in method and the time you pressed a sign-in button on this device, used within 24 hours so that this device's guest readings can be moved into your account. Signing out removes these.",
-    "ad_notice (session storage): a one-time note that shows “account deleted” on the home page after you delete your account. “Remind me tomorrow” under the Card of the Day makes a calendar file inside your browser; nothing is sent to us except the count that the button was pressed.",
+    "ad_notice (session storage): a one-time note that shows “account deleted” on the home page after you delete your account. “Remind me tomorrow” under the Card of the Day makes a calendar file inside your browser; nothing is sent to us except the count that the button was pressed. Morning reminders install a small script (a service worker) that only shows the reminder and opens the page, and local storage keeps the chosen hour and the dates of the last refresh and of “Not now”.",
     "We use no advertising or analytics cookies. Cloudflare's bot check, and Google when you go to its sign-in page, may handle their own technical data under their own policies. Cloudflare may set its own strictly technical cookies, for example after a bot check."
    ]
   },
@@ -110,7 +118,7 @@
    "heading": "How long we keep data",
    "paragraphs": [
     "Guest readings, with their follow-ups: 7 days after they were made; an hourly cleanup then deletes them. One-time links for saving a guest reading: 7 days. Readings in your diary: until you delete the entry or your account. The free diary lists your {diary_free} newest readings; older ones are hidden from the list but kept, and they are in your download.",
-    "Card of the Day draws: up to 8 days. Address counters: within three days, with a daily key that is never stored. Follow-up crisis marks: one day. AI call log: 90 days. Daily question check counts: 365 days. Event counter records: 13 months.",
+    "Card of the Day without an account: 60 days; in your account, with its answers and lines, until you delete the account. Morning reminders: until you turn them off; deleted after three failed deliveries in a row and, without an account, 90 days after your last visit to the Card of the Day. Address counters: within three days, with a daily key that is never stored. Follow-up crisis marks: one day. AI call log: 90 days. Daily question check counts: 365 days. Event counter records: 13 months.",
     "Your account: until you delete it. When you do, we keep the account number on a list of deleted accounts for 8 days, so that an old sign-in session cannot write anything. Plus waitlist entries: 12 months from the day you joined, or sooner if you ask us to remove them or delete your account. If Plus has not opened by then, the entry is deleted and we will not write."
    ]
   },
@@ -118,8 +126,8 @@
    "id": "rights",
    "heading": "See, download, correct and delete",
    "paragraphs": [
-    "In your diary you can see every saved reading, change or remove your note and your mark, and delete any entry; it goes at once with its follow-ups and saving links. In your account you can turn reminder e-mails on or off and download a file (JSON) with your account details, every reading with its question, cards, answer, follow-ups, mark and note, and your Plus waitlist entry.",
-    "You can delete your account in the account page. It happens at once, with no waiting period, and cannot be undone: your readings, follow-ups, saving links, profile, Plus waitlist entry and sign-in record are erased. Download your file first if you want to keep it. Without an account, your readings disappear after 7 days; to have one removed sooner, or to leave the Plus waitlist, write to {contact_email} with the reading's address or the e-mail you used.",
+    "In your diary you can see every saved reading, change or remove your note and your mark, and delete any entry; it goes at once with its follow-ups and saving links. In your account you can turn reminder e-mails on or off and download a file (JSON) with your account details, every reading with its question, cards, answer, follow-ups, mark and note, your Card of the Day calendar with its answers and lines, your morning reminder settings, and your Plus waitlist entry.",
+    "You can delete your account in the account page. It happens at once, with no waiting period, and cannot be undone: your readings, follow-ups, saving links, Card of the Day calendar with its answers and lines, morning reminder subscriptions, profile, Plus waitlist entry and sign-in record are erased. Download your file first if you want to keep it. Without an account, your readings disappear after 7 days; to have one removed sooner, or to leave the Plus waitlist, write to {contact_email} with the reading's address or the e-mail you used.",
     "Depending on where you live, you may also have the right to ask what data we hold about you, to have it corrected or deleted, to object to or limit some uses, to take it with you, to withdraw a consent you gave, and to complain to your data protection authority. Write to {contact_email}. We may ask you to confirm that the account or reading is yours, and we will handle your request as the applicable law requires. Tell us which account or reading the request is about and what you want us to do. We will answer within one month."
    ]
   },
@@ -127,7 +135,7 @@
    "id": "bases",
    "heading": "Why we may use your data",
    "paragraphs": [
-    "We use the data for readings, follow-ups, the diary and your account because you ask us to provide these services. We send reminder e-mails, and one e-mail when Plus opens, only with your consent, which you can withdraw at any time. We use the hashed address counters, the bot check, the event counter and the service logs because we have a legitimate interest in keeping the service safe, free from abuse and within its costs, and in seeing which parts of it work. We keep or disclose data when the law obliges us to.",
+    "We use the data for readings, follow-ups, the diary and your account because you ask us to provide these services. We send reminder e-mails, morning reminders in your browser and one e-mail when Plus opens only with your consent, which you can withdraw at any time. We use the hashed address counters, the bot check, the event counter and the service logs because we have a legitimate interest in keeping the service safe, free from abuse and within its costs, and in seeing which parts of it work. We keep or disclose data when the law obliges us to.",
     "Your question may touch on private matters, such as your health, your relationships or your beliefs. We do not ask for such details and do not need them. If you choose to write them, you ask us to use them to write your reading, and only for that. The question is optional, and you can always draw cards without one."
    ]
   },
