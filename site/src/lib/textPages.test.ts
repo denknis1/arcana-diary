@@ -36,8 +36,8 @@ describe('stage 5 text pages', () => {
       expect(isHidden(page, filled), id).toBe(false);
       expect(pageTexts(filledPage(page, filled)).join(' '), id).not.toMatch(/\{\w+\}/);
     }
-    expect(filledPage(textPage('/privacy'), filled).lead).toContain('Effective date: November 24, 2026.');
-    expect(filledPage(textPage('/es/privacidad'), filled).lead).toContain('Vigente desde: 24 de noviembre de 2026.');
+    expect(filledPage(textPage('/privacy'), filled).lead).toContain('Effective date: November 28, 2026.');
+    expect(filledPage(textPage('/es/privacidad'), filled).lead).toContain('Vigente desde: 28 de noviembre de 2026.');
   });
 
   it('refuse a page that is not a service page and has a placeholder without a value', () => {

@@ -61,7 +61,7 @@ def test_facts_come_from_the_api_constants_and_the_deck():
     assert set(f) == {"guest_limit", "user_limit", "followups", "diary_free", "yes_count", "no_count", "unclear_count",
                       "editor_name", "operator_name", "operator_address", "jurisdiction", "contact_email",
                       "hosting_provider", "email_provider", "effective_date"}
-    assert f["effective_date"] == {"en": "November 24, 2026", "es": "24 de noviembre de 2026"}
+    assert f["effective_date"] == {"en": "November 28, 2026", "es": "28 de noviembre de 2026"}
 
 
 def test_operator_facts_leave_out_empty_values_and_half_filled_dates(tmp_path, monkeypatch):
