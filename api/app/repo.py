@@ -191,7 +191,8 @@ def _daily_owner(user_id, guest_id) -> tuple[str, tuple]:
 
 def account_daily_draw(conn, user_id, day, card_id: str, reversed_: bool) -> dict:
     """Stage 8.1 §3: one card per account and day on every device. The first request of the day stores `card_id`;
-    every later one (and a card claimed from this device's guest cookie) wins over it."""
+    every later one is ignored: the account's card stays, also when this device's guest card of the same day is
+    claimed (the claim deletes the device's card, see account_repo.claim_daily)."""
     conn.execute("INSERT INTO daily_draws (user_id, day, card_id, reversed) VALUES (%s, %s, %s, %s)"
                  " ON CONFLICT (user_id, day) DO NOTHING", (user_id, day, card_id, reversed_))
     return conn.execute(f"SELECT {DAILY_FIELDS} FROM daily_draws WHERE user_id = %s AND day = %s",

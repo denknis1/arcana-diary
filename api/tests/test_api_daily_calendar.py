@@ -82,7 +82,7 @@ def test_an_old_month_is_kept_but_locked(api):
         assert repo.draw_days(conn, ANA, None) == [date(2026, 8, 10)]
 
 
-@pytest.mark.parametrize("month", ["2026-13", "11-2026", "2026-1", "x"])
+@pytest.mark.parametrize("month", ["2026-13", "11-2026", "2026-1", "x", "0000-01", "9999-12", "2025-12", "2101-01", "２０２６-11", "٢٠٢٦-11"])
 def test_a_bad_month_is_422(api, month):
     response = calendar(api, user=ANA, month=month)
     assert response.status_code == 422 and response.json()["fields"] == ["month"]

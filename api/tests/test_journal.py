@@ -32,7 +32,7 @@ def test_repeated_days_count_once():
 
 def test_months():
     assert parse_month("2026-11") == date(2026, 11, 1)
-    for bad in ("2026-13", "2026-1", "26-11", "2026-11-01", "", "2026-00"):
+    for bad in ("2026-13", "2026-1", "26-11", "2026-11-01", "", "2026-00", "0000-01", "9999-12", "2101-01", "２０２６-11"):
         assert parse_month(bad) is None
     assert next_month(date(2026, 12, 1)) == date(2027, 1, 1)
     assert previous_month(date(2026, 1, 1)) == date(2025, 12, 1)

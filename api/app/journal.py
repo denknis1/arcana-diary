@@ -5,7 +5,8 @@ from collections import Counter
 from datetime import date, timedelta
 from typing import Iterable
 
-MONTH = re.compile(r"^(\d{4})-(0[1-9]|1[0-2])$")
+MONTH = re.compile(r"^([0-9]{4})-(0[1-9]|1[0-2])$")  # ASCII digits only
+MONTH_YEARS = range(2026, 2101)  # a bounded year: 0000 and 9999 must not reach date arithmetic
 TOP_CARD_MIN = 2  # a card that came once is not "the most frequent": below this the line is not shown
 
 
@@ -25,9 +26,11 @@ def streaks(days: Iterable[date], today: date) -> tuple[int, int]:
 
 
 def parse_month(text: str) -> date | None:
-    """"2026-11" → date(2026, 11, 1); anything else → None."""
+    """"2026-11" → date(2026, 11, 1); anything else (non-ASCII digits, a year outside 2026..2100) → None."""
     match = MONTH.fullmatch(text)
-    return date(int(match.group(1)), int(match.group(2)), 1) if match else None
+    if not match or int(match.group(1)) not in MONTH_YEARS:
+        return None
+    return date(int(match.group(1)), int(match.group(2)), 1)
 
 
 def next_month(first: date) -> date:
