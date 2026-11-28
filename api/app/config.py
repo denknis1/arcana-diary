@@ -92,6 +92,10 @@ class Settings:
     supabase_url: str  # stage 4.3 §3: the project's public address; "" — sign-in is off
     supabase_anon_key: str  # stage 4.4b §3: the project's public (anon / publishable) key for the browser; not a secret
     google_signin: bool  # stage 4.4b §3: GOOGLE_SIGNIN=true shows "Continue with Google"
+    vapid_private_key: str  # stage 8.1: browser reminders (Web Push); "" — off. Secret: only in deploy/.env
+    vapid_public_key: str   # stage 8.1: its public half, given to the browser
+    vapid_subject: str      # stage 8.1: who sends (RFC 8292 "sub"), an https address or mailto:
+    push_job_interval_s: float  # stage 8.1: how often the reminder job looks for due subscriptions; 0 — off
 
 
 def _bool(value: str) -> bool:
@@ -195,6 +199,10 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         supabase_url=_supabase_url(env.get("SUPABASE_URL") or ""),
         supabase_anon_key=_public_key(env.get("SUPABASE_ANON_KEY") or ""),
         google_signin=_flag("GOOGLE_SIGNIN", env.get("GOOGLE_SIGNIN") or ""),
+        vapid_private_key=env.get("VAPID_PRIVATE_KEY") or "",
+        vapid_public_key=env.get("VAPID_PUBLIC_KEY") or "",
+        vapid_subject=env.get("VAPID_SUBJECT") or "https://arcanadiary.com",
+        push_job_interval_s=float(env.get("PUSH_JOB_INTERVAL_S") or 600),
     )
 
 

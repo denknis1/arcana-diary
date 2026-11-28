@@ -16,6 +16,7 @@ from app.reader.providers import make_reader
 from app.safety.content import load_all_texts, load_helplines
 from app.safety.guard import Guard
 from app.turnstile import TurnstileVerifier
+from app.webpush import VapidKeys, load_vapid
 
 
 def utc_now() -> datetime:
@@ -39,6 +40,8 @@ class AppContext:
     burst: BurstCounter        # POST /api/readings per address
     daily_burst: BurstCounter  # GET /api/daily per address
     events_burst: BurstCounter  # POST /api/events per address (stage 4.4a)
+    push_burst: BurstCounter    # POST /api/push/subscription per address (stage 8.1)
+    vapid: VapidKeys | None     # None: browser reminders are off (no or broken VAPID_* keys, stage 8.1)
     clock: Callable[[], datetime]
 
 
@@ -65,6 +68,7 @@ def build_context(settings: Settings, *, reader=None, guard_provider=None, turns
         auth=TokenVerifier(settings.supabase_url, jwks) if settings.supabase_url else None, prompts=prompts,
         texts=load_all_texts(), helplines=load_helplines(), terms=load_reader_terms(),
         salt=DailySalt(), burst=BurstCounter(), daily_burst=BurstCounter(), events_burst=BurstCounter(),
+        push_burst=BurstCounter(), vapid=load_vapid(settings.vapid_private_key, settings.vapid_public_key),
         clock=clock or utc_now,
     )
 
