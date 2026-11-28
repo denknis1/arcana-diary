@@ -59,7 +59,7 @@ Every task's requirements include this section.
 - **No paid model calls anywhere in this stage.** The new code never imports the reader or a provider; the daily job is
   unchanged. Notes and marks never go to a model or into analytics events (tests check both).
 - **Texts:** EN and Mexican Spanish (tú, no gendered forms about the reader); UI strings only in `site/src/i18n/{en,es}.ts`
-  (same keys in both; the key count in `i18n.test.ts` moves 266 → 276 → 288 → 301); page texts in `content/pages` within
+  (same keys in both; the key count in `i18n.test.ts` moves 266 → 277 → 289 → 302); page texts in `content/pages` within
   `tools/cards/check_tool_pages.py`'s limits; JSON edited in place (exact string replacement), never re-serialised.
   Privacy texts must match what the code stores (guest daily cards 60 days, guest push subscriptions 90 days without
   activity). Every new key is new interface copy: the owner reads it at the final checkpoint.
@@ -86,19 +86,21 @@ Every task's requirements include this section.
    (spec §4 "остаётся карта аккаунта"); the device's other days move. The claim answer stays `{"claimed": [...]}`.
 4. **Streaks:** current = the run ending today, or yesterday while today has no card yet; best = the longest run kept.
    A new guest (no cookie) gets 1/1 and nothing is stored, as before. The line «Day N in a row» shows from N = 2;
-   on day 1 only «Your month in cards» (open question 2).
+   on day 1 only «Your month in cards» (confirmed by the controller, 28.11).
 5. **Most frequent card of the month:** by card (either orientation), shown only from 2 times; a tie goes to the card
    that came last.
 6. **Calendar API shape:** one month per request with each day's text (`daily_cache` while it lasts, then the card base —
-   spec §4); months before the previous one answer `locked: true` with no days (kept, for Plus); the site offers only
+   cached 62 days since owner decision 54, so the two free months show the text read that morning; the card base only
+   for a day whose text was never cached); months before the previous one answer `locked: true` with no days (kept, for Plus); the site offers only
    the two free months. A guest gets the last 7 days whatever `month` says, without `felt`/`note`.
 7. **The mark API** follows the diary's PATCH rules: only sent fields change, an empty note is no note, `noted_at` is
    cleared when both are empty; a card is never drawn after the fact (404 for a day without one). Marks for "any day with
    a card" are allowed by the API; the site shows the question under today's card from 17:00 and in the calendar for past
-   days (today from 17:00).
+   days (today from 17:00). A guest after 17:00 sees the same question with inactive answers, no note field and the line
+   «Sign in to mark your days and keep your cards» (owner decision 56); nothing is sent.
 8. **Events carry no mark:** `daily_felt` has only `place` (daily, calendar) and is sent on the first mark of a day;
-   `daily_calendar_view` has `signed_in`; `push_enabled` (tool daily) and `push_click` have none. The spec's
-   `daily_open` "(есть)" does not exist in the code: the existing `tool_view {tool: daily}` is used (open question 1).
+   `daily_calendar_view` has `signed_in`; `push_enabled` (tool daily) and `push_click` have none. No `daily_open`: the
+   Card of the Day opening is the existing `tool_view {tool: daily}` (controller decision, 28.11; the spec is corrected).
 9. **Push safety:** only https endpoints of the known push services are stored (`fcm.googleapis.com`,
    `updates.push.services.mozilla.com`, `web.push.apple.com`, `*.push.apple.com`, `*.notify.windows.com`) — the server
    never POSTs to an address a visitor chose. At most 10 browsers per owner and 10 subscribe calls per address a minute.
@@ -110,7 +112,9 @@ Every task's requirements include this section.
     delete (spec). The message carries only `{"lang"}`; the service worker shows the fixed text and opens a fixed address.
 11. **Subscription owner and activity:** signed in → the account; otherwise the guest cookie. A guest's
     `active_at` is renewed on every Card of the Day visit (`GET /api/daily`), which is the "activity" of the 90-day rule
-    (the spec's column list has no such column; open question 7). Signing in moves the cookie's subscriptions too.
+    (added to the spec's column list, confirmed 28.11). Signing in moves the cookie's subscriptions too; a subscription
+    made while signed in stays with the account after a sign-out until it is turned off (under the card or on the account
+    page), and deleting the account removes it.
 12. **Export** lists the push service host only, not the endpoint or its keys (anyone holding them could send to the
     browser); both card names (`name_en`, `name_es`) are exported, as the rows have no language.
 13. **The service worker is built, not hand-written:** `src/pages/sw.js.ts` writes `/sw.js` at build time from the
@@ -159,8 +163,8 @@ Not modified: `api/app/draw.py` (the seed already takes any id), the terms pages
 
 **Files:**
 - Create: `api/migrations/009_daily_journal.sql`
-- Modify: `api/app/db.py` (`APP_TABLES`)
-- Test: `api/tests/test_db.py`
+- Modify: `api/app/db.py` (`APP_TABLES`); first, in its own commit, `deploy/test-site-routes.sh` (three stale checks)
+- Test: `api/tests/test_db.py`, `deploy/test-site-routes.sh`
 
 **Interfaces:**
 - Consumes: migrations 001–008; `app.db.migrate`, `split_sql`, `APP_TABLES`; `repo.record_daily_draw` (unchanged).
@@ -184,7 +188,64 @@ git status --short
 
 Expected: `Switched to a new branch 'stage8-daily-habit'` and an empty status.
 
-- [ ] **Step 2: Write the failing tests**
+- [ ] **Step 2: Fix the three stale checks of the route test (own commit, before the stage's work)**
+
+Since the launch (24.11.2026) every service page is open, but `deploy/test-site-routes.sh` still expects `/about` and `/es/privacidad` to be hidden and the sitemap to leave them out; these three lines fail on `main` (controller decision on open question 13).
+
+In `deploy/test-site-routes.sh`, replace:
+
+```bash
+# stage 6, часть 4: служебные страницы; с метками оператора — noindex и вне sitemap.xml
+```
+
+with:
+
+```bash
+# stage 6, часть 4: служебные страницы; с запуска (24.11.2026, данные оператора заполнены) открыты все — без noindex
+# и в sitemap.xml
+```
+
+In `deploy/test-site-routes.sh`, replace:
+
+```bash
+expect "/about — скрыта (meta robots)" "$("${CURL[@]}" "$URL/about" | grep -c 'name="robots" content="noindex, nofollow"')" 1
+expect "/es/privacidad — скрыта (meta robots)" "$("${CURL[@]}" "$URL/es/privacidad" | grep -c 'name="robots" content="noindex, nofollow"')" 1
+```
+
+with:
+
+```bash
+expect "/about — открыта (без meta robots)" "$("${CURL[@]}" "$URL/about" | grep -c 'name="robots" content="noindex, nofollow"')" 0
+expect "/es/privacidad — открыта" "$(canonical /es/privacidad)" "https://arcanadiary.com/es/privacidad"
+```
+
+In `deploy/test-site-routes.sh`, replace:
+
+```bash
+expect "sitemap.xml без скрытых" "$("${CURL[@]}" "$URL/sitemap.xml" | grep -c '/about<\|/privacy<\|/es/terminos<')" 0
+```
+
+with:
+
+```bash
+expect "sitemap.xml со служебными страницами" "$("${CURL[@]}" "$URL/sitemap.xml" | grep -c '/about<\|/privacy<\|/es/terminos<')" 3
+```
+
+Run:
+
+```bash
+deploy/test-site-routes.sh 2>&1 | grep -c '^FAIL'
+deploy/test-site-routes.sh 2>&1 | grep -E 'открыта|служебными'
+```
+
+Expected: `0`; `PASS /about — открыта (без meta robots) (0)`, `PASS /es/privacidad — открыта (...)`, `PASS sitemap.xml со служебными страницами (3)` (it reads the current `site/dist`; temporary containers only).
+
+```bash
+git add deploy/test-site-routes.sh
+git commit -m "test(deploy): route test follows the launch — the service pages are open and in the sitemap" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+```
+
+- [ ] **Step 3: Write the failing tests**
 
 Replace all 7 occurrences in `api/tests/test_db.py` (every migration list that ends with 008):
 
@@ -288,7 +349,7 @@ def test_009_push_subscriptions_are_closed_to_the_browser_roles(fresh_db):
     assert row == {"a": False, "b": False, "rls": True}
 ```
 
-- [ ] **Step 3: Run the tests to see them fail**
+- [ ] **Step 4: Run the tests to see them fail**
 
 Run:
 
@@ -298,7 +359,7 @@ Run:
 
 Expected: FAIL — the seven migration-list tests (`assert [...'008_person_verdict'] == [..., '009_daily_journal']`) and the eight 009 tests (`FileNotFoundError: ... 009_daily_journal.sql`, `UndefinedColumn: column "user_id"`, `DatabaseUnavailable: relation "push_subscriptions" does not exist`, `CheckViolation` on `daily_felt`).
 
-- [ ] **Step 4: Implement**
+- [ ] **Step 5: Implement**
 
 Create `api/migrations/009_daily_journal.sql`:
 
@@ -376,7 +437,7 @@ with:
               "claim_tokens", "profiles", "plus_waitlist", "deleted_accounts", "events", "push_subscriptions")
 ```
 
-- [ ] **Step 5: Run the tests**
+- [ ] **Step 6: Run the tests**
 
 Run:
 
@@ -394,7 +455,7 @@ Run:
 
 Expected: `1649 passed` (1641 on main + 8).
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 git add api/migrations/009_daily_journal.sql api/app/db.py api/tests/test_db.py
@@ -1244,6 +1305,8 @@ git commit -m "feat(api): Card of the Day calendar and the evening mark and note
   - `GET /api/account/export` adds `"daily_cards": [{"day", "card_id", "name_en", "name_es", "reversed", "felt", "note",
     "noted_at"}]` and `"push_subscriptions": [{"service", "hour", "tz", "lang", "created_at", "last_sent_day"}]` (the
     push host only: no endpoint, no keys).
+  - `housekeeping.KEEP_DAILY_CACHE_DAYS = 62` (was 2; owner decision 54 — about 312 × 62 ≈ 19 400 rows, no model
+    call: the daily job still writes only yesterday..tomorrow)
   - `housekeeping.KEEP_GUEST_DAILY_DRAWS_DAYS = 60`, `KEEP_GUEST_PUSH_DAYS = 90` (replace `KEEP_DAILY_DRAWS_DAYS`);
     `delete_expired` counts gain `"push_subscriptions"`.
 
@@ -1377,6 +1440,25 @@ def test_deleting_the_account_takes_its_cards_marks_and_reminders(api):
 In `api/tests/test_housekeeping.py`, in `test_delete_stale_counters_caches_and_old_logs`, replace:
 
 ```python
+        for day in (today, today - timedelta(days=3)):
+            conn.execute("INSERT INTO usage (subject, day, count) VALUES ('ip:x', %s, 1)", (day,))
+            repo.put_daily_cache(conn, {"card_id": "major-18-moon", "reversed": False, "lang": "en", "day": day,
+                                        "text": "T.", "model": "m", "prompt_version": "daily.en.v1"})
+```
+
+with:
+
+```python
+        for day in (today, today - timedelta(days=3)):
+            conn.execute("INSERT INTO usage (subject, day, count) VALUES ('ip:x', %s, 1)", (day,))
+        for day in (today - timedelta(days=61), today - timedelta(days=63)):  # stage 8.1: the cache keeps 62 days
+            repo.put_daily_cache(conn, {"card_id": "major-18-moon", "reversed": False, "lang": "en", "day": day,
+                                        "text": "T.", "model": "m", "prompt_version": "daily.en.v1"})
+```
+
+In `api/tests/test_housekeeping.py`, replace:
+
+```python
         repo.record_daily_draw(conn, uuid.uuid4(), today - timedelta(days=8), "major-18-moon", False)
         repo.record_daily_draw(conn, uuid.uuid4(), today, "major-18-moon", False)
 ```
@@ -1444,7 +1526,7 @@ Run:
 (cd api && .venv/bin/pytest -q tests/test_api_claim.py tests/test_api_account.py tests/test_housekeeping.py)
 ```
 
-Expected: FAIL — the claimed cards stay with `guest_id` (`assert [(UUID(...), None, ...)] == [(None, ANA, ...)]`), `KeyError: 'daily_cards'` in the export, the deleted account's rows remain, and `delete_expired` removes the 59-day guest card and has no `push_subscriptions` key.
+Expected: FAIL — the claimed cards stay with `guest_id` (`assert [(UUID(...), None, ...)] == [(None, ANA, ...)]`), `KeyError: 'daily_cards'` in the export, the deleted account's rows remain, and `delete_expired` removes the 59-day guest card and the 61-day cached text and has no `push_subscriptions` key.
 
 - [ ] **Step 3: Implement**
 
@@ -1642,6 +1724,18 @@ with:
 In `api/app/housekeeping.py`, replace:
 
 ```python
+KEEP_DAILY_CACHE_DAYS = 2
+```
+
+with:
+
+```python
+KEEP_DAILY_CACHE_DAYS = 62  # stage 8.1 (owner decision 54): the calendar shows the text read that morning, two months
+```
+
+In `api/app/housekeeping.py`, replace:
+
+```python
 KEEP_DAILY_DRAWS_DAYS = 7
 ```
 
@@ -1692,7 +1786,7 @@ Expected: `1689 passed`.
 
 ```bash
 git add api/app/account_repo.py api/app/routes/claim.py api/app/routes/account.py api/app/housekeeping.py api/tests/test_api_claim.py api/tests/test_api_account.py api/tests/test_housekeeping.py
-git commit -m "feat(api): cards of the day move with the sign-in, are exported and deleted with the account; guest retention 60/90 days (stage 8.1)" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+git commit -m "feat(api): cards of the day move with the sign-in, are exported and deleted with the account; guest retention 60/90 days, texts 62 days (stage 8.1)" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 ```
 
 ### Task 5: Analytics events of the stage (API whitelist, site types, events doc)
@@ -3298,7 +3392,9 @@ with:
   сайта. `404`/`410` — подписка удаляется сразу; `401`/`403` — служба отвергла наш ключ VAPID: строка в журнале, отказ не
   считается; остальные отказы — три подряд удаляют подписку. Своя реализация на `cryptography` и PyJWT (решение плана 1),
   проверена примером RFC 8291.
-- Хранение: карты дня гостя — 60 дней; подписка гостя без визита на карту дня — 90 дней; у аккаунта — до удаления.
+- Хранение: карты дня гостя — 60 дней; подписка гостя без визита на карту дня — 90 дней; у аккаунта — до удаления;
+  тексты дня в `daily_cache` — 62 дня (решение владельца 54: в календаре текущего и прошлого месяца — тот текст,
+  что был прочитан утром).
 - Миграция `009_daily_journal` повторяема (`IF EXISTS`/`IF NOT EXISTS`); до неё новый код отвечает `503`, не `500`.
   **Откат API на код до 8.1 после 009:** старая уборка удаляет все `daily_draws` старше 7 дней — и календари аккаунтов.
   Перед откатом — `CLEANUP_INTERVAL_S=31536000` в `deploy/.env` (уборка раз в год), после возврата 8.1 — убрать строку.
@@ -3365,10 +3461,13 @@ git commit -m "feat(api): morning reminder job — once a day at the person's ho
     `calendarHref(lang) -> '/diary?tab=daily' | '/es/diario?tab=daily'`; `eveningOpen(now: Date) -> boolean`;
     types `CalendarDay`, `Calendar`, `MarkPatch`, `MarkSaved`, `JournalApi`; `createJournalApi(fetchFn): JournalApi`
     (`calendar(lang, month?, tz?)`, `mark(day, patch)`)
-  - `<EveningMark lang idBase initial place surface save onSaved? onSignedOut? />` — sends `daily_felt {place}` only on
-    the first mark of the day; never the mark or the note
-  - dictionary keys (10, total 276): `dailyStreak`, `dailyCalendarLink`, `eveningQuestion`, `feltYes`, `feltPartly`,
-    `feltNo`, `eveningNoteLabel`, `eveningNoteSave`, `eveningSaved`, `eveningFailed`
+  - `<EveningMark lang idBase initial place surface save onSaved? onSignedOut? guest? />` — sends `daily_felt {place}`
+    only on the first mark of the day; never the mark or the note. `guest` (owner decision 56): the same question, the
+    answers `disabled`, no note field, the line `eveningSignIn`; nothing is sent
+  - DailyIsland shows it from 17:00 for every card from the API (not for the card-base fallback): an account with
+    its mark, a guest (`mark === null`) inactive
+  - dictionary keys (11, total 277): `dailyStreak`, `dailyCalendarLink`, `eveningQuestion`, `feltYes`, `feltPartly`,
+    `feltNo`, `eveningNoteLabel`, `eveningNoteSave`, `eveningSaved`, `eveningFailed`, `eveningSignIn`
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -3492,7 +3591,7 @@ describe('the Card of the Day as a habit (stage 8.1)', () => {
     expect(JSON.stringify(vi.mocked(sendEvent).mock.calls)).not.toContain('talk went well');
   });
 
-  it('before 17:00, and for a guest at any hour, there is no evening question', async () => {
+  it('before 17:00 there is no evening question; a guest after 17:00 sees it inactive, with the sign-in line', async () => {
     vi.useFakeTimers({ toFake: ['Date'] });
     vi.setSystemTime(new Date(2026, 10, 22, 16, 59));
     vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': card({ mark: { felt: null, note: null } }) }).fetch);
@@ -3501,10 +3600,17 @@ describe('the Card of the Day as a habit (stage 8.1)', () => {
     expect(first.root.querySelector('.evening')).toBeNull();
     cleanup();
     vi.setSystemTime(new Date(2026, 10, 22, 21, 0));
-    vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': card({ mark: null }) }).fetch);
+    const served = routeFetch({ 'GET /api/daily': card({ mark: null }) });
+    vi.stubGlobal('fetch', served.fetch);
     const guest = await mount(<DailyIsland lang="en" />);
     await click(byText(guest.root, 'Tap to turn over your card', 'span').closest('button')!);
-    expect(guest.root.querySelector('.evening')).toBeNull();
+    expect(byText(guest.root, "Did today's card show up in your day?")).toBeTruthy();
+    expect(byText(guest.root, 'Sign in to mark your days and keep your cards')).toBeTruthy();
+    const yes = byText<HTMLButtonElement>(guest.root, 'Yes', 'button');
+    expect(yes.disabled).toBe(true);
+    await click(yes);
+    expect(guest.root.querySelector('.evening input')).toBeNull();
+    expect(served.calls.filter((c) => c.method === 'PUT')).toEqual([]);
   });
 });
 ```
@@ -3518,7 +3624,7 @@ In `site/src/i18n/i18n.test.ts`, replace:
 with:
 
 ```ts
-    expect(keys('en').length).toBe(276);
+    expect(keys('en').length).toBe(277);
 ```
 
 In `site/src/i18n/i18n.test.ts`, replace:
@@ -3550,7 +3656,7 @@ Run:
 docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 sh -c 'npx vitest run src/lib/journal.test.ts src/islands/DailyIsland.test.tsx src/i18n'
 ```
 
-Expected: FAIL — `Failed to resolve import "./journal"`; DailyIsland finds no `.daily__streak`; i18n: `expected 266 to be 276`.
+Expected: FAIL — `Failed to resolve import "./journal"`; DailyIsland finds no `.daily__streak`; i18n: `expected 266 to be 277`.
 
 - [ ] **Step 3: Implement**
 
@@ -3725,9 +3831,10 @@ Create `site/src/components/ui/EveningMark.tsx`:
 
 ```tsx
 // The evening mark (stage 8.1 §2.3): "Did today's card show up in your day?" — Yes / Partly / No and one optional
-// line of up to 280 characters. Under the Card of the Day from 17:00 and in the calendar for any past day; only for
-// an account. The mark and the line go only to PUT /api/daily/{day}; the event daily_felt says only where a first
-// mark was set. Everything shown back is text.
+// line of up to 280 characters. Under the Card of the Day from 17:00 and in the calendar for any past day. A guest
+// (owner decision 56) sees the same question with inactive answers and a sign-in line, no note field, and nothing is
+// sent. The mark and the line go only to PUT /api/daily/{day}; the event daily_felt says only where a first mark was
+// set. Everything shown back is text.
 import { useState } from 'preact/hooks';
 import { t, type DictKey } from '../../i18n';
 import { analyticsEvent, sendEvent } from '../../lib/analytics';
@@ -3746,11 +3853,12 @@ interface Props {
   save: (patch: MarkPatch) => Promise<ApiResult<MarkSaved>>;
   onSaved?: (saved: MarkSaved) => void;
   onSignedOut?: () => void;
+  guest?: boolean;
 }
 
 type State = 'idle' | 'saving' | 'saved' | 'failed';
 
-export function EveningMark({ lang, idBase, initial, place, surface, save, onSaved, onSignedOut }: Props) {
+export function EveningMark({ lang, idBase, initial, place, surface, save, onSaved, onSignedOut, guest = false }: Props) {
   const d = t(lang);
   const [felt, setFelt] = useState<Felt | null>(initial.felt);
   const [note, setNote] = useState(initial.note ?? '');
@@ -3773,7 +3881,7 @@ export function EveningMark({ lang, idBase, initial, place, surface, save, onSav
   };
 
   const pick = async (value: Felt) => {
-    if (state === 'saving') return;
+    if (guest || state === 'saving') return;
     const first = felt === null;
     if ((await send({ felt: value })) && first) sendEvent(analyticsEvent('daily_felt', null, lang, { place }));
   };
@@ -3790,17 +3898,19 @@ export function EveningMark({ lang, idBase, initial, place, surface, save, onSav
       <div class="chips" role="group" aria-labelledby={`${idBase}-question`}>
         {FELTS.map((value) => (
           <button key={value} type="button" class={day ? 'chip chip--day' : 'chip'} aria-pressed={felt === value}
-            aria-disabled={state === 'saving'} onClick={() => void pick(value)}>
+            disabled={guest} aria-disabled={state === 'saving'} onClick={() => void pick(value)}>
             {d[FELT_KEYS[value]]}
           </button>
         ))}
       </div>
+      {guest ? <p class="small">{d.eveningSignIn}</p> : (
       <form class="field evening__note" onSubmit={(e) => void saveNote(e)}>
         <label for={`${idBase}-note`}>{d.eveningNoteLabel}</label>
         <input id={`${idBase}-note`} type="text" class={day ? 'input input--day' : 'input'} maxLength={DAILY_NOTE_MAX}
           value={note} onInput={(e) => setNote((e.target as HTMLInputElement).value)} />
         <button type="submit" class="btn btn--outline" disabled={state === 'saving'}>{d.eveningNoteSave}</button>
       </form>
+      )}
       <p class="small" role="status">{state === 'saved' ? d.eveningSaved : ''}</p>
       {state === 'failed' ? <p role="alert">{d.eveningFailed}</p> : null}
     </section>
@@ -3823,7 +3933,8 @@ with:
 ```tsx
 // (L-EN-16, L-ES-16) is wave V1.1 (owner decision 42, 24.11.2026).
 // Stage 8.1 (spec 2026-11-27 §2): under the text the streak line with the link to the calendar of the diary, and from
-// 17:00 the evening mark for an account (the API sends today's mark only to an account).
+// 17:00 the evening mark — for an account (the API sends today's mark only to an account); a guest sees the question
+// with inactive answers and a sign-in line (owner decision 56).
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
@@ -3874,9 +3985,9 @@ with:
           {shown.streak >= STREAK_SHOWN_FROM ? `${fill(d.dailyStreak, { n: shown.streak })} · ` : ''}
           <a href={calendarHref(lang)}>{d.dailyCalendarLink}</a>
         </p>
-        {shown.mark && eveningOpen(new Date()) ? (
-          <EveningMark lang={lang} idBase="daily-mark" initial={shown.mark} place="daily" surface="night"
-            save={(patch) => journal.mark(shown.day, patch)} />
+        {!shown.fromBase && eveningOpen(new Date()) ? (
+          <EveningMark lang={lang} idBase="daily-mark" initial={shown.mark ?? { felt: null, note: null }} place="daily"
+            surface="night" guest={shown.mark === null} save={(patch) => journal.mark(shown.day, patch)} />
         ) : null}
         <button type="button" class="btn btn--outline" onClick={remind}>{d.remindTomorrow}</button>
 ```
@@ -3903,6 +4014,7 @@ with:
   eveningNoteSave: 'Save',
   eveningSaved: 'Saved.',
   eveningFailed: "We couldn't save that. Please try again.",
+  eveningSignIn: 'Sign in to mark your days and keep your cards',
 };
 ```
 
@@ -3928,6 +4040,7 @@ with:
   eveningNoteSave: 'Guardar',
   eveningSaved: 'Se guardó.',
   eveningFailed: 'No se pudo guardar. Intenta de nuevo.',
+  eveningSignIn: 'Inicia sesión para marcar tus días y guardar tus cartas',
 };
 ```
 
@@ -3993,7 +4106,7 @@ git commit -m "feat(site): streak line, link to the calendar and the evening mar
   - `<DailyCalendar lang api guest tz? onSignedOut? />` — sends `daily_calendar_view {signed_in}` once per mount
   - the diary: `/diary?tab=daily` (`/es/diario?tab=daily`) shows the calendar; `<nav class="diary__tabs">` with
     «Readings» / «Card of the Day» (`aria-current="page"` on the open one); a guest's sign-in returns to the tab
-  - dictionary keys (12, total 288): `diaryTabsLabel`, `diaryTabReadings`, `calendarStreak`, `calendarBest`,
+  - dictionary keys (12, total 289): `diaryTabsLabel`, `diaryTabReadings`, `calendarStreak`, `calendarBest`,
     `calendarTop`, `calendarPrev`, `calendarNext`, `calendarEmpty`, `calendarLocked`, `calendarGuestTitle`,
     `calendarSignIn`, `calendarDayCard` (the tab itself reuses `navDaily`)
 
@@ -4176,13 +4289,13 @@ describe('the Card of the Day tab (stage 8.1)', () => {
 In `site/src/i18n/i18n.test.ts`, replace:
 
 ```ts
-    expect(keys('en').length).toBe(276);
+    expect(keys('en').length).toBe(277);
 ```
 
 with:
 
 ```ts
-    expect(keys('en').length).toBe(288);
+    expect(keys('en').length).toBe(289);
 ```
 
 In `site/src/i18n/i18n.test.ts`, replace:
@@ -4209,7 +4322,7 @@ Run:
 docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 sh -c 'npx vitest run src/lib/journal.test.ts src/components/ui/DailyCalendar.test.tsx src/islands/DiaryIsland.test.tsx src/i18n'
 ```
 
-Expected: FAIL — `monthGrid` is not exported, `Failed to resolve import "./DailyCalendar"`, the diary has no «Your last 7 days», i18n `expected 276 to be 288`.
+Expected: FAIL — `monthGrid` is not exported, `Failed to resolve import "./DailyCalendar"`, the diary has no «Your last 7 days», i18n `expected 277 to be 289`.
 
 - [ ] **Step 3: Implement**
 
@@ -4552,14 +4665,14 @@ function DiaryTabs({ lang, tab }: { lang: Lang; tab: Tab }) {
 In `site/src/i18n/en.ts`, replace:
 
 ```ts
-  eveningFailed: "We couldn't save that. Please try again.",
+  eveningSignIn: 'Sign in to mark your days and keep your cards',
 };
 ```
 
 with:
 
 ```ts
-  eveningFailed: "We couldn't save that. Please try again.",
+  eveningSignIn: 'Sign in to mark your days and keep your cards',
   // stage 8.1: the Card of the Day calendar in the diary (spec 2026-11-27 §2.2, §2.4)
   diaryTabsLabel: 'Diary sections',
   diaryTabReadings: 'Readings',
@@ -4579,14 +4692,14 @@ with:
 In `site/src/i18n/es.ts`, replace:
 
 ```ts
-  eveningFailed: 'No se pudo guardar. Intenta de nuevo.',
+  eveningSignIn: 'Inicia sesión para marcar tus días y guardar tus cartas',
 };
 ```
 
 with:
 
 ```ts
-  eveningFailed: 'No se pudo guardar. Intenta de nuevo.',
+  eveningSignIn: 'Inicia sesión para marcar tus días y guardar tus cartas',
   // stage 8.1: the Card of the Day calendar in the diary (spec 2026-11-27 §2.2, §2.4)
   diaryTabsLabel: 'Secciones del diario',
   diaryTabReadings: 'Lecturas',
@@ -4687,7 +4800,7 @@ git commit -m "feat(site): the Card of the Day calendar in the diary — month g
     account page
   - `site.webmanifest`: `"display": "standalone"` (`start_url` stays `/`)
   - `check_dist.DATA_FILES` includes `sw.js`; Caddy serves `/sw.js` with `Cache-Control: no-cache`
-  - dictionary keys (13, total 301): `pushOffer`, `pushHourLabel`, `pushNotNow`, `pushOn`, `pushOff`, `pushDenied`,
+  - dictionary keys (13, total 302): `pushOffer`, `pushHourLabel`, `pushNotNow`, `pushOn`, `pushOff`, `pushDenied`,
     `pushFailed`, `pushIosHint`, `notifTitle`, `notifBody`, `accountPushTitle`, `accountPushOn`, `accountPushNone`
 
 - [ ] **Step 1: Write the failing tests**
@@ -5058,13 +5171,13 @@ describe('the morning reminder on the account page (stage 8.1 §2.5)', () => {
 In `site/src/i18n/i18n.test.ts`, replace:
 
 ```ts
-    expect(keys('en').length).toBe(288);
+    expect(keys('en').length).toBe(289);
 ```
 
 with:
 
 ```ts
-    expect(keys('en').length).toBe(301);
+    expect(keys('en').length).toBe(302);
 ```
 
 In `site/src/i18n/i18n.test.ts`, replace:
@@ -5117,7 +5230,7 @@ Run:
 docker run --rm -u "$(id -u):$(id -g)" -e npm_config_cache=/tmp/.npm -e ASTRO_TELEMETRY_DISABLED=1 -v "$PWD/site:/app" -w /app node:22 sh -c 'npx vitest run src/lib/sw.test.ts src/lib/push.test.ts src/components/ui/PushOffer.test.tsx src/components/ui/PushSwitch.test.tsx src/i18n'
 ```
 
-Expected: FAIL — `Failed to resolve import "./sw"` / `"./push"` / `"./PushOffer"` / `"./PushSwitch"`, i18n `expected 288 to be 301`.
+Expected: FAIL — `Failed to resolve import "./sw"` / `"./push"` / `"./PushOffer"` / `"./PushSwitch"`, i18n `expected 289 to be 302`.
 
 Run:
 
@@ -6311,57 +6424,95 @@ git commit -m "content: Card of the Day calendar block and FAQ, privacy — card
 
 ## Operator steps (outside the tasks, only on the owner's word)
 
-In this order, after the owner has read the Fable review and said yes:
+In this order, after the owner has read the Fable review and the texts table below and said yes:
 
-1. **Effective date and notice.** Decide the new effective date of the privacy policy (`content/operator.json`
-   `effective_date`, per language) and whether the notice of the policy's «changes» section is needed first (open
-   question 3). Any change here is a separate commit on the branch.
-2. **Merge** `stage8-daily-habit` into `main` (no push before the owner says so).
+1. **Merge** `stage8-daily-habit` into `main` (no push before the owner says so).
+2. **Effective date of the privacy policy = the day of the deploy** (owner decision 55: a new effective date only, no
+   notice line on the site). On that day, in `content/operator.json`, set `effective_date` for both `en` and `es` to that
+   date, written as the existing values are (edit the strings in place, never re-serialise the file); then
+   `python3 tools/site/sync_site_data.py && python3 tools/site/sync_site_data.py --check` and
+   `python3 -I tools/cards/check_tool_pages.py content/pages/en/privacy.json content/pages/es/privacidad.json`, and commit
+   `content/operator.json` with the regenerated `site/src/data` files (trailer as in every commit). This is not a task
+   step: the date is the deploy's, not the day the code was written.
 3. **VAPID keys:** `deploy/gen-vapid.sh` — prints only `ключи VAPID дописаны в .env`; exit 3 means the keys are already
    there (nothing changed). Never print `deploy/.env` to check: `grep -c '^VAPID_' deploy/.env` prints only a count (2).
 4. **Deploy** with `deploy/deploy.sh` (builds the site with its checks, rebuilds the API image; migration 009 runs at the
    API start — until it has run, `/api/daily` answers 503 and the site shows the card from the card base).
 5. **After the deploy:** `curl -sI https://arcanadiary.com/sw.js | grep -i cache-control` → `no-cache`;
    `curl -s https://arcanadiary.com/api/push/key` → `"enabled":true`. Then the owner's phone check (spec §6): the card,
-   the mark after 17:00, the calendar, a reminder on Android or a computer (set the hour to the next hour), on iPhone
-   from the Home Screen.
+   the mark after 17:00 (signed in, and inactive with the sign-in line as a guest), the calendar, a reminder on Android
+   or a computer (set the hour to the next hour), on iPhone from the Home Screen.
 6. **Rollback note:** going back to pre-8.1 API code after 009 is safe for the tables, but the old hourly cleanup deletes
-   every `daily_draws` row older than 7 days, account calendars included — set `CLEANUP_INTERVAL_S=31536000` in
-   `deploy/.env` before such a rollback (api/README.md says so too).
+   every `daily_draws` row older than 7 days, account calendars included, and cached texts older than 2 days — set
+   `CLEANUP_INTERVAL_S=31536000` in `deploy/.env` before such a rollback (api/README.md says so too).
 
-## Open questions for the owner
+## Decisions on the open questions (owner, forms 27–28.11.2026; controller, 28.11.2026)
 
-1. **`daily_open`.** The spec lists it as existing; the code has no such event — the Card of the Day page sends
-   `tool_view {tool: daily}`. The plan counts openings with that. Add a separate `daily_open` (sent when the card is
-   turned) or keep `tool_view`?
-2. **«Day 1 in a row».** The plan shows the streak line only from day 2 (day 1: only «Your month in cards»). Keep, or
-   show «Day 1 in a row» too?
-3. **Retention change on data already collected.** Guest card draws were promised «up to 8 days»; this stage keeps them
-   60 days. The policy's «changes» section promises a notice on the site, diary and account pages before a change that
-   affects data already given. Options: apply 60 days only from the new effective date (the existing rows then go after
-   8 days as promised), or show the notice first. Which, and which effective date?
-4. **Spanish strings the spec does not give** (the plan's drafts): «Avísame cada mañana» (Remind me each morning),
-   «Inicia sesión para guardar tus cartas» (Sign in to keep your cards), and all new labels — the hour «A las», «Ahora
-   no», the iPhone hint, «Racha actual / Mejor racha / La más frecuente del mes», «Los meses anteriores se guardan y se
-   abrirán con Plus», the account line. The EN labels beyond the spec are drafts too.
-5. **Texts of past days.** `daily_cache` keeps 2 days, so a calendar day older than that shows the card's base meaning,
-   not the text the person read that morning (spec §4 accepts this). Keeping the cache ~62 days (≈ 19 000 rows, no model
-   cost) would show the real texts for the whole free calendar. Change it?
-6. **Guests in the evening.** Spec: marks only after sign-in. The plan shows a guest nothing extra after 17:00 on the
-   Card of the Day page (the calendar tab says «Sign in to keep your cards»). Add a sign-in line under the card in the
-   evening?
-7. **"Activity" for guest subscriptions** is the last Card of the Day visit (`active_at`, a column the spec's list does
-   not have). Confirm, or should a reminder click count too?
-8. **Failure rule.** Spec: three failed deliveries in a row delete a subscription. The plan also deletes at once on
-   404/410 (the browser has dropped it) and does not count 401/403 (our key refused — otherwise a key mistake would wipe
-   every subscription in three days). Agree?
-9. **Send window.** A reminder goes from the chosen hour up to 2 hours later; if the server is down longer, that day is
-   skipped rather than sent in the evening. Agree?
-10. **A reminder after sign-out.** A subscription made while signed in stays with the account when that browser signs
-    out, and keeps coming until it is turned off (under the card or in the account). Agree, or remove it on sign-out?
-11. **Best streak of a guest** cannot be longer than the 60 days a guest's cards are kept. Fine for a guest?
-12. **The privacy page in Spanish** is at 3273 words, 27 under the checker's ceiling (3000 + 10 %); the next addition
-    will need a trim or a higher plan limit for `privacidad`.
-13. **Known failing lines in `deploy/test-site-routes.sh` on `main`:** three checks still expect the service pages to be
-    hidden (`/about`, `/es/privacidad`, sitemap) although the launch opened them. Not part of this stage; fix
-    separately?
+| # | Question | Decision | Where in the plan |
+|---|---|---|---|
+| 1 | `daily_open` does not exist in the code | no new event; the existing `tool_view {tool: daily}`; spec §4 corrected (controller) | decision 8, Task 5 |
+| 2 | «Day 1 in a row» | the streak line from day 2 (controller) | decision 4, Task 9 |
+| 3 | guest draws 8 → 60 days on data already given | 60 days with only a new effective date of the policy, no on-site notice; the date is the deploy day (owner decision 55) | Task 12 texts; Operator step 2 |
+| 4 | labels the spec does not give | EN and ES drafts stay; all listed below for the owner to read before the merge (controller) | «Texts for the owner to read» |
+| 5 | texts of past days | `daily_cache` keeps 62 days: the calendar shows the text read that morning (owner decision 54) | decision 6, Task 4 |
+| 6 | guests in the evening | the same question, inactive answers, a sign-in line (owner decision 56) | decision 7, Task 9 |
+| 7 | guest activity column | `active_at`, renewed on each Card of the Day visit (controller) | Task 1, Task 2 |
+| 8 | failure rule | 404/410 delete at once; 401/403 not counted; other failures 3 in a row delete (controller) | decision 10, Task 8 |
+| 9 | send window | hour .. hour + 2, otherwise the day is skipped (controller) | decision 10, Task 8 |
+| 10 | a reminder after sign-out | stays with the account until turned off; the account page has the switch; account deletion removes it (controller) | decision 11, Tasks 4, 11 |
+| 11 | a guest's best streak ≤ 60 days | fine (controller) | — |
+| 12 | ES privacy close to the ceiling | noted, no limit change now (controller) | note below |
+| 13 | stale checks in `deploy/test-site-routes.sh` | fixed in Task 1, Step 2, in its own commit (controller) | Task 1 |
+| — | push dependency | no new package (own RFC 8291/8292 code on the pinned `cryptography`, PyJWT, httpx) as the recommendation; the STOP step of Task 6 stays — the owner confirms it when execution starts | decision 1, Task 6 |
+
+**Note (question 12):** after Task 12 the Spanish privacy page has 3273 words, 27 under the checker's ceiling for
+`privacidad` (3000 + 10 %). The next text added to it needs a trim elsewhere or a higher plan limit in
+`tools/cards/check_tool_pages.py`; the limit is not changed in this stage.
+
+## Texts for the owner to read
+
+Every new interface string of this stage (`site/src/i18n/{en,es}.ts`), in the order the tasks add them. «Spec» means the
+text is fixed by the spec or the owner; «draft» means it is the plan's wording and waits for the owner's read before the
+merge. The page texts (the Card of the Day block and FAQ, the privacy additions) are in Task 12, Step 1, word for word.
+`{n}`, `{name}`, `{count}`, `{date}`, `{hour}` are filled in by the site.
+
+| Key | EN | ES | Status |
+|---|---|---|---|
+| `dailyStreak` | Day {n} in a row | Día {n} seguido | spec |
+| `dailyCalendarLink` | Your month in cards | Tu mes en cartas | spec |
+| `eveningQuestion` | Did today's card show up in your day? | ¿Apareció la carta de hoy en tu día? | spec |
+| `feltYes` | Yes | Sí | spec |
+| `feltPartly` | Partly | En parte | spec |
+| `feltNo` | No | No | spec |
+| `eveningNoteLabel` | One line about your day (optional) | Una línea sobre tu día (opcional) | draft |
+| `eveningNoteSave` | Save | Guardar | draft |
+| `eveningSaved` | Saved. | Se guardó. | draft |
+| `eveningFailed` | We couldn't save that. Please try again. | No se pudo guardar. Intenta de nuevo. | draft |
+| `eveningSignIn` | Sign in to mark your days and keep your cards | Inicia sesión para marcar tus días y guardar tus cartas | EN owner's draft (decision 56), ES draft |
+| `diaryTabsLabel` | Diary sections | Secciones del diario | draft |
+| `diaryTabReadings` | Readings | Lecturas | draft |
+| `calendarStreak` | Streak now: {n} | Racha actual: {n} | draft |
+| `calendarBest` | Best streak: {n} | Mejor racha: {n} | draft |
+| `calendarTop` | Most frequent this month: {name} ×{count} | La más frecuente del mes: {name} ×{count} | draft |
+| `calendarPrev` | Previous month | Mes anterior | draft |
+| `calendarNext` | Next month | Mes siguiente | draft |
+| `calendarEmpty` | No cards this month yet. | Todavía no hay cartas este mes. | draft |
+| `calendarLocked` | Older months are kept and will open with Plus. | Los meses anteriores se guardan y se abrirán con Plus. | draft |
+| `calendarGuestTitle` | Your last 7 days | Tus últimos 7 días | draft |
+| `calendarSignIn` | Sign in to keep your cards | Inicia sesión para guardar tus cartas | EN spec, ES draft |
+| `calendarDayCard` | Card of {date} | Carta del {date} | draft |
+| `pushOffer` | Remind me each morning | Avísame cada mañana | EN spec, ES draft |
+| `pushHourLabel` | At | A las | draft |
+| `pushNotNow` | Not now | Ahora no | draft |
+| `pushOn` | Morning reminder on, at {hour}. | Aviso de la mañana activado, a las {hour}. | draft |
+| `pushOff` | Turn off | Desactivar | draft |
+| `pushDenied` | Notifications for this site are blocked in your browser settings. | Las notificaciones de este sitio están bloqueadas en la configuración de tu navegador. | draft |
+| `pushFailed` | We couldn't turn on the reminder. Please try again. | No se pudo activar el aviso. Intenta de nuevo. | draft |
+| `pushIosHint` | To get a morning reminder on iPhone, add this site to your Home Screen: tap Share, then “Add to Home Screen”, and open it from there. | Para recibir el aviso en iPhone, agrega este sitio a tu pantalla de inicio: toca Compartir, luego «Agregar a inicio», y ábrelo desde ahí. | draft |
+| `notifTitle` | Arcana Diary | Arcana Diary | brand name, both |
+| `notifBody` | Your card for today is waiting | Tu carta de hoy te espera | spec |
+| `accountPushTitle` | Morning reminder in this browser | Aviso de la mañana en este navegador | draft |
+| `accountPushOn` | On, at {hour}. | Activado, a las {hour}. | draft |
+| `accountPushNone` | Off. You can turn it on under the Card of the Day. | Desactivado. Puedes activarlo debajo de la carta del día. | draft |
+
+Reused without change: `navDaily` («Card of the Day» / «Carta del día») as the diary tab, `reversedTag`, `retry`, the error lines. Count: 36 new keys (266 → 302).
