@@ -18,6 +18,10 @@
 | `outcome_answered` | ответ «сбылось?» | `after_days` (7, 30), `answer` (yes, partly, no) | возвращаются ли к дневнику |
 | `plus_view` | показана карточка Plus | `place` (limit, diary) | как часто видят предложение |
 | `remind_click` | «Remind me tomorrow» под картой дня (этап 4.4б) | `tool` (только daily), `lang` | нужна ли карта дня назавтра |
+| `daily_felt` | впервые поставлена вечерняя отметка «Did today's card show up in your day?» (этап 8.1) | `place` (daily, calendar), `lang`; ни ответа, ни заметки | доля отметок |
+| `daily_calendar_view` | открыт календарь карты дня в дневнике (этап 8.1) | `signed_in` (true, false), `lang` | смотрят ли календарь; доля гостей календаря, которые вошли |
+| `push_enabled` | включено «Remind me each morning» (этап 8.1) | `tool` (только daily), `lang` | доля включивших напоминания |
+| `push_click` | нажато утреннее напоминание (шлёт service worker, этап 8.1) | `lang` | доля нажатий на напоминания |
 
 ## Воронка
 

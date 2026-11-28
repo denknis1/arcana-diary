@@ -4,17 +4,24 @@
 import type { Lang, Tool } from './types';
 
 export type EventName = 'tool_view' | 'draw_click' | 'night_open' | 'cards_revealed' | 'reading_shown'
-  | 'more_about_cards' | 'plus_view' | 'save_click' | 'signup_done' | 'outcome_answered' | 'remind_click';
+  | 'more_about_cards' | 'plus_view' | 'save_click' | 'signup_done' | 'outcome_answered' | 'remind_click'
+  | 'daily_felt' | 'daily_calendar_view' | 'push_enabled' | 'push_click';
 
-/** The events of docs/design/analytics-events.md that carry no tool. */
-export type NoToolEvent = 'plus_view' | 'signup_done' | 'outcome_answered';
-export const NO_TOOL: ReadonlySet<EventName> = new Set<NoToolEvent>(['plus_view', 'signup_done', 'outcome_answered']);
+/** The events of docs/design/analytics-events.md that carry no tool. Stage 8.1: daily_felt carries only where the
+ * mark was set (never the mark or the note), daily_calendar_view only whether the person was signed in. */
+export type NoToolEvent = 'plus_view' | 'signup_done' | 'outcome_answered' | 'daily_felt' | 'daily_calendar_view'
+  | 'push_click';
+export const NO_TOOL: ReadonlySet<EventName> = new Set<NoToolEvent>(['plus_view', 'signup_done', 'outcome_answered',
+  'daily_felt', 'daily_calendar_view', 'push_click']);
 
-/** The tool an event may be built with: any (it is dropped) for the no-tool events, only `daily` for remind_click
- * (the card of the day's "Remind me tomorrow"), a Tool — never null — for every other event. Not distributive, so a
- * name typed as a wider union (e.g. EventName) needs what every member of it accepts (review Minor 1). */
+/** The events that come only from the Card of the Day: "Remind me tomorrow" and "Remind me each morning". */
+type DailyOnly = 'remind_click' | 'push_enabled';
+
+/** The tool an event may be built with: any (it is dropped) for the no-tool events, only `daily` for the DailyOnly
+ * events, a Tool — never null — for every other event. Not distributive, so a name typed as a wider union (e.g.
+ * EventName) needs what every member of it accepts (review Minor 1). */
 export type ToolFor<N extends EventName> = [N] extends [NoToolEvent] ? Tool | null
-  : [N] extends [Exclude<EventName, 'remind_click'>] ? Tool
+  : [N] extends [Exclude<EventName, DailyOnly>] ? Tool
   : 'daily';
 
 export type Params = Record<string, string | number | boolean>;

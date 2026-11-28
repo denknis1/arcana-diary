@@ -28,6 +28,13 @@ VALID = [
     {"name": "signup_done", "lang": "es", "params": {"method": "google"}},
     {"name": "outcome_answered", "lang": "en", "params": {"after_days": 30, "answer": "no"}},
     {"name": "save_click", "tool": "yes_no", "lang": "es", "params": {}},
+    # stage 8.1 §4
+    {"name": "daily_felt", "lang": "en", "params": {"place": "daily"}},
+    {"name": "daily_felt", "lang": "es", "params": {"place": "calendar"}},
+    {"name": "daily_calendar_view", "lang": "en", "params": {"signed_in": False}},
+    {"name": "daily_calendar_view", "lang": "es", "params": {"signed_in": True}},
+    {"name": "push_enabled", "tool": "daily", "lang": "en", "params": {}},
+    {"name": "push_click", "lang": "es", "params": {}},
 ]
 
 INVALID = [
@@ -49,6 +56,15 @@ INVALID = [
     ({"name": "remind_click", "tool": "daily", "lang": "en", "params": {"at": "09:00"}}, "params.at"),
     ({"name": "plus_view", "lang": "en", "params": {"place": "account"}}, "params.place"),
     ({"name": "signup_done", "lang": "en", "params": {}}, "params.method"),
+    # stage 8.1: the mark and the note never reach the counter
+    ({"name": "daily_felt", "lang": "en", "params": {"place": "daily", "answer": "yes"}}, "params.answer"),
+    ({"name": "daily_felt", "lang": "en", "params": {"place": "daily", "note": "It did."}}, "params.note"),
+    ({"name": "daily_felt", "lang": "en", "params": {"place": "home"}}, "params.place"),
+    ({"name": "daily_felt", "tool": "daily", "lang": "en", "params": {"place": "daily"}}, "tool"),
+    ({"name": "daily_calendar_view", "lang": "en", "params": {"signed_in": 1}}, "params.signed_in"),
+    ({"name": "push_enabled", "lang": "en"}, "tool"),
+    ({"name": "push_enabled", "tool": "love", "lang": "en"}, "tool"),
+    ({"name": "push_click", "lang": "en", "params": {"card": "major-18-moon"}}, "params.card"),
 ]
 
 

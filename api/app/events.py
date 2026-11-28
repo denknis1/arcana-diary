@@ -33,9 +33,14 @@ EVENTS = {
     "outcome_answered": (False, {"after_days": _one_of(7, 30), "answer": _one_of("yes", "partly", "no")}),
     "plus_view": (False, {"place": _one_of("limit", "diary")}),
     "remind_click": (True, {}),  # stage 4.4b §7: "Remind me tomorrow" under the Card of the Day
+    # stage 8.1 §4 (migration 009): never the mark itself or the note — only that a mark was set, and where
+    "daily_felt": (False, {"place": _one_of("daily", "calendar")}),
+    "daily_calendar_view": (False, {"signed_in": _one_of(True, False)}),
+    "push_enabled": (True, {}),  # "Remind me each morning" under the Card of the Day went through
+    "push_click": (False, {}),   # the morning reminder was opened (sent by the service worker)
 }
 # events that belong to one tool only
-ONLY_TOOL = {"remind_click": "daily"}
+ONLY_TOOL = {"remind_click": "daily", "push_enabled": "daily"}
 
 
 class InvalidEvent(ValueError):
