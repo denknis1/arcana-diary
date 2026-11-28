@@ -10,6 +10,8 @@
   stay with the guest. Stage 4.4b §4 (owner decision 12): "device": false moves only the readings of the tokens — the
   site sends it when the e-mail link is opened on a device where the sign-in was not started (someone else's guest
   readings stay there); left out, it is true, as in 4.3.
+- Stage 8.1 §3: with "device" true the same call also moves this cookie's cards of the day (a day the account
+  already has keeps the account's card) and its browser reminders. The answer stays {"claimed": [...]}.
 """
 import secrets
 import uuid
@@ -64,7 +66,10 @@ def claim(request: Request, body: ClaimIn | None = None):
     device = body.device if body else True
     with ctx.db.connect() as conn:
         account_repo.ensure_profile(conn, who.user.id, now)
-        moved = account_repo.claim_device(conn, who.user.id, who.guest_id, now) \
-            if device and who.new_guest is None else []
+        this_device = device and who.new_guest is None
+        moved = account_repo.claim_device(conn, who.user.id, who.guest_id, now) if this_device else []
         moved += [i for i in account_repo.claim_by_tokens(conn, who.user.id, hashes, now) if i not in moved]
+        if this_device:
+            account_repo.claim_daily(conn, who.user.id, who.guest_id)
+            account_repo.claim_push(conn, who.user.id, who.guest_id)
     return respond(200, {"claimed": [str(i) for i in moved]})

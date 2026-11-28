@@ -3,6 +3,8 @@
 - migrations at start, retried every 30 s while the database is unreachable (requests meanwhile get 503);
 - the hourly cleanup (CLEANUP_INTERVAL_S): expired guest readings with their follow-ups, expired claim tokens,
   old deleted-account marks, follow-up crisis tombstones older than a day, stale counters and caches, old logs, events older than 13 months, Plus waitlist requests older than 12;
+  stage 8.1: guest cards of the day after 60 days, guest browser reminders 90 days after the last visit (an
+  account's cards and reminders stay until the account is deleted);
 - freeing follow-ups cut by a restart (no answer, stale) and giving paid ones back to their owner;
 - the card-of-the-day job (app.daily.daily_loop).
 """
@@ -17,8 +19,9 @@ from app.db import Database, DatabaseUnavailable, migrate
 log = logging.getLogger("arcana.housekeeping")
 
 KEEP_USAGE_DAYS = 2           # address hashes with an old salt link to nothing
-KEEP_DAILY_CACHE_DAYS = 2
-KEEP_DAILY_DRAWS_DAYS = 7
+KEEP_DAILY_CACHE_DAYS = 62  # stage 8.1 (owner decision 54): the calendar shows the text read that morning, two months
+KEEP_GUEST_DAILY_DRAWS_DAYS = 60  # stage 8.1: a guest's cards of the day (an account keeps its own until deletion)
+KEEP_GUEST_PUSH_DAYS = 90         # stage 8.1: a guest's browser reminder without a Card of the Day visit
 KEEP_LLM_CALLS_DAYS = 90      # no texts; enough for cost and latency reviews
 KEEP_GUARD_EVENTS_DAYS = 365  # counts only
 KEEP_EVENTS_DAYS = 396        # 13 months: owner decision 23.11.2026 (stage 4.9)
@@ -41,8 +44,10 @@ def delete_expired(db: Database, now: datetime) -> dict[str, int]:
             "usage": conn.execute("DELETE FROM usage WHERE day < %s", (before(KEEP_USAGE_DAYS),)).rowcount,
             "daily_cache": conn.execute("DELETE FROM daily_cache WHERE day < %s",
                                         (before(KEEP_DAILY_CACHE_DAYS),)).rowcount,
-            "daily_draws": conn.execute("DELETE FROM daily_draws WHERE day < %s",
-                                        (before(KEEP_DAILY_DRAWS_DAYS),)).rowcount,
+            "daily_draws": conn.execute("DELETE FROM daily_draws WHERE user_id IS NULL AND day < %s",
+                                        (before(KEEP_GUEST_DAILY_DRAWS_DAYS),)).rowcount,
+            "push_subscriptions": conn.execute("DELETE FROM push_subscriptions WHERE user_id IS NULL AND active_at < %s",
+                                               (now - timedelta(days=KEEP_GUEST_PUSH_DAYS),)).rowcount,
             "llm_calls": conn.execute("DELETE FROM llm_calls WHERE created_at < %s",
                                       (now - timedelta(days=KEEP_LLM_CALLS_DAYS),)).rowcount,
             "guard_events": conn.execute("DELETE FROM guard_events WHERE day < %s",

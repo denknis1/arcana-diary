@@ -49,6 +49,22 @@ def claim_by_tokens(conn, user_id, hashes: list[str], now) -> list:
     return list(dict.fromkeys(r["id"] for r in rows))
 
 
+def claim_daily(conn, user_id, guest_id) -> int:
+    """Stage 8.1 §3: signing in moves this cookie's cards of the day into the account; on a day the account already
+    has a card, the account's card stays and the device's card of that day goes. Returns the number moved."""
+    conn.execute("DELETE FROM daily_draws g WHERE g.guest_id = %s"
+                 " AND EXISTS (SELECT 1 FROM daily_draws a WHERE a.user_id = %s AND a.day = g.day)", (guest_id, user_id))
+    return conn.execute("UPDATE daily_draws SET user_id = %s, guest_id = NULL WHERE guest_id = %s",
+                        (user_id, guest_id)).rowcount
+
+
+def claim_push(conn, user_id, guest_id) -> int:
+    """This cookie's browser reminders follow the cards into the account (the "card already open" check then looks
+    at the account's card)."""
+    return conn.execute("UPDATE push_subscriptions SET user_id = %s, guest_id = NULL WHERE guest_id = %s",
+                        (user_id, guest_id)).rowcount
+
+
 def ensure_profile(conn, user_id, now) -> dict:
     """The profile is made the first time the API sees the account; its created_at is the account's date here.
     A deleted account is refused first, so its still-valid token cannot bring the profile back."""
@@ -121,6 +137,18 @@ def export_readings(conn, user_id) -> list[tuple[dict, list[dict]]]:
     return [(reading, followups.get(reading["id"], [])) for reading in readings]
 
 
+def export_daily(conn, user_id) -> list[dict]:
+    """Stage 8.1 §3: every card of the day of the account, oldest first, with its mark and note."""
+    return conn.execute("SELECT day, card_id, reversed, felt, note, noted_at FROM daily_draws WHERE user_id = %s"
+                        " ORDER BY day", (user_id,)).fetchall()
+
+
+def export_push(conn, user_id) -> list[dict]:
+    """The account's browser reminders; the export names the push service, not the endpoint or its keys."""
+    return conn.execute("SELECT endpoint, hour, tz, lang, created_at, last_sent_day FROM push_subscriptions"
+                        " WHERE user_id = %s ORDER BY created_at", (user_id,)).fetchall()
+
+
 def waitlist_entry(conn, user_id, email: str | None) -> dict | None:
     return conn.execute("SELECT email, lang, created_at FROM plus_waitlist WHERE user_id = %s OR email = %s"
                         " ORDER BY created_at LIMIT 1", (user_id, email)).fetchone()
@@ -149,7 +177,8 @@ def lock_account(conn, user_id) -> None:
 
 def delete_account(conn, user_id, email: str | None, now) -> dict[str, int]:
     """§8: everything of the account at once — its readings (their follow-ups and claim tokens go with them), the
-    profile, the Plus waitlist entry and, where the database has Supabase's auth schema, the Supabase user itself;
+    profile, its cards of the day with their marks and notes and its browser reminders (stage 8.1), the Plus
+    waitlist entry and, where the database has Supabase's auth schema, the Supabase user itself;
     the id goes into deleted_accounts so a still-valid token cannot write again. llm_calls stay (no text); the
     account's day counter in usage (a number) expires with the other counters."""
     lock_account(conn, user_id)
@@ -159,6 +188,8 @@ def delete_account(conn, user_id, email: str | None, now) -> dict[str, int]:
     counts = {
         "readings": conn.execute("DELETE FROM readings WHERE user_id = %s", (user_id,)).rowcount,
         "profiles": conn.execute("DELETE FROM profiles WHERE user_id = %s", (user_id,)).rowcount,
+        "daily_draws": conn.execute("DELETE FROM daily_draws WHERE user_id = %s", (user_id,)).rowcount,
+        "push_subscriptions": conn.execute("DELETE FROM push_subscriptions WHERE user_id = %s", (user_id,)).rowcount,
         "plus_waitlist": conn.execute("DELETE FROM plus_waitlist WHERE user_id = %s OR email = %s",
                                       (user_id, email)).rowcount,
     }
