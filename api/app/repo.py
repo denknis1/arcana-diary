@@ -232,6 +232,29 @@ def set_daily_mark(conn, user_id, day, fields: dict, now) -> dict | None:
                         f" RETURNING {DAILY_FIELDS}", (felt, note, noted_at, user_id, day)).fetchone()
 
 
+def upsert_push(conn, sub: dict) -> None:
+    """Stage 8.1: one row per browser endpoint; the same browser subscribing again (another hour, a refresh, another
+    owner on a shared computer) replaces its row and clears its failures. last_sent_day stays: at most one a day."""
+    conn.execute(
+        "INSERT INTO push_subscriptions (user_id, guest_id, endpoint, p256dh, auth, lang, tz, hour, created_at,"
+        " active_at) VALUES (%(user_id)s, %(guest_id)s, %(endpoint)s, %(p256dh)s, %(auth)s, %(lang)s, %(tz)s,"
+        " %(hour)s, %(now)s, %(now)s) ON CONFLICT (endpoint) DO UPDATE SET user_id = EXCLUDED.user_id,"
+        " guest_id = EXCLUDED.guest_id, p256dh = EXCLUDED.p256dh, auth = EXCLUDED.auth, lang = EXCLUDED.lang,"
+        " tz = EXCLUDED.tz, hour = EXCLUDED.hour, fails = 0, active_at = EXCLUDED.active_at", sub)
+
+
+def count_push(conn, user_id, guest_id, endpoint: str) -> int:
+    """The owner's other subscriptions (the browser asking now is not counted twice)."""
+    where, args = _daily_owner(user_id, guest_id)
+    return conn.execute(f"SELECT count(*) AS n FROM push_subscriptions WHERE {where} AND endpoint <> %s",
+                        (*args, endpoint)).fetchone()["n"]
+
+
+def delete_push(conn, endpoint: str) -> bool:
+    return conn.execute("DELETE FROM push_subscriptions WHERE endpoint = %s RETURNING id", (endpoint,)).fetchone() \
+        is not None
+
+
 def touch_guest_push(conn, guest_id, now) -> None:
     """A guest's reminder lives 90 days from the last Card of the Day visit (housekeeping)."""
     conn.execute("UPDATE push_subscriptions SET active_at = %s WHERE guest_id = %s", (now, guest_id))
