@@ -22,11 +22,12 @@ interface Props {
   onSaved?: (saved: MarkSaved) => void;
   onSignedOut?: () => void;
   guest?: boolean;
+  signInHref?: string; // a guest's line "Sign in to …" is a link to it
 }
 
 type State = 'idle' | 'saving' | 'saved' | 'failed';
 
-export function EveningMark({ lang, idBase, initial, place, surface, save, onSaved, onSignedOut, guest = false }: Props) {
+export function EveningMark({ lang, idBase, initial, place, surface, save, onSaved, onSignedOut, guest = false, signInHref }: Props) {
   const d = t(lang);
   const [felt, setFelt] = useState<Felt | null>(initial.felt);
   const [note, setNote] = useState(initial.note ?? '');
@@ -38,12 +39,17 @@ export function EveningMark({ lang, idBase, initial, place, surface, save, onSav
     const result = await save(patch);
     if (result.ok) {
       setFelt(result.data.felt);
-      setNote(result.data.note ?? '');
+      // a Yes/Partly/No sends no note: the line being typed stays; only a saved note is replaced by the answer
+      if ('note' in patch) setNote(result.data.note ?? '');
       setState('saved');
       onSaved?.(result.data);
       return true;
     }
-    if (result.status === 401 && onSignedOut) onSignedOut();
+    if (result.status === 401 && onSignedOut) { // the session ended: the guest state says it, not "couldn't save"
+      setState('idle');
+      onSignedOut();
+      return false;
+    }
     setState('failed');
     return false;
   };
@@ -71,7 +77,7 @@ export function EveningMark({ lang, idBase, initial, place, surface, save, onSav
           </button>
         ))}
       </div>
-      {guest ? <p class="small">{d.eveningSignIn}</p> : (
+      {guest ? <p class="small">{signInHref ? <a href={signInHref}>{d.eveningSignIn}</a> : d.eveningSignIn}</p> : (
       <form class="field evening__note" onSubmit={(e) => void saveNote(e)}>
         <label for={`${idBase}-note`}>{d.eveningNoteLabel}</label>
         <input id={`${idBase}-note`} type="text" class={day ? 'input input--day' : 'input'} maxLength={DAILY_NOTE_MAX}

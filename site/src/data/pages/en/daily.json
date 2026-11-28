@@ -67,7 +67,7 @@
   },
   {
    "q": "Is my daily card saved?",
-   "a": "Yes. Signed in, each day's card, mark and line stay in your account, the same on every device. Without an account, this browser keeps your last 7 days."
+   "a": "Yes. Signed in, each day's card, mark and line stay in your account, the same on every device. Without an account, the calendar in this browser shows your last 7 days, and the cards themselves are kept for 60 days."
   }
  ],
  "intents": [

@@ -1,15 +1,18 @@
 // "Remind me each morning" under the Card of the Day (stage 8.1 §2.5): shown quietly after the third day in a row,
 // with the hour (8:00 by default, local time); on an iPhone or iPad outside the Home Screen app, the hint how to add
 // the site there instead. Once on, the same place says so and turns it off. "Not now" hides the offer on this device
-// for DISMISS_DAYS. Nothing is registered or asked before the person presses the button.
-import { useEffect, useMemo, useState } from 'preact/hooks';
+// for DISMISS_DAYS. Nothing is registered or asked before the person presses the button; the VAPID key is fetched
+// when the offer appears, so that the button goes straight to the browser's permission prompt (iPhone wants it inside
+// the tap). The "blocked in your browser" line is said once.
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../../i18n';
 import { analyticsEvent, sendEvent } from '../../lib/analytics';
 import { browserStorage, type StorageLike } from '../../lib/authState';
 import { localIsoDay } from '../../lib/daily';
 import {
-  browserEnv, createPushApi, currentSubscription, DEFAULT_HOUR, DISMISSED_KEY, hourLabel, OFFER_STREAK, offerDismissed,
-  pushSupport, refresh, storedHour, turnOff, turnOn, type PushApi, type PushEnv,
+  browserEnv, createPushApi, currentSubscription, DEFAULT_HOUR, deniedSeen, DISMISSED_KEY, hourLabel, markDeniedSeen,
+  OFFER_STREAK, offerDismissed, pushSupport, refresh, storedHour, turnOff, turnOn, type PushApi, type PushEnv,
+  type PushKey,
 } from '../../lib/push';
 import { siteFetch } from '../../lib/siteApi';
 import { deviceTimeZone } from '../../lib/timeZone';
@@ -35,32 +38,48 @@ export function PushOffer({ lang, streak, env: givenEnv, api: givenApi, storage:
   const storage = givenStorage === undefined ? browserStorage() : givenStorage;
   const support = pushSupport(env);
   const [state, setState] = useState<State>('checking');
-  const [hour, setHour] = useState(DEFAULT_HOUR);
+  const [hour, setHour] = useState(DEFAULT_HOUR); // the choice in the select
+  const [onHour, setOnHour] = useState<number | null>(null); // the hour the server holds, when this browser knows it
+  const key = useRef<PushKey | undefined>(undefined);
+  const wantsOffer = streak >= OFFER_STREAK && !offerDismissed(now(), storage);
   const deps = () => ({ env, api, storage, lang, tz: deviceTimeZone(), today: localIsoDay(new Date(now())) });
 
   useEffect(() => {
     if (support !== 'yes') return setState('offer');
     void currentSubscription(env).then((subscription) => {
       if (subscription && env.notification?.permission === 'granted') {
-        setHour(storedHour(storage));
+        setOnHour(storedHour(storage));
         setState('on');
-        void refresh(deps(), subscription);
-      } else setState(env.notification?.permission === 'denied' ? 'denied' : 'offer');
+        void refresh(deps(), subscription).then((fresh) => { if (fresh !== null) setOnHour(fresh); });
+      } else if (env.notification?.permission === 'denied') setState(deniedSeen(storage) ? 'hidden' : 'denied');
+      else {
+        setState('offer');
+        if (wantsOffer) { // the key is ready before the tap; a failed fetch is tried again by the tap
+          void api.key().then((result) => {
+            key.current = result;
+            if (result.ok && (!result.data.enabled || !result.data.public_key)) setState('hidden');
+          });
+        }
+      }
     });
   }, []);
+
+  useEffect(() => { // the blocked line is said once: the next visit does not show it
+    if (state === 'denied' && wantsOffer && support === 'yes') markDeniedSeen(storage);
+  }, [state]);
 
   if (support === 'no' || state === 'checking' || state === 'hidden') return null;
   if (state === 'on') {
     return (
       <p class="small push">
-        {fill(d.pushOn, { hour: hourLabel(hour, lang) })}{' '}
+        {onHour === null ? d.pushOnNoHour : fill(d.pushOn, { hour: hourLabel(onHour, lang) })}{' '}
         <button type="button" class="btn btn--text" onClick={() => void turnOff(deps()).then(() => setState('offer'))}>
           {d.pushOff}
         </button>
       </p>
     );
   }
-  if (streak < OFFER_STREAK || offerDismissed(now(), storage)) return null;
+  if (!wantsOffer) return null;
 
   const dismiss = () => {
     storage?.setItem(DISMISSED_KEY, String(now()));
@@ -74,9 +93,14 @@ export function PushOffer({ lang, streak, env: givenEnv, api: givenApi, storage:
   const enable = async () => {
     if (state === 'busy') return;
     setState('busy');
-    const result = await turnOn(deps(), hour);
-    if (result === 'on') sendEvent(analyticsEvent('push_enabled', 'daily', lang));
-    setState(result === 'on' ? 'on' : result === 'denied' ? 'denied' : result === 'off' ? 'hidden' : 'failed');
+    const result = await turnOn(deps(), hour, key.current); // asks the browser first, inside the tap
+    if (result === 'on') {
+      sendEvent(analyticsEvent('push_enabled', 'daily', lang));
+      setOnHour(storedHour(storage) ?? hour);
+    }
+    // 'dismissed': the prompt was closed without a choice — back to the offer, no error
+    setState(result === 'on' ? 'on' : result === 'denied' ? 'denied' : result === 'off' ? 'hidden'
+      : result === 'dismissed' ? 'offer' : 'failed');
   };
 
   return (

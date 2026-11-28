@@ -9,14 +9,15 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { fill, t } from '../i18n';
 import { analyticsEvent, sendEvent } from '../lib/analytics';
-import { calendarHref, createJournalApi, eveningOpen, STREAK_SHOWN_FROM } from '../lib/journal';
+import { calendarHref, createJournalApi, STREAK_SHOWN_FROM } from '../lib/journal';
 import { siteApi, siteFetch } from '../lib/siteApi';
 import { baseUrl, dailyNext, formatDay, localIsoDay, shownFromBase, type BaseMeaning, type DailyShown } from '../lib/daily';
 import { CARD_BACK } from '../lib/deck';
 import { saveFile, type SaveFile } from '../lib/download';
 import { errorMessageKey, needsHelpLink, type ErrorKind } from '../lib/errors';
 import { ICS_FILENAME, ICS_TYPE, dailyReminderIcs } from '../lib/ics';
-import { drawnCardLink } from '../lib/routes';
+import { drawnCardLink, pagePath } from '../lib/routes';
+import { useEveningOpen } from '../lib/useEveningOpen';
 import type { Lang } from '../lib/types';
 import { CardFace } from '../components/ui/CardFace';
 import { EveningMark } from '../components/ui/EveningMark';
@@ -47,6 +48,8 @@ export default function DailyIsland({ lang, save = saveFile }: { lang: Lang; sav
   const d = t(lang);
   const [view, setView] = useState<View>({ type: 'back' });
   const [reminded, setReminded] = useState(false);
+  const [signedOut, setSignedOut] = useState(false); // a mark came back 401: the session ended, the line says so
+  const evening = useEveningOpen();
   const heading = useRef<HTMLHeadingElement>(null);
   const tappedAt = useRef(0);
   const journal = useMemo(() => createJournalApi(siteFetch()), []);
@@ -99,9 +102,10 @@ export default function DailyIsland({ lang, save = saveFile }: { lang: Lang; sav
           {shown.streak >= STREAK_SHOWN_FROM ? `${fill(d.dailyStreak, { n: shown.streak })} · ` : ''}
           <a href={calendarHref(lang)}>{d.dailyCalendarLink}</a>
         </p>
-        {!shown.fromBase && eveningOpen(new Date()) ? (
+        {!shown.fromBase && evening ? (
           <EveningMark lang={lang} idBase="daily-mark" initial={shown.mark ?? { felt: null, note: null }} place="daily"
-            surface="night" guest={shown.mark === null} save={(patch) => journal.mark(shown.day, patch)} />
+            surface="night" guest={shown.mark === null || signedOut} save={(patch) => journal.mark(shown.day, patch)}
+            onSignedOut={() => setSignedOut(true)} signInHref={pagePath('diary', lang)} />
         ) : null}
         <button type="button" class="btn btn--outline" onClick={remind}>{d.remindTomorrow}</button>
         <p class="small" role="status">{reminded ? d.remindDone : ''}</p>

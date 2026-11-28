@@ -11,7 +11,7 @@ export interface FakeBrowser {
 }
 
 export function fakeBrowser(options: { permission?: NotificationPermission; answer?: NotificationPermission;
-  subscribed?: boolean; userAgent?: string; standalone?: boolean; push?: boolean } = {}): FakeBrowser {
+  subscribed?: boolean; userAgent?: string; standalone?: boolean; push?: boolean; onAsk?: () => void } = {}): FakeBrowser {
   const state: FakeBrowser = { env: undefined as unknown as PushEnv, registered: [], subscribed: [], unsubscribed: 0, asked: 0 };
   let subscription: PushSubscription | null = null;
   const make = () => ({
@@ -28,7 +28,7 @@ export function fakeBrowser(options: { permission?: NotificationPermission; answ
   let registeredYet = Boolean(options.subscribed);
   const notification = {
     permission: options.permission ?? 'default',
-    requestPermission: async () => { state.asked += 1; notification.permission = options.answer ?? 'granted'; return notification.permission; },
+    requestPermission: async () => { state.asked += 1; options.onAsk?.(); notification.permission = options.answer ?? 'granted'; return notification.permission; },
   };
   state.env = {
     serviceWorker: {

@@ -47,7 +47,7 @@ describe('dictionaries', () => {
 
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(302);
+    expect(keys('en').length).toBe(305);
   });
 
   it('have no empty strings', () => {

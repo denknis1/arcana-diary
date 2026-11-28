@@ -34,4 +34,11 @@ describe('the morning reminder on the account page (stage 8.1 §2.5)', () => {
     const { root } = await mount(<PushSwitch lang="en" env={fakeBrowser({ push: false }).env} api={createPushApi(routeFetch({}).fetch)} storage={null} />);
     expect(root.textContent).toBe('');
   });
+
+  it('says just "On" when this browser does not know the hour', async () => {
+    const browser = fakeBrowser({ permission: 'granted', subscribed: true });
+    const { root } = await mount(<PushSwitch lang="en" env={browser.env} api={createPushApi(routeFetch({}).fetch)} storage={new MemoryStorage()} />);
+    await waitFor(() => byText(root, 'Turn off', 'button'));
+    expect(root.querySelector('p')!.textContent).toBe('On. Turn off');
+  });
 });

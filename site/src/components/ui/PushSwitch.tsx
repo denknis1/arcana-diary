@@ -28,12 +28,13 @@ export function PushSwitch({ lang, env: givenEnv, api: givenApi, storage: givenS
   }, []);
 
   if (on === null) return null;
+  const hourShown = storedHour(storage); // null when this browser does not know the server's hour: just "On"
   return (
     <section class="account__push" aria-labelledby="account-push-title">
       <h2 id="account-push-title" class="h3">{d.accountPushTitle}</h2>
       {on ? (
         <p>
-          {fill(d.accountPushOn, { hour: hourLabel(storedHour(storage), lang) })}{' '}
+          {hourShown === null ? d.accountPushOnNoHour : fill(d.accountPushOn, { hour: hourLabel(hourShown, lang) })}{' '}
           <button type="button" class="btn btn--text" onClick={() => void turnOff({ env, api, storage }).then(() => setOn(false))}>
             {d.pushOff}
           </button>

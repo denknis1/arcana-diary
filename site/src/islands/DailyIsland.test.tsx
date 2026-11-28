@@ -1,4 +1,5 @@
 // @vitest-environment happy-dom
+import { act } from 'preact/test-utils';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { t } from '../i18n';
 import { sendEvent } from '../lib/analytics';
@@ -134,5 +135,65 @@ describe('the Card of the Day as a habit (stage 8.1)', () => {
     await click(yes);
     expect(guest.root.querySelector('.evening input')).toBeNull();
     expect(served.calls.filter((c) => c.method === 'PUT')).toEqual([]);
+  });
+
+  it('a guest\'s sign-in line is a link to the diary, which has the sign-in; one link per address (review M1)', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(2026, 10, 22, 21, 0));
+    vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': card({ mark: null, streak: 3 }) }).fetch);
+    const { root } = await mount(<DailyIsland lang="es" />);
+    await click(byText(root, t('es').dailyTap, 'span').closest('button')!);
+    const link = byText(root, t('es').eveningSignIn, 'a');
+    expect(link.getAttribute('href')).toBe('/es/diario');
+    const hrefs = Array.from(root.querySelectorAll('a')).map((a) => a.getAttribute('href'));
+    expect(new Set(hrefs).size).toBe(hrefs.length);
+    vi.useRealTimers();
+  });
+
+  it('choosing Partly does not wipe a line typed and not saved yet (review I3)', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(2026, 10, 22, 18, 0));
+    const served = routeFetch({
+      'GET /api/daily': card({ mark: { felt: null, note: null } }),
+      'PUT /api/daily/2026-11-22': (call) => jsonResponse(200, { day: '2026-11-22', felt: null, note: null, noted_at: null, ...(call.body as object) }),
+    });
+    vi.stubGlobal('fetch', served.fetch);
+    const { root } = await mount(<DailyIsland lang="en" />);
+    await click(byText(root, 'Tap to turn over your card', 'span').closest('button')!);
+    const input = root.querySelector<HTMLInputElement>('#daily-mark-note')!;
+    await typeInto(input, 'Not saved yet');
+    await click(byText(root, 'Partly', 'button'));
+    expect(root.querySelector<HTMLInputElement>('#daily-mark-note')!.value).toBe('Not saved yet');
+    expect(served.calls.filter((c) => c.method === 'PUT').map((c) => c.body)).toEqual([{ felt: 'partly' }]);
+    vi.useRealTimers();
+  });
+
+  it('a 401 on a mark shows the sign-in line, not "couldn\'t save" (review M9)', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(2026, 10, 22, 18, 0));
+    vi.stubGlobal('fetch', routeFetch({
+      'GET /api/daily': card({ mark: { felt: null, note: null } }),
+      'PUT /api/daily/2026-11-22': () => jsonResponse(401, { detail: 'no session' }),
+    }).fetch);
+    const { root } = await mount(<DailyIsland lang="en" />);
+    await click(byText(root, 'Tap to turn over your card', 'span').closest('button')!);
+    await click(byText(root, 'Yes', 'button'));
+    expect(byText(root, 'Sign in to mark your days and keep your cards')).toBeTruthy();
+    expect(root.textContent).not.toContain("We couldn't save that");
+    expect(byText<HTMLButtonElement>(root, 'Yes', 'button').disabled).toBe(true);
+    vi.useRealTimers();
+  });
+
+  it('the evening question appears at 17:00 on a page left open (review M2)', async () => {
+    vi.useFakeTimers({ toFake: ['Date', 'setInterval', 'clearInterval'] });
+    vi.setSystemTime(new Date(2026, 10, 22, 16, 40));
+    vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': card({ mark: { felt: null, note: null } }) }).fetch);
+    const { root } = await mount(<DailyIsland lang="en" />);
+    await click(byText(root, 'Tap to turn over your card', 'span').closest('button')!);
+    expect(root.querySelector('.evening')).toBeNull();
+    vi.setSystemTime(new Date(2026, 10, 22, 17, 1));
+    await act(() => { vi.advanceTimersByTime(60_000); });
+    expect(root.querySelector('.evening')).not.toBeNull();
+    vi.useRealTimers();
   });
 });

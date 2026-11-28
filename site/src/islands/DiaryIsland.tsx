@@ -149,7 +149,7 @@ export default function DiaryIsland({ lang, privacyHref, termsHref }: { lang: La
       <div class="diary diary--signin">
         <DiaryTabs lang={lang} tab={tab} />
         {tab === 'daily' ? <DailyCalendar lang={lang} api={journal} guest tz={deviceTimeZone()} /> : null}
-        <p class="lead">{tab === 'daily' ? d.calendarSignIn : d.diaryWhy}</p>
+        <p class="lead">{tab === 'daily' ? <a href="#diary-email">{d.calendarSignIn}</a> : d.diaryWhy}</p>
         {view.expired ? <p role="alert">{d.signInLinkExpired}</p> : null}
         <SignInBlock lang={lang} auth={status.auth} google={status.google} idBase="diary" surface="day" termsHref={termsHref} privacyHref={privacyHref}
           redirectTo={async () => {

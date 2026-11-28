@@ -34,7 +34,7 @@
       "heading": "¿Dónde quedan tus cartas de cada día?",
       "paragraphs": [
         "En tu diario hay un calendario del mes con una cartita por cada día que volteaste. Toca un día para ver otra vez su carta y su texto. Arriba ves cuántos días seguidos llevas, tu mejor racha y la carta que más se repitió en el mes. Si un día no la abres, la cuenta empieza de nuevo y tu mejor racha se queda.",
-        "En la noche, debajo de la carta, puedes contestar «¿Apareció la carta de hoy en tu día?» con sí, en parte o no, y agregar una línea si quieres. Sin cuenta, este navegador guarda tus últimos 7 días; al iniciar sesión, esas cartas pasan a tu cuenta y ahí se quedan todas."
+        "En la noche, debajo de la carta, puedes contestar «¿Apareció la carta de hoy en tu día?» con sí, en parte o no, y agregar una línea si quieres. Sin cuenta, el calendario de este navegador muestra tus últimos 7 días; al iniciar sesión, esas cartas pasan a tu cuenta y ahí se quedan todas."
       ]
     },
     {
@@ -74,7 +74,7 @@
     },
     {
       "q": "¿Se guarda mi carta del día?",
-      "a": "Sí. Con sesión iniciada, cada carta del día queda en tu cuenta con tu respuesta de la noche y tu línea, y ves la misma carta en el celular y en la computadora. Sin cuenta, este navegador muestra tus últimos 7 días."
+      "a": "Sí. Con sesión iniciada, cada carta del día queda en tu cuenta con tu respuesta de la noche y tu línea, y ves la misma carta en el celular y en la computadora. Sin cuenta, el calendario de este navegador muestra tus últimos 7 días y las cartas se guardan 60 días."
     }
   ],
   "intents": [
