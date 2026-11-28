@@ -308,3 +308,16 @@ def test_delete_old_events_and_waitlist(db):
     counts = delete_expired(db, T0)
     assert (counts["events"], counts["plus_waitlist"]) == (1, 1)
     assert (count(db, "events"), count(db, "plus_waitlist")) == (1, 1)
+
+
+def test_cleanup_keeps_account_rows_of_the_card_of_the_day(db):
+    """Rollback branch: the database already has migration 009, so account rows (user_id set) must outlive the
+    7-day guest cleanup."""
+    old = T0.date() - timedelta(days=30)
+    with db.connect() as conn:
+        conn.execute("INSERT INTO daily_draws (guest_id, day, card_id, reversed) VALUES (%s, %s, 'major-18-moon', false)",
+                     (uuid.uuid4(), old))
+        conn.execute("INSERT INTO daily_draws (guest_id, user_id, day, card_id, reversed)"
+                     " VALUES (%s, %s, %s, 'major-18-moon', false)", (uuid.uuid4(), uuid.uuid4(), old))
+    assert delete_expired(db, T0)["daily_draws"] == 1
+    assert count(db, "daily_draws") == 1

@@ -41,7 +41,7 @@ def delete_expired(db: Database, now: datetime) -> dict[str, int]:
             "usage": conn.execute("DELETE FROM usage WHERE day < %s", (before(KEEP_USAGE_DAYS),)).rowcount,
             "daily_cache": conn.execute("DELETE FROM daily_cache WHERE day < %s",
                                         (before(KEEP_DAILY_CACHE_DAYS),)).rowcount,
-            "daily_draws": conn.execute("DELETE FROM daily_draws WHERE day < %s",
+            "daily_draws": conn.execute("DELETE FROM daily_draws WHERE day < %s AND user_id IS NULL",
                                         (before(KEEP_DAILY_DRAWS_DAYS),)).rowcount,
             "llm_calls": conn.execute("DELETE FROM llm_calls WHERE created_at < %s",
                                       (now - timedelta(days=KEEP_LLM_CALLS_DAYS),)).rowcount,

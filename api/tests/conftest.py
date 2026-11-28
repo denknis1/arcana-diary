@@ -67,6 +67,9 @@ def pg_url():
 def migrated(pg_url) -> Database:
     database = Database(pg_url)
     migrate(database, load_settings({}).migrations_dir)
+    # rollback-pre-8.1 only runs on a database that already has migration 009; the column is all the cleanup needs
+    with database.connect() as conn:
+        conn.execute("ALTER TABLE daily_draws ADD COLUMN IF NOT EXISTS user_id uuid")
     return database
 
 
