@@ -302,6 +302,18 @@ export const en = {
   yesNoMethodLink: 'How we read yes and no',
   cardLoveLink: 'Do a love reading',
   cardYesNoLink: 'Ask a yes or no question',
+  // stage 8.1: the streak line and the evening mark under the Card of the Day (spec 2026-11-27 §2.1, §2.3)
+  dailyStreak: 'Day {n} in a row',
+  dailyCalendarLink: 'Your month in cards',
+  eveningQuestion: "Did today's card show up in your day?",
+  feltYes: 'Yes',
+  feltPartly: 'Partly',
+  feltNo: 'No',
+  eveningNoteLabel: 'One line about your day (optional)',
+  eveningNoteSave: 'Save',
+  eveningSaved: 'Saved.',
+  eveningFailed: "We couldn't save that. Please try again.",
+  eveningSignIn: 'Sign in to mark your days and keep your cards',
 };
 
 export type DictKey = keyof typeof en;

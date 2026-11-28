@@ -576,3 +576,10 @@ main:focus { outline: none; } /* <main tabindex="-1"> takes focus from the skip 
 }
 
 .site-footer__service { margin-top: var(--space-2); font-size: var(--font-size-small); }
+
+/* stage 8.1: the streak line and the evening mark under the Card of the Day, the same mark in the calendar */
+.daily__streak { margin: 0; }
+.evening { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; max-width: 560px; text-align: left; }
+.evening__question { margin: 0; font-size: var(--font-size-h-3); }
+.evening__note { display: flex; flex-direction: column; gap: var(--space-2); }
+.evening__note .btn { align-self: flex-start; }

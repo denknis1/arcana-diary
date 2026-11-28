@@ -4,7 +4,7 @@
 import type { ApiResult } from './api';
 import { cardById, cardName, fallbackDailyCard, type DeckCard } from './deck';
 import type { ErrorKind } from './errors';
-import type { DailyCard, Lang } from './types';
+import type { DailyCard, DailyMark, Lang } from './types';
 
 export interface DailyShown {
   card: DeckCard;
@@ -13,6 +13,8 @@ export interface DailyShown {
   text: string;
   day: string;
   fromBase: boolean; // true: the site's own card from the base (the API was unavailable)
+  streak: number; // stage 8.1: days in a row; 0 for a card from the base
+  mark: DailyMark | null; // stage 8.1: today's evening mark of an account; null for a guest and a card from the base
 }
 
 export interface BaseMeaning {
@@ -44,6 +46,7 @@ export function dailyNext(result: ApiResult<DailyCard>, lang: Lang): DailyNext {
     return { type: 'shown', shown: {
       card, name: result.data.card.name || cardName(card, lang), reversed: result.data.card.reversed,
       text: result.data.text, day: result.data.day, fromBase: false,
+      streak: typeof result.data.streak === 'number' ? result.data.streak : 0, mark: result.data.mark ?? null,
     } };
   }
   return result.error === 'unavailable' ? { type: 'base' } : { type: 'error', error: result.error };
@@ -53,7 +56,8 @@ export function shownFromBase(isoDay: string, lang: Lang, meanings: readonly Bas
   const card = fallbackDailyCard(isoDay);
   const meaning = meanings.find((m) => m.card_id === card.card_id);
   if (!meaning) return null;
-  return { card, name: cardName(card, lang), reversed: false, text: meaning.upright, day: isoDay, fromBase: true };
+  return { card, name: cardName(card, lang), reversed: false, text: meaning.upright, day: isoDay, fromBase: true,
+    streak: 0, mark: null };
 }
 
 export function baseUrl(lang: Lang): string {

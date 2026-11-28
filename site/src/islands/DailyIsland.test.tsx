@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { t } from '../i18n';
 import { sendEvent } from '../lib/analytics';
 import { ICS_FILENAME, ICS_TYPE } from '../lib/ics';
-import { byText, cleanup, click, mount } from '../lib/testing/dom';
+import { byText, cleanup, click, mount, submit, typeInto } from '../lib/testing/dom';
 import { jsonResponse, routeFetch } from '../lib/testing/fakes';
 import DailyIsland from './DailyIsland';
 
@@ -53,6 +53,86 @@ describe('the link under the Card of the Day (stage 2 matrix, owner decision 38)
     await click(byText(root, t(lang).dailyTap, 'span').closest('button')!);
     const link = byText<HTMLAnchorElement>(root, text, 'a');
     expect(link.getAttribute('href')).toBe(href);
-    expect(root.querySelectorAll('.daily a')).toHaveLength(1);
+    const links = Array.from(root.querySelectorAll<HTMLAnchorElement>('.daily a')).map((a) => a.getAttribute('href'));
+    expect(links.filter((h) => h === href)).toHaveLength(1); // stage 8.1: the calendar link is the only other one
+    expect(links).toHaveLength(2);
+  });
+});
+
+// Stage 8.1 (spec 2026-11-27 §2.1, §2.3): the streak line, the calendar link and the evening mark.
+describe('the Card of the Day as a habit (stage 8.1)', () => {
+  const card = (extra: Record<string, unknown>) => () => jsonResponse(200, {
+    day: '2026-11-22', card: { card_id: 'major-18-moon', name: 'The Moon', reversed: false }, text: 'Rest tonight.',
+    source: 'cache', streak: 1, best_streak: 1, mark: null, ...extra,
+  });
+
+  afterEach(() => vi.useRealTimers());
+
+  it.each([
+    ['en', 'Day 4 in a row · Your month in cards', '/diary?tab=daily'],
+    ['es', 'Día 4 seguido · Tu mes en cartas', '/es/diario?tab=daily'],
+  ] as const)('%s: the streak line links the calendar', async (lang, line, href) => {
+    vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': card({ streak: 4, best_streak: 6 }) }).fetch);
+    const { root } = await mount(<DailyIsland lang={lang} />);
+    await click(byText(root, t(lang).dailyTap, 'span').closest('button')!);
+    const streak = root.querySelector('.daily__streak')!;
+    expect(streak.textContent).toBe(line);
+    expect(streak.querySelector('a')!.getAttribute('href')).toBe(href);
+  });
+
+  it('the first day shows only the calendar link', async () => {
+    vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': card({}) }).fetch);
+    const { root } = await mount(<DailyIsland lang="en" />);
+    await click(byText(root, 'Tap to turn over your card', 'span').closest('button')!);
+    expect(root.querySelector('.daily__streak')!.textContent).toBe('Your month in cards');
+  });
+
+  it('an account sees the evening question from 17:00; a mark is saved and counted once, the note never', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(2026, 10, 22, 18, 0));
+    const served = routeFetch({
+      'GET /api/daily': card({ mark: { felt: null, note: null } }),
+      'PUT /api/daily/2026-11-22': (call) => jsonResponse(200, { day: '2026-11-22', felt: 'partly', note: null, noted_at: 'x',
+        ...(call.body as object) }),
+    });
+    vi.stubGlobal('fetch', served.fetch);
+    vi.mocked(sendEvent).mockClear();
+    const { root } = await mount(<DailyIsland lang="en" />);
+    await click(byText(root, 'Tap to turn over your card', 'span').closest('button')!);
+    expect(byText(root, "Did today's card show up in your day?")).toBeTruthy();
+    await click(byText(root, 'Partly', 'button'));
+    expect(byText(root, 'Partly', 'button').getAttribute('aria-pressed')).toBe('true');
+    await click(byText(root, 'Yes', 'button'));
+    const input = root.querySelector<HTMLInputElement>('#daily-mark-note')!;
+    expect(input.maxLength).toBe(280);
+    await typeInto(input, 'The talk went well.');
+    await submit(input.closest('form')!);
+    expect(served.calls.filter((c) => c.method === 'PUT').map((c) => c.body)).toEqual([
+      { felt: 'partly' }, { felt: 'yes' }, { note: 'The talk went well.' }]);
+    const felt = vi.mocked(sendEvent).mock.calls.map(([e]) => e).filter((e) => e.name === 'daily_felt');
+    expect(felt).toEqual([{ name: 'daily_felt', tool: null, lang: 'en', params: { place: 'daily' } }]);
+    expect(JSON.stringify(vi.mocked(sendEvent).mock.calls)).not.toContain('talk went well');
+  });
+
+  it('before 17:00 there is no evening question; a guest after 17:00 sees it inactive, with the sign-in line', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date(2026, 10, 22, 16, 59));
+    vi.stubGlobal('fetch', routeFetch({ 'GET /api/daily': card({ mark: { felt: null, note: null } }) }).fetch);
+    const first = await mount(<DailyIsland lang="en" />);
+    await click(byText(first.root, 'Tap to turn over your card', 'span').closest('button')!);
+    expect(first.root.querySelector('.evening')).toBeNull();
+    cleanup();
+    vi.setSystemTime(new Date(2026, 10, 22, 21, 0));
+    const served = routeFetch({ 'GET /api/daily': card({ mark: null }) });
+    vi.stubGlobal('fetch', served.fetch);
+    const guest = await mount(<DailyIsland lang="en" />);
+    await click(byText(guest.root, 'Tap to turn over your card', 'span').closest('button')!);
+    expect(byText(guest.root, "Did today's card show up in your day?")).toBeTruthy();
+    expect(byText(guest.root, 'Sign in to mark your days and keep your cards')).toBeTruthy();
+    const yes = byText<HTMLButtonElement>(guest.root, 'Yes', 'button');
+    expect(yes.disabled).toBe(true);
+    await click(yes);
+    expect(guest.root.querySelector('.evening input')).toBeNull();
+    expect(served.calls.filter((c) => c.method === 'PUT')).toEqual([]);
   });
 });

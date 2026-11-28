@@ -302,6 +302,18 @@ export const es: Dict = {
   yesNoMethodLink: 'Cómo leemos el sí o no',
   cardLoveLink: 'Haz una tirada de amor',
   cardYesNoLink: 'Pregunta sí o no',
+  // stage 8.1: the streak line and the evening mark under the Card of the Day (spec 2026-11-27 §2.1, §2.3)
+  dailyStreak: 'Día {n} seguido',
+  dailyCalendarLink: 'Tu mes en cartas',
+  eveningQuestion: '¿Apareció la carta de hoy en tu día?',
+  feltYes: 'Sí',
+  feltPartly: 'En parte',
+  feltNo: 'No',
+  eveningNoteLabel: 'Una línea sobre tu día (opcional)',
+  eveningNoteSave: 'Guardar',
+  eveningSaved: 'Se guardó.',
+  eveningFailed: 'No se pudo guardar. Intenta de nuevo.',
+  eveningSignIn: 'Inicia sesión para marcar tus días y guardar tus cartas',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

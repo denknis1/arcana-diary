@@ -32,9 +32,18 @@ describe('dictionaries', () => {
       'Por qué {name} dice {verdict}', '¿Por qué {name}?', 'significado completo']);
   });
 
+  it('use the exact words of the stage 8.1 spec (2026-11-27 §2.1, §2.3)', () => {
+    expect([t('en').dailyStreak, t('en').dailyCalendarLink, t('es').dailyStreak, t('es').dailyCalendarLink]).toEqual([
+      'Day {n} in a row', 'Your month in cards', 'Día {n} seguido', 'Tu mes en cartas']);
+    expect([t('en').eveningQuestion, t('es').eveningQuestion]).toEqual([
+      "Did today's card show up in your day?", '¿Apareció la carta de hoy en tu día?']);
+    expect([t('en').feltYes, t('en').feltPartly, t('en').feltNo, t('es').feltYes, t('es').feltPartly, t('es').feltNo])
+      .toEqual(['Yes', 'Partly', 'No', 'Sí', 'En parte', 'No']);
+  });
+
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(266);
+    expect(keys('en').length).toBe(277);
   });
 
   it('have no empty strings', () => {
