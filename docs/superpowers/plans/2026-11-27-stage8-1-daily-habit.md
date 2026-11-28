@@ -3396,8 +3396,13 @@ with:
   тексты дня в `daily_cache` — 62 дня (решение владельца 54: в календаре текущего и прошлого месяца — тот текст,
   что был прочитан утром).
 - Миграция `009_daily_journal` повторяема (`IF EXISTS`/`IF NOT EXISTS`); до неё новый код отвечает `503`, не `500`.
-  **Откат API на код до 8.1 после 009:** старая уборка удаляет все `daily_draws` старше 7 дней — и календари аккаунтов.
-  Перед откатом — `CLEANUP_INTERVAL_S=31536000` в `deploy/.env` (уборка раз в год), после возврата 8.1 — убрать строку.
+  **Откат API на код до 8.1 после 009:** простой возврат к f1b3c38 нельзя — старая уборка удаляет все `daily_draws`
+  старше 7 дней, и календари аккаунтов тоже (переменная `CLEANUP_INTERVAL_S` тут не помогает: в контейнер она не
+  передаётся, а первая уборка идёт сразу при старте). Откат = выкладка содержимого локальной ветки `rollback-pre-8.1`
+  (f1b3c38 + один коммит: уборка `daily_draws` трогает только гостевые строки, `AND user_id IS NULL`) в `main` — по
+  слову владельца. Ветку выкладывать только на базу, где уже есть 009. Миграция 009 не откатывается. Старое
+  `delete_account` не знает о `user_id` и подписках: аккаунт, удалённый во время отката, оставит заметки и подписки —
+  после возврата 8.1 удалить их по `deleted_accounts`.
 
 ## Ограничения, о которых надо помнить
 ```
@@ -6442,9 +6447,16 @@ In this order, after the owner has read the Fable review and the texts table bel
    `curl -s https://arcanadiary.com/api/push/key` → `"enabled":true`. Then the owner's phone check (spec §6): the card,
    the mark after 17:00 (signed in, and inactive with the sign-in line as a guest), the calendar, a reminder on Android
    or a computer (set the hour to the next hour), on iPhone from the Home Screen.
-6. **Rollback note:** going back to pre-8.1 API code after 009 is safe for the tables, but the old hourly cleanup deletes
-   every `daily_draws` row older than 7 days, account calendars included, and cached texts older than 2 days — set
-   `CLEANUP_INTERVAL_S=31536000` in `deploy/.env` before such a rollback (api/README.md says so too).
+6. **Rollback:** never plain f1b3c38. Going back to pre-8.1 API code after 009 is safe for the tables, but the old hourly
+   cleanup (it runs at start) deletes every `daily_draws` row older than 7 days, account calendars included, and cached
+   texts older than 2 days. The rollback is the content of the local branch `rollback-pre-8.1` (f1b3c38 plus one commit:
+   the cleanup deletes guest rows only, `AND user_id IS NULL`) deployed to `main` on the owner's word, and only onto a
+   database that already has 009. Migration 009 is not reverted. The old `delete_account` knows nothing of `user_id` or
+   push subscriptions: after returning to 8.1, delete the notes and subscriptions of accounts deleted meanwhile
+   (`deleted_accounts`). api/README.md says the same.
+7. **Back up `deploy/.env` after `gen-vapid.sh`:** the owner copies it somewhere private. Lost VAPID keys make every
+   subscription dead.
+8. **Phone test:** a reminder offer appears after 3 days in a row (or at once in the iPhone Home Screen app).
 
 ## Decisions on the open questions (owner, forms 27–28.11.2026; controller, 28.11.2026)
 
