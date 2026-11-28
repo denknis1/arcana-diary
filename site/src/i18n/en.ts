@@ -314,6 +314,19 @@ export const en = {
   eveningSaved: 'Saved.',
   eveningFailed: "We couldn't save that. Please try again.",
   eveningSignIn: 'Sign in to mark your days and keep your cards',
+  // stage 8.1: the Card of the Day calendar in the diary (spec 2026-11-27 §2.2, §2.4)
+  diaryTabsLabel: 'Diary sections',
+  diaryTabReadings: 'Readings',
+  calendarStreak: 'Streak now: {n}',
+  calendarBest: 'Best streak: {n}',
+  calendarTop: 'Most frequent this month: {name} ×{count}',
+  calendarPrev: 'Previous month',
+  calendarNext: 'Next month',
+  calendarEmpty: 'No cards this month yet.',
+  calendarLocked: 'Older months are kept and will open with Plus.',
+  calendarGuestTitle: 'Your last 7 days',
+  calendarSignIn: 'Sign in to keep your cards',
+  calendarDayCard: 'Card of {date}',
 };
 
 export type DictKey = keyof typeof en;

@@ -314,6 +314,19 @@ export const es: Dict = {
   eveningSaved: 'Se guardó.',
   eveningFailed: 'No se pudo guardar. Intenta de nuevo.',
   eveningSignIn: 'Inicia sesión para marcar tus días y guardar tus cartas',
+  // stage 8.1: the Card of the Day calendar in the diary (spec 2026-11-27 §2.2, §2.4)
+  diaryTabsLabel: 'Secciones del diario',
+  diaryTabReadings: 'Lecturas',
+  calendarStreak: 'Racha actual: {n}',
+  calendarBest: 'Mejor racha: {n}',
+  calendarTop: 'La más frecuente del mes: {name} ×{count}',
+  calendarPrev: 'Mes anterior',
+  calendarNext: 'Mes siguiente',
+  calendarEmpty: 'Todavía no hay cartas este mes.',
+  calendarLocked: 'Los meses anteriores se guardan y se abrirán con Plus.',
+  calendarGuestTitle: 'Tus últimos 7 días',
+  calendarSignIn: 'Inicia sesión para guardar tus cartas',
+  calendarDayCard: 'Carta del {date}',
 };
 
 // Every key is reviewed (stage 5): the list stays for the test and for later drafts.

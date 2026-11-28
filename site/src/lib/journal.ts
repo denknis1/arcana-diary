@@ -66,3 +66,35 @@ export function createJournalApi(fetchFn: FetchFn): JournalApi {
     }),
   };
 }
+
+const LOCALE: Record<Lang, string> = { en: 'en-US', es: 'es-MX' };
+
+/** The weeks of a month "YYYY-MM", Sunday first (as in the United States and Mexico); null pads the first and last
+ * week. Each day is "YYYY-MM-DD". */
+export function monthGrid(month: string): Array<Array<string | null>> {
+  const [year, number] = month.split('-').map(Number);
+  const days = new Date(Date.UTC(year, number, 0)).getUTCDate();
+  const cells: Array<string | null> = Array(new Date(Date.UTC(year, number - 1, 1)).getUTCDay()).fill(null);
+  for (let day = 1; day <= days; day++) cells.push(`${month}-${String(day).padStart(2, '0')}`);
+  while (cells.length % 7) cells.push(null);
+  return Array.from({ length: cells.length / 7 }, (_, week) => cells.slice(week * 7, week * 7 + 7));
+}
+
+/** "November 2026" / "noviembre de 2026". */
+export function monthLabel(month: string, lang: Lang): string {
+  const [year, number] = month.split('-').map(Number);
+  return new Intl.DateTimeFormat(LOCALE[lang], { month: 'long', year: 'numeric', timeZone: 'UTC' })
+    .format(new Date(Date.UTC(year, number - 1, 1)));
+}
+
+/** Short weekday names, Sunday first: "Sun"… / "dom"…. */
+export function weekdayLabels(lang: Lang): string[] {
+  const format = new Intl.DateTimeFormat(LOCALE[lang], { weekday: 'short', timeZone: 'UTC' });
+  return Array.from({ length: 7 }, (_, i) => format.format(new Date(Date.UTC(2026, 10, 1 + i)))); // 1.11.2026: Sunday
+}
+
+/** The days of a guest's calendar: the last `count` days up to `today`, oldest first. */
+export function lastDays(today: string, count = 7): string[] {
+  const end = Date.parse(`${today}T00:00:00Z`);
+  return Array.from({ length: count }, (_, i) => new Date(end - (count - 1 - i) * 86_400_000).toISOString().slice(0, 10));
+}

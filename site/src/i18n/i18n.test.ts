@@ -39,11 +39,13 @@ describe('dictionaries', () => {
       "Did today's card show up in your day?", '¿Apareció la carta de hoy en tu día?']);
     expect([t('en').feltYes, t('en').feltPartly, t('en').feltNo, t('es').feltYes, t('es').feltPartly, t('es').feltNo])
       .toEqual(['Yes', 'Partly', 'No', 'Sí', 'En parte', 'No']);
+    expect([t('en').navDaily, t('es').navDaily, t('en').calendarSignIn]).toEqual([
+      'Card of the Day', 'Carta del día', 'Sign in to keep your cards']);
   });
 
   it('have the same keys in English and Spanish', () => {
     expect(keys('es')).toEqual(keys('en'));
-    expect(keys('en').length).toBe(277);
+    expect(keys('en').length).toBe(289);
   });
 
   it('have no empty strings', () => {

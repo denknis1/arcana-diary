@@ -393,3 +393,38 @@ describe('the diary page (screen 4a; spec 4.4b §5)', () => {
     expect(h.sent[0]).toMatchObject({ options: { emailRedirectTo: `https://arcana.test/diary?r=${ITEM.id}` } });
   });
 });
+
+// Stage 8.1 (spec 2026-11-27 §2.2, §2.4): the "Card of the Day" tab of the diary.
+describe('the Card of the Day tab (stage 8.1)', () => {
+  const CAL = { today: '2026-11-22', streak: 1, best_streak: 1, top_card: null, locked: false,
+    days: [{ day: '2026-11-22', card: { card_id: 'major-19-sun', name: 'The Sun', reversed: false }, text: 'Go out.', source: 'cache' }] };
+
+  it('a guest sees the last 7 days, then "Sign in to keep your cards" and the sign-in block that comes back here', async () => {
+    history.replaceState(null, '', '/diary?tab=daily');
+    const served = serve({ 'GET /api/daily/calendar': () => jsonResponse(200, { ...CAL, guest: true, month: null, months: [] }) });
+    const { root } = await open((r) => byText(r, 'Your last 7 days'));
+    expect(byText(root, 'Sign in to keep your cards')).toBeTruthy();
+    expect(root.querySelector('input[type="email"]')).not.toBeNull();
+    const tabs = Array.from(root.querySelectorAll<HTMLAnchorElement>('.diary__tabs a'));
+    expect(tabs.map((a) => [a.textContent, a.getAttribute('href'), a.getAttribute('aria-current')])).toEqual([
+      ['Readings', '/diary', null], ['Card of the Day', '/diary?tab=daily', 'page']]);
+    expect(served.calls.some((c) => c.method === 'PUT')).toBe(false);
+  });
+
+  it('signed in: the month of the account instead of the list', async () => {
+    history.replaceState(null, '', '/diary?tab=daily');
+    h.session = { access_token: 'tok-a' };
+    const served = serve({ 'GET /api/daily/calendar': () => jsonResponse(200, { ...CAL, guest: false, month: '2026-11',
+      months: ['2026-10', '2026-11'] }) });
+    const { root } = await open((r) => byText(r, 'November 2026'));
+    expect(served.calls.some((c) => c.url.startsWith('/api/diary'))).toBe(false);
+    expect(root.querySelector('.diary__tabs a[aria-current="page"]')!.textContent).toBe('Card of the Day');
+  });
+
+  it('the readings tab is the list, as before, with the tabs above it', async () => {
+    h.session = { access_token: 'tok-a' };
+    serve({ 'GET /api/diary': page([ITEM]) });
+    const { root } = await open((r) => expect(r.querySelectorAll('a.diary-item')).toHaveLength(1));
+    expect(root.querySelector('.diary__tabs a[aria-current="page"]')!.textContent).toBe('Readings');
+  });
+});
