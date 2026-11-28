@@ -204,6 +204,34 @@ def draw_days(conn, user_id, guest_id) -> list:
     return [r["day"] for r in conn.execute(f"SELECT day FROM daily_draws WHERE {where} ORDER BY day", args)]
 
 
+def calendar_rows(conn, user_id, guest_id, start, end, lang: str) -> list[dict]:
+    """The owner's cards from `start` to before `end`, oldest first, each with the text the daily job cached for
+    it in `lang` (cached_text, None once the cache is gone: the caller then uses the card base)."""
+    where, args = _daily_owner(user_id, guest_id)
+    return conn.execute(
+        f"SELECT d.day, d.card_id, d.reversed, d.felt, d.note, d.noted_at, c.text AS cached_text FROM daily_draws d"
+        " LEFT JOIN daily_cache c ON c.card_id = d.card_id AND c.reversed = d.reversed AND c.day = d.day"
+        f" AND c.lang = %s WHERE d.{where} AND d.day >= %s AND d.day < %s ORDER BY d.day",
+        (lang, *args, start, end)).fetchall()
+
+
+def set_daily_mark(conn, user_id, day, fields: dict, now) -> dict | None:
+    """Stage 8.1 §3: only the fields present in `fields` ("felt", "note") change; noted_at is `now`, or NULL once
+    both are empty. None when the account has no card that day (a card is never drawn after the fact)."""
+    row = conn.execute("SELECT felt, note FROM daily_draws WHERE user_id = %s AND day = %s FOR UPDATE",
+                       (user_id, day)).fetchone()
+    if row is None:
+        return None
+    if not fields:
+        return conn.execute(f"SELECT {DAILY_FIELDS} FROM daily_draws WHERE user_id = %s AND day = %s",
+                            (user_id, day)).fetchone()
+    felt = fields["felt"] if "felt" in fields else row["felt"]
+    note = fields["note"] if "note" in fields else row["note"]
+    noted_at = None if felt is None and note is None else now
+    return conn.execute(f"UPDATE daily_draws SET felt = %s, note = %s, noted_at = %s WHERE user_id = %s AND day = %s"
+                        f" RETURNING {DAILY_FIELDS}", (felt, note, noted_at, user_id, day)).fetchone()
+
+
 def touch_guest_push(conn, guest_id, now) -> None:
     """A guest's reminder lives 90 days from the last Card of the Day visit (housekeeping)."""
     conn.execute("UPDATE push_subscriptions SET active_at = %s WHERE guest_id = %s", (now, guest_id))

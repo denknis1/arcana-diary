@@ -90,6 +90,13 @@ def fill_daily_cache(ctx, day: date, card_ids=None) -> dict:
     return counts
 
 
+def past_text(ctx, card_id: str, reversed_: bool, lang: str, cached_text: str | None) -> dict:
+    """Stage 8.1 §4: a calendar day's text — the cached one while the cache keeps it, then the card base."""
+    if cached_text:
+        return {"text": cached_text, "source": "cache"}
+    return {"text": fallback.daily_fallback(_excerpt(ctx, card_id, reversed_, lang)), "source": "fallback"}
+
+
 def daily_text(ctx, card_id: str, reversed_: bool, lang: str, day: date) -> dict:
     with ctx.db.connect() as conn:
         cached = repo.get_daily_cache(conn, card_id, reversed_, lang, day)
